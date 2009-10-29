@@ -47,6 +47,7 @@ public class DiagramCanvasSwitch {
 	 * 
 	 * @return the element to edit for create command
 	 */
+	// @unused
 	public static EObject getElementToEditForCreateCommand(EditPolicy editPolicy) {
 		return getCanvasElement(editPolicy);
 	}
@@ -59,6 +60,7 @@ public class DiagramCanvasSwitch {
 	 * 
 	 * @return the e class to edit for create command
 	 */
+	// @unused
 	public static EClass getEClassToEditForCreateCommand(EditPolicy editPolicy) {
 		EObject element = getCanvasElement(editPolicy);
 		return element != null ? element.eClass() : null;

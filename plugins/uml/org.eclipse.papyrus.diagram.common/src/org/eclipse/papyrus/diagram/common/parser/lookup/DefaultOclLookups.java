@@ -14,6 +14,7 @@ package org.eclipse.papyrus.diagram.common.parser.lookup;
 
 public class DefaultOclLookups {
 
+	// @unused
 	public static final String DEFAULT_TYPE_LOOKUP = "" + // 
 			" let result : Set(Type) = Set{} in " + //
 			" let pakkage : Package = self.getNearestPackage() in " + // 

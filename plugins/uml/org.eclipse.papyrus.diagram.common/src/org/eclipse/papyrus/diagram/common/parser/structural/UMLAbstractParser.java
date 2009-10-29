@@ -87,6 +87,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * 
 	 * @generated
 	 */
+	// @unused
 	public void setViewPattern(String viewPattern) {
 		this.viewPattern = viewPattern;
 		viewProcessor = createViewProcessor(viewPattern);
@@ -136,6 +137,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * 
 	 * @generated
 	 */
+	// @unused
 	public void setEditPattern(String editPattern) {
 		this.editPattern = editPattern;
 		editProcessor = createEditProcessor(editPattern);
@@ -513,7 +515,7 @@ public abstract class UMLAbstractParser implements IParser {
 	protected class InvalidValue {
 
 		/** The description. */
-		private String description;
+		private final String description;
 
 		/**
 		 * The Constructor.

@@ -202,6 +202,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * Init the label direct edit manager. This method should be called when a Direct Edit request
 	 * is performed.
 	 */
+	// @unused
 	protected void initLabelEditManager() {
 		if (manager == null) {
 			// locator for the cell editor (on the name label)
@@ -210,10 +211,12 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 			// defining how properties are modified in the model
 			PropertyAccessor accessor = new PropertyAccessor() {
 
+				@Override
 				public String getPropertyName() {
 					return "Name";
 				}
 
+				@Override
 				public String getValue() {
 					if (isElementImport()) {
 						return getElementImport().getAlias();
@@ -224,6 +227,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 
 				}
 
+				@Override
 				public void setValue(String value) {
 					if (isElementImport()) {
 						getElementImport().setAlias(value);
@@ -241,9 +245,9 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	}
 
 	private CellEditorLocator getTextCellEditorLocator() {
-		if (getHostFigure() instanceof WrappingLabel)
+		if (getHostFigure() instanceof WrappingLabel) {
 			return new TextCellEditorLocator((WrappingLabel) getHostFigure());
-		else if (getHostFigure() instanceof WrappingLabel) {
+		} else if (getHostFigure() instanceof WrappingLabel) {
 			return new LabelCellEditorLocator((Label) getHostFigure());
 		} else {
 			Activator.log("Problem to locate the direct edit editor. Figure is neither a label nor a wrapping label");
@@ -278,7 +282,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 		/**
 		 * @generated
 		 */
-		private WrappingLabel wrapLabel;
+		private final WrappingLabel wrapLabel;
 
 		/**
 		 * @generated
@@ -318,7 +322,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 		/**
 		 * @generated
 		 */
-		private Label label;
+		private final Label label;
 
 		/**
 		 * @generated

@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
+// @unused
 public class LookupResolveRequest {
 
 	private final List<IElementType> myElementTypes;
@@ -25,6 +26,7 @@ public class LookupResolveRequest {
 
 	private final Object myInitValue;
 
+	// @unused
 	public LookupResolveRequest(List<IElementType> elementTypes, EStructuralFeature initFeature, Object initValue) {
 		myElementTypes = elementTypes;
 		myInitFeature = initFeature;

@@ -35,6 +35,7 @@ public class LinkMappingHelper {
 	 * 
 	 * @return the source
 	 */
+	// @unused
 	public static Collection<?> getSource(Element link) {
 		return getSource(link, new CommonSourceUMLSwitch());
 	}
@@ -52,7 +53,7 @@ public class LinkMappingHelper {
 	public static Collection<?> getSource(Element link, CommonSourceUMLSwitch umlSwitch) {
 		return umlSwitch.doSwitch(link);
 	}
-	
+
 	/**
 	 * Gets the source.
 	 * 
@@ -61,6 +62,7 @@ public class LinkMappingHelper {
 	 * 
 	 * @return the source
 	 */
+	// @unused
 	public static Collection<?> getTarget(Element link) {
 		return getTarget(link, new CommonTargetUMLSwitch());
 	}
@@ -86,43 +88,50 @@ public class LinkMappingHelper {
 	 */
 	public static class CommonSourceUMLSwitch extends UMLSwitch<Collection<?>> {
 
+		@Override
 		public java.util.Collection<?> caseAssociation(org.eclipse.uml2.uml.Association object) {
 			return object.getEndTypes();
 		};
 
+		@Override
 		public java.util.Collection<?> caseComment(org.eclipse.uml2.uml.Comment object) {
 			ArrayList result = new ArrayList();
 			result.add(object);
 			return result;
 		};
 
+		@Override
 		public Collection<?> caseDependency(org.eclipse.uml2.uml.Dependency object) {
 			return object.getClients();
 		};
 
+		@Override
 		public java.util.Collection<?> caseGeneralization(org.eclipse.uml2.uml.Generalization object) {
 			ArrayList result = new ArrayList();
 			result.add(object.getOwner());
 			return result;
 		};
 
+		@Override
 		public java.util.Collection<?> casePackageMerge(org.eclipse.uml2.uml.PackageMerge object) {
 			ArrayList result = new ArrayList();
 			result.add(object.getReceivingPackage());
 			return result;
 		};
 
+		@Override
 		public java.util.Collection<?> casePackageImport(org.eclipse.uml2.uml.PackageImport object) {
 			ArrayList result = new ArrayList();
 			result.add(object.getImportingNamespace());
 			return result;
 		};
 
+		@Override
 		public Collection<?> defaultCase(org.eclipse.emf.ecore.EObject object) {
 			return Collections.EMPTY_LIST;
 		};
 	}
-	
+
 	/**
 	 * Contains diagrams common behavior that need to be redefined
 	 * 
@@ -130,36 +139,43 @@ public class LinkMappingHelper {
 	 */
 	public static class CommonTargetUMLSwitch extends UMLSwitch<Collection<?>> {
 
+		@Override
 		public java.util.Collection<?> caseAssociation(org.eclipse.uml2.uml.Association object) {
 			return object.getEndTypes();
 		};
 
+		@Override
 		public java.util.Collection<?> caseComment(org.eclipse.uml2.uml.Comment object) {
 			return object.getAnnotatedElements();
 		};
 
+		@Override
 		public Collection<?> caseDependency(org.eclipse.uml2.uml.Dependency object) {
 			return object.getSuppliers();
 		};
 
+		@Override
 		public java.util.Collection<?> caseGeneralization(org.eclipse.uml2.uml.Generalization object) {
 			ArrayList result = new ArrayList();
 			result.add(object.getGeneral());
 			return result;
 		};
 
+		@Override
 		public java.util.Collection<?> casePackageMerge(org.eclipse.uml2.uml.PackageMerge object) {
 			ArrayList result = new ArrayList();
 			result.add(object.getMergedPackage());
 			return result;
 		};
-		
+
+		@Override
 		public java.util.Collection<?> casePackageImport(org.eclipse.uml2.uml.PackageImport object) {
 			ArrayList result = new ArrayList();
 			result.add(object.getImportedPackage());
 			return result;
 		};
 
+		@Override
 		public Collection<?> defaultCase(org.eclipse.emf.ecore.EObject object) {
 			return Collections.EMPTY_LIST;
 		};

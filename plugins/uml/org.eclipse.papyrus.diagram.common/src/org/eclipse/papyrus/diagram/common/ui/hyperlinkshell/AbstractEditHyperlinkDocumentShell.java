@@ -26,44 +26,42 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-
 // TODO: Auto-generated Javadoc
 /**
- * The Class AbstractEditHyperlinkDocumentShell.
- *  This Class has been generated from VisualEditor.
- * Do not modify it manually by adding behavior! you will lose the capacity to open with VE.
- * So this class is abstract and it contains set of getter in order to connect behavior in subclasses
- 
+ * The Class AbstractEditHyperlinkDocumentShell. This Class has been generated from VisualEditor. Do
+ * not modify it manually by adding behavior! you will lose the capacity to open with VE. So this
+ * class is abstract and it contains set of getter in order to connect behavior in subclasses
  */
 public class AbstractEditHyperlinkDocumentShell {
 
 	/** The Constant OBJECT_LABEL. */
+	// @unused
 	protected static final String OBJECT_LABEL = "Diagram";
-	
+
 	/** The edit hyperlink shell. */
-	private Shell editHyperlinkShell = null;  //  @jve:decl-index=0:visual-constraint="44,36"
-	
+	private Shell editHyperlinkShell = null; // @jve:decl-index=0:visual-constraint="44,36"
+
 	/** The Ok button. */
 	private Button OkButton = null;
-	
+
 	/** The cancel button. */
 	private Button cancelButton = null;
-	
+
 	/** The tooltip input text. */
 	private Text tooltipInputText = null;
-	
+
 	/** The tooltip input label. */
 	private CLabel tooltipInputLabel = null;
-	
+
 	/** The Object labeltext. */
 	private Text ObjectLabeltext = null;
-	
+
 	/** The Objectc label. */
 	private CLabel ObjectcLabel = null;
-	
+
 	/** The choose diagram button. */
 	private Button chooseDiagramButton = null;
-	
+
 	/** The use defaultcheck box. */
 	private Button useDefaultcheckBox = null;
 
@@ -96,10 +94,10 @@ public class AbstractEditHyperlinkDocumentShell {
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 7;
 		gridLayout.makeColumnsEqualWidth = true;
-		//this line has to be commented in order to open with VISUAL EDITOR
+		// this line has to be commented in order to open with VISUAL EDITOR
 		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
-		
-		//editHyperlinkShell = new Shell();
+
+		// editHyperlinkShell = new Shell();
 		editHyperlinkShell.setText("Edit Hyperlink");
 		editHyperlinkShell.setToolTipText("Edition of a hyperlink");
 		editHyperlinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
@@ -113,8 +111,10 @@ public class AbstractEditHyperlinkDocumentShell {
 		ObjectLabeltext.setEditable(true);
 		ObjectLabeltext.setLayoutData(gridData1);
 		chooseDiagramButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		//chooseDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/insp_sbook.gif"));
-		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/insp_sbook.gif").createImage());
+		// chooseDiagramButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/insp_sbook.gif"));
+		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/insp_sbook.gif").createImage());
 		chooseDiagramButton.setLayoutData(gridData51);
 		chooseDiagramButton.setText("");
 		tooltipInputLabel = new CLabel(editHyperlinkShell, SWT.NONE);
@@ -139,7 +139,6 @@ public class AbstractEditHyperlinkDocumentShell {
 		cancelButton.setLayoutData(gridData3);
 	}
 
-	
 	/**
 	 * Gets the edit hyperlink shell.
 	 * 
@@ -149,7 +148,6 @@ public class AbstractEditHyperlinkDocumentShell {
 		return editHyperlinkShell;
 	}
 
-	
 	/**
 	 * Gets the ok button.
 	 * 
@@ -159,7 +157,6 @@ public class AbstractEditHyperlinkDocumentShell {
 		return OkButton;
 	}
 
-	
 	/**
 	 * Gets the cancel button.
 	 * 
@@ -169,7 +166,6 @@ public class AbstractEditHyperlinkDocumentShell {
 		return cancelButton;
 	}
 
-	
 	/**
 	 * Gets the tooltip input text.
 	 * 
@@ -179,7 +175,6 @@ public class AbstractEditHyperlinkDocumentShell {
 		return tooltipInputText;
 	}
 
-	
 	/**
 	 * Gets the object labeltext.
 	 * 
@@ -189,8 +184,6 @@ public class AbstractEditHyperlinkDocumentShell {
 		return ObjectLabeltext;
 	}
 
-
-	
 	/**
 	 * Gets the choose diagram button.
 	 * 
@@ -200,18 +193,16 @@ public class AbstractEditHyperlinkDocumentShell {
 		return chooseDiagramButton;
 	}
 
-	
 	/**
 	 * Gets the tooltip input label.
 	 * 
 	 * @return the tooltipInputLabel
 	 */
+	// @unused
 	protected CLabel getTooltipInputLabel() {
 		return tooltipInputLabel;
 	}
 
-
-	
 	/**
 	 * Gets the objectc label.
 	 * 
@@ -221,8 +212,6 @@ public class AbstractEditHyperlinkDocumentShell {
 		return ObjectcLabel;
 	}
 
-
-	
 	/**
 	 * Gets the use default check box.
 	 * 
@@ -232,13 +221,13 @@ public class AbstractEditHyperlinkDocumentShell {
 		return useDefaultcheckBox;
 	}
 
-
-	
 	/**
 	 * Sets the cancel button.
 	 * 
-	 * @param cancelButton the cancelButton to set
+	 * @param cancelButton
+	 *            the cancelButton to set
 	 */
+	// @unused
 	protected void setCancelButton(Button cancelButton) {
 		this.cancelButton = cancelButton;
 	}

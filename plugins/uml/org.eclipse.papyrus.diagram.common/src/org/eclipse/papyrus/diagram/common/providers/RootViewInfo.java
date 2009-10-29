@@ -56,6 +56,7 @@ public class RootViewInfo {
 	 * 
 	 * @return
 	 */
+	// @unused
 	public IModelTypesProvider getModelTypesProvider() {
 		if (editorID != null && modelTypes != null) {
 			IModelTypesProviderFactory factory = (IModelTypesProviderFactory) Platform.getAdapterManager().getAdapter(

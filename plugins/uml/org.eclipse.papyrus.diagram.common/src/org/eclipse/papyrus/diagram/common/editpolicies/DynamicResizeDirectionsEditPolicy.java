@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
+// @unused
 public class DynamicResizeDirectionsEditPolicy extends ResizableShapeEditPolicy implements NotificationListener {
 
 	private static final int VERTICAL = -1;

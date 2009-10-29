@@ -28,9 +28,9 @@ public abstract class SupplementCommand {
 
 	private EObject container;
 
-	private EObject source;
+	private final EObject source;
 
-	private EObject target;
+	private final EObject target;
 
 	/**
 	 * the supplement command has the same parameter as connection create command of gmf command
@@ -55,6 +55,7 @@ public abstract class SupplementCommand {
 	 * 
 	 * @return true if the command ca be executed
 	 */
+	// @unused
 	public abstract boolean canExecute();
 
 	/**
@@ -63,6 +64,7 @@ public abstract class SupplementCommand {
 	 * @see EditElementCommand
 	 * @return the request
 	 */
+	// @unused
 	protected abstract ConfigureRequest createConfigureRequest(ConfigureRequest request);
 
 	/**
@@ -104,6 +106,7 @@ public abstract class SupplementCommand {
 	/**
 	 * use to set the container of the link
 	 */
+	// @unused
 	public void setContainer(EObject container) {
 		this.container = container;
 	}

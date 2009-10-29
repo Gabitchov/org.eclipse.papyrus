@@ -47,6 +47,7 @@ public class PathsUtil {
 		return URI.decode(workspacePath);
 	}
 
+	// @unused
 	public static String fromEditorInputToURIString(IEditorInput editorInput) {
 		String uri = null;
 		if (editorInput instanceof FileEditorInput) {

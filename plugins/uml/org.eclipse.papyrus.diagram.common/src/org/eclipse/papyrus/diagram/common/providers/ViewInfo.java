@@ -90,6 +90,7 @@ public interface ViewInfo {
 	 * @param type
 	 *            the new type
 	 */
+	// @unused
 	void setType(int type);
 
 	/**
@@ -98,6 +99,7 @@ public interface ViewInfo {
 	 * @param visualID
 	 *            the new visual id
 	 */
+	// @unused
 	void setVisualID(int visualID);
 
 	/**
@@ -106,6 +108,7 @@ public interface ViewInfo {
 	 * @param children
 	 *            the new children
 	 */
+	// @unused
 	void setChildren(Collection<ViewInfo> children);
 
 	/**
@@ -114,6 +117,7 @@ public interface ViewInfo {
 	 * @param label
 	 *            the new label
 	 */
+	// @unused
 	void setLabel(String label);
 
 	/**
@@ -141,5 +145,6 @@ public interface ViewInfo {
 	 * 
 	 * @return
 	 */
+	// @unused
 	boolean isSelectable();
 }

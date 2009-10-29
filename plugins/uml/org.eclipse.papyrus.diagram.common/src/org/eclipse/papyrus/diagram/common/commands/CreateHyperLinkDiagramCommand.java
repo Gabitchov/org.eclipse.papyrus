@@ -46,18 +46,18 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 *            the localization
 	 */
 	public CreateHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext,
-			String name,EModelElement diagram) {
+			String name, EModelElement diagram) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
 		this.tooltiptext = tooltiptext;
 		this.name = name;
-		this.diagram=diagram;
+		this.diagram = diagram;
 	}
 
 	/**
 	 * {@inheritedDoc}
 	 */
 	protected void doExecute() {
-		EAnnotation eAnnotation =createEAnnotation();
+		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getReferences().add(diagram);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM_NAME, this.name);

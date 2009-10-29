@@ -36,6 +36,7 @@ public class OCLLookup<T extends NamedElement> implements Lookup<T> {
 
 	private static final IElementType[] NO_RESOLUTIONS = new IElementType[0];
 
+	// @unused
 	public OCLLookup(Expression ocl) {
 		this(ocl, NO_RESOLUTIONS);
 	}

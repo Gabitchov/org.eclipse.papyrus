@@ -46,9 +46,11 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class DiagramEditPartsUtil {
 
 	/** The Constant BelongToDiagramSource. */
+	// @unused
 	public static final String BelongToDiagramSource = "es.cv.gvcase.mdt.uml2.diagram.common.Belongs_To_This_Diagram";
 
 	/** EAnnotation Source for diagrams that grow from this a view. */
+	// @unused
 	public static final String DiagramsRelatedToElement = "es.cv.gvcase.mdt.uml2.diagram.common.DiagramsRelatedToElement";
 
 	/**
@@ -60,6 +62,7 @@ public class DiagramEditPartsUtil {
 	 * 
 	 * @return a list containing all <code>GraphicalEditPart</code> in the diagram.
 	 */
+	// @unused
 	public static List<IGraphicalEditPart> getAllEditParts(EditPart editPart) {
 
 		if (editPart == null) {
@@ -111,6 +114,7 @@ public class DiagramEditPartsUtil {
 	 * 
 	 * @return the diagram edit part
 	 */
+	// @unused
 	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
 		if (editPart == null) {
 			return null;
@@ -153,6 +157,7 @@ public class DiagramEditPartsUtil {
 	 * @param features
 	 *            the features
 	 */
+	// @unused
 	public static void handleNotificationForDiagram(IGraphicalEditPart editPart, Notification notification,
 			List<EStructuralFeature> features) {
 		EObject element = editPart.resolveSemanticElement();
@@ -178,6 +183,7 @@ public class DiagramEditPartsUtil {
 	 * @param features
 	 *            the features
 	 */
+	// @unused
 	public static void handleNotificationForView(IGraphicalEditPart editPart, Notification notification,
 			List<EStructuralFeature> features) {
 		EObject element = editPart.resolveSemanticElement();
@@ -199,6 +205,7 @@ public class DiagramEditPartsUtil {
 	 * @param view
 	 *            the view
 	 */
+	// @unused
 	public static void updateDiagram(View view) {
 		if (view == null) {
 			return;
@@ -349,17 +356,19 @@ public class DiagramEditPartsUtil {
 		}
 		return views;
 	}
-	
 
 	/**
 	 * Find the views associated with the given eObject in the viewer
-	 * @param parserElement the 
-	 * @param viewer the viewer
+	 * 
+	 * @param parserElement
+	 *            the
+	 * @param viewer
+	 *            the viewer
 	 * @return views found if any
 	 */
 	public static List<View> findViews(EObject parserElement, EditPartViewer viewer) {
 		List<View> modelElements = new ArrayList<View>();
-		if(parserElement != null){
+		if (parserElement != null) {
 			for (Object ep : viewer.getEditPartRegistry().keySet()) {
 				if (ep instanceof View) {
 					View view = (View) ep;
@@ -382,6 +391,7 @@ public class DiagramEditPartsUtil {
 	 * 
 	 * @return the edits the parts from selection
 	 */
+	// @unused
 	public static List<EditPart> getEditPartsFromSelection(ISelection selection, IDiagramGraphicalViewer viewer) {
 		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
 			StructuredSelection structuredSelection = (StructuredSelection) selection;

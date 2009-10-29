@@ -44,9 +44,11 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	public static final int ALIGN_BOTTOMRIGHT = 2;
 
 	/** Constant for horizontal alignment *. */
+	// @unused
 	public static final boolean HORIZONTAL = true;
 
 	/** Constant for vertical alignment *. */
+	// @unused
 	public static final boolean VERTICAL = false;
 
 	/** Transposer object used in layout calculations *. */
@@ -78,6 +80,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * 
 	 * @since 2.0
 	 */
+	// @unused
 	public LeftToolbarLayout(boolean isHorizontal) {
 		horizontal = isHorizontal;
 		transposer.setEnabled(horizontal);
@@ -139,12 +142,14 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		Insets insets = container.getInsets();
 		if (isHorizontal()) {
 			wHint = -1;
-			if (hHint >= 0)
+			if (hHint >= 0) {
 				hHint = Math.max(0, hHint - insets.getHeight());
+			}
 		} else {
 			hHint = -1;
-			if (wHint >= 0)
+			if (wHint >= 0) {
 				wHint = Math.max(0, wHint - insets.getWidth());
+			}
 		}
 
 		List children = container.getChildren();
@@ -186,12 +191,14 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		Insets insets = container.getInsets();
 		if (isHorizontal()) {
 			wHint = -1;
-			if (hHint >= 0)
+			if (hHint >= 0) {
 				hHint = Math.max(0, hHint - insets.getHeight());
+			}
 		} else {
 			hHint = -1;
-			if (wHint >= 0)
+			if (wHint >= 0) {
 				wHint = Math.max(0, wHint - insets.getWidth());
+			}
 		}
 
 		List children = container.getChildren();
@@ -214,6 +221,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * 
 	 * @return the minor aligment
 	 */
+	// @unused
 	public int getMinorAlignment() {
 		return minorAlignment;
 	}
@@ -223,6 +231,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * 
 	 * @return the spacing between children
 	 */
+	// @unused
 	public int getSpacing() {
 		return spacing;
 	}
@@ -232,6 +241,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * 
 	 * @return <code>true</code> if stretch minor axis is enabled
 	 */
+	// @unused
 	public boolean getStretchMinorAxis() {
 		return matchWidth;
 	}
@@ -361,12 +371,14 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 			Rectangle newBounds = new Rectangle(x, y, prefWidth, prefHeight);
 
 			child = (IFigure) children.get(i);
-			if (prefMinSumHeight != 0)
+			if (prefMinSumHeight != 0) {
 				amntShrinkCurrentHeight = (prefHeight - minHeight) * amntShrinkHeight / (prefMinSumHeight);
+			}
 
 			int width = Math.min(prefWidth, transposer.t(child.getMaximumSize()).width);
-			if (matchWidth)
+			if (matchWidth) {
 				width = transposer.t(child.getMaximumSize()).width;
+			}
 			width = Math.max(minWidth, Math.min(clientArea.width, width));
 			newBounds.width = width;
 
@@ -400,6 +412,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * 
 	 * @since 2.0
 	 */
+	// @unused
 	public void setMinorAlignment(int align) {
 		minorAlignment = align;
 	}
@@ -412,6 +425,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * 
 	 * @since 2.0
 	 */
+	// @unused
 	public void setSpacing(int space) {
 		spacing = space;
 	}
@@ -452,9 +466,11 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * 
 	 * @since 2.0
 	 */
+	// @unused
 	public void setVertical(boolean flag) {
-		if (horizontal != flag)
+		if (horizontal != flag) {
 			return;
+		}
 		invalidate();
 		horizontal = !flag;
 		transposer.setEnabled(horizontal);

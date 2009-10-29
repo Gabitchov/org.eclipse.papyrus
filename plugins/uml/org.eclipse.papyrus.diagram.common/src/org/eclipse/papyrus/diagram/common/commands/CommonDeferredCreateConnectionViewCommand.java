@@ -115,13 +115,13 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	}
 
 	/**
-	 * Creates a connection view between the source and target. 
+	 * Creates a connection view between the source and target.
 	 * 
 	 * @throws ExecutionException
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info,
 			IGraphicalEditPart sourceEditPart, IGraphicalEditPart targetEditPart) throws ExecutionException {
-		
+
 		// If these are null, then the diagram's editparts may not
 		// have been refreshed yet.
 		Assert.isNotNull(sourceEditPart);

@@ -47,7 +47,5 @@ public class AssociationHelper {
 
 		return CommandResult.newOKCommandResult(association);
 	}
-	
-	
 
 }

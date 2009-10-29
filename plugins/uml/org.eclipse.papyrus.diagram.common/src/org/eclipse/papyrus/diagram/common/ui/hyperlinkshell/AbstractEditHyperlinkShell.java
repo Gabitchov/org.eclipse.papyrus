@@ -25,37 +25,34 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
-
 /**
- * The Class EditHyperlinkShell.
- *  This Class has been generated from VisualEditor.
- * Do not modify it manually by adding behavior! you will lose the capacity to open with VE.
- * So this class is abstract and it contains set of getter in order to connect behavior in subclasses
- 
+ * The Class EditHyperlinkShell. This Class has been generated from VisualEditor. Do not modify it
+ * manually by adding behavior! you will lose the capacity to open with VE. So this class is
+ * abstract and it contains set of getter in order to connect behavior in subclasses
  */
 public abstract class AbstractEditHyperlinkShell {
 
 	/** The Constant OBJECT_LABEL. */
 	protected static final String OBJECT_LABEL = "object";
-	
+
 	/** The edit hyperlink shell. */
-	private Shell editHyperlinkShell = null;  //  @jve:decl-index=0:visual-constraint="12,45"
-	
+	private Shell editHyperlinkShell = null; // @jve:decl-index=0:visual-constraint="12,45"
+
 	/** The Ok button. */
 	private Button OkButton = null;
-	
+
 	/** The cancel button. */
 	private Button cancelButton = null;
-	
+
 	/** The tooltip input text. */
 	private Text tooltipInputText = null;
-	
+
 	/** The tooltip input label. */
 	private CLabel tooltipInputLabel = null;
-	
+
 	/** The Object labeltext. */
 	private Text ObjectLabeltext = null;
-	
+
 	/** The Objectc label. */
 	private CLabel ObjectcLabel = null;
 
@@ -87,14 +84,14 @@ public abstract class AbstractEditHyperlinkShell {
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 7;
 		gridLayout.makeColumnsEqualWidth = true;
-		
+
 		Display display = Display.getCurrent();
-		//this line has to be commented in order to open with VISUAL EDITOR
+		// this line has to be commented in order to open with VISUAL EDITOR
 		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
-		
-		//editHyperlinkShell = new Shell(display, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
-		
-		//editHyperlinkShell = new Shell();
+
+		// editHyperlinkShell = new Shell(display, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+
+		// editHyperlinkShell = new Shell();
 		editHyperlinkShell.setText("Edit Hyperlink");
 		editHyperlinkShell.setToolTipText("Edition of a hyperlink");
 		editHyperlinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
@@ -127,7 +124,6 @@ public abstract class AbstractEditHyperlinkShell {
 		cancelButton.setLayoutData(gridData3);
 	}
 
-	
 	/**
 	 * Gets the edit hyperlink shell.
 	 * 
@@ -137,7 +133,6 @@ public abstract class AbstractEditHyperlinkShell {
 		return editHyperlinkShell;
 	}
 
-	
 	/**
 	 * Gets the ok button.
 	 * 
@@ -147,7 +142,6 @@ public abstract class AbstractEditHyperlinkShell {
 		return OkButton;
 	}
 
-	
 	/**
 	 * Gets the cancel button.
 	 * 
@@ -157,7 +151,6 @@ public abstract class AbstractEditHyperlinkShell {
 		return cancelButton;
 	}
 
-	
 	/**
 	 * Gets the tooltip input text.
 	 * 
@@ -167,7 +160,6 @@ public abstract class AbstractEditHyperlinkShell {
 		return tooltipInputText;
 	}
 
-	
 	/**
 	 * Gets the object labeltext.
 	 * 
@@ -177,8 +169,6 @@ public abstract class AbstractEditHyperlinkShell {
 		return ObjectLabeltext;
 	}
 
-
-	
 	/**
 	 * @return the objectcLabel
 	 */
@@ -186,8 +176,6 @@ public abstract class AbstractEditHyperlinkShell {
 		return ObjectcLabel;
 	}
 
-
-	
 	/**
 	 * @return the useDefaultCheckBox
 	 */

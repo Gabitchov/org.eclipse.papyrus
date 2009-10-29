@@ -130,8 +130,9 @@ public class Activator extends AbstractUIPlugin {
 			if (!"".equals(visKey)) { // Add visibility overlay
 
 				Image initialImage = desc.createImage();
-				ImageDescriptor visDesc = getDefault().getImageDescriptor(
-						getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visKey + ".gif");
+				getDefault();
+				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16
+						+ "VisibilityKind_" + visKey + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(initialImage, visDesc);
@@ -231,6 +232,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
+	// @unused
 	public static Image getIconElement(Element elt) {
 		return getIconElement(elt, false);
 	}
@@ -345,8 +347,9 @@ public class Activator extends AbstractUIPlugin {
 			// Add visibility decorator
 			if (visibility != null) {
 
-				ImageDescriptor visDesc = getDefault().getImageDescriptor(
-						getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visibility.getLiteral() + ".gif");
+				getDefault();
+				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16
+						+ "VisibilityKind_" + visibility.getLiteral() + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(image, visDesc);

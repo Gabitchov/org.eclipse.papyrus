@@ -83,13 +83,11 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart {
 	@Override
 	protected void setGradient(GradientData gradient) {
 		IPapyrusNodeFigure fig = getPrimaryShape();
-		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		FillStyle style = (FillStyle) getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if (gradient != null) {
 			fig.setIsUsingGradient(true);
 			;
-			fig
-					.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient
-							.getGradientStyle());
+			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
 		} else {
 			fig.setIsUsingGradient(false);
 		}

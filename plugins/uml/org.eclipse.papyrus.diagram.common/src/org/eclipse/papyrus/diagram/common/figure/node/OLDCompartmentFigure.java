@@ -27,24 +27,26 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 
 /**
  * A rectangular figure that supports compartment.
+ * 
  * @deprecated use CompartmentFigure instead.
  */
-public class OLDCompartmentFigure extends NodeNamedElementFigure {	
+@Deprecated
+public class OLDCompartmentFigure extends NodeNamedElementFigure {
 
 	private Map<String, RectangleFigure> containerFigures;
 
-	private List<String> compartmentID;
+	private final List<String> compartmentID;
 
 	private IFigure contentPane;
-	
-	private static final int MINIMUM_COMPARTMENT_HEIGHT = 15;
 
+	private static final int MINIMUM_COMPARTMENT_HEIGHT = 15;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param compartmentFigure
 	 */
+	// @unused
 	public OLDCompartmentFigure(List<String> compartmentFigure) {
 		this(compartmentFigure, null);
 	}
@@ -66,8 +68,6 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 		createContentPane(compartmentFigure);
 
 	}
-
-	
 
 	/**
 	 * 
@@ -108,6 +108,7 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 	 *            the id to find the right compartment
 	 * @return the RectangleFigure
 	 */
+	// @unused
 	public RectangleFigure getCompartment(String id) {
 		return containerFigures.get(id);
 	}
@@ -169,9 +170,9 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 				}
 
 			}
-		
+
 			optimizeCompartmentSize(compartmentsDimension);
-			
+
 			for (int i = 0; i < compartmentID.size(); i++) {
 				RectangleFigure rectangleFigure = containerFigures.get(compartmentID.get(i));
 				if (rectangleFigure.getChildren().size() > 0) {
@@ -185,7 +186,7 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 				}
 
 			}
-			
+
 			contentPane.getBounds().setSize(getBounds().width,
 					getBounds().y + getBounds().height - contentPane.getBounds().y);
 		}
@@ -225,12 +226,14 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 			}
 			return point;
 		}
-		
-		
+
 		/**
-		 * Optimize the size of each compartment depending on the size of the compartments container, and the size of each compartment. 
-		 * If a compartment is empty, or not expanded, then a default size is applied to this compartment 
-		 * @param compartmentsDimension an hashmap containing each compartment dimension.
+		 * Optimize the size of each compartment depending on the size of the compartments
+		 * container, and the size of each compartment. If a compartment is empty, or not expanded,
+		 * then a default size is applied to this compartment
+		 * 
+		 * @param compartmentsDimension
+		 *            an hashmap containing each compartment dimension.
 		 */
 		private void optimizeCompartmentSize(HashMap<String, Dimension> compartmentsDimension) {
 			int compartmentsHeight = 0;
@@ -245,8 +248,9 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 			}
 
 			if (getContentPane().getBounds().height > 0) {
-				
-				// ratio between the height of all compartments and the size of the compartments container.
+
+				// ratio between the height of all compartments and the size of
+				// the compartments container.
 				double ratio = new Integer(compartmentsHeight).doubleValue()
 						/ new Integer(getContentPane().getBounds().height).doubleValue();
 

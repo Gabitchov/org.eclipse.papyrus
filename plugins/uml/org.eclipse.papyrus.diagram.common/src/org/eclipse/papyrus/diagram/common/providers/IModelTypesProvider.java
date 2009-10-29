@@ -28,6 +28,7 @@ public interface IModelTypesProvider {
 	 *            hint must adapt to IElementType.
 	 * @return
 	 */
+	// @unused
 	String getTextHelper(IAdaptable hint);
 
 	/**
@@ -37,6 +38,7 @@ public interface IModelTypesProvider {
 	 *            hint must adapt to IElementType
 	 * @return
 	 */
+	// @unused
 	Image getImageHelper(IAdaptable hint);
 
 }

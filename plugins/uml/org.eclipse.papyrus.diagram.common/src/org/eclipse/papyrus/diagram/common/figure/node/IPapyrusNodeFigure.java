@@ -34,6 +34,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * 
 	 * @return true is the figure is in the mode shadow
 	 */
+	// @unused
 	public boolean isShadow();
 
 	/**
@@ -42,6 +43,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * @param borderColor
 	 *            color
 	 */
+	// @unused
 	public void setBorderColor(Color borderColor);
 
 	/**

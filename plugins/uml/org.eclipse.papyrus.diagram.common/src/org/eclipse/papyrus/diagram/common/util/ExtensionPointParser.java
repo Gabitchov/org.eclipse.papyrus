@@ -87,6 +87,7 @@ public class ExtensionPointParser {
 	 * @param classes
 	 * @param enclosingInstance
 	 */
+	// @unused
 	public ExtensionPointParser(String extensionPointID, Class<Object>[] classes, Object enclosingInstance) {
 		this.classes = classes;
 		this.extensionPointID = extensionPointID;

@@ -17,7 +17,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.swt.graphics.Image;
 
 /**
- *declaration of figure that can manage stereotype display 
+ *declaration of figure that can manage stereotype display
  */
 public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 
@@ -37,6 +37,7 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 	 *            the string representing the stereotype properties to be displayed
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties);
+
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
 	 * 
@@ -46,8 +47,8 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 	 * @param stereotypeProperties
 	 *            the string to be displayed.
 	 */
-	public void setStereotypePropertiesInCompartment(String stereotypeProperties) ;
-	
+	public void setStereotypePropertiesInCompartment(String stereotypeProperties);
+
 	/**
 	 * Sets the stereotypes for this figure.
 	 * <p>
@@ -63,6 +64,7 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 	 *            the string representing the stereotypes to be displayed
 	 */
 	public void setStereotypes(String stereotypes);
+
 	/**
 	 * Refresh stereotypes.
 	 * 
@@ -75,6 +77,7 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 	 * @param stereotypes
 	 *            the stereotypes
 	 */
+	// @unused
 	public void refreshStereotypes(String stereotypes, String presentation, boolean hasIcon, boolean hasShape);
 
 	/**
@@ -84,6 +87,7 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 	 *            the image representing the stereotype
 	 */
 	public void setAppliedStereotypeIcon(Image image);
+
 	/**
 	 * Gets the stereotypes label.
 	 * 

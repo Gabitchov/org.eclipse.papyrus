@@ -18,7 +18,7 @@ import java.util.List;
  * Groups all UML Diagram Editors' IDs.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @deprecated 
+ * @deprecated
  */
 public class UMLDiagramEditorIDs {
 
@@ -38,6 +38,7 @@ public class UMLDiagramEditorIDs {
 	public static final String SequenceModelID = "MOSKitt UMLSequence";
 
 	/** The Constant ProfileModelID. */
+	// @unused
 	public static final String ProfileModelID = "MOSKitt UMLProfile";
 
 	/** The all model i ds. */
@@ -48,6 +49,7 @@ public class UMLDiagramEditorIDs {
 	 * 
 	 * @return the all model i ds
 	 */
+	// @unused
 	public static List<String> getAllModelIDs() {
 		if (allModelIDs == null) {
 			allModelIDs = new ArrayList<String>();

@@ -82,9 +82,8 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#getDropCommand(org.eclipse
-	 * .gef.requests.ChangeBoundsRequest)
+	 * @seeorg.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#
+	 * getDropCommand(org.eclipse .gef.requests.ChangeBoundsRequest)
 	 */
 	@Override
 	protected Command getDropCommand(ChangeBoundsRequest request) {
@@ -104,9 +103,8 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#getDropObjectsCommand(
-	 * org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 * @seeorg.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#
+	 * getDropObjectsCommand( org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
 	 */
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {

@@ -22,12 +22,14 @@ public class PropertySourceExtension extends EMFCompositePropertySource {
 
 	private final AdapterFactory myItemProvidersAdapterFactory;
 
+	// @unused
 	protected PropertySourceExtension(Object object, IItemPropertySource itemPropertySource, String category,
 			AdapterFactory itemProvidersAdapterFactory) {
 		super(object, itemPropertySource, category);
 		myItemProvidersAdapterFactory = itemProvidersAdapterFactory;
 	}
 
+	// @unused
 	public PropertySourceExtension(Object object, IItemPropertySource itemPropertySource,
 			AdapterFactory itemProvidersAdapterFactory) {
 		super(object, itemPropertySource);

@@ -19,20 +19,19 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 public class CreateUMLModelWizard extends CreateModelWizard {
 
 	/**
 	 * This ID is the id defined in the extension "org.eclipse.ui.newWizards" of the wizard.
 	 */
+	// @unused
 	public static final String ID_UMLWIZARD = "org.eclipse.papyrus.wizards.createumlmodel";
-	
-	
+
 	@Override
 	protected String getModelContentType() {
 		return UMLPackage.eCONTENT_TYPE;
 	}
-	
+
 	@Override
 	protected void initializeModelResource(Resource resource, String rootElementName) {
 		Model model = UMLFactory.eINSTANCE.createModel();

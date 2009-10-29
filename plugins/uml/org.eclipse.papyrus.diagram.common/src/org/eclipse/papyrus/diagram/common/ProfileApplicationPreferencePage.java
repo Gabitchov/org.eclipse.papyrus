@@ -22,11 +22,13 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * @author Gilles Cannenterre
  * @since 27 oct. 06
  */
+// @unused
 public class ProfileApplicationPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	/**
 	 * The Constructor.
 	 */
+	// @unused
 	public ProfileApplicationPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());

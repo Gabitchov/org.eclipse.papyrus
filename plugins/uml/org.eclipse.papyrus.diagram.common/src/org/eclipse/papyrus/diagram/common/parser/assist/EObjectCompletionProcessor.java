@@ -44,6 +44,7 @@ public abstract class EObjectCompletionProcessor implements IContentAssistProces
 
 	protected abstract Iterable<String> computeContextProposals(EObject context);
 
+	// @unused
 	public void setContext(EObject context) {
 		myContext = context;
 	}

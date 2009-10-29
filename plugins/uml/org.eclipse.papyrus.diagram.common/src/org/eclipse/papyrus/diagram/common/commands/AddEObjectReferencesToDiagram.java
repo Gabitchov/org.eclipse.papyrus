@@ -59,6 +59,7 @@ public class AddEObjectReferencesToDiagram extends AbstractTransactionalCommand 
 		this.eObjects = eObjects;
 	}
 
+	// @unused
 	public AddEObjectReferencesToDiagram(TransactionalEditingDomain domain, Diagram diagram, List<EObject> eObjects,
 			boolean addContents) {
 		super(domain, "Add EObject references to Diagram", null);

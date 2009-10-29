@@ -13,13 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class HyperlinkDocument. A container of document
  */
 public class HyperlinkDocument extends HyperlinkObject {
-	
+
 	/**
 	 * Gets the hyperlink document.
 	 * 
@@ -27,13 +26,14 @@ public class HyperlinkDocument extends HyperlinkObject {
 	 */
 	public String getHyperlinkDocument() {
 		// TODO Auto-generated method stub
-		return (String)super.getObject();
+		return (String) super.getObject();
 	}
 
 	/**
 	 * Sets the hyperlink document.
 	 * 
-	 * @param object the new hyperlink document
+	 * @param object
+	 *            the new hyperlink document
 	 */
 	public void setHyperlinkDocument(String object) {
 		// TODO Auto-generated method stub

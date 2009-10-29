@@ -36,13 +36,12 @@ import org.eclipse.swt.graphics.Image;
  * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified
  * nale label + 1 name label
  */
-public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure{
+public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure {
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
-	
 
 	private Label taggedLabel;
-	
+
 	/** the depth of the qualified name **/
 	private int depth = 0;
 
@@ -84,9 +83,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	public NodeNamedElementFigure() {
 		this(null);
 	}
-	
-	public NodeNamedElementFigure(String taggedLabelValue)
-	{
+
+	public NodeNamedElementFigure(String taggedLabelValue) {
 		super();
 
 		// creation of the nameLabel
@@ -95,7 +93,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(PositionConstants.MIDDLE);
 		add(nameLabel);
-		
+
 		initTagLabel(taggedLabelValue);
 	}
 
@@ -105,6 +103,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @param fig
 	 *            the fig
 	 */
+	// @unused
 	public void copyContextTo(IFigure fig) {
 		Iterator it = this.getListeners(FigureListener.class);
 		while (it.hasNext()) {
@@ -182,7 +181,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 
 	}
-	
+
 	/**
 	 * Get the label containing the tagged value
 	 * 
@@ -197,6 +196,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * 
 	 * @return the depth
 	 */
+	// @unused
 	public int getDepth() {
 		return depth;
 	}
@@ -209,7 +209,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	public Label getIconLabel() {
 		return this.iconLabel;
 	}
-	
+
 	/**
 	 * Create the tag label in the figure. The tag label is created if value is not null.
 	 * 
@@ -264,12 +264,15 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	protected int getNameHeight() {
 		int nameHeight = this.getNameLabel().getPreferredSize().height;
 
-		if (this.getIconLabel() != null)
+		if (this.getIconLabel() != null) {
 			nameHeight += this.getIconLabel().getPreferredSize().height;
-		if (this.getStereotypesLabel() != null)
+		}
+		if (this.getStereotypesLabel() != null) {
 			nameHeight += this.getStereotypesLabel().getPreferredSize().height;
-		if (this.getQualifiedNameLabel() != null)
+		}
+		if (this.getQualifiedNameLabel() != null) {
 			nameHeight += this.getQualifiedNameLabel().getPreferredSize().height;
+		}
 		nameHeight += 5;
 
 		return nameHeight;
@@ -285,6 +288,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		return this.nameLabel;
 	}
 
+	// @unused
 	public Image getNameLabelIcon() {
 		return nameLabelIcon;
 	}
@@ -294,6 +298,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * 
 	 * @return
 	 */
+	// @unused
 	protected int getNameLabelPosition() {
 		int position = getQualifiedNameLabelPosition();
 		if (this.qualifiedLabel != null) {
@@ -312,20 +317,23 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		int n = -1;
 
 		int i = 0;
-		if (depth <= 0)
+		if (depth <= 0) {
 			return qualifiedName;
-
-		while (i < depth) {
-			if ((n = qualifiedName.indexOf("::", n + 1)) != -1)
-				i++;
-			else
-				return null;
 		}
 
-		if (n == -1)
+		while (i < depth) {
+			if ((n = qualifiedName.indexOf("::", n + 1)) != -1) {
+				i++;
+			} else {
+				return null;
+			}
+		}
+
+		if (n == -1) {
 			return qualifiedName;
-		else
+		} else {
 			return qualifiedName.substring(n + 2);
+		}
 
 	}
 
@@ -411,6 +419,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * 
 	 * @return true if the point is on the label
 	 */
+	// @unused
 	protected boolean labelContainsPoint(Label label, Point pt) {
 		Rectangle rc;
 
@@ -469,6 +478,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @param name
 	 *            the name
 	 */
+	// @unused
 	public void setName(String name) {
 		this.nameLabel.setText(name);
 	}
@@ -484,6 +494,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 	}
 
+	// @unused
 	public void setNameLabelIcon(Image nameLabelIcon) {
 		this.nameLabelIcon = nameLabelIcon;
 	}
@@ -500,7 +511,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		// two raisons to remove label!
 		// null
 		// or the qualified name is equal to 1
-		if (qualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove label if any
+		if (qualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove
+			// label
+			// if
+			// any
 			if (this.qualifiedLabel != null) {
 				this.remove(this.qualifiedLabel);
 				this.qualifiedLabel = null;

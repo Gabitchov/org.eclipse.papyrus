@@ -70,6 +70,7 @@ public class SelectModelElementsForDiagramDialog extends WizardPage {
 	 * @param labelProvider
 	 *            the label provider
 	 */
+	// @unused
 	public SelectModelElementsForDiagramDialog(IWizardModelElementProvider elementProvider,
 			IContentProvider contentProvider, IBaseLabelProvider labelProvider) {
 		super("Select model elements for diagram");
@@ -108,7 +109,7 @@ public class SelectModelElementsForDiagramDialog extends WizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets .Composite)
 	 */
 	public void createControl(Composite parent) {
 		Composite root = new Composite(parent, SWT.NONE);
@@ -127,6 +128,7 @@ public class SelectModelElementsForDiagramDialog extends WizardPage {
 	 * 
 	 * @return the selected e objects
 	 */
+	// @unused
 	public List<EObject> getSelectedEObjects() {
 		if (selectionTree == null) {
 			return Collections.EMPTY_LIST;

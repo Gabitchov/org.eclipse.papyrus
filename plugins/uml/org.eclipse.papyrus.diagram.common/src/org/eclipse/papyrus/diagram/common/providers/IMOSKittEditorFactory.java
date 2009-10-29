@@ -26,6 +26,7 @@ public interface IMOSKittEditorFactory {
 	 * @param object
 	 * @return
 	 */
+	// @unused
 	boolean providesFor(Object object);
 
 	/**

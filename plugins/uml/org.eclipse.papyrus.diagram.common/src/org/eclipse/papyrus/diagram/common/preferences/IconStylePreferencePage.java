@@ -40,6 +40,7 @@ public abstract class IconStylePreferencePage extends AbstractPreferencePage {
 		addField(myIconStyleFieldEditor);
 	}
 
+	// @unused
 	public static void initDefaults(IPreferenceStore store) {
 		AppearancePreferencePage.initDefaults(store);
 		store.setDefault(UMLPreferencesConstants.PREF_ICON_STYLE, UMLPreferencesConstants.PREF_ICON_STYLE_STANDARD);

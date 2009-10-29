@@ -127,11 +127,13 @@ public class MDTUtil {
 	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a> The version of the first
 	 *         editor that modified the diagram
 	 */
+	// @unused
 	public static String getDiagramVersion(Diagram diagram) {
 		EAnnotation eAnnotation = diagram.getEAnnotation(EDITOR_VERSION);
 		// No version of the diagram
-		if (eAnnotation == null)
+		if (eAnnotation == null) {
 			return null;
+		}
 		return eAnnotation.getDetails().get("version");
 	}
 
@@ -145,6 +147,7 @@ public class MDTUtil {
 	 * 
 	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a> The version of the editor
 	 */
+	// @unused
 	public static String getEditorVersion(IEditorPart editor) {
 		return getBundleVersion(editor.getSite().getPluginId());
 	}
@@ -249,6 +252,7 @@ public class MDTUtil {
 		return null;
 	}
 
+	// @unused
 	public static IEditorPart getActiveEditor() {
 		try {
 			return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -331,6 +335,7 @@ public class MDTUtil {
 	 * 
 	 * @return the host diagram
 	 */
+	// @unused
 	public static Diagram getHostDiagram(EditPolicy policy) {
 		if (policy.getHost() instanceof IGraphicalEditPart) {
 			View view = ((IGraphicalEditPart) policy.getHost()).getNotationView();
@@ -351,6 +356,7 @@ public class MDTUtil {
 	 * @param request
 	 * @return
 	 */
+	// @unused
 	public static Diagram getDiagramFromRequest(IEditCommandRequest request) {
 		Diagram diagram = null;
 		if (request != null) {
@@ -401,6 +407,7 @@ public class MDTUtil {
 	 * 
 	 * @return the object name or empty string
 	 */
+	// @unused
 	public static String getObjectNameOrEmptyString(Object object) {
 		String name = getObjectName(object);
 		return name == null ? "" : name;
@@ -485,6 +492,7 @@ public class MDTUtil {
 		return new QualifiedName(Activator.ID, LastOpenedDiagramPropertyBase + (editorID != null ? editorID : ""));
 	}
 
+	// @unused
 	public static CachedResourcesDiagramEditor getCachedResourcesDiagramEditorFromEditorRef(IEditorReference reference) {
 		if (reference == null) {
 			return null;
@@ -701,6 +709,7 @@ public class MDTUtil {
 		}
 	}
 
+	// @unused
 	public static boolean setEditorForDiagramForFirstDiagram(Resource resource) {
 		Diagram diagram = MDTUtil.getFirstDiagramFromResource(resource);
 		if (diagram != null) {
@@ -770,6 +779,7 @@ public class MDTUtil {
 	 * @param editorID
 	 * @return
 	 */
+	// @unused
 	public static CachedResourcesEditorInput getValidEditorInput(URI editorInput, String editorID) {
 		if (editorID != null && editorInput != null) {
 			// get the shared editing domain, that will have the resources
@@ -914,6 +924,7 @@ public class MDTUtil {
 	 * 
 	 * @return the edits the parts from selection
 	 */
+	// @unused
 	public static List<EditPart> getEditPartsFromSelection(ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			List<EditPart> editParts = new ArrayList<EditPart>();
@@ -936,6 +947,7 @@ public class MDTUtil {
 	 * 
 	 * @return the e objects from selection
 	 */
+	// @unused
 	public static List<EObject> getEObjectsFromSelection(ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			List<EObject> eObjects = new ArrayList<EObject>();
@@ -962,6 +974,7 @@ public class MDTUtil {
 	 * 
 	 * @return the diagrams in hierarchy
 	 */
+	// @unused
 	public static List<Diagram> getDiagramsInHierarchy(EObject eObject, Resource gmfResource) {
 		// no eObject means nothing to search for
 		if (eObject == null) {
@@ -1073,6 +1086,7 @@ public class MDTUtil {
 	 * @param infos
 	 *            the infos
 	 */
+	// @unused
 	public static void removeElementToFilterFromDiagram(Diagram diagram, Collection<ViewInfo> infos) {
 		if (diagram == null || infos == null || infos.size() <= 0) {
 			return;
@@ -1119,6 +1133,7 @@ public class MDTUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	public static boolean findElementInDiagramFilter(Diagram diagram, int visualID) {
 		if (diagram != null) {
 			EAnnotation eAnnotation = diagram.getEAnnotation(FilterViewAndLabelsSource);
@@ -1172,7 +1187,7 @@ public class MDTUtil {
 	}
 
 	// //****////
-
+	// @unused
 	public static IStatusLineManager getStatusLineManager() {
 		try {
 			return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()

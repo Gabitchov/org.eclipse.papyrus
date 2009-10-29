@@ -52,9 +52,8 @@ public class InteractionFigure extends Shape {
 		Rectangle r = getBounds();
 
 		int labelWidth = -1;
-		
-		for(Object obj : getChildren())
-		{
+
+		for (Object obj : getChildren()) {
 			if (obj instanceof WrappingLabel || obj instanceof WrapLabel) {
 				WrappingLabel wLabel = (WrappingLabel) obj;
 				labelWidth = wLabel.getPreferredSize().width;

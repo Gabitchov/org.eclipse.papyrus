@@ -64,6 +64,7 @@ public class MOSKittEditorIDs {
 	 * 
 	 * @return the all extensions editor i ds
 	 */
+	// @unused
 	public static List<String> getAllExtensionsEditorIDs() {
 		return new ArrayList<String>(getExtensionsMapModelToEditor().values());
 	}

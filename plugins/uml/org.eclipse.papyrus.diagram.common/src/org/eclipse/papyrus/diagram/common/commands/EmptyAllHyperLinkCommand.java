@@ -23,12 +23,10 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.CreateEAnnotationCommand;
 
 /**
- * The Class DeleteHyperLinkCommand.
- * it can be used also to remove an hyperlink web.
- * It will remove the first eannotation that corresponds to the link or the localization of the hyperlink
+ * The Class DeleteHyperLinkCommand. it can be used also to remove an hyperlink web. It will remove
+ * the first eannotation that corresponds to the link or the localization of the hyperlink
  */
 public class EmptyAllHyperLinkCommand extends CreateEAnnotationCommand {
-
 
 	/**
 	 * Instantiates a new delete hyper link command used to suppress a link in the view
@@ -48,18 +46,19 @@ public class EmptyAllHyperLinkCommand extends CreateEAnnotationCommand {
 	 * {@inheritedDoc}
 	 */
 	protected void doExecute() {
-		ArrayList<EAnnotation> eAnnotationsToRemove= new ArrayList<EAnnotation>();
-		Iterator<EAnnotation> iter=getObject().getEAnnotations().iterator();
-		//look for interesting eannotations
-		while (iter.hasNext()){
-			EAnnotation currentAnnotation= iter.next();
-			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT)||
-					currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)||
-					currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)){
-				eAnnotationsToRemove.add(currentAnnotation);}
+		ArrayList<EAnnotation> eAnnotationsToRemove = new ArrayList<EAnnotation>();
+		Iterator<EAnnotation> iter = getObject().getEAnnotations().iterator();
+		// look for interesting eannotations
+		while (iter.hasNext()) {
+			EAnnotation currentAnnotation = iter.next();
+			if (currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT)
+					|| currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)
+					|| currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+				eAnnotationsToRemove.add(currentAnnotation);
+			}
 		}
-		//remove all eannotations
-		for (int i=0; i<eAnnotationsToRemove.size();i++){
+		// remove all eannotations
+		for (int i = 0; i < eAnnotationsToRemove.size(); i++) {
 			getObject().getEAnnotations().remove(eAnnotationsToRemove.get(i));
 		}
 

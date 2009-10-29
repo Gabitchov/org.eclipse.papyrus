@@ -115,6 +115,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return the diagrams associated to view
 	 */
+	// @unused
 	public static List<Diagram> getDiagramsAssociatedToView(Diagram diagram) {
 		EObject domainElement = diagram != null ? diagram.getElement() : null;
 		Resource resource = diagram != null ? diagram.eResource() : null;
@@ -145,6 +146,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return the diagrams associated to element
 	 */
+	// @unused
 	public static List<Diagram> getDiagramsAssociatedToElement(EObject element) {
 		Resource resource = getDiagramResource();
 		if (resource == null || element == null) {
@@ -218,6 +220,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	public static boolean addEAnnotationReferenceToDiagram(EditPart editPart, EObject eObject) {
 		return AddEAnnotationReferenceToDiagram(DiagramEditPartsUtil.findDiagramFromEditPart(editPart), eObject);
 	}
@@ -284,6 +287,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	public static boolean RemoveEAnnotationReferenceFromDiagram(AbstractUIPlugin plugin, EObject eObject) {
 		return RemoveEAnnotationReferenceFromDiagram(DiagramEditPartsUtil.findDiagramFromPlugin(plugin), eObject);
 	}
@@ -298,6 +302,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	public static boolean RemoveEAnnotationReferenceFromDiagram(EditPart editPart, EObject eObject) {
 		return RemoveEAnnotationReferenceFromDiagram(DiagramEditPartsUtil.findDiagramFromEditPart(editPart), eObject);
 	}
@@ -337,6 +342,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	public static boolean findEObjectReferencedInEAnnotation(EditPart editPart, EObject eObject) {
 		return findEObjectReferencedInEAnnotation(DiagramEditPartsUtil.findDiagramFromEditPart(editPart), eObject);
 	}
@@ -351,6 +357,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	public static boolean findEObjectReferencedInEAnnotation(AbstractUIPlugin plugin, EObject eObject) {
 		return findEObjectReferencedInEAnnotation(DiagramEditPartsUtil.findDiagramFromPlugin(plugin), eObject);
 	}
@@ -385,6 +392,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return the all references in e annotation
 	 */
+	// @unused
 	public static List<EObject> getAllReferencesInEAnnotation(Diagram diagram) {
 		EAnnotation eAnnotation = diagram.getEAnnotation(BelongToDiagramSource);
 		if (eAnnotation != null) {
@@ -443,6 +451,7 @@ public class MultiDiagramUtil {
 	 * @throws ExecutionException
 	 *             the execution exception
 	 */
+	// @unused
 	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource,
 			Map<String, IDiagramInitializer> initializers) throws ExecutionException {
 		return intializeNewDiagram(kind, domainElement, resource, initializers, true);
@@ -550,6 +559,7 @@ public class MultiDiagramUtil {
 	 * @throws ExecutionException
 	 *             the execution exception
 	 */
+	// @unused
 	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource,
 			Map<String, IDiagramInitializer> initializers, boolean askName, String name) throws ExecutionException {
 		return intializeNewDiagram(kind, domainElement, resource, initializers, askName, name, null);
@@ -649,6 +659,7 @@ public class MultiDiagramUtil {
 	 * @throws CoreException
 	 *             the core exception
 	 */
+	// @unused
 	public static void setEditorForDiagram(URI uri, String editorID) throws CoreException {
 		String part1 = uri.path().replaceFirst("resource", "");
 		IPath path = new Path(part1);
@@ -701,6 +712,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return the diagram
 	 */
+	// @unused
 	public static Diagram performDeleteDiagram(Diagram diagram, boolean confirm) {
 		if (diagram == null) {
 			return null;
@@ -788,6 +800,7 @@ public class MultiDiagramUtil {
 	 * @param resource
 	 * @return
 	 */
+	// @unused
 	public static boolean addDiagramAndSave(Diagram diagram, Resource resource) {
 		return addDiagramAndSave(diagram, resource, true);
 	}
@@ -910,6 +923,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	public static boolean deleteAndSaveEObjectInResource(URI uri, String fragment) {
 		URI resourceURI = uri;
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -996,6 +1010,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @return true, if successful
 	 */
+	// @unused
 	protected static boolean checkDiagramForEditor(Diagram diagram, CachedResourcesDiagramEditor editor) {
 		String kind = diagram.getType();
 		String diagramEditorID = MOSKittEditorIDs.getAllExtensionModelToEditor().get(kind);
@@ -1003,6 +1018,7 @@ public class MultiDiagramUtil {
 		return (diagramEditorID != null && diagramEditorID.equals(editorID));
 	}
 
+	// @unused
 	public static boolean checkSameResourceForEditorInputs(IEditorInput oldInput, IEditorInput newInput) {
 		boolean openInNewEditor = false;
 
@@ -1043,6 +1059,7 @@ public class MultiDiagramUtil {
 	 * @param unload
 	 *            the unload
 	 */
+	// @unused
 	protected static void closeOtherDiagrams(Diagram diagramToOpen, IWorkbenchPage page, boolean unload) {
 		EObject rootEObject = diagramToOpen.getElement();
 		if (rootEObject == null) {
@@ -1084,8 +1101,9 @@ public class MultiDiagramUtil {
 
 		EAnnotation eAnnotation = diagram.getEAnnotation(UpperDiagram);
 		if (eAnnotation != null && eAnnotation.getReferences().size() > 0) {
-			if (eAnnotation.getReferences().get(0) instanceof Diagram)
+			if (eAnnotation.getReferences().get(0) instanceof Diagram) {
 				return (Diagram) eAnnotation.getReferences().get(0);
+			}
 		}
 
 		EObject domainElement = diagram.getElement();
@@ -1177,6 +1195,7 @@ public class MultiDiagramUtil {
 	 * 
 	 * @param openDiagrams
 	 */
+	// @unused
 	public static void storeOpenDiagrams(List<Diagram> openDiagrams) {
 		List<Resource> affectedResources = new ArrayList<Resource>();
 		List<EObject> affectedEObjects = new ArrayList<EObject>();
@@ -1214,6 +1233,7 @@ public class MultiDiagramUtil {
 	 * @param editorInput
 	 * @return
 	 */
+	// @unused
 	public static List<EObject> getOpenDiagrams(IEditorInput editorInput) {
 		List<EObject> openDiagrams = new ArrayList<EObject>();
 		String path = PathsUtil.getRelativeWorkspaceFromEditorInput(editorInput);

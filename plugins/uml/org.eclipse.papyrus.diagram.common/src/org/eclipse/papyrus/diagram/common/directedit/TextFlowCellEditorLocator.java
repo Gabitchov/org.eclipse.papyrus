@@ -28,7 +28,7 @@ final public class TextFlowCellEditorLocator implements CellEditorLocator {
 	/**
 	 * textflow to be edited.
 	 */
-	private TextFlow figureToEdit;
+	private final TextFlow figureToEdit;
 
 	/**
 	 * Creates a new TextFlowCellEditorLocator.
@@ -36,6 +36,7 @@ final public class TextFlowCellEditorLocator implements CellEditorLocator {
 	 * @param figureToEdit
 	 *            The textflow to be edited.
 	 */
+	// @unused
 	public TextFlowCellEditorLocator(TextFlow figureToEdit) {
 		this.figureToEdit = figureToEdit;
 	}
@@ -43,7 +44,7 @@ final public class TextFlowCellEditorLocator implements CellEditorLocator {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gef.tools.CellEditorLocator#relocate(org.eclipse.jface.viewers.CellEditor)
+	 * @see org.eclipse.gef.tools.CellEditorLocator#relocate(org.eclipse.jface.viewers .CellEditor)
 	 */
 	/**
 	 * 
@@ -56,8 +57,10 @@ final public class TextFlowCellEditorLocator implements CellEditorLocator {
 		Rectangle rect = figureToEdit.getClientArea();
 		figureToEdit.translateToAbsolute(rect);
 
-		// add one more line to the bounds, so carriage return is taken into account.
-		// if the line is not added, pressing enter with nothing after the cursor
+		// add one more line to the bounds, so carriage return is taken into
+		// account.
+		// if the line is not added, pressing enter with nothing after the
+		// cursor
 		// makes the text scrolling, as a carriage return is not taken into the
 		// original bounds.
 		text.setBounds(rect.x - 4, rect.y - 1, pref.x + 1, pref.y + 1 + text.getLineHeight());

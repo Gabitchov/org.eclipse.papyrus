@@ -144,8 +144,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	 */
 	protected static IMemento getEditorMemento(XMLMemento rootMemento, String currentEditorClass) {
 		IMemento[] editorsMementos = rootMemento.getChildren(EDITOR);
-		for (int i = 0; i < editorsMementos.length; i++) {
-			IMemento editorMemento = editorsMementos[i];
+		for (IMemento editorMemento : editorsMementos) {
 			String editorClass = editorMemento.getString(CLASS);
 			if (currentEditorClass.equals(editorClass)) {
 				return editorMemento;
@@ -180,6 +179,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	 *            the memento for the hidden palettes
 	 * @return the string of ids, separated by a separator
 	 */
+	// @unused
 	public static String getHiddenPalettes(IMemento hiddenPalettesMemento) {
 		return hiddenPalettesMemento.getString(ID);
 	}
@@ -345,7 +345,8 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 		}
 
 		// no remove method...
-		// so, creation of a new root memento, then, duplicate all entries except the one to
+		// so, creation of a new root memento, then, duplicate all entries
+		// except the one to
 		// delete...
 
 		XMLMemento newRootMemento = XMLMemento.createWriteRoot(PALETTE_LOCAL_DEFINITIONS);

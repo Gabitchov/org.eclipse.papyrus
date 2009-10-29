@@ -74,9 +74,11 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 
 	/** left arrow image */
+	// @unused
 	protected static final String LEFT_ARROW = "icons/ArrowLeft.gif";
 
 	/** right arrow image */
+	// @unused
 	protected static final String RIGHT_ARROW = "icons/ArrowRight.gif";
 
 	/** new local palette icon */
@@ -95,6 +97,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	protected TreeViewer availableToolsTreeViewer;
 
 	/** tree viewed by the availableToolsTreeViewer */
+	// @unused
 	protected Tree availableToolsTree;
 
 	/** table viewed by the availablePalettesTreeViewer */
@@ -125,7 +128,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		// RS: does not call super, as the composite should not be drawn like they are in parent
+		// RS: does not call super, as the composite should not be drawn like
+		// they are in parent
 		Composite mainComposite = createMainComposite(parent);
 
 		final Control availableToolsComposite = createAvailablePalettesViewer(mainComposite);
@@ -160,7 +164,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		// data.right = new FormAttachment(90, 0);
 		outline.setLayoutData(data);
 
-		// Create the panel where the properties of the selected palette entry will
+		// Create the panel where the properties of the selected palette entry
+		// will
 		// be shown
 		Control properties = createPropertiesPanel(mainComposite);
 		data = new FormData();
@@ -180,8 +185,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	 * layout.horizontalSpacing = 0; layout.verticalSpacing = 0; layout.marginHeight = 0;
 	 * layout.marginWidth = 0; composite.setLayout(layout);
 	 * 
-	 * addButton = new Button(composite, SWT.NONE); addButton.setText("");
-	 * addButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_AddButtonTooltip);
+	 * addButton = new Button(composite, SWT.NONE); addButton.setText(""); addButton
+	 * .setToolTipText(Messages.PapyrusPaletteCustomizerDialog_AddButtonTooltip );
 	 * addButton.setImage(Activator.getPluginIconImage(Activator.ID, RIGHT_ARROW)); GridData data =
 	 * new GridData(SWT.CENTER, SWT.CENTER, false, false); addButton.setLayoutData(data);
 	 * addButton.addMouseListener(new MouseListener() {
@@ -194,13 +199,14 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	 * 
 	 * public void mouseDoubleClick(MouseEvent e) { // on double click, do nothing } });
 	 * 
-	 * removeButton = new Button(composite, SWT.NONE);
-	 * removeButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip);
+	 * removeButton = new Button(composite, SWT.NONE); removeButton.setToolTipText
+	 * (Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip);
 	 * removeButton.setImage(Activator.getImage(LEFT_ARROW)); removeButton.setLayoutData(data);
 	 * 
 	 * return composite; }
 	 */
 
+	// @unused
 	protected void addEntry(MouseEvent e) {
 		ISelection selection = availableToolsTreeViewer.getSelection();
 		PaletteEntry entry = null;
@@ -212,7 +218,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 				entry = ((PaletteEntry) firstElement);
 			}
 		}
-		// sets the active entry, to have the page useful for saving modification
+		// sets the active entry, to have the page useful for saving
+		// modification
 		setActiveEntry(entry);
 		// add entry to the selected container
 		// retrieve the selection in the palette viewer
@@ -221,7 +228,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		if (destContainer instanceof PaletteContainer) {
 			PaletteContainer oldParent = entry.getParent();
 
-			// checks if the parent is already changed. If not, must store the standard parent (the
+			// checks if the parent is already changed. If not, must store the
+			// standard parent (the
 			// one given by the factory)
 			PaletteContainer stdParent = ((PapyrusPaletteCustomizer) getCustomizer()).changedParents.get(entry);
 			if (stdParent == null) {
@@ -354,7 +362,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		data = new GridData(GridData.FILL_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL);
 		data.horizontalSpan = 3;
 		data.widthHint = 185;
-		// Make the tree this tall even when there is nothing in it. This will keep the
+		// Make the tree this tall even when there is nothing in it. This will
+		// keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
 		availablePalettesTable.setLayoutData(data);
@@ -440,7 +449,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		private PapyrusPaletteService paletteService;
 
 		/** tree viewer to fill */
-		private TableViewer viewer;
+		private final TableViewer viewer;
 
 		/**
 		 * Constructor
@@ -576,8 +585,9 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		 */
 		public void dispose() {
 			Iterator<Image> images = imageCache.values().iterator();
-			while (images.hasNext())
+			while (images.hasNext()) {
 				images.next().dispose();
+			}
 			imageCache = null;
 		}
 
@@ -599,6 +609,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		/**
 		 * @see org.eclipse.jface.viewers.IColorProvider#getBackground(Object)
 		 */
+		// @unused
 		public Color getBackground(Object element) {
 			return null;
 		}
@@ -606,6 +617,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		/**
 		 * @see org.eclipse.jface.viewers.IColorProvider#getForeground(Object)
 		 */
+		// @unused
 		public Color getForeground(Object element) {
 			PaletteEntry entry = (PaletteEntry) element;
 			if (!entry.isVisible() || !entry.getParent().isVisible()) {

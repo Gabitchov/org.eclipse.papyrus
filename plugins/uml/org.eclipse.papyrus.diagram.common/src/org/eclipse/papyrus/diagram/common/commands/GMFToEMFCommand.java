@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 // TODO: Auto-generated Javadoc
 /**
  * The Class GMFToEMFCommand.
+ * 
  * @deprecated see command.wrapper
  */
 public class GMFToEMFCommand implements Command {

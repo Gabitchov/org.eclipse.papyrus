@@ -19,42 +19,40 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;
 
-
-
 /**
- * The Class HyperlinkWebEditor is used to add or modify an hyperlink web entry.
- * you can use the default button for the tooltip.
+ * The Class HyperlinkWebEditor is used to add or modify an hyperlink web entry. you can use the
+ * default button for the tooltip.
  */
 public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
-	
+
 	/** The Constant HYPERLINKS_LABEL. */
 	protected static final String HYPERLINKS_LABEL = "Hyperlinks:";
-	
+
 	/** The Constant HTTP. */
 	protected static final String HTTP = "http://";
-	
+
 	/** The hyper link web. */
-	private HyperLinkWeb hyperLinkWeb=null;
-	
+	private HyperLinkWeb hyperLinkWeb = null;
+
 	/** The usedefault tooltip. */
-	private boolean usedefaultTooltip=true;
+	private boolean usedefaultTooltip = true;
 
 	/**
 	 * Open.
 	 */
-	public void open(){
+	public void open() {
 		Display display = Display.getCurrent();
 
-		//code use to wait for an action from the user
+		// code use to wait for an action from the user
 		getEditHyperlinkShell().pack();
-		getEditHyperlinkShell().setBounds(500,500,600,120);
+		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
 		getEditHyperlinkShell().open();
 		while (!getEditHyperlinkShell().isDisposed()) {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
 	}
-	
+
 	/**
 	 * Instantiates a new hyperlink web editor.
 	 */
@@ -63,68 +61,79 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 		createEditHyperlinkShell();
 
 		this.getObjectcLabel().setText(HYPERLINKS_LABEL);
-		//fill information
-		if(hyperLinkWeb!=null){
+		// fill information
+		if (hyperLinkWeb != null) {
 			this.getObjectLabeltext().setText(hyperLinkWeb.getHyperLinkWeb());
 			this.getTooltipInputText().setText(hyperLinkWeb.getTooltipText());
-		}
-		else{
+		} else {
 			this.getObjectLabeltext().setText(HTTP);
 			this.getObjectLabeltext().setSelection(HTTP.length());
 		}
-		//listener to cancel
+		// listener to cancel
 		this.getCancelButton().addMouseListener(new MouseListener() {
 
-			public void mouseUp(MouseEvent e) {}
+			public void mouseUp(MouseEvent e) {
+			}
 
 			public void mouseDown(MouseEvent e) {
-				hyperLinkWeb=null;
+				hyperLinkWeb = null;
 				getEditHyperlinkShell().close();
 			}
 
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
-		//listener to click on OK
+		// listener to click on OK
 		this.getOkButton().addMouseListener(new MouseListener() {
-			public void mouseUp(MouseEvent e) {}
+
+			public void mouseUp(MouseEvent e) {
+			}
+
 			public void mouseDown(MouseEvent e) {
-				if( hyperLinkWeb==null){
-					hyperLinkWeb= new HyperLinkWeb();}
+				if (hyperLinkWeb == null) {
+					hyperLinkWeb = new HyperLinkWeb();
+				}
 				hyperLinkWeb.setHyperLinkWeb(getObjectLabeltext().getText().trim());
 				hyperLinkWeb.setTooltipText(getTooltipInputText().getText().trim());
 
 				getEditHyperlinkShell().close();
 			}
-			public void mouseDoubleClick(MouseEvent e) {}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
-		//intialize "use default" check box
+		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
-		if(usedefaultTooltip){
+		if (usedefaultTooltip) {
 			getTooltipInputText().setEditable(false);
 			getTooltipInputText().setText(getObjectLabeltext().getText());
 		}
-		//add listener "use default button"
+		// add listener "use default button"
 		getUseDefaultCheckBox().addMouseListener(new MouseListener() {
+
 			public void mouseUp(MouseEvent e) {
-				usedefaultTooltip=getUseDefaultCheckBox().getSelection();
-				if(usedefaultTooltip){
+				usedefaultTooltip = getUseDefaultCheckBox().getSelection();
+				if (usedefaultTooltip) {
 					getTooltipInputText().setEditable(false);
 					getTooltipInputText().setText(getObjectLabeltext().getText());
-				}
-				else{
+				} else {
 					getTooltipInputText().setEditable(true);
 				}
 			}
 
-			public void mouseDown(MouseEvent e) {}			
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
-		
-		//add a key listener on inputText to synchronize with the tooltip in the case of use default
+
+		// add a key listener on inputText to synchronize with the tooltip in the case of use
+		// default
 		getObjectLabeltext().addKeyListener(new KeyListener() {
 
 			public void keyReleased(KeyEvent e) {
-				if(usedefaultTooltip){
+				if (usedefaultTooltip) {
 					getTooltipInputText().setText(getObjectLabeltext().getText());
 				}
 			}
@@ -133,7 +142,6 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 			}
 		});
 	}
-
 
 	/**
 	 * Gets the hyper link web.
@@ -144,11 +152,11 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 		return hyperLinkWeb;
 	}
 
-
 	/**
 	 * Sets the hyper link web.
 	 * 
-	 * @param hyperLinkWeb the hyperLinkWeb to set
+	 * @param hyperLinkWeb
+	 *            the hyperLinkWeb to set
 	 */
 	public void setHyperLinkWeb(HyperLinkWeb hyperLinkWeb) {
 		this.hyperLinkWeb = hyperLinkWeb;

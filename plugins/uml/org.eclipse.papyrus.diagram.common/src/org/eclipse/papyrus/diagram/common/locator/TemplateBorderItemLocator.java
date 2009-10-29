@@ -16,16 +16,20 @@ package org.eclipse.papyrus.diagram.common.locator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 
+// @unused
 public class TemplateBorderItemLocator extends AdvancedBorderItemLocator {
 
+	// @unused
 	public TemplateBorderItemLocator(IFigure parentFigure) {
 		super(parentFigure);
 	}
 
+	// @unused
 	public TemplateBorderItemLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
 		super(borderItem, parentFigure, constraint);
 	}
 
+	// @unused
 	public TemplateBorderItemLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}

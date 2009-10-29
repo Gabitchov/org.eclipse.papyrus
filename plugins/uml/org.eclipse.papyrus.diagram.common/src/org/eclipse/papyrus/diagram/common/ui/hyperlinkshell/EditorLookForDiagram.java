@@ -52,18 +52,17 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
-
 /**
  * The Class EditorLookForDiagram.
  */
 public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
-
 	/** The editor registry. */
-	private IEditorFactoryRegistry editorRegistry;
-	
+	private final IEditorFactoryRegistry editorRegistry;
+
 	/** The SEP. */
-	private final String SEP=" - ";
+	// @unused
+	private final String SEP = " - ";
 
 	/** The adapter factory. */
 	protected AdapterFactory adapterFactory = new ComposedAdapterFactory(
@@ -81,11 +80,11 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		return selectedDiagram;
 	}
 
-
 	/**
 	 * Sets the selected diagram.
 	 * 
-	 * @param selectedDiagram the selectedDiagram to set
+	 * @param selectedDiagram
+	 *            the selectedDiagram to set
 	 */
 	protected void setSelectedDiagram(Diagram selectedDiagram) {
 		this.selectedDiagram = selectedDiagram;
@@ -93,13 +92,13 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 	/** The model. */
 	protected Package model;
-	
+
 	/** The diagram menu button. */
 	protected Menu diagramMenuButton;
-	
+
 	/** The diagram list tree viewer. */
 	protected TreeViewer diagramListTreeViewer;
-	
+
 	/** The tree viewer. */
 	protected TreeViewer treeViewer;
 
@@ -116,40 +115,42 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	public class DiagramCreateListener extends SelectionAdapter {
 
 		/** The command descriptor. */
-		private CreationCommandDescriptor commandDescriptor;
+		private final CreationCommandDescriptor commandDescriptor;
 
 		/** The backbone context. */
-		private BackboneContext backboneContext;
+		private final BackboneContext backboneContext;
 
 		/** The container. */
 		private Element container;
 
 		/** The i creation command registry. */
-		private ICreationCommandRegistry iCreationCommandRegistry;
+		private final ICreationCommandRegistry iCreationCommandRegistry;
 
 		/**
 		 * {@inheritedDoc}.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *            the e
 		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			try {
-				Element elt=(Element)((IStructuredSelection)treeViewer.getSelection()).getFirstElement();
+				Element elt = (Element) ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
 
 				setContainer(elt);
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 				IEditorContextRegistry contextRegistry = (IEditorContextRegistry) servicesRegistry
-				.getService(IEditorContextRegistry.class);
+						.getService(IEditorContextRegistry.class);
 
 				// Get the context by its ID
 				BackboneContext editorContext = (BackboneContext) contextRegistry
-				.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
+						.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
 				ICreationCommand creationCommand = iCreationCommandRegistry
-				.getCommand(commandDescriptor.getCommandId());
+						.getCommand(commandDescriptor.getCommandId());
 				DiResourceSet diResourceSet = editorContext.getResourceSet();
 				creationCommand.createDiagram(diResourceSet, container, null);
-				
-				//refresh several filtered tree
+
+				// refresh several filtered tree
 				getDiagramfilteredTree().getViewer().setInput(null);
 				getDiagramfilteredTree().getViewer().setInput("");
 				getModeFilteredTree().getViewer().setInput(null);
@@ -166,10 +167,14 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		/**
 		 * Instantiates a new diagram create listener.
 		 * 
-		 * @param commandDescriptor the command descriptor
-		 * @param backboneContext the backbone context
-		 * @param container the container
-		 * @param iCreationCommandRegistry the i creation command registry
+		 * @param commandDescriptor
+		 *            the command descriptor
+		 * @param backboneContext
+		 *            the backbone context
+		 * @param container
+		 *            the container
+		 * @param iCreationCommandRegistry
+		 *            the i creation command registry
 		 */
 		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, BackboneContext backboneContext,
 				Element container, ICreationCommandRegistry iCreationCommandRegistry) {
@@ -179,14 +184,15 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 			this.container = container;
 			this.iCreationCommandRegistry = iCreationCommandRegistry;
 		}
-		
+
 		/**
 		 * Sets the container.
 		 * 
-		 * @param container the new container
+		 * @param container
+		 *            the new container
 		 */
-		public void setContainer(Element container){
-			this.container=container;
+		public void setContainer(Element container) {
+			this.container = container;
 		}
 	}
 
@@ -194,29 +200,31 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	 * The Class DocumentLabelProvider.
 	 */
 	public class ObjectLabelProvider implements ILabelProvider {
-		
+
 		/** The image path. */
 		protected String theImagePath;
 
 		/**
 		 * Instantiates a new object label provider.
 		 * 
-		 * @param imagePath the image path
+		 * @param imagePath
+		 *            the image path
 		 */
-		public ObjectLabelProvider(String imagePath){
-			theImagePath=imagePath;	
+		public ObjectLabelProvider(String imagePath) {
+			theImagePath = imagePath;
 		}
-		
+
 		/**
 		 * {@inheritedDoc}.
 		 * 
-		 * @param element the element
+		 * @param element
+		 *            the element
 		 * 
 		 * @return the image
 		 */
 		public Image getImage(Object element) {
 			if (element instanceof Diagram) {
-				return editorRegistry.getEditorIcon(((Diagram) element));
+				return editorRegistry.getEditorIcon((element));
 			}
 			return null;
 		}
@@ -224,36 +232,43 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		/**
 		 * {@inheritedDoc}.
 		 * 
-		 * @param element the element
+		 * @param element
+		 *            the element
 		 * 
 		 * @return the text
 		 */
 		public String getText(Object element) {
-			String out="";
-			if (element instanceof Diagram ) {
-				out=((Diagram)element).getName();
+			String out = "";
+			if (element instanceof Diagram) {
+				out = ((Diagram) element).getName();
+			} else {
+				return element.toString();
 			}
-			else {return element.toString();}
 			return out;
 		}
 
 		/**
 		 * {@inheritedDoc}.
 		 * 
-		 * @param listener the listener
+		 * @param listener
+		 *            the listener
 		 */
-		public void addListener(ILabelProviderListener listener) {}
+		public void addListener(ILabelProviderListener listener) {
+		}
 
 		/**
 		 * {@inheritedDoc}.
 		 */
-		public void dispose() {}
+		public void dispose() {
+		}
 
 		/**
 		 * {@inheritedDoc}.
 		 * 
-		 * @param element the element
-		 * @param property the property
+		 * @param element
+		 *            the element
+		 * @param property
+		 *            the property
 		 * 
 		 * @return true, if checks if is label property
 		 */
@@ -265,9 +280,11 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		/**
 		 * {@inheritedDoc}.
 		 * 
-		 * @param listener the listener
+		 * @param listener
+		 *            the listener
 		 */
-		public void removeListener(ILabelProviderListener listener) {}
+		public void removeListener(ILabelProviderListener listener) {
+		}
 
 	}
 
@@ -302,7 +319,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 */
 		public Object[] getElements(Object inputElement) {
 			try {
-				IPageMngr iPageMngr = (IPageMngr) EditorUtils.getIPageMngr();
+				IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 				Object[] result = iPageMngr.allPages().toArray();
 				return result;
 			} catch (Exception e) {
@@ -313,54 +330,58 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		/**
 		 * {@inheritDoc}
 		 */
-		public void dispose() {}
+		public void dispose() {
+		}
 
 		/**
 		 * {@inheritDoc}
 		 */
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {}
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		}
 	}
-	
+
 	/**
 	 * Instantiates a new editor look for diagram.
 	 * 
-	 * @param editorFactoryRegistry the editor factory registry
-	 * @param amodel the amodel
+	 * @param editorFactoryRegistry
+	 *            the editor factory registry
+	 * @param amodel
+	 *            the amodel
 	 */
 	public EditorLookForDiagram(IEditorFactoryRegistry editorFactoryRegistry, Package amodel) {
 		super();
-		this.editorRegistry=editorFactoryRegistry;
-		this.model=amodel;
-		//create the shell
+		this.editorRegistry = editorFactoryRegistry;
+		this.model = amodel;
+		// create the shell
 		createLookforShell();
-		
-		//intall tree with uml element
+
+		// intall tree with uml element
 		treeViewer = getModeFilteredTree().getViewer();
 		treeViewer.setUseHashlookup(true);
-		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory){
-			public Image getImage(Object object) 
-			{
-				if(object instanceof Diagram){
-					return editorRegistry.getEditorIcon(((Diagram) object));
-					}
-				else{
+		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {
+
+			@Override
+			public Image getImage(Object object) {
+				if (object instanceof Diagram) {
+					return editorRegistry.getEditorIcon((object));
+				} else {
 					return super.getImage(object);
-					}
+				}
 			}
 		});
 		treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
 		treeViewer.setInput(model.eResource());
-		
-		//install diagramlist
+
+		// install diagramlist
 		diagramListTreeViewer = getDiagramfilteredTree().getViewer();
 		diagramListTreeViewer.setUseHashlookup(true);
 
-		//fill list of diagram
+		// fill list of diagram
 		diagramListTreeViewer.setLabelProvider(new ObjectLabelProvider(null));
 		diagramListTreeViewer.setContentProvider(new DiagramListContentProvider());
 		diagramListTreeViewer.setInput(" ");
 
-		//add listner on the new button to display menu for each diagram
+		// add listner on the new button to display menu for each diagram
 		diagramMenuButton = new Menu(getNewDiagrambutton());
 		getNewDiagrambutton().setMenu(diagramMenuButton);
 		CreationCommandRegistry commandRegistry = new CreationCommandRegistry(
@@ -372,20 +393,23 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		}
 		getNewDiagrambutton().addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				diagramMenuButton.setVisible(true);
 			}
 		});
-		
-		//add listener to remove diagram
+
+		// add listener to remove diagram
 		getRemoveDiagrambutton().addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection = (IStructuredSelection) getModeFilteredTree().getViewer().getSelection();
+				IStructuredSelection iSelection = (IStructuredSelection) getModeFilteredTree().getViewer()
+						.getSelection();
 				Iterator iterator = iSelection.iterator();
 				while (iterator.hasNext()) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr();
-					pageMngr.removePage((Diagram) iterator.next());
+					pageMngr.removePage(iterator.next());
 				}
 				getDiagramfilteredTree().getViewer().setInput(null);
 				getDiagramfilteredTree().getViewer().setInput("");
@@ -393,46 +417,55 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 				getModeFilteredTree().getViewer().setInput(model.eResource());
 			}
 		});
-		
-		//add listener to keep the selected diagram in the list for the model view
+
+		// add listener to keep the selected diagram in the list for the model
+		// view
 		getModeFilteredTree().getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selection=((IStructuredSelection) getModeFilteredTree().getViewer().getSelection()).getFirstElement();
-				if(selection instanceof Diagram){
-					selectedDiagram=(Diagram)selection;
+				Object selection = ((IStructuredSelection) getModeFilteredTree().getViewer().getSelection())
+						.getFirstElement();
+				if (selection instanceof Diagram) {
+					selectedDiagram = (Diagram) selection;
 				}
 
 			}
 		});
-		
-		//add listener to keep in mind the selected diagram in the list for the view of digram list
+
+		// add listener to keep in mind the selected diagram in the list for the
+		// view of digram list
 		getDiagramfilteredTree().getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selection=((IStructuredSelection) getDiagramfilteredTree().getViewer().getSelection()).getFirstElement();
-				if(selection instanceof Diagram){
-					selectedDiagram=(Diagram)selection;
+				Object selection = ((IStructuredSelection) getDiagramfilteredTree().getViewer().getSelection())
+						.getFirstElement();
+				if (selection instanceof Diagram) {
+					selectedDiagram = (Diagram) selection;
 				}
 
 			}
 		});
-		
-		//add listener for the button ok, keep the selected diagram
+
+		// add listener for the button ok, keep the selected diagram
 		getOKbutton().addSelectionListener(new SelectionListener() {
+
 			public void widgetSelected(SelectionEvent e) {
 				getLookforShell().close();
 			}
+
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
-		
-		//add listener for the button cancel, remove the value of the selected diagram
+
+		// add listener for the button cancel, remove the value of the selected
+		// diagram
 		getCancelbutton().addSelectionListener(new SelectionListener() {
+
 			public void widgetSelected(SelectionEvent e) {
 				setSelectedDiagram(null);
 				getLookforShell().close();
 			}
+
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
@@ -442,17 +475,18 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	/**
 	 * Open the shell
 	 */
-	public void open(){
+	public void open() {
 		Display display = Display.getCurrent();
 		getLookforShell().setSize(700, 500);
 
-		//code use to wait for an action from the user
+		// code use to wait for an action from the user
 		getLookforShell().pack();
-		getLookforShell().setBounds(500,500, 500, 300);
+		getLookforShell().setBounds(500, 500, 500, 300);
 		getLookforShell().open();
 		while (!getLookforShell().isDisposed()) {
-			if (!display.readAndDispatch())
+			if (!display.readAndDispatch()) {
 				display.sleep();
+			}
 		}
 	}
 }

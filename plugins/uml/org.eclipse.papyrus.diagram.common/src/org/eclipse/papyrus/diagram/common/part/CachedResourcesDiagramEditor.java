@@ -36,6 +36,7 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * @param hasFlyoutPalette
 	 *            the has flyout palette
 	 */
+	// @unused
 	public CachedResourcesDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
 	}
@@ -73,9 +74,8 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#doSetInput
-	 * (org.eclipse.ui.IEditorInput, boolean)
+	 * @seeorg.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.
+	 * DiagramDocumentEditor#doSetInput (org.eclipse.ui.IEditorInput, boolean)
 	 */
 	@Override
 	public void doSetInput(IEditorInput input, boolean releaseEditorContents) throws CoreException {
@@ -156,16 +156,16 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#close(boolean
-	 * )
+	 * @seeorg.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.
+	 * DiagramDocumentEditor#close(boolean )
 	 */
 	@Override
 	public void close(boolean save) {
 		CachedResourcesDocumentProvider documentProvider = getCachedResourcesDocumentProvider();
 		if (documentProvider != null) {
 			documentProvider.setUnloadOnDispose(false);
-			// fjcano : the EditingDomainRegistriy takes care of disposing unused EditingDomains.
+			// fjcano : the EditingDomainRegistriy takes care of disposing
+			// unused EditingDomains.
 			// removeEditingDomainFromRegistry();
 		}
 		super.close(save);
@@ -177,6 +177,7 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * @param save
 	 *            the save
 	 */
+	// @unused
 	public void closeButUnload(boolean save) {
 		CachedResourcesDocumentProvider documentProvider = getCachedResourcesDocumentProvider();
 		if (documentProvider != null) {

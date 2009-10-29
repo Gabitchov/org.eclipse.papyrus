@@ -35,6 +35,7 @@ public class MultilineLabelDirectEditManager extends LabelDirectEditManager {
 	 * @param source
 	 *            The EditPart owning the label.
 	 */
+	// @unused
 	public MultilineLabelDirectEditManager(GraphicalEditPart source, CellEditorLocator locator,
 			ILabelControler labelCtrl) {
 		super(source, locator, labelCtrl);
@@ -43,8 +44,8 @@ public class MultilineLabelDirectEditManager extends LabelDirectEditManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gef.tools.DirectEditManager#createCellEditorOn(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gef.tools.DirectEditManager#createCellEditorOn(org.eclipse
+	 * .swt.widgets.Composite)
 	 */
 	/**
 	 * 

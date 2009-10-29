@@ -27,11 +27,13 @@ import org.eclipse.ui.IEditorInput;
 /**
  * @author dstadnik
  */
+
 public class URIUtil {
 
 	private URIUtil() {
 	}
 
+	// @unused
 	public static IFile getFile(URI uri) {
 		String fileName = uri.toFileString();
 		if (fileName != null) {

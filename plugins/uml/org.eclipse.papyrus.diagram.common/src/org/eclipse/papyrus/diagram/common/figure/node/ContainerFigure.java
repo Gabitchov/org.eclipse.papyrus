@@ -29,10 +29,13 @@ public class ContainerFigure extends NodeNamedElementFigure {
 	/**
 	 * 
 	 */
+	// @unused
 	public ContainerFigure() {
 		// this only a box
 		// layout:
-		ToolbarLayout layout = new ToolbarLayout(ToolbarLayout.VERTICAL);// to add element
+		ToolbarLayout layout = new ToolbarLayout(ToolbarLayout.VERTICAL);// to
+		// add
+		// element
 		// vertically
 		layout.setStretchMinorAxis(true);
 		layout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);

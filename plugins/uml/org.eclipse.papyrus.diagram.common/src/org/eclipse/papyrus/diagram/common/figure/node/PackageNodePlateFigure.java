@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
  */
 public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 
+	// @unused
 	public PackageNodePlateFigure(Dimension defSize) {
 		super(defSize);
 		// TODO Auto-generated constructor stub

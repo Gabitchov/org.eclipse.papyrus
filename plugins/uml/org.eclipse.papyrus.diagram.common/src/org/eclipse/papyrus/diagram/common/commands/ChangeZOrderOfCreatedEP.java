@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * 
  * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
  */
+// @unused
 public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 
 	/** The view descriptor. */
@@ -64,10 +65,11 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 		super(domain, "Change ZOrder of Created Node", null);
 		viewDescriptor = descriptor;
 		this.viewer = viewer;
-		if (isAllowedReqString(reqString))
+		if (isAllowedReqString(reqString)) {
 			requestString = reqString;
-		else
+		} else {
 			requestString = ZOrderRequest.REQ_SEND_TO_BACK;
+		}
 	}
 
 	/**
@@ -79,21 +81,25 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	 * @return true if a valid string, false otherwise.
 	 */
 	private boolean isAllowedReqString(String reqString) {
-		if (ZOrderRequest.REQ_SEND_TO_BACK.equals(reqString))
+		if (ZOrderRequest.REQ_SEND_TO_BACK.equals(reqString)) {
 			return true;
-		if (ZOrderRequest.REQ_SEND_BACKWARD.equals(reqString))
+		}
+		if (ZOrderRequest.REQ_SEND_BACKWARD.equals(reqString)) {
 			return true;
-		if (ZOrderRequest.REQ_BRING_FORWARD.equals(reqString))
+		}
+		if (ZOrderRequest.REQ_BRING_FORWARD.equals(reqString)) {
 			return true;
-		if (ZOrderRequest.REQ_BRING_TO_FRONT.equals(reqString))
+		}
+		if (ZOrderRequest.REQ_BRING_TO_FRONT.equals(reqString)) {
 			return true;
+		}
 		return false;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand#
 	 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 	 * org.eclipse.core.runtime.IAdaptable)
 	 */

@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.NamedElement;
 
+// @unused
 public class LookupResolverImpl implements LookupResolver {
 
 	private LookupResolveRequest myTheOnlyRequest;
@@ -39,6 +40,7 @@ public class LookupResolverImpl implements LookupResolver {
 
 	private final IGraphicalEditPart myResolvingEditPart;
 
+	// @unused
 	public LookupResolverImpl(IGraphicalEditPart resolvingEditPart) {
 		myResolvingEditPart = resolvingEditPart;
 	}

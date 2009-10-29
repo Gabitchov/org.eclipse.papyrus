@@ -34,14 +34,16 @@ public class LaneLayout extends AbstractHintLayout {
 	private Insets myInsets;
 
 	// Transposer object used in layout calculations
-	private Transposer myTransposer;
+	private final Transposer myTransposer;
 
-	private HashMap<IFigure, Object> myConstraints;
+	private final HashMap<IFigure, Object> myConstraints;
 
+	// @unused
 	public LaneLayout() {
 		this(HORIZONTAL, NO_INSETS);
 	}
 
+	// @unused
 	public LaneLayout(Insets insets) {
 		this(HORIZONTAL, insets);
 	}

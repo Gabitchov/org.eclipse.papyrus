@@ -25,7 +25,7 @@ public class GMFtoEMFCommandWrapper extends AbstractCommand {
 	 * The wrapped GMF Command. Package-level visibility so that the command stack wrapper can
 	 * access the field.
 	 */
-	private ICommand gmfCommand;
+	private final ICommand gmfCommand;
 
 	/**
 	 * Constructor.
@@ -43,6 +43,7 @@ public class GMFtoEMFCommandWrapper extends AbstractCommand {
 	 * 
 	 * @return the GMF command
 	 */
+	// @unused
 	public ICommand getGMFCommand() {
 		return gmfCommand;
 	}

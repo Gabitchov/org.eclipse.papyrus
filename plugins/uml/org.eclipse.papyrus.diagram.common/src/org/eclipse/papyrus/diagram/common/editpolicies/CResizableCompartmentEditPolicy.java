@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.handles.CompartmentResizeHand
  * 
  *this class is used to display an handle and command to make a compartment resizable by the user
  */
+// @unused
 public class CResizableCompartmentEditPolicy extends ResizableCompartmentEditPolicy {
 
 	public CResizableCompartmentEditPolicy() {
@@ -46,19 +47,22 @@ public class CResizableCompartmentEditPolicy extends ResizableCompartmentEditPol
 		removeSelectionHandles();
 		IFigure layer = getLayer(LayerConstants.HANDLE_LAYER);
 		handles = createCollapseHandles();
-		for (int i = 0; i < handles.size(); i++)
+		for (int i = 0; i < handles.size(); i++) {
 			layer.add((IFigure) handles.get(i));
+		}
 	}
 
 	/**
 	 * @see org.eclipse.gef.editpolicies.SelectionHandlesEditPolicy#createSelectionHandles()
 	 */
+	@Override
 	protected List createSelectionHandles() {
 		List selectionHandles = new ArrayList();
 		IGraphicalEditPart part = (IGraphicalEditPart) getHost();
 		int d1 = isHorizontal() ? PositionConstants.WEST : PositionConstants.NORTH;
 		int d2 = isHorizontal() ? PositionConstants.EAST : PositionConstants.SOUTH;
-		selectionHandles.addAll(createCollapseHandles());// add collapsable handle
+		selectionHandles.addAll(createCollapseHandles());// add collapsable
+		// handle
 		selectionHandles.add(new CompartmentResizeHandle(part, d1));
 		selectionHandles.add(new CompartmentResizeHandle(part, d2));
 		// add resize handle in the south
@@ -71,6 +75,7 @@ public class CResizableCompartmentEditPolicy extends ResizableCompartmentEditPol
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Command getResizeCommand(ChangeBoundsRequest request) {
 		int indexOfTheLast = getHost().getParent().getChildren().size() - 1;
 		ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_RESIZE_CHILDREN);
@@ -95,6 +100,7 @@ public class CResizableCompartmentEditPolicy extends ResizableCompartmentEditPol
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
 		IFigure feedback = getDragSourceFeedbackFigure();
 
@@ -110,6 +116,7 @@ public class CResizableCompartmentEditPolicy extends ResizableCompartmentEditPol
 	/**
 	 * @see org.eclipse.gef.editpolicies.SelectionEditPolicy#showSelection()
 	 */
+	@Override
 	protected void showSelection() {
 		// not selected but we want to see collapsable handle
 		if (getHost().getSelected() == EditPart.SELECTED_NONE) {

@@ -117,6 +117,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * 
 	 * @since 2.0
 	 */
+	// @unused
 	public ContainerBorder(Color color) {
 		this(color, 1, 1);
 	}
@@ -129,6 +130,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * 
 	 * @since 2.0
 	 */
+	// @unused
 	public ContainerBorder(int width) {
 		this(null, width, width);
 	}
@@ -138,6 +140,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * 
 	 * @since 2.0
 	 */
+	// @unused
 	public ContainerBorder() {
 	}
 

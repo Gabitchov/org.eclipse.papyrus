@@ -54,6 +54,7 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	 * 
 	 * @return a container to add some new graphical elements
 	 */
+	// @unused
 	public IFigure getContentPane() {
 		return this.contentPane;
 	}
@@ -70,8 +71,6 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 		this.add(this.contentPane);
 	}
 
-
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -87,6 +86,7 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 		return 1;
 	}
 
+	@Override
 	public Dimension getMinimumDimension() {
 		int width = tagLabel.getTextBounds().width + 10;
 		int height = tagLabel.getTextBounds().height + 10;
@@ -104,6 +104,7 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	 * 
 	 * @param graphics
 	 */
+	// @unused
 	protected void drawSeparateLine(Graphics graphics) {
 		graphics.setForegroundColor(getBorderColor());
 		graphics.setBackgroundColor(getBorderColor());
@@ -122,6 +123,7 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	/**
 	 * Helper method to calculate the height of name
 	 */
+	@Override
 	protected int getNameHeight() {
 		return tagLabel.getTextBounds().height + super.getNameHeight();
 	}

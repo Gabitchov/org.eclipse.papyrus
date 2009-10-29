@@ -72,6 +72,7 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	 * @param value
 	 *            the value to remove
 	 */
+	// @unused
 	public RemoveValueRequest(EObject elementToEdit, EStructuralFeature feature, Object value) {
 
 		this(TransactionUtil.getEditingDomain(elementToEdit), elementToEdit, feature, value);
@@ -107,7 +108,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#getElementsToEdit()
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#
+	 * getElementsToEdit()
 	 */
 	@Override
 	public List getElementsToEdit() {
@@ -121,8 +123,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#getEditHelperContext()
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#
+	 * getEditHelperContext()
 	 */
 	public Object getEditHelperContext() {
 		IClientContext context = getClientContext();

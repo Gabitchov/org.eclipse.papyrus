@@ -17,12 +17,14 @@ import org.eclipse.uml2.uml.NamedElement;
 
 public interface LookupResolver {
 
+	// @unused
 	public abstract void addLookupResolveRequest(LookupResolveRequest request, Callback callback);
 
 	public abstract boolean isEmpty();
 
 	public abstract boolean canResolve();
 
+	// @unused
 	public abstract AbstractTransactionalCommand getResolveCommand();
 
 	public static interface Callback {

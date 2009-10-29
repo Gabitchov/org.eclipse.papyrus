@@ -34,6 +34,7 @@ public class TagsAdderParser implements ISemanticParser {
 
 	private IParser realParser = null;
 
+	// @unused
 	public TagsAdderParser(IParser parser) {
 		realParser = parser;
 	}

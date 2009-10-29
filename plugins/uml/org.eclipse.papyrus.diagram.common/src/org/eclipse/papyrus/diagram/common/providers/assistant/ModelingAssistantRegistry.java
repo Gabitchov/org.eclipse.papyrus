@@ -41,6 +41,7 @@ public class ModelingAssistantRegistry {
 	 * 
 	 * @return
 	 */
+	// @unused
 	public static ModelingAssistantRegistry getInstance() {
 		return Instance;
 	}
@@ -100,6 +101,7 @@ public class ModelingAssistantRegistry {
 	 * @param types
 	 * @return
 	 */
+	// @unused
 	public List customizeTypesForEditPart(String editorID, EditPart editPart, List types) {
 		for (Assistant assistant : getAssistantForEditor(editorID)) {
 			if (assistant != null) {

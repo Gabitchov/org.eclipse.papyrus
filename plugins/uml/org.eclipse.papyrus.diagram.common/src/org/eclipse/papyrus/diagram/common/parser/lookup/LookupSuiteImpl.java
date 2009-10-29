@@ -20,6 +20,7 @@ public class LookupSuiteImpl implements LookupSuite {
 
 	private LookupResolver myLookupResolver = LookupResolver.NULL;
 
+	// @unused
 	public <T> void addLookup(Class<T> clazz, Lookup<T> lookup) {
 		if (myLookups.containsKey(clazz)) {
 			throw new IllegalArgumentException("I already have lookup for :" + clazz);
@@ -32,6 +33,7 @@ public class LookupSuiteImpl implements LookupSuite {
 		return result == null ? NULL_LOOKUP : result;
 	}
 
+	// @unused
 	public void setLookupResolver(LookupResolver lookupResolver) {
 		myLookupResolver = lookupResolver;
 		if (myLookupResolver == null) {
@@ -39,6 +41,7 @@ public class LookupSuiteImpl implements LookupSuite {
 		}
 	}
 
+	// @unused
 	public LookupResolver getLookupResolver() {
 		return myLookupResolver;
 	}

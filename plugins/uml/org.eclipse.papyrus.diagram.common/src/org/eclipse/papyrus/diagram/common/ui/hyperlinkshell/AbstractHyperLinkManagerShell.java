@@ -29,99 +29,97 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-
 /**
- * The Class AbstractHyperLinkManagerShell.
- * This Class has been generated from VisualEditor.
- * Do not modify it manually by adding behavior! you will lose the capacity to open with VE.
- * So this class is abstract and it contains set of getter in order to connect behavior in subclasses
+ * The Class AbstractHyperLinkManagerShell. This Class has been generated from VisualEditor. Do not
+ * modify it manually by adding behavior! you will lose the capacity to open with VE. So this class
+ * is abstract and it contains set of getter in order to connect behavior in subclasses
  */
-public  abstract class AbstractHyperLinkManagerShell {
+public abstract class AbstractHyperLinkManagerShell {
 
 	/** The hyper link shell. */
-	protected Shell hyperLinkShell = null;  //  @jve:decl-index=0:visual-constraint="-2,74"
-	
+	protected Shell hyperLinkShell = null; // @jve:decl-index=0:visual-constraint="-2,74"
+
 	/** The c tab folder. */
 	private CTabFolder cTabFolder = null;
-	
+
 	/** The document composite. */
 	private Composite documentComposite = null;
-	
+
 	/** The diagram composite. */
 	private Composite diagramComposite = null;
-	
+
 	/** The up document button. */
 	private Button upDocumentButton = null;
-	
+
 	/** The down document button. */
 	private Button downDocumentButton = null;
-	
+
 	/** The Hyperlink composite. */
 	private Composite HyperlinkComposite = null;
-	
+
 	/** The diagram listtable. */
 	private Table diagramListtable = null;
-	
+
 	/** The up diagram button. */
 	private Button upDiagramButton = null;
-	
+
 	/** The down diagram button. */
 	private Button downDiagramButton = null;
-	
+
 	/** The Diagram list label. */
 	private CLabel DiagramListLabel = null;
-	
+
 	/** The new diagrambutton. */
 	private Button newDiagrambutton = null;
-	
+
 	/** The remove diagram button. */
 	private Button removeDiagramButton = null;
-	
+
 	/** The document table. */
 	private Table documentTable = null;
-	
+
 	/** The new document button. */
 	private Button newDocumentButton = null;
-	
+
 	/** The remove document button. */
 	private Button removeDocumentButton = null;
-	
+
 	/** The document list label. */
 	private Label documentListLabel = null;
-	
+
 	/** The hyperlink table. */
 	private Table hyperlinkTable = null;
-	
+
 	/** The newhyperlink button. */
 	protected Button newhyperlinkButton = null;
-	
+
 	/** The remove hyper link button. */
 	protected Button removeHyperLinkButton = null;
-	
+
 	/** The up hyper link button. */
 	protected Button upHyperLinkWebButton = null;
-	
+
 	/** The down hyper linkbutton. */
 	protected Button downHyperLinkWebbutton = null;
-	
+
 	/** The hyperlink listlabel. */
 	protected Label hyperlinkListlabel = null;
-	
+
 	/** The Ok button. */
 	protected Button OkButton = null;
-	
+
 	/** The cancel button. */
 	protected Button cancelButton = null;
-	
+
 	/** The modify hyperlink button. */
 	protected Button modifyHyperlinkButton = null;
-	
+
 	/** The modify document button1. */
 	protected Button modifyDocumentButton1 = null;
-	
+
 	/** The modify diagram button. */
 	protected Button modifyDiagramButton = null;
-	
+
 	/**
 	 * This method initializes cTabFolder.
 	 */
@@ -141,13 +139,13 @@ public  abstract class AbstractHyperLinkManagerShell {
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
 		cTabItem2.setText("Diagram hyperlinks");
 		cTabItem2.setControl(diagramComposite);
-		CTabItem cTabItem1 = new CTabItem(cTabFolder,SWT.NONE);
+		CTabItem cTabItem1 = new CTabItem(cTabFolder, SWT.NONE);
 		cTabItem1.setControl(documentComposite);
 		cTabItem1.setText("Document hyperlinks");
 		CTabItem cTabItem11 = new CTabItem(cTabFolder, SWT.NONE);
 		cTabItem11.setControl(HyperlinkComposite);
 		cTabItem11.setText("Web hyperlinks");
-		
+
 	}
 
 	/**
@@ -183,31 +181,41 @@ public  abstract class AbstractHyperLinkManagerShell {
 		diagramListtable = new Table(diagramComposite, SWT.BORDER | SWT.MULTI);
 		newDiagrambutton = new Button(diagramComposite, SWT.NONE);
 		newDiagrambutton.setText("");
-		//newDiagrambutton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Add_16x16.gif"));
-		newDiagrambutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Add_16x16.gif").createImage());
+		// newDiagrambutton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Add_16x16.gif"));
+		newDiagrambutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Add_16x16.gif").createImage());
 		newDiagrambutton.setLayoutData(gridData4);
 		diagramListtable.setHeaderVisible(false);
 		diagramListtable.setToolTipText("set of  diagram hyperlinks ");
 		diagramListtable.setLayoutData(gridData1);
 		diagramListtable.setLinesVisible(false);
 		modifyDiagramButton = new Button(diagramComposite, SWT.NONE);
-		//modifyDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Modify.gif"));
-		modifyDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Modify.gif").createImage());
-		
+		// modifyDiagramButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Modify.gif"));
+		modifyDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Modify.gif").createImage());
+
 		removeDiagramButton = new Button(diagramComposite, SWT.NONE);
 		removeDiagramButton.setText("");
-		//removeDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Delete_16x16.gif"));
-		removeDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage());
-		
+		// removeDiagramButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Delete_16x16.gif"));
+		removeDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Delete_16x16.gif").createImage());
+
 		upDiagramButton = new Button(diagramComposite, SWT.NONE);
-		//upDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowUp_16x16.gif"));
-		upDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
-		
+		// upDiagramButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowUp_16x16.gif"));
+		upDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/ArrowUp_16x16.gif").createImage());
+
 		upDiagramButton.setLayoutData(gridData2);
 		downDiagramButton = new Button(diagramComposite, SWT.NONE);
-		//downDiagramButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowDown_16x16.gif"));
-		downDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
-		
+		// downDiagramButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowDown_16x16.gif"));
+		downDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/ArrowDown_16x16.gif").createImage());
+
 		downDiagramButton.setLayoutData(gridData3);
 	}
 
@@ -239,29 +247,39 @@ public  abstract class AbstractHyperLinkManagerShell {
 		newDocumentButton = new Button(documentComposite, SWT.NONE);
 		Label filler2 = new Label(documentComposite, SWT.NONE);
 		modifyDocumentButton1 = new Button(documentComposite, SWT.NONE);
-		//modifyDocumentButton1.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Modify.gif"));
-		modifyDocumentButton1.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Modify.gif").createImage());
-		
+		// modifyDocumentButton1.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Modify.gif"));
+		modifyDocumentButton1.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Modify.gif").createImage());
+
 		Label filler16 = new Label(documentComposite, SWT.NONE);
 		removeDocumentButton = new Button(documentComposite, SWT.NONE);
 		Label filler3 = new Label(documentComposite, SWT.NONE);
-		//newDocumentButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Add_16x16.gif"));
-		newDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Add_16x16.gif").createImage());
+		// newDocumentButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Add_16x16.gif"));
+		newDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Add_16x16.gif").createImage());
 		newDocumentButton.setText("");
-		
-		//removeDocumentButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Delete_16x16.gif"));
-		removeDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage());
-		
+
+		// removeDocumentButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Delete_16x16.gif"));
+		removeDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Delete_16x16.gif").createImage());
+
 		removeDocumentButton.setText("");
 		upDocumentButton = new Button(documentComposite, SWT.NONE);
-		//upDocumentButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowUp_16x16.gif"));
-		upDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
-		
+		// upDocumentButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowUp_16x16.gif"));
+		upDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/ArrowUp_16x16.gif").createImage());
+
 		Label filler5 = new Label(documentComposite, SWT.NONE);
 		downDocumentButton = new Button(documentComposite, SWT.NONE);
-		//downDocumentButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowDown_16x16.gif"));
-		downDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
-		
+		// downDocumentButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowDown_16x16.gif"));
+		downDocumentButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/ArrowDown_16x16.gif").createImage());
+
 	}
 
 	/**
@@ -292,36 +310,46 @@ public  abstract class AbstractHyperLinkManagerShell {
 		Label filler626 = new Label(HyperlinkComposite, SWT.NONE);
 		Label filler632 = new Label(HyperlinkComposite, SWT.NONE);
 		Label filler627 = new Label(HyperlinkComposite, SWT.NONE);
-		hyperlinkTable = new Table(HyperlinkComposite, SWT.BORDER| SWT.MULTI);
+		hyperlinkTable = new Table(HyperlinkComposite, SWT.BORDER | SWT.MULTI);
 		hyperlinkTable.setHeaderVisible(false);
 		hyperlinkTable.setLayoutData(gridData6);
 		hyperlinkTable.setLinesVisible(false);
 		newhyperlinkButton = new Button(HyperlinkComposite, SWT.NONE);
-		//newhyperlinkButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Add_16x16.gif"));
-		newhyperlinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Add_16x16.gif").createImage());
-		
+		// newhyperlinkButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Add_16x16.gif"));
+		newhyperlinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Add_16x16.gif").createImage());
+
 		newhyperlinkButton.setText("");
 		Label filler622 = new Label(HyperlinkComposite, SWT.NONE);
 		modifyHyperlinkButton = new Button(HyperlinkComposite, SWT.NONE);
-		//modifyHyperlinkButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Modify.gif"));
-		modifyHyperlinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Modify.gif").createImage());
-		
+		// modifyHyperlinkButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Modify.gif"));
+		modifyHyperlinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Modify.gif").createImage());
+
 		Label filler15 = new Label(HyperlinkComposite, SWT.NONE);
 		removeHyperLinkButton = new Button(HyperlinkComposite, SWT.NONE);
-		//removeHyperLinkButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Delete_16x16.gif"));
-		removeHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage());
-		
+		// removeHyperLinkButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/Delete_16x16.gif"));
+		removeHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/Delete_16x16.gif").createImage());
+
 		removeHyperLinkButton.setText("");
 		Label filler621 = new Label(HyperlinkComposite, SWT.NONE);
 		upHyperLinkWebButton = new Button(HyperlinkComposite, SWT.NONE);
-		//upHyperLinkWebButton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowUp_16x16.gif"));
-		upHyperLinkWebButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
-		
+		// upHyperLinkWebButton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowUp_16x16.gif"));
+		upHyperLinkWebButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
+				"/icons/obj16/ArrowUp_16x16.gif").createImage());
+
 		Label filler620 = new Label(HyperlinkComposite, SWT.NONE);
 		downHyperLinkWebbutton = new Button(HyperlinkComposite, SWT.NONE);
-		//downHyperLinkWebbutton.setImage(new Image(Display.getCurrent(), "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowDown_16x16.gif"));
-		downHyperLinkWebbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
-		
+		// downHyperLinkWebbutton.setImage(new Image(Display.getCurrent(),
+		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/ArrowDown_16x16.gif"));
+		downHyperLinkWebbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin(
+				"org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
+
 	}
 
 	/**
@@ -341,11 +369,11 @@ public  abstract class AbstractHyperLinkManagerShell {
 		GridLayout gridLayout2 = new GridLayout();
 		gridLayout2.numColumns = 14;
 		gridLayout2.makeColumnsEqualWidth = true;
-		
-		//this line has to be commented in order to open with VISUAL EDITOR
+
+		// this line has to be commented in order to open with VISUAL EDITOR
 		hyperLinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
-		
-		//hyperLinkShell = new Shell();
+
+		// hyperLinkShell = new Shell();
 		hyperLinkShell.setText("HyperLink");
 		hyperLinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		createCTabFolder();
@@ -369,7 +397,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		cancelButton.setLayoutData(gridData8);
 	}
 
-	
 	/**
 	 * @return the downHyperLinkWebbutton
 	 */
@@ -377,31 +404,32 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return downHyperLinkWebbutton;
 	}
 
-	
 	/**
-	 * @param downHyperLinkbutton the downHyperLinkbutton to set
+	 * @param downHyperLinkbutton
+	 *            the downHyperLinkbutton to set
 	 */
+	// @unused
 	public void setDownHyperLinkbutton(Button downHyperLinkbutton) {
 		this.downHyperLinkWebbutton = downHyperLinkbutton;
 	}
 
-	
 	/**
 	 * @return the hyperlinkListlabel
 	 */
+	// @unused
 	public Label getHyperlinkListlabel() {
 		return hyperlinkListlabel;
 	}
 
-	
 	/**
-	 * @param hyperlinkListlabel the hyperlinkListlabel to set
+	 * @param hyperlinkListlabel
+	 *            the hyperlinkListlabel to set
 	 */
+	// @unused
 	public void setHyperlinkListlabel(Label hyperlinkListlabel) {
 		this.hyperlinkListlabel = hyperlinkListlabel;
 	}
 
-	
 	/**
 	 * @return the hyperLinkShell
 	 */
@@ -409,7 +437,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return hyperLinkShell;
 	}
 
-	
 	/**
 	 * @return the newhyperlinkButton
 	 */
@@ -417,7 +444,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return newhyperlinkButton;
 	}
 
-	
 	/**
 	 * @return the removeHyperLinkButton
 	 */
@@ -425,7 +451,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return removeHyperLinkButton;
 	}
 
-	
 	/**
 	 * @return the upHyperLinkWebButton
 	 */
@@ -433,7 +458,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return upHyperLinkWebButton;
 	}
 
-	
 	/**
 	 * @return the okButton
 	 */
@@ -441,7 +465,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return OkButton;
 	}
 
-	
 	/**
 	 * @return the cancelButton
 	 */
@@ -449,7 +472,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return cancelButton;
 	}
 
-	
 	/**
 	 * @return the modifyHyperlinkButton
 	 */
@@ -457,7 +479,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return modifyHyperlinkButton;
 	}
 
-	
 	/**
 	 * @return the modifyDocumentButton1
 	 */
@@ -465,7 +486,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return modifyDocumentButton1;
 	}
 
-	
 	/**
 	 * @return the modifyDiagramButton
 	 */
@@ -473,7 +493,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return modifyDiagramButton;
 	}
 
-	
 	/**
 	 * @return the diagramListtable
 	 */
@@ -481,7 +500,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return diagramListtable;
 	}
 
-	
 	/**
 	 * @return the documentTable
 	 */
@@ -489,7 +507,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return documentTable;
 	}
 
-	
 	/**
 	 * @return the hyperlinkTable
 	 */
@@ -497,7 +514,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return hyperlinkTable;
 	}
 
-	
 	/**
 	 * @return the upDocumentButton
 	 */
@@ -505,7 +521,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return upDocumentButton;
 	}
 
-	
 	/**
 	 * @return the downDocumentButton
 	 */
@@ -513,7 +528,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return downDocumentButton;
 	}
 
-	
 	/**
 	 * @return the upDiagramButton
 	 */
@@ -521,7 +535,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return upDiagramButton;
 	}
 
-	
 	/**
 	 * @return the downDiagramButton
 	 */
@@ -529,7 +542,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return downDiagramButton;
 	}
 
-	
 	/**
 	 * @return the newDiagrambutton
 	 */
@@ -537,7 +549,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return newDiagrambutton;
 	}
 
-	
 	/**
 	 * @return the newDocumentButton
 	 */
@@ -545,7 +556,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return newDocumentButton;
 	}
 
-	
 	/**
 	 * @return the removeDiagramButton
 	 */
@@ -553,7 +563,6 @@ public  abstract class AbstractHyperLinkManagerShell {
 		return removeDiagramButton;
 	}
 
-	
 	/**
 	 * @return the removeDocumentButton
 	 */

@@ -118,6 +118,7 @@ public class PaletteUtil {
 	/**
 	 * Default constructor. Should never be used, as method are static in this class.
 	 */
+	// @unused
 	private PaletteUtil() {
 
 	}
@@ -153,6 +154,7 @@ public class PaletteUtil {
 	 *            the id of the memento to search
 	 * @return the memento with the given ID or <code>null</code> if no memento was found
 	 */
+	// @unused
 	public static IMemento getMemento(IMemento rootMemento, String id) {
 		IMemento memento = null;
 		memento = rootMemento.getChild(id);

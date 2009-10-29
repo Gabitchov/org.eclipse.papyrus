@@ -81,22 +81,26 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/** The edit parts in clipboard. */
 	protected static List<EditPart> editPartsInClipboard = new ArrayList<EditPart>();
 
+	// @unused
 	protected static List<Object> clipboardElements = new ArrayList<Object>();
 
+	// @unused
 	public void setContainer(EObject container) {
-		this.container = container;
+		ClipboardActionHandler.container = container;
 	}
 
 	public EObject getContainer() {
-		return this.container;
+		return ClipboardActionHandler.container;
 	}
 
+	// @unused
 	public boolean getIsCut() {
 		return isCut;
 	}
 
+	// @unused
 	public void setIsCut(boolean isCut) {
-		this.isCut = isCut;
+		ClipboardActionHandler.isCut = isCut;
 	}
 
 	/*
@@ -119,8 +123,9 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 						EObject eobj = ((IGraphicalEditPart) o).resolveSemanticElement();
 						eobjects.add(eobj);
 					}
-					if (!allElementsSameType(eobjects, eobject))
+					if (!allElementsSameType(eobjects, eobject)) {
 						return false;
+					}
 					IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 							.getActiveEditor();
 					if (editorPart instanceof DiagramEditor) {
@@ -338,7 +343,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 					 */
 					ArrayList<Object> list = new ArrayList<Object>();
 					for (EObject eobj : eobjects2) {
-						list.add((Object) eobj);
+						list.add(eobj);
 					}
 
 					oldClipboard = domain.getClipboard();
@@ -370,12 +375,14 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 */
 	protected ICommand getExecutePasteAfterCopyCommand(IGlobalActionContext cntxt) {
 
-		if (!(cntxt.getSelection() instanceof StructuredSelection))
+		if (!(cntxt.getSelection() instanceof StructuredSelection)) {
 			return null;
+		}
 
 		Object first = ((StructuredSelection) cntxt.getSelection()).getFirstElement();
-		if (!(first instanceof IGraphicalEditPart))
+		if (!(first instanceof IGraphicalEditPart)) {
 			return null;
+		}
 
 		IGraphicalEditPart pasteDestination = ((IGraphicalEditPart) first);
 		TransactionalEditingDomain editingDomain = pasteDestination.getEditingDomain();
@@ -436,12 +443,14 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 */
 	protected ICommand getExecutePasteAfterCutCommand(IGlobalActionContext cntxt) {
 
-		if (!(cntxt.getSelection() instanceof StructuredSelection))
+		if (!(cntxt.getSelection() instanceof StructuredSelection)) {
 			return null;
+		}
 
 		Object first = ((StructuredSelection) cntxt.getSelection()).getFirstElement();
-		if (!(first instanceof IGraphicalEditPart))
+		if (!(first instanceof IGraphicalEditPart)) {
 			return null;
+		}
 
 		IGraphicalEditPart pasteDestination = ((IGraphicalEditPart) first);
 		TransactionalEditingDomain editingDomain = pasteDestination.getEditingDomain();
@@ -468,23 +477,26 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 					// Execute paste
 					CompoundCommand cc = new CompoundCommand("Paste");
 					Command removeCommand = RemoveCommand.create(domain, container, feature, clipboard);
-					if (!removeCommand.canExecute())
+					if (!removeCommand.canExecute()) {
 						return CommandResult.newCancelledCommandResult();
+					}
 
 					cc.append(removeCommand);
 
 					for (EditPart ep : editPartsInClipboard) {
 						Command c = getDeleteViewCommand(ep);
-						if (c != null && !c.canExecute())
+						if (c != null && !c.canExecute()) {
 							return CommandResult.newCancelledCommandResult();
+						}
 
 						cc.append(c);
 					}
 
 					for (Object obj : domain.getClipboard()) {
 						Command addCommand = AddCommand.create(domain, editPart.resolveSemanticElement(), feature, obj);
-						if (!addCommand.canExecute())
+						if (!addCommand.canExecute()) {
 							return CommandResult.newCancelledCommandResult();
+						}
 
 						cc.append(addCommand);
 					}
@@ -500,13 +512,15 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 
 					ICommand command = new AddEObjectReferencesToDiagram(domain, DiagramEditPartsUtil
 							.findDiagramFromEditPart((IGraphicalEditPart) firstElement), eobjects);
-					if (!command.canExecute())
+					if (!command.canExecute()) {
 						return CommandResult.newCancelledCommandResult();
+					}
 
 					cc.append(new GMFtoEMFCommandWrapper(command));
 
-					if (!cc.canExecute())
+					if (!cc.canExecute()) {
 						return CommandResult.newCancelledCommandResult();
+					}
 
 					domain.getCommandStack().execute(cc);
 
@@ -535,6 +549,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * 
 	 * @return the diagram preferences hint
 	 */
+	// @unused
 	private PreferencesHint getDiagramPreferencesHint(IGraphicalEditPart editPart) {
 		return editPart.getDiagramPreferencesHint();
 	}
@@ -557,10 +572,12 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 
 		for (EObject o : eobjects) {
 			if (o != null) {
-				if (!o.eClass().equals(eobject.eClass()))
+				if (!o.eClass().equals(eobject.eClass())) {
 					return false;
-			} else
+				}
+			} else {
 				return false;
+			}
 		}
 
 		return true;
@@ -576,8 +593,9 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 */
 	protected Command getDeleteViewCommand(EditPart editPart) {
 
-		if (editPart == null)
+		if (editPart == null) {
 			return null;
+		}
 
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		org.eclipse.gef.commands.Command command = editPart.getCommand(deleteViewRequest);
@@ -592,6 +610,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	 * 
 	 * @return the edits the parts in clipboard
 	 */
+	// @unused
 	protected Collection<EditPart> getEditPartsInClipboard(Collection<Object> clipboard) {
 		if (clipboard != null && clipboard.size() > 0) {
 			Collection<EditPart> editParts = new ArrayList<EditPart>();

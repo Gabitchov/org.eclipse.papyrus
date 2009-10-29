@@ -28,8 +28,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class PackageFigure extends NodeNamedElementFigure {
 
-
-	private RectangleFigure shapeCompartment;
+	private final RectangleFigure shapeCompartment;
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -137,22 +136,24 @@ public class PackageFigure extends NodeNamedElementFigure {
 			}
 			headerBound.height += currentchild.getPreferredSize().height;
 		}
-		headerBound.height += 1; 
-		
+		headerBound.height += 1;
+
 		headerBound.x = getPackageableElementFigure().getBounds().x;
 		headerBound.y = getPackageableElementFigure().getBounds().y - headerBound.height;
 
 		return headerBound;
 	}
 
+	// @unused
 	public Color getGradientColor() {
 		return getForegroundColor();
 	}
 
+	@Override
 	public void setShadow(boolean shadow) {
 		// FIXME : set the outline border of the figure ?
 	}
-	
+
 	@Override
 	protected void paintBorder(Graphics graphics) {
 		graphics.drawRectangle(getHeader());

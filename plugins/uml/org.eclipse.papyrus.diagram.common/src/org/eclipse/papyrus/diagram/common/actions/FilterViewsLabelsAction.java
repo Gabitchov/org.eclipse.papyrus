@@ -59,6 +59,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 * @param workbenchpart
 	 *            the workbenchpart
 	 */
+	// @unused
 	public FilterViewsLabelsAction(IWorkbenchPart workbenchpart) {
 		super(workbenchpart);
 		setText("Filter views...");
@@ -67,7 +68,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#createTargetRequest()
+	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#createTargetRequest ()
 	 */
 	@Override
 	protected Request createTargetRequest() {
@@ -77,7 +78,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#isSelectionListener()
+	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#isSelectionListener ()
 	 */
 	@Override
 	protected boolean isSelectionListener() {
@@ -97,9 +98,8 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.common.ui.action.AbstractActionHandler#runWithEvent(org.eclipse.swt
-	 * .widgets.Event)
+	 * @see org.eclipse.gmf.runtime.common.ui.action.AbstractActionHandler#runWithEvent
+	 * (org.eclipse.swt .widgets.Event)
 	 */
 	@Override
 	public void runWithEvent(Event event) {

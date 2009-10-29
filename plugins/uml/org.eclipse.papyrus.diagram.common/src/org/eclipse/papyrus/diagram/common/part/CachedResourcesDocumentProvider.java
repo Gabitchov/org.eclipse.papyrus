@@ -104,6 +104,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 * 
 	 * @return true, if is unload on dispose
 	 */
+	// @unused
 	public boolean isUnloadOnDispose() {
 		return unloadOnDispose;
 	}
@@ -174,8 +175,8 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 */
 	protected long computeModificationStamp(CachedResourceSetInfo info) {
 		int result = 0;
-		for (Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
-			Resource nextResource = (Resource) it.next();
+		for (Object element : info.getResourceSet().getResources()) {
+			Resource nextResource = (Resource) element;
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
 				if (file.getLocation() != null) {
@@ -229,13 +230,13 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		private WorkspaceSynchronizer mySynchronizer;
 
 		/** The my un synchronized resources. */
-		private Collection myUnSynchronizedResources = new ArrayList();
+		private final Collection myUnSynchronizedResources = new ArrayList();
 
 		/** The my document. */
-		private IDiagramDocument myDocument;
+		private final IDiagramDocument myDocument;
 
 		/** The my editor input. */
-		private IEditorInput myEditorInput;
+		private final IEditorInput myEditorInput;
 
 		/** The my update cache. */
 		private boolean myUpdateCache = true;
@@ -247,7 +248,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		private boolean myReadOnly = true;
 
 		/** The my resource set listener. */
-		private ResourceSetModificationListener myResourceSetListener;
+		private final ResourceSetModificationListener myResourceSetListener;
 
 		/**
 		 * Instantiates a new cached resource set info.
@@ -271,6 +272,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * 
 		 * @return the modification stamp
 		 */
+		// @unused
 		public long getModificationStamp() {
 			return myModificationStamp;
 		}
@@ -323,11 +325,12 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		/**
 		 * Dispose.
 		 */
+		// @unused
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator it = getResourceSet().getResources().iterator(); it.hasNext();) {
-				Resource resource = (Resource) it.next();
+			for (Object element : getResourceSet().getResources()) {
+				Resource resource = (Resource) element;
 				resource.unload();
 			}
 		}
@@ -556,10 +559,10 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	private class ResourceSetModificationListener extends EContentAdapter {
 
 		/** The my modified filter. */
-		private NotificationFilter myModifiedFilter;
+		private final NotificationFilter myModifiedFilter;
 
 		/** The my info. */
-		private CachedResourceSetInfo myInfo;
+		private final CachedResourceSetInfo myInfo;
 
 		/**
 		 * The Constructor.
@@ -692,8 +695,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 						return;
 					}
 				} else {
-					for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-						Object rootElement = it.next();
+					for (Object rootElement : resource.getContents()) {
 						if (rootElement instanceof Diagram) {
 							document.setContent(rootElement);
 							return;
@@ -908,8 +910,9 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
-		if (toCreateOrModify.exists())
+		if (toCreateOrModify.exists()) {
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
+		}
 
 		IResource parent = toCreateOrModify;
 		do {

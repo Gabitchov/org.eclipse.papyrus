@@ -33,6 +33,7 @@ public interface IMaskManagedLabelEditPolicy {
 	 *            the value of the given mask
 	 * @return the mask name
 	 */
+	// @unused
 	public String getMaskLabel(int value);
 
 	/**
@@ -40,6 +41,7 @@ public interface IMaskManagedLabelEditPolicy {
 	 * 
 	 * @return the {@link Collection} of mask names
 	 */
+	// @unused
 	public Collection<String> getMaskLabels();
 
 	/**
@@ -47,6 +49,7 @@ public interface IMaskManagedLabelEditPolicy {
 	 * 
 	 * @return the {@link Collection} of mask values
 	 */
+	// @unused
 	public Collection<Integer> getMaskValues();
 
 	/**

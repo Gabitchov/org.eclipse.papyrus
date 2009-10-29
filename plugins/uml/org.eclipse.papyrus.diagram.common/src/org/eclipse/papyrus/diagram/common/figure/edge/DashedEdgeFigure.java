@@ -28,7 +28,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	/**
 	 * Dashes used to paint line.
 	 */
-	private int[] dashes = new int[10];
+	private final int[] dashes = new int[10];
 
 	/**
 	 * use to if the arrow will be displayed
@@ -71,6 +71,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * @param arrow
 	 *            true if the arrow will be displayed
 	 */
+	// @unused
 	public void setArrow(Boolean arrow) {
 		this.arrow = arrow;
 		setStyle();
@@ -79,6 +80,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createContents() {
 		super.createContents();
 		nameLabel = new WrappingLabel();
@@ -117,6 +119,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * @param lineWidth
 	 *            the width of the link
 	 */
+	// @unused
 	protected void setStyle(int lineWidth) {
 		setStyle();
 		// set link appearence
@@ -133,6 +136,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * @param backgroundColor
 	 *            the background color of the link
 	 */
+	// @unused
 	protected void setStyle(Color backgroundColor, Color foregroundColor, int lineWidth) {
 		// set the target arrow style
 		PolygonDecoration dec = new PolygonDecoration();

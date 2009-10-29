@@ -27,7 +27,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 * The wrapped EMF Command. Package-level visibility so that the command stack wrapper can
 	 * access the field.
 	 */
-	private Command emfCommand;
+	private final Command emfCommand;
 
 	/**
 	 * Constructor.
@@ -45,6 +45,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 * 
 	 * @return the EMF command
 	 */
+	// @unused
 	public org.eclipse.emf.common.command.Command getEMFCommand() {
 		return emfCommand;
 	}
@@ -52,9 +53,9 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doExecuteWithResult(org.eclipse
-	 * .core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @seeorg.eclipse.gmf.runtime.common.core.command.AbstractCommand#
+	 * doExecuteWithResult(org.eclipse .core.runtime.IProgressMonitor,
+	 * org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
@@ -70,9 +71,8 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doRedoWithResult(org.eclipse.
-	 * core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doRedoWithResult
+	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info)
@@ -86,9 +86,8 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doUndoWithResult(org.eclipse.
-	 * core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doUndoWithResult
+	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info)

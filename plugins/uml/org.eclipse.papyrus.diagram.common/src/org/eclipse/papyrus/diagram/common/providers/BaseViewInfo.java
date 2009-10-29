@@ -51,6 +51,7 @@ public class BaseViewInfo implements ViewInfo {
 	private static Map<Integer, Collection<ViewInfo>> toAdd = null;
 
 	/** Identifier of the IElementType this ViewInfo represents. */
+	// @unused
 	public String elementType;
 
 	/** VisualID in String form of this ViewInfo's parent. */
@@ -67,6 +68,7 @@ public class BaseViewInfo implements ViewInfo {
 	/**
 	 * Instantiates a new base view info.
 	 */
+	// @unused
 	public BaseViewInfo() {
 		// empty constructor
 	}

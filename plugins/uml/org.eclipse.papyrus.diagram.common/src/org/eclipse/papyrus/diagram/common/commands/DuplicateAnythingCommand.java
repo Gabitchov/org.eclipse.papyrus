@@ -21,9 +21,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
 
+// @unused
 public class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 
-	private Diagram diagram;
+	private final Diagram diagram;
 
 	public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req,
 			Diagram currentDiagram) {

@@ -42,6 +42,7 @@ public class DocumentProviderRegistry extends HashMap<String, CachedResourcesDoc
 				"Operation not supported. Use #get(String domainID, IEditorInput input)");
 	}
 
+	// @unused
 	public CachedResourcesDocumentProvider get(String domainID, IEditorInput input) {
 		String key = calculateKey(domainID, input);
 		if (containsKey(key)) {

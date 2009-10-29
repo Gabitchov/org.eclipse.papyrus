@@ -39,6 +39,7 @@ public class MOSKittEditorFactoryRegistry {
 	private MOSKittEditorFactoryRegistry() {
 	}
 
+	// @unused
 	public static final MOSKittEditorFactoryRegistry getInstance() {
 		return INSTANCE;
 	}
@@ -74,6 +75,7 @@ public class MOSKittEditorFactoryRegistry {
 
 	// // getter methods
 
+	// @unused
 	public IEditorPart getEditorFor(Object object) {
 		if (object == null) {
 			return null;

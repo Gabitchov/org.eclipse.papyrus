@@ -18,10 +18,12 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class TemplateClassifierBorderItemLocator extends AdvancedBorderItemLocator {
 
+	// @unused
 	public TemplateClassifierBorderItemLocator(IFigure parentFigure) {
 		super(parentFigure);
 	}
 
+	// @unused
 	public TemplateClassifierBorderItemLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
 		super(borderItem, parentFigure, constraint);
 	}

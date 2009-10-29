@@ -21,8 +21,10 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
  * Workaround for #214160 and #209802 -- in some cases SWT fails to paint Images correctly. Until
  * its fixed, we are going to show draw2d polyline based decorations instead of image-based
  */
+// @unused
 public class ManuallyDrawnShortcutDecorator extends AbstractDecorator {
 
+	// @unused
 	public ManuallyDrawnShortcutDecorator(IDecoratorTarget decoratorTarget) {
 		super(decoratorTarget);
 	}

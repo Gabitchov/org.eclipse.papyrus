@@ -57,6 +57,7 @@ public class ShowViewEditPolicy {
 	 * 
 	 * @return the open edit policy
 	 */
+	// @unused
 	public static OpenEditPolicy createOpenEditPolicy() {
 		return getOpenEditPolicy();
 	}

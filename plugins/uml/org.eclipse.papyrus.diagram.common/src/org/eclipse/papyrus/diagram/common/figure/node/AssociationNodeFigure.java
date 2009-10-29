@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 
 public class AssociationNodeFigure extends DefaultSizeNodeFigure {
 
+	// @unused
 	public AssociationNodeFigure(Dimension defSize) {
 		super(defSize);
 		// TODO Auto-generated constructor stub

@@ -27,6 +27,7 @@ import org.eclipse.swt.SWT;
  * @author Patrick Tessier
  * @deprecated
  */
+@Deprecated
 public class CAssociationFigure extends PolylineConnectionEx {
 
 	/**
@@ -66,6 +67,7 @@ public class CAssociationFigure extends PolylineConnectionEx {
 	 * @param sourceType
 	 *            the type of end of the association {@link AssociationFigure#navigable}
 	 */
+	// @unused
 	public CAssociationFigure(int sourceType, int targetType) {
 		super();
 		this.setEnd(sourceType, targetType);

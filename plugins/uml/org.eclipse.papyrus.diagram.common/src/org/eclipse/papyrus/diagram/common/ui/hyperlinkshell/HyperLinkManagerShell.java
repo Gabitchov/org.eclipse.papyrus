@@ -85,20 +85,21 @@ public class HyperLinkManagerShell {
 	public class DiagramCreateListener extends SelectionAdapter {
 
 		/** The command descriptor. */
-		private CreationCommandDescriptor commandDescriptor;
+		private final CreationCommandDescriptor commandDescriptor;
 
 		/** The backbone context. */
-		private BackboneContext backboneContext;
+		private final BackboneContext backboneContext;
 
 		/** The container. */
-		private Element container;
+		private final Element container;
 
 		/** The i creation command registry. */
-		private ICreationCommandRegistry iCreationCommandRegistry;
+		private final ICreationCommandRegistry iCreationCommandRegistry;
 
 		/**
 		 * {@inheritedDoc}
 		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			try {
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
@@ -158,7 +159,7 @@ public class HyperLinkManagerShell {
 		 */
 		public Image getImage(Object element) {
 			if (element instanceof Diagram) {
-				return editorRegistry.getEditorIcon(((Diagram) element));
+				return editorRegistry.getEditorIcon((element));
 			}
 			return null;
 		}
@@ -366,7 +367,9 @@ public class HyperLinkManagerShell {
 		 */
 		public Object[] getElements(Object inputElement) {
 			if (inputElement != null) {
-			//	return HyperlinkHelper.getAllreferencedDocument((EModelElement) inputElement).toArray();
+				// return
+				// HyperlinkHelper.getAllreferencedDocument((EModelElement)
+				// inputElement).toArray();
 			}
 			return null;
 		}
@@ -395,7 +398,8 @@ public class HyperLinkManagerShell {
 		 */
 		public Object[] getElements(Object inputElement) {
 			if (inputElement != null) {
-				//return HyperlinkHelper.getAllHyperLink((EModelElement) inputElement).toArray();
+				// return HyperlinkHelper.getAllHyperLink((EModelElement)
+				// inputElement).toArray();
 			}
 			return null;
 		}
@@ -406,13 +410,13 @@ public class HyperLinkManagerShell {
 	private Menu diagramMenuButton;
 
 	/** The element. */
-	private Element element;
+	private final Element element;
 
 	/** The view. */
-	private View view;
+	private final View view;
 
 	/** The domain. */
-	private TransactionalEditingDomain domain;
+	private final TransactionalEditingDomain domain;
 
 	/**
 	 * Instantiates a new hyper link manager shell.
@@ -426,6 +430,7 @@ public class HyperLinkManagerShell {
 	 * @param domain
 	 *            the domain
 	 */
+	// @unused
 	public HyperLinkManagerShell(Element umlElement, View view, IEditorFactoryRegistry editorFactoryRegistry,
 			TransactionalEditingDomain domain) {
 		this.editorRegistry = editorFactoryRegistry;
@@ -435,7 +440,7 @@ public class HyperLinkManagerShell {
 	}
 
 	/** The editor registry. */
-	private IEditorFactoryRegistry editorRegistry;
+	private final IEditorFactoryRegistry editorRegistry;
 
 	/** The s shell. */
 	private Shell sShell = null; // @jve:decl-index=0:visual-constraint="-341,38"
@@ -486,7 +491,8 @@ public class HyperLinkManagerShell {
 	private Label hyperLinkListLabel = null;
 
 	/** The list viewer. */
-	private ListViewer listViewer = null;
+	// @unused
+	private final ListViewer listViewer = null;
 
 	/** The hyper link table. */
 	private Table hyperLinkTable = null;
@@ -509,6 +515,7 @@ public class HyperLinkManagerShell {
 	/**
 	 * This method initializes sShell.
 	 */
+	// @unused
 	public void createShell() {
 		sShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
 		sShell.setText("Shell");
@@ -527,6 +534,7 @@ public class HyperLinkManagerShell {
 	 * 
 	 * @return the s shell
 	 */
+	// @unused
 	public Shell getsShell() {
 		return sShell;
 	}
@@ -597,15 +605,17 @@ public class HyperLinkManagerShell {
 		Label filler2 = new Label(hyperlinkComposite, SWT.NONE);
 		hyperlinkcreateButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				if (textfield1.getText() != null && !textfield1.getText().trim().equals("")) {
 					System.out.println("widgetSelected() '" + textfield1.getText().trim() + "'"); // TODO
-																									// Auto-generated
-																									// Event
-																									// stub
-																									// widgetSelected()
-					//domain.getCommandStack().execute(
-					//		HyperlinkHelper.getAddHyperLinkDocumentCommand(domain, view, textfield1.getText().trim()));
+					// Auto-generated
+					// Event
+					// stub
+					// widgetSelected()
+					// domain.getCommandStack().execute(
+					// HyperlinkHelper.getAddHyperLinkDocumentCommand(domain,
+					// view, textfield1.getText().trim()));
 					hyperLinkTableViewer.setInput(null);
 					hyperLinkTableViewer.setInput(view);
 					textfield1.setText("");
@@ -632,6 +642,7 @@ public class HyperLinkManagerShell {
 		hyperlinkRemoveButton.setLayoutData(gridData14);
 		hyperlinkRemoveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				IStructuredSelection iSelection = (IStructuredSelection) hyperLinkTableViewer.getSelection();
 				Iterator iterator = iSelection.iterator();
@@ -682,6 +693,7 @@ public class HyperLinkManagerShell {
 		documentCreateButton.setLayoutData(gridData8);
 		documentCreateButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				FileDialog fd = new FileDialog(sShell, SWT.OPEN);
 				fd.setText("Open");
@@ -689,7 +701,8 @@ public class HyperLinkManagerShell {
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
 				System.out.println(selected);
-		//		domain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkWebCommand(domain, view, selected.trim()));
+				// domain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkWebCommand(domain,
+				// view, selected.trim()));
 				documentTableViewer.setInput(null);
 				documentTableViewer.setInput(view);
 
@@ -701,6 +714,7 @@ public class HyperLinkManagerShell {
 		documentRemoveButton.setLayoutData(gridData7);
 		documentRemoveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				IStructuredSelection iSelection = (IStructuredSelection) documentTableViewer.getSelection();
 				Iterator iterator = iSelection.iterator();
@@ -759,6 +773,7 @@ public class HyperLinkManagerShell {
 		}
 		diagramAddButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				diagramMenuButton.setVisible(true);
 			}
@@ -768,12 +783,13 @@ public class HyperLinkManagerShell {
 		diagramRemoveButton.setLayoutData(gridData12);
 		diagramRemoveButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				IStructuredSelection iSelection = (IStructuredSelection) diagramTableViewer.getSelection();
 				Iterator iterator = iSelection.iterator();
 				while (iterator.hasNext()) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr();
-					pageMngr.removePage((Diagram) iterator.next());
+					pageMngr.removePage(iterator.next());
 				}
 				diagramTableViewer.setInput(null);
 				diagramTableViewer.setInput(view);
@@ -790,7 +806,7 @@ public class HyperLinkManagerShell {
 		ArrayList<Diagram> result = new ArrayList<Diagram>();
 		if (element != null) {
 			try {
-				IPageMngr iPageMngr = (IPageMngr) EditorUtils.getIPageMngr();
+				IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 				Iterator<Object> iterator = iPageMngr.allPages().iterator();
 				while (iterator.hasNext()) {
 					Object current = iterator.next();

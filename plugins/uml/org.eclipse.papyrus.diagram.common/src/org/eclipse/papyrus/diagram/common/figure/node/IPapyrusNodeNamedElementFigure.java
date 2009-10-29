@@ -16,9 +16,8 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 import org.eclipse.draw2d.Label;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
+public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFigure {
 
-public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFigure{
-	
 	/**
 	 * Sets the qualified name.
 	 * 
@@ -26,19 +25,21 @@ public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFi
 	 *            the qualified name
 	 */
 	public void setQualifiedName(String qualifiedName);
-	
+
 	/**
 	 * return the label that contains the qualified name.
 	 * 
 	 * @return the label that contains the qualified name
 	 */
 	public Label getQualifiedNameLabel();
+
 	/**
 	 * Get the label containing the tagged value
 	 * 
 	 * @return
 	 */
 	public Label getTaggedLabel();
+
 	/**
 	 * Sets the depth.
 	 * 
@@ -46,18 +47,20 @@ public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFi
 	 *            the new depth
 	 */
 	public void setDepth(int depth);
-	
+
 	/**
 	 * Gets the name label.
 	 * 
 	 * @return the name label
 	 */
 	public WrappingLabel getNameLabel();
+
 	/**
 	 * display or not the icon associated to the label
-	 * @param displayNameLabelIcon 
+	 * 
+	 * @param displayNameLabelIcon
 	 */
-	
+
 	public void setNameLabelIcon(boolean displayNameLabelIcon);
 
 }

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 
 public interface LookupSuite {
 
+	// @unused
 	public <T> Lookup<T> getLookup(Class<T> clazz);
 
 	public static final Lookup NULL_LOOKUP = new Lookup() {
@@ -32,6 +33,7 @@ public interface LookupSuite {
 		}
 	};
 
+	// @unused
 	public static final LookupSuite NULL_SUITE = new LookupSuite() {
 
 		public <T> Lookup<T> getLookup(Class<T> clazz) {

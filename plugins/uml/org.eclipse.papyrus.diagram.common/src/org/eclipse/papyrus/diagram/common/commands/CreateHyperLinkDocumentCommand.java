@@ -54,10 +54,11 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	 * {@inheritedDoc}
 	 */
 	protected void doExecute() {
-		EAnnotation eAnnotation =createEAnnotation();
+		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
-		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION, this.localization);
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION,
+				this.localization);
 		attachEannotation(eAnnotation, getObject());
-		}
+	}
 
 }

@@ -42,6 +42,7 @@ public class LabelHelper {
 	 * @param childEObject
 	 *            the child EObject whose name should be initialized
 	 */
+	// @unused
 	public void initName(EObject parentEObject, EObject childEObject) {
 		if ((childEObject != null) && (childEObject instanceof NamedElement)) {
 			String name = findName(parentEObject, (NamedElement) childEObject);

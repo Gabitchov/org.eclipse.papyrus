@@ -40,6 +40,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * @param uri
 	 *            the uri
 	 */
+	// @unused
 	public CachedResourcesEditorInput(URI uri) {
 		super(uri);
 	}
@@ -66,6 +67,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * @param unload
 	 *            the unload
 	 */
+	// @unused
 	public CachedResourcesEditorInput(URI uri, String name, boolean unload) {
 		this(uri, name, unload, false);
 	}
@@ -107,6 +109,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 		return unload;
 	}
 
+	// @unused
 	public void setOpenInNewEditor(boolean openInNewEditor) {
 		this.openInNewEditor = openInNewEditor;
 	}
@@ -135,6 +138,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 		return false;
 	}
 
+	// @unused
 	public static boolean checkSameEditorInputWithFragment(IEditorInput input1, IEditorInput input2) {
 		String uri1 = "", uri2 = "";
 		uri1 = PathsUtil.getRelativeWorkspaceFromEditorInputWithFragment(input1);
@@ -153,6 +157,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * 
 	 * @return the string
 	 */
+	// @unused
 	public static String toPlatformResource(IEditorInput input) {
 		String uri = "";
 		if (input instanceof FileEditorInput) {
@@ -185,6 +190,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * 
 	 * @return the string
 	 */
+	// @unused
 	public static String toPlatformResourceWithFragment(IEditorInput input) {
 		String uri = "";
 		if (input instanceof FileEditorInput) {

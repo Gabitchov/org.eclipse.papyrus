@@ -46,10 +46,10 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	}
 
 	/** The Lifeline to update */
-	private Lifeline lifeline;
+	private final Lifeline lifeline;
 
 	/** The Classifier to associate */
-	private Classifier classifier;
+	private final Classifier classifier;
 
 	private boolean createProperty;
 
@@ -64,7 +64,7 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 
 	private ConnectableElement oldProperty;
 
-	private EditingDomain editingDomain;
+	private final EditingDomain editingDomain;
 
 	/**
 	 * Create a command for updating InstanceSpecification values
@@ -76,6 +76,7 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	 * @param domain
 	 *            the edit domain
 	 */
+	// @unused
 	public UpdateLifelineRepresentsCommand(Lifeline lifeline, Classifier classifier, EditingDomain domain) {
 		this.lifeline = lifeline;
 		this.classifier = classifier;

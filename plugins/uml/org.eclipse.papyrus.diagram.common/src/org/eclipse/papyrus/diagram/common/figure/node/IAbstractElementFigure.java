@@ -28,6 +28,8 @@ import org.eclipse.swt.graphics.Image;
  * @since 12 september 2006
  * @deprecated tlandre : not used anymore. Use GMF mechanism directly instead
  */
+@Deprecated
+// @unused
 public interface IAbstractElementFigure extends IFigure {
 
 	/**
@@ -74,6 +76,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * 
 	 * @return return the font of the figure
 	 */
+	// @unused
 	public String getfigureFont();
 
 	/**
@@ -104,7 +107,6 @@ public interface IAbstractElementFigure extends IFigure {
 	 * 
 	 * @return Color the ForeGround color of the figure
 	 */
-
 	public Color getForeGroundColor();
 
 	/**

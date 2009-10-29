@@ -23,6 +23,7 @@ public interface IObjectWithContributorId {
 	 * 
 	 * @return The Plugin's ID String
 	 */
+	// @unused
 	public String getContributorId();
 
 	/**

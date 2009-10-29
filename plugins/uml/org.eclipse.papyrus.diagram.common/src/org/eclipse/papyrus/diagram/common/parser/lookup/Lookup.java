@@ -17,9 +17,12 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
+// @unused
 public interface Lookup<T> {
 
+	// @unused
 	public T lookup(String name, EObject context);
 
+	// @unused
 	public List<IElementType> getResolutionElementTypes();
 }

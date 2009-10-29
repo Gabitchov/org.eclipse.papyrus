@@ -31,6 +31,7 @@ public abstract class CustomAbstractFigure extends Figure {
 	 *            of the sub figure
 	 * @return null or the figure at this index
 	 */
+	// @unused
 	public IFigure getSubFigure(int index) {
 		if (getChildren().size() > index) {
 			return (IFigure) getChildren().get(index);

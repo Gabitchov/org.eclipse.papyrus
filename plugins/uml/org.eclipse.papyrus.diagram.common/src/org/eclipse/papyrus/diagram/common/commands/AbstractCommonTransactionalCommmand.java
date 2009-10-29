@@ -52,6 +52,7 @@ public abstract class AbstractCommonTransactionalCommmand extends AbstractTransa
 	 * 
 	 * @return
 	 */
+	// @unused
 	public org.eclipse.gef.commands.Command toGEFCommand() {
 		return new ICommandProxy(this);
 	}
@@ -59,6 +60,7 @@ public abstract class AbstractCommonTransactionalCommmand extends AbstractTransa
 	/**
 	 * Execute this command in the <EditingDomain>'s <CommandStack> as a transaction.
 	 */
+	// @unused
 	public void executeInTransaction() {
 		if (getEditingDomain() != null) {
 			getEditingDomain().getCommandStack().execute(toEMFCommand());

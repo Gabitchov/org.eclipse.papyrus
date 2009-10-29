@@ -67,9 +67,8 @@ public class DiagramDragDropEditPolicy extends
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropObjectsCommand
-	 * (org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy
+	 * #getDropObjectsCommand (org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
 	 */
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {

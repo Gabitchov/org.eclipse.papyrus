@@ -55,7 +55,7 @@ public class RemoveValueCommand extends EditElementCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand#
 	 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 	 * org.eclipse.core.runtime.IAdaptable)
 	 */
@@ -119,8 +119,9 @@ public class RemoveValueCommand extends EditElementCommand {
 			List values = (List) value;
 			for (Iterator iter = values.iterator(); iter.hasNext();) {
 				Object element = iter.next();
-				if (!feature.getEType().isInstance(element))
+				if (!feature.getEType().isInstance(element)) {
 					return false;
+				}
 			}
 			return true;
 		}

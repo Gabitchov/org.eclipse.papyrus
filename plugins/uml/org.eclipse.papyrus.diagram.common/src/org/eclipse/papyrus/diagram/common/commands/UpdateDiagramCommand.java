@@ -21,7 +21,7 @@ import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
  * The Class UMLUpdateDiagramCommand.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @deprecated  there is another functionality for drag and drop 
+ * @deprecated there is another functionality for drag and drop
  */
 public class UpdateDiagramCommand extends Command {
 

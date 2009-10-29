@@ -22,8 +22,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
+// @unused
 public abstract class CreateLinkToolBase extends UnspecifiedTypeConnectionTool {
 
+	// @unused
 	public CreateLinkToolBase(List<? extends IElementType> types) {
 		super(types);
 	}
@@ -34,7 +36,8 @@ public abstract class CreateLinkToolBase extends UnspecifiedTypeConnectionTool {
 		CreateUnspecifiedTypeConnectionRequest request = (CreateUnspecifiedTypeConnectionRequest) super
 				.createTargetRequest();
 
-		// below is the only way to propagate extended data into IEditCommandRequest#parameters
+		// below is the only way to propagate extended data into
+		// IEditCommandRequest#parameters
 		HashMap extendedData = new HashMap();
 		extendedData.putAll(request.getExtendedData());
 		extendedData.putAll(createAdditionalExtendedData());

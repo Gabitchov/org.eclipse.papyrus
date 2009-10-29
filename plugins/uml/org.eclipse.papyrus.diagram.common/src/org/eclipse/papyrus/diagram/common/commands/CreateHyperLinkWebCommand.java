@@ -54,10 +54,10 @@ public class CreateHyperLinkWebCommand extends CreateEAnnotationCommand {
 	 * {@inheritedDoc}
 	 */
 	protected void doExecute() {
-		EAnnotation eAnnotation =createEAnnotation();
+		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_WEB_LINK, this.link);
 		attachEannotation(eAnnotation, getObject());
-		}
+	}
 
 }

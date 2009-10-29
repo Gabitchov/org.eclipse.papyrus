@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * 
  * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
  */
+// @unused
 public class ReconnectToIntersectionPoints extends Command {
 
 	/** The create request. */
@@ -51,6 +52,7 @@ public class ReconnectToIntersectionPoints extends Command {
 	 * @param request
 	 *            the request
 	 */
+	// @unused
 	public ReconnectToIntersectionPoints(CreateConnectionViewAndElementRequest request) {
 		this.createRequest = request;
 
@@ -106,8 +108,9 @@ public class ReconnectToIntersectionPoints extends Command {
 		compoundCmd.add(getCommand(targetRequest, (GraphicalEditPart) connEP.getTarget()));
 
 		// Execute the commands
-		if (compoundCmd.size() > 0)
+		if (compoundCmd.size() > 0) {
 			compoundCmd.execute();
+		}
 	}
 
 	/*
@@ -118,8 +121,9 @@ public class ReconnectToIntersectionPoints extends Command {
 	@Override
 	public void undo() {
 		super.undo();
-		if (compoundCmd.size() > 0)
+		if (compoundCmd.size() > 0) {
 			compoundCmd.undo();
+		}
 	}
 
 	/*
@@ -130,8 +134,9 @@ public class ReconnectToIntersectionPoints extends Command {
 	@Override
 	public void redo() {
 		super.redo();
-		if (compoundCmd.size() > 0)
+		if (compoundCmd.size() > 0) {
 			compoundCmd.redo();
+		}
 	}
 
 	/**
@@ -223,6 +228,7 @@ public class ReconnectToIntersectionPoints extends Command {
 	 * @param reconnectRequest
 	 *            the reconnect request
 	 */
+	// @unused
 	public static void modifyLocation(ReconnectRequest reconnectRequest) {
 		ShapeNodeEditPart sourceEP;
 		ShapeNodeEditPart targetEP;

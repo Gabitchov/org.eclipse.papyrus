@@ -59,6 +59,7 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 * @param diagram
 	 *            the diagram
 	 */
+	// @unused
 	public SelectDiagramViewsFilterDialog(IShellProvider parentShell, DiagramEditPart diagram) {
 		super(parentShell);
 		this.diagram = diagram;
@@ -189,7 +190,7 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets .Composite)
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {

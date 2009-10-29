@@ -38,6 +38,7 @@ public class UnapplyAllStereotypesCommand extends Command {
 	 * @param element
 	 *            the element
 	 */
+	// @unused
 	public UnapplyAllStereotypesCommand(Element element) {
 		elementToEdit = element;
 	}
@@ -57,6 +58,7 @@ public class UnapplyAllStereotypesCommand extends Command {
 	 * 
 	 * @return the element to edit
 	 */
+	// @unused
 	public EObject getElementToEdit() {
 		return elementToEdit;
 	}
@@ -67,6 +69,7 @@ public class UnapplyAllStereotypesCommand extends Command {
 	 * @param elementToEdit
 	 *            the new element to edit
 	 */
+	// @unused
 	public void setElementToEdit(Element elementToEdit) {
 		this.elementToEdit = elementToEdit;
 	}

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.common.part;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.gef.ui.palette.PaletteViewer;
@@ -123,6 +122,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	 * @return <code>true</code> if the provider is able to fill the palette for the current active
 	 *         diagram
 	 */
+	// @unused
 	protected boolean isContributing(PapyrusPaletteService.ProviderDescriptor provider, ContributeToPaletteOperation o) {
 		return provider.providesWithVisibility(o);
 	}
@@ -136,6 +136,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	 *            the name of the provider to check
 	 * @return <code>true</code> if the provider should appear in the list of actions
 	 */
+	// @unused
 	protected boolean isChangeable(ProviderDescriptor provider, String name) {
 		assert name != null;
 		final String[] providersToRemove = new String[] { "<Unnamed>", "Presentation Palette", "Geoshapes" };
@@ -172,6 +173,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	 *            the provider descriptor for the palette to check
 	 * @return <code>true</code> if the provider actually provides element to the palette
 	 */
+	// @unused
 	public boolean isPaletteEnabled(PapyrusPaletteService.ProviderDescriptor providerDescriptor) {
 		return true;
 	}
@@ -185,8 +187,8 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	}
 
 	private Menu fillMenu(Menu menu) {
-		for (Iterator<Action> iter = actions.iterator(); iter.hasNext();) {
-			DisplayPaletteChangeAction action = (DisplayPaletteChangeAction) iter.next();
+		for (Action action2 : actions) {
+			DisplayPaletteChangeAction action = (DisplayPaletteChangeAction) action2;
 			// action.setChecked(isPaletteEnabled(action.getProviderDescriptor()));
 			addActionToMenu(menu, action);
 		}
@@ -212,16 +214,18 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 
 	private class DisplayPaletteChangeAction extends Action {
 
-		private PapyrusPaletteService.ProviderDescriptor providerDescriptor;
+		private final PapyrusPaletteService.ProviderDescriptor providerDescriptor;
 
 		public DisplayPaletteChangeAction(PapyrusPaletteService.ProviderDescriptor providerDescriptor) {
 			this.providerDescriptor = providerDescriptor;
 		}
 
+		// @unused
 		public PapyrusPaletteService.ProviderDescriptor getProviderDescriptor() {
 			return providerDescriptor;
 		}
 
+		@Override
 		public void run() {
 			PapyrusPalettePreferences.changePaletteVisibility(providerDescriptor.getContributionID(),
 					getActiveSashPage().getClass().getName(), isChecked());

@@ -109,10 +109,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected static final String REMOVE_ICON = "/icons/ArrowLeft.gif";
 
 	// /** icon path for the disabled add icon */
-	// protected static final String ADD_DISABLED_ICON = "/icons/ArrowRight_dis.gif";;
+	// protected static final String ADD_DISABLED_ICON =
+	// "/icons/ArrowRight_dis.gif";;
 	//
 	// /** icon path for the disabled add icon */
-	// protected static final String REMOVE_DISABLED_ICON = "/icons/ArrowLeft_dis.gif";;
+	// protected static final String REMOVE_DISABLED_ICON =
+	// "/icons/ArrowLeft_dis.gif";;
 
 	/** instance of the filter used to show/hide drawers */
 	protected final ViewerFilter drawerFilter = new DrawerFilter();
@@ -239,7 +241,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		Tree tree = new Tree(paletteComposite, SWT.SINGLE | SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
 		data.widthHint = 185;
-		// Make the tree this tall even when there is nothing in it. This will keep the
+		// Make the tree this tall even when there is nothing in it. This will
+		// keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
 		tree.setLayoutData(data);
@@ -440,7 +443,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		if (entry instanceof PaletteContainer) {
 			proxy = new PaletteContainerProxy((PaletteContainer) entry);
 		} else {
-			proxy = new PaletteEntryProxy((PaletteEntry) entry);
+			proxy = new PaletteEntryProxy(entry);
 		}
 		parent.addChild(proxy);
 
@@ -499,7 +502,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		Table table = new Table(availableToolsComposite, SWT.SINGLE | SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
 		data.widthHint = 185;
-		// Make the tree this tall even when there is nothing in it. This will keep the
+		// Make the tree this tall even when there is nothing in it. This will
+		// keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
 		table.setLayoutData(data);
@@ -667,6 +671,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(Object)
 		 */
+		// @unused
 		public boolean hasChildren(Object element) {
 			return getChildren(element) != null;
 		}
@@ -692,6 +697,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(Object)
 		 */
+		// @unused
 		public Object getParent(Object element) {
 			return ((PaletteEntry) element).getParent();
 		}
@@ -877,7 +883,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	public class PaletteContentProvider implements ITreeContentProvider {
 
 		/** tree viewer this provider provides content */
-		private TreeViewer viewer;
+		private final TreeViewer viewer;
 
 		/** the document root where to build the palette */
 		private PaletteContainerProxy rootProxy;

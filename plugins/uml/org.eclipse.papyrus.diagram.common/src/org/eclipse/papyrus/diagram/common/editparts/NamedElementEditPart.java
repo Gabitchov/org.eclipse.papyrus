@@ -56,13 +56,11 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	}
 
 	private void refreshIconNamedLabel() {
-		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper
-				.getNameLabelIconValue((View) getModel()));
+		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View) getModel()));
 	}
 
 	private void refreshQualifiedName() {
-		getNodeNamedElementFigure().setQualifiedName(((NamedElement) resolveSemanticElement())
-				.getQualifiedName());
+		getNodeNamedElementFigure().setQualifiedName(((NamedElement) resolveSemanticElement()).getQualifiedName());
 	}
 
 	private void refreshQualifiedNameDepth() {

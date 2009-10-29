@@ -23,6 +23,7 @@ public interface IPropertyAccessor {
 	 * 
 	 * @return the name of the accessed property
 	 */
+	// @unused
 	public abstract String getPropertyName();
 
 	/**
@@ -31,6 +32,7 @@ public interface IPropertyAccessor {
 	 * @param value
 	 *            the new value of the property
 	 */
+	// @unused
 	public abstract void setValue(String value);
 
 	/**

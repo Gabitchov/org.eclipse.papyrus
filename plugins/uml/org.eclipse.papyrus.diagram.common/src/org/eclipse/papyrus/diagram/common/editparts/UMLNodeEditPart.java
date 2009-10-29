@@ -234,7 +234,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		if (stereotypesPropertiesToDisplay != "") {
-			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(stereotypesPropertiesToDisplay);
+			((IPapyrusNodeUMLElementFigure) getPrimaryShape())
+					.setStereotypePropertiesInBrace(stereotypesPropertiesToDisplay);
 		} else {
 			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(null);
 		}

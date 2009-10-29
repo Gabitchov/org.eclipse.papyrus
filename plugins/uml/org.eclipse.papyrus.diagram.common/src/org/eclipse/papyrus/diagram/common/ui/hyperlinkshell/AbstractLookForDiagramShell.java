@@ -30,56 +30,53 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
- * The Class AbstractLookForDiagramShell.
- *  This Class has been generated from VisualEditor.
- * Do not modify it manually by adding behavior! you will lose the capacity to open with VE.
- * So this class is abstract and it contains set of getter in order to connect behavior in subclasses
- 
+ * The Class AbstractLookForDiagramShell. This Class has been generated from VisualEditor. Do not
+ * modify it manually by adding behavior! you will lose the capacity to open with VE. So this class
+ * is abstract and it contains set of getter in order to connect behavior in subclasses
  */
 public class AbstractLookForDiagramShell {
 
 	/** The lookfor shell. */
-	private Shell lookforShell = null;  //  @jve:decl-index=0:visual-constraint="108,60"
-	
+	private Shell lookforShell = null; // @jve:decl-index=0:visual-constraint="108,60"
+
 	/** The c tab folder. */
 	private CTabFolder cTabFolder = null;
-	
+
 	/** The diagram listcomposite. */
 	private Composite diagramListcomposite = null;
-	
+
 	/** The tree viewcomposite. */
 	private Composite treeViewcomposite = null;
-	
+
 	/** The modeltree. */
-	private Tree modeltree = null;
-	
+	private final Tree modeltree = null;
+
 	/** The new diagrambutton. */
 	private Button newDiagrambutton = null;
-	
+
 	/** The remove diagrambutton. */
 	private Button removeDiagrambutton = null;
-	
+
 	/** The O kbutton. */
 	private Button OKbutton = null;
-	
+
 	/** The cancelbutton. */
 	private Button cancelbutton = null;
-	
+
 	/** The diagram listtree. */
-	private Tree diagramListtree = null;
-	
+	private final Tree diagramListtree = null;
+
 	/** The diagramfiltered tree. */
 	private FilteredTree diagramfilteredTree = null;
-	
+
 	/** The mode filtered tree. */
 	private FilteredTree modeFilteredTree = null;
-	
+
 	/** The c label. */
 	private CLabel cLabel = null;
-	
+
 	/**
 	 * This method initializes lookforShell.
 	 */
@@ -95,10 +92,10 @@ public class AbstractLookForDiagramShell {
 		GridLayout gridLayout1 = new GridLayout();
 		gridLayout1.numColumns = 5;
 		gridLayout1.makeColumnsEqualWidth = true;
-		//this line has to be commented in order to open with VISUAL EDITOR
+		// this line has to be commented in order to open with VISUAL EDITOR
 		lookforShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
-		
-		//lookforShell = new Shell();
+
+		// lookforShell = new Shell();
 		lookforShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		createCTabFolder();
 		lookforShell.setLayout(gridLayout1);
@@ -175,20 +172,16 @@ public class AbstractLookForDiagramShell {
 		cLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 	}
 
-	
 	/**
 	 * Gets the modeltree.
 	 * 
 	 * @return the modeltree
 	 */
+	// @unused
 	protected Tree getModeltree() {
 		return modeltree;
 	}
 
-	
-	
-
-	
 	/**
 	 * Gets the new diagrambutton.
 	 * 
@@ -198,17 +191,17 @@ public class AbstractLookForDiagramShell {
 		return newDiagrambutton;
 	}
 
-	
 	/**
 	 * Sets the new diagrambutton.
 	 * 
-	 * @param newDiagrambutton the newDiagrambutton to set
+	 * @param newDiagrambutton
+	 *            the newDiagrambutton to set
 	 */
+	// @unused
 	protected void setNewDiagrambutton(Button newDiagrambutton) {
 		this.newDiagrambutton = newDiagrambutton;
 	}
 
-	
 	/**
 	 * Gets the remove diagrambutton.
 	 * 
@@ -218,17 +211,17 @@ public class AbstractLookForDiagramShell {
 		return removeDiagrambutton;
 	}
 
-	
 	/**
 	 * Sets the remove diagrambutton.
 	 * 
-	 * @param removeDiagrambutton the removeDiagrambutton to set
+	 * @param removeDiagrambutton
+	 *            the removeDiagrambutton to set
 	 */
+	// @unused
 	protected void setRemoveDiagrambutton(Button removeDiagrambutton) {
 		this.removeDiagrambutton = removeDiagrambutton;
 	}
 
-	
 	/**
 	 * Gets the o kbutton.
 	 * 
@@ -238,17 +231,17 @@ public class AbstractLookForDiagramShell {
 		return OKbutton;
 	}
 
-	
 	/**
 	 * Sets the o kbutton.
 	 * 
-	 * @param oKbutton the oKbutton to set
+	 * @param oKbutton
+	 *            the oKbutton to set
 	 */
+	// @unused
 	protected void setOKbutton(Button oKbutton) {
 		OKbutton = oKbutton;
 	}
 
-	
 	/**
 	 * Gets the cancelbutton.
 	 * 
@@ -258,27 +251,27 @@ public class AbstractLookForDiagramShell {
 		return cancelbutton;
 	}
 
-	
 	/**
 	 * Sets the cancelbutton.
 	 * 
-	 * @param cancelbutton the cancelbutton to set
+	 * @param cancelbutton
+	 *            the cancelbutton to set
 	 */
+	// @unused
 	protected void setCancelbutton(Button cancelbutton) {
 		this.cancelbutton = cancelbutton;
 	}
 
-	
 	/**
 	 * Gets the diagram listtree.
 	 * 
 	 * @return the diagramListtree
 	 */
+	// @unused
 	protected Tree getDiagramListtree() {
 		return diagramListtree;
 	}
 
-	
 	/**
 	 * Gets the lookfor shell.
 	 * 
@@ -288,12 +281,13 @@ public class AbstractLookForDiagramShell {
 		return lookforShell;
 	}
 
-	
 	/**
 	 * Sets the lookfor shell.
 	 * 
-	 * @param lookforShell the lookforShell to set
+	 * @param lookforShell
+	 *            the lookforShell to set
 	 */
+	// @unused
 	protected void setLookforShell(Shell lookforShell) {
 		this.lookforShell = lookforShell;
 	}
@@ -321,12 +315,11 @@ public class AbstractLookForDiagramShell {
 		gridData3.grabExcessVerticalSpace = true;
 		gridData3.verticalSpan = 3;
 		gridData3.verticalAlignment = GridData.FILL;
-		modeFilteredTree = new FilteredTree(treeViewcomposite, SWT.BORDER,new PatternFilter(), true);
+		modeFilteredTree = new FilteredTree(treeViewcomposite, SWT.BORDER, new PatternFilter(), true);
 		modeFilteredTree.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		modeFilteredTree.setLayoutData(gridData3);
 	}
 
-	
 	/**
 	 * Gets the diagramfiltered tree.
 	 * 
@@ -336,7 +329,6 @@ public class AbstractLookForDiagramShell {
 		return diagramfilteredTree;
 	}
 
-	
 	/**
 	 * Gets the mode filtered tree.
 	 * 

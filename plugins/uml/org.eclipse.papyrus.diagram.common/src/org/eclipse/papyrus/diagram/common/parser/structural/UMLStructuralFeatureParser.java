@@ -31,7 +31,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	public static final MessageFormat DEFAULT_PROCESSOR = new MessageFormat("{0}"); //$NON-NLS-1$
 
 	/** The feature. */
-	private EStructuralFeature feature;
+	private final EStructuralFeature feature;
 
 	/**
 	 * The Constructor.
@@ -138,6 +138,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * 
 	 * @generated
 	 */
+	// @unused
 	protected IParserEditStatus validateValues(Object[] values) {
 		if (values.length > 1) {
 			return ParserEditStatus.UNEDITABLE_STATUS;

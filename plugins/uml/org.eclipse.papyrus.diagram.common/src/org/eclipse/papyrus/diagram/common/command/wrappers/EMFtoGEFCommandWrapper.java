@@ -29,7 +29,7 @@ public final class EMFtoGEFCommandWrapper extends Command {
 	 * The wrapped EMF Command. Package-level visibility so that the command stack wrapper can
 	 * access the field.
 	 */
-	private org.eclipse.emf.common.command.Command emfCommand;
+	private final org.eclipse.emf.common.command.Command emfCommand;
 
 	/**
 	 * Constructor.
@@ -37,6 +37,7 @@ public final class EMFtoGEFCommandWrapper extends Command {
 	 * @param command
 	 *            the wrapped EMF command
 	 */
+	// @unused
 	public EMFtoGEFCommandWrapper(final org.eclipse.emf.common.command.Command command) {
 		super(command.getLabel());
 		emfCommand = command;
@@ -47,6 +48,7 @@ public final class EMFtoGEFCommandWrapper extends Command {
 	 * 
 	 * @return the EMF command
 	 */
+	// @unused
 	public org.eclipse.emf.common.command.Command getEMFCommand() {
 		return emfCommand;
 	}

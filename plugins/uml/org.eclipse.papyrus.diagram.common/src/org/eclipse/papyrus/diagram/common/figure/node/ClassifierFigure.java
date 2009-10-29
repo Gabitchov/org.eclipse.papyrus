@@ -96,6 +96,7 @@ public class ClassifierFigure extends CompartmentFigure {
 	 * 
 	 * @return true, if is active
 	 */
+	// @unused
 	public boolean isActive() {
 		return active;
 	}

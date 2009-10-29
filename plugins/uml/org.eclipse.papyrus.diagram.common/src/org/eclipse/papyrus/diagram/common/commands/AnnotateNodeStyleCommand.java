@@ -58,6 +58,7 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 	 * @param affectedFiles
 	 *            List of affected files. It may be null.
 	 */
+	// @unused
 	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain,
 			List affectedFiles) {
 		this(ep, attr, domain, COMMAND_LABEL, affectedFiles);
@@ -130,8 +131,9 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 		}
 
 		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute))
+		if (eAnn.getReferences().contains(attribute)) {
 			return;
+		}
 
 		// Background
 		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {

@@ -97,10 +97,11 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 *            the new preserveAxis value
 	 */
 	public void setPreserveAxis(int preserveAxis) {
-		if (preserveAxis != PRESERVE_Y && preserveAxis != PRESERVE_X && preserveAxis != PRESERVE_XY)
+		if (preserveAxis != PRESERVE_Y && preserveAxis != PRESERVE_X && preserveAxis != PRESERVE_XY) {
 			this.preserveAxis = PRESERVE_Y;
-		else
+		} else {
 			this.preserveAxis = preserveAxis;
+		}
 	}
 
 	/**
@@ -188,10 +189,11 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 			if (anchor != null) {
 				String newIdStr = getNewIdStr(anchor);
 				// If the newIdStr is null is because the anchor cannot preserve
-				// it's position as it does not fit in the new bounds of the figure
-				if (newIdStr != null)
+				// it's position as it does not fit in the new bounds of the
+				// figure
+				if (newIdStr != null) {
 					hashMap.put(anchor, newIdStr);
-				else {
+				} else {
 					isOk = false;
 					break;
 				}
@@ -202,12 +204,13 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 				IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
 				if (anchor != null) {
 					String newIdStr = getNewIdStr(anchor);
-					// If the newIdStr is null is because the anchor cannot preserve
+					// If the newIdStr is null is because the anchor cannot
+					// preserve
 					// it's position as it does not fit in the new bounds of the
 					// figure
-					if (newIdStr != null)
+					if (newIdStr != null) {
 						hashMap.put(anchor, newIdStr);
-					else {
+					} else {
 						isOk = false;
 						break;
 					}
@@ -243,8 +246,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 		if (getPreserveAxis() == PRESERVE_Y || getPreserveAxis() == PRESERVE_XY) {
 			int anchorYPos = (int) Math.round(figureBounds.height * pp.preciseY);
 
-			if (anchorYPos > (figureBounds.height + sizeDelta.height))
+			if (anchorYPos > (figureBounds.height + sizeDelta.height)) {
 				return null;
+			}
 
 			pp.preciseY = (double) anchorYPos / (figureBounds.height + sizeDelta.height);
 		}
@@ -252,8 +256,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 		if (getPreserveAxis() == PRESERVE_X || getPreserveAxis() == PRESERVE_XY) {
 			int anchorXPos = (int) Math.round(figureBounds.width * pp.preciseX);
 
-			if (anchorXPos > (figureBounds.width + sizeDelta.width))
+			if (anchorXPos > (figureBounds.width + sizeDelta.width)) {
 				return null;
+			}
 
 			pp.preciseX = (double) anchorXPos / (figureBounds.width + sizeDelta.width);
 		}
@@ -316,8 +321,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 			int newHeight = figureBounds.height + sizeDelta.height;
 
-			if (anchorYPos + margin > newHeight)
+			if (anchorYPos + margin > newHeight) {
 				sizeDelta.height = (anchorYPos - figureBounds.height) + margin;
+			}
 		}
 
 		if (preserveAxis == PRESERVE_X || preserveAxis == PRESERVE_XY) {
@@ -325,8 +331,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 			int newWidth = figureBounds.width + sizeDelta.width;
 
-			if (anchorXPos + margin > newWidth)
+			if (anchorXPos + margin > newWidth) {
 				sizeDelta.width = (anchorXPos - figureBounds.width) + margin;
+			}
 		}
 	}
 
@@ -338,6 +345,7 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * @param editPart
 	 * @return a replication of the request but with a SizeDelta modification
 	 */
+	// @unused
 	public static Request getNewSourceFeedbackRequest(Request request, ShapeNodeEditPart editPart) {
 		if (request instanceof ChangeBoundsRequest) {
 			ChangeBoundsRequest currRequest = (ChangeBoundsRequest) request;

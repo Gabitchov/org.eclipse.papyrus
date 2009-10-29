@@ -61,6 +61,7 @@ public class SemanticAdapter implements IAdaptable {
 	 * @param element
 	 *            the new element
 	 */
+	// @unused
 	public void setElement(Object element) {
 		this.element = element;
 	}

@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class ValidationProvider {
 
+	// @unused
 	public static IStatus validateUniqueName(NamedElement element) {
 		IStatus status = null;
 		if (element != null) {

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 
-
 /**
  * The Class HyperLinkDiagram a container of diagram
  */
@@ -28,13 +27,14 @@ public class HyperLinkDiagram extends HyperlinkObject {
 	 */
 	public Diagram getDiagram() {
 		// TODO Auto-generated method stub
-		return (Diagram)super.getObject();
+		return (Diagram) super.getObject();
 	}
 
 	/**
 	 * Sets the diagram.
 	 * 
-	 * @param object the new diagram
+	 * @param object
+	 *            the new diagram
 	 */
 	public void setDiagram(Diagram object) {
 		// TODO Auto-generated method stub

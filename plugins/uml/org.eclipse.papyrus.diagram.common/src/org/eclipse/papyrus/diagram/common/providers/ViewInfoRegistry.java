@@ -37,6 +37,7 @@ public class ViewInfoRegistry {
 	}
 
 	/** Gets the singleton instance of this registry */
+	// @unused
 	public static ViewInfoRegistry getInstance() {
 		return INSTANCE;
 	}
@@ -74,6 +75,7 @@ public class ViewInfoRegistry {
 	 * 
 	 * @return
 	 */
+	// @unused
 	public Map<String, RootViewInfo> getEditorIdsToViewInfos() {
 		return readMapEditorID2RootViewInfo();
 	}
@@ -84,6 +86,7 @@ public class ViewInfoRegistry {
 	 * 
 	 * @return
 	 */
+	// @unused
 	public Collection<String> getAllEditorIDs() {
 		return readMapEditorID2RootViewInfo().keySet();
 	}
@@ -93,6 +96,7 @@ public class ViewInfoRegistry {
 	 * 
 	 * @return
 	 */
+	// @unused
 	public Collection<RootViewInfo> getAllRootViewInfos() {
 		return readMapEditorID2RootViewInfo().values();
 	}
@@ -103,6 +107,7 @@ public class ViewInfoRegistry {
 	 * @param editorID
 	 * @return
 	 */
+	// @unused
 	public RootViewInfo getRootViewInfoForEditor(String editorID) {
 		return readMapEditorID2RootViewInfo().get(editorID);
 	}
@@ -129,6 +134,7 @@ public class ViewInfoRegistry {
 	 * @param visualID
 	 * @return
 	 */
+	// @unused
 	public ViewInfo getViewInfoForVisualIDForEditor(String editorID, int visualID) {
 		if (editorID == null || editorID.length() <= 0) {
 			return null;
