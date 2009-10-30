@@ -24,9 +24,7 @@
 
 	«EXPAND xpt::Common::generatedMemberComment»
 	org.eclipse.swt.events.MouseListener paletteMouseListener = null;
-	
-	«EXPAND xpt::Common::generatedMemberComment»
-	org.eclipse.core.runtime.preferences.InstanceScope instanceScope = new org.eclipse.core.runtime.preferences.InstanceScope(); 
+
 	«REM»«ENDREM»
 «ENDAROUND»
 
@@ -35,9 +33,9 @@
 	public «className»() {
 		super(«null <> editorGen.diagram.palette and editorGen.diagram.palette.flyout»);
 
-	«REM»Documentation. adds preference listener for papyrus editors«ENDREM»
-	org.eclipse.core.runtime.preferences.IEclipsePreferences prefs = instanceScope.getNode(org.eclipse.papyrus.diagram.common.Activator.ID);
-		prefs.addPreferenceChangeListener(this);
+	«REM»Documentation. adds listener for papyrus palette service«ENDREM»
+	// adds a listener to the palette service, which reacts to palette customizations
+	org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 	«REM»end of listeners addition«ENDREM»
 	}
 «ENDAROUND»
@@ -69,24 +67,27 @@
 	«targetDef.proceed()»
 	«REM»end of old code«ENDREM»
 	
-	«REM»Documentation. adds method to handle preference changes«ENDREM»
-	«EXPAND handlePreferenceChange-»
+	«REM»Documentation. adds method to handle palette changes«ENDREM»
+	«EXPAND handlePaletteChange-»
 	
 	«EXPAND dispose-»
 	
 	«EXPAND getPaletteViewer-»
 	
+	«REM»Documentation: (RS) advanced customization abilities
 	«EXPAND createPaletteCustomizer-»
+	«ENDREM»
 	
 	«EXPAND constructPaletteViewer -»
 	
 	«EXPAND createPaletteviewerProvider-»
 «ENDAROUND»
 
-«DEFINE handlePreferenceChange FOR gmfgen::GenEditorView-»
+«DEFINE handlePaletteChange FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	public void preferenceChange(org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent event) {
-		if (org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences.PALETTE_CUSTOMIZATIONS_ID.equals(event.getKey())) {
+	public void providerChanged(org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent event) {
+		// update the palette if the palette service has changed
+		if (org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().equals(event.getSource())) {
 			org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
 					getDefaultPaletteContent());
 		}
@@ -103,9 +104,9 @@
 «DEFINE dispose FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	public void dispose() {
+		// remove palette service listener
 		// remove preference listener
-		org.eclipse.core.runtime.preferences.IEclipsePreferences prefs = instanceScope.getNode(org.eclipse.papyrus.diagram.common.Activator.ID);
-		prefs.removePreferenceChangeListener(this);
+		org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
 		
 		super.dispose();
 	}
@@ -119,7 +120,7 @@
 «ENDDEFINE»	
 	
 «AROUND implementsList FOR Sequence(String)-»
- implements org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener
+ implements org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener
 «IF not self->isEmpty()», «EXPAND implementsListEntry FOREACH self SEPARATOR ', '»«ENDIF-»
 «ENDAROUND»
 

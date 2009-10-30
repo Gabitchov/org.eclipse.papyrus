@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.diagram.common.wizards;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -32,13 +31,13 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -49,7 +48,9 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.Activator;
@@ -58,9 +59,18 @@ import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSourceAdapter;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.DragSourceListener;
+import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.swt.dnd.DropTargetListener;
+import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.dnd.TreeDropTargetEffect;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -68,10 +78,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -103,18 +115,16 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected static final String HIDDEN_DRAWERS_ICON = "/icons/drawers_hidden.gif";
 
 	/** icon path for the add button */
-	protected static final String ADD_ICON = "/icons/ArrowRight.gif";
+	protected static final String ADD_ICON = "/icons/arrow_right.gif";
 
 	/** icon path for the remove button */
-	protected static final String REMOVE_ICON = "/icons/ArrowLeft.gif";
+	protected static final String REMOVE_ICON = "/icons/arrow_left.gif";
 
-	// /** icon path for the disabled add icon */
-	// protected static final String ADD_DISABLED_ICON =
-	// "/icons/ArrowRight_dis.gif";;
-	//
-	// /** icon path for the disabled add icon */
-	// protected static final String REMOVE_DISABLED_ICON =
-	// "/icons/ArrowLeft_dis.gif";;
+	/** icon path for the create drawer button */
+	protected static final String CREATE_DRAWERS_ICON = "/icons/new_drawer.gif";
+
+	/** icon path for the delete drawer button */
+	protected static final String DELETE_DRAWERS_ICON = "/icons/delete.gif";
 
 	/** instance of the filter used to show/hide drawers */
 	protected final ViewerFilter drawerFilter = new DrawerFilter();
@@ -123,7 +133,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected final ViewerFilter toolFilter = new ToolFilter();
 
 	/** stored preferences */
-	private List<String> storedPreferences;
+	protected List<String> storedPreferences;
 
 	/** add button */
 	protected Button addButton;
@@ -196,7 +206,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * update the preferences to have all tools accessible
 	 */
-	private void updatePreferences() {
+	protected void updatePreferences() {
 		// change => set to no hidden palettes
 		storedPreferences = PapyrusPalettePreferences.getHiddenPalettes(editorPart);
 
@@ -241,8 +251,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		Tree tree = new Tree(paletteComposite, SWT.SINGLE | SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
 		data.widthHint = 185;
-		// Make the tree this tall even when there is nothing in it. This will
-		// keep the
+		// Make the tree this tall even when there is nothing in it. This will keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
 		tree.setLayoutData(data);
@@ -251,7 +260,112 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		paletteTreeViewer.setLabelProvider(new PaletteProxyLabelProvider());
 
 		PaletteContainerProxy contentNode = createPaletteTreeViewerInput();
+
+		addPalettePreviewDropSupport();
 		paletteTreeViewer.setInput(contentNode);
+	}
+
+	/**
+	 * Add drop behavior for the palette preview
+	 */
+	protected void addPalettePreviewDropSupport() {
+		// transfer types
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+
+		// drag listener
+		DropTargetListener listener = new TreeDropTargetEffect(paletteTreeViewer.getTree()) {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void drop(DropTargetEvent event) {
+				super.drop(event);
+
+				// create proxy and adds it to its target parent
+				PaletteEntryProxy target = (PaletteEntryProxy) ((TreeItem) event.item).getData();
+				if (target == null) {
+					target = (PaletteContainerProxy) paletteTreeViewer.getInput();
+				}
+
+				IStructuredSelection transferedSelection = (IStructuredSelection) LocalSelectionTransfer.getTransfer()
+						.nativeToJava(event.currentDataType);
+				Object entry = ((IStructuredSelection) transferedSelection).getFirstElement();
+				PaletteEntryProxy entryProxy;
+				if (entry instanceof ToolEntry) {
+					entryProxy = new PaletteEntryProxy((ToolEntry) entry);
+				} else if (entry instanceof PaletteDrawer) {
+					entryProxy = new PaletteContainerProxy((PaletteDrawer) entry);
+				} else {
+					return;
+				}
+				if (target instanceof PaletteContainerProxy) {
+					((PaletteContainerProxy) target).addChild(entryProxy);
+				} else {
+					// add to parent...
+					target.getParent().addChild(entryProxy);
+				}
+				paletteTreeViewer.refresh();
+				setPageComplete(validatePage());
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void dragOver(DropTargetEvent event) {
+				super.dragOver(event);
+
+				IStructuredSelection transferedSelection = (IStructuredSelection) LocalSelectionTransfer.getTransfer()
+						.nativeToJava(event.currentDataType);
+				// check selection is compatible for drop target
+
+				TreeItem item = paletteTreeViewer.getTree().getItem(
+						paletteTreeViewer.getTree().toControl(new Point(event.x, event.y)));
+
+				checkSelectionForDrop(transferedSelection, item, event);
+			}
+		};
+
+		paletteTreeViewer.addDropSupport(DND.DROP_LINK, transfers, listener);
+	}
+
+	/**
+	 * Checks if the selection can be added to the target widget
+	 * 
+	 * @param transferedSelection
+	 *            the selection to be dropped
+	 * @param widget
+	 *            the widget where to drop
+	 * @return <code>true</code> if element can be dropped
+	 */
+	protected void checkSelectionForDrop(IStructuredSelection transferedSelection, TreeItem item, DropTargetEvent event) {
+		event.detail = DND.DROP_NONE;
+		Object entry = ((IStructuredSelection) transferedSelection).getFirstElement();
+		// handle only first selected element
+		if (item == null) {
+			// adding to the root, should only be a drawer
+			if (entry instanceof PaletteDrawer) {
+				event.detail = DND.DROP_LINK;
+			}
+		} else {
+			PaletteEntryProxy targetProxy = (PaletteEntryProxy) item.getData();
+			switch (targetProxy.getType()) {
+			case DRAWER:
+				if (entry instanceof ToolEntry) {
+					event.detail = DND.DROP_LINK;
+				}
+				break;
+			case TOOL:
+				if (entry instanceof ToolEntry) {
+					event.detail = DND.DROP_LINK; // add the selected tool before the destination
+					// tool
+				}
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	/**
@@ -259,7 +373,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * 
 	 * @return the root container for the palette
 	 */
-	private PaletteContainerProxy createPaletteTreeViewerInput() {
+	protected PaletteContainerProxy createPaletteTreeViewerInput() {
 		return new PaletteContainerProxy(null);
 	}
 
@@ -267,7 +381,51 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * populates the preview palette toolbar
 	 */
 	protected void populatePalettePreviewToolBar(ToolBar toolbar) {
-		// nothing here
+		createToolBarItem(toolbar, CREATE_DRAWERS_ICON, Messages.Local_Palette_Create_Drawer_Tooltip,
+				createNewDrawerListener());
+	}
+
+	/**
+	 * Creates the listener for the new drawer tool item
+	 * 
+	 * @return the listener created
+	 */
+	protected Listener createNewDrawerListener() {
+		return new Listener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void handleEvent(Event event) {
+				// retrieve selected container
+				PaletteContainerProxy containerProxy;
+				containerProxy = (PaletteContainerProxy) paletteTreeViewer.getInput();
+				NewDrawerWizard wizard = new NewDrawerWizard(containerProxy);
+				WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
+				wizardDialog.open();
+				paletteTreeViewer.refresh();
+				setPageComplete(validatePage());
+			}
+		};
+	}
+
+	/**
+	 * Creates a toolbar item.
+	 * 
+	 * @param toolbar
+	 *            the parent toolbar
+	 * @param itemIcon
+	 *            path for icon
+	 * @param tooltip
+	 *            tooltip text for the toolbar item
+	 * @param listener
+	 *            listener for tool bar item
+	 */
+	protected void createToolBarItem(ToolBar toolbar, String itemIcon, String tooltip, Listener listener) {
+		ToolItem item = new ToolItem(toolbar, SWT.BORDER);
+		item.setImage(Activator.getPluginIconImage(Activator.ID, itemIcon));
+		item.setToolTipText(tooltip);
+		item.addListener(SWT.Selection, listener);
 	}
 
 	/**
@@ -294,7 +452,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		removeButton.addMouseListener(createRemoveButtonListener());
 		removeButton.setEnabled(false);
 		removeButton.addListener(SWT.MouseUp, this);
-		// add listener to listen for changes in the right tree
 	}
 
 	/**
@@ -315,11 +472,20 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				Object source = ((IStructuredSelection) availableToolsViewer.getSelection()).getFirstElement();
 				Object target = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
 
-				if (isValidTarget(source, target)) {
+				// manage add button
+				if (isAddValidTarget(source, target)) {
 					addButton.setEnabled(true);
 				} else {
 					addButton.setEnabled(false);
 				}
+
+				// manage remove button
+				if (isRemoveValidSource(target)) {
+					removeButton.setEnabled(true);
+				} else {
+					removeButton.setEnabled(false);
+				}
+
 			}
 
 			/**
@@ -331,7 +497,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 *            the target object
 			 * @return <code>true</code> if the source can be added to the target
 			 */
-			protected boolean isValidTarget(Object source, Object target) {
+			protected boolean isAddValidTarget(Object source, Object target) {
 				if (!(source instanceof PaletteEntry)) {
 					return false;
 				}
@@ -358,6 +524,21 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 						}
 					}
 					return false;
+				}
+				return false;
+			}
+
+			/**
+			 * Returns true if the source can be added to the target
+			 * 
+			 * @param source
+			 *            the source object
+			 * @return <code>true</code> if the source can be removed (not null and instanceof
+			 *         PaletteEntryProxy)
+			 */
+			protected boolean isRemoveValidSource(Object source) {
+				if (source instanceof PaletteEntryProxy) {
+					return true;
 				}
 				return false;
 			}
@@ -427,29 +608,14 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 *            the parent node for the newly created node
 	 */
 	protected void createNodeFromEntry(PaletteEntry entry, PaletteContainerProxy parent) {
-		// Element element = null;
-		// if (entry instanceof PaletteDrawer) {
-		// element = document.createElement(IPapyrusPaletteConstant.DRAWER);
-		// } else if (entry instanceof ToolEntry) {
-		// element = document.createElement(IPapyrusPaletteConstant.TOOL);
-		// }
-		// if (element == null) {
-		// return;
-		// }
-		// adds the node to the parent node
-
 		PaletteEntryProxy proxy = null;
 
 		if (entry instanceof PaletteContainer) {
 			proxy = new PaletteContainerProxy((PaletteContainer) entry);
 		} else {
-			proxy = new PaletteEntryProxy(entry);
+			proxy = new PaletteEntryProxy((PaletteEntry) entry);
 		}
 		parent.addChild(proxy);
-
-		// sets the id
-		// element.setAttribute(IPapyrusPaletteConstant.ID, entry.getId());
-
 	}
 
 	/**
@@ -460,6 +626,22 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 			public void mouseUp(MouseEvent e) {
 				// remove the element selected on the right
+				// add the element selected on the left to the right tree
+				// check the selection.
+				IStructuredSelection selection = (IStructuredSelection) paletteTreeViewer.getSelection();
+				if (selection == null || selection.size() < 1) {
+					return;
+				}
+				PaletteEntryProxy proxyToDelete = (PaletteEntryProxy) selection.getFirstElement();
+				if (proxyToDelete == null) {
+					return;
+				}
+
+				// create a new entry in the document
+				// get container of the proxy to be deleted
+				PaletteContainerProxy parentProxy = proxyToDelete.getParent();
+				parentProxy.removeChild(proxyToDelete);
+				paletteTreeViewer.refresh();
 			}
 
 			/**
@@ -481,7 +663,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * creates the available entries group
 	 */
-	private void createAvailableToolsGroup() {
+	protected void createAvailableToolsGroup() {
 		Composite parent = (Composite) getControl();
 		Composite availableToolsComposite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, true);
@@ -502,14 +684,15 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		Table table = new Table(availableToolsComposite, SWT.SINGLE | SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
 		data.widthHint = 185;
-		// Make the tree this tall even when there is nothing in it. This will
-		// keep the
+		// Make the tree this tall even when there is nothing in it. This will keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
 		table.setLayoutData(data);
 		availableToolsViewer = new TableViewer(table);
 		availableToolsViewer.setContentProvider(new ToolsTableContentProvider());
 		availableToolsViewer.setLabelProvider(new PaletteLabelProvider());
+		ViewerComparator labelComparator = new LabelViewerComparator();
+		availableToolsViewer.setComparator(labelComparator);
 		// remove the note stack and standard group
 		availableToolsViewer.addFilter(new ViewerFilter() {
 
@@ -527,7 +710,43 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				return true;
 			}
 		});
+
+		// add drag support
+		addAvailableToolsDragSupport();
 		availableToolsViewer.setInput(((PaletteViewer) editorPart.getAdapter(PaletteViewer.class)).getPaletteRoot());
+	}
+
+	/**
+	 * Add drag support from the available tools viewer
+	 */
+	protected void addAvailableToolsDragSupport() {
+		// transfer types
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+
+		// drag listener
+		DragSourceListener listener = new DragSourceAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void dragStart(DragSourceEvent event) {
+				super.dragStart(event);
+				event.data = availableToolsViewer.getSelection();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void dragSetData(DragSourceEvent event) {
+				super.dragSetData(event);
+				LocalSelectionTransfer.getTransfer().setSelection(availableToolsViewer.getSelection());
+			}
+
+		};
+
+		availableToolsViewer.addDragSupport(DND.DROP_LINK, transfers, listener);
 	}
 
 	/**
@@ -537,10 +756,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 *            the toolbar to populate
 	 */
 	protected void populateAvailableToolsToolBar(ToolBar toolbar) {
-		createToolBarItem(toolbar, SHOWN_DRAWERS_ICON, HIDDEN_DRAWERS_ICON, Messages.Local_Palette_ShowDrawers_Tooltip,
-				createDrawerListener());
-		createToolBarItem(toolbar, SHOWN_TOOLS_ICON, HIDDEN_TOOLS_ICON, Messages.Local_Palette_ShowTools_Tooltip,
-				createToolListener());
+		/*
+		 * createCheckToolBarItem(toolbar, SHOWN_DRAWERS_ICON,
+		 * Messages.Local_Palette_ShowDrawers_Tooltip, createShowDrawerListener());
+		 */
+		createCheckToolBarItem(toolbar, SHOWN_TOOLS_ICON, Messages.Local_Palette_ShowTools_Tooltip,
+				createsShowToolListener());
 	}
 
 	/**
@@ -548,7 +769,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * 
 	 * @return the listener for the tool button
 	 */
-	protected Listener createDrawerListener() {
+	protected Listener createShowDrawerListener() {
 		return new Listener() {
 
 			/**
@@ -562,8 +783,10 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				if (item.getSelection()) {
 					// elements should be hidden
 					availableToolsViewer.addFilter(drawerFilter);
+					item.setSelection(true);
 				} else {
 					availableToolsViewer.removeFilter(drawerFilter);
+					item.setSelection(false);
 				}
 			}
 		};
@@ -574,7 +797,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * 
 	 * @return the listener for the tool button
 	 */
-	protected Listener createToolListener() {
+	protected Listener createsShowToolListener() {
 		return new Listener() {
 
 			/**
@@ -588,29 +811,29 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				if (item.getSelection()) {
 					// elements should be hidden
 					availableToolsViewer.addFilter(toolFilter);
+					item.setSelection(true);
 				} else {
 					availableToolsViewer.removeFilter(toolFilter);
+					item.setSelection(false);
 				}
 			}
 		};
 	}
 
 	/**
-	 * Creates a toolbar item.
+	 * Creates a toolbar item which can be checked.
 	 * 
 	 * @param toolbar
 	 *            the parent toolbar
 	 * @param shownElementsIcon
 	 *            path for shown elements icon
-	 * @param hiddenElementsIcon
-	 *            path for hidden elements icon
+	 * @param listener
+	 *            listener for button action
 	 * @param tooltip
 	 *            tooltip text for the toolbar item
 	 */
-	protected void createToolBarItem(ToolBar toolbar, String shownElementsIcon, String hiddenElementsIcon,
-			String tooltip, Listener listener) {
+	protected void createCheckToolBarItem(ToolBar toolbar, String shownElementsIcon, String tooltip, Listener listener) {
 		ToolItem item = new ToolItem(toolbar, SWT.CHECK | SWT.BORDER);
-		item.setDisabledImage(Activator.getPluginIconImage(Activator.ID, hiddenElementsIcon));
 		item.setImage(Activator.getPluginIconImage(Activator.ID, shownElementsIcon));
 		item.setToolTipText(tooltip);
 		item.addListener(SWT.Selection, listener);
@@ -652,54 +875,21 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		}
 
 		/**
-		 * If the given element does not have any children, this method should return
-		 * <code>null</code>. This fixes the problem where a "+" sign is incorrectly placed next to
-		 * an empty container in the tree.
-		 * 
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(Object)
-		 */
-		public Object[] getChildren(Object parentElement) {
-			if (parentElement instanceof PaletteContainer) {
-				List<ToolEntry> children = PaletteUtil.getAllToolEntries((PaletteContainer) parentElement);
-				if (!children.isEmpty()) {
-					return children.toArray();
-				}
-			}
-			return null;
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(Object)
-		 */
-		// @unused
-		public boolean hasChildren(Object element) {
-			return getChildren(element) != null;
-		}
-
-		/**
-		 * This method should not return <code>null</code>.
-		 * 
-		 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(Object)
+		 * {@inheritDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = null;
 
 			if (inputElement instanceof PaletteRoot) {
-				elements = PaletteUtil.getAllEntries(((PaletteRoot) inputElement)).toArray();
+				// paletteUil.getAllEntries(...) to add drawers
+				// if so, uncomment the addFilterbutton for drawers in populate tool bar
+				elements = PaletteUtil.getAllToolEntries(((PaletteRoot) inputElement)).toArray();
 			}
 
 			if (elements == null) {
 				elements = new Object[0];
 			}
 			return elements;
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(Object)
-		 */
-		// @unused
-		public Object getParent(Object element) {
-			return ((PaletteEntry) element).getParent();
 		}
 
 		/**
@@ -906,11 +1096,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		}
 
 		/**
-		 * If the given element does not have any children, this method should return
-		 * <code>null</code>. This fixes the problem where a "+" sign is incorrectly placed next to
-		 * an empty container in the tree.
-		 * 
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(Object)
+		 * {@inheritDoc}
 		 */
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof PaletteEntryProxy) {
@@ -952,7 +1138,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		}
 
 		/**
-		 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(Viewer, Object, Object)
+		 * {@inheritDoc}
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// if (root != null)
@@ -961,174 +1147,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				rootProxy = (PaletteContainerProxy) newInput;
 				// traverseModel(root, true);
 			}
-		}
-	}
-
-	/**
-	 * Proxy class for palette entries
-	 */
-	protected class PaletteEntryProxy {
-
-		/** proxy palette entry */
-		private final PaletteEntry entry;
-
-		/** parent of this proxy */
-		private PaletteContainerProxy parent;
-
-		/** proxy type */
-		private EntryType type;
-
-		public PaletteEntryProxy(PaletteEntry entry) {
-			this.entry = entry;
-			setType(initType());
-		}
-
-		/**
-		 * Returns the entry cached by this class
-		 * 
-		 * @return the palette entry
-		 */
-		public PaletteEntry getEntry() {
-			return entry;
-		}
-
-		/**
-		 * Inits the entry type for this proxy
-		 * 
-		 * @return the entry type for this proxy
-		 */
-		protected EntryType initType() {
-			if (entry instanceof PaletteDrawer) {
-				return EntryType.DRAWER;
-			} else if (entry instanceof PaletteSeparator) {
-				return EntryType.SEPARATOR;
-			} else if (entry instanceof PaletteStack) {
-				return EntryType.STACK;
-			} else if (entry instanceof ToolEntry) {
-				return EntryType.TOOL;
-			}
-			return EntryType.TOOL;
-		}
-
-		/**
-		 * returns the label of the cached entry
-		 * 
-		 * @return the label of the cached entry
-		 */
-		public String getLabel() {
-			return entry.getLabel();
-		}
-
-		/**
-		 * returns the id of the cached entry
-		 * 
-		 * @return the id of the cached entry
-		 */
-		public String getId() {
-			return entry.getId();
-		}
-
-		/**
-		 * returns the small icon of the cached entry
-		 * 
-		 * @return the small icon of the cached entry
-		 */
-		public Image getImage() {
-			return Activator.getPluginIconImage(Activator.ID, entry.getSmallIcon());
-		}
-
-		/**
-		 * Sets the parent for this proxy
-		 * 
-		 * @param parent
-		 *            the parent proxy
-		 */
-		public void setParent(PaletteContainerProxy parent) {
-			this.parent = parent;
-		}
-
-		/**
-		 * Returns the parent of this proxy
-		 * 
-		 * @return the parent of this proxy
-		 */
-		public PaletteContainerProxy getParent() {
-			return parent;
-		}
-
-		/**
-		 * Returns the list of children for this entry. By default, entries do not have children.
-		 * 
-		 * @return the list of children for this entry
-		 */
-		public List<PaletteEntryProxy> getChildren() {
-			return null;
-		}
-
-		/**
-		 * Sets the king of tool it is.
-		 * 
-		 * @param type
-		 *            the type to set
-		 */
-		public void setType(EntryType type) {
-			this.type = type;
-		}
-
-		/**
-		 * Returns the kind of entry
-		 * 
-		 * @return the kind of entry
-		 */
-		public EntryType getType() {
-			return type;
-		}
-	}
-
-	/**
-	 * Proxy class for container entries
-	 */
-	protected class PaletteContainerProxy extends PaletteEntryProxy {
-
-		/** list of children for this container */
-		List<PaletteEntryProxy> children = new ArrayList<PaletteEntryProxy>();
-
-		/**
-		 * Creates a new PaletteContainer
-		 * 
-		 * @param drawer
-		 *            the drawer to cache
-		 */
-		public PaletteContainerProxy(PaletteContainer drawer) {
-			super(drawer);
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public PaletteContainer getEntry() {
-			return (PaletteContainer) super.getEntry();
-		}
-
-		/**
-		 * Method to add a child proxy to this proxy
-		 * 
-		 * @param entry
-		 *            the entry to add
-		 */
-		public void addChild(PaletteEntryProxy entry) {
-			children.add(entry);
-			entry.setParent(this);
-			// should throw an event here
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public List<PaletteEntryProxy> getChildren() {
-			return children;
 		}
 	}
 
@@ -1233,6 +1251,10 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		case DRAWER:
 			element = document.createElement(IPapyrusPaletteConstant.DRAWER);
 			element.setAttribute(IPapyrusPaletteConstant.NAME, containerProxy.getLabel());
+			if (containerProxy instanceof PaletteLocalDrawerProxy) {
+				element.setAttribute(IPapyrusPaletteConstant.ICON_PATH, ((PaletteLocalDrawerProxy) containerProxy)
+						.getImagePath());
+			}
 			break;
 		case TOOL:
 			element = document.createElement(IPapyrusPaletteConstant.TOOL);
@@ -1261,4 +1283,27 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		DRAWER, TOOL, STACK, SEPARATOR
 	}
 
+	public class LabelViewerComparator extends ViewerComparator {
+
+		/**
+		 * Creates a new LabelViewerComparator.
+		 */
+		public LabelViewerComparator() {
+			super();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public int compare(Viewer testViewer, Object e1, Object e2) {
+			String label1 = ((PaletteEntry) e1).getLabel();
+			String label2 = ((PaletteEntry) e2).getLabel();
+			if (label1 == null)
+				return 1;
+			if (label2 == null)
+				return -1;
+
+			return label1.compareTo(label2);
+		}
+	}
 }

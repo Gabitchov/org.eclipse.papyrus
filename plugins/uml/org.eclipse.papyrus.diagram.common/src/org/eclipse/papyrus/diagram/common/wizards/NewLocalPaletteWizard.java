@@ -48,6 +48,7 @@ public class NewLocalPaletteWizard extends Wizard {
 	public void addPages() {
 		super.addPages();
 
+		// first paeg: name, id, etc.
 		infoPage = new LocalPaletteInformationPage(editorPart);
 
 		// second page: describe the paletteContent

@@ -18,7 +18,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -32,8 +35,10 @@ import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
@@ -48,7 +53,6 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -62,7 +66,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -71,21 +74,13 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 /**
  * specific dialog window for the customisation of the palette
  */
-public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
-
-	/** left arrow image */
-	// @unused
-	protected static final String LEFT_ARROW = "icons/ArrowLeft.gif";
-
-	/** right arrow image */
-	// @unused
-	protected static final String RIGHT_ARROW = "icons/ArrowRight.gif";
+public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx implements IPreferenceChangeListener {
 
 	/** new local palette icon */
 	private static final String NEW_LOCAL_DESC_IMAGE = "/icons/local_desc_new.gif";
 
 	/** delete palette icon */
-	private static final String DELETE_LOCAL_DESC_IMAGE = "/icons/local_desc_delete.gif";
+	private static final String DELETE_LOCAL_DESC_IMAGE = "/icons/local_desc_destroy.gif";
 
 	/** path to the local descriptor icon */
 	protected final String LOCAL_DESCRIPTOR = "/icons/local_desc.gif";
@@ -96,10 +91,6 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	/** viewer for the available tools */
 	protected TreeViewer availableToolsTreeViewer;
 
-	/** tree viewed by the availableToolsTreeViewer */
-	// @unused
-	protected Tree availableToolsTree;
-
 	/** table viewed by the availablePalettesTreeViewer */
 	protected Table availablePalettesTable;
 
@@ -108,6 +99,15 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 
 	/** label provider for palette provider */
 	private PaletteLabelProvider providersLabelProvider;
+
+	/** add local palette button */
+	protected Button newPaletteButton;
+
+	/** delete local palette button */
+	private Button deletePaletteButton;
+
+	/** isntance scope to listen for preferences */
+	protected InstanceScope instanceScope = new InstanceScope();
 
 	/**
 	 * Creates a new PapyrusPaletteCustomizerDialog
@@ -127,9 +127,28 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public int open() {
+		IEclipsePreferences prefs = instanceScope.getNode(Activator.ID);
+		prefs.addPreferenceChangeListener(this);
+		return super.open();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean close() {
+		IEclipsePreferences prefs = instanceScope.getNode(Activator.ID);
+		prefs.removePreferenceChangeListener(this);
+		return super.close();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected Control createDialogArea(Composite parent) {
-		// RS: does not call super, as the composite should not be drawn like
-		// they are in parent
+		// RS: does not call super, as the composite should not be drawn like they are in parent
 		Composite mainComposite = createMainComposite(parent);
 
 		final Control availableToolsComposite = createAvailablePalettesViewer(mainComposite);
@@ -164,8 +183,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		// data.right = new FormAttachment(90, 0);
 		outline.setLayoutData(data);
 
-		// Create the panel where the properties of the selected palette entry
-		// will
+		// Create the panel where the properties of the selected palette entry will
 		// be shown
 		Control properties = createPropertiesPanel(mainComposite);
 		data = new FormData();
@@ -175,6 +193,11 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		data.bottom = new FormAttachment(100, 0);
 		properties.setLayoutData(data);
 
+		// add listeners
+		ISelectionChangedListener listener = createSelectionChangedListener();
+		if (listener != null) {
+			availablePalettesTableViewer.addSelectionChangedListener(listener);
+		}
 		return mainComposite;
 	}
 
@@ -185,8 +208,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	 * layout.horizontalSpacing = 0; layout.verticalSpacing = 0; layout.marginHeight = 0;
 	 * layout.marginWidth = 0; composite.setLayout(layout);
 	 * 
-	 * addButton = new Button(composite, SWT.NONE); addButton.setText(""); addButton
-	 * .setToolTipText(Messages.PapyrusPaletteCustomizerDialog_AddButtonTooltip );
+	 * addButton = new Button(composite, SWT.NONE); addButton.setText("");
+	 * addButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_AddButtonTooltip);
 	 * addButton.setImage(Activator.getPluginIconImage(Activator.ID, RIGHT_ARROW)); GridData data =
 	 * new GridData(SWT.CENTER, SWT.CENTER, false, false); addButton.setLayoutData(data);
 	 * addButton.addMouseListener(new MouseListener() {
@@ -199,14 +222,31 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 	 * 
 	 * public void mouseDoubleClick(MouseEvent e) { // on double click, do nothing } });
 	 * 
-	 * removeButton = new Button(composite, SWT.NONE); removeButton.setToolTipText
-	 * (Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip);
+	 * removeButton = new Button(composite, SWT.NONE);
+	 * removeButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip);
 	 * removeButton.setImage(Activator.getImage(LEFT_ARROW)); removeButton.setLayoutData(data);
 	 * 
 	 * return composite; }
 	 */
 
-	// @unused
+	protected ISelectionChangedListener createSelectionChangedListener() {
+		return new ISelectionChangedListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void selectionChanged(SelectionChangedEvent event) {
+				// retrieve element selected
+				Object selectedElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
+				if (selectedElement instanceof PapyrusPaletteService.LocalProviderDescriptor) {
+					deletePaletteButton.setEnabled(true);
+				} else {
+					deletePaletteButton.setEnabled(false);
+				}
+			}
+		};
+	}
+
 	protected void addEntry(MouseEvent e) {
 		ISelection selection = availableToolsTreeViewer.getSelection();
 		PaletteEntry entry = null;
@@ -218,8 +258,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 				entry = ((PaletteEntry) firstElement);
 			}
 		}
-		// sets the active entry, to have the page useful for saving
-		// modification
+		// sets the active entry, to have the page useful for saving modification
 		setActiveEntry(entry);
 		// add entry to the selected container
 		// retrieve the selection in the palette viewer
@@ -228,8 +267,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		if (destContainer instanceof PaletteContainer) {
 			PaletteContainer oldParent = entry.getParent();
 
-			// checks if the parent is already changed. If not, must store the
-			// standard parent (the
+			// checks if the parent is already changed. If not, must store the standard parent (the
 			// one given by the factory)
 			PaletteContainer stdParent = ((PapyrusPaletteCustomizer) getCustomizer()).changedParents.get(entry);
 			if (stdParent == null) {
@@ -252,7 +290,6 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 				root.add(entry);
 			}
 		}
-
 	}
 
 	/**
@@ -278,10 +315,10 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		nameLabel.setLayoutData(data);
 
-		final Button newPalette = new Button(composite, SWT.NONE);
-		newPalette.setImage(Activator.getImage(NEW_LOCAL_DESC_IMAGE));
-		newPalette.setToolTipText(Messages.Dialog_Create_Palette_Tooltip);
-		newPalette.addMouseListener(new MouseListener() {
+		newPaletteButton = new Button(composite, SWT.NONE);
+		newPaletteButton.setImage(Activator.getImage(NEW_LOCAL_DESC_IMAGE));
+		newPaletteButton.setToolTipText(Messages.Dialog_Create_Palette_Tooltip);
+		newPaletteButton.addMouseListener(new MouseListener() {
 
 			/**
 			 * {@inheritDoc}
@@ -305,12 +342,12 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 			}
 		});
 		data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		newPalette.setLayoutData(data);
+		newPaletteButton.setLayoutData(data);
 
-		final Button deletePalette = new Button(composite, SWT.NONE);
-		deletePalette.setImage(Activator.getImage(DELETE_LOCAL_DESC_IMAGE));
-		deletePalette.setToolTipText(Messages.Dialog_Delete_Palette_Tooltip);
-		deletePalette.addMouseListener(new MouseListener() {
+		deletePaletteButton = new Button(composite, SWT.NONE);
+		deletePaletteButton.setImage(Activator.getImage(DELETE_LOCAL_DESC_IMAGE));
+		deletePaletteButton.setToolTipText(Messages.Dialog_Delete_Palette_Tooltip);
+		deletePaletteButton.addMouseListener(new MouseListener() {
 
 			/**
 			 * {@inheritDoc}
@@ -334,7 +371,8 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 			}
 		});
 		data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
-		deletePalette.setLayoutData(data);
+		deletePaletteButton.setLayoutData(data);
+		deletePaletteButton.setEnabled(false);
 
 		availablePalettesTable = new Table(composite, SWT.BORDER | SWT.CHECK);
 		availablePalettesTable.setFont(composite.getFont());
@@ -362,8 +400,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		data = new GridData(GridData.FILL_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL);
 		data.horizontalSpan = 3;
 		data.widthHint = 185;
-		// Make the tree this tall even when there is nothing in it. This will
-		// keep the
+		// Make the tree this tall even when there is nothing in it. This will keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
 		availablePalettesTable.setLayoutData(data);
@@ -551,7 +588,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		private Map<ImageDescriptor, Image> imageCache = new HashMap<ImageDescriptor, Image>();
 
 		/**
-		 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(Object)
+		 * {@inheritDoc}
 		 */
 		public Image getImage(Object element) {
 			if (element instanceof PapyrusPaletteService.LocalProviderDescriptor) {
@@ -563,7 +600,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		}
 
 		/**
-		 * @see org.eclipse.jface.viewers.ILabelProvider#getText(Object)
+		 * {@inheritDoc}
 		 */
 		public String getText(Object element) {
 			if (element instanceof PapyrusPaletteService.ProviderDescriptor) {
@@ -573,15 +610,13 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		}
 
 		/**
-		 * Not implemented
-		 * 
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(ILabelProviderListener)
+		 * {@inheritDoc}
 		 */
 		public void addListener(ILabelProviderListener listener) {
 		}
 
 		/**
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
+		 * {@inheritDoc}
 		 */
 		public void dispose() {
 			Iterator<Image> images = imageCache.values().iterator();
@@ -592,38 +627,29 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx {
 		}
 
 		/**
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(Object, String)
+		 * {@inheritDoc}
 		 */
 		public boolean isLabelProperty(Object element, String property) {
 			return false;
 		}
 
 		/**
-		 * Not implemented
-		 * 
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(ILabelProviderListener)
+		 * {@inheritDoc}
 		 */
 		public void removeListener(ILabelProviderListener listener) {
 		}
 
-		/**
-		 * @see org.eclipse.jface.viewers.IColorProvider#getBackground(Object)
-		 */
-		// @unused
-		public Color getBackground(Object element) {
-			return null;
-		}
+	}
 
-		/**
-		 * @see org.eclipse.jface.viewers.IColorProvider#getForeground(Object)
-		 */
-		// @unused
-		public Color getForeground(Object element) {
-			PaletteEntry entry = (PaletteEntry) element;
-			if (!entry.isVisible() || !entry.getParent().isVisible()) {
-				return ColorConstants.gray;
-			}
-			return null;
+	/**
+	 * {@inheritDoc}
+	 */
+	public void preferenceChange(PreferenceChangeEvent event) {
+		String id = event.getKey();
+		if (PapyrusPalettePreferences.PALETTE_CUSTOMIZATIONS_ID.equals(id)
+				|| PapyrusPalettePreferences.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
+			// refresh available palette table viewer
+			availablePalettesTableViewer.setInput(PapyrusPaletteService.getInstance());
 		}
 
 	}

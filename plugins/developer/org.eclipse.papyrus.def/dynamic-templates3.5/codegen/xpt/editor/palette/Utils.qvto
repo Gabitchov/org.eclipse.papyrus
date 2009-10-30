@@ -48,6 +48,9 @@ helper collectSubGroups(group : gmfgen::ToolGroup) : Sequence(gmfgen::ToolGroup)
 	return let rv = (group.entries)[gmfgen::ToolGroup] in rv->union(rv->collect(g | collectSubGroups(g))->flatten()->asSet())->asSequence()
 }
 
+/**
+ * collect all tools availables and valid to generate the palette. A tool is not valid when it does not create either a link or a node 
+ */
 helper collectTools(palette : gmfgen::Palette) : Sequence(gmfgen::AbstractToolEntry) {
 	return collectGroups(palette).entries[gmfgen::AbstractToolEntry]->select(tool | tool.isValidTool())
 }

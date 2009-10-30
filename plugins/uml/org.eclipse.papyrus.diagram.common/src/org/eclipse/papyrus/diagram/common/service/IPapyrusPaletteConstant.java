@@ -69,4 +69,7 @@ public interface IPapyrusPaletteConstant {
 	/** id for the class attribute */
 	public final String CLASS = "class";
 
+	/** id for the icon path attribute */
+	public final String ICON_PATH = "iconpath";
+
 }

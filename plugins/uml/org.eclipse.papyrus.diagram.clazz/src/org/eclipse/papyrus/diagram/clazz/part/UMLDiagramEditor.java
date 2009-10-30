@@ -9,16 +9,15 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.ui.palette.PaletteCustomizer;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
+import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
+import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
@@ -34,10 +33,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
@@ -61,8 +57,7 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class UMLDiagramEditor extends DiagramDocumentEditor implements IEclipsePreferences.IPreferenceChangeListener,
-		IGotoMarker {
+public class UMLDiagramEditor extends DiagramDocumentEditor implements IProviderChangeListener, IGotoMarker {
 
 	/**
 	 * @generated
@@ -87,16 +82,11 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IEclipseP
 	/**
 	 * @generated
 	 */
-	InstanceScope instanceScope = new InstanceScope();
-
-	/**
-	 * @generated
-	 */
 	public UMLDiagramEditor() {
 		super(true);
 
-		IEclipsePreferences prefs = instanceScope.getNode(Activator.ID);
-		prefs.addPreferenceChangeListener(this);
+		// adds a listener to the palette service, which reacts to palette customizations
+		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 
 	}
 
@@ -305,8 +295,9 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IEclipseP
 	/**
 	 * @generated
 	 */
-	public void preferenceChange(IEclipsePreferences.PreferenceChangeEvent event) {
-		if (PapyrusPalettePreferences.PALETTE_CUSTOMIZATIONS_ID.equals(event.getKey())) {
+	public void providerChanged(ProviderChangeEvent event) {
+		// update the palette if the palette service has changed
+		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
 			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
 					getDefaultPaletteContent());
 		}
@@ -316,9 +307,9 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IEclipseP
 	 * @generated
 	 */
 	public void dispose() {
+		// remove palette service listener
 		// remove preference listener
-		IEclipsePreferences prefs = instanceScope.getNode(Activator.ID);
-		prefs.removePreferenceChangeListener(this);
+		PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
 
 		super.dispose();
 	}
@@ -328,13 +319,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IEclipseP
 	 */
 	protected PaletteViewer getPaletteViewer() {
 		return getEditDomain().getPaletteViewer();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected PaletteCustomizer createPaletteCustomizer() {
-		return new PapyrusPaletteCustomizer(getPreferenceStore());
 	}
 
 	/**

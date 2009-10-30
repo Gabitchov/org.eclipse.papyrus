@@ -22,6 +22,10 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -35,6 +39,7 @@ import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.common.core.service.ExecutionStrategy;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
+import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
 import org.eclipse.gmf.runtime.common.core.service.Service;
 import org.eclipse.gmf.runtime.common.ui.services.util.ActivityFilterProviderDescriptor;
 import org.eclipse.gmf.runtime.common.ui.util.ActivityUtil;
@@ -56,7 +61,8 @@ import org.eclipse.ui.IEditorPart;
  * It replaces the standard palette service. It provides better preferences management, and better
  * customization possibilities.
  */
-public class PapyrusPaletteService extends PaletteService implements IPaletteProvider, IPapyrusPaletteConstant {
+public class PapyrusPaletteService extends PaletteService implements IPaletteProvider, IPapyrusPaletteConstant,
+		IPreferenceChangeListener {
 
 	/**
 	 * A descriptor for palette providers defined by a configuration element.
@@ -125,7 +131,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean provides(IOperation operation) {
@@ -136,9 +142,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				policy = getPolicy();
 				policyInitialized = true;
 			}
-			if (policy != null) {
+			if (policy != null)
 				return policy.provides(operation);
-			}
 
 			if (operation instanceof ContributeToPaletteOperation) {
 				ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
@@ -159,14 +164,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
+		 * checks if this provider is providing elements, even if this should be hidden
 		 * 
 		 * @param operation
-		 * @return
+		 *            the operation to contribute
+		 * @return <code>true</code> if this provider contributes to the operation
 		 */
 		public boolean providesWithVisibility(ContributeToPaletteOperation operation) {
-			/**
-			 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
-			 */
 			if (!super.provides(operation)) {
 				return false;
 			}
@@ -174,12 +178,11 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				policy = getPolicy();
 				policyInitialized = true;
 			}
-			if (policy != null) {
+			if (policy != null)
 				return policy.provides(operation);
-			}
 
 			if (operation instanceof ContributeToPaletteOperation) {
-				ContributeToPaletteOperation o = operation;
+				ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
 
 				boolean supports = providerConfiguration.supports(o.getEditor(), o.getContent());
 
@@ -194,7 +197,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * @see org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor#getProvider()
+		 * {@inheritDoc}
 		 */
 		@Override
 		public IProvider getProvider() {
@@ -210,6 +213,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 	}
 
+	/**
+	 * Provider descriptor for a local palette definition.
+	 * <p>
+	 * It has no configuration element attached to it, it should not be used everywhere without
+	 * checks.
+	 * </p>
+	 */
 	public static class LocalProviderDescriptor extends ProviderDescriptor {
 
 		/** palette description */
@@ -289,8 +299,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 					return false;
 				}
 
-				// will never work, ID of the site is the multi diagram
-				// editor...
+				// will never work, ID of the site is the multi diagram editor...
 				if (description.getContributionEditorID() != null) {
 					if (!description.getContributionEditorID().equals(
 							((DiagramEditorWithFlyOutPalette) part).getContributorId())) {
@@ -324,15 +333,14 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			}
 
 			if (operation instanceof ContributeToPaletteOperation) {
-				ContributeToPaletteOperation o = operation;
+				ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
 
 				IEditorPart part = o.getEditor();
 				if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
 					return false;
 				}
 
-				// will never work, ID of the site is the multi diagram
-				// editor...
+				// will never work, ID of the site is the multi diagram editor...
 				if (description.getContributionEditorID() != null) {
 					if (!description.getContributionEditorID().equals(
 							((DiagramEditorWithFlyOutPalette) part).getContributorId())) {
@@ -394,6 +402,9 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 */
 	protected PapyrusPaletteService() {
 		super();
+
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.ID);
+		prefs.addPreferenceChangeListener(this);
 	}
 
 	/**
@@ -405,6 +416,14 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		List<IPaletteDescription> localPalettes = PapyrusPalettePreferences.getLocalPalettes();
 		// create the providers linked to these configuration
 
+		// remove all local descriptors
+		for (org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor descriptor : getProviders()) {
+			if (descriptor instanceof LocalProviderDescriptor) {
+				removeProvider(descriptor);
+			}
+		}
+
+		// create new list
 		for (IPaletteDescription palette : localPalettes) {
 			LocalProviderDescriptor descriptor = new LocalProviderDescriptor(palette);
 			addProvider(palette.getPriority(), descriptor);
@@ -597,8 +616,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				new HashMap());
 		List<String> hiddenPalettes = PapyrusPalettePreferences.getHiddenPalettes(part);
 
-		// For each provider, checks it contributes to the palette of this
-		// editor part
+		// For each provider, checks it contributes to the palette of this editor part
 		Iterator<? extends Service.ProviderDescriptor> it = getProviders().iterator();
 		while (it.hasNext()) {
 			Service.ProviderDescriptor provider = it.next();
@@ -612,8 +630,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 					name = papyrusProviderDesc.getContributionID();
 				}
 
-				// check if the name of the descriptor does not correspond to
-				// the name of a palette
+				// check if the name of the descriptor does not correspond to the name of a palette
 				// that should not be removed
 				boolean add = isChangeable(papyrusProviderDesc, name);
 
@@ -664,6 +681,22 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 */
 	protected boolean isContributing(PapyrusPaletteService.ProviderDescriptor provider, ContributeToPaletteOperation o) {
 		return provider.providesWithVisibility(o);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void preferenceChange(PreferenceChangeEvent event) {
+		// listen for local palette preferences...
+		String id = event.getKey();
+		if (PapyrusPalettePreferences.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
+			// refresh available palette table viewer
+			getInstance().configureLocalPalettes();
+			providerChanged(new ProviderChangeEvent(this));
+		} else if (PapyrusPalettePreferences.PALETTE_CUSTOMIZATIONS_ID.equals(id)) {
+			// refresh available palette table viewer
+			providerChanged(new ProviderChangeEvent(this));
+		}
 	}
 
 }

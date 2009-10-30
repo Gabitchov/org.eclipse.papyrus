@@ -13,10 +13,6 @@
 
 package org.eclipse.papyrus.diagram.common.wizards;
 
-import java.util.Arrays;
-
-import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.diagram.common.Activator;
@@ -27,22 +23,17 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
-import org.eclipse.ui.IEditorPart;
 
 /**
- * Wizard page for information about the new local palette definition
+ * Wizard page for information about the new drawer
  */
-public class LocalPaletteInformationPage extends WizardPage implements Listener {
-
-	/** array list of priorities */
-	private static String[] priorityList;
+public class DrawerInformationPage extends WizardPage implements Listener {
 
 	/** text area for the name of the palette definition */
 	protected Text nameText;
@@ -50,40 +41,26 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	/** text area for the id of the palette definition */
 	protected Text idText;
 
-	/** text area for the editor id of the palette definition */
-	protected Text editorText;
-
-	/** combo for the priority of the provider */
-	private Combo priorityCombo;
-
 	/** parent composite for advanced fields */
 	protected Composite advancedComposite;
 
 	/** Button to show/hide advanced fields */
 	protected Button advancedButton;
 
-	/** editor part in which the palette is created */
-	protected IEditorPart editorPart;
-
-	/** priority value */
-	protected ProviderPriority priority;
-
-	/** editor ID value */
-	protected String editorID;
-
-	/** palette ID */
-	protected String paletteID;
+	/** drawer ID */
+	protected String drawerID;
 
 	/** palette name */
 	protected String name;
 
-	/** path to the icon */
-	protected static final String WIZARD_ICON = "/icons/local_desc_wiz.png";
+	/** image descriptor for the drawer icon */
+	protected String imageDescriptorPath;
 
-	static {
-		priorityList = new String[] { ProviderPriority.LOWEST.getName(), ProviderPriority.LOW.getName(),
-				ProviderPriority.MEDIUM.getName(), ProviderPriority.HIGH.getName(), ProviderPriority.HIGHEST.getName() };
-	}
+	/** Text area for icon path */
+	protected Text imageText;
+
+	/** path to the icon */
+	protected static final String WIZARD_ICON = "/icons/new_drawer_wiz.gif";
 
 	/**
 	 * Creates a new wizard page with the given name, title, and image.
@@ -91,10 +68,9 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * @param part
 	 *            the editor part in which the wizard was created
 	 */
-	public LocalPaletteInformationPage(IEditorPart part) {
-		super(Messages.Local_Palette_InfoPage_Name, Messages.Local_Palette_InfoPage_Title, Activator
+	public DrawerInformationPage() {
+		super(Messages.Wizard_Drawer_Page_Name, Messages.Wizard_Drawer_Page_Title, Activator
 				.getImageDescriptor(WIZARD_ICON));
-		this.editorPart = part;
 	}
 
 	/**
@@ -136,9 +112,8 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 */
 	protected void intializeValues() {
 		initName();
-		initEditorID();
-		initPaletteID();
-		initPriority();
+		initDrawerID();
+		initImageDescriptor();
 	}
 
 	/**
@@ -146,7 +121,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * 
 	 * @return the current value of palette name
 	 */
-	public String getPaletteName() {
+	public String getDrawerName() {
 		return name;
 	}
 
@@ -155,26 +130,17 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * 
 	 * @return the current value of palette ID
 	 */
-	public String getPaletteID() {
-		return paletteID;
+	public String getDrawerID() {
+		return drawerID;
 	}
 
 	/**
-	 * Returns the current value of editor ID
+	 * Returns the current value of path for image descriptor
 	 * 
-	 * @return the current value of editor ID
+	 * @return the current value of path for image descriptor
 	 */
-	public String getEditorID() {
-		return editorID;
-	}
-
-	/**
-	 * Returns the current value of editor ID
-	 * 
-	 * @return the current value of editor ID
-	 */
-	public ProviderPriority getPalettePriority() {
-		return priority;
+	public String getImageDescriptorPath() {
+		return imageDescriptorPath;
 	}
 
 	/**
@@ -185,29 +151,18 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	}
 
 	/**
-	 * inits the priority value
-	 */
-	protected void initPriority() {
-		priority = ProviderPriority.MEDIUM; // by default, Medium
-	}
-
-	/**
 	 * inits the palette id value
 	 */
-	protected void initPaletteID() {
-		paletteID = System.getProperty("user.name") + "_" + System.currentTimeMillis();
+	protected void initDrawerID() {
+		drawerID = "drawer_" + System.currentTimeMillis();
 
 	}
 
 	/**
-	 * inits the editor id value
+	 * Inits the image descriptor
 	 */
-	protected void initEditorID() {
-		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
-			editorID = ((DiagramEditorWithFlyOutPalette) editorPart).getContributorId();
-		} else {
-			editorID = "";
-		}
+	protected void initImageDescriptor() {
+		imageDescriptorPath = "/icons/drawer.gif";
 	}
 
 	/**
@@ -216,23 +171,18 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	protected boolean validatePage() {
 		boolean valid = true;
 		if (advancedComposite != null && !advancedComposite.isDisposed()) {
-			if (-1 == priorityCombo.getSelectionIndex()) {
-				setErrorMessage(Messages.Local_Palette_Error_Priority);
-				valid = false;
-			}
-			if ("".equals(getEditorID())) {
-				setErrorMessage(Messages.Local_Palette_Error_EditorId);
-				valid = false;
-			}
 
-			if ("".equals(getPaletteID())) {
-				setErrorMessage(Messages.Local_Palette_Error_PaletteId);
+			if ("".equals(getDrawerID())) {
+				setErrorMessage(Messages.Wizard_Drawer_Error_Id);
+				valid = false;
+			} else if ("".equals(getImageDescriptorPath())) {
+				setErrorMessage(Messages.Wizard_Drawer_Error_Icon);
 				valid = false;
 			}
 		}
 
-		if ("".equals(getPaletteName())) {
-			setErrorMessage(Messages.Local_Palette_Error_Name);
+		if ("".equals(getDrawerName())) {
+			setErrorMessage(Messages.Wizard_Drawer_Error_Name);
 			valid = false;
 		}
 
@@ -274,14 +224,34 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 		layout.marginWidth = 0;
 		advancedComposite.setLayout(layout);
 
+		createIconControl(advancedComposite);
+
 		createIDControl(advancedComposite);
-
-		createEditorIDControl(advancedComposite);
-
-		createPriorityControl(advancedComposite);
 
 		advancedComposite.getParent().layout();
 		return advancedComposite;
+	}
+
+	/**
+	 * creates the control area for the icon path definition
+	 * 
+	 * @param composite
+	 *            the parent composite
+	 */
+	protected void createIconControl(Composite composite) {
+		final Label iconLabel = new Label(composite, SWT.NONE);
+		iconLabel.setText(Messages.Wizard_Drawer_Icon);
+		iconLabel.setToolTipText(Messages.Wizard_Drawer_Icon_Tooltip);
+
+		imageText = new Text(composite, SWT.BORDER);
+		imageText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		imageText.setToolTipText(Messages.Wizard_Drawer_Icon_Tooltip);
+
+		// initialize, then add the listener...
+		initialPopulateDrawerIconField();
+
+		imageText.addListener(SWT.Modify, this);
+
 	}
 
 	/**
@@ -301,36 +271,6 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	}
 
 	/**
-	 * creates the control area for the priority
-	 * 
-	 * @param control
-	 *            the parent composite
-	 */
-	protected void createPriorityControl(Composite control) {
-		final Label priorityLabel = new Label(control, SWT.NONE);
-		priorityLabel.setText(Messages.Local_Palette_Priority);
-		priorityLabel.setToolTipText(Messages.Local_Palette_Priority_Tooltip);
-
-		// choice widget among priority values
-		priorityCombo = new Combo(control, SWT.READ_ONLY);
-		priorityCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		priorityCombo.setToolTipText(Messages.Local_Palette_Priority_Tooltip);
-		priorityCombo.setItems(priorityList);
-
-		// initialize, then add the listener...
-		initialPopulatePriorityField();
-
-		priorityCombo.addListener(SWT.Modify, this);
-	}
-
-	/**
-	 * intialize the field using current value of the palette id
-	 */
-	protected void initialPopulatePriorityField() {
-		priorityCombo.select(Arrays.asList(priorityList).indexOf(priority.getName()));
-	}
-
-	/**
 	 * creates the control area for the id definition
 	 * 
 	 * @param control
@@ -338,15 +278,15 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 */
 	protected void createIDControl(Composite control) {
 		final Label idLabel = new Label(control, SWT.NONE);
-		idLabel.setText(Messages.Local_Palette_Id);
-		idLabel.setToolTipText(Messages.Local_Palette_Id_Tooltip);
+		idLabel.setText(Messages.Wizard_Drawer_Id);
+		idLabel.setToolTipText(Messages.Wizard_Drawer_Id_Tooltip);
 
 		idText = new Text(control, SWT.BORDER);
 		idText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		idText.setToolTipText(Messages.Local_Palette_Id_Tooltip);
+		idText.setToolTipText(Messages.Wizard_Drawer_Id_Tooltip);
 
 		// initialize, then add the listener...
-		initialPopulatePaletteIDField();
+		initialPopulateDrawerIDField();
 
 		idText.addListener(SWT.Modify, this);
 	}
@@ -354,8 +294,15 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	/**
 	 * intialize the field using current value of the palette id
 	 */
-	protected void initialPopulatePaletteIDField() {
-		idText.setText(paletteID);
+	protected void initialPopulateDrawerIconField() {
+		imageText.setText(imageDescriptorPath);
+	}
+
+	/**
+	 * intialize the field using current value of the palette id
+	 */
+	protected void initialPopulateDrawerIDField() {
+		idText.setText(drawerID);
 	}
 
 	/**
@@ -366,47 +313,18 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 */
 	protected void createNameControl(Composite control) {
 		final Label nameLabel = new Label(control, SWT.NONE);
-		nameLabel.setText(Messages.Local_Palette_Name);
-		nameLabel.setToolTipText(Messages.Local_Palette_Name_Tooltip);
+		nameLabel.setText(Messages.Wizard_Drawer_Name);
+		nameLabel.setToolTipText(Messages.Wizard_Drawer_Name_Tooltip);
 
 		nameText = new Text(control, SWT.BORDER);
 		nameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		nameText.setToolTipText(Messages.Local_Palette_Name_Tooltip);
+		nameText.setToolTipText(Messages.Wizard_Drawer_Name_Tooltip);
 
 		// initialize, then add the listener...
 		initialPopulateNameField();
 
 		nameText.addListener(SWT.Modify, this);
 
-	}
-
-	/**
-	 * creates the control area for the name definition
-	 * 
-	 * @param control
-	 *            the parent composite
-	 */
-	protected void createEditorIDControl(Composite control) {
-		final Label editorLabel = new Label(control, SWT.NONE);
-		editorLabel.setText(Messages.Local_Palette_Editor_Id);
-		editorLabel.setToolTipText(Messages.Local_Palette_Editor_Id_Tooltip);
-
-		editorText = new Text(control, SWT.BORDER);
-		editorText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		editorText.setToolTipText(Messages.Local_Palette_Editor_Id_Tooltip);
-
-		// initialize, then add the listener...
-		initialPopulateEditorIDField();
-
-		editorText.addListener(SWT.Modify, this);
-		// this editor should propose a list of existing editors = looking in the extension point?
-	}
-
-	/**
-	 * intialize the field using current value of the editor id
-	 */
-	protected void initialPopulateEditorIDField() {
-		editorText.setText(editorID);
 	}
 
 	/**
@@ -425,11 +343,9 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 		if (widget.equals(nameText)) {
 			name = nameText.getText();
 		} else if (widget.equals(idText)) {
-			paletteID = idText.getText();
-		} else if (widget.equals(editorText)) {
-			editorID = editorText.getText();
-		} else if (widget.equals(idText)) {
-			priority = ProviderPriority.parse(priorityCombo.getText());
+			drawerID = idText.getText();
+		} else if (widget.equals(imageText)) {
+			imageDescriptorPath = imageText.getText();
 		}
 		setPageComplete(validatePage());
 	}

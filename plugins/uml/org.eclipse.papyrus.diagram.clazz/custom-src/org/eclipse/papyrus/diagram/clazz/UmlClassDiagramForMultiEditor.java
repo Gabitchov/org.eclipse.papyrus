@@ -15,20 +15,10 @@ package org.eclipse.papyrus.diagram.clazz;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gef.KeyHandler;
-import org.eclipse.gef.Tool;
-import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.ui.palette.PaletteCustomizer;
-import org.eclipse.gef.ui.palette.PaletteViewer;
-import org.eclipse.gef.ui.palette.PaletteViewerProvider;
-import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.l10n.EditorMessages;
@@ -46,17 +36,8 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
-import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -240,10 +221,6 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		return super.getGraphicalViewer();
 	}
 
-	protected PaletteViewer getPaletteViewer() {
-		return getEditDomain().getPaletteViewer();
-	}
-
 	/**
 	 * @return the parentEditor
 	 */
@@ -291,16 +268,6 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 					}
 				});
 
-	}
-
-	/**
-	 * @{inheritedDoc
-	 */
-	public void preferenceChange(PreferenceChangeEvent event) {
-		if (PapyrusPalettePreferences.PALETTE_CUSTOMIZATIONS_ID.equals(event.getKey())) {
-			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
-					getDefaultPaletteContent());
-		}
 	}
 
 	/**

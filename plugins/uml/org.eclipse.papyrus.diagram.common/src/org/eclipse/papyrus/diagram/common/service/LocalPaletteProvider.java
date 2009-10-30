@@ -130,10 +130,15 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
 		if (entry == null) {
-			String name = node.getAttributes().getNamedItem("name").getNodeValue();
+			String name = node.getAttributes().getNamedItem(NAME).getNodeValue();
+			String iconPath = node.getAttributes().getNamedItem(ICON_PATH).getNodeValue();
 			entry = new PaletteDrawer(name);
 			entry.setId(id);
 			entry.setDescription("Drawer " + name);
+			if (iconPath != null && !iconPath.equals("")) {
+				entry.setSmallIcon(Activator.getImageDescriptor(iconPath));
+				entry.setLargeIcon(Activator.getImageDescriptor(iconPath));
+			}
 			predefinedEntries.put(id, entry);
 		}
 		appendPaletteEntry(root, predefinedEntries, path, entry);

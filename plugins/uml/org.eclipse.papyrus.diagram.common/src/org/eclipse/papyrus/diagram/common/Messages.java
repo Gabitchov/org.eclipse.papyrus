@@ -18,7 +18,6 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "messages"; //$NON-NLS-1$
 
-	// @unused
 	public static String ElementImportParser_undefined_value;
 
 	public static String IconStylePreferencePage_cheerful_style;
@@ -27,58 +26,40 @@ public class Messages extends NLS {
 
 	public static String IconStylePreferencePage_icon_style_group;
 
-	// @unused
 	public static String ModelElementSelectionPageMessage;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_CreationPageName;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_CreationPageTitle;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_CreationPageDescription;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_RootSelectionPageName;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_RootSelectionPageTitle;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_RootSelectionPageDescription;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_InitDiagramCommand;
 
-	// @unused
 	public static String UMLDiagramEditorUtil_CreateDiagramProgressTask;
 
-	// @unused
 	public static String UMLDiagramEditorUtil_CreateDiagramCommandLabel;
 
-	// @unused
 	public static String UMLInitDiagramFileAction_InitDiagramFileResourceErrorDialogTitle;
 
-	// @unused
 	public static String UMLInitDiagramFileAction_InitDiagramFileResourceErrorDialogMessage;
 
-	// @unused
 	public static String UMLInitDiagramFileAction_InitDiagramFileWizardTitle;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_DiagramKindTitle;
 
-	// @unused
 	public static String UMLNewDiagramFileWizard_DiagramKindDescription;
 
 	public static String RotateAction_rotate_command;
@@ -93,9 +74,7 @@ public class Messages extends NLS {
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Abstraction} links */
 	public static String AppliedStereotypeLabel_AbstractionTag;
 
-	/**
-	 * Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links
-	 */
+	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links */
 	public static String AppliedStereotypeLabel_PackageImportTag;
 
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageMerge} links */
@@ -104,8 +83,7 @@ public class Messages extends NLS {
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Usage} links */
 	public static String AppliedStereotypeLabel_UsageTag;
 
-	// ///////////////////////// Palette Customisation
-	// /////////////////////////////////////
+	// ///////////////////////// Palette Customisation /////////////////////////////////////
 	/** Tooltip for the add button */
 	public static String PapyrusPaletteCustomizerDialog_AddButtonTooltip;
 
@@ -152,25 +130,21 @@ public class Messages extends NLS {
 	public static String Local_Palette_Priority_Tooltip;
 
 	/** label for the advanced button, when advanced are not shown */
-	public static String Local_Palette_Advanced_Button_Closed;
+	public static String Dialog_Advanced_Button_Closed;
 
 	/** label for the advanced button, when advanced are shown */
-	public static String Local_Palette_Advanced_Button_Opened;
+	public static String Dialog_Advanced_Button_Opened;
 
 	/** Error message for the wizard page, when priority is not correctly filled */
 	public static String Local_Palette_Error_Priority;
 
-	/**
-	 * Error message for the wizard page, when palette ID is not correctly filled
-	 */
+	/** Error message for the wizard page, when palette ID is not correctly filled */
 	public static String Local_Palette_Error_PaletteId;
 
 	/** Error message for the wizard page, when name is not correctly filled */
 	public static String Local_Palette_Error_Name;
 
-	/**
-	 * Error message for the wizard page, when Editor ID is not correctly filled
-	 */
+	/** Error message for the wizard page, when Editor ID is not correctly filled */
 	public static String Local_Palette_Error_EditorId;
 
 	/** Name of the information page */
@@ -208,4 +182,41 @@ public class Messages extends NLS {
 
 	/** tooltip for the create palette button */
 	public static String Dialog_Create_Palette_Tooltip;
+
+	/** tooltip for the create drawer button */
+	public static String Local_Palette_Create_Drawer_Tooltip;
+
+	/** name of the drawer wizard page */
+	public static String Wizard_Drawer_Page_Name;
+
+	/** title of the drawer wizard page */
+	public static String Wizard_Drawer_Page_Title;
+
+	/** error on the name in the drawer wizard */
+	public static String Wizard_Drawer_Error_Name;
+
+	/** error on the id in the drawer wizard */
+	public static String Wizard_Drawer_Error_Id;
+
+	/** error on the icon in the drawer wizard */
+	public static String Wizard_Drawer_Error_Icon;
+
+	/** label for the id field */
+	public static String Wizard_Drawer_Id;
+
+	/** tooltip for the id field */
+	public static String Wizard_Drawer_Id_Tooltip;
+
+	/** label for the name field */
+	public static String Wizard_Drawer_Name;
+
+	/** tooltip for the name field */
+	public static String Wizard_Drawer_Name_Tooltip;
+
+	/** tooltip for the icon field */
+	public static String Wizard_Drawer_Icon_Tooltip;
+
+	/** name for the icon field */
+	public static String Wizard_Drawer_Icon;
+
 }
