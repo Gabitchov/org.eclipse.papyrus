@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.helper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.draw2d.IFigure;
@@ -25,9 +24,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.diagram.common.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.diagram.common.commands.setLayoutKindCommand;
 import org.eclipse.papyrus.diagram.common.figure.layout.ILayoutToolBox;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 
 
 /**

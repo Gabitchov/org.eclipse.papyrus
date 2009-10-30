@@ -16,14 +16,15 @@ package org.eclipse.papyrus.diagram.common.commands;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.diagram.common.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.CreateEAnnotationCommand;
 
 /**
- * set the kind of the laoyout of the figure
+ * set the kind of the layout of the figure
  */
 public class setLayoutKindCommand extends CreateEAnnotationCommand {
 
+	
 	/** The shadowFigure. */
 	private String layoutKind;
 
