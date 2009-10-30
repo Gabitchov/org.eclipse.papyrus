@@ -57,6 +57,12 @@
                id="org.eclipse.papyrus.tabbedproperties.appearance.maskManagedLabelSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
+         <propertySection
+               class="org.eclipse.papyrus.tabbedproperties.appearance.LayoutCompartmentAppearanceSection"
+               filter="org.eclipse.papyrus.tabbedproperties.appearance.LayoutCompartmentSectionFilter"
+               id="org.eclipse.papyrus.tabbedproperties.appearance.LayoutCompartmentSection"
+               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
+         </propertySection>
       </propertySections>
    </extension>
 
