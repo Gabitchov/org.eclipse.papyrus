@@ -44,6 +44,19 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	}
 
 	/**
+	 * Method to add a child proxy to this proxy, before the given element
+	 * 
+	 * @param entry
+	 *            the entry to add
+	 * @param nextElement
+	 *            the element that should be just after the entry
+	 */
+	public void addChild(PaletteEntryProxy entry, PaletteEntryProxy nextElement) {
+		children.add(children.indexOf(nextElement), entry);
+		entry.setParent(this);
+	}
+
+	/**
 	 * Remove the specified children from its parent
 	 * 
 	 * @param proxy

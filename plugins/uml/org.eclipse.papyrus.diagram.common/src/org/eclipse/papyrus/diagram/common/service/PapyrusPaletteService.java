@@ -473,6 +473,38 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
+	 * Returns all contibution IDs from all palette contribution
+	 * 
+	 * @param editor
+	 *            the editor to be contributed
+	 * @param content
+	 *            the content of the editor
+	 * @param root
+	 *            the palette root for the palette viewer of the editor
+	 * @return the list of contributions
+	 */
+	public Map<String, PaletteEntry> getAllContributionsIds(IEditorPart editor, Object content, PaletteRoot root) {
+		Map<String, PaletteEntry> entries = new HashMap<String, PaletteEntry>();
+		PaletteToolbar standardGroup = new PaletteToolbar(Messages.StandardGroup_Label);
+		standardGroup.setDescription(""); //$NON-NLS-1$
+		standardGroup.setId(GROUP_STANDARD);
+		root.add(standardGroup);
+
+		PaletteSeparator standardSeparator = new PaletteSeparator(SEPARATOR_STANDARD);
+		standardGroup.add(standardSeparator);
+
+		ToolEntry selectTool = new PanningSelectionToolEntry();
+		selectTool.setId(TOOL_SELECTION);
+		selectTool.setToolClass(SelectionToolEx.class);
+		standardGroup.add(selectTool);
+		root.setDefaultEntry(selectTool);
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(editor, content, root, entries);
+		execute(operation);
+
+		return entries;
+	}
+
+	/**
 	 * Returns the list of providers for this service
 	 * 
 	 * @return the list of providers for this service

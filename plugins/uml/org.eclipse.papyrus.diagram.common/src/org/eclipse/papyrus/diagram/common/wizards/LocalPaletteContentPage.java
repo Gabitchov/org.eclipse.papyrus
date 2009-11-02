@@ -13,7 +13,9 @@
 package org.eclipse.papyrus.diagram.common.wizards;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,7 +36,6 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -58,6 +59,7 @@ import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceAdapter;
@@ -262,6 +264,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		PaletteContainerProxy contentNode = createPaletteTreeViewerInput();
 
 		addPalettePreviewDropSupport();
+		addPalettePreviewDragSupport();
 		paletteTreeViewer.setInput(contentNode);
 	}
 
@@ -296,11 +299,23 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					entryProxy = new PaletteEntryProxy((ToolEntry) entry);
 				} else if (entry instanceof PaletteDrawer) {
 					entryProxy = new PaletteContainerProxy((PaletteDrawer) entry);
+				} else if (entry instanceof PaletteEntryProxy) {
+					entryProxy = ((PaletteEntryProxy) entry);
 				} else {
 					return;
 				}
 				if (target instanceof PaletteContainerProxy) {
+					// tries to remove from its parent if possible
+					if (entryProxy.getParent() != null) {
+						entryProxy.getParent().removeChild(entryProxy);
+					}
 					((PaletteContainerProxy) target).addChild(entryProxy);
+				} else if (target instanceof PaletteEntryProxy) {
+					// tries to remove from its parent if possible
+					if (entryProxy.getParent() != null) {
+						entryProxy.getParent().removeChild(entryProxy);
+					}
+					((PaletteEntryProxy) target).getParent().addChild(entryProxy, ((PaletteEntryProxy) target));
 				} else {
 					// add to parent...
 					target.getParent().addChild(entryProxy);
@@ -327,7 +342,41 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			}
 		};
 
-		paletteTreeViewer.addDropSupport(DND.DROP_LINK, transfers, listener);
+		paletteTreeViewer.addDropSupport(DND.DROP_LINK | DND.DROP_MOVE, transfers, listener);
+	}
+
+	/**
+	 * Adds drag ability to the palette preview composite
+	 */
+	protected void addPalettePreviewDragSupport() {
+
+		// transfer types
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+
+		// drag listener
+		DragSourceListener listener = new DragSourceAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void dragStart(DragSourceEvent event) {
+				super.dragStart(event);
+				event.data = paletteTreeViewer.getSelection();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void dragSetData(DragSourceEvent event) {
+				super.dragSetData(event);
+				LocalSelectionTransfer.getTransfer().setSelection(paletteTreeViewer.getSelection());
+			}
+
+		};
+
+		paletteTreeViewer.addDragSupport(DND.DROP_MOVE, transfers, listener);
 	}
 
 	/**
@@ -354,12 +403,16 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			case DRAWER:
 				if (entry instanceof ToolEntry) {
 					event.detail = DND.DROP_LINK;
+				} else if (entry instanceof PaletteEntryProxy) {
+					event.detail = DND.DROP_MOVE;
 				}
 				break;
 			case TOOL:
 				if (entry instanceof ToolEntry) {
 					event.detail = DND.DROP_LINK; // add the selected tool before the destination
 					// tool
+				} else if (entry instanceof PaletteEntryProxy) {
+					event.detail = DND.DROP_MOVE; // moves the element before the entry
 				}
 				break;
 			default:
@@ -710,10 +763,14 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				return true;
 			}
 		});
-
+		availableToolsViewer.addFilter(new DrawerFilter());
 		// add drag support
 		addAvailableToolsDragSupport();
-		availableToolsViewer.setInput(((PaletteViewer) editorPart.getAdapter(PaletteViewer.class)).getPaletteRoot());
+		PaletteRoot root = new PaletteRoot();
+		Map<String, PaletteEntry> entries = PapyrusPaletteService.getInstance().getAllContributionsIds(editorPart,
+				editorPart.getEditorInput(), root);
+
+		availableToolsViewer.setInput(entries.values());
 	}
 
 	/**
@@ -880,7 +937,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = null;
 
-			if (inputElement instanceof PaletteRoot) {
+			if (inputElement instanceof Collection<?>) {
+				elements = ((Collection<?>) inputElement).toArray();
+			} else if (inputElement instanceof PaletteRoot) {
 				// paletteUil.getAllEntries(...) to add drawers
 				// if so, uncomment the addFilterbutton for drawers in populate tool bar
 				elements = PaletteUtil.getAllToolEntries(((PaletteRoot) inputElement)).toArray();
@@ -902,6 +961,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+
 		}
 	}
 

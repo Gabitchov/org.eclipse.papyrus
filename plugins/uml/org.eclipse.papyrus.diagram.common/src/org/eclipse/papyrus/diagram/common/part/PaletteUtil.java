@@ -14,12 +14,22 @@
 package org.eclipse.papyrus.diagram.common.part;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
+import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
+import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
+import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ProviderDescriptor;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 
 /**
@@ -179,5 +189,35 @@ public class PaletteUtil {
 			}
 		}
 		return elements;
+	}
+
+	/**
+	 * Returns all available entries for the given editor ID
+	 * 
+	 * @param editorID
+	 *            the editor to be contributed
+	 * @param priority
+	 *            the priority max for the entries
+	 * @return the set of available entries
+	 */
+	public static Set<? extends PaletteEntry> getAvailableEntries(IEditorPart part, ProviderPriority priority) {
+		Set<? extends PaletteEntry> entries = new HashSet<PaletteEntry>();
+
+		// retrieve all provider for the given editor ID
+		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>) PapyrusPaletteService
+				.getInstance().getProviders();
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(),
+				new PaletteRoot(), new HashMap<Object, Object>());
+		PaletteRoot root = new PaletteRoot();
+
+		for (PapyrusPaletteService.ProviderDescriptor descriptor : providers) {
+			if (descriptor.providesWithVisibility(operation)) {
+				((IPaletteProvider) descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root,
+						new HashMap<Object, Object>());
+			}
+
+		}
+
+		return entries;
 	}
 }
