@@ -23,12 +23,12 @@ public interface VisualInformationPapyrusConstant {
 	public static String STEREOTYPE_PRESENTATION_KIND = "Stereotype_Presentation_Kind";
 
 	/**
-	 * the list of steretype to display
+	 * the list of stereotype to display
 	 */
 	public static String STEREOTYPE_LIST = "StereotypeList";
 
 	/**
-	 * the list of steretype to display
+	 * the list of stereotype to display
 	 */
 	public static String STEREOTYPE_WITHQN_LIST = "StereotypeWithQualifiedNameList";
 
@@ -89,10 +89,10 @@ public interface VisualInformationPapyrusConstant {
 	 */
 	public static String STEREOTYPE_BRACE_LOCATION = "With brace";
 
-	/** The QUALIFIE d_ name. */
+	/** The qualified name. */
 	public static String QUALIFIED_NAME = "QualifiedName";
 
-	/** The QUALIFIE d_ nam e_ depth. */
+	/** The qualified name depth. */
 	public static String QUALIFIED_NAME_DEPTH = "QualifiedNameDepth";
 
 	/**
@@ -117,6 +117,10 @@ public interface VisualInformationPapyrusConstant {
 	public static String DISPLAY_NAMELABELICON = "displayNameLabelIcon";
 
 	public static String DISPLAY_NAMELABELICON_VALUE = "displayNameLabelIcon_value";
+
+	public static String LAYOUTFIGURE = "layoutFigure";
+
+	public static String LAYOUTFIGURE_VALUE = "layoutFigure_value";
 
 	public static String STEREOTYPE_PROPERTY_LOCATION = "StereotypePropertyLocation";
 
@@ -145,12 +149,12 @@ public interface VisualInformationPapyrusConstant {
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
 
 	/**
-	 * this is a key of eannnotation that contains hyperlink or referenced document
+	 * this is a key of eAnnnotation that contains hypertext link or referenced document
 	 **/
 	public static final String HYPERLINK_DIAGRAM = "PapyrusHyperLink_Diagram";
 
 	/**
-	 * this is a value of a eannnotation detail that explain the kind of the link
+	 * this is a value of a eAnnnotation detail that explain the kind of the link
 	 **/
 
 	public static final String HYPERLINK_DOCUMENT = "PapyrusHyperLink_Document";
