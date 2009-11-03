@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.diagram.common.wizards;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
@@ -60,6 +62,8 @@ import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.diagram.common.service.XMLDefinitionPaletteParser;
+import org.eclipse.papyrus.diagram.common.service.XMLDefinitionPaletteProxyFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceAdapter;
@@ -89,6 +93,8 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 /**
  * Wizard page for information about the new local palette definition
@@ -149,6 +155,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/** document for element creation */
 	protected Document document;
 
+	private PaletteContainerProxy contentNode;
+
 	/**
 	 * Creates a new wizard page with the given name, title, and image.
 	 * 
@@ -177,8 +185,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		setControl(control);
 
-		// small workaround to have all
-		updatePreferences();
+		// small workaround to have all tools
+		// updatePreferences();
 
 		// create Available Tools Group
 		createAvailableToolsGroup();
@@ -261,10 +269,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		paletteTreeViewer.setContentProvider(new PaletteContentProvider(paletteTreeViewer));
 		paletteTreeViewer.setLabelProvider(new PaletteProxyLabelProvider());
 
-		PaletteContainerProxy contentNode = createPaletteTreeViewerInput();
-
 		addPalettePreviewDropSupport();
 		addPalettePreviewDragSupport();
+
 		paletteTreeViewer.setInput(contentNode);
 	}
 
@@ -422,12 +429,84 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * Creates the palette root content
-	 * 
-	 * @return the root container for the palette
+	 * Sets an empty content for the palette preview
 	 */
-	protected PaletteContainerProxy createPaletteTreeViewerInput() {
-		return new PaletteContainerProxy(null);
+	public void initializeContent() {
+		contentNode = new PaletteContainerProxy(null);
+	}
+
+	/**
+	 * Sets the initial content for the palette preview
+	 */
+	public void initializeContent(PapyrusPaletteService.LocalProviderDescriptor descriptor) {
+		// retrieve the xml definition file
+		String xmlPath = PapyrusPalettePreferences.getPalettePathFromID(descriptor.getContributionID());
+
+		// parse the content file
+		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		documentBuilderFactory.setNamespaceAware(true);
+		try {
+			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+			// Bundle bundle = Platform.getBundle(pluginID);
+			// URL url = bundle.getEntry(path);
+
+			File file = Activator.getDefault().getStateLocation().append(xmlPath).toFile();
+			if (!file.exists()) {
+				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + file);
+			} else {
+				Document document = documentBuilder.parse(file);
+				Map<String, PaletteEntry> entries = PapyrusPaletteService.getInstance().getAllContributionsIds(
+						editorPart, editorPart.getEditorInput(), new PaletteRoot());
+				XMLDefinitionPaletteProxyFactory factory = new XMLDefinitionPaletteProxyFactory(entries);
+				XMLDefinitionPaletteParser parser = new XMLDefinitionPaletteParser(factory);
+				for (int i = 0; i < document.getChildNodes().getLength(); i++) {
+					Node node = document.getChildNodes().item(i);
+					if (IPapyrusPaletteConstant.PALETTE_DEFINITION.equals(node.getNodeName())) {
+						parser.parsePaletteDefinition(node);
+					}
+				}
+				contentNode = factory.getRootProxy();
+				return;
+			}
+		} catch (ParserConfigurationException e) {
+			PapyrusTrace.log(e);
+		} catch (IOException e) {
+			PapyrusTrace.log(e);
+		} catch (SAXException e) {
+			PapyrusTrace.log(e);
+		}
+
+		// paletteTreeViewer.setInput(contentNode);
+		contentNode = new PaletteContainerProxy(null);
+	}
+
+	/**
+	 * Saves the xml document into file
+	 * 
+	 * @param document
+	 *            the document to save
+	 * @param path
+	 *            name of the file
+	 * @return the file created or updated
+	 */
+	protected File loadDocument(Document document, String path) {
+		File file = null;
+		try {
+			// create the file that stores the XML configuration
+			file = Activator.getDefault().getStateLocation().append(path).toFile();
+			Transformer aTransformer = TransformerFactory.newInstance().newTransformer();
+
+			Source src = new DOMSource(document);
+			Result dest = new StreamResult(file);
+			aTransformer.transform(src, dest);
+		} catch (TransformerConfigurationException e) {
+			PapyrusTrace.log(e);
+		} catch (TransformerException e) {
+			PapyrusTrace.log(e);
+		}
+		return file;
+
 	}
 
 	/**

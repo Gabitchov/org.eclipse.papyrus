@@ -27,7 +27,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gef.palette.PaletteContainer;
-import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
@@ -35,6 +34,7 @@ import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
+import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.IPaletteDescription;
 import org.eclipse.ui.IEditorPart;
@@ -53,164 +53,122 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 */
 	private NodeList contributions = null;
 
-	/**
-	 * The pluginID of the XML contributions
-	 */
-	private String pluginID;
+	/** parser used for the xml file */
+	protected XMLDefinitionPaletteParser parser;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	public void contributeToPalette(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
+		parser = new XMLDefinitionPaletteParser(new XMLDefinitionPaletteFactory(root, predefinedEntries));
 		for (int i = 0; i < contributions.getLength(); i++) {
 			Node node = contributions.item(i);
 			if (PALETTE_DEFINITION.equals(node.getNodeName())) {
-				parsePaletteDefinition(node, root, predefinedEntries);
+				parser.parsePaletteDefinition(node);
 			}
 		}
 	}
 
-	/**
-	 * Parse the given node, assuming its type is a palette definition
-	 * 
-	 * @param node
-	 *            the node to parse
-	 */
-	protected void parsePaletteDefinition(Node paletteDefinitionNode, PaletteRoot root,
-			Map<String, PaletteEntry> predefinedEntries) {
-		NodeList nodes = paletteDefinitionNode.getChildNodes();
-		for (int i = 0; i < nodes.getLength(); i++) {
-			Node node = nodes.item(i);
-			if (CONTENT.equals(node.getNodeName())) {
-				parsePaletteContent(node, root, predefinedEntries, "/");
-			}
-		}
-	}
+	// /**
+	// * Parse the given node, assuming its type is a palette drawer
+	// *
+	// * @param node
+	// * the node to parse
+	// * @param root
+	// * the palette root to fill
+	// */
+	// protected PaletteEntry parserDrawerNode(Node node, PaletteRoot root, Map<String,
+	// PaletteEntry> predefinedEntries,
+	// String path) {
+	// // retrieve the drawer in the predefined entries
+	// String id = node.getAttributes().getNamedItem(ID).getNodeValue();
+	// PaletteEntry entry = predefinedEntries.get(id);
+	// if (entry == null) {
+	// String name = node.getAttributes().getNamedItem(NAME).getNodeValue();
+	// String iconPath = node.getAttributes().getNamedItem(ICON_PATH).getNodeValue();
+	// entry = new PaletteDrawer(name);
+	// entry.setId(id);
+	// entry.setDescription("Drawer " + name);
+	// if (iconPath != null && !iconPath.equals("")) {
+	// entry.setSmallIcon(Activator.getImageDescriptor(iconPath));
+	// entry.setLargeIcon(Activator.getImageDescriptor(iconPath));
+	// }
+	// predefinedEntries.put(id, entry);
+	// }
+	// appendPaletteEntry(root, predefinedEntries, path, entry);
+	// if (node.getChildNodes().getLength() > 0) {
+	// parsePaletteContent(node, root, predefinedEntries, path + entry.getId());
+	// }
+	// return entry;
+	// }
 
-	/**
-	 * Parse the given node, assuming its type is a palette content
-	 * 
-	 * @param node
-	 *            the node to parse
-	 * @param root
-	 *            the palette root to fill
-	 */
-	protected void parsePaletteContent(Node paletteContentNode, PaletteRoot root,
-			Map<String, PaletteEntry> predefinedEntries, String path) {
-		NodeList nodes = paletteContentNode.getChildNodes();
-		for (int i = 0; i < nodes.getLength(); i++) {
-			Node node = nodes.item(i);
-			PaletteEntry entry = null;
-			String name = node.getNodeName();
-			if (DRAWER.equals(name)) {
-				entry = parserDrawerNode(node, root, predefinedEntries, path);
-			} else if (STACK.equals(name)) {
-				entry = parserStackNode(node, root, predefinedEntries, path);
-			} else if (TOOL.equals(name)) {
-				entry = parseToolNode(node, root, predefinedEntries, path);
-			} else if (SEPARATOR.equals(name)) {
-				entry = parseSeparatorNode(node, root, predefinedEntries, path);
-			}
+	// /**
+	// * Parse the given node, assuming its type is a stack
+	// *
+	// * @param node
+	// * the node to parse
+	// * @param root
+	// * the palette root to fill
+	// */
+	// protected PaletteEntry parserStackNode(Node node, PaletteRoot root, Map<String, PaletteEntry>
+	// predefinedEntries,
+	// String path) {
+	// String id = node.getAttributes().getNamedItem(ID).getNodeValue();
+	// PaletteEntry entry = predefinedEntries.get(id);
+	// appendPaletteEntry(root, predefinedEntries, path, entry);
+	//
+	// if (node.getChildNodes().getLength() > 0) {
+	// parsePaletteContent(node, root, predefinedEntries, entry.getId());
+	// }
+	// return entry;
+	// }
 
-		}
-	}
+	// /**
+	// * Parse the given node, assuming its type is a node
+	// *
+	// * @param node
+	// * the node to parse
+	// * @param root
+	// * the palette root to fill
+	// */
+	// protected PaletteEntry parseToolNode(Node node, PaletteRoot root, Map<String, PaletteEntry>
+	// predefinedEntries,
+	// String path) {
+	// String id = node.getAttributes().getNamedItem(ID).getNodeValue();
+	// PaletteEntry entry = predefinedEntries.get(id);
+	// appendPaletteEntry(root, predefinedEntries, path, entry);
+	//
+	// if (node.getChildNodes().getLength() > 0) {
+	// parsePaletteContent(node, root, predefinedEntries, entry.getId());
+	// }
+	// return entry;
+	// }
 
-	/**
-	 * Parse the given node, assuming its type is a palette drawer
-	 * 
-	 * @param node
-	 *            the node to parse
-	 * @param root
-	 *            the palette root to fill
-	 */
-	protected PaletteEntry parserDrawerNode(Node node, PaletteRoot root, Map<String, PaletteEntry> predefinedEntries,
-			String path) {
-		// retrieve the drawer in the predefined entries
-		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
-		PaletteEntry entry = predefinedEntries.get(id);
-		if (entry == null) {
-			String name = node.getAttributes().getNamedItem(NAME).getNodeValue();
-			String iconPath = node.getAttributes().getNamedItem(ICON_PATH).getNodeValue();
-			entry = new PaletteDrawer(name);
-			entry.setId(id);
-			entry.setDescription("Drawer " + name);
-			if (iconPath != null && !iconPath.equals("")) {
-				entry.setSmallIcon(Activator.getImageDescriptor(iconPath));
-				entry.setLargeIcon(Activator.getImageDescriptor(iconPath));
-			}
-			predefinedEntries.put(id, entry);
-		}
-		appendPaletteEntry(root, predefinedEntries, path, entry);
-		if (node.getChildNodes().getLength() > 0) {
-			parsePaletteContent(node, root, predefinedEntries, path + entry.getId());
-		}
-		return entry;
-	}
-
-	/**
-	 * Parse the given node, assuming its type is a stack
-	 * 
-	 * @param node
-	 *            the node to parse
-	 * @param root
-	 *            the palette root to fill
-	 */
-	protected PaletteEntry parserStackNode(Node node, PaletteRoot root, Map<String, PaletteEntry> predefinedEntries,
-			String path) {
-		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
-		PaletteEntry entry = predefinedEntries.get(id);
-		appendPaletteEntry(root, predefinedEntries, path, entry);
-
-		if (node.getChildNodes().getLength() > 0) {
-			parsePaletteContent(node, root, predefinedEntries, entry.getId());
-		}
-		return entry;
-	}
-
-	/**
-	 * Parse the given node, assuming its type is a node
-	 * 
-	 * @param node
-	 *            the node to parse
-	 * @param root
-	 *            the palette root to fill
-	 */
-	protected PaletteEntry parseToolNode(Node node, PaletteRoot root, Map<String, PaletteEntry> predefinedEntries,
-			String path) {
-		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
-		PaletteEntry entry = predefinedEntries.get(id);
-		appendPaletteEntry(root, predefinedEntries, path, entry);
-
-		if (node.getChildNodes().getLength() > 0) {
-			parsePaletteContent(node, root, predefinedEntries, entry.getId());
-		}
-		return entry;
-	}
-
-	/**
-	 * Parse the given node, assuming its type is a separator
-	 * 
-	 * @param node
-	 *            the node to parse
-	 * @param root
-	 *            the palette root to fill
-	 */
-	protected PaletteEntry parseSeparatorNode(Node node, PaletteRoot root, Map<String, PaletteEntry> predefinedEntries,
-			String path) {
-		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
-		PaletteEntry entry = predefinedEntries.get(id);
-		if (entry == null) {
-			entry = new PaletteSeparator(id);
-			predefinedEntries.put(id, entry);
-		}
-		appendPaletteEntry(root, predefinedEntries, path, entry);
-
-		if (node.getChildNodes().getLength() > 0) {
-			parsePaletteContent(node, root, predefinedEntries, entry.getId());
-		}
-		return entry;
-	}
+	// /**
+	// * Parse the given node, assuming its type is a separator
+	// *
+	// * @param node
+	// * the node to parse
+	// * @param root
+	// * the palette root to fill
+	// */
+	// protected PaletteEntry parseSeparatorNode(Node node, PaletteRoot root, Map<String,
+	// PaletteEntry> predefinedEntries,
+	// String path) {
+	// String id = node.getAttributes().getNamedItem(ID).getNodeValue();
+	// PaletteEntry entry = predefinedEntries.get(id);
+	// if (entry == null) {
+	// entry = new PaletteSeparator(id);
+	// predefinedEntries.put(id, entry);
+	// }
+	// appendPaletteEntry(root, predefinedEntries, path, entry);
+	//
+	// if (node.getChildNodes().getLength() > 0) {
+	// parsePaletteContent(node, root, predefinedEntries, entry.getId());
+	// }
+	// return entry;
+	// }
 
 	/**
 	 * Finds a palette entry starting from the given container and using the given path
@@ -324,8 +282,6 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 *            the configuration element from which information are retrieved
 	 */
 	public void setContributions(IConfigurationElement configElement) {
-		pluginID = configElement.getContributor().getName();
-
 		// tries to read the XML configuration file
 		readXMLDocument(configElement.getAttribute(PATH));
 	}
@@ -371,17 +327,17 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 
 			File file = Activator.getDefault().getStateLocation().append(path).toFile();
 			if (!file.exists()) {
-				Activator.getDefault().logError("Impossible to load file: " + file);
+				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + file);
 			} else {
 				Document document = documentBuilder.parse(file);
 				contributions = document.getChildNodes();
 			}
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			PapyrusTrace.log(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			PapyrusTrace.log(e);
 		} catch (SAXException e) {
-			e.printStackTrace();
+			PapyrusTrace.log(e);
 		}
 
 	}

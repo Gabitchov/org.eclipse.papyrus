@@ -327,6 +327,24 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
+	 * Returns the provider priority for the palette provider with the given ID
+	 */
+	public static ProviderPriority getPalettePriority(String paletteID) {
+		// retrieves memento
+		XMLMemento rootMemento = getExistingLocalPalettes();
+
+		// search existing customization
+		IMemento paletteMemento = searchPaletteMemento(rootMemento, paletteID);
+		if (paletteMemento == null) {
+			paletteMemento = createMemento(rootMemento, paletteID);
+		}
+
+		// update values in the memento
+		String palettePriority = paletteMemento.getString(PRIORITY);
+		return ProviderPriority.parse(palettePriority);
+	}
+
+	/**
 	 * Deletes a local palette definition
 	 * 
 	 * @param id

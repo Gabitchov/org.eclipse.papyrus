@@ -21,6 +21,8 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
+import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -80,6 +82,9 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	/** path to the icon */
 	protected static final String WIZARD_ICON = "/icons/local_desc_wiz.png";
 
+	/** validate on opening */
+	protected boolean validateOnLaunch = false;
+
 	static {
 		priorityList = new String[] { ProviderPriority.LOWEST.getName(), ProviderPriority.LOW.getName(),
 				ProviderPriority.MEDIUM.getName(), ProviderPriority.HIGH.getName(), ProviderPriority.HIGHEST.getName() };
@@ -105,9 +110,6 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 		// initialize dialog units
 		initializeDialogUnits(parent);
 
-		// initialize values
-		intializeValues();
-
 		// Create a new composite as there is the title bar seperator
 		// to deal with
 		Composite control = new Composite(parent, SWT.NONE);
@@ -123,22 +125,42 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 		// end of the control creation
 		Dialog.applyDialogFont(control);
 
-		validatePage();
 		// Show description on opening
 		setErrorMessage(null);
 		setMessage(null);
-		setPageComplete(false);
+		if (validateOnLaunch) {
+			setPageComplete(validatePage());
+		}
 		setControl(control);
 	}
 
 	/**
 	 * initializes fields using context information
 	 */
-	protected void intializeValues() {
-		initName();
-		initEditorID();
-		initPaletteID();
-		initPriority();
+	public void intializeValues() {
+		initName("");
+		String editorIDValue = "";
+		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
+			editorIDValue = ((DiagramEditorWithFlyOutPalette) editorPart).getContributorId();
+		}
+		initEditorID(editorIDValue);
+		initPaletteID(System.getProperty("user.name") + "_" + System.currentTimeMillis());
+		initPriority(ProviderPriority.MEDIUM);
+	}
+
+	/**
+	 * initializes fields using existing descriptor
+	 */
+	public void intializeValues(PapyrusPaletteService.LocalProviderDescriptor descriptor) {
+		initName(descriptor.getContributionName());
+		String editorIDValue = "";
+		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
+			editorIDValue = ((DiagramEditorWithFlyOutPalette) editorPart).getContributorId();
+		}
+		initEditorID(editorIDValue);
+		initPaletteID(descriptor.getContributionID());
+		initPriority(PapyrusPalettePreferences.getPalettePriority(descriptor.getContributionID()));
+		validateOnLaunch = true;
 	}
 
 	/**
@@ -179,35 +201,43 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 
 	/**
 	 * inits the name field value
+	 * 
+	 * @param value
+	 *            value to set
 	 */
-	protected void initName() {
-		name = "";
+	protected void initName(String value) {
+		name = value;
 	}
 
 	/**
 	 * inits the priority value
+	 * 
+	 * @param value
+	 *            value to set
 	 */
-	protected void initPriority() {
-		priority = ProviderPriority.MEDIUM; // by default, Medium
+	protected void initPriority(ProviderPriority value) {
+		this.priority = value; // by default, Medium
 	}
 
 	/**
 	 * inits the palette id value
+	 * 
+	 * @param value
+	 *            value to set
 	 */
-	protected void initPaletteID() {
-		paletteID = System.getProperty("user.name") + "_" + System.currentTimeMillis();
+	protected void initPaletteID(String value) {
+		paletteID = value;
 
 	}
 
 	/**
 	 * inits the editor id value
+	 * 
+	 * @param value
+	 *            value to set
 	 */
-	protected void initEditorID() {
-		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
-			editorID = ((DiagramEditorWithFlyOutPalette) editorPart).getContributorId();
-		} else {
-			editorID = "";
-		}
+	protected void initEditorID(String value) {
+		editorID = value;
 	}
 
 	/**
@@ -428,7 +458,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 			paletteID = idText.getText();
 		} else if (widget.equals(editorText)) {
 			editorID = editorText.getText();
-		} else if (widget.equals(idText)) {
+		} else if (widget.equals(priorityCombo)) {
 			priority = ProviderPriority.parse(priorityCombo.getText());
 		}
 		setPageComplete(validatePage());

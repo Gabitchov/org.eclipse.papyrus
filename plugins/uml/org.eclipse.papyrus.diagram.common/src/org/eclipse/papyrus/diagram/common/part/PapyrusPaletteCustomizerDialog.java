@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.common.wizards.NewLocalPaletteWizard;
+import org.eclipse.papyrus.diagram.common.wizards.UpdateLocalPaletteWizard;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -82,6 +83,9 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	/** delete palette icon */
 	private static final String DELETE_LOCAL_DESC_IMAGE = "/icons/local_desc_destroy.gif";
 
+	/** edit palette icon */
+	private static final String EDIT_LOCAL_DESC_IMAGE = "/icons/local_desc_edit.gif";
+
 	/** path to the local descriptor icon */
 	protected final String LOCAL_DESCRIPTOR = "/icons/local_desc.gif";
 
@@ -98,16 +102,19 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	protected CheckboxTableViewer availablePalettesTableViewer;
 
 	/** label provider for palette provider */
-	private PaletteLabelProvider providersLabelProvider;
+	protected PaletteLabelProvider providersLabelProvider;
 
 	/** add local palette button */
 	protected Button newPaletteButton;
 
 	/** delete local palette button */
-	private Button deletePaletteButton;
+	protected Button deletePaletteButton;
 
 	/** isntance scope to listen for preferences */
 	protected InstanceScope instanceScope = new InstanceScope();
+
+	/** edit local palette button */
+	protected Button editPaletteButton;
 
 	/**
 	 * Creates a new PapyrusPaletteCustomizerDialog
@@ -201,34 +208,6 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 		return mainComposite;
 	}
 
-	/*
-	 * protected Control createDisplayButtons(Composite container) { // Create the Composite that
-	 * will contain the available tools Composite composite = new Composite(container, SWT.NONE);
-	 * composite.setFont(container.getFont()); GridLayout layout = new GridLayout(1, false);
-	 * layout.horizontalSpacing = 0; layout.verticalSpacing = 0; layout.marginHeight = 0;
-	 * layout.marginWidth = 0; composite.setLayout(layout);
-	 * 
-	 * addButton = new Button(composite, SWT.NONE); addButton.setText("");
-	 * addButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_AddButtonTooltip);
-	 * addButton.setImage(Activator.getPluginIconImage(Activator.ID, RIGHT_ARROW)); GridData data =
-	 * new GridData(SWT.CENTER, SWT.CENTER, false, false); addButton.setLayoutData(data);
-	 * addButton.addMouseListener(new MouseListener() {
-	 * 
-	 * public void mouseUp(MouseEvent e) { addEntry(e);
-	 * 
-	 * }
-	 * 
-	 * public void mouseDown(MouseEvent e) { // on mouse down, do nothing }
-	 * 
-	 * public void mouseDoubleClick(MouseEvent e) { // on double click, do nothing } });
-	 * 
-	 * removeButton = new Button(composite, SWT.NONE);
-	 * removeButton.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip);
-	 * removeButton.setImage(Activator.getImage(LEFT_ARROW)); removeButton.setLayoutData(data);
-	 * 
-	 * return composite; }
-	 */
-
 	protected ISelectionChangedListener createSelectionChangedListener() {
 		return new ISelectionChangedListener() {
 
@@ -240,8 +219,10 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 				Object selectedElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
 				if (selectedElement instanceof PapyrusPaletteService.LocalProviderDescriptor) {
 					deletePaletteButton.setEnabled(true);
+					editPaletteButton.setEnabled(true);
 				} else {
 					deletePaletteButton.setEnabled(false);
+					editPaletteButton.setEnabled(false);
 				}
 			}
 		};
@@ -303,7 +284,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 		// Create the Composite that will contain the available tools
 		Composite composite = new Composite(container, SWT.NONE);
 		composite.setFont(container.getFont());
-		GridLayout layout = new GridLayout(3, false);
+		GridLayout layout = new GridLayout(4, false);
 		layout.horizontalSpacing = 0;
 		layout.verticalSpacing = 0;
 		layout.marginHeight = 0;
@@ -343,6 +324,36 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 		});
 		data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
 		newPaletteButton.setLayoutData(data);
+
+		editPaletteButton = new Button(composite, SWT.NONE);
+		editPaletteButton.setImage(Activator.getImage(EDIT_LOCAL_DESC_IMAGE));
+		editPaletteButton.setToolTipText(Messages.Dialog_Edit_Palette_Tooltip);
+		editPaletteButton.addMouseListener(new MouseListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseUp(MouseEvent e) {
+				editLocalPalette();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
+			}
+		});
+		data = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		editPaletteButton.setLayoutData(data);
+		editPaletteButton.setEnabled(false);
 
 		deletePaletteButton = new Button(composite, SWT.NONE);
 		deletePaletteButton.setImage(Activator.getImage(DELETE_LOCAL_DESC_IMAGE));
@@ -398,7 +409,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 			}
 		});
 		data = new GridData(GridData.FILL_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL);
-		data.horizontalSpan = 3;
+		data.horizontalSpan = 4;
 		data.widthHint = 185;
 		// Make the tree this tall even when there is nothing in it. This will keep the
 		// dialog from shrinking to an unusually small size.
@@ -441,6 +452,24 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 					.getFirstElement());
 			String id = descriptor.getContributionID();
 			PapyrusPalettePreferences.deleteLocalPalette(id);
+		}
+	}
+
+	/**
+	 * Edits the current selected local palette
+	 */
+	protected void editLocalPalette() {
+		IStructuredSelection selection = (IStructuredSelection) availablePalettesTableViewer.getSelection();
+		if (selection == null
+				|| !(selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
+			MessageDialog.openError(getShell(), Messages.Dialog_Not_Local_Palette_Title,
+					Messages.Dialog_Not_Local_Palette_Message);
+		} else {
+			PapyrusPaletteService.LocalProviderDescriptor descriptor = ((PapyrusPaletteService.LocalProviderDescriptor) selection
+					.getFirstElement());
+			UpdateLocalPaletteWizard wizard = new UpdateLocalPaletteWizard(getActiveSashPage(), descriptor);
+			WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
+			wizardDialog.open();
 		}
 	}
 

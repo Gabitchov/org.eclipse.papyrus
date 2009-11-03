@@ -183,6 +183,9 @@ public class Messages extends NLS {
 	/** tooltip for the create palette button */
 	public static String Dialog_Create_Palette_Tooltip;
 
+	/** tooltip for the edit palette button */
+	public static String Dialog_Edit_Palette_Tooltip;
+
 	/** tooltip for the create drawer button */
 	public static String Local_Palette_Create_Drawer_Tooltip;
 

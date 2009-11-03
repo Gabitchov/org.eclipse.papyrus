@@ -15,14 +15,15 @@ package org.eclipse.papyrus.diagram.common.wizards;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * Wizard to create a new Local Palette Definition from scratch
+ * Wizard to update an existing Local Palette Definition
  */
-public class NewLocalPaletteWizard extends Wizard {
+public class UpdateLocalPaletteWizard extends Wizard {
 
-	/** Editor part in which the new palette will be created */
+	/** Editor part in which the palette is displayed */
 	protected IEditorPart editorPart;
 
 	/** content page */
@@ -31,14 +32,18 @@ public class NewLocalPaletteWizard extends Wizard {
 	/** info page */
 	protected LocalPaletteInformationPage infoPage;
 
+	/** palette configuration to update */
+	protected PapyrusPaletteService.LocalProviderDescriptor descriptor;
+
 	/**
 	 * Creates a NewLocalPaletteWizard.
 	 * 
 	 * @param part
-	 *            the editor part where the palette will be available
+	 *            the editor part where the palette is available
 	 */
-	public NewLocalPaletteWizard(IEditorPart part) {
+	public UpdateLocalPaletteWizard(IEditorPart part, PapyrusPaletteService.LocalProviderDescriptor descriptor) {
 		this.editorPart = part;
+		this.descriptor = descriptor;
 	}
 
 	/**
@@ -50,12 +55,11 @@ public class NewLocalPaletteWizard extends Wizard {
 
 		// first paeg: name, id, etc.
 		infoPage = new LocalPaletteInformationPage(editorPart);
-		// initialize values
-		infoPage.intializeValues();
+		infoPage.intializeValues(descriptor);
 
 		// second page: describe the paletteContent
 		contentPage = new LocalPaletteContentPage(editorPart);
-		contentPage.initializeContent();
+		contentPage.initializeContent(descriptor);
 
 		addPage(infoPage);
 		addPage(contentPage);
@@ -70,6 +74,7 @@ public class NewLocalPaletteWizard extends Wizard {
 		// file has been created or updated
 		contentPage.performFinish(PapyrusPalettePreferences.getPalettePathFromID(infoPage.getPaletteID()));
 
+		PapyrusPalettePreferences.deleteLocalPalette(infoPage.getPaletteID());
 		// generate the preference for local palette
 		PapyrusPalettePreferences.addLocalPalette(infoPage.getPaletteID(), infoPage.getPaletteName(), infoPage
 				.getPalettePriority(), infoPage.getEditorID());
