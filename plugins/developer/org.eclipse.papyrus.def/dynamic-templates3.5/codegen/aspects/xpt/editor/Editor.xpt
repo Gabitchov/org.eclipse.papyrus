@@ -20,22 +20,40 @@
 	
 	«REM»Documentation. adds listener for papyrus editors«ENDREM»
 	«EXPAND xpt::Common::generatedMemberComment»
-	org.eclipse.gef.KeyHandler paletteKeyHandler = null;
+	private org.eclipse.gef.KeyHandler paletteKeyHandler = null;
 
 	«EXPAND xpt::Common::generatedMemberComment»
-	org.eclipse.swt.events.MouseListener paletteMouseListener = null;
+	private org.eclipse.swt.events.MouseListener paletteMouseListener = null;
 
+    // FIXME Remove it when the super.isDirty will work...
+	private boolean isDirty = false;
+
+	/** The editing domain. */
+	private org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain;
+
+    /** The document provider. */
+    private org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider documentProvider;
+    	
 	«REM»«ENDREM»
 «ENDAROUND»
 
 «AROUND _constructor FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	public «className»() {
+	public «className»(org.eclipse.papyrus.core.services.ServicesRegistry servicesRegistry) throws org.eclipse.papyrus.core.services.ServiceException{
 		super(«null <> editorGen.diagram.palette and editorGen.diagram.palette.flyout»);
 
 	«REM»Documentation. adds listener for papyrus palette service«ENDREM»
 	// adds a listener to the palette service, which reacts to palette customizations
 	org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
+	
+	«REM»Share the same editing domain«ENDREM»
+	// Share the same editing provider
+	editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
+	documentProvider = new org.eclipse.papyrus.core.adaptor.gmf.GmfMultiDiagramDocumentProvider(editingDomain);
+
+	// overrides editing domain created by super constructor
+	setDocumentProvider(documentProvider);
+	
 	«REM»end of listeners addition«ENDREM»
 	}
 «ENDAROUND»
@@ -66,6 +84,14 @@
 	«REM»old code«ENDREM»
 	«targetDef.proceed()»
 	«REM»end of old code«ENDREM»
+	
+	«EXPAND createEditingDomain-»
+	
+	«EXPAND configureDiagramEditDomain-»
+	
+	«EXPAND doSave-»
+	
+	«EXPAND isDirty-»
 	
 	«REM»Documentation. adds method to handle palette changes«ENDREM»
 	«EXPAND handlePaletteChange-»
@@ -270,3 +296,96 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 	}
 «ENDDEFINE»
 
+«REM»Not used«ENDREM»
+«AROUND performSaveAs FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
+  // Nothing
+}
+«ENDAROUND»
+
+«REM»Share the same editing domain«ENDREM»
+«AROUND getEditingDomain FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	/**
+	 * Overrides getEditingDomain.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor#getEditingDomain()
+	 */
+	@Override
+    public org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
+    	return editingDomain;
+    }	
+«ENDAROUND»
+
+«DEFINE createEditingDomain FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+    /**
+	 * Overrides createEditingDomain.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#createEditingDomain()
+	 */
+	@Override
+	protected TransactionalEditingDomain createEditingDomain() {
+		// Already configured
+		return editingDomain;
+	}
+«ENDDEFINE»
+
+
+«DEFINE configureDiagramEditDomain FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	/**
+	 * Overrides configureDiagramEditDomain.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#configureDiagramEditDomain()
+	 */
+	@Override
+	protected void configureDiagramEditDomain() {
+		super.configureDiagramEditDomain();
+		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new org.eclipse.gef.commands.CommandStackListener() {
+
+			public void commandStackChanged(java.util.EventObject event) {
+				isDirty = true;
+			}
+		});
+	}
+«ENDDEFINE»
+
+«DEFINE doSave FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	/**
+	 * Overrides doSave.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#doSave(org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		// The saving of the resource is done by the CoreMultiDiagramEditor
+		// Just notify the command stack here
+		isDirty = false;
+	}
+«ENDDEFINE»
+
+«DEFINE isDirty FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	/**
+	 * Overrides isDirty.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#isDirty()
+	 */
+	@Override
+	public boolean isDirty() {
+		return isDirty;
+	}
+«ENDDEFINE»
