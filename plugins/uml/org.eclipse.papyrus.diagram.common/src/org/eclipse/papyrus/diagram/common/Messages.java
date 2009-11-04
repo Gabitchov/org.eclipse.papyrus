@@ -189,6 +189,12 @@ public class Messages extends NLS {
 	/** tooltip for the create drawer button */
 	public static String Local_Palette_Create_Drawer_Tooltip;
 
+	/** tooltip for the create separator button */
+	public static String Local_Palette_Create_Separator_Tooltip;
+
+	/** tooltip for the create stack button */
+	public static String Local_Palette_Create_Stack_Tooltip;
+
 	/** name of the drawer wizard page */
 	public static String Wizard_Drawer_Page_Name;
 
@@ -221,5 +227,4 @@ public class Messages extends NLS {
 
 	/** name for the icon field */
 	public static String Wizard_Drawer_Icon;
-
 }

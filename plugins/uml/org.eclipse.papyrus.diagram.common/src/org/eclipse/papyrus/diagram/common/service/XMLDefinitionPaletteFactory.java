@@ -24,7 +24,8 @@ import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
-import org.eclipse.gmf.runtime.common.core.util.Log;
+import org.eclipse.gef.palette.PaletteStack;
+import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.w3c.dom.Node;
 
@@ -121,6 +122,12 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	public void traverseStackNode(Node node) {
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
+		if (entry == null) {
+			// everything can be null for the constructor
+			entry = new PaletteStack(null, null, null);
+			entry.setId(id);
+			predefinedEntries.put(id, entry);
+		}
 		appendPaletteEntry(root, predefinedEntries, computePath(node), entry);
 	}
 
@@ -152,7 +159,7 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 			fEntry = findPredefinedEntry(predefinedEntries, path);
 		}
 		if (fEntry == null)
-			Log.info(Activator.getDefault(), IStatus.ERROR, "Invalid palette entry path"); //$NON-NLS-1$                
+			PapyrusTrace.log(IStatus.ERROR, "Invalid palette entry path: " + path); //$NON-NLS-1$                
 		else if (fEntry instanceof PaletteContainer) {
 			// remove if it already exists
 			if (!((PaletteContainer) fEntry).getChildren().contains(paletteEntry)) {

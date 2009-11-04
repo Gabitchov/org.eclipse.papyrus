@@ -131,6 +131,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/** icon path for the create drawer button */
 	protected static final String CREATE_DRAWERS_ICON = "/icons/new_drawer.gif";
 
+	/** icon path for the create separator button */
+	private String CREATE_SEPARATOR_ICON = "/icons/separator.gif";
+
+	/** icon path for the create stack button */
+	private String CREATE_STACK_ICON = "/icons/stack.gif";
+
 	/** icon path for the delete drawer button */
 	protected static final String DELETE_DRAWERS_ICON = "/icons/delete.gif";
 
@@ -298,9 +304,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					target = (PaletteContainerProxy) paletteTreeViewer.getInput();
 				}
 
+				// get the elements from the drag listener (either a palette entry or a palette
+				// entry proxy)
 				IStructuredSelection transferedSelection = (IStructuredSelection) LocalSelectionTransfer.getTransfer()
 						.nativeToJava(event.currentDataType);
 				Object entry = ((IStructuredSelection) transferedSelection).getFirstElement();
+
+				// creates the proxy for the element to be dropped
 				PaletteEntryProxy entryProxy;
 				if (entry instanceof ToolEntry) {
 					entryProxy = new PaletteEntryProxy((ToolEntry) entry);
@@ -414,12 +424,24 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					event.detail = DND.DROP_MOVE;
 				}
 				break;
+			case STACK:
+				if (entry instanceof ToolEntry) {
+					event.detail = DND.DROP_LINK;
+				} else if (entry instanceof PaletteEntryProxy && !(entry instanceof PaletteLocalStackProxy)) {
+					event.detail = DND.DROP_MOVE;
+				}
+				break;
 			case TOOL:
 				if (entry instanceof ToolEntry) {
 					event.detail = DND.DROP_LINK; // add the selected tool before the destination
 					// tool
 				} else if (entry instanceof PaletteEntryProxy) {
 					event.detail = DND.DROP_MOVE; // moves the element before the entry
+				}
+				break;
+			case SEPARATOR:
+				if (entry instanceof PaletteEntryProxy) {
+					event.detail = DND.DROP_MOVE;
 				}
 				break;
 			default:
@@ -515,6 +537,10 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected void populatePalettePreviewToolBar(ToolBar toolbar) {
 		createToolBarItem(toolbar, CREATE_DRAWERS_ICON, Messages.Local_Palette_Create_Drawer_Tooltip,
 				createNewDrawerListener());
+		createToolBarItem(toolbar, CREATE_SEPARATOR_ICON, Messages.Local_Palette_Create_Separator_Tooltip,
+				createNewSeparatorListener());
+		createToolBarItem(toolbar, CREATE_STACK_ICON, Messages.Local_Palette_Create_Stack_Tooltip,
+				createNewStackListener());
 	}
 
 	/**
@@ -535,6 +561,98 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				NewDrawerWizard wizard = new NewDrawerWizard(containerProxy);
 				WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
 				wizardDialog.open();
+				paletteTreeViewer.refresh();
+				setPageComplete(validatePage());
+			}
+		};
+	}
+
+	/**
+	 * Creates the listener for the new stack tool item
+	 * 
+	 * @return the listener created
+	 */
+	protected Listener createNewStackListener() {
+		return new Listener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void handleEvent(Event event) {
+				// retrieve selected element
+				Object object = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
+
+				// if element = drawer => the new stack must be created at the end of the drawer's
+				// children list
+				// if element = tool => must be placed before this tool
+				// else : nothinng to do
+				if (object instanceof PaletteLocalDrawerProxy) {
+					String id = generateID("Stack");
+					PaletteLocalStackProxy proxy = new PaletteLocalStackProxy(id);
+					((PaletteLocalDrawerProxy) object).addChild(proxy);
+				} else if (object instanceof PaletteEntryProxy) {
+					String id = generateID("Stack");
+					PaletteLocalStackProxy proxy = new PaletteLocalStackProxy(id);
+					// retrieve parent
+					PaletteEntryProxy childProxy = (PaletteEntryProxy) object;
+					PaletteContainerProxy parentProxy = childProxy.getParent();
+					parentProxy.addChild(proxy, childProxy);
+				}
+
+				paletteTreeViewer.refresh();
+				setPageComplete(validatePage());
+			}
+		};
+	}
+
+	/**
+	 * Generates the ID for a local element
+	 * 
+	 * @param base
+	 *            the begining of the id
+	 * @return the separator id
+	 */
+	protected String generateID(String base) {
+		StringBuffer id = new StringBuffer();
+		id.append(base);
+		id.append("_");
+		id.append(System.currentTimeMillis());
+
+		return id.toString();
+	}
+
+	/**
+	 * Creates the listener for the new separator tool item
+	 * 
+	 * @return the listener created
+	 */
+	protected Listener createNewSeparatorListener() {
+		return new Listener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void handleEvent(Event event) {
+				// retrieve selected element
+				Object object = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
+
+				// if element = drawer => the new stack must be created at the end of the drawer's
+				// children list
+				// if element = tool => must be placed before this tool
+				// else : nothinng to do
+				if (object instanceof PaletteLocalDrawerProxy) {
+					String id = generateID("Separator");
+					PaletteLocalSeparatorProxy proxy = new PaletteLocalSeparatorProxy(id);
+					((PaletteLocalDrawerProxy) object).addChild(proxy);
+				} else if (object instanceof PaletteEntryProxy) {
+					String id = generateID("Separator");
+					PaletteLocalSeparatorProxy proxy = new PaletteLocalSeparatorProxy(id);
+					// retrieve parent
+					PaletteEntryProxy childProxy = (PaletteEntryProxy) object;
+					PaletteContainerProxy parentProxy = childProxy.getParent();
+					parentProxy.addChild(proxy, childProxy);
+				}
+
 				paletteTreeViewer.refresh();
 				setPageComplete(validatePage());
 			}
@@ -1239,7 +1357,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 */
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof PaletteEntryProxy) {
-				return ((PaletteEntryProxy) parentElement).getChildren().toArray();
+				List<PaletteEntryProxy> children = ((PaletteEntryProxy) parentElement).getChildren();
+				return (children != null) ? children.toArray() : new Object[0];
 			}
 			return null;
 		}

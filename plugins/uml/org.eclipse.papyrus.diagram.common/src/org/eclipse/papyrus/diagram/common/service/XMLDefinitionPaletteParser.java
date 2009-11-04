@@ -68,10 +68,10 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 				parserDrawerNode(node);
 			} else if (STACK.equals(name)) {
 				parserStackNode(node);
-			} else if (TOOL.equals(name)) {
-				parseToolNode(node);
 			} else if (SEPARATOR.equals(name)) {
 				parseSeparatorNode(node);
+			} else if (TOOL.equals(name)) {
+				parseToolNode(node);
 			}
 
 		}

@@ -17,10 +17,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.gef.palette.PaletteEntry;
-import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteContainerProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteLocalDrawerProxy;
+import org.eclipse.papyrus.diagram.common.wizards.PaletteLocalSeparatorProxy;
+import org.eclipse.papyrus.diagram.common.wizards.PaletteLocalStackProxy;
 import org.w3c.dom.Node;
 
 /**
@@ -93,12 +94,7 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 	@Override
 	public void traverseSeparatorNode(Node node) {
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
-		PaletteEntry entry = predefinedEntries.get(id);
-		if (entry == null) {
-			entry = new PaletteSeparator(id);
-			predefinedEntries.put(id, entry);
-		}
-		PaletteEntryProxy proxy = new PaletteEntryProxy(entry);
+		PaletteLocalSeparatorProxy proxy = new PaletteLocalSeparatorProxy(id);
 		getParentProxy(node).addChild(proxy);
 		registry.put(node, proxy);
 
@@ -110,8 +106,7 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 	@Override
 	public void traverseStackNode(Node node) {
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
-		PaletteEntry entry = predefinedEntries.get(id);
-		PaletteEntryProxy proxy = new PaletteEntryProxy(entry);
+		PaletteLocalStackProxy proxy = new PaletteLocalStackProxy(id);
 		getParentProxy(node).addChild(proxy);
 		registry.put(node, proxy);
 	}
