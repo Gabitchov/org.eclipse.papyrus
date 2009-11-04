@@ -225,7 +225,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		EObject eObject = null;
 		Object selection = getCurrentSelection();
 		if (selection != null) {
-			Object businessObject = BusinessModelResolver.getInstance();
+			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
 			if (businessObject instanceof EObject) {
 				eObject = (EObject) businessObject;
 			}
