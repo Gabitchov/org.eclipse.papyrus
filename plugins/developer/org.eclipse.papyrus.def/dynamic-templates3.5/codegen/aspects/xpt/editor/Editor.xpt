@@ -48,7 +48,7 @@
 	
 	«REM»Share the same editing domain«ENDREM»
 	// Share the same editing provider
-	editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
+	editingDomain = servicesRegistry.getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class);
 	documentProvider = new org.eclipse.papyrus.core.adaptor.gmf.GmfMultiDiagramDocumentProvider(editingDomain);
 
 	// overrides editing domain created by super constructor
@@ -330,7 +330,7 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#createEditingDomain()
 	 */
 	@Override
-	protected TransactionalEditingDomain createEditingDomain() {
+	protected org.eclipse.emf.transaction.TransactionalEditingDomain createEditingDomain() {
 		// Already configured
 		return editingDomain;
 	}
