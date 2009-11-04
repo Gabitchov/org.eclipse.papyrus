@@ -701,6 +701,7 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

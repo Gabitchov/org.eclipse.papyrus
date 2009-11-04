@@ -88,7 +88,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		}
 
 		// get the uml object type of this element, using the business resolver
-		final Object businessObject = BusinessModelResolver.getInstance().getBussinessModel(selectedElement);
+		final Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selectedElement);
 
 		// no object found: exit
 		if (businessObject == null) {

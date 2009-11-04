@@ -85,6 +85,7 @@ public class Constraint3CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
 		Package owner = (Package) getElementToEdit();

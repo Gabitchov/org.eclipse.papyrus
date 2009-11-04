@@ -21,6 +21,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -57,6 +58,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
@@ -66,6 +68,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorCo
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
@@ -224,16 +227,16 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
+		EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
 
-		// can we display icon?
-		if (getParent() != null && NameLabelIconHelper.getNameLabelIconValue((View) getParent().getModel())) {
-
-			EObject parserElement = getParserElement();
-			if (parserElement == null) {
-				return null;
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		for (View view : views) {
+			if (NameLabelIconHelper.showLabelIcon(view)) {
+				return UMLElementTypes.getImage(parserElement.eClass());
 			}
-			return UMLElementTypes.getImage(parserElement.eClass());
-
 		}
 		return null;
 
@@ -734,6 +737,13 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 				}
 			}
 		}
+
+		if (event.getNewValue() instanceof EAnnotation
+				&& VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation) event.getNewValue())
+						.getSource())) {
+			refreshLabel();
+		}
+
 		super.handleNotificationEvent(event);
 	}
 

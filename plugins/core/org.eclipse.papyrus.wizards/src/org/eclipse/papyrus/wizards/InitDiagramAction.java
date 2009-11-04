@@ -22,9 +22,8 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * This action initialize the "CreateModelWizard" with the selected domain file,
- * and launch the wizard to create Diagram Interchange resources required by
- * Papyrus editor.
+ * This action initialize the "CreateModelWizard" with the selected domain file, and launch the
+ * wizard to create Diagram Interchange resources required by Papyrus editor.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -60,10 +59,8 @@ public class InitDiagramAction implements IObjectActionDelegate {
 		this.selection = null;
 		action.setEnabled(false);
 		if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
-			IFile file = (IFile) ((IStructuredSelection) selection)
-					.getFirstElement();
-			this.domainModelURI = URI.createPlatformResourceURI(file
-					.getFullPath().toString(), true);
+			IFile file = (IFile) ((IStructuredSelection) selection).getFirstElement();
+			this.domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			this.selection = (StructuredSelection) selection;
 			action.setEnabled(true);
 		}
@@ -82,12 +79,10 @@ public class InitDiagramAction implements IObjectActionDelegate {
 	public void run(IAction action) {
 		if (domainModelURI != null) {
 			CreateModelWizard wizard = new CreateModelWizard(domainModelURI);
-			wizard.init(targetPart.getSite().getWorkbenchWindow()
-					.getWorkbench(), selection);
+			wizard.init(targetPart.getSite().getWorkbenchWindow().getWorkbench(), selection);
 			WizardDialog dialog = new WizardDialog(getShell(), wizard);
 			dialog.create();
-			dialog.getShell().setSize(
-					Math.max(500, dialog.getShell().getSize().x), 500);
+			dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x), 500);
 			dialog.open();
 		}
 	}

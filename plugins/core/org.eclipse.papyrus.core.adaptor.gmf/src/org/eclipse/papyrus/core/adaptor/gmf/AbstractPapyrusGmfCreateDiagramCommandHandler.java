@@ -40,6 +40,7 @@ import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -123,6 +124,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel,
 					Collections.EMPTY_LIST) {
 
+				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 						throws ExecutionException {
 
@@ -223,7 +225,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		EObject eObject = null;
 		Object selection = getCurrentSelection();
 		if (selection != null) {
-			Object businessObject = getDefaultContext().getModelResolver().getBussinessModel(selection);
+			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
 			if (businessObject instanceof EObject) {
 				eObject = (EObject) businessObject;
 			}
@@ -295,7 +297,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected BackboneContext getDefaultContext() {
 		IMultiDiagramEditor editor = getMultiDiagramEditor();
-		return (BackboneContext) editor.getDefaultContext();
+		return editor.getDefaultContext();
 	}
 
 	/**

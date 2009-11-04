@@ -16,11 +16,11 @@
 package org.eclipse.papyrus.diagram.composite;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.l10n.EditorMessages;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -28,17 +28,15 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext;
+import org.eclipse.papyrus.core.adaptor.gmf.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.dnd.TransferData;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -53,16 +51,6 @@ import org.eclipse.ui.PartInitException;
  * </pre>
  */
 public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
-
-	/**
-	 * Parent
-	 */
-	private GmfEditorContext context;
-
-	/**
-	 * The diagram shown by this editor.
-	 */
-	private Diagram diagram;
 
 	/**
 	 * The location of diagram icon in the plug-in
@@ -80,7 +68,20 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
 			.getBundledImageDescriptor(DIAG_IMG_PATH);
 
-	Composite splitter;
+	/**
+	 * Parent
+	 */
+	// private GmfEditorContext context;
+
+	/** The editing domain. */
+	private TransactionalEditingDomain editingDomain;
+
+	/**
+	 * The diagram shown by this editor.
+	 */
+	private Diagram diagram;
+
+	private IDocumentProvider documentProvider;
 
 	/**
 	 * Constructor. Context and required objects are retrieved from the ServiceRegistry.
@@ -91,36 +92,68 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	public UmlCompositeDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
 			throws BackboneException, ServiceException {
-		super();
 		this.diagram = diagram;
-		IEditorContextRegistry contextRegistry;
-		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
-
-		// Get the context by its ID
-		this.context = (GmfEditorContext) contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
+		// IEditorContextRegistry contextRegistry;
+		// contextRegistry = (IEditorContextRegistry)
+		// servicesRegistry.getService(IEditorContextRegistry.class);
+		//
+		// // Get the context by its ID
+		// this.context = (GmfEditorContext)
+		// contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
 
 		// overrides editing domain created by super constructor
-		setDocumentProvider(context.getDocumentProvider());
-		System.err.println(this.getClass().getName());
+		// setDocumentProvider(context.getDocumentProvider());
+		// System.err.println(this.getClass().getName());
+
+		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
+		documentProvider = new GmfMultiDiagramDocumentProvider(editingDomain);
+
+		// overrides editing domain created by super constructor
+		setDocumentProvider(documentProvider);
 	}
 
 	/**
-	 * Configures the diagram with the parent Multi editor shared command stack
+	 * Overrides createEditingDomain.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#createEditingDomain()
 	 */
 	@Override
-	protected void configureDiagramEditDomain() {
-		super.configureDiagramEditDomain();
-		DiagramEditDomain editDomain = (DiagramEditDomain) getDiagramEditDomain();
+	protected TransactionalEditingDomain createEditingDomain() {
+		return editingDomain;
+	}
 
-		if (editDomain != null) {
-			editDomain.setCommandStack(context.getDiagramEditDomain().getDiagramCommandStack());
-			editDomain.setActionManager(context.getDiagramEditDomain().getActionManager());
-		}
+	/**
+	 * Overrides getEditingDomain.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor#getEditingDomain()
+	 */
+	@Override
+	public TransactionalEditingDomain getEditingDomain() {
+		return editingDomain;
+	}
+
+	/**
+	 * Overrides doSave.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#doSave(org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		// The saving of the resource is done by the CoreMultiDiagramEditor
+		// Just notify the command stack here
+		getCommandStack().markSaveLocation();
 	}
 
 	/**
 	 * @return the diagram
 	 */
+	@Override
 	public Diagram getDiagram() {
 		return diagram;
 	}
@@ -132,7 +165,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	@Override
 	final protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			return context.getDocumentProvider();
+			return documentProvider;
 		}
 		return super.getDocumentProvider(input);
 	}
@@ -162,9 +195,9 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * @return the parentEditor
 	 */
-	public GmfEditorContext getSharedObjects() {
-		return context;
-	}
+	// public GmfEditorContext getSharedObjects() {
+	// return context;
+	// }
 
 	/**
 	 * 
@@ -243,7 +276,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	@Override
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			setDocumentProvider(context.getDocumentProvider());
+			setDocumentProvider(documentProvider);
 		} else {
 			super.setDocumentProvider(input);
 		}
@@ -276,7 +309,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	 * @param parentEditor
 	 *            the parentEditor to set
 	 */
-	public void setSharedObject(GmfEditorContext parentEditor) {
-		this.context = parentEditor;
-	}
+	// public void setSharedObject(GmfEditorContext parentEditor) {
+	// this.context = parentEditor;
+	// }
 }

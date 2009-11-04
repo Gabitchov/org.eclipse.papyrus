@@ -29,9 +29,8 @@ public interface IEditorFactoryRegistry {
 	/**
 	 * Create a new editor for the specified diagram root.
 	 * 
-	 * @param contextFactoryRegistry
-	 *            *
 	 * @param model
+	 *            The model
 	 * @throws EditorNotFoundException
 	 *             No editor handling the model can be found.
 	 */

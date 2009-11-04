@@ -111,7 +111,7 @@ AbstractBorderedShapeEditPart
 		if (childEditPart instanceof ModelPackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((ModelPackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -247,7 +247,8 @@ AbstractBorderedShapeEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -275,7 +276,8 @@ AbstractBorderedShapeEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -866,7 +868,8 @@ AbstractBorderedShapeEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -896,7 +899,8 @@ AbstractBorderedShapeEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1509,7 +1513,8 @@ AbstractBorderedShapeEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2165,7 +2170,7 @@ AbstractBorderedShapeEditPart
 		if (childEditPart instanceof ModelPackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((ModelPackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

@@ -97,6 +97,7 @@ public class UseCase2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		UseCase newElement = UMLFactory.eINSTANCE.createUseCase();
 
 		Package owner = (Package) getElementToEdit();

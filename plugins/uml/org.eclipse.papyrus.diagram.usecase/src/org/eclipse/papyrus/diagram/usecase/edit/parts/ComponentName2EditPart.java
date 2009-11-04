@@ -709,6 +709,7 @@ public class ComponentName2EditPart extends CompartmentEditPart implements IText
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

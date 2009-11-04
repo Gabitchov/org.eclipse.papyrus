@@ -28,10 +28,10 @@ public class BusinessModelResolver {
 	/**
 	 * The unique instance
 	 */
-	public static BusinessModelResolver instance = new BusinessModelResolver();
+	private static BusinessModelResolver instance;
 
-	public BusinessModelResolver() {
-
+	private BusinessModelResolver() {
+		// Nothing
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class BusinessModelResolver {
 	 * @param object
 	 * @return Object
 	 */
-	public Object getBussinessModel(Object object) {
+	public Object getBusinessModel(Object object) {
 		if (object instanceof EditPart) {
 			// Check model. It can be a GraphNode.
 			Object model = ((EditPart) object).getModel();
@@ -88,6 +88,9 @@ public class BusinessModelResolver {
 	 * @return BusinessModelResolver
 	 */
 	public static BusinessModelResolver getInstance() {
+		if (instance == null) {
+			instance = new BusinessModelResolver();
+		}
 		return instance;
 	}
 }

@@ -44,12 +44,6 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	private AbstractPanelPart child;
 
 	/**
-	 * Raw model associated to this part. We store it because the PartModel do not provide it
-	 */
-	// @unused
-	private Object rawModel;
-
-	/**
 	 * Constructor.
 	 */
 	public RootPart(SashWindowsContainer sashWindowsContainer) {
@@ -133,13 +127,13 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 * 
 	 * @param partMap
 	 */
-	public void synchronize2(PartLists partMap) {
+	public void synchronize(PartLists partMap) {
 
 		// Synchronize locally the child
 		synchronizeChild(partMap);
 		// Synchronize recursively subchilds.
 		if (child != null) {
-			child.synchronize2(partMap);
+			child.synchronize(partMap);
 		}
 
 	}
@@ -193,17 +187,6 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	}
 
 	/**
-	 * Get the Composite used as parent for childs.
-	 * 
-	 * @return
-	 */
-	// @unused
-	private Composite getChildParent() {
-		// This is the rootContainer
-		return container;
-	}
-
-	/**
 	 * Fill partMap with the children.
 	 * 
 	 * @param partMap
@@ -231,17 +214,6 @@ public class RootPart extends AbstractPart implements IPanelParent {
 		}
 	}
 
-	// /**
-	// * Locates the part that intersects the given point and that have the
-	// expected type
-	// *
-	// * @param toFind
-	// * @return
-	// */
-	// public AbstractPart findPartAt(Point toFind, Class<?> tileType) {
-	// return child.findPartAt(toFind, tileType);
-	// }
-
 	/**
 	 * 
 	 */
@@ -251,26 +223,6 @@ public class RootPart extends AbstractPart implements IPanelParent {
 		} else {
 			return null;
 		}
-	}
-
-	// /**
-	// * @see
-	// org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object,
-	// org.eclipse.papyrus.sasheditor.sash.TabFolderPart,
-	// org.eclipse.swt.graphics.Point)
-	// */
-	// public IDropTarget getDropTarget(Object draggedObject, TabFolderPart
-	// sourcePart, Point position) {
-	// return child.getDropTarget(draggedObject, sourcePart, position);
-	// }
-
-	/**
-	 * Do nothing. This node can't be orphaned
-	 * 
-	 */
-	// @unused
-	public void orphan() {
-		// Do nothing. This node can't be orphaned
 	}
 
 	/**
@@ -321,6 +273,7 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	/**
 	 * Show tile status.
 	 */
+	@Deprecated
 	protected void showStatus() {
 		System.out.println("rootPart (1)" + ", disposed=" + container.isDisposed() + ", visible="
 				+ container.isVisible() + ", " + this);

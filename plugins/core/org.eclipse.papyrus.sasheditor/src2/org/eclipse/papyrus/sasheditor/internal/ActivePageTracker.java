@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
@@ -45,10 +45,10 @@ public class ActivePageTracker {
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/** List of listeners */
-	private List<IActiveEditorChangedListener> activeEditorChangedListeners = new ArrayList<IActiveEditorChangedListener>();
+	private final Set<IActiveEditorChangedListener> activeEditorChangedListeners = new HashSet<IActiveEditorChangedListener>();
 
 	/** List of public listeners */
-	private List<IPageChangedListener> publicPageChangedListeners;
+	private final Set<IPageChangedListener> publicPageChangedListeners = new HashSet<IPageChangedListener>();
 
 	/** The currently active editor */
 	protected PagePart activeEditor;
@@ -59,7 +59,7 @@ public class ActivePageTracker {
 	 * @author dumoulin
 	 * 
 	 */
-	public interface IActiveEditorChangedListener {
+	interface IActiveEditorChangedListener {
 
 		/**
 		 * This method is called whenever the active editor is changed.
@@ -67,16 +67,7 @@ public class ActivePageTracker {
 		 * @param oldEditor
 		 * @param newEditor
 		 */
-		public void activeEditorChanged(PagePart oldEditor, PagePart newEditor);
-	}
-
-	/**
-	 * Constructor. The activeEditor will be set by the first TabFolder that will call
-	 * TabFolderPart.setPage().
-	 * 
-	 * @param multiPartEditor
-	 */
-	public ActivePageTracker() {
+		void activeEditorChanged(PagePart oldEditor, PagePart newEditor);
 	}
 
 	/**
@@ -95,8 +86,9 @@ public class ActivePageTracker {
 	 */
 	public void setActiveEditor(PagePart editor) {
 		// Skip if there is no change
-		if (activeEditor == editor)
+		if (activeEditor == editor) {
 			return;
+		}
 
 		PagePart oldEditor = activeEditor;
 		activeEditor = editor;
@@ -110,8 +102,9 @@ public class ActivePageTracker {
 	 */
 	public void addActiveEditorChangedListener(IActiveEditorChangedListener listener) {
 		// no duplicate
-		if (activeEditorChangedListeners.contains(listener))
+		if (activeEditorChangedListeners.contains(listener)) {
 			return;
+		}
 		activeEditorChangedListeners.add(listener);
 	}
 
@@ -130,12 +123,6 @@ public class ActivePageTracker {
 	 * @param listener
 	 */
 	public void addPageChangedListener(IPageChangedListener listener) {
-		// no duplicate
-		if (publicPageChangedListeners == null)
-			publicPageChangedListeners = new ArrayList<IPageChangedListener>();
-
-		if (publicPageChangedListeners.contains(listener))
-			return;
 		publicPageChangedListeners.add(listener);
 	}
 
@@ -145,9 +132,6 @@ public class ActivePageTracker {
 	 * @param listener
 	 */
 	public void removePageChangedListener(IPageChangedListener listener) {
-		if (publicPageChangedListeners == null)
-			return;
-
 		publicPageChangedListeners.remove(listener);
 	}
 
@@ -159,8 +143,9 @@ public class ActivePageTracker {
 	 */
 	private void fireEditorChangeEvent(PagePart oldEditor, PagePart newEditor) {
 		// Fire only if really change
-		if (oldEditor == newEditor)
+		if (oldEditor == newEditor) {
 			return;
+		}
 
 		// Fire events to internal listeners
 		for (IActiveEditorChangedListener listener : activeEditorChangedListeners) {
@@ -168,12 +153,9 @@ public class ActivePageTracker {
 		}
 
 		// Fire event to public listeners
-		if (publicPageChangedListeners != null) {
-			for (IPageChangedListener listener : publicPageChangedListeners) {
-				listener.pageChanged(newEditor);
-			}
+		for (IPageChangedListener listener : publicPageChangedListeners) {
+			listener.pageChanged(newEditor);
 		}
-
 	}
 
 }

@@ -22,8 +22,10 @@ import org.eclipse.papyrus.core.services.IService;
  * extension.
  * 
  * @author dumoulin
- * 
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>: Prepare the removal of
+ *         all contexts
  */
+@Deprecated
 public interface IEditorContextRegistry extends IService {
 
 	/**

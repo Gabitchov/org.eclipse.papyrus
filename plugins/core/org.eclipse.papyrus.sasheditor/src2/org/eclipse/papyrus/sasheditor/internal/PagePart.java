@@ -60,7 +60,7 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 */
 	public void orphan() {
 		// orphan only if we are in COLLECTED state
-		if (garbageState == GarbageState.UNVISITED) {
+		if (GarbageState.UNVISITED.equals(garbageState)) {
 			garbageState = GarbageState.ORPHANED;
 			parent = null;
 		}
@@ -74,9 +74,13 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 */
 	public void unchanged() {
 		// orphan only if we are in COLLECTED state
-		if (garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED) {
+		switch (garbageState) {
+		case UNVISITED:
+		case ORPHANED:
+		case UNCHANGED:
 			garbageState = GarbageState.UNCHANGED;
-		} else {
+			break;
+		default:
 			// Bad state, this is an internal error
 			// TODO : log a warning ?
 			throw new IllegalStateException("Try to change state from " + garbageState.toString()
@@ -89,7 +93,7 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 * 
 	 * @param visitor
 	 */
-	abstract public void visit(IPartVisitor visitor);
+	public abstract void visit(IPartVisitor visitor);
 
 	/**
 	 * Locates the part that intersects the given point and that have the expected type. For a leaf,
@@ -101,8 +105,9 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 */
 	public AbstractPart findPartAt(Point position, Class<?> expectedTileType) {
 
-		if (expectedTileType == this.getClass())
+		if (expectedTileType == this.getClass()) {
 			return this;
+		}
 
 		return null;
 	}
@@ -112,21 +117,21 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 * 
 	 * @param parent
 	 */
-	abstract public void createPartControl(Composite parent);
+	public abstract void createPartControl(Composite parent);
 
 	/**
 	 * Get the control associated to this Part.
 	 * 
 	 * @return
 	 */
-	abstract public Control getControl();
+	public abstract Control getControl();
 
 	/**
 	 * reparent this Part with the specified new parent. The part is marked as reparented.
 	 * 
 	 * @param parent
 	 */
-	abstract public void reparent(TabFolderPart parent);
+	public abstract void reparent(TabFolderPart parent);
 
 	/**
 	 * Add the tree of parts starting from this part. As we are a leaf, add itself only.

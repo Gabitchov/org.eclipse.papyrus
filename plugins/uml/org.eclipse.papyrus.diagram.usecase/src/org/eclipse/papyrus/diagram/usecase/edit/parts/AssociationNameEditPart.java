@@ -710,6 +710,7 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

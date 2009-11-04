@@ -45,19 +45,19 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * 
 	 * @param container
 	 */
-	abstract public void createPartControl(Composite container);
+	public abstract void createPartControl(Composite container);
 
 	/**
 	 * Dispose all nested SWT controls.
 	 */
-	abstract public void dispose();
+	public abstract void dispose();
 
 	/**
 	 * Visit the part.
 	 * 
 	 * @param visitor
 	 */
-	abstract public void visit(IPartVisitor visitor);
+	public abstract void visit(IPartVisitor visitor);
 
 	/**
 	 * Synchronize the part and its children with the models in contentProvider.
@@ -65,7 +65,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * @param existingParts
 	 *            List of already existing part before the synchronization.
 	 */
-	abstract public void synchronize2(PartLists existingParts);
+	public abstract void synchronize(PartLists existingParts);
 
 	/**
 	 * Return true is the part is for the specified raw model. Return false otherwise.
@@ -73,7 +73,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * @param rawModel
 	 * @return
 	 */
-	abstract public boolean isPartFor(Object rawModel);
+	public abstract boolean isPartFor(Object rawModel);
 
 	/**
 	 * Orphan this node. The parent is set to null, but control is left unchanged. The node can be
@@ -113,7 +113,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * @param newParent
 	 *            The new parent to which the part should be attached.
 	 */
-	abstract public void reparent(IPanelParent newParent, Composite swtParent);
+	public abstract void reparent(IPanelParent newParent, Composite swtParent);
 
 	/**
 	 * Collect all the parts. The method is called recursively in the tree of parts.
@@ -121,7 +121,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * @param parts
 	 *            The list into which parts are added.
 	 */
-	abstract public void fillPartMap(PartLists parts);
+	public abstract void fillPartMap(PartLists parts);
 
 	/**
 	 * Traverses the tree to find the part that intersects the given point
@@ -131,7 +131,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * @return the part that intersects the given point
 	 * @throws NotFoundException
 	 */
-	abstract public AbstractPart findPart(Point toFind) throws NotFoundException;
+	public abstract AbstractPart findPart(Point toFind) throws NotFoundException;
 
 	/**
 	 * Find the part associated to the provided control.
@@ -139,7 +139,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * @param control
 	 * @return
 	 */
-	abstract public AbstractPart findPart(Object control);
+	public abstract AbstractPart findPart(Object control);
 
 	/**
 	 * Locates the part that intersects the given point and that have the expected type
@@ -148,7 +148,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 *            Position in Display coordinate.
 	 * @return
 	 */
-	abstract public AbstractPart findPartAt(Point toFind, Class<?> expectedTileType);
+	public abstract AbstractPart findPartAt(Point toFind, Class<?> expectedTileType);
 
 	/* ***************************************************** */
 	/* Drag and Drop methods */
@@ -157,11 +157,11 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	/**
 	 * Return the swt Control associated to this part.
 	 */
-	abstract public Composite getControl();
+	public abstract Composite getControl();
 
 	/**
 	 * Get the drop target. Used by the drag tab mechanism.
 	 */
-	abstract public IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position);
+	public abstract IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position);
 
 }

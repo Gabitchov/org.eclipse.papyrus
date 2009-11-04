@@ -44,18 +44,18 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
  * 
  * @generated
  */
-public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEditor implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEditor implements IEditingDomainProvider,
+		ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
 	/**
 	 * Object shared between all Papyrus plugin.
 	 */
 	protected BackboneContext editorContext;
 
-	
 	/**
 	 * 
-	 * Constructor.
-	 * Create an DiEditor using the {@link ServicesRegistry}.
+	 * Constructor. Create an DiEditor using the {@link ServicesRegistry}.
+	 * 
 	 * @param servicesRegistry
 	 */
 	public UMLEditor(ServicesRegistry servicesRegistry) throws ServiceException, BackboneException {
@@ -63,7 +63,8 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
 
 		// Get the context by its ID
-		BackboneContext editorContext = (BackboneContext) contextRegistry.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
+		BackboneContext editorContext = (BackboneContext) contextRegistry
+				.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
 
 		initEditor(editorContext);
 	}
@@ -77,17 +78,19 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 		super();
 
 		initEditor(editorContext);
-		
+
 	}
-	
+
 	/**
 	 * Init the editor from the specified context.
+	 * 
 	 * @param editorContext
 	 */
 	private void initEditor(BackboneContext editorContext) {
 		CommandStack commandStack = editorContext.getTransactionalEditingDomain().getCommandStack();
 
-		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
+		// Add a listener to set the most recent command's affected objects to be the selection of
+		// the viewer with focus.
 		//
 		commandStack.addCommandStackListener(new CommandStackListener() {
 
@@ -109,15 +112,16 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 					}
 				});
 			}
-			
+
 		});
 
 		// Create the editing domain with a special command stack.
 		//
 		// Set the resourceSet wth our own resourceSet.
-		// editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		// editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new
+		// HashMap<Resource, Boolean>());
 
-		ResourceSet resourceSet = editorContext.getResourceSet().getResourceSet();
+		ResourceSet resourceSet = editorContext.getResourceSet();
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, resourceSet);
 
 		// editingDomain = editorContext.getTransactionalEditingDomain();
@@ -125,17 +129,20 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 	}
 
 	/**
-	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input. Put the existing model into the editingDomain. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This is the method called to load a resource into the editing domain's resource set based on
+	 * the editor's input. Put the existing model into the editingDomain. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void createModel() {
 		// model is already created and loaded. Do nothing.
 	}
 
 	/**
-	 * This is for implementing {@link IEditorPart} and simply saves the model file. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This is for implementing {@link IEditorPart} and simply saves the model file. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -157,6 +164,7 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
 	}
 
@@ -172,6 +180,7 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 	 * 
 	 * @generated
 	 */
+	@Override
 	public IActionBars getActionBars() {
 		try {
 			return getActionBarContributor().getActionBars();

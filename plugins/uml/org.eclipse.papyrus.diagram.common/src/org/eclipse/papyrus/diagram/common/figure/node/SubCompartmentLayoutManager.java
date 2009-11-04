@@ -82,13 +82,13 @@ public class SubCompartmentLayoutManager extends AbstractLayout {
 	 * @param constraint
 	 *            the child's new constraint
 	 */
+	@Override
 	public void setConstraint(IFigure child, Object constraint) {
 		if (constraint instanceof Rectangle && ((Rectangle) constraint).height > MINIMUMCOMPARTMENTSIZE) {
 			preferedHeight = ((Rectangle) constraint).height;
 		} else {
 			preferedHeight = MINIMUMCOMPARTMENTSIZE;
 		}
-		System.err.println("SubComponent change position" + constraint);
 		invalidate(child);
 	}
 

@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.editor;
 
-import java.util.logging.Logger;
-
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
@@ -35,10 +33,6 @@ import org.eclipse.ui.part.EditorPart;
  */
 public abstract class AbstractMultiPageSashEditor extends EditorPart implements IMultiPageEditorPart,
 		IMultiEditorManager {
-
-	/** Log object */
-	// @unused
-	protected Logger log = Logger.getLogger(getClass().getName());
 
 	/** The pageProvider */
 	private ISashWindowsContentProvider pageProvider;
@@ -157,7 +151,6 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	public void dispose() {
 		deactivate();
 		super.dispose();
-		// sashContainer.dispose();
 	}
 
 	/**
@@ -191,15 +184,6 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 			return sashContainer;
 		}
 
-		// Get the content provider if requested.
-		if (DeveloperDebug.class == adapter) {
-			if (developerDebug == null) {
-				developerDebug = new DeveloperDebug();
-			}
-
-			return developerDebug;
-		}
-
 		// Look in hierarchy
 		Object result = super.getAdapter(adapter);
 		// restrict delegating to the UI thread for bug 144851
@@ -228,24 +212,26 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	@Override
 	public void setFocus() {
 		sashContainer.setFocus();
-
 	}
 
-	private DeveloperDebug developerDebug;
+	/**
+	 * Overrides isDirty.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.EditorPart#isDirty()
+	 */
+	@Override
+	public boolean isDirty() {
+		return sashContainer.isDirty();
+	}
 
 	/**
-	 * A hack to be able to print the internal structure of SashContainer.
-	 * 
-	 * @author dumoulin
-	 * 
+	 * Notify all the editors that the multi editor has been saved.<BR>
+	 * Fires the PROP_DIRTY property change.
 	 */
-	// @unused
-	public class DeveloperDebug {
-
-		public void showSashWindowInfo() {
-			if (sashContainer instanceof SashWindowsContainer) {
-				(sashContainer).showTilesStatus();
-			}
-		}
+	protected void markSaveLocation() {
+		sashContainer.markSaveLocation();
+		firePropertyChange(PROP_DIRTY);
 	}
 }

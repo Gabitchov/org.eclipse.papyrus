@@ -114,6 +114,8 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 *            the multi-page editor
 	 * @param editor
 	 *            the nested editor
+	 * @param editDomain
+	 *            The shared editDomain.
 	 */
 	public MultiPageEditorSite(IEditorSite mainEditorSite, IEditorPart editor,
 			EditorActionBarContributor actionBarContributor) {

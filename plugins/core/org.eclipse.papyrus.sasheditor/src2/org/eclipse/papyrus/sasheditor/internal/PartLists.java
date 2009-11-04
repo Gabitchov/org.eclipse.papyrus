@@ -43,8 +43,9 @@ public class PartLists {
 	public PagePart findPagePartFor(Object rawModel) {
 
 		for (PagePart part : pageParts) {
-			if (part.isPartFor(rawModel))
+			if (part.isPartFor(rawModel)) {
 				return part;
+			}
 		}
 		return null;
 	}
@@ -59,8 +60,9 @@ public class PartLists {
 	public AbstractPanelPart findPartFor(Object rawModel) {
 
 		for (AbstractPanelPart part : panelParts) {
-			if (part.isPartFor(rawModel))
+			if (part.isPartFor(rawModel)) {
 				return part;
+			}
 		}
 
 		return null;
@@ -91,14 +93,16 @@ public class PartLists {
 	public void garbage() {
 		// Remove orphaned part (no more used)
 		for (AbstractPanelPart part : panelParts) {
-			if (part.isOrphaned())
+			if (part.isOrphaned()) {
 				part.dispose();
+			}
 		}
 
 		// Remove orphaned part (no more used)
 		for (PagePart part : pageParts) {
-			if (part.isOrphaned())
+			if (part.isOrphaned()) {
 				part.garbage();
+			}
 		}
 	}
 
@@ -110,8 +114,9 @@ public class PartLists {
 	public PagePart getFirstValidPage() {
 		// Remove orphaned part (no more used)
 		for (PagePart part : pageParts) {
-			if (!part.isOrphaned())
+			if (!part.isOrphaned()) {
 				return part;
+			}
 		}
 
 		// No page
@@ -125,11 +130,13 @@ public class PartLists {
 	 */
 	public PagePart getFirstCreatedPage() {
 
-		if (createdPages == null)
+		if (createdPages == null) {
 			return null;
+		}
 
-		if (createdPages.size() > 0)
+		if (createdPages.size() > 0) {
 			return createdPages.get(0);
+		}
 
 		// No page
 		return null;
@@ -143,11 +150,20 @@ public class PartLists {
 	 */
 	public void addCreatedPage(PagePart newPage) {
 
-		if (createdPages == null)
+		if (createdPages == null) {
 			createdPages = new ArrayList<PagePart>();
+		}
 
 		createdPages.add(newPage);
 
 	}
 
+	/**
+	 * Returns pageParts.
+	 * 
+	 * @return The pageParts.
+	 */
+	public List<PagePart> getPageParts() {
+		return pageParts;
+	}
 }

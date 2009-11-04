@@ -721,6 +721,7 @@ public class ActorName2EditPart extends CompartmentEditPart implements ITextAwar
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

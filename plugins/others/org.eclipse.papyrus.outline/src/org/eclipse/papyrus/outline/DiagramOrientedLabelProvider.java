@@ -89,7 +89,8 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default implementation return
+	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 */
@@ -101,7 +102,8 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
+	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 */

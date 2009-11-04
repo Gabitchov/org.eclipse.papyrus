@@ -393,6 +393,17 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
+	 * Overrides getCurrentFolder.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
+	 */
+	public Object getCurrentFolder() {
+		return currentTabFolder;
+	}
+
+	/**
 	 * A class managing a list of listeners.
 	 * 
 	 * @author dumoulin

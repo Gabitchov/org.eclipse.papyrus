@@ -14,12 +14,10 @@
 package org.eclipse.papyrus.diagram.clazz;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.l10n.EditorMessages;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -27,18 +25,13 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.swt.dnd.TransferData;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -47,7 +40,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * An editor to be used in multitabs editor. This editor extends the original UML Activity Diagram.
+ * An editor to be used in multitabs editor. This editor extends the original UML Diagram.
  * 
  * @author dumoulin
  * 
@@ -68,81 +61,12 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * Parent
 	 */
-	private GmfEditorContext context;
+	// private GmfEditorContext context;
 
 	/**
 	 * The diagram shown by this editor.
 	 */
 	private Diagram diagram;
-
-	Composite splitter;
-
-	/**
-	 * 
-	 * @deprecated Old init method. Now use SashSystem v2
-	 */
-	public UmlClassDiagramForMultiEditor(Diagram diagram, GmfEditorContext context) {
-		super();
-		this.diagram = diagram;
-		this.context = context;
-
-		// overrides editing domain created by super constructor
-
-		setDocumentProvider(context.getDocumentProvider());
-		PapyrusTrace.log(IStatus.INFO, this.getClass().getName());
-	}
-
-	// /**
-	// * Creates and register actions with the {@link ActionRegistry} for this
-	// editor.
-	// */
-	// @Override
-	// protected void createActions() {
-	// ActionRegistry registry = getActionRegistry();
-	// IAction action;
-	//
-	// action = new UndoAction(this);
-	// registry.registerAction(action);
-	// getStackActions().add(action.getId());
-	//
-	// action = new RedoAction(this);
-	// registry.registerAction(action);
-	// getStackActions().add(action.getId());
-	//
-	// action = new SelectAllAction(this);
-	// registry.registerAction(action);
-	//
-	// // action = new DirectEditAction(this);
-	// // registry.registerAction(action);
-	// // getSelectionActions().add(action.getId());
-	// }
-
-	// @Override
-	// protected void createGraphicalViewer(Composite parent) {
-	// System.out.println("store Composite " + parent);
-	// splitter = parent;
-	// super.createGraphicalViewer(parent);
-	// }
-
-	// /**
-	// * Called to configure the viewer before it receives its contents.
-	// */
-	// protected void configurePaletteViewer() {
-	// PaletteViewer viewer = getEditDomain().getPaletteViewer();
-	//
-	// if (viewer == null)
-	// return;
-	//
-	// ContextMenuProvider paletteContextProvider = new PapyrusPaletteContextMenuProvider(viewer);
-	// getEditDomain().getPaletteViewer().setContextMenu(paletteContextProvider);
-	// }
-
-	/**
-	 * @deprecated Old init method. Now use SashSystem v2
-	 */
-	public UmlClassDiagramForMultiEditor(Object diagram, IEditorContext context) {
-		this((Diagram) diagram, (GmfEditorContext) context);
-	}
 
 	/**
 	 * Constructor. Context and required objects are retrieved from the ServiceRegistry.
@@ -153,37 +77,21 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 */
 	public UmlClassDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException,
 			ServiceException {
-		super();
+		super(servicesRegistry);
 		this.diagram = diagram;
 		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-		IEditorContextRegistry contextRegistry;
-		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
+		// IEditorContextRegistry contextRegistry = (IEditorContextRegistry) servicesRegistry
+		// .getService(IEditorContextRegistry.class);
 
 		// Get the context by its ID
-		this.context = (GmfEditorContext) contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
-
-		// overrides editing domain created by super constructor
-
-		setDocumentProvider(context.getDocumentProvider());
-	}
-
-	/**
-	 * Configures the diagram with the parent Multi editor shared command stack
-	 */
-	@Override
-	protected void configureDiagramEditDomain() {
-		super.configureDiagramEditDomain();
-		DiagramEditDomain editDomain = (DiagramEditDomain) getDiagramEditDomain();
-
-		if (editDomain != null) {
-			editDomain.setCommandStack(context.getDiagramEditDomain().getDiagramCommandStack());
-			editDomain.setActionManager(context.getDiagramEditDomain().getActionManager());
-		}
+		// this.context = (GmfEditorContext)
+		// contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
 	}
 
 	/**
 	 * @return the diagram
 	 */
+	@Override
 	public Diagram getDiagram() {
 		return diagram;
 	}
@@ -191,10 +99,11 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * 
 	 */
-	final protected IDocumentProvider getDocumentProvider(IEditorInput input) {
+	@Override
+	protected final IDocumentProvider getDocumentProvider(IEditorInput input) {
 		// System.out.println("getDocumentProvider(IEditorInput input)");
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			return context.getDocumentProvider();
+			return getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
 	}
@@ -224,9 +133,10 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * @return the parentEditor
 	 */
-	public GmfEditorContext getSharedObjects() {
-		return context;
-	}
+	// @unused
+	// public GmfEditorContext getSharedObjects() {
+	// return null;
+	// }
 
 	/**
 	 * 
@@ -238,16 +148,6 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		setPartName(getDiagram().getName());
 		setTitleImage(DIAG_IMG_DESC.createImage());
 	}
-
-	// @Override
-	// public void setFocus() {
-	//
-	// // System.out.println("setFocus( " + ((Object)splitter).hashCode() +
-	// // "):" + splitter.getChildren());
-	// splitter.setFocus();
-	//
-	// super.setFocus();
-	// }
 
 	@Override
 	protected void initializeGraphicalViewer() {
@@ -311,9 +211,10 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			setDocumentProvider(context.getDocumentProvider());
+			setDocumentProvider(getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
 		}
@@ -346,8 +247,9 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 * @param parentEditor
 	 *            the parentEditor to set
 	 */
-	public void setSharedObject(GmfEditorContext parentEditor) {
-		this.context = parentEditor;
-	}
+	// @unused
+	// public void setSharedObject(GmfEditorContext parentEditor) {
+	// this.context = parentEditor;
+	// }
 
 }

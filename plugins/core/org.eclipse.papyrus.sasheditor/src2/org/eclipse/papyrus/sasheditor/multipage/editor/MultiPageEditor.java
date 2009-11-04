@@ -49,6 +49,7 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  * 
  * @author dumoulin
  */
+// @unused
 public abstract class MultiPageEditor extends MultiPageEditorPart {
 
 	/** Log object */

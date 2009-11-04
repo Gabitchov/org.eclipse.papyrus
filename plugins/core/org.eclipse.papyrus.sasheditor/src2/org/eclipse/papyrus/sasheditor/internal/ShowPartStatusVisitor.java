@@ -20,6 +20,8 @@ package org.eclipse.papyrus.sasheditor.internal;
  * 
  */
 @SuppressWarnings("unchecked")
+// FIXME Remove that class that does nothing excepted wasting the console.
+@Deprecated
 public class ShowPartStatusVisitor extends PartVisitor {
 
 	int level = 1;
@@ -62,7 +64,6 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	public void accept(SashPanelPart tile) {
 		indent();
 		tile.showStatus();
-		// System.out.println( "sash:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -75,7 +76,6 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	public void accept(TabFolderPart tile) {
 		indent();
 		tile.showStatus();
-		// System.out.println( "folder:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -87,8 +87,6 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	@Override
 	public void accept(EditorPart tile) {
 		indent();
-		tile.showStatus();
-		// System.out.println( "editor:" + tile );
 		level++;
 		super.accept(tile);
 		level--;

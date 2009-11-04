@@ -697,6 +697,7 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

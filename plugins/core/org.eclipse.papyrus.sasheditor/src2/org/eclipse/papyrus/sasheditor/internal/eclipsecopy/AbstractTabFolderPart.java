@@ -475,9 +475,9 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 *            the control for the specified page, or <code>null</code> to clear the control
 	 */
 	// @unused
-	protected void setControl(int pageIndex, Control control) {
-		getItem(pageIndex).setControl(control);
-	}
+	// protected void setControl(int pageIndex, Control control) {
+	// getItem(pageIndex).setControl(control);
+	// }
 
 	/* *************************************** */
 	/* Added method. */

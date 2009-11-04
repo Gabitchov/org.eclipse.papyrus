@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -106,7 +107,7 @@ public class CommentCreateCommand extends EditElementCommand {
 		Element owner = (Element) getElementToEdit();
 		owner.getOwnedComments().add(newElement);
 
-		ElementInitializers.init_Comment_2012(newElement);
+		UMLElementTypes.init_Comment_2012(newElement);
 
 		doConfigure(newElement, monitor, info);
 

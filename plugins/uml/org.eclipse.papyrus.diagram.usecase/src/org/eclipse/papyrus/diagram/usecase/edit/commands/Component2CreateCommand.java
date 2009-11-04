@@ -83,6 +83,7 @@ public class Component2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		Component newElement = UMLFactory.eINSTANCE.createComponent();
 
 		Component owner = (Component) getElementToEdit();

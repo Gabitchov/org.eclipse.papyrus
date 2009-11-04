@@ -4,6 +4,7 @@
 package org.eclipse.papyrus.sasheditor.editor.actionbarcontributor;
 
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
@@ -20,32 +21,11 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  */
 public class ComposedActionBarContributor extends MultiPageEditorActionBarContributor {
 
-	// /**
-	// * List of contributors.
-	// */
-	// protected ContributorMap<Class<? extends IEditorPart>, EditorActionBarContributor>
-	// contributors = new ContributorMap<Class<? extends IEditorPart>,
-	// EditorActionBarContributor>();
-	//	
-	//	
-	// /**
-	// * Contributor used as default.
-	// */
-	// protected EditorActionBarContributor defaultContributor;
-	//	
-	// /**
-	// * The currently active contributor.
-	// */
-	// protected EditorActionBarContributor activeContributor;
+	/** Log object */
+	private Logger log = Logger.getLogger(getClass().getName());
 
 	/** The currently active nested editor */
 	protected IEditorPart activeNestedEditor;
-
-	/**
-	 * Constructor.
-	 */
-	public ComposedActionBarContributor() {
-	}
 
 	/**
 	 * Sets the active page of the the multi-page editor to be the given editor. Switch the
@@ -59,16 +39,17 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 	 *            the new active editor, or <code>null</code> if there is no active page, or if the
 	 *            active page does not have a corresponding editor
 	 */
-	@Override
 	public void setActivePage(IEditorPart activeEditor) {
 		// Check if we are already initialized
 		// Return if we are not
-		if (getPage() == null)
+		if (getPage() == null) {
 			return;
+		}
 
 		// skip if the activeEditor doesn't change.
-		if (activeEditor == activeNestedEditor)
+		if (activeEditor == activeNestedEditor) {
 			return;
+		}
 
 		if (log.isLoggable(Level.FINE)) {
 			log.fine("setActivePage(" + activeEditor + " " + ")");
@@ -76,43 +57,13 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 
 		activeNestedEditor = activeEditor;
 
-		System.out.println(this.getClass().getSimpleName() + ".setActivePage(" + activeEditor + ") :"
-				+ getActiveContributor());
-
 		// Propagate call if possible
 		// Call setActiveEditor() on nested contributor.
 		IEditorActionBarContributor contributor = getActiveContributor();
-		if (contributor != this && contributor instanceof EditorActionBarContributor)
+		if (contributor != this && contributor instanceof EditorActionBarContributor) {
 			((EditorActionBarContributor) contributor).setActiveEditor(activeEditor);
-
-		// if(contributor != this && contributor instanceof IMultiPageEditorActionBarContributor)
-		// ((IMultiPageEditorActionBarContributor)contributor).setActivePage(activeEditor);
-
-	}
-
-	/**
-	 * Sets the active editor for the contributor.
-	 * <p>
-	 * The <code>EditorActionBarContributor</code> implementation of this method does nothing.
-	 * Subclasses may reimplement. This generally entails disconnecting from the old editor,
-	 * connecting to the new editor, and updating the actions to reflect the new editor.
-	 * </p>
-	 * 
-	 * @param part
-	 *            the new target editor
-	 */
-	public void setActiveEditor(IEditorPart part) {
-		if (log.isLoggable(Level.FINE)) {
-			log.fine("setActiveEditor(" + part + " " + ")");
 		}
 
-		// Switch the editor and activeContributor.
-		super.setActiveEditor(part);
-		// Now, propagate to the new activeContributor
-		// IEditorActionBarContributor activeContributor = getActiveContributor();
-		//
-		// if(activeContributor!=this)
-		// activeContributor.setActiveEditor(part);
 	}
 
 	/**
@@ -123,28 +74,11 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 	protected IEditorActionBarContributor getActiveContributor() {
 
 		// If there is no nestedEditor, this contributor is used.
-		if (activeNestedEditor == null)
+		if (activeNestedEditor == null) {
 			return this;
+		}
 
 		// 
 		return activeNestedEditor.getEditorSite().getActionBarContributor();
 	}
-
-	// ************************************************ //
-	// Propagate method calls //
-	// ************************************************ //
-
-	/**
-	 * Returns this contributor's action bars.
-	 * 
-	 * @return the action bars
-	 */
-	// public IActionBars getActionBars() {
-	// IEditorActionBarContributor activeContributor = getActiveContributor();
-	// if( activeContributor!=this && activeContributor instanceof EditorActionBarContributor)
-	// return ((EditorActionBarContributor)getActiveContributor()).getActionBars();
-	// else
-	// return super.getActionBars();
-	// }
-
 }

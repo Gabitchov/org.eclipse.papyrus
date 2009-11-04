@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sasheditor.internal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
@@ -55,13 +54,10 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * 
  *            TODO : be more precise for the generic type ? TODO : Listen to the page change event,
  *            and call setActivePage().
+ * 
  */
 @SuppressWarnings("restriction")
 public class TabFolderPart extends AbstractTabFolderPart {
-
-	/** Log object */
-	// @unused
-	Logger log = Logger.getLogger(getClass().getName());
 
 	/** Interface to the model */
 	protected ITabFolderModel partModel;
@@ -114,7 +110,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	private final PTabFolder.IPTabFolderListener cTabFolderEventListener = new PTabFolder.IPTabFolderListener() {
 
 		public void contextMenuDetectEvent(CTabItem tab, Event event) {
-			System.out.println("contextMenuDetect()");
+			// System.out.println("contextMenuDetect()");
 		}
 
 		/**
@@ -130,7 +126,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		}
 
 		public void menuDetectEvent(CTabItem tab, MenuDetectEvent event) {
-			System.out.println("menuDetectEvent()");
+			// System.out.println("menuDetectEvent()");
 		}
 
 		/**
@@ -213,19 +209,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		// model.activate();
 		activate();
 	}
-
-	/**
-	 * Add a new page at the end of pages. A new tab is created for the page, and the page control
-	 * is created.
-	 * 
-	 * @param pageModel
-	 * @param index
-	 */
-	// private void addPage(Object pageModel)
-	// {
-	// int index = currentTabItems.size();
-	// createTabItem(pageModel, index);
-	// }
 
 	/**
 	 * Create the control for this Part. Does not create children. This method is called by the
@@ -317,9 +300,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * </p>
 	 */
 	// @unused
-	public void setFocus() {
-		setFocus(getActivePage());
-	}
+	// public void setFocus() {
+	// setFocus(getActivePage());
+	// }
 
 	/**
 	 * Sets focus to the control for the given page. If the page has an editor, this calls its
@@ -329,13 +312,14 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param pageIndex
 	 *            the index of the page
 	 */
-	private void setFocus(int pageIndex) {
-		if (pageIndex < 0 || pageIndex >= getPageCount()) {
-			// page index out of bounds, don't set focus.
-			return;
-		}
-		getPagePart(pageIndex).setFocus();
-	}
+	// @unused
+	// private void setFocus(int pageIndex) {
+	// if (pageIndex < 0 || pageIndex >= getPageCount()) {
+	// // page index out of bounds, don't set focus.
+	// return;
+	// }
+	// getPagePart(pageIndex).setFocus();
+	// }
 
 	/**
 	 * Set the active page of this multi-page editor to the page that contains the given editor
@@ -347,16 +331,16 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @since 3.3
 	 */
 	// @unused
-	public final void setActiveEditor(PagePart editorPart) {
-		int count = getPageCount();
-		for (int i = 0; i < count; i++) {
-			PagePart editor = getPagePart(i);
-			if (editor == editorPart) {
-				setActivePage(i);
-				break;
-			}
-		}
-	}
+	// public final void setActiveEditor(PagePart editorPart) {
+	// int count = getPageCount();
+	// for (int i = 0; i < count; i++) {
+	// PagePart editor = getPagePart(i);
+	// if (editor == editorPart) {
+	// setActivePage(i);
+	// break;
+	// }
+	// }
+	// }
 
 	/**
 	 * Return the part containing specified point. Normally return this part, because the caller has
@@ -632,11 +616,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 */
 	@Override
 	public void orphan() {
-		// orphan only if we are in UNCHANGED state
-		if (garbageState == GarbageState.UNVISITED) {
+		if (isUnchecked()) {
 			garbageState = GarbageState.ORPHANED;
 			parent = null;
-
 		}
 	}
 
@@ -703,10 +685,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param partLists
 	 */
 	@Override
-	public void synchronize2(PartLists partLists) {
-
+	public void synchronize(PartLists partLists) {
 		// get list of model to be displayed. This is a list of Object.
-		List<Object> newModels = (List<Object>) partModel.getChildren();
+		List<?> newModels = partModel.getChildren();
 
 		// Disable redraw
 		CTabFolder folder = getTabFolder();
@@ -789,7 +770,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		}
 		// folder.update();
 		// folder.showSelection();
-
 	}
 
 	/**
@@ -910,75 +890,72 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param msg
 	 */
 	// @unused
-	private void showTabs(String msg) {
-		System.out.println("------- " + msg);
-		// Show items
-		CTabFolder folder = getTabFolder();
-		CTabItem items[] = folder.getItems();
-		System.out.printf("sel.index %2d :\n", folder.getSelectionIndex());
-		System.out.printf("items %2d :", folder.getItemCount());
-		for (CTabItem item : items) {
-			System.out.printf("%10s |", item.getControl());
-		}
-		System.out.println();
-
-		System.out.printf("it.dispose:");
-		for (CTabItem item : items) {
-			System.out.printf("%10b |", item.getControl().isDisposed());
-		}
-		System.out.println();
-
-		System.out.printf("it.ctrl.vis:");
-		for (CTabItem item : items) {
-			System.out.printf("%10s |", item.getControl().isVisible());
-		}
-		System.out.println();
-
-		//
-		System.out.printf("it.ctrl   :");
-		for (CTabItem item : items) {
-			System.out.printf("%10s |", item.getControl());
-		}
-		System.out.println();
-
-		//
-		// System.out.printf("tabs.ctrl :" );
-		// for( TabItemPart tab : currentModels)
-		// {
-		// System.out.printf( "%10s |", tab.childPart.getControl());
-		// }
-		// System.out.println();
-
-		// 
-		// System.out.printf("tab.editor:" );
-		// for( TabItemPart tab : currentModels)
-		// {
-		// System.out.printf( "%10s |", tab.childPart.getIEditorPart());
-		// }
-		// System.out.println();
-
-		//
-		System.out.printf("tabs %2d :", currentTabItems.size());
-		for (TabItemPart tab : currentTabItems) {
-			System.out.printf("%10s |", tab);
-		}
-		System.out.println();
-
-	}
+	// private void showTabs(String msg) {
+	// System.out.println("------- " + msg);
+	// // Show items
+	// CTabFolder folder = getTabFolder();
+	// CTabItem items[] = folder.getItems();
+	// System.out.printf("sel.index %2d :\n", folder.getSelectionIndex());
+	// System.out.printf("items %2d :", folder.getItemCount());
+	// for (CTabItem item : items) {
+	// System.out.printf("%10s |", item.getControl());
+	// }
+	// System.out.println();
+	//
+	// System.out.printf("it.dispose:");
+	// for (CTabItem item : items) {
+	// System.out.printf("%10b |", item.getControl().isDisposed());
+	// }
+	// System.out.println();
+	//
+	// System.out.printf("it.ctrl.vis:");
+	// for (CTabItem item : items) {
+	// System.out.printf("%10s |", item.getControl().isVisible());
+	// }
+	// System.out.println();
+	//
+	// //
+	// System.out.printf("it.ctrl   :");
+	// for (CTabItem item : items) {
+	// System.out.printf("%10s |", item.getControl());
+	// }
+	// System.out.println();
+	//
+	// //
+	// // System.out.printf("tabs.ctrl :" );
+	// // for( TabItemPart tab : currentModels)
+	// // {
+	// // System.out.printf( "%10s |", tab.childPart.getControl());
+	// // }
+	// // System.out.println();
+	//
+	// //
+	// // System.out.printf("tab.editor:" );
+	// // for( TabItemPart tab : currentModels)
+	// // {
+	// // System.out.printf( "%10s |", tab.childPart.getIEditorPart());
+	// // }
+	// // System.out.println();
+	//
+	// //
+	// System.out.printf("tabs %2d :", currentTabItems.size());
+	// for (TabItemPart tab : currentTabItems) {
+	// System.out.printf("%10s |", tab);
+	// }
+	// System.out.println();
+	//
+	// }
 
 	/**
 	 * Show tile status.
 	 */
+	@Deprecated
 	protected void showStatus() {
-		// System.out.println( "tabfolder[" + currentModels.size() + "]:"
-		// + ", disposed=" + getCTabFolder().isDisposed()
-		// + ", visible=" + getCTabFolder().isVisible()
-		// + ", garbState=" + garbageState
-		// + ", " + this);
-
-		CTabFolder ctrl = getTabFolder();
-		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n", currentTabItems.size(),
-				ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()), garbageState, this);
+		// CTabFolder ctrl = getTabFolder();
+		// System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n",
+		// currentTabItems.size(),
+		// ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()),
+		// garbageState, this);
 	}
 
 	/**
@@ -1054,9 +1031,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 * @return
 		 */
 		// @unused
-		public TabItemPart getByModel(Object model) {
-			return get(indexOfModel(model));
-		}
+		// public TabItemPart getByModel(Object model) {
+		// return get(indexOfModel(model));
+		// }
 
 	}
 
@@ -1105,10 +1082,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				}
 
 				PagePart part = currentTabItems.get(index).getChildPart();
-				// System.out.println("MouseHover(" + e.widget
-				// + ", part=" + part.getPartTitle()
-				// + ", item=" + item
-				// + ") - " + count++);
 				// TODO move it away
 				toolTipManager.showToolTip(item.getBounds(), part.getControl(), pt);
 			}
@@ -1120,12 +1093,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 */
 		private final Listener mouseClickedListener = new Listener() {
 
-			private final int count = 0;
-
 			public void handleEvent(Event event) {
 				switch (event.type) {
 				case SWT.MouseUp:
-					// System.out.println("MouseUp()" + count++);
 					toolTipManager.disableToolTip();
 					break;
 				}

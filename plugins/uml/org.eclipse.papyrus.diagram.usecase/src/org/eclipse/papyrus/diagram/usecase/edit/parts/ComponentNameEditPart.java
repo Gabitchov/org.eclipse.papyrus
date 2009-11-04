@@ -722,6 +722,7 @@ public class ComponentNameEditPart extends CompartmentEditPart implements ITextA
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

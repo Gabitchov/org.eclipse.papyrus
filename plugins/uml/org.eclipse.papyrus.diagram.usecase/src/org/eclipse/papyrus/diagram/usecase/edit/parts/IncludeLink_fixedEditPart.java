@@ -709,6 +709,7 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

@@ -696,6 +696,7 @@ public class AppliedStereotypeUsageEditPart extends LabelEditPart implements ITe
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

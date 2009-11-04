@@ -13,13 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.editor;
 
+import java.util.Collections;
 import java.util.EventObject;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gmf.runtime.common.ui.action.ActionManager;
@@ -29,7 +33,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContex
 
 /**
  * Initialize editing domain.
- * 
  * 
  */
 public class EditingDomainService implements CommandStackListener, org.eclipse.emf.common.command.CommandStackListener {
@@ -41,10 +44,8 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 
 	private final BackboneContext defaultContext;
 
-	private CommandStackListener commandStackListener;
-
-	/** gmf editing domain shared among all gmf editors */
-	// private DiagramEditDomain diagramEditDomain;
+	private Set<CommandStackListener> commandStackListeners = Collections
+			.synchronizedSet(new HashSet<CommandStackListener>());
 
 	/**
 	 * @param defaultContext
@@ -55,27 +56,37 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 		configureDiagramEditDomain();
 	}
 
-	// /**
-	// * Sets the default edit domain, shared among all editors
-	// *
-	// * @param diagramEditDomain
-	// * the diagramEditDomain to set
-	// */
-	// public void setDiagramEditDomain(DiagramEditDomain diagramEditDomain) {
-	// this.diagramEditDomain = diagramEditDomain;
-	// }
-
 	/**
-	 * {@inheritDoc}
+	 * Returns the diagram edit domain.
+	 * 
+	 * @return The diagram edit domain.
 	 */
-	public DiagramEditDomain getDiagramEditDomain() {
+	private DiagramEditDomain getDiagramEditDomain() {
 		return defaultContext.getDiagramEditDomain();
 	}
 
 	/**
-	 * @overridable TODO move it to GmfContext ?
+	 * Returns the edit domain.
+	 * 
+	 * @return The edit domain.
 	 */
-	protected ActionManager createActionManager() {
+	public EditDomain getEditDomain() {
+		return defaultContext.getDiagramEditDomain();
+	}
+
+	/**
+	 * Returns the editing domain.
+	 * 
+	 * @return the editing domain.
+	 */
+	public TransactionalEditingDomain getEditingDomain() {
+		return defaultContext.getTransactionalEditingDomain();
+	}
+
+	/**
+	 * TODO move it to GmfContext ?
+	 */
+	private ActionManager createActionManager() {
 		return new ActionManager(createOperationHistory());
 	}
 
@@ -86,7 +97,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * 
 	 * @return the action manager
 	 */
-	protected ActionManager getActionManager() {
+	private ActionManager getActionManager() {
 		return getDiagramEditDomain().getActionManager();
 	}
 
@@ -95,7 +106,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * 
 	 * @return my operation history TODO move it to GmfContext ?
 	 */
-	protected IOperationHistory createOperationHistory() {
+	private IOperationHistory createOperationHistory() {
 		return OperationHistoryFactory.getOperationHistory();
 	}
 
@@ -104,7 +115,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * 
 	 * @return my undo context TODO move it to GmfContext ?
 	 */
-	protected IUndoContext getUndoContext() {
+	private IUndoContext getUndoContext() {
 
 		if (undoContext == null) {
 			TransactionalEditingDomain domain = defaultContext.getTransactionalEditingDomain();
@@ -124,7 +135,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * 
 	 * TODO move it to GmfContext ?
 	 */
-	protected void configureDiagramEditDomain() {
+	public void configureDiagramEditDomain() {
 
 		DiagramEditDomain editDomain = getDiagramEditDomain();
 
@@ -139,10 +150,8 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 
 			// create and assign the new stack
 			DiagramCommandStack diagramStack = new DiagramCommandStack(getDiagramEditDomain());
-			editDomain.setActionManager(createActionManager());
-
-			diagramStack.setOperationHistory(getOperationHistory());
-
+			// editDomain.setActionManager(createActionManager());
+			// diagramStack.setOperationHistory(getOperationHistory());
 			editDomain.setCommandStack(diagramStack);
 
 			diagramStack.addCommandStackListener(this);
@@ -150,9 +159,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 
 			// changes made on the stack can be undone from this editor
 			diagramStack.setUndoContext(getUndoContext());
-
 		}
-
 	}
 
 	/**
@@ -160,7 +167,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * 
 	 * @return the operation history
 	 */
-	protected IOperationHistory getOperationHistory() {
+	private IOperationHistory getOperationHistory() {
 		return getActionManager().getOperationHistory();
 	}
 
@@ -171,8 +178,7 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * @param listener
 	 */
 	public void addCommandStackListener(CommandStackListener listener) {
-		assert (this.commandStackListener == null);
-		this.commandStackListener = listener;
+		commandStackListeners.add(listener);
 	}
 
 	/**
@@ -181,18 +187,20 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * @param listener
 	 */
 	public void removeCommandStackListener(CommandStackListener listener) {
-		if (this.commandStackListener == listener) {
-			this.commandStackListener = null;
-		}
+		commandStackListeners.remove(listener);
 	}
 
 	/**
-	 * Relay the event from the stack to the listeners.
+	 * Overrides commandStackChanged.
 	 * 
-	 * @param event
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gef.commands.CommandStackListener#commandStackChanged(java.util.EventObject)
 	 */
 	public void commandStackChanged(EventObject event) {
-		commandStackListener.commandStackChanged(event);
+		for (CommandStackListener listener : commandStackListeners) {
+			listener.commandStackChanged(event);
+		}
 	}
 
 }

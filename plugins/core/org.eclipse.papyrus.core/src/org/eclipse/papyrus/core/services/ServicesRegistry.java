@@ -149,6 +149,7 @@ public class ServicesRegistry {
 	 * @throws ServiceException
 	 *             If servive can't be started
 	 */
+	@Deprecated
 	public Object getService(Object key) throws ServiceException {
 		AbstractServiceEntry service = services.get(key);
 		if (service == null) {
@@ -156,6 +157,25 @@ public class ServicesRegistry {
 		}
 
 		return service.getServiceInstance();
+	}
+
+	/**
+	 * Get the requested service by its class (the servce has to be registered by its class object).
+	 * 
+	 * @param key
+	 *            The service class.
+	 * @return The service.
+	 * @throws ServiceException
+	 *             If servive can't be started
+	 */
+	@SuppressWarnings("unchecked")
+	public <S> S getService(Class<S> key) throws ServiceException {
+		AbstractServiceEntry service = services.get(key);
+		if (service == null) {
+			throw new ServiceNotFoundException("No service registered under '" + key + "'");
+		}
+
+		return (S) service.getServiceInstance();
 	}
 
 	/**

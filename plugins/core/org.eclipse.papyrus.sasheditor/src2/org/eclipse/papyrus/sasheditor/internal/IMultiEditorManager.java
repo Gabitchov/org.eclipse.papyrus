@@ -65,5 +65,4 @@ public interface IMultiEditorManager {
 	 * @return
 	 */
 	public IEditorSite getEditorSite();
-
 }

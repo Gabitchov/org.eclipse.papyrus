@@ -18,17 +18,15 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.CResizableCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ManualCompartmentLayoutManager;
 import org.eclipse.papyrus.diagram.common.helper.ICompartmentLayoutHelper;
+
 /**
  * this is a tool kit to manage Manual layout.
  */
 
-public class ManualCompartmentToolBox implements ILayoutToolBox{
-	
-	
+public class ManualCompartmentToolBox implements ILayoutToolBox {
 
 	/** The MANUA l_ layout. */
-	protected final String MANUAL_LAYOUT ="Manual_Layout";
-	
+	protected final String MANUAL_LAYOUT = "Manual_Layout";
 
 	/**
 	 * {@inheritDoc}
@@ -40,7 +38,7 @@ public class ManualCompartmentToolBox implements ILayoutToolBox{
 	/**
 	 * {@inheritDoc}
 	 */
-	public  String getLayout() {
+	public String getLayout() {
 		return MANUAL_LAYOUT;
 	}
 
@@ -50,6 +48,5 @@ public class ManualCompartmentToolBox implements ILayoutToolBox{
 	public AbstractLayout getFigureLayout() {
 		return new ManualCompartmentLayoutManager();
 	}
-
 
 }

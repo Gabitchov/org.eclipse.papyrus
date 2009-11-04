@@ -26,7 +26,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	protected static int fileCount = 1;
 
 	protected boolean createFromSemanticModel;
-	
+
 	private static final String DEFAULT_NAME = "model";
 
 	/**
@@ -38,7 +38,8 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 *            the current object selection
 	 * @see PapyrusCreationWizard#init(IWorkbench, IStructuredSelection)
 	 */
-	public NewModelFilePage(String title, String description, IStructuredSelection selection, boolean createFromSemanticModel) {
+	public NewModelFilePage(String title, String description, IStructuredSelection selection,
+			boolean createFromSemanticModel) {
 		super(title, selection);
 		setTitle(title);
 		setDescription(description);
@@ -63,25 +64,30 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 * @return <code>true</code> if the file name is valid
 	 */
 	private boolean validateFilename() {
-		// TODO validate the fileName to ensure that the given name will not result in overwriting an existing resource.
-		
-//		if ((getFileName() != null) && getFileName().endsWith("." + IPapyrusUIConstants.MODEL_EXTENSION)) {
-//			// check if a semantic model already exist
-//		//	IPath semanticModelPath = Platform.getLocation().append(getContainerFullPath()).append(getFileName()).removeFileExtension().addFileExtension(UMLResource.FILE_EXTENSION);
-//			if (!createFromSemanticModel /*&& semanticModelPath.toFile().exists()*/) {
-//				setErrorMessage("'" + semanticModelPath.lastSegment() + "' already exist. " + "Select this and restart this wizard to create a new '" + IPapyrusUIConstants.MODEL_EXTENSION
-//						+ "' model " + "from an existing semantic model!");
-//			} else {
-//				return true;
-//			}
-//		} else {
-//			setErrorMessage("The 'file' name must end with the extension ." + IPapyrusUIConstants.MODEL_EXTENSION);
-//		}
-//		return false;
+		// TODO validate the fileName to ensure that the given name will not result in overwriting
+		// an existing resource.
+
+		// if ((getFileName() != null) && getFileName().endsWith("." +
+		// IPapyrusUIConstants.MODEL_EXTENSION)) {
+		// // check if a semantic model already exist
+		// // IPath semanticModelPath =
+		// Platform.getLocation().append(getContainerFullPath()).append(getFileName()).removeFileExtension().addFileExtension(UMLResource.FILE_EXTENSION);
+		// if (!createFromSemanticModel /*&& semanticModelPath.toFile().exists()*/) {
+		// setErrorMessage("'" + semanticModelPath.lastSegment() + "' already exist. " +
+		// "Select this and restart this wizard to create a new '" +
+		// IPapyrusUIConstants.MODEL_EXTENSION
+		// + "' model " + "from an existing semantic model!");
+		// } else {
+		// return true;
+		// }
+		// } else {
+		// setErrorMessage("The 'file' name must end with the extension ." +
+		// IPapyrusUIConstants.MODEL_EXTENSION);
+		// }
+		// return false;
 		return true;
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */

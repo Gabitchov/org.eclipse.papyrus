@@ -202,7 +202,7 @@ public class TilePartContainer<T> {
 			// @TODO remove the cast by changing the method. Only folder can be
 			// source and target
 			final TabFolderPart<T> sourcePart = (TabFolderPart<T>) rootPart.findPart(draggedObject); // (ITilePart)
-																										// draggedObject;
+			// draggedObject;
 			// Compute src tab index
 			// @TODO move that and previous in the sender of drag event. Use a
 			// class containing both as draggedObject.

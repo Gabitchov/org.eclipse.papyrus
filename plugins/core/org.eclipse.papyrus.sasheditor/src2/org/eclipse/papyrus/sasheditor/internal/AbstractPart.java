@@ -76,7 +76,7 @@ public abstract class AbstractPart {
 	 * @return
 	 */
 	public boolean isOrphaned() {
-		return garbageState == GarbageState.ORPHANED;
+		return GarbageState.ORPHANED.equals(garbageState);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public abstract class AbstractPart {
 	 */
 	public boolean isUnchecked() {
 
-		return garbageState == GarbageState.UNVISITED;
+		return GarbageState.UNVISITED.equals(garbageState);
 	}
 
 	/**

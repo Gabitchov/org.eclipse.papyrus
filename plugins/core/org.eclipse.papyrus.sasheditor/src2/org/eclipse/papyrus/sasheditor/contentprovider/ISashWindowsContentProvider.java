@@ -125,4 +125,10 @@ public interface ISashWindowsContentProvider {
 	 */
 	public void setCurrentFolder(Object rawModel);
 
+	/**
+	 * Returns the current tab folder.
+	 * 
+	 * @return The current tab folder.
+	 */
+	public Object getCurrentFolder();
 }

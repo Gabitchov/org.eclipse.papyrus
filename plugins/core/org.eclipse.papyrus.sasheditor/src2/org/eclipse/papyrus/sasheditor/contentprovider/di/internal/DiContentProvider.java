@@ -164,6 +164,17 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
+	 * Overrides getCurrentFolder.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
+	 */
+	public Object getCurrentFolder() {
+		return diSashModel.getCurrentSelection();
+	}
+
+	/**
 	 * Get the node used as root of the SashWindows. For now, this is the first window.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getRootModel()

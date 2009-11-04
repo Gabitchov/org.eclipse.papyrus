@@ -16,7 +16,6 @@ package org.eclipse.papyrus.core.extension.editorcontext;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.ui.IEditorInput;
 
 /**
  * Abstract implementation of the interface {@link IEditorContext}
@@ -24,10 +23,8 @@ import org.eclipse.ui.IEditorInput;
  * @author Remi Schnekenburger
  * @author Patrick Tessier
  */
+@Deprecated
 public abstract class AbstractEditorContext implements IEditorContext {
-
-	/** default edit domain shared among editors */
-	private DiagramEditDomain diagramEditDomain;
 
 	/** multi editor linked to the context */
 	private IMultiDiagramEditor multiEditor;
@@ -35,27 +32,18 @@ public abstract class AbstractEditorContext implements IEditorContext {
 	/**
 	 * {@inheritDoc}
 	 */
-	public DiagramEditDomain getDiagramEditDomain() {
-		return diagramEditDomain;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
 		this.multiEditor = multiEditor;
-		setDiagramEditDomain(this.multiEditor.getDiagramEditDomain());
 	}
 
 	/**
+	 * Overrides getDiagramEditDomain.
+	 * 
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.core.extension.editorcontext.IEditorContext#getDiagramEditDomain()
 	 */
-	public void setDiagramEditDomain(DiagramEditDomain domain) {
-		diagramEditDomain = domain;
+	public DiagramEditDomain getDiagramEditDomain() {
+		return multiEditor.getDiagramEditDomain();
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public abstract void setInput(IEditorInput input);
 }

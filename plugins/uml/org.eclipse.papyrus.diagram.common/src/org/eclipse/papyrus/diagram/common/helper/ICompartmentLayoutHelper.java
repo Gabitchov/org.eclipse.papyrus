@@ -19,24 +19,24 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.papyrus.diagram.common.commands.setLayoutKindCommand;
 
 /**
- * the purpose of these kind of object is to.
- * All subclasses are singletons.
+ * the purpose of these kind of object is to. All subclasses are singletons.
  */
 public interface ICompartmentLayoutHelper {
-	
+
 	/**
 	 * Apply layout on the edit part by taking in account the good toolkit.
 	 */
 	public void applyLayout(AbstractGraphicalEditPart editPart);
-	
-	
+
 	/**
 	 * Sets the layout kind on view.
 	 * 
-	 * @param layoutKind the new layout kind on view
+	 * @param layoutKind
+	 *            the new layout kind on view
 	 */
-	public setLayoutKindCommand setLayoutKindOnView (TransactionalEditingDomain domain, EModelElement view,String layoutKind);
-	
+	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view,
+			String layoutKind);
+
 	/**
 	 * Gets the layout kind from view.
 	 * 

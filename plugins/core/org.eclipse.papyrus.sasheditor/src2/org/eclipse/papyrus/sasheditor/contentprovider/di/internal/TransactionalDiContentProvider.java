@@ -10,6 +10,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.sashwindows.di.TabFolder;
 
 /**
  * A content provider based on EMF di and using Transactions. This implementation is a wrapper on
@@ -53,8 +54,6 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * 
 	 */
 	public void addPage(final Object page) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
-
 		RecordingCommand command = new RecordingCommand(editingDomain) {
 
 			@Override
@@ -64,7 +63,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 			}
 		};
 
-		editingDomain.getCommandStack().execute(command);
+		getTransactionalEditingDomain().getCommandStack().execute(command);
 	}
 
 	/**
@@ -132,18 +131,32 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param rawModel
 	 */
 	public void setCurrentFolder(final Object rawModel) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		// Only fire the change if it *really* change !
+		if (rawModel instanceof TabFolder && !((TabFolder) rawModel).equals(getCurrentFolder())) {
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+			RecordingCommand command = new RecordingCommand(editingDomain) {
 
-			@Override
-			protected void doExecute() {
-				diContentProvider.setCurrentFolder(rawModel);
+				@Override
+				protected void doExecute() {
+					diContentProvider.setCurrentFolder(rawModel);
 
-			}
-		};
+				}
+			};
 
-		editingDomain.getCommandStack().execute(command);
+			getTransactionalEditingDomain().getCommandStack().execute(command);
+
+		}
+	}
+
+	/**
+	 * Overrides getCurrentFolder.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
+	 */
+	public TabFolder getCurrentFolder() {
+		return (TabFolder) diContentProvider.getCurrentFolder();
 	}
 
 	/**

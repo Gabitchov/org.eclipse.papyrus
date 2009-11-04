@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import java.util.logging.Logger;
-
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
@@ -32,16 +30,9 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * 
  * 
  * @author dumoulin
- * 
- * @param T
- *            Type of the external model representing the sash.
  */
 @SuppressWarnings( { "restriction" })
 public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
-
-	/** Log object */
-	// @unused
-	Logger log = Logger.getLogger(getClass().getName());
 
 	/** Interface to the model */
 	protected ISashPanelModel model;
@@ -107,10 +98,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-
 		createControl(parent);
-		// activate();
-		// createChildrenControl();
 	}
 
 	/**
@@ -189,15 +177,6 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	@Override
 	public void reparent(IPanelParent newParent, Composite swtParent) {
 		parent = newParent;
-		// Create control if needed
-		// This can happen if the TilePart is just created after a refresh
-		// if(getControl() == null)
-		// {
-		// container = createContainer(parent.getControl());
-		// }
-		// Reparent the control
-		assert (getControl() != null);
-		// getControl().setParent(newParent.getControl()) ;
 		getControl().setParent(swtParent);
 		garbageState = GarbageState.REPARENTED;
 	}
@@ -221,34 +200,13 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 
 	/**
 	 * Dispose the TilePart and its controls.
-	 * 
-	 * @param isRecursive
-	 *            If true, also dispose children.
 	 */
-	public void dispose(boolean isRecursive) {
-
-		// Dispose children if requested
-		if (isRecursive) {
-			for (AbstractPanelPart childModel : currentChildParts) {
-				if (childModel != null) {
-					childModel.dispose();
-				}
-			}
-		}
-
-		// dispose local resources
+	@Override
+	public void dispose() {
 		if (container != null && !container.isDisposed()) {
 			container.dispose();
 		}
 		container = null;
-	}
-
-	/**
-	 * Dispose the TilePart and its controls.
-	 */
-	@Override
-	public void dispose() {
-		dispose(false);
 	}
 
 	/**
@@ -370,12 +328,12 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	/**
 	 * Synchronize the sash.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart#synchronize2(org.eclipse.papyrus.sasheditor.internal.PartLists)
+	 * @see org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart#synchronize(org.eclipse.papyrus.sasheditor.internal.PartLists)
 	 * 
 	 * @param partMap
 	 */
 	@Override
-	public void synchronize2(PartLists partMap) {
+	public void synchronize(PartLists partMap) {
 
 		// Compare currentChildParts and node model
 		assert (model.getChildren().size() == 2);
@@ -387,13 +345,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 
 		// Now recursively call synchronize on childs.
 		for (AbstractPanelPart currentChildPart : currentChildParts) {
-			currentChildPart.synchronize2(partMap);
-			// // Set the child controls at the right place
-			// if(i==0)
-			// container.moveAbove(currentChildParts[i].getControl());
-			// else
-			// container.moveBelow(currentChildParts[i].getControl());
-			//
+			currentChildPart.synchronize(partMap);
 		}
 
 	}
@@ -493,6 +445,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	/**
 	 * Show tile status. Used for debug purpose
 	 */
+	@Deprecated
 	protected void showStatus() {
 		System.out.println("sash[" + currentChildParts.length + "]:" + ", disposed=" + container.isDisposed()
 				+ ", visible=" + container.isVisible() + ", garbState=" + garbageState + ", " + this);

@@ -83,8 +83,7 @@ public class SelectRootElementPage extends WizardPage {
 		if (modelViewer != null) {
 			if (selectedModelElement != null) {
 				modelViewer.setInput(selectedModelElement.eResource());
-				modelViewer.setSelection(new StructuredSelection(
-						selectedModelElement));
+				modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 			} else {
 				modelViewer.setInput(null);
 			}
@@ -103,34 +102,29 @@ public class SelectRootElementPage extends WizardPage {
 		setControl(plate);
 
 		Label label = new Label(plate, SWT.NONE);
-		//label.setText("Select the root model element");
+		// label.setText("Select the root model element");
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 
-		modelViewer = new TreeViewer(plate, SWT.SINGLE | SWT.H_SCROLL
-				| SWT.V_SCROLL | SWT.BORDER);
+		modelViewer = new TreeViewer(plate, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 
 		GridData layoutData = new GridData(GridData.FILL_BOTH);
 		layoutData.heightHint = 300;
 		layoutData.widthHint = 300;
 		modelViewer.getTree().setLayoutData(layoutData);
 		AdapterFactory adapterFactory = createAdapterFactory();
-		modelViewer.setContentProvider(new AdapterFactoryContentProvider(
-				adapterFactory));
-		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(
-				adapterFactory));
+		modelViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		if (selectedModelElement != null) {
 			modelViewer.setInput(selectedModelElement.eResource());
-			modelViewer.setSelection(new StructuredSelection(
-					selectedModelElement));
+			modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 		}
 
-		modelViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
-					public void selectionChanged(SelectionChangedEvent event) {
-						updateSelection((IStructuredSelection) event
-								.getSelection());
-					}
-				});
+		modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				updateSelection((IStructuredSelection) event.getSelection());
+			}
+		});
 
 		setPageComplete(validatePage());
 	}
@@ -140,12 +134,10 @@ public class SelectRootElementPage extends WizardPage {
 		if (selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
 			if (selectedElement instanceof IWrapperItemProvider) {
-				selectedElement = ((IWrapperItemProvider) selectedElement)
-						.getValue();
+				selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
 			}
 			if (selectedElement instanceof FeatureMap.Entry) {
-				selectedElement = ((FeatureMap.Entry) selectedElement)
-						.getValue();
+				selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
 			}
 			if (selectedElement instanceof EObject) {
 				selectedModelElement = (EObject) selectedElement;
@@ -166,8 +158,7 @@ public class SelectRootElementPage extends WizardPage {
 
 	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		// custom icons for model elements
-		factories.add(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		factories.add(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());
 	}

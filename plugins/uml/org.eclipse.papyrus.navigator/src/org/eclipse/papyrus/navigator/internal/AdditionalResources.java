@@ -13,7 +13,6 @@
  **********************************************************************/
 package org.eclipse.papyrus.navigator.internal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,6 +24,7 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
  * @author <a href="mailto:david.sciamma@anyware-tech.com">David Sciamma</a>
  * @author <a href="mailto:jacques.lescot@anyware-tech.com">Jacques Lescot</a>
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  */
 public class AdditionalResources {
 
@@ -37,7 +37,6 @@ public class AdditionalResources {
 	 *            the ResourceSet to be used to load these Additional Resources
 	 */
 	public AdditionalResources(DiResourceSet diResourceSet) {
-		super();
 		this.diResourceSet = diResourceSet;
 	}
 
@@ -47,16 +46,6 @@ public class AdditionalResources {
 	 * @return the list of additional resources
 	 */
 	public List<Resource> getResources() {
-		List<Resource> additionnalResources = new ArrayList<Resource>();
-		for (Resource resource : diResourceSet.getResourceSet().getResources()) {
-			// ignore di, notation and domain resources
-			if (resource == diResourceSet.getDiResource() || resource == diResourceSet.getNotationResource()
-					|| resource == diResourceSet.getModelResource()) {
-				continue;
-			}
-			additionnalResources.add(resource);
-		}
-
-		return additionnalResources;
+		return diResourceSet.getAdditionalResources();
 	}
 }

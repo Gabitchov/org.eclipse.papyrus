@@ -38,6 +38,6 @@ public interface IMultiPageEditorActionBarContributor {
 	 *            the new active editor, or <code>null</code> if there is no active page, or if the
 	 *            active page does not have a corresponding editor
 	 */
-	public abstract void setActivePage(IEditorPart activeEditor);
+	void setActivePage(IEditorPart activeEditor);
 
 }

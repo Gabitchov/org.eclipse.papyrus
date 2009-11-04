@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.swt.SWT;
@@ -22,16 +22,11 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolder2Adapter;
 import org.eclipse.swt.custom.CTabFolderEvent;
 import org.eclipse.swt.custom.CTabItem;
-import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.events.TraverseEvent;
-import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
@@ -72,7 +67,6 @@ public class PTabFolder {
 		 */
 		public void handleEvent(Event event) {
 			Point globalPos = new Point(event.x, event.y);
-			System.out.println("menuListener(" + globalPos + ")");
 			handleContextMenu(globalPos, event);
 		}
 	};
@@ -85,87 +79,21 @@ public class PTabFolder {
 		}
 	};
 
-	// @unused
-	private final Listener mouseUpListener = new Listener() {
-
-		public void handleEvent(Event e) {
-			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
-			System.out.println("mouseUpListener(" + globalPos + ", event=" + e + ")");
-		}
-	};
-
 	private final Listener activateListener = new Listener() {
 
 		public void handleEvent(Event e) {
 			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
-			System.out.println("activateListener(" + globalPos + ", event=" + e + ")");
 			handleFolderReselected(globalPos, null);
 		}
 	};
-
-	// @unused
-	private final SelectionListener selectionListener = new SelectionListener() {
-
-		public void widgetDefaultSelected(SelectionEvent e) {
-			System.out.println("selectionListener(event=" + e + ")");
-		}
-
-		public void widgetSelected(SelectionEvent e) {
-			System.out.println("selectionListener(event=" + e + ")");
-		}
-
-	};
-
-	// @unused
-	private final TraverseListener traverseListener = new TraverseListener() {
-
-		public void keyTraversed(TraverseEvent e) {
-			// System.out.println("traverseListener(event=" + e + ")");
-		}
-
-	};
-
-	/**
-	 * 
-	 */
-	private final MouseListener mouseListener = new MouseListener() {
-
-		public void mouseDoubleClick(MouseEvent e) {
-			// System.out.println("mouseDoubleClick(event=" + e + ")");
-		}
-
-		public void mouseDown(MouseEvent e) {
-			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
-			// System.out.println("mouseDown(" + globalPos + ", event=" + e +
-			// ")");
-			handleFolderReselected(globalPos, e);
-		}
-
-		public void mouseUp(MouseEvent e) {
-			// System.out.println("mousemouseUpListener(event=" + e + ")");
-		}
-
-	};
-
-	// private DragDetectListener dragDetectListener = new DragDetectListener()
-	// {
-	//
-	// public void dragDetected(DragDetectEvent e) {
-	// Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
-	// handleDragDetectStarted(globalPos, e);
-	// }
-	//
-	// };
 
 	private final MenuDetectListener menuDetectListener = new MenuDetectListener() {
 
 		public void menuDetected(MenuDetectEvent e) {
 			// Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
 			Point globalPos = new Point(e.x, e.y);
-			System.out.println("menuDetected(" + globalPos + ")");
 			handleMenuDetect(globalPos, e);
 		}
-
 	};
 
 	/**
@@ -234,7 +162,7 @@ public class PTabFolder {
 			return;
 		}
 
-		detachListeners(tabFolder, false);
+		detachListeners(tabFolder);
 		tabFolder.dispose();
 	}
 
@@ -250,61 +178,23 @@ public class PTabFolder {
 		theControl.addMenuDetectListener(menuDetectListener);
 		// Both listener works. Choose one
 		PresentationUtil.addDragListener(theControl, dragListener);
-		// theControl.addDragDetectListener(dragDetectListener);
-		// Listen on mouse enter event.
-		// theControl.addListener(SWT.MouseEnter, mouseEnterListener);
-		// theControl.addListener(SWT.MouseUp, mouseUpListener);
-		// tabFolder.addSelectionListener(selectionListener);
-		// tabFolder.addTraverseListener(traverseListener);
 
-		theControl.addMouseListener(mouseListener);
 		theControl.addListener(SWT.Activate, activateListener);
-
-		// if (recursive && theControl instanceof Composite) {
-		// Composite composite = (Composite) theControl;
-		// Control[] children = composite.getChildren();
-		//
-		// for (int i = 0; i < children.length; i++) {
-		// Control control = children[i];
-		//
-		// attachListeners(control, recursive);
-		// }
-		// }
 	}
 
 	/**
 	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.
 	 * detachListeners(Control, boolean)
 	 */
-	protected void detachListeners(Control theControl, boolean recursive) {
+	private void detachListeners(Control theControl) {
 		theControl.removeListener(SWT.MenuDetect, menuListener);
 		theControl.removeMenuDetectListener(menuDetectListener);
-		//
 		PresentationUtil.removeDragListener(theControl, dragListener);
-		// theControl.removeDragDetectListener(dragDetectListener);
-		// theControl.removeListener(SWT.MouseUp, mouseUpListener);
-		theControl.removeMouseListener(mouseListener);
 		theControl.removeListener(SWT.Activate, activateListener);
-
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
-			Control[] children = composite.getChildren();
-
-			for (Control control : children) {
-				detachListeners(control, recursive);
-			}
-		}
 	}
 
 	protected void handleContextMenu(Point displayPos, Event e) {
-		// if (isOnBorder(displayPos)) {
-		// return;
-		// }
-
 		CTabItem tab = getItem(displayPos);
-
-		System.out.println(this.getClass().getName() + ".handleContextMenu() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_SYSTEM_MENU, tab, displayPos);
 		listenersManager.fireContextMenuEvent(tab, e);
 	}
 
@@ -313,14 +203,7 @@ public class PTabFolder {
 	 * process. DragUtil.performDrag() will contains the tabFolder or the dragged tab.
 	 */
 	protected void handleDragStarted(Point displayPos, Event e) {
-
-		// if (isOnBorder(displayPos)) {
-		// return;
-		// }
-
 		CTabItem tab = getItem(displayPos);
-		System.out.println(this.getClass().getName() + ".handleDragStarted() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_DRAG_START, tab, displayPos);
 
 		boolean allowSnapping = true;
 		Rectangle sourceBounds = Geometry.toDisplay(tabFolder.getParent(), tabFolder.getBounds());
@@ -329,24 +212,6 @@ public class PTabFolder {
 		} else { // drag item
 			DragUtil.performDrag(tab, sourceBounds, displayPos, allowSnapping);
 		}
-	}
-
-	/**
-	 * 
-	 * @param displayPos
-	 * @param e
-	 *            TODO REmove, it is not used.
-	 */
-	// @unused
-	private void handleDragDetectStarted(Point displayPos, DragDetectEvent e) {
-
-		// if (isOnBorder(displayPos)) {
-		// return;
-		// }
-
-		CTabItem tab = getItem(displayPos);
-		System.out.println(this.getClass().getName() + ".handleDragDetectStarted() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_DRAG_START, tab, displayPos);
 	}
 
 	/**
@@ -360,10 +225,7 @@ public class PTabFolder {
 		if (isOnBorder(displayPos)) {
 			return;
 		}
-
 		CTabItem tab = getItem(displayPos);
-		System.out.println(this.getClass().getName() + ".handleMenuDetectStarted() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_DRAG_START, tab, displayPos);
 		listenersManager.fireMenuDetectEvent(tab, e);
 	}
 
@@ -377,14 +239,6 @@ public class PTabFolder {
 	 * @param e
 	 */
 	private void handleFolderReselected(Point displayPos, MouseEvent e) {
-
-		// if (isOnBorder(displayPos)) {
-		// return;
-		// }
-
-		// System.out.println(this.getClass().getName() +
-		// ".handleMouseDown() for item=" + getItem(displayPos));
-
 		int itemIndex = getItemIndex(displayPos);
 		// If click is not from an item, it can come from a click on border.
 		// restore the last selected item
@@ -462,7 +316,6 @@ public class PTabFolder {
 	 * 
 	 */
 	protected void fireItemClosed(CTabFolderEvent event, int pageIndex) {
-		System.out.println("fireItemClosed: page=" + pageIndex);
 		listenersManager.fireItemClosed(event, pageIndex);
 
 	}
@@ -471,7 +324,6 @@ public class PTabFolder {
 	 * Fire a PageChangeEvent.
 	 */
 	protected void firePageChange(int newPageIndex) {
-		System.out.println("firePageChange: page=" + newPageIndex);
 		listenersManager.firePageChange(newPageIndex);
 	}
 
@@ -487,7 +339,6 @@ public class PTabFolder {
 	 */
 	public Rectangle getTabArea() {
 		Rectangle bounds = DragUtil.getDisplayBounds(tabFolder);
-		// Rectangle bounds = tabFolder.getBounds();
 		//
 		if (tabFolder.getTabPosition() == SWT.TOP) {
 			bounds.height = tabFolder.getTabHeight();
@@ -497,11 +348,6 @@ public class PTabFolder {
 		}
 
 		return bounds;
-
-		// Rectangle bounds = DragUtil.getDisplayBounds(tabFolder);
-		// Rectangle res = Geometry.getExtrudedEdge(bounds,
-		// tabFolder.getTabPosition(), tabFolder.getTabHeight());
-		// return res;
 	}
 
 	/**
@@ -582,7 +428,7 @@ public class PTabFolder {
 		/**
 		 * List of event listeners.
 		 */
-		List<IPTabFolderListener> listeners = new ArrayList<IPTabFolderListener>();
+		Set<IPTabFolderListener> listeners = new HashSet<IPTabFolderListener>();
 
 		/**
 		 * Add a listener
@@ -590,10 +436,6 @@ public class PTabFolder {
 		 * @param listener
 		 */
 		public void addListener(IPTabFolderListener listener) {
-			if (listeners.contains(listener)) {
-				return;
-			}
-
 			listeners.add(listener);
 		}
 

@@ -709,6 +709,7 @@ public class ConstraintName2EditPart extends CompartmentEditPart implements ITex
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

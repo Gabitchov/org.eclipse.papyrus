@@ -14,8 +14,6 @@
 
 package org.eclipse.papyrus.core.editor;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.EventObject;
@@ -25,11 +23,16 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.NotificationFilter;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
@@ -40,9 +43,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorNotFoundException;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.MultiDiagramException;
 import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
@@ -50,6 +51,8 @@ import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedAc
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.BusinessModelResolver;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
@@ -67,7 +70,6 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
-import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -84,16 +86,12 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a> Refactoring.
  * 
  *         TODO : remove GMF dependency !
  */
-public class CoreMultiDiagramEditor extends
-/* MultiPageEditor */AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor,
-		IDiagramWorkbenchPart {
-
-	// public class CoreMultiDiagramEditor extends MultiPageEditor
-	// /*AbstractMultiPageSashEditor */ implements IMultiDiagramEditor,
-	// ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
+public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor,
+		ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
@@ -105,6 +103,7 @@ public class CoreMultiDiagramEditor extends
 	private IEditorFactoryRegistry editorRegistry;
 
 	/** Registry for editor contexts */
+	@Deprecated
 	private IEditorContextRegistry editorContextRegistry;
 
 	/** ContentOutline registry */
@@ -125,7 +124,15 @@ public class CoreMultiDiagramEditor extends
 	/**
 	 * Context associated to this backbone editor.
 	 */
-	private BackboneContext defaultContext;
+	@Deprecated
+	private BackboneContext backboneContext;
+
+	private TransactionalEditingDomain transactionalEditingDomain;
+
+	/**
+	 * Object managing models lifeCycle.
+	 */
+	protected DiResourceSet resourceSet = new DiResourceSet();
 
 	/**
 	 * 
@@ -133,34 +140,13 @@ public class CoreMultiDiagramEditor extends
 	private TabbedPropertySheetPage tabbedPropertySheetPage = null;
 
 	/**
-	 * Flag reflecting the editor state. The flag is set by listeners on model changes
-	 */
-	private boolean toSave = false;
-
-	/** gef editing domain shared among all editors in this multi diagram editor */
-	private DiagramEditDomain diagramEditDomain;
-
-	/**
 	 * My editing domain provider.
 	 */
 	private final IEditingDomainProvider domainProvider = new IEditingDomainProvider() {
 
 		public EditingDomain getEditingDomain() {
-			return CoreMultiDiagramEditor.this.defaultContext.getTransactionalEditingDomain();
+			return transactionalEditingDomain;
 		}
-	};
-
-	/**
-	 * Listening on diagram changes. Only listen on diagram add/delete
-	 */
-	// @unused
-	private final PropertyChangeListener diagramChangeListener = new PropertyChangeListener() {
-
-		public void propertyChange(PropertyChangeEvent evt) {
-			// refresh tabs.
-			refreshTabs();
-		}
-
 	};
 
 	/**
@@ -172,30 +158,9 @@ public class CoreMultiDiagramEditor extends
 		 * Called when the content is changed. RefreshTabs.
 		 */
 		public void contentChanged(ContentEvent event) {
-			System.out.println("contentChanged()");
 			refreshTabs();
 		}
 	};
-
-	/**
-	 * Listen on change on commandStack. Mark editor as dirty if needed.
-	 */
-	private final CommandStackListener commandStackListener = new CommandStackListener() {
-
-		public void commandStackChanged(EventObject event) {
-			firePropertyChange(IEditorPart.PROP_DIRTY);
-			markDirty();
-		}
-
-	};
-
-	/**
-	 * Constructor.
-	 */
-	public CoreMultiDiagramEditor() {
-		super();
-		setDiagramEditDomain(new DiagramEditDomain(this));
-	}
 
 	/**
 	 * Create a PageEditor for the specified model. Default implementation delegates to
@@ -208,10 +173,10 @@ public class CoreMultiDiagramEditor extends
 	 *             No editor handling the model can be found.
 	 */
 	// @unused
-	public IEditorPart createPageEditor(Object model) throws MultiDiagramException {
-		IEditorPart part = getEditorRegistry().createEditorFor(getContextRegistry(), model);
-		return part;
-	}
+	// public IEditorPart createPageEditor(Object model) throws MultiDiagramException {
+	// IEditorPart part = getEditorRegistry().createEditorFor(getContextRegistry(), model);
+	// return part;
+	// }
 
 	/**
 	 * Get the EditorActionBarContributor that should be associated with the editor of the specified
@@ -223,26 +188,27 @@ public class CoreMultiDiagramEditor extends
 	 * 
 	 */
 	// @unused
-	public EditorActionBarContributor getActionBarContributor(Object editorModel) {
-
-		try {
-			Object contributorId = getEditorRegistry().getEditorDescriptorFor(editorModel).getActionBarContributorId();
-			return getActionBarContributorRegistry().getActionBarContributor(contributorId);
-		} catch (BackboneException e) {
-			log.warning(e.getMessage());
-			// e.printStackTrace();
-		} catch (MultiDiagramException e) {
-			log.warning(e.getMessage());
-			// e.printStackTrace();
-		}
-		return null;
-	}
+	// public EditorActionBarContributor getActionBarContributor(Object editorModel) {
+	// try {
+	// Object contributorId =
+	// getEditorRegistry().getEditorDescriptorFor(editorModel).getActionBarContributorId();
+	// return getActionBarContributorRegistry().getActionBarContributor(contributorId);
+	// } catch (BackboneException e) {
+	// log.warning(e.getMessage());
+	// // e.printStackTrace();
+	// } catch (MultiDiagramException e) {
+	// log.warning(e.getMessage());
+	// // e.printStackTrace();
+	// }
+	// return null;
+	// }
 
 	/**
 	 * Get the contextRegistry
 	 * 
-	 * @return
+	 * @return The context registry
 	 */
+	@Deprecated
 	public IEditorContextRegistry getContextRegistry() {
 		return editorContextRegistry;
 	}
@@ -251,16 +217,11 @@ public class CoreMultiDiagramEditor extends
 	 * Create the IEditorContextRegistry containing registered contexts. Subclass should implements
 	 * this method in order to return the registry associated to the extension point namespace.
 	 * 
-	 * @param defaultContext
-	 * @param input
-	 * @param site
-	 * @param input
-	 * @param site
 	 * @return the IEditorContextRegistry for nested editor descriptors
 	 */
+	@Deprecated
 	protected IEditorContextRegistry createEditorContextRegistry() {
-		IEditorContextRegistry registry = new EditorContextRegistry(this, Activator.PLUGIN_ID);
-		return registry;
+		return new EditorContextRegistry(this, Activator.PLUGIN_ID);
 	}
 
 	/**
@@ -361,9 +322,6 @@ public class CoreMultiDiagramEditor extends
 
 		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
 
-		// Listen on contentProvider changes
-		sashModelMngr.getSashModelContentChangedProvider().addContentChangedListener(contentChangedListener);
-
 		return pageProvider;
 	}
 
@@ -457,11 +415,11 @@ public class CoreMultiDiagramEditor extends
 		}
 
 		if (BackboneContext.class == adapter) {
-			return defaultContext;
+			return backboneContext;
 		}
 
 		if (EditingDomain.class == adapter) {
-			return defaultContext.getTransactionalEditingDomain();
+			return transactionalEditingDomain;
 		}
 
 		// EMF requirements
@@ -504,92 +462,111 @@ public class CoreMultiDiagramEditor extends
 		// Init super
 		super.init(site, input);
 
-		// Init this class
-		try {
-			defaultContext = createDefaultContext(site, input);
-		} catch (BackboneException e) {
-			throw new PartInitException("Can't create default context.", e);
-		}
-
-		// configureDiagramEditDomain();
-		EditingDomainService editingDomainService = new EditingDomainService(defaultContext);
-		editingDomainService.addCommandStackListener(commandStackListener);
+		// FIXME What for ?? Was used by the BackbonContext...
+		BusinessModelResolver.getInstance();
 
 		// Load resources
 		IFile file = ((IFileEditorInput) input).getFile();
-		defaultContext.getResourceSet().loadResources(file);
+		resourceSet.loadResources(file);
+
+		// Create the 2 edit domains
+		transactionalEditingDomain = resourceSet.getTransactionalEditingDomain();
 
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
 
+		// Just for backwards compatibility
+		// FIXME Remove the following lines
+		// =============
 		// Create registries
 		// editorContextRegistry should be created after site, input and
 		// defaultContext are created.
 		editorContextRegistry = createEditorContextRegistry();
-		editorContextRegistry.registerContext("defaultContext", defaultContext);
+		backboneContext = new BackboneContext(this);
+		editorContextRegistry.registerContext(BackboneContext.BACKBONE_CONTEXT_ID, backboneContext);
+		// =============
+
 		editorRegistry = createEditorRegistry();
 
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
 		servicesRegistry.add(IEditorContextRegistry.class, 1, editorContextRegistry);
-
-		// Add EditingDomain as service
-		servicesRegistry.add(TransactionalEditingDomain.class, 1, defaultContext.getTransactionalEditingDomain());
+		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
 
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
 		// TODO : create appropriate Resource for the contentProvider, and pass
 		// it here.
 		// This will allow to remove the old sash stuff.
-		setContentProvider(createPageProvider(pageModelRegistry, defaultContext.getResourceSet().getDiResource(),
-				defaultContext.getTransactionalEditingDomain()));
+		setContentProvider(createPageProvider(pageModelRegistry, resourceSet.getDiResource(),
+				transactionalEditingDomain));
 		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
 
+		// Listen to the modifications of the EMF model
+		transactionalEditingDomain.getCommandStack().addCommandStackListener(
+				new org.eclipse.emf.common.command.CommandStackListener() {
+
+					public void commandStackChanged(EventObject event) {
+						getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+							public void run() {
+								// System.out.println(getTitle() + " > GEF Stack changed");
+								firePropertyChange(IEditorPart.PROP_DIRTY);
+							}
+						});
+					}
+				});
+
+		// Let's listen to the resource set change
+		transactionalEditingDomain.addResourceSetListener(new ResourceSetListener() {
+
+			public NotificationFilter getFilter() {
+				return null;
+			}
+
+			public boolean isAggregatePrecommitListener() {
+				return false;
+			}
+
+			public boolean isPostcommitOnly() {
+				return true;
+			}
+
+			public boolean isPrecommitOnly() {
+				return false;
+			}
+
+			public void resourceSetChanged(ResourceSetChangeEvent event) {
+				if (event.getTransaction() != null && event.getTransaction().getStatus().isOK()) {
+					getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+						public void run() {
+							firePropertyChange(IEditorPart.PROP_DIRTY);
+						}
+					});
+				}
+			}
+
+			public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+				return null;
+			}
+
+		});
 		// Set editor name
 		setPartName(file.getName());
 
+		// Listen on contentProvider changes
+		sashModelMngr.getSashModelContentChangedProvider().addContentChangedListener(contentChangedListener);
 	}
 
 	/**
+	 * Overrides getPropertySheetPage.
 	 * 
-	 */
-	@Override
-	protected void activate() {
-		super.activate();
-
-		// Show the model Explorer View
-		// TODO Use the extension mechanism ?
-		// try {
-		// if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
-		// if
-		// (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-		// != null) {
-		// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPapyrusUIConstants.MODEL_EXPLORER_VIEW_ID,
-		// null, IWorkbenchPage.VIEW_ACTIVATE);
-		// }
-		// }
-		// } catch (PartInitException e) {
-		// String message = "Error while  showing the Model Explorer view." +
-		// e.getMessage();
-		// IStatus status = new Status(IStatus.ERROR,
-		// Activator.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
-		// message, e);
-		// Activator.getDefault().getLog().log(status);
-		// // throw new
-		// RuntimeException("Error while  showing the Model Explorer view.", e);
-		// }
-
-	}
-
-	@Override
-	protected void deactivate() {
-		super.deactivate();
-	}
-
-	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.core.editor.IMultiDiagramEditor#getPropertySheetPage()
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
 		if (this.tabbedPropertySheetPage == null) {
@@ -599,26 +576,20 @@ public class CoreMultiDiagramEditor extends
 	}
 
 	/**
-	 * Create the default context used to control models life cycles.
+	 * Overrides doSave.
 	 * 
-	 * @param site
-	 * @param input
-	 * @throws BackboneException
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.EditorPart#doSave(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	private BackboneContext createDefaultContext(IEditorSite site, IEditorInput input) throws BackboneException {
-		BackboneContext defaultContext = new BackboneContext();
-		defaultContext.init(this);
-
-		return defaultContext;
-	}
-
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		try {
 			// Save each associated resource
-			defaultContext.save(monitor);
+			resourceSet.save(monitor);
 			markSaveLocation();
 		} catch (IOException ioe) {
+			log.warning("Error during save");
 		}
 
 	}
@@ -626,18 +597,10 @@ public class CoreMultiDiagramEditor extends
 	/**
 	 * Mark the command stack of all sub-editors. Default implementation do nothing.
 	 */
+	@Override
 	protected void markSaveLocation() {
-		toSave = false;
-		getDiagramEditDomain().getCommandStack().markSaveLocation();
-		firePropertyChange(PROP_DIRTY);
-	}
-
-	/**
-	 * Mark the editor as dirty, and fire appropriate event.
-	 */
-	protected void markDirty() {
-		toSave = true;
-		firePropertyChange(PROP_DIRTY);
+		((BasicCommandStack) transactionalEditingDomain.getCommandStack()).saveIsDone();
+		super.markSaveLocation();
 	}
 
 	/**
@@ -645,15 +608,20 @@ public class CoreMultiDiagramEditor extends
 	 */
 	@Override
 	public boolean isDirty() {
-		return toSave;
-		// return getDiagramEditDomain().getDiagramCommandStack().isDirty();
+		// First, look if the model part (EMF) is dirty, else look at the Graphical part (GEF/GMF)
+		return ((BasicCommandStack) transactionalEditingDomain.getCommandStack()).isSaveNeeded() || super.isDirty();
 	}
 
+	/**
+	 * Overrides doSaveAs.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.EditorPart#doSaveAs()
+	 */
 	@Override
 	public void doSaveAs() {
 		// Show a SaveAs dialog
-		toSave = false;
-		super.firePropertyChange(PROP_DIRTY);
 		Shell shell = getEditorSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
 		dialog.setOriginalFile(((IFileEditorInput) getEditorInput()).getFile());
@@ -670,7 +638,7 @@ public class CoreMultiDiagramEditor extends
 							@Override
 							public void execute(final IProgressMonitor monitor) {
 								try {
-									defaultContext.saveAs(path);
+									resourceSet.saveAs(path);
 								} catch (IOException ioe) {
 									// Debug.log(ioe);
 								}
@@ -689,51 +657,48 @@ public class CoreMultiDiagramEditor extends
 
 	}
 
+	/**
+	 * Overrides isSaveAsAllowed.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.EditorPart#isSaveAsAllowed()
+	 */
 	@Override
 	public boolean isSaveAsAllowed() {
-		return defaultContext.isSaveAsAllowed();
+		return true;
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.core.editor.IMultiDiagramEditor#getDefaultContext()
 	 */
+	@Deprecated
 	public BackboneContext getDefaultContext() {
-		return defaultContext;
+		return backboneContext;
 	}
 
+	/**
+	 * Overrides getContributorId.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor#getContributorId()
+	 */
 	public String getContributorId() {
 		// return Activator.PLUGIN_ID;
 		return "TreeOutlinePage";
 
 	}
 
-	// FIXME: Pour C�dric modif
-	@Override
-	public IEditorPart getActiveEditor() {
-		return super.getActiveEditor();
-	}
-
-	/**
-	 * Sets the default edit domain, shared among all editors
-	 * 
-	 * @param diagramEditDomain
-	 *            the diagramEditDomain to set
-	 */
-	public void setDiagramEditDomain(DiagramEditDomain diagramEditDomain) {
-		this.diagramEditDomain = diagramEditDomain;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public DiagramEditDomain getDiagramEditDomain() {
-		return diagramEditDomain;
-	}
-
 	// implements IDiagramWorkbenchPart to restore GMF standard behavior
 	// and delegate to the activeEditor
+
 	/**
+	 * Overrides getDiagram.
+	 * 
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart#getDiagram()
 	 */
 	public org.eclipse.gmf.runtime.notation.Diagram getDiagram() {
 		IEditorPart activeEditor = getActiveEditor();
@@ -745,9 +710,11 @@ public class CoreMultiDiagramEditor extends
 	}
 
 	/**
-	 * This method is called from a GMF diagram. It should only be called from GMF diagram code.
-	 * Normally, the Diagram under the Mouse is a GMF Diagram. The active Diagram can be another
-	 * Diagram, not under the mouse. This is a GMF issue.
+	 * Overrides getDiagramEditPart.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart#getDiagramEditPart()
 	 */
 	public DiagramEditPart getDiagramEditPart() {
 
@@ -762,17 +729,17 @@ public class CoreMultiDiagramEditor extends
 			return ((DiagramEditor) activeEditor).getDiagramEditPart();
 		} else {
 			// This case should never happen.
-			// throw new
-			// UnsupportedOperationException("Method should only be called from GMF code when the mouse is over a GMF diagram. it is called from "
-			// + activeEditor.getTitle() + ", "
-			// + activeEditor);
 			// Return null, as the GMF runtime now support it (since 093009)
 			return null;
 		}
 	}
 
 	/**
+	 * Overrides getDiagramGraphicalViewer.
+	 * 
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart#getDiagramGraphicalViewer()
 	 */
 	public IDiagramGraphicalViewer getDiagramGraphicalViewer() {
 		IEditorPart activeEditor = getActiveEditor();
@@ -783,8 +750,34 @@ public class CoreMultiDiagramEditor extends
 		}
 	}
 
+	/**
+	 * Overrides getEditingDomain.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.edit.domain.IEditingDomainProvider#getEditingDomain()
+	 */
 	public EditingDomain getEditingDomain() {
-		return defaultContext.getTransactionalEditingDomain();
+		return transactionalEditingDomain;
 	}
 
+	/**
+	 * Throws an UnsupportedOperationException.
+	 * 
+	 * @see org.eclipse.papyrus.core.editor.IMultiDiagramEditor#getDiagramEditDomain()
+	 */
+	public DiagramEditDomain getDiagramEditDomain() {
+		throw new UnsupportedOperationException("Not implemented. Should not be called.");
+	}
+
+	/**
+	 * Returns resourceSet.
+	 * 
+	 * @return The resourceSet.
+	 */
+	@Deprecated
+	// Removes it when Backbone is deleted
+	public DiResourceSet getResourceSet() {
+		return resourceSet;
+	}
 }

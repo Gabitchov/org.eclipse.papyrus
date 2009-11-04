@@ -184,6 +184,17 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
+	 * Overrides getCurrentFolder.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
+	 */
+	public Object getCurrentFolder() {
+		return null;
+	}
+
+	/**
 	 * A class managing a list of listeners.
 	 * 
 	 * @author dumoulin

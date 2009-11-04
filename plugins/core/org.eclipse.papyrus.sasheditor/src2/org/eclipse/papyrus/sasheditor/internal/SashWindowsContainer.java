@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
@@ -73,13 +76,15 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	protected DropTarget dropTarget;
 
+	/** A flag that indicates that the model is being synchronized. */
+	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
+
 	/**
 	 * Constructor. Build a Container without IEditor management. Trying to add a EditorPart will
 	 * result in an Exception. The ContentProvider should not contain IEditorModel.
 	 */
 	public SashWindowsContainer() {
-		this.multiEditorManager = null;
-		activePageTracker = new ActivePageTracker();
+		this(null);
 	}
 
 	/**
@@ -90,22 +95,22 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		this.multiEditorManager = multiEditorManager;
 		activePageTracker = new ActivePageTracker();
 
-		// Add listener on activePageChange.
-		// This listener will take in charge editor services switching.
-		activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager
-				.getEditorSite()));
-
+		if (multiEditorManager != null) {
+			// Add listener on activePageChange.
+			// This listener will take in charge editor services switching.
+			activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager
+					.getEditorSite()));
+		}
 	}
 
 	/**
 	 * @return the contentProvider
 	 */
 	protected ISashWindowsContentProvider getContentProvider() {
-		// Content provider should have been set.
-		assert (contentProvider != null);
 		// Double check for developement
-		if (contentProvider == null)
+		if (contentProvider == null) {
 			throw new IllegalStateException("ContentProvider should be set before calling any method requiring it.");
+		}
 
 		return contentProvider;
 	}
@@ -145,8 +150,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Create the root part for the model.
 	 */
 	private RootPart createRootPart() {
-		RootPart part = new RootPart(this);
-		return part;
+		return new RootPart(this);
 	}
 
 	/**
@@ -159,7 +163,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void pageChanged(PagePart childPart) {
-		System.out.println("pageChanged(" + childPart + ")");
 		activePageTracker.setActiveEditor(childPart);
 	}
 
@@ -173,7 +176,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void pageChangedEvent(PagePart childPart) {
-		System.out.println("pageChangedEvent(" + childPart + ")");
 		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
 		pageChanged(childPart);
 	}
@@ -187,7 +189,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void setActivePage(PagePart childPart) {
-		// System.out.println("setActivePage("+childPart+")");
 		pageChanged(childPart);
 	}
 
@@ -198,8 +199,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param propertyId
 	 */
 	protected void firePropertyChange(int propertyId) {
-		// TODO Auto-generated method stub
-
+		// Nothing
 	}
 
 	/**
@@ -215,9 +215,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		if (partModel instanceof IEditorModel) {
 			// Check if we can use IEditorModel
-			if (multiEditorManager == null)
+			if (multiEditorManager == null) {
 				throw new IllegalArgumentException(
 						"Container can't accept IEditorModel as no IMultiEditorManager is set. Please set a IMultiEditorManager.");
+			}
 
 			return new EditorPart(parent, (IEditorModel) partModel, rawModel, multiEditorManager);
 		} else if (partModel instanceof IComponentModel) {
@@ -246,10 +247,11 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	public IEditorPart getActiveEditor() {
 		PagePart pagePart = getActivePage();
-		if (pagePart instanceof EditorPart)
+		if (pagePart instanceof EditorPart) {
 			return ((EditorPart) pagePart).getIEditorPart();
-		else
+		} else {
 			return null;
+		}
 	}
 
 	/**
@@ -278,8 +280,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 *            the index of the page
 	 */
 	private void setFocus(PagePart part) {
-		if (part != null)
+		if (part != null) {
 			part.setFocus();
+		}
 	}
 
 	/**
@@ -287,33 +290,36 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * 
 	 */
 	public void refreshTabs() {
-		System.out.println("start synchronize2() ------------------------");
-		showTilesStatus();
+		// When the part is created, it is possible that the refresh is called more than once...
+		// which leads to several "identical" editors or mistakes... :(
+		if (isRefreshing.compareAndSet(false, true)) {
+			try {
+				// Get the currently selected folder
+				PagePart oldActivePage = getActivePage();
 
-		// Get the currently selected folder
-		PagePart oldActivePage = getActivePage();
+				// Do refresh
+				container.setRedraw(false);
+				// Create map of parts
+				// PartMap<T> partMap = new PartMap<T>();
+				PartLists garbageMaps = new PartLists();
+				rootPart.fillPartMap(garbageMaps);
 
-		// Do refresh
-		container.setRedraw(false);
-		// Create map of parts
-		// PartMap<T> partMap = new PartMap<T>();
-		PartLists garbageMaps = new PartLists();
-		rootPart.fillPartMap(garbageMaps);
+				// Synchronize parts
+				rootPart.synchronize(garbageMaps);
 
-		// Synchronize parts
-		rootPart.synchronize2(garbageMaps);
+				// Remove orphaned parts (no more used)
+				garbageMaps.garbage();
 
-		// Remove orphaned parts (no more used)
-		garbageMaps.garbage();
+				// set active page if needed
+				setActivePage(checkAndGetActivePage(oldActivePage, garbageMaps));
 
-		// set active page if needed
-		setActivePage(checkAndGetActivePage(oldActivePage, garbageMaps));
-
-		// Reenable SWT and force layout
-		container.setRedraw(true);
-		container.layout(true, true);
-		System.out.println("end synchronize2() ------------------------");
-		showTilesStatus();
+				// Reenable SWT and force layout
+				container.setRedraw(true);
+				container.layout(true, true);
+			} finally {
+				isRefreshing.set(false);
+			}
+		}
 	}
 
 	/**
@@ -330,12 +336,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// Check if there is a created page
 		PagePart activePage = partLists.getFirstCreatedPage();
-		if (activePage != null)
+		if (activePage != null) {
 			return activePage;
+		}
 
 		// Check oldActivePage validity (in case it has been deleted)
-		if (oldActivePage != null && !(oldActivePage.isOrphaned() || oldActivePage.isUnchecked()))
+		if (oldActivePage != null && !(oldActivePage.isOrphaned() || oldActivePage.isUnchecked())) {
 			return oldActivePage;
+		}
 
 		// Get an active page if any
 		return lookupFirstValidPage();
@@ -352,14 +360,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		PartLists garbageMaps = new PartLists();
 		rootPart.fillPartMap(garbageMaps);
 		return garbageMaps.getFirstValidPage();
-	}
-
-	/**
-	 * Show the status of the different Tiles composing the sash system. Used for debug purpose.
-	 */
-	public void showTilesStatus() {
-		ShowPartStatusVisitor visitor = new ShowPartStatusVisitor();
-		rootPart.visit(visitor);
 	}
 
 	/* ***************************************************** */
@@ -383,155 +383,64 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 *      org.eclipse.swt.graphics.Rectangle)
 		 */
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
-			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".drag(position=" + position
-					+ ", rectangle=" + dragRectangle + ")");
-			// if (!(draggedObject instanceof ITilePart)) {
-			// System.out.println("drag object is of bad type (" +draggedObject + "!=ITilePart)");
-			// return null;
-			// }
-
-			// @TODO remove the cast by changing the method. Only folder can be source and target
+			// TODO remove the cast by changing the method. Only folder can be source and target
 			final TabFolderPart sourcePart = (TabFolderPart) rootPart.findPart(draggedObject); // (ITilePart)
-																								// draggedObject;
-			// Compute src tab index
-			// @TODO move that and previous in the sender of drag event. Use a class containing both
+			// TODO move that and previous in the sender of drag event. Use a class containing both
 			// as draggedObject.
 			final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 
-			// if (!isStackType(sourcePart) && !isPaneType(sourcePart)) {
-			// return null;
-			// }
-
-			// boolean differentWindows = sourcePart.getWorkbenchWindow() != getWorkbenchWindow();
-			// boolean editorDropOK = ((sourcePart instanceof EditorPane) &&
-			// sourcePart.getWorkbenchWindow().getWorkbench() ==
-			// getWorkbenchWindow().getWorkbench());
-			// if (differentWindows && !editorDropOK) {
-			// return null;
-			// }
-
-			// If this container has no visible children
-			// if (getVisibleChildrenCount(this) == 0) {
-			// return createDropTarget(sourcePart, SWT.CENTER, SWT.CENTER, null);
-			// }
-
 			Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
 			AbstractPanelPart targetPart = null;
-			// ILayoutContainer sourceContainer = isStackType(sourcePart) ? (ILayoutContainer)
-			// sourcePart
-			// : sourcePart.getContainer();
 
 			// Check if the cursor is inside the container
 			if (containerDisplayBounds.contains(position)) {
-
-				System.out.println("Inside container bounds");
 				if (rootPart != null) {
 					targetPart = (AbstractPanelPart) rootPart.findPart(position);
-					// System.out.println("targetPart=" + targetPart
-					// + ", position=" + position
-					// + "container.toControl(position)=" + container.toControl(position));
 				}
 
 				if (targetPart != null) {
 					final Control targetControl = targetPart.getControl();
-
 					final Rectangle targetBounds = DragUtil.getDisplayBounds(targetControl);
 
 					int side = Geometry.getClosestSide(targetBounds, position);
 					int distance = Geometry.getDistanceFromEdge(targetBounds, position, side);
-					//                    
-					// // is the source coming from a standalone part
-					// boolean standalone = (isStackType(sourcePart)
-					// && ((PartStack) sourcePart).isStandalone())
-					// || (isPaneType(sourcePart)
-					// && ((PartPane) sourcePart).getStack()!=null
-					// && ((PartPane) sourcePart).getStack().isStandalone());
-					//                     
-					// // Only allow dropping onto an existing stack from different windows
-					// if (differentWindows && targetPart instanceof EditorStack) {
-					// IDropTarget target = targetPart.getDropTarget(draggedObject, position);
-					// return target;
-					// }
-					//                     
+
 					// Reserve the 5 pixels around the edge of the part for the drop-on-edge cursor
 					// Check if the target can handle the drop.
 					if (distance >= 5) {
 						// Otherwise, ask the part if it has any special meaning for this drop
 						// location
-						// @TODO remove cast; change return type of findPart()
-						IDropTarget target = targetPart.getDropTarget(draggedObject, (TabFolderPart) sourcePart,
-								position);
+						// TODO remove cast; change return type of findPart()
+						IDropTarget target = targetPart.getDropTarget(draggedObject, sourcePart, position);
 						if (target != null) {
 							return target;
 						}
 					}
 					//                     
 					if (distance > 30) {
-						// if (targetPart instanceof ILayoutContainer) {
-						// ILayoutContainer targetContainer = (ILayoutContainer)targetPart;
-						// if (targetContainer.allowsAdd(sourcePart)) {
 						side = SWT.CENTER;
-						// }
-						// }
 					}
-					//                     
-					// // If the part doesn't want to override this drop location then drop on the
-					// edge
-					//                     
-					// // A "pointless drop" would be one that will put the dragged object back
-					// where it started.
-					// // Note that it should be perfectly valid to drag an object back to where it
-					// came from -- however,
-					// // the drop should be ignored.
-					//
+
+					// If the part doesn't want to override this drop location then drop on the edge
+
+					// A "pointless drop" would be one that will put the dragged object back where
+					// it started.
+					// Note that it should be perfectly valid to drag an object back to where it
+					// came from -- however, the drop should be ignored.
+
 					@SuppressWarnings("unused")
 					boolean pointlessDrop = false;
 
 					if (sourcePart == targetPart) {
 						pointlessDrop = true;
 					}
-					//
-					// if ((sourceContainer != null)
-					// && (sourceContainer == targetPart)
-					// && getVisibleChildrenCount(sourceContainer) <= 1) {
-					// pointlessDrop = true;
-					// }
-					//
-					// if (side == SWT.CENTER
-					// && sourcePart.getContainer() == targetPart) {
-					// pointlessDrop = true;
-					// }
-					//
-					int cursor = side;
-					//
-					// if (pointlessDrop) {
-					// side = SWT.NONE;
-					// cursor = SWT.CENTER;
-					// }
-					//
-					return createDropTarget(sourcePart, srcTabIndex, side, cursor, targetPart);
+
+					return createDropTarget(sourcePart, srcTabIndex, side, side, targetPart);
 				}
 			} else {
-				// Cursor is outside the container
-				System.out.println("Outside container bounds");
-				// We only allow dropping into a stack, not creating one
-				// if (differentWindows)
-				// return null;
-
 				int side = Geometry.getClosestSide(containerDisplayBounds, position);
 
 				boolean pointlessDrop = false;
-				//
-				// if ((isStackType(sourcePart) && sourcePart.getContainer() == this)
-				// || (sourcePart.getContainer() != null
-				// && isPaneType(sourcePart)
-				// && getVisibleChildrenCount(sourcePart.getContainer()) <= 1)
-				// && ((LayoutPart)sourcePart.getContainer()).getContainer() == this) {
-				// if (root == null || getVisibleChildrenCount(this) <= 1) {
-				// pointlessDrop = true;
-				// }
-				// }
-				//
 				int cursor = Geometry.getOppositeSide(side);
 
 				if (pointlessDrop) {
@@ -540,9 +449,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 				return createDropTarget(sourcePart, srcTabIndex, side, cursor, null);
 			}
-			//
 			return null;
-		} // end method
+		}
 
 	};
 
@@ -674,6 +582,42 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	public void removePageChangedListener(IPageChangedListener pageChangedListener) {
 		activePageTracker.removePageChangedListener(pageChangedListener);
+	}
+
+	/**
+	 * Overrides isDirty.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#isDirty()
+	 */
+	public boolean isDirty() {
+		// FIXME Add a method to get all the opened editors
+		PartLists garbageMaps = new PartLists();
+		rootPart.fillPartMap(garbageMaps);
+		for (PagePart part : garbageMaps.getPageParts()) {
+			if (part instanceof EditorPart && ((EditorPart) part).getIEditorPart().isDirty()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Overrides markSaveLocation.
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#markSaveLocation()
+	 */
+	public void markSaveLocation() {
+		PartLists garbageMaps = new PartLists();
+		rootPart.fillPartMap(garbageMaps);
+		for (PagePart part : garbageMaps.getPageParts()) {
+			if (part instanceof EditorPart) {
+				((EditorPart) part).getIEditorPart().doSave(new NullProgressMonitor());
+			}
+		}
 	}
 
 }

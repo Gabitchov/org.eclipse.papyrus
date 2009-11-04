@@ -35,6 +35,7 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	/**
 	 * @return the defaultContext
 	 */
+	@Deprecated
 	public BackboneContext getDefaultContext();
 
 	/**
@@ -54,6 +55,7 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	/**
 	 * Get the associated context registry.
 	 */
+	@Deprecated
 	public IEditorContextRegistry getContextRegistry();
 
 	/**
@@ -61,6 +63,7 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	 * 
 	 * @return the edit domain shared among editors
 	 */
+	// FIXME Remove it (GMF dependency)
 	public DiagramEditDomain getDiagramEditDomain();
 
 	/**

@@ -61,7 +61,8 @@ public class DiagramNavigator extends Composite {
 	ICreationCommandRegistry creationCommandRegistry;
 
 	/**
-	 * This content provider filters the event from graphical object to only refresh when it's needed.
+	 * This content provider filters the event from graphical object to only refresh when it's
+	 * needed.
 	 * 
 	 * @author <a href="david.sciamma@anyware-tech.com">David Sciamma</a>
 	 */
@@ -148,11 +149,14 @@ public class DiagramNavigator extends Composite {
 	 * Set the tree providers for the outline
 	 */
 	protected void initProviders() {
-		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(getAdapterFactory());
+		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(
+				getAdapterFactory());
 		adapterContentProvider.inputChanged(viewer, null, null);
 		viewer.setContentProvider(new DiagramOrientedContentProvider(adapterContentProvider));
-		ILabelProvider labelProvider = new DiagramOrientedLabelProvider(new AdapterFactoryLabelProvider(getAdapterFactory()));
-		ILabelProvider fullLabelProvider = new DecoratingLabelProvider(labelProvider, Activator.getDefault().getWorkbench().getDecoratorManager().getLabelDecorator());
+		ILabelProvider labelProvider = new DiagramOrientedLabelProvider(new AdapterFactoryLabelProvider(
+				getAdapterFactory()));
+		ILabelProvider fullLabelProvider = new DecoratingLabelProvider(labelProvider, Activator.getDefault()
+				.getWorkbench().getDecoratorManager().getLabelDecorator());
 		viewer.setLabelProvider(fullLabelProvider);
 	}
 

@@ -114,7 +114,7 @@ ClassifierEditPart
 		if (childEditPart instanceof InterfaceAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((InterfaceAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -122,7 +122,7 @@ ClassifierEditPart
 		if (childEditPart instanceof InterfaceOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((InterfaceOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -130,7 +130,7 @@ ClassifierEditPart
 		if (childEditPart instanceof InterfaceNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.add(((InterfaceNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -282,7 +282,8 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -314,7 +315,8 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1133,7 +1135,8 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1167,7 +1170,8 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -1963,7 +1967,8 @@ ClassifierEditPart
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -2874,21 +2879,21 @@ ClassifierEditPart
 		if (childEditPart instanceof InterfaceAttributeCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((InterfaceAttributeCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InterfaceOperationCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((InterfaceOperationCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InterfaceNestedClassifierCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-									// own way
+			// own way
 			pane.remove(((InterfaceNestedClassifierCompartment2EditPart) childEditPart).getFigure());
 			return true;
 		}

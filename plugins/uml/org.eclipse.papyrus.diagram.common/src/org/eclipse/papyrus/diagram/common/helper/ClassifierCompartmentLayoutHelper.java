@@ -28,38 +28,35 @@ import org.eclipse.papyrus.diagram.common.commands.setLayoutKindCommand;
 import org.eclipse.papyrus.diagram.common.figure.layout.ILayoutToolBox;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 
-
 /**
  * The Class ClassifierCompartmentLayoutHelper.
  */
 public abstract class ClassifierCompartmentLayoutHelper implements ICompartmentLayoutHelper {
 
-	
-	protected HashMap<String,ILayoutToolBox> layoutToolBoxList=null;
+	protected HashMap<String, ILayoutToolBox> layoutToolBoxList = null;
+
 	/**
 	 * Instantiates a new classifier compartment layout helper.
 	 */
 	public ClassifierCompartmentLayoutHelper() {
-		layoutToolBoxList= new HashMap<String, ILayoutToolBox>();
+		layoutToolBoxList = new HashMap<String, ILayoutToolBox>();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void applyLayout(AbstractGraphicalEditPart compartmentEditPart) {
-		EditPart containerEditPart= compartmentEditPart.getParent();
-		IFigure fig= (IFigure)(((IGraphicalEditPart) containerEditPart).getFigure().getChildren().get(0));
-		IFigure primaryfig= (IFigure)(fig.getChildren().get(0));
-		String layoutKind=getLayoutKindFromView(((EModelElement)containerEditPart.getModel()));
-		ILayoutToolBox currentLayoutToolBox= layoutToolBoxList.get(layoutKind);
-		if(currentLayoutToolBox!=null){
+		EditPart containerEditPart = compartmentEditPart.getParent();
+		IFigure fig = (IFigure) (((IGraphicalEditPart) containerEditPart).getFigure().getChildren().get(0));
+		IFigure primaryfig = (IFigure) (fig.getChildren().get(0));
+		String layoutKind = getLayoutKindFromView(((EModelElement) containerEditPart.getModel()));
+		ILayoutToolBox currentLayoutToolBox = layoutToolBoxList.get(layoutKind);
+		if (currentLayoutToolBox != null) {
 			compartmentEditPart.installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, currentLayoutToolBox.getEditPolicy());
 			primaryfig.setLayoutManager(currentLayoutToolBox.getFigureLayout());
 		}
 
 	}
-
-	
 
 	/**
 	 * {@inheritDoc}
@@ -80,7 +77,8 @@ public abstract class ClassifierCompartmentLayoutHelper implements ICompartmentL
 	/**
 	 * {@inheritDoc}
 	 */
-	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view,String layoutKind) {
+	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view,
+			String layoutKind) {
 		return new setLayoutKindCommand(domain, view, layoutKind);
 	}
 

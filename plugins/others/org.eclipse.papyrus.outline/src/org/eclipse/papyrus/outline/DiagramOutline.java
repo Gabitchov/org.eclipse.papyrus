@@ -112,7 +112,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 
 		// Create Overview
 		if (root != null) {
-			overview = createOverview(sashComp, (ScalableFreeformRootEditPart) root);
+			overview = createOverview(sashComp, root);
 			overview.setLayoutData(new GridData(GridData.FILL_BOTH));
 		}
 
@@ -163,6 +163,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 		// Show Tree action
 		showTreeAction = new Action(Messages.DiagramOutline_ShowNavigator, IAction.AS_RADIO_BUTTON) {
 
+			@Override
 			public void run() {
 				if (navigator != null && !navigator.isDisposed()) {
 					performShowAction();
@@ -170,12 +171,14 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 			}
 		};
 		showTreeAction.setToolTipText(showTreeAction.getText());
-		showTreeAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/tree_co.gif")); //$NON-NLS-1$
+		showTreeAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+				"icons/elcl16/tree_co.gif")); //$NON-NLS-1$
 		tbm.add(showTreeAction);
 
 		// Show overview action
 		showOverviewAction = new Action(Messages.DiagramOutline_ShowOverview, IAction.AS_RADIO_BUTTON) {
 
+			@Override
 			public void run() {
 				if (overview != null && !overview.isDisposed()) {
 					performShowAction();
@@ -183,12 +186,14 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 			}
 		};
 		showOverviewAction.setToolTipText(showOverviewAction.getText());
-		showOverviewAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/overview_co.gif")); //$NON-NLS-1$
+		showOverviewAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+				"icons/elcl16/overview_co.gif")); //$NON-NLS-1$
 		tbm.add(showOverviewAction);
 
 		// Show All (Tree and Overview) action
 		showAllAction = new Action(Messages.DiagramOutline_ShowBoth, IAction.AS_RADIO_BUTTON) {
 
+			@Override
 			public void run() {
 				if (sashComp != null && !sashComp.isDisposed()) {
 					performShowAction();
@@ -196,7 +201,8 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 			}
 		};
 		showAllAction.setToolTipText(showAllAction.getText());
-		showAllAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/all_co.gif")); //$NON-NLS-1$
+		showAllAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+				"icons/elcl16/all_co.gif")); //$NON-NLS-1$
 		tbm.add(showAllAction);
 
 		// Set overview as default choice
@@ -269,9 +275,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 			GraphicalViewer viewer = (GraphicalViewer) multiEditor.getActiveEditor().getAdapter(GraphicalViewer.class);
 			RootEditPart rootEditPart = viewer.getRootEditPart();
 
-			if ((rootEditPart != null) && (rootEditPart instanceof RenderedDiagramRootEditPart)) {
+			if (rootEditPart instanceof RenderedDiagramRootEditPart) {
 				root = (RenderedDiagramRootEditPart) rootEditPart;
-				diagram = (Diagram) rootEditPart.getContents().getModel();
+				if (rootEditPart.getContents() != null) {
+					diagram = (Diagram) rootEditPart.getContents().getModel();
+				} else {
+					diagram = null;
+				}
 
 			} else {
 				root = null;
@@ -295,7 +305,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 		}
 
 		if (root != null) {
-			overview = createOverview(sashComp, (ScalableFreeformRootEditPart) root);
+			overview = createOverview(sashComp, root);
 			overview.setLayoutData(new GridData(GridData.FILL_BOTH));
 		}
 

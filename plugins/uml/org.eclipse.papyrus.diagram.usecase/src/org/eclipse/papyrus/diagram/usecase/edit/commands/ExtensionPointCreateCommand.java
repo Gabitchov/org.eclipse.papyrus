@@ -97,6 +97,7 @@ public class ExtensionPointCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		ExtensionPoint newElement = UMLFactory.eINSTANCE.createExtensionPoint();
 
 		UseCase owner = (UseCase) getElementToEdit();

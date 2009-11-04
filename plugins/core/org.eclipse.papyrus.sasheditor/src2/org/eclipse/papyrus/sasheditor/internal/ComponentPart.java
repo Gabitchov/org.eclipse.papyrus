@@ -22,9 +22,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 
@@ -47,52 +44,6 @@ public class ComponentPart extends PagePart {
 	 * The SWT Control.
 	 */
 	private Composite editorControl;
-
-	/**
-	 * Parent owning this PagePart. Can be null if the Part is orphaned. Even if it is orphaned, the
-	 * Item still set.
-	 */
-	// protected TabFolderPart parent;
-
-	/**
-	 * Listen on mouse enter event. Try to get an event indicating that the mouse enter over the
-	 * editor. This can be used to switch the active editor. TODO This doesn't work yet.
-	 */
-	private final Listener mouseEnterListener = new Listener() {
-
-		/**
-		 * (non-Javadoc)
-		 * 
-		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-		 */
-		public void handleEvent(Event event) {
-			Point globalPos = new Point(event.x, event.y);
-			System.out.println("EditorTile.mouseEnterListener(" + eventName(event.type) + ", " + globalPos + ")");
-		}
-	};
-
-	private String eventName(int eventType) {
-		switch (eventType) {
-		case SWT.MouseEnter:
-			return "MouseEnter";
-		case SWT.MouseDown:
-			return "MouseDown";
-		case SWT.MouseExit:
-			return "MouseExit";
-		case SWT.MouseHover:
-			return "MouseHover";
-		case SWT.FocusIn:
-			return "FocusIn";
-		case SWT.FocusOut:
-			return "FocusOut";
-		case SWT.MouseMove:
-			return "MouseMove";
-		case SWT.MouseUp:
-			return "MouseUp";
-		default:
-			return Integer.toString(eventType);
-		}
-	}
 
 	/**
 	 * Constructor.
@@ -142,48 +93,6 @@ public class ComponentPart extends PagePart {
 	}
 
 	/**
-	 * Attach SWT listeners.
-	 */
-	private void attachListeners(Control theControl, boolean recursive) {
-
-		// Both following methods listen to the same event.
-		// So use only one of them
-		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
-
-		theControl.addListener(SWT.FocusIn, mouseEnterListener);
-		theControl.addListener(SWT.MouseMove, mouseEnterListener);
-		theControl.addListener(SWT.MouseHover, mouseEnterListener);
-		theControl.addListener(SWT.MouseUp, mouseEnterListener);
-		theControl.addListener(SWT.MouseDown, mouseEnterListener);
-
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
-			Control[] children = composite.getChildren();
-
-			for (Control control : children) {
-				attachListeners(control, true);
-			}
-		}
-	}
-
-	/**
-	 * Detach SWT listeners
-	 */
-	private void detachListeners(Control theControl, boolean recursive) {
-		theControl.removeListener(SWT.MouseEnter, mouseEnterListener);
-		theControl.removeListener(SWT.FocusIn, mouseEnterListener);
-
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
-			Control[] children = composite.getChildren();
-
-			for (Control control : children) {
-				detachListeners(control, false);
-			}
-		}
-	}
-
-	/**
 	 * @param isRecursive
 	 */
 	public void dispose() {
@@ -191,17 +100,6 @@ public class ComponentPart extends PagePart {
 		// detachListeners(editorControl, true);
 		// dispose the SWT root control
 		editorControl.dispose();
-	}
-
-	/**
-	 * As we are a final Tile, we should be the requested part. Return this TilePart.
-	 * 
-	 * @param toFind
-	 * @return
-	 */
-	// @unused
-	public PagePart findPart(Point toFind) {
-		return this;
 	}
 
 	/**
@@ -343,6 +241,7 @@ public class ComponentPart extends PagePart {
 	/**
 	 * Show item status.
 	 */
+	@Deprecated
 	protected void showStatus() {
 		// System.out.println( "EditorTile: "
 		// + " disposed=" + editorControl.isDisposed()
@@ -351,9 +250,11 @@ public class ComponentPart extends PagePart {
 		// + ", '" + editorPart.getTitle()
 		// + "', " + this);
 
-		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl
-				.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState,
-				getPageTitle(), this);
+		// System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n",
+		// editorControl
+		// .isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()),
+		// garbageState,
+		// getPageTitle(), this);
 
 	}
 

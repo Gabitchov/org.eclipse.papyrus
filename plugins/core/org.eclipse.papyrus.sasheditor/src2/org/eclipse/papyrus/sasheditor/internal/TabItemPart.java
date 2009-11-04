@@ -32,11 +32,6 @@ import org.eclipse.swt.widgets.Control;
 public class TabItemPart {
 
 	/**
-	 * The associated model TODO : change the type
-	 */
-	// protected Object model;
-
-	/**
 	 * The child assocciated to this tabitem. The child is rendered by the tabitem.
 	 */
 	protected PagePart childPart;
@@ -238,10 +233,6 @@ public class TabItemPart {
 	 * @return
 	 */
 	public AbstractPart findPartAt(Point position, Class<?> expectedTileType) {
-
-		// if(expectedTileType == this.getClass())
-		// return this;
-
 		return childPart.findPartAt(position, expectedTileType);
 	}
 

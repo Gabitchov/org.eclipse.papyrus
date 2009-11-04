@@ -67,10 +67,10 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 		// Check parameters
 		assert (multiEditor.getEditorInput() != null);
 		assert (multiEditor.getEditorSite() != null);
-		assert (multiEditor.getDefaultContext() != null);
+		// assert (multiEditor.getDefaultContext() != null);
 		// Check parameters. To be removed later
 		if (multiEditor.getEditorInput() == null || multiEditor.getEditorSite() == null
-				|| multiEditor.getDefaultContext() == null) {
+		/* || multiEditor.getDefaultContext() == null */) {
 			throw new IllegalArgumentException("IMultiDiagramEditor should be initialized before calling constructor "
 					+ getClass().getSimpleName() + "(IMultiDiagramEditor multiEditor)");
 		}
@@ -84,6 +84,7 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Deprecated
 	public IEditorContext getContext(Object key) throws BackboneException {
 		try {
 			ContextDescriptor desc = editorContextDescriptors.get(key);
@@ -98,6 +99,7 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Deprecated
 	public void registerContext(String contextKey, IEditorContext context) {
 		ContextDescriptor contextDesc = new ContextDescriptor();
 		contextDesc.contextId = contextKey;

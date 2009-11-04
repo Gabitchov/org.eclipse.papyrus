@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sasheditor.editor;
 
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IWorkbenchPartSite;
 
 /**
  * Marker to mark a EditorPart as a MultiPartEditor. Provides methods needed by classes like
@@ -28,15 +27,7 @@ public interface IMultiPageEditorPart {
 	 * 
 	 * @return
 	 */
-	public IEditorPart getActiveEditor();
-
-	/**
-	 * Get the main site of the MultiPageEditorPart.
-	 * 
-	 * @return
-	 */
-	// @unused
-	public IWorkbenchPartSite getSite();
+	IEditorPart getActiveEditor();
 
 	/**
 	 * Get the IEditorSite associated to this MultiPageEditorPart. This return the same object as
@@ -44,6 +35,6 @@ public interface IMultiPageEditorPart {
 	 * 
 	 * @return
 	 */
-	public IEditorSite getEditorSite();
+	IEditorSite getEditorSite();
 
 }

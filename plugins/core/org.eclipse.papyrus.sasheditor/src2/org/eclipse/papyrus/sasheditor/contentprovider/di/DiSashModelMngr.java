@@ -56,8 +56,9 @@ public class DiSashModelMngr {
 	protected DiSashModelMngr(IPageModelFactory pageModelFactory, boolean createDefaultSashModel) {
 		this.pageModelFactory = pageModelFactory;
 		// Create a SashModel
-		if (createDefaultSashModel)
+		if (createDefaultSashModel) {
 			sashWindowMngr = createDefaultSashModel();
+		}
 	}
 
 	/**
