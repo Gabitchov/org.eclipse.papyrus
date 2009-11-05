@@ -14,17 +14,11 @@
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import java.util.EventObject;
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -32,7 +26,6 @@ import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.ui.palette.PaletteCustomizer;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
 import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
@@ -42,24 +35,15 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.window.Window;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem;
@@ -68,16 +52,11 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorMatchingStrategy;
-import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
-import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 
@@ -106,12 +85,19 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 */
 	private MouseListener paletteMouseListener = null;
 
-	private boolean isDirty = false;
+	/**
+	 * @generated
+	 */
+	private IUndoableOperation savedOperation = null;
 
-	/** The editing domain. */
+	/**
+	 * @generated
+	 */
 	private TransactionalEditingDomain editingDomain;
 
-	/** The document provider. */
+	/**
+	 * @generated
+	 */
 	private IDocumentProvider documentProvider;
 
 	/**
@@ -135,6 +121,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getContextID() {
 		return CONTEXT_ID;
 	}
@@ -142,6 +129,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
 		if (existingPaletteRoot == null) {
@@ -157,6 +145,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PreferencesHint getPreferencesHint() {
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
@@ -164,6 +153,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getContributorId() {
 		return UMLDiagramEditorPlugin.ID;
 	}
@@ -171,6 +161,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getAdapter(Class type) {
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
@@ -186,6 +177,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return UMLDiagramEditorPlugin.getInstance().getDocumentProvider();
@@ -204,6 +196,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(UMLDiagramEditorPlugin.getInstance().getDocumentProvider());
@@ -222,6 +215,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
@@ -229,6 +223,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void doSaveAs() {
 		performSaveAs(new NullProgressMonitor());
 	}
@@ -236,6 +231,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
 		// Nothing
 	}
@@ -243,6 +239,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public ShowInContext getShowInContext() {
 		return new ShowInContext(getEditorInput(), getNavigatorSelection());
 	}
@@ -267,6 +264,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
@@ -289,47 +287,32 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	}
 
 	/**
-	 * Overrides configureDiagramEditDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#configureDiagramEditDomain()
+	 * @generated
 	 */
-	@Override
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new CommandStackListener() {
 
 			public void commandStackChanged(EventObject event) {
-				isDirty = true;
+				firePropertyChange(IEditorPart.PROP_DIRTY);
 			}
 		});
 	}
 
 	/**
-	 * Overrides doSave.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#doSave(IProgressMonitor)
+	 * @generated
 	 */
-	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
-		// Just notify the command stack here
-		isDirty = false;
+		savedOperation = getOperationHistory().getUndoOperation(getUndoContext());
 	}
 
 	/**
-	 * Overrides isDirty.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#isDirty()
+	 * @generated
 	 */
-	@Override
 	public boolean isDirty() {
-		return isDirty;
+		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
+		return savedOperation != op;
 	}
 
 	/**
@@ -346,6 +329,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		// remove palette service listener
 		// remove preference listener
@@ -364,6 +348,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteViewer constructPaletteViewer() {
 		return new PapyrusPaletteViewer();
 	}
@@ -371,6 +356,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteViewerProvider createPaletteViewerProvider() {
 		getEditDomain().setPaletteRoot(createPaletteRoot(null));
 		return new PaletteViewerProvider(getEditDomain()) {

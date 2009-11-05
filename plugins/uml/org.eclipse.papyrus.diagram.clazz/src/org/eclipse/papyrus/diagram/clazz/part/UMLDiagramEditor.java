@@ -1,6 +1,8 @@
 package org.eclipse.papyrus.diagram.clazz.part;
 
 import java.util.EventObject;
+
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -35,6 +37,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
@@ -66,12 +69,19 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 */
 	private MouseListener paletteMouseListener = null;
 
-	private boolean isDirty = false;
+	/**
+	 * @generated
+	 */
+	private IUndoableOperation savedOperation = null;
 
-	/** The editing domain. */
+	/**
+	 * @generated
+	 */
 	private TransactionalEditingDomain editingDomain;
 
-	/** The document provider. */
+	/**
+	 * @generated
+	 */
 	private IDocumentProvider documentProvider;
 
 	/**
@@ -240,11 +250,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	}
 
 	/**
-	 * Overrides createEditingDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#createEditingDomain()
+	 * @generated
 	 */
 	@Override
 	protected TransactionalEditingDomain createEditingDomain() {
@@ -253,11 +259,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	}
 
 	/**
-	 * Overrides configureDiagramEditDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#configureDiagramEditDomain()
+	 * @generated
 	 */
 	@Override
 	protected void configureDiagramEditDomain() {
@@ -265,35 +267,29 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new CommandStackListener() {
 
 			public void commandStackChanged(EventObject event) {
-				isDirty = true;
+				firePropertyChange(IEditorPart.PROP_DIRTY);
 			}
 		});
 	}
 
 	/**
-	 * Overrides doSave.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#doSave(IProgressMonitor)
+	 * @generated
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
 		// Just notify the command stack here
-		isDirty = false;
+		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
+		savedOperation = op;
 	}
 
 	/**
-	 * Overrides isDirty.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see DiagramDocumentEditor#isDirty()
+	 * @generated
 	 */
 	@Override
 	public boolean isDirty() {
-		return isDirty;
+		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
+		return savedOperation != op;
 	}
 
 	/**
@@ -349,6 +345,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
 			 * key which will result in the creation of the shape also.
 			 */
+			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -366,6 +363,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
+			@Override
 			public PaletteViewer createPaletteViewer(Composite parent) {
 				PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -393,6 +391,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
+						@Override
 						public boolean keyReleased(KeyEvent event) {
 
 							if (event.keyCode == SWT.Selection) {

@@ -25,13 +25,14 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	private org.eclipse.swt.events.MouseListener paletteMouseListener = null;
 
-    // FIXME Remove it when the super.isDirty will work...
-	private boolean isDirty = false;
-
-	/** The editing domain. */
+	«REM»Helps to handle correctly the dirty state«ENDREM»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.core.commands.operations.IUndoableOperation savedOperation = null;
+	
+	«EXPAND xpt::Common::generatedMemberComment»
 	private org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain;
 
-    /** The document provider. */
+	«EXPAND xpt::Common::generatedMemberComment»
     private org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider documentProvider;
     	
 	«REM»«ENDREM»
@@ -307,14 +308,6 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 «REM»Share the same editing domain«ENDREM»
 «AROUND getEditingDomain FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	/**
-	 * Overrides getEditingDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor#getEditingDomain()
-	 */
-	@Override
     public org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
     	return editingDomain;
     }	
@@ -322,14 +315,6 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 
 «DEFINE createEditingDomain FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
-    /**
-	 * Overrides createEditingDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#createEditingDomain()
-	 */
-	@Override
 	protected org.eclipse.emf.transaction.TransactionalEditingDomain createEditingDomain() {
 		// Already configured
 		return editingDomain;
@@ -339,20 +324,12 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 
 «DEFINE configureDiagramEditDomain FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
-	/**
-	 * Overrides configureDiagramEditDomain.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#configureDiagramEditDomain()
-	 */
-	@Override
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new org.eclipse.gef.commands.CommandStackListener() {
 
 			public void commandStackChanged(java.util.EventObject event) {
-				isDirty = true;
+				firePropertyChange( org.eclipse.ui.IEditorPart.PROP_DIRTY);
 			}
 		});
 	}
@@ -360,32 +337,17 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 
 «DEFINE doSave FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
-	/**
-	 * Overrides doSave.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#doSave(org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
-		// Just notify the command stack here
-		isDirty = false;
+		savedOperation =  getOperationHistory().getUndoOperation(getUndoContext());
 	}
 «ENDDEFINE»
 
+«REM»Fix the dirty state«ENDREM»
 «DEFINE isDirty FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
-	/**
-	 * Overrides isDirty.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#isDirty()
-	 */
-	@Override
 	public boolean isDirty() {
-		return isDirty;
+		org.eclipse.core.commands.operations.IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
+		return savedOperation != op;
 	}
 «ENDDEFINE»
