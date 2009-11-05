@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -267,6 +268,43 @@ public class PackageUtil {
 	}
 
 	/**
+	 * Retrieve a collaboration accessible in this Package, given its name.
+	 * 
+	 * @param name
+	 *            the name of the collaboration to find, which must not be <code>null</code>
+	 * 
+	 * @return the collaboration found or <code>null</code> if not found.
+	 */
+	public static Collaboration findCollaborationByName(Package pack, String name) {
+		assert name != null : "Collaboration Name should not be null";
+
+		// update method to find a type by its name
+		// 1. find the direct accessible types (in the package and the imported
+		// elements)
+		// 2. find in the subpackages and their import
+		// 3. find in all resources
+
+		Iterator<Collaboration> it = getAccessibleCollaborations(pack).iterator();
+		while (it.hasNext()) {
+			Collaboration t = it.next();
+			if (name.equals(t.getName())) {
+				return t;
+			}
+		}
+
+		Resource resource = pack.eResource();
+		ResourceSet resourceSet = null;
+		if (resource != null) {
+			resourceSet = resource.getResourceSet();
+		}
+
+		if (resourceSet != null) {
+			return findCollaborationByName(resourceSet, name);
+		}
+		return null;
+	}
+
+	/**
 	 * Returns a type given its name from a resource set.
 	 * 
 	 * @param resourceSet
@@ -282,6 +320,30 @@ public class PackageUtil {
 			Notifier notifier = iterator.next();
 			if (notifier instanceof Type) {
 				Type type = ((Type) notifier);
+				if (name.equals(type.getName())) {
+					return type;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns a collaboration given its name from a resource set.
+	 * 
+	 * @param resourceSet
+	 *            the resource Set
+	 * @param name
+	 *            the name of the collaboration to find. It must not be <code>null</code>
+	 * @return the found type or <code>null</code> if the collaboration was not found
+	 */
+	private static Collaboration findCollaborationByName(ResourceSet resourceSet, String name) {
+		TreeIterator<Notifier> iterator = resourceSet.getAllContents();
+
+		while (iterator.hasNext()) {
+			Notifier notifier = iterator.next();
+			if (notifier instanceof Collaboration) {
+				Collaboration type = ((Collaboration) notifier);
 				if (name.equals(type.getName())) {
 					return type;
 				}
@@ -313,6 +375,35 @@ public class PackageUtil {
 				Notifier notifier = iterator.next();
 				if (notifier instanceof Type && ((Type) notifier).getName() != null) {
 					set.add(((Type) notifier));
+				}
+			}
+		}
+		return set;
+	}
+
+	/**
+	 * Returns all accessible Collaboration in the model
+	 * 
+	 * @param element
+	 *            the element from which all resources can be accessed
+	 * @return the list of Collaboration accessible in the model
+	 */
+	public static Set<Collaboration> getAllCollaborations(Element element) {
+		SortedSet<Collaboration> set = new TreeSet<Collaboration>(new TypeNameComparator());
+
+		Resource resource = element.eResource();
+		ResourceSet resourceSet = null;
+		if (resource != null) {
+			resourceSet = resource.getResourceSet();
+		}
+
+		if (resourceSet != null) {
+			TreeIterator<Notifier> iterator = resourceSet.getAllContents();
+
+			while (iterator.hasNext()) {
+				Notifier notifier = iterator.next();
+				if (notifier instanceof Collaboration && ((Collaboration) notifier).getName() != null) {
+					set.add(((Collaboration) notifier));
 				}
 			}
 		}
@@ -360,6 +451,38 @@ public class PackageUtil {
 				// umlTypeQNames.add(currentType.getQualifiedName());
 				// set.add(currentType);
 				// }
+			}
+		}
+
+		return set;
+	}
+
+	/**
+	 * Get all possible Collaboration owned by this package.
+	 * 
+	 * @return a set of all available Collaborations
+	 */
+	public static TreeSet<Collaboration> getAccessibleCollaborations(Package pack) {
+		TreeSet<Collaboration> set = new TreeSet<Collaboration>(new TypeNameComparator());
+
+		Iterator<NamedElement> it = pack.getMembers().iterator();
+		// Get direct members
+		while (it.hasNext()) {
+			NamedElement element = it.next();
+			if (element instanceof Collaboration) {
+
+				set.add((Collaboration) element);
+			}
+		}
+
+		// Recursive call on parents
+		if ((pack.getOwner() != null) && (pack.getOwner() instanceof Package)) {
+
+			Iterator<Collaboration> itParent = PackageUtil.getAccessibleCollaborations(pack.getNestingPackage())
+					.iterator();
+
+			while (itParent.hasNext()) {
+				set.add(itParent.next());
 			}
 		}
 

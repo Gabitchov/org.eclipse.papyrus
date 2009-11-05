@@ -79,7 +79,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	private boolean isDirty = false;
 
 	/** The editing domain. */
-	private org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain;
+	private TransactionalEditingDomain editingDomain;
 
 	/** The document provider. */
 	private IDocumentProvider documentProvider;
@@ -159,7 +159,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @see org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor#getEditingDomain()
 	 */
 	@Override
-	public org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
+	public TransactionalEditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 

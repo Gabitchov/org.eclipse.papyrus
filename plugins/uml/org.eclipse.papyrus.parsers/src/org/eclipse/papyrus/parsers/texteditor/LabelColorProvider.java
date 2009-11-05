@@ -37,7 +37,7 @@ public class LabelColorProvider implements ILabelColorConstants {
 	private static LabelColorProvider instance;
 
 	/**
-	 * Default constructor (provate for singleton pattern).
+	 * Default constructor (private for singleton pattern).
 	 */
 	private LabelColorProvider() {
 		// private constructor for singleton pattern

@@ -2207,6 +2207,23 @@
 	
 
 </extension>
+
+<!-- added by Remi Schnekenburger-->
+<extension
+      point="org.eclipse.ui.preferencePages">
+      			<?gmfgen generated="false"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.diagram.composite.custom.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.diagram.composite.preferences.PropertyPreferencePage"
+            name="Property" />
+ <page
+       category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
+       class="org.eclipse.papyrus.diagram.composite.custom.preferences.CollaborationUsePreferencePage"
+       id="org.eclipse.papyrus.diagram.composite.preferences.CollaborationUsePreferencePage"
+       name="CollaborationUse">
+ </page>	
+</extension>
+
 <extension
 		id="PapyrusUMLCompositeDiagram.palettedefinition"
 		name="PapyrusUMLCompositeDiagram Predefined Entries"

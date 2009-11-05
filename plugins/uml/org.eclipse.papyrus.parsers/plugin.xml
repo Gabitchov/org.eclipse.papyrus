@@ -10,6 +10,20 @@
             language="Papyrus UML"
             objectToEdit="org.eclipse.uml2.uml.Property">
       </DirectEditor>
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML"
+            icon="resources/icons/Port.gif"
+            language="Papyrus UML"
+            objectToEdit="org.eclipse.uml2.uml.Port">
+      </DirectEditor>
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.collaborationuselabel.CollaborationUseConfigurationForUML"
+            icon="resources/icons/CollaborationUse.gif"
+            language="Papyrus UML"
+            objectToEdit="org.eclipse.uml2.uml.CollaborationUse">
+      </DirectEditor>
    </extension>
    <!--
    <extension
