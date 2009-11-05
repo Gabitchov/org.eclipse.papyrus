@@ -717,6 +717,7 @@ public class AbstractionAppliedStereotypeEditPart extends LabelEditPart implemen
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

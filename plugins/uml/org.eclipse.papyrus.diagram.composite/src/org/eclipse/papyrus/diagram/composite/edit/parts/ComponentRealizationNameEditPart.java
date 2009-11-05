@@ -716,6 +716,7 @@ public class ComponentRealizationNameEditPart extends LabelEditPart implements I
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

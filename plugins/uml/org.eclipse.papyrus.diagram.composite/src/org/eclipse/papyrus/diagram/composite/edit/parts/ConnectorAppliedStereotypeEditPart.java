@@ -717,6 +717,7 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

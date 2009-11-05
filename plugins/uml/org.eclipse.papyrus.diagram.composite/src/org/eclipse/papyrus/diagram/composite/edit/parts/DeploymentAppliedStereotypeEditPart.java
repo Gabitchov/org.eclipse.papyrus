@@ -717,6 +717,7 @@ public class DeploymentAppliedStereotypeEditPart extends LabelEditPart implement
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

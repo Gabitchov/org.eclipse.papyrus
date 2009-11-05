@@ -713,6 +713,7 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

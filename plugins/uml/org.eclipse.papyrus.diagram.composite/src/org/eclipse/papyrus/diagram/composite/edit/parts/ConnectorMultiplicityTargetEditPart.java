@@ -717,6 +717,7 @@ public class ConnectorMultiplicityTargetEditPart extends LabelEditPart implement
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

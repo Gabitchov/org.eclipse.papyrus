@@ -717,6 +717,7 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

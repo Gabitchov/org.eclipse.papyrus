@@ -1689,6 +1689,8 @@
       <?gmfgen generated="true"?>
    </extension>
 <extension point="org.eclipse.ui.preferencePages">
+
+
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
@@ -2205,6 +2207,306 @@
 	
 
 </extension>
+<extension
+		id="PapyrusUMLCompositeDiagram.palettedefinition"
+		name="PapyrusUMLCompositeDiagram Predefined Entries"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Lowest"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.composite.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       defineOnly="true"
+       description="Create new Class"
+       id="createClass1CreationTool"
+       kind="tool"
+       label="Class"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Property"
+       id="createProperty2CreationTool"
+       kind="tool"
+       label="Property"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Port"
+       id="createPort3CreationTool"
+       kind="tool"
+       label="Port"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Collaboration"
+       id="createCollaboration4CreationTool"
+       kind="tool"
+       label="Collaboration"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new CollaborationRole"
+       id="createCollaborationRole5CreationTool"
+       kind="tool"
+       label="CollaborationRole"
+       large_icon="icons/obj16/CollaborationRole.gif"
+       path=""
+       small_icon="icons/obj16/CollaborationRole.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new CollaborationUse"
+       id="createCollaborationUse6CreationTool"
+       kind="tool"
+       label="CollaborationUse"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Comment"
+       id="createComment7CreationTool"
+       kind="tool"
+       label="Comment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Constraint"
+       id="createContraint8CreationTool"
+       kind="tool"
+       label="Contraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Link (Comment / Constraint)"
+       id="createLink1CreationTool"
+       kind="tool"
+       label="Link"
+       large_icon="icons/obj16/Link.gif"
+       path=""
+       small_icon="icons/obj16/Link.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Connector"
+       id="createConnector2CreationTool"
+       kind="tool"
+       label="Connector"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new RoleBinding"
+       id="createRoleBinding3CreationTool"
+       kind="tool"
+       label="RoleBinding"
+       large_icon="icons/obj16/CollaborationRoleBinding.gif"
+       path=""
+       small_icon="icons/obj16/CollaborationRoleBinding.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Generalization"
+       id="createGeneralization4CreationTool"
+       kind="tool"
+       label="Generalization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Realization"
+       id="createRealization5CreationTool"
+       kind="tool"
+       label="Realization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Substitution"
+       id="createSubstitution6CreationTool"
+       kind="tool"
+       label="Substitution"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Abstraction"
+       id="createAbstraction7CreationTool"
+       kind="tool"
+       label="Abstraction"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Usage"
+       id="createUsage8CreationTool"
+       kind="tool"
+       label="Usage"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Dependency"
+       id="createDependency9CreationTool"
+       kind="tool"
+       label="Dependency"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+ 	</entry>
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.composite"/>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension
+		id="PapyrusUMLCompositeDiagram.standard"
+		name="PapyrusUMLCompositeDiagram Standard Palette"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Low"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.composite.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       description="Nodes"
+       id="createNodes1Group"
+       kind="drawer"
+       label="Nodes"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createClass1CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createProperty2CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createPort3CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCollaboration4CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCollaborationRole5CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCollaborationUse6CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createComment7CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createContraint8CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+
+	<entry
+       description="Edges"
+       id="createEdges2Group"
+       kind="drawer"
+       label="Edges"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createLink1CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConnector2CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createRoleBinding3CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createGeneralization4CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createRealization5CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createSubstitution6CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createAbstraction7CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createUsage8CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createDependency9CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.composite"/>
+		</paletteProvider>	
+			
+	</extension>
+
 
 
 

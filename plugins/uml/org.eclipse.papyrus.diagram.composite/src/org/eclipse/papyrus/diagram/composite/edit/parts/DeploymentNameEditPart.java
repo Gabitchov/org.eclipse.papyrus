@@ -713,6 +713,7 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

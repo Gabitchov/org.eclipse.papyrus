@@ -716,6 +716,7 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

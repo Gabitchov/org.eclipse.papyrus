@@ -60,7 +60,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The EditingDomain ID for this diagram
 	 */
-	private static final String CSD_EDITING_DOMAIN_ID = "icons/obj16/Diagram_CompositeStructureDiagram.gif"; //$NON-NLS-1$
+	private static final String CSD_EDITING_DOMAIN_ID = "org.eclipse.papyrus.diagram.composite.EditingDomain"; //$NON-NLS-1$
 
 	/**
 	 * The image descriptor of the diagram icon
@@ -92,6 +92,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	public UmlCompositeDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
 			throws BackboneException, ServiceException {
+		super(servicesRegistry);
 		this.diagram = diagram;
 		// IEditorContextRegistry contextRegistry;
 		// contextRegistry = (IEditorContextRegistry)

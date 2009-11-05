@@ -716,6 +716,7 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

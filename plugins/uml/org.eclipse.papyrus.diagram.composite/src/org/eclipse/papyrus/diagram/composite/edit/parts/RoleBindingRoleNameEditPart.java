@@ -716,6 +716,7 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

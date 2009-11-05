@@ -717,6 +717,7 @@ public class InterfaceRealizationAppliedStereotypeEditPart extends LabelEditPart
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

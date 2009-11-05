@@ -717,6 +717,7 @@ public class RoleBindingAppliedStereotypeEditPart extends LabelEditPart implemen
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 

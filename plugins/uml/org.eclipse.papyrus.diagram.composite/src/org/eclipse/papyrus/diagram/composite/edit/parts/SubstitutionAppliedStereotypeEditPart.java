@@ -717,6 +717,7 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 
