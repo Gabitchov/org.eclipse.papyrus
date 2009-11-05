@@ -142,8 +142,9 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				policy = getPolicy();
 				policyInitialized = true;
 			}
-			if (policy != null)
+			if (policy != null) {
 				return policy.provides(operation);
+			}
 
 			if (operation instanceof ContributeToPaletteOperation) {
 				ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
@@ -178,12 +179,16 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				policy = getPolicy();
 				policyInitialized = true;
 			}
-			if (policy != null)
+			if (policy != null) {
 				return policy.provides(operation);
+			}
 
+			// FIXME: that statement is always true (let's see the method's parameter).
+			// => Remove the test
 			if (operation instanceof ContributeToPaletteOperation) {
-				ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
+				ContributeToPaletteOperation o = operation;
 
+				// FIXME returns directly the result
 				boolean supports = providerConfiguration.supports(o.getEditor(), o.getContent());
 
 				if (!supports) {
@@ -331,9 +336,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			if (!isEnable) {
 				return false;
 			}
-
+			// FIXME: that statement is always true (let's see the method's parameter).
+			// => Remove the test
 			if (operation instanceof ContributeToPaletteOperation) {
-				ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
+				ContributeToPaletteOperation o = operation;
 
 				IEditorPart part = o.getEditor();
 				if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
@@ -380,13 +386,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/** the singleton instance of the palette service */
-	private final static PapyrusPaletteService instance = new PapyrusPaletteService();
-
-	static {
-		instance.configureProviders(DiagramUIPlugin.getPluginId(), "paletteProviders"); //$NON-NLS-1$
-		instance.configureProviders(Activator.ID, PALETTE_DEFINITION);
-		instance.configureLocalPalettes();
-	}
+	private static PapyrusPaletteService instance;
 
 	/** the standard group id */
 	public final static String GROUP_STANDARD = "standardGroup"; //$NON-NLS-1$
@@ -436,7 +436,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 * 
 	 * @return <code>PaletteService</code>
 	 */
-	public static PapyrusPaletteService getInstance() {
+	public static synchronized PapyrusPaletteService getInstance() {
+		if (instance == null) {
+			instance = new PapyrusPaletteService();
+			instance.configureProviders(DiagramUIPlugin.getPluginId(), "paletteProviders"); //$NON-NLS-1$
+			instance.configureProviders(Activator.ID, PALETTE_DEFINITION);
+			instance.configureLocalPalettes();
+		}
 		return instance;
 	}
 
@@ -721,11 +727,11 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	public void preferenceChange(PreferenceChangeEvent event) {
 		// listen for local palette preferences...
 		String id = event.getKey();
-		if (PapyrusPalettePreferences.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
+		if (IPapyrusPaletteConstant.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
 			// refresh available palette table viewer
 			getInstance().configureLocalPalettes();
 			providerChanged(new ProviderChangeEvent(this));
-		} else if (PapyrusPalettePreferences.PALETTE_CUSTOMIZATIONS_ID.equals(id)) {
+		} else if (IPapyrusPaletteConstant.PALETTE_CUSTOMIZATIONS_ID.equals(id)) {
 			// refresh available palette table viewer
 			providerChanged(new ProviderChangeEvent(this));
 		}
