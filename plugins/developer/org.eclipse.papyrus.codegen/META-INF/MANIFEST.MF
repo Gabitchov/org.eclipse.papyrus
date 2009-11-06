@@ -7,8 +7,6 @@ Bundle-Activator: org.eclipse.papyrus.codegen.Activator
 Bundle-Vendor: Atos Origin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.emf.ecore;bundle-version="2.4.0",
- org.eclipse.emf.codegen.ecore;bundle-version="2.4.0",
  org.eclipse.gmf.codegen;bundle-version="2.1.0",
  org.eclipse.gmf.codegen.ui;bundle-version="1.1.0",
  org.eclipse.m2m.qvt.oml;bundle-version="2.0.0"
