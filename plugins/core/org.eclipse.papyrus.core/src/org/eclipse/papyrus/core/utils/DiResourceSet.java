@@ -39,17 +39,17 @@ public class DiResourceSet extends ResourceSetImpl {
 	/**
 	 * File extension used for DI.
 	 */
-	private static final String DI_FILE_EXTENSION = "di";
+	public static final String DI_FILE_EXTENSION = "di"; //$NON-NLS-1$
 
 	/**
 	 * File extension used for Model.
 	 */
-	private static final String MODEL_FILE_EXTENSION = "uml";
+	public static final String MODEL_FILE_EXTENSION = "uml"; //$NON-NLS-1$
 
 	/**
 	 * File extension used for Model.
 	 */
-	private static final String NOTATION_FILE_EXTENSION = "notation";
+	public static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
 	/**
 	 * The UML model resource.

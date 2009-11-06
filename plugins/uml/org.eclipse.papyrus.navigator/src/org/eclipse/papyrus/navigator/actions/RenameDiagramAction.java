@@ -19,6 +19,7 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Action used to rename the given diagram
@@ -31,7 +32,7 @@ public class RenameDiagramAction extends Action {
 
 	public RenameDiagramAction(Diagram diagram) {
 		this.diagram = diagram;
-		setImageDescriptor(Activator.getImageDescriptor("icons/etool16/rename.gif"));
+		setImageDescriptor(Activator.Implementation.getImageDescriptor("icons/etool16/rename.gif"));
 		setText("Rename...");
 	}
 
@@ -44,8 +45,8 @@ public class RenameDiagramAction extends Action {
 	public void run() {
 		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
-			InputDialog dialog = new InputDialog(Activator.getDefault().getWorkbench().getDisplay().getActiveShell(),
-					"Rename an existing diagram", "New name:", diagram.getName(), null);
+			InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename an existing diagram",
+					"New name:", diagram.getName(), null);
 			if (dialog.open() == Window.OK) {
 				final String name = dialog.getValue();
 				if (name != null && name.length() > 0) {

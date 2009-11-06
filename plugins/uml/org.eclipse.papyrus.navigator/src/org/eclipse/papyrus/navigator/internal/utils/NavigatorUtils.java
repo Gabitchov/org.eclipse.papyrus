@@ -19,10 +19,11 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
@@ -39,6 +40,8 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>: Remove Backbone
+ *         dependency
  **/
 public class NavigatorUtils {
 
@@ -55,24 +58,16 @@ public class NavigatorUtils {
 	}
 
 	/**
-	 * @return Get the current {@link BackboneContext}
-	 */
-	public static BackboneContext getBackboneContext() {
-		IMultiDiagramEditor multiDiagramEditor = getMultiDiagramEditor();
-		if (multiDiagramEditor != null) {
-			BackboneContext backboneContext = multiDiagramEditor.getDefaultContext();
-			return backboneContext;
-		}
-		return null;
-	}
-
-	/**
 	 * @return Get the current {@link DiResourceSet}
 	 */
 	public static DiResourceSet getDiResourceSet() {
-		BackboneContext backboneContext = getBackboneContext();
-		if (backboneContext != null) {
-			return backboneContext.getResourceSet();
+		IMultiDiagramEditor diagramEditor = getMultiDiagramEditor();
+		if (diagramEditor != null) {
+			try {
+				return diagramEditor.getServicesRegistry().getService(DiResourceSet.class);
+			} catch (ServiceException e) {
+				Activator.INSTANCE.log(e);
+			}
 		}
 		return null;
 	}
@@ -81,9 +76,13 @@ public class NavigatorUtils {
 	 * @return Get the current {@link TransactionalEditingDomain}
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomain() {
-		BackboneContext backboneContext = getBackboneContext();
-		if (backboneContext != null) {
-			return backboneContext.getTransactionalEditingDomain();
+		IMultiDiagramEditor diagramEditor = getMultiDiagramEditor();
+		if (diagramEditor != null) {
+			try {
+				return diagramEditor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+			} catch (ServiceException e) {
+				Activator.INSTANCE.log(e);
+			}
 		}
 		return null;
 	}
@@ -116,16 +115,15 @@ public class NavigatorUtils {
 	 * @return the i view part
 	 */
 	public static IViewPart findViewPart(String viewID) {
-		try {
-			IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.findViewReference(viewID);
-			IWorkbenchPart part = reference.getPart(false);
-			if (part instanceof IViewPart) {
-				return (IViewPart) part;
-			} else {
-				return null;
-			}
-		} catch (NullPointerException ex) {
+		IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.findViewReference(viewID);
+		if (reference == null) {
+			return null;
+		}
+		IWorkbenchPart part = reference.getPart(false);
+		if (part instanceof IViewPart) {
+			return (IViewPart) part;
+		} else {
 			return null;
 		}
 	}

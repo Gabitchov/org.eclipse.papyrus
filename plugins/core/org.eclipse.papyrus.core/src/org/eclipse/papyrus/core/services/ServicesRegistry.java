@@ -149,7 +149,6 @@ public class ServicesRegistry {
 	 * @throws ServiceException
 	 *             If servive can't be started
 	 */
-	@Deprecated
 	public Object getService(Object key) throws ServiceException {
 		AbstractServiceEntry service = services.get(key);
 		if (service == null) {
@@ -166,7 +165,7 @@ public class ServicesRegistry {
 	 *            The service class.
 	 * @return The service.
 	 * @throws ServiceException
-	 *             If servive can't be started
+	 *             If service can't be started
 	 */
 	@SuppressWarnings("unchecked")
 	public <S> S getService(Class<S> key) throws ServiceException {

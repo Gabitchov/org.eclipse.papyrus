@@ -74,25 +74,21 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class ModelNavigator extends CommonNavigator implements IEditingDomainProvider {
 
-	// @unused
+	/** ID Of the Navigator. */
 	public final static String ID_MODELNAVIGATOR = "org.eclipse.papyrus.navigator.modelExplorer";
 
-	// @unused
-	IWorkbenchPage page = null;
+	private IWorkbenchPage page = null;
 
 	/** {@link TransactionalEditingDomain} used to perform actions and commands. */
-	// @unused
-	TransactionalEditingDomain editingDomain = null;
+	private TransactionalEditingDomain editingDomain = null;
 
 	/** Active {@link IEditorPart}. */
-	// @unused
-	IEditorPart editorPart = null;
+	private IEditorPart editorPart = null;
 
 	/**
 	 * The {@link IPropertySheetPage} this model exploer will use.
 	 */
-	// @unused
-	IPropertySheetPage propertySheetPage = null;
+	private IPropertySheetPage propertySheetPage = null;
 
 	// //
 	// fjcano #290424 :: allow saving from the Model Explorer
@@ -257,7 +253,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	public IAction getSearchAction() {
 		// fjcano #290425 :: add search element action to model navigator
 		IAction searchAction = new SearchElementAction(this);
-		ImageDescriptor magnifyingGlassIcon = Activator.getImageDescriptor("icons/etool16/search.gif");
+		ImageDescriptor magnifyingGlassIcon = Activator.Implementation.getImageDescriptor("icons/etool16/search.gif");
 		searchAction.setImageDescriptor(magnifyingGlassIcon);
 		searchAction.setHoverImageDescriptor(magnifyingGlassIcon);
 		return searchAction;

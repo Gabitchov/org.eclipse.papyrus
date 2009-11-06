@@ -37,7 +37,7 @@ public class DuplicateDiagramAction extends Action {
 		this.diagram = diagram;
 		this.pageMngr = pageMngr;
 
-		setImageDescriptor(Activator.getImageDescriptor("icons/etool16/duplicate.png"));
+		setImageDescriptor(Activator.Implementation.getImageDescriptor("icons/etool16/duplicate.png"));
 		setText("Duplicate");
 		setEnabled(true);
 	}

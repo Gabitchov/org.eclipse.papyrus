@@ -268,9 +268,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	/**
-	 * @return the servicesRegistry
+	 * Returns the service registry associated to the editor.
+	 * 
+	 * @return the servicesRegistry The registry.
 	 */
-	protected ServicesRegistry getServicesRegistry() {
+	public ServicesRegistry getServicesRegistry() {
 		if (servicesRegistry == null) {
 			servicesRegistry = createServicesRegistry();
 		}
@@ -493,6 +495,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
 		servicesRegistry.add(IEditorContextRegistry.class, 1, editorContextRegistry);
 		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
+		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
 
 		// Create ContentProvider
 		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);

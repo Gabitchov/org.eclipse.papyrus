@@ -24,9 +24,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -108,9 +108,8 @@ public class RenameNamedElementAction extends CommandActionHandler {
 
 			@Override
 			protected void doExecute() {
-				InputDialog dialog = new InputDialog(Activator.getDefault().getWorkbench().getDisplay()
-						.getActiveShell(), "Rename an existing diagram", "New name:", getSelectedNamedElement()
-						.getName(), null);
+				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(),
+						"Rename an existing diagram", "New name:", getSelectedNamedElement().getName(), null);
 				if (dialog.open() == Window.OK) {
 					final String name = dialog.getValue();
 					getSelectedNamedElement().setName(name);

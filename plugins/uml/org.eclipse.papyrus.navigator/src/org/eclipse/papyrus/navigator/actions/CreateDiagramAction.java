@@ -11,13 +11,13 @@
 package org.eclipse.papyrus.navigator.actions;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.uml2.uml.PackageableElement;
 
@@ -65,12 +65,10 @@ public class CreateDiagramAction extends Action {
 		try {
 			ICreationCommand creationCommand = getCreationCommandRegistry()
 					.getCommand(commandDescriptor.getCommandId());
-			BackboneContext backboneContext = NavigatorUtils.getBackboneContext();
-			DiResourceSet diResourceSet = backboneContext.getResourceSet();
+			DiResourceSet diResourceSet = NavigatorUtils.getDiResourceSet();
 			creationCommand.createDiagram(diResourceSet, container, null);
 		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.INSTANCE.log(e);
 		}
 	}
 

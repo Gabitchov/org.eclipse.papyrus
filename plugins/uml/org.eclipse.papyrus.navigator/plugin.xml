@@ -52,6 +52,25 @@
             class="org.eclipse.papyrus.navigator.dnd.CommonDragAdapterAssistant"
             viewerId="org.eclipse.papyrus.navigator.dnd.dragAssistant">
       </dragAssistant>
+      <viewerActionBinding
+            viewerId="org.eclipse.papyrus.navigator.modelExplorer">
+         <includes>
+            <actionExtension
+                  pattern="org.eclipse.ui.navigator.resources.*">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+      <viewerContentBinding
+            viewerId="org.eclipse.papyrus.navigator.modelExplorer">
+         <includes>
+            <contentExtension
+                  pattern="org.eclipse.ui.navigator.resourceContent">
+            </contentExtension>
+            <contentExtension
+                  pattern="org.eclipse.ui.navigator.resources.filters.*">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
@@ -178,6 +197,13 @@
             description="Hide EAnnotations items in the navigator"
             id="org.eclipse.papyrus.navigator.filters.HideEAnnotationsViewerFilter"
             name="EAnnotations">
+      </commonFilter>
+      <commonFilter
+            activeByDefault="true"
+            class="org.eclipse.papyrus.navigator.filters.DiResourceFilter"
+            description="Hides the .uml and .notation associated to a .di"
+            id="org.eclipse.papyrus.navigator.filters.DiResourceFilter"
+            name="Di Resources">
       </commonFilter>
    </extension>
    <extension

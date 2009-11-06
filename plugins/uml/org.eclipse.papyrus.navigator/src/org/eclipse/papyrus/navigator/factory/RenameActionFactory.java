@@ -44,7 +44,8 @@ public class RenameActionFactory implements IActionHandlerFactory {
 		// Rename NamedElement action
 		// fjcano #290514 :: command to rename elements in the model explorer
 		this.renameNamedElementAction = new RenameNamedElementAction(editingDomain);
-		this.renameNamedElementAction.setImageDescriptor(Activator.getImageDescriptor("icons/etool16/rename.gif"));
+		this.renameNamedElementAction.setImageDescriptor(Activator.Implementation
+				.getImageDescriptor("icons/etool16/rename.gif"));
 		actions.add(renameNamedElementAction);
 
 		return actions;
