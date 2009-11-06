@@ -84,12 +84,15 @@ public class PageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void openPage(Object pageIdentifier) {
+		if (pageIdentifier == null) {
+			return;
+		}
 		// Add the page to the SashModel and to the PageList
-
 		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
 		boolean found = false;
-		while (iterator.hasNext() && found == false) {
-			if (iterator.next().getPageIdentifier().equals(pageIdentifier)) {
+		while (iterator.hasNext() && !found) {
+			// Bug #288806 : the test should be inversed
+			if (pageIdentifier.equals(iterator.next().getPageIdentifier())) {
 				found = true;
 			}
 		}
