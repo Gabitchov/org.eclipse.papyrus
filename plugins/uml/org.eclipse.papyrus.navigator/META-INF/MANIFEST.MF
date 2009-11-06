@@ -15,8 +15,11 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.navigator,
  org.eclipse.papyrus.navigator.actions,
+ org.eclipse.papyrus.navigator.dialog,
+ org.eclipse.papyrus.navigator.dnd,
  org.eclipse.papyrus.navigator.factory,
  org.eclipse.papyrus.navigator.filters;uses:="org.eclipse.jface.viewers",
- org.eclipse.papyrus.navigator.internal.utils,
+ org.eclipse.papyrus.navigator.internal;x-internal:=true,
+ org.eclipse.papyrus.navigator.internal.utils;x-internal:=true,
  org.eclipse.papyrus.navigator.providers,
  org.eclipse.papyrus.navigator.sorters

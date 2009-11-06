@@ -6,24 +6,26 @@ Bundle-SymbolicName: org.eclipse.papyrus.profile;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.profile.Activator
 Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Require-Bundle: org.eclipse.uml2.uml.editor,
  org.eclipse.papyrus.extensionpoints.uml2;bundle-version="0.7.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.1.0"
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.profile,
  org.eclipse.papyrus.profile.constraints,
  org.eclipse.papyrus.profile.definition,
+ org.eclipse.papyrus.profile.filter,
  org.eclipse.papyrus.profile.preference,
  org.eclipse.papyrus.profile.tree,
  org.eclipse.papyrus.profile.tree.objects,
  org.eclipse.papyrus.profile.ui.actions,
+ org.eclipse.papyrus.profile.ui.compositeforview,
  org.eclipse.papyrus.profile.ui.compositesformodel,
  org.eclipse.papyrus.profile.ui.dialogs,
  org.eclipse.papyrus.profile.ui.items,
  org.eclipse.papyrus.profile.ui.listeners,
  org.eclipse.papyrus.profile.ui.panels,
+ org.eclipse.papyrus.profile.ui.section,
  org.eclipse.papyrus.profile.ui.views,
  org.eclipse.papyrus.profile.utils,
  org.eclipse.papyrus.profile.wizard

@@ -21,6 +21,7 @@ Export-Package: org.eclipse.papyrus.parsers,
  org.eclipse.papyrus.parsers.modelgenerator,
  org.eclipse.papyrus.parsers.preferences,
  org.eclipse.papyrus.parsers.texteditor,
+ org.eclipse.papyrus.parsers.texteditor.collaborationuselabel,
  org.eclipse.papyrus.parsers.texteditor.completionproposals,
  org.eclipse.papyrus.parsers.texteditor.propertylabel,
  org.eclipse.papyrus.parsers.util

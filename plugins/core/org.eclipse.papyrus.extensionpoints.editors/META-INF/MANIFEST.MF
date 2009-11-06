@@ -16,5 +16,6 @@ Export-Package: org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.extensionpoints.editors.definition,
  org.eclipse.papyrus.extensionpoints.editors.preferences,
  org.eclipse.papyrus.extensionpoints.editors.ui,
+ org.eclipse.papyrus.extensionpoints.editors.ui.images,
  org.eclipse.papyrus.extensionpoints.editors.utils
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
