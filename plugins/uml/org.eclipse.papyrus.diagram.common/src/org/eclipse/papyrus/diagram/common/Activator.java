@@ -60,10 +60,10 @@ public class Activator extends AbstractUIPlugin {
 	public static final String DEFAULT_IMAGE = "icons/papyrus/PapyrusLogo16x16.gif";
 
 	/** Color manager. */
-	public static ColorManager colorManager = new ColorManager();
+	public static ColorManager colorManager = /* new ColorManager(); */null;
 
 	/** Font manager. */
-	public static FontManager fontManager = new FontManager();
+	public static FontManager fontManager = /* new FontManager(); */null;
 
 	/** left Stereotype delimiters ('Guillemets francais'). */
 	public static String ST_LEFT = String.valueOf("\u00AB");
@@ -87,7 +87,32 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in relative path.
+	 * Return the color manager. Initialize it if required.
+	 * 
+	 * @return
+	 */
+	public static ColorManager getColorManager() {
+		if (colorManager == null) {
+			colorManager = new ColorManager();
+		}
+		return colorManager;
+	}
+
+	/**
+	 * Return the font managet. Initialize it if required.
+	 * 
+	 * @return
+	 */
+	public static FontManager getFontManager() {
+		if (fontManager == null) {
+			fontManager = new FontManager();
+		}
+		return fontManager;
+	}
+
+	/**
+	 * Returns an image descriptor for the image file at the given plug-in
+	 * relative path.
 	 * 
 	 * @param path
 	 *            the path for the image file
@@ -102,9 +127,10 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its key.<BR>
-	 * By default, it returns a default image. This image is the image placed in the directory
-	 * <em>resources/icons/default.gif</em>
+	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its
+	 * key.<BR>
+	 * By default, it returns a default image. This image is the image placed in
+	 * the directory <em>resources/icons/default.gif</em>
 	 * 
 	 * @param key
 	 *            the key of the image
@@ -125,17 +151,20 @@ public class Activator extends AbstractUIPlugin {
 		if (image == null) { // Image not yet in registry
 
 			// Get the descriptor of the image without visibility
-			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(getDefault().ID, key);
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(
+					getDefault().ID, key);
 
 			if (!"".equals(visKey)) { // Add visibility overlay
 
 				Image initialImage = desc.createImage();
 				getDefault();
-				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16
-						+ "VisibilityKind_" + visKey + ".gif");
+				ImageDescriptor visDesc = Activator
+						.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16
+								+ "VisibilityKind_" + visKey + ".gif");
 
 				// Overlay custom image over base image
-				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(initialImage, visDesc);
+				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(
+						initialImage, visDesc);
 				image = overlayIcon.getImage();
 
 				registry.put(image_id, image);
@@ -156,11 +185,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * This method returns an <code>org.eclipse.swt.graphics.Image</code> identified by its pluginId
-	 * and iconPath.<BR>
+	 * This method returns an <code>org.eclipse.swt.graphics.Image</code>
+	 * identified by its pluginId and iconPath.<BR>
 	 * 
-	 * By default, it returns a default image. This image is the image placed in the directory
-	 * <em>resources/icons/default.gif</em>
+	 * By default, it returns a default image. This image is the image placed in
+	 * the directory <em>resources/icons/default.gif</em>
 	 * 
 	 * @param pluginId
 	 *            id of plugin
@@ -175,7 +204,8 @@ public class Activator extends AbstractUIPlugin {
 
 		if (image == null) {
 
-			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, iconPath);
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(
+					pluginId, iconPath);
 
 			registry.put(key, desc);
 			image = registry.get(key);
@@ -189,11 +219,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * This method returns an <code>org.eclipse.swt.graphics.Image</code> identified by its pluginId
-	 * and image Descriptor.<BR>
+	 * This method returns an <code>org.eclipse.swt.graphics.Image</code>
+	 * identified by its pluginId and image Descriptor.<BR>
 	 * 
-	 * By default, it returns a default image. This image is the image placed in the directory
-	 * <em>resources/icons/default.gif</em>
+	 * By default, it returns a default image. This image is the image placed in
+	 * the directory <em>resources/icons/default.gif</em>
 	 * 
 	 * @param pluginId
 	 *            id of plugin
@@ -201,7 +231,8 @@ public class Activator extends AbstractUIPlugin {
 	 *            the image descriptor of the image
 	 * @return the Image
 	 */
-	public static Image getPluginIconImage(String pluginId, ImageDescriptor descriptor) {
+	public static Image getPluginIconImage(String pluginId,
+			ImageDescriptor descriptor) {
 		String key = pluginId + descriptor;
 		ImageRegistry registry = getDefault().getImageRegistry();
 		Image image = registry.get(key);
@@ -216,7 +247,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * this method returns the shape image that represents the first applied stereotype.
+	 * this method returns the shape image that represents the first applied
+	 * stereotype.
 	 * 
 	 * @param elt
 	 *            the stereotyped element
@@ -224,7 +256,8 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Image getShapeElement(Element elt) {
 		// getStereotypeImage can return null
-		org.eclipse.uml2.uml.Image shape = ElementUtil.getStereotypeImage(elt, "shape");
+		org.eclipse.uml2.uml.Image shape = ElementUtil.getStereotypeImage(elt,
+				"shape");
 		if (shape != null) {
 			return getImageInRegistry(shape, null);
 		} else {
@@ -238,23 +271,27 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * this method returns the icon image that represents the first applied stereotype.
+	 * this method returns the icon image that represents the first applied
+	 * stereotype.
 	 * 
 	 * @param elt
 	 *            the stereotyped element
 	 * @return {@link image} of the icon
 	 */
-	public static Image getIconElement(Element elt, boolean withVisibilityDecorator) {
+	public static Image getIconElement(Element elt,
+			boolean withVisibilityDecorator) {
 
 		List<Stereotype> stereotypeList = elt.getAppliedStereotypes();
 		if (stereotypeList == null || stereotypeList.isEmpty()) {
 			return null;
 		}
-		return getIconElement(elt, stereotypeList.get(0), withVisibilityDecorator);
+		return getIconElement(elt, stereotypeList.get(0),
+				withVisibilityDecorator);
 	}
 
 	/**
-	 * this method returns the collection of icon images that represents the applied stereotypes.
+	 * this method returns the collection of icon images that represents the
+	 * applied stereotypes.
 	 * 
 	 * @param elt
 	 *            the stereotyped element
@@ -264,8 +301,8 @@ public class Activator extends AbstractUIPlugin {
 	 *            the kind of display "icon" or "shape"
 	 * @return {@link image} of the icon
 	 */
-	public static Collection<Image> getIconElements(Element elt, Collection<Stereotype> stereotypes,
-			boolean withVisibilityDecorator) {
+	public static Collection<Image> getIconElements(Element elt,
+			Collection<Stereotype> stereotypes, boolean withVisibilityDecorator) {
 		Collection<Image> images = new ArrayList<Image>();
 		VisibilityKind vis = null;
 		if ((elt instanceof NamedElement) && (withVisibilityDecorator)) {
@@ -275,7 +312,8 @@ public class Activator extends AbstractUIPlugin {
 		// look in each stereotype and get the image for each of them
 		for (Stereotype stereotype : stereotypes) {
 			// getStereotypeImage can return null
-			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(elt, stereotype, "icon");
+			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(
+					elt, stereotype, "icon");
 			if (icon != null) {
 				images.add(getImageInRegistry(icon, vis));
 			}
@@ -284,7 +322,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * this method returns the icon image that represents the first applied stereotype.
+	 * this method returns the icon image that represents the first applied
+	 * stereotype.
 	 * 
 	 * @param elt
 	 *            the stereotyped element
@@ -294,7 +333,8 @@ public class Activator extends AbstractUIPlugin {
 	 *            the kind of display "icon" or "shape"
 	 * @return {@link image} of the icon
 	 */
-	public static Image getIconElement(Element elt, Stereotype stereotype, boolean withVisibilityDecorator) {
+	public static Image getIconElement(Element elt, Stereotype stereotype,
+			boolean withVisibilityDecorator) {
 
 		VisibilityKind vis = null;
 		if ((elt instanceof NamedElement) && (withVisibilityDecorator)) {
@@ -303,7 +343,8 @@ public class Activator extends AbstractUIPlugin {
 		}
 
 		// getStereotypeImage can return null
-		org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(elt, stereotype, "icon");
+		org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(elt,
+				stereotype, "icon");
 		if (icon != null) {
 			return getImageInRegistry(icon, vis);
 		} else {
@@ -312,13 +353,15 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Find the image (SWT) in registry Store image in registry if it is not found
+	 * Find the image (SWT) in registry Store image in registry if it is not
+	 * found
 	 * 
 	 * @param umlImage
 	 *            to retrieve as SWT Image in registry
 	 * @return the stored SWT image
 	 */
-	public static Image getImageInRegistry(org.eclipse.uml2.uml.Image umlImage, VisibilityKind visibility) {
+	public static Image getImageInRegistry(org.eclipse.uml2.uml.Image umlImage,
+			VisibilityKind visibility) {
 		// Retrieve registry
 		ImageRegistry papyrusRegistry = getDefault().getImageRegistry();
 
@@ -348,18 +391,22 @@ public class Activator extends AbstractUIPlugin {
 			if (visibility != null) {
 
 				getDefault();
-				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16
-						+ "VisibilityKind_" + visibility.getLiteral() + ".gif");
+				ImageDescriptor visDesc = Activator
+						.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16
+								+ "VisibilityKind_" + visibility.getLiteral()
+								+ ".gif");
 
 				// Overlay custom image over base image
-				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(image, visDesc);
+				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(
+						image, visDesc);
 				image = overlayIcon.getImage();
 			}
 
 			if (image != null) {
 				// Store image in registry
 				ImageData imdata = image.getImageData();
-				papyrusRegistry.put(image_id, ImageDescriptor.createFromImageData(imdata));
+				papyrusRegistry.put(image_id, ImageDescriptor
+						.createFromImageData(imdata));
 				image = papyrusRegistry.get(image_id);
 			}
 		}
@@ -368,7 +415,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/** The Constant DIAGRAM_PREFERENCES_HINT. */
-	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
+	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(
+			ID);
 
 	/** The adapter factory. */
 	private ComposedAdapterFactory adapterFactory;
@@ -387,7 +435,8 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
+		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT,
+				getPreferenceStore());
 		plugin = this;
 	}
 
@@ -429,7 +478,9 @@ public class Activator extends AbstractUIPlugin {
 		if (error == null && throwable != null) {
 			error = throwable.getMessage();
 		}
-		getLog().log(new Status(IStatus.ERROR, Activator.ID, IStatus.OK, error, throwable));
+		getLog().log(
+				new Status(IStatus.ERROR, Activator.ID, IStatus.OK, error,
+						throwable));
 		debug(error, throwable);
 	}
 
@@ -455,8 +506,19 @@ public class Activator extends AbstractUIPlugin {
 		if (message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
-		getLog().log(new Status(IStatus.INFO, Activator.ID, IStatus.OK, message, throwable));
+		getLog().log(
+				new Status(IStatus.INFO, Activator.ID, IStatus.OK, message,
+						throwable));
 		debug(message, throwable);
+	}
+	
+	public void logWarning(String warning, Throwable throwable) {
+		if (warning == null && throwable != null) {
+			warning = throwable.getMessage();
+		}
+		getLog().log(
+				new Status(IStatus.WARNING, ID, IStatus.OK, warning,
+						throwable));
 	}
 
 	/**
@@ -491,7 +553,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Use alternative UMLItemProviderAdapterFactory insteadof UMLItemProviderAdapterFactory.
+	 * Use alternative UMLItemProviderAdapterFactory insteadof
+	 * UMLItemProviderAdapterFactory.
 	 * 
 	 * @param factories
 	 *            the factories
@@ -500,7 +563,8 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	protected void fillItemProviderFactories(List factories) {
 		// custom icons for diagram elements
-		factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
+		factories.add(new AlternativeUMLItemProviderAdapterFactory(
+				getPreferenceStore()));
 
 		factories.add(new UMLItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());

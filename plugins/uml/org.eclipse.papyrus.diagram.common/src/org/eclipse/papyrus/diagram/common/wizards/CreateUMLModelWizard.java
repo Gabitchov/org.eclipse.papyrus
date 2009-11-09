@@ -22,7 +22,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class CreateUMLModelWizard extends CreateModelWizard {
 
 	/**
-	 * This ID is the id defined in the extension "org.eclipse.ui.newWizards" of the wizard.
+	 * This ID is the id defined in the extension "org.eclipse.ui.newWizards" of
+	 * the wizard.
 	 */
 	// @unused
 	public static final String ID_UMLWIZARD = "org.eclipse.papyrus.wizards.createumlmodel";
@@ -33,10 +34,16 @@ public class CreateUMLModelWizard extends CreateModelWizard {
 	}
 
 	@Override
-	protected void initializeModelResource(Resource resource, String rootElementName) {
-		Model model = UMLFactory.eINSTANCE.createModel();
-		model.setName(rootElementName);
-		resource.getContents().add(model);
+	protected void initializeModelResource(Resource resource,
+			String rootElementName) {
+		// fjcano #293135 :: support model templates
+		if (!isInitializeFromTemplate()) {
+			Model model = UMLFactory.eINSTANCE.createModel();
+			model.setName(rootElementName);
+			resource.getContents().add(model);
+		} else {
+			super.initializeModelResource(resource, rootElementName);
+		}
 	}
 
 }

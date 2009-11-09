@@ -147,6 +147,50 @@
                </popupAction>
             </popupContribution>
          </contributionItemProvider>
+                  <contributionItemProvider
+               checkPluginLoaded="true"
+               class="org.eclipse.papyrus.diagram.common.actions.MoveCompartmentObjectItemProvider">
+            <Priority
+                  name="Medium">
+            </Priority>
+            <popupContribution
+                  class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+               <popupMenuGroup
+                     id="menu_order_within_compartment_group"
+                     path="/propertiesGroup"
+                     separator="true">
+               </popupMenuGroup>
+               <popupMenu
+                     id="menu_order_within_compartment"
+                     path="/menu_order_within_compartment_group">
+               </popupMenu>
+               <popupStructuredContributionCriteria
+                     policyClass="org.eclipse.papyrus.diagram.common.actions.MoveCompartmentPopupContributionPolicy">
+               </popupStructuredContributionCriteria>
+            </popupContribution>
+         </contributionItemProvider>
+                  <contributionItemProvider
+                        checkPluginLoaded="true"
+                        class="org.eclipse.papyrus.diagram.common.providers.DiagramValidationProvider">
+                     <Priority
+                           name="Lowest">
+                     </Priority>
+                     <popupContribution
+                           class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+                        <popupMenuGroup
+                              id="diagramValidationGroup"
+                              path="/"
+                              separator="true">
+                        </popupMenuGroup>
+                        <popupStructuredContributionCriteria
+                              policyClass="org.eclipse.papyrus.diagram.common.actions.ValidationPopupMenuContributionPolicy">
+                        </popupStructuredContributionCriteria>
+                        <popupAction
+                              id="validateDiagramAction"
+                              path="/diagramValidationGroup">
+                        </popupAction>
+                     </popupContribution>
+                  </contributionItemProvider>
       </extension>
 <extension
       point="org.eclipse.papyrus.core.modelListener">
@@ -204,6 +248,41 @@
 	   		<input type="java.lang.Object"/>
 		</propertySection>
 	</propertySections>
+</extension>
+<extension
+      point="org.eclipse.ui.startup">
+   <startup
+         class="org.eclipse.papyrus.diagram.common.Startup"></startup>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContribution">
+      <command
+            commandId="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
+            label="Load resource..."
+            style="push">
+         <visibleWhen>
+            <or>
+               <with
+                     variable="activePartId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         defaultHandler="org.eclipse.papyrus.diagram.common.actions.LoadResourceAction"
+         id="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
+         name="Load Resource">
+   </command>
 </extension>
 
 </plugin>
