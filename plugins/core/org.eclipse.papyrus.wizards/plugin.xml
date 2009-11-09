@@ -22,5 +22,13 @@
          </action>
       </objectContribution>
    </extension>
+ <extension
+       point="org.eclipse.papyrus.wizards.templates">
+    <template
+          file="modelTemplate/gvMetrica.uml"
+          id="org.eclipse.papyrus.wizards.templates.gvmetrica"
+          name="Default UML2 structure for GvMetrica">
+    </template>
+ </extension>
    
 </plugin>
