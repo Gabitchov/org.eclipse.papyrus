@@ -20,18 +20,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
@@ -46,64 +41,45 @@ import org.eclipse.ui.PlatformUI;
 public class NavigatorUtils {
 
 	/**
+	 * Gets the multi diagram editor.
+	 * 
 	 * @return Get the current {@link IMultiDiagramEditor}
+	 * @deprecated Use the {@link EditorUtils#getMultiDiagramEditor()}
 	 */
+	@Deprecated
 	public static IMultiDiagramEditor getMultiDiagramEditor() {
-		IEditorPart editor = getActiveEditor();
-		if (editor instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor multiDiagramEditor = (IMultiDiagramEditor) editor;
-			return multiDiagramEditor;
-		}
-		return null;
+		return EditorUtils.getMultiDiagramEditor();
 	}
 
 	/**
 	 * @return Get the current {@link DiResourceSet}
+	 * 
+	 * @deprecated use {@link org.eclipse.papyrus.core.utils.EditorUtils#getDiResourceSet()}
 	 */
+	@Deprecated
 	public static DiResourceSet getDiResourceSet() {
-		IMultiDiagramEditor diagramEditor = getMultiDiagramEditor();
-		if (diagramEditor != null) {
-			try {
-				return diagramEditor.getServicesRegistry().getService(DiResourceSet.class);
-			} catch (ServiceException e) {
-				Activator.INSTANCE.log(e);
-			}
-		}
-		return null;
+		return EditorUtils.getDiResourceSet();
 	}
 
 	/**
 	 * @return Get the current {@link TransactionalEditingDomain}
+	 * 
+	 * @deprecated use {@link EditorUtils#getTransactionalEditingDomain()}
 	 */
+	@Deprecated
 	public static TransactionalEditingDomain getTransactionalEditingDomain() {
-		IMultiDiagramEditor diagramEditor = getMultiDiagramEditor();
-		if (diagramEditor != null) {
-			try {
-				return diagramEditor.getServicesRegistry().getService(TransactionalEditingDomain.class);
-			} catch (ServiceException e) {
-				Activator.INSTANCE.log(e);
-			}
-		}
-		return null;
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 
 	/**
 	 * Gets the active <IEditorPart>.
 	 * 
 	 * @return the active editor
+	 * @deprecated Use the {@link EditorUtils#getActiveEditor()}
 	 */
+	@Deprecated
 	public static IEditorPart getActiveEditor() {
-		IWorkbench wb = PlatformUI.getWorkbench();
-		if (wb != null) {
-			IWorkbenchWindow ww = wb.getActiveWorkbenchWindow();
-			if (ww != null) {
-				IWorkbenchPage wp = ww.getActivePage();
-				if (wp != null) {
-					return wp.getActiveEditor();
-				}
-			}
-		}
-		return null;
+		return EditorUtils.getActiveEditor();
 	}
 
 	/**

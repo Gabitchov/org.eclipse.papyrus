@@ -249,11 +249,13 @@
 		</propertySection>
 	</propertySections>
 </extension>
+<!-- The class doesn't exist
 <extension
       point="org.eclipse.ui.startup">
    <startup
          class="org.eclipse.papyrus.diagram.common.Startup"></startup>
 </extension>
+-->
 <extension
       point="org.eclipse.ui.menus">
    <menuContribution

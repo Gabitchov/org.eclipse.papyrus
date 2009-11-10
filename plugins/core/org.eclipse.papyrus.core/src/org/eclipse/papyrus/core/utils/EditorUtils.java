@@ -7,7 +7,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
@@ -16,7 +17,9 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashMode
 import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -27,26 +30,51 @@ import org.eclipse.ui.PlatformUI;
 public class EditorUtils {
 
 	/**
+	 * Gets the active <IEditorPart>.
+	 * 
+	 * @return the active editor or null if none.
+	 */
+	public static IEditorPart getActiveEditor() {
+		IWorkbench wb = PlatformUI.getWorkbench();
+		if (wb != null) {
+			IWorkbenchWindow ww = wb.getActiveWorkbenchWindow();
+			if (ww != null) {
+				IWorkbenchPage wp = ww.getActivePage();
+				if (wp != null) {
+					return wp.getActiveEditor();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the multi diagram editor.
+	 * 
+	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
+	 */
+	public static IMultiDiagramEditor getMultiDiagramEditor() {
+		IEditorPart editor = getActiveEditor();
+		if (editor instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor multiDiagramEditor = (IMultiDiagramEditor) editor;
+			return multiDiagramEditor;
+		}
+		return null;
+	}
+
+	/**
 	 * Get the service registry of the currently active main editor.
 	 * 
-	 * @return The ServiceRegistry or null if not found.
+	 * @return The {@link ServicesRegistry} or null if not found.
 	 */
-	static public ServicesRegistry getServiceRegistry() {
+	public static ServicesRegistry getServiceRegistry() {
 		// Lookup ServiceRegistry
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		if (page == null) {
-			throw new IllegalStateException("No Active Page can be found. So no Service Registry can be returned.");
+		IMultiDiagramEditor multiEditor = getMultiDiagramEditor();
+		if (multiEditor != null) {
+			return multiEditor.getServicesRegistry();
+		} else {
+			return null;
 		}
-		IEditorPart editorPart = page.getActiveEditor();
-		if (editorPart == null) {
-			throw new IllegalStateException("No Active Editor can be found. So no Service Registry can be returned.");
-		}
-		if (!(editorPart instanceof CoreMultiDiagramEditor)) {
-			throw new IllegalStateException(
-					"No CoreMultiDiagramEditor  can be found. So no Service Registry can be returned.");
-		}
-
-		return (ServicesRegistry) editorPart.getAdapter(ServicesRegistry.class);
 	}
 
 	/**
@@ -54,50 +82,61 @@ public class EditorUtils {
 	 * 
 	 * @return
 	 */
-	static public ISashWindowsContentProvider getISashWindowsContentProvider() {
+	public static ISashWindowsContentProvider getISashWindowsContentProvider() {
 		// Lookup ServiceRegistry
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editorPart = page.getActiveEditor();
 		return (ISashWindowsContentProvider) editorPart.getAdapter(ISashWindowsContentProvider.class);
+	}
 
+	/**
+	 * Gets the di resource set.
+	 * 
+	 * @return Get the current {@link DiResourceSet} or null if not found.
+	 */
+	public static DiResourceSet getDiResourceSet() {
+		try {
+			ServicesRegistry registry = getServiceRegistry();
+			return registry == null ? null : registry.getService(DiResourceSet.class);
+		} catch (ServiceException e) {
+			// FIXME wait to use log
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the transactional editing domain.
+	 * 
+	 * @return Get the current {@link TransactionalEditingDomain} or null if not found
+	 */
+	public static TransactionalEditingDomain getTransactionalEditingDomain() {
+		try {
+			ServicesRegistry registry = getServiceRegistry();
+			return registry == null ? null : registry.getService(TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			// FIXME wait to use log
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
 	 * Get the ISashWindowsContentProvider from the main editor.
 	 * 
-	 * @return
-	 * @throws IllegalStateException
-	 *             If there is no ActiveEditor (generally during editor initializing).
-	 */
-	static public IPageMngr getIPageMngr() throws IllegalStateException {
-		// Lookup ServiceRegistry
-		IEditorPart editorPart = getWorkbenchActiveEditor();
-		return (IPageMngr) editorPart.getAdapter(IPageMngr.class);
-
-	}
-
-	/**
-	 * Get the Eclipse ActiveEditor.
+	 * @return The {@link IPageMngr} or null if the active editor is not a multi-editor one.
 	 * 
-	 * @return
 	 * @throws IllegalStateException
 	 *             If there is no ActiveEditor (generally during editor initializing).
 	 */
-	static public IEditorPart getWorkbenchActiveEditor() throws IllegalStateException {
+	public static IPageMngr getIPageMngr() throws IllegalStateException {
 		// Lookup ServiceRegistry
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		if (page == null) {
-			throw new IllegalStateException("No Active Page can be found.");
-		}
-		IEditorPart editorPart = page.getActiveEditor();
+		IEditorPart editorPart = getActiveEditor();
 		if (editorPart == null) {
-			throw new IllegalStateException("No Active Editor can be found.");
+			// FIXME it would be more useful to return null...
+			throw new IllegalStateException("Error getting the Multi-Diagram Editor");
 		}
-		if (!(editorPart instanceof CoreMultiDiagramEditor)) {
-			throw new IllegalStateException("No CoreMultiDiagramEditor can be found.");
-		}
-
-		return editorPart;
+		return (IPageMngr) editorPart.getAdapter(IPageMngr.class);
 
 	}
 
@@ -134,7 +173,10 @@ public class EditorUtils {
 	// @unused
 	public static Diagram lookupEditorActiveDiagram() {
 		// First, lookup the main editor.
-		IEditorPart editorPart = getWorkbenchActiveEditor();
+		IEditorPart editorPart = getActiveEditor();
+		if (editorPart == null) {
+			return null;
+		}
 		// Get the sashwindow container
 		ISashWindowsContainer container = (ISashWindowsContainer) editorPart.getAdapter(ISashWindowsContainer.class);
 
@@ -161,7 +203,7 @@ public class EditorUtils {
 	// @unused
 	public static IEditorPart lookupSashSystemActiveIEditor() {
 		// First, lookup the main editor.
-		IEditorPart editorPart = getWorkbenchActiveEditor();
+		IEditorPart editorPart = getActiveEditor();
 		if (editorPart == null) {
 			return null;
 		}
@@ -185,7 +227,7 @@ public class EditorUtils {
 	// @unused
 	public static IPage lookupSashSystemActivePage() {
 		// First, lookup the main editor.
-		IEditorPart editorPart = getWorkbenchActiveEditor();
+		IEditorPart editorPart = getActiveEditor();
 		if (editorPart == null) {
 			return null;
 		}
