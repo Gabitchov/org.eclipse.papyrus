@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.CommandActionHandler;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.controlmode.commands.UncontrolCommand;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 
 /**
  * An action to uncontrol a papyrus resource.
@@ -89,7 +89,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	public void run() {
 		try {
 			UncontrolCommand transactionalCommand = new UncontrolCommand(
-					NavigatorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null);
+					EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null);
 			OperationHistoryFactory.getOperationHistory()
 					.execute(transactionalCommand, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {

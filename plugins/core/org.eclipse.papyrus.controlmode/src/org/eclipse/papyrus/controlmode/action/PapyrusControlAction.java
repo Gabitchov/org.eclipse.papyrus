@@ -30,7 +30,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.controlmode.commands.ControlCommand;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -93,7 +93,7 @@ public class PapyrusControlAction extends ControlAction {
 			return;
 		}
 		try {
-			ControlCommand transactionalCommand = new ControlCommand(NavigatorUtils.getTransactionalEditingDomain(),
+			ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(),
 					controlledModel, eObject, "Control", null);
 			OperationHistoryFactory.getOperationHistory()
 					.execute(transactionalCommand, new NullProgressMonitor(), null);

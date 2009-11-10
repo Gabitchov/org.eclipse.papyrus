@@ -45,8 +45,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContex
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.NotationUtils;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -124,7 +124,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			this.controlledDI = getEditingDomain().getResourceSet().getResource(newDiURI, true);
 		}
 		CompoundCommand compoundCommand = new CompoundCommand();
-		this.diResourceSet = NavigatorUtils.getDiResourceSet();
+		this.diResourceSet = EditorUtils.getDiResourceSet();
 
 		// First retrieve the Diagrams that match with the model object to Uncontrol
 		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(controlledNotation, eObject);

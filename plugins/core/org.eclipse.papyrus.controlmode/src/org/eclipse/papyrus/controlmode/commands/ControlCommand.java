@@ -37,8 +37,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContex
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.NotationUtils;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.exception.SashEditorException;
@@ -110,7 +110,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	@Override
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// get the parent notation resource
-		this.diResourceSet = NavigatorUtils.getDiResourceSet();
+		this.diResourceSet = EditorUtils.getDiResourceSet();
 		final Resource notationResource = diResourceSet.getNotationResource();
 
 		// Create the URI from models that will be created
