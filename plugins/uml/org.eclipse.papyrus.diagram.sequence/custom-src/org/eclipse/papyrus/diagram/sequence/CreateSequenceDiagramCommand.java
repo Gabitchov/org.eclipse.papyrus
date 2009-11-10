@@ -46,6 +46,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	private Element interaction = null;
+
 	@Override
 	protected String getDiagramNotationID() {
 		return PackageEditPart.MODEL_ID;
@@ -75,21 +76,21 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 
 		}
 	}
-	
+
 	@Override
 	protected void initializeModel(EObject owner) {
 		// Get the editing domain
 		TransactionalEditingDomain editingdomain = getDefaultContext().getResourceSet().getTransactionalEditingDomain();
 
 		EObject selectedElement = getSelectedElement();
-		if(selectedElement != null){
+		if (selectedElement != null) {
 			// Create the request
 			CreateElementRequest request = new CreateElementRequest(editingdomain, selectedElement,
 					UMLElementTypes.Interaction_2001);
-	
+
 			// Create the command
 			InteractionCreateCommand createCommand = InteractionCreateCommand.create(request, selectedElement);
-	
+
 			// Execute the command
 			if (createCommand != null) {
 				try {
@@ -97,9 +98,9 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 				} catch (ExecutionException e) {
 					e.printStackTrace();
 				}
-	
+
 			}
-	
+
 			// retrieve the result
 			if (request != null) {
 				if (request.getNewElement() instanceof Interaction) {
@@ -116,12 +117,11 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 	@Override
 	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
 		Diagram diagram = null;
-		if(owner instanceof Package){
+		if (owner instanceof Package) {
 			diagram = super.createDiagram(diagramResource, owner, name);
-		}
-		else{
-			if(owner instanceof Element){
-				Element element = (Element)owner;
+		} else {
+			if (owner instanceof Element) {
+				Element element = (Element) owner;
 				diagram = super.createDiagram(diagramResource, element.getModel(), name);
 			}
 		}

@@ -44,6 +44,16 @@ import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message4CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message4ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message5CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message5ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message6CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message6ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message7CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message7ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
@@ -52,6 +62,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedF
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -152,6 +167,36 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Message3EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Message4EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Message5EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Message6EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Message7EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
 						}
 						for (Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge) it.next();
@@ -162,6 +207,36 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 								continue;
 							}
 							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Message2EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Message3EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Message4EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Message5EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Message6EditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Message7EditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -202,6 +277,21 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		if (UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -214,6 +304,21 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		if (UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -230,6 +335,16 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			return getGEFWrapper(new MessageReorientCommand(req));
 		case Message2EditPart.VISUAL_ID:
 			return getGEFWrapper(new Message2ReorientCommand(req));
+		case Message3EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message3ReorientCommand(req));
+		case Message4EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message4ReorientCommand(req));
+		case Message5EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message5ReorientCommand(req));
+		case Message6EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message6ReorientCommand(req));
+		case Message7EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message7ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

@@ -24,24 +24,20 @@ import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 
 public class InteractionRectangleFigure extends NodeNamedElementFigure {
 
-	protected InteractionFigure labelContainer;
+	protected InteractionFigure interactionLabelContainer;
 
-	protected RectangleFigure fFigureInteractionCompartmentFigure;
+	protected RectangleFigure interactionContentPane;
 
-	/**
-	 *
-	 */
-	protected WrappingLabel fFigureInteractionNameFigure;
+	protected WrappingLabel interactionLabel;
+
+	private boolean myUseLocalCoordinates = false;
 
 	/**
 	 * @param marginBorder
 	 * 
 	 */
 	public InteractionRectangleFigure() {
-
-		BorderLayout layoutThis = new BorderLayout();
-		setLayoutManager(layoutThis);
-
+		setLayoutManager(new BorderLayout());
 		createContents();
 	}
 
@@ -50,42 +46,36 @@ public class InteractionRectangleFigure extends NodeNamedElementFigure {
 	 */
 
 	protected void createContents() {
-
-		ToolbarLayout layout = new ToolbarLayout(false);
-
-		RectangleFigure figureTest = new RectangleFigure();
-		figureTest.setOutline(false);
-		figureTest.setFill(false);
-		figureTest.setLayoutManager(layout);
-
-		fFigureInteractionNameFigure = new WrappingLabel();
-
-		labelContainer = new InteractionFigure();
-
-		labelContainer.setBorder(new MarginBorder(3, 3, 3, 3));
-		figureTest.add(labelContainer, ToolbarLayout.ALIGN_CENTER);
-		add(figureTest, BorderLayout.TOP);
-
-		LeftToolbarLayout layoutInteractionLabelContainer1 = new LeftToolbarLayout();
-
-		labelContainer.setLayoutManager(layoutInteractionLabelContainer1);
-
-		labelContainer.add(fFigureInteractionNameFigure);
-
-		fFigureInteractionCompartmentFigure = new RectangleFigure();
-		// Margin allow to add mesage easily
-		fFigureInteractionCompartmentFigure.setBorder(new MarginBorder(5, 5, 5, 5));
-		fFigureInteractionCompartmentFigure.setFill(false);
-		fFigureInteractionCompartmentFigure.setOutline(true);
-
-		add(fFigureInteractionCompartmentFigure, BorderLayout.CENTER);
-
+		add(createHeader(), BorderLayout.TOP);
+		add(createContentPane(), BorderLayout.CENTER);
 	}
 
-	/**
-	 * @generated
-	 */
-	protected boolean myUseLocalCoordinates = false;
+	protected RectangleFigure createContentPane() {
+		interactionContentPane = new RectangleFigure();
+		// Margin allow to add message easily
+		interactionContentPane.setBorder(new MarginBorder(5, 5, 5, 5));
+		interactionContentPane.setFill(false);
+		interactionContentPane.setOutline(true);
+
+		return interactionContentPane;
+	}
+
+	protected RectangleFigure createHeader() {
+		interactionLabel = new WrappingLabel();
+
+		interactionLabelContainer = new InteractionFigure();
+		interactionLabelContainer.setBorder(new MarginBorder(3, 3, 3, 3));
+		interactionLabelContainer.setLayoutManager(new LeftToolbarLayout());
+
+		interactionLabelContainer.add(interactionLabel);
+
+		RectangleFigure container = new RectangleFigure();
+		container.setOutline(false);
+		container.setFill(false);
+		container.setLayoutManager(new ToolbarLayout(false));
+		container.add(interactionLabelContainer, ToolbarLayout.ALIGN_CENTER);
+		return container;
+	}
 
 	/**
 	 * @generated
@@ -104,12 +94,12 @@ public class InteractionRectangleFigure extends NodeNamedElementFigure {
 	/**
 	 * @generated
 	 */
-	public WrappingLabel getFigureInteractionLabelFigure() {
-		return fFigureInteractionNameFigure;
+	public WrappingLabel getHeaderLabel() {
+		return interactionLabel;
 	}
 
 	public RectangleFigure getCompartmentFigure() {
-		return fFigureInteractionCompartmentFigure;
+		return interactionContentPane;
 	}
 
 }

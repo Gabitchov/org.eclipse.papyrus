@@ -36,6 +36,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPar
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -122,6 +127,31 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Message_4004 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4004"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Message_4005 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Message_4006 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Message_4007 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Message_4008 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Message_4009 = getElementType("org.eclipse.papyrus.diagram.sequence.Message_4009"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -251,6 +281,16 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
 
 			elements.put(Message_4004, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_4005, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_4006, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_4007, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_4008, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_4009, UMLPackage.eINSTANCE.getMessage());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -279,6 +319,11 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
 			KNOWN_ELEMENT_TYPES.add(Message_4004);
+			KNOWN_ELEMENT_TYPES.add(Message_4005);
+			KNOWN_ELEMENT_TYPES.add(Message_4006);
+			KNOWN_ELEMENT_TYPES.add(Message_4007);
+			KNOWN_ELEMENT_TYPES.add(Message_4008);
+			KNOWN_ELEMENT_TYPES.add(Message_4009);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -310,6 +355,16 @@ public class UMLElementTypes extends ElementInitializers {
 			return Message_4003;
 		case Message2EditPart.VISUAL_ID:
 			return Message_4004;
+		case Message3EditPart.VISUAL_ID:
+			return Message_4005;
+		case Message4EditPart.VISUAL_ID:
+			return Message_4006;
+		case Message5EditPart.VISUAL_ID:
+			return Message_4007;
+		case Message6EditPart.VISUAL_ID:
+			return Message_4008;
+		case Message7EditPart.VISUAL_ID:
+			return Message_4009;
 		}
 		return null;
 	}

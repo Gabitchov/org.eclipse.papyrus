@@ -23,9 +23,24 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message4CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message4ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message5CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message5ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message6CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message6ReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message7CreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.Message7ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Message;
@@ -44,40 +59,31 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated-not
+	 * the added code to delete the messageoccurencespecification when the message is deleted
+	 * 
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-
 		cmd.setTransactionNestingEnabled(false);
 
-		Message message = null;
-
-		if (getHost().getModel() instanceof Edge) {
-			EObject obj = ((Edge) getHost().getModel()).getElement();
+		Object model = getHost().getModel();
+		if (model instanceof Edge) {
+			EObject obj = ((Edge) model).getElement();
 
 			if (obj instanceof Message) {
-				message = (Message) obj;
+				Message message = (Message) obj;
 
-				MessageEnd messageEnd = message.getReceiveEvent(); // get the
-				// messageoccurencespecification
-				// start
-				MessageEnd messageStart = message.getSendEvent(); // get the
-				// messageoccurencespecification
-				// end
+				MessageEnd messageStart = message.getSendEvent();
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageStart, false)));
 
-				if (messageEnd != null && messageStart != null) {
-					DestroyElementRequest r = new DestroyElementRequest(messageEnd, false);
-					DestroyElementRequest r1 = new DestroyElementRequest(messageStart, false);
+				MessageEnd messageEnd = message.getReceiveEvent();
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageEnd, false)));
 
-					cmd.add(new DestroyElementCommand(r));
-					cmd.add(new DestroyElementCommand(r1));
-					cmd.add(new DestroyElementCommand(req));
-				}
+				cmd.add(new DestroyElementCommand(req));
 			}
-
 		}
+
 		return getGEFWrapper(cmd);
 	}
 
@@ -100,6 +106,21 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		if (UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -112,6 +133,21 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		}
 		if (UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -128,6 +164,16 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			return getGEFWrapper(new MessageReorientCommand(req));
 		case Message2EditPart.VISUAL_ID:
 			return getGEFWrapper(new Message2ReorientCommand(req));
+		case Message3EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message3ReorientCommand(req));
+		case Message4EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message4ReorientCommand(req));
+		case Message5EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message5ReorientCommand(req));
+		case Message6EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message6ReorientCommand(req));
+		case Message7EditPart.VISUAL_ID:
+			return getGEFWrapper(new Message7ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

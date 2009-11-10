@@ -97,6 +97,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
 
 		Interaction owner = (Interaction) getElementToEdit();

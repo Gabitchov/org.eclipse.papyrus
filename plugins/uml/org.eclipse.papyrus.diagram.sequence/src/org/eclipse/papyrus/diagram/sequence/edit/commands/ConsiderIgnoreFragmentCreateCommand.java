@@ -97,6 +97,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
 
 		Interaction owner = (Interaction) getElementToEdit();

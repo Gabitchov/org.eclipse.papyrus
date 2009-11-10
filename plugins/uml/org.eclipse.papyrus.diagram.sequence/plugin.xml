@@ -265,7 +265,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLSequenceDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3006,3003,3002,3007,3004,3005"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009"/>
       </viewProvider>
    </extension>
 
@@ -280,7 +280,7 @@
             <method name="getType()" value="2001,3001,3006,3003,3002,3007,3004,3005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4003,4004"/>
+            <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5001,5002,5005,5003,5004"/>
@@ -427,6 +427,51 @@
             <param name="semanticHint" value="4004"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.Message_4005"
+               name="%metatype.name.Message_4005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
+            <param name="semanticHint" value="4005"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.Message_4006"
+               name="%metatype.name.Message_4006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
+            <param name="semanticHint" value="4006"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.Message_4007"
+               name="%metatype.name.Message_4007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
+            <param name="semanticHint" value="4007"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.Message_4008"
+               name="%metatype.name.Message_4008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
+            <param name="semanticHint" value="4008"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.Message_4009"
+               name="%metatype.name.Message_4009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
+            <param name="semanticHint" value="4009"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -450,6 +495,11 @@
          <elementType ref="org.eclipse.papyrus.diagram.sequence.InteractionOperand_3005"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4004"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4005"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4006"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4007"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4009"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -617,177 +667,6 @@
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-<extension
-		id="UML Plugin.palettedefinition"
-		name="UML Plugin Predefined Entries"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-			
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Lowest"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.sequence.part.UMLPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       defineOnly="true"
-       description="Create a Lifeline"
-       id="createLifeline1CreationTool"
-       kind="tool"
-       label="Lifeline"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create an Execution Action"
-       id="createExecutionAction2CreationTool"
-       kind="tool"
-       label="Execution Action"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create an Execution Behaviour"
-       id="createExecutionBehaviour3CreationTool"
-       kind="tool"
-       label="Execution Behaviour"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create InteractionUse"
-       id="createInteractionUse4CreationTool"
-       kind="tool"
-       label="InteractionUse"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create Combined Fragment"
-       id="createCombinedFragment5CreationTool"
-       kind="tool"
-       label="Combined Fragment"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create Interaction Operand"
-       id="createInteractionOperand6CreationTool"
-       kind="tool"
-       label="Interaction Operand"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create  MessageSync"
-       id="createMessageSync1CreationTool"
-       kind="tool"
-       label="MessageSync"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create MessageAsync"
-       id="createMessageAsync2CreationTool"
-       kind="tool"
-       label="Message Async"
-       large_icon=""
-       path=""
-       small_icon="">
- 	</entry>
-
-			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.sequence"/>
-		</paletteProvider>	
-			
-	</extension>
-
-<extension
-		id="UML Plugin.standard"
-		name="UML Plugin Standard Palette"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-			
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Low"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.sequence.part.UMLPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       description=""
-       id="createObjects1Group"
-       kind="drawer"
-       label="Objects"
-       large_icon=""
-       path="/"
-       small_icon="">
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="createLifeline1CreationTool"
-          path="/createObjects1Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createExecutionAction2CreationTool"
-          path="/createObjects1Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createExecutionBehaviour3CreationTool"
-          path="/createObjects1Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createInteractionUse4CreationTool"
-          path="/createObjects1Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createCombinedFragment5CreationTool"
-          path="/createObjects1Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createInteractionOperand6CreationTool"
-          path="/createObjects1Group">
-    </predefinedEntry>
-
-	<entry
-       description=""
-       id="createMessage2Group"
-       kind="drawer"
-       label="Message"
-       large_icon=""
-       path="/"
-       small_icon="">
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="createMessageSync1CreationTool"
-          path="/createMessage2Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createMessageAsync2CreationTool"
-          path="/createMessage2Group">
-    </predefinedEntry>
-
-
-			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.sequence"/>
-		</paletteProvider>	
-			
-	</extension>
 
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
@@ -817,6 +696,8 @@
    </extension>
 
 <extension point="org.eclipse.ui.preferencePages">
+
+
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
@@ -884,6 +765,250 @@
 	
 
 </extension>
+<extension
+		id="UML Plugin.palettedefinition"
+		name="UML Plugin Predefined Entries"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Lowest"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.sequence.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       defineOnly="true"
+       description="Create a Lifeline"
+       id="createLifeline1CreationTool"
+       kind="tool"
+       label="Lifeline"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Execution Action"
+       id="createExecutionAction2CreationTool"
+       kind="tool"
+       label="Execution Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Execution Behaviour"
+       id="createExecutionBehaviour3CreationTool"
+       kind="tool"
+       label="Execution Behaviour"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create InteractionUse"
+       id="createInteractionUse4CreationTool"
+       kind="tool"
+       label="InteractionUse"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Combined Fragment"
+       id="createCombinedFragment5CreationTool"
+       kind="tool"
+       label="Combined Fragment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Interaction Operand"
+       id="createInteractionOperand6CreationTool"
+       kind="tool"
+       label="Interaction Operand"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageSync"
+       id="createMessageSync1CreationTool"
+       kind="tool"
+       label="Message Sync"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_synchCall.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_synchCall.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageAsync"
+       id="createMessageAsync2CreationTool"
+       kind="tool"
+       label="Message Async"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_asynchCall.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_asynchCall.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageReply"
+       id="createMessageReply3CreationTool"
+       kind="tool"
+       label="Message Reply"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_reply.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_reply.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageCreate"
+       id="createMessageCreate4CreationTool"
+       kind="tool"
+       label="Message Create"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageDelete"
+       id="createMessageDelete5CreationTool"
+       kind="tool"
+       label="Message Delete"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_deleteMessage.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_deleteMessage.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageLost"
+       id="createMessageLost6CreationTool"
+       kind="tool"
+       label="Message Lost"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create MessageFound"
+       id="createMessageFound7CreationTool"
+       kind="tool"
+       label="Message Found"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
+ 	</entry>
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.sequence"/>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension
+		id="UML Plugin.standard"
+		name="UML Plugin Standard Palette"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Low"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.sequence.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       description=""
+       id="createObjects1Group"
+       kind="drawer"
+       label="Objects"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createLifeline1CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createExecutionAction2CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createExecutionBehaviour3CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createInteractionUse4CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCombinedFragment5CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createInteractionOperand6CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+
+	<entry
+       description="Message tools"
+       id="createMessage2Group"
+       kind="drawer"
+       label="Message"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createMessageSync1CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMessageAsync2CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMessageReply3CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMessageCreate4CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMessageDelete5CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMessageLost6CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMessageFound7CreationTool"
+          path="/createMessage2Group">
+    </predefinedEntry>
+
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.sequence"/>
+		</paletteProvider>	
+			
+	</extension>
+
 
 
    <!-- optionally, specify keybindings -->

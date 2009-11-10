@@ -266,6 +266,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Message2Group_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Lifeline1CreationTool_title;
 
 	/**
@@ -342,6 +347,56 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String MessageAsync2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageReply3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageReply3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageCreate4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageCreate4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageDelete5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageDelete5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageLost6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageLost6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageFound7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageFound7CreationTool_desc;
 
 	/**
 	 * @generated
@@ -462,6 +517,56 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Message_4004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4005_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4006_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4006_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4007_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4007_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4008_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4008_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4009_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4009_source;
 
 	/**
 	 * @generated

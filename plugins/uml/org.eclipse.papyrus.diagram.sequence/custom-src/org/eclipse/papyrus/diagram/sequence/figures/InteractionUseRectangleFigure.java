@@ -13,54 +13,46 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.figures;
 
-import org.eclipse.draw2d.BorderLayout;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 
+/**
+ * The figure of the InteractionUse
+ */
 public class InteractionUseRectangleFigure extends InteractionRectangleFigure {
 
-	protected WrappingLabel fFigureInteractionUseName1Figure;
+	/** A centered label */
+	protected WrappingLabel centerLabel;
 
-	protected WrappingLabel fFigureInteractionUseName2Figure;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.papyrus.diagram.sequence.figures.InteractionRectangleFigure#createContentPane()
+	 */
+	@Override
+	protected RectangleFigure createContentPane() {
 
-	public InteractionUseRectangleFigure() {
+		// Create the ContentPane
+		RectangleFigure contentPane = new RectangleFigure();
+		contentPane.setOutline(false);
+		contentPane.setFill(false);
+		contentPane.setLayoutManager(new StackLayout());
 
-		super();
+		// Create the centered label
+		centerLabel = new WrappingLabel();
+		centerLabel.setAlignment(PositionConstants.CENTER);
 
+		// Add the label to the contentPane
+		contentPane.add(centerLabel);
+
+		return contentPane;
 	}
 
-	protected void createContents() {
-
-		super.createContents();
-
-		super.remove(fFigureInteractionCompartmentFigure);
-
-		fFigureInteractionUseName2Figure = getFigureInteractionLabelFigure();
-
-		CenterLayout layout1 = new CenterLayout();
-
-		RectangleFigure figureTest2 = new RectangleFigure();
-
-		layout1.getPreferredSize(figureTest2);
-		figureTest2.setOutline(false);
-		figureTest2.setFill(false);
-		figureTest2.setLayoutManager(layout1);
-
-		fFigureInteractionUseName1Figure = new WrappingLabel();
-
-		figureTest2.add(fFigureInteractionUseName1Figure, BorderLayout.RIGHT);
-
-		add(figureTest2, BorderLayout.CENTER);
-
-	}
-
-	public WrappingLabel getFigureInteractionUseName() {
-		return fFigureInteractionUseName1Figure;
-	}
-
-	public WrappingLabel getFigureInteractionUseRef() {
-		return fFigureInteractionUseName2Figure;
+	public WrappingLabel getCenterLabel() {
+		return centerLabel;
 	}
 
 }

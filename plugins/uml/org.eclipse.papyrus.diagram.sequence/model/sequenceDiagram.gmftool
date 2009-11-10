@@ -37,15 +37,36 @@
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Message"
+        description="Message tools"
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MessageSync"
-          description="Create  MessageSync"/>
+          title="Message Sync"
+          description="Create MessageSync"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Async"
           description="Create MessageAsync"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Message Reply"
+          description="Create MessageReply"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Message Create"
+          description="Create MessageCreate"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Message Delete"
+          description="Create MessageDelete"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Message Lost"
+          description="Create MessageLost"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Message Found"
+          description="Create MessageFound"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

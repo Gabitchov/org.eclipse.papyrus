@@ -17,223 +17,271 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gef.Tool;
-import org.eclipse.gef.palette.PaletteContainer;
-import org.eclipse.gef.palette.PaletteDrawer;
-import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class UMLPaletteFactory {
+public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
 	/**
 	 * @generated
 	 */
-	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createObjects1Group());
-		paletteRoot.add(createMessage2Group());
+	private final static String CREATELIFELINE1CREATIONTOOL = "createLifeline1CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEEXECUTIONACTION2CREATIONTOOL = "createExecutionAction2CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEEXECUTIONBEHAVIOUR3CREATIONTOOL = "createExecutionBehaviour3CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEINTERACTIONUSE4CREATIONTOOL = "createInteractionUse4CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATECOMBINEDFRAGMENT5CREATIONTOOL = "createCombinedFragment5CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEINTERACTIONOPERAND6CREATIONTOOL = "createInteractionOperand6CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMESSAGESYNC1CREATIONTOOL = "createMessageSync1CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMESSAGEASYNC2CREATIONTOOL = "createMessageAsync2CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMESSAGEREPLY3CREATIONTOOL = "createMessageReply3CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMESSAGECREATE4CREATIONTOOL = "createMessageCreate4CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMESSAGEDELETE5CREATIONTOOL = "createMessageDelete5CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMESSAGELOST6CREATIONTOOL = "createMessageLost6CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMESSAGEFOUND7CREATIONTOOL = "createMessageFound7CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public UMLPaletteFactory() {
+
 	}
 
 	/**
-	 * Creates "Objects" palette tool group
-	 * 
 	 * @generated
 	 */
-	private PaletteContainer createObjects1Group() {
-		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Objects1Group_title);
-		paletteContainer.setId("createObjects1Group"); //$NON-NLS-1$
-		paletteContainer.add(createLifeline1CreationTool());
-		paletteContainer.add(createExecutionAction2CreationTool());
-		paletteContainer.add(createExecutionBehaviour3CreationTool());
-		paletteContainer.add(createInteractionUse4CreationTool());
-		paletteContainer.add(createCombinedFragment5CreationTool());
-		paletteContainer.add(createInteractionOperand6CreationTool());
-		return paletteContainer;
+	public Tool createTool(String toolId) {
+		if (toolId.equals(CREATELIFELINE1CREATIONTOOL)) {
+			return createLifeline1CreationTool();
+		}
+		if (toolId.equals(CREATEEXECUTIONACTION2CREATIONTOOL)) {
+			return createExecutionAction2CreationTool();
+		}
+		if (toolId.equals(CREATEEXECUTIONBEHAVIOUR3CREATIONTOOL)) {
+			return createExecutionBehaviour3CreationTool();
+		}
+		if (toolId.equals(CREATEINTERACTIONUSE4CREATIONTOOL)) {
+			return createInteractionUse4CreationTool();
+		}
+		if (toolId.equals(CREATECOMBINEDFRAGMENT5CREATIONTOOL)) {
+			return createCombinedFragment5CreationTool();
+		}
+		if (toolId.equals(CREATEINTERACTIONOPERAND6CREATIONTOOL)) {
+			return createInteractionOperand6CreationTool();
+		}
+		if (toolId.equals(CREATEMESSAGESYNC1CREATIONTOOL)) {
+			return createMessageSync1CreationTool();
+		}
+		if (toolId.equals(CREATEMESSAGEASYNC2CREATIONTOOL)) {
+			return createMessageAsync2CreationTool();
+		}
+		if (toolId.equals(CREATEMESSAGEREPLY3CREATIONTOOL)) {
+			return createMessageReply3CreationTool();
+		}
+		if (toolId.equals(CREATEMESSAGECREATE4CREATIONTOOL)) {
+			return createMessageCreate4CreationTool();
+		}
+		if (toolId.equals(CREATEMESSAGEDELETE5CREATIONTOOL)) {
+			return createMessageDelete5CreationTool();
+		}
+		if (toolId.equals(CREATEMESSAGELOST6CREATIONTOOL)) {
+			return createMessageLost6CreationTool();
+		}
+		if (toolId.equals(CREATEMESSAGEFOUND7CREATIONTOOL)) {
+			return createMessageFound7CreationTool();
+		}
+
+		// default return: null
+		return null;
+	}
+
+	public Object getTemplate(String templateId) {
+
+		// default return: null
+		return null;
 	}
 
 	/**
-	 * Creates "Message" palette tool group
-	 * 
 	 * @generated
 	 */
-	private PaletteContainer createMessage2Group() {
-		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Message2Group_title);
-		paletteContainer.setId("createMessage2Group"); //$NON-NLS-1$
-		paletteContainer.add(createMessageSync1CreationTool());
-		paletteContainer.add(createMessageAsync2CreationTool());
-		return paletteContainer;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createLifeline1CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+	private Tool createLifeline1CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Lifeline_3001);
-		NodeToolEntry entry = new NodeToolEntry(Messages.Lifeline1CreationTool_title,
-				Messages.Lifeline1CreationTool_desc, types);
-		entry.setId("createLifeline1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Lifeline_3001));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeCreationTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createExecutionAction2CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+	private Tool createExecutionAction2CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ActionExecutionSpecification_3006);
-		NodeToolEntry entry = new NodeToolEntry(Messages.ExecutionAction2CreationTool_title,
-				Messages.ExecutionAction2CreationTool_desc, types);
-		entry.setId("createExecutionAction2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.ActionExecutionSpecification_3006));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeCreationTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createExecutionBehaviour3CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+	private Tool createExecutionBehaviour3CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
-		NodeToolEntry entry = new NodeToolEntry(Messages.ExecutionBehaviour3CreationTool_title,
-				Messages.ExecutionBehaviour3CreationTool_desc, types);
-		entry.setId("createExecutionBehaviour3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.BehaviorExecutionSpecification_3003));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeCreationTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInteractionUse4CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+	private Tool createInteractionUse4CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.InteractionUse_3002);
-		NodeToolEntry entry = new NodeToolEntry(Messages.InteractionUse4CreationTool_title,
-				Messages.InteractionUse4CreationTool_desc, types);
-		entry.setId("createInteractionUse4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.InteractionUse_3002));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeCreationTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createCombinedFragment5CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
+	private Tool createCombinedFragment5CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 		types.add(UMLElementTypes.CombinedFragment_3004);
-		NodeToolEntry entry = new NodeToolEntry(Messages.CombinedFragment5CreationTool_title,
-				Messages.CombinedFragment5CreationTool_desc, types);
-		entry.setId("createCombinedFragment5CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.ConsiderIgnoreFragment_3007));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeCreationTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInteractionOperand6CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+	private Tool createInteractionOperand6CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.InteractionOperand_3005);
-		NodeToolEntry entry = new NodeToolEntry(Messages.InteractionOperand6CreationTool_title,
-				Messages.InteractionOperand6CreationTool_desc, types);
-		entry.setId("createInteractionOperand6CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.InteractionOperand_3005));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeCreationTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createMessageSync1CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+	private Tool createMessageSync1CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4003);
-		LinkToolEntry entry = new LinkToolEntry(Messages.MessageSync1CreationTool_title,
-				Messages.MessageSync1CreationTool_desc, types);
-		entry.setId("createMessageSync1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Message_4003));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeConnectionTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createMessageAsync2CreationTool() {
-		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+	private Tool createMessageAsync2CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4004);
-		LinkToolEntry entry = new LinkToolEntry(Messages.MessageAsync2CreationTool_title,
-				Messages.MessageAsync2CreationTool_desc, types);
-		entry.setId("createMessageAsync2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(UMLElementTypes.getImageDescriptor(UMLElementTypes.Message_4004));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
+		Tool tool = new UnspecifiedTypeConnectionTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class NodeToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List elementTypes;
-
-		/**
-		 * @generated
-		 */
-		private NodeToolEntry(String title, String description, List elementTypes) {
-			super(title, description, null, null);
-			this.elementTypes = elementTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
+	private Tool createMessageReply3CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Message_4005);
+		Tool tool = new UnspecifiedTypeConnectionTool(types);
+		return tool;
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class LinkToolEntry extends ToolEntry {
+	private Tool createMessageCreate4CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Message_4006);
+		Tool tool = new UnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
 
-		/**
-		 * @generated
-		 */
-		private final List relationshipTypes;
+	/**
+	 * @generated
+	 */
+	private Tool createMessageDelete5CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Message_4007);
+		Tool tool = new UnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
 
-		/**
-		 * @generated
-		 */
-		private LinkToolEntry(String title, String description, List relationshipTypes) {
-			super(title, description, null, null);
-			this.relationshipTypes = relationshipTypes;
-		}
+	/**
+	 * @generated
+	 */
+	private Tool createMessageLost6CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Message_4008);
+		Tool tool = new UnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
 
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
+	/**
+	 * @generated
+	 */
+	private Tool createMessageFound7CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Message_4009);
+		Tool tool = new UnspecifiedTypeConnectionTool(types);
+		return tool;
 	}
 }

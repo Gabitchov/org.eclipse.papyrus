@@ -14,12 +14,20 @@
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.XYAnchor;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -27,9 +35,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -39,13 +51,19 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.InteractionRectangleFigure;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.MessageDirection;
+import org.eclipse.papyrus.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -66,6 +84,19 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure primaryShape;
+
+	/**
+	 * Notfier for listen and unlistend model element.
+	 * 
+	 * @generated NOT
+	 */
+	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
+
+		@Override
+		protected void safeNotifyChanged(Notification msg) {
+			handleNotificationEvent(msg);
+		}
+	});
 
 	/**
 	 * @generated
@@ -130,7 +161,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof InteractionNameEditPart) {
-			((InteractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureInteractionLabelFigure());
+			((InteractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
 
@@ -314,6 +345,11 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
+		types.add(UMLElementTypes.Message_4005);
+		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_4007);
+		types.add(UMLElementTypes.Message_4008);
+		types.add(UMLElementTypes.Message_4009);
 		return types;
 	}
 
@@ -380,6 +416,126 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if (targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
 	}
@@ -448,6 +604,126 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
 		return types;
 	}
 
@@ -468,6 +744,11 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
+		types.add(UMLElementTypes.Message_4005);
+		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_4007);
+		types.add(UMLElementTypes.Message_4008);
+		types.add(UMLElementTypes.Message_4009);
 		return types;
 	}
 
@@ -535,6 +816,126 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
 		return types;
 	}
 
@@ -585,7 +986,183 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	protected void refreshFont() {
 		super.refreshFont();
 		refreshBounds();
+	}
 
+	/**
+	 * @generated NOT
+	 */
+	protected void handleNotificationEvent(Notification notification) {
+		Object feature = notification.getFeature();
+
+		if (UMLPackage.eINSTANCE.getInteraction_FormalGate().equals(feature)) {
+			// Handle formal gate
+			notifier.unlistenObject((Notifier) notification.getOldValue());
+			notifier.listenObject((Notifier) notification.getNewValue());
+		} else if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
+				&& notification.getNotifier() instanceof Gate) {
+			// Handle modification of formal gate's name
+			Gate gate = (Gate) notification.getNotifier();
+			String oldStringValue = notification.getOldStringValue();
+			String newStringValue = notification.getNewStringValue();
+			if (oldStringValue != null && newStringValue != null) {
+				String oldPrefix = oldStringValue.split("_")[0];
+				String newPrefix = newStringValue.split("_")[0];
+				if (!oldPrefix.equals(newPrefix)
+						&& (oldPrefix.equals(MessageDirection.IN.getName()) || oldPrefix.equals(MessageDirection.OUT
+								.getName()))) {
+					notifier.unlistenObject(gate);
+					gate.setName(oldPrefix + "_" + gate.getName());
+					notifier.listenObject(gate);
+				}
+			}
+		}
+
+		super.handleNotificationEvent(notification);
+	}
+
+	/**
+	 * Activate a listener for the interactionUse to Handle notification in the refered Interaction
+	 * 
+	 * @generated NOT
+	 */
+	public void activate() {
+		super.activate();
+		Interaction interaction = (Interaction) resolveSemanticElement();
+		for (Gate formalGate : interaction.getFormalGates()) {
+			notifier.listenObject(formalGate);
+		}
+	}
+
+	/**
+	 * Deactivate a listener for the interactionUse to Handle notification in the refered
+	 * Interaction
+	 * 
+	 * @generated NOT
+	 */
+	public void deactivate() {
+		super.deactivate();
+		notifier.unlistenAll();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void removeNotify() {
+		notifier.unlistenAll();
+		super.removeNotify();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
+		return sourceAnchor;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		sourceAnchor = super.getTargetConnectionAnchor(request);
+		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for (Object obj : relationshipTypes) {
+				if (UMLElementTypes.Message_4009.equals(obj) && request instanceof CreateRequest) {
+					Point location = ((CreateRequest) request).getLocation().getCopy();
+					location.x -= getFigure().getBounds().x;
+					location.y -= getFigure().getBounds().y;
+					sourceAnchor = new XYAnchor(location);
+					break;
+				}
+			}
+		} else if (request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest) request;
+			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
+			if (createRequest.getConnectionViewDescriptor() != null) {
+				if (String.valueOf(Message6EditPart.VISUAL_ID).equals(connectionViewDescriptor.getSemanticHint())
+						&& request instanceof CreateRequest) {
+					Point location = ((CreateRequest) request).getLocation().getCopy();
+					location.x -= getFigure().getBounds().x;
+					location.y -= getFigure().getBounds().y;
+					sourceAnchor = new XYAnchor(location);
+				}
+			}
+		} else if (request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if (connectionEditPart instanceof Message7EditPart && request instanceof CreateRequest) {
+				Point location = ((CreateRequest) request).getLocation().getCopy();
+				location.x -= getFigure().getBounds().x;
+				location.y -= getFigure().getBounds().y;
+				sourceAnchor = new XYAnchor(location);
+			}
+		}
+
+		return sourceAnchor;
+	}
+
+	private Map<Message7EditPart, ConnectionAnchor> sourceAnchors = new HashMap<Message7EditPart, ConnectionAnchor>();
+
+	private Map<Message6EditPart, ConnectionAnchor> targetAnchors = new HashMap<Message6EditPart, ConnectionAnchor>();
+
+	private ConnectionAnchor sourceAnchor;
+
+	private ConnectionAnchor targetAnchor;
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		return targetAnchor;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		targetAnchor = super.getTargetConnectionAnchor(request);
+		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for (Object obj : relationshipTypes) {
+				if (UMLElementTypes.Message_4008.equals(obj) && request instanceof CreateRequest) {
+					Point location = ((CreateRequest) request).getLocation().getCopy();
+					location.x -= getFigure().getBounds().x;
+					location.y -= getFigure().getBounds().y;
+					targetAnchor = new XYAnchor(location);
+					break;
+				}
+			}
+		} else if (request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest) request;
+			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
+			if (createRequest.getConnectionViewDescriptor() != null) {
+				if (String.valueOf(Message6EditPart.VISUAL_ID).equals(connectionViewDescriptor.getSemanticHint())
+						&& request instanceof CreateRequest) {
+					Point location = ((CreateRequest) request).getLocation().getCopy();
+					location.x -= getFigure().getBounds().x;
+					location.y -= getFigure().getBounds().y;
+					targetAnchor = new XYAnchor(location);
+				}
+			}
+		} else if (request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if (connectionEditPart instanceof Message6EditPart && request instanceof CreateRequest) {
+				Point location = ((CreateRequest) request).getLocation().getCopy();
+				location.x -= getFigure().getBounds().x;
+				location.y -= getFigure().getBounds().y;
+				targetAnchor = new XYAnchor(location);
+			}
+		}
+
+		return targetAnchor;
 	}
 
 }

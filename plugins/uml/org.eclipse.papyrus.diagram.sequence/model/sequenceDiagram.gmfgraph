@@ -7,6 +7,17 @@
       name="Sequence Gallery"
       implementationBundle="org.eclipse.papyrus.diagram.common">
     <figures
+        xsi:type="gmfgraph:CustomDecoration"
+        name="RoundedArrow"
+        qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.decoration.EllipseDecoration">
+      <attributes
+          name="alwaysFill"
+          value="true"/>
+      <attributes
+          name="PreferredSize"
+          value="new org.eclipse.draw2d.geometry.Dimension(10,10)"/>
+    </figures>
+    <figures
         xsi:type="gmfgraph:PolylineDecoration"
         name="OpenArow">
       <foregroundColor
@@ -18,7 +29,7 @@
       <template/>
       <template
           x="-2"
-          y="2"/>
+          y="-2"/>
     </figures>
     <figures
         xsi:type="gmfgraph:PolygonDecoration"
@@ -47,7 +58,7 @@
           name="CustomInteractionRectangleFigure"
           qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.InteractionRectangleFigure">
         <customChildren
-            accessor="getFigureInteractionLabelFigure()">
+            accessor="getHeaderLabel()">
           <typedFigure
               xsi:type="gmfgraph:Label"
               name="InteractionLabel"/>
@@ -63,7 +74,7 @@
           accessor="getCompartmentFigure"
           figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.1/@typedFigure"/>
       <accessors
-          accessor="getFigureInteractionLabelFigure"
+          accessor="getHeaderLabel"
           figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.0/@typedFigure"/>
     </descriptors>
     <descriptors
@@ -168,24 +179,18 @@
           name="CustomInteractionUseFigure"
           qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.InteractionUseRectangleFigure">
         <customChildren
-            accessor="getInteractionUseNameContainerFigure()">
+            accessor="getCenterLabel()">
           <typedFigure
               xsi:type="gmfgraph:Label"
-              name="InteractionUseNameContainerFigure"/>
-        </customChildren>
-        <customChildren
-            accessor="getInteractionUseRefLabel()">
-          <typedFigure
-              xsi:type="gmfgraph:Label"
-              name="InteractionUseRefLabel"/>
+              name="CenterLabel"/>
         </customChildren>
       </actualFigure>
       <accessors
-          accessor="getFigureInteractionUseName"
-          figure="//@figures.0/@descriptors.4/@actualFigure/@customChildren.0/@typedFigure"/>
+          accessor="getHeaderLabel"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.0/@typedFigure"/>
       <accessors
-          accessor="getFigureInteractionUseRef"
-          figure="//@figures.0/@descriptors.4/@actualFigure/@customChildren.1/@typedFigure"/>
+          accessor="getCenterLabel"
+          figure="//@figures.0/@descriptors.4/@actualFigure/@customChildren.0/@typedFigure"/>
     </descriptors>
     <descriptors
         name="CustomCombinedFragmentFigureDescriptor">
@@ -246,7 +251,7 @@
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="CallSync"
-          targetDecoration="//@figures.0/@figures.1">
+          targetDecoration="//@figures.0/@figures.2">
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>
@@ -267,13 +272,14 @@
         name="MessageAsync">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          targetDecoration="//@figures.0/@figures.0">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
+          name="CallAsync"
+          targetDecoration="//@figures.0/@figures.1">
         <children
             xsi:type="gmfgraph:Label"
             name="MessageAsyncLabelFigure">
+          <foregroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="SANS"/>
@@ -281,6 +287,112 @@
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="MessageReply">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="CallReply"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MessageReplyLabelFigure">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="SANS"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureMessageReplyLabelFigure"
+          figure="//@figures.0/@descriptors.9/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="MessageCreate">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="CallCreate"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MessageCreateLabelFigure">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="SANS"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getFigureMessageCreateLabelFigure"
+          figure="//@figures.0/@descriptors.10/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="MessageDelete">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="CallDelete"
+          targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MessageDeleteLabelFigure"
+            text="">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="SANS"/>
+        </children>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.11/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="MessageLost">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="CallLost"
+          targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MessageLostLabelFigure">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="SANS"/>
+        </children>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.12/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="MessageFound">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="CallFound"
+          sourceDecoration="//@figures.0/@figures.0"
+          targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MessageFoundLabelFigure">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="SANS"/>
+        </children>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -307,8 +419,7 @@
       contentPane="//@figures.0/@descriptors.1/@accessors.2"/>
   <nodes
       name="InteractionUseNode"
-      figure="CustomInteractionUse"
-      resizeConstraint="NORTH_SOUTH"/>
+      figure="CustomInteractionUse"/>
   <nodes
       name="CombinedFragmentNode"
       figure="CustomCombinedFragmentFigureDescriptor"/>
@@ -322,6 +433,21 @@
   <connections
       name="CallAsyncLink"
       figure="MessageAsync"/>
+  <connections
+      name="ReplyLink"
+      figure="MessageReply"/>
+  <connections
+      name="CreateLink"
+      figure="MessageCreate"/>
+  <connections
+      name="DeleteLink"
+      figure="MessageDelete"/>
+  <connections
+      name="LostLink"
+      figure="MessageLost"/>
+  <connections
+      name="FoundLink"
+      figure="MessageFound"/>
   <compartments
       name="InteractionCompartment"
       figure="CustomInteractionRectangleFigure"
@@ -374,8 +500,74 @@
   </labels>
   <labels
       name="MessageAsyncLabel"
+      figure="MessageAsync"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.8/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
+  <labels
+      name="MessageReplyLabel"
+      figure="MessageReply"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.9/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
+  <labels
+      name="MessageCreateLabel"
+      figure="MessageCreate"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.10/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
+  <labels
+      name="MessageDeleteLabel"
+      figure="MessageDelete"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.11/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
+  <labels
+      name="MessageLostLabel"
+      figure="MessageLost"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.12/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
+  <labels
+      name="MessageFoundLabel"
+      figure="MessageFound"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.13/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

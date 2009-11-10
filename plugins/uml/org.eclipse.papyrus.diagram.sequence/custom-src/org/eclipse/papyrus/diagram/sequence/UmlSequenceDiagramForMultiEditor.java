@@ -25,7 +25,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext;
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
@@ -80,7 +79,7 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	public UmlSequenceDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
 			throws BackboneException, ServiceException {
-		super();
+		super(servicesRegistry);
 		this.diagram = diagram;
 		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 		IEditorContextRegistry contextRegistry;
@@ -93,37 +92,6 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 
 		setDocumentProvider(context.getDocumentProvider());
 		System.err.println(this.getClass().getName());
-	}
-
-	/**
-	 * The Constructor.
-	 * 
-	 * @param diagram
-	 *            the diagram
-	 * @param context
-	 *            the context
-	 * 
-	 * @generated NOT
-	 */
-	public UmlSequenceDiagramForMultiEditor(Object diagram, IEditorContext context) {
-		this((Diagram) diagram, (GmfEditorContext) context);
-	}
-
-	/**
-	 * The Constructor.
-	 * 
-	 * @param diagram
-	 *            the diagram
-	 * @param context
-	 *            the context
-	 * 
-	 * @generated NOT
-	 */
-	public UmlSequenceDiagramForMultiEditor(Diagram diagram, GmfEditorContext context) {
-		super();
-		this.diagram = diagram;
-		this.context = context;
-		setDocumentProvider(context.getDocumentProvider());
 	}
 
 	/**

@@ -104,8 +104,12 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
-	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated NOT
+	 */
+	protected int directEditionMode = IDirectEdition.NO_DIRECT_EDITION;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
@@ -692,6 +696,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
+		refreshLabel();
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
@@ -720,6 +725,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -732,5 +738,38 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	}
 
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
+	/**
+	 * @generated
+	 */
+	public void activate() {
+		super.activate();
+		addOwnerElementListeners();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addOwnerElementListeners() {
+		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel())); //$NON-NLS-1$
+
+	}
+
+	/**
+	 * @generated
+	 */
+	public void deactivate() {
+		removeOwnerElementListeners();
+		super.deactivate();
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeOwnerElementListeners() {
+		removeListenerFilter(ADD_PARENT_MODEL);
+
+	}
 
 }

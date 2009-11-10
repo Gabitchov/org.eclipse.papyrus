@@ -26,9 +26,11 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -37,18 +39,24 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -60,13 +68,14 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPo
 import org.eclipse.papyrus.diagram.sequence.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.Notifier;
+import org.eclipse.papyrus.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -90,11 +99,19 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	protected IFigure primaryShape;
 
 	/**
-	 * Notfier for listen and unlistend model element.
-	 * 
-	 * @generated NOT
+	 * The center figure for synch, asynch and reply message
 	 */
-	private Notifier notifier = new Notifier(new UIAdapterImpl() {
+	private RectangleFigure centerFigure;
+
+	/**
+	 * The bottom center figure for delete message
+	 */
+	private RectangleFigure bottomCenterFigure;
+
+	/**
+	 * Notfier for listen and unlistend model element.
+	 */
+	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
 
 		@Override
 		protected void safeNotifyChanged(Notification msg) {
@@ -159,7 +176,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * This operation returns the ExecutionSpecification EditParts contained in the Lifeline
 	 * EditPart
 	 * 
-	 * @generated NOT
 	 * @return the list of ExecutionSpecification EditParts
 	 */
 	public List<ShapeNodeEditPart> getExecutionSpecificationList() {
@@ -236,11 +252,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
-		// BES : Added
-		if (editPart instanceof BehaviorExecutionSpecificationEditPart) {
-			return getPrimaryShape().getFigureLifelineDotLineFigure();
-		} else if (editPart instanceof ActionExecutionSpecificationEditPart) {
-			// AES : Added
+		// Execution specification handling
+		if (editPart instanceof BehaviorExecutionSpecificationEditPart
+				|| editPart instanceof ActionExecutionSpecificationEditPart) {
 			return getPrimaryShape().getFigureLifelineDotLineFigure();
 		}
 
@@ -287,7 +301,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			nodeShape.setLayoutManager(layout);
 		}
 
-		// BES : Added
+		// Execution specification handling
 		if (nodeShape instanceof LifelineFigure) {
 			LifelineFigure lFigure = (LifelineFigure) nodeShape;
 			return lFigure.getFigureLifelineDotLineFigure();
@@ -349,8 +363,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -358,6 +371,11 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
+		types.add(UMLElementTypes.Message_4005);
+		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_4007);
+		types.add(UMLElementTypes.Message_4008);
+		types.add(UMLElementTypes.Message_4009);
 		return types;
 	}
 
@@ -371,8 +389,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -425,6 +442,126 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if (targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
+		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if (targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if (targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
 	}
@@ -439,8 +576,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -492,6 +628,126 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		return types;
@@ -506,8 +762,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -515,6 +770,11 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
+		types.add(UMLElementTypes.Message_4005);
+		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_4007);
+		types.add(UMLElementTypes.Message_4008);
+		types.add(UMLElementTypes.Message_4009);
 		return types;
 	}
 
@@ -528,8 +788,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.
-																							 * type
+																							 * emf.type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -581,6 +840,126 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.CombinedFragment_3004);
 		}
 		if (relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if (relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		return types;
@@ -634,7 +1013,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated
+		 * Generated not for set text wrapping to true
+		 * 
+		 * @generated NOT
 		 */
 		private void createContents() {
 
@@ -649,6 +1030,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 
 			fFigureLifelineLabelFigure = new WrappingLabel();
 			fFigureLifelineLabelFigure.setText("<...>");
+			fFigureLifelineLabelFigure.setTextWrap(true);
 
 			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
 
@@ -664,8 +1046,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 
 			fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);
 			fFigureLifelineDotLineFigure.setLayoutManager(new XYLayout());
-
-			// TODO Put the lifeline figure at the center on its container
 		}
 
 		/**
@@ -753,131 +1133,83 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * Handle lifeline covered by and destruction event
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 
-		// handle the case when the represent is set and update the name of Lifeline
-		if (UMLPackage.eINSTANCE.getLifeline_Represents().equals(feature) && getModelEObject() instanceof Lifeline) {
-			if (notification.getNewValue() instanceof Property) {
-				// handle the notification if there is changement in the class which type the
-				// propertie
-				notifier.listenEObject(((Property) notification.getNewValue()).getType());
-
-				// get a listener in the property to handle the typed class is changed
-				notifier.listenEObject((Property) notification.getNewValue());
-
-				setLifelineName(((Property) notification.getNewValue()).getType());
+		if (notification.getNotifier() instanceof Bounds) {
+			Bounds newBounds = (Bounds) notification.getNotifier();
+			Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds
+					.getHeight());
+			Lifeline lifeline = (Lifeline) resolveSemanticElement();
+			EList<InteractionFragment> coveredbyInteractionFragments = lifeline.getCoveredBys();
+			for (Object child : getParent().getChildren()) {
+				if (child instanceof CombinedFragmentEditPart) {
+					InteractionFragmentEditPart interactionFragmentEditPart = (InteractionFragmentEditPart) child;
+					InteractionFragment interactionFragment = (InteractionFragment) interactionFragmentEditPart
+							.resolveSemanticElement();
+					if (newBound.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
+						if (!coveredbyInteractionFragments.contains(interactionFragment)) {
+							coveredbyInteractionFragments.add(interactionFragment);
+						}
+					} else {
+						coveredbyInteractionFragments.remove(interactionFragment);
+					}
+				}
 			}
-			if (notification.getOldValue() instanceof Property) {
-				notifier.unlistenEObject((((Property) notification.getOldValue()).getType()));
-				notifier.unlistenEObject(((Property) notification.getOldValue()));
+		} else if (UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(feature)) {
+			Object newValue = notification.getNewValue();
+			if (notification.getOldValue() instanceof MessageOccurrenceSpecification) {
+				notifier.unlistenObject((Notifier) notification.getOldValue());
+				if (newValue == null) {
+					updateCrossEnd();
+				}
 			}
-		} else if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature)) {
-			// create a listener in the classs which type the property
-			if (notification.getNewValue() instanceof Type) {
-				notifier.listenEObject((Type) notification.getNewValue());
+			if (newValue instanceof MessageOccurrenceSpecification) {
+				MessageOccurrenceSpecification newMessageOccurrenceSpecification = (MessageOccurrenceSpecification) newValue;
+				notifier.listenObject(newMessageOccurrenceSpecification);
+				if (newMessageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
+					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+					getPrimaryShape().repaint();
+				}
 			}
-			if (notification.getOldValue() instanceof Type) {
-				notifier.unlistenEObject(((Type) notification.getOldValue()));
+		} else if (UMLPackage.eINSTANCE.getOccurrenceSpecification_Event().equals(feature)) {
+			Object newValue = notification.getNewValue();
+			if (notification.getOldValue() instanceof DestructionEvent
+					&& (newValue instanceof DestructionEvent == false)) {
+				updateCrossEnd();
 			}
-			setLifelineName((Type) notification.getNewValue());
-		} else if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				&& notification.getNotifier().equals(getRepresentsTypeElement())) {
-			// set the name in the lifeline if the the name of the class wich type the property is
-			// changed.
-			setLifelineName(getRepresentsTypeElement());
+			if (newValue instanceof DestructionEvent) {
+				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+				getPrimaryShape().repaint();
+			}
 		}
 
 		super.handleNotificationEvent(notification);
 	}
 
 	/**
-	 * get the Object Associated to the edit part
-	 * 
-	 * @generated NOT
-	 * @return the object Associated to the edit part
+	 * Update the cross end
 	 */
-	private EObject getModelEObject() {
-		EObject element = null;
-		Object obj = getModel();
-		if (obj != null && obj instanceof org.eclipse.gmf.runtime.notation.Shape) {
-			element = ((org.eclipse.gmf.runtime.notation.Shape) obj).getElement();
-		}
-		return element;
-
-	}
-
-	/**
-	 * Gets the represents type element.
-	 * 
-	 * @generated NOT
-	 * @return the type of the represented element in the lifeline
-	 */
-	private Type getRepresentsTypeElement() {
-		Type type = null;
-		EObject modelEObject = getModelEObject();
-		if (modelEObject != null && modelEObject instanceof Lifeline) {
-			if (((Lifeline) modelEObject).getRepresents() != null) {
-				type = ((Lifeline) modelEObject).getRepresents().getType();
+	private void updateCrossEnd() {
+		getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(false);
+		Lifeline lifeline = (Lifeline) resolveSemanticElement();
+		for (InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
+			if (interactionFragment instanceof MessageOccurrenceSpecification) {
+				MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification) interactionFragment;
+				notifier.listenObject(messageOccurrenceSpecification);
+				if (messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
+					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+				}
 			}
 		}
-		return type;
+		getPrimaryShape().repaint();
 	}
 
 	/**
-	 * Activate a listener for the interactionUse to Handle notification in the refered Interaction
-	 * 
-	 * @generated NOT
-	 */
-	public void activate() {
-		super.activate();
-		notifier.listenEObject(getRepresentsTypeElement());
-		if (getModelEObject() != null && getModelEObject() instanceof Lifeline) {
-			notifier.listenEObject(((Lifeline) (getModelEObject())).getRepresents());
-		}
-
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void deactivate() {
-		notifier.listenEObject(getRepresentsTypeElement());// activate the listener on
-		// the typed object in the repesent
-		if (getModelEObject() != null && getModelEObject() instanceof Lifeline) {
-			notifier.unlistenEObject((((Lifeline) (getModelEObject())).getRepresents()));
-		}
-
-		super.deactivate();
-
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	private void setLifelineName(Type type) {
-		StringBuilder sb = new StringBuilder();
-		if (((Lifeline) getModelEObject()).getName() != null) {
-			sb.append(((Lifeline) getModelEObject()).getName());
-		}
-
-		if (type != null && type.getName() != null && type.getName().length() > 0) {
-			sb.append(" : ");
-			sb.append(type.getName());
-		}
-
-		getPrimaryShape().getFigureLifelineLabelFigure().setText(sb.toString());
-		refresh();
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
+	 * Create specific anchor to handle connection on center of the lifeline
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
@@ -888,10 +1220,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
+	 * Create specific anchor to handle connection on center of the lifeline
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
@@ -901,57 +1230,177 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
+	 * Create specific anchor to handle connection on top, on center and on bottom of the lifeline
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		IFigure owner;
+		if (connEditPart instanceof Message4EditPart) {
+			owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
+		} else if (connEditPart instanceof Message5EditPart) {
+			owner = getBottomCenterFigure(getContentPane());
+		} else {
+			owner = getCenterFigure(getContentPane());
+		}
+
 		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor) super
 				.getTargetConnectionAnchor(connEditPart);
-		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
+		connectionAnchor.setOwner(owner);
 		return connectionAnchor;
 	}
 
 	/**
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
+	 * Create specific anchor to handle connection on top, on center and on bottom of the lifeline
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		IFigure owner = null;
+		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for (Object obj : relationshipTypes) {
+				if (UMLElementTypes.Message_4006.equals(obj)) {
+					owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
+					break;
+				} else if (UMLElementTypes.Message_4007.equals(obj)) {
+					owner = getBottomCenterFigure(getContentPane());
+					break;
+				}
+			}
+		} else if (request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest) request;
+			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
+			if (createRequest.getConnectionViewDescriptor() != null) {
+				if (String.valueOf(Message4EditPart.VISUAL_ID).equals(connectionViewDescriptor.getSemanticHint())) {
+					owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
+				} else if (String.valueOf(Message5EditPart.VISUAL_ID)
+						.equals(connectionViewDescriptor.getSemanticHint())) {
+					owner = getBottomCenterFigure(getContentPane());
+				}
+			}
+		} else if (request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if (connectionEditPart instanceof Message4EditPart) {
+				owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
+			} else if (connectionEditPart instanceof Message5EditPart) {
+				owner = getBottomCenterFigure(getContentPane());
+			}
+		}
+
+		if (owner == null) {
+			owner = getCenterFigure(getContentPane());
+		}
+
 		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor) super.getTargetConnectionAnchor(request);
-		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
+		connectionAnchor.setOwner(owner);
 		return connectionAnchor;
 	}
-
-	/**
-	 * @generated NOT
-	 */
-	private RectangleFigure centerFigure;
 
 	/**
 	 * Create a figure center on a reference figure
 	 * 
-	 * @generated NOT
 	 * @param referenceFigure
 	 *            The reference figure
 	 * @return The center figure
 	 */
-	// TODO If referenceFigure is already in the center of its container, this method is useless
 	private RectangleFigure getCenterFigure(IFigure referenceFigure) {
 		if (centerFigure == null) {
 			centerFigure = new RectangleFigure();
 		}
-		
+
 		Rectangle bounds = referenceFigure.getBounds().getCopy();
 		bounds.x = bounds.x + bounds.width / 2;
 		bounds.width = 1;
+		bounds.height -= 30;
+
 		centerFigure.setBounds(bounds);
 		centerFigure.setParent(referenceFigure.getParent());
-		
+
 		return centerFigure;
 	}
+
+	/**
+	 * Create a figure center on the botton of a reference figure
+	 * 
+	 * @param referenceFigure
+	 *            The reference figure
+	 * @return The bottom center figure
+	 */
+	private RectangleFigure getBottomCenterFigure(IFigure referenceFigure) {
+		if (bottomCenterFigure == null) {
+			bottomCenterFigure = new RectangleFigure();
+		}
+
+		Rectangle bounds = referenceFigure.getBounds().getCopy();
+		bounds.x = bounds.x + bounds.width / 2;
+		bounds.width = 1;
+		bounds.y += bounds.height - 25;
+		bounds.height = 1;
+
+		bottomCenterFigure.setBounds(bounds);
+		bottomCenterFigure.setParent(referenceFigure.getParent());
+
+		return bottomCenterFigure;
+	}
+
+	/**
+	 * Handle message creation for execution specification
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if (request instanceof CreateConnectionRequest) {
+			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest) request;
+			EditPart target = createConnectionRequest.getTargetEditPart();
+			if (target instanceof LifelineEditPart) {
+				LifelineEditPart lifelineEditPart = (LifelineEditPart) target;
+				Rectangle lifelineBounds = lifelineEditPart.getContentPane().getBounds();
+				for (ShapeNodeEditPart executionSpecificationEditPart : lifelineEditPart
+						.getExecutionSpecificationList()) {
+					IFigure executionSpecificationFigure = executionSpecificationEditPart.getFigure();
+					Rectangle esBounds = executionSpecificationFigure.getBounds().getCopy();
+					esBounds.x = lifelineBounds.x;
+					esBounds.width = lifelineBounds.width;
+					Point location = createConnectionRequest.getLocation().getCopy();
+					executionSpecificationFigure.translateToRelative(location);
+					if (esBounds.contains(location)) {
+						createConnectionRequest.setTargetEditPart(executionSpecificationEditPart);
+						return executionSpecificationEditPart.getCommand(request);
+					}
+				}
+			} else {
+				return target.getCommand(request);
+			}
+		}
+		return super.getCommand(request);
+	}
+
+	/**
+	 * Activate listeners for Lifeline to handle notification in the message occurence specification
+	 */
+	@Override
+	public void activate() {
+		updateCrossEnd();
+		super.activate();
+	}
+
+	/**
+	 * Desactivate listeners for Lifeline to handle notification in the message occurence
+	 * specification
+	 */
+	@Override
+	public void deactivate() {
+		notifier.unlistenAll();
+		super.deactivate();
+	}
+
+	/**
+	 * Remove listeners for Lifeline to handle notification in the message occurence specification
+	 */
+	@Override
+	public void removeNotify() {
+		notifier.unlistenAll();
+		super.removeNotify();
+	}
+
 }

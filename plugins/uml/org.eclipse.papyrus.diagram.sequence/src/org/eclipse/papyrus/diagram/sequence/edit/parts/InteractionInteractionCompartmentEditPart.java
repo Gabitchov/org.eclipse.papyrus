@@ -61,7 +61,7 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -75,6 +75,8 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 		// org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionInteractionCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new InteractionCompartmentXYLayoutEditPolicy());
+
+		removeEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE);
 	}
 
 	/**

@@ -101,6 +101,36 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName2EditPart.VISUAL_ID:
 				return new MessageName2EditPart(view);
 
+			case Message3EditPart.VISUAL_ID:
+				return new Message3EditPart(view);
+
+			case MessageName3EditPart.VISUAL_ID:
+				return new MessageName3EditPart(view);
+
+			case Message4EditPart.VISUAL_ID:
+				return new Message4EditPart(view);
+
+			case MessageName4EditPart.VISUAL_ID:
+				return new MessageName4EditPart(view);
+
+			case Message5EditPart.VISUAL_ID:
+				return new Message5EditPart(view);
+
+			case MessageName5EditPart.VISUAL_ID:
+				return new MessageName5EditPart(view);
+
+			case Message6EditPart.VISUAL_ID:
+				return new Message6EditPart(view);
+
+			case MessageName6EditPart.VISUAL_ID:
+				return new MessageName6EditPart(view);
+
+			case Message7EditPart.VISUAL_ID:
+				return new Message7EditPart(view);
+
+			case MessageName7EditPart.VISUAL_ID:
+				return new MessageName7EditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

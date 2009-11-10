@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos Origin - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.Collections;
@@ -182,7 +195,7 @@ public class MessageName2EditPart extends LabelEditPart implements ITextAwareEdi
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -555,7 +568,7 @@ public class MessageName2EditPart extends LabelEditPart implements ITextAwareEdi
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View) getModel();
 	}
 
 	/**
@@ -699,6 +712,7 @@ public class MessageName2EditPart extends LabelEditPart implements ITextAwareEdi
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -706,16 +720,8 @@ public class MessageName2EditPart extends LabelEditPart implements ITextAwareEdi
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure createFigurePrim() {
-		return new Label();
+		// Parent should assign one using setLabel() method
+		return null;
 	}
 
 }

@@ -18,10 +18,12 @@ import java.util.List;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -112,7 +114,7 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 	 *            the max x position of a coverd lifeline
 	 * 
 	 */
-	protected void getNewSize(int min, int max) {
+	private void getNewSize(int min, int max) {
 		int h = getFigure().getBounds().height;
 		int y = getFigure().getBounds().y;
 
@@ -121,6 +123,31 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 		Point loc = new Point(min, y);
 
 		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+	}
+
+	/**
+	 * Update covered lifelines of a Interaction fragment
+	 * 
+	 * @param newBounds
+	 */
+	public void updateCoveredLifelines(Bounds newBounds) {
+		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds
+				.getHeight());
+		InteractionFragment combinedFragment = (InteractionFragment) resolveSemanticElement();
+		EList<Lifeline> coveredLifelines = combinedFragment.getCovereds();
+		for (Object child : getParent().getChildren()) {
+			if (child instanceof LifelineEditPart) {
+				LifelineEditPart lifelineEditPart = (LifelineEditPart) child;
+				Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
+				if (newBound.intersects(lifelineEditPart.getFigure().getBounds())) {
+					if (!coveredLifelines.contains(lifeline)) {
+						coveredLifelines.add(lifeline);
+					}
+				} else {
+					coveredLifelines.remove(lifeline);
+				}
+			}
+		}
 	}
 
 }

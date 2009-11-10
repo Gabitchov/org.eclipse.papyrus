@@ -93,13 +93,20 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Generated not for add combined fragment's covered lifelines on interaction operand
+	 * 
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InteractionOperand newElement = UMLFactory.eINSTANCE.createInteractionOperand();
 
 		CombinedFragment owner = (CombinedFragment) getElementToEdit();
 		owner.getOperands().add(newElement);
+
+		// Add all combined fragment's covered lifelines on interaction operand
+		for (InteractionOperand operand : owner.getOperands()) {
+			operand.getCovereds().addAll(owner.getCovereds());
+		}
 
 		doConfigure(newElement, monitor, info);
 

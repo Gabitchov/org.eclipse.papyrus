@@ -31,6 +31,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseName2EditPa
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.LifelineCustomParsers;
@@ -69,12 +74,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	private LifelineCustomParsers lifelineName_5002Parser;
 
 	/**
-	 * @generated-not
+	 * @generated
 	 */
 	private IParser getLifelineName_5002Parser() {
 		if (lifelineName_5002Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			lifelineName_5002Parser = new LifelineCustomParsers(features);
+			lifelineName_5002Parser = new LifelineCustomParsers();
 		}
 		return lifelineName_5002Parser;
 	}
@@ -122,12 +126,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	private InteractionUseCustomParsers interactionUseName_5004Parser;
 
 	/**
-	 * @generated-not
+	 * @generated
 	 */
 	private IParser getInteractionUseName_5004Parser() {
 		if (interactionUseName_5004Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			interactionUseName_5004Parser = new InteractionUseCustomParsers(features);
+			interactionUseName_5004Parser = new InteractionUseCustomParsers();
 		}
 		return interactionUseName_5004Parser;
 	}
@@ -169,6 +172,91 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser messageName_6003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageName_6003Parser() {
+		if (messageName_6003Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			messageName_6003Parser = parser;
+		}
+		return messageName_6003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser messageName_6004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageName_6004Parser() {
+		if (messageName_6004Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			messageName_6004Parser = parser;
+		}
+		return messageName_6004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser messageName_6005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageName_6005Parser() {
+		if (messageName_6005Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			messageName_6005Parser = parser;
+		}
+		return messageName_6005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser messageName_6006Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageName_6006Parser() {
+		if (messageName_6006Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			messageName_6006Parser = parser;
+		}
+		return messageName_6006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser messageName_6007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageName_6007Parser() {
+		if (messageName_6007Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			messageName_6007Parser = parser;
+		}
+		return messageName_6007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
@@ -185,6 +273,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getMessageName_6001Parser();
 		case MessageName2EditPart.VISUAL_ID:
 			return getMessageName_6002Parser();
+		case MessageName3EditPart.VISUAL_ID:
+			return getMessageName_6003Parser();
+		case MessageName4EditPart.VISUAL_ID:
+			return getMessageName_6004Parser();
+		case MessageName5EditPart.VISUAL_ID:
+			return getMessageName_6005Parser();
+		case MessageName6EditPart.VISUAL_ID:
+			return getMessageName_6006Parser();
+		case MessageName7EditPart.VISUAL_ID:
+			return getMessageName_6007Parser();
 		}
 		return null;
 	}

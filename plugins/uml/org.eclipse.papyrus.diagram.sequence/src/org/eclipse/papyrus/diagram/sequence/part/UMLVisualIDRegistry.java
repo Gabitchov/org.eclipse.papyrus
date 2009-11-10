@@ -36,8 +36,18 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPar
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLAbstractExpression;
@@ -68,6 +78,31 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static UMLAbstractExpression Message_4004_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Message_4005_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Message_4006_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Message_4007_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Message_4008_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression Message_4009_Constraint;
 
 	/**
 	 * @generated
@@ -131,6 +166,7 @@ public class UMLVisualIDRegistry {
 				&& isDiagram((Package) domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
+
 		return -1;
 	}
 
@@ -159,34 +195,50 @@ public class UMLVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case LifelineEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return ActionExecutionSpecificationEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return InteractionUseEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return InteractionOperandEditPart.VISUAL_ID;
 			}
 			break;
 		case PackageEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return InteractionEditPart.VISUAL_ID;
 			}
 			break;
@@ -286,6 +338,31 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case Message3EditPart.VISUAL_ID:
+			if (MessageName3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Message4EditPart.VISUAL_ID:
+			if (MessageName4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Message5EditPart.VISUAL_ID:
+			if (MessageName5EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Message6EditPart.VISUAL_ID:
+			if (MessageName6EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Message7EditPart.VISUAL_ID:
+			if (MessageName7EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -298,12 +375,53 @@ public class UMLVisualIDRegistry {
 			return -1;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_4003((Message) domainElement)) {
+
+		&& isMessage_4003((Message) domainElement)
+
+		) {
 			return MessageEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_4004((Message) domainElement)) {
+
+		&& isMessage_4004((Message) domainElement)
+
+		) {
 			return Message2EditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+
+		&& isMessage_4005((Message) domainElement)
+
+		) {
+			return Message3EditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+
+		&& isMessage_4006((Message) domainElement)
+
+		) {
+			return Message4EditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+
+		&& isMessage_4007((Message) domainElement)
+
+		) {
+			return Message5EditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+
+		&& isMessage_4008((Message) domainElement)
+
+		) {
+			return Message6EditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+
+		&& isMessage_4009((Message) domainElement)
+
+		) {
+			return Message7EditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -335,10 +453,71 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_4004(Message domainElement) {
 		if (Message_4004_Constraint == null) { // lazy initialization
-			Message_4004_Constraint = UMLOCLFactory.getExpression(
-					"self.messageSort=MessageSort::asynchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_4004_Constraint = UMLOCLFactory
+					.getExpression(
+							"self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4004_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isMessage_4005(Message domainElement) {
+		if (Message_4005_Constraint == null) { // lazy initialization
+			Message_4005_Constraint = UMLOCLFactory.getExpression(
+					"self.messageSort=MessageSort::reply", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		}
+		Object result = Message_4005_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isMessage_4006(Message domainElement) {
+		if (Message_4006_Constraint == null) { // lazy initialization
+			Message_4006_Constraint = UMLOCLFactory.getExpression(
+					"self.messageSort=MessageSort::createMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		}
+		Object result = Message_4006_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isMessage_4007(Message domainElement) {
+		if (Message_4007_Constraint == null) { // lazy initialization
+			Message_4007_Constraint = UMLOCLFactory.getExpression(
+					"self.messageSort=MessageSort::deleteMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		}
+		Object result = Message_4007_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isMessage_4008(Message domainElement) {
+		if (Message_4008_Constraint == null) { // lazy initialization
+			Message_4008_Constraint = UMLOCLFactory.getExpression(
+					"self.receiveEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		}
+		Object result = Message_4008_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isMessage_4009(Message domainElement) {
+		if (Message_4009_Constraint == null) { // lazy initialization
+			Message_4009_Constraint = UMLOCLFactory.getExpression(
+					"self.sendEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		}
+		Object result = Message_4009_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -380,6 +559,36 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");

@@ -26,18 +26,17 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
-import org.eclipse.uml2.uml.CallEvent;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.MessageSort;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * @generated
@@ -70,7 +69,7 @@ public class MessageCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated-not
+	 * @generated
 	 */
 	public boolean canExecute() {
 		if (source == null && target == null) {
@@ -89,130 +88,66 @@ public class MessageCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		// added code
-		if (getTarget() == getSource())// the source must be different from the target
-		{
-			return false;
-		}
-		// end added code
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4003(getContainer(), getSource(),
 				getTarget());
 	}
 
-	private static CallEvent doCreateEvent()// create the callevent associated to the
-	// MessageOccurenceSpecification
-
-	{
-		CallEvent result = UMLFactory.eINSTANCE.createCallEvent();
-
-		return result;
-
-	}
-
-	private static MessageOccurrenceSpecification doCreateMessageOccurrence(Interaction interaction) {
-		MessageOccurrenceSpecification result = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
-
-		result.setEnclosingInteraction(interaction);
-		return result;
-	}
-
-	private void setupBehaviorSpec(BehaviorExecutionSpecification spec, MessageOccurrenceSpecification start,
-			MessageOccurrenceSpecification finish, Lifeline lifeline) {
-		setSingleCovered(spec, lifeline);
-		setSingleCovered(start, lifeline);
-		setSingleCovered(finish, lifeline);
-
-		spec.setStart(start);
-		spec.setFinish(finish);
-	}
-
-	private void setSingleCovered(InteractionFragment fragment, Lifeline lifeline) {
-		if (!fragment.getCovereds().contains(lifeline)) {
-			fragment.getCovereds().add(lifeline);
-		}
-	}
-
 	/**
-	 * the Method create a MessageOccurenceSpecification and the call event when a message is
-	 * created
+	 * Create a MessageOccurenceSpecification and the call event when a message is created
 	 * 
-	 * @generated-not
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		Message newElement = null;
+		// Retrieve container of call event which is an instance of Package
+		Package eventContainer = CommandHelper.getEventContainer(container.getOwner());
+		if (eventContainer != null) {
+			Message newElement = container.createMessage("");
+			newElement.setMessageSort(MessageSort.SYNCH_CALL_LITERAL);
+			ElementInitializers.init_Message_4003(newElement);
 
-		Interaction interaction = getContainer();
+			// add the message to the interaction
+			container.getMessages().add(newElement);
 
-		Element diagramSource = getSource();
-		Element diagramTarget = getTarget();
-		MessageEnd domainSource;
-		MessageEnd domainTarget;
+			Element signature = CommandHelper.getSignature(newElement);
 
-		BehaviorExecutionSpecification sourceInvocation = null;
-		BehaviorExecutionSpecification targetExecution = null;
+			Event sendEvent = null;
+			Event receiveEvent = null;
 
-		CallEvent callevent = doCreateEvent();
-
-		PackageableElement newCallevent = ((Model) (interaction.getOwner())).createPackagedElement("", callevent
-				.eClass());
-
-		ElementInitializers.init_CallEvent_4003((CallEvent) newCallevent);
-
-		MessageOccurrenceSpecification msgOccurenceInvocationStart = null;
-
-		MessageOccurrenceSpecification msgOccurenceInvocationEnd = null;
-
-		if (diagramSource instanceof BehaviorExecutionSpecification
-				&& diagramTarget instanceof BehaviorExecutionSpecification) {
-
-			BehaviorExecutionSpecification start = (BehaviorExecutionSpecification) diagramSource;
-
-			BehaviorExecutionSpecification end = (BehaviorExecutionSpecification) diagramTarget;
-
-			msgOccurenceInvocationStart = doCreateMessageOccurrence(interaction);
-			msgOccurenceInvocationEnd = doCreateMessageOccurrence(interaction);
-
-			msgOccurenceInvocationEnd.setEvent((CallEvent) newCallevent);
-			msgOccurenceInvocationStart.setEvent((CallEvent) newCallevent);
-
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationStart);
-			ElementInitializers.init_MessageSpecificationOccurence_4003(msgOccurenceInvocationEnd);
-
-			Lifeline sourceLL = start.getCovereds().get(0);// get the lifeline which contain
-			// BehaviorExecutionSpecification
-			Lifeline targetLL = end.getCovereds().get(0);// get the lifeline which
-			// BehaviorExecutionSpecification
-
-			setupBehaviorSpec(start, msgOccurenceInvocationStart, msgOccurenceInvocationEnd, sourceLL);
-			setupBehaviorSpec(end, msgOccurenceInvocationEnd, msgOccurenceInvocationStart, targetLL);
-
-			domainSource = (MessageOccurrenceSpecification) start.getStart();
-			domainTarget = (MessageOccurrenceSpecification) end.getStart();
-
-			if (domainSource != null && domainTarget != null) {
-				newElement = interaction.createMessage("");
-				interaction.getMessages().add(newElement);// add the message to the interaction
-				newElement.setSendEvent(domainSource);
-				newElement.setReceiveEvent(domainTarget);
-
-				domainSource.setMessage(newElement);// built the relationship
-				// messsageoccurencespecification and the
-				// message
-				domainTarget.setMessage(newElement);
+			if (signature instanceof Operation) {
+				sendEvent = CommandHelper.createSendOperationEvent(eventContainer, (Operation) signature);
+				receiveEvent = CommandHelper.createReceiveOperationEvent(eventContainer, (Operation) signature);
+			} else {
+				sendEvent = CommandHelper.createCallEvent(eventContainer);
+				receiveEvent = CommandHelper.createCallEvent(eventContainer);
 			}
 
-			ElementInitializers.init_Message_4003(newElement);
+			MessageOccurrenceSpecification msgOccurenceInvocationStart = CommandHelper.doCreateMessageOccurrence(
+					container, sendEvent);
+			msgOccurenceInvocationStart.setMessage(newElement);
+			newElement.setSendEvent(msgOccurenceInvocationStart);
+			ExecutionSpecification diagramSource = (ExecutionSpecification) getSource();
+			Lifeline sourceLL = diagramSource.getCovereds().get(0);
+			CommandHelper.setSingleCovered(sourceLL, msgOccurenceInvocationStart);
+
+			MessageOccurrenceSpecification msgOccurenceInvocationEnd = CommandHelper.doCreateMessageOccurrence(
+					container, receiveEvent);
+			msgOccurenceInvocationEnd.setMessage(newElement);
+			newElement.setReceiveEvent(msgOccurenceInvocationEnd);
+			ExecutionSpecification diagramTarget = (ExecutionSpecification) getTarget();
+			diagramTarget.setStart(msgOccurenceInvocationEnd);
+			Lifeline targetLL = diagramTarget.getCovereds().get(0);
+			CommandHelper.setSingleCovered(targetLL, msgOccurenceInvocationEnd);
+
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
-
+			return CommandResult.newOKCommandResult(newElement);
 		}
 
-		return CommandResult.newOKCommandResult(newElement);
-
+		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
 	}
 
 	/**
