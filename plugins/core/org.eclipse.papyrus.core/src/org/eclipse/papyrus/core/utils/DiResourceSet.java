@@ -167,6 +167,12 @@ public class DiResourceSet extends ResourceSetImpl {
 			monitor.worked(1);
 			notationResource.save(null);
 			monitor.worked(1);
+			
+			// TODO We need to save additional resources for control mode
+			// We must decide if we do it for all resources 
+			for (Resource res : getAdditionalResources()) {
+				res.save(null);
+			}
 		} finally {
 			monitor.done();
 		}
