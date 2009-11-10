@@ -124,8 +124,8 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 
 		// items on the submenu
 		// there are as many items as configurations
-		String fullType = ((businessObject instanceof EObject) ? ((EObject) businessObject).eClass()
-				.getInstanceClassName() : "");
+		Class fullType = ((businessObject instanceof EObject) ? ((EObject) businessObject).eClass().getInstanceClass()
+				: null);
 		final DirectEditorExtensionPoint defaultConfig = DirectEditorExtensionPoint
 				.getDefautDirectEditorConfiguration(fullType);
 

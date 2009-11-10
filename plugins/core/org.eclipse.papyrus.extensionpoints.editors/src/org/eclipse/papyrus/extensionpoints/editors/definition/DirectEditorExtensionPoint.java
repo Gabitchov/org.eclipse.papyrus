@@ -38,6 +38,8 @@ public class DirectEditorExtensionPoint {
 	/** value of the editor configuration attribute */
 	private IDirectEditorConfiguration directEditorConfiguration;
 
+	private Class objectClassToEdit;
+
 	/**
 	 * Returns the set of transformations registered in the platform
 	 * 
@@ -75,27 +77,25 @@ public class DirectEditorExtensionPoint {
 	/**
 	 * Retrieves the preferred editor configuration for the specified type
 	 * 
-	 * @param elementType
-	 *            the element type to be edited
+	 * @param class_
+	 *            the type of element to edit
 	 * @return the preferred editor configuration for the specified type or <code>null</code>
 	 */
-	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(String elementType) {
+	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(Class class_) {
 		// retrieves preference for this element
 		String language = Activator.getDefault().getPreferenceStore().getString(
-				IDirectEditorsIds.EDITOR_FOR_ELEMENT + elementType);
+				IDirectEditorsIds.EDITOR_FOR_ELEMENT + class_.getCanonicalName());
 		if (language == null || IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(language)) {
 			return null;
 		}
-		try {
-			Collection<DirectEditorExtensionPoint> configs = getDirectEditorConfigurations(Class.forName(elementType));
-			for (DirectEditorExtensionPoint configuration : configs) {
-				if (language.equals(configuration.getLanguage())) {
-					return configuration;
-				}
+
+		Collection<DirectEditorExtensionPoint> configs = getDirectEditorConfigurations(class_);
+		for (DirectEditorExtensionPoint configuration : configs) {
+			if (language.equals(configuration.getLanguage())) {
+				return configuration;
 			}
-		} catch (ClassNotFoundException e) {
-			Activator.log(e);
 		}
+
 		return null;
 	}
 
@@ -117,14 +117,11 @@ public class DirectEditorExtensionPoint {
 		// check each configuration in the platform and select corresponding
 		// ones.
 		for (DirectEditorExtensionPoint configuration : getDirectEditorConfigurations()) {
-			try {
-				Class<?> configurationClass = Class.forName(configuration.getObjectToEdit());
-				// both class are compatibles ?
-				if (configurationClass.isAssignableFrom(elementClass)) {
+			// both class are compatibles ?
+			if (configuration.getObjectClassToEdit() != null) {
+				if (configuration.objectClassToEdit.isAssignableFrom(elementClass)) {
 					elementConfigurations.add(configuration);
 				}
-			} catch (ClassNotFoundException e) {
-				Activator.log(e);
 			}
 		}
 		return elementConfigurations;
@@ -170,6 +167,15 @@ public class DirectEditorExtensionPoint {
 				true); // should already be a string
 		directEditorConfiguration = getDirectEditorConfigurationClass(configElt);
 		directEditorConfiguration.setLanguage(language);
+
+		// retrieve the bundle loader of the plugin that declares the extension
+		try {
+			String pluginID = configElt.getContributor().getName();
+			objectClassToEdit = Platform.getBundle(pluginID).loadClass(objectToEdit);
+		} catch (ClassNotFoundException e) {
+			Activator.log(e);
+		}
+
 	}
 
 	protected static IDirectEditorConfiguration getDirectEditorConfigurationClass(IConfigurationElement configElement) {
@@ -266,6 +272,15 @@ public class DirectEditorExtensionPoint {
 	 */
 	public String getObjectToEdit() {
 		return objectToEdit;
+	}
+
+	/**
+	 * Returns the class of object to edit
+	 * 
+	 * @return the class of object to edit
+	 */
+	public Class getObjectClassToEdit() {
+		return objectClassToEdit;
 	}
 
 	/**
