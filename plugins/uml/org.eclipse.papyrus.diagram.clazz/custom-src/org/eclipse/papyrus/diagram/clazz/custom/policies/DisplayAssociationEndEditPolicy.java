@@ -26,27 +26,32 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationBranchLabelHelper;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndTargetLabelHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
+import org.eclipse.papyrus.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.RemoveEAnnotationCommand;
+import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * I is used to display the label of an association branch
  */
-public class DisplayAssociationBranchEditPolicy extends AbstractMaskManagedEditPolicy {
+public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPolicy {
+
+	protected PropertyLabelHelper propertyLabelHelper;
 
 	/**
 	 * Creates a new PropertyLabelEditPolicy
 	 */
-	public DisplayAssociationBranchEditPolicy() {
+	public DisplayAssociationEndEditPolicy() {
 		super();
 	}
 
@@ -57,7 +62,10 @@ public class DisplayAssociationBranchEditPolicy extends AbstractMaskManagedEditP
 		// adds a listener to the element itself, and to linked elements, like Type
 		if (getUMLElement().getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
+
 		}
+		getDiagramEventBroker().addNotificationListener(getUMLElement().getUpperValue(), this);
+		getDiagramEventBroker().addNotificationListener(getUMLElement().getLowerValue(), this);
 	}
 
 	/**
@@ -105,28 +113,28 @@ public class DisplayAssociationBranchEditPolicy extends AbstractMaskManagedEditP
 	 * {@inheritDoc}
 	 */
 	public String getMaskLabel(int value) {
-		return AssociationBranchLabelHelper.getInstance().getMaskLabel(value);
+		return propertyLabelHelper.getMaskLabel(value);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<String> getMaskLabels() {
-		return AssociationBranchLabelHelper.getInstance().getMaskLabels();
+		return propertyLabelHelper.getMaskLabels();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Map<Integer, String> getMasks() {
-		return AssociationBranchLabelHelper.getInstance().getMasks();
+		return propertyLabelHelper.getMasks();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Collection<Integer> getMaskValues() {
-		return AssociationBranchLabelHelper.getInstance().getMaskValues();
+		return propertyLabelHelper.getMaskValues();
 	}
 
 	public String getPreferencePageID() {
@@ -139,7 +147,7 @@ public class DisplayAssociationBranchEditPolicy extends AbstractMaskManagedEditP
 	 * @return
 	 */
 	public Property getUMLElement() {
-		return (Property) AssociationBranchLabelHelper.getInstance().getUMLElement(((GraphicalEditPart) getHost()));
+		return (Property) propertyLabelHelper.getUMLElement(((GraphicalEditPart) getHost()));
 	}
 
 	/**
@@ -219,6 +227,11 @@ public class DisplayAssociationBranchEditPolicy extends AbstractMaskManagedEditP
 
 		if (object == null) {
 			return;
+		}
+		if (notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralInteger_Value())) {
+			refreshDisplay();
+		} else if (notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
+			refreshDisplay();
 		}
 
 		if (object.equals(property)) {
@@ -325,7 +338,7 @@ public class DisplayAssociationBranchEditPolicy extends AbstractMaskManagedEditP
 	 */
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		AssociationBranchLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
+		propertyLabelHelper.refreshEditPartDisplay((GraphicalEditPart) getHost());
 	}
 
 	/**

@@ -53,6 +53,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndSourceEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndTargetEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -178,6 +181,8 @@ public class AssociationName3EditPart extends LabelEditPart implements ITextAwar
 				return Collections.singletonList(mh);
 			}
 		});
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY,
+				new DisplayAssociationEndTargetEditPolicy());
 	}
 
 	/**

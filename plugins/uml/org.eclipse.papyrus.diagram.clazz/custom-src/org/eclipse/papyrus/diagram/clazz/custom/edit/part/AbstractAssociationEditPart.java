@@ -106,11 +106,12 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 		}
 		int sourceType = 0;
 		int targetType = 0;
+		// to display the dot.
 		// owned?
-		if (source.getOwner().equals(resolveSemanticElement())) {
+		if (!source.getOwner().equals(resolveSemanticElement())) {
 			sourceType += AssociationFigure.owned;
 		}
-		if (target.getOwner().equals(resolveSemanticElement())) {
+		if (!target.getOwner().equals(resolveSemanticElement())) {
 			targetType += AssociationFigure.owned;
 		}
 		// aggregation? for it the opposite is changed

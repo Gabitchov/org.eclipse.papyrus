@@ -180,17 +180,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser associationName_6004Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser associationName_6005Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser associationName_6006Parser;
 
 	/**
 	 * @generated
@@ -541,21 +531,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getAssociationName_6004Parser() {
-		if (associationName_6004Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("srcMul{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("srcMul{0}"); //$NON-NLS-1$
-			parser.setEditPattern("srcMul{0}"); //$NON-NLS-1$
-			associationName_6004Parser = parser;
-		}
-		return associationName_6004Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getAssociationName_6005Parser() {
 		if (associationName_6005Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -566,21 +541,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			associationName_6005Parser = parser;
 		}
 		return associationName_6005Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getAssociationName_6006Parser() {
-		if (associationName_6006Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("targRole{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("targRole{0}"); //$NON-NLS-1$
-			parser.setEditPattern("targRole{0}"); //$NON-NLS-1$
-			associationName_6006Parser = parser;
-		}
-		return associationName_6006Parser;
 	}
 
 	/**
@@ -1210,12 +1170,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationName_6002Parser();
 		case AssociationName3EditPart.VISUAL_ID:
 			return getAssociationName_6003Parser();
-		case AssociationName4EditPart.VISUAL_ID:
-			return getAssociationName_6004Parser();
 		case AssociationName5EditPart.VISUAL_ID:
 			return getAssociationName_6005Parser();
-		case AssociationName6EditPart.VISUAL_ID:
-			return getAssociationName_6006Parser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_6007Parser();
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:

@@ -26,13 +26,13 @@ import org.eclipse.uml2.uml.Property;
 /**
  * Helper for labels displaying {@link Property}
  */
-public class AssociationBranchLabelHelper extends PropertyLabelHelper {
+public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
 
-	private static AssociationBranchLabelHelper labelHelper;
+	private static AssociationEndSourceLabelHelper labelHelper;
 
-	public static AssociationBranchLabelHelper getInstance() {
+	public static AssociationEndSourceLabelHelper getInstance() {
 		if (labelHelper == null) {
-			labelHelper = new AssociationBranchLabelHelper();
+			labelHelper = new AssociationEndSourceLabelHelper();
 		}
 		return labelHelper;
 	}
@@ -42,7 +42,7 @@ public class AssociationBranchLabelHelper extends PropertyLabelHelper {
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if ((View) editPart.getModel() != null && ((View) editPart.getModel()).eContainer() != null) {
-			Classifier target = (Classifier) ((Edge) ((View) editPart.getModel()).eContainer()).getTarget()
+			Classifier source = (Classifier) ((Edge) ((View) editPart.getModel()).eContainer()).getSource()
 					.getElement();
 			Property propertyToDisplay = null;
 			if (((View) editPart.getModel()) != null
@@ -54,7 +54,7 @@ public class AssociationBranchLabelHelper extends PropertyLabelHelper {
 
 				while (propertiesIterator.hasNext()) {
 					Property currentProperty = (Property) propertiesIterator.next();
-					if (currentProperty.getType().equals(target)) {
+					if (currentProperty.getType().equals(source)) {
 						propertyToDisplay = currentProperty;
 					}
 				}

@@ -278,9 +278,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
-		// Just notify the command stack here
-		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
-		savedOperation = op;
+		savedOperation = getOperationHistory().getUndoOperation(getUndoContext());
 	}
 
 	/**
@@ -345,7 +343,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
 			 * key which will result in the creation of the shape also.
 			 */
-			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -363,7 +360,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
-			@Override
 			public PaletteViewer createPaletteViewer(Composite parent) {
 				PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -391,7 +387,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
-						@Override
 						public boolean keyReleased(KeyEvent event) {
 
 							if (event.keyCode == SWT.Selection) {

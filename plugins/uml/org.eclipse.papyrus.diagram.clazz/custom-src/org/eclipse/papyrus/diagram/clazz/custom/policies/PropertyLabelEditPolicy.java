@@ -57,7 +57,10 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// adds a listener to the element itself, and to linked elements, like Type
 		if (getUMLElement().getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
+			
 		}
+		getDiagramEventBroker().addNotificationListener(getUMLElement().getUpperValue(), this);
+		getDiagramEventBroker().addNotificationListener(getUMLElement().getLowerValue(), this);
 	}
 
 	/**
@@ -221,6 +224,11 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 
+		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralInteger_Value())){
+			refreshDisplay();
+		}else if( notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())){
+			refreshDisplay();
+		}
 		if (object.equals(property)) {
 			notifyPropertyChanged(property, notification);
 		} else if (object.equals(property.getType())) {

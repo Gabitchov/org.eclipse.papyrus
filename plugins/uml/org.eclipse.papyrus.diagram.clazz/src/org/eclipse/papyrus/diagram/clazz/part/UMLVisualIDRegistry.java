@@ -1449,13 +1449,7 @@ public class UMLVisualIDRegistry {
 			if (AssociationName3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (AssociationName4EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if (AssociationName5EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (AssociationName6EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1751,13 +1745,7 @@ public class UMLVisualIDRegistry {
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");

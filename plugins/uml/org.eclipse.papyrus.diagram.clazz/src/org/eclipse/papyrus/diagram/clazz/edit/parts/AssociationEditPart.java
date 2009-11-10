@@ -70,16 +70,8 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 			((AssociationName3EditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
-		if (childEditPart instanceof AssociationName4EditPart) {
-			((AssociationName4EditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
-			return true;
-		}
 		if (childEditPart instanceof AssociationName5EditPart) {
 			((AssociationName5EditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
-			return true;
-		}
-		if (childEditPart instanceof AssociationName6EditPart) {
-			((AssociationName6EditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
 		return false;
@@ -140,13 +132,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 		if (childEditPart instanceof AssociationName3EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AssociationName4EditPart) {
-			return true;
-		}
 		if (childEditPart instanceof AssociationName5EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof AssociationName6EditPart) {
 			return true;
 		}
 		return false;
