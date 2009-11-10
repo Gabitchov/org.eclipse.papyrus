@@ -5790,7 +5790,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="adding to manange otherNamedElement"
-        genView="/0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.17 /0/@diagram/@topLevelNodes.9 /0/@diagram /0/@diagram/@childNodes.14"
+        genView="/0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.17 /0/@diagram/@topLevelNodes.9 /0/@diagram /0/@diagram/@childNodes.14 /0/@diagram/@topLevelNodes.7"
         name="OtherNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -5835,5 +5835,11 @@
         genView="/0/@diagram/@childNodes.3"
         name="AbstractRedefinableTemplateSignatureEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractRedefinableTemplateSignatureEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="add superclass for compartment"
+        genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.11 /0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.14 /0/@diagram/@compartments.15 /0/@diagram/@compartments.16 /0/@diagram/@compartments.17 /0/@diagram/@compartments.21 /0/@diagram/@compartments.22 /0/@diagram/@compartments.23 /0/@diagram/@compartments.24 /0/@diagram/@compartments.25 /0/@diagram/@compartments.28 /0/@diagram/@compartments.29 /0/@diagram/@compartments.30 /0/@diagram/@compartments.31 /0/@diagram/@compartments.32"
+        name="ResizeableListCompartmentEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.ResizeableListCompartmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

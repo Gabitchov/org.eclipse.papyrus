@@ -35,83 +35,83 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		PropertyPreferencePage.initDefaults(store);
+		OperationPreferencePage.initDefaults(store);
 
 		DataTypePreferencePage.initDefaults(store);
 
-		CommentPreferencePage.initDefaults(store);
+		ModelPreferencePage.initDefaults(store);
 
-		ClassifierTemplateParameterPreferencePage.initDefaults(store);
-
-		ClassPreferencePage.initDefaults(store);
-
-		EnumerationLiteralPreferencePage.initDefaults(store);
-
-		ComponentPreferencePage.initDefaults(store);
-
-		PackagePreferencePage.initDefaults(store);
-
-		SignalPreferencePage.initDefaults(store);
-
-		InterfacePreferencePage.initDefaults(store);
+		AssociationPreferencePage.initDefaults(store);
 
 		ShortCutDiagramPreferencePage.initDefaults(store);
 
-		ReceptionPreferencePage.initDefaults(store);
+		InstanceSpecificationPreferencePage.initDefaults(store);
 
-		TemplateParameterPreferencePage.initDefaults(store);
+		ConstraintPreferencePage.initDefaults(store);
+
+		EnumerationLiteralPreferencePage.initDefaults(store);
+
+		PropertyPreferencePage.initDefaults(store);
 
 		DependencyPreferencePage.initDefaults(store);
 
 		PrimitiveTypePreferencePage.initDefaults(store);
 
-		EnumerationPreferencePage.initDefaults(store);
-
 		SlotPreferencePage.initDefaults(store);
 
-		InstanceSpecificationPreferencePage.initDefaults(store);
-
 		AssociationClassPreferencePage.initDefaults(store);
 
-		ConstraintPreferencePage.initDefaults(store);
+		PackagePreferencePage.initDefaults(store);
 
-		AssociationPreferencePage.initDefaults(store);
+		ComponentPreferencePage.initDefaults(store);
 
-		OperationPreferencePage.initDefaults(store);
+		TemplateParameterPreferencePage.initDefaults(store);
 
-		ModelPreferencePage.initDefaults(store);
+		SignalPreferencePage.initDefaults(store);
+
+		CommentPreferencePage.initDefaults(store);
+
+		EnumerationPreferencePage.initDefaults(store);
+
+		InterfacePreferencePage.initDefaults(store);
+
+		ReceptionPreferencePage.initDefaults(store);
+
+		ClassifierTemplateParameterPreferencePage.initDefaults(store);
+
+		ClassPreferencePage.initDefaults(store);
 
 		RedefinableTemplateSignaturePreferencePage.initDefaults(store);
-
-		DependencyPreferencePage.initDefaults(store);
-
-		GeneralizationPreferencePage.initDefaults(store);
-
-		TemplateBindingPreferencePage.initDefaults(store);
-
-		AssociationClassPreferencePage.initDefaults(store);
-
-		UsagePreferencePage.initDefaults(store);
-
-		AssociationPreferencePage.initDefaults(store);
-
-		SubstitutionPreferencePage.initDefaults(store);
-
-		PackageImportPreferencePage.initDefaults(store);
 
 		PackageMergePreferencePage.initDefaults(store);
 
 		AbstractionPreferencePage.initDefaults(store);
 
+		GeneralizationSetPreferencePage.initDefaults(store);
+
+		AssociationPreferencePage.initDefaults(store);
+
+		GeneralizationPreferencePage.initDefaults(store);
+
 		ElementImportPreferencePage.initDefaults(store);
 
-		ProfileApplicationPreferencePage.initDefaults(store);
-
-		GeneralizationSetPreferencePage.initDefaults(store);
+		DependencyPreferencePage.initDefaults(store);
 
 		RealizationPreferencePage.initDefaults(store);
 
+		UsagePreferencePage.initDefaults(store);
+
 		InterfaceRealizationPreferencePage.initDefaults(store);
+
+		TemplateBindingPreferencePage.initDefaults(store);
+
+		PackageImportPreferencePage.initDefaults(store);
+
+		SubstitutionPreferencePage.initDefaults(store);
+
+		AssociationClassPreferencePage.initDefaults(store);
+
+		ProfileApplicationPreferencePage.initDefaults(store);
 
 	}
 }

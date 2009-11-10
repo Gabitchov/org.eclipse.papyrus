@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.common.editparts;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.helper.BasicClassifierCompartmentLayoutHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -38,6 +39,7 @@ public abstract class ClassifierEditPart extends NamedElementEditPart {
 	 */
 	public ClassifierEditPart(View view) {
 		super(view);
+		setCompartmentLayoutHelper(BasicClassifierCompartmentLayoutHelper.getInstances());
 	}
 
 	/**
