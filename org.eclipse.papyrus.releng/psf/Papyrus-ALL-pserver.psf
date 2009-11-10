@@ -43,6 +43,7 @@
 <project reference="1.0.1,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.wizards,org.eclipse.papyrus.wizards,a0aae2c3cd29001e114ffa1858daf345;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;branches;tags;trunk;true;d68fad7f-2b57-0410-97a2-f40a37629c47;http://dev.eclipse.org/httproot/modeling/org.eclipse.mdt.papyrus;;false;;;22"/>
 <project reference="1.0.1,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.diagram.composite,org.eclipse.papyrus.diagram.composite,a0aae2c3cd29001e114ffa1858daf345;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;branches;tags;trunk;true;d68fad7f-2b57-0410-97a2-f40a37629c47;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus;;false;;;22"/>
 <project reference="1.0.1,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.perspective,org.eclipse.papyrus.perspective,a0aae2c3cd29001e114ffa1858daf345;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;branches;tags;trunk;true;d68fad7f-2b57-0410-97a2-f40a37629c47;http://dev.eclipse.org/httproot/modeling/org.eclipse.mdt.papyrus;;false;;;22"/>
+<project reference="1.0.1,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.controlmode,org.eclipse.papyrus.controlmode,a0aae2c3cd29001e114ffa1858daf345;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/;branches;tags;trunk;true;d68fad7f-2b57-0410-97a2-f40a37629c47;http://dev.eclipse.org/httproot/modeling/org.eclipse.mdt.papyrus;;false;;;22"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242636384714_3" label="Papyrus-UML" name="Papyrus-UML">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.uml.feature" type="4"/>
@@ -93,5 +94,6 @@
 <item elementID="=org.eclipse.papyrus.wizards" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.core.adaptor.gmf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.perspective" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.controlmode" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 </psf>
