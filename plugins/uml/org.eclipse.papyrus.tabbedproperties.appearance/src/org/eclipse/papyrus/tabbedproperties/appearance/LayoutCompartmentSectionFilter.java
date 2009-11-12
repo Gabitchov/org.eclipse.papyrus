@@ -27,14 +27,16 @@ public class LayoutCompartmentSectionFilter implements IFilter {
 	 * {@inheritDoc}
 	 */
 	public boolean select(Object object) {
-		if (object instanceof IGraphicalEditPart&& (!(object instanceof DiagramEditPart))) {
-			if(((IGraphicalEditPart) object).getFigure().getChildren().size()>0){
-			IFigure fig= (IFigure)(((IGraphicalEditPart) object).getFigure().getChildren().get(0));
-			IFigure primaryfig= (IFigure)(fig.getChildren().get(0));
-			if(primaryfig instanceof CompartmentFigure){
-				return true;
+		if (object instanceof IGraphicalEditPart && (!(object instanceof DiagramEditPart))) {
+			if (((IGraphicalEditPart) object).getFigure().getChildren().size() > 0) {
+				IFigure fig = (IFigure) (((IGraphicalEditPart) object).getFigure().getChildren().get(0));
+				if (fig.getChildren().size() > 0) {
+					IFigure primaryfig = (IFigure) (fig.getChildren().get(0));
+					if (primaryfig instanceof CompartmentFigure) {
+						return true;
+					}
+				}
 			}
-		}
 		}
 		return false;
 	}
