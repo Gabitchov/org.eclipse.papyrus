@@ -235,4 +235,11 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 
 		return viewDescriptors;
 	}
+	
+	/**
+	 * launch a weak synchronization. It could be useful in order to clean a diagram by an external tool.
+	 */
+	public void forceRefresh(){
+		refreshViews();
+	}
 }

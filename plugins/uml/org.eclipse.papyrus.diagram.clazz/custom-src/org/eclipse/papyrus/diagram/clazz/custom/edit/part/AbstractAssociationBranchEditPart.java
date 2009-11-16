@@ -90,29 +90,31 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 	 * {@inheritDoc}
 	 */
 	protected void refreshVisuals() {
-		if (resolveSemanticElement() instanceof Association) {
-			Property target = MultiAssociationHelper.getPropertyToListen(((Edge) getModel()),
-					(Association) resolveSemanticElement());
-			if (target != null && target.getOwner() != null) {
-				int sourceType = 0;
-				int targetType = 0;
-				// owned?
-				if (target.getOwner().equals(resolveSemanticElement())) {
-					targetType += AssociationFigure.owned;
+		if(resolveSemanticElement()!=null){
+			if (resolveSemanticElement() instanceof Association) {
+				Property target = MultiAssociationHelper.getPropertyToListen(((Edge) getModel()),
+						(Association) resolveSemanticElement());
+				if (target != null && target.getOwner() != null) {
+					int sourceType = 0;
+					int targetType = 0;
+					// owned?
+					if (target.getOwner().equals(resolveSemanticElement())) {
+						targetType += AssociationFigure.owned;
+					}
+					// aggregation?
+					if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
+						targetType += AssociationFigure.aggregation;
+					}
+					// composite?
+					if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+						targetType += AssociationFigure.composition;
+					}
+					// navigable?
+					if (target.isNavigable()) {
+						targetType += AssociationFigure.navigable;
+					}
+					getPrimaryShape().setEnd(sourceType, targetType);
 				}
-				// aggregation?
-				if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
-					targetType += AssociationFigure.aggregation;
-				}
-				// composite?
-				if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-					targetType += AssociationFigure.composition;
-				}
-				// navigable?
-				if (target.isNavigable()) {
-					targetType += AssociationFigure.navigable;
-				}
-				getPrimaryShape().setEnd(sourceType, targetType);
 			}
 		}
 		super.refreshVisuals();

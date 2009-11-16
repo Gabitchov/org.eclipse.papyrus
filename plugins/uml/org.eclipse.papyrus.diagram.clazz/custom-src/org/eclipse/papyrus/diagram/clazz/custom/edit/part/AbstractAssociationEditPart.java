@@ -49,10 +49,13 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * this methods add listeners on targets and sources
 	 */
 	protected void addAssociationEndListeners() {
-		EObject sourceEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(0);
-		EObject targetEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(1);
-		addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd); //$NON-NLS-1$
-		addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd); //$NON-NLS-1$
+		if (resolveSemanticElement() != null) {
+			EObject sourceEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(0);
+			EObject targetEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(1);
+
+			addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd); //$NON-NLS-1$
+			addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd); //$NON-NLS-1$
+		}
 	}
 
 	/**
@@ -85,58 +88,60 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * {@inheritDoc}
 	 */
 	protected void refreshVisuals() {
-		if (getSource() == null || getTarget() == null) {
-			return;
-		}
-		if (((GraphicalEditPart) getSource()).resolveSemanticElement() == null
-				|| ((GraphicalEditPart) getTarget()).resolveSemanticElement() == null) {
-			return;
-		}
+		if(resolveSemanticElement()!=null){
+			if (getSource() == null || getTarget() == null) {
+				return;
+			}
+			if (((GraphicalEditPart) getSource()).resolveSemanticElement() == null
+					|| ((GraphicalEditPart) getTarget()).resolveSemanticElement() == null) {
+				return;
+			}
 
-		Property source = null;
-		Property target = null;
+			Property source = null;
+			Property target = null;
 
-		if (((Property) (((Association) getUMLElement()).getMemberEnds().get(0))).getType().equals(
-				((GraphicalEditPart) getSource()).resolveSemanticElement())) {
-			source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
-			target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
-		} else {
-			source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
-			target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
-		}
-		int sourceType = 0;
-		int targetType = 0;
-		// to display the dot.
-		// owned?
-		if (!source.getOwner().equals(resolveSemanticElement())) {
-			sourceType += AssociationFigure.owned;
-		}
-		if (!target.getOwner().equals(resolveSemanticElement())) {
-			targetType += AssociationFigure.owned;
-		}
-		// aggregation? for it the opposite is changed
-		if (source.getAggregation() == AggregationKind.SHARED_LITERAL) {
-			targetType += AssociationFigure.aggregation;
-		}
-		if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
-			sourceType += AssociationFigure.aggregation;
-		}
-		// composite? for it the opposite is changed
-		if (source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-			targetType += AssociationFigure.composition;
-		}
-		if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-			sourceType += AssociationFigure.composition;
-		}
-		// navigable?
-		if (source.isNavigable()) {
-			sourceType += AssociationFigure.navigable;
-		}
-		if (target.isNavigable()) {
-			targetType += AssociationFigure.navigable;
-		}
-		if (getPrimaryShape() instanceof AssociationFigure) {
-			((AssociationFigure) getPrimaryShape()).setEnd(sourceType, targetType);
+			if (((Property) (((Association) getUMLElement()).getMemberEnds().get(0))).getType().equals(
+					((GraphicalEditPart) getSource()).resolveSemanticElement())) {
+				source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
+				target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
+			} else {
+				source = ((Property) (((Association) getUMLElement()).getMemberEnds().get(1)));
+				target = ((Property) (((Association) getUMLElement()).getMemberEnds().get(0)));
+			}
+			int sourceType = 0;
+			int targetType = 0;
+			// to display the dot.
+			// owned?
+			if (!source.getOwner().equals(resolveSemanticElement())) {
+				sourceType += AssociationFigure.owned;
+			}
+			if (!target.getOwner().equals(resolveSemanticElement())) {
+				targetType += AssociationFigure.owned;
+			}
+			// aggregation? for it the opposite is changed
+			if (source.getAggregation() == AggregationKind.SHARED_LITERAL) {
+				targetType += AssociationFigure.aggregation;
+			}
+			if (target.getAggregation() == AggregationKind.SHARED_LITERAL) {
+				sourceType += AssociationFigure.aggregation;
+			}
+			// composite? for it the opposite is changed
+			if (source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+				targetType += AssociationFigure.composition;
+			}
+			if (target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+				sourceType += AssociationFigure.composition;
+			}
+			// navigable?
+			if (source.isNavigable()) {
+				sourceType += AssociationFigure.navigable;
+			}
+			if (target.isNavigable()) {
+				targetType += AssociationFigure.navigable;
+			}
+			if (getPrimaryShape() instanceof AssociationFigure) {
+				((AssociationFigure) getPrimaryShape()).setEnd(sourceType, targetType);
+			}
 		}
 		super.refreshVisuals();
 	}

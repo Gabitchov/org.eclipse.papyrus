@@ -69,10 +69,13 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		refreshQualifiedNameDepth();
-		refreshQualifiedName();
-		refreshIconNamedLabel();
-		refreshFontColor();
+		if(getNodeNamedElementFigure()!=null&& resolveSemanticElement()!=null){
+			refreshQualifiedNameDepth();
+			refreshQualifiedName();
+			refreshIconNamedLabel();
+			refreshFontColor();
+		}
+		
 	}
 
 	/**

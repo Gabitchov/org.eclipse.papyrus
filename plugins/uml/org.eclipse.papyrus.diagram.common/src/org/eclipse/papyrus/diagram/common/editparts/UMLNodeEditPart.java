@@ -80,7 +80,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		super(view);
 	}
 
-	
+
 	public void refresh() {
 		super.refresh();
 		changeLayoutCompartment();
@@ -322,8 +322,10 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 */
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		refreshAppliedStereotypesProperties();
-		refreshAppliedStereotypes();
+		if(resolveSemanticElement()!=null){
+			refreshAppliedStereotypesProperties();
+			refreshAppliedStereotypes();
+		}
 		refreshShadow();
 		refreshFontColor();
 	}

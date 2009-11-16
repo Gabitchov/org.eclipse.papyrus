@@ -286,5 +286,21 @@
          name="Load Resource">
    </command>
 </extension>
+<extension
+      point="org.eclipse.ui.popupMenus">
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.clazz.objectContribution.dependencybranchdeletion"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.commands.CleanDiagram"
+            definitionId="org.eclipse.papyrus.common.cleandiagram"
+            enablesFor="1"
+            id="org.eclipse.papyrus.common.cleandiagram"
+            label="Clean invalid views"
+            menubarPath="editGroup">
+      </action>
+   </objectContribution>
+</extension>
 
 </plugin>
