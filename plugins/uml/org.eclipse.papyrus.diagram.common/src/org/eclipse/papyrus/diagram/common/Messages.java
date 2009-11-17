@@ -227,4 +227,7 @@ public class Messages extends NLS {
 
 	/** name for the icon field */
 	public static String Wizard_Drawer_Icon;
+
+	/** tooltip for the tool item */
+	public static String Local_Palette_SwitchToolsContentProvider_Tooltip;
 }

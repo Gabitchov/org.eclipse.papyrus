@@ -163,6 +163,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/** icon path for the delete drawer button */
 	protected static final String DELETE_DRAWERS_ICON = "/icons/delete.gif";
 
+	/** icon for the content provider switch button */
+	private String SWITCH_CONTENT_PROVIDER_ICON = "/icons/switch_provider.gif";
+
 	/** label for the standard tools */
 	protected static final String UML_TOOLS_LABEL = "UML tools";
 
@@ -195,6 +198,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 	/** list of profiles that can provide tools */
 	protected List<String> profileComboList = new ArrayList<String>();
+
+	/** tool item in charge of toggling content providers in the available tool viewer */
+	protected ToolItem toggleContentProvider;
 
 	/**
 	 * Creates a new wizard page with the given name, title, and image.
@@ -1133,12 +1139,48 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 *            the toolbar to populate
 	 */
 	protected void populateAvailableToolsToolBar(ToolBar toolbar) {
-		/*
-		 * createCheckToolBarItem(toolbar, SHOWN_DRAWERS_ICON,
-		 * Messages.Local_Palette_ShowDrawers_Tooltip, createShowDrawerListener());
-		 */
+		toggleContentProvider = createCheckToolBarItem(toolbar, SWITCH_CONTENT_PROVIDER_ICON,
+				Messages.Local_Palette_SwitchToolsContentProvider_Tooltip, createSwitchToolsContentProviderListener());
+		toggleContentProvider.setEnabled(false);
 		createCheckToolBarItem(toolbar, SHOWN_TOOLS_ICON, Messages.Local_Palette_ShowTools_Tooltip,
 				createsShowToolListener());
+	}
+
+	/**
+	 * Creates the listener for the available tools content provider
+	 * 
+	 * @return the listener created
+	 */
+	private Listener createSwitchToolsContentProviderListener() {
+		return new Listener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void handleEvent(Event event) {
+				if (!(event.widget instanceof ToolItem)) {
+					return;
+				}
+				ToolItem item = ((ToolItem) event.widget);
+				// retrieve current profile selected in the combo profile
+				int index = profileCombo.getSelectionIndex();
+				Collection<PaletteEntry> standardEntries = getAllStandardEntries();
+				Profile profile = getAllAppliedProfiles().get(index);
+
+				if (item.getSelection()) {
+					availableToolsViewer.setContentProvider(new ProfileToolsMetaclassStereotypeTreeContentProvider(
+							profile, standardEntries));
+					item.setSelection(true);
+				} else {
+					availableToolsViewer.setContentProvider(new ProfileToolsStereotypeMetaclassTreeContentProvider(
+							profile, standardEntries));
+					item.setSelection(false);
+				}
+
+				// generate tools for given profile
+				availableToolsViewer.setInput(profile);
+			}
+		};
 	}
 
 	/**
@@ -1209,11 +1251,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * @param tooltip
 	 *            tooltip text for the toolbar item
 	 */
-	protected void createCheckToolBarItem(ToolBar toolbar, String shownElementsIcon, String tooltip, Listener listener) {
+	protected ToolItem createCheckToolBarItem(ToolBar toolbar, String shownElementsIcon, String tooltip,
+			Listener listener) {
 		ToolItem item = new ToolItem(toolbar, SWT.CHECK | SWT.BORDER);
 		item.setImage(Activator.getPluginIconImage(Activator.ID, shownElementsIcon));
 		item.setToolTipText(tooltip);
 		item.addListener(SWT.Selection, listener);
+		return item;
 	}
 
 	/**
@@ -1776,18 +1820,22 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				// change content provider
 				availableToolsViewer.setContentProvider(new UMLToolsTreeContentProvider());
 				availableToolsViewer.setInput(standardEntries);
+				toggleContentProvider.setEnabled(false);
 			} else {
+				if (toggleContentProvider != null && !toggleContentProvider.isDisposed()) {
+					toggleContentProvider.setEnabled(true);
+					toggleContentProvider.setSelection(true);
+				}
 				// switch content provider
 				// this is a profile in case of uml2 tools
 				Profile profile = getAllAppliedProfiles().get(index);
-				availableToolsViewer.setContentProvider(new ProfileToolsStereotypeMetaclassTreeContentProvider(profile,
+				availableToolsViewer.setContentProvider(new ProfileToolsMetaclassStereotypeTreeContentProvider(profile,
 						standardEntries));
 
 				// generate tools for given profile
 				availableToolsViewer.setInput(profile);
 				// generateAvailableToolsViewerInput(profile, standardEntries);
 			}
-
 		}
 
 		/**
@@ -1850,7 +1898,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * Content provider for the available tools viewer, when the
+	 * Content provider for the available tools viewer, when the tools to see are coming from a
+	 * profile
 	 */
 	public class ProfileToolsStereotypeMetaclassTreeContentProvider implements ITreeContentProvider {
 
@@ -1890,8 +1939,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 								// get Eclass
 								java.lang.Class metaclassClass = stMetaclass.getClass();
 								if (metaclassClass != null) {
-									java.lang.Class toolMetaClassInstanceClass = (java.lang.Class) toolMetaclass
-											.getInstanceClass();
 									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass
 											.getName());
 									if (((EClass) metaClassifier).isSuperTypeOf(toolMetaclass)) {
@@ -1947,6 +1994,128 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			if (inputElement instanceof Profile) {
 				List<Stereotype> stereotypes = ((Profile) inputElement).getOwnedStereotypes();
 				return stereotypes.toArray();
+			}
+			return new Object[0];
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void dispose() {
+			// nothing to do here
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			// nothing to do here
+		}
+
+	}
+
+	/**
+	 * Content provider for the available tools viewer, when the
+	 */
+	public class ProfileToolsMetaclassStereotypeTreeContentProvider implements ITreeContentProvider {
+
+		/** standard uml tools palette entries */
+		final protected Collection<PaletteEntry> standardEntries;
+
+		/** profile to display */
+		final protected Profile profile;
+
+		/**
+		 * Creates a new ProfileToolsMetaclassStereotypeTreeContentProvider.
+		 * 
+		 * @param profile
+		 *            the profile for which tools are built
+		 * @param standardEntries
+		 *            list of standard uml tools palette entries
+		 */
+		public ProfileToolsMetaclassStereotypeTreeContentProvider(Profile profile,
+				Collection<PaletteEntry> standardEntries) {
+			this.profile = profile;
+			this.standardEntries = standardEntries;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object[] getChildren(Object parentElement) {
+			if (parentElement instanceof Profile) {
+				return standardEntries.toArray();
+			} else if (parentElement instanceof AspectCreationEntry) {
+				return new Object[0];
+			} else if (parentElement instanceof PaletteEntry) {
+				List<AspectCreationEntry> entries = new ArrayList<AspectCreationEntry>();
+				// display all stereotypes applicable to the type of element created by this tool
+				if (parentElement instanceof CombinedTemplateCreationEntry) {
+					CombinedTemplateCreationEntry entry = (CombinedTemplateCreationEntry) parentElement;
+					EClass toolMetaclass = getToolMetaclass(entry);
+					if (toolMetaclass != null) {
+						for (Stereotype stereotype : profile.getOwnedStereotypes()) {
+							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
+							for (Class stMetaclass : metaclasses) {
+								// get Eclass
+								java.lang.Class metaclassClass = stMetaclass.getClass();
+								if (metaclassClass != null) {
+									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass
+											.getName());
+									if (((EClass) metaClassifier).isSuperTypeOf(toolMetaclass)) {
+										// should create the palette entry
+										HashMap properties = new HashMap();
+										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
+										stereotypesQNToApply.add(stereotype.getQualifiedName());
+										properties.put(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY,
+												stereotypesQNToApply);
+										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName()
+												+ " (" + entry.getLabel() + ")", "Create an element with a stereotype",
+												entry.getId() + "." + stereotype.getName(), entry.getSmallIcon(),
+												(CombinedTemplateCreationEntry) entry, properties);
+										entries.add(aspectEntry);
+									}
+								}
+
+							}
+						}
+					}
+				}
+				return entries.toArray();
+			} else
+				return new Object[0];
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object getParent(Object element) {
+			if (element instanceof Stereotype) {
+				return ((Stereotype) element).getProfile();
+			}
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public boolean hasChildren(Object element) {
+			if (element instanceof Profile) {
+				return true;
+			} else if (element instanceof AspectCreationEntry) {
+				return false;
+			} else if (element instanceof PaletteEntry) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object[] getElements(Object inputElement) {
+			if (inputElement instanceof Profile) {
+				return standardEntries.toArray();
 			}
 			return new Object[0];
 		}
