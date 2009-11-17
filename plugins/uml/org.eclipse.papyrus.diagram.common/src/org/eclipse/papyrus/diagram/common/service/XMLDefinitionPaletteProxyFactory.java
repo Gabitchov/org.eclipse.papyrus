@@ -16,7 +16,10 @@ package org.eclipse.papyrus.diagram.common.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gef.palette.PaletteEntry;
+import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.diagram.common.wizards.PaletteAspectToolEntryProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteContainerProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteLocalDrawerProxy;
@@ -121,6 +124,23 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 		PaletteEntryProxy proxy = new PaletteEntryProxy(entry);
 		getParentProxy(node).addChild(proxy);
 		registry.put(node, proxy);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void traverseAspectToolEntryNode(Node node) {
+		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
+		PaletteEntry entry = predefinedEntries.get(id);
+
+		if (entry instanceof AspectCreationEntry) {
+			PaletteAspectToolEntryProxy proxy = new PaletteAspectToolEntryProxy((AspectCreationEntry) entry);
+			getParentProxy(node).addChild(proxy);
+			registry.put(node, proxy);
+		} else {
+			PapyrusTrace.log(IStatus.WARNING, "impossible to log class " + id);
+		}
 	}
 
 	/**

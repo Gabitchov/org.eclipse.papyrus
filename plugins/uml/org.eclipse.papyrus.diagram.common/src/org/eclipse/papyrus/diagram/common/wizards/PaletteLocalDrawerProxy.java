@@ -71,4 +71,34 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 		return imagePath;
 	}
 
+	/**
+	 * Sets the label of the drawer
+	 * 
+	 * @param label
+	 *            the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	/**
+	 * Sets the id of the drawer
+	 * 
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/**
+	 * Sets the image path of the drawer
+	 * 
+	 * @param imagePath
+	 *            the imagePath to set
+	 */
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 }

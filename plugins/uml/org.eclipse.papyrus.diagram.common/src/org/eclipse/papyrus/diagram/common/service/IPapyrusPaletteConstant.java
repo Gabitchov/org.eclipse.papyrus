@@ -36,11 +36,17 @@ public interface IPapyrusPaletteConstant {
 	/** name of the tool node */
 	public final String TOOL = "tool";
 
+	/** name of the tool node */
+	public final String ASPECT_TOOL = "aspectTool";
+
 	/** name of the separator node */
 	public final String SEPARATOR = "separator";
 
 	/** name of the ID attribute */
 	public final String ID = "id";
+
+	/** name of the preAction attribute */
+	public final String PRE_ACTION = "preAction";
 
 	/** name of the editor attribute */
 	public final String EDITOR = "editor";
@@ -53,6 +59,9 @@ public interface IPapyrusPaletteConstant {
 
 	/** name of the priority attribute */
 	public final String PRIORITY = "priority";
+
+	/** name of the description attribute */
+	public final String DESCRIPTION = "description";
 
 	/** id for the preference store for palette customizations */
 	public final String PALETTE_CUSTOMIZATIONS_ID = "paletteCustomization";
@@ -71,5 +80,17 @@ public interface IPapyrusPaletteConstant {
 
 	/** id for the icon path attribute */
 	public final String ICON_PATH = "iconpath";
+
+	/** id for the referenced tool in aspect tools */
+	public final String REF_TOOL_ID = "refToolId";
+
+	/** id for the post action node in aspect tool definition */
+	public final String POST_ACTION = "postAction";
+
+	/** id for the attribute stereotypes to apply qualified name */
+	public final String STEREOTYPES_TO_APPLY = "stereotypesToApply";
+
+	/** key for the properties tool */
+	public final String STEREOTYPES_TO_APPLY_KEY = "StereotypesToApply";
 
 }

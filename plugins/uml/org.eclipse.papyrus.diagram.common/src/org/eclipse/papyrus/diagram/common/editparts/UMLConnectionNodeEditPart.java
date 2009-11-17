@@ -17,11 +17,15 @@ import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.graphics.Image;
@@ -88,6 +92,27 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		// if (resolveSemanticElement() != null) {
 		// refreshAppliedStereotypes();
 		// }
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		// adds the stereotype application edit policy
+		installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType())) {
+			return this;
+		}
+		return super.getTargetEditPart(request);
 	}
 
 	/**

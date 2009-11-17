@@ -59,6 +59,9 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 	/** Text area for icon path */
 	protected Text imageText;
 
+	/** drawer proxy to edit, if one exists */
+	protected final PaletteLocalDrawerProxy drawerProxy;
+
 	/** path to the icon */
 	protected static final String WIZARD_ICON = "/icons/new_drawer_wiz.gif";
 
@@ -71,6 +74,19 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 	public DrawerInformationPage() {
 		super(Messages.Wizard_Drawer_Page_Name, Messages.Wizard_Drawer_Page_Title, Activator
 				.getImageDescriptor(WIZARD_ICON));
+		drawerProxy = null;
+	}
+
+	/**
+	 * Creates a new wizard page with the given name, title, and image.
+	 * 
+	 * @param part
+	 *            the editor part in which the wizard was created
+	 */
+	public DrawerInformationPage(PaletteLocalDrawerProxy drawerProxy) {
+		super(Messages.Wizard_Drawer_Page_Name, Messages.Wizard_Drawer_Page_Title, Activator
+				.getImageDescriptor(WIZARD_ICON));
+		this.drawerProxy = drawerProxy;
 	}
 
 	/**
@@ -147,14 +163,23 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 	 * inits the name field value
 	 */
 	protected void initName() {
-		name = "";
+		if (drawerProxy == null) {
+			name = "";
+		} else {
+			name = drawerProxy.getLabel();
+		}
+
 	}
 
 	/**
 	 * inits the palette id value
 	 */
 	protected void initDrawerID() {
-		drawerID = "drawer_" + System.currentTimeMillis();
+		if (drawerProxy == null) {
+			drawerID = "drawer_" + System.currentTimeMillis();
+		} else {
+			drawerID = drawerProxy.getId();
+		}
 
 	}
 
@@ -162,7 +187,12 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 	 * Inits the image descriptor
 	 */
 	protected void initImageDescriptor() {
-		imageDescriptorPath = "/icons/drawer.gif";
+		if (drawerProxy == null) {
+			imageDescriptorPath = "/icons/drawer.gif";
+		} else {
+			imageDescriptorPath = drawerProxy.getImagePath();
+		}
+
 	}
 
 	/**

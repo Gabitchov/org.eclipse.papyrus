@@ -13,20 +13,25 @@
 
 package org.eclipse.papyrus.diagram.common.service;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
+import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.w3c.dom.Node;
 
 /**
@@ -139,6 +144,58 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
 		appendPaletteEntry(root, predefinedEntries, computePath(node), entry);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void traverseAspectToolEntryNode(Node node) {
+		final String id = node.getAttributes().getNamedItem(ID).getNodeValue();
+		final String name = node.getAttributes().getNamedItem(NAME).getNodeValue();
+		final String desc = node.getAttributes().getNamedItem(DESCRIPTION).getNodeValue();
+		Node iconPathNode = node.getAttributes().getNamedItem(ICON_PATH);
+		ImageDescriptor descriptor = null;
+		if (iconPathNode != null) {
+			final String iconPath = iconPathNode.getNodeValue();
+			descriptor = Activator.getImageDescriptor(iconPath);
+		}
+
+		// 
+		final String refToolID = node.getAttributes().getNamedItem(REF_TOOL_ID).getNodeValue();
+
+		String stereotypesToApplyQN = null;
+
+		// retrieve pre and post actions
+		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
+			Node childNode = node.getChildNodes().item(i);
+			String childName = childNode.getNodeName();
+			if (POST_ACTION.equals(childName)) {
+				// node is a post action => retrieve what to do
+				stereotypesToApplyQN = childNode.getAttributes().getNamedItem(STEREOTYPES_TO_APPLY).getNodeValue();
+			} else if (PRE_ACTION.equals(childName)) {
+				// no implementation yet
+			}
+		}
+
+		final PaletteToolEntry entry = (PaletteToolEntry) predefinedEntries.get(refToolID);
+		if (entry == null) {
+			PapyrusTrace.log(IStatus.WARNING, "could not find entry " + refToolID);
+			return;
+		}
+		final Map properties = new HashMap();
+
+		if (stereotypesToApplyQN != null && !"".equals(stereotypesToApplyQN)) {
+			List<String> stereotypesList = PaletteUtil.getStereotypeListFromString(stereotypesToApplyQN);
+			properties.put(STEREOTYPES_TO_APPLY_KEY, stereotypesList);
+		}
+
+		if (descriptor == null && entry != null) {
+			descriptor = entry.getSmallIcon();
+		}
+		CombinedTemplateCreationEntry realEntry = new AspectCreationEntry(name, desc, id, descriptor, entry, properties);
+		predefinedEntries.put(id, realEntry);
+		appendPaletteEntry(root, predefinedEntries, computePath(node), realEntry);
 	}
 
 	/**

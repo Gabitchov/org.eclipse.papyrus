@@ -90,7 +90,8 @@ public class «factoryClassName» extends org.eclipse.gmf.runtime.diagram.ui.ser
 			«FOREACH elements->asSequence() AS e-»
 				types.add(«EXPAND xpt::providers::ElementTypes::accessElementType FOR e»);
 			«ENDFOREACH-»
-		org.eclipse.gef.Tool tool = new org.eclipse.gmf.runtime.diagram.ui.tools.«IF self.genNodes->isEmpty()»UnspecifiedTypeConnectionTool«ELSE»UnspecifiedTypeCreationTool«ENDIF»(types);
+			«REM»RS: modified tool creation to have stereotypes-aware tools«ENDREM»
+		org.eclipse.gef.Tool tool = new org.eclipse.papyrus.diagram.common.service.«IF self.genNodes->isEmpty()»AspectUnspecifiedTypeConnectionTool«ELSE»AspectUnspecifiedTypeCreationTool«ENDIF»(types);
 		return tool;
 	«ENDIF-»
 «ENDDEFINE»

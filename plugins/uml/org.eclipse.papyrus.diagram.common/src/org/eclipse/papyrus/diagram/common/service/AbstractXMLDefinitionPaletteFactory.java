@@ -60,4 +60,12 @@ public abstract class AbstractXMLDefinitionPaletteFactory {
 	 */
 	public abstract void traverseSeparatorNode(Node node);
 
+	/**
+	 * action when visiting a aspect tool node
+	 * 
+	 * @param node
+	 *            the node to visit
+	 */
+	public abstract void traverseAspectToolEntryNode(Node node);
+
 }

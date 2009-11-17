@@ -8,6 +8,7 @@ import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.diagram.common.wizards.LocalPaletteContentPage.EntryType;
 import org.eclipse.swt.graphics.Image;
 
@@ -51,6 +52,8 @@ public class PaletteEntryProxy {
 			return EntryType.SEPARATOR;
 		} else if (entry instanceof PaletteStack) {
 			return EntryType.STACK;
+		} else if (entry instanceof AspectCreationEntry) {
+			return EntryType.ASPECT_TOOL;
 		} else if (entry instanceof ToolEntry) {
 			return EntryType.TOOL;
 		}

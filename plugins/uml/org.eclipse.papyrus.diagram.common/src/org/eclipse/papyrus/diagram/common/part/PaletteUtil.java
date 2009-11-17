@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
@@ -219,5 +220,40 @@ public class PaletteUtil {
 		}
 
 		return entries;
+	}
+
+	/**
+	 * Returns the list of stereotypes String from a serialize string form
+	 * 
+	 * @param serializedForm
+	 *            the serialized form of the list of stereotypes
+	 * @return the list of stereotypes String from a serialize string form
+	 */
+	public static List<String> getStereotypeListFromString(String serializedForm) {
+		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ",");
+		List<String> list = new ArrayList<String>();
+		while (tokenizer.hasMoreElements()) {
+			list.add(tokenizer.nextToken());
+		}
+		return list;
+	}
+
+	/**
+	 * Returns the list of stereotypes String under a serialized form
+	 * 
+	 * @param list
+	 *            the list of stereotypes to serialize
+	 * @return the list of stereotypes String under a serialized form
+	 */
+	public static String getSerializedStereotypeListFromList(List<String> list) {
+		StringBuffer buffer = new StringBuffer();
+		Iterator<String> it = list.listIterator();
+		while (it.hasNext()) {
+			buffer.append(it.next());
+			if (it.hasNext()) {
+				buffer.append(",");
+			}
+		}
+		return buffer.toString();
 	}
 }

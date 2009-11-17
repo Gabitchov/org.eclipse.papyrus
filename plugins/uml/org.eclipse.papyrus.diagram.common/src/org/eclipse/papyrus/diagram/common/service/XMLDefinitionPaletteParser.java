@@ -72,9 +72,21 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 				parseSeparatorNode(node);
 			} else if (TOOL.equals(name)) {
 				parseToolNode(node);
+			} else if (ASPECT_TOOL.equals(name)) {
+				parseAspectToolNode(node);
 			}
 
 		}
+	}
+
+	/**
+	 * Parse the given aspect node, assuming its type is a palette aspect tool
+	 * 
+	 * @param node
+	 *            the node to parse
+	 */
+	private void parseAspectToolNode(Node node) {
+		factory.traverseAspectToolEntryNode(node);
 	}
 
 	/**

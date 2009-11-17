@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.notation.FontStyle;
@@ -28,8 +29,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.diagram.common.helper.ICompartmentLayoutHelper;
+import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
@@ -62,7 +65,6 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		return compartmentLayoutHelper;
 	}
 
-
 	/**
 	 * @param compartmentLayoutHelper the compartmentLayoutHelper to set
 	 */
@@ -80,11 +82,20 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		super(view);
 	}
 
-
+	
 	public void refresh() {
 		super.refresh();
 		changeLayoutCompartment();
 	}
+	/**
+	 * @generated
+	 */
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		// adds the stereotype application edit policy
+		installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -178,6 +189,16 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType())) {
+			return this;
+		}
+		return super.getTargetEditPart(request);
+	}
 
 	/**
 	 * Refresh the display of stereotypes for this uml node edit part.
@@ -206,13 +227,13 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 */
 	public Image stereotypeIconToDisplay() {
 		String stereotypespresentationKind = AppliedStereotypeHelper
-		.getAppliedStereotypePresentationKind((View) getModel());
+				.getAppliedStereotypePresentationKind((View) getModel());
 		if (stereotypespresentationKind == null) {
 			return null;
 		}
 		if (stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
 				|| stereotypespresentationKind
-				.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+						.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
@@ -244,7 +265,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		if (stereotypesPropertiesToDisplay != "") {
 			((IPapyrusNodeUMLElementFigure) getPrimaryShape())
-			.setStereotypePropertiesInCompartment(stereotypesPropertiesToDisplay);
+					.setStereotypePropertiesInCompartment(stereotypesPropertiesToDisplay);
 		} else {
 			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypePropertiesInCompartment(null);
 		}
@@ -269,7 +290,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 		// it has to be displayed in compartment. Get the string to be displayed
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper
-		.getAppliedStereotypesPropertiesToDisplay((View) getModel());
+				.getAppliedStereotypesPropertiesToDisplay((View) getModel());
 		if ("".equals(stereotypesPropertiesToDisplay)) {
 			return stereotypesPropertiesToDisplay;
 		}
@@ -286,7 +307,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		if (stereotypesPropertiesToDisplay != "") {
 			((IPapyrusNodeUMLElementFigure) getPrimaryShape())
-			.setStereotypePropertiesInBrace(stereotypesPropertiesToDisplay);
+					.setStereotypePropertiesInBrace(stereotypesPropertiesToDisplay);
 		} else {
 			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).setStereotypePropertiesInBrace(null);
 		}
@@ -310,7 +331,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 		// it has to be displayed in braces, so compute the string to display
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper
-		.getAppliedStereotypesPropertiesToDisplay((View) getModel());
+				.getAppliedStereotypesPropertiesToDisplay((View) getModel());
 		if ("".equals(stereotypesPropertiesToDisplay)) {
 			return stereotypesPropertiesToDisplay;
 		}
@@ -320,6 +341,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		if(resolveSemanticElement()!=null){
@@ -338,7 +360,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	public String stereotypesToDisplay() {
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
 		String stereotypespresentationKind = AppliedStereotypeHelper
-		.getAppliedStereotypePresentationKind((View) getModel());
+				.getAppliedStereotypePresentationKind((View) getModel());
 
 		// check the presentation kind. if only icon => do not display stereotypes
 		if (VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
@@ -479,7 +501,6 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	@Override

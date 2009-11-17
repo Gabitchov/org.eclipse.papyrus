@@ -14,7 +14,10 @@ package org.eclipse.papyrus.diagram.common.wizards;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +34,11 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.Tool;
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
@@ -38,17 +46,22 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
@@ -60,6 +73,9 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
+import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
+import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.common.service.XMLDefinitionPaletteParser;
@@ -75,22 +91,29 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TreeDropTargetEffect;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -105,7 +128,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected IEditorPart editorPart;
 
 	/** available tools viewer */
-	protected TableViewer availableToolsViewer;
+	protected TreeViewer availableToolsViewer;
 
 	/** icon path when tools are hidden */
 	protected static final String HIDDEN_TOOLS_ICON = "/icons/tools_hidden.gif";
@@ -132,13 +155,16 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected static final String CREATE_DRAWERS_ICON = "/icons/new_drawer.gif";
 
 	/** icon path for the create separator button */
-	private String CREATE_SEPARATOR_ICON = "/icons/separator.gif";
+	protected String CREATE_SEPARATOR_ICON = "/icons/separator.gif";
 
 	/** icon path for the create stack button */
-	private String CREATE_STACK_ICON = "/icons/stack.gif";
+	protected String CREATE_STACK_ICON = "/icons/stack.gif";
 
 	/** icon path for the delete drawer button */
 	protected static final String DELETE_DRAWERS_ICON = "/icons/delete.gif";
+
+	/** label for the standard tools */
+	protected static final String UML_TOOLS_LABEL = "UML tools";
 
 	/** instance of the filter used to show/hide drawers */
 	protected final ViewerFilter drawerFilter = new DrawerFilter();
@@ -161,7 +187,14 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/** document for element creation */
 	protected Document document;
 
-	private PaletteContainerProxy contentNode;
+	/** content node for the palette viewer */
+	protected PaletteContainerProxy contentNode;
+
+	/** combo to select which profile tools should be visible */
+	protected Combo profileCombo;
+
+	/** list of profiles that can provide tools */
+	protected List<String> profileComboList = new ArrayList<String>();
 
 	/**
 	 * Creates a new wizard page with the given name, title, and image.
@@ -191,9 +224,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		setControl(control);
 
-		// small workaround to have all tools
-		// updatePreferences();
-
 		// create Available Tools Group
 		createAvailableToolsGroup();
 
@@ -215,7 +245,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		// Show description on opening
 		setErrorMessage(null);
 		setMessage(null);
-		setPageComplete(false);
 		setControl(control);
 	}
 
@@ -253,10 +282,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		paletteComposite.setLayout(layout);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		paletteComposite.setLayoutData(data);
 
 		Label label = new Label(paletteComposite, SWT.NONE);
 		label.setText(Messages.Local_Palette_Palette_Preview);
-		GridData data = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		data = new GridData(SWT.LEFT, SWT.CENTER, true, false);
 		label.setLayoutData(data);
 
 		ToolBar toolbar = new ToolBar(paletteComposite, SWT.HORIZONTAL);
@@ -277,8 +308,35 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 		addPalettePreviewDropSupport();
 		addPalettePreviewDragSupport();
+		addPalettePreviewEditSupport();
 
 		paletteTreeViewer.setInput(contentNode);
+	}
+
+	/**
+	 * Adds the behavior for the double click strategy
+	 */
+	protected void addPalettePreviewEditSupport() {
+		paletteTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void doubleClick(DoubleClickEvent event) {
+				// retrieve current item double clicked...
+				ITreeSelection selection = (TreeSelection) event.getSelection();
+				Object firstSelected = selection.getFirstElement();
+				if (firstSelected instanceof PaletteLocalDrawerProxy) {
+					UpdateLocalDrawerWizard wizard = new UpdateLocalDrawerWizard(
+							((PaletteLocalDrawerProxy) firstSelected).getParent(),
+							(PaletteLocalDrawerProxy) firstSelected);
+					WizardDialog dialog = new WizardDialog(getShell(), wizard);
+					dialog.open();
+					paletteTreeViewer.refresh();
+				}
+			}
+		});
+
 	}
 
 	/**
@@ -312,7 +370,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 				// creates the proxy for the element to be dropped
 				PaletteEntryProxy entryProxy;
-				if (entry instanceof ToolEntry) {
+				if (entry instanceof AspectCreationEntry) {
+					entryProxy = new PaletteAspectToolEntryProxy((AspectCreationEntry) entry);
+				} else if (entry instanceof ToolEntry) {
 					entryProxy = new PaletteEntryProxy((ToolEntry) entry);
 				} else if (entry instanceof PaletteDrawer) {
 					entryProxy = new PaletteContainerProxy((PaletteDrawer) entry);
@@ -455,6 +515,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	public void initializeContent() {
 		contentNode = new PaletteContainerProxy(null);
+
+		// adds a default local drawer
+		PaletteLocalDrawerProxy proxy = new PaletteLocalDrawerProxy("Default", generateID("Drawer_"),
+				"/icons/drawer.gif");
+		contentNode.addChild(proxy);
+
+		setPageComplete(false);
 	}
 
 	/**
@@ -489,6 +556,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					}
 				}
 				contentNode = factory.getRootProxy();
+
+				// tells that the page can be closed directly without modifying the palette
+				setPageComplete(true);
 				return;
 			}
 		} catch (ParserConfigurationException e) {
@@ -862,6 +932,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 		if (entry instanceof PaletteContainer) {
 			proxy = new PaletteContainerProxy((PaletteContainer) entry);
+		} else if (entry instanceof AspectCreationEntry) {
+			proxy = new PaletteAspectToolEntryProxy((AspectCreationEntry) entry);
 		} else {
 			proxy = new PaletteEntryProxy((PaletteEntry) entry);
 		}
@@ -920,10 +992,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		availableToolsComposite.setLayout(layout);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		availableToolsComposite.setLayoutData(data);
 
 		Label label = new Label(availableToolsComposite, SWT.NONE);
 		label.setText(Messages.Local_Palette_Available_Tools);
-		GridData data = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		data = new GridData(SWT.LEFT, SWT.CENTER, true, false);
 		label.setLayoutData(data);
 
 		ToolBar toolbar = new ToolBar(availableToolsComposite, SWT.HORIZONTAL);
@@ -931,15 +1005,17 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		toolbar.setLayoutData(data);
 		populateAvailableToolsToolBar(toolbar);
 
-		Table table = new Table(availableToolsComposite, SWT.SINGLE | SWT.BORDER);
+		createProfileCombo(availableToolsComposite);
+
+		Tree tree = new Tree(availableToolsComposite, SWT.SINGLE | SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
 		data.widthHint = 185;
 		// Make the tree this tall even when there is nothing in it. This will keep the
 		// dialog from shrinking to an unusually small size.
 		data.heightHint = 200;
-		table.setLayoutData(data);
-		availableToolsViewer = new TableViewer(table);
-		availableToolsViewer.setContentProvider(new ToolsTableContentProvider());
+		tree.setLayoutData(data);
+		availableToolsViewer = new TreeViewer(tree);
+		availableToolsViewer.setContentProvider(new UMLToolsTreeContentProvider());
 		availableToolsViewer.setLabelProvider(new PaletteLabelProvider());
 		ViewerComparator labelComparator = new LabelViewerComparator();
 		availableToolsViewer.setComparator(labelComparator);
@@ -963,11 +1039,58 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		availableToolsViewer.addFilter(new DrawerFilter());
 		// add drag support
 		addAvailableToolsDragSupport();
-		PaletteRoot root = new PaletteRoot();
-		Map<String, PaletteEntry> entries = PapyrusPaletteService.getInstance().getAllContributionsIds(editorPart,
-				editorPart.getEditorInput(), root);
+		availableToolsViewer.setInput(getAllStandardEntries());
+	}
 
-		availableToolsViewer.setInput(entries.values());
+	/**
+	 * Creates the profile combo
+	 * 
+	 * @param availableToolsComposite
+	 *            the available tools composite
+	 * @return the created combo
+	 */
+	protected Combo createProfileCombo(Composite availableToolsComposite) {
+		// retrieve top package, to know which profiles are available
+		// creates the combo
+		profileCombo = new Combo(availableToolsComposite, SWT.BORDER | SWT.READ_ONLY);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
+		profileCombo.setLayoutData(data);
+
+		// retrieve all applied profiles
+		List<Profile> profiles = getAllAppliedProfiles();
+
+		int profileNumber = profiles.size();
+		for (int i = 0; i < profileNumber; i++) {
+			profileComboList.add(i, profiles.get(i).getName());
+			profileComboList.add(UML_TOOLS_LABEL);
+			profileCombo.setItems(profileComboList.toArray(new String[] {}));
+
+			// add selection listener for the combo. selects the "UML tools" item
+			profileCombo.addSelectionListener(new ProfileComboSelectionListener());
+			profileCombo.select(profileNumber);
+		}
+
+		return profileCombo;
+	}
+
+	/**
+	 * returns the list of applied profile for the nearest package of the top element
+	 * 
+	 * @return the list of applied profile for the nearest package of the top element or an empty
+	 *         list
+	 */
+	protected List<Profile> getAllAppliedProfiles() {
+		Package topPackage = null;
+		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
+			EObject element = ((DiagramEditorWithFlyOutPalette) editorPart).getDiagram().getElement();
+			if (element instanceof org.eclipse.uml2.uml.Element) {
+				topPackage = ((org.eclipse.uml2.uml.Element) element).getNearestPackage();
+			}
+		}
+		if (topPackage != null) {
+			return topPackage.getAllAppliedProfiles();
+		}
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1117,7 +1240,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * Content provider for available tools viewer
 	 */
-	public class ToolsTableContentProvider implements IStructuredContentProvider {
+	public class UMLToolsTreeContentProvider implements ITreeContentProvider {
 
 		/**
 		 * Constructor
@@ -1125,7 +1248,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * @param viewer
 		 *            The viewer whose ContentProvider this content provider is
 		 */
-		public ToolsTableContentProvider() {
+		public UMLToolsTreeContentProvider() {
 		}
 
 		/**
@@ -1160,6 +1283,37 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object[] getChildren(Object parentElement) {
+			Object[] elements = null;
+
+			if (parentElement instanceof Collection<?>) {
+				elements = ((Collection<?>) parentElement).toArray();
+			} else if (parentElement instanceof PaletteRoot) {
+				// paletteUil.getAllEntries(...) to add drawers
+				// if so, uncomment the addFilterbutton for drawers in populate tool bar
+				elements = PaletteUtil.getAllToolEntries(((PaletteRoot) parentElement)).toArray();
+			}
+
+			return elements;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object getParent(Object element) {
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public boolean hasChildren(Object element) {
+			return getChildren(element) != null && getChildren(element).length > 0;
+		}
 	}
 
 	/**
@@ -1183,6 +1337,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					return null;
 				}
 				return Activator.getPluginIconImage(Activator.ID, descriptor);
+			} else if (element instanceof Stereotype) {
+				return Activator.getPluginIconImage(Activator.ID, "/icons/stereotype.gif");
 			}
 			return null;
 		}
@@ -1193,6 +1349,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		public String getText(Object element) {
 			if (element instanceof PaletteEntry) {
 				return ((PaletteEntry) element).getLabel();
+			} else if (element instanceof Stereotype) {
+				return ((Stereotype) element).getName();
 			}
 			return "unknown element";
 		}
@@ -1523,6 +1681,22 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		case STACK:
 			element = document.createElement(IPapyrusPaletteConstant.STACK);
 			break;
+		case ASPECT_TOOL:
+			element = document.createElement(IPapyrusPaletteConstant.ASPECT_TOOL);
+			// try to cast the element into PaletteAspectToolEntryProxy
+			if (containerProxy instanceof PaletteAspectToolEntryProxy) {
+				PaletteAspectToolEntryProxy aspectEntryProxy = (PaletteAspectToolEntryProxy) containerProxy;
+				element.setAttribute(IPapyrusPaletteConstant.ID, aspectEntryProxy.getId());
+				element.setAttribute(IPapyrusPaletteConstant.NAME, aspectEntryProxy.getLabel());
+				element.setAttribute(IPapyrusPaletteConstant.DESCRIPTION, aspectEntryProxy.getEntry().getDescription());
+				element.setAttribute(IPapyrusPaletteConstant.REF_TOOL_ID, aspectEntryProxy.getReferencedPaletteID());
+
+				// add post action, stereotype list
+				Element postActionNode = document.createElement(IPapyrusPaletteConstant.POST_ACTION);
+				postActionNode.setAttribute(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY, PaletteUtil
+						.getSerializedStereotypeListFromList(aspectEntryProxy.getStereotypesQNList()));
+				element.appendChild(postActionNode);
+			}
 		default:
 			break;
 		}
@@ -1538,7 +1712,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	}
 
 	public enum EntryType {
-		DRAWER, TOOL, STACK, SEPARATOR
+		DRAWER, TOOL, STACK, SEPARATOR, ASPECT_TOOL
 	}
 
 	public class LabelViewerComparator extends ViewerComparator {
@@ -1554,8 +1728,20 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public int compare(Viewer testViewer, Object e1, Object e2) {
-			String label1 = ((PaletteEntry) e1).getLabel();
-			String label2 = ((PaletteEntry) e2).getLabel();
+			String label1 = "";
+			String label2 = "";
+
+			if (e1 instanceof PaletteEntry) {
+				label1 = ((PaletteEntry) e1).getLabel();
+			} else if (e1 instanceof Stereotype) {
+				label1 = ((Stereotype) e1).getName();
+			}
+			if (e2 instanceof PaletteEntry) {
+				label2 = ((PaletteEntry) e2).getLabel();
+			} else if (e2 instanceof Stereotype) {
+				label2 = ((Stereotype) e2).getName();
+			}
+
 			if (label1 == null)
 				return 1;
 			if (label2 == null)
@@ -1563,5 +1749,258 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 			return label1.compareTo(label2);
 		}
+	}
+
+	/**
+	 * Listener for the profile combo. It changes the input of the following viewer.
+	 */
+	public class ProfileComboSelectionListener implements SelectionListener {
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// nothing to do
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void widgetSelected(SelectionEvent e) {
+			int index = profileCombo.getSelectionIndex();
+			String name = profileComboList.get(index);
+
+			Collection<PaletteEntry> standardEntries = getAllStandardEntries();
+			// retrieve the profile or uml standards tools to display
+			if (UML_TOOLS_LABEL.equals(name)) {
+				// change content provider
+				availableToolsViewer.setContentProvider(new UMLToolsTreeContentProvider());
+				availableToolsViewer.setInput(standardEntries);
+			} else {
+				// switch content provider
+				// this is a profile in case of uml2 tools
+				Profile profile = getAllAppliedProfiles().get(index);
+				availableToolsViewer.setContentProvider(new ProfileToolsStereotypeMetaclassTreeContentProvider(profile,
+						standardEntries));
+
+				// generate tools for given profile
+				availableToolsViewer.setInput(profile);
+				// generateAvailableToolsViewerInput(profile, standardEntries);
+			}
+
+		}
+
+		/**
+		 * generates the input for the available tools viewer, given the profile
+		 * 
+		 * @param profile
+		 *            the profile for which tools are computed
+		 * @param standardEntries
+		 *            the list of standard entries
+		 */
+		@SuppressWarnings("unchecked")
+		protected void generateAvailableToolsViewerInput(Profile profile, Collection<PaletteEntry> standardEntries) {
+			List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
+			// for each tool in the palette entry, checks which stereotypes can be applied ...
+			for (PaletteEntry entry : standardEntries) {
+				// retrieve the element type created by the tool.
+				if (entry instanceof CombinedTemplateCreationEntry) {
+					EClass toolMetaclass = getToolMetaclass((CombinedTemplateCreationEntry) entry);
+					// checks the tool entry really creates a UML element (for example, constraint
+					// link
+					// does not create a stereotype
+					if (toolMetaclass != null) {
+						// for each stereotype, checks if it can be applied to the kind of element
+						// created
+						for (Stereotype stereotype : profile.getOwnedStereotypes()) {
+							// checks if the stereotype can be applied to the tool metaclass
+							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
+							for (Class stMetaclass : metaclasses) {
+								// get Eclass
+								java.lang.Class metaclassClass = stMetaclass.getClass();
+								if (metaclassClass != null) {
+									java.lang.Class toolMetaClassInstanceClass = (java.lang.Class) toolMetaclass
+											.getInstanceClass();
+									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass
+											.getName());
+									if (((EClass) metaClassifier).isSuperTypeOf(toolMetaclass)) {
+										// should create the palette entry
+										HashMap properties = new HashMap();
+										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
+										stereotypesQNToApply.add(stereotype.getQualifiedName());
+										properties.put(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY,
+												stereotypesQNToApply);
+										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName()
+												+ " (" + entry.getLabel() + ")", "Create an element with a stereotype",
+												entry.getId() + "." + stereotype.getName(), Activator
+														.getImageDescriptor("/icons/papyrus/PapyrusLogo16x16.gif"),
+												(CombinedTemplateCreationEntry) entry, properties);
+										entries.add((PaletteEntry) aspectEntry);
+									}
+								}
+							}
+						}
+					}
+				}
+				availableToolsViewer.setInput(entries);
+			}
+
+		}
+
+	}
+
+	/**
+	 * Content provider for the available tools viewer, when the
+	 */
+	public class ProfileToolsStereotypeMetaclassTreeContentProvider implements ITreeContentProvider {
+
+		/** standard uml tools palette entries */
+		final protected Collection<PaletteEntry> standardEntries;
+
+		/**
+		 * Creates a new ProfileToolsStereotypeMetaclassTreeContentProvider.
+		 * 
+		 * @param profile
+		 *            the profile for which tools are built
+		 * @param standardEntries
+		 *            list of standard uml tools palette entries
+		 */
+		public ProfileToolsStereotypeMetaclassTreeContentProvider(Profile profile,
+				Collection<PaletteEntry> standardEntries) {
+			this.standardEntries = standardEntries;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object[] getChildren(Object parentElement) {
+			if (parentElement instanceof Profile) {
+				return ((Profile) parentElement).getOwnedStereotypes().toArray();
+			} else if (parentElement instanceof Stereotype) {
+				List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
+				Stereotype stereotype = (Stereotype) parentElement;
+
+				for (PaletteEntry entry : standardEntries) {
+					// retrieve the element type created by the tool.
+					if (entry instanceof CombinedTemplateCreationEntry) {
+						EClass toolMetaclass = getToolMetaclass((CombinedTemplateCreationEntry) entry);
+						if (toolMetaclass != null) {
+							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
+							for (Class stMetaclass : metaclasses) {
+								// get Eclass
+								java.lang.Class metaclassClass = stMetaclass.getClass();
+								if (metaclassClass != null) {
+									java.lang.Class toolMetaClassInstanceClass = (java.lang.Class) toolMetaclass
+											.getInstanceClass();
+									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass
+											.getName());
+									if (((EClass) metaClassifier).isSuperTypeOf(toolMetaclass)) {
+										// should create the palette entry
+										HashMap properties = new HashMap();
+										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
+										stereotypesQNToApply.add(stereotype.getQualifiedName());
+										properties.put(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY,
+												stereotypesQNToApply);
+										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName()
+												+ " (" + entry.getLabel() + ")", "Create an element with a stereotype",
+												entry.getId() + "." + stereotype.getName(), entry.getSmallIcon(),
+												(CombinedTemplateCreationEntry) entry, properties);
+										entries.add((PaletteEntry) aspectEntry);
+									}
+								}
+
+							}
+						}
+					}
+				}
+				return entries.toArray();
+			} else
+				return new Object[0];
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object getParent(Object element) {
+			if (element instanceof Stereotype) {
+				return ((Stereotype) element).getProfile();
+			}
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public boolean hasChildren(Object element) {
+			if (element instanceof Profile) {
+				return true;
+			} else if (element instanceof Stereotype) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object[] getElements(Object inputElement) {
+			if (inputElement instanceof Profile) {
+				List<Stereotype> stereotypes = ((Profile) inputElement).getOwnedStereotypes();
+				return stereotypes.toArray();
+			}
+			return new Object[0];
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void dispose() {
+			// nothing to do here
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			// nothing to do here
+		}
+
+	}
+
+	/**
+	 * Returns the list of all palette entries
+	 * 
+	 * @return the list of all palette entries
+	 */
+	protected Collection<PaletteEntry> getAllStandardEntries() {
+		PaletteRoot root = new PaletteRoot();
+		Map<String, PaletteEntry> entries = PapyrusPaletteService.getInstance().getAllContributionsIds(editorPart,
+				editorPart.getEditorInput(), root);
+		return entries.values();
+	}
+
+	/**
+	 * Returns the type of metaclasses created by the toolentry
+	 * 
+	 * @param entry
+	 *            the entry for which metaclass created is searched
+	 * @return the type of metaclasses created by the toolentry or <code>null</code>.
+	 */
+	protected EClass getToolMetaclass(CombinedTemplateCreationEntry entry) {
+		Tool tool = entry.createTool();
+		List<IElementType> types = null;
+		if (tool instanceof AspectUnspecifiedTypeCreationTool) {
+			types = ((AspectUnspecifiedTypeCreationTool) tool).getElementTypes();
+		} else if (tool instanceof AspectUnspecifiedTypeConnectionTool) {
+			types = ((AspectUnspecifiedTypeConnectionTool) tool).getElementTypes();
+		}
+		if (types != null && types.size() > 0) {
+			IElementType type = types.get(0);
+			if (type instanceof SpecializationType) {
+				type = ((SpecializationType) type).getSpecializedTypes()[0];
+			}
+			return type.getEClass();
+		}
+		return null;
 	}
 }
