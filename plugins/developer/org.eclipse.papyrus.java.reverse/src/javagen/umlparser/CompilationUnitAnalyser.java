@@ -61,7 +61,7 @@ public class CompilationUnitAnalyser  {
     public static String DEFAULT_ROOT_PACKAGE_NAME = "model";
 	private List<String> generationPackageQualifiedName;
 	
-    /** Root package of the generation. All generated elements wiil be added to this package, or one of
+    /** Root package of the generation. All generated elements will be added to this package, or one of
      * its subpackages
      */
     private org.eclipse.uml2.uml.Package defaultGenerationPackage;
@@ -417,8 +417,16 @@ public class CompilationUnitAnalyser  {
     	else
     	{
     		// Look for existing classifier of any type.
-    		// 
-    		  umlType =  getUmlClassifier(data.getTranslatedQualifiedName(), false);
+    		// Take the first letter of the name as an hint. IXxxx
+    		List<String> qualifiedName = data.getTranslatedQualifiedName();
+    		boolean isInterface = false;
+    		String shortName = qualifiedName.get(qualifiedName.size()-1);
+
+    		if(shortName.length()>2 && shortName.startsWith("I") && Character.isUpperCase(shortName.charAt(1) ))
+    			isInterface = true;
+    		
+    		// Get or create type.
+    		umlType =  getUmlClassifier(qualifiedName, isInterface);
     	}
         return umlType;
     }
@@ -971,7 +979,7 @@ public class CompilationUnitAnalyser  {
 			}
 		}    
 		
-		// Extends parameters
+		// implements parameters
 		if (n.getImplements() != null) {
 			for(ClassOrInterfaceType type : n.getImplements() )
 			{
