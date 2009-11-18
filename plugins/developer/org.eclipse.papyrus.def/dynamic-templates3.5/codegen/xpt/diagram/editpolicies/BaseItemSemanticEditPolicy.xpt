@@ -279,7 +279,7 @@ public static class «getLinkCreationConstraintsClassName()» {
 	«EXPAND xpt::Common::generatedMemberComment»
 	private static final String OPPOSITE_END_VAR = "oppositeEnd"; «EXPAND xpt::Common::nonNLS»
 «REM»[Papyrus Quick Fix] START«ENDREM»
-«IF editorGen.expressionProviders.oclIsTypeOf(gmfgen::GenJavaExpressionProvider)-»
+«IF not editorGen.expressionProviders.providers->select(ep | not ep.oclIsTypeOf(gmfgen::GenJavaExpressionProvider))->isEmpty()-»
 «REM»[Papyrus Quick Fix] END  «ENDREM»
 «FOREACH getValidLinkConstraints(self) AS lc-»
 «IF lc.sourceEnd <> null-»
