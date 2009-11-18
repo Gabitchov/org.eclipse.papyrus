@@ -51,7 +51,8 @@ public class ReverseCodeDialog extends InputDialog {
 		if(searchPathsInitialValues == null)
 		{
 			String[] savedSearchPath = settings.getArray("searchpaths");
-			searchPathsInitialValues = Arrays.asList(savedSearchPath);
+			if( savedSearchPath != null)
+				searchPathsInitialValues = Arrays.asList(savedSearchPath);
 		}
 		
         listDialog = new InputListDialog(listMsg, searchPathsInitialValues);
