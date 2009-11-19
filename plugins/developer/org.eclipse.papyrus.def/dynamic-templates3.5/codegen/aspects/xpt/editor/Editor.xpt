@@ -8,6 +8,7 @@
  *
  * Contributors:
  *    Alexander Shatalin (Borland) - initial API and implementation
+ *	  Emilien Perico (Atos Origin) - add code to refactor some classes
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -35,13 +36,17 @@
 	«EXPAND xpt::Common::generatedMemberComment»
     private org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider documentProvider;
     	
+    «EXPAND xpt::Common::generatedMemberComment»
+	private org.eclipse.gmf.runtime.notation.Diagram diagram;
+	
 	«REM»«ENDREM»
 «ENDAROUND»
 
 «AROUND _constructor FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	public «className»(org.eclipse.papyrus.core.services.ServicesRegistry servicesRegistry) throws org.eclipse.papyrus.core.services.ServiceException{
-		super(«null <> editorGen.diagram.palette and editorGen.diagram.palette.flyout»);
+	public «className»(org.eclipse.papyrus.core.services.ServicesRegistry servicesRegistry, org.eclipse.gmf.runtime.notation.Diagram diagram) throws org.eclipse.papyrus.core.services.ServiceException{
+	super(«null <> editorGen.diagram.palette and editorGen.diagram.palette.flyout»);
+	this.diagram = diagram;
 
 	«REM»Documentation. adds listener for papyrus palette service«ENDREM»
 	// adds a listener to the palette service, which reacts to palette customizations
@@ -108,6 +113,16 @@
 	«EXPAND constructPaletteViewer -»
 	
 	«EXPAND createPaletteviewerProvider-»
+	
+	«EXPAND getGraphicalViewer-»
+	
+	«EXPAND getDiagram-»
+	
+	«EXPAND setDiagram-»
+	
+	«EXPAND initializeGraphicalViewer-»
+	
+	«EXPAND selectionChanged-»
 «ENDAROUND»
 
 «DEFINE handlePaletteChange FOR gmfgen::GenEditorView-»
@@ -349,5 +364,91 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 	public boolean isDirty() {
 		org.eclipse.core.commands.operations.IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
 		return savedOperation != op;
+	}
+«ENDDEFINE»
+
+«REM»Code refactoring moved in UMLDiagramEditor«ENDREM»
+«AROUND getDocumentProvider FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected final org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider getDocumentProvider(org.eclipse.ui.IEditorInput input) {
+		return documentProvider;
+	}
+«ENDAROUND»
+
+«AROUND setDocumentProvider FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected final void setDocumentProvider(org.eclipse.ui.IEditorInput input) {
+		// Already set in the constructor
+	}
+«ENDAROUND»
+
+«DEFINE getGraphicalViewer FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	public org.eclipse.gef.GraphicalViewer getGraphicalViewer() {
+		return super.getGraphicalViewer();
+	}
+«ENDDEFINE»
+
+«DEFINE getDiagram FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	public org.eclipse.gmf.runtime.notation.Diagram getDiagram() {
+		return diagram;
+	}
+«ENDDEFINE»
+
+«DEFINE setDiagram FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	public void setDiagram(org.eclipse.gmf.runtime.notation.Diagram diagram) {
+		this.diagram = diagram;
+	}
+«ENDDEFINE»
+
+«DEFINE initializeGraphicalViewer FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+
+		// Enable Drop
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new org.eclipse.papyrus.diagram.common.listeners.DropTargetListener(getDiagramGraphicalViewer(), org.eclipse.jface.util.LocalSelectionTransfer.getTransfer()) {
+
+					@Override
+					protected Object getJavaObject(org.eclipse.swt.dnd.TransferData data) {
+						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+					}
+
+					@Override
+					protected org.eclipse.emf.transaction.TransactionalEditingDomain getTransactionalEditingDomain() {
+						return getEditingDomain();
+					}
+				});
+
+	}
+«ENDDEFINE»
+
+«DEFINE selectionChanged FOR gmfgen::GenEditorView-»
+«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	public void selectionChanged(org.eclipse.ui.IWorkbenchPart part, org.eclipse.jface.viewers.ISelection selection) {
+		if (getSite().getPage().getActiveEditor() instanceof org.eclipse.papyrus.core.editor.IMultiDiagramEditor) {
+			org.eclipse.papyrus.core.editor.IMultiDiagramEditor editor = (org.eclipse.papyrus.core.editor.IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+			// If not the active editor, ignore selection changed.
+			if (this.equals(editor.getActiveEditor())) {
+				updateActions(getSelectionActions());
+				super.selectionChanged(part, selection);
+			} else {
+				super.selectionChanged(part, selection);
+			}
+		} else {
+			super.selectionChanged(part, selection);
+		}
+		// from
+		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
+		// ISelection)
+		if (part == this) {
+			rebuildStatusLine();
+		}
 	}
 «ENDDEFINE»

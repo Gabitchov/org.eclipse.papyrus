@@ -272,7 +272,8 @@
   </nodes>
   <nodes
       name="ActorNode"
-      figure="ActorFigure">
+      figure="ActorFigure"
+      resizeConstraint="NONE">
     <facets
         xsi:type="gmfgraph:DefaultSizeFacet">
       <defaultSize

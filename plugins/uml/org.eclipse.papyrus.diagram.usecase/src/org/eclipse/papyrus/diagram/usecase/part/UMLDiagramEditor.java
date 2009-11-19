@@ -14,14 +14,15 @@
 package org.eclipse.papyrus.diagram.usecase.part;
 
 import java.util.EventObject;
+
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.CommandStackListener;
@@ -38,23 +39,27 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocu
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfMultiDiagramDocumentProvider;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorItem;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.IShowInTargetList;
@@ -103,8 +108,14 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
-	public UMLDiagramEditor(ServicesRegistry servicesRegistry) throws ServiceException {
+	private Diagram diagram;
+
+	/**
+	 * @generated
+	 */
+	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(true);
+		this.diagram = diagram;
 
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
@@ -178,11 +189,8 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	@Override
-	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			return UMLDiagramEditorPlugin.getInstance().getDocumentProvider();
-		}
-		return super.getDocumentProvider(input);
+	protected final IDocumentProvider getDocumentProvider(IEditorInput input) {
+		return documentProvider;
 	}
 
 	/**
@@ -197,12 +205,8 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	@Override
-	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			setDocumentProvider(UMLDiagramEditorPlugin.getInstance().getDocumentProvider());
-		} else {
-			super.setDocumentProvider(input);
-		}
+	protected final void setDocumentProvider(IEditorInput input) {
+		// Already set in the constructor
 	}
 
 	/**
@@ -496,6 +500,77 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 			}
 
 		};
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public GraphicalViewer getGraphicalViewer() {
+		return super.getGraphicalViewer();
+	}
+
+	/**
+	 * @generated
+	 */
+	public Diagram getDiagram() {
+		return diagram;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setDiagram(Diagram diagram) {
+		this.diagram = diagram;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+
+		// Enable Drop
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+
+					@Override
+					protected Object getJavaObject(TransferData data) {
+						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+					}
+
+					@Override
+					protected TransactionalEditingDomain getTransactionalEditingDomain() {
+						return getEditingDomain();
+					}
+				});
+
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+			// If not the active editor, ignore selection changed.
+			if (this.equals(editor.getActiveEditor())) {
+				updateActions(getSelectionActions());
+				super.selectionChanged(part, selection);
+			} else {
+				super.selectionChanged(part, selection);
+			}
+		} else {
+			super.selectionChanged(part, selection);
+		}
+		// from
+		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
+		// ISelection)
+		if (part == this) {
+			rebuildStatusLine();
+		}
 	}
 
 }

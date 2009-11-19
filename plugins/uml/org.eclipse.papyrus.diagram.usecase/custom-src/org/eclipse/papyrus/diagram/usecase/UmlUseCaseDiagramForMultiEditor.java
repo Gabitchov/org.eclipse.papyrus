@@ -16,19 +16,14 @@ package org.eclipse.papyrus.diagram.usecase;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
-import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -54,16 +49,6 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
 			.getBundledImageDescriptor(UmlUseCaseDiagramForMultiEditor.DIAG_IMG_PATH);
 
-	/**
-	 * The diagram shown by the editor.
-	 */
-	private Diagram diagram;
-
-	/**
-	 * The editor's owner
-	 */
-	// private GmfEditorContext context;
-
 	/** The editor splitter. */
 	private Composite splitter;
 
@@ -78,21 +63,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	public UmlUseCaseDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
 			throws BackboneException, ServiceException {
-		super(servicesRegistry);
-		this.diagram = diagram;
-		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-		// IEditorContextRegistry contextRegistry;
-		// contextRegistry = (IEditorContextRegistry)
-		// servicesRegistry.getService(IEditorContextRegistry.class);
-		//
-		// // Get the context by its ID
-		// this.context = (GmfEditorContext)
-		// contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
-		//
-		// // overrides editing domain created by super constructor
-		//
-		// setDocumentProvider(context.getDocumentProvider());
-		// System.err.println(this.getClass().getName());
+		super(servicesRegistry, diagram);
 	}
 
 	/**
@@ -113,7 +84,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 		try {
 			// Provide an URI with fragment in order to reuse the same Resource
 			// and set the diagram to the fragment.
-			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(diagram));
+			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(getDiagram()));
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = "Problem opening";
@@ -121,26 +92,6 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 			Shell shell = getSite().getShell();
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}
-	}
-
-	@Override
-	protected void initializeGraphicalViewer() {
-		super.initializeGraphicalViewer();
-
-		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
-
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-					}
-
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
 	}
 
 	/**
@@ -168,45 +119,4 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	public String getEditingDomainID() {
 		return "org.eclipse.papyrus.diagram.usecase.EditingDomain";
 	}
-
-	// ================ Getters & Setters ==================
-
-	/**
-	 * Change visibility to public.
-	 */
-	@Override
-	public GraphicalViewer getGraphicalViewer() {
-		return super.getGraphicalViewer();
-	}
-
-	/**
-	 * @return the diagram
-	 */
-	@Override
-	public Diagram getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * @param diagram
-	 *            the diagram to set
-	 */
-	// public void setDiagram(Diagram diagram) {
-	// this.diagram = diagram;
-	// }
-
-	// /**
-	// * @return the parentEditor
-	// */
-	// public GmfEditorContext getSharedObjects() {
-	// return context;
-	// }
-	//
-	// /**
-	// * @param parentEditor
-	// * the parentEditor to set
-	// */
-	// public void setSharedObject(GmfEditorContext parentEditor) {
-	// this.context = parentEditor;
-	// }
 }

@@ -579,7 +579,7 @@ public class UseCaseNameEditPart extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View) getModel();
+		return getPrimaryView();
 	}
 
 	/**

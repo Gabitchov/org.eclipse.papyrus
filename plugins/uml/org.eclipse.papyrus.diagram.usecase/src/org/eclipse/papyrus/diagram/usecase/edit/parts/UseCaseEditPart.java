@@ -16,11 +16,7 @@ package org.eclipse.papyrus.diagram.usecase.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.Border;
-import org.eclipse.draw2d.BorderLayout;
-import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -39,34 +35,26 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.draw2d.OneLineDashedBorder;
-import org.eclipse.papyrus.diagram.common.draw2d.SplitEllipseLayout;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.figure.UseCaseFigure;
 import org.eclipse.papyrus.diagram.usecase.figure.UseCaseNodeFigure;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class UseCaseEditPart extends
-
-ShapeNodeEditPart {
+public class UseCaseEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -133,8 +121,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		UseCaseFigure figure = new UseCaseFigure();
-		return primaryShape = figure;
+		return primaryShape = new UseCaseFigure();
 	}
 
 	/**
@@ -1304,117 +1291,6 @@ ShapeNodeEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-	/**
-	 * @generated
-	 */
-	public class UseCaseFigure extends Ellipse {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fUseCaseFigure_name;
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fUseCaseFigure_contents;
-
-		/**
-		 * @generated
-		 */
-		public UseCaseFigure() {
-
-			SplitEllipseLayout layoutThis = new SplitEllipseLayout();
-
-			this.setLayoutManager(layoutThis);
-
-			this.setLineWidth(1);
-			this.setForegroundColor(THIS_FORE);
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fUseCaseFigure_name = new WrappingLabel();
-			fUseCaseFigure_name.setText("");
-
-			fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);
-
-			this.add(fUseCaseFigure_name, BorderLayout.TOP);
-
-			fUseCaseFigure_contents = new RectangleFigure();
-			fUseCaseFigure_contents.setFill(false);
-			fUseCaseFigure_contents.setOutline(false);
-			fUseCaseFigure_contents.setLineWidth(1);
-			fUseCaseFigure_contents.setBorder(createBorder0());
-
-			this.add(fUseCaseFigure_contents, BorderLayout.CENTER);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private Border createBorder0() {
-			OneLineDashedBorder result = new OneLineDashedBorder();
-
-			return result;
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getUseCaseFigure_name() {
-			return fUseCaseFigure_name;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getUseCaseFigure_contents() {
-			return fUseCaseFigure_contents;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_FORE = new Color(null, 177, 207, 229);
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 235, 248, 255);
-
-	/**
-	 * @generated
-	 */
-	static final Font FUSECASEFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 	/**
 	 * @generated
