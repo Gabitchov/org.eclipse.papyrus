@@ -26,31 +26,31 @@ If you did not receive this Content directly from the Eclipse Foundation, the Co
    </url>
 
    <includes
-         id="org.eclipse.papyrus.backbone_feature"
+         id="org.eclipse.papyrus.backbone"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.diagram.clazz_feature"
+         id="org.eclipse.papyrus.diagram.clazz"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.diagram.composite_feature"
+         id="org.eclipse.papyrus.diagram.composite"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.diagram.sequence_feature"
+         id="org.eclipse.papyrus.diagram.sequence"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.diagram.usecase_feature"
+         id="org.eclipse.papyrus.diagram.usecase"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.layouttool_feature"
+         id="org.eclipse.papyrus.layouttool"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.uml_feature"
+         id="org.eclipse.papyrus.uml"
          version="0.0.0"/>
 
 </feature>

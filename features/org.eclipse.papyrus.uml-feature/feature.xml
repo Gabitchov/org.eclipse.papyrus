@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.uml_feature"
+      id="org.eclipse.papyrus.uml"
       label="Papyrus UML Editor"
       version="0.7.0.qualifier"
       provider-name="Eclipse">
