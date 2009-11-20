@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus_feature"
+      id="org.eclipse.papyrus"
       label="MDT Papyrus"
       version="0.7.0.qualifier"
       provider-name="Eclipse">
