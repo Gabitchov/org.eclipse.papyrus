@@ -62,7 +62,6 @@ If you did not receive this Content directly from the Eclipse Foundation, the Co
       <import plugin="org.eclipse.papyrus.preferences"/>
       <import plugin="org.eclipse.papyrus.editor" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw2d"/>
-      <import plugin="org.eclipse.gmf.codegen" version="2.1.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.uml2.uml.resources" version="3.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.papyrus.umlutils" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.papyrus.extensionpoints.editors"/>
