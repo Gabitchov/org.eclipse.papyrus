@@ -16,6 +16,7 @@ import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIProp
 import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor;
 import org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor;
+import org.eclipse.papyrus.preferences.ui.FontGroupComposite;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -40,37 +41,9 @@ import org.eclipse.swt.widgets.Layout;
  */
 public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyrusPreferencePage {
 
-	private static final String COLORS_GROUPBOX_LABEL = Messages.AbstractPapyrusElementPreferencePage_Colors;
-
-	private static final String FONT_GROUPBOX_LABEL = Messages.AbstractPapyrusElementPreferencePage_Font;
-
-	private ColorFieldEditor fontColorEditor = null;
-
-	private ColorFieldEditor lineColorEditor = null;
-
-	private FontFieldEditor fontFieldEditor = null;
-
-	private Composite colorsAndFontsGroup;
 
 	private Group toolbar;
 
-	protected void createColorsGroup() {
-
-		toolbar = new Group(colorsAndFontsGroup, SWT.SHADOW_NONE);
-		toolbar.setText(COLORS_GROUPBOX_LABEL);
-		toolbar.setLayout(getToolbarLayout());
-
-		Composite fontColorEditorCompo = getEncapsulatedCompo(toolbar);
-		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT),
-				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
-		addEditorFields(fontColorEditor);
-
-		Composite lineColorEditorCompo = getEncapsulatedCompo(toolbar);
-		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_LINE),
-				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
-		addEditorFields(lineColorEditor);
-
-	}
 
 	protected Layout getToolbarLayout() {
 		return new GridLayout(2, false);
@@ -82,25 +55,12 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 		return compo;
 	}
 
-	private void createFontsGroup() {
-		Group fontGroup = new Group(colorsAndFontsGroup, SWT.SHADOW_NONE);
-		fontGroup.setLayout(new GridLayout(1, true));
-		fontGroup.setText(FONT_GROUPBOX_LABEL);
-		fontFieldEditor = new FontFieldEditor(PreferenceConstantHelper.getElementConstant(getTitle(),
-				PreferenceConstantHelper.FONT), fontGroup);
-		addEditorFields(fontFieldEditor);
-	}
 
 	@Override
 	protected void createPageContents(Composite parent) {
-		colorsAndFontsGroup = new Composite(parent, SWT.NONE);
-		colorsAndFontsGroup.setBounds(5, 5, 260, 50);
-		GridLayout colorsAndFontsGroupLayout = new GridLayout(1, false);
-
-		colorsAndFontsGroup.setLayout(colorsAndFontsGroupLayout);
-
-		createFontsGroup();
-		createColorsGroup();
+		FontGroupComposite fontGroupComposite= new FontGroupComposite(parent, getTitle(), this);
+		addAbstractGroupComposite(fontGroupComposite);
+		
 
 	}
 

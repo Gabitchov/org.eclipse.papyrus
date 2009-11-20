@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
+import org.eclipse.papyrus.preferences.ui.AbstractGroupComposite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -53,7 +54,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 
 	private IProject project;
 
-	private Set<FieldEditor> fieldsEditor;
+	private Set<AbstractGroupComposite> fieldsEditor;
 
 	/**
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#getElement()
@@ -131,9 +132,9 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	/**
 	 * Add the given field editor to the page.
 	 */
-	protected void addEditorFields(FieldEditor fe) {
+	protected void addAbstractGroupComposite(AbstractGroupComposite fe) {
 		if (fieldsEditor == null) {
-			fieldsEditor = new HashSet<FieldEditor>();
+			fieldsEditor = new HashSet<AbstractGroupComposite>();
 		}
 		fieldsEditor.add(fe);
 	}
@@ -154,8 +155,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 */
 	private void storePreferences() {
 		if (fieldsEditor != null) {
-			for (FieldEditor fe : fieldsEditor) {
-				fe.store();
+			for (AbstractGroupComposite fe : fieldsEditor) {
+				fe.storePreferences();
 			}
 		}
 	}
@@ -175,7 +176,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 */
 	private void loadDefaultPreferences() {
 		if (fieldsEditor != null) {
-			for (FieldEditor fe : fieldsEditor) {
+			for (AbstractGroupComposite fe : fieldsEditor) {
 				fe.loadDefault();
 			}
 		}
@@ -187,8 +188,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 */
 	private void initFieldsEditor() {
 		if (fieldsEditor != null) {
-			for (FieldEditor fe : fieldsEditor) {
-				fe.setPage(this);
+			for (AbstractGroupComposite fe : fieldsEditor) {
 				fe.setPreferenceStore(getPreferenceStore());
 				fe.load();
 			}
@@ -199,7 +199,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	public void dispose() {
 		super.dispose();
 		if (fieldsEditor != null) {
-			for (FieldEditor fe : fieldsEditor) {
+			for (AbstractGroupComposite fe : fieldsEditor) {
 				fe.dispose();
 			}
 		}

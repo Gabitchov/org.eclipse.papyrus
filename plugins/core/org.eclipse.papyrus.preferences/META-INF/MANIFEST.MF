@@ -14,4 +14,5 @@ Export-Package: org.eclipse.papyrus.preferences;x-internal:=true,
  org.eclipse.papyrus.preferences.jface.preference;x-internal:=true,
  org.eclipse.papyrus.preferences.pages,
  org.eclipse.papyrus.preferences.pages.internal;x-internal:=true,
+ org.eclipse.papyrus.preferences.ui,
  org.eclipse.papyrus.preferences.utils
