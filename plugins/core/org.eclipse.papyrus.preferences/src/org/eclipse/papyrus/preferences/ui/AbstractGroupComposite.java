@@ -22,24 +22,36 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * The Class AbstractGroupComposite.
+ */
 public abstract class AbstractGroupComposite extends Composite {
 
+	/** The title that comes from the page */
 	protected String title;
 
+	/** The manager : a set that will contain all editor in the composite */
 	protected Set<AbstractGroupComposite> manager;
 
 	/**
+	 * Gets the dialog page.
+	 * 
 	 * @return the dialogPage
 	 */
 	protected DialogPage getDialogPage() {
 		return dialogPage;
 	}
 
+	/** The preference store. */
+
 	protected IPreferenceStore preferenceStore;
 
+	/** The dialog page. */
 	protected DialogPage dialogPage;
 
 	/**
+	 * Gets the preference store.
+	 * 
 	 * @return the preferenceStore
 	 */
 	public IPreferenceStore getPreferenceStore() {
@@ -47,6 +59,8 @@ public abstract class AbstractGroupComposite extends Composite {
 	}
 
 	/**
+	 * Sets the preference store.
+	 * 
 	 * @param preferenceStore
 	 *            the preferenceStore to set
 	 */
@@ -55,6 +69,8 @@ public abstract class AbstractGroupComposite extends Composite {
 	}
 
 	/**
+	 * Gets the title.
+	 * 
 	 * @return the title
 	 */
 	public String getTitle() {
@@ -62,6 +78,8 @@ public abstract class AbstractGroupComposite extends Composite {
 	}
 
 	/**
+	 * Sets the title.
+	 * 
 	 * @param title
 	 *            the title to set
 	 */
@@ -99,6 +117,15 @@ public abstract class AbstractGroupComposite extends Composite {
 		return PreferenceConstantHelper.getElementConstant(title, preferenceType);
 	}
 
+	/**
+	 * Gets the encapsulated compo.
+	 * 
+	 * @param parent
+	 *            the parent
+	 * 
+	 * @return the encapsulated compo
+	 */
+
 	protected Composite getEncapsulatedCompo(Composite parent) {
 		Composite compo = new Composite(parent, SWT.NONE);
 		compo.setLayout(new GridLayout());
@@ -106,17 +133,17 @@ public abstract class AbstractGroupComposite extends Composite {
 	}
 
 	/**
-	 * load preferences
+	 * load preferences.
 	 */
 	public abstract void load();
 
 	/**
-	 * load preferences
+	 * load preferences.
 	 */
 	public abstract void loadDefault();
 
 	/**
-	 * store preferences
+	 * store preferences.
 	 */
 	public abstract void storePreferences();
 

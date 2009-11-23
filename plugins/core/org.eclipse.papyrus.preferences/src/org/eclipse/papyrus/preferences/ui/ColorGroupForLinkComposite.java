@@ -78,6 +78,7 @@ public class ColorGroupForLinkComposite extends AbstractGroupComposite {
 	}
 
 	/**
+	 * Creates the content.
 	 * 
 	 * @param parent
 	 */

@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2009 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
 import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
@@ -14,54 +27,90 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
+/**
+ * The Class ConnectionGroupComposite.
+ */
 public class ConnectionGroupComposite extends AbstractGroupComposite {
+
+	/**
+	 * Instantiates a new connection group composite.
+	 * 
+	 * @param parent
+	 *            the parent
+	 * @param title
+	 *            the title
+	 * @param dialogPage
+	 *            the dialog page
+	 */
 
 	public ConnectionGroupComposite(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 		createContent(parent);
 	}
 
+	/** The Constant JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL. */
 	private static final String JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Status;
 
+	/** The Constant JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL. */
 	private static final String JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Type;
 
+	/** The Constant JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL. */
 	private static final String JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_ReverseJumpLinks;
 
+	/** The Constant ROUTING_STYLES_COMBOFIELDEDITOR_LABEL. */
 	private static final String ROUTING_STYLES_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Styles;
 
+	/** The Constant ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL. */
 	private static final String ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_AvoidObstructions;
 
+	/** The Constant ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL. */
 	private static final String ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_ClosestDistance;
 
+	/** The Constant SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_None, "" + Smoothness.NONE }, //$NON-NLS-2$
 			{ Messages.AbstractPapyrusLinkPreferencePage_Less, "" + Smoothness.LESS }, { Messages.AbstractPapyrusLinkPreferencePage_Normal, "" + Smoothness.NORMAL }, { Messages.AbstractPapyrusLinkPreferencePage_More, "" + Smoothness.MORE } }; //$NON-NLS-2$ //$NON-NLS-4$ //$NON-NLS-6$
 
+	/** The Constant JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_None, "" + JumpLinkStatus.NONE }, { Messages.AbstractPapyrusLinkPreferencePage_Below, "" + JumpLinkStatus.BELOW }, //$NON-NLS-2$ //$NON-NLS-4$
 			{ Messages.AbstractPapyrusLinkPreferencePage_All, "" + JumpLinkStatus.ALL }, { Messages.AbstractPapyrusLinkPreferencePage_Above, "" + JumpLinkStatus.ABOVE } }; //$NON-NLS-2$ //$NON-NLS-4$
 
+	/** The Constant JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_SemiCircle, "" + JumpLinkType.SEMICIRCLE }, { Messages.AbstractPapyrusLinkPreferencePage_Square, "" + JumpLinkType.SQUARE }, //$NON-NLS-2$ //$NON-NLS-4$
 			{ Messages.AbstractPapyrusLinkPreferencePage_Chamfered, "" + JumpLinkType.CHAMFERED } }; //$NON-NLS-2$
 
 	// TODO : check if Tree is always a valid possibility
+	/** The Constant ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_Oblique, "" + Routing.MANUAL }, { Messages.AbstractPapyrusLinkPreferencePage_Rectilinear, "" + Routing.RECTILINEAR }, //$NON-NLS-2$ //$NON-NLS-4$
 			{ Messages.AbstractPapyrusLinkPreferencePage_Tree, "" + Routing.TREE } }; //$NON-NLS-2$
 
+	/** The routing styles combo field editor. */
 	private ComboFieldEditor routingStylesComboFieldEditor;
 
+	/** The routing obstruction policy boolean field editor. */
 	private BooleanFieldEditor routingObstructionPolicyBooleanFieldEditor;
 
+	/** The routing distance policy boolean field editor. */
 	private BooleanFieldEditor routingDistancePolicyBooleanFieldEditor;
 
+	/** The jump link reverse boolean field editor. */
 	private BooleanFieldEditor jumpLinkReverseBooleanFieldEditor;
 
+	/** The jump link type combo field editor. */
 	private ComboFieldEditor jumpLinkTypeComboFieldEditor;
 
+	/** The jump link status combo field editor. */
 	private ComboFieldEditor jumpLinkStatusComboFieldEditor;
 
+	/**
+	 * Creates the content.
+	 * 
+	 * @param parent
+	 *            the parent
+	 */
 	public void createContent(Composite parent) {
 		Group connectionGroup = new Group(parent, 2);
 		connectionGroup.setLayout(new GridLayout());
@@ -75,6 +124,13 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		createRoutingGroup(connectionGroup);
 		createJumpLinkGroup(connectionGroup);
 	}
+
+	/**
+	 * Creates the jump link group.
+	 * 
+	 * @param connectionGroup
+	 *            the connection group
+	 */
 
 	private void createJumpLinkGroup(Group connectionGroup) {
 		Group jumpLinkGroup = new Group(connectionGroup, 2);
@@ -98,6 +154,47 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		jumpLinkReverseBooleanFieldEditor.setPage(dialogPage);
 	}
 
+	/**
+	 * @return the routingStylesComboFieldEditor
+	 */
+	protected ComboFieldEditor getRoutingStylesComboFieldEditor() {
+		return routingStylesComboFieldEditor;
+	}
+
+	/**
+	 * @return the routingDistancePolicyBooleanFieldEditor
+	 */
+	protected BooleanFieldEditor getRoutingDistancePolicyBooleanFieldEditor() {
+		return routingDistancePolicyBooleanFieldEditor;
+	}
+
+	/**
+	 * @return the jumpLinkReverseBooleanFieldEditor
+	 */
+	protected BooleanFieldEditor getJumpLinkReverseBooleanFieldEditor() {
+		return jumpLinkReverseBooleanFieldEditor;
+	}
+
+	/**
+	 * @return the jumpLinkTypeComboFieldEditor
+	 */
+	protected ComboFieldEditor getJumpLinkTypeComboFieldEditor() {
+		return jumpLinkTypeComboFieldEditor;
+	}
+
+	/**
+	 * @return the jumpLinkStatusComboFieldEditor
+	 */
+	protected ComboFieldEditor getJumpLinkStatusComboFieldEditor() {
+		return jumpLinkStatusComboFieldEditor;
+	}
+
+	/**
+	 * Creates the routing group.
+	 * 
+	 * @param connectionGroup
+	 *            the connection group
+	 */
 	private void createRoutingGroup(Group connectionGroup) {
 		Group routingGroup = new Group(connectionGroup, 2);
 		routingGroup.setLayout(new GridLayout());
@@ -120,6 +217,10 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+
 	public void setPreferenceStore(IPreferenceStore preferenceStore) {
 		super.setPreferenceStore(preferenceStore);
 		jumpLinkReverseBooleanFieldEditor.setPreferenceStore(preferenceStore);
@@ -130,6 +231,10 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		routingStylesComboFieldEditor.setPreferenceStore(preferenceStore);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+
 	public void load() {
 		jumpLinkReverseBooleanFieldEditor.load();
 		jumpLinkStatusComboFieldEditor.load();
@@ -139,6 +244,10 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		routingStylesComboFieldEditor.load();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+
 	public void storePreferences() {
 		jumpLinkReverseBooleanFieldEditor.store();
 		jumpLinkStatusComboFieldEditor.store();
@@ -147,6 +256,10 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		routingObstructionPolicyBooleanFieldEditor.store();
 		routingStylesComboFieldEditor.store();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 
 	@Override
 	public void loadDefault() {
