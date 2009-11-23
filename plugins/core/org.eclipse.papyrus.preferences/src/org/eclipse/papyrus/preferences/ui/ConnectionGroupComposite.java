@@ -10,19 +10,16 @@ import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-
 public class ConnectionGroupComposite extends AbstractGroupComposite {
-	public ConnectionGroupComposite(Composite parent,String title, DialogPage dialogPage) {
+
+	public ConnectionGroupComposite(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 		createContent(parent);
 	}
-
-	
 
 	private static final String JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL = Messages.AbstractPapyrusLinkPreferencePage_Status;
 
@@ -65,18 +62,20 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 
 	private ComboFieldEditor jumpLinkStatusComboFieldEditor;
 
-	public void createContent(Composite parent){
+	public void createContent(Composite parent) {
 		Group connectionGroup = new Group(parent, 2);
 		connectionGroup.setLayout(new GridLayout());
 		connectionGroup.setText(Messages.AbstractPapyrusLinkPreferencePage_Connection);
 
 		ComboFieldEditor smoothnessComboFieldEditor = new ComboFieldEditor(
-				getPreferenceConstant(PreferenceConstantHelper.SMOOTHNESS), Messages.AbstractPapyrusLinkPreferencePage_Smoothness,
-				SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES, connectionGroup);
+				getPreferenceConstant(PreferenceConstantHelper.SMOOTHNESS),
+				Messages.AbstractPapyrusLinkPreferencePage_Smoothness, SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES,
+				connectionGroup);
 
 		createRoutingGroup(connectionGroup);
 		createJumpLinkGroup(connectionGroup);
 	}
+
 	private void createJumpLinkGroup(Group connectionGroup) {
 		Group jumpLinkGroup = new Group(connectionGroup, 2);
 		jumpLinkGroup.setLayout(new GridLayout());
@@ -92,7 +91,7 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 				getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_TYPE), JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL,
 				JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES, jumpLinkGroup);
 		jumpLinkTypeComboFieldEditor.setPage(dialogPage);
-		
+
 		jumpLinkReverseBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_REVERSE),
 				JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL, jumpLinkGroup);
@@ -113,14 +112,14 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION),
 				ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingObstructionPolicyBooleanFieldEditor.setPage(dialogPage);
-		
+
 		routingDistancePolicyBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_DISTANCE),
 				ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingDistancePolicyBooleanFieldEditor.setPage(dialogPage);
 
 	}
-	
+
 	public void setPreferenceStore(IPreferenceStore preferenceStore) {
 		super.setPreferenceStore(preferenceStore);
 		jumpLinkReverseBooleanFieldEditor.setPreferenceStore(preferenceStore);
@@ -130,16 +129,16 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		routingObstructionPolicyBooleanFieldEditor.setPreferenceStore(preferenceStore);
 		routingStylesComboFieldEditor.setPreferenceStore(preferenceStore);
 	}
-	
-	public void load(){
-	jumpLinkReverseBooleanFieldEditor.load();
-	jumpLinkStatusComboFieldEditor.load();
-	jumpLinkTypeComboFieldEditor.load();
-	routingDistancePolicyBooleanFieldEditor.load();
-	routingObstructionPolicyBooleanFieldEditor.load();
-	routingStylesComboFieldEditor.load();
+
+	public void load() {
+		jumpLinkReverseBooleanFieldEditor.load();
+		jumpLinkStatusComboFieldEditor.load();
+		jumpLinkTypeComboFieldEditor.load();
+		routingDistancePolicyBooleanFieldEditor.load();
+		routingObstructionPolicyBooleanFieldEditor.load();
+		routingStylesComboFieldEditor.load();
 	}
-	
+
 	public void storePreferences() {
 		jumpLinkReverseBooleanFieldEditor.store();
 		jumpLinkStatusComboFieldEditor.store();
@@ -148,6 +147,7 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		routingObstructionPolicyBooleanFieldEditor.store();
 		routingStylesComboFieldEditor.store();
 	}
+
 	@Override
 	public void loadDefault() {
 		jumpLinkReverseBooleanFieldEditor.loadDefault();
@@ -156,7 +156,7 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 		routingDistancePolicyBooleanFieldEditor.loadDefault();
 		routingObstructionPolicyBooleanFieldEditor.loadDefault();
 		routingStylesComboFieldEditor.loadDefault();
-		
+
 	}
-	
+
 }

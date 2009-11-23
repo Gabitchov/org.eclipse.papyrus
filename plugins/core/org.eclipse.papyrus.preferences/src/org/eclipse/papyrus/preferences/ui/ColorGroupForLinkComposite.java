@@ -24,15 +24,21 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-
 public class ColorGroupForLinkComposite extends AbstractGroupComposite {
+
 	protected ColorFieldEditor fontColorEditor;
+
 	protected ColorFieldEditor lineColorEditor;
+
 	protected Group toolbar;
+
 	/**
 	 * creation of a colorGroup Composite
-	 * @param parent the parent composite
-	 * @param title the title
+	 * 
+	 * @param parent
+	 *            the parent composite
+	 * @param title
+	 *            the title
 	 */
 
 	public ColorGroupForLinkComposite(Composite parent, String title, DialogPage dialogPage) {
@@ -60,6 +66,7 @@ public class ColorGroupForLinkComposite extends AbstractGroupComposite {
 	protected Group getToolbar() {
 		return toolbar;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -69,11 +76,12 @@ public class ColorGroupForLinkComposite extends AbstractGroupComposite {
 		compo.setLayout(new GridLayout());
 		return compo;
 	}
+
 	/**
 	 * 
 	 * @param parent
 	 */
-	protected void  createContent(Composite parent){
+	protected void createContent(Composite parent) {
 		toolbar = new Group(parent, SWT.SHADOW_NONE);
 		toolbar.setText(Messages.AbstractPapyrusElementPreferencePage_Colors);
 		toolbar.setLayout(new GridLayout(3, false));
@@ -82,13 +90,14 @@ public class ColorGroupForLinkComposite extends AbstractGroupComposite {
 		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT),
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
 		fontColorEditor.setPage(dialogPage);
-		
+
 		Composite lineColorEditorCompo = getEncapsulatedCompo(toolbar);
 		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_LINE),
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
-		
+
 		lineColorEditor.setPage(dialogPage);
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -98,14 +107,16 @@ public class ColorGroupForLinkComposite extends AbstractGroupComposite {
 		fontColorEditor.setPreferenceStore(preferenceStore);
 		lineColorEditor.setPreferenceStore(preferenceStore);
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
-	public void load(){
+	public void load() {
 		fontColorEditor.load();
 		lineColorEditor.load();
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}

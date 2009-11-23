@@ -25,12 +25,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-
 /**
  * The Class BackgroundColorGroup.
  */
-public class BackgroundColorGroup extends AbstractGroupComposite{
-
+public class BackgroundColorGroup extends AbstractGroupComposite {
 
 	/**
 	 * @return the useGradientFillEditor
@@ -39,14 +37,13 @@ public class BackgroundColorGroup extends AbstractGroupComposite{
 		return useGradientFillEditor;
 	}
 
-
 	/**
-	 * @param useGradientFillEditor the useGradientFillEditor to set
+	 * @param useGradientFillEditor
+	 *            the useGradientFillEditor to set
 	 */
 	protected void setUseGradientFillEditor(BooleanFieldEditor useGradientFillEditor) {
 		this.useGradientFillEditor = useGradientFillEditor;
 	}
-
 
 	/**
 	 * @return the gradientFillEditor
@@ -55,23 +52,22 @@ public class BackgroundColorGroup extends AbstractGroupComposite{
 		return gradientFillEditor;
 	}
 
-
 	/**
-	 * @param gradientFillEditor the gradientFillEditor to set
+	 * @param gradientFillEditor
+	 *            the gradientFillEditor to set
 	 */
 	protected void setGradientFillEditor(GradientFieldEditor gradientFillEditor) {
 		this.gradientFillEditor = gradientFillEditor;
 	}
 
-
-
 	/**
 	 * Instantiates a new background color group.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 */
 	public BackgroundColorGroup(Composite parent, String title, DialogPage dialogPage) {
-		super(parent, title,  dialogPage);
+		super(parent, title, dialogPage);
 		createContent(parent);
 	}
 
@@ -86,9 +82,10 @@ public class BackgroundColorGroup extends AbstractGroupComposite{
 	/**
 	 * Creates the content.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 */
-	public void createContent(Composite parent){
+	public void createContent(Composite parent) {
 
 		Group fillColorGroup = new Group(parent, SWT.SHADOW_NONE);
 		fillColorGroup.setLayout(new GridLayout(1, false));
@@ -106,12 +103,12 @@ public class BackgroundColorGroup extends AbstractGroupComposite{
 				"", useGradientFillEditorCompo); //$NON-NLS-1$
 		useGradientFillEditor.setPage(dialogPage);
 
-
 		Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
 		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_GRADIENT),
 				gradientFillEditorCompo);
 		gradientFillEditor.setPage(dialogPage);
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -125,7 +122,8 @@ public class BackgroundColorGroup extends AbstractGroupComposite{
 	/**
 	 * Gets the encapsulated compo.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 * 
 	 * @return the encapsulated compo
 	 */
@@ -134,28 +132,29 @@ public class BackgroundColorGroup extends AbstractGroupComposite{
 		compo.setLayout(new GridLayout());
 		return compo;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
-	public void load(){
+	public void load() {
 		useGradientFillEditor.load();
 		gradientFillEditor.load();
 	}
-/**
- * 
- * {@inheritDoc}
- */
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public void storePreferences() {
 		useGradientFillEditor.store();
 		gradientFillEditor.store();
 	}
 
+	@Override
+	public void loadDefault() {
+		useGradientFillEditor.loadDefault();
+		gradientFillEditor.loadDefault();
 
-@Override
-public void loadDefault() {
-	useGradientFillEditor.loadDefault();
-	gradientFillEditor.loadDefault();
-	
-}
+	}
 }

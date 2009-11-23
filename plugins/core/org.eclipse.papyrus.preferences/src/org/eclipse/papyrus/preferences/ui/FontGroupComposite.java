@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
-import javax.swing.text.StyleConstants.ColorConstants;
-
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.Messages;
@@ -25,7 +23,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class FontGroupComposite.
@@ -34,8 +31,6 @@ public class FontGroupComposite extends AbstractGroupComposite {
 
 	/** The FON t_ groupbo x_ label. */
 	protected String FONT_GROUPBOX_LABEL = null;
-
-
 
 	/**
 	 * Gets the font field editor.
@@ -46,16 +41,15 @@ public class FontGroupComposite extends AbstractGroupComposite {
 		return fontFieldEditor;
 	}
 
-
 	/**
 	 * Sets the font field editor.
 	 * 
-	 * @param fontFieldEditor the fontFieldEditor to set
+	 * @param fontFieldEditor
+	 *            the fontFieldEditor to set
 	 */
 	protected void setFontFieldEditor(FontFieldEditor fontFieldEditor) {
 		this.fontFieldEditor = fontFieldEditor;
 	}
-
 
 	/**
 	 * Gets the font group box label.
@@ -69,12 +63,13 @@ public class FontGroupComposite extends AbstractGroupComposite {
 	/**
 	 * Sets the font group box label.
 	 * 
-	 * @param fontGroupLabel the font group label
+	 * @param fontGroupLabel
+	 *            the font group label
 	 * 
 	 * @return the fONT_GROUPBOX_LABEL
 	 */
 	protected void setFontGroupBoxLabel(String fontGroupLabel) {
-		this.FONT_GROUPBOX_LABEL=fontGroupLabel;
+		this.FONT_GROUPBOX_LABEL = fontGroupLabel;
 	}
 
 	/** The font field editor. */
@@ -83,10 +78,14 @@ public class FontGroupComposite extends AbstractGroupComposite {
 	/**
 	 * Instantiates a new font group composite.
 	 * 
-	 * @param parent the parent
-	 * @param style the style
-	 * @param fontGroupLabel the font group label
-	 * @param title the title
+	 * @param parent
+	 *            the parent
+	 * @param style
+	 *            the style
+	 * @param fontGroupLabel
+	 *            the font group label
+	 * @param title
+	 *            the title
 	 */
 	public FontGroupComposite(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
@@ -97,28 +96,29 @@ public class FontGroupComposite extends AbstractGroupComposite {
 	/**
 	 * Creates the content.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 */
-	protected void  createContent(Composite parent){
+	protected void createContent(Composite parent) {
 		Group fontGroup = new Group(parent, SWT.SHADOW_NONE);
 		fontGroup.setLayout(new GridLayout(1, true));
 		fontGroup.setText(FONT_GROUPBOX_LABEL);
 		fontFieldEditor = new FontFieldEditor(PreferenceConstantHelper.getElementConstant(getTitle(),
 				PreferenceConstantHelper.FONT), fontGroup);
 	}
+
 	public void setPreferenceStore(IPreferenceStore preferenceStore) {
 		super.setPreferenceStore(preferenceStore);
 		fontFieldEditor.setPreferenceStore(preferenceStore);
 	}
 
-	public void load(){
+	public void load() {
 		fontFieldEditor.load();
 	}
 
 	public void storePreferences() {
 		fontFieldEditor.store();
 	}
-
 
 	@Override
 	public void loadDefault() {

@@ -12,19 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.pages;
 
-import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
-import org.eclipse.gmf.runtime.notation.JumpLinkType;
-import org.eclipse.gmf.runtime.notation.Routing;
-import org.eclipse.gmf.runtime.notation.Smoothness;
-import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.jface.preference.ComboFieldEditor;
-import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.ui.ColorGroupForLinkComposite;
 import org.eclipse.papyrus.preferences.ui.ConnectionGroupComposite;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 
 /**
  * An abstract implementation of a basic link preference page.
@@ -50,20 +40,17 @@ import org.eclipse.swt.widgets.Group;
  */
 public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusElementPreferencePage {
 
-
 	@Override
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
 		// color pref for links
 		ColorGroupForLinkComposite colorGroupComposite = new ColorGroupForLinkComposite(parent, getTitle(), this);
 		addAbstractGroupComposite(colorGroupComposite);
-		
+
 		// router for links
-		ConnectionGroupComposite connectionGroupComposite= new ConnectionGroupComposite(parent, getTitle(), this);
+		ConnectionGroupComposite connectionGroupComposite = new ConnectionGroupComposite(parent, getTitle(), this);
 		addAbstractGroupComposite(connectionGroupComposite);
 
 	}
-
-
 
 }

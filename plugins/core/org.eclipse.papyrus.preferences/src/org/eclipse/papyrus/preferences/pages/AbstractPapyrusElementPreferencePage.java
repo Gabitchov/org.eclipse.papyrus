@@ -12,10 +12,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.pages;
 
-import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIPropertiesImages;
-import org.eclipse.papyrus.preferences.Messages;
-import org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor;
-import org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor;
 import org.eclipse.papyrus.preferences.ui.FontGroupComposite;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
@@ -41,9 +37,7 @@ import org.eclipse.swt.widgets.Layout;
  */
 public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyrusPreferencePage {
 
-
 	private Group toolbar;
-
 
 	protected Layout getToolbarLayout() {
 		return new GridLayout(2, false);
@@ -55,12 +49,10 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 		return compo;
 	}
 
-
 	@Override
 	protected void createPageContents(Composite parent) {
-		FontGroupComposite fontGroupComposite= new FontGroupComposite(parent, getTitle(), this);
+		FontGroupComposite fontGroupComposite = new FontGroupComposite(parent, getTitle(), this);
 		addAbstractGroupComposite(fontGroupComposite);
-		
 
 	}
 
