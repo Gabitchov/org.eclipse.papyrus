@@ -13,9 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
@@ -28,10 +30,14 @@ import org.eclipse.swt.widgets.Composite;
 public abstract class AbstractGroup extends Composite {
 
 	/** The title that comes from the page */
-	protected String title;
+	private String title;
 
-	/** The manager : a set that will contain all editor in the composite */
-	protected Set<AbstractGroup> manager;
+	/**
+	 * The fieldsEditor : a set that will contain all editor in the composite. It is in charge of
+	 * loading / storing / setting the preference store / loading default of all its contained field
+	 * editor
+	 */
+	private Set<FieldEditor> fieldsEditor;
 
 	/**
 	 * Gets the dialog page.
@@ -42,31 +48,8 @@ public abstract class AbstractGroup extends Composite {
 		return dialogPage;
 	}
 
-	/** The preference store. */
-
-	protected IPreferenceStore preferenceStore;
-
 	/** The dialog page. */
 	protected DialogPage dialogPage;
-
-	/**
-	 * Gets the preference store.
-	 * 
-	 * @return the preferenceStore
-	 */
-	public IPreferenceStore getPreferenceStore() {
-		return preferenceStore;
-	}
-
-	/**
-	 * Sets the preference store.
-	 * 
-	 * @param preferenceStore
-	 *            the preferenceStore to set
-	 */
-	public void setPreferenceStore(IPreferenceStore preferenceStore) {
-		this.preferenceStore = preferenceStore;
-	}
 
 	/**
 	 * Gets the title.
@@ -102,6 +85,7 @@ public abstract class AbstractGroup extends Composite {
 		this.title = title;
 		this.dialogPage = dialogPage;
 		this.setLayout(new GridLayout());
+		fieldsEditor = new HashSet<FieldEditor>();
 	}
 
 	/**
@@ -118,33 +102,76 @@ public abstract class AbstractGroup extends Composite {
 	}
 
 	/**
-	 * Gets the encapsulated compo.
+	 * Gets an encapsulated compo. This composite is used to contain a FieldEditor and to allow
+	 * developers to work with a FieldEditor like Composite element.
 	 * 
 	 * @param parent
 	 *            the parent
 	 * 
 	 * @return the encapsulated compo
 	 */
-
-	protected Composite getEncapsulatedCompo(Composite parent) {
+	protected final Composite getEncapsulatedCompo(Composite parent) {
 		Composite compo = new Composite(parent, SWT.NONE);
 		compo.setLayout(new GridLayout());
 		return compo;
 	}
 
 	/**
-	 * load preferences.
+	 * Register field editor. It will add the fieldEditor to a map that will be used to
+	 * store/load/loadDefault/set the PreferenceStore of contained fieldEditor
+	 * 
+	 * @param fieldEditor
+	 *            the fieldEditor to add.
 	 */
-	public abstract void load();
+	protected void addFieldEditor(FieldEditor fieldEditor) {
+//		if (fieldsEditor == null) {
+//			
+//		}
+		fieldsEditor.add(fieldEditor);
+	}
 
 	/**
-	 * load preferences.
+	 * Load preferences of all registered fieldEditors.
+	 * 
+	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
-	public abstract void loadDefault();
+	public final void load() {
+		for (FieldEditor fe : fieldsEditor) {
+			fe.load();
+		}
+	}
 
 	/**
-	 * store preferences.
+	 * Set the preference store of all registered fieldEditors.
+	 * 
+	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
-	public abstract void storePreferences();
+	public final void setPreferenceStore(IPreferenceStore store) {
+		for (FieldEditor fe : fieldsEditor) {
+			fe.setPreferenceStore(store);
+		}
+	}
+
+	/**
+	 * Load default preferences of all registered fieldEditors.
+	 * 
+	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
+	 */
+	public final void loadDefault() {
+		for (FieldEditor fe : fieldsEditor) {
+			fe.loadDefault();
+		}
+	}
+
+	/**
+	 * Store preferences of the registered fieldEditors.
+	 * 
+	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
+	 */
+	public final void storePreferences() {
+		for (FieldEditor fe : fieldsEditor) {
+			fe.store();
+		}
+	}
 
 }

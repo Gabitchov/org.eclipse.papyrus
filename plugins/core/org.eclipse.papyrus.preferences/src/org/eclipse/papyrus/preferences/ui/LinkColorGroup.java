@@ -61,16 +61,6 @@ public class LinkColorGroup extends AbstractGroup {
 	}
 
 	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	protected Composite getEncapsulatedCompo(Composite parent) {
-		Composite compo = new Composite(parent, SWT.NONE);
-		compo.setLayout(new GridLayout());
-		return compo;
-	}
-
-	/**
 	 * Creates the content.
 	 * 
 	 * @param parent the parent
@@ -84,49 +74,16 @@ public class LinkColorGroup extends AbstractGroup {
 		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT),
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
 		fontColorEditor.setPage(dialogPage);
+		
+		addFieldEditor(fontColorEditor);
 
 		Composite lineColorEditorCompo = getEncapsulatedCompo(toolbar);
 		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_LINE),
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
 
 		lineColorEditor.setPage(dialogPage);
+		
+		addFieldEditor(lineColorEditor);
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void setPreferenceStore(IPreferenceStore preferenceStore) {
-		super.setPreferenceStore(preferenceStore);
-		fontColorEditor.setPreferenceStore(preferenceStore);
-		lineColorEditor.setPreferenceStore(preferenceStore);
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void load() {
-		fontColorEditor.load();
-		lineColorEditor.load();
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void storePreferences() {
-		fontColorEditor.store();
-		lineColorEditor.store();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void loadDefault() {
-		fontColorEditor.loadDefault();
-		lineColorEditor.loadDefault();
-
-	}
 }

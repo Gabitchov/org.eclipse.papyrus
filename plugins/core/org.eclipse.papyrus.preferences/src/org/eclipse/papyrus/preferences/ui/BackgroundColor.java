@@ -16,7 +16,6 @@ package org.eclipse.papyrus.preferences.ui;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.jface.preference.GradientFieldEditor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -76,59 +75,15 @@ public class BackgroundColor extends AbstractGroup {
 		useGradientFillEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.GRADIENT_POLICY),
 				"", useGradientFillEditorCompo); //$NON-NLS-1$
 		useGradientFillEditor.setPage(dialogPage);
+		
+		addFieldEditor(useGradientFillEditor);
 
 		Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
 		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_GRADIENT),
 				gradientFillEditorCompo);
 		gradientFillEditor.setPage(dialogPage);
+		
+		addFieldEditor(gradientFillEditor);
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void setPreferenceStore(IPreferenceStore preferenceStore) {
-		super.setPreferenceStore(preferenceStore);
-		gradientFillEditor.setPreferenceStore(preferenceStore);
-		useGradientFillEditor.setPreferenceStore(preferenceStore);
-	}
-
-	/**
-	 * Gets the encapsulated compo.
-	 * 
-	 * @param parent
-	 *            the parent
-	 * 
-	 * @return the encapsulated compo
-	 */
-	protected Composite getEncapsulatedCompo(Composite parent) {
-		Composite compo = new Composite(parent, SWT.NONE);
-		compo.setLayout(new GridLayout());
-		return compo;
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void load() {
-		useGradientFillEditor.load();
-		gradientFillEditor.load();
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void storePreferences() {
-		useGradientFillEditor.store();
-		gradientFillEditor.store();
-	}
-
-	@Override
-	public void loadDefault() {
-		useGradientFillEditor.loadDefault();
-		gradientFillEditor.loadDefault();
-
-	}
 }

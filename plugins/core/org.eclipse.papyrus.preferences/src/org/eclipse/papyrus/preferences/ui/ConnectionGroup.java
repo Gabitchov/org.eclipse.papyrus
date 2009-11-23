@@ -120,6 +120,8 @@ public class ConnectionGroup extends AbstractGroup {
 				Messages.AbstractPapyrusLinkPreferencePage_Smoothness, SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES,
 				connectionGroup);
 
+		addFieldEditor(smoothnessComboFieldEditor);
+		
 		createRoutingGroup(connectionGroup);
 		createJumpLinkGroup(connectionGroup);
 	}
@@ -141,16 +143,22 @@ public class ConnectionGroup extends AbstractGroup {
 				JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL, JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES,
 				jumpLinkGroup);
 		jumpLinkStatusComboFieldEditor.setPage(dialogPage);
+		
+		addFieldEditor(jumpLinkStatusComboFieldEditor);
 
 		jumpLinkTypeComboFieldEditor = new ComboFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_TYPE), JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL,
 				JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES, jumpLinkGroup);
 		jumpLinkTypeComboFieldEditor.setPage(dialogPage);
+		
+		addFieldEditor(jumpLinkTypeComboFieldEditor);
 
 		jumpLinkReverseBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_REVERSE),
 				JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL, jumpLinkGroup);
 		jumpLinkReverseBooleanFieldEditor.setPage(dialogPage);
+		
+		addFieldEditor(jumpLinkReverseBooleanFieldEditor);
 	}
 
 	/**
@@ -168,71 +176,22 @@ public class ConnectionGroup extends AbstractGroup {
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_STYLE), ROUTING_STYLES_COMBOFIELDEDITOR_LABEL,
 				ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES, routingGroup);
 		routingStylesComboFieldEditor.setPage(dialogPage);
+		
+		addFieldEditor(routingStylesComboFieldEditor);
 
 		routingObstructionPolicyBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION),
 				ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingObstructionPolicyBooleanFieldEditor.setPage(dialogPage);
+		
+		addFieldEditor(routingObstructionPolicyBooleanFieldEditor);
 
 		routingDistancePolicyBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_DISTANCE),
 				ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingDistancePolicyBooleanFieldEditor.setPage(dialogPage);
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-
-	public void setPreferenceStore(IPreferenceStore preferenceStore) {
-		super.setPreferenceStore(preferenceStore);
-		jumpLinkReverseBooleanFieldEditor.setPreferenceStore(preferenceStore);
-		jumpLinkStatusComboFieldEditor.setPreferenceStore(preferenceStore);
-		jumpLinkTypeComboFieldEditor.setPreferenceStore(preferenceStore);
-		routingDistancePolicyBooleanFieldEditor.setPreferenceStore(preferenceStore);
-		routingObstructionPolicyBooleanFieldEditor.setPreferenceStore(preferenceStore);
-		routingStylesComboFieldEditor.setPreferenceStore(preferenceStore);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-
-	public void load() {
-		jumpLinkReverseBooleanFieldEditor.load();
-		jumpLinkStatusComboFieldEditor.load();
-		jumpLinkTypeComboFieldEditor.load();
-		routingDistancePolicyBooleanFieldEditor.load();
-		routingObstructionPolicyBooleanFieldEditor.load();
-		routingStylesComboFieldEditor.load();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-
-	public void storePreferences() {
-		jumpLinkReverseBooleanFieldEditor.store();
-		jumpLinkStatusComboFieldEditor.store();
-		jumpLinkTypeComboFieldEditor.store();
-		routingDistancePolicyBooleanFieldEditor.store();
-		routingObstructionPolicyBooleanFieldEditor.store();
-		routingStylesComboFieldEditor.store();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-
-	@Override
-	public void loadDefault() {
-		jumpLinkReverseBooleanFieldEditor.loadDefault();
-		jumpLinkStatusComboFieldEditor.loadDefault();
-		jumpLinkTypeComboFieldEditor.loadDefault();
-		routingDistancePolicyBooleanFieldEditor.loadDefault();
-		routingObstructionPolicyBooleanFieldEditor.loadDefault();
-		routingStylesComboFieldEditor.loadDefault();
+		
+		addFieldEditor(routingDistancePolicyBooleanFieldEditor);
 
 	}
 

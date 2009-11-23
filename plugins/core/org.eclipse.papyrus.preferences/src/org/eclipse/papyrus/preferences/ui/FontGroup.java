@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.preferences.ui;
 
 import org.eclipse.jface.dialogs.DialogPage;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -29,7 +28,7 @@ import org.eclipse.swt.widgets.Group;
 public class FontGroup extends AbstractGroup {
 
 	/** The FONT Group label **/
-	protected final String FONT_GROUPBOX_LABEL = Messages.AbstractPapyrusElementPreferencePage_Font;
+	private static final String FONT_GROUPBOX_LABEL = Messages.AbstractPapyrusElementPreferencePage_Font;
 
 	/** The font field editor. */
 	protected FontFieldEditor fontFieldEditor;
@@ -46,6 +45,7 @@ public class FontGroup extends AbstractGroup {
 	 **/    
 	public FontGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
+		createContent(parent);
 	}
 
 	/**
@@ -60,23 +60,8 @@ public class FontGroup extends AbstractGroup {
 		fontGroup.setText(FONT_GROUPBOX_LABEL);
 		fontFieldEditor = new FontFieldEditor(PreferenceConstantHelper.getElementConstant(getTitle(),
 				PreferenceConstantHelper.FONT), fontGroup);
+		
+		addFieldEditor(fontFieldEditor);
 	}
 
-	public void setPreferenceStore(IPreferenceStore preferenceStore) {
-		super.setPreferenceStore(preferenceStore);
-		fontFieldEditor.setPreferenceStore(preferenceStore);
-	}
-
-	public void load() {
-		fontFieldEditor.load();
-	}
-
-	public void storePreferences() {
-		fontFieldEditor.store();
-	}
-
-	@Override
-	public void loadDefault() {
-		fontFieldEditor.loadDefault();
-	}
 }
