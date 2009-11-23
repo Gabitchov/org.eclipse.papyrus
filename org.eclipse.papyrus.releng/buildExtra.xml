@@ -1,0 +1,44 @@
+<project default="run" name="Project's .releng buildExtra.xml">
+
+	<target name="init">
+	</target>
+
+	<target name="run">
+		<!-- TODO: write code that's hooked into o.e.d.commonbuilder.releng's build.xml to do extra configs (eg., for inserting 3rd party libs into plugins) 
+		-->
+	</target>
+
+	<target name="postProcess">
+		<echo>generating javadoc</echo>
+		<ant target="javadoc" antfile="javadoc.xml" dir="${buildDirectory}/plugins/org.eclipse.gmt.modisco.infra.doc/" />
+	</target>
+
+	<target name="extraPackaging">
+		<!-- Delete source checkout zip, shouldn't even be there -->
+		<delete file="${buildDirectory}/${buildLabel}/${zipPrefix}-Sources${incubation}-${buildAlias}.zip" />
+
+		<echo message="Retrieving build log" />
+		<property name="hudsonRoot" location="${buildDirectory}/../../../../" />
+		<available type="file" file="${hudsonRoot}/nextBuildNumber" property="foundHudsonRoot" />
+		<antcall target="addLog" />
+		<!-- create ALL zip from ${allZip} -->
+		<!--
+		<echo>Building ALL zip</echo>
+		<zip destfile="${buildDirectory}/${buildLabel}/MODISCO-ALL${incubation}-${buildAlias}.zip" update="true">
+			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}" dirmode="775" filemode="664" />
+		</zip>
+		-->
+	</target>
+
+	<target name="addLog" if="foundHudsonRoot">
+		<loadfile property="lastBuildNumber" srcFile="${hudsonRoot}/nextBuildNumber" />
+		<math result="buildNumber" operand1="${lastBuildNumber}" operation="-" operand2="1" datatype="int" />
+		<copy tofile="${buildDirectory}/${buildLabel}/buildlog.txt" file="${hudsonRoot}/builds/${buildNumber}/log" />
+	</target>
+
+	<target name="getDependencies">
+		<!-- if your project requires more dependencies, add them here; if it does not require all of these, remove those not required -->
+	</target>
+
+
+</project>

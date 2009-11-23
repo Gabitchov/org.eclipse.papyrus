@@ -10,7 +10,7 @@ buildType=N
 mainFeatureToBuildID=org.eclipse.papyrus
 #testFeatureToBuildID=org.eclipse.mdt.papyrus.tests.feature
 
-build.steps=buildZips,buildUpdate,buildTests,generateDigests,test,publish,cleanup,map2psf
+build.steps=buildZips,buildUpdate,buildTests,generateDigests,test,publish,cleanup
 
 compilerArg=-enableJavadoc -encoding ISO-8859-1
 
@@ -23,20 +23,15 @@ individualSourceBundles=true
 runPackager=true
 
 # this must be a path to a JDK (not a JRE!)
-#JAVA14_HOME=D:/Outils/Java/jdk1.6.0_14
-#JAVA50_HOME=D:/Outils/Java/jdk1.6.0_14
-#JAVA60_HOME=D:/Outils/Java/jdk1.6.0_14
-#JAVA_HOME=D:/Outils/Java/jdk1.6.0_14
-#JAVADOC_HOME=${JAVA60_HOME}/bin
-JAVA60_HOME=/opt/public/common/ibm-java-jdk-ppc-60
-JAVA50_64_HOME=/opt/public/common/ibm-java2-ppc64-50
-JAVA50_HOME=/opt/public/common/ibm-java2-ppc-50
-JAVA14_HOME=/opt/public/common/ibm-java2-142
-JAVA_HOME=${JAVA50_HOME}
+JAVA14_HOME=D:/Outils/Java/jdk1.6.0_14
+JAVA50_HOME=D:/Outils/Java/jdk1.6.0_14
+JAVA60_HOME=D:/Outils/Java/jdk1.6.0_14
+JAVA_HOME=D:/Outils/Java/jdk1.6.0_14
 JAVADOC_HOME=${JAVA60_HOME}/bin
-JAVADOC14_HOME=/usr/lib/jvm/jre-1.6.0-openjdk/bin
+#JAVADOC14_HOME=/usr/lib/jvm/jre-1.6.0-openjdk/bin
 
-dependencyURLs=http://download.eclipse.org/eclipse/downloads/drops/R-3.5.1-200909170800/eclipse-SDK-3.5.1-linux-gtk-ppc.tar.gz,\
+# use the french mirror. should change when going on Eclipse server
+dependencyURLs=http://download.eclipse.org/eclipse/downloads/drops/R-3.5.1-200909170800/eclipse-SDK-3.5.1-win32.zip,\
 http://download.eclipse.org/modeling/emf/emf/downloads/drops/2.5.0/R200906151043/emf-xsd-SDK-2.5.0.zip,\
 http://download.eclipse.org/modeling/mdt/uml2/downloads/drops/3.0.1/R200908281428/mdt-uml2-SDK-3.0.1.zip,\
 http://download.eclipse.org/modeling/mdt/ocl/downloads/drops/1.3.0/R200906151742/mdt-ocl-SDK-1.3.0.zip,\
@@ -47,26 +42,20 @@ http://download.eclipse.org/modeling/gmf/gmf/downloads/drops/2.2.1/R200909151752
 http://download.eclipse.org/modeling/emf/transaction/downloads/drops/1.3.1/R200909151245/emf-transaction-SDK-1.3.1.zip,\
 http://download.eclipse.org/modeling/emft/eef/downloads/drops/0.7.1/I200911171815/emf-eef-SDK-incubation-I200911171815.zip,\
 http://download.eclipse.org/modeling/m2t/acceleo/downloads/drops/0.9.0/I200909291229/m2t-acceleo-runtime-incubation-0.9.0M2.zip
-# http://download.eclipse.org/eclipse/downloads/drops/R-3.5.1-200909170800/eclipse-SDK-3.5.1-win32.zip,\
 
-repositoryURLs=\
-http://download.eclipse.org/modeling/emf/updates/releases,\
-http://download.eclipse.org/modeling/mdt/updates/releases,\
-http://download.eclipse.org/modeling/m2m/updates/releases
+downloadsDir=D:/Build/Downloads
 
-# local dir for downloads
-# downloadsDir=D:/Build/Downloads
+# to build the local source tree, execute:
+# mkdir MoDiscoTree && cd MoDiscoTree
+# svn export http://dev.eclipse.org/svnroot/modeling/org.eclipse.gmt.modisco/plugins/trunk plugins
+# svn export http://dev.eclipse.org/svnroot/modeling/org.eclipse.gmt.modisco/features/trunk features
 
-# for fetching from SVN maps with PDE Build, and antlr runtime from orbit
-repositoryURLs=http://download.eclipse.org/technology/subversive/0.7/pde-update-site/, http://download.eclipse.org/tools/orbit/downloads/drops/R20090825191606/updateSite
-pluginIDsToInstall=org.antlr.runtime
-featureIDsToInstall="org.eclipse.team.svn.pde.build"
+localSourceCheckoutDir=D:/Build/Source
 
 # WINDOWS SPECIFIC 
-# workspaceDir=D:/Workspaces/Papyrus2_Head
+workspaceDir=D:/Workspaces/Papyrus2_Head
 
-
-# eclipse.base.url=http://download.eclipse.org/eclipse/downloads/drops/R-3.5.1-200909170800
-# eclipse.base.file=eclipse-SDK-3.5.1-win32.zip
-
+# no signing locally
+skipSign=true
+sign=false
 ## END PROJECT BUILD PROPERTIES ##
