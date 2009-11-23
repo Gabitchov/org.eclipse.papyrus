@@ -12,7 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.pages;
 
-import org.eclipse.papyrus.preferences.ui.FontGroupComposite;
+import org.eclipse.papyrus.preferences.ui.FontGroup;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -43,6 +43,11 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 		return new GridLayout(2, false);
 	}
 
+	/**
+	 * create a local composite
+	 * @param parent
+	 * @return
+	 */
 	protected Composite getEncapsulatedCompo(Composite parent) {
 		Composite compo = new Composite(parent, SWT.NONE);
 		compo.setLayout(new GridLayout());
@@ -51,8 +56,8 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 
 	@Override
 	protected void createPageContents(Composite parent) {
-		FontGroupComposite fontGroupComposite = new FontGroupComposite(parent, getTitle(), this);
-		addAbstractGroupComposite(fontGroupComposite);
+		FontGroup fontGroupComposite = new FontGroup(parent, getTitle(), this);
+		addAbstractGroup(fontGroupComposite);
 
 	}
 

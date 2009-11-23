@@ -12,8 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.pages;
 
-import org.eclipse.papyrus.preferences.ui.ColorGroupForLinkComposite;
-import org.eclipse.papyrus.preferences.ui.ConnectionGroupComposite;
+import org.eclipse.papyrus.preferences.ui.LinkColorGroup;
+import org.eclipse.papyrus.preferences.ui.ConnectionGroup;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -44,12 +44,12 @@ public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusE
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
 		// color pref for links
-		ColorGroupForLinkComposite colorGroupComposite = new ColorGroupForLinkComposite(parent, getTitle(), this);
-		addAbstractGroupComposite(colorGroupComposite);
+		LinkColorGroup colorGroupComposite = new LinkColorGroup(parent, getTitle(), this);
+		addAbstractGroup(colorGroupComposite);
 
 		// router for links
-		ConnectionGroupComposite connectionGroupComposite = new ConnectionGroupComposite(parent, getTitle(), this);
-		addAbstractGroupComposite(connectionGroupComposite);
+		ConnectionGroup connectionGroupComposite = new ConnectionGroup(parent, getTitle(), this);
+		addAbstractGroup(connectionGroupComposite);
 
 	}
 

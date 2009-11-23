@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr 
+ *  Thibault Landre (Atos Origin) 
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
@@ -23,54 +23,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FontGroupComposite.
+ * The Class FontGroupComposite contains a field to manage preference to display a text in a label 
  */
-public class FontGroupComposite extends AbstractGroupComposite {
+public class FontGroup extends AbstractGroup {
 
-	/** The FON t_ groupbo x_ label. */
-	protected String FONT_GROUPBOX_LABEL = null;
-
-	/**
-	 * Gets the font field editor.
-	 * 
-	 * @return the fontFieldEditor
-	 */
-	protected FontFieldEditor getFontFieldEditor() {
-		return fontFieldEditor;
-	}
-
-	/**
-	 * Sets the font field editor.
-	 * 
-	 * @param fontFieldEditor
-	 *            the fontFieldEditor to set
-	 */
-	protected void setFontFieldEditor(FontFieldEditor fontFieldEditor) {
-		this.fontFieldEditor = fontFieldEditor;
-	}
-
-	/**
-	 * Gets the font group box label.
-	 * 
-	 * @return the fONT_GROUPBOX_LABEL
-	 */
-	protected String getFontGroupBoxLabel() {
-		return FONT_GROUPBOX_LABEL;
-	}
-
-	/**
-	 * Sets the font group box label.
-	 * 
-	 * @param fontGroupLabel
-	 *            the font group label
-	 * 
-	 * @return the fONT_GROUPBOX_LABEL
-	 */
-	protected void setFontGroupBoxLabel(String fontGroupLabel) {
-		this.FONT_GROUPBOX_LABEL = fontGroupLabel;
-	}
+	/** The FONT Group label **/
+	protected final String FONT_GROUPBOX_LABEL = Messages.AbstractPapyrusElementPreferencePage_Font;
 
 	/** The font field editor. */
 	protected FontFieldEditor fontFieldEditor;
@@ -79,18 +38,14 @@ public class FontGroupComposite extends AbstractGroupComposite {
 	 * Instantiates a new font group composite.
 	 * 
 	 * @param parent
-	 *            the parent
-	 * @param style
-	 *            the style
-	 * @param fontGroupLabel
-	 *            the font group label
-	 * @param title
-	 *            the title
-	 */
-	public FontGroupComposite(Composite parent, String title, DialogPage dialogPage) {
+	 *            the parent of the composite
+	 * @param String
+	 *            the title of the page
+	 * @param dialogPage
+	 *            to set the page in field editor
+	 **/    
+	public FontGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
-		setFontGroupBoxLabel(Messages.AbstractPapyrusElementPreferencePage_Font);
-		createContent(parent);
 	}
 
 	/**

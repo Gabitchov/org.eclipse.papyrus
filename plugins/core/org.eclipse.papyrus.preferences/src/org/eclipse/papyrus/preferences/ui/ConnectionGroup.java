@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr 
+ *  Thibault Landre (Atos Origin) 
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
@@ -28,22 +28,21 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 /**
- * The Class ConnectionGroupComposite.
+ * The Class ConnectionGroupComposite constains all field to manage the router of a link
  */
-public class ConnectionGroupComposite extends AbstractGroupComposite {
+public class ConnectionGroup extends AbstractGroup {
 
 	/**
 	 * Instantiates a new connection group composite.
-	 * 
 	 * @param parent
-	 *            the parent
-	 * @param title
-	 *            the title
+	 *            the parent of the composite
+	 * @param String
+	 *            the title of the page
 	 * @param dialogPage
-	 *            the dialog page
-	 */
+	 *            to set the page in field editor
+	 **/    
 
-	public ConnectionGroupComposite(Composite parent, String title, DialogPage dialogPage) {
+	public ConnectionGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 		createContent(parent);
 	}
@@ -152,41 +151,6 @@ public class ConnectionGroupComposite extends AbstractGroupComposite {
 				getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_REVERSE),
 				JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL, jumpLinkGroup);
 		jumpLinkReverseBooleanFieldEditor.setPage(dialogPage);
-	}
-
-	/**
-	 * @return the routingStylesComboFieldEditor
-	 */
-	protected ComboFieldEditor getRoutingStylesComboFieldEditor() {
-		return routingStylesComboFieldEditor;
-	}
-
-	/**
-	 * @return the routingDistancePolicyBooleanFieldEditor
-	 */
-	protected BooleanFieldEditor getRoutingDistancePolicyBooleanFieldEditor() {
-		return routingDistancePolicyBooleanFieldEditor;
-	}
-
-	/**
-	 * @return the jumpLinkReverseBooleanFieldEditor
-	 */
-	protected BooleanFieldEditor getJumpLinkReverseBooleanFieldEditor() {
-		return jumpLinkReverseBooleanFieldEditor;
-	}
-
-	/**
-	 * @return the jumpLinkTypeComboFieldEditor
-	 */
-	protected ComboFieldEditor getJumpLinkTypeComboFieldEditor() {
-		return jumpLinkTypeComboFieldEditor;
-	}
-
-	/**
-	 * @return the jumpLinkStatusComboFieldEditor
-	 */
-	protected ComboFieldEditor getJumpLinkStatusComboFieldEditor() {
-		return jumpLinkStatusComboFieldEditor;
 	}
 
 	/**

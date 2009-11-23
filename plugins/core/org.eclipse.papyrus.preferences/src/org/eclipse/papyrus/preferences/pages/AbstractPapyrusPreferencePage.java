@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
-import org.eclipse.papyrus.preferences.ui.AbstractGroupComposite;
+import org.eclipse.papyrus.preferences.ui.AbstractGroup;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -43,8 +43,8 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
  * <li><code>getBundleId()</code> method in order to define the preference scope (Project or
  * Instance) of the preference page.</li>
  * <li><code>createPageContents()</code> method to populate the preference page with the different
- * field editor. </br>Each field added has to be declared through the
- * <code>addEditorFields(FieldEditor fe)</code> method</li>
+ *  {@link AbstractGroup}. </br>Each group added has to be declared through the
+ * <code>addAbstractGroup(AbstractGroup fe)</code> method</li>
  * </ul>
  * </p>
  */
@@ -53,7 +53,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 
 	private IProject project;
 
-	private Set<AbstractGroupComposite> fieldsEditor;
+	private Set<AbstractGroup> groupSet;
 
 	/**
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#getElement()
@@ -111,7 +111,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 
 		createPageContents(container);
 
-		initFieldsEditor();
+		initGroup();
 
 		return container;
 	}
@@ -131,11 +131,11 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	/**
 	 * Add the given field editor to the page.
 	 */
-	protected void addAbstractGroupComposite(AbstractGroupComposite fe) {
-		if (fieldsEditor == null) {
-			fieldsEditor = new HashSet<AbstractGroupComposite>();
+	protected void addAbstractGroup(AbstractGroup fe) {
+		if (groupSet == null) {
+			groupSet = new HashSet<AbstractGroup>();
 		}
-		fieldsEditor.add(fe);
+		groupSet.add(fe);
 	}
 
 	/*
@@ -153,9 +153,9 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
 	private void storePreferences() {
-		if (fieldsEditor != null) {
-			for (AbstractGroupComposite fe : fieldsEditor) {
-				fe.storePreferences();
+		if (groupSet != null) {
+			for (AbstractGroup gs : groupSet) {
+				gs.storePreferences();
 			}
 		}
 	}
@@ -174,22 +174,22 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * Load the default preferences of the fields contained in this page
 	 */
 	private void loadDefaultPreferences() {
-		if (fieldsEditor != null) {
-			for (AbstractGroupComposite fe : fieldsEditor) {
-				fe.loadDefault();
+		if (groupSet != null) {
+			for (AbstractGroup gs : groupSet) {
+				gs.loadDefault();
 			}
 		}
 
 	}
 
 	/**
-	 * Init the fields contained in this page.
+	 * Init groups contained in this page.
 	 */
-	private void initFieldsEditor() {
-		if (fieldsEditor != null) {
-			for (AbstractGroupComposite fe : fieldsEditor) {
-				fe.setPreferenceStore(getPreferenceStore());
-				fe.load();
+	private void initGroup() {
+		if (groupSet != null) {
+			for (AbstractGroup gs : groupSet) {
+				gs.setPreferenceStore(getPreferenceStore());
+				gs.load();
 			}
 		}
 	}
@@ -197,9 +197,9 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	@Override
 	public void dispose() {
 		super.dispose();
-		if (fieldsEditor != null) {
-			for (AbstractGroupComposite fe : fieldsEditor) {
-				fe.dispose();
+		if (groupSet != null) {
+			for (AbstractGroup gs : groupSet) {
+				gs.dispose();
 			}
 		}
 

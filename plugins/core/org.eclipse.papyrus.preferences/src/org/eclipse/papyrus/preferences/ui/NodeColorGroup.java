@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr 
+ *  Thibault Landre (Atos Origin) 
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
@@ -20,30 +20,37 @@ import org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
-public class ColorGroupForNodeComposite extends ColorGroupForLinkComposite {
+/**
+ * The Class NodeColorGroup contains field editor to manage color of a node
+ */
+public class NodeColorGroup extends LinkColorGroup {
 
+	/** The font color editor. */
 	protected ColorFieldEditor fontColorEditor;
 
+	/** The line color editor. */
 	protected ColorFieldEditor lineColorEditor;
 
+	/** The fill color editor. */
 	protected ColorFieldEditor fillColorEditor;
 
 	/**
-	 * create a composite to display the group color dor a node
+	 * create a composite to display the group color for a node.
 	 * 
-	 * @param parent
-	 * @param title
-	 */
+	 * @param parent the parent of the composite
+	 * @param dialogPage to set the page in field editor
+	 * @param title the title
+	 */    
 
-	public ColorGroupForNodeComposite(Composite parent, String title, DialogPage dialogPage) {
+
+	public NodeColorGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 	}
 
 	/**
-	 * create the content
+	 * create the content.
 	 * 
-	 * @param parent
-	 *            : the parent composite
+	 * @param parent : the parent composite
 	 */
 	protected void createContent(Composite parent) {
 		super.createContent(parent);
@@ -52,27 +59,6 @@ public class ColorGroupForNodeComposite extends ColorGroupForLinkComposite {
 		fillColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FILL),
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FILL_COLOR), fillColorEditorCompo);
 		fillColorEditor.setPage(dialogPage);
-	}
-
-	/**
-	 * @return the fontColorEditor
-	 */
-	protected ColorFieldEditor getFontColorEditor() {
-		return fontColorEditor;
-	}
-
-	/**
-	 * @return the lineColorEditor
-	 */
-	protected ColorFieldEditor getLineColorEditor() {
-		return lineColorEditor;
-	}
-
-	/**
-	 * @return the fillColorEditor
-	 */
-	protected ColorFieldEditor getFillColorEditor() {
-		return fillColorEditor;
 	}
 
 	/**

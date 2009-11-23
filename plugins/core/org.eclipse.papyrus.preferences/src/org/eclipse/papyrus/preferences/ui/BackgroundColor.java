@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr 
+ *  Thibault Landre (Atos Origin) 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
@@ -26,47 +27,20 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
 /**
- * The Class BackgroundColorGroup.
+ * The Class BackgroundColorGroup is group that contains all editor to manage the gradient and associated color background
  */
-public class BackgroundColorGroup extends AbstractGroupComposite {
-
-	/**
-	 * @return the useGradientFillEditor
-	 */
-	public BooleanFieldEditor getUseGradientFillEditor() {
-		return useGradientFillEditor;
-	}
-
-	/**
-	 * @param useGradientFillEditor
-	 *            the useGradientFillEditor to set
-	 */
-	protected void setUseGradientFillEditor(BooleanFieldEditor useGradientFillEditor) {
-		this.useGradientFillEditor = useGradientFillEditor;
-	}
-
-	/**
-	 * @return the gradientFillEditor
-	 */
-	public GradientFieldEditor getGradientFillEditor() {
-		return gradientFillEditor;
-	}
-
-	/**
-	 * @param gradientFillEditor
-	 *            the gradientFillEditor to set
-	 */
-	protected void setGradientFillEditor(GradientFieldEditor gradientFillEditor) {
-		this.gradientFillEditor = gradientFillEditor;
-	}
+public class BackgroundColor extends AbstractGroup {
 
 	/**
 	 * Instantiates a new background color group.
-	 * 
 	 * @param parent
-	 *            the parent
-	 */
-	public BackgroundColorGroup(Composite parent, String title, DialogPage dialogPage) {
+	 *            the parent of the composite
+	 * @param String
+	 *            the title of the page
+	 * @param dialogPage
+	 *            to set the page in field editor
+	 **/            
+	public BackgroundColor(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 		createContent(parent);
 	}

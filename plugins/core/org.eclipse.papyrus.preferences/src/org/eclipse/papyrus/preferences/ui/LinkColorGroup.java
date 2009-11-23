@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr 
+ *  Thibault Landre (Atos Origin) 
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
@@ -24,43 +24,36 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-public class ColorGroupForLinkComposite extends AbstractGroupComposite {
+/**
+ * The Class LinkColorGroup contains editor to edit preference of link color
+ */
+public class LinkColorGroup extends AbstractGroup {
 
+	/** The font color editor. */
 	protected ColorFieldEditor fontColorEditor;
 
+	/** The line color editor. */
 	protected ColorFieldEditor lineColorEditor;
 
+	/** The toolbar. */
 	protected Group toolbar;
 
 	/**
-	 * creation of a colorGroup Composite
+	 * creation of a colorGroup Composite.
 	 * 
-	 * @param parent
-	 *            the parent composite
-	 * @param title
-	 *            the title
-	 */
+	 * @param parent the parent of the composite
+	 * @param dialogPage to set the page in field editor
+	 * @param title the title
+	 */    
 
-	public ColorGroupForLinkComposite(Composite parent, String title, DialogPage dialogPage) {
+	public LinkColorGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 		createContent(parent);
 	}
 
 	/**
-	 * @return the fontColorEditor
-	 */
-	protected ColorFieldEditor getFontColorEditor() {
-		return fontColorEditor;
-	}
-
-	/**
-	 * @return the lineColorEditor
-	 */
-	protected ColorFieldEditor getLineColorEditor() {
-		return lineColorEditor;
-	}
-
-	/**
+	 * Gets the toolbar.
+	 * 
 	 * @return the group that contains editors
 	 */
 	protected Group getToolbar() {
@@ -80,7 +73,7 @@ public class ColorGroupForLinkComposite extends AbstractGroupComposite {
 	/**
 	 * Creates the content.
 	 * 
-	 * @param parent
+	 * @param parent the parent
 	 */
 	protected void createContent(Composite parent) {
 		toolbar = new Group(parent, SWT.SHADOW_NONE);
@@ -127,6 +120,9 @@ public class ColorGroupForLinkComposite extends AbstractGroupComposite {
 		lineColorEditor.store();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void loadDefault() {
 		fontColorEditor.loadDefault();

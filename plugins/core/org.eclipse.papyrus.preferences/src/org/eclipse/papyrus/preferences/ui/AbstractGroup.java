@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr 
+ *  Thibault Landre (Atos Origin) 
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.ui;
 
@@ -25,13 +25,13 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * The Class AbstractGroupComposite.
  */
-public abstract class AbstractGroupComposite extends Composite {
+public abstract class AbstractGroup extends Composite {
 
 	/** The title that comes from the page */
 	protected String title;
 
 	/** The manager : a set that will contain all editor in the composite */
-	protected Set<AbstractGroupComposite> manager;
+	protected Set<AbstractGroup> manager;
 
 	/**
 	 * Gets the dialog page.
@@ -88,16 +88,16 @@ public abstract class AbstractGroupComposite extends Composite {
 	}
 
 	/**
-	 * Instantiates a new background color group.
+	 * Instantiates a new abstract group.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *            the parent of the composite
 	 * @param String
 	 *            the title of the page
 	 * @param dialogPage
 	 *            to set the page in field editor
 	 */
-	public AbstractGroupComposite(Composite parent, String title, DialogPage dialogPage) {
+	public AbstractGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, SWT.None);
 		this.title = title;
 		this.dialogPage = dialogPage;
