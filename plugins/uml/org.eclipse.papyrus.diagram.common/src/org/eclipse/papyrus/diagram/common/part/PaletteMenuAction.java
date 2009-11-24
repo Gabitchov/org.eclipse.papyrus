@@ -14,12 +14,9 @@
 package org.eclipse.papyrus.diagram.common.part;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.gef.ui.palette.PaletteViewer;
-import org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor;
-import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
@@ -45,22 +42,22 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	protected List<Action> actions;
 
 	/**
-	 * Constructor
+	 * Creates a new PaletteMenuAction
 	 * 
-	 * @param prefs
-	 *            PaletteViewerPreferences object where the settings can be saved
+	 * @param viewer
+	 *            the palette viewer on which this action is added
 	 */
 	public PaletteMenuAction(PaletteViewer viewer) {
 		this(viewer, false);
 	}
 
 	/**
-	 * Constructor
+	 * Creates a new PaletteMenuAction
 	 * 
-	 * @param hasIcon
-	 *            True if this action should associate an icon with itself
 	 * @param viewer
-	 *            the palette viewer where the menu is build.
+	 *            the palette viewer on which this action is added
+	 * @param hasIcon
+	 *            <code>true</code> if the menu action must display an icon
 	 */
 	public PaletteMenuAction(PaletteViewer viewer, boolean hasIcon) {
 		super(Messages.Palette_Action_Label);
@@ -85,7 +82,9 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	}
 
 	/**
-	 * @return A list of actions that can switch to one of the supported layout modes
+	 * Creates and returns a list of actions that can toggle palette providers visiblity
+	 * 
+	 * @return a list of actions that can toggle palette providers visiblity
 	 */
 	protected List<Action> createActions() {
 		// retrieve all palette availables for the current editor...
@@ -123,35 +122,10 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	}
 
 	/**
-	 * Checks if the provider descriptor is able to fill the palette for the current active diagram
+	 * Returns the palette viewer on which this action is build
 	 * 
-	 * @param provider
-	 *            the provider to check
-	 * @return <code>true</code> if the provider is able to fill the palette for the current active
-	 *         diagram
+	 * @return the palette viewer on which this action is build
 	 */
-	// @unused
-	protected boolean isContributing(PapyrusPaletteService.ProviderDescriptor provider, ContributeToPaletteOperation o) {
-		return provider.providesWithVisibility(o);
-	}
-
-	/**
-	 * Checks if the name does not belong to a set of names that should not be in the action list
-	 * 
-	 * @param provider
-	 *            the provider to check
-	 * @param name
-	 *            the name of the provider to check
-	 * @return <code>true</code> if the provider should appear in the list of actions
-	 */
-	// @unused
-	protected boolean isChangeable(ProviderDescriptor provider, String name) {
-		assert name != null;
-		final String[] providersToRemove = new String[] { "<Unnamed>", "Presentation Palette", "Geoshapes" };
-		final List<String> providersList = Arrays.asList(providersToRemove);
-		return !providersList.contains(name);
-	}
-
 	protected PaletteViewer getPaletteViewer() {
 		return viewer;
 	}
@@ -175,26 +149,19 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	}
 
 	/**
-	 * Checks if the provider descriptor is actually enabled
-	 * 
-	 * @param providerDescriptor
-	 *            the provider descriptor for the palette to check
-	 * @return <code>true</code> if the provider actually provides element to the palette
-	 */
-	// @unused
-	public boolean isPaletteEnabled(PapyrusPaletteService.ProviderDescriptor providerDescriptor) {
-		return true;
-	}
-
-	/**
-	 * Empty method
-	 * 
-	 * @see org.eclipse.jface.action.IMenuCreator#dispose()
+	 * {@inheritDoc}
 	 */
 	public void dispose() {
 	}
 
-	private Menu fillMenu(Menu menu) {
+	/**
+	 * Fills the menu for this action
+	 * 
+	 * @param menu
+	 *            the menu to contribute
+	 * @return the menu updated
+	 */
+	protected Menu fillMenu(Menu menu) {
 		for (Action action2 : actions) {
 			DisplayPaletteChangeAction action = (DisplayPaletteChangeAction) action2;
 			// action.setChecked(isPaletteEnabled(action.getProviderDescriptor()));
@@ -220,22 +187,39 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 		return fillMenu(new Menu(parent));
 	}
 
-	private class DisplayPaletteChangeAction extends Action {
+	/**
+	 * Action that toggles the visibility of a provider descriptor
+	 */
+	public class DisplayPaletteChangeAction extends Action {
 
+		/** provider descriptor managed by this action */
 		private final PapyrusPaletteService.ProviderDescriptor providerDescriptor;
 
+		/**
+		 * Creates a new DisplayPaletteChangeAction
+		 * 
+		 * @param providerDescriptor
+		 *            the provider descriptor that must be hidden/shown
+		 */
 		public DisplayPaletteChangeAction(PapyrusPaletteService.ProviderDescriptor providerDescriptor) {
 			this.providerDescriptor = providerDescriptor;
 		}
 
-		// @unused
+		/**
+		 * Returns the provider descriptor on which this action runs
+		 * 
+		 * @return the provider descriptor on which this action runs
+		 */
 		public PapyrusPaletteService.ProviderDescriptor getProviderDescriptor() {
 			return providerDescriptor;
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
 		public void run() {
-			PapyrusPalettePreferences.changePaletteVisibility(providerDescriptor.getContributionID(),
+			PapyrusPalettePreferences.changePaletteVisibility(getProviderDescriptor().getContributionID(),
 					getActiveSashPage().getClass().getName(), isChecked());
 		}
 	}

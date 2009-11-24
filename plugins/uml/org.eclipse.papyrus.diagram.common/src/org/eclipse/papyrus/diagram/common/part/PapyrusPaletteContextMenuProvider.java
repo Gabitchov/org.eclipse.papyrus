@@ -40,6 +40,8 @@ public class PapyrusPaletteContextMenuProvider extends PaletteContextMenuProvide
 	public void buildContextMenu(IMenuManager menu) {
 		super.buildContextMenu(menu);
 
+		// adds a new action with sub-menu to display which providers must be displayed and which
+		// ones should be hidden
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, new PaletteMenuAction(getPaletteViewer()));
 	}
 

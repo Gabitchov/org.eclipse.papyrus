@@ -263,9 +263,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * Returns this contribution's name
-		 * 
-		 * @return this contribution's name
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String getContributionName() {
@@ -273,9 +271,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * Returns this contribution's id
-		 * 
-		 * @return this contribution's id
+		 * {@inheritDoc}
 		 */
 		@Override
 		public String getContributionID() {
@@ -283,10 +279,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * Returns true if this contributor is hidden in the preferences
-		 * 
-		 * @param operation
-		 * @return
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isHidden(ContributeToPaletteOperation operation) {
@@ -296,7 +289,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean provides(IOperation operation) {
@@ -336,9 +329,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * 
-		 * @param operation
-		 * @return
+		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean providesWithVisibility(ContributeToPaletteOperation operation) {
@@ -375,7 +366,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * @see org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor#getProvider()
+		 * {@inheritDoc}
 		 */
 		@Override
 		public IProvider getProvider() {
@@ -389,10 +380,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * Sets contribution empty because contributions are stored in the providers
-	 * 
-	 * @param configElement
-	 *            the configuration element that drives this service.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setContributions(IConfigurationElement configElement) {
@@ -461,7 +449,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.common.core.service.Service#newProviderDescriptor(org.eclipse.core.runtime.IConfigurationElement)
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected Service.ProviderDescriptor newProviderDescriptor(IConfigurationElement element) {
@@ -469,8 +457,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider#contributeToPalette(org.eclipse.ui.IEditorPart,
-	 *      java.lang.Object, org.eclipse.gef.palette.PaletteRoot, Map)
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void contributeToPalette(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
@@ -546,13 +533,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * Creates default palette root.
-	 * 
-	 * @param editor
-	 *            the editor for which palette is created
-	 * @param content
-	 *            the palette content
-	 * @return a new palette root with contributions from all providers
+	 * {@inheritDoc}
 	 */
 	@Override
 	public PaletteRoot createPalette(final IEditorPart editor, final Object content) {
@@ -577,19 +558,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * Updates the palette root given.
-	 * 
-	 * @param existingRoot
-	 *            existing palette root in which to add/remove entries that are now provided for or
-	 *            no longer provided for
-	 * @param editor
-	 *            the editor
-	 * @param content
-	 *            the palette content
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void updatePalette(PaletteRoot existingRoot, final IEditorPart editor, final Object content) {
-
 		PaletteRoot newRoot = createPalette(editor, content);
 		updatePaletteContainerEntries(existingRoot, newRoot);
 	}
@@ -608,8 +580,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 * @param newContainer
 	 *            the new palette entries
 	 */
-	private void updatePaletteContainerEntries(PaletteContainer existingContainer, PaletteContainer newContainer) {
-
+	protected void updatePaletteContainerEntries(PaletteContainer existingContainer, PaletteContainer newContainer) {
 		HashMap existingEntryIds = new HashMap();
 		for (Iterator iter = existingContainer.getChildren().iterator(); iter.hasNext();) {
 			PaletteEntry entry = (PaletteEntry) iter.next();
