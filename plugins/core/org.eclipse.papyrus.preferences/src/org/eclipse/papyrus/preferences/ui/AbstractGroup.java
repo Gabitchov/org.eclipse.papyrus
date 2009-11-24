@@ -124,9 +124,6 @@ public abstract class AbstractGroup extends Composite {
 	 *            the fieldEditor to add.
 	 */
 	protected void addFieldEditor(FieldEditor fieldEditor) {
-//		if (fieldsEditor == null) {
-//			
-//		}
 		fieldsEditor.add(fieldEditor);
 	}
 
