@@ -253,7 +253,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	public IAction getSearchAction() {
 		// fjcano #290425 :: add search element action to model navigator
 		IAction searchAction = new SearchElementAction(this);
-		ImageDescriptor magnifyingGlassIcon = Activator.Implementation.getImageDescriptor("icons/etool16/search.gif");
+		ImageDescriptor magnifyingGlassIcon = Activator.getImageDescriptor("icons/etool16/search.gif");
 		searchAction.setImageDescriptor(magnifyingGlassIcon);
 		searchAction.setHoverImageDescriptor(magnifyingGlassIcon);
 		return searchAction;
@@ -538,6 +538,9 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	@Override
 	protected void handleDoubleClick(DoubleClickEvent anEvent) {
+		if (Activator.getLogHelper().isDebugEnabled()) {
+			Activator.getLogHelper().debug("Model Navigator got a double click");
+		}
 		IAction openHandler = getViewSite().getActionBars().getGlobalActionHandler(ICommonActionConstants.OPEN);
 		if (openHandler != null) {
 			openHandler.run();

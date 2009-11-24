@@ -17,8 +17,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigator.internal.Activator;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -32,7 +32,7 @@ public class RenameDiagramAction extends Action {
 
 	public RenameDiagramAction(Diagram diagram) {
 		this.diagram = diagram;
-		setImageDescriptor(Activator.Implementation.getImageDescriptor("icons/etool16/rename.gif"));
+		setImageDescriptor(Activator.getImageDescriptor("icons/etool16/rename.gif"));
 		setText("Rename...");
 	}
 
@@ -43,7 +43,7 @@ public class RenameDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
+		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
 			InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename an existing diagram",
 					"New name:", diagram.getName(), null);

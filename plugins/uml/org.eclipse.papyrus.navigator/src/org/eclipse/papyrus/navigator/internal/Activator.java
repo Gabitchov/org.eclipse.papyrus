@@ -14,99 +14,87 @@ import java.net.URL;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
- * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>: Create
- *         Plugin/Implementation (see EMF conventions).
  */
-public class Activator extends EMFPlugin {
+public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.navigator";
 
 	// The shared instance
-	public static final Activator INSTANCE = new Activator();
+	private static Activator plugin;
 
-	/**
-	 * The one instance of this class.
-	 */
-	private static Implementation plugin;
+	private static LogHelper logHelper;
 
 	/**
 	 * The constructor
 	 */
 	public Activator() {
-		super(new ResourceLocator[] {});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 */
+	@Override
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		plugin = this;
+		logHelper = new LogHelper(plugin);
 	}
 
 	/**
-	 * Overrides getPluginResourceLocator.
+	 * Returns the log Helper.
 	 * 
-	 * {@inheritDoc}
+	 * @return The logHelper.
+	 */
+	public static LogHelper getLogHelper() {
+		return logHelper;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.common.EMFPlugin#getPluginResourceLocator()
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public ResourceLocator getPluginResourceLocator() {
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
+		super.stop(context);
+	}
+
+	/**
+	 * Returns the shared instance
+	 * 
+	 * @return the shared instance
+	 */
+	public static Activator getDefault() {
 		return plugin;
 	}
 
 	/**
-	 * Is the platform in debug mode?
+	 * get the image descriptor from a string path
 	 * 
-	 * @return True if debug is enabled.
+	 * @param pathString
+	 *            path of the image
+	 * @return the image descriptor
 	 */
-	public boolean isDebugEnabled() {
-		return Platform.inDebugMode();
-	}
+	public static ImageDescriptor getImageDescriptor(String pathString) {
 
-	/**
-	 * Add a debug log.
-	 * 
-	 * @param message
-	 *            The message.
-	 */
-	public void debug(String message) {
-		if (isDebugEnabled()) {
-			log(new Status(IStatus.INFO, "[DEBUG] " + message, null));
+		IPath path = new Path(pathString);
+		URL uri = FileLocator.find(Activator.plugin.getBundle(), path, null);
+		if (uri == null) {
+			return null;
 		}
-	}
-
-	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>.
-	 */
-	public static class Implementation extends EclipsePlugin {
-
-		public Implementation() {
-			super();
-			// Remember the static instance.
-			plugin = this;
-		}
-
-		/**
-		 * get the image descriptor from a string path
-		 * 
-		 * @param pathString
-		 *            path of the image
-		 * @return the image descriptor
-		 */
-		public static ImageDescriptor getImageDescriptor(String pathString) {
-			IPath path = new Path(pathString);
-			URL uri = FileLocator.find(plugin.getBundle(), path, null);
-			if (uri == null) {
-				return null;
-			}
-			return ImageDescriptor.createFromURL(uri);
-		}
+		return ImageDescriptor.createFromURL(uri);
 	}
 }
