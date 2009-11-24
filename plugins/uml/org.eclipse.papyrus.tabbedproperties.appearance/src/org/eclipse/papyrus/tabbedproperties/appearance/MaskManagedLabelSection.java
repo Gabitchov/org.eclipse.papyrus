@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractNotationPr
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -40,8 +39,6 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 /**
  * Section for properties view, for label management. More precisely, these labels are manage with
  * masks, to say if, for exammple, the name must be displayed or not.
- * 
- * @see PropertyUtil#getCustomLabel(org.eclipse.uml2.uml.Property, int)
  */
 public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 
