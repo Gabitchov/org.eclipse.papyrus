@@ -230,4 +230,7 @@ public class Messages extends NLS {
 
 	/** tooltip for the tool item */
 	public static String Local_Palette_SwitchToolsContentProvider_Tooltip;
+
+	/** tooltip for the disabled action because of missing profiles */
+	public static String PaletteContextMenu_MissingProfile;
 }

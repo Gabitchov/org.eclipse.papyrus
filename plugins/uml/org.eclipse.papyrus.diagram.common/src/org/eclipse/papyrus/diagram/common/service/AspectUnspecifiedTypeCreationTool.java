@@ -56,7 +56,8 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	// */
 	// @Override
 	// protected Request createTargetRequest() {
-	// return new AspectCreateUnspecifiedTypeRequest(elementTypes, getPreferencesHint());
+	// return new AspectCreateUnspecifiedTypeRequest(elementTypes, getPreferencesHint(),
+	// stereotypesToApply);
 	// }
 
 	/**

@@ -13,6 +13,9 @@
 
 package org.eclipse.papyrus.diagram.common.part;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.ui.IMemento;
@@ -37,6 +40,9 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	/** priority of the palette */
 	private ProviderPriority priority;
 
+	/** properties of the palette */
+	private Map<String, String> properties;
+
 	/**
 	 * Creates a new PapyrusPaletteDescription.
 	 */
@@ -57,6 +63,17 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 		description.setContributionEditorID(memento.getString(IPapyrusPaletteConstant.EDITOR_ID));
 		description.setContributions(memento.getString(IPapyrusPaletteConstant.PATH));
 		description.setPriority(ProviderPriority.parse(memento.getString(IPapyrusPaletteConstant.PRIORITY)));
+
+		// retrieve the map of properties
+		IMemento propertiesMemento = memento.getChild(IPapyrusPaletteConstant.PALETTE_DESCRIPTION_PROPERTIES);
+		Map<String, String> properties = new HashMap<String, String>();
+		if (propertiesMemento != null) {
+			// retrieve the child name/value tuple for each children
+			for (String key : propertiesMemento.getAttributeKeys()) {
+				properties.put(key, propertiesMemento.getString(key));
+			}
+		}
+		description.setProperties(properties);
 		// contributions: do not read the file before it is necessary...
 		return description;
 	}
@@ -144,6 +161,23 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 */
 	public void setPriority(ProviderPriority priority) {
 		this.priority = priority;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Map<String, String> getProperties() {
+		return properties;
+	}
+
+	/**
+	 * Sets the properties for this palette description
+	 * 
+	 * @param properties
+	 *            the properties to set
+	 */
+	public void setProperties(Map<String, String> properties) {
+		this.properties = properties;
 	}
 
 }

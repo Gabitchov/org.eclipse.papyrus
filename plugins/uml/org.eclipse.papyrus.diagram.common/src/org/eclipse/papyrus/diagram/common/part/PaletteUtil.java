@@ -18,20 +18,29 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ProviderDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Profile;
 
 /**
  * Utility class for palette.
@@ -256,4 +265,92 @@ public class PaletteUtil {
 		}
 		return buffer.toString();
 	}
+
+	/**
+	 * Returns the list of profile Qualified Names String under a serialized form
+	 * 
+	 * @param list
+	 *            the list of profiles to serialize
+	 * @return the list of profiles String under a serialized form
+	 */
+	public static String getSerializedProfileListFromSet(Set<String> profiles) {
+		StringBuffer buffer = new StringBuffer();
+		Iterator<String> it = profiles.iterator();
+		while (it.hasNext()) {
+			buffer.append(it.next());
+			if (it.hasNext()) {
+				buffer.append(",");
+			}
+		}
+		return buffer.toString();
+	}
+
+	/**
+	 * Returns the list of profiles String from a serialize string form
+	 * 
+	 * @param serializedForm
+	 *            the serialized form of the list of stereotypes
+	 * @return the list of profiles String from a serialize string form
+	 */
+	public static Set<String> getProfileSetFromString(String serializedForm) {
+		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ",");
+		Set<String> list = new HashSet<String>();
+		while (tokenizer.hasMoreElements()) {
+			list.add(tokenizer.nextToken());
+		}
+		return list;
+	}
+
+	/**
+	 * returns <code>true</code> if the descriptor have all necessary profiles
+	 * 
+	 * @param part
+	 *            the editor part for which the palette is shown
+	 * @param papyrusProviderDesc
+	 *            the current provider descriptor to test
+	 * @return <code>true</code> if all required profile are present
+	 */
+	public static boolean areRequiredProfileApplied(IEditorPart part,
+			PapyrusPaletteService.ProviderDescriptor papyrusProviderDesc) {
+		if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
+			PapyrusTrace.log(IStatus.WARNING, "trying to check a papyrus palette descriptor outside papyrus framework");
+			return false;
+		}
+		if (papyrusProviderDesc instanceof PapyrusPaletteService.LocalProviderDescriptor) {
+			IPaletteDescription description = ((PapyrusPaletteService.LocalProviderDescriptor) papyrusProviderDesc)
+					.getDescription();
+			// checks the presence of required profile
+			Diagram diagram = ((DiagramEditorWithFlyOutPalette) part).getDiagram();
+			EObject element = diagram.getElement();
+			if (element instanceof Element) {
+				org.eclipse.uml2.uml.Package package_ = ((Element) element).getNearestPackage();
+				List<Profile> appliedProfiles = package_.getAllAppliedProfiles();
+				List<String> appliedProfilesNames = new ArrayList<String>();
+				for (Profile profile : appliedProfiles) {
+					appliedProfilesNames.add(profile.getQualifiedName());
+				}
+
+				// compare to the list of profiles used by the palette
+				Map<String, String> properties = description.getProperties();
+				if (description != null) {
+					String requiredProfilesList = properties.get(IPapyrusPaletteConstant.PROFILE_LIST);
+					if (requiredProfilesList != null) {
+						// parse requiredProfile string (profile1QN, profile2QN, etc.)
+						Set<String> requiredProfiles = PaletteUtil.getProfileSetFromString(requiredProfilesList);
+						for (String requiredProfileName : requiredProfiles) {
+							if (!appliedProfilesNames.contains(requiredProfileName)) {
+								return false;
+							}
+						}
+					}
+				}
+				return true;
+			}
+			return false;
+		}
+		// by default, returns true if the descriptor is not a local descriptor, as they do not use
+		// profile
+		return true;
+	}
+
 }

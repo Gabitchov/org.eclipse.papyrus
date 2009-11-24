@@ -18,8 +18,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -110,6 +112,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
@@ -201,6 +204,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 	/** tool item in charge of toggling content providers in the available tool viewer */
 	protected ToolItem toggleContentProvider;
+
+	/** required profile by this palette */
+	private Set<String> requiredProfiles;
 
 	/**
 	 * Creates a new wizard page with the given name, title, and image.
@@ -1068,13 +1074,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		int profileNumber = profiles.size();
 		for (int i = 0; i < profileNumber; i++) {
 			profileComboList.add(i, profiles.get(i).getName());
-			profileComboList.add(UML_TOOLS_LABEL);
-			profileCombo.setItems(profileComboList.toArray(new String[] {}));
-
-			// add selection listener for the combo. selects the "UML tools" item
-			profileCombo.addSelectionListener(new ProfileComboSelectionListener());
-			profileCombo.select(profileNumber);
 		}
+		profileComboList.add(UML_TOOLS_LABEL);
+		profileCombo.setItems(profileComboList.toArray(new String[] {}));
+
+		// add selection listener for the combo. selects the "UML tools" item
+		profileCombo.addSelectionListener(new ProfileComboSelectionListener());
+		profileCombo.select(profileNumber);
 
 		return profileCombo;
 	}
@@ -1620,6 +1626,40 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		// creates the document
 		Document document = createXMLDocumentFromPalettePreview();
 		saveDocument(document, path);
+		requiredProfiles = collectRequiredProfiles();
+	}
+
+	/**
+	 * collect the required profiles from all tool provided by the local palette definition
+	 */
+	protected Set<String> collectRequiredProfiles() {
+		Set<String> profiles = new HashSet<String>();
+		PaletteContainerProxy rootProxy = (PaletteContainerProxy) paletteTreeViewer.getInput();
+		collectRequiredProfiles(rootProxy.getChildren(), profiles);
+		return profiles;
+	}
+
+	/**
+	 * collect the required profiles from all tool provided by the local palette definition
+	 */
+	protected void collectRequiredProfiles(List<PaletteEntryProxy> proxies, Set<String> requiredProfiles) {
+		for (PaletteEntryProxy proxy : proxies) {
+			// add profile(s) if relevant, check for children
+
+			if (proxy instanceof PaletteAspectToolEntryProxy) {
+				// list of profiles
+				for (String stereotypeQN : ((PaletteAspectToolEntryProxy) proxy).getStereotypesQNList()) {
+					// retrieve list of profiles from the stereotype QN (only remove last segment
+					// ?!)
+					String profileName = stereotypeQN.substring(0, stereotypeQN.lastIndexOf(NamedElement.SEPARATOR));
+					requiredProfiles.add(profileName);
+				}
+			}
+
+			if (proxy.getChildren() != null) {
+				collectRequiredProfiles(proxy.getChildren(), requiredProfiles);
+			}
+		}
 	}
 
 	/**
@@ -2171,5 +2211,14 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			return type.getEClass();
 		}
 		return null;
+	}
+
+	/**
+	 * Returns the list of required profiles by this local palette definition
+	 * 
+	 * @return the profiles required by this palette
+	 */
+	public Set<String> getRequiredProfiles() {
+		return requiredProfiles;
 	}
 }

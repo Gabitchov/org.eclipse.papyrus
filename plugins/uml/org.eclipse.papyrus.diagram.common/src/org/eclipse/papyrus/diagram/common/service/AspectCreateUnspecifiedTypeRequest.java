@@ -26,6 +26,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
  */
 public class AspectCreateUnspecifiedTypeRequest extends CreateUnspecifiedTypeRequest {
 
+	/** list of stereotype to apply */
+	protected List<String> stereotypesToApply;
+
 	/**
 	 * Creates a new AspectCreateUnspecifiedTypeRequest
 	 * 
@@ -34,8 +37,10 @@ public class AspectCreateUnspecifiedTypeRequest extends CreateUnspecifiedTypeReq
 	 * @param preferencesHint
 	 *            preference hints for the creation
 	 */
-	public AspectCreateUnspecifiedTypeRequest(List elementTypes, PreferencesHint preferencesHint) {
+	public AspectCreateUnspecifiedTypeRequest(List elementTypes, PreferencesHint preferencesHint,
+			List<String> stereotypesToApply) {
 		super(elementTypes, preferencesHint);
+		this.stereotypesToApply = stereotypesToApply;
 	}
 
 	/**
@@ -45,7 +50,6 @@ public class AspectCreateUnspecifiedTypeRequest extends CreateUnspecifiedTypeReq
 	protected void createRequests() {
 		// adds super requests
 		super.createRequests();
-
-		// requests.put("ApplyStereotypeRequest", new ApplyStereotypeRequest(null));
+		requests.put(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeRequest(stereotypesToApply));
 	}
 }

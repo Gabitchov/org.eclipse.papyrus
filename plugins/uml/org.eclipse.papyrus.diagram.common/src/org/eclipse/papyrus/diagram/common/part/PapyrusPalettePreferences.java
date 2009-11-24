@@ -19,6 +19,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import org.eclipse.core.runtime.IStatus;
@@ -306,7 +307,8 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	/**
 	 * Adds or update local palette
 	 */
-	public static void addLocalPalette(String paletteID, String paletteName, ProviderPriority priority, String editorID) {
+	public static void addLocalPalette(String paletteID, String paletteName, ProviderPriority priority,
+			String editorID, Set<String> requiredProfiles) {
 		// retrieves memento
 		XMLMemento rootMemento = getExistingLocalPalettes();
 
@@ -321,6 +323,11 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 		paletteMemento.putString(PRIORITY, priority.getName());
 		paletteMemento.putString(EDITOR_ID, editorID);
 		paletteMemento.putString(PATH, getPalettePathFromID(paletteID));
+
+		// add properties if required
+		IMemento propertiesMemento = paletteMemento.createChild(IPapyrusPaletteConstant.PALETTE_DESCRIPTION_PROPERTIES);
+		propertiesMemento.putString(IPapyrusPaletteConstant.PROFILE_LIST, PaletteUtil
+				.getSerializedProfileListFromSet(requiredProfiles));
 
 		// saves the root memento
 		saveLocalPalettes(rootMemento);

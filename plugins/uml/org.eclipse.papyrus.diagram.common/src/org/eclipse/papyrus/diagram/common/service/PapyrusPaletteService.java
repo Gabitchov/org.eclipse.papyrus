@@ -52,6 +52,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.SelectionToolEx;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.part.IPaletteDescription;
+import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.ui.IEditorPart;
 
@@ -253,6 +254,15 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
+		 * Returns the description of this palette provider
+		 * 
+		 * @return the description of this palette provider
+		 */
+		public IPaletteDescription getDescription() {
+			return description;
+		}
+
+		/**
 		 * Returns this contribution's name
 		 * 
 		 * @return this contribution's name
@@ -310,6 +320,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 							((DiagramEditorWithFlyOutPalette) part).getContributorId())) {
 						return false;
 					}
+				}
+
+				if (!PaletteUtil.areRequiredProfileApplied(part, this)) {
+					return false;
 				}
 
 				if (isHidden(o)) {
@@ -652,8 +666,6 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		List<PapyrusPaletteService.ProviderDescriptor> descriptors = new ArrayList<PapyrusPaletteService.ProviderDescriptor>();
 		final ContributeToPaletteOperation o = new ContributeToPaletteOperation(part, part.getEditorInput(), root,
 				new HashMap());
-		List<String> hiddenPalettes = PapyrusPalettePreferences.getHiddenPalettes(part);
-
 		// For each provider, checks it contributes to the palette of this editor part
 		Iterator<? extends Service.ProviderDescriptor> it = getProviders().iterator();
 		while (it.hasNext()) {
@@ -726,6 +738,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 */
 	public void preferenceChange(PreferenceChangeEvent event) {
 		// listen for local palette preferences...
+
 		String id = event.getKey();
 		if (IPapyrusPaletteConstant.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
 			// refresh available palette table viewer

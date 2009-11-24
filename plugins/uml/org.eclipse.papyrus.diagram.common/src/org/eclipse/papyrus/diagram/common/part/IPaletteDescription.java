@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.part;
 
+import java.util.Map;
+
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 
 /**
@@ -53,5 +55,12 @@ public interface IPaletteDescription {
 	 * @return the priority for this palette
 	 */
 	public ProviderPriority getPriority();
+
+	/**
+	 * returns the properties map for this palette
+	 * 
+	 * @return the properties map for this palette
+	 */
+	public Map<String, String> getProperties();
 
 }

@@ -97,6 +97,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 
 		for (PapyrusPaletteService.ProviderDescriptor descriptor : PapyrusPaletteService.getInstance()
 				.getContributingProviders(part, getPaletteViewer().getPaletteRoot())) {
+
 			action = new DisplayPaletteChangeAction(descriptor);
 
 			// get provider name
@@ -109,6 +110,13 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 
 			action.setText(name);
 			action.setChecked(!hiddenPalettes.contains(id));
+			// check required profiles
+			boolean requiredPlugins = PaletteUtil.areRequiredProfileApplied(part, descriptor);
+			if (!requiredPlugins) {
+				action.setEnabled(false);
+				action.setToolTipText(Messages.PaletteContextMenu_MissingProfile);
+			}
+
 			list.add(action);
 		}
 		return list;

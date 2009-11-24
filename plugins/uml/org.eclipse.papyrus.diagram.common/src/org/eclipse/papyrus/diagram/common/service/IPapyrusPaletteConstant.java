@@ -27,6 +27,9 @@ public interface IPapyrusPaletteConstant {
 	/** name for the field giving the path to the XML file */
 	public final String PATH = "path"; //$NON-NLS-1$
 
+	/** name of the properties node */
+	public final String PALETTE_DESCRIPTION_PROPERTIES = "properties";
+
 	/** name of the drawer node */
 	public final String DRAWER = "drawer";
 
@@ -92,5 +95,8 @@ public interface IPapyrusPaletteConstant {
 
 	/** key for the properties tool */
 	public final String STEREOTYPES_TO_APPLY_KEY = "StereotypesToApply";
+
+	/** key for the profile list attribute */
+	public final String PROFILE_LIST = "requiredProfiles";
 
 }
