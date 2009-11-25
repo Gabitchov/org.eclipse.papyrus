@@ -68,6 +68,7 @@ If you did not receive this Content directly from the Eclipse Foundation, the Co
       <import plugin="org.eclipse.emf.eef.runtime"/>
       <import plugin="org.eclipse.jface" version="3.4.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.transaction" version="1.2.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.notation"/>
    </requires>
 
    <plugin
@@ -156,6 +157,13 @@ If you did not receive this Content directly from the Eclipse Foundation, the Co
 
    <plugin
          id="org.eclipse.papyrus.umlutils"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.controlmode"
          download-size="0"
          install-size="0"
          version="0.0.0"
