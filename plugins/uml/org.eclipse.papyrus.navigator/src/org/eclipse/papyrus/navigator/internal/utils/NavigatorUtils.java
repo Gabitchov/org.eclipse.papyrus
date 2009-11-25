@@ -79,7 +79,7 @@ public class NavigatorUtils {
 	 */
 	@Deprecated
 	public static IEditorPart getActiveEditor() {
-		return EditorUtils.getActiveEditor();
+		return EditorUtils.getWorkbenchActiveEditor();
 	}
 
 	/**
