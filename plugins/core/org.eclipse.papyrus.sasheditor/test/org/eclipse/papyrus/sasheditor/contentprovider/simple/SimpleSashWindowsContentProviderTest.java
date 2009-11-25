@@ -22,6 +22,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.swt.SWT;
 
+
 /**
  * @author dumoulin
  */
@@ -62,18 +63,18 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#movePage(org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int, int)}
 	 * .
 	 */
-	// public void testMoveTabITabFolderModelIntInt() {
-	// fail("Not yet implemented");
-	// }
+	//	public void testMoveTabITabFolderModelIntInt() {
+	//		fail("Not yet implemented");
+	//	}
 
 	/**
 	 * Test method for
 	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#movePage(org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int, org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int)}
 	 * .
 	 */
-	// public void testMoveTabITabFolderModelIntITabFolderModelInt() {
-	// fail("Not yet implemented");
-	// }
+	//	public void testMoveTabITabFolderModelIntITabFolderModelInt() {
+	//		fail("Not yet implemented");
+	//	}
 
 	/**
 	 * Test method for
@@ -84,7 +85,7 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 
 		// Create pages and add them to the default folder
 		List<IPageModel> models = new ArrayList<IPageModel>();
-		for (int i = 0; i < 8; i++) {
+		for(int i = 0; i < 8; i++) {
 			IPageModel newModel = new FakePageModel("model" + i);
 			contentProvider.addPage(newModel);
 			models.add(newModel);
@@ -92,21 +93,20 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 
 		ITabFolderModel folder = contentProvider.getCurrentTabFolder();
 
-		// // Do move tab 0 to right
-		// ITabFolderModel newFolder = contentProvider.createFolder(folder, 0, folder, SWT.RIGHT);
-		// // Check creation
-		// assertNotNull("Folder created", newFolder);
-		// // Check if correctly attached and reachable
-		// assertEquals("Tab 2 added in correct folder", folder,
-		// contentProvider.getParentFolder(newModel2));
-		// assertEquals("Tab 1 added in correct folder", newFolder,
-		// contentProvider.getParentFolder(newModel1));
+		//		// Do move tab 0 to right
+		//		ITabFolderModel newFolder = contentProvider.createFolder(folder, 0, folder, SWT.RIGHT);
+		//		// Check creation
+		//		assertNotNull("Folder created", newFolder);
+		//		// Check if correctly attached and reachable
+		//		assertEquals("Tab 2 added in correct folder", folder, contentProvider.getParentFolder(newModel2));
+		//		assertEquals("Tab 1 added in correct folder", newFolder, contentProvider.getParentFolder(newModel1));
 		//		
-		// // assertNotNull("folder attached", contentProvider.getParentFolder(newModel1));
-		// // assertNotNull("folder attached", contentProvider.getParentFolder(newModel1));
+		////		assertNotNull("folder attached", contentProvider.getParentFolder(newModel1));
+		////		assertNotNull("folder attached", contentProvider.getParentFolder(newModel1));
 		//		
-		// assertTrue("Folder contains added item", newFolder.getChildren().contains(newModel1));
-		// assertTrue("Folder contains added item", folder.getChildren().contains(newModel2));
+		//		assertTrue("Folder contains added item", newFolder.getChildren().contains(newModel1));
+		//		assertTrue("Folder contains added item", folder.getChildren().contains(newModel2));
+
 
 		// 
 		// Create another folder
@@ -158,21 +158,19 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 		assertTrue("Folder contains added item", newFolder.getChildren().contains(movedTab));
 	}
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#removePage(int)}
-	 * .
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#removePage(int)}.
 	 */
-	// public void testRemoveTabInt() {
-	// fail("Not yet implemented");
-	// }
+	//	public void testRemoveTabInt() {
+	//		fail("Not yet implemented");
+	//	}
 
 	/**
 	 * Test method for
 	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#removePage(org.eclipse.papyrus.sasheditor.contentprovider.IPageModel)}
 	 * .
 	 */
-	// public void testRemoveTabIPageModel() {
-	// fail("Not yet implemented");
-	// }
+	//	public void testRemoveTabIPageModel() {
+	//		fail("Not yet implemented");
+	//	}
 
 }

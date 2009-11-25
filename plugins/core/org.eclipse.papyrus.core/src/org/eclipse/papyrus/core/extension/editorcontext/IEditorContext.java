@@ -27,7 +27,7 @@ public interface IEditorContext {
 	 * Initialize the context. This method is called immediately after Context instantiation.
 	 * 
 	 * @param multiEditor
-	 *            the multiEditor to initialize
+	 *        the multiEditor to initialize
 	 * @throws BackboneException
 	 */
 	void init(IMultiDiagramEditor multiEditor) throws BackboneException;

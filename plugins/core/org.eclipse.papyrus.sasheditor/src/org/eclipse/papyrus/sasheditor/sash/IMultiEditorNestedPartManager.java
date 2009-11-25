@@ -24,8 +24,9 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 /**
  * A nestedPart manager managing parts of a multiEditor.
  * 
- * This interface is used by TabFolderParts when creating new Editor from the model. It should be
- * implemented by classes using Tiles. TODO: Rename it or merged with its parent.
+ * This interface is used by TabFolderParts when creating new Editor from the model.
+ * It should be implemented by classes using Tiles.
+ * TODO: Rename it or merged with its parent.
  */
 public interface IMultiEditorNestedPartManager extends IMultiPageEditorPart {
 
@@ -34,19 +35,17 @@ public interface IMultiEditorNestedPartManager extends IMultiPageEditorPart {
 	 */
 	// public ITilePartFactory getTilePartFactory();
 	/**
-	 * Create a PageEditor for the specified model. This method is called by TilePart when it need
-	 * to create an Editor for the specified model.
+	 * Create a PageEditor for the specified model. This method is called by TilePart when it need to create an Editor for the specified model.
 	 * 
 	 * @param model
-	 *            the diagram to be displayed
+	 *        the diagram to be displayed
 	 * @return the Graphical Editor that displays the specified diagram
 	 * @throws InstantiationException
-	 *             Error while instanciating the editor.
+	 *         Error while instanciating the editor.
 	 * @throws EditorNotFoundException
-	 *             No editor handling the model can be found.
+	 *         No editor handling the model can be found.
 	 */
-	public IEditorPart createPageEditor(Object model) throws MultiDiagramException, EditorNotFoundException,
-			InstantiationException;
+	public IEditorPart createPageEditor(Object model) throws MultiDiagramException, EditorNotFoundException, InstantiationException;
 
 	/**
 	 * Get the EditorActionBarContributor for the editor associated to the specified model.
@@ -61,7 +60,7 @@ public interface IMultiEditorNestedPartManager extends IMultiPageEditorPart {
 	 * Fires a property changed event.
 	 * 
 	 * @param propertyId
-	 *            the id of the property that changed
+	 *        the id of the property that changed
 	 */
 	public void firePropertyChange(int propertyId);
 

@@ -21,17 +21,14 @@ import org.eclipse.ui.IEditorPart;
  * 
  * @author dumoulin TODO move this to extension.
  */
-// @unused
 public interface IEditorFactoryRegistry {
 
 	/**
 	 * Create a new editor for the specified diagram root.
 	 * 
 	 * @throws EditorNotFoundException
-	 *             No editor handling the model can be found.
+	 *         No editor handling the model can be found.
 	 */
-	// @unused
-	public IEditorPart createEditorFor(MultiDiagramSharedObjects sharedObjects, Object model)
-			throws EditorNotFoundException;
+	public IEditorPart createEditorFor(MultiDiagramSharedObjects sharedObjects, Object model) throws EditorNotFoundException;
 
 }

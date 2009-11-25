@@ -20,9 +20,11 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 
+
 /**
- * A PageMngr based on EMF di and using Transactions. This implementation is a wrapper on
- * {@link PageMngrImpl}. Each method is wrapped in a {@link RecordingCommand}.
+ * A PageMngr based on EMF di and using Transactions.
+ * This implementation is a wrapper on {@link PageMngrImpl}.
+ * Each method is wrapped in a {@link RecordingCommand}.
  * 
  * @author cedric dumoulin
  */

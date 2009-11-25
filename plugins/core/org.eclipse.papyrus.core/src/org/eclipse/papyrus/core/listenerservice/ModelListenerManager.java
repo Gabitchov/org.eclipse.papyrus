@@ -51,9 +51,8 @@ public class ModelListenerManager extends EContentAdapter {
 	 */
 	private void initializeListenerList() {
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				MODELLISTENERID_EXTENSION_ID);
-		for (int i = 0; i < configElements.length; i++) {
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(MODELLISTENERID_EXTENSION_ID);
+		for(int i = 0; i < configElements.length; i++) {
 			inializeOneRule(configElements[i]);
 		}
 
@@ -63,13 +62,12 @@ public class ModelListenerManager extends EContentAdapter {
 	 * Load one listener
 	 * 
 	 * @param element
-	 *            the extension point
+	 *        the extension point
 	 */
 	private void inializeOneRule(IConfigurationElement element) {
 		String listenerName = element.getAttribute(NAME_ID);
 		try {
-			IPapyrusListener listener = (IPapyrusListener) createExtension(element, element
-					.getAttribute(REALIZATION_ID));
+			IPapyrusListener listener = (IPapyrusListener)createExtension(element, element.getAttribute(REALIZATION_ID));
 			listenerRegistry.put(listenerName, listener);
 		} catch (Exception e) {
 			System.err.println("- " + listenerName + " can not be loaded: " + e);
@@ -81,15 +79,14 @@ public class ModelListenerManager extends EContentAdapter {
 	 * Load an instance of a class
 	 * 
 	 * @param element
-	 *            the extension point
+	 *        the extension point
 	 * @param classAttribute
-	 *            the name of the class to load
+	 *        the name of the class to load
 	 * @return the loaded Class
 	 * @throws Exception
-	 *             if the class is not loaded
+	 *         if the class is not loaded
 	 */
-	private static Object createExtension(final IConfigurationElement element, final String classAttribute)
-			throws Exception {
+	private static Object createExtension(final IConfigurationElement element, final String classAttribute) throws Exception {
 		try {
 			Bundle extensionBundle = Platform.getBundle(element.getDeclaringExtension().getNamespaceIdentifier());
 			Class clazz = extensionBundle.loadClass(classAttribute);
@@ -108,7 +105,7 @@ public class ModelListenerManager extends EContentAdapter {
 		String out = "ModelListener: \n";
 		Enumeration keyenum = listenerRegistry.keys();
 		// we will call to string in each class
-		while (keyenum.hasMoreElements()) {
+		while(keyenum.hasMoreElements()) {
 			Object aKey = keyenum.nextElement();
 			out = out + "- " + aKey.toString() + " (" + listenerRegistry.get(aKey).toString() + ")\n";
 		}
@@ -122,9 +119,9 @@ public class ModelListenerManager extends EContentAdapter {
 		super.notifyChanged(notification);
 		Enumeration keyenum = listenerRegistry.keys();
 		// we will call to string in each class
-		while (keyenum.hasMoreElements()) {
+		while(keyenum.hasMoreElements()) {
 			Object aKey = keyenum.nextElement();
-			((IPapyrusListener) listenerRegistry.get(aKey)).notifyChanged(notification);
+			((IPapyrusListener)listenerRegistry.get(aKey)).notifyChanged(notification);
 		}
 	}
 }

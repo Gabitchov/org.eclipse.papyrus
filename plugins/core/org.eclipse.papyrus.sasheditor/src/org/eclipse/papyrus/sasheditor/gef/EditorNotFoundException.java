@@ -25,7 +25,6 @@ public class EditorNotFoundException extends MultiDiagramException {
 	/**
 	 * 
 	 */
-	// @unused
 	public EditorNotFoundException() {
 	}
 
@@ -39,7 +38,6 @@ public class EditorNotFoundException extends MultiDiagramException {
 	/**
 	 * @param arg0
 	 */
-	// @unused
 	public EditorNotFoundException(Throwable arg0) {
 		super(arg0);
 	}
@@ -48,7 +46,6 @@ public class EditorNotFoundException extends MultiDiagramException {
 	 * @param arg0
 	 * @param arg1
 	 */
-	// @unused
 	public EditorNotFoundException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}

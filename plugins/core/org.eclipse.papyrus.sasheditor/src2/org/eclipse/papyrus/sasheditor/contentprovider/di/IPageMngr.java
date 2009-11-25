@@ -18,9 +18,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
+
 /**
- * Interface providing method to manage pages in the Sash Windows system. This interface provide
- * basic access to the Sash Windows system.
+ * Interface providing method to manage pages in the Sash Windows system.
+ * This interface provide basic access to the Sash Windows system.
  * 
  * @author dumoulin
  */
@@ -30,40 +31,42 @@ public interface IPageMngr {
 	 * Add a Page identifier to the list of pages, do not open it.
 	 * 
 	 * @param page
-	 *            The object identifying the page to add. This object will be passed to the
-	 *            {@link IPageModelFactory#createIPageModel(EObject)}. This identifier is stored in
-	 *            the sash model. It should be a reference on a EMF object identifying the page.
+	 *        The object identifying the page to add. This object will be passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
+	 *        identifier is stored in the sash model.
+	 *        It should be a reference on a EMF object identifying the page.
 	 */
 	public void addPage(Object pageIdentifier);
 
 	/**
-	 * Remove the page from the SashWindows system and from the list of page. The page will not be
-	 * available anymore.
+	 * Remove the page from the SashWindows system and from the list of page.
+	 * The page will not be available anymore.
 	 * 
 	 * @param pageIdentifier
-	 *            The object identifying the page
+	 *        The object identifying the page
 	 */
 	public void removePage(Object pageIdentifier);
 
 	/**
-	 * Close the page corresponding to the identifier. The identifier is removed from the Sash
-	 * Windows, but not from the list of pages.
+	 * Close the page corresponding to the identifier.
+	 * The identifier is removed from the Sash Windows, but not from the list of pages.
 	 * 
 	 * @param pageIdentifier
-	 *            The object identifying the page
+	 *        The object identifying the page
 	 */
 	public void closePage(Object pageIdentifier);
 
+
 	/**
 	 * Open a Page corresponding to the identifier. If the page is not in the list of pages, add it.
-	 * The identifier is first added to the current folder model. Then the Sash Windows should react
-	 * and ask the {@link IPageModelFactory} to create the IPageModel. This later is then used to
-	 * create the SWT page. If
+	 * The identifier is first added to the current folder model. Then the Sash Windows should react and
+	 * ask the {@link IPageModelFactory} to create the IPageModel. This later is then used to create the
+	 * SWT page.
+	 * If
 	 * 
 	 * @param page
-	 *            The object identifying the page to add. This object will be passed to the
-	 *            {@link IPageModelFactory#createIPageModel(EObject)}. This identifier is stored in
-	 *            the sash model. It should be a reference on a EMF object identifying the page.
+	 *        The object identifying the page to add. This object will be passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
+	 *        identifier is stored in the sash model.
+	 *        It should be a reference on a EMF object identifying the page.
 	 */
 	public void openPage(Object pageIdentifier);
 

@@ -41,9 +41,9 @@ public interface IEditorContextRegistry extends IService {
 	 * Register specified context.
 	 * 
 	 * @param contextKey
-	 *            the key
+	 *        the key
 	 * @param context
-	 *            the context editor
+	 *        the context editor
 	 */
 	public void registerContext(String contextKey, IEditorContext context);
 }

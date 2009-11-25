@@ -27,9 +27,10 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
 
+
 /**
- * A tile representing a leaf in the MultiTileContainer. This Tile encapsulate an Eclipse Editor
- * implementing {@link IEditorPart}.
+ * A tile representing a leaf in the MultiTileContainer.
+ * This Tile encapsulate an Eclipse Editor implementing {@link IEditorPart}.
  * 
  * @author dumoulin
  * 
@@ -38,7 +39,8 @@ import org.eclipse.ui.part.IWorkbenchPartOrientation;
 public class EditorTile<T> implements ITilePart<T> {
 
 	/**
-	 * The model representing the editor. TODO: use a generic type ?
+	 * The model representing the editor.
+	 * TODO: use a generic type ?
 	 */
 	private Object editorModel;
 
@@ -58,8 +60,8 @@ public class EditorTile<T> implements ITilePart<T> {
 	private TilePartContainer<T> tilesContainer;
 
 	/**
-	 * Parent owning this TabPart. Can be null if the Part is orphaned. Even if it is orphaned, the
-	 * Item still set.
+	 * Parent owning this TabPart.
+	 * Can be null if the Part is orphaned. Even if it is orphaned, the Item still set.
 	 */
 	protected ITilePart<T> parent;
 
@@ -67,8 +69,10 @@ public class EditorTile<T> implements ITilePart<T> {
 	protected GarbageState garbageState = GarbageState.CREATED;
 
 	/**
-	 * Listen on mouse enter event. Try to get an event indicating that the mouse enter over the
-	 * editor. This can be used to switch the active editor. TODO This doesn't work yet.
+	 * Listen on mouse enter event.
+	 * Try to get an event indicating that the mouse enter over the editor.
+	 * This can be used to switch the active editor.
+	 * TODO This doesn't work yet.
 	 */
 	private Listener mouseEnterListener = new Listener() {
 
@@ -84,7 +88,7 @@ public class EditorTile<T> implements ITilePart<T> {
 	};
 
 	private String eventName(int eventType) {
-		switch (eventType) {
+		switch(eventType) {
 		case SWT.MouseEnter:
 			return "MouseEnter";
 		case SWT.MouseDown:
@@ -110,7 +114,7 @@ public class EditorTile<T> implements ITilePart<T> {
 	 * Constructor.
 	 * 
 	 * @param editorModel
-	 *            The model of the editor.
+	 *        The model of the editor.
 	 */
 	public EditorTile(TilePartContainer<T> tilesContainer, ITilePart<T> parent, Object editorModel) {
 		this.parent = parent;
@@ -118,15 +122,18 @@ public class EditorTile<T> implements ITilePart<T> {
 		this.editorModel = editorModel;
 	}
 
+
 	/**
-	 * Create the control of this part. For a this implementations, also create the children's
-	 * controls. This method forward to {@link createPartControl(Composite)}.
+	 * Create the control of this part.
+	 * For a this implementations, also create the children's controls.
+	 * This method forward to {@link createPartControl(Composite)}.
 	 * 
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
 		createPartControl(parent);
 	}
+
 
 	/**
 	 * Create the control of this Part, and children's controls.
@@ -140,18 +147,15 @@ public class EditorTile<T> implements ITilePart<T> {
 			editorPart = createIEditorPart();
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent, editorPart);
-			// attachListeners(editorControl, true);
+			//			attachListeners(editorControl, true);
 
 		} catch (PartInitException e) {
-			Activator.getDefault().getLog()
-					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
 		} catch (InstantiationException e) {
 			e.printStackTrace();
-			Activator.getDefault().getLog().log(
-					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
 		} catch (MultiDiagramException e) {
-			Activator.getDefault().getLog().log(
-					new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
+			Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getLocalizedMessage() + " skip."));
 		}
 	}
 
@@ -163,13 +167,13 @@ public class EditorTile<T> implements ITilePart<T> {
 	 * @throws InstantiationException
 	 * @throws EditorNotFoundException
 	 */
-	private IEditorPart createIEditorPart() throws EditorNotFoundException, InstantiationException,
-			MultiDiagramException {
+	private IEditorPart createIEditorPart() throws EditorNotFoundException, InstantiationException, MultiDiagramException {
 		return getIMultiEditorNestedPartManager().createPageEditor(editorModel);
 	}
 
 	/**
-	 * Create the controls required by the editor. Init the editor.
+	 * Create the controls required by the editor.
+	 * Init the editor.
 	 * 
 	 * @param viewer
 	 * @param editorInput
@@ -177,7 +181,8 @@ public class EditorTile<T> implements ITilePart<T> {
 	 * @return
 	 * @throws PartInitException
 	 */
-	private Composite createEditorPartControl(Composite parentControl, IEditorPart editor) throws PartInitException {
+	private Composite createEditorPartControl(Composite parentControl, IEditorPart editor)
+			throws PartInitException {
 		IEditorSite site = createSite(editor);
 		// call init first so that if an exception is thrown, we have created no
 		// new widgets
@@ -200,7 +205,7 @@ public class EditorTile<T> implements ITilePart<T> {
 	 */
 	private void attachListeners(Control theControl, boolean recursive) {
 
-		// Both following methods listen to the same event.
+		// Both following methods listen to the same event. 
 		// So use only one of them
 		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
 
@@ -210,11 +215,11 @@ public class EditorTile<T> implements ITilePart<T> {
 		theControl.addListener(SWT.MouseUp, mouseEnterListener);
 		theControl.addListener(SWT.MouseDown, mouseEnterListener);
 
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
+		if(recursive && theControl instanceof Composite) {
+			Composite composite = (Composite)theControl;
 			Control[] children = composite.getChildren();
 
-			for (int i = 0; i < children.length; i++) {
+			for(int i = 0; i < children.length; i++) {
 				Control control = children[i];
 
 				attachListeners(control, true);
@@ -229,11 +234,11 @@ public class EditorTile<T> implements ITilePart<T> {
 		theControl.removeListener(SWT.MouseEnter, mouseEnterListener);
 		theControl.removeListener(SWT.FocusIn, mouseEnterListener);
 
-		if (recursive && theControl instanceof Composite) {
-			Composite composite = (Composite) theControl;
+		if(recursive && theControl instanceof Composite) {
+			Composite composite = (Composite)theControl;
 			Control[] children = composite.getChildren();
 
-			for (int i = 0; i < children.length; i++) {
+			for(int i = 0; i < children.length; i++) {
 				Control control = children[i];
 
 				detachListeners(control, false);
@@ -241,31 +246,32 @@ public class EditorTile<T> implements ITilePart<T> {
 		}
 	}
 
+
 	/**
-	 * Handles a property change notification from a nested editor. The default implementation
-	 * simply forwards the change to listeners on this multi-page editor by calling
-	 * <code>firePropertyChange</code> with the same property id. For example, if the dirty state of
-	 * a nested editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method
-	 * handles it by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to
-	 * property listeners on this multi-page editor.
+	 * Handles a property change notification from a nested editor. The default implementation simply forwards
+	 * the change to listeners on this multi-page editor by calling <code>firePropertyChange</code> with the same property id. For example, if the
+	 * dirty state of a nested
+	 * editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method handles it
+	 * by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to property listeners on this
+	 * multi-page editor.
 	 * <p>
 	 * Subclasses may extend or reimplement this method.
 	 * </p>
 	 * 
 	 * @param propertyId
-	 *            the id of the property that changed
+	 *        the id of the property that changed
 	 */
 	private void handlePropertyChange(int propertyId) {
 		getIMultiEditorNestedPartManager().firePropertyChange(propertyId);
 	}
 
 	/**
-	 * Creates the site for the given nested editor. The <code>MultiPageEditorPart</code>
-	 * implementation of this method creates an instance of <code>MultiPageEditorSite</code>.
-	 * Subclasses may reimplement to create more specialized sites.
+	 * Creates the site for the given nested editor. The <code>MultiPageEditorPart</code> implementation
+	 * of this method creates an instance of <code>MultiPageEditorSite</code>. Subclasses may
+	 * reimplement to create more specialized sites.
 	 * 
 	 * @param editor
-	 *            the nested editor
+	 *        the nested editor
 	 * @return the editor site
 	 */
 	protected IEditorSite createSite(IEditorPart editor) {
@@ -274,14 +280,13 @@ public class EditorTile<T> implements ITilePart<T> {
 	}
 
 	/**
-	 * Create the EditorActionBarContributor requested by the editor. Creation is done by delegating
-	 * to the IMultiEditorNestedPartManager.
+	 * Create the EditorActionBarContributor requested by the editor.
+	 * Creation is done by delegating to the IMultiEditorNestedPartManager.
 	 * 
 	 * @return
 	 */
 	private EditorActionBarContributor createEditorActionBarContributor() {
-		EditorActionBarContributor contributor = getIMultiEditorNestedPartManager()
-				.getActionBarContributor(editorModel);
+		EditorActionBarContributor contributor = getIMultiEditorNestedPartManager().getActionBarContributor(editorModel);
 		return contributor;
 	}
 
@@ -295,8 +300,8 @@ public class EditorTile<T> implements ITilePart<T> {
 	 * @see SWT#NONE
 	 */
 	private int getOrientation(IEditorPart editor) {
-		if (editor instanceof IWorkbenchPartOrientation) {
-			return ((IWorkbenchPartOrientation) editor).getOrientation();
+		if(editor instanceof IWorkbenchPartOrientation) {
+			return ((IWorkbenchPartOrientation)editor).getOrientation();
 		}
 		return Window.getDefaultOrientation();
 	}
@@ -319,17 +324,19 @@ public class EditorTile<T> implements ITilePart<T> {
 		return tilesContainer.getNestedPartManager();
 	}
 
+
 	/**
 	 * @param isRecursive
 	 */
 	public void dispose(boolean isRecursive) {
 
-		// detachListeners(editorControl, true);
+		//		detachListeners(editorControl, true);
 		// dispose the SWT root control
 		editorControl.dispose();
 		// Dispose the editor.
 		editorPart.dispose();
 	}
+
 
 	/**
 	 * @param garbageMaps
@@ -340,8 +347,10 @@ public class EditorTile<T> implements ITilePart<T> {
 
 	}
 
+
 	/**
-	 * As we are a final Tile, we should be the requested part. Return this TilePart.
+	 * As we are a final Tile, we should be the requested part.
+	 * Return this TilePart.
 	 * 
 	 * @param toFind
 	 * @return
@@ -358,16 +367,18 @@ public class EditorTile<T> implements ITilePart<T> {
 	 */
 	public <U extends ITilePart<T>> U findPartAt(Point toFind, Class<U> expectedTileType) {
 
-		if (expectedTileType == this.getClass())
-			return (U) this;
+		if(expectedTileType == this.getClass())
+			return (U)this;
 		// If we require the interface type, return this leaf
-		if (expectedTileType == ITilePart.class)
-			return (U) this;
+		if(expectedTileType == ITilePart.class)
+			return (U)this;
 
 		// Not found !!
 		// The tile contains the position, but the type is not found.
-		throw new UnsupportedOperationException("Tile match the expected position '" + toFind
-				+ "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'");
+		throw new UnsupportedOperationException("Tile match the expected position '"
+				+ toFind
+				+ "' but there is no Tile of requested type '"
+				+ expectedTileType.getClass().getName() + "'");
 	}
 
 	/**
@@ -375,12 +386,13 @@ public class EditorTile<T> implements ITilePart<T> {
 	 * @return
 	 */
 	public ITilePart<T> findPart(Object control) {
-		if (getControl() == control)
+		if(getControl() == control)
 			return this;
 
 		// Not found
 		return null;
 	}
+
 
 	/**
 	 * Returns the active nested editor if there is one.
@@ -406,6 +418,7 @@ public class EditorTile<T> implements ITilePart<T> {
 		return editorPart;
 	}
 
+
 	/**
 	 * Get associated SWT Control.
 	 * 
@@ -415,8 +428,10 @@ public class EditorTile<T> implements ITilePart<T> {
 		return editorControl;
 	}
 
+
 	/**
-	 * This is a container method. Not necessary in Leaf Tile. TODO: change the interface.
+	 * This is a container method. Not necessary in Leaf Tile.
+	 * TODO: change the interface.
 	 * 
 	 * @param draggedObject
 	 * @param sourcePart
@@ -427,6 +442,7 @@ public class EditorTile<T> implements ITilePart<T> {
 		return null;
 	}
 
+
 	/**
 	 * @return
 	 */
@@ -434,14 +450,17 @@ public class EditorTile<T> implements ITilePart<T> {
 		return garbageState;
 	}
 
+
 	/**
-	 * Is the associated editor dirty ? Delegate to {@link IEditorPart.isDirty()}
+	 * Is the associated editor dirty ?
+	 * Delegate to {@link IEditorPart.isDirty()}
 	 * 
 	 * @return true if the associated editor is dirty.
 	 */
 	public boolean isDirty() {
 		return editorPart.isDirty();
 	}
+
 
 	/**
 	 * @param realModel
@@ -450,6 +469,7 @@ public class EditorTile<T> implements ITilePart<T> {
 	public boolean isTilePartFor(T realModel) {
 		return editorModel.equals(realModel);
 	}
+
 
 	/**
 	 * Return true if this node is orphaned (parent should also be null)
@@ -461,30 +481,31 @@ public class EditorTile<T> implements ITilePart<T> {
 	}
 
 	/**
-	 * Orphan this node. The parent is set to null, but control is left unchanged. The node can be
-	 * reattached with reparent(). Change garbage state to {@link GarbageState.ORPHANED}. This
-	 * method as no effect if the Tile has already been reparented.
+	 * Orphan this node. The parent is set to null, but control is left unchanged.
+	 * The node can be reattached with reparent(). Change garbage state to {@link GarbageState.ORPHANED}.
+	 * This method as no effect if the Tile has already been reparented.
 	 * 
 	 * @see
 	 * @return the parent
 	 */
 	public void orphan() {
 		// orphan only if we are in UNCHANGED state
-		if (garbageState == ITilePart.GarbageState.UNCHANGED) {
+		if(garbageState == ITilePart.GarbageState.UNCHANGED) {
 			garbageState = ITilePart.GarbageState.ORPHANED;
 			parent = null;
 		}
 	}
 
+
 	/**
-	 * Change the parent of the Tile. The parent is changed, and the control is attached to the
-	 * parent control. Change garbage state to {@link GarbageState.REPARENTED}. Do not detach the
-	 * Tile from its old parent.
+	 * Change the parent of the Tile. The parent is changed, and the control is
+	 * attached to the parent control. Change garbage state to {@link GarbageState.REPARENTED}.
+	 * Do not detach the Tile from its old parent.
 	 * 
 	 * @param newParent
-	 *            The tilePart that should be used as part parent.
+	 *        The tilePart that should be used as part parent.
 	 * @param compositeParent
-	 *            The composite that should be used as parent.
+	 *        The composite that should be used as parent.
 	 */
 	public void reparent(ITilePart<T> newParent, Composite compositeParent) {
 
@@ -495,19 +516,22 @@ public class EditorTile<T> implements ITilePart<T> {
 		garbageState = GarbageState.REPARENTED;
 	}
 
+
 	/**
-	 * Asks this part to take focus within the workbench. Set the focus on the active nested part if
-	 * the part is a container.
+	 * Asks this part to take focus within the workbench.
+	 * Set the focus on the active nested part if the part is a container.
 	 */
 	public void setFocus() {
 		editorPart.setFocus();
 	}
 
+
 	/**
-	 * Synchronize the Part, and its children. PartMap contains a snapshot of the available part
-	 * before the synchronization. After synchronization, unreachable parts should be marked
-	 * "orphaned" (= no parent). Do nothing in this implementation, as we are a final leaf, and
-	 * there is nothing to synchronize with the underlying model.
+	 * Synchronize the Part, and its children. PartMap contains a snapshot of the available part before
+	 * the synchronization. After synchronization, unreachable parts should be marked "orphaned" (= no
+	 * parent).
+	 * Do nothing in this implementation, as we are a final leaf, and there is nothing to synchronize
+	 * with the underlying model.
 	 * 
 	 * @param partMap
 	 */
@@ -515,9 +539,11 @@ public class EditorTile<T> implements ITilePart<T> {
 
 	}
 
+
 	/**
-	 * Garbage this part. The part is already marked as ORPHANED. It is not used anymore. It is
-	 * already detached from its parent.
+	 * Garbage this part.
+	 * The part is already marked as ORPHANED. It is not used anymore. It is already detached
+	 * from its parent.
 	 * 
 	 */
 	public void garbage() {
@@ -525,8 +551,10 @@ public class EditorTile<T> implements ITilePart<T> {
 		dispose(true);
 	}
 
+
 	/**
-	 * Accept the provided visitor. Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor.
+	 * Call the corresponding accept method in the visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -536,27 +564,28 @@ public class EditorTile<T> implements ITilePart<T> {
 	}
 
 	/**
-	 * Visit the children of this Tile. There is no child, so do nothing.
+	 * Visit the children of this Tile.
+	 * There is no child, so do nothing.
 	 * 
 	 * @param visitor
 	 */
 	public void visitChildren(ITileVisitor visitor) {
 	}
 
+
 	/**
 	 * Show item status.
 	 */
 	protected void showStatus() {
-		// System.out.println( "EditorTile: "
-		// + " disposed=" + editorControl.isDisposed()
-		// + ", visible=" + editorControl.isVisible()
-		// + ", garbState=" + garbageState
-		// + ", '" + editorPart.getTitle()
-		// + "', " + this);
+		//		System.out.println( "EditorTile: " 
+		//				+ " disposed=" + editorControl.isDisposed()
+		//				+ ", visible=" + editorControl.isVisible()
+		//				+ ", garbState=" + garbageState
+		//				+ ", '" + editorPart.getTitle()
+		//				+ "', " + this);
 
-		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl
-				.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState,
-				editorPart.getTitle(), this);
+		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n"
+				, editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, editorPart.getTitle(), this);
 
 	}
 }

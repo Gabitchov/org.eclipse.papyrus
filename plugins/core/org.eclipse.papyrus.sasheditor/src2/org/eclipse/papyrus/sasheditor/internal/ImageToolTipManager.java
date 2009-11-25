@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+
 /**
  * A class managing tooltips as Part.
  * 
@@ -35,7 +36,6 @@ import org.eclipse.swt.widgets.Shell;
 public class ImageToolTipManager {
 
 	/** Log object */
-	// @unused
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/** */
@@ -44,17 +44,16 @@ public class ImageToolTipManager {
 	/**
 	 * Size of the image to show.
 	 */
-	private final Rectangle toolTipExpectedSize = new Rectangle(0, 0, 100, 80);
+	private Rectangle toolTipExpectedSize = new Rectangle(0, 0, 100, 80);
 
-	// @unused
-	private final int offsetX = 20;
+	private int offsetX = 20;
 
-	private final int offsetY = 20;
+	private int offsetY = 20;
 
 	/**
 	 * Position of the tooltip relative to the tooltiped swt.Control.
 	 */
-	private final int toolTipAlignement = SWT.TOP;
+	private int toolTipAlignement = SWT.TOP;
 
 	/**
 	 * 
@@ -72,7 +71,7 @@ public class ImageToolTipManager {
 	 * Close the tooltip and dispose it.
 	 */
 	public void closeToolTip() {
-		if (tip != null) {
+		if(tip != null) {
 			tip.dispose();
 			tip = null;
 		}
@@ -81,13 +80,15 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Disable the tooltip. If the tooltip is shown, hide it. In the disable state, calls to
-	 * showTooltip() with the same Control will not show the tooltip again untill another control is
-	 * proposed. A call to closeToolTip() is required to show the same Control again.
+	 * Disable the tooltip.
+	 * If the tooltip is shown, hide it.
+	 * In the disable state, calls to showTooltip() with the same Control will not
+	 * show the tooltip again untill another control is proposed.
+	 * A call to closeToolTip() is required to show the same Control again.
 	 */
 	public void disableToolTip() {
 		// Close the tooltip.
-		if (tip != null) {
+		if(tip != null) {
 			tip.dispose();
 			tip = null;
 		}
@@ -99,7 +100,7 @@ public class ImageToolTipManager {
 	 * 
 	 */
 	public void dispose() {
-		if (tip != null) {
+		if(tip != null) {
 			tip.dispose();
 			tip = null;
 		}
@@ -107,18 +108,18 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the previously
-	 * open one.
+	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the
+	 * previously open one.
 	 * 
 	 * @param relatedControlBounds
-	 *            Bounds of the control for which the tooltip should be shown.
+	 *        Bounds of the control for which the tooltip should be shown.
 	 * @param part
-	 *            The part for which a tooltip should be shown.
+	 *        The part for which a tooltip should be shown.
 	 * @param mousePos
-	 *            Position of the mouse.
+	 *        Position of the mouse.
 	 */
 	public void showToolTip(Rectangle relatedControlBounds, Control control, Point mousePos) {
-		if (toolTipedControl == control) {
+		if(toolTipedControl == control) {
 			// resetTimer()
 			return;
 		}
@@ -128,26 +129,25 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the previously
-	 * open one.
+	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the
+	 * previously open one.
 	 * 
 	 * @param relatedControlBounds
-	 *            Bounds of the control for which the tooltip should be shown.
+	 *        Bounds of the control for which the tooltip should be shown.
 	 * @param toolTipImage
-	 *            The image used as tooltip.
+	 *        The image used as tooltip.
 	 * @param mousePos
-	 *            Position of the mouse.
+	 *        Position of the mouse.
 	 */
-	// @unused
 	public void showToolTip(Rectangle relatedControlBounds, Image toolTipImage, Point mousePos) {
 		throw new UnsupportedOperationException("Not yet implemented");
-		// if(toolTipedControl == control)
-		// {
-		// // resetTimer()
-		// return;
-		// }
+		//		if(toolTipedControl == control)
+		//		{
+		//			// resetTimer()
+		//			return;
+		//		}
 		//		
-		// openToolTip(relatedControlBounds, control, mousePos);
+		//		openToolTip(relatedControlBounds, control, mousePos);
 
 	}
 
@@ -162,9 +162,8 @@ public class ImageToolTipManager {
 		float scaleFactor = .5f;
 
 		Image image = createControlImage(control);
-		if (image == null) {
+		if(image == null)
 			return;
-		}
 
 		Image scaledImage = scaledImage(control.getDisplay(), image, scaleFactor);
 		image.dispose();
@@ -177,23 +176,23 @@ public class ImageToolTipManager {
 	 * Compute the tooltip position.
 	 * 
 	 * @param relatedControlBounds
-	 *            Bounds of the item to which the tooltip apply
+	 *        Bounds of the item to which the tooltip apply
 	 * @param mousePos
-	 *            Position of the mouse inside the relatedControlBounds.
+	 *        Position of the mouse inside the relatedControlBounds.
 	 * @param toolTipSize
-	 *            Size of the ToolTip.
+	 *        Size of the ToolTip.
 	 * 
 	 * @return Position of the tooltip
 	 */
 	private Point computeToolTipPosition(Rectangle relatedControlBounds, Point mousePos, Rectangle toolTipSize) {
 
 		int x, y;
-		if (toolTipAlignement == SWT.TOP) {
+		if(toolTipAlignement == SWT.TOP) {
 			// Position.x = mousePoint.x
 			// Position.y = itemBounds - (toolTipSize.y + offsetY)
 			x = mousePos.x;
 			y = relatedControlBounds.y - (toolTipSize.height + offsetY);
-		} else if (toolTipAlignement == SWT.BOTTOM) {
+		} else if(toolTipAlignement == SWT.BOTTOM) {
 			x = mousePos.x;
 			y = relatedControlBounds.y + (relatedControlBounds.height + offsetY);
 		} else {
@@ -206,14 +205,13 @@ public class ImageToolTipManager {
 	 * Open a tooltip like window containing the image.
 	 * 
 	 * @param device
-	 *            The control from which atPoint is specified.
+	 *        The control from which atPoint is specified.
 	 * @param scaledImage
 	 * @param atPoint
 	 */
 	private void openToolTip(Control device, Image scaledImage, Point atPoint) {
-		if (tip != null && !tip.isDisposed()) {
+		if(tip != null && !tip.isDisposed())
 			tip.dispose();
-		}
 		tip = new Shell(device.getShell(), SWT.ON_TOP | SWT.NO_FOCUS | SWT.TOOL);
 		FillLayout layout = new FillLayout();
 		layout.marginWidth = 2;
@@ -230,7 +228,7 @@ public class ImageToolTipManager {
 	 * Create an image corresponding to the control.
 	 * 
 	 * @param control
-	 *            The control for which an image is to be built.
+	 *        The control for which an image is to be built.
 	 * @return
 	 */
 	private Image createControlImage(Control control) {
@@ -239,7 +237,7 @@ public class ImageToolTipManager {
 		Rectangle size;
 
 		size = control.getBounds();
-		if (size.width == 0 && size.height == 0) {
+		if(size.width == 0 && size.height == 0) {
 			Point pt = control.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 			size = new Rectangle(0, 0, pt.x, pt.y);
 		}
@@ -249,10 +247,9 @@ public class ImageToolTipManager {
 
 		boolean success = control.print(gc);
 		gc.dispose();
-		if (!success) {
+		if(!success) {
 			image.dispose();
-			// log.warning("Can't create Snapshot for the control of '" + part +
-			// "'.");
+			//			log.warning("Can't create Snapshot for the control of '" + part + "'.");
 			return null;
 		}
 
@@ -263,10 +260,9 @@ public class ImageToolTipManager {
 	 * Create an image corresponding to the control.
 	 * 
 	 * @param control
-	 *            The control for which an image is to be built.
+	 *        The control for which an image is to be built.
 	 * @return
 	 */
-	// @unused
 	private Image scaledImage2(Device device, Image image, float factor) {
 		Rectangle imageBounds = image.getBounds();
 		Rectangle size = computeToolTipSize(image, factor);
@@ -279,7 +275,8 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Compute the expected size of the tooltip. For now, simply return the expected size.
+	 * Compute the expected size of the tooltip.
+	 * For now, simply return the expected size.
 	 * 
 	 * @param image
 	 * @param factor
@@ -287,8 +284,8 @@ public class ImageToolTipManager {
 	 */
 	private Rectangle computeToolTipSize(Image image, float factor) {
 
-		// Rectangle imageBounds = image.getBounds();
-		// Rectangle size;
+		//		Rectangle imageBounds = image.getBounds();
+		//		Rectangle size;
 
 		return toolTipExpectedSize;
 	}
@@ -303,7 +300,7 @@ public class ImageToolTipManager {
 	private Image scaledImage(Device device, Image image, float factor) {
 
 		Rectangle bounds = image.getBounds();
-		// Float factor = 0.5f;
+		//		Float factor = 0.5f;
 
 		Rectangle newBounds = new Rectangle(0, 0, Math.round(bounds.width * factor), Math.round(bounds.height * factor));
 		Image scaledImage = new Image(device, newBounds);

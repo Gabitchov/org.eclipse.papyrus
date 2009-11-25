@@ -13,15 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
 
+
 /**
- * Instance of this class track the active Page. When the active Page change, the tracker receive an
- * event, and perform following tasks:
+ * Instance of this class track the active Page.
+ * When the active Page change, the tracker receive an event, and perform following tasks:
  * <ul>
  * <li>- call editorChange()</li>
  * <li>- fire events to all registered listeners.</li>
@@ -45,10 +46,10 @@ public class ActivePageTracker {
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/** List of listeners */
-	private final Set<IActiveEditorChangedListener> activeEditorChangedListeners = new HashSet<IActiveEditorChangedListener>();
+	private List<IActiveEditorChangedListener> activeEditorChangedListeners = new ArrayList<IActiveEditorChangedListener>();
 
 	/** List of public listeners */
-	private final Set<IPageChangedListener> publicPageChangedListeners = new HashSet<IPageChangedListener>();
+	private List<IPageChangedListener> publicPageChangedListeners;
 
 	/** The currently active editor */
 	protected PagePart activeEditor;
@@ -59,7 +60,7 @@ public class ActivePageTracker {
 	 * @author dumoulin
 	 * 
 	 */
-	interface IActiveEditorChangedListener {
+	public interface IActiveEditorChangedListener {
 
 		/**
 		 * This method is called whenever the active editor is changed.
@@ -67,7 +68,17 @@ public class ActivePageTracker {
 		 * @param oldEditor
 		 * @param newEditor
 		 */
-		void activeEditorChanged(PagePart oldEditor, PagePart newEditor);
+		public void activeEditorChanged(PagePart oldEditor, PagePart newEditor);
+	}
+
+
+	/**
+	 * Constructor.
+	 * The activeEditor will be set by the first TabFolder that will call TabFolderPart.setPage().
+	 * 
+	 * @param multiPartEditor
+	 */
+	public ActivePageTracker() {
 	}
 
 	/**
@@ -80,15 +91,15 @@ public class ActivePageTracker {
 	}
 
 	/**
-	 * Set the active editor with the specified editor. This will notify all registered listeners
+	 * Set the active editor with the specified editor.
+	 * This will notify all registered listeners
 	 * 
 	 * @param editor
 	 */
 	public void setActiveEditor(PagePart editor) {
 		// Skip if there is no change
-		if (activeEditor == editor) {
+		if(activeEditor == editor)
 			return;
-		}
 
 		PagePart oldEditor = activeEditor;
 		activeEditor = editor;
@@ -102,9 +113,8 @@ public class ActivePageTracker {
 	 */
 	public void addActiveEditorChangedListener(IActiveEditorChangedListener listener) {
 		// no duplicate
-		if (activeEditorChangedListeners.contains(listener)) {
+		if(activeEditorChangedListeners.contains(listener))
 			return;
-		}
 		activeEditorChangedListeners.add(listener);
 	}
 
@@ -123,6 +133,12 @@ public class ActivePageTracker {
 	 * @param listener
 	 */
 	public void addPageChangedListener(IPageChangedListener listener) {
+		// no duplicate
+		if(publicPageChangedListeners == null)
+			publicPageChangedListeners = new ArrayList<IPageChangedListener>();
+
+		if(publicPageChangedListeners.contains(listener))
+			return;
 		publicPageChangedListeners.add(listener);
 	}
 
@@ -132,6 +148,9 @@ public class ActivePageTracker {
 	 * @param listener
 	 */
 	public void removePageChangedListener(IPageChangedListener listener) {
+		if(publicPageChangedListeners == null)
+			return;
+
 		publicPageChangedListeners.remove(listener);
 	}
 
@@ -143,19 +162,21 @@ public class ActivePageTracker {
 	 */
 	private void fireEditorChangeEvent(PagePart oldEditor, PagePart newEditor) {
 		// Fire only if really change
-		if (oldEditor == newEditor) {
+		if(oldEditor == newEditor)
 			return;
-		}
 
 		// Fire events to internal listeners
-		for (IActiveEditorChangedListener listener : activeEditorChangedListeners) {
+		for(IActiveEditorChangedListener listener : activeEditorChangedListeners) {
 			listener.activeEditorChanged(oldEditor, newEditor);
 		}
 
 		// Fire event to public listeners
-		for (IPageChangedListener listener : publicPageChangedListeners) {
-			listener.pageChanged(newEditor);
+		if(publicPageChangedListeners != null) {
+			for(IPageChangedListener listener : publicPageChangedListeners) {
+				listener.pageChanged(newEditor);
+			}
 		}
+
 	}
 
 }

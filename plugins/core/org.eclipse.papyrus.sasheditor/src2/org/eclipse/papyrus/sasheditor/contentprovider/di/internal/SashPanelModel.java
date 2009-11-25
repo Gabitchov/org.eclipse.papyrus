@@ -22,6 +22,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 
+
 /**
  * @author cedric dumoulin
  */
@@ -62,10 +63,10 @@ public class SashPanelModel implements IAbstractPanelModel, ISashPanelModel {
 	 * @return
 	 */
 	public IAbstractPanelModel createChildSashModel(Object child) {
-		if (child instanceof SashPanel)
-			return new SashPanelModel((SashPanel) child, pageModelFactory);
-		else if (child instanceof TabFolder)
-			return new TabFolderModel((TabFolder) child, pageModelFactory);
+		if(child instanceof SashPanel)
+			return new SashPanelModel((SashPanel)child, pageModelFactory);
+		else if(child instanceof TabFolder)
+			return new TabFolderModel((TabFolder)child, pageModelFactory);
 		else
 			throw new IllegalArgumentException("Can't create IPanelModel from raw model '" + child + "'.");
 	}

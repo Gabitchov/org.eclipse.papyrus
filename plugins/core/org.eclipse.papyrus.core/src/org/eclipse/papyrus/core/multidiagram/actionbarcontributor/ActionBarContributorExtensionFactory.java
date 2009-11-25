@@ -42,7 +42,6 @@ public class ActionBarContributorExtensionFactory extends DescriptorExtensionFac
 	/**
 	 * @return the eINSTANCE
 	 */
-	// @unused
 	public static ActionBarContributorExtensionFactory getInstance() {
 		return eINSTANCE;
 	}
@@ -51,19 +50,17 @@ public class ActionBarContributorExtensionFactory extends DescriptorExtensionFac
 	 * Create a ContextDescriptor instance corresponding to the ConfigurationElement.
 	 * 
 	 * @param element
-	 *            an {@link IConfigurationElement} see eclipse extension point
+	 *        an {@link IConfigurationElement} see eclipse extension point
 	 * @return a ContextDescriptor structure that contains information to the diagram context
 	 * @throws BadNameExtensionException
 	 **/
-	public ActionBarContributorDescriptor createActionBarContributorDescriptor(IConfigurationElement element)
-			throws ExtensionException {
+	public ActionBarContributorDescriptor createActionBarContributorDescriptor(IConfigurationElement element) throws ExtensionException {
 		ActionBarContributorDescriptor res;
 
 		checkTagName(element, EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT);
 
 		res = new ActionBarContributorDescriptor();
-		res.contextClass = (Class<EditorActionBarContributor>) parseClass(element, CONTEXTCLASS_ATTRIBUTE,
-				EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT);
+		res.contextClass = (Class<EditorActionBarContributor>)parseClass(element, CONTEXTCLASS_ATTRIBUTE, EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT);
 		res.contextId = element.getAttribute(ID_ATTRIBUTE);
 
 		return res;

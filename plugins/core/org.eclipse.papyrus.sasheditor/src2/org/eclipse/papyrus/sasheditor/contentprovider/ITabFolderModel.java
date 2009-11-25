@@ -3,12 +3,14 @@ package org.eclipse.papyrus.sasheditor.contentprovider;
 import java.util.List;
 
 /**
- * A folder containing tabItem. This interface is used to specify that a TabFolder should be drawn.
+ * A folder containing tabItem.
+ * This interface is used to specify that a TabFolder should be drawn.
  * 
  * @author dumoulin
  * 
  * @param <ChildType>
- *            Type of the children of the folder. This is the type returned by getChildren().
+ *        Type of the children of the folder. This is the type returned by
+ *        getChildren().
  */
 public interface ITabFolderModel extends IAbstractPanelModel {
 
@@ -20,11 +22,12 @@ public interface ITabFolderModel extends IAbstractPanelModel {
 	public List<?> getChildren();
 
 	/**
-	 * Create the Interface used to access the real model. This method is called by the sashes
-	 * window to get the interface. The method is called only once for a given object.
+	 * Create the Interface used to access the real model.
+	 * This method is called by the sashes window to get the interface.
+	 * The method is called only once for a given object.
 	 * 
 	 * @param child
-	 *            A child returned by getChildren().
+	 *        A child returned by getChildren().
 	 * @return
 	 */
 	public IPageModel createChildSashModel(Object child);

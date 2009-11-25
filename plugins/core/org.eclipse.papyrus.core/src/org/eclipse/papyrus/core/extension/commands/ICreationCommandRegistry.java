@@ -32,10 +32,10 @@ public interface ICreationCommandRegistry {
 	 * Get registered creation with given identifier
 	 * 
 	 * @param commandId
-	 *            the command id
+	 *        the command id
 	 * @return the registered command
 	 * @throws NotFoundException
-	 *             if command not registered
+	 *         if command not registered
 	 */
 	ICreationCommand getCommand(String commandId) throws NotFoundException;
 }

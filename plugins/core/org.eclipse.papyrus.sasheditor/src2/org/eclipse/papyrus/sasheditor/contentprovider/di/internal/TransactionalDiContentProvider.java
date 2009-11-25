@@ -10,11 +10,12 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
-import org.eclipse.papyrus.sashwindows.di.TabFolder;
+
 
 /**
- * A content provider based on EMF di and using Transactions. This implementation is a wrapper on
- * {@link DiContentProvider}. Each method is wrapped in a {@link RecordingCommand}.
+ * A content provider based on EMF di and using Transactions.
+ * This implementation is a wrapper on {@link DiContentProvider}.
+ * Each method is wrapped in a {@link RecordingCommand}.
  * 
  * @author cedric dumoulin
  * 
@@ -54,6 +55,8 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * 
 	 */
 	public void addPage(final Object page) {
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+
 		RecordingCommand command = new RecordingCommand(editingDomain) {
 
 			@Override
@@ -63,12 +66,11 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 			}
 		};
 
-		getTransactionalEditingDomain().getCommandStack().execute(command);
+		editingDomain.getCommandStack().execute(command);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#addPage(java.lang.Object,
-	 *      int)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#addPage(java.lang.Object, int)
 	 * @param page
 	 * @param index
 	 * 
@@ -107,8 +109,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param side
 	 * 
 	 */
-	public void createFolder(final ITabFolderModel tabFolder, final int tabIndex, final ITabFolderModel targetFolder,
-			final int side) {
+	public void createFolder(final ITabFolderModel tabFolder, final int tabIndex, final ITabFolderModel targetFolder, final int side) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
 		RecordingCommand command = new RecordingCommand(editingDomain) {
@@ -131,32 +132,18 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param rawModel
 	 */
 	public void setCurrentFolder(final Object rawModel) {
-		// Only fire the change if it *really* change !
-		if (rawModel instanceof TabFolder && !((TabFolder) rawModel).equals(getCurrentFolder())) {
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-			RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain) {
 
-				@Override
-				protected void doExecute() {
-					diContentProvider.setCurrentFolder(rawModel);
+			@Override
+			protected void doExecute() {
+				diContentProvider.setCurrentFolder(rawModel);
 
-				}
-			};
+			}
+		};
 
-			getTransactionalEditingDomain().getCommandStack().execute(command);
-
-		}
-	}
-
-	/**
-	 * Overrides getCurrentFolder.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
-	 */
-	public TabFolder getCurrentFolder() {
-		return (TabFolder) diContentProvider.getCurrentFolder();
+		editingDomain.getCommandStack().execute(command);
 	}
 
 	/**
@@ -200,8 +187,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param targetIndex
 	 * 
 	 */
-	public void movePage(final ITabFolderModel srcFolderModel, final int sourceIndex,
-			final ITabFolderModel targetFolderModel, final int targetIndex) {
+	public void movePage(final ITabFolderModel srcFolderModel, final int sourceIndex, final ITabFolderModel targetFolderModel, final int targetIndex) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
 		RecordingCommand command = new RecordingCommand(editingDomain) {

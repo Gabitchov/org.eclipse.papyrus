@@ -40,7 +40,7 @@ public class ExtensionException extends Exception {
 	 * Creates a new BadNameExtensionException.
 	 * 
 	 * @param message
-	 *            the message associated to this exception
+	 *        the message associated to this exception
 	 */
 	public ExtensionException(String message) {
 		super(message);
@@ -50,7 +50,7 @@ public class ExtensionException extends Exception {
 	 * Creates a new BadNameExtensionException.
 	 * 
 	 * @param cause
-	 *            the cause of this exception
+	 *        the cause of this exception
 	 */
 	public ExtensionException(Throwable cause) {
 		super(cause);
@@ -61,9 +61,9 @@ public class ExtensionException extends Exception {
 	 * Creates a new BadNameExtensionException.
 	 * 
 	 * @param message
-	 *            the message associated to this exception
+	 *        the message associated to this exception
 	 * @param cause
-	 *            the cause of this exception
+	 *        the cause of this exception
 	 */
 	public ExtensionException(String message, Throwable cause) {
 		super(message, cause);
@@ -73,7 +73,7 @@ public class ExtensionException extends Exception {
 	 * Returns the name of the plugin and extension declaring the extension.
 	 * 
 	 * @param element
-	 *            the configuration element being parsed
+	 *        the configuration element being parsed
 	 * @return a formatted string that displays information about the configuration element
 	 */
 	protected static String declaringExtensionToString(IConfigurationElement element) {

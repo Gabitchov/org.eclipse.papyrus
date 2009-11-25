@@ -16,9 +16,9 @@ package org.eclipse.papyrus.core.extension;
 import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
- * Exception thrown as an extension point is parsed at runtime. More accurately, it is thrown when
- * one attribute of an extension point that should describe a class name does not correspond to a
- * class in the classpath.
+ * Exception thrown as an extension point is parsed at runtime. More accurately, it is thrown when one attribute of an extension point that should
+ * describe a class name does not correspond to a class
+ * in the classpath.
  * 
  * @author Cedric Dumoulin
  * @author Patrick Tessier
@@ -49,11 +49,11 @@ public class BadClassNameException extends ExtensionException {
 	 * constructor with an exception
 	 * 
 	 * @param element
-	 *            the IConfigurationElement that raised the error
+	 *        the IConfigurationElement that raised the error
 	 * @param attributeName
-	 *            the bad construct attibute
+	 *        the bad construct attibute
 	 * @param e
-	 *            the associated exception
+	 *        the associated exception
 	 */
 	public BadClassNameException(String msg, String iConfigurationElementName, String attributeName, final Exception e) {
 		super(msg);
@@ -66,9 +66,9 @@ public class BadClassNameException extends ExtensionException {
 	 * constructor without an exception
 	 * 
 	 * @param element
-	 *            the IConfigurationElement that raised the error
+	 *        the IConfigurationElement that raised the error
 	 * @param attributeName
-	 *            the bad construct attibute
+	 *        the bad construct attibute
 	 */
 	public BadClassNameException(String msg, String iConfigurationElementName, String attributeName) {
 		super(msg);
@@ -81,7 +81,6 @@ public class BadClassNameException extends ExtensionException {
 	 * {@inheritDoc}
 	 */
 	public String toString() {
-		return super.toString() + " for the extension point " + iconfigurationElementName + "." + attributeName + " "
-				+ e;
+		return super.toString() + " for the extension point " + iconfigurationElementName + "." + attributeName + " " + e;
 	}
 }

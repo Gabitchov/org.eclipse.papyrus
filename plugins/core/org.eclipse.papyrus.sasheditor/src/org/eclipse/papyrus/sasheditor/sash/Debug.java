@@ -19,20 +19,18 @@ package org.eclipse.papyrus.sasheditor.sash;
  */
 public class Debug {
 
-	private final String buff[] = new String[5];
+	private String buff[] = new String[5];
 
 	private int lastIndex = 0;
 
-	// @unused
 	static Debug out = new Debug();;
 
 	void println(String str) {
 		// Check if next in sequence
-		if (str == buff[lastIndex++]) {
+		if(str == buff[lastIndex++])
 			return;
-		}
 		// Check if we restart sequence
-		if (str == buff[0]) { // restart sequence
+		if(str == buff[0]) { // restart sequence
 			lastIndex = 0;
 			return;
 		}

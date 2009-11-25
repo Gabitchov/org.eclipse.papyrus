@@ -20,14 +20,14 @@ import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 
+
 /**
- * Provide methods and services needed for Gef Editors. This class is intended to be used as a
- * delegate inside classes providing MultiDiagramEditor.
+ * Provide methods and services needed for Gef Editors.
+ * This class is intended to be used as a delegate inside classes providing MultiDiagramEditor.
  * 
  * @author dumoulin
  * 
  */
-// @unused
 public class MultiDiagramEditorGefDelegate {
 
 	/** The registry holding actions associated to the main editor */
@@ -37,27 +37,26 @@ public class MultiDiagramEditorGefDelegate {
 	private MultiPageSelectionSynchronizer synchronizer;
 
 	/** List of listeners on SelectionChanged event */
-	private final List<ISelectionChangedListener> selectionListeners = new ArrayList<ISelectionChangedListener>(1);
+	private List<ISelectionChangedListener> selectionListeners = new ArrayList<ISelectionChangedListener>(1);
+
 
 	/**
 	 * This method should be called by the containing class.
 	 */
-	// @unused
 	public void dispose() {
 		selectionListeners.clear();
-		if (actionRegistry != null) {
+		if(actionRegistry != null) {
 			actionRegistry.dispose();
 		}
 	}
 
+
 	/**
-	 * Adds a listener for selection changes in this selection provider. Has no effect if an
-	 * identical listener is already registered.
+	 * Adds a listener for selection changes in this selection provider. Has no effect if an identical listener is already registered.
 	 * 
 	 * @param listener
-	 *            a selection changed listener
+	 *        a selection changed listener
 	 */
-	// @unused
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
 		selectionListeners.add(listener);
 	}
@@ -67,38 +66,32 @@ public class MultiDiagramEditorGefDelegate {
 	 * 
 	 * @return the action registry
 	 */
-	// @unused
 	public ActionRegistry getActionRegistry() {
-		if (actionRegistry == null) {
+		if(actionRegistry == null)
 			actionRegistry = new ActionRegistry();
-		}
 		return actionRegistry;
 	}
 
 	/**
-	 * Returns the selection synchronizer object. The synchronizer can be used to sync the selection
-	 * of 2 or more EditPartViewers.
+	 * Returns the selection synchronizer object. The synchronizer can be used to sync the selection of 2 or more EditPartViewers.
 	 * 
 	 * @return the syncrhonizer
 	 */
-	// @unused
 	public MultiPageSelectionSynchronizer getSelectionSynchronizer() {
-		if (synchronizer == null) {
+		if(synchronizer == null) {
 			synchronizer = new MultiPageSelectionSynchronizer();
 			// Hook this editor.
-			// synchronizer.addViewer(this);
+			//			synchronizer.addViewer(this);
 		}
 		return synchronizer;
 	}
 
 	/**
-	 * Removes the given selection change listener from this selection provider. Has no affect if an
-	 * identical listener is not registered.
+	 * Removes the given selection change listener from this selection provider. Has no affect if an identical listener is not registered.
 	 * 
 	 * @param listener
-	 *            the selection changed listener to be removed
+	 *        the selection changed listener to be removed
 	 */
-	// @unused
 	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
 		selectionListeners.remove(listener);
 	}
@@ -107,9 +100,8 @@ public class MultiDiagramEditorGefDelegate {
 	 * Sets the current selection for this selection provider.
 	 * 
 	 * @param selection
-	 *            the new selection
+	 *        the new selection
 	 */
-	// @unused
 	public void setSelection(ISelection selection) {
 	}
 

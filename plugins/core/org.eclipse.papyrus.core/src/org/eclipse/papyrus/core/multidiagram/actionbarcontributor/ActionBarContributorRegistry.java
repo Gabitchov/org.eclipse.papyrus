@@ -35,8 +35,8 @@ import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
- * A factory managing ActionBarContributor creation. The factory is loaded from ActionBarContributor
- * declared in Eclipse extension mechanism.
+ * A factory managing ActionBarContributor creation.
+ * The factory is loaded from ActionBarContributor declared in Eclipse extension mechanism.
  * 
  * @author dumoulin
  * 
@@ -58,15 +58,16 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 	private Map<Object, ActionBarContributorDescriptor> editorContextDescriptors;
 
 	/**
-	 * Constructor. defaultContext, input and site are explicitly required in order be sure that
-	 * they are initialized. The multiEditor should be initialized. In particular, getEditorSite(),
+	 * Constructor. defaultContext, input and site are explicitly required in order be sure that they are initialized. The multiEditor should be
+	 * initialized. In particular, getEditorSite(),
 	 * getEditorInput() and getDefaultContext() should return initialized values.
 	 * 
 	 *@param multiEditor
-	 *            the multieditor
+	 *        the multieditor
 	 *@param extensionPointNamespace
 	 */
 	public ActionBarContributorRegistry(String extensionPointNamespace) {
+
 
 		this.extensionPointNamespace = extensionPointNamespace;
 		initializeEditorContextDescriptors();
@@ -91,11 +92,11 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 	 * 
 	 * @return
 	 * @throws BackboneException
-	 *             If a contributor fail to be loaded.
+	 *         If a contributor fail to be loaded.
 	 */
 	public List<EditorActionBarContributor> getActionBarContributors() throws BackboneException {
 		List<EditorActionBarContributor> res = new ArrayList<EditorActionBarContributor>();
-		for (ActionBarContributorDescriptor desc : editorContextDescriptors.values()) {
+		for(ActionBarContributorDescriptor desc : editorContextDescriptors.values()) {
 			res.add(desc.getActionBarContributor());
 		}
 		return res;
@@ -105,7 +106,6 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 	 * 
 	 * {@inheritDoc}
 	 */
-	// @unused
 	public void registerActionBarContributor(String contextKey, EditorActionBarContributor contributor) {
 		ActionBarContributorDescriptor desc = new ActionBarContributorDescriptor();
 		desc.contextId = contextKey;
@@ -122,44 +122,35 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 
 		editorContextDescriptors = new HashMap<Object, ActionBarContributorDescriptor>();
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				extensionPointNamespace, EDITOR_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
 
 		ActionBarContributorExtensionFactory extensionReader = new ActionBarContributorExtensionFactory();
 
-		for (IConfigurationElement ele : configElements) {
+		for(IConfigurationElement ele : configElements) {
 			ActionBarContributorDescriptor desc;
 			try {
-				if (ActionBarContributorExtensionFactory.EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT.equals(ele
-						.getName())) {
+				if(ActionBarContributorExtensionFactory.EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT.equals(ele.getName())) {
 					desc = extensionReader.createActionBarContributorDescriptor(ele);
 					// Check double
-					if (editorContextDescriptors.get(desc.contextId) != null) {
+					if(editorContextDescriptors.get(desc.contextId) != null) {
 						// Already exists. Check if it is the same
 						ActionBarContributorDescriptor existingDesc = editorContextDescriptors.get(desc.contextId);
-						if (desc.equals(existingDesc)) {
+						if(desc.equals(existingDesc))
 							log.warning("More than one ActionBarContributor is registered under the name '"
 									+ desc.contextId
 									+ "', with different parameters. Extra declaration are disguarded. ");
-						}
-					} else {
+					} else
 						editorContextDescriptors.put(desc.contextId, desc);
-					}
 				}
 			} catch (ExtensionException e) {
-				Activator.getDefault().getLog()
-						.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
-				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem "
-						+ e);
+				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
+				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem " + e);
 			}
 		}
 
-		if (log.isLoggable(Level.WARNING)) {
-			log.warning(this.getClass().getSimpleName() + " : contributors desc loaded  ["
-					+ editorContextDescriptors.size() + "]");
-		}
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size()
-				+ " editorContextDescriptors loaded");
+		if(log.isLoggable(Level.WARNING))
+			log.warning(this.getClass().getSimpleName() + " : contributors desc loaded  [" + editorContextDescriptors.size() + "]");
+		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size() + " editorContextDescriptors loaded");
 
 	}
 

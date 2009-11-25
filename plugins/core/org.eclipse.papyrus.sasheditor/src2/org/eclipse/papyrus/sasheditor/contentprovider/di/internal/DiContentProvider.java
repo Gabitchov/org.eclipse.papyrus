@@ -34,6 +34,7 @@ import org.eclipse.papyrus.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.sashwindows.di.Window;
 
+
 /**
  * EMF implementation of the {@link ISashWindowsContentProvider}.
  * 
@@ -42,15 +43,15 @@ import org.eclipse.papyrus.sashwindows.di.Window;
 public class DiContentProvider implements ISashWindowsContentProvider, IContentChangedProvider {
 
 	/** Internal EMF model */
-	private final SashModel diSashModel;
+	private SashModel diSashModel;
 
 	/** Factory used to create SWT Editor or Component from Page Identifiers. */
-	private final IPageModelFactory pageModelFactory;
+	private IPageModelFactory pageModelFactory;
 
 	/** */
-	private final ContentChangeListenerManager contentChangedListenerManager = new ContentChangeListenerManager();
+	private ContentChangeListenerManager contentChangedListenerManager = new ContentChangeListenerManager();
 
-	private final EMFAdapter emfAdapter = new EMFAdapter();
+	private EMFAdapter emfAdapter = new EMFAdapter();
 
 	/**
 	 * Create a ContentProvider
@@ -58,13 +59,12 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param diSashModel
 	 * @param pageModelFactory
 	 * @throws IllegalArgumentException
-	 *             If the factory is null.
+	 *         If the factory is null.
 	 */
 	public DiContentProvider(SashModel diSashModel, IPageModelFactory pageModelFactory) throws IllegalArgumentException {
 
-		if (pageModelFactory == null) {
+		if(pageModelFactory == null)
 			throw new IllegalArgumentException("A IPageModelFactory should be provided.");
-		}
 
 		this.diSashModel = diSashModel;
 		this.pageModelFactory = pageModelFactory;
@@ -72,16 +72,17 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
-	 * Connect EMF changeListener to the {@link ContentChangeListenerManager}. Changes in the EMF di
-	 * model will be fired by the ContentChangeListenerManager.
+	 * Connect EMF changeListener to the {@link ContentChangeListenerManager}.
+	 * Changes in the EMF di model will be fired by the ContentChangeListenerManager.
 	 */
 	private void connectChangeListeners() {
 		diSashModel.eAdapters().add(emfAdapter);
 	}
 
+
 	/**
-	 * Access to internal structure for tests. This method is not intended to be used for other
-	 * purpose.
+	 * Access to internal structure for tests.
+	 * This method is not intended to be used for other purpose.
 	 * 
 	 * @return the diSashModel
 	 */
@@ -90,8 +91,8 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
-	 * Add a page identifier to the SashModel. This page identifier will be added as "child" of the
-	 * current TabFolder.
+	 * Add a page identifier to the SashModel. This page identifier will be added as "child" of the current
+	 * TabFolder.
 	 * 
 	 * @param pageIdentifier
 	 */
@@ -100,8 +101,8 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
-	 * Add a page to the current folder. Create the Page (Editor or Component) with the help of the
-	 * factory.
+	 * Add a page to the current folder.
+	 * Create the Page (Editor or Component) with the help of the factory.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#addPage(int,
 	 *      org.eclipse.papyrus.sasheditor.contentprovider.IPageModel)
@@ -131,8 +132,8 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 		// Create new folder. Parent will be set when inserted.
 		TabFolder newFolder = DiFactory.eINSTANCE.createTabFolder();
 
-		TabFolder refFolder = ((TabFolderModel) targetFolder).getTabFolder();
-		TabFolder pageSrcFolder = ((TabFolderModel) tabFolder).getTabFolder();
+		TabFolder refFolder = ((TabFolderModel)targetFolder).getTabFolder();
+		TabFolder pageSrcFolder = ((TabFolderModel)tabFolder).getTabFolder();
 
 		// Insert folder
 		diSashModel.insertFolder(newFolder, refFolder, side);
@@ -153,29 +154,19 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
 	 * 
 	 * @param rawModel
-	 *            The object identifying the folder.
+	 *        The object identifying the folder.
 	 */
 	public void setCurrentFolder(Object rawModel) {
 
-		if (!(rawModel instanceof TabFolder)) {
+		if(!(rawModel instanceof TabFolder)) {
 			return;
 		}
-		diSashModel.setCurrentSelection((TabFolder) rawModel);
+		diSashModel.setCurrentSelection((TabFolder)rawModel);
 	}
 
 	/**
-	 * Overrides getCurrentFolder.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
-	 */
-	public Object getCurrentFolder() {
-		return diSashModel.getCurrentSelection();
-	}
-
-	/**
-	 * Get the node used as root of the SashWindows. For now, this is the first window.
+	 * Get the node used as root of the SashWindows.
+	 * For now, this is the first window.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getRootModel()
 	 * 
@@ -187,8 +178,7 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
-	 * Create the IPanelModel for the rootModel returned by {@link DiContentProvider#getRootModel()}
-	 * .
+	 * Create the IPanelModel for the rootModel returned by {@link DiContentProvider#getRootModel()}.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#createChildSashModel(java.lang.Object)
 	 * 
@@ -197,13 +187,13 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 */
 	public IAbstractPanelModel createChildSashModel(Object root) {
 
-		if (root instanceof SashPanel) {
-			return new SashPanelModel((SashPanel) root, pageModelFactory);
-		} else if (root instanceof TabFolder) {
-			return new TabFolderModel((TabFolder) root, pageModelFactory);
-		} else {
+
+		if(root instanceof SashPanel)
+			return new SashPanelModel((SashPanel)root, pageModelFactory);
+		else if(root instanceof TabFolder)
+			return new TabFolderModel((TabFolder)root, pageModelFactory);
+		else
 			throw new IllegalArgumentException("Can't create IPanelModel from raw model '" + root + "'.");
-		}
 	}
 
 	/**
@@ -215,7 +205,7 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param newIndex
 	 */
 	public void movePage(ITabFolderModel folderModel, int oldIndex, int newIndex) {
-		TabFolder folder = ((TabFolderModel) folderModel).getTabFolder();
+		TabFolder folder = ((TabFolderModel)folderModel).getTabFolder();
 
 		contentChangedListenerManager.setDeliver(false);
 		folder.movePage(oldIndex, newIndex);
@@ -232,11 +222,10 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param targetFolderModel
 	 * @param targetIndex
 	 */
-	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel,
-			int targetIndex) {
+	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
 
-		TabFolder srcFolder = ((TabFolderModel) srcFolderModel).getTabFolder();
-		TabFolder targetFolder = ((TabFolderModel) targetFolderModel).getTabFolder();
+		TabFolder srcFolder = ((TabFolderModel)srcFolderModel).getTabFolder();
+		TabFolder targetFolder = ((TabFolderModel)targetFolderModel).getTabFolder();
 
 		contentChangedListenerManager.setDeliver(false);
 		diSashModel.movePage(srcFolder, sourceIndex, targetFolder, targetIndex);
@@ -276,7 +265,7 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	 * @param tabIndex
 	 */
 	public void removePage(ITabFolderModel parentFolder, int tabIndex) {
-		TabFolder folder = ((TabFolderModel) parentFolder).getTabFolder();
+		TabFolder folder = ((TabFolderModel)parentFolder).getTabFolder();
 
 		contentChangedListenerManager.setDeliver(false);
 		folder.removePage(tabIndex);
@@ -285,8 +274,8 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -295,8 +284,8 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -305,8 +294,8 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -329,68 +318,62 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 		/** Last event stored when isDeliverEnable == false; */
 		private ContentEvent storedEvent;
 
+
 		/**
 		 * @return the isDeliverEnable
 		 */
-		// @unused
 		protected boolean isDeliver() {
 			return isDeliverEnable;
 		}
 
 		/**
 		 * @param isDeliverEnable
-		 *            the isDeliverEnable to set
+		 *        the isDeliverEnable to set
 		 */
 		protected void setDeliver(boolean isDeliverEnable) {
 
-			if (this.isDeliverEnable == isDeliverEnable) {
+			if(this.isDeliverEnable == isDeliverEnable)
 				return;
-			}
 
 			// Check if the old value is not delivering event
-			if (!this.isDeliverEnable) {
+			if(!this.isDeliverEnable) {
 				this.isDeliverEnable = true;
 				// reenable events. Check if an event is stored
-				if (storedEvent != null) {
+				if(storedEvent != null)
 					fireContentChanged(storedEvent);
-				}
 
-			} else {
+			} else
 				this.isDeliverEnable = isDeliverEnable;
-			}
 
 			storedEvent = null;
 		}
 
 		/**
-		 * Add a listener listening on content changed. This listener will be notified each time the
-		 * content change.
+		 * Add a listener listening on content changed. This listener will be
+		 * notified each time the content change.
 		 * 
 		 * @param listener
 		 */
 		public void addContentChangedListener(IContentChangedListener listener) {
-			if (listeners == null) {
+			if(listeners == null)
 				createListeners();
-			}
 
 			// Check if already exists.
-			if (listeners.contains(listener)) {
+			if(listeners.contains(listener))
 				return;
-			}
 
 			listeners.add(listener);
 		}
 
 		/**
-		 * Add a listener listening on content changed. This listener will be notified each time the
-		 * content change.
+		 * Add a listener listening on content changed. This listener will be
+		 * notified each time the content change.
 		 * 
 		 * @param listener
 		 */
 		public void removeContentChangedListener(IContentChangedListener listener) {
-			if (listeners == null) {
+			if(listeners == null)
 				return;
-			}
 
 			listeners.remove(listener);
 		}
@@ -399,9 +382,8 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 		 * Create the list of listeners.
 		 */
 		private void createListeners() {
-			if (listeners == null) {
+			if(listeners == null)
 				listeners = new ArrayList<IContentChangedListener>();
-			}
 
 		}
 
@@ -411,30 +393,31 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 		 * @param event
 		 */
 		public void fireContentChanged(ContentEvent event) {
-			if (listeners == null) {
+			if(listeners == null)
 				return;
-			}
 
-			if (!isDeliverEnable) {
+			if(!isDeliverEnable) {
 				storedEvent = event;
 				return;
 			}
 
-			for (IContentChangedListener listener : listeners) {
+			for(IContentChangedListener listener : listeners) {
 				listener.contentChanged(event);
 			}
 		}
 	}
 
 	/**
-	 * Change event Adapter. Forward EMF changeEvent to the {@link ContentChangeListenerManager}.
+	 * Change event Adapter.
+	 * Forward EMF changeEvent to the {@link ContentChangeListenerManager}.
 	 * 
 	 * @author cedric dumoulin
 	 */
 	public class EMFAdapter extends EContentAdapter {
 
 		/**
-		 * Model has changed.
+		 * ContentProvider Model has changed.
+		 * Changes includes : ADD, REMOVE and MOVE of elements
 		 * 
 		 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 		 * 
@@ -444,10 +427,15 @@ public class DiContentProvider implements ISashWindowsContentProvider, IContentC
 		public void notifyChanged(Notification msg) {
 			super.notifyChanged(msg);
 
+			// Filter out notification of type RESOLVE
+			// We don't need to be noti
+			if(msg.getEventType() == Notification.RESOLVE)
+				return;
+
+			// W
 			Object sender = msg.getNotifier();
-			if (sender instanceof AbstractPanel || sender instanceof Window || sender instanceof PageRef) {
+			if(sender instanceof AbstractPanel || sender instanceof Window || sender instanceof PageRef)
 				firePropertyChanged(new ContentEvent(msg.getEventType(), sender, null));
-			}
 		}
 	}
 

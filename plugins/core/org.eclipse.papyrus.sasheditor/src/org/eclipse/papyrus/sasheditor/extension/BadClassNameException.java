@@ -16,8 +16,7 @@ package org.eclipse.papyrus.sasheditor.extension;
 import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
- * Exception thrown when an extension does not declare a correct class name, when an attributes
- * refers to a java class.
+ * Exception thrown when an extension does not declare a correct class name, when an attributes refers to a java class.
  * 
  * @author dumoulin
  * @author Remi Schnekenburger
@@ -35,15 +34,14 @@ public class BadClassNameException extends ExtensionException {
 	 * Creates a new BadClassNameException.
 	 * 
 	 * @param element
-	 *            the configuration element being parsed
+	 *        the configuration element being parsed
 	 * @param attributeName
-	 *            the name of the attribute which contains the class name
+	 *        the name of the attribute which contains the class name
 	 * @param e
-	 *            the exception thrown by eclipse framework when parsing the extension point
+	 *        the exception thrown by eclipse framework when parsing the extension point
 	 */
 	public BadClassNameException(IConfigurationElement element, String attributeName, ClassNotFoundException e) {
-		super(declaringExtensionToString(element) + " - " + attributeName + "=" + element.getAttribute(attributeName),
-				e);
+		super(declaringExtensionToString(element) + " - " + attributeName + "=" + element.getAttribute(attributeName), e);
 	}
 
 }

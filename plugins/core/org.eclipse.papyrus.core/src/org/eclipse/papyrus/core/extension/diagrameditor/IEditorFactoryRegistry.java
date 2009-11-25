@@ -29,19 +29,19 @@ public interface IEditorFactoryRegistry {
 	/**
 	 * Create a new editor for the specified diagram root.
 	 * 
+	 * @param contextFactoryRegistry
+	 *        *
 	 * @param model
-	 *            The model
 	 * @throws EditorNotFoundException
-	 *             No editor handling the model can be found.
+	 *         No editor handling the model can be found.
 	 */
-	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model)
-			throws MultiDiagramException;
+	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model) throws MultiDiagramException;
 
 	/**
 	 * Get the editor descriptor for the specified model.
 	 * 
 	 * @throws EditorNotFoundException
-	 *             No editor handling the model can be found.
+	 *         No editor handling the model can be found.
 	 */
 	public IEditorDescriptor getEditorDescriptorFor(Object model) throws MultiDiagramException;
 
@@ -49,7 +49,7 @@ public interface IEditorFactoryRegistry {
 	 * Get the editor icon.
 	 * 
 	 * @param model
-	 *            the model object
+	 *        the model object
 	 * @return the icon representing the editor
 	 */
 	public Image getEditorIcon(Object model);

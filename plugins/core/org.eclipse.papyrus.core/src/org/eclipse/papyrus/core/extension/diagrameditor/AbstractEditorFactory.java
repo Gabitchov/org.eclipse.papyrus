@@ -33,8 +33,8 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	private String expectedType;
 
 	/**
-	 * EditorDescriptor associated to the factory. TODO : Maybe use individual setters to set the
-	 * requested data (ContributorId and Icon).
+	 * EditorDescriptor associated to the factory.
+	 * TODO : Maybe use individual setters to set the requested data (ContributorId and Icon).
 	 */
 	protected EditorDescriptor editorDescriptor;
 
@@ -42,9 +42,9 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	 * Creates a new AbstractEditorFactory.
 	 * 
 	 * @param diagramClass
-	 *            expected Class of the diagram to create.
+	 *        expected Class of the diagram to create.
 	 * @param expectedType
-	 *            expected diagram type (@see {@link Diagram#getType()})
+	 *        expected diagram type (@see {@link Diagram#getType()})
 	 */
 	public AbstractEditorFactory(Class<?> diagramClass, String expectedType) {
 		assert (expectedType != null);
@@ -87,8 +87,10 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 		return editorDescriptor;
 	}
 
+
 	/**
-	 * Initialize the factory with useful Classes. TODO Find a better way to provide these data.
+	 * Initialize the factory with useful Classes.
+	 * TODO Find a better way to provide these data.
 	 * 
 	 * @param editorDescriptor
 	 */

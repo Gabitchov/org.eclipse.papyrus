@@ -17,15 +17,14 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 /**
- * Interface implemented by the main multipage editor. This interface list the methods available to
- * diagram editors. Diagram editors can relies on this interface to retrieve services from the main
+ * Interface implemented by the main multipage editor. This interface list the methods available to diagram editors. Diagram editors can relies on
+ * this interface to retrieve services from the main
  * multi diagram editor.
  * 
  * @author dumoulin
@@ -86,10 +85,4 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	 */
 	public IPropertySheetPage getPropertySheetPage();
 
-	/**
-	 * Returns the services registry.
-	 * 
-	 * @return The services registry.
-	 */
-	public ServicesRegistry getServicesRegistry();
 }

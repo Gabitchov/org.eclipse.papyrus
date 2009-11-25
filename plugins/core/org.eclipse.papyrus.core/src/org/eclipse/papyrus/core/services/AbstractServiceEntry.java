@@ -9,9 +9,10 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 
+
 /**
- * Abstract ServiceEntry. A ServiceEntry make the link between the Service instance, its descriptor,
- * the registry.
+ * Abstract ServiceEntry.
+ * A ServiceEntry make the link between the Service instance, its descriptor, the registry.
  * 
  * @author cedric dumoulin
  */
@@ -24,16 +25,18 @@ public abstract class AbstractServiceEntry {
 	 */
 	protected ServiceDescriptor serviceDescriptor;
 
+
 	/**
-	 * Startup the services. This method is called by the registry at the beginning in order to
-	 * start services marked as "STARTUP".
+	 * Startup the services.
+	 * This method is called by the registry at the beginning in order to start
+	 * services marked as "STARTUP".
 	 * 
 	 * @throws ServiceException
-	 *             If service can't be started.
+	 *         If service can't be started.
 	 */
 	public void startup() throws ServiceException {
 		// Start service if needed
-		if (serviceDescriptor.isStartAtStartup())
+		if(serviceDescriptor.isStartAtStartup())
 			startService();
 	}
 
@@ -62,7 +65,7 @@ public abstract class AbstractServiceEntry {
 		// }
 
 		// Service is of the right type
-		return (IService) service;
+		return (IService)service;
 	}
 
 	/**
@@ -109,9 +112,10 @@ public abstract class AbstractServiceEntry {
 		}
 	}
 
+
 	/**
-	 * Load the Class object. Try from current ClassLoader, then try using the plugin referenced in
-	 * the serviceDescriptor.PluginId
+	 * Load the Class object. Try from current ClassLoader, then try using the plugin referenced in the
+	 * serviceDescriptor.PluginId
 	 * 
 	 * @return
 	 * @throws ServiceException
@@ -147,5 +151,6 @@ public abstract class AbstractServiceEntry {
 
 	public void startService() throws ServiceException {
 	}
+
 
 }

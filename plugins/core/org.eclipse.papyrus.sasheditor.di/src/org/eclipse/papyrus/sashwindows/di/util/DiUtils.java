@@ -9,34 +9,29 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Emilien Perico emilien.perico@atosorigin.com - add methods to manage di resource
  *
- *****************************************************************************/
+  *****************************************************************************/
+
 package org.eclipse.papyrus.sashwindows.di.util;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.PageList;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.sashwindows.di.Window;
-import org.eclipse.papyrus.sashwindows.di.exception.SashEditorException;
+
 
 /**
  * Set of utility methods
- * 
  * @author dumoulin
  */
 public class DiUtils {
 
 	/**
-	 * Create a default SashModel with one window and one folder. Set the current folder.
-	 * 
+	 * Create a default SashModel with one window and one folder.
+	 * Set the current folder.
 	 * @param diResource
 	 * @return
 	 */
@@ -46,32 +41,31 @@ public class DiUtils {
 		SashModel sashModel = DiFactory.eINSTANCE.createSashModel();
 		Window window = DiFactory.eINSTANCE.createWindow();
 		sashModel.getWindows().add(window);
-
+		
 		TabFolder folder = DiFactory.eINSTANCE.createTabFolder();
 		window.setPanel(folder);
 		// Default folder
 		sashModel.setCurrentSelection(folder);
-
+		
 		return sashModel;
 	}
 
 	/**
-	 * Create a default SashWindowsMngr with one PageLit and one default SashModel. Set the current
-	 * folder.
-	 * 
+	 * Create a default SashWindowsMngr with one PageLit and one default SashModel.
+	 * Set the current folder.
 	 * @param diResource
 	 * @return
 	 */
 	static public SashWindowsMngr createDefaultSashWindowsMngr() {
 		SashWindowsMngr model;
-
+		
 		model = DiFactory.eINSTANCE.createSashWindowsMngr();
-
+		
 		// SashModel
 		SashModel layout = createDefaultSashModel();
-
+		
 		model.setSashModel(layout);
-
+		
 		// PageList
 		PageList pageList = DiFactory.eINSTANCE.createPageList();
 		model.setPageList(pageList);
@@ -80,100 +74,18 @@ public class DiUtils {
 
 	/**
 	 * Lookup for the SashModel object in the resource.
-	 * 
-	 * @param diResource
+	 * @param diResource 
 	 * @return The {@link DiSashModel} or null if not found.
 	 */
 	static public SashWindowsMngr lookupSashWindowsMngr(Resource diResource) {
-		SashWindowsMngr windowsMngr = null;
-		if (diResource != null) {
-			for (EObject eObject : diResource.getContents()) {
-				if (eObject instanceof SashWindowsMngr) {
-					windowsMngr = (SashWindowsMngr) eObject;
-				}
-			}
-		}
-		return windowsMngr;
-	}
-	
-	/**
-	 * Gets the page reference of the specified eObject
-	 * 
-	 * @param diResource
-	 * @param eObject
-	 * 
-	 * @return the page ref of eObject, null if not found
-	 */
-	static public PageRef getPageRef(Resource diResource, EObject eObject)
-	{
-		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
-		if (windowsMngr != null && windowsMngr.getPageList() != null) {
-			
-			for (PageRef pageRef : windowsMngr.getPageList().getAvailablePage()) {
-				
-				EObject emfPageIdentifier = pageRef.getEmfPageIdentifier();
-				if (eObject != null && eObject.equals(emfPageIdentifier)) {
-					return pageRef;
-				}
-			}
+		
+		for( Object node : diResource.getContents() )
+		{
+			if( node instanceof SashWindowsMngr)
+				return (SashWindowsMngr)node;
 		}
 		return null;
 	}
-	
-	/**
-	 * Adds page to the page list of the sash windows manager
-	 * 
-	 * @param diResource
-	 * @param pageRef
-	 * @throws SashEditorException
-	 */
-	static public void addPageToPageList(Resource diResource, PageRef pageRef) throws SashEditorException {
-		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
-		addPageToPageList(windowsMngr, pageRef);
-	}
-	
-	/**
-	 * Adds page to the page list of the sash windows manager.
-	 * 
-	 * @param pageRef
-	 * @param windowsMngr
-	 * @throws SashEditorException
-	 */
-	static public void addPageToPageList(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
-		if (windowsMngr != null && windowsMngr.getPageList() != null) {
-			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
-		}
-		else {
-			throw new SashEditorException("Unable to add the page to the windows manager");
-		}
-	}
-	
-	/**
-	 * Adds page to tab folder.
-	 * 
-	 * @param windowsMngr
-	 * @param pageRef
-	 * @throws SashEditorException
-	 */
-	static public void addPageToTabFolder(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
-		boolean added = false;
-		SashModel sashModel = windowsMngr.getSashModel();
-		if (sashModel != null) {
-			EList<Window> windows = sashModel.getWindows();			
-			if (windows != null && !windows.isEmpty()) {
-				AbstractPanel abstractPanel = windows.get(0).getPanel();
-				if (abstractPanel instanceof TabFolder) {
-					TabFolder tabFolder = (TabFolder) abstractPanel;
-					if (pageRef != null && pageRef.getPageIdentifier() != null) {
-						tabFolder.addPage(pageRef.getPageIdentifier());
-						added = true;
-					}
-				}					
-			}		   
-		}
-		if (!added) {
-			throw new SashEditorException("Unable to add the page to the tab folder");
-		}
-	}
+
 
 }

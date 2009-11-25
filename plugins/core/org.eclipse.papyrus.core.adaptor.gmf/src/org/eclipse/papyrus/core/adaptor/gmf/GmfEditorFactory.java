@@ -47,9 +47,9 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 * Creates a new GmfEditorFactory.
 	 * 
 	 * @param diagramClass
-	 *            expected Class of the diagram to create.
+	 *        expected Class of the diagram to create.
 	 * @param expectedType
-	 *            expected diagram type (@see {@link Diagram#getType()})
+	 *        expected diagram type (@see {@link Diagram#getType()})
 	 */
 	protected GmfEditorFactory(Class<?> diagramClass, String expectedType) {
 		super(diagramClass, expectedType);
@@ -61,8 +61,8 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	@Override
 	public boolean isEditorFor(Object root) {
 
-		if (root instanceof Diagram) {
-			Diagram diagram = (Diagram) root;
+		if(root instanceof Diagram) {
+			Diagram diagram = (Diagram)root;
 			final String type = diagram.getType();
 			return getExpectedType().equals(type);
 		}
@@ -75,28 +75,28 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 */
 	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException {
 		assert (context instanceof GmfEditorContext);
-		return createEditorFor((GmfEditorContext) context, root);
+		return createEditorFor((GmfEditorContext)context, root);
 	}
 
 	/**
 	 * It is used to create the editor by taking account the root element, for example a diagram
 	 * 
 	 * @param context
-	 *            the gmf context
+	 *        the gmf context
 	 * @param root
-	 *            the element on which the editor can be launch , for example the editor
+	 *        the element on which the editor can be launch , for example the editor
 	 * @return the created editor
 	 * @throws BackboneException
-	 *             editor could not be created
+	 *         editor could not be created
 	 */
 	public IEditorPart createEditorFor(GmfEditorContext context, Object root) throws BackboneException {
 		GraphicalEditor editor;
 
 		// TODO Change next to remove dependency on di2.
 		// Retrieve GMF diagram, if any.
-		if (root instanceof Diagram) {
-			Diagram diagram = (Diagram) root;
-			if (!GMF_DIAGRAM.equals(diagram.getType()))
+		if(root instanceof Diagram) {
+			Diagram diagram = (Diagram)root;
+			if(!GMF_DIAGRAM.equals(diagram.getType()))
 				throw new BackboneException(Messages.GmfEditorFactory_ErrorRetrievingDiagram);
 			// Ok, this is a gmf diagram
 			root = diagram.getElement();
@@ -104,7 +104,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 		try {
 			Constructor<?> c = getDiagramClass().getConstructor(Diagram.class, GmfEditorContext.class);
-			editor = (GraphicalEditor) c.newInstance((Diagram) root, context);
+			editor = (GraphicalEditor)c.newInstance((Diagram)root, context);
 			// editor = new ClassDiagramEditor((Diagram)root, context.getModelMngr(),
 			// context.getCommandStack(), context.getActionRegistry() );
 			return editor;
@@ -127,8 +127,8 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
 
-		if (pageIdentifier instanceof Diagram) {
-			Diagram diagram = (Diagram) pageIdentifier;
+		if(pageIdentifier instanceof Diagram) {
+			Diagram diagram = (Diagram)pageIdentifier;
 			final String type = diagram.getType();
 			return getExpectedType().equals(type);
 		}
@@ -146,7 +146,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
 
-		return new GMFEditorModel((Diagram) pageIdentifier, servicesRegistry);
+		return new GMFEditorModel((Diagram)pageIdentifier, servicesRegistry);
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			GraphicalEditor editor;
 			try {
 				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, Diagram.class);
-				editor = (GraphicalEditor) c.newInstance(servicesRegistry, diagram);
+				editor = (GraphicalEditor)c.newInstance(servicesRegistry, diagram);
 				return editor;
 
 			} catch (Exception e) {
@@ -211,7 +211,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			String actionBarId = editorDescriptor.getActionBarContributorId();
 
 			// Do nothing if no EditorActionBarContributor is specify.
-			if (actionBarId == null || actionBarId.length() == 0) {
+			if(actionBarId == null || actionBarId.length() == 0) {
 				return null;
 			}
 
@@ -221,7 +221,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			// ServicesRegistry serviceRegistry = getServicesRegistry();
 			ActionBarContributorRegistry registry;
 			try {
-				registry = (ActionBarContributorRegistry) servicesRegistry
+				registry = (ActionBarContributorRegistry)servicesRegistry
 						.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
@@ -259,7 +259,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		 */
 		public Image getTabIcon() {
 			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
-			if (imageDescriptor == null)
+			if(imageDescriptor == null)
 				return null;
 
 			return imageDescriptor.createImage();

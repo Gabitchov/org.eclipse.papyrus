@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.sasheditor.sash;
 
+
 /**
  * Default implementation visiting the hierarchy.
  * 
@@ -108,5 +109,7 @@ public class TileVisitor implements ITileVisitor {
 	 */
 	protected void acceptEditorTile(EditorTile tile) {
 	}
+
+
 
 }

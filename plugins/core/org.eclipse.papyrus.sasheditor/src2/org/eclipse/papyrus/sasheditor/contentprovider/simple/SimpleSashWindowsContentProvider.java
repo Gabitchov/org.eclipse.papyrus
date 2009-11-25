@@ -26,8 +26,8 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.Co
 import org.eclipse.swt.SWT;
 
 /**
- * A simple implementation of providers allowing sashes and folders. The tabs can be added and
- * removed.
+ * A simple implementation of providers allowing sashes and folders.
+ * The tabs can be added and removed.
  * 
  * @author dumoulin
  * 
@@ -38,10 +38,10 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	private TabFolderModel currentTabFolder;
 
 	/** The root model. */
-	private final RootModel rootModel;
+	private RootModel rootModel;
 
 	/** */
-	private final ContentChangeListenerManager contentChangedListenerManager = new ContentChangeListenerManager();
+	private ContentChangeListenerManager contentChangedListenerManager = new ContentChangeListenerManager();
 
 	/**
 	 * Constructor.
@@ -53,9 +53,10 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		rootModel = new RootModel(currentTabFolder);
 	}
 
+
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -64,8 +65,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -74,8 +75,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -87,14 +88,14 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * Add the page which should be an IPageModel instance. {@inheritDoc}
 	 */
 	public void addPage(Object newModel) {
-		addPage((IPageModel) newModel);
+		addPage((IPageModel)newModel);
 	}
 
 	/**
 	 * Add the page which should be an IPageModel instance. {@inheritDoc}
 	 */
 	public void addPage(Object newModel, int index) {
-		addPage(newModel, index);
+		addPage((IPageModel)newModel, index);
 	}
 
 	/**
@@ -110,7 +111,6 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * {@inheritDoc}
 	 */
-	// @unused
 	public void addPage(int index, IPageModel newModel) {
 		currentTabFolder.doAddItem(index, newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
@@ -121,26 +121,24 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	public void movePage(ITabFolderModel folderModel, int oldIndex, int newIndex) {
 		System.out.println("movePage()");
-		((TabFolderModel) folderModel).moveTab(oldIndex, newIndex);
+		((TabFolderModel)folderModel).moveTab(oldIndex, newIndex);
 
 	}
 
 	/**
-	 * Move a tab from folder to folder. The change event is sent only once after the complete
-	 * operation is performed. {@inheritDoc}
+	 * Move a tab from folder to folder.
+	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
 	 */
-	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel,
-			int targetIndex) {
+	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
 		// This implementation use (TabFolderModel), so we can cast safely
 		System.out.println("movePage()");
-		if (sourceIndex == -1) {
+		if(sourceIndex == -1) {
 			moveAllPages(srcFolderModel, targetFolderModel);
 			return;
 		}
-		IPageModel movedTab = doMoveTab((TabFolderModel) srcFolderModel, sourceIndex,
-				(TabFolderModel) targetFolderModel, targetIndex);
-		removeEmptyFolder((TabFolderModel) srcFolderModel);
-		doSetCurrentFolder((TabFolderModel) targetFolderModel);
+		IPageModel movedTab = doMoveTab((TabFolderModel)srcFolderModel, sourceIndex, (TabFolderModel)targetFolderModel, targetIndex);
+		removeEmptyFolder((TabFolderModel)srcFolderModel);
+		doSetCurrentFolder((TabFolderModel)targetFolderModel);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.MOVED, this, movedTab));
 	}
 
@@ -151,12 +149,12 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * @param targetFolderModel
 	 */
 	public void moveAllPages(ITabFolderModel srcFolderModel, ITabFolderModel targetFolderModel) {
-		TabFolderModel srcFolder = (TabFolderModel) srcFolderModel;
-		TabFolderModel targetFolder = (TabFolderModel) targetFolderModel;
+		TabFolderModel srcFolder = (TabFolderModel)srcFolderModel;
+		TabFolderModel targetFolder = (TabFolderModel)targetFolderModel;
 		List<IPageModel> toMove = srcFolder.doRemoveAll();
 		targetFolder.doAddAllTab(toMove);
-		removeEmptyFolder((TabFolderModel) srcFolderModel);
-		doSetCurrentFolder((TabFolderModel) targetFolderModel);
+		removeEmptyFolder((TabFolderModel)srcFolderModel);
+		doSetCurrentFolder((TabFolderModel)targetFolderModel);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.MOVED, this, srcFolderModel));
 	}
 
@@ -166,30 +164,28 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * @param targetFolderModel
 	 */
 	private void doSetCurrentFolder(TabFolderModel newCurrentFolder) {
-		currentTabFolder = newCurrentFolder;
+		currentTabFolder = (TabFolderModel)newCurrentFolder;
 	}
 
 	/**
-	 * Create a new folder and insert it at the specified side. The change event is sent only once
-	 * after the complete operation is performed. {@inheritDoc}
+	 * Create a new folder and insert it at the specified side.
+	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
 	 */
 	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
 		System.out.println("createFolder()");
 
-		ITabFolderModel newFolder = doCreateFolder((TabFolderModel) tabFolder, tabIndex, (TabFolderModel) targetFolder,
-				side);
+		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)tabFolder, tabIndex, (TabFolderModel)targetFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, tabFolder));
-		// return newFolder;
+		//		return newFolder;
 	}
 
 	/**
-	 * Move a tab from folder to folder. The change event is sent only once after the complete
-	 * operation is performed.
+	 * Move a tab from folder to folder.
+	 * The change event is sent only once after the complete operation is performed.
 	 * 
 	 * @return The moved tab.
 	 */
-	private IPageModel doMoveTab(TabFolderModel srcFolderModel, int sourceIndex, TabFolderModel targetFolderModel,
-			int targetIndex) {
+	private IPageModel doMoveTab(TabFolderModel srcFolderModel, int sourceIndex, TabFolderModel targetFolderModel, int targetIndex) {
 
 		IPageModel tab = srcFolderModel.doRemoveTab(sourceIndex);
 		targetFolderModel.doAddItem(targetIndex, tab);
@@ -197,8 +193,9 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Move a tab from folder to folder. The tab is added at the end of the target folder. The
-	 * change event is sent only once after the complete operation is performed. {@inheritDoc}
+	 * Move a tab from folder to folder.
+	 * The tab is added at the end of the target folder.
+	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
 	 */
 	private void doMoveTab(TabFolderModel srcFolderModel, int sourceIndex, TabFolderModel targetFolderModel) {
 
@@ -232,18 +229,16 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	private void removeEmptyFolder(TabFolderModel tabFolder) {
 		// Check if empty
-		if (tabFolder.getChildren().size() > 0) {
+		if(tabFolder.getChildren().size() > 0)
 			return;
-		}
 
 		AbstractModel parent = tabFolder.getParent();
 		// Forbid removing of the last folder
-		if (parent == rootModel) {
+		if(parent == rootModel)
 			return;
-		}
 
 		// Parent is a sash. Ask it to remove the child and itself
-		((SashPanelModel) parent).delete(tabFolder);
+		((SashPanelModel)parent).delete(tabFolder);
 	}
 
 	/**
@@ -261,13 +256,12 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 
 		int direction;
 		// Compute sash direction
-		if (side == SWT.LEFT || side == SWT.RIGHT) {
+		if(side == SWT.LEFT || side == SWT.RIGHT)
 			direction = SWT.HORIZONTAL;
-		} else {
+		else
 			direction = SWT.VERTICAL;
-		}
 		// Create sash
-		if (side == SWT.LEFT || side == SWT.UP) {
+		if(side == SWT.LEFT || side == SWT.UP) {
 			newSash = new SashPanelModel(refParent, folderToInsert, refFolder, direction);
 		} else {
 			newSash = new SashPanelModel(refParent, refFolder, folderToInsert, direction);
@@ -294,7 +288,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	public IAbstractPanelModel createChildSashModel(Object root) {
 		// The root object should be of type IAbstractPanelModel.
 		// This is normally the object returned by getRootPanel
-		return (IAbstractPanelModel) root;
+		return (IAbstractPanelModel)root;
 	}
 
 	/**
@@ -310,7 +304,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	public void removePage(Object page) {
 
-		removePage((IPageModel) page);
+		removePage((IPageModel)page);
 	}
 
 	/**
@@ -319,9 +313,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	public void removePage(IPageModel tabItem) {
 
 		TabFolderModel folder = lookupPageFolder(tabItem);
-		if (folder != null) {
+		if(folder != null)
 			folder.removeTab(tabItem);
-		}
 	}
 
 	/**
@@ -329,7 +322,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 */
 	public void removePage(ITabFolderModel parentFolder, int tabIndex) {
-		TabFolderModel folder = (TabFolderModel) parentFolder;
+		TabFolderModel folder = (TabFolderModel)parentFolder;
 		IPageModel removed = folder.doRemoveTab(tabIndex);
 		removeEmptyFolder(folder);
 		doSetCurrentFolder(lookupPageFolder());
@@ -340,8 +333,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * Lookup the folder containing the specified tabItem.
 	 * 
 	 * @param tabItem
-	 *            Item for which a folder is looked for. If the item is null, return the first
-	 *            folder encountered.
+	 *        Item for which a folder is looked for. If the item is null, return
+	 *        the first folder encountered.
 	 * @return The folder containing the item, or the first encountered folder if item is null.
 	 */
 	private TabFolderModel lookupPageFolder(IPageModel tabItem) {
@@ -382,25 +375,13 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
 	 * 
 	 * @param rawModel
-	 *            Object identifying the current folder. In this implementation, the object is the
-	 *            FolderModel.
+	 *        Object identifying the current folder. In this implementation, the object is the FolderModel.
 	 */
 	public void setCurrentFolder(Object rawModel) {
-		if (!(rawModel instanceof TabFolderModel)) {
+		if(!(rawModel instanceof TabFolderModel)) {
 			return;
 		}
-		doSetCurrentFolder((TabFolderModel) rawModel);
-	}
-
-	/**
-	 * Overrides getCurrentFolder.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
-	 */
-	public Object getCurrentFolder() {
-		return currentTabFolder;
+		doSetCurrentFolder((TabFolderModel)rawModel);
 	}
 
 	/**
@@ -413,34 +394,31 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		private List<IContentChangedListener> listeners;
 
 		/**
-		 * Add a listener listening on content changed. This listener will be notified each time the
-		 * content change.
+		 * Add a listener listening on content changed. This listener will be
+		 * notified each time the content change.
 		 * 
 		 * @param listener
 		 */
 		public void addContentChangedListener(IContentChangedListener listener) {
-			if (listeners == null) {
+			if(listeners == null)
 				createListeners();
-			}
 
 			// Check if already exists.
-			if (listeners.contains(listener)) {
+			if(listeners.contains(listener))
 				return;
-			}
 
 			listeners.add(listener);
 		}
 
 		/**
-		 * Add a listener listening on content changed. This listener will be notified each time the
-		 * content change.
+		 * Add a listener listening on content changed. This listener will be
+		 * notified each time the content change.
 		 * 
 		 * @param listener
 		 */
 		public void removeContentChangedListener(IContentChangedListener listener) {
-			if (listeners == null) {
+			if(listeners == null)
 				return;
-			}
 
 			listeners.remove(listener);
 		}
@@ -449,9 +427,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		 * Create the list of listeners.
 		 */
 		private void createListeners() {
-			if (listeners == null) {
+			if(listeners == null)
 				listeners = new ArrayList<IContentChangedListener>();
-			}
 
 		}
 
@@ -461,11 +438,10 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		 * @param event
 		 */
 		public void fireContentChanged(ContentEvent event) {
-			if (listeners == null) {
+			if(listeners == null)
 				return;
-			}
 
-			for (IContentChangedListener listener : listeners) {
+			for(IContentChangedListener listener : listeners) {
 				listener.contentChanged(event);
 			}
 		}

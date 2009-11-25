@@ -13,10 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 
+
 /**
  * @author dumoulin
  */
 public abstract class AbstractModel {
+
 
 	/**
 	 * Return the parent of the model. Can be null in the case of rootModel.
@@ -25,9 +27,10 @@ public abstract class AbstractModel {
 	 */
 	abstract public AbstractModel getParent();
 
+
 	/**
 	 * @param parent
-	 *            the parent to set
+	 *        the parent to set
 	 */
 	abstract public void setParent(AbstractModel parent);
 

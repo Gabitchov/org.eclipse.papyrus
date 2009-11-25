@@ -19,10 +19,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A unmodifiable view on a specified list. The view filters the original list according to the
- * provided filter.
+ * A unmodifiable view on a specified list. The view filters the original list according to the provided filter.
  */
-// @unused
 public class FilteredCollectionView<T> extends AbstractCollection<T> implements Collection<T> {
 
 	/** The original collection */
@@ -40,9 +38,9 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	 * Creates a new FilteredCollectionView.
 	 * 
 	 * @param list
-	 *            the list to filter
+	 *        the list to filter
 	 * @param filter
-	 *            the filter for the view
+	 *        the filter for the view
 	 */
 	public FilteredCollectionView(Collection<T> list, IFilter filter) {
 		this.list = list;
@@ -53,7 +51,7 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	 * Sets the value of the list property.
 	 * 
 	 * @param aList
-	 *            the new value of the list property
+	 *        the new value of the list property
 	 */
 	public void setBackupCollection(Collection<T> aList) {
 		list = aList;
@@ -63,7 +61,7 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	 * Sets the value of the filter property.
 	 * 
 	 * @param aFilter
-	 *            the new value of the filter property
+	 *        the new value of the filter property
 	 */
 	public void setFilter(IFilter aFilter) {
 		filter = aFilter;
@@ -85,10 +83,10 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	 */
 	@Override
 	public int size() {
-		if (size == -1) { // compute the size
+		if(size == -1) { // compute the size
 			size = 0;
 			Iterator<T> i = iterator();
-			while (i.hasNext()) {
+			while(i.hasNext()) {
 				size++;
 				i.next();
 			}
@@ -109,9 +107,10 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 		return list.contains(o);
 	}
 
+
 	/**
-	 * remove the object. Throw an UnsupportedOperationException, as the FilteredCollection is
-	 * ReadOnly.
+	 * remove the object.
+	 * Throw an UnsupportedOperationException, as the FilteredCollection is ReadOnly.
 	 * 
 	 * @see java.util.AbstractCollection#remove(java.lang.Object)
 	 * @param o
@@ -124,12 +123,11 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	}
 
 	/**
-	 * Return the value to be returned by the iterator.next() method. This method can be overloaded
-	 * by subclasses in order to return another value than the objects belonging to the underlying
-	 * list.
+	 * Return the value to be returned by the iterator.next() method. This method can be overloaded by subclasses in order to return another value
+	 * than the objects belonging to the underlying list.
 	 * 
 	 * @param ele
-	 *            The iterated object. This is the object iterated inside the underlying list.
+	 *        The iterated object. This is the object iterated inside the underlying list.
 	 * @return
 	 */
 	protected T returnedValue(T ele) {
@@ -178,9 +176,9 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 		 * @return
 		 */
 		protected T nextFilteredObject() {
-			while (listIterator.hasNext()) {
+			while(listIterator.hasNext()) {
 				T ele = listIterator.next();
-				if (filter.isAllowed(ele)) {
+				if(filter.isAllowed(ele)) {
 					return returnedValue(ele);
 				}
 			} // end loop
@@ -197,13 +195,12 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 		}
 
 		/**
-		 * Compute the next field (null or next value), and return the previous value of the next
-		 * field.
+		 * Compute the next field (null or next value), and return the previous value of the next field.
 		 * 
 		 * @return Object
 		 */
 		public T next() {
-			if (next == null) {
+			if(next == null) {
 				throw new NoSuchElementException();
 			}
 			T ele = next;

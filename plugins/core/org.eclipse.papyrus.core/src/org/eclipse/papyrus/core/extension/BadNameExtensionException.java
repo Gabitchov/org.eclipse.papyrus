@@ -31,7 +31,6 @@ public class BadNameExtensionException extends ExtensionException {
 	/**
 	 * Creates a simple BadNameExtensionException
 	 */
-	// @unused
 	public BadNameExtensionException() {
 	}
 
@@ -39,7 +38,7 @@ public class BadNameExtensionException extends ExtensionException {
 	 * Creates a BadNameExtensionException with a specific message.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 */
 	public BadNameExtensionException(String message) {
 		super(message);
@@ -49,9 +48,8 @@ public class BadNameExtensionException extends ExtensionException {
 	 * Creates a BadNameExtensionException with a specific cause.
 	 * 
 	 * @param cause
-	 *            the cause of the exception
+	 *        the cause of the exception
 	 */
-	// @unused
 	public BadNameExtensionException(Throwable cause) {
 		super(cause);
 	}
@@ -60,11 +58,10 @@ public class BadNameExtensionException extends ExtensionException {
 	 * Creates a BadNameExtensionException with a specific cause and a specific message.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 * @param cause
-	 *            the cause of the exception
+	 *        the cause of the exception
 	 */
-	// @unused
 	public BadNameExtensionException(String message, Throwable cause) {
 		super(message, cause);
 	}

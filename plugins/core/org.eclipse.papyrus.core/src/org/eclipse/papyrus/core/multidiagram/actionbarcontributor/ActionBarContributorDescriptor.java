@@ -17,8 +17,8 @@ import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
- * Descriptor of an ActionBarContributor. This descriptor is usually loaded from the Eclipse
- * extension mechanism.
+ * Descriptor of an ActionBarContributor.
+ * This descriptor is usually loaded from the Eclipse extension mechanism.
  * 
  * @author Cedric Dumoulin
  * @author Patrick Tessier
@@ -42,7 +42,7 @@ public class ActionBarContributorDescriptor {
 	 * @throws BackboneException
 	 */
 	protected EditorActionBarContributor getActionBarContributor() throws BackboneException {
-		if (instance == null)
+		if(instance == null)
 			instance = createActionBarContributor();
 
 		return instance;
@@ -54,16 +54,13 @@ public class ActionBarContributorDescriptor {
 			return context;
 
 		} catch (SecurityException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		}
 	}

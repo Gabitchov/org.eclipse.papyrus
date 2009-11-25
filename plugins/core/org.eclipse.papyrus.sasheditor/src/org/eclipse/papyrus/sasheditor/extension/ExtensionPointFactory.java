@@ -51,10 +51,10 @@ public class ExtensionPointFactory {
 	 * Create a descriptor instance corresponding to the ConfigurationElement.
 	 * 
 	 * @param element
-	 *            extension point being parsed
+	 *        extension point being parsed
 	 * @return the nested editor descriptor created
 	 * @throws BadNameExtensionException
-	 *             an attribute is not correctly defined in the extension
+	 *         an attribute is not correctly defined in the extension
 	 */
 	public NestedEditorDescriptor createNestedEditorDescriptor(IConfigurationElement element) throws ExtensionException {
 		NestedEditorDescriptor res;
@@ -76,7 +76,7 @@ public class ExtensionPointFactory {
 	 */
 	private void checkTagName(IConfigurationElement element, String tagName) throws BadNameExtensionException {
 		String name = element.getName();
-		if (!tagName.equals(name))
+		if(!tagName.equals(name))
 			throw new BadNameExtensionException("Expected '" + tagName + "', found '" + name + "'.");
 	}
 
@@ -84,9 +84,9 @@ public class ExtensionPointFactory {
 	 * Retrieves the value of a specific attribute in a configuration element
 	 * 
 	 * @param element
-	 *            the configuration element to parse
+	 *        the configuration element to parse
 	 * @param attributeName
-	 *            the name of the attribute to read
+	 *        the name of the attribute to read
 	 * @return the class, result of the parsing
 	 * @throws InvalidRegistryObjectException
 	 * @throws BadClassNameException

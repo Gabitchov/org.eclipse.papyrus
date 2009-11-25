@@ -22,9 +22,11 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 
+
 /**
- * Implementation of the page manager. The page manager provides basic methods to access the
- * DiSashModel and its PageList. This is the users interface to add, open, close and remove pages.
+ * Implementation of the page manager.
+ * The page manager provides basic methods to access the DiSashModel and its PageList.
+ * This is the users interface to add, open, close and remove pages.
  * 
  * @author cedric dumoulin
  */
@@ -38,8 +40,8 @@ public class PageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * Add a page to the PageList. Do not open the corresponding editor. The page will be visible in
-	 * the list.
+	 * Add a page to the PageList. Do not open the corresponding editor.
+	 * The page will be visible in the list.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#addEditor(org.eclipse.emf.ecore.EObject)
 	 * 
@@ -59,7 +61,7 @@ public class PageMngrImpl implements IPageMngr {
 
 		// TODO : use and return a shadow list ?
 		List<Object> list = new ArrayList<Object>();
-		for (PageRef pageRef : diSashModel.getPageList().getAvailablePage()) {
+		for(PageRef pageRef : diSashModel.getPageList().getAvailablePage()) {
 
 			list.add(pageRef.getPageIdentifier());
 		}
@@ -84,19 +86,17 @@ public class PageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void openPage(Object pageIdentifier) {
-		if (pageIdentifier == null) {
-			return;
-		}
 		// Add the page to the SashModel and to the PageList
+
 		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
 		boolean found = false;
-		while (iterator.hasNext() && !found) {
+		while(iterator.hasNext() && found == false) {
 			// Bug #288806 : the test should be inversed
-			if (pageIdentifier.equals(iterator.next().getPageIdentifier())) {
+			if(pageIdentifier.equals(iterator.next().getPageIdentifier())) {
 				found = true;
 			}
 		}
-		if (!found) {
+		if(!found) {
 			diSashModel.getPageList().addPage(pageIdentifier);
 		}
 		diSashModel.getSashModel().addPage(pageIdentifier);

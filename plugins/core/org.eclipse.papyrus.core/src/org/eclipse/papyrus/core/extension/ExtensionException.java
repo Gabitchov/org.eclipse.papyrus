@@ -41,7 +41,7 @@ public class ExtensionException extends BackboneException {
 	 * Creates a ExtensionException with a specific message.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 */
 	public ExtensionException(String message) {
 		super(message);
@@ -51,7 +51,7 @@ public class ExtensionException extends BackboneException {
 	 * Creates a ExtensionException with a specific cause.
 	 * 
 	 * @param cause
-	 *            the cause of the exception
+	 *        the cause of the exception
 	 */
 	public ExtensionException(Throwable cause) {
 		super(cause);
@@ -62,9 +62,9 @@ public class ExtensionException extends BackboneException {
 	 * Creates a ExtensionException with a specific cause and a specific message.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 * @param cause
-	 *            the cause of the exception
+	 *        the cause of the exception
 	 */
 	public ExtensionException(String message, Throwable cause) {
 		super(message, cause);
@@ -74,10 +74,9 @@ public class ExtensionException extends BackboneException {
 	 * Return the name of the plugin and extension declaring the extension.
 	 * 
 	 * @param element
-	 *            the configuration element corresponding to the extension
+	 *        the configuration element corresponding to the extension
 	 * @return a string containing the name of the plugin and the name of the extension
 	 */
-	// @unused
 	protected static String declaringExtensionToString(IConfigurationElement element) {
 		return "plugin:" + element.getContributor().getName() + " extension:" + element.getName();
 	}

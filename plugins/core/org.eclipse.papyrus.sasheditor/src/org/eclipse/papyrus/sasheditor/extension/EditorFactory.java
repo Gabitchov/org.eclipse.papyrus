@@ -25,18 +25,17 @@ import org.eclipse.ui.IEditorPart;
  * @author dumoulin
  * 
  */
-// @unused
 public class EditorFactory implements IEditorFactory {
 
 	/**
 	 * Expected Class of the diagram to create.
 	 */
-	private final Class<IEditorPart> diagramClass;
+	private Class<IEditorPart> diagramClass;
 
 	/**
 	 * Expected class of the root object.
 	 */
-	private final Class<?> rootExpectedClass;
+	private Class<?> rootExpectedClass;
 
 	/**
 	 * Constructor.
@@ -64,13 +63,12 @@ public class EditorFactory implements IEditorFactory {
 	 * Create a new editor for the specified root object.
 	 * 
 	 * @param sharedObjects
-	 *            objects shared among several diagrams
+	 *        objects shared among several diagrams
 	 * @param root
-	 *            the root element to be displayed in the diagram
+	 *        the root element to be displayed in the diagram
 	 * @return the created editor
 	 * @throws RuntimeException
-	 *             implementation problem. the backbone infrastructure does not handle the diagram,
-	 *             or an extension point was not resolved.
+	 *         implementation problem. the backbone infrastructure does not handle the diagram, or an extension point was not resolved.
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 * @throws IllegalArgumentException
@@ -84,60 +82,50 @@ public class EditorFactory implements IEditorFactory {
 			return editor;
 
 		} catch (SecurityException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (NoSuchMethodException e) {
 			// Try with no arg constructor
-			return (GraphicalEditor) createEditorNoArgs(sharedObjects, root);
+			return (GraphicalEditor)createEditorNoArgs(sharedObjects, root);
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (InvocationTargetException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		}
 
 	}
 
 	/**
-	 * Create an editor using its no args constructor. The editor should implements the NestedEdidor
-	 * interface.
+	 * Create an editor using its no args constructor. The editor should implements the NestedEdidor interface.
 	 * 
 	 * @param sharedObjects
-	 *            objects shared among several diagrams
+	 *        objects shared among several diagrams
 	 * @param root
-	 *            the root element to be displayed in the diagram
+	 *        the root element to be displayed in the diagram
 	 * @return the created nested editor
 	 * @throws RuntimeException
-	 *             implementation problem. the backbone infrastructure does not handle the diagram,
-	 *             or an extension point was not resolved.
+	 *         implementation problem. the backbone infrastructure does not handle the diagram, or an extension point was not resolved.
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 * @throws IllegalArgumentException
 	 */
 	private NestedDiagram createEditorNoArgs(MultiDiagramSharedObjects sharedObjects, Object root) {
-		// TODO Replace with IEditorPart after checking it is possible with
-		// Papyrus.
-		// Set the shared object only if the NestDiagram interface is
-		// implemented.
+		// TODO Replace with IEditorPart after checking it is possible with Papyrus.
+		// Set the shared object only if the NestDiagram interface is implemented.
 		NestedDiagram editor;
 		// Create editor
 		try {
-			editor = (NestedDiagram) diagramClass.newInstance();
+			editor = (NestedDiagram)diagramClass.newInstance();
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		}
 		editor.setSharedObjects(sharedObjects);

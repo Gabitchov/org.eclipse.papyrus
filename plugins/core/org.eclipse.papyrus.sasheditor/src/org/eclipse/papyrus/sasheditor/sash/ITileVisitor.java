@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.sasheditor.sash;
 
+
 /**
  * Visitor used to visit the hierarchy of Tiles.
  * 
@@ -47,5 +48,6 @@ public interface ITileVisitor {
 	 * @param folder
 	 */
 	public void accept(EditorTile tile);
+
 
 }

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+
 /**
  * Visitor implementation allowing to visit the hierarchy of Parts.
  * 
@@ -87,6 +88,7 @@ public class PartVisitor implements IPartVisitor {
 		part.visitChildren(this);
 	}
 
+
 	// ----------------------------------------------
 
 	/**
@@ -136,5 +138,6 @@ public class PartVisitor implements IPartVisitor {
 	 */
 	protected void acceptEditorTile(ComponentPart part) {
 	}
+
 
 }

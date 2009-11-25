@@ -24,6 +24,7 @@ import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 
+
 /**
  * @author dumoulin
  */
@@ -38,6 +39,7 @@ public class PageMngrImplTest extends TestCase {
 	 * The associated {@link DiContentProvider}. Not tested, but used to check events.
 	 */
 	protected DiContentProvider contentProvider;
+
 
 	/**
 	 * @param name
@@ -72,9 +74,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}
-	 * .
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testAddPage() {
 		// A listener on change event.
@@ -87,7 +87,7 @@ public class PageMngrImplTest extends TestCase {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -105,8 +105,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#allPages()}.
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#allPages()}.
 	 */
 	public void testAllPages() {
 		// A listener on change event.
@@ -119,7 +118,7 @@ public class PageMngrImplTest extends TestCase {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -135,9 +134,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}
-	 * .
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testClosePage() {
 		// A listener on change event.
@@ -150,7 +147,7 @@ public class PageMngrImplTest extends TestCase {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -177,9 +174,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}
-	 * .
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testOpenPage() {
 		// A listener on change event.
@@ -192,7 +187,7 @@ public class PageMngrImplTest extends TestCase {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -215,9 +210,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}
-	 * .
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testRemovePage() {
 		// A listener on change event.
@@ -230,7 +223,7 @@ public class PageMngrImplTest extends TestCase {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -254,5 +247,7 @@ public class PageMngrImplTest extends TestCase {
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(3));
 		assertNull("Page removed from sashStructure ", pageRef);
 	}
+
+
 
 }

@@ -17,6 +17,7 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 
+
 /**
  * @author dumoulin
  */

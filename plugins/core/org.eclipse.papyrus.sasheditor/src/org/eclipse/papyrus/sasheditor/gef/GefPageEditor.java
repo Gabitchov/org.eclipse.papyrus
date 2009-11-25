@@ -16,8 +16,8 @@ package org.eclipse.papyrus.sasheditor.gef;
 import org.eclipse.gef.EditPartViewer;
 
 /**
- * Interface that should be implemented by PageEditor used with GefMultiPageEditorPart. Editor
- * implementing this interface can participate in the SelectionSynchronizer mechanism.
+ * Interface that should be implemented by PageEditor used with GefMultiPageEditorPart. Editor implementing this interface can participate in the
+ * SelectionSynchronizer mechanism.
  * 
  * @author dumoulin
  * 
@@ -25,8 +25,7 @@ import org.eclipse.gef.EditPartViewer;
 public interface GefPageEditor {
 
 	/**
-	 * Return the underlying graphical viewer. Used by the multipage editor to set the current viwer
-	 * for selection synchronization.
+	 * Return the underlying graphical viewer. Used by the multipage editor to set the current viwer for selection synchronization.
 	 * 
 	 * @return
 	 */

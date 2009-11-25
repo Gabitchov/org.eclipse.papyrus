@@ -67,11 +67,11 @@ public class PartMap<T> extends HashMap<Object, ITilePart<T>> {
 	 * 
 	 * @param collection
 	 */
-	// public void addAll(Collection<ITilePart<T>> collection)
-	// {
-	// for( ITilePart<T> part : collection)
-	// {
-	// put(part.getModel().getModel(), part);
-	// }
-	// }
+	//	public void addAll(Collection<ITilePart<T>> collection)
+	//	{
+	//		for( ITilePart<T> part : collection)
+	//		{
+	//			put(part.getModel().getModel(), part);
+	//		}
+	//	}
 }

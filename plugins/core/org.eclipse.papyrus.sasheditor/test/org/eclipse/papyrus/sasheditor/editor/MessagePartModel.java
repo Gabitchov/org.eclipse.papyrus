@@ -25,6 +25,7 @@ public class MessagePartModel implements IComponentModel {
 
 	static private int count = 0;
 
+
 	/**
 	 * 
 	 */

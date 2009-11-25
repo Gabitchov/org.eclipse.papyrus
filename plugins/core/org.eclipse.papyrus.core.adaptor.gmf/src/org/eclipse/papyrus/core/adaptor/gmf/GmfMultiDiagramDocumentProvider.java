@@ -75,8 +75,7 @@ import org.eclipse.ui.part.FileEditorInput;
 public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider,
 		IEditingDomainProvider {
 
-	// public static String EditingDomainID =
-	// "org.eclipse.uml2.diagram.clazz.EditingDomain";
+	// public static String EditingDomainID = "org.eclipse.uml2.diagram.clazz.EditingDomain";
 	public static String EditingDomainID = "com.cea.papyrus.core.PapyrusEditingDomainID"; //$NON-NLS-1$
 
 	/**
@@ -92,7 +91,6 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @param resourceSet
 	 */
-	// @unused
 	public GmfMultiDiagramDocumentProvider(ResourceSet resourceSet) {
 		super();
 		this.resourceSet = resourceSet;
@@ -110,7 +108,6 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * Constructor.
 	 */
-	// @unused
 	public GmfMultiDiagramDocumentProvider() {
 		// TODO Auto-generated constructor stub
 	}
@@ -118,16 +115,14 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(
-					Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+					Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
-		IEditorInput editorInput = (IEditorInput) element;
-		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
+		IEditorInput editorInput = (IEditorInput)element;
+		IDiagramDocument document = (IDiagramDocument)createDocument(editorInput);
 
 		ResourceSetInfo info = new ResourceSetInfo(document, editorInput);
 		info.setModificationStamp(computeModificationStamp(info));
@@ -138,16 +133,14 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(
-					Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+					Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 		IDocument document = createEmptyDocument();
-		setDocumentContent(document, (IEditorInput) element);
+		setDocumentContent(document, (IEditorInput)element);
 		setupDocument(element, document);
 		return document;
 	}
@@ -157,9 +150,9 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 * document is not changed. This default implementation is empty. Subclasses may reimplement.
 	 * 
 	 * @param element
-	 *            the blue-print element
+	 *        the blue-print element
 	 * @param document
-	 *            the document to set up
+	 *        the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {
@@ -171,11 +164,11 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Object element : info.getResourceSet().getResources()) {
-			Resource nextResource = (Resource) element;
+		for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+			Resource nextResource = (Resource)it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
-			if (file != null) {
-				if (file.getLocation() != null) {
+			if(file != null) {
+				if(file.getLocation() != null) {
 					result += file.getLocation().toFile().lastModified();
 				} else {
 					result += file.getModificationStamp();
@@ -188,7 +181,6 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
 		document.setEditingDomain(createEditingDomain());
@@ -202,10 +194,9 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	private TransactionalEditingDomain createEditingDomain() {
 
 		TransactionalEditingDomain editingDomain = null;
-		// System.out.println(this.getClass().getSimpleName() + "- (" + this +
-		// ")");
+		// System.out.println(this.getClass().getSimpleName() + "- (" + this + ")");
 		// Check if edit domain exist
-		if (sharedEditingDomain != null) { // Already initialized
+		if(sharedEditingDomain != null) { // Already initialized
 			editingDomain = sharedEditingDomain;
 			System.out.println(this.getClass().getSimpleName()
 					+ ".createEditingDomain() - got EditingDomain from previous call (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -216,7 +207,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 
 		// Try to get a registered one if any
 		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EditingDomainID);
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 			// got it
 			sharedEditingDomain = editingDomain;
 			System.out.println(this.getClass().getSimpleName()
@@ -225,13 +216,13 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		}
 
 		// Create EditingDomain using provided ResourceSet if any.
-		if (resourceSet == null) {
+		if(resourceSet == null) {
 			editingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain();
 		} else {
 			editingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain(resourceSet);
 		}
 		sharedEditingDomain = editingDomain;
-		editingDomain.setID(EditingDomainID);
+		editingDomain.setID(EditingDomainID); //$NON-NLS-1$
 		System.out.println(this.getClass().getSimpleName()
 				+ ".createEditingDomain() - create a new EditingDomain (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -264,10 +255,10 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			}
 
 			public void notifyChanged(Notification notification) {
-				if (diagramResourceModifiedFilter.matches(notification)) {
+				if(diagramResourceModifiedFilter.matches(notification)) {
 					Object value = notification.getNewValue();
-					if (value instanceof Resource) {
-						((Resource) value).setTrackingModification(true);
+					if(value instanceof Resource) {
+						((Resource)value).setTrackingModification(true);
 					}
 				}
 			}
@@ -283,21 +274,21 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 * @generated
 	 */
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
-		IDiagramDocument diagramDocument = (IDiagramDocument) document;
+		IDiagramDocument diagramDocument = (IDiagramDocument)document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
+		if(element instanceof FileEditorInput) {
+			IStorage storage = ((FileEditorInput)element).getStorage();
 			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
-			URI uri = ((URIEditorInput) element).getURI();
+		} else if(element instanceof URIEditorInput) {
+			URI uri = ((URIEditorInput)element).getURI();
 			Resource resource = null;
 			try {
 				resource = domain.getResourceSet().getResource(uri.trimFragment(), false);
-				if (resource == null) {
+				if(resource == null) {
 					resource = domain.getResourceSet().createResource(uri.trimFragment());
 				}
-				if (!resource.isLoaded()) {
+				if(!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
 						// @see 171060
@@ -309,16 +300,17 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 						throw e;
 					}
 				}
-				if (uri.fragment() != null) {
+				if(uri.fragment() != null) {
 					EObject rootElement = resource.getEObject(uri.fragment());
-					if (rootElement instanceof Diagram) {
-						document.setContent(rootElement);
+					if(rootElement instanceof Diagram) {
+						document.setContent((Diagram)rootElement);
 						return;
 					}
 				} else {
-					for (Object rootElement : resource.getContents()) {
-						if (rootElement instanceof Diagram) {
-							document.setContent(rootElement);
+					for(Iterator it = resource.getContents().iterator(); it.hasNext();) {
+						Object rootElement = it.next();
+						if(rootElement instanceof Diagram) {
+							document.setContent((Diagram)rootElement);
 							return;
 						}
 					}
@@ -326,8 +318,8 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 				throw new RuntimeException(Messages.GmfMultiDiagramDocumentProvider_NoDiagramInResourceError);
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
-				if (e instanceof CoreException) {
-					thrownExcp = (CoreException) e;
+				if(e instanceof CoreException) {
+					thrownExcp = (CoreException)e;
 				} else {
 					String msg = e.getLocalizedMessage();
 					thrownExcp = new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, msg != null ? msg
@@ -337,19 +329,17 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			}
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(
-					Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+					Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	public long getModificationStamp(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return computeModificationStamp(info);
 		}
 		return super.getModificationStamp(element);
@@ -358,12 +348,11 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean isDeleted(Object element) {
 		IDiagramDocument document = getDiagramDocument(element);
-		if (document != null) {
+		if(document != null) {
 			Resource diagramResource = document.getDiagram().eResource();
-			if (diagramResource != null) {
+			if(diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
 				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
 			}
@@ -375,16 +364,15 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 * @generated
 	 */
 	public ResourceSetInfo getResourceSetInfo(Object editorInput) {
-		return (ResourceSetInfo) super.getElementInfo(editorInput);
+		return (ResourceSetInfo)super.getElementInfo(editorInput);
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void disposeElementInfo(Object element, ElementInfo info) {
-		if (info instanceof ResourceSetInfo) {
-			ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
+		if(info instanceof ResourceSetInfo) {
+			ResourceSetInfo resourceSetInfo = (ResourceSetInfo)info;
 			resourceSetInfo.dispose();
 		}
 		super.disposeElementInfo(element, info);
@@ -393,20 +381,19 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection files2Validate = new ArrayList();
-			for (Object element2 : info.getResourceSet().getResources()) {
-				Resource nextResource = (Resource) element2;
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					files2Validate.add(file);
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
+					(IFile[])files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -415,11 +402,10 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean isReadOnly(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
@@ -436,16 +422,15 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean isModifiable(Object element) {
-		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
+		if(!isStateValidated(element)) {
+			if(element instanceof FileEditorInput || element instanceof URIEditorInput) {
 				return true;
 			}
 		}
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
@@ -464,11 +449,11 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 */
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Object element2 : info.getResourceSet().getResources()) {
-				Resource nextResource = (Resource) element2;
+		if(info != null) {
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					info.setReadOnly(true);
 					info.setModifiable(false);
 					return;
@@ -483,10 +468,9 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void doUpdateStateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			info.setUpdateCache(true);
 		}
 		super.doUpdateStateCache(element);
@@ -495,10 +479,9 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean isSynchronized(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return info.isSynchronized();
 		}
 		return super.isSynchronized(element);
@@ -507,19 +490,18 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Object element2 : info.getResourceSet().getResources()) {
-				Resource nextResource = (Resource) element2;
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -527,19 +509,18 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Object element2 : info.getResourceSet().getResources()) {
-				Resource nextResource = (Resource) element2;
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -547,19 +528,18 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Object element2 : info.getResourceSet().getResources()) {
-				Resource nextResource = (Resource) element2;
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -567,20 +547,19 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection files = new ArrayList();
-			for (Object element2 : info.getResourceSet().getResources()) {
-				Resource nextResource = (Resource) element2;
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					files.add(file);
 				}
 			}
 			return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule(
-					(IFile[]) files.toArray(new IFile[files.size()]));
+					(IFile[])files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
@@ -589,9 +568,8 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 * @generated
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
-		if (toCreateOrModify.exists()) {
+		if(toCreateOrModify.exists())
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
-		}
 
 		IResource parent = toCreateOrModify;
 		do {
@@ -601,7 +579,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
-		} while (parent != null && !parent.exists());
+		} while(parent != null && !parent.exists());
 
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
@@ -609,12 +587,11 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Object element2 : info.getResourceSet().getResources()) {
-				Resource nextResource = (Resource) element2;
+		if(info != null) {
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
 			return;
@@ -625,12 +602,11 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (!overwrite && !info.isSynchronized()) {
+		if(info != null) {
+			if(!overwrite && !info.isSynchronized()) {
 				throw new CoreException(new Status(IStatus.ERROR, Activator.ID, IResourceStatus.OUT_OF_SYNC_LOCAL,
 						Messages.GmfMultiDiagramDocumentProvider_UnsynchronizedFileSaveError, null));
 			}
@@ -639,11 +615,11 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			List resources = info.getResourceSet().getResources();
 			try {
 				monitor.beginTask(Messages.GmfMultiDiagramDocumentProvider_SaveDiagramTask, resources.size() + 1); // "Saving diagram"
-				for (Iterator it = resources.iterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
+				for(Iterator it = resources.iterator(); it.hasNext();) {
+					Resource nextResource = (Resource)it.next();
 					monitor.setTaskName(NLS.bind(Messages.GmfMultiDiagramDocumentProvider_SaveNextResourceTask,
 							nextResource.getURI()));
-					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
+					if(nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
 							nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
 						} catch (IOException e) {
@@ -665,37 +641,35 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		} else {
 			URI newResoruceURI;
 			List affectedFiles = null;
-			if (element instanceof FileEditorInput) {
-				IFile newFile = ((FileEditorInput) element).getFile();
+			if(element instanceof FileEditorInput) {
+				IFile newFile = ((FileEditorInput)element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
 				newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
-			} else if (element instanceof URIEditorInput) {
-				newResoruceURI = ((URIEditorInput) element).getURI();
+			} else if(element instanceof URIEditorInput) {
+				newResoruceURI = ((URIEditorInput)element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(
-						Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[] { element,
-								"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-						null));
+						Messages.GmfMultiDiagramDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 			}
-			if (false == document instanceof IDiagramDocument) {
+			if(false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(
 						new Status(
-								IStatus.ERROR,
-								Activator.ID,
-								0,
-								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+						IStatus.ERROR,
+						Activator.ID,
+						0,
+						"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
-			IDiagramDocument diagramDocument = (IDiagramDocument) document;
+			IDiagramDocument diagramDocument = (IDiagramDocument)document;
 			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(
 					newResoruceURI);
-			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
+			final Diagram diagramCopy = (Diagram)EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
 				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
 						Messages.GmfMultiDiagramDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
 
-					@Override
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 							throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
@@ -719,7 +693,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 */
 	protected void handleElementChanged(ResourceSetInfo info, Resource changedResource, IProgressMonitor monitor) {
 		IFile file = WorkspaceSynchronizer.getFile(changedResource);
-		if (file != null) {
+		if(file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
@@ -739,7 +713,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		} catch (CoreException e) {
 			info.fStatus = e.getStatus();
 		}
-		if (!info.fCanBeSaved) {
+		if(!info.fCanBeSaved) {
 			info.setModificationStamp(computeModificationStamp(info));
 		}
 		addUnchangedElementListeners(info.getEditorInput(), info);
@@ -750,7 +724,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 * @generated
 	 */
 	protected void handleElementMoved(IEditorInput input, URI uri) {
-		if (input instanceof FileEditorInput) {
+		if(input instanceof FileEditorInput) {
 			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
 					new Path(URI.decode(uri.path())).removeFirstSegments(1));
 			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
@@ -772,8 +746,8 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 */
 	public IDiagramDocument getDiagramDocument(Object element) {
 		IDocument doc = getDocument(element);
-		if (doc instanceof IDiagramDocument) {
-			return (IDiagramDocument) doc;
+		if(doc instanceof IDiagramDocument) {
+			return (IDiagramDocument)doc;
 		}
 		return null;
 	}
@@ -781,7 +755,6 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IRunnableContext getOperationRunner(IProgressMonitor monitor) {
 		return null;
 	}
@@ -804,17 +777,17 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		/**
 		 * @generated
 		 */
-		private final Collection myUnSynchronizedResources = new ArrayList();
+		private Collection myUnSynchronizedResources = new ArrayList();
 
 		/**
 		 * @generated
 		 */
-		private final IDiagramDocument myDocument;
+		private IDiagramDocument myDocument;
 
 		/**
 		 * @generated
 		 */
-		private final IEditorInput myEditorInput;
+		private IEditorInput myEditorInput;
 
 		/**
 		 * @generated
@@ -834,7 +807,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		/**
 		 * @generated
 		 */
-		private final ResourceSetModificationListener myResourceSetListener;
+		private ResourceSetModificationListener myResourceSetListener;
 
 		/**
 		 * @generated
@@ -851,7 +824,6 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		/**
 		 * @generated
 		 */
-		// @unused
 		public long getModificationStamp() {
 			return myModificationStamp;
 		}
@@ -890,10 +862,9 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Object element : getResourceSet().getResources()) {
-				Resource resource = (Resource) element;
-				// Do not unload the resource because the DocumentProvider can
-				// be disposed while its
+			for(Iterator it = getResourceSet().getResources().iterator(); it.hasNext();) {
+				Resource resource = (Resource)it.next();
+				// Do not unload the resource because the DocumentProvider can be disposed while its
 				// Diagram node is
 				// kept for future re-openeing.
 				// resource.unload();
@@ -934,8 +905,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		 */
 		public final void startResourceListening() {
 			// Do not listen because all document use the same EditingDomain
-			// mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(),
-			// new
+			// mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(), new
 			// SynchronizerDelegate());
 		}
 
@@ -996,8 +966,8 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			 * @generated
 			 */
 			public boolean handleResourceChanged(final Resource resource) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
@@ -1015,8 +985,8 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			 * @generated
 			 */
 			public boolean handleResourceDeleted(Resource resource) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
@@ -1034,13 +1004,13 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			 * @generated
 			 */
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
 				}
-				if (myDocument.getDiagram().eResource() == resource) {
+				if(myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 
 						public void run() {
@@ -1065,12 +1035,12 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		/**
 		 * @generated
 		 */
-		private final NotificationFilter myModifiedFilter;
+		private NotificationFilter myModifiedFilter;
 
 		/**
 		 * @generated
 		 */
-		private final ResourceSetInfo myInfo;
+		private ResourceSetInfo myInfo;
 
 		/**
 		 * @generated
@@ -1085,36 +1055,35 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		/**
 		 * @generated
 		 */
-		@Override
 		public void notifyChanged(Notification notification) {
-			if (notification.getNotifier() instanceof ResourceSet) {
+			if(notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch() && myModifiedFilter.matches(notification)) {
-				if (notification.getNotifier() instanceof Resource) {
-					Resource resource = (Resource) notification.getNotifier();
-					if (resource.isLoaded()) {
+			if(!notification.isTouch() && myModifiedFilter.matches(notification)) {
+				if(notification.getNotifier() instanceof Resource) {
+					Resource resource = (Resource)notification.getNotifier();
+					if(resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator it = myInfo.getResourceSet().getResources().iterator(); it.hasNext() && !modified;) {
-							Resource nextResource = (Resource) it.next();
-							if (nextResource.isLoaded()) {
+						for(Iterator it = myInfo.getResourceSet().getResources().iterator(); it.hasNext() && !modified;) {
+							Resource nextResource = (Resource)it.next();
+							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();
 							}
 						}
 						boolean dirtyStateChanged = false;
-						synchronized (myInfo) {
-							if (modified != myInfo.fCanBeSaved) {
+						synchronized(myInfo) {
+							if(modified != myInfo.fCanBeSaved) {
 								myInfo.fCanBeSaved = modified;
 								dirtyStateChanged = true;
 							}
-							if (!resource.isModified()) {
+							if(!resource.isModified()) {
 								myInfo.setSynchronized(resource);
 							}
 						}
-						if (dirtyStateChanged) {
+						if(dirtyStateChanged) {
 							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
 
-							if (!modified) {
+							if(!modified) {
 								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
@@ -1129,13 +1098,12 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	 * Return the editingDomain
 	 */
 	public EditingDomain getEditingDomain() {
-		if (sharedEditingDomain == null) {
+		if(sharedEditingDomain == null) {
 			createEditingDomain();
 		}
 		return sharedEditingDomain;
 	}
 
-	// @unused
 	public static String getEditingDomainID() {
 		return "org.eclipse.uml2.diagram.clazz.EditingDomain"; //$NON-NLS-1$
 	}

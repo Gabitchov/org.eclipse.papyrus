@@ -9,8 +9,10 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 
+
 /**
- * PageModelFactory for the sashwindow. This factory is used by the SashWindows to create Diagrams.
+ * PageModelFactory for the sashwindow.
+ * This factory is used by the SashWindows to create Diagrams.
  * It is a wrapper arround the {@link EditorFactoryRegistry}
  * 
  * @author dumoulin
@@ -29,7 +31,7 @@ public class PageModelFactory implements IPageModelFactory {
 	 */
 	public PageModelFactory(IEditorFactoryRegistry editorFactoryRegistry, ServicesRegistry servicesRegistry) {
 
-		if (servicesRegistry == null || editorFactoryRegistry == null)
+		if(servicesRegistry == null || editorFactoryRegistry == null)
 			throw new IllegalArgumentException("Arguments should not be null.");
 
 		this.editorFactoryRegistry = editorFactoryRegistry;

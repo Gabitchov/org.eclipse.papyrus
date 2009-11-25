@@ -29,15 +29,15 @@ public abstract class DescriptorExtensionFactory {
 	 * used to verify if the name of the {@link IConfigurationElement} is the same as the given name
 	 * 
 	 * @param element
-	 *            an {@link IConfigurationElement} see eclipse extension point
+	 *        an {@link IConfigurationElement} see eclipse extension point
 	 * @param tagName
-	 *            the name of the {@link IConfigurationElement} that has to be verified
+	 *        the name of the {@link IConfigurationElement} that has to be verified
 	 * @throws InvalidRegistryObjectException
 	 * @throws BadNameExtensionException
 	 */
 	protected void checkTagName(IConfigurationElement element, String tagName) throws BadNameExtensionException {
 		String name = element.getName();
-		if (!tagName.equals(name))
+		if(!tagName.equals(name))
 			throw new BadNameExtensionException("Expected '" + tagName + "', found '" + name + "'.");
 	}
 
@@ -45,22 +45,21 @@ public abstract class DescriptorExtensionFactory {
 	 * Retrieves the value of a specific attribute in a configuration element
 	 * 
 	 * @param element
-	 *            the configuration element to parse
+	 *        the configuration element to parse
 	 * @param attributeName
-	 *            the name of the attribute to read
+	 *        the name of the attribute to read
 	 * @param extensionPointName
-	 *            Name of the extension point. Used in exception msg. TODO: remove ?
+	 *        Name of the extension point. Used in exception msg. TODO: remove ?
 	 * 
 	 * @return the class, result of the parsing
 	 * @throws InvalidRegistryObjectException
 	 * @throws BadClassNameException
 	 */
-	protected Class<?> parseClass(IConfigurationElement element, String attributeName, String extensionPointName)
-			throws BadClassNameException {
+	protected Class<?> parseClass(IConfigurationElement element, String attributeName, String extensionPointName) throws BadClassNameException {
 		String className = element.getAttribute(attributeName);
 
 		element.getContributor().getName();
-		if (className == null || className.length() == 0) {
+		if(className == null || className.length() == 0) {
 			throw new BadClassNameException(attributeName + "=null ", extensionPointName, attributeName);
 		}
 		Class<?> factoryClass;
@@ -73,8 +72,7 @@ public abstract class DescriptorExtensionFactory {
 				Bundle bundle = Platform.getBundle(declaringID);
 				factoryClass = bundle.loadClass(className);
 			} catch (ClassNotFoundException e1) {
-				throw new BadClassNameException(className + " can not be loaded ", extensionPointName, attributeName,
-						e1);
+				throw new BadClassNameException(className + " can not be loaded ", extensionPointName, attributeName, e1);
 			}
 		}
 		return factoryClass;

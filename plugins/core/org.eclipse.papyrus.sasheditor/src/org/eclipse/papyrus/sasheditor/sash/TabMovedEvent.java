@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sasheditor.sash;
 /**
  * Event specifying that a tab has been moved.
  */
-// @unused
 public class TabMovedEvent extends ChangeEvent {
 
 	private Object srcFolder;
@@ -40,16 +39,14 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the srcFolder
 	 */
-	// @unused
 	public Object getSrcFolder() {
 		return srcFolder;
 	}
 
 	/**
 	 * @param srcFolder
-	 *            the srcFolder to set
+	 *        the srcFolder to set
 	 */
-	// @unused
 	public void setSrcFolder(Object srcFolder) {
 		this.srcFolder = srcFolder;
 	}
@@ -57,16 +54,14 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the srcTabIndex
 	 */
-	// @unused
 	public int getSrcTabIndex() {
 		return srcTabIndex;
 	}
 
 	/**
 	 * @param srcTabIndex
-	 *            the srcTabIndex to set
+	 *        the srcTabIndex to set
 	 */
-	// @unused
 	public void setSrcTabIndex(int srcTabIndex) {
 		this.srcTabIndex = srcTabIndex;
 	}
@@ -74,16 +69,14 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the targetFolder
 	 */
-	// @unused
 	public Object getTargetFolder() {
 		return targetFolder;
 	}
 
 	/**
 	 * @param targetFolder
-	 *            the targetFolder to set
+	 *        the targetFolder to set
 	 */
-	// @unused
 	public void setTargetFolder(Object targetFolder) {
 		this.targetFolder = targetFolder;
 	}
@@ -91,16 +84,14 @@ public class TabMovedEvent extends ChangeEvent {
 	/**
 	 * @return the targetTabIndex
 	 */
-	// @unused
 	public Object getTargetTabIndex() {
 		return targetTabIndex;
 	}
 
 	/**
 	 * @param targetTabIndex
-	 *            the targetTabIndex to set
+	 *        the targetTabIndex to set
 	 */
-	// @unused
 	public void setTargetTabIndex(Object targetTabIndex) {
 		this.targetTabIndex = targetTabIndex;
 	}

@@ -22,9 +22,9 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * A controller associated to a tabitem in a tabfolder. This controller contains a reference to a
- * PagePart. This class is used exclusively by the TabFolderPart. It shoulb be not used from
- * elsewhere.
+ * A controller associated to a tabitem in a tabfolder. This controller contains a reference to
+ * a PagePart.
+ * This class is used exclusively by the TabFolderPart. It shoulb be not used from elsewhere.
  * 
  * @author dumoulin
  * 
@@ -32,19 +32,24 @@ import org.eclipse.swt.widgets.Control;
 public class TabItemPart {
 
 	/**
+	 * The associated model TODO : change the type
+	 */
+	//	protected Object model;
+
+	/**
 	 * The child assocciated to this tabitem. The child is rendered by the tabitem.
 	 */
 	protected PagePart childPart;
 
 	/**
-	 * Parent owning this TabItem. Can be null if the Part is orphaned. Even if it is orphaned, the
-	 * SWT Item still set.
+	 * Parent owning this TabItem. Can be null if the Part is orphaned. Even if
+	 * it is orphaned, the SWT Item still set.
 	 */
 	protected TabFolderPart parent;
 
 	/**
-	 * The SWT item associated to this part. This item contains the control of the associated
-	 * editor.
+	 * The SWT item associated to this part. This item contains the control of the
+	 * associated editor.
 	 */
 	protected CTabItem control;
 
@@ -52,7 +57,8 @@ public class TabItemPart {
 	protected GarbageState garbageState;
 
 	/**
-	 * Constructor. Create a TabItem for the provided modelPart.
+	 * Constructor.
+	 * Create a TabItem for the provided modelPart.
 	 * 
 	 * @param tabFolderPart
 	 * @param modelPart
@@ -75,7 +81,7 @@ public class TabItemPart {
 		// Create the item
 		CTabItem item = new CTabItem(getTabFolder(), SWT.NONE, index);
 		control = item;
-		if (childPart != null) {
+		if(childPart != null) {
 			item.setControl(childPart.getControl());
 			refreshTabDecorations();
 		}
@@ -104,13 +110,13 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Get the container of the Parent. This container is used as root of the Controls associated to
-	 * this editor.
+	 * Get the container of the Parent. This container is used as root of the
+	 * Controls associated to this editor.
 	 * 
 	 * @return
 	 */
 	private CTabFolder getTabFolder() {
-		return (CTabFolder) parent.getControl();
+		return (CTabFolder)parent.getControl();
 	}
 
 	/**
@@ -125,7 +131,9 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Remove the TabPart. Dispose the associated SWT CTabItem. (TODO Remove from the parent list.)
+	 * Remove the TabPart.
+	 * Dispose the associated SWT CTabItem.
+	 * (TODO Remove from the parent list.)
 	 * Orphan the associated ITilePart
 	 * 
 	 * @see
@@ -146,11 +154,12 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Set the item control. Setting the item control with the control.setControl() method has a
-	 * side effect: the previous control is modified with previousControl.setVisible(false). This is
-	 * annoying when the previous control has already been attached to another parent. This method
-	 * take care to not change the visibility of the previous control if it is detached from the
-	 * item's parent.
+	 * Set the item control. Setting the item control with the
+	 * control.setControl() method has a side effect: the previous control is
+	 * modified with previousControl.setVisible(false). This is annoying when
+	 * the previous control has already been attached to another parent. This
+	 * method take care to not change the visibility of the previous control if
+	 * it is detached from the item's parent.
 	 * 
 	 * @param newControl
 	 */
@@ -163,15 +172,14 @@ public class TabItemPart {
 		boolean editorIsVisible = false;
 		// Get previously attached editor's control
 		Control editorControl = control.getControl();
-		if (editorControl != null && editorControl.getParent() != control.getParent()) {
+		if(editorControl != null && editorControl.getParent() != control.getParent()) {
 			// Editor has already been reattached
 			// Remember its visible flag
 			editorIsVisible = editorControl.getVisible();
 			// Detach the item's control
 			control.setControl(newControl);
-			if (editorIsVisible) {
+			if(editorIsVisible)
 				editorControl.setVisible(editorIsVisible);
-			}
 		} else {
 			// Not reattached, do nothing else
 			control.setControl(newControl);
@@ -179,17 +187,16 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Dispose the associated control. Only dispose this tabitem, not the childpart.
+	 * Dispose the associated control.
+	 * Only dispose this tabitem, not the childpart.
 	 */
-	// @unused
 	public void dispose() {
 		Control itemControl = control.getControl();
 		control.dispose();
 
 		// Dispose the inner control if any.
-		if (!itemControl.isDisposed()) {
+		if(!itemControl.isDisposed())
 			itemControl.dispose();
-		}
 
 		//
 		parent = null;
@@ -210,9 +217,8 @@ public class TabItemPart {
 	 * @param title
 	 */
 	private void setTabText(String title) {
-		if (title == null) {
+		if(title == null)
 			title = "";
-		}
 		control.setText(title);
 		control.setToolTipText(title);
 	}
@@ -233,11 +239,17 @@ public class TabItemPart {
 	 * @return
 	 */
 	public AbstractPart findPartAt(Point position, Class<?> expectedTileType) {
+
+		//		if(expectedTileType == this.getClass())
+		//			return this;
+
 		return childPart.findPartAt(position, expectedTileType);
 	}
 
+
 	/**
-	 * Accept the provided visitor. Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor.
+	 * Call the corresponding accept method in the visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -264,5 +276,6 @@ public class TabItemPart {
 	public boolean isTabItemFor(Object rawModel) {
 		return rawModel.equals(getChildPart().getRawModel());
 	}
+
 
 }

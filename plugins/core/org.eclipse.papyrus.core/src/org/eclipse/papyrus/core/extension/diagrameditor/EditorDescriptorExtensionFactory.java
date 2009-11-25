@@ -50,7 +50,6 @@ public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory
 	/**
 	 * @return the eINSTANCE
 	 */
-	// @unused
 	public static EditorDescriptorExtensionFactory getInstance() {
 		return eINSTANCE;
 	}
@@ -59,7 +58,7 @@ public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory
 	 * Create a descriptor instance corresponding to the ConfigurationElement.
 	 * 
 	 * @param element
-	 *            an {@link IConfigurationElement} see eclipse extension point
+	 *        an {@link IConfigurationElement} see eclipse extension point
 	 * @return a nestedEditorDescriptor strucure that contains information to create diagrams
 	 * @throws BadNameExtensionException
 	 */
@@ -69,12 +68,11 @@ public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory
 		checkTagName(element, EDITOR_DIAGRAM_EXTENSIONPOINT);
 
 		res = new EditorDescriptor();
-		res.setEditorFactoryClass((Class<IEditorFactory>) parseClass(element, FACTORYCLASS_ATTRIBUTE,
-				EDITOR_DIAGRAM_EXTENSIONPOINT));
+		res.setEditorFactoryClass((Class<IEditorFactory>)parseClass(element, FACTORYCLASS_ATTRIBUTE, EDITOR_DIAGRAM_EXTENSIONPOINT));
 		res.setRequestedContextId(element.getAttribute(CONTEXTID_ATTRIBUTE));
 		res.setActionBarContributorId(element.getAttribute(ACTIONBARCONTRIBUTORID_ATTRIBUTE));
 		String iconPath = element.getAttribute(ICON_ATTRIBUTE);
-		if (iconPath != null) {
+		if(iconPath != null) {
 			res.setIcon(AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath));
 		}
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a nested editor ready " + res);

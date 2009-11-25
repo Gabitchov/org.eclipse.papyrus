@@ -45,19 +45,18 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * Extends MultiPageEditor to inherit methods implementations.
  * 
  * @param T
- *            Common ancestor for the model provided for the sash windows by the application. This
- *            is the type used externally by the application. Sash implementation don't use this
- *            type, it just carry it to ask for the appropriate wrapper. Concrete implementation can
- *            specify a type.
+ *        Common ancestor for the model provided for the sash windows by the application.
+ *        This is the type used externally by the application. Sash implementation don't use this type,
+ *        it just carry it to ask for the appropriate wrapper. Concrete implementation can specify
+ *        a type.
  * 
- *            TODO : be more precise for the generic type ? TODO : Listen to the page change event,
- *            and call setActivePage().
+ *        TODO : be more precise for the generic type ?
+ *        TODO : Listen to the page change event, and call setActivePage().
  */
 @SuppressWarnings("restriction")
 public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T> {
 
 	/** Log object */
-	// @unused
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/**
@@ -71,17 +70,13 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	/** Interface to the model */
 	protected ITabFolderModel<T> model;
 
-	/**
-	 * The wrapper arround the CTabFolder. CTabFolder is duplicated in the parent class.
-	 */
+	/** The wrapper arround the CTabFolder. CTabFolder is duplicated in the parent class. */
 	protected PTabFolder pTabFolder;
 
 	/** The parent of this ITilePart */
 	protected ITilePart<T> parent;
 
-	/**
-	 * Ordered set of currently shown diagrams (list of their models) TODO remove
-	 */
+	/** Ordered set of currently shown diagrams (list of their models) TODO remove */
 	protected TabPartList currentModels = new TabPartList();
 
 	/** Garbage state used during refresh */
@@ -97,13 +92,11 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 
 		/**
 		 * 
-		 * @see org.eclipse.ui.internal.dnd.IDragOverListener#drag(org.eclipse.swt.widgets.Control,
-		 *      java.lang.Object, org.eclipse.swt.graphics.Point,
+		 * @see org.eclipse.ui.internal.dnd.IDragOverListener#drag(org.eclipse.swt.widgets.Control, java.lang.Object, org.eclipse.swt.graphics.Point,
 		 *      org.eclipse.swt.graphics.Rectangle)
 		 */
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
-			// System.out.println(TabFolderPart.this.getClass().getSimpleName()
-			// + ".drag()");
+			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drag()");
 			System.out.println(this + ".drag()");
 			return null;
 		}
@@ -112,7 +105,7 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	/**
 	 * Listener on CTabFolder events.
 	 */
-	private final PTabFolder.IPTabFolderListener cTabFolderEventListener = new PTabFolder.IPTabFolderListener() {
+	private PTabFolder.IPTabFolderListener cTabFolderEventListener = new PTabFolder.IPTabFolderListener() {
 
 		public void contextMenuDetectEvent(CTabItem tab, Event event) {
 			System.out.println("contextMenuDetect()");
@@ -144,7 +137,8 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	public interface ITabFolderModel<T> extends ITilePartNodeModel<T> {
 
 		/**
-		 * Get the models used to show editors in the folder. Models can be of any type for now.
+		 * Get the models used to show editors in the folder.
+		 * Models can be of any type for now.
 		 * 
 		 * @return
 		 */
@@ -179,7 +173,8 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	}
 
 	/**
-	 * Deactivate this part. Unregistered from required service. Do not dispose the part.
+	 * Deactivate this part.
+	 * Unregistered from required service. Do not dispose the part.
 	 */
 	private void deactivate() {
 		// Listen to page changes
@@ -195,7 +190,7 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		partMap.getContainerPartMap().put(model.getNodeModel(), this);
 		garbageState = ITilePart.GarbageState.UNCHANGED;
 
-		for (TabPart<T> child : currentModels) {
+		for(TabPart<T> child : currentModels) {
 			child.fillPartMap(partMap);
 		}
 	}
@@ -204,7 +199,6 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#setParentPartContainer(org.eclipse.papyrus.sasheditor.sash.TilePartContainer)
 	 */
-	// @unused
 	public void setParentPartContainer(TilePartContainer<T> rootContainer) {
 		this.parentPartContainer = rootContainer;
 
@@ -221,8 +215,8 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	}
 
 	/**
-	 * Creates the control tree associated to this part. Create the control for this part, and
-	 * eventually recursively call the method for the childs, if any.
+	 * Creates the control tree associated to this part.
+	 * Create the control for this part, and eventually recursively call the method for the childs, if any.
 	 * 
 	 */
 	@Override
@@ -237,15 +231,14 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	}
 
 	/**
-	 * Create children of this folder, that is, pages. This is called the first time the control are
-	 * created.
+	 * Create children of this folder, that is, pages.
+	 * This is called the first time the control are created.
 	 */
 	private void createPages() {
 		List<Object> newModels = model.getChildModels();
 		// There is no childs.
-		// Check if each model has an open pageEditor. If not, lookup or create
-		// the editor.
-		for (Object curModel : newModels) {
+		// Check if each model has an open pageEditor. If not, lookup or create the editor.
+		for(Object curModel : newModels) {
 			int index = newModels.indexOf(curModel);
 			TabPart<T> curTab = new TabPart<T>(this, curModel);
 			curTab.createPartControl(getCTabFolder(), index);
@@ -253,14 +246,13 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		}
 
 		// Set active page
-		if (currentModels.size() > 0) {
+		if(currentModels.size() > 0)
 			setActivePage(0);
-		}
 	}
 
 	/**
-	 * Create the control for this Part. Does not create children. This method is called by the
-	 * parent after this folder is created.
+	 * Create the control for this Part. Does not create children.
+	 * This method is called by the parent after this folder is created.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#createControl(org.eclipse.swt.widgets.Composite)
 	 */
@@ -276,8 +268,7 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	@Override
 	protected void pageChange(int newPageIndex) {
 
-		// System.out.println(this.getClass().getSimpleName() + ".pageChange("+
-		// newPageIndex +")");
+		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
 		parentPartContainer.setActiveEditorTile(currentModels.get(newPageIndex).editorTile);
 
 	}
@@ -286,14 +277,14 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * Dispose the TilePart and its controls.
 	 * 
 	 * @param isRecursive
-	 *            No effect here. Children are always disposed.
+	 *        No effect here. Children are always disposed.
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#dispose()
 	 */
 	public void dispose(boolean isRecursive) {
 		// dispose local
 		model.deactivate();
 
-		// super.dispose();
+		//		super.dispose();
 		// Also dispose this folder control.
 		getControl().dispose();
 	}
@@ -302,7 +293,6 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorTile#dispose()
 	 */
-	// @unused
 	public void dispose() {
 		deactivate();
 		dispose(true);
@@ -314,6 +304,7 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	private void initDrag(Composite container) {
 		DragUtil.addDragTarget(container, dragOverListener);
 	}
+
 
 	/**
 	 * Get the associated CTabFolder
@@ -356,15 +347,13 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 */
 	public <U extends ITilePart<T>> U findPartAt(Point toFind, Class<U> expectedTileType) {
 
-		if (expectedTileType == this.getClass()) {
-			return (U) this;
-		}
+		if(expectedTileType == this.getClass())
+			return (U)this;
 
 		// ask current active tab
 		TabPart<T> activeTabPart = getActiveTab();
-		if (activeTabPart == null) {
+		if(activeTabPart == null)
 			return null;
-		}
 
 		return getActiveTab().findPartAt(toFind, expectedTileType);
 	}
@@ -376,7 +365,7 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 */
 	private TabPart<T> getActiveTab() {
 		int index = getActivePage();
-		if (index != -1) {
+		if(index != -1) {
 			return currentModels.get(index);
 		}
 		return null;
@@ -388,14 +377,12 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#findPart(org.eclipse.swt.widgets.Control)
 	 */
 	public ITilePart<T> findPart(Object control) {
-		if (getControl() == control) {
+		if(getControl() == control)
 			return this;
-		}
 
 		// Check if it is one of the Item
-		if (control instanceof CTabItem && ((CTabItem) control).getParent() == getControl()) {
+		if(control instanceof CTabItem && ((CTabItem)control).getParent() == getControl())
 			return this;
-		}
 
 		// Ask childs TODO
 		return null;
@@ -405,40 +392,38 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * Returns the editor for the given page index. The page index must be valid.
 	 * 
 	 * @param pageIndex
-	 *            the index of the page
-	 * @return the editor for the specified page, or <code>null</code> if the specified page was not
-	 *         created with <code>addPage(IEditorPart,IEditorInput)</code>
+	 *        the index of the page
+	 * @return the editor for the specified page, or <code>null</code> if the specified page was not created with
+	 *         <code>addPage(IEditorPart,IEditorInput)</code>
 	 */
-	@Override
 	protected IEditorPart getEditor(int pageIndex) {
 		return currentModels.get(pageIndex).getIEditorPart();
 	}
 
 	/**
-	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method
-	 * returns whether the contents of any of this multi-page editor's nested editors have changed
-	 * since the last save. Pages created with <code>addPage(Control)</code> are ignored.
+	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method returns whether the contents of any of this
+	 * multi-page editor's nested editors have changed since the
+	 * last save. Pages created with <code>addPage(Control)</code> are ignored.
 	 * <p>
 	 * Subclasses may extend or reimplement this method.
 	 * </p>
 	 * 
-	 * @return <code>true</code> if any of the nested editors are dirty; <code>false</code>
-	 *         otherwise.
+	 * @return <code>true</code> if any of the nested editors are dirty; <code>false</code> otherwise.
 	 */
 	public boolean isDirty() {
 		// use nestedEditors to avoid SWT requests; see bug 12996
-		for (TabPart<T> tabPart : currentModels) {
-			if (tabPart.getIEditorPart().isDirty()) {
+		for(TabPart<T> tabPart : currentModels) {
+			if(tabPart.getIEditorPart().isDirty()) {
 				return true;
 			}
 		}
 		return false;
 	}
 
+
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object,
-	 *      org.eclipse.swt.graphics.Point)
+	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object, org.eclipse.swt.graphics.Point)
 	 */
 	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart<T> sourcePart, Point position) {
 		// see org.eclipse.ui.internal.presentations.util.ReplaceDragHandler
@@ -449,61 +434,51 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		int sourceIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 		// This drop target only deals with tabs... if we're not dragging over
 		// a tab, exit.
-		if (tabUnderPointer == null) {
+		if(tabUnderPointer == null) {
 			Rectangle titleArea = pTabFolder.getTabArea();
 
 			System.out.println("titleArea=" + titleArea + ", position=" + position);
-			// If we're dragging over the title area, treat this as a drop in
-			// the last
+			// If we're dragging over the title area, treat this as a drop in the last
 			// tab position.
-			if (titleArea.contains(position) && pTabFolder.getTabFolder().getItemCount() > 0) {
+			if(titleArea.contains(position) && pTabFolder.getTabFolder().getItemCount() > 0) {
 				int dragOverIndex = pTabFolder.getTabFolder().getItemCount();
 				CTabItem lastTab = pTabFolder.getTabFolder().getItem(dragOverIndex - 1);
 
 				// Can't drag to end unless you can see the end
-				if (!lastTab.isShowing()) {
+				if(!lastTab.isShowing()) {
 					return null;
 				}
 
-				// If we are unable to compute the bounds for this tab, then
-				// ignore the drop
+				// If we are unable to compute the bounds for this tab, then ignore the drop
 				Rectangle lastTabBounds = lastTab.getBounds();
-				if (lastTabBounds.isEmpty()) {
+				if(lastTabBounds.isEmpty()) {
 					return null;
 				}
 
 				// if (dragStart >= 0) {
 				// dragOverIndex--;
 				//
-				// return createDropTarget( sourcePart, lastTabBounds,
-				// dragOverIndex);
-				// // return new StackDropResult(lastTabBounds, new
-				// Integer(dragOverIndex));
+				// return createDropTarget( sourcePart, lastTabBounds, dragOverIndex);
+				// // return new StackDropResult(lastTabBounds, new Integer(dragOverIndex));
 				// }
 
-				// Make the drag-over rectangle look like a tab at the end of
-				// the tab region.
-				// We don't actually know how wide the tab will be when it's
-				// dropped, so just
+				// Make the drag-over rectangle look like a tab at the end of the tab region.
+				// We don't actually know how wide the tab will be when it's dropped, so just
 				// make it 3 times wider than it is tall.
-				// titleArea is in Display coordinate, lastTabBounds in parent
-				// coordinate
+				// titleArea is in Display coordinate, lastTabBounds in parent coordinate
 				Rectangle dropRectangle = titleArea;
 
 				dropRectangle.x = dropRectangle.x + lastTabBounds.x + lastTabBounds.width;
 				dropRectangle.width = 3 * dropRectangle.height;
 				return createDropTarget(sourcePart, sourceIndex, dropRectangle, dragOverIndex);
-				// return new StackDropResult(dropRectangle, new
-				// Integer(dragOverIndex));
+				// return new StackDropResult(dropRectangle, new Integer(dragOverIndex));
 
 			} else {
-				// If the closest side is the side with the tabs, consider this
-				// a stack operation.
-				// Otherwise, let the drop fall through to whatever the default
-				// behavior is
+				// If the closest side is the side with the tabs, consider this a stack operation.
+				// Otherwise, let the drop fall through to whatever the default behavior is
 				Rectangle displayBounds = DragUtil.getDisplayBounds(pTabFolder.getControl());
 				int closestSide = Geometry.getClosestSide(displayBounds, position);
-				if (closestSide == pTabFolder.getTabFolder().getTabPosition()) {
+				if(closestSide == pTabFolder.getTabFolder().getTabPosition()) {
 					return createDropTarget(sourcePart, sourceIndex, displayBounds, -1);
 				}
 
@@ -511,14 +486,14 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 			}
 		}
 
-		if (!tabUnderPointer.isShowing()) {
+		if(!tabUnderPointer.isShowing()) {
 			return null;
 		}
 
 		// Get thumbnail bounds in display coordinates
 		Rectangle tabBounds = pTabFolder.getItemBounds(tabUnderPointer);
 
-		if (tabBounds.isEmpty()) {
+		if(tabBounds.isEmpty()) {
 			return null;
 		}
 
@@ -528,10 +503,9 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	/**
 	 * Copied from org.eclipse.ui.internal.PartStack
 	 */
-	public IDropTarget createDropTarget(TabFolderPart<T> sourcePart, int sourceIndex, Rectangle snapRectangle,
-			int tabIndex) {
+	public IDropTarget createDropTarget(TabFolderPart<T> sourcePart, int sourceIndex, Rectangle snapRectangle, int tabIndex) {
 
-		if (dropTarget == null) {
+		if(dropTarget == null) {
 			dropTarget = new DropTarget(sourcePart, sourceIndex, snapRectangle, tabIndex);
 			return dropTarget;
 		}
@@ -541,8 +515,7 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	}
 
 	/**
-	 * Class implementing methods required by drop targets. Drop target use when the drop occur on
-	 * one of the thumbnail of the folder.
+	 * Class implementing methods required by drop targets. Drop target use when the drop occur on one of the thumbnail of the folder.
 	 */
 	protected class DropTarget implements IDropTarget {
 
@@ -560,13 +533,13 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		 * Constructor. targetPart is the current folder.
 		 * 
 		 * @param sourcePart
-		 *            The sourcePart of the drag
+		 *        The sourcePart of the drag
 		 * @param sourceIndex
-		 *            Index of the tab from where the drop occur
+		 *        Index of the tab from where the drop occur
 		 * @param snapRectangle
-		 *            the drop area.
+		 *        the drop area.
 		 * @param targetIndex
-		 *            Index of the tab where the drop occur
+		 *        Index of the tab where the drop occur
 		 */
 		public DropTarget(TabFolderPart<T> sourcePart, int sourceIndex, Rectangle snapRectangle, int targetIndex) {
 			this.sourceIndex = sourceIndex;
@@ -587,16 +560,14 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#drop()
 		 */
 		public void drop() {
-			System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drop(source=" + sourcePart
-					+ "sourceIndex=" + sourceIndex + ", target=" + TabFolderPart.this + ", targetIndex=" + targetIndex);
+			System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drop(source=" + sourcePart + "sourceIndex=" + sourceIndex + ", target=" + TabFolderPart.this + ", targetIndex="
+					+ targetIndex);
 
 			// move from a folder to another
-			if (sourcePart == TabFolderPart.this) { // move inside the same
-				// folder
+			if(sourcePart == TabFolderPart.this) { // move inside the same folder
 				parentPartContainer.getContainerModel().moveTab(sourcePart.getModel(), sourceIndex, targetIndex);
 			} else { // move between folder
-				parentPartContainer.getContainerModel().moveTab(sourcePart.getModel(), sourceIndex,
-						TabFolderPart.this.getModel(), targetIndex);
+				parentPartContainer.getContainerModel().moveTab(sourcePart.getModel(), sourceIndex, TabFolderPart.this.getModel(), targetIndex);
 			}
 		}
 
@@ -606,30 +577,27 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#getCursor()
 		 */
 		public Cursor getCursor() {
-			// System.out.println(TabFolderPart.this.getClass().getSimpleName()
-			// + ".getCursor()-" + count++);
+			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".getCursor()-" + count++);
 			return DragCursors.getCursor(DragCursors.positionToDragCursor(cursor));
 
 		}
 
 		public Rectangle getSnapRectangle() {
-			// System.out.println(TabFolderPart.this.getClass().getSimpleName()
-			// + ".getSnapRectangle()-" + count);
+			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".getSnapRectangle()-" + count);
 			return snapRectangle;
 		}
 
 	}
 
 	/**
-	 * Orphan this node. The parent is set to null, but control is left unchanged. The node can be
-	 * reattached with reparent().
+	 * Orphan this node. The parent is set to null, but control is left unchanged. The node can be reattached with reparent().
 	 * 
 	 * @see
 	 * @return the parent
 	 */
 	public void orphan() {
 		// orphan only if we are in UNCHANGED state
-		if (garbageState == ITilePart.GarbageState.UNCHANGED) {
+		if(garbageState == ITilePart.GarbageState.UNCHANGED) {
 			garbageState = ITilePart.GarbageState.ORPHANED;
 			parent = null;
 		}
@@ -681,10 +649,11 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	}
 
 	/**
-	 * Synchronize the TabFolder with the models. The Tabs order is fixed and can't be moved. So, we
-	 * move the associated ITilepart if needed. For each existing Tab, compare its model and the
-	 * requested model. Synchronize if necessary. If their is more new model, add new Tab If their
-	 * is less newModel, remove unused Tabs.
+	 * Synchronize the TabFolder with the models.
+	 * The Tabs order is fixed and can't be moved. So, we move the associated ITilepart if needed.
+	 * For each existing Tab, compare its model and the requested model. Synchronize if necessary.
+	 * If their is more new model, add new Tab
+	 * If their is less newModel, remove unused Tabs.
 	 * 
 	 * @param partMap
 	 */
@@ -704,19 +673,19 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		// Synchronize each tab with the requested model
 		int minSize = Math.min(newModels.size(), currentModels.size());
 		int index;
-		for (index = 0; index < minSize; index++) {
+		for(index = 0; index < minSize; index++) {
 			Object curModel = newModels.get(index);
 			TabPart<T> curTab = currentModels.get(index);
-			if (!curTab.isTilePartFor(curModel)) {
+			if(!curTab.isTilePartFor(curModel)) {
 				curTab.synchronizeWith(curModel, partMap);
 				activePageIndex = index;
 			}
 		}
 
 		// Check for extra tabs or extra models
-		if (index < newModels.size()) {
+		if(index < newModels.size()) {
 			// There is extra models, add new tabs
-			for (int i = index; i < newModels.size(); i++) {
+			for(int i = index; i < newModels.size(); i++) {
 				Object curModel = newModels.get(i);
 				TabPart<T> curTab = new TabPart<T>(this, curModel);
 				curTab.createPartControl(getCTabFolder(), index, partMap);
@@ -724,43 +693,40 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 			}
 			// Set the last as active
 			activePageIndex = newModels.size() - 1;
-		} else if (index < currentModels.size()) {
+		} else if(index < currentModels.size()) {
 			// There is too much tabs, remove them
 			List<TabPart<T>> toRemove = new ArrayList<TabPart<T>>();
 			// Collect tab to be removed
-			for (int i = index; i < currentModels.size(); i++) {
+			for(int i = index; i < currentModels.size(); i++) {
 				TabPart<T> curTab = currentModels.get(i);
 				toRemove.add(curTab);
 			}
 			// do remove
-			for (TabPart<T> curTab : toRemove) {
+			for(TabPart<T> curTab : toRemove) {
 				currentModels.remove(curTab);
 				curTab.remove();
 			}
 			// Set the active page as the last part if needed
-			if (activePageIndex >= currentModels.size()) {
+			if(activePageIndex >= currentModels.size())
 				activePageIndex = currentModels.size() - 1;
-			}
 		}
+
 
 		folder.setRedraw(true);
-		// folder.setSelection(activePageIndex);
+		//		folder.setSelection(activePageIndex);
 		folder.redraw();
 
-		if (activePageIndex >= 0) {
-			// System.err.println("setActivePage(" + activePageIndex + ") : " +
-			// this);
+		if(activePageIndex >= 0) {
+			//			System.err.println("setActivePage(" + activePageIndex + ") : " + this);
 			// Set the activeTab has visible.
 			// Do it here because otherwise the active tab could be not visible.
-			// This come from an undefined bug setting the tab.isVisible(false)
-			// in some case.
+			// This come from an undefined bug setting the tab.isVisible(false) in some case.
 			folder.getItem(activePageIndex).getControl().setVisible(true);
 			setActivePage(activePageIndex);
-		} else {
+		} else
 			System.err.println("Active page not set while synchronizing !");
-			// folder.update();
-			// folder.showSelection();
-		}
+		//		folder.update();
+		//		folder.showSelection();
 
 	}
 
@@ -770,7 +736,6 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * @debug This is fo debug purpose.
 	 * @param msg
 	 */
-	// @unused
 	private void showTabs(String msg) {
 		System.out.println("------- " + msg);
 		// Show items
@@ -778,47 +743,47 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		CTabItem items[] = folder.getItems();
 		System.out.printf("sel.index %2d :\n", folder.getSelectionIndex());
 		System.out.printf("items %2d :", folder.getItemCount());
-		for (CTabItem item : items) {
+		for(CTabItem item : items) {
 			System.out.printf("%10s |", item.getControl());
 		}
 		System.out.println();
 
 		System.out.printf("it.dispose:");
-		for (CTabItem item : items) {
+		for(CTabItem item : items) {
 			System.out.printf("%10b |", item.getControl().isDisposed());
 		}
 		System.out.println();
 
 		System.out.printf("it.ctrl.vis:");
-		for (CTabItem item : items) {
+		for(CTabItem item : items) {
 			System.out.printf("%10s |", item.getControl().isVisible());
 		}
 		System.out.println();
 
 		//
 		System.out.printf("it.ctrl   :");
-		for (CTabItem item : items) {
+		for(CTabItem item : items) {
 			System.out.printf("%10s |", item.getControl());
 		}
 		System.out.println();
 
 		//
 		System.out.printf("tabs.ctrl :");
-		for (TabPart<T> tab : currentModels) {
+		for(TabPart<T> tab : currentModels) {
 			System.out.printf("%10s |", tab.editorTile.getControl());
 		}
 		System.out.println();
 
 		// 
 		System.out.printf("tab.editor:");
-		for (TabPart<T> tab : currentModels) {
+		for(TabPart<T> tab : currentModels) {
 			System.out.printf("%10s |", tab.editorTile.getIEditorPart());
 		}
 		System.out.println();
 
 		//
 		System.out.printf("tabs %2d :", currentModels.size());
-		for (TabPart<T> tab : currentModels) {
+		for(TabPart<T> tab : currentModels) {
 			System.out.printf("%10s |", tab);
 		}
 		System.out.println();
@@ -829,19 +794,20 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * Show tile status.
 	 */
 	protected void showStatus() {
-		// System.out.println( "tabfolder[" + currentModels.size() + "]:"
-		// + ", disposed=" + getCTabFolder().isDisposed()
-		// + ", visible=" + getCTabFolder().isVisible()
-		// + ", garbState=" + garbageState
-		// + ", " + this);
+		//		System.out.println( "tabfolder[" + currentModels.size()  + "]:"
+		//				+ ", disposed=" + getCTabFolder().isDisposed()
+		//				+ ", visible=" + getCTabFolder().isVisible()
+		//				+ ", garbState=" + garbageState
+		//				+ ", " + this);
 
 		CTabFolder ctrl = getCTabFolder();
-		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n", currentModels.size(),
-				ctrl.isDisposed(), (ctrl.isDisposed() ? false : getCTabFolder().isVisible()), garbageState, this);
+		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n"
+				, currentModels.size(), ctrl.isDisposed(), (ctrl.isDisposed() ? false : getCTabFolder().isVisible()), garbageState, this);
 	}
 
 	/**
-	 * Accept the provided visitor. Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor.
+	 * Call the corresponding accept method in the visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -856,13 +822,15 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 	 * @param visitor
 	 */
 	public void visitChildren(ITileVisitor visitor) {
-		for (TabPart<T> child : currentModels) {
+		for(TabPart<T> child : currentModels) {
 			child.visit(visitor);
 		}
 	}
 
+
 	/**
-	 * Collection of tabpart. Add miscelenaous methods.
+	 * Collection of tabpart.
+	 * Add miscelenaous methods.
 	 * 
 	 * @author dumoulin
 	 * 
@@ -876,34 +844,29 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		 * @param model
 		 * @return
 		 */
-		// @unused
 		public boolean containsModel(Object model) {
 			return indexOfModel(model) >= 0;
 		}
 
 		/**
-		 * Returns the index of the first occurrence of the specified element in this list, or -1 if
-		 * this list does not contain the element. More formally, returns the lowest index
-		 * <tt>i</tt> such that
-		 * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt> , or -1 if there
-		 * is no such index.
+		 * Returns the index of the first occurrence of the specified element
+		 * in this list, or -1 if this list does not contain the element.
+		 * More formally, returns the lowest index <tt>i</tt> such that <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
+		 * or -1 if there is no such index.
 		 */
 		public int indexOfModel(Object o) {
-			if (o == null) {
-				for (int i = 0; i < size(); i++) {
-					if (get(i) == null) {
+			if(o == null) {
+				for(int i = 0; i < size(); i++)
+					if(get(i) == null)
 						return i;
-					}
-				}
 			} else {
-				for (int i = 0; i < size(); i++) {
-					if (o.equals(get(i).getModel())) {
+				for(int i = 0; i < size(); i++)
+					if(o.equals(get(i).getModel()))
 						return i;
-					}
-				}
 			}
 			return -1;
 		}
+
 
 		/**
 		 * Get the TabPart by its model.
@@ -911,7 +874,6 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		 * @param model
 		 * @return
 		 */
-		// @unused
 		public TabPart<T> getByModel(Object model) {
 			return get(indexOfModel(model));
 		}

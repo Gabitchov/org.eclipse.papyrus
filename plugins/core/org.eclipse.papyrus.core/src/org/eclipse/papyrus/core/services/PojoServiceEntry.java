@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.core.services;
 
+
 /**
  * @author cedric dumoulin
  */
@@ -17,20 +18,21 @@ public class PojoServiceEntry extends AbstractServiceEntry {
 	 * @param serviceDescriptor
 	 * @param registry
 	 */
-	// @unused
 	public PojoServiceEntry(ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
 		this.serviceDescriptor = serviceDescriptor;
 		this.registry = registry;
 
 	}
 
+
 	/**
-	 * Create an entry for an already created service. Constructor.
+	 * Create an entry for an already created service.
+	 * Constructor.
 	 * 
 	 * @param descriptor
-	 *            Descriptor of the service. Key and priority should be set.
+	 *        Descriptor of the service. Key and priority should be set.
 	 * @param serviceInstance
-	 *            The service Instance
+	 *        The service Instance
 	 */
 	public PojoServiceEntry(ServiceDescriptor descriptor, Object serviceInstance) {
 		this.serviceDescriptor = descriptor;
@@ -42,11 +44,10 @@ public class PojoServiceEntry extends AbstractServiceEntry {
 	 * 
 	 * @return
 	 * @throws ServiceException
-	 *             If service can't be started.
+	 *         If service can't be started.
 	 */
-	@Override
 	public Object getServiceInstance() throws ServiceException {
-		if (serviceInstance == null) {
+		if(serviceInstance == null) {
 			startService();
 		}
 
@@ -58,9 +59,9 @@ public class PojoServiceEntry extends AbstractServiceEntry {
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isStarted() {
 		return serviceInstance != null;
 	}
+
 
 }

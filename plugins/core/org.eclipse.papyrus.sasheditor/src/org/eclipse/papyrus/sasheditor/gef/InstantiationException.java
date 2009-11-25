@@ -25,7 +25,6 @@ public class InstantiationException extends MultiDiagramException {
 	/**
 	 * 
 	 */
-	// @unused
 	public InstantiationException() {
 		// TODO Auto-generated constructor stub
 	}
@@ -50,7 +49,6 @@ public class InstantiationException extends MultiDiagramException {
 	 * @param arg0
 	 * @param arg1
 	 */
-	// @unused
 	public InstantiationException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 		// TODO Auto-generated constructor stub

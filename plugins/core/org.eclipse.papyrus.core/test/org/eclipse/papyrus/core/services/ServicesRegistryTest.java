@@ -5,6 +5,7 @@ package org.eclipse.papyrus.core.services;
 
 import junit.framework.TestCase;
 
+
 /**
  * @author dumoulin
  * 
@@ -42,9 +43,7 @@ public class ServicesRegistryTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.core.services.ServicesRegistry#add(org.eclipse.papyrus.core.services.ServiceDescriptor)}
-	 * .
+	 * Test method for {@link org.eclipse.papyrus.core.services.ServicesRegistry#add(org.eclipse.papyrus.core.services.ServiceDescriptor)} .
 	 */
 	public void testAdd() {
 
@@ -52,6 +51,7 @@ public class ServicesRegistryTest extends TestCase {
 		servicesRegistry.add(serviceBDesc);
 		servicesRegistry.add(serviceCDesc);
 		servicesRegistry.add(servicePojoADesc);
+
 
 		// Test entries creation
 		try {
@@ -76,11 +76,11 @@ public class ServicesRegistryTest extends TestCase {
 			fail("Service should exist.");
 		}
 
+
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.core.services.ServicesRegistry#getService(java.lang.Object)}.
+	 * Test method for {@link org.eclipse.papyrus.core.services.ServicesRegistry#getService(java.lang.Object)}.
 	 * 
 	 * @throws ServiceException
 	 */
@@ -89,6 +89,7 @@ public class ServicesRegistryTest extends TestCase {
 		servicesRegistry.add(serviceBDesc);
 		servicesRegistry.add(serviceCDesc);
 		servicesRegistry.add(servicePojoADesc);
+
 
 		// Test lazy service
 		Object serviceA = servicesRegistry.getService(serviceADesc.getKey());
@@ -113,6 +114,7 @@ public class ServicesRegistryTest extends TestCase {
 
 		Object servicePojo2 = servicesRegistry.getService(servicePojoADesc.getKey());
 		assertEquals("Second retrieve get the same service", servicePojo, servicePojo2);
+
 
 	}
 
@@ -139,6 +141,7 @@ public class ServicesRegistryTest extends TestCase {
 		assertNotNull("Service created", serviceA);
 		assertEquals("right class", ServiceA10.class, serviceA.getClass());
 
+
 	}
 
 	/**
@@ -163,11 +166,16 @@ public class ServicesRegistryTest extends TestCase {
 		assertEquals("right object", instanciatedService, serviceA);
 		assertEquals("right class", ServiceA.class, serviceA.getClass());
 
+
 	}
 
 	/* **************************************** */
 
+
+
+
 	public class LazyServiceADescriptor extends ServiceDescriptor {
+
 
 		public LazyServiceADescriptor() {
 			super(ServiceA.class.getName(), ServiceStartKind.LAZY, 1);
@@ -176,12 +184,14 @@ public class ServicesRegistryTest extends TestCase {
 
 	public class LazyServiceA10Descriptor extends ServiceDescriptor {
 
+
 		public LazyServiceA10Descriptor() {
 			super(ServiceA.class.getName(), ServiceA10.class.getName(), ServiceStartKind.LAZY, 10);
 		}
 	}
 
 	public class LazyServiceBDescriptor extends ServiceDescriptor {
+
 
 		public LazyServiceBDescriptor() {
 			super(ServiceB.class.getName(), ServiceStartKind.LAZY, 1);
@@ -190,6 +200,7 @@ public class ServicesRegistryTest extends TestCase {
 
 	public class ServiceCDescriptor extends ServiceDescriptor {
 
+
 		public ServiceCDescriptor() {
 			super(ServiceC.class.getName(), ServiceStartKind.STARTUP, 1);
 		}
@@ -197,9 +208,11 @@ public class ServicesRegistryTest extends TestCase {
 
 	public class LazyServicePojoADescriptor extends ServiceDescriptor {
 
+
 		public LazyServicePojoADescriptor() {
 			super(ServicePojoA.class.getName(), ServiceStartKind.LAZY, 1);
 		}
 	}
+
 
 }

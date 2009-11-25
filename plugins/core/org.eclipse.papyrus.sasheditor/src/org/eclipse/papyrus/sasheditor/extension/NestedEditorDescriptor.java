@@ -18,10 +18,10 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the
- * nested diagram. It is fill by an extension.
+ * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the nested diagram. It is fill by an extension.
  */
 public class NestedEditorDescriptor {
+
 
 	/**
 	 * Editor factory implementation class.
@@ -36,7 +36,6 @@ public class NestedEditorDescriptor {
 	/**
     * 
     */
-	// @unused
 	protected NestedDiagram editor;
 
 	/**
@@ -47,31 +46,27 @@ public class NestedEditorDescriptor {
 	}
 
 	/**
-	 * Get associated editorFactory. The editorFactoryClass should be set, otherwise an error is
-	 * thrown.
+	 * Get associated editorFactory. The editorFactoryClass should be set, otherwise an error is thrown.
 	 * 
 	 * @return the associated editor Factory
 	 */
 	public IEditorFactory getEditorFactory() {
-		if (editorFactory != null) {
+		if(editorFactory != null)
 			return editorFactory;
-		}
 
-		if (editorFactoryClass == null) { // error
+		if(editorFactoryClass == null) { // error
 			throw new IllegalStateException("EditorFactory class should be set.");
 		}
 
 		// Create it
 		try {
-			editorFactory = (IEditorFactory) editorFactoryClass.newInstance();
+			editorFactory = (IEditorFactory)editorFactoryClass.newInstance();
 			return editorFactory;
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		}
 	}
@@ -80,7 +75,7 @@ public class NestedEditorDescriptor {
 	 * Return <code>true</code> if the editor can edit the root object.
 	 * 
 	 * @param root
-	 *            the object to edit
+	 *        the object to edit
 	 * @return <code>true</code>if the editor can edit the specified object
 	 */
 	public boolean isEditorFor(Object root) {
@@ -91,9 +86,9 @@ public class NestedEditorDescriptor {
 	 * Create a new editor for the specified root object.
 	 * 
 	 * @param sharedObjects
-	 *            shared objects among several diagrams
+	 *        shared objects among several diagrams
 	 * @param root
-	 *            the root object to edit
+	 *        the root object to edit
 	 * @return the created editor
 	 * @throws InvocationTargetException
 	 * @throws IllegalAccessException
@@ -109,7 +104,6 @@ public class NestedEditorDescriptor {
 	 * 
 	 * @return the editor factory associated to this editor descriptor.
 	 */
-	// @unused
 	public Class<?> getEditorFactoryClass() {
 		return editorFactoryClass;
 	}
@@ -118,7 +112,7 @@ public class NestedEditorDescriptor {
 	 * Sets the editor factory associated to this editor descriptor.
 	 * 
 	 * @param editorFactoryClass
-	 *            the editor factory to associate to this editor descriptor.
+	 *        the editor factory to associate to this editor descriptor.
 	 */
 	public void setEditorFactoryClass(Class<?> editorFactoryClass) {
 		this.editorFactoryClass = editorFactoryClass;

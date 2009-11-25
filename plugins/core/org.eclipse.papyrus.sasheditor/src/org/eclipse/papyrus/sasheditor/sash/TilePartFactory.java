@@ -22,15 +22,14 @@ import org.eclipse.papyrus.sasheditor.sash.TabFolderPart.ITabFolderModel;
  * Used to create part associated to diagram node.
  * 
  * @param T
- *            Common ancestor for the model provided for the sash windows by the application. This
- *            is the type used externally by the application. Sash implementation don't use this
- *            type, it just carry it to ask for the appropriate wrapper. Concrete implementation can
- *            specify a type.
+ *        Common ancestor for the model provided for the sash windows by the application.
+ *        This is the type used externally by the application. Sash implementation don't use this type,
+ *        it just carry it to ask for the appropriate wrapper. Concrete implementation can specify
+ *        a type.
  */
 public class TilePartFactory<T> implements ITilePartFactory<T> {
 
 	/** Log object */
-	// @unused
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/**
@@ -59,10 +58,10 @@ public class TilePartFactory<T> implements ITilePartFactory<T> {
 
 		ITilePart.ITilePartNodeModel<T> model = createTilePartModel(realModel);
 
-		if (model instanceof ITabFolderModel) {
-			return createTabFolderPart(parent, (ITabFolderModel<T>) model);
-		} else if (model instanceof ISashModel) {
-			return createSashPart(parent, (ISashModel<T>) model);
+		if(model instanceof ITabFolderModel) {
+			return createTabFolderPart(parent, (ITabFolderModel<T>)model);
+		} else if(model instanceof ISashModel) {
+			return createSashPart(parent, (ISashModel<T>)model);
 		}
 
 		return null;

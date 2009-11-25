@@ -22,11 +22,14 @@ import org.eclipse.ui.internal.WorkbenchPlugin;
 import org.eclipse.ui.internal.services.INestable;
 import org.eclipse.ui.services.IServiceLocator;
 
+
 /**
- * Instance of this class track the active editor. When the active editor change, the tracker
- * receive an event, and perform following tasks: - send unselect msg to old active editor - send
- * select msg to new active editor - record the new active editor - fire events to all registered
- * listeners.
+ * Instance of this class track the active editor.
+ * When the active editor change, the tracker receive an event, and perform following tasks:
+ * - send unselect msg to old active editor
+ * - send select msg to new active editor
+ * - record the new active editor
+ * - fire events to all registered listeners.
  * 
  * This class allows to set externally the active editor.
  * 
@@ -37,16 +40,17 @@ import org.eclipse.ui.services.IServiceLocator;
 public class ActiveEditorTracker {
 
 	/**
-	 * The active service locator. This value may be <code>null</code> if there is no selected page,
-	 * or if the selected page is a control with no site.
+	 * The active service locator. This value may be <code>null</code> if there is no selected page, or if the selected page is a control with no
+	 * site.
 	 */
 	private INestable activeServiceLocator;
+
 
 	/** Log object */
 	Logger log = Logger.getLogger(getClass().getName());
 
 	/** List of listeners */
-	private final List<IActiveEditorChangeListener> activeEditorChangeListeners = new ArrayList<IActiveEditorChangeListener>();
+	private List<IActiveEditorChangeListener> activeEditorChangeListeners = new ArrayList<IActiveEditorChangeListener>();
 
 	/** The currently active editor */
 	private EditorTile activeEditor;
@@ -54,7 +58,7 @@ public class ActiveEditorTracker {
 	/**
 	 * The main multiPartEditor.
 	 */
-	private final IMultiEditorNestedPartManager multiPartEditor;
+	private IMultiEditorNestedPartManager multiPartEditor;
 
 	/**
 	 * Interface that must be implemented by listeners on activeEditorChange event.
@@ -73,9 +77,10 @@ public class ActiveEditorTracker {
 		public void activeEditorChange(EditorTile oldEditor, EditorTile newEditor);
 	}
 
+
 	/**
-	 * Constructor. The activeEditor will be set by the first TabFolder that will call
-	 * TabFolderPart.setPage().
+	 * Constructor.
+	 * The activeEditor will be set by the first TabFolder that will call TabFolderPart.setPage().
 	 * 
 	 * @param multiPartEditor
 	 */
@@ -106,16 +111,16 @@ public class ActiveEditorTracker {
 	}
 
 	/**
-	 * Notifies that the editor has been activated. This method is called when the user selects a
-	 * different editor.
+	 * Notifies that the editor has been activated. This method is called when the
+	 * user selects a different editor.
 	 * 
 	 * @param editor
 	 */
 	private void editorChange(EditorTile editor) {
 		System.out.println(getClass().getSimpleName() + ".editorChange('" + editor.getIEditorPart().getTitle() + "')");
 		// Set focus
-		IPartService partService = (IPartService) getEditorSite().getService(IPartService.class);
-		if (partService.getActivePart() == getEditorSite().getPart()) {
+		IPartService partService = (IPartService)getEditorSite().getService(IPartService.class);
+		if(partService.getActivePart() == getEditorSite().getPart()) {
 			editor.getIEditorPart().setFocus();
 		}
 
@@ -136,19 +141,18 @@ public class ActiveEditorTracker {
 		IEditorPart editorPart = editor.getIEditorPart();
 
 		// Propagate the selection change event.
-		if (editorPart != null) {
+		if(editorPart != null) {
 			ISelectionProvider selectionProvider = editorPart.getSite().getSelectionProvider();
-			if (selectionProvider != null) {
+			if(selectionProvider != null) {
 				ISelectionProvider outerProvider = getEditorSite().getSelectionProvider();
-				if (outerProvider instanceof MultiPageSelectionProvider) {
-					SelectionChangedEvent event = new SelectionChangedEvent(selectionProvider, selectionProvider
-							.getSelection());
+				if(outerProvider instanceof MultiPageSelectionProvider) {
+					SelectionChangedEvent event = new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection());
 
-					MultiPageSelectionProvider provider = (MultiPageSelectionProvider) outerProvider;
+					MultiPageSelectionProvider provider = (MultiPageSelectionProvider)outerProvider;
 					provider.fireSelectionChanged(event);
 					provider.firePostSelectionChanged(event);
 				} else {
-					if (log.isLoggable(Level.WARNING)) {
+					if(log.isLoggable(Level.WARNING)) {
 						log.warning("MultiPageEditorPart " + multiPartEditor.getClass().getName()
 								+ " did not propogate selection for " //$NON-NLS-1$
 								+ editorPart.getTitle());
@@ -159,25 +163,28 @@ public class ActiveEditorTracker {
 	}
 
 	/**
-	 * Activates services of the active editor: site, keybinding deactivate old active site.
+	 * Activates services of the active editor: site, keybinding
+	 * deactivate old active site.
 	 */
-	@SuppressWarnings( { "restriction", "deprecation" })
+	@SuppressWarnings({ "restriction", "deprecation" })
 	private void activateServices() {
 		// Deactivate old active site
-		if (activeServiceLocator != null) {
+		if(activeServiceLocator != null) {
 			activeServiceLocator.deactivate();
 			activeServiceLocator = null;
 		}
 
+
 		// Get the service
 		final IKeyBindingService service = getEditorSite().getKeyBindingService();
 
+
 		final IEditorPart editor = (activeEditor != null ? activeEditor.getIEditorPart() : null);
 
-		if (editor != null) {
+		if(editor != null) {
 			// active the service for this inner editor
-			if (service instanceof INestableKeyBindingService) {
-				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
+			if(service instanceof INestableKeyBindingService) {
+				final INestableKeyBindingService nestableService = (INestableKeyBindingService)service;
 				nestableService.activateKeyBindingService(editor.getEditorSite());
 
 			} else {
@@ -186,8 +193,8 @@ public class ActiveEditorTracker {
 			}
 			// Activate the services for the new service locator.
 			final IServiceLocator serviceLocator = editor.getEditorSite();
-			if (serviceLocator instanceof INestable) {
-				activeServiceLocator = (INestable) serviceLocator;
+			if(serviceLocator instanceof INestable) {
+				activeServiceLocator = (INestable)serviceLocator;
 				activeServiceLocator.activate();
 			}
 
@@ -195,24 +202,24 @@ public class ActiveEditorTracker {
 	}
 
 	/**
-	 * Deactivate services: old nested site if any and keybinding service if there is no active
-	 * editor. Deactivate the key binding service. Deactivate it only if there is no editor
-	 * selected.
+	 * Deactivate services: old nested site if any and keybinding service if there is no active editor.
+	 * Deactivate the key binding service.
+	 * Deactivate it only if there is no editor selected.
 	 */
-	@SuppressWarnings( { "restriction", "deprecation" })
+	@SuppressWarnings({ "restriction", "deprecation" })
 	private void deactivateServices(boolean immediate) {
 		// Deactivate the nested services from the last active service locator.
-		if (activeServiceLocator != null) {
+		if(activeServiceLocator != null) {
 			activeServiceLocator.deactivate();
 			activeServiceLocator = null;
 		}
 
 		final IEditorPart editor = (activeEditor != null ? activeEditor.getIEditorPart() : null);
 		final IKeyBindingService service = getEditorSite().getKeyBindingService();
-		if (editor != null || immediate) {
+		if(editor != null || immediate) {
 			// There is no selected page, so deactivate the active service.
-			if (service instanceof INestableKeyBindingService) {
-				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
+			if(service instanceof INestableKeyBindingService) {
+				final INestableKeyBindingService nestableService = (INestableKeyBindingService)service;
 				nestableService.activateKeyBindingService(null);
 			} else {
 				WorkbenchPlugin
@@ -226,8 +233,8 @@ public class ActiveEditorTracker {
 	 */
 	private void fireChangeEventToActionBarContributor() {
 		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
-		if (contributor != null && contributor instanceof MultiPageEditorActionBarContributor) {
-			((MultiPageEditorActionBarContributor) contributor).setActivePage(activeEditor.getIEditorPart());
+		if(contributor != null && contributor instanceof MultiPageEditorActionBarContributor) {
+			((MultiPageEditorActionBarContributor)contributor).setActivePage(activeEditor.getIEditorPart());
 		}
 
 	}
@@ -246,12 +253,10 @@ public class ActiveEditorTracker {
 	 * 
 	 * @param listener
 	 */
-	// @unused
 	public void addActiveEditorChangeListener(IActiveEditorChangeListener listener) {
 		// no duplicate
-		if (activeEditorChangeListeners.contains(listener)) {
+		if(activeEditorChangeListeners.contains(listener))
 			return;
-		}
 		activeEditorChangeListeners.add(listener);
 	}
 
@@ -260,18 +265,16 @@ public class ActiveEditorTracker {
 	 * 
 	 * @param listener
 	 */
-	// @unused
 	public void removeActiveEditorChangeListener(IActiveEditorChangeListener listener) {
 		activeEditorChangeListeners.remove(listener);
 	}
 
 	private void fireEditorChangeEvent(EditorTile oldEditor, EditorTile newEditor) {
 		// Fire only if really change
-		if (oldEditor == newEditor) {
+		if(oldEditor == newEditor)
 			return;
-		}
 
-		for (IActiveEditorChangeListener listener : activeEditorChangeListeners) {
+		for(IActiveEditorChangeListener listener : activeEditorChangeListeners) {
 			listener.activeEditorChange(oldEditor, newEditor);
 		}
 	}

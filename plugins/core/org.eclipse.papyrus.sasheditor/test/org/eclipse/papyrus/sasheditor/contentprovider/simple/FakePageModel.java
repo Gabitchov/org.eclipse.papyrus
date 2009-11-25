@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.swt.graphics.Image;
 
+
 /**
  * A fake page for testing purpose
  * 

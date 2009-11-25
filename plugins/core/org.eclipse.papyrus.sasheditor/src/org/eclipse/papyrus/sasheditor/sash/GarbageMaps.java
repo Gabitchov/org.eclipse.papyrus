@@ -6,8 +6,8 @@ package org.eclipse.papyrus.sasheditor.sash;
 import java.util.HashMap;
 
 /**
- * This class is used to Garbage unused Part after a synchronization with the underlying model. The
- * maps are filled before the synchronize(), and the parts are garbaged after the synchronize.
+ * This class is used to Garbage unused Part after a synchronization with the underlying model.
+ * The maps are filled before the synchronize(), and the parts are garbaged after the synchronize.
  * 
  * @author dumoulin
  * 
@@ -39,14 +39,14 @@ public class GarbageMaps<T> {
 	 */
 	public void garbage() {
 		// Remove orphaned part (no more used)
-		for (ITilePart<T> part : partMap.getTileParts()) {
-			if (part.isOrphaned())
+		for(ITilePart<T> part : partMap.getTileParts()) {
+			if(part.isOrphaned())
 				part.dispose(false);
 		}
 
 		// Remove orphaned part (no more used)
-		for (EditorTile<T> part : tabPartMap.values()) {
-			if (part.isOrphaned())
+		for(EditorTile<T> part : tabPartMap.values()) {
+			if(part.isOrphaned())
 				part.garbage();
 		}
 	}
@@ -55,9 +55,9 @@ public class GarbageMaps<T> {
 	 * Add a leaf tile to the maps.
 	 * 
 	 * @param model
-	 *            The model associated to the Tile
+	 *        The model associated to the Tile
 	 * @param tile
-	 *            The tile to add.
+	 *        The tile to add.
 	 */
 	public void addTile(Object model, EditorTile<T> tile) {
 		tabPartMap.put(model, tile);

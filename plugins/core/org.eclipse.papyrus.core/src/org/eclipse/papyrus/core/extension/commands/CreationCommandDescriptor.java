@@ -52,7 +52,7 @@ public class CreationCommandDescriptor {
 	 * @throws BackboneException
 	 */
 	protected ICreationCommand getCommand() throws BackboneException {
-		if (instance == null)
+		if(instance == null)
 			instance = createCommand();
 
 		return instance;
@@ -63,16 +63,13 @@ public class CreationCommandDescriptor {
 			ICreationCommand command = creationCommandClass.newInstance();
 			return command;
 		} catch (SecurityException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		}
 	}

@@ -14,21 +14,19 @@
 package org.eclipse.papyrus.sasheditor.extension;
 
 /**
- * Action used to create a Diagram. This kind of action is used by the multiEditor to create a new
- * diagram. The diagram creation indirectly involves an editor creation.
+ * Action used to create a Diagram. This kind of action is used by the multiEditor to create a new diagram. The diagram creation indirectly involves
+ * an editor creation.
  * 
  * @author dumoulin
  * 
  */
-// @unused
 public interface ICreateDiagramAction {
 
 	/**
 	 * Runs the action performing the diagram creation.
 	 * 
 	 * @param sharedObjects
-	 *            the shared objects among several diagrams
+	 *        the shared objects among several diagrams
 	 */
-	// @unused
 	public void run(MultiDiagramSharedObjects sharedObjects);
 }

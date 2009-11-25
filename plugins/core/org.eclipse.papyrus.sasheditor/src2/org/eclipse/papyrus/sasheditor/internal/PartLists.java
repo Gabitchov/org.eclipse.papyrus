@@ -16,11 +16,12 @@ package org.eclipse.papyrus.sasheditor.internal;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * This class contains lists of parts, regardless of the part parents. There are two lists: one for
- * the pane Parts and one for the Page Parts (leafs). This class is used when refreshing the
- * SashContainer: a new instance is created and filled with existing parts. Then the list is carried
- * in each pane refresh method.
+ * This class contains lists of parts, regardless of the part parents.
+ * There are two lists: one for the pane Parts and one for the Page Parts (leafs).
+ * This class is used when refreshing the SashContainer: a new instance is created
+ * and filled with existing parts. Then the list is carried in each pane refresh method.
  * 
  * @author cedric dumoulin
  */
@@ -34,35 +35,34 @@ public class PartLists {
 	private List<PagePart> createdPages /* = new ArrayList<PagePart>() */;
 
 	/**
-	 * Search for a Part associated to the specified newModel. Return the part or null if none is
-	 * found.
+	 * Search for a Part associated to the specified newModel.
+	 * Return the part or null if none is found.
 	 * 
 	 * @param rawModel
 	 * @return
 	 */
 	public PagePart findPagePartFor(Object rawModel) {
 
-		for (PagePart part : pageParts) {
-			if (part.isPartFor(rawModel)) {
+		for(PagePart part : pageParts) {
+			if(part.isPartFor(rawModel))
 				return part;
-			}
 		}
 		return null;
 	}
 
 	/**
-	 * Find the pane part for the specified rawModel. Return the found part or null
+	 * Find the pane part for the specified rawModel.
+	 * Return the found part or null
 	 * 
 	 * @param rawModel
-	 *            The raw model for which a part is lookup.
+	 *        The raw model for which a part is lookup.
 	 * @return
 	 */
 	public AbstractPanelPart findPartFor(Object rawModel) {
 
-		for (AbstractPanelPart part : panelParts) {
-			if (part.isPartFor(rawModel)) {
+		for(AbstractPanelPart part : panelParts) {
+			if(part.isPartFor(rawModel))
 				return part;
-			}
 		}
 
 		return null;
@@ -92,17 +92,15 @@ public class PartLists {
 	 */
 	public void garbage() {
 		// Remove orphaned part (no more used)
-		for (AbstractPanelPart part : panelParts) {
-			if (part.isOrphaned()) {
+		for(AbstractPanelPart part : panelParts) {
+			if(part.isOrphaned())
 				part.dispose();
-			}
 		}
 
 		// Remove orphaned part (no more used)
-		for (PagePart part : pageParts) {
-			if (part.isOrphaned()) {
+		for(PagePart part : pageParts) {
+			if(part.isOrphaned())
 				part.garbage();
-			}
 		}
 	}
 
@@ -113,10 +111,9 @@ public class PartLists {
 	 */
 	public PagePart getFirstValidPage() {
 		// Remove orphaned part (no more used)
-		for (PagePart part : pageParts) {
-			if (!part.isOrphaned()) {
+		for(PagePart part : pageParts) {
+			if(!part.isOrphaned())
 				return part;
-			}
 		}
 
 		// No page
@@ -130,40 +127,30 @@ public class PartLists {
 	 */
 	public PagePart getFirstCreatedPage() {
 
-		if (createdPages == null) {
+		if(createdPages == null)
 			return null;
-		}
 
-		if (createdPages.size() > 0) {
+		if(createdPages.size() > 0)
 			return createdPages.get(0);
-		}
 
 		// No page
 		return null;
 	}
 
 	/**
-	 * Add a PagePart to the list of created Page. This is called from the TabFolder when a new page
-	 * is created.
+	 * Add a PagePart to the list of created Page.
+	 * This is called from the TabFolder when a new page is created.
 	 * 
 	 * @param modelPart
 	 */
 	public void addCreatedPage(PagePart newPage) {
 
-		if (createdPages == null) {
+		if(createdPages == null)
 			createdPages = new ArrayList<PagePart>();
-		}
 
 		createdPages.add(newPage);
 
 	}
 
-	/**
-	 * Returns pageParts.
-	 * 
-	 * @return The pageParts.
-	 */
-	public List<PagePart> getPageParts() {
-		return pageParts;
-	}
+
 }

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+
 /**
  * Visitor used to visit the hierarchy of Parts.
  * 
@@ -63,5 +64,6 @@ public interface IPartVisitor {
 	 * @param componentPart
 	 */
 	public void accept(ComponentPart componentPart);
+
 
 }

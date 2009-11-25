@@ -46,7 +46,7 @@ public class RootModel extends AbstractModel {
 
 	/**
 	 * @param parent
-	 *            the parent to set
+	 *        the parent to set
 	 */
 	public void setParent(AbstractModel parent) {
 	}

@@ -3,9 +3,12 @@
  */
 package org.eclipse.papyrus.core.services;
 
+
+
+
 /**
- * Entry of a Service in the ServiceRegistry. This class provide methods to manage the Service life
- * cycle.
+ * Entry of a Service in the ServiceRegistry.
+ * This class provide methods to manage the Service life cycle.
  * 
  * @author cedric dumoulin
  * 
@@ -27,13 +30,15 @@ public class ServiceEntry extends AbstractServiceEntry {
 
 	}
 
+
 	/**
-	 * Create an entry for an already created service. Constructor.
+	 * Create an entry for an already created service.
+	 * Constructor.
 	 * 
 	 * @param descriptor
-	 *            Descriptor of the service. Key and priority should be set.
+	 *        Descriptor of the service. Key and priority should be set.
 	 * @param serviceInstance
-	 *            The service Instance
+	 *        The service Instance
 	 */
 	public ServiceEntry(ServiceDescriptor descriptor, IService serviceInstance) {
 		this.serviceDescriptor = descriptor;
@@ -47,7 +52,7 @@ public class ServiceEntry extends AbstractServiceEntry {
 	 */
 	public void startService() throws ServiceException {
 		// Create the instance if needed
-		if (serviceInstance == null) {
+		if(serviceInstance == null) {
 			serviceInstance = createService();
 		}
 		serviceInstance.startService();
@@ -58,21 +63,22 @@ public class ServiceEntry extends AbstractServiceEntry {
 	 * 
 	 * @return
 	 * @throws ServiceException
-	 *             If service can't be started.
+	 *         If service can't be started.
 	 */
 	public Object getServiceInstance() throws ServiceException {
-		if (serviceInstance == null) {
+		if(serviceInstance == null) {
 			startService();
 		}
 
 		return serviceInstance;
 	}
 
+
 	/**
 	 * Dispose the service manually.
 	 */
 	public void disposeService() throws ServiceException {
-		if (serviceInstance == null)
+		if(serviceInstance == null)
 			return;
 
 		serviceInstance.disposeService();
@@ -85,9 +91,9 @@ public class ServiceEntry extends AbstractServiceEntry {
 	 */
 	@Override
 	public String toString() {
-		return "ServiceEntry [serviceDescriptor=" + serviceDescriptor.toString() + ", serviceInstance="
-				+ serviceInstance + "]";
+		return "ServiceEntry [serviceDescriptor=" + serviceDescriptor.toString() + ", serviceInstance=" + serviceInstance + "]";
 	}
+
 
 	/**
 	 * Return true if the service is instantiated. Return false otherwise.
@@ -97,5 +103,6 @@ public class ServiceEntry extends AbstractServiceEntry {
 	public boolean isStarted() {
 		return serviceInstance != null;
 	}
+
 
 }

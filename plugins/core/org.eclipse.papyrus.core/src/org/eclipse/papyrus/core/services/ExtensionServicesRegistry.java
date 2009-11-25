@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 
+
 /**
  * ServiceRegistry reading and registering services declared in Eclipse Extensions.
  * 
@@ -27,7 +28,6 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 	public final static String SERVICE_EXTENSIONPOINT = "service";
 
 	/** constant for the attribute factoryClass **/
-	// @unused
 	public final static String CONTEXTCLASS_ATTRIBUTE = "contextClass";
 
 	/** extension point propertyname */
@@ -54,12 +54,11 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 		List<ServiceException> exceptions = null;
 
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				extensionPointNamespace, SERVICE_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, SERVICE_EXTENSION_ID);
 
-		for (IConfigurationElement ele : configElements) {
+		for(IConfigurationElement ele : configElements) {
 			ServiceDescriptor desc;
-			if (SERVICE_EXTENSIONPOINT.equals(ele.getName())) {
+			if(SERVICE_EXTENSIONPOINT.equals(ele.getName())) {
 				// Read value from extension
 				try {
 					desc = readServiceDescriptor(ele);
@@ -67,26 +66,24 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 					descriptors.add(desc);
 				} catch (ServiceException e) {
 					// record exceptions
-					if (exceptions == null) {
+					if(exceptions == null)
 						exceptions = new ArrayList<ServiceException>();
-					}
 					exceptions.add(e);
 				}
 			}
 		}
 
 		// Add found descriptors
-		for (ServiceDescriptor desc : descriptors) {
+		for(ServiceDescriptor desc : descriptors) {
 			add(desc);
 		}
 
 		// Throw exceptions if pb encountered
-		if (exceptions != null) {
-			if (exceptions.size() == 1) {
+		if(exceptions != null) {
+			if(exceptions.size() == 1)
 				throw exceptions.get(0);
-			} else {
+			else
 				throw new ServiceException("Somme services are not started (first is shown)", exceptions.get(0));
-			}
 
 		}
 
@@ -109,32 +106,36 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 
 		// key
 		String key = ele.getAttribute("id");
-		if (key == null || key.length() == 0) {
+		if(key == null || key.length() == 0) {
 			key = serviceClassname;
 		}
 
 		// Service start kind
 		ServiceStartKind serviceStartKind = ServiceStartKind.LAZY;
 		String serviceStartKindStr = ele.getAttribute(STARTKIND_PROPERTY);
-		if (serviceStartKindStr != null && serviceStartKindStr.length() > 0) {
+		if(serviceStartKindStr != null && serviceStartKindStr.length() > 0) {
 			try {
 				serviceStartKind = ServiceStartKind.valueOf(serviceStartKindStr.toUpperCase());
 			} catch (IllegalArgumentException e) {
 				// Can't convert property
-				throw new ServiceException("Can't convert property " + STARTKIND_PROPERTY + "(plugin="
-						+ ele.getContributor() + "declaringExtension=" + ele.getDeclaringExtension() + ")", e);
+				throw new ServiceException("Can't convert property " + STARTKIND_PROPERTY
+						+ "(plugin=" + ele.getContributor()
+						+ "declaringExtension=" + ele.getDeclaringExtension()
+						+ ")"
+						, e);
 			}
 		}
 
 		// priority
 		int priority = 1;
 		String priorityStr = ele.getAttribute("priority");
-		if (priorityStr == null || priorityStr.length() == 0) {
+		if(priorityStr == null || priorityStr.length() == 0) {
 			try {
 				priority = Integer.parseInt(priorityStr);
 			} catch (NumberFormatException e) {
 			}
 		}
+
 
 		ServiceDescriptor desc = new ServiceDescriptor(key, serviceClassname, serviceStartKind, priority);
 		desc.setClassBundleID(ele.getContributor().getName());

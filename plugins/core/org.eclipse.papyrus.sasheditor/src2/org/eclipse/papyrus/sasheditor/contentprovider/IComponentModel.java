@@ -17,7 +17,7 @@ public interface IComponentModel extends IPageModel {
 	 * Create the Control corresponding to this model.
 	 * 
 	 * @param parent
-	 *            The parent of the created container.
+	 *        The parent of the created container.
 	 * @return
 	 */
 	public Composite createPartControl(Composite parent);

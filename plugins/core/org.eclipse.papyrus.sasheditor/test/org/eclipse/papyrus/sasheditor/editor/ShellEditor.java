@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+
 /**
  * A standalone application testing the Sash system.
  * 
@@ -83,7 +84,7 @@ public class ShellEditor {
 	 * @param parent
 	 */
 	protected void createPartControl(Composite parent) {
-		// Text newText = new Text(parent, SWT.BORDER & SWT.SCROLL_PAGE);
+		//		Text newText = new Text(parent, SWT.BORDER & SWT.SCROLL_PAGE);
 
 		sashContainer.createPartControl(parent);
 	}
@@ -100,8 +101,8 @@ public class ShellEditor {
 
 		shell.open();
 
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch())
+		while(!shell.isDisposed()) {
+			if(!display.readAndDispatch())
 				display.sleep();
 		}
 

@@ -25,19 +25,18 @@ import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 
 /**
- * A simple implementation of providers allowing only one single folder containing tabs. The tabs
- * can be added and removed.
+ * A simple implementation of providers allowing only one single folder containing tabs.
+ * The tabs can be added and removed.
  * 
  * @author dumoulin
  */
-// @unused
 public class SingleFolderContentProvider implements ISashWindowsContentProvider, IContentChangedProvider {
 
 	/** The currently selected tab folder */
-	private final SingleFolderModel currentTabFolder;
+	private SingleFolderModel currentTabFolder;
 
 	/** */
-	private final ContentChangeListenerManager contentChangedListenerManager = new ContentChangeListenerManager();
+	private ContentChangeListenerManager contentChangedListenerManager = new ContentChangeListenerManager();
 
 	/**
 	 * Constructor.
@@ -47,8 +46,8 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -57,8 +56,8 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -67,8 +66,8 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Add a listener listening on content changed. This listener will be notified each time the
-	 * content change.
+	 * Add a listener listening on content changed. This listener will be
+	 * notified each time the content change.
 	 * 
 	 * @param listener
 	 */
@@ -80,14 +79,14 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * Add the page which should be an IPageModel instance. {@inheritDoc}
 	 */
 	public void addPage(Object newModel) {
-		addPage((IPageModel) newModel);
+		addPage((IPageModel)newModel);
 	}
 
 	/**
 	 * Add the page which should be an IPageModel instance. {@inheritDoc}
 	 */
 	public void addPage(Object newModel, int index) {
-		addPage(newModel, index);
+		addPage((IPageModel)newModel, index);
 	}
 
 	/**
@@ -103,7 +102,6 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * 
 	 * {@inheritDoc}
 	 */
-	// @unused
 	public void addPage(int index, IPageModel newModel) {
 		currentTabFolder.addItem(index, newModel);
 	}
@@ -128,7 +126,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	public IAbstractPanelModel createChildSashModel(Object root) {
 		// The root object should be of type IAbstractPanelModel.
 		// This is normally the object returned by getRootPanel
-		return (IAbstractPanelModel) root;
+		return (IAbstractPanelModel)root;
 	}
 
 	/**
@@ -136,7 +134,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 */
 	public void removePage(Object page) {
 
-		removePage((IPageModel) page);
+		removePage((IPageModel)page);
 	}
 
 	/**
@@ -156,8 +154,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Remove the specified tab. As we have only one folder, this should be from the currentFolder
-	 * {@inheritDoc}
+	 * Remove the specified tab. As we have only one folder, this should be from the currentFolder {@inheritDoc}
 	 */
 	public void removePage(ITabFolderModel parentFolder, int tabIndex) {
 		removePage(tabIndex);
@@ -168,7 +165,6 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * 
 	 * @return
 	 */
-	// @unused
 	public ITabFolderModel getCurrentTabFolder() {
 		return currentTabFolder;
 	}
@@ -184,17 +180,6 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Overrides getCurrentFolder.
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider#getCurrentFolder()
-	 */
-	public Object getCurrentFolder() {
-		return null;
-	}
-
-	/**
 	 * A class managing a list of listeners.
 	 * 
 	 * @author dumoulin
@@ -204,34 +189,31 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		private List<IContentChangedListener> listeners;
 
 		/**
-		 * Add a listener listening on content changed. This listener will be notified each time the
-		 * content change.
+		 * Add a listener listening on content changed. This listener will be
+		 * notified each time the content change.
 		 * 
 		 * @param listener
 		 */
 		public void addContentChangedListener(IContentChangedListener listener) {
-			if (listeners == null) {
+			if(listeners == null)
 				createListeners();
-			}
 
 			// Check if already exists.
-			if (listeners.contains(listener)) {
+			if(listeners.contains(listener))
 				return;
-			}
 
 			listeners.add(listener);
 		}
 
 		/**
-		 * Add a listener listening on content changed. This listener will be notified each time the
-		 * content change.
+		 * Add a listener listening on content changed. This listener will be
+		 * notified each time the content change.
 		 * 
 		 * @param listener
 		 */
 		public void removeContentChangedListener(IContentChangedListener listener) {
-			if (listeners == null) {
+			if(listeners == null)
 				return;
-			}
 
 			listeners.remove(listener);
 		}
@@ -240,9 +222,8 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		 * Create the list of listeners.
 		 */
 		private void createListeners() {
-			if (listeners == null) {
+			if(listeners == null)
 				listeners = new ArrayList<IContentChangedListener>();
-			}
 
 		}
 
@@ -252,11 +233,10 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		 * @param event
 		 */
 		public void fireContentChanged(ContentEvent event) {
-			if (listeners == null) {
+			if(listeners == null)
 				return;
-			}
 
-			for (IContentChangedListener listener : listeners) {
+			for(IContentChangedListener listener : listeners) {
 				listener.contentChanged(event);
 			}
 		}
@@ -271,11 +251,10 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Move a tab from folder to folder. As this implementation has only one folder, this can't
-	 * happen. Do nothing. {@inheritDoc}
+	 * Move a tab from folder to folder.
+	 * As this implementation has only one folder, this can't happen. Do nothing. {@inheritDoc}
 	 */
-	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel,
-			int targetIndex) {
+	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
 		return;
 	}
 

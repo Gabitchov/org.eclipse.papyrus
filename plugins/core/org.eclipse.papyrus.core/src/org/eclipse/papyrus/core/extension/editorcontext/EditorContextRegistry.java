@@ -31,8 +31,7 @@ import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 
 /**
- * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse
- * extension.
+ * Registry containing registered EditorContext. EditorContexts can be registered by using Eclipse extension.
  * 
  *@author Cedric Dumoulin
  *@author Patrick Tessier
@@ -54,12 +53,12 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	private IMultiDiagramEditor multiEditor;
 
 	/**
-	 * Constructor. defaultContext, input and site are explicitly required in order be sure that
-	 * they are initialized. The multiEditor should be initialized. In particular, getEditorSite(),
+	 * Constructor. defaultContext, input and site are explicitly required in order be sure that they are initialized. The multiEditor should be
+	 * initialized. In particular, getEditorSite(),
 	 * getEditorInput() and getDefaultContext() should return initialized values.
 	 * 
 	 *@param multiEditor
-	 *            the multieditor
+	 *        the multieditor
 	 *@param extensionPointNamespace
 	 */
 	public EditorContextRegistry(IMultiDiagramEditor multiEditor, String extensionPointNamespace) {
@@ -67,12 +66,10 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 		// Check parameters
 		assert (multiEditor.getEditorInput() != null);
 		assert (multiEditor.getEditorSite() != null);
-		// assert (multiEditor.getDefaultContext() != null);
+		assert (multiEditor.getDefaultContext() != null);
 		// Check parameters. To be removed later
-		if (multiEditor.getEditorInput() == null || multiEditor.getEditorSite() == null
-		/* || multiEditor.getDefaultContext() == null */) {
-			throw new IllegalArgumentException("IMultiDiagramEditor should be initialized before calling constructor "
-					+ getClass().getSimpleName() + "(IMultiDiagramEditor multiEditor)");
+		if(multiEditor.getEditorInput() == null || multiEditor.getEditorSite() == null /* || multiEditor.getDefaultContext() == null */) {
+			throw new IllegalArgumentException("IMultiDiagramEditor should be initialized before calling constructor " + getClass().getSimpleName() + "(IMultiDiagramEditor multiEditor)");
 		}
 
 		this.extensionPointNamespace = extensionPointNamespace;
@@ -84,7 +81,6 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	 * 
 	 * {@inheritDoc}
 	 */
-	@Deprecated
 	public IEditorContext getContext(Object key) throws BackboneException {
 		try {
 			ContextDescriptor desc = editorContextDescriptors.get(key);
@@ -99,7 +95,6 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	 * 
 	 * {@inheritDoc}
 	 */
-	@Deprecated
 	public void registerContext(String contextKey, IEditorContext context) {
 		ContextDescriptor contextDesc = new ContextDescriptor();
 		contextDesc.contextId = contextKey;
@@ -116,27 +111,23 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 
 		editorContextDescriptors = new HashMap<Object, ContextDescriptor>();
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				extensionPointNamespace, EDITOR_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
 
 		ContextDescriptorExtensionFactory extensionReader = new ContextDescriptorExtensionFactory();
 
-		for (IConfigurationElement ele : configElements) {
+		for(IConfigurationElement ele : configElements) {
 			ContextDescriptor desc;
 			try {
-				if (ContextDescriptorExtensionFactory.EDITOR_CONTEXT_EXTENSIONPOINT.equals(ele.getName())) {
+				if(ContextDescriptorExtensionFactory.EDITOR_CONTEXT_EXTENSIONPOINT.equals(ele.getName())) {
 					desc = extensionReader.createContextDescriptor(ele);
 					editorContextDescriptors.put(desc.contextId, desc);
 				}
 			} catch (ExtensionException e) {
-				Activator.getDefault().getLog()
-						.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
-				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem "
-						+ e);
+				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
+				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem " + e);
 			}
 		}
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size()
-				+ " editorContexts loaded");
+		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size() + " editorContexts loaded");
 
 	}
 
@@ -161,5 +152,6 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 	 */
 	public void disposeService() {
 	}
+
 
 }

@@ -32,7 +32,7 @@ public class GmfEditorContext extends AbstractEditorContext {
 	 * ID used to identify the GmfContext. This ID is used to retrieve the context from the factory,
 	 * and to register it in the factory (from extension point in plugin.xml).
 	 */
-	public static String GMF_CONTEXT_ID = "com.cea.papyrus.gmf.editor.context"; //$NON-NLS-1$
+	static public String GMF_CONTEXT_ID = "com.cea.papyrus.gmf.editor.context"; //$NON-NLS-1$
 
 	/**
 	 * The document provider used by GMF.

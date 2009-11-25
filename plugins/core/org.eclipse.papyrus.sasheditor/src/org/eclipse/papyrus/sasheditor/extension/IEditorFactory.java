@@ -24,7 +24,7 @@ public interface IEditorFactory {
 	 * Returns <code>true</code> if the editor is able to edit the root object.
 	 * 
 	 * @param root
-	 *            the root object to be edited
+	 *        the root object to be edited
 	 * @return <code>true</code> if the editor can edit the root object.
 	 */
 	public boolean isEditorFor(Object root);
@@ -33,9 +33,9 @@ public interface IEditorFactory {
 	 * Creates an editor for the specified root object.
 	 * 
 	 * @param sharedObjects
-	 *            shared objects among several editors
+	 *        shared objects among several editors
 	 * @param root
-	 *            the root opbject to be edited, for example, a diagram
+	 *        the root opbject to be edited, for example, a diagram
 	 * @return the created editor
 	 */
 	public IEditorPart createEditorFor(MultiDiagramSharedObjects sharedObjects, Object root);

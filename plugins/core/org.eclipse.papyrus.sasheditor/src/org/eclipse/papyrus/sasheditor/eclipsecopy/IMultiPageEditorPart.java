@@ -18,8 +18,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPartSite;
 
 /**
- * Marker to mark a EditorPart as a MultiPartEditor. Provides methods needed by classes like
- * MultiPageActionBarContributor and MultiPageSelectionProvider.
+ * Marker to mark a EditorPart as a MultiPartEditor. Provides methods needed by classes
+ * like MultiPageActionBarContributor and MultiPageSelectionProvider.
  */
 public interface IMultiPageEditorPart {
 
@@ -38,8 +38,8 @@ public interface IMultiPageEditorPart {
 	public IWorkbenchPartSite getSite();
 
 	/**
-	 * Get the IEditorSite associated to this MultiPageEditorPart. This return the same object as
-	 * getSite().
+	 * Get the IEditorSite associated to this MultiPageEditorPart.
+	 * This return the same object as getSite().
 	 * 
 	 * @return
 	 */

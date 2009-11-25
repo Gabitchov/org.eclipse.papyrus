@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.core.services;
 
+
 /**
  * Service is not found.
  * 
@@ -16,7 +17,6 @@ public class ServiceNotFoundException extends ServiceException {
 	/**
 	 * Constructor.
 	 */
-	// @unused
 	public ServiceNotFoundException() {
 		super();
 	}
@@ -27,7 +27,6 @@ public class ServiceNotFoundException extends ServiceException {
 	 * @param message
 	 * @param cause
 	 */
-	// @unused
 	public ServiceNotFoundException(String message, Throwable cause) {
 		super(message, cause);
 	}
@@ -46,7 +45,6 @@ public class ServiceNotFoundException extends ServiceException {
 	 * 
 	 * @param cause
 	 */
-	// @unused
 	public ServiceNotFoundException(Throwable cause) {
 		super(cause);
 	}

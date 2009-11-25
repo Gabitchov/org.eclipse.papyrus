@@ -43,7 +43,6 @@ public class ContextDescriptorExtensionFactory extends DescriptorExtensionFactor
 	/**
 	 * @return the eINSTANCE
 	 */
-	// @unused
 	public static ContextDescriptorExtensionFactory getInstance() {
 		return eINSTANCE;
 	}
@@ -52,7 +51,7 @@ public class ContextDescriptorExtensionFactory extends DescriptorExtensionFactor
 	 * Create a ContextDescriptor instance corresponding to the ConfigurationElement.
 	 * 
 	 * @param element
-	 *            an {@link IConfigurationElement} see eclipse extension point
+	 *        an {@link IConfigurationElement} see eclipse extension point
 	 * @return a ContextDescriptor structure that contains information to the diagram context
 	 * @throws BadNameExtensionException
 	 **/
@@ -62,8 +61,7 @@ public class ContextDescriptorExtensionFactory extends DescriptorExtensionFactor
 		checkTagName(element, EDITOR_CONTEXT_EXTENSIONPOINT);
 
 		res = new ContextDescriptor();
-		res.contextClass = (Class<IEditorContext>) parseClass(element, CONTEXTCLASS_ATTRIBUTE,
-				EDITOR_CONTEXT_EXTENSIONPOINT);
+		res.contextClass = (Class<IEditorContext>)parseClass(element, CONTEXTCLASS_ATTRIBUTE, EDITOR_CONTEXT_EXTENSIONPOINT);
 		res.contextId = element.getAttribute(ID_ATTRIBUTE);
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a context editor ready " + res);
 

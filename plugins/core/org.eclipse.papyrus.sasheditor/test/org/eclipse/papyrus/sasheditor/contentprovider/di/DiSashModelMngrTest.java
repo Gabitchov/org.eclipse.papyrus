@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 
+
 /**
  * @author cedric dumoulin
  */
@@ -113,6 +114,7 @@ public class DiSashModelMngrTest extends TestCase {
 
 	}
 
+
 	/**
 	 * Test method for
 	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory, org.eclipse.papyrus.sashwindows.di.DiSashModel)}
@@ -130,8 +132,7 @@ public class DiSashModelMngrTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getIPageMngr()}.
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getIPageMngr()}.
 	 */
 	public void testGetIPageMngr() {
 		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
@@ -140,9 +141,7 @@ public class DiSashModelMngrTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()}
-	 * .
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()}.
 	 */
 	public void testGetISashWindowsContentProvider() {
 		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);

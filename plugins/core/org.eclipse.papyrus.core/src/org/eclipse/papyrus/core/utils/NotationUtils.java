@@ -35,11 +35,11 @@ public class NotationUtils {
 	 * @return the associated diagram
 	 */
 	public static Diagram getAssociatedDiagram(Resource notationResource, EObject eObject) {
-		if (notationResource != null) {
-			for (EObject obj : notationResource.getContents()) {
-				if (obj instanceof Diagram) {
-					Diagram diagram = (Diagram) obj;
-					if (eObject != null && eObject.equals(diagram.getElement())) {
+		if(notationResource != null) {
+			for(EObject obj : notationResource.getContents()) {
+				if(obj instanceof Diagram) {
+					Diagram diagram = (Diagram)obj;
+					if(eObject != null && eObject.equals(diagram.getElement())) {
 						return diagram;
 					}
 				}
@@ -54,12 +54,12 @@ public class NotationUtils {
 	 * @param eObject
 	 * @param notationResource
 	 * @param resolve
-	 *            the resource if true
+	 *        the resource if true
 	 * 
 	 * @return the associated diagram
 	 */
 	public static Diagram getAssociatedDiagram(Resource notationResource, EObject eObject, boolean resolve) {
-		if (notationResource != null && resolve) {
+		if(notationResource != null && resolve) {
 			EcoreUtil.resolveAll(notationResource);
 		}
 		return getAssociatedDiagram(notationResource, eObject);
@@ -76,11 +76,11 @@ public class NotationUtils {
 	 */
 	public static List<Diagram> getDiagrams(Resource notationResource, EObject eObject) {
 		List<Diagram> diagrams = new ArrayList<Diagram>();
-		if (notationResource != null) {
-			for (EObject obj : notationResource.getContents()) {
-				if (obj instanceof Diagram) {
-					Diagram diagram = (Diagram) obj;
-					if (EcoreUtil.isAncestor(eObject, diagram.getElement())) {
+		if(notationResource != null) {
+			for(EObject obj : notationResource.getContents()) {
+				if(obj instanceof Diagram) {
+					Diagram diagram = (Diagram)obj;
+					if(EcoreUtil.isAncestor(eObject, diagram.getElement())) {
 						diagrams.add(diagram);
 					}
 				}
@@ -95,12 +95,12 @@ public class NotationUtils {
 	 * @param notationResource
 	 * @param eObject
 	 * @param resolve
-	 *            the resource if true
+	 *        the resource if true
 	 * 
 	 * @return all the contained diagrams
 	 */
 	public static List<Diagram> getDiagrams(Resource notationResource, EObject eObject, boolean resolve) {
-		if (notationResource != null && resolve) {
+		if(notationResource != null && resolve) {
 			EcoreUtil.resolveAll(notationResource);
 		}
 		return getDiagrams(notationResource, eObject);

@@ -25,9 +25,9 @@ public interface IPapyrusContentOutlinePage extends org.eclipse.ui.views.content
 	 * Init the content outline.
 	 * 
 	 * @param multiEditor
-	 *            the multiEditor is used to access to the context
+	 *        the multiEditor is used to access to the context
 	 * @throws BackboneException
-	 *             during research of the associated context.
+	 *         during research of the associated context.
 	 */
 	void init(IMultiDiagramEditor multiEditor) throws BackboneException;
 

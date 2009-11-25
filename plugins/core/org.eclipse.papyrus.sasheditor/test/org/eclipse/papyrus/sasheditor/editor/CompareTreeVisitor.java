@@ -15,9 +15,10 @@ import org.eclipse.papyrus.sasheditor.internal.SashPanelPart;
 import org.eclipse.papyrus.sasheditor.internal.TabFolderPart;
 import org.eclipse.papyrus.sasheditor.internal.TabItemPart;
 
+
 /**
- * This visitor allows to compare all node of the sash system to all node of the model. For each
- * node, a compare method is called, which can perform any comparison stuff.
+ * This visitor allows to compare all node of the sash system to all node of the model.
+ * For each node, a compare method is called, which can perform any comparison stuff.
  * 
  * @author dumoulin
  */
@@ -50,8 +51,9 @@ public class CompareTreeVisitor extends PartVisitor {
 	}
 
 	/**
-	 * Get current model parent. Retrieve it from the stack. The parent is the upper model node
-	 * visited
+	 * Get current model parent.
+	 * Retrieve it from the stack.
+	 * The parent is the upper model node visited
 	 * 
 	 * @return
 	 */
@@ -60,8 +62,9 @@ public class CompareTreeVisitor extends PartVisitor {
 	}
 
 	/**
-	 * Get current part parent. Retrieve it from the stack. The parent is the upper part node
-	 * visited
+	 * Get current part parent.
+	 * Retrieve it from the stack.
+	 * The parent is the upper part node visited
 	 * 
 	 * @return
 	 */
@@ -77,7 +80,7 @@ public class CompareTreeVisitor extends PartVisitor {
 	public void accept(TabFolderPart tile) {
 		acceptTabFolderPart(tile);
 		// Visit the children
-		// pushParents(tile., tile);
+		//		pushParents(tile., tile);
 		tile.visitChildren(this);
 	}
 
@@ -136,7 +139,9 @@ public class CompareTreeVisitor extends PartVisitor {
 		part.visitChildren(this);
 	}
 
+
 	// ----------------------------------------------
+
 
 	/**
 	 * Visit the specified type.
@@ -186,6 +191,7 @@ public class CompareTreeVisitor extends PartVisitor {
 	protected void acceptEditorTile(ComponentPart tile) {
 	}
 
+
 	/**
 	 * A simple stack implementation
 	 * 
@@ -232,5 +238,6 @@ public class CompareTreeVisitor extends PartVisitor {
 			return list.remove(topIndex());
 		}
 	}
+
 
 }

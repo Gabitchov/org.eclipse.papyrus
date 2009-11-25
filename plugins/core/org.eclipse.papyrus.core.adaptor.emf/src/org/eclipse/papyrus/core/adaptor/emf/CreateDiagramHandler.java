@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.adaptor.emf;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -59,10 +59,11 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 * Add a new Diagram to the graphical model.
 	 * 
 	 * @param diagram
-	 *            The diagram to add to graphical model. This will be the diagram provided to {@link IEditorFactory#createEditorFor(org.eclipse.papyrus.backbone.IEditorContext, Object)}
+	 *        The diagram to add to graphical model. This will be the diagram provided to
+	 *        {@link IEditorFactory#createEditorFor(org.eclipse.papyrus.backbone.IEditorContext, Object)}
 	 */
 	protected void addNewDiagram(String name, String type, EObject diagram) {
-		
+
 		// TODO Create a special node inside the sash model (di) instead of introducing 
 		// a dependence on notation.
 		// This implies to change the factory also.
@@ -71,7 +72,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 		Diagram di2Diagram = NotationFactory.eINSTANCE.createDiagram();
 		di2Diagram.setVisible(true);
 		di2Diagram.setType(type);
-		if (name != null)
+		if(name != null)
 			di2Diagram.setName(name);
 
 		// Add it to resource, so that it will be saved.
@@ -90,7 +91,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	protected IMultiDiagramEditor getMultiDiagramEditor() {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editorPart = page.getActiveEditor();
-		return (IMultiDiagramEditor) editorPart;
+		return (IMultiDiagramEditor)editorPart;
 	}
 
 	/**
@@ -100,7 +101,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 */
 	protected BackboneContext getDefaultContext() {
 		IMultiDiagramEditor editor = getMultiDiagramEditor();
-		return (BackboneContext) editor.getDefaultContext();
+		return (BackboneContext)editor.getDefaultContext();
 	}
 
 	/**

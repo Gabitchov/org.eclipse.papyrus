@@ -22,8 +22,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the
- * nested diagram. It is fill by an extension.
+ * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the nested diagram. It is fill by an extension.
  * 
  * @author Cedric Dumoulin
  * 
@@ -41,8 +40,7 @@ public class EditorDescriptor implements IEditorDescriptor {
 	private String requestedContextId;
 
 	/**
-	 * EditorActionBarContributor Id used to search the EditorActionBarContributor requested by the
-	 * editor.
+	 * EditorActionBarContributor Id used to search the EditorActionBarContributor requested by the editor.
 	 */
 	private String actionBarContributorId;
 
@@ -76,7 +74,7 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 * set the requestedContextId
 	 * 
 	 * @param requestedContextId
-	 *            the requestedContextId to set
+	 *        the requestedContextId to set
 	 */
 	public void setRequestedContextId(String requestedContextId) {
 		this.requestedContextId = requestedContextId;
@@ -113,32 +111,29 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 * set the editor icon
 	 * 
 	 * @param icon
-	 *            the icon path
+	 *        the icon path
 	 */
 	public void setIcon(ImageDescriptor icon) {
 		this.icon = icon;
 	}
 
 	/**
-	 * Get associated editorFactory. The editorFactoryClass should be set, otherwise an error is
-	 * thrown.
+	 * Get associated editorFactory. The editorFactoryClass should be set, otherwise an error is thrown.
 	 * 
 	 * @return the IEditorFactory
 	 */
 	public IEditorFactory getEditorFactory() {
-		if (editorFactory != null) {
+		if(editorFactory != null)
 			return editorFactory;
-		}
 
-		if (editorFactoryClass == null) { // error
+		if(editorFactoryClass == null) { // error
 			throw new IllegalStateException("EditorFactory class should be set.");
 		}
 
 		// Create it
 		try {
-			editorFactory = editorFactoryClass.newInstance();
-			// Set the descriptor. USed by the factory to get the ActionBarId
-			// and Icon
+			editorFactory = (IEditorFactory)editorFactoryClass.newInstance();
+			// Set the descriptor. USed by the factory to get the ActionBarId and Icon
 			editorFactory.init(this);
 			return editorFactory;
 		} catch (InstantiationException e) {
@@ -153,11 +148,10 @@ public class EditorDescriptor implements IEditorDescriptor {
 	}
 
 	/**
-	 * This method is used in order to know if the editor associated to this description can edit
-	 * the root object. example a diagram di2 or notation
+	 * This method is used in order to know if the editor associated to this description can edit the root object. example a diagram di2 or notation
 	 * 
 	 * @param root
-	 *            the element that can be edited
+	 *        the element that can be edited
 	 * @return boolean true if the editor can edit it.
 	 */
 	public boolean isEditorFor(Object root) {
@@ -178,11 +172,11 @@ public class EditorDescriptor implements IEditorDescriptor {
 	}
 
 	/**
-	 * Return true if the descriptor is for the specified pageIdentifier. Delegate to the
-	 * PageModelFactory s.
+	 * Return true if the descriptor is for the specified pageIdentifier.
+	 * Delegate to the PageModelFactory s.
 	 * 
 	 * @param root
-	 *            the element that can be edited
+	 *        the element that can be edited
 	 * @return boolean true if the editor can edit it.
 	 */
 	public boolean isDescriptorForPage(Object pageIdentifier) {
@@ -204,7 +198,6 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 * 
 	 * @return the class of the editor
 	 */
-	// @unused
 	public Class<IEditorFactory> getEditorFactoryClass() {
 		return editorFactoryClass;
 	}
@@ -213,7 +206,7 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 * set the editor facoty to this descriptor
 	 * 
 	 * @param editorFactoryClass
-	 *            the class that represents the editor factory
+	 *        the class that represents the editor factory
 	 */
 	public void setEditorFactoryClass(Class<IEditorFactory> editorFactoryClass) {
 		this.editorFactoryClass = editorFactoryClass;
@@ -223,14 +216,11 @@ public class EditorDescriptor implements IEditorDescriptor {
 	 * 
 	 * {@inheritDoc}
 	 */
-	@Override
 	public String toString() {
-		if (editorFactoryClass == null || editorFactoryClass.getName() == null) {
-			return "[nestedEditor  editorFactory:" + editorFactoryClass + "(null) requestedContextID:"
-					+ requestedContextId + "]";
+		if(editorFactoryClass == null || editorFactoryClass.getName() == null) {
+			return "[nestedEditor  editorFactory:" + editorFactoryClass + "(null) requestedContextID:" + requestedContextId + "]";
 		}
-		return "[nestedEditor  editorFactory:" + editorFactoryClass.getName() + " requestedContextID:"
-				+ requestedContextId + "]";
+		return "[nestedEditor  editorFactory:" + editorFactoryClass.getName() + " requestedContextID:" + requestedContextId + "]";
 	}
 
 }

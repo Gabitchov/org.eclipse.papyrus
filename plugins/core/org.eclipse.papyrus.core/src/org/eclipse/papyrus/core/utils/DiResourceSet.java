@@ -110,22 +110,20 @@ public class DiResourceSet extends ResourceSetImpl {
 	 * Create both files (DI and UML) from a filename.
 	 * 
 	 * @param newFile
-	 *            the file from which path is extracted to create the new files
+	 *        the file from which path is extracted to create the new files
 	 */
 	public void createModelResources(IFile newFile, String eContentType) {
 
 		// create the di resource URI
 		URI diUri = getPlatformURI(newFile.getFullPath());
 		// Create the di Resource for the sashcontainer
-		// The model will be automatically initialized by the SashContainer if
-		// needed (if it is empty).
-		// Normally the resource should contains models set by previous use from
-		// the SashContainer
+		// The model will be automatically initialized by the SashContainer if needed (if it is empty).
+		// Normally the resource should contains models set by previous use from the SashContainer
 		diResource = createResource(diUri);
 
 		IPath filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
 		// if the uml model is not loaded, create resource
-		if (modelResource == null) {
+		if(modelResource == null) {
 			// create the model URI
 			URI modelUri = getPlatformURI(filenameWithoutExtension.addFileExtension("uml"));
 			// create the model resource
@@ -142,7 +140,7 @@ public class DiResourceSet extends ResourceSetImpl {
 	 * Get a platform resource URI of the given path
 	 * 
 	 * @param path
-	 *            the path
+	 *        the path
 	 * @return the uri
 	 */
 	private URI getPlatformURI(IPath path) {
@@ -153,9 +151,9 @@ public class DiResourceSet extends ResourceSetImpl {
 	 * Save the resources.
 	 * 
 	 * @param monitor
-	 *            The monitor.
+	 *        The monitor.
 	 * @throws IOException
-	 *             IO Error.
+	 *         IO Error.
 	 */
 	public void save(IProgressMonitor monitor) throws IOException {
 		monitor.beginTask("Saving resources", 3);
@@ -167,10 +165,10 @@ public class DiResourceSet extends ResourceSetImpl {
 			monitor.worked(1);
 			notationResource.save(null);
 			monitor.worked(1);
-			
+
 			// TODO We need to save additional resources for control mode
-			// We must decide if we do it for all resources 
-			for (Resource res : getAdditionalResources()) {
+			// We must decide if we do it for all resources
+			for(Resource res : getAdditionalResources()) {
 				res.save(null);
 			}
 		} finally {
@@ -239,9 +237,9 @@ public class DiResourceSet extends ResourceSetImpl {
 	 */
 	public List<Resource> getAdditionalResources() {
 		List<Resource> additionnalResources = new ArrayList<Resource>();
-		for (Resource resource : getResources()) {
+		for(Resource resource : getResources()) {
 			// ignore di, notation and domain resources
-			if (resource != diResource && resource != notationResource && resource != modelResource) {
+			if(resource != diResource && resource != notationResource && resource != modelResource) {
 				additionnalResources.add(resource);
 			}
 		}
@@ -254,7 +252,7 @@ public class DiResourceSet extends ResourceSetImpl {
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
 		transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
-		if (transactionalEditingDomain == null) {
+		if(transactionalEditingDomain == null) {
 			transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
 			// What for?
 			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$

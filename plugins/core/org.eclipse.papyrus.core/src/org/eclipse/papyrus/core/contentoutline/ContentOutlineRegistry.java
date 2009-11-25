@@ -42,11 +42,11 @@ public class ContentOutlineRegistry {
 	/**
 	 * Associated editor.
 	 */
-	private final IMultiDiagramEditor multiEditor;
+	private IMultiDiagramEditor multiEditor;
 
 	/**
-	 * Constructor. defaultContext, input and site are explicitly required in order be sure that
-	 * they are initialized. The multiEditor should be initialized. In particular, getEditorSite(),
+	 * Constructor. defaultContext, input and site are explicitly required in order be sure that they are initialized. The multiEditor should be
+	 * initialized. In particular, getEditorSite(),
 	 * getEditorInput() and getDefaultContext() should return initialized values.
 	 * 
 	 * @param multiEditor
@@ -65,10 +65,10 @@ public class ContentOutlineRegistry {
 	 * 
 	 * @return the contentOutline the single instance of the content outline
 	 * @throws BackboneException
-	 *             exception thrown when the outline can not be created.
+	 *         exception thrown when the outline can not be created.
 	 */
 	public IPapyrusContentOutlinePage getContentOutline() throws BackboneException {
-		if (contentOutline == null) {
+		if(contentOutline == null) {
 			createContentOutline();
 		}
 		return contentOutline;
@@ -80,25 +80,22 @@ public class ContentOutlineRegistry {
 	 * @return
 	 * @throws BackboneException
 	 * @throws NotFoundException
-	 *             If no ContentOutline can be found in extensions
+	 *         If no ContentOutline can be found in extensions
 	 */
 	private ContentOutlineDescriptor getContentOutlineDescriptor() throws BackboneException {
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				extensionPointNamespace, EDITOR_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EDITOR_EXTENSION_ID);
 		ContentOutlineDescriptor found = null;
 
 		// look for the one with the highest priority
-		for (IConfigurationElement ele : configElements) {
+		for(IConfigurationElement ele : configElements) {
 			ContentOutlineDescriptor desc = new ContentOutlineDescriptor(ele);
-			if (desc.isHigher(found)) {
+			if(desc.isHigher(found))
 				found = desc;
-			}
 		}
 
 		// Instanciate the object
-		if (found == null) {
+		if(found == null)
 			throw new NotFoundException("No ContentOutline registered.");
-		}
 
 		return found;
 
@@ -108,30 +105,32 @@ public class ContentOutlineRegistry {
 	 * Creates the content outline from the selected extension.
 	 * 
 	 * @throws BackboneException
-	 *             exception thrown when the outline can not be created.
+	 *         exception thrown when the outline can not be created.
 	 */
 	private void createContentOutline() throws BackboneException {
 
 		ContentOutlineDescriptor found = getContentOutlineDescriptor();
 		// Instanciate the object
-		if (found != null) {
+		if(found != null) {
 			contentOutline = found.createContentOutlinePage();
 		}
 	}
 
 	/**
-	 * Inner Descriptor for content outline. This class load data from Eclipse extension mechanism
+	 * Inner Descriptor for content outline.
+	 * This class load data from Eclipse extension mechanism
 	 * TODO Change the parent class. It is here just to have quick code.
 	 */
 	protected class ContentOutlineDescriptor extends EditorDescriptorExtensionFactory {
 
 		private int priority;
 
-		private final String className;
+		private String className;
 
-		private final String actionBarContributorID;
+		private String actionBarContributorID;
 
-		private final IConfigurationElement element;
+		private IConfigurationElement element;
+
 
 		/**
 		 * Instance is created when requested.
@@ -154,9 +153,8 @@ public class ContentOutlineRegistry {
 
 			this.element = element;
 			// check parameters
-			if (className == null) {
+			if(className == null)
 				throw new BadClassNameException("Class name must be set", "contentoutline", classAttributeName);
-			}
 
 		}
 
@@ -164,24 +162,23 @@ public class ContentOutlineRegistry {
 		 * Compare priority. The highest priority win.
 		 */
 		public boolean isHigher(ContentOutlineDescriptor found) {
-			if (found == null) {
+			if(found == null) {
 				return true;
 			}
 			return this.getPriority() > found.getPriority();
 		}
 
 		/**
-		 * Return the higher value of the descriptor. This value is used to order the
-		 * contentOutline. The highest priority win.
+		 * Return the higher value of the descriptor. This value is used to order the contentOutline. The highest priority win.
 		 */
 		private int getPriority() {
 			return priority;
 		}
 
+
 		/**
 		 * @return the actionBarContributorID
 		 */
-		// @unused
 		public String getActionBarContributorID() {
 			return actionBarContributorID;
 		}
@@ -191,11 +188,10 @@ public class ContentOutlineRegistry {
 		 * 
 		 * @return the context outline page
 		 * @throws BackboneException
-		 *             exception thrown when a problem occurs.
+		 *         exception thrown when a problem occurs.
 		 */
-		// @unused
 		protected IPapyrusContentOutlinePage getContentOutline() throws BackboneException {
-			if (instance == null) {
+			if(instance == null) {
 				instance = createContentOutlinePage();
 			}
 			return instance;
@@ -205,12 +201,12 @@ public class ContentOutlineRegistry {
 		 * Create the class corresponding to the class attribute.
 		 */
 		private Class<IPapyrusContentOutlinePage> loadClass() throws BadClassNameException {
-			if (className == null || className.length() == 0) {
+			if(className == null || className.length() == 0) {
 				throw new BadClassNameException("Classname should be set.", "contentoutline", classAttributeName);
 			}
 			Class<IPapyrusContentOutlinePage> factoryClass;
 			try {
-				factoryClass = (Class<IPapyrusContentOutlinePage>) Class.forName(className);
+				factoryClass = (Class<IPapyrusContentOutlinePage>)Class.forName(className);
 			} catch (ClassNotFoundException e) {
 				// try another way
 				try {
@@ -237,18 +233,15 @@ public class ContentOutlineRegistry {
 				return outline;
 
 			} catch (SecurityException e) {
-				// Lets propagate. This is an implementation problem that should
-				// be solved by programmer.
+				// Lets propagate. This is an implementation problem that should be solved by programmer.
 				throw new RuntimeException(e);
 			}
 
 			catch (InstantiationException e) {
-				// Lets propagate. This is an implementation problem that should
-				// be solved by programmer.
+				// Lets propagate. This is an implementation problem that should be solved by programmer.
 				// throw new RuntimeException(e);
 			} catch (IllegalAccessException e) {
-				// Lets propagate. This is an implementation problem that should
-				// be solved by programmer.
+				// Lets propagate. This is an implementation problem that should be solved by programmer.
 				throw new RuntimeException(e);
 			}
 			return null;

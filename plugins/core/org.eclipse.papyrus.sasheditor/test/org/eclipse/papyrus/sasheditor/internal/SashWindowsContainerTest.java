@@ -18,6 +18,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+
 /**
  * Run as normal test.
  * 
@@ -25,6 +26,7 @@ import org.eclipse.swt.widgets.Shell;
  * 
  */
 public class SashWindowsContainerTest extends TestCase {
+
 
 	protected Display display;
 
@@ -59,8 +61,7 @@ public class SashWindowsContainerTest extends TestCase {
 	}
 
 	/**
-	 * Create a {@link SashWindowsContainer} to test. Initialize it with provided
-	 * {@link ISashWindowsContentProvider}.
+	 * Create a {@link SashWindowsContainer} to test. Initialize it with provided {@link ISashWindowsContentProvider}.
 	 * 
 	 * @param contentProvider
 	 * @return
@@ -70,13 +71,13 @@ public class SashWindowsContainerTest extends TestCase {
 		shell.setLayout(new FillLayout());
 
 		//
-		// new ShellEditor(shell);
+		//new ShellEditor(shell);
 		SashWindowsContainer sashWindowContainer = new SashWindowsContainer();
 
 		sashWindowContainer.setContentProvider(contentProvider);
 
 		sashWindowContainer.createPartControl(shell);
-		// shell.open();
+		//		shell.open();
 		return sashWindowContainer;
 	}
 
@@ -90,7 +91,7 @@ public class SashWindowsContainerTest extends TestCase {
 
 		// Create pages and add them to the default folder
 		List<IPageModel> models = new ArrayList<IPageModel>();
-		for (int i = 0; i < 8; i++) {
+		for(int i = 0; i < 8; i++) {
 			IPageModel newModel = new MessagePartModel("model" + i);
 			contentProvider.addPage(newModel);
 			models.add(newModel);
@@ -100,16 +101,14 @@ public class SashWindowsContainerTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
 	 */
 	public void testGetActiveEditor() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
 	 */
 	public void testRefreshTabs() {
 
@@ -122,18 +121,17 @@ public class SashWindowsContainerTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#refreshTabs()}.
 	 */
 	public void testRefreshTabs2() {
 
 		// Test 2 folders, one tab each. Then supress one tabs.
-		// 1 folder with one tab should remain.
+		// 1 folder with one tab should remain. 
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 
 		// Create pages and add them to the default folder
 		List<IPageModel> models = new ArrayList<IPageModel>();
-		for (int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) {
 			IPageModel newModel = new MessagePartModel("model" + i);
 			contentProvider.addPage(newModel);
 			models.add(newModel);
@@ -147,6 +145,7 @@ public class SashWindowsContainerTest extends TestCase {
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 		container.refreshTabs();
 		assertNotNull("container is set", container);
+
 
 	}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2009 CEA LIST & LIFL 
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -12,19 +12,12 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.editor;
-
-import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
+package org.eclipse.papyrus.sasheditor.internal;
 
 
 /**
- * Papyrus main MultiEditor.
- * This class add GMF adaptation dedicated to Papyrus.
- * TODO : move GMF dependencies into this plugin.
- * 
  * @author dumoulin
- * 
  */
-public class PapyrusMultiDiagramEditor extends CoreMultiDiagramEditor {
+public class Copyright {
 
 }

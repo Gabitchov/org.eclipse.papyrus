@@ -33,7 +33,6 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 
-	// @unused
 	public static String MultiPagesEditorActionBarContributor_PapyrusMenu;
 
 	public static String AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel;

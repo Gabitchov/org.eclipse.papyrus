@@ -79,7 +79,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		}
 		EObject container = null;
 		// if editor is open and active
-		if (getMultiDiagramEditor() != null) {
+		if(getMultiDiagramEditor() != null) {
 			container = getSelectedElement();
 		}
 		runAsTransaction(context, container);
@@ -91,7 +91,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * 
 	 * @param sharedObjects
 	 * @param container
-	 *            The uml element to which the diagram should be attached, if possible.
+	 *        The uml element to which the diagram should be attached, if possible.
 	 */
 	protected void runAsTransaction(BackboneContext sharedObjects, EObject container) {
 		DiResourceSet diResourceSet = sharedObjects.getResourceSet();
@@ -103,14 +103,14 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * 
 	 * @param sharedObjects
 	 * @param container
-	 *            The eObject to which the diagram should be attached, if possible.
+	 *        The eObject to which the diagram should be attached, if possible.
 	 */
 	protected void runAsTransaction(final DiResourceSet diResourceSet, final EObject container, String name) {
-		if (name == null) {
+		if(name == null) {
 			name = getDefaultDiagramName();
 		}
 
-		if (name != null) {
+		if(name != null) {
 			// Get the uml element to which the newly created diagram will be attached.
 			// Create the diagram
 			final Resource modelResource = diResourceSet.getModelResource();
@@ -130,14 +130,14 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 					CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
 					EObject model = container;
-					if (model == null) {
+					if(model == null) {
 						model = getRootElement(modelResource);
 						attachModelToResource(model, modelResource);
 					}
 
 					Diagram diagram = createDiagram(diagramResource, model, diagramName);
 
-					if (diagram != null) {
+					if(diagram != null) {
 						openDiagram(diResource, diagram);
 						commandResult = CommandResult.newOKCommandResult();
 					}
@@ -172,11 +172,11 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected EObject getRootElement(Resource modelResource) {
 		EObject rootElement = null;
-		if (modelResource != null && modelResource.getContents() != null) {
-			if (modelResource.getContents().size() > 0) {
+		if(modelResource != null && modelResource.getContents() != null) {
+			if(modelResource.getContents().size() > 0) {
 				Object root = modelResource.getContents().get(0);
-				if (root instanceof EObject) {
-					rootElement = (EObject) root;
+				if(root instanceof EObject) {
+					rootElement = (EObject)root;
 				}
 			}
 		} else {
@@ -224,10 +224,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	protected EObject getSelectedElement() {
 		EObject eObject = null;
 		Object selection = getCurrentSelection();
-		if (selection != null) {
+		if(selection != null) {
 			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
-			if (businessObject instanceof EObject) {
-				eObject = (EObject) businessObject;
+			if(businessObject instanceof EObject) {
+				eObject = (EObject)businessObject;
 			}
 		}
 		return eObject;
@@ -241,8 +241,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	private Object getCurrentSelection() {
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
 				.getSelection();
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 			return structuredSelection.getFirstElement();
 		}
 
@@ -253,17 +253,17 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * Create a diagram.
 	 * 
 	 * @param diagramResource
-	 *            the diagram resource
+	 *        the diagram resource
 	 * @param owner
-	 *            the diagram container
+	 *        the diagram container
 	 * @param name
-	 *            the diagram name
+	 *        the diagram name
 	 * @return
 	 */
 	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
 		// create diagram
 		Diagram diagram = ViewService.createDiagram(owner, getDiagramNotationID(), getPreferenceHint());
-		if (diagram != null) {
+		if(diagram != null) {
 			diagram.setName(name);
 			diagram.setElement(owner);
 			diagramResource.getContents().add(diagram);
@@ -287,7 +287,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	protected IMultiDiagramEditor getMultiDiagramEditor() {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editorPart = page.getActiveEditor();
-		return (IMultiDiagramEditor) editorPart;
+		return (IMultiDiagramEditor)editorPart;
 	}
 
 	/**
@@ -304,7 +304,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * Open popup to enter the new diagram name
 	 * 
 	 * @param defaultValue
-	 *            the default value
+	 *        the default value
 	 * @return the entered diagram name
 	 */
 	protected String openDiagramNameDialog(final String defaultValue) {
@@ -313,9 +313,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName,
 				Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
 		int ret = inputDialog.open();
-		if (ret == Window.OK) {
+		if(ret == Window.OK) {
 			name = inputDialog.getValue();
-			if (name == null || name.length() == 0) {
+			if(name == null || name.length() == 0) {
 				name = defaultValue;
 			}
 		}

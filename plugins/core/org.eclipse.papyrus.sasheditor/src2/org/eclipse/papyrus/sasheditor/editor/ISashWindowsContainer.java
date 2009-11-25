@@ -8,55 +8,45 @@ public interface ISashWindowsContainer {
 	/**
 	 * Get the currently active editor, or null if none is active.
 	 * 
-	 * @return The active editor.
+	 * @return
 	 */
-	IEditorPart getActiveEditor();
+	public abstract IEditorPart getActiveEditor();
 
 	/**
-	 * Get the currently active SashWindows Page. This is s
+	 * Get the currently active SashWindows Page.
+	 * This is s
 	 * 
 	 * @return An {@link IPage} allowing to access current page data.
 	 */
-	IPage getActiveSashWindowsPage();
+	public abstract IPage getActiveSashWindowsPage();
 
 	/**
-	 * The <code>AbstractMultiPageSashEditor</code> implementation of this
-	 * <code>IWorkbenchPart</code> method sets focus on the active nested editor, if there is one.
+	 * The <code>AbstractMultiPageSashEditor</code> implementation of this <code>IWorkbenchPart</code> method sets focus on the active nested
+	 * editor, if there is one.
 	 * <p>
 	 * Subclasses may extend or reimplement.
 	 * </p>
 	 */
-	void setFocus();
+	public abstract void setFocus();
 
 	/**
-	 * Refresh the SashWindows. Synchronize the internal structure with the
-	 * {@link ISashWindowsContentProvider}.
+	 * Refresh the SashWindows.
+	 * Synchronize the internal structure with the {@link ISashWindowsContentProvider}.
 	 */
-	void refreshTabs();
+	public abstract void refreshTabs();
 
 	/**
 	 * Add a PageChangedListener to the list of listeners.
 	 * 
 	 * @param pageEventsManager
 	 */
-	void addPageChangedListener(IPageChangedListener pageChangedListener);
+	public abstract void addPageChangedListener(IPageChangedListener pageChangedListener);
 
 	/**
 	 * Remove the PageChangedListener from the list of listeners.
 	 * 
 	 * @param pageEventsManager
 	 */
-	void removePageChangedListener(IPageChangedListener pageChangedListener);
+	public abstract void removePageChangedListener(IPageChangedListener pageChangedListener);
 
-	/**
-	 * Check all the opened editors to know if at least one of them is dirty.
-	 * 
-	 * @return True if at least one editor is dirty, false otherwise.
-	 */
-	boolean isDirty();
-
-	/**
-	 * Notify all the opened editor that they have been saved.
-	 */
-	void markSaveLocation();
 }

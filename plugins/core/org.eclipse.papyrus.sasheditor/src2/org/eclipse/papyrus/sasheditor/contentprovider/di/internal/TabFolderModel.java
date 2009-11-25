@@ -22,6 +22,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 
+
 /**
  * @author dumoulin
  */
@@ -56,15 +57,16 @@ public class TabFolderModel implements ITabFolderModel {
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel#createChildSashModel(java.lang.Object)
 	 * 
 	 * @param child
-	 *            The child object returned by {@link TabFolderModel#getChildren}
+	 *        The child object returned by {@link TabFolderModel#getChildren}
 	 * @return
 	 */
 	public IPageModel createChildSashModel(Object child) {
 
-		PageRef pageRef = (PageRef) child;
+		PageRef pageRef = (PageRef)child;
 
 		return pageModelFactory.createIPageModel(pageRef.getPageIdentifier());
 	}
+
 
 	/**
 	 * @return the tabFolder

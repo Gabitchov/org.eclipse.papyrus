@@ -47,9 +47,8 @@ public class ReplaceableSashForm extends SashForm {
 	/**
 	 * Reparent the provided control to have the leftPart parent.
 	 */
-	// @unused
 	public void setLeftControl(Control control) {
-		if (leftComposite == null) {
+		if(leftComposite == null) {
 			leftComposite = new Composite(this, 0);
 		}
 
@@ -60,9 +59,8 @@ public class ReplaceableSashForm extends SashForm {
 	/**
 	 * Reparent the provided control to have the leftPart parent.
 	 */
-	// @unused
 	public void setRightControl(Control control) {
-		if (rightComposite == null) {
+		if(rightComposite == null) {
 			rightComposite = new Composite(this, 0);
 		}
 

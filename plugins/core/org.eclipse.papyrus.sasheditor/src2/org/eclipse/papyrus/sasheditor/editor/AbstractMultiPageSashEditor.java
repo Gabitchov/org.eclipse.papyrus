@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.editor;
 
+import java.util.logging.Logger;
+
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
@@ -31,8 +33,10 @@ import org.eclipse.ui.part.EditorPart;
  * 
  * @author dumoulin
  */
-public abstract class AbstractMultiPageSashEditor extends EditorPart implements IMultiPageEditorPart,
-		IMultiEditorManager {
+public abstract class AbstractMultiPageSashEditor extends EditorPart implements IMultiPageEditorPart, IMultiEditorManager {
+
+	/** Log object */
+	protected Logger log = Logger.getLogger(getClass().getName());
 
 	/** The pageProvider */
 	private ISashWindowsContentProvider pageProvider;
@@ -46,9 +50,8 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * @return
 	 */
 	protected ISashWindowsContentProvider getContentProvider() {
-		if (pageProvider == null) {
+		if(pageProvider == null)
 			pageProvider = createPageProvider();
-		}
 
 		return pageProvider;
 	}
@@ -59,51 +62,48 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * @param contentProvider
 	 */
 	protected void setContentProvider(ISashWindowsContentProvider contentProvider) {
-		if (pageProvider == null) {
+		if(pageProvider == null)
 			pageProvider = contentProvider;
-		}
 	}
 
 	/**
-	 * Create the provider. Subclass must implements this method. It should return the provider used
-	 * by the editor.
+	 * Create the provider.
+	 * Subclass must implements this method. It should return the provider used by the editor.
 	 * 
 	 */
 	abstract protected ISashWindowsContentProvider createPageProvider();
 
 	/**
-	 * Handles a property change notification from a nested editor. The default implementation
-	 * simply forwards the change to listeners on this multi-page editor by calling
-	 * <code>firePropertyChange</code> with the same property id. For example, if the dirty state of
-	 * a nested editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method
-	 * handles it by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to
-	 * property listeners on this multi-page editor.
+	 * Handles a property change notification from a nested editor. The default implementation simply forwards the change to
+	 * listeners on this multi-page editor by calling <code>firePropertyChange</code> with the same property id. For example, if
+	 * the dirty state of a nested editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method handles it
+	 * by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to property listeners on this multi-page
+	 * editor.
 	 * <p>
 	 * Subclasses may extend or reimplement this method.
 	 * </p>
 	 * 
-	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart.handlePropertyChange(int )
+	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart.handlePropertyChange(int)
 	 * 
 	 * @param propertyId
-	 *            the id of the property that changed
+	 *        the id of the property that changed
 	 */
-	// @unused
 	protected void handlePropertyChange(int propertyId) {
 		firePropertyChange(propertyId);
 	}
 
 	/**
-	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method
-	 * sets its site to the given site, its input to the given input, and the site's selection
-	 * provider to a <code>MultiPageSelectionProvider</code>. Subclasses may extend this method.
+	 * The <code>MultiPageEditorPart</code> implementation of this <code>IEditorPart</code> method sets its site to the given
+	 * site, its input to the given input, and the site's selection provider to a <code>MultiPageSelectionProvider</code>.
+	 * Subclasses may extend this method.
 	 * 
 	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart
 	 * @param site
-	 *            The site for which this part is being created; must not be <code>null</code>.
+	 *        The site for which this part is being created; must not be <code>null</code>.
 	 * @param input
-	 *            The input on which this editor should be created; must not be <code>null</code>.
+	 *        The input on which this editor should be created; must not be <code>null</code>.
 	 * @throws PartInitException
-	 *             If the initialization of the part fails -- currently never.
+	 *         If the initialization of the part fails -- currently never.
 	 */
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
@@ -126,16 +126,18 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	}
 
 	/**
-	 * Method to activate the editor. Called immediately after createPartControl() is complete. To
-	 * be implemented by subclasses. Default implementation do nothing.
+	 * Method to activate the editor.
+	 * Called immediately after createPartControl() is complete.
+	 * To be implemented by subclasses. Default implementation do nothing.
 	 */
 	protected void activate() {
 
 	}
 
 	/**
-	 * Method to deactivate the editor. Called when dispose() is called. To be implemented by
-	 * subclasses. Default implementation do nothing.
+	 * Method to deactivate the editor.
+	 * Called when dispose() is called.
+	 * To be implemented by subclasses. Default implementation do nothing.
 	 */
 	protected void deactivate() {
 
@@ -157,41 +159,37 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Refresh the sash windows system
 	 */
 	protected void refreshTabs() {
-		if (sashContainer != null) {
+		if(sashContainer != null)
 			sashContainer.refreshTabs();
-		}
 
 	}
 
 	/**
-	 * If there is an adapter registered against the subclass of MultiPageEditorPart return that.
-	 * Otherwise, delegate to the internal editor.
+	 * If there is an adapter registered against the subclass of MultiPageEditorPart return that. Otherwise, delegate to the
+	 * internal editor.
 	 * 
 	 * @copiedfrom org.eclipse.ui.part.MultiPageEditorPart
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#getAdapter(java.lang.Class)
 	 */
-	@Override
 	public Object getAdapter(Class adapter) {
 
 		// Get the content provider if requested.
-		if (ISashWindowsContentProvider.class == adapter) {
+		if(ISashWindowsContentProvider.class == adapter)
 			return getContentProvider();
-		}
 
 		// Get the content provider if requested.
-		if (ISashWindowsContainer.class == adapter) {
+		if(ISashWindowsContainer.class == adapter)
 			return sashContainer;
-		}
 
 		// Look in hierarchy
 		Object result = super.getAdapter(adapter);
 		// restrict delegating to the UI thread for bug 144851
-		if (result == null && Display.getCurrent() != null) {
+		if(result == null && Display.getCurrent() != null) {
 			IEditorPart innerEditor = getActiveEditor();
 			// see bug 138823 - prevent some subclasses from causing
 			// an infinite loop
-			if (innerEditor != null && innerEditor != this) {
+			if(innerEditor != null && innerEditor != this) {
 				result = Util.getAdapter(innerEditor, adapter);
 			}
 		}
@@ -212,26 +210,33 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	@Override
 	public void setFocus() {
 		sashContainer.setFocus();
+
 	}
 
 	/**
 	 * Overrides isDirty.
 	 * 
-	 * {@inheritDoc}
+	 * {@inheritDoc} TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
+	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
 	 * 
-	 * @see org.eclipse.ui.part.EditorPart#isDirty()
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#isDirty()
 	 */
 	@Override
 	public boolean isDirty() {
-		return sashContainer.isDirty();
+		//		return sashContainer.isDirty();
+		// TODO : find a better way for this flag. The sashContainer should not be aware of this.
+		return true;
 	}
 
 	/**
 	 * Notify all the editors that the multi editor has been saved.<BR>
 	 * Fires the PROP_DIRTY property change.
+	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
+	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
 	 */
 	protected void markSaveLocation() {
-		sashContainer.markSaveLocation();
+		// TODO find a better way for that. The sashContainer should not be aware of this. 
+		//		sashContainer.markSaveLocation();
 		firePropertyChange(PROP_DIRTY);
 	}
 }

@@ -12,20 +12,21 @@ import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.ComposedActionBarContributor;
 import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.IMultiPageEditorActionBarContributor;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
+
 /**
  * 
- * An ActionBarContributor composed of ActionBarContributor from multi editor. This
- * ActionBarContributor switch to the contributor dedicated to the active editor in a
- * MultiPageEditor environement.
+ * An ActionBarContributor composed of ActionBarContributor from multi editor.
+ * This ActionBarContributor switch to the contributor dedicated to the active editor in
+ * a MultiPageEditor environement.
  * 
  * @author dumoulin
  * 
  */
-public class CoreComposedActionBarContributor extends ComposedActionBarContributor implements
-		IMultiPageEditorActionBarContributor {
+public class CoreComposedActionBarContributor extends ComposedActionBarContributor implements IMultiPageEditorActionBarContributor {
 
 	/**
 	 * The registry. Used to initialize the registered actionBars.
@@ -54,6 +55,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		contributors = actionBarContributorRegistry.getActionBarContributors();
 	}
 
+
 	/**
 	 * @return the actionBarContributorRegistry
 	 */
@@ -61,13 +63,14 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		return actionBarContributorRegistry;
 	}
 
+
 	/**
 	 * Dispose all nested ActionBarContributors.
 	 */
 	@Override
 	public void dispose() {
 		// Dispose nested contributors.
-		for (EditorActionBarContributor contributor : contributors) {
+		for(EditorActionBarContributor contributor : contributors) {
 			contributor.dispose();
 		}
 		super.dispose();
@@ -82,7 +85,7 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		buildActions();
 
 		// init nested contributors.
-		for (EditorActionBarContributor contributor : contributors) {
+		for(EditorActionBarContributor contributor : contributors) {
 			contributor.init(bars, page);
 		}
 
@@ -97,5 +100,12 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		getActionBars().getToolBarManager().add(new UndoRetargetAction());
 		getActionBars().getToolBarManager().add(new RedoRetargetAction());
 	}
+
+
+	public void setActiveEditor(IEditorPart targetEditor) {
+		System.err.println(this.getClass().getSimpleName() + ".setActiveEditor(" + targetEditor + ") ");
+		super.setActiveEditor(targetEditor);
+	}
+
 
 }

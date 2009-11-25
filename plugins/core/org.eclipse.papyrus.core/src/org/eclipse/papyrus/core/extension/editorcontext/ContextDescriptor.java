@@ -41,7 +41,7 @@ public class ContextDescriptor {
 	 * @throws BackboneException
 	 */
 	protected IEditorContext getContext(IMultiDiagramEditor multiEditor) throws BackboneException {
-		if (instance == null)
+		if(instance == null)
 			instance = createContext(multiEditor);
 
 		return instance;
@@ -54,16 +54,13 @@ public class ContextDescriptor {
 			return context;
 
 		} catch (SecurityException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
+			// Lets propagate. This is an implementation problem that should be solved by programmer.
 			throw new RuntimeException(e);
 		}
 	}

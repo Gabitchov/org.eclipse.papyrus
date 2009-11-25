@@ -25,17 +25,17 @@ public class MultiPageSelectionSynchronizer extends SelectionSynchronizer {
 	private EditPartViewer currentViewer;
 
 	/**
-	 * Set the current viewer. Remove the old current viewer from the list. This method allows to
-	 * switch the current viewer. The current viewer is the one from the selected page. This method
-	 * is called by the multipageEditor when the page change.
+	 * Set the current viewer. Remove the old current viewer from the list. This method allows to switch the current viewer. The current viewer is the
+	 * one from the selected page. This method is called
+	 * by the multipageEditor when the page change.
 	 * 
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 */
 	public void setCurrentViewer(EditPartViewer viewer) {
-		if (currentViewer == viewer)
+		if(currentViewer == viewer)
 			return;
-		if (currentViewer != null)
+		if(currentViewer != null)
 			removeViewer(currentViewer);
 		// add current viewer.
 		currentViewer = viewer;

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sasheditor.contentprovider.simple;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 
+
 /**
  * @author dumoulin
  */
@@ -35,6 +36,7 @@ public abstract class AbstractPanelModel extends AbstractModel implements IAbstr
 		this.parent = parent;
 	}
 
+
 	/**
 	 * Return the parent of the model. Can be null in the case of rootModel.
 	 * 
@@ -44,13 +46,15 @@ public abstract class AbstractPanelModel extends AbstractModel implements IAbstr
 		return parent;
 	}
 
+
 	/**
 	 * @param parent
-	 *            the parent to set
+	 *        the parent to set
 	 */
 	public void setParent(AbstractModel parent) {
 		this.parent = parent;
 	}
+
 
 	/**
 	 * Lookup the folder containing the specified tabItem.
@@ -59,5 +63,6 @@ public abstract class AbstractPanelModel extends AbstractModel implements IAbstr
 	 * @return
 	 */
 	abstract protected TabFolderModel lookupTabFolder(IPageModel tabItem);
+
 
 }

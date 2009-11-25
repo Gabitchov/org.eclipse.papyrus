@@ -31,7 +31,6 @@ public class NotFoundException extends ExtensionException {
 	/**
 	 * Creates a simple NotFoundException.
 	 */
-	// @unused
 	public NotFoundException() {
 	}
 
@@ -39,7 +38,7 @@ public class NotFoundException extends ExtensionException {
 	 * Creates a NotFoundException with a specific message.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 */
 	public NotFoundException(String message) {
 		super(message);
@@ -49,9 +48,8 @@ public class NotFoundException extends ExtensionException {
 	 * Creates a NotFoundException with a specific cause.
 	 * 
 	 * @param cause
-	 *            the cause of the exception
+	 *        the cause of the exception
 	 */
-	// @unused
 	public NotFoundException(Throwable cause) {
 		super(cause);
 	}
@@ -60,11 +58,10 @@ public class NotFoundException extends ExtensionException {
 	 * Creates a NotFoundException with a specific cause and a specific message.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 * @param cause
-	 *            the cause of the exception
+	 *        the cause of the exception
 	 */
-	// @unused
 	public NotFoundException(String message, Throwable cause) {
 		super(message, cause);
 	}

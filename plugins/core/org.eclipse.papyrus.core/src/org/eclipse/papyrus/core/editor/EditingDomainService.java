@@ -31,8 +31,10 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 
+
 /**
  * Initialize editing domain.
+ * 
  * 
  */
 public class EditingDomainService implements CommandStackListener, org.eclipse.emf.common.command.CommandStackListener {
@@ -42,10 +44,12 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 */
 	private IUndoContext undoContext;
 
-	private final BackboneContext defaultContext;
+	private BackboneContext defaultContext;
+
 
 	private Set<CommandStackListener> commandStackListeners = Collections
 			.synchronizedSet(new HashSet<CommandStackListener>());
+
 
 	/**
 	 * @param defaultContext
@@ -91,8 +95,8 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	}
 
 	/**
-	 * Gets the action manager for this diagram editor. The action manager's command manager is used
-	 * by my edit domain's command stack when executing commands. This is the action manager that is
+	 * Gets the action manager for this diagram editor. The action manager's command manager is used by my edit domain's command stack when executing
+	 * commands. This is the action manager that is
 	 * returned when I am asked to adapt to an <code>ActionManager</code>.
 	 * 
 	 * @return the action manager
@@ -104,7 +108,8 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	/**
 	 * Create my operation history.
 	 * 
-	 * @return my operation history TODO move it to GmfContext ?
+	 * @return my operation history
+	 *         TODO move it to GmfContext ?
 	 */
 	private IOperationHistory createOperationHistory() {
 		return OperationHistoryFactory.getOperationHistory();
@@ -113,14 +118,15 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	/**
 	 * Gets my undo context. Lazily initializes my undo context if it has not been set.
 	 * 
-	 * @return my undo context TODO move it to GmfContext ?
+	 * @return my undo context
+	 *         TODO move it to GmfContext ?
 	 */
 	private IUndoContext getUndoContext() {
 
-		if (undoContext == null) {
+		if(undoContext == null) {
 			TransactionalEditingDomain domain = defaultContext.getTransactionalEditingDomain();
 
-			if (domain != null) {
+			if(domain != null) {
 				undoContext = new EditingDomainUndoContext(domain);
 
 			} else {
@@ -135,14 +141,14 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	 * 
 	 * TODO move it to GmfContext ?
 	 */
-	public void configureDiagramEditDomain() {
+	protected void configureDiagramEditDomain() {
 
 		DiagramEditDomain editDomain = getDiagramEditDomain();
 
-		if (editDomain != null) {
+		if(editDomain != null) {
 			CommandStack stack = editDomain.getCommandStack();
 
-			if (stack != null) {
+			if(stack != null) {
 				stack.removeCommandStackListener(this);
 				// dispose the old stack
 				stack.dispose();
@@ -159,7 +165,9 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 
 			// changes made on the stack can be undone from this editor
 			diagramStack.setUndoContext(getUndoContext());
+
 		}
+
 	}
 
 	/**
@@ -172,8 +180,8 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	}
 
 	/**
-	 * Add a command stack listener. Actual implementation only allows one listener. If we need more
-	 * listener, change the implementation to allow it.
+	 * Add a command stack listener.
+	 * Actual implementation only allows one listener. If we need more listener, change the implementation to allow it.
 	 * 
 	 * @param listener
 	 */
@@ -191,16 +199,15 @@ public class EditingDomainService implements CommandStackListener, org.eclipse.e
 	}
 
 	/**
-	 * Overrides commandStackChanged.
+	 * Relay the event from the stack to the listeners.
 	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.gef.commands.CommandStackListener#commandStackChanged(java.util.EventObject)
+	 * @param event
 	 */
 	public void commandStackChanged(EventObject event) {
-		for (CommandStackListener listener : commandStackListeners) {
+		for(CommandStackListener listener : commandStackListeners) {
 			listener.commandStackChanged(event);
 		}
 	}
+
 
 }

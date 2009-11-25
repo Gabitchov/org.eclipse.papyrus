@@ -22,8 +22,7 @@ package org.eclipse.papyrus.sasheditor.sash;
 public interface ITilePartFactory<T> {
 
 	/**
-	 * Create the ITilePart node suitable for the specified model. The node is attached to the
-	 * specified parent.
+	 * Create the ITilePart node suitable for the specified model. The node is attached to the specified parent.
 	 * 
 	 * @param parent
 	 * @param model

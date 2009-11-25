@@ -21,28 +21,26 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
 /**
- * GEF GraphicalEditorWithFlyoutPalette suitable for use in a MultiPageEditorPart. This adaptation
- * class overide the selectionChanged() method in order to update the selectionActions when the page
- * is selected.
+ * GEF GraphicalEditorWithFlyoutPalette suitable for use in a MultiPageEditorPart. This adaptation class overide the selectionChanged() method in
+ * order to update the selectionActions when the page is
+ * selected.
  */
 public abstract class GraphicalPageWithFlyoutPalette extends GraphicalEditorWithFlyoutPalette {
 
 	/**
 	 * Mark the command stack of all sub-editors
 	 */
-	// @unused
 	public void markSaveLocation() {
 		getCommandStack().markSaveLocation();
 	}
 
 	/**
-	 * Update the selectionActions list when the editor is selected as a page of a
-	 * MultiPageEditorPart.
+	 * Update the selectionActions list when the editor is selected as a page of a MultiPageEditorPart.
 	 */
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		IEditorPart editor = getSite().getPage().getActiveEditor();
-		if (editor instanceof MultiPageEditorPart) {
+		if(editor instanceof MultiPageEditorPart) {
 			// if( this.equals(((MultiPageEditorPart)editor))
 			updateActions(getSelectionActions());
 		}
@@ -50,8 +48,7 @@ public abstract class GraphicalPageWithFlyoutPalette extends GraphicalEditorWith
 	}
 
 	/**
-	 * Return the underlying graphical viewer. Used by the multipage editor to set the current viwer
-	 * for selection synchronization.
+	 * Return the underlying graphical viewer. Used by the multipage editor to set the current viwer for selection synchronization.
 	 */
 	@Override
 	public GraphicalViewer getGraphicalViewer() {
