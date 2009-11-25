@@ -16,13 +16,14 @@ package org.eclipse.papyrus.diagram.common.figure.edge;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * An UML edge is an edge that owns a label to display the
+ * An UML edge is an edge that owns a label to display applied stereotypes
  */
-public class UMLEdgeFigure extends PolylineConnectionEx {
+public class UMLEdgeFigure extends PolylineConnectionEx implements IPapyrusUMLElementFigure{
 
 	/** Child label that displays applied stereotypes string */
 	protected WrappingLabel appliedStereotypeLabel;

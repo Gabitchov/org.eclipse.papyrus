@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.helper.ExtensionPointLabelHelper;
 import org.eclipse.uml2.uml.ExtensionPoint;
 
@@ -24,7 +25,7 @@ import org.eclipse.uml2.uml.ExtensionPoint;
  * 
  * @author eperico
  */
-public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
 	 * {@inheritDoc}
@@ -42,6 +43,12 @@ public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends Appli
 		// calls the helper for this edit Part
 		ExtensionPointLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
 		super.refreshDisplay();
+	}
+
+	@Override
+	protected void refreshStereotypeDisplay() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

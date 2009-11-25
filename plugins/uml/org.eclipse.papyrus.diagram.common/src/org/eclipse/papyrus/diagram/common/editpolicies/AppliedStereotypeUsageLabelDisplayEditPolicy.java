@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Usage;
  * parameter. So it calls super cTor with the "use" parameter
  * </p>
  */
-public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
 	 * Creates a new AppliedStereotypeUsageLabelDisplayEditPolicy, with the correct tag.

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.uml2.uml.Usage;
 
 /**
@@ -24,7 +25,7 @@ import org.eclipse.uml2.uml.Usage;
  * parameter. So it calls super cTor with the "use" parameter
  * </p>
  */
-public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
 	 * Creates a new AppliedStereotypeUsageLabelDisplayEditPolicy, with the correct tag.

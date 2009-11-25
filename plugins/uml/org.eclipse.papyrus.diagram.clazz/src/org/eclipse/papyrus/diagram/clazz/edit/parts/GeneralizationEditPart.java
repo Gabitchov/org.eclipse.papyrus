@@ -24,6 +24,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomGene
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.GeneralizationFigure;
 
 /**
@@ -50,7 +51,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GeneralizationItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLabelDisplayEditPolicy());
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomGeneralizationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}

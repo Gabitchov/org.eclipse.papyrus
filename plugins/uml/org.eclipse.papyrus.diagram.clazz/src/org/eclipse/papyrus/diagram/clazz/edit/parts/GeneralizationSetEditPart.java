@@ -25,6 +25,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.GeneralizationSetLabelD
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationSetItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
  * @generated
@@ -84,7 +85,7 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GeneralizationSetItemSemanticEditPolicy());
 		installEditPolicy("CustomDisplay", new GeneralizationSetLabelDisplayEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLabelDisplayEditPolicy());
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 

@@ -19,7 +19,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  *declaration of figure that can manage stereotype display
  */
-public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
+public interface IPapyrusNodeUMLElementFigure extends IPapyrusUMLElementFigure {
 
 	/**
 	 * Sets the stereotypes properties for this figure.
@@ -49,44 +49,7 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties);
 
-	/**
-	 * Sets the stereotypes for this figure.
-	 * <p>
-	 * This implementation checks if the specified string is null or not.
-	 * <ul>
-	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays
-	 * the specified string.</li>
-	 * </ul>
-	 * </p>
-	 * 
-	 * @param stereotypes
-	 *            the string representing the stereotypes to be displayed
-	 */
-	public void setStereotypes(String stereotypes);
 
-	/**
-	 * Refresh stereotypes.
-	 * 
-	 * @param presentation
-	 *            the presentation
-	 * @param hasIcon
-	 *            the has icon
-	 * @param hasShape
-	 *            the has shape
-	 * @param stereotypes
-	 *            the stereotypes
-	 */
-	// @unused
-	public void refreshStereotypes(String stereotypes, String presentation, boolean hasIcon, boolean hasShape);
-
-	/**
-	 * Sets the stereotype icon for this figure.
-	 * 
-	 * @param stereotypes
-	 *            the image representing the stereotype
-	 */
-	public void setAppliedStereotypeIcon(Image image);
 
 	/**
 	 * Gets the stereotypes label.
@@ -94,4 +57,6 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusNodeFigure {
 	 * @return the stereotypes label
 	 */
 	public Label getStereotypesLabel();
+	
+	
 }

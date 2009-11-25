@@ -25,6 +25,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEdit
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
  * @generated
@@ -97,7 +98,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLabelDisplayEditPolicy());
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}

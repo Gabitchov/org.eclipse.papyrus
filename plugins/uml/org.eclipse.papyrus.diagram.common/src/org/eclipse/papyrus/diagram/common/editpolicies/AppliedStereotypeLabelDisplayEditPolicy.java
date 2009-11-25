@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.Usage;
  * It also displays the tag for the links, for example "use" for {@link Usage}.
  * 
  */
-public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
+public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
 
 	/** constant for this edit policy role */
 	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelDisplayEditPolicy";
@@ -77,34 +77,7 @@ public class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedSter
 	/**
 	 * Refreshes the stereotype display
 	 */
-	protected void refreshStereotypeDisplay() {
-		IFigure figure = ((GraphicalEditPart) getHost()).getFigure();
-		// View view = (View) getHost().getModel();
-
-		// calculate text and icon to display
-		final String stereotypesToDisplay = stereotypesToDisplay();
-		// computes the icon to be displayed
-		final Image imageToDisplay = stereotypeIconToDisplay();
-
-		// if icon is null AND stereotype to display is null, should hide the view
-		// if ((stereotypesToDisplay == null || stereotypesToDisplay == "") && imageToDisplay ==
-		// null) {
-		// view.setVisible(false);
-		// } else {
-		// if (!view.isVisible()) {
-		// view.setVisible(true);
-		// }
-		// }
-
-		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
-		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
-		if (figure instanceof UMLEdgeFigure) {
-			((UMLEdgeFigure) figure).setStereotypeDisplay(tag
-					+ (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay),
-					imageToDisplay);
-		}
-		// TODO we should manage PapyrusNodeFigure here too (and WrappingLabel ?)
-	}
+	protected abstract void refreshStereotypeDisplay();
 
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.

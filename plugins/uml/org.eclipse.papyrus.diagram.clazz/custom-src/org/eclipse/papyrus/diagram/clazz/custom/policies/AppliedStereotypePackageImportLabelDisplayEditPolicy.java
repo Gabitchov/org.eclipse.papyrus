@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.uml2.uml.PackageImport;
 
 /**
@@ -24,7 +25,7 @@ import org.eclipse.uml2.uml.PackageImport;
  * parameter. So it calls super cTor with the "import" parameter
  * </p>
  */
-public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
 	 * Creates a new AppliedStereotypePackageImportLabelDisplayEditPolicy, with the correct tag.

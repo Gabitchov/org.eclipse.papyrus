@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Abstraction;
  * with a parameter. So it calls super cTor with the "abstraction" parameter
  * </p>
  */
-public class AppliedStereotypeAbstractionLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypeAbstractionLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
 	 * Creates a new AppliedStereotypeAbstractionLabelDisplayEditPolicy, with the correct tag.

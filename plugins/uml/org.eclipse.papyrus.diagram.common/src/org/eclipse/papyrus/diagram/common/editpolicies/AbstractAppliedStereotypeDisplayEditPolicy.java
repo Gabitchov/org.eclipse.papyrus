@@ -22,6 +22,7 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
@@ -167,6 +168,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 				// stereotype annotation has changed => refresh label display
 				refreshDisplay();
 			}
+		}
+		// the value of a property of stereotype has changed
+		if (notification.getNotifier() instanceof DynamicEObjectImpl) {
+			refreshDisplay();
 		}
 	}
 

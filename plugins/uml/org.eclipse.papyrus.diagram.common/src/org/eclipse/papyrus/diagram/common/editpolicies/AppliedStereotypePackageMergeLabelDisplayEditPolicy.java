@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.PackageMerge;
  * parameter. So it calls super cTor with the "merge" parameter
  * </p>
  */
-public class AppliedStereotypePackageMergeLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypePackageMergeLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
 	 * Creates a new AppliedStereotypePackageMergeLabelDisplayEditPolicy, with the correct tag.

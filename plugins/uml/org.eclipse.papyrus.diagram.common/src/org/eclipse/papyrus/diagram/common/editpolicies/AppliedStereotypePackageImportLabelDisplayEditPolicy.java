@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.PackageImport;
  * parameter. So it calls super cTor with the "import" parameter
  * </p>
  */
-public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
+public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
 	 * Creates a new AppliedStereotypePackageImportLabelDisplayEditPolicy, with the correct tag.

@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Element;
  * Default Abstract implementation of the {@link IMaskManagedLabelEditPolicy}.
  */
 public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyEx implements NotificationListener,
-IPapyrusListener, IMaskManagedLabelEditPolicy {
+		IPapyrusListener, IMaskManagedLabelEditPolicy {
 
 	/**
 	 * 
@@ -44,7 +44,7 @@ IPapyrusListener, IMaskManagedLabelEditPolicy {
 			return;
 		}
 		Element element = getUMLElement();
-		if(getUMLElement()!=null){
+		if (getUMLElement() != null) {
 
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
@@ -180,7 +180,7 @@ IPapyrusListener, IMaskManagedLabelEditPolicy {
 				if (oldValue instanceof EAnnotation) {
 					// returns true if the annotation has the correct source
 					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
-					.equals(((EAnnotation) oldValue).getSource());
+							.equals(((EAnnotation) oldValue).getSource());
 				}
 			}
 		}
@@ -212,9 +212,9 @@ IPapyrusListener, IMaskManagedLabelEditPolicy {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		if (editingDomain != null) {
 			editingDomain.getCommandStack()
-			.execute(
-					new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement) getHost().getModel(),
-							newValue));
+					.execute(
+							new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement) getHost().getModel(),
+									newValue));
 		}
 	}
 

@@ -36,7 +36,7 @@ import org.eclipse.swt.graphics.Image;
  * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified
  * nale label + 1 name label
  */
-public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure {
+public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure, IPapyrusNodeUMLElementFigure {
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 
@@ -84,6 +84,17 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		this(null);
 	}
 
+	public void setStereotypeDisplay(String stereotypes, Image image) {
+
+		// Set stereotype text on figure
+		if (!"".equals(stereotypes)) {
+			setStereotypes(stereotypes);
+		} else {
+			setStereotypes(null);
+		}
+
+		setAppliedStereotypeIcon(image);
+	}
 	public NodeNamedElementFigure(String taggedLabelValue) {
 		super();
 
@@ -415,7 +426,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @param label
 	 *            the label that we look for
 	 * @param pt
-	 *            the point thaht we test
+	 *            the point that we test
 	 * 
 	 * @return true if the point is on the label
 	 */
@@ -632,7 +643,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 		// Set stereotype text on figure
 		if (!"".equals(stereotypes)) {
-			this.stereotypesLabel.setText(Activator.ST_LEFT + stereotypes + Activator.ST_RIGHT);
+			this.stereotypesLabel.setText( stereotypes);
 		} else {
 			this.stereotypesLabel.setText("");
 		}

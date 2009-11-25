@@ -23,6 +23,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEdit
 import org.eclipse.papyrus.diagram.clazz.edit.policies.DependencyItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
@@ -88,7 +89,7 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DependencyItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLabelDisplayEditPolicy());
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 

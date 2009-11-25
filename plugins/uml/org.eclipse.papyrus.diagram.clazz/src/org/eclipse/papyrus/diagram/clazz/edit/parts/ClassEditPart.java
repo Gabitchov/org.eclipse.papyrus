@@ -54,6 +54,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
@@ -157,7 +160,8 @@ ClassifierEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ClassItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
 		// new org.eclipse.papyrus.diagram.clazz.edit.policies.ClassCanonicalEditPolicy());
