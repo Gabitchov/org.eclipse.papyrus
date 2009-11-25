@@ -302,5 +302,13 @@
       </action>
    </objectContribution>
 </extension>
+<extension
+      point="org.eclipse.papyrus.core.modelListener">
+   <listener
+         description="This listener listens for profile (un)applications to update the palette"
+         name="PaletteProfileApplicationListener"
+         realization="org.eclipse.papyrus.diagram.common.service.PaletteProfileApplicationListener">
+   </listener>
+</extension>
 
 </plugin>
