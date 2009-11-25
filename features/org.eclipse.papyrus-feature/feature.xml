@@ -9,9 +9,10 @@
       %description
    </description>
 
-   <copyright url="%description">
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2008-2009 CEA LIST, Atos Origin, Conselleria de
-Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana and others 
+Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana
+and others 
 All rights reserved.   This program and the accompanying materials
 are made available under the terms of the Eclipse Public License
 v1.0
@@ -24,7 +25,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <discovery label="MDT Papyrus" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
+      <discovery label="%PapyrusUpdateSiteName" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
    </url>
 
    <includes
