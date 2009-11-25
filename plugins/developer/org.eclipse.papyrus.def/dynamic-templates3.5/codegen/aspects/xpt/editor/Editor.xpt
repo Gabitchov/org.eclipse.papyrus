@@ -352,7 +352,7 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 
 «DEFINE doSave FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
-	public void doSave(IProgressMonitor progressMonitor) {
+	public void doSave(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
 		savedOperation =  getOperationHistory().getUndoOperation(getUndoContext());
 	}
