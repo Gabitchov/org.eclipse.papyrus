@@ -117,7 +117,7 @@
             <annotation>
                <documentation>
                   The priority of the provider. It can be one of the following values:
-&lt;Lowest, Low, Medium, High, Highest&gt;. Consideration of dependencies has to be done when choosing the priority. A provider that adds contributions to paths (menus | groups) contributed by other providers has to have a higher priority than them. Similarly, a provider that contributes palette entries that have been predefined by other providers has to have a higher priority than them.
+{Lowest, Low, Medium, High, Highest}. Consideration of dependencies has to be done when choosing the priority. A provider that adds contributions to paths (menus | groups) contributed by other providers has to have a higher priority than them. Similarly, a provider that contributes palette entries that have been predefined by other providers has to have a higher priority than them.
                </documentation>
             </annotation>
             <simpleType>
@@ -156,7 +156,7 @@
             <annotation>
                <documentation>
                   The fully qualified name of a class/interface that is assignable from or adaptable to the target editor.  The name could be followed (between paranthesis &quot;()&quot;) by the id of a plugin whose classloader is able to load that class. The finaly syntax is:
-className&lt;(plugin id)&gt;?
+className[(plugin id)]?
 
 Although this field is optional, at least one of the two fields (id &amp; class) has to be specified.
                </documentation>
