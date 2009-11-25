@@ -219,10 +219,22 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 				Object selectedElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
 				if (selectedElement instanceof PapyrusPaletteService.LocalProviderDescriptor) {
 					deletePaletteButton.setEnabled(true);
-					editPaletteButton.setEnabled(true);
+					// check if the palette is in good configuration to be edited...
+					if (PaletteUtil.areRequiredProfileApplied(getActiveSashPage(),
+							(PapyrusPaletteService.LocalProviderDescriptor) selectedElement)) {
+						editPaletteButton.setEnabled(true);
+						editPaletteButton
+								.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteSelected);
+					} else {
+						editPaletteButton.setEnabled(false);
+						editPaletteButton
+								.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_MissingProfile);
+					}
 				} else {
 					deletePaletteButton.setEnabled(false);
 					editPaletteButton.setEnabled(false);
+					editPaletteButton
+							.setToolTipText(Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteNotSelected);
 				}
 			}
 		};

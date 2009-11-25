@@ -233,4 +233,13 @@ public class Messages extends NLS {
 
 	/** tooltip for the disabled action because of missing profiles */
 	public static String PaletteContextMenu_MissingProfile;
+
+	/** tooltip for the edit local palette action disabled because of bad selection */
+	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteNotSelected;
+
+	/** tooltip for the edit local palette action */
+	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteSelected;
+
+	/** tooltip for the edit local palette action disabled because of missing profiles */
+	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip_MissingProfile;
 }
