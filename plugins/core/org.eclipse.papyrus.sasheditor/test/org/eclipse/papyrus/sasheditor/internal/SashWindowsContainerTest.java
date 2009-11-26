@@ -146,7 +146,7 @@ public class SashWindowsContainerTest extends TestCase {
 		container.refreshTabs();
 		assertNotNull("container is set", container);
 
-
 	}
 
+	
 }

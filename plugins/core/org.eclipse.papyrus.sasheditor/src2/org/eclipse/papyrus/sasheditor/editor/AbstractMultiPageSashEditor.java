@@ -13,8 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.editor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
@@ -216,7 +219,9 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	/**
 	 * Overrides isDirty.
 	 * 
-	 * {@inheritDoc} TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
+	 * {@inheritDoc} 
+	 * 
+	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
 	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#isDirty()
@@ -224,19 +229,72 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	@Override
 	public boolean isDirty() {
 		//		return sashContainer.isDirty();
-		// TODO : find a better way for this flag. The sashContainer should not be aware of this.
-		return true;
+		EditorVisitor visitor = new EditorVisitor();
+		sashContainer.visit(visitor);
+		
+		for( IEditorPart editorPart : visitor.getPages())
+		{
+			if( editorPart.isDirty())
+				return true;
+		}
+		
+		return false;
 	}
 
 	/**
 	 * Notify all the editors that the multi editor has been saved.<BR>
 	 * Fires the PROP_DIRTY property change.
+	 * 
 	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
 	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
 	 */
 	protected void markSaveLocation() {
-		// TODO find a better way for that. The sashContainer should not be aware of this. 
-		//		sashContainer.markSaveLocation();
+		//		return sashContainer.isDirty();
+		EditorVisitor visitor = new EditorVisitor();
+		sashContainer.visit(visitor);
+		
+		for( IEditorPart editorPart : visitor.getPages())
+		{
+			editorPart.doSave(new NullProgressMonitor());
+		}	
 		firePropertyChange(PROP_DIRTY);
+	}
+	
+	/**
+	 * A visitor allowing to collect the available IEditor.
+	 * TODO : Remove
+	 * @author dumoulin
+	 *
+	 */
+	protected class EditorVisitor implements IPageVisitor {
+
+		private List<IEditorPart> pages = new ArrayList<IEditorPart>();
+		
+		/**
+		 * Get collected pages.
+		 * @return
+		 */
+		public List<IEditorPart> getPages() {
+			return pages;
+		}
+
+		/**
+		 * 
+		 */
+		public void accept(IComponentPage page) {
+			// Do nothing
+		}
+
+		/**
+		 * 
+		 */
+		public void accept(IEditorPage page) {
+			
+			IEditorPart editor = page.getIEditorPart();
+			
+			// Null values are also filtered out.
+			if( editor instanceof EditorPart)
+				pages.add(editor);
+		}
 	}
 }

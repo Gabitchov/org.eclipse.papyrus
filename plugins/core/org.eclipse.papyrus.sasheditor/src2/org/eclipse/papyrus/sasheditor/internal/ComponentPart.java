@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.sasheditor.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
+import org.eclipse.papyrus.sasheditor.editor.IComponentPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -37,7 +38,7 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * 
  */
 @SuppressWarnings("restriction")
-public class ComponentPart extends PagePart {
+public class ComponentPart extends PagePart implements IComponentPage {
 
 	/**
 	 * The model representing the control.

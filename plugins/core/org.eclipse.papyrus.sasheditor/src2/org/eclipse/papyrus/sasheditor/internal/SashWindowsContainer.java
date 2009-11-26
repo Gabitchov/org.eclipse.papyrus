@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.jface.util.Geometry;
@@ -22,6 +23,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
+import org.eclipse.papyrus.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;
@@ -207,8 +209,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	protected void firePropertyChange(int propertyId) {
 		// TODO Auto-generated method stub
-		System.out.println("Event PropertyChanged = " + propertyId);
-
+//		System.out.println("Event PropertyChanged = " + propertyId);
 	}
 
 	/**
@@ -399,6 +400,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		rootPart.visit(visitor);
 	}
 
+
+	/**
+	 * Visit all the Pages (IEditorPage and IComponentPage), allowing to access to the public interface.
+	 */
+	public void visit( IPageVisitor pageVisitor ) {
+		PageVisitorWrapper visitor = new PageVisitorWrapper(pageVisitor);
+		rootPart.visit(visitor);
+	}
 
 
 	/* ***************************************************** */

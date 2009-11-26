@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.sasheditor.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
+import org.eclipse.papyrus.sasheditor.editor.IComponentPage;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -45,7 +46,7 @@ import org.eclipse.ui.part.IWorkbenchPartOrientation;
  * 
  */
 @SuppressWarnings("restriction")
-public class EditorPart extends PagePart {
+public class EditorPart extends PagePart implements IComponentPage {
 
 	/**
 	 * The model representing the editor.
@@ -468,6 +469,8 @@ public class EditorPart extends PagePart {
 	 * Delegate to {@link IEditorPart.isDirty()}
 	 * 
 	 * @return true if the associated editor is dirty.
+	 * 
+	 * @unused
 	 */
 	public boolean isDirty() {
 		return editorPart.isDirty();
