@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.FontDescriptor;
+import org.eclipse.papyrus.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.diagram.common.helper.ICompartmentLayoutHelper;
 import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
@@ -35,7 +36,8 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * this uml edit part that can manage node and compartments
+ * this uml edit part that can manage node and compartments. It also manages the application of
+ * stereotypes on uml elements represented by nodes
  * 
  */
 public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPart {
@@ -44,9 +46,9 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * Save the fontDescriptor in order to dispose the font later
 	 */
 	private FontDescriptor cachedFontDescriptor;
-	/** helper use to change the layout of compartment if exist**/
-	private ICompartmentLayoutHelper compartmentLayoutHelper;
 
+	/** helper use to change the layout of compartment if exist **/
+	private ICompartmentLayoutHelper compartmentLayoutHelper;
 
 	/**
 	 * @return the compartmentLayoutHelper
@@ -56,7 +58,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	}
 
 	/**
-	 * @param compartmentLayoutHelper the compartmentLayoutHelper to set
+	 * @param compartmentLayoutHelper
+	 *            the compartmentLayoutHelper to set
 	 */
 	protected void setCompartmentLayoutHelper(ICompartmentLayoutHelper compartmentLayoutHelper) {
 		this.compartmentLayoutHelper = compartmentLayoutHelper;
@@ -72,12 +75,10 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		super(view);
 	}
 
-	
 	public void refresh() {
 		super.refresh();
 		changeLayoutCompartment();
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -92,8 +93,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
-		if(event.getNotifier() instanceof EAnnotation){
-			if(((EAnnotation)event.getNotifier()).getSource().equals(VisualInformationPapyrusConstant.LAYOUTFIGURE)){
+		if (event.getNotifier() instanceof EAnnotation) {
+			if (VisualInformationPapyrusConstant.LAYOUTFIGURE.equals(((EAnnotation) event.getNotifier()).getSource())) {
 				changeLayoutCompartment();
 			}
 		}
@@ -102,19 +103,28 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			refreshFontColor();
 		}
+	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		// adds the stereotype application edit policy
+		installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
 	}
 
 	/**
 	 * this method has in charge to apply the good layout policy on compartments
 	 */
 	protected void changeLayoutCompartment() {
-		if(getCompartmentLayoutHelper()!=null){
-			Iterator<EditPart> childrenIterator= getChildren().iterator();
-			while (childrenIterator.hasNext()){
-				EditPart currentEditPart= childrenIterator.next();
-				if(currentEditPart instanceof ListCompartmentEditPart){
-					getCompartmentLayoutHelper().applyLayout((ListCompartmentEditPart)currentEditPart);
+		if (getCompartmentLayoutHelper() != null) {
+			Iterator<EditPart> childrenIterator = getChildren().iterator();
+			while (childrenIterator.hasNext()) {
+				EditPart currentEditPart = childrenIterator.next();
+				if (currentEditPart instanceof ListCompartmentEditPart) {
+					getCompartmentLayoutHelper().applyLayout((ListCompartmentEditPart) currentEditPart);
 				}
 			}
 		}
@@ -131,22 +141,15 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		return super.getTargetEditPart(request);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		if(resolveSemanticElement()!=null){
-		//	refreshAppliedStereotypesProperties();
-		//	refreshAppliedStereotypes();
-		}
 		refreshShadow();
 		refreshFontColor();
 	}
-
-
 
 	/**
 	 * Refresh the font. This method shouldn't be overriden by subclasses. To refresh labels font,
