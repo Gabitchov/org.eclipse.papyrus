@@ -454,7 +454,7 @@ public class MultiAssociationHelper extends ElementHelper {
 				association = (Association) ((View) targetEditPart.getModel()).getElement();
 				newSemanticElement = (NamedElement) ((View) sourceEditPart.getModel()).getElement();
 			}
-			System.err.println("step init, can execute?" + command.canExecute());
+			//System.err.println("step init, can execute?" + command.canExecute());
 			// 0. add semantic
 			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association,
 					UMLElementTypes.Property_3005, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
@@ -462,7 +462,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
 			((CompoundCommand) command).add(new ICommandProxy(propertyCreateCommand));
 
-			System.err.println("0. add semantic, can execute?" + command.canExecute());
+			//System.err.println("0. add semantic, can execute?" + command.canExecute());
 			// 1. add the branch graphically
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4019,
 					((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(),
@@ -476,7 +476,7 @@ public class MultiAssociationHelper extends ElementHelper {
 
 			aBranchCommand.setElement(association);
 			((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
-			System.err.println("1. add the branch graphically, can execute?" + command.canExecute());
+			//System.err.println("1. add the branch graphically, can execute?" + command.canExecute());
 			return command;
 		}
 		return UnexecutableCommand.INSTANCE;

@@ -196,7 +196,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 */
 	public org.eclipse.gef.commands.Command getMoveTarget(ReconnectRequest request,
 			org.eclipse.gef.commands.Command command, INodeEditPart node, ConnectionAnchor targetAnchor) {
-		System.err.println("custom reconnection for GeneralizationSet target");
+		//System.err.println("custom reconnection for GeneralizationSet target");
 		org.eclipse.gef.commands.CompoundCommand cc = new org.eclipse.gef.commands.CompoundCommand();
 		// look for all Generalization set connected to the source location that reference the same
 		// generalizationSet
@@ -245,8 +245,8 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * @return the reconnect source command
 	 */
 	public Command getReconnectSourceCommand(ReconnectRequest request, INodeEditPart node) {
-		System.err.println("custom reconnection for GeneralizationSet source");
-		System.err.println("node--> " + node);
+		//System.err.println("custom reconnection for GeneralizationSet source");
+		//System.err.println("node--> " + node);
 
 		if (node == null)
 			return null;
@@ -254,7 +254,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 
 		ConnectionAnchor sourceAnchor = node.getSourceConnectionAnchor(request);
-		System.err.println("sourceAnchor--> " + sourceAnchor.getReferencePoint());
+		//System.err.println("sourceAnchor--> " + sourceAnchor.getReferencePoint());
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
 		sceCommand.setEdgeAdaptor(new EObjectAdapter((View) request.getConnectionEditPart().getModel()));
 		sceCommand.setNewSourceAdaptor(new EObjectAdapter((View) node.getModel()));

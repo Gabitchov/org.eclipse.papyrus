@@ -232,7 +232,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 			// set the diagram to the fragment.
 			// First, compute the URI
 			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(diagram));
-			System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")");
+			//System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")");
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = EditorMessages.Editor_error_setinput_title;
