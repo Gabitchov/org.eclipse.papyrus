@@ -39,8 +39,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Specific edit policy for label displaying stereotypes and their properties for edges representing
- * UML elements.
+ * Specific edit policy for label displaying stereotypes and their properties for representing UML
+ * elements.
  */
 public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicy implements
 		NotificationListener, IPapyrusListener {

@@ -26,7 +26,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * this uml edit part can refresh shadow and gradient.
  */
-public abstract class NodeEditPart extends AbstractBorderedShapeEditPart {
+public abstract class NodeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 	public NodeEditPart(View view) {
 		super(view);
