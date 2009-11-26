@@ -6,17 +6,17 @@
  * available at http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: Gabriel Merin Cubero (Prodevelop) – Sequence Diagram Implementation
+ * Thibault Landré (Atos Origin) - Add crossAtEnd and dashLine figure
  *
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.common.draw2d;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LifelineDotLineFigure.
  * 
@@ -34,6 +34,12 @@ public class LifelineDotLineFigure extends Shape {
 
 	/** The DASHE d_ size. */
 	private final int DASHED_SIZE = 10;
+	
+	/** The central point of the cross at end */ 
+	private RectangleFigure crossAtEndRectangle;
+	
+	/** The DashLine figure where elements will be attached */
+	private RectangleFigure dashLineRectangle;
 
 	// Methods
 
@@ -42,6 +48,15 @@ public class LifelineDotLineFigure extends Shape {
 	 */
 	public LifelineDotLineFigure() {
 		super();
+		
+		// Init dashLineRectangle
+		dashLineRectangle = new RectangleFigure();
+		dashLineRectangle.setParent(this);
+		
+		// Init crossAtEnd rectangle figure
+		crossAtEndRectangle = new RectangleFigure();
+		crossAtEndRectangle.setParent(this);
+		crossAtEndRectangle.setSize(1,1);
 	}
 
 	/**
@@ -87,50 +102,81 @@ public class LifelineDotLineFigure extends Shape {
 
 		pEnd.x = pStart.x;
 		pEnd.y = pStart.y + r.height - 1;
-
+		
+		// Create the dash line
 		pAux = pStart.getCopy();
-
-		graphics.setLineStyle(Graphics.LINE_SOLID);
-		graphics.setForegroundColor(ColorConstants.black);
 
 		while (pAux.y <= pEnd.y) {
 			// The drawing limit is pEnd.y
 			int yEnd = pAux.y + SOLID_SIZE;
 			if (yEnd > pEnd.y) {
 				yEnd = pEnd.y;
-			}
+			}			
 			graphics.drawLine(pAux, new Point(pAux.x, yEnd));
 			pAux.y = pAux.y + DASHED_SIZE;
-		}
+		}  
+		
+		int pixels = 10;
+		
+		// Update the position of the crossAtEndRectangle
+		crossAtEndRectangle.setLocation(new Point(pEnd.x, pEnd.y - pixels));
+		
+		// Update the size and the location of the rectangle representing the dash line
+		dashLineRectangle.setSize(1, pEnd.y-pStart.y);
+		dashLineRectangle.setLocation(pStart);
+		
+		
+		// Create a cross at the end of the Figure
+		if (crossAtEnd) {
+			drawCrossAtEnd(graphics, pEnd, pixels);
+		} 
+	}
 
-		// Case the Lifeline has a DestructionEvent
-		if (crossAtEnd == true) {
-			int pixels = 10;
+	/**
+	 * Create a cross at the end of the figure. 
+	 * The cross will be drawn at the pEnd - pixels position  
+	 * @param graphics the graphics
+	 * @param pEnd the point used to position the cross
+	 * @param pixels the height which will be deduce from the pEnd to position the cross
+	 */
+	private void drawCrossAtEnd(Graphics graphics, Point pEnd, int pixels) {
+		Point p1Start = new Point();
+		Point p1End = new Point();
 
-			Point p1Start = new Point();
-			Point p1End = new Point();
+		Point p2Start = new Point();
+		Point p2End = new Point();
 
-			Point p2Start = new Point();
-			Point p2End = new Point();
+		p1Start.x = pEnd.x - pixels;
+		p1Start.y = pEnd.y;
 
-			p1Start.x = pEnd.x - pixels;
-			p1Start.y = pEnd.y;
+		p1End.x = pEnd.x + pixels;
+		p1End.y = pEnd.y - 2 * pixels;
 
-			p1End.x = pEnd.x + pixels;
-			p1End.y = pEnd.y - 2 * pixels;
+		p2Start.x = pEnd.x + pixels;
+		p2Start.y = pEnd.y;
 
-			p2Start.x = pEnd.x + pixels;
-			p2Start.y = pEnd.y;
+		p2End.x = pEnd.x - pixels;
+		p2End.y = pEnd.y - 2 * pixels;
 
-			p2End.x = pEnd.x - pixels;
-			p2End.y = pEnd.y - 2 * pixels;
+		graphics.setLineStyle(Graphics.LINE_SOLID);
 
-			graphics.setLineStyle(Graphics.LINE_SOLID);
-			graphics.setForegroundColor(ColorConstants.black);
-
-			graphics.drawLine(p1Start, p1End);
-			graphics.drawLine(p2Start, p2End);
-		}
+		graphics.drawLine(p1Start, p1End);
+		graphics.drawLine(p2Start, p2End);
+	}
+	
+	
+	/**
+	 * Get a rectangleFigure representing the central point of the cross
+	 */
+	public RectangleFigure getCrossAtEndRectangle(){
+		return crossAtEndRectangle;
+	}
+	
+	/**
+	 * Get a rectangleFigure representing the dashLine
+	 */
+	public RectangleFigure getDashLineRectangle(){
+		return dashLineRectangle;
 	}
 
 }
