@@ -23,7 +23,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * this editpart manage the display of qualifiedName
+ * this editpart manage the  font and icon of the name label and qualified name label. 
  * 
  */
 public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart {
@@ -48,8 +48,6 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 
 		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
-			refreshQualifiedNameDepth();
-			refreshQualifiedName();
 			refreshIconNamedLabel();
 			refreshFontColor();
 		}
@@ -59,19 +57,11 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View) getModel()));
 	}
 
-	private void refreshQualifiedName() {
-		getNodeNamedElementFigure().setQualifiedName(((NamedElement) resolveSemanticElement()).getQualifiedName());
-	}
-
-	private void refreshQualifiedNameDepth() {
-		getNodeNamedElementFigure().setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) getModel()));
-	}
+	
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		if(getNodeNamedElementFigure()!=null&& resolveSemanticElement()!=null){
-			refreshQualifiedNameDepth();
-			refreshQualifiedName();
 			refreshIconNamedLabel();
 			refreshFontColor();
 		}
