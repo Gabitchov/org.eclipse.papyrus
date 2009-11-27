@@ -89,23 +89,27 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * The ContentProvider should not contain IEditorModel.
 	 */
 	public SashWindowsContainer() {
-		this.multiEditorManager = null;
-		activePageTracker = new ActivePageTracker();
+		this(null);
 	}
 
 	/**
 	 * Constructor.
 	 * Build a container with EditorPart management. The container will allow to add EditorPart
 	 * (and thus IEditorModel to the ContentProvider).
+	 * 
+	 * @param multiEditorManager The manager allowing to use {@link IEditorModel} in the model.
+	 *  If null, the sash will not render IEditorModel.
+	 *  
 	 */
 	public SashWindowsContainer(IMultiEditorManager multiEditorManager) {
 		this.multiEditorManager = multiEditorManager;
 		activePageTracker = new ActivePageTracker();
 
-		// Add listener on activePageChange.
-		// This listener will take in charge editor services switching.
-		activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager.getEditorSite()));
-
+		if (multiEditorManager != null) {
+			// Add listener on activePageChange.
+			// This listener will take in charge editor services switching.
+			activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager.getEditorSite()));
+		}
 	}
 
 	/**
@@ -146,6 +150,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		rootPart.createPartControl(container);
 		// Create children
 		refreshTabs();
+		// Set selection
+		selectPage(lookupFirstValidPage());
+		
 		// postCreatePartControl();
 		// TODO reactivate next
 		initDrag(container);
@@ -164,13 +171,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Notifies this page container that the specified page has been activated. This method
 	 * is called after the current tabs has been changed, either by refreshing the tabs, or by a user
 	 * UI action.
+	 * This method just set correctly the active page value in the Container, and fire pageChanged events if needed.
+	 * It does not change the selected page in the Part.
 	 * 
 	 * Propagate the event to activePageTracker.
 	 * 
 	 * @param childPart
 	 */
 	protected void pageChanged(PagePart childPart) {
-		System.out.println("pageChanged(" + childPart + ")");
 		activePageTracker.setActiveEditor(childPart);
 	}
 
@@ -183,7 +191,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void pageChangedEvent(PagePart childPart) {
-		System.out.println("pageChangedEvent(" + childPart + ")");
 		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
 		pageChanged(childPart);
 	}
@@ -197,19 +204,18 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void setActivePage(PagePart childPart) {
-		// System.out.println("setActivePage("+childPart+")");
 		pageChanged(childPart);
 	}
 
 	/**
 	 * A change has happen in one of the inner parts. Relay the event.
 	 * This method is called by inner parts whenever the event happen in one of the part.
+	 * It collects and relay the firePropertyChange(int propertyId) calls from the inner IEditor.
 	 * 
 	 * @param propertyId
 	 */
 	protected void firePropertyChange(int propertyId) {
-		// TODO Auto-generated method stub
-//		System.out.println("Event PropertyChanged = " + propertyId);
+		// For now, we do nothing with this event.
 	}
 
 	/**
@@ -352,6 +358,56 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		showTilesStatus();
 	}
 
+	/**
+	 * Select the specified page in the Parts. The specified page will becomes the active one.
+	 * Appropriate events are fired.
+	 * This is the programatic counterpart of selecting a page in the UI.
+	 * If the provided page is null, do nothing.
+	 * 
+	 * @param page The page to select or null.
+	 */
+	protected void selectPage( PagePart page ) {
+		if(page == null)
+			return;
+		TabFolderPart folder = page.getParent();
+		folder.setActiveEditor(page);
+	}
+	
+	/**
+	 * Select the specified page in the Parts. The specified page will becomes the active one.
+	 * Appropriate events are fired.
+	 * This is the programatic counterpart of selecting a page in the UI.
+	 * If the provided page is null, do nothing.
+	 * 
+	 * @param page The page to select or null. The IPage should 
+	 * be an instance previously returned by the SashContainer.
+	 */
+	public void selectPage( IPage page ) {
+		if(page == null)
+			return;
+
+		// check if we are a correct instance.
+		if(! (page instanceof PagePart) )
+			return;
+		
+		selectPage((PagePart)page);
+	}
+
+	/**
+	 * Lookup the {@link IPage} used to render the specified rawModel.
+	 * @param rawModel The model for which the IPage is requested.
+	 * If the model is not rendered, return null;
+	 * 
+	 * @return The corresponding IPage or null if not found.
+	 */
+	public IPage lookupModelPage(Object rawModel)
+	{
+		// Use a visitor to lookup the first IPage
+		LookupModelPageVisitor visitor = new LookupModelPageVisitor(rawModel);
+		rootPart.visit(visitor);
+		return visitor.result();
+	}
+	
 	/**
 	 * Check if the oldActivePage still alive, and set it if needed.
 	 * If the oldActivePage is null, set an active page if one exist.

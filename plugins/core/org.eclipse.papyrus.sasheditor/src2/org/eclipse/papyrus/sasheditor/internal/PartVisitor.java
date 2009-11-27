@@ -23,14 +23,20 @@ package org.eclipse.papyrus.sasheditor.internal;
 public class PartVisitor implements IPartVisitor {
 
 	/**
-	 * Visit the specified type, and then visit the childs..
+	 * Visit the specified type, and then visit the children ...
 	 * 
 	 * @param folder
 	 */
-	public void accept(TabFolderPart part) {
-		acceptTabFolderPart(part);
-		// Visit the children
-		part.visitChildren(this);
+	public boolean accept(TabFolderPart part) {
+
+
+		if(acceptTabFolderPart(part)) {
+			// Visit the children
+			return part.visitChildren(this);
+		}
+
+		// stop visiting
+		return false;
 	}
 
 	/**
@@ -38,10 +44,14 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param folder
 	 */
-	public void accept(RootPart part) {
-		acceptRootPart(part);
-		// Visit the children
-		part.visitChildren(this);
+	public boolean accept(RootPart part) {
+
+		if(acceptRootPart(part)) {
+			// Visit the children
+			return part.visitChildren(this);
+		}
+		// stop visiting
+		return false;
 	}
 
 	/**
@@ -49,10 +59,13 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param folder
 	 */
-	public void accept(SashPanelPart part) {
-		acceptSashPanelPart(part);
-		// Visit the children
-		part.visitChildren(this);
+	public boolean accept(SashPanelPart part) {
+		if(acceptSashPanelPart(part)) {
+			// Visit the children
+			return part.visitChildren(this);
+		}
+		// stop visiting
+		return false;
 	}
 
 	/**
@@ -60,10 +73,13 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param folder
 	 */
-	public void accept(TabItemPart part) {
-		acceptTabItemPart(part);
-		// Visit the children
-		part.visitChildren(this);
+	public boolean accept(TabItemPart part) {
+		if(acceptTabItemPart(part)) {
+			// Visit the children
+			return part.visitChildren(this);
+		}
+		// stop visiting
+		return false;
 	}
 
 	/**
@@ -71,10 +87,13 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	public void accept(EditorPart part) {
-		acceptEditorTile(part);
-		// Visit the children
-		part.visitChildren(this);
+	public boolean accept(EditorPart part) {
+		if(acceptEditorTile(part)) {
+			// Visit the children
+			return part.visitChildren(this);
+		}
+		// stop visiting
+		return false;
 	}
 
 	/**
@@ -82,10 +101,13 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	public void accept(ComponentPart part) {
-		acceptEditorTile(part);
-		// Visit the children
-		part.visitChildren(this);
+	public boolean accept(ComponentPart part) {
+		if(acceptEditorTile(part)) {
+			// Visit the children
+			return part.visitChildren(this);
+		}
+		// stop visiting
+		return false;
 	}
 
 
@@ -96,7 +118,8 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	protected void acceptRootPart(RootPart part) {
+	protected boolean acceptRootPart(RootPart part) {
+		return true;
 	}
 
 	/**
@@ -104,7 +127,8 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	protected void acceptSashPanelPart(SashPanelPart part) {
+	protected boolean acceptSashPanelPart(SashPanelPart part) {
+		return true;
 	}
 
 	/**
@@ -112,7 +136,8 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	protected void acceptTabFolderPart(TabFolderPart part) {
+	protected boolean acceptTabFolderPart(TabFolderPart part) {
+		return true;
 	}
 
 	/**
@@ -120,7 +145,8 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	protected void acceptTabItemPart(TabItemPart part) {
+	protected boolean acceptTabItemPart(TabItemPart part) {
+		return true;
 	}
 
 	/**
@@ -128,7 +154,8 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	protected void acceptEditorTile(EditorPart part) {
+	protected boolean acceptEditorTile(EditorPart part) {
+		return true;
 	}
 
 	/**
@@ -136,7 +163,8 @@ public class PartVisitor implements IPartVisitor {
 	 * 
 	 * @param part
 	 */
-	protected void acceptEditorTile(ComponentPart part) {
+	protected boolean acceptEditorTile(ComponentPart part) {
+		return true;
 	}
 
 

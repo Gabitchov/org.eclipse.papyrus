@@ -287,8 +287,8 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 * @param visitor
 	 * @return
 	 */
-	public void visit(IPartVisitor visitor) {
-		visitor.accept(this);
+	public boolean visit(IPartVisitor visitor) {
+		return visitor.accept(this);
 	}
 
 	/**
@@ -296,9 +296,12 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 * 
 	 * @param visitor
 	 */
-	public void visitChildren(IPartVisitor visitor) {
+	public boolean visitChildren(IPartVisitor visitor) {
 		if(child != null)
-			child.visit(visitor);
+			return child.visit(visitor);
+		
+		// Return the default value
+		return true;
 	}
 
 	/**

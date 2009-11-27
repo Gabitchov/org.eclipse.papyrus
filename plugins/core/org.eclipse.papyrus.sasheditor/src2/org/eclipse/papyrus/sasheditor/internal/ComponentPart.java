@@ -339,8 +339,8 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * @param visitor
 	 * @return
 	 */
-	public void visit(IPartVisitor visitor) {
-		visitor.accept(this);
+	public boolean visit(IPartVisitor visitor) {
+		return visitor.accept(this);
 	}
 
 	/**
@@ -349,7 +349,8 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * 
 	 * @param visitor
 	 */
-	public void visitChildren(IPartVisitor visitor) {
+	public boolean visitChildren(IPartVisitor visitor) {
+		return true;
 	}
 
 

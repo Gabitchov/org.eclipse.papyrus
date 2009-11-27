@@ -6,7 +6,6 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * Description of the first page
@@ -15,9 +14,6 @@ import org.eclipse.swt.widgets.Control;
  */
 
 public class MessagePartModel implements IComponentModel {
-
-	/** The text editor used in page 0. */
-	private Control board;
 
 	private String title;
 

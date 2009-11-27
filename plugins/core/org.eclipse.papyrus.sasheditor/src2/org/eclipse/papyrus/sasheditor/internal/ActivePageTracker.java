@@ -22,13 +22,13 @@ import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
 
 /**
  * Instance of this class track the active Page.
- * When the active Page change, the tracker receive an event, and perform following tasks:
+ * When the active Page change, the tracker receive an event on {@link #setActiveEditor(PagePart)}, and perform following tasks:
  * <ul>
- * <li>- call editorChange()</li>
+ * <li>- call {@link #fireEditorChangeEvent(PagePart, PagePart)}</li>
  * <li>- fire events to all registered listeners.</li>
  * </ul>
  * 
- * This class allows to kind of listeners:
+ * This class allows tow kind of listeners:
  * 
  * <ul>
  * <li> {@link IActiveEditorChangedListener} for internal use</li>

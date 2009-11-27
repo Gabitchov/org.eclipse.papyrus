@@ -60,7 +60,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	 * 
 	 * @param visitor
 	 */
-	abstract public void visit(IPartVisitor visitor);
+	abstract public boolean visit(IPartVisitor visitor);
 
 	/**
 	 * Synchronize the part and its children with the models in contentProvider.

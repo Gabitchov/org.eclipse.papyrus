@@ -32,15 +32,17 @@ public class PageVisitorWrapper extends PartVisitor {
 	 * We visit a Component part
 	 */
 	@Override
-	public void accept(ComponentPart part) {
+	public boolean accept(ComponentPart part) {
 		pageVisitor.accept(part);
+		return true;
 	}
 	
 	/**
 	 * We visit an {@link EditorPart}.
 	 */
 	@Override
-	public void accept(EditorPart part) {
+	public boolean accept(EditorPart part) {
 		pageVisitor.accept(part);
+		return true;
 	}
 }

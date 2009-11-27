@@ -90,8 +90,9 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 * Visit this part.
 	 * 
 	 * @param visitor
+	 * @return true if the visit should continue, false otherwise.
 	 */
-	abstract public void visit(IPartVisitor visitor);
+	abstract boolean visit(IPartVisitor visitor);
 
 	/**
 	 * Locates the part that intersects the given point and that have the expected type.

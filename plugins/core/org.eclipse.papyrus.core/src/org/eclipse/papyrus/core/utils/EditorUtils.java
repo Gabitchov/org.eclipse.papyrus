@@ -161,6 +161,33 @@ public class EditorUtils {
 	}
 
 	/**
+	 * Lookup the currently active Diagram from the Papyrus editor. Return the current Diagram
+	 * or null if none is active.
+	 * TODO This method introduce dependency on GMF. It can be moved to a GMF plugin.
+	 * @return
+	 */
+	public static DiagramEditor lookupActiveDiagramEditor()
+	{
+		// First, lookup the main editor. 
+        IEditorPart editorPart = getWorkbenchActiveEditor();
+        // Get the sashwindow container
+        ISashWindowsContainer container = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
+ 
+        // Get the active page within the sashcontainer
+        IEditorPart activeEditor = container.getActiveEditor();
+        // Check if it is a GMF DiagramEditor
+        if( activeEditor instanceof DiagramEditor)
+        {
+        	DiagramEditor editor = (DiagramEditor)activeEditor;
+        	return editor;
+        }
+        
+        // Not found
+        return null;
+		
+	}
+	
+	/**
 	 * Lookup the currently active IEditor in the SashSystem.
 	 * If the currently eclipse active editor doesn't contains a {@link ISashWindowsContainer}, return null.
 	 * If the current SashSystem page is not a IEditor, return null.

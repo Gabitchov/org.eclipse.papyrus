@@ -30,13 +30,14 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	 */
 
 	@Override
-	public void accept(RootPart tile) {
+	public boolean accept(RootPart tile) {
 		indent();
 		tile.showStatus();
 		//			System.out.println( "root:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
+		return true;
 	}
 
 	/**
@@ -53,59 +54,62 @@ public class ShowPartStatusVisitor extends PartVisitor {
 		}
 		// last segment
 		System.out.print("+ ");
-
 	}
 
 	/**
 	 * @param tile
 	 */
 	@Override
-	public void accept(SashPanelPart tile) {
+	public boolean accept(SashPanelPart tile) {
 		indent();
 		tile.showStatus();
 		//			System.out.println( "sash:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
+		return true;
 	}
 
 	/**
 	 * @param tile
 	 */
 	@Override
-	public void accept(TabFolderPart tile) {
+	public boolean accept(TabFolderPart tile) {
 		indent();
 		tile.showStatus();
 		//			System.out.println( "folder:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
+		return true;
 	}
 
 	/**
 	 * @param tile
 	 */
 	@Override
-	public void accept(EditorPart tile) {
+	public boolean accept(EditorPart tile) {
 		indent();
 		tile.showStatus();
 		//			System.out.println( "editor:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
+		return true;
 	}
 
 	/**
 	 * @param tile
 	 */
 	@Override
-	public void accept(ComponentPart tile) {
+	public boolean accept(ComponentPart tile) {
 		indent();
 		tile.showStatus();
 		//			System.out.println( "editor:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
+		return true;
 	}
 
 

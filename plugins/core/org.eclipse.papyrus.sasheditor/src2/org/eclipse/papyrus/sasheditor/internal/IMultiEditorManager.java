@@ -21,6 +21,9 @@ import org.eclipse.ui.IWorkbenchPartSite;
 /**
  * This interface allows EditorPart to access objects provided by the real editor.
  * Implementation of this interface is provided to the {@link SashWindowsContainer} and used by {@link EditorPart}.
+ * The EditorPart will call {@link #getEditorInput()} and pass the result to input of the created nested IEditorPart.
+ * The site provided by {@link #getEditorSite()} is used to initialize a specific site for the nested IEditorPart.
+ * It is also used by the {@link SashWindowsContainer}.
  * 
  * @author dumoulin
  */

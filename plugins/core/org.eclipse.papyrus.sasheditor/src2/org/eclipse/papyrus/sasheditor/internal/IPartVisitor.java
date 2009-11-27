@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sasheditor.internal;
 
 /**
  * Visitor used to visit the hierarchy of Parts.
+ * Visit can be stopped by returning false from the visit() method.
  * 
  * @author dumoulin
  * 
@@ -26,44 +27,50 @@ public interface IPartVisitor {
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
 
-	public void accept(RootPart tile);
-
-	/**
-	 * Accept the node of specified type.
-	 * 
-	 * @param folder
-	 */
-	public void accept(SashPanelPart tile);
+	public boolean accept(RootPart tile);
 
 	/**
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
-	public void accept(TabFolderPart folder);
+	public boolean accept(SashPanelPart tile);
 
 	/**
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
-	public void accept(TabItemPart tile);
+	public boolean accept(TabFolderPart folder);
 
 	/**
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
-	public void accept(EditorPart tile);
+	public boolean accept(TabItemPart tile);
+
+	/**
+	 * Accept the node of specified type.
+	 * 
+	 * @param folder
+	 * @return true if the visit should continue, false if the visit should be stopped.
+	 */
+	public boolean accept(EditorPart tile);
 
 	/**
 	 * Accept the node of specified type.
 	 * 
 	 * @param componentPart
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
-	public void accept(ComponentPart componentPart);
+	public boolean accept(ComponentPart componentPart);
 
 
 }

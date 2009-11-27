@@ -942,8 +942,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param visitor
 	 * @return
 	 */
-	public void visit(IPartVisitor visitor) {
-		visitor.accept(this);
+	public boolean visit(IPartVisitor visitor) {
+		return visitor.accept(this);
 	}
 
 	/**
@@ -951,10 +951,14 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @param visitor
 	 */
-	public void visitChildren(IPartVisitor visitor) {
+	public boolean visitChildren(IPartVisitor visitor) {
+		
 		for(TabItemPart child : currentTabItems) {
-			child.visit(visitor);
+			if( !child.visit(visitor) )
+				return false;
 		}
+		// All children have accepter the visit, continue visiting.
+		return true;
 	}
 
 

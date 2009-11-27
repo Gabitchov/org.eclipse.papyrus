@@ -254,8 +254,8 @@ public class TabItemPart {
 	 * @param visitor
 	 * @return
 	 */
-	public void visit(IPartVisitor visitor) {
-		visitor.accept(this);
+	public boolean visit(IPartVisitor visitor) {
+		return visitor.accept(this);
 	}
 
 	/**
@@ -263,8 +263,8 @@ public class TabItemPart {
 	 * 
 	 * @param visitor
 	 */
-	public void visitChildren(IPartVisitor visitor) {
-		childPart.visit(visitor);
+	public boolean visitChildren(IPartVisitor visitor) {
+		return childPart.visit(visitor);
 	}
 
 	/**
