@@ -36,9 +36,12 @@ import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.commands.DefferedAppliedStereotypeToDisplayCommand;
 import org.eclipse.papyrus.diagram.common.editparts.IUMLEditPart;
+import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -72,6 +75,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 */
 	@Override
 	public Command getCommand(Request request) {
+		// command should be a composed command: apply stereotype, display stereotype and eventually
+		// change the name of the semantic element
 		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType()))
 			return getApplyStereotypeCommand((ApplyStereotypeRequest) request);
 
@@ -134,6 +139,36 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 				return CommandResult.newOKCommandResult(result);
 			}
 		});
+
+		// check if the name of base element must be changed (don't bother what is the value of the
+		// element, only the key is needed
+		Object newName = request.getExtendedData().get(ApplyStereotypeRequest.NEW_EDIT_PART_NAME);
+		if (newName != null) {
+			cc.compose(new AbstractTransactionalCommand(editingDomain, "Edit Base Element Name", null) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+						throws ExecutionException {
+
+					// retrieves the edit part on which stereotype request is made
+					if (getHost() instanceof IUMLEditPart) {
+						if (!(element instanceof NamedElement)) {
+							return null;
+						}
+
+						// retrieves the list of stereotypes to be applied (qualified names)
+						List<String> stereotypeQNames = _request.getStereotypesToApply();
+						String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQNames.get(0));
+						// find a new name for the element
+						String name = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(),
+								stereotypeName);
+						((NamedElement) element).setName(name);
+
+					}
+					return CommandResult.newOKCommandResult(result);
+				}
+			});
+		}
 
 		// 2. display stereotypes
 		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(element);
