@@ -72,7 +72,7 @@ public class DiagramNodeFigure extends RectangleFigure {
 		super();
 		FontData[] fontdata2 = { new FontData("Arial", 10, SWT.BOLD) };
 
-		Font font2 = Activator.fontManager.get(fontdata2);
+		Font font2 = Activator.getFontManager().get(fontdata2);
 
 		this.iconLabel = new WrappingLabel("");
 		this.iconLabel.setForegroundColor(ColorConstants.red);

@@ -171,7 +171,7 @@ public class CompositeFigure extends NodeNamedElementFigure {
 
 		// Retrieve current figure font
 		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) }; //$NON-NLS-1$
-		Font font = Activator.fontManager.get(fontdata);
+		Font font = Activator.getFontManager().get(fontdata);
 
 		// Create the TagLabel
 		tagLabel = new Label();

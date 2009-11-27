@@ -60,10 +60,10 @@ public class Activator extends AbstractUIPlugin {
 	public static final String DEFAULT_IMAGE = "icons/papyrus/PapyrusLogo16x16.gif";
 
 	/** Color manager. */
-	public static ColorManager colorManager = /* new ColorManager(); */null;
+	protected static ColorManager colorManager = /* new ColorManager(); */null;
 
 	/** Font manager. */
-	public static FontManager fontManager = /* new FontManager(); */null;
+	protected static FontManager fontManager = /* new FontManager(); */null;
 
 	/** left Stereotype delimiters ('Guillemets francais'). */
 	public static String ST_LEFT = String.valueOf("\u00AB");
