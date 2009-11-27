@@ -5,7 +5,6 @@ package org.eclipse.papyrus.sasheditor.ui.views;
 
 import java.util.ArrayList;
 
-import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
