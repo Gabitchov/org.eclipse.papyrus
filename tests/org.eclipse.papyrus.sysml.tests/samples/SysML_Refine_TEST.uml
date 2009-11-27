@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.papyrusuml.org/SysML/Requirements/1" xmlns:standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.papyrusuml.org/SysML/Requirements/1 http://www.papyrusuml.org/SysML/1#//requirements">
+  <uml:Model xmi:id="_wJfGRw_xEd2mbaTvSwUWQw" name="SysML_Refine_TEST">
+    <packageImport xmi:id="_wJfGSA_xEd2mbaTvSwUWQw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zIq0AA_xEd2mbaTvSwUWQw" name="Class_0"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zhGiIA_xEd2mbaTvSwUWQw" name="Class_1" clientDependency="_6vCvgA_xEd2mbaTvSwUWQw _CwrqsA_yEd2mbaTvSwUWQw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zx8agA_xEd2mbaTvSwUWQw" name="Class_2"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0BSeEA_xEd2mbaTvSwUWQw" name="Class_3"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0V2Y0A_xEd2mbaTvSwUWQw" name="Class_4" clientDependency="_DUvaAA_yEd2mbaTvSwUWQw"/>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_6vCvgA_xEd2mbaTvSwUWQw" name="FromClass_1toClass_2" supplier="_zx8agA_xEd2mbaTvSwUWQw" client="_zhGiIA_xEd2mbaTvSwUWQw"/>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_CwrqsA_yEd2mbaTvSwUWQw" name="FromClass_1toClass_3" supplier="_0BSeEA_xEd2mbaTvSwUWQw" client="_zhGiIA_xEd2mbaTvSwUWQw"/>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_DUvaAA_yEd2mbaTvSwUWQw" name="FromClass_4toClass_3" supplier="_0BSeEA_xEd2mbaTvSwUWQw" client="_0V2Y0A_xEd2mbaTvSwUWQw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_houV4A_yEd2mbaTvSwUWQw" name="Class_5"/>
+    <profileApplication xmi:id="_wJfGSQ_xEd2mbaTvSwUWQw">
+      <eAnnotations xmi:id="_wJfGSg_xEd2mbaTvSwUWQw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_ZeccEA_yEd2mbaTvSwUWQw">
+      <eAnnotations xmi:id="_ZeccEQ_yEd2mbaTvSwUWQw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.papyrusuml.org/SysML/1#//requirements"/>
+      </eAnnotations>
+      <appliedProfile href="../../../plugin/com.cea.papyrus.uml4sysml.extension/model/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_bnrZcg_yEd2mbaTvSwUWQw" base_Class="_zIq0AA_xEd2mbaTvSwUWQw"/>
+  <Requirements:RequirementRelated xmi:id="_jx96UA_yEd2mbaTvSwUWQw" base_NamedElement="_houV4A_yEd2mbaTvSwUWQw"/>
+  <standard:Refine xmi:id="_w_CjIA_zEd2mbaTvSwUWQw" base_Abstraction="_6vCvgA_xEd2mbaTvSwUWQw"/>
+  <standard:Refine xmi:id="_w_MUIA_zEd2mbaTvSwUWQw" base_Abstraction="_CwrqsA_yEd2mbaTvSwUWQw"/>
+  <standard:Refine xmi:id="_w_MUIQ_zEd2mbaTvSwUWQw" base_Abstraction="_DUvaAA_yEd2mbaTvSwUWQw"/>
+  <Requirements:Requirement xmi:id="_0tnGoA_zEd2mbaTvSwUWQw" base_Class="_0BSeEA_xEd2mbaTvSwUWQw"/>
+  <Requirements:Requirement xmi:id="_5TnBYA_zEd2mbaTvSwUWQw" base_Class="_zx8agA_xEd2mbaTvSwUWQw"/>
+  <Requirements:RequirementRelated xmi:id="_7LtygA_zEd2mbaTvSwUWQw" base_NamedElement="_0V2Y0A_xEd2mbaTvSwUWQw"/>
+  <Requirements:RequirementRelated xmi:id="_7LtygQ_zEd2mbaTvSwUWQw" base_NamedElement="_zhGiIA_xEd2mbaTvSwUWQw"/>
+</xmi:XMI>
