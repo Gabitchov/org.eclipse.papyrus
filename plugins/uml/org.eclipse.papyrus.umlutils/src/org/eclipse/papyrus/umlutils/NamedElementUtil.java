@@ -81,4 +81,17 @@ public class NamedElementUtil {
 		}
 		return vKindValue;
 	}
+
+	/**
+	 * Returns the name of an element, given its qualified name
+	 * 
+	 * @param qualifiedName
+	 *            the qualified name of the element
+	 * @return the name of the element. It shall never be <code>null</code>.
+	 */
+	public static String getNameFromQualifiedName(String qualifiedName) {
+		String name = qualifiedName.substring(qualifiedName.lastIndexOf(NamedElement.SEPARATOR)
+				+ NamedElement.SEPARATOR.length());
+		return (name != null) ? name : "";
+	}
 }

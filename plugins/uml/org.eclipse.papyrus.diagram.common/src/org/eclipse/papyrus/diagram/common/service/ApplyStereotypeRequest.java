@@ -25,6 +25,9 @@ public class ApplyStereotypeRequest extends CreateRequest {
 	/** type of the Apply stereotype request */
 	public static String APPLY_STEREOTYPE_REQUEST = "applyStereotype";
 
+	/** key for the new edit part name base extended metadata */
+	public static String NEW_EDIT_PART_NAME = "editPartNameBase";
+
 	/** stereotypes to apply */
 	final protected List<String> stereotypes;
 

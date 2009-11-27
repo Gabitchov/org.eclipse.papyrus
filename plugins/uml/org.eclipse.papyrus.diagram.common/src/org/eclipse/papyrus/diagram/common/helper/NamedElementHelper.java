@@ -42,12 +42,28 @@ public class NamedElementHelper {
 	 * 
 	 * @param umlParent
 	 *            the parent of the element to create
+	 * @param eclass
+	 *            the eclass of the element to name
 	 * 
 	 * @return a distinguisable name within the namespace of the umlParent
 	 */
 	public String getNewUMLElementName(Element umlParent, EClass eclass) {
+		return getNewUMLElementName(umlParent, eclass.getName());
+	}
 
-		this.setBaseString(eclass.getName());
+	/**
+	 * Generic method that returns a new unique name within a namespace.
+	 * 
+	 * @param umlParent
+	 *            the parent of the element to create
+	 * @param baseString
+	 *            the base string for the new element name
+	 * 
+	 * @return a distinguisable name within the namespace of the umlParent
+	 */
+	public String getNewUMLElementName(Element umlParent, String baseString) {
+
+		this.setBaseString(baseString);
 		String name = ""; //$NON-NLS-1$
 
 		boolean found = false;

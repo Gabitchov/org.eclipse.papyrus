@@ -114,6 +114,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 			// apply the stereotype on the first edit part.
 			List<String> list = new ArrayList<String>();
 			ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
+			request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
 			((EditPart) editparts.get(0)).performRequest(request);
 		}
 	}

@@ -109,9 +109,18 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		// if edit part were created, apply the stereotypes on these edit parts
 		if (!editparts.isEmpty()) {
 			// apply the stereotype on the first edit part.
-			List<String> list = new ArrayList<String>();
 			ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
+
+			// adds metadata to the request to change the name of the element, according to the
+			// first stereotype to apply
+			// we are in post action, the list has been checked to be not null nor empty.
+			// stereotypes.get(0) should never cause problem
+			request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
+
 			((EditPart) editparts.get(0)).performRequest(request);
+
+			// modify name if possible
+
 		}
 	}
 
