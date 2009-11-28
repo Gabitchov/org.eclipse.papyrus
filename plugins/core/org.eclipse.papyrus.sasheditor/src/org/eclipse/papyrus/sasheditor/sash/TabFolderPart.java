@@ -437,7 +437,6 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		if(tabUnderPointer == null) {
 			Rectangle titleArea = pTabFolder.getTabArea();
 
-			System.out.println("titleArea=" + titleArea + ", position=" + position);
 			// If we're dragging over the title area, treat this as a drop in the last
 			// tab position.
 			if(titleArea.contains(position) && pTabFolder.getTabFolder().getItemCount() > 0) {
@@ -560,9 +559,6 @@ public class TabFolderPart<T> extends MultiPageEditorTile implements ITilePart<T
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#drop()
 		 */
 		public void drop() {
-			System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drop(source=" + sourcePart + "sourceIndex=" + sourceIndex + ", target=" + TabFolderPart.this + ", targetIndex="
-					+ targetIndex);
-
 			// move from a folder to another
 			if(sourcePart == TabFolderPart.this) { // move inside the same folder
 				parentPartContainer.getContainerModel().moveTab(sourcePart.getModel(), sourceIndex, targetIndex);

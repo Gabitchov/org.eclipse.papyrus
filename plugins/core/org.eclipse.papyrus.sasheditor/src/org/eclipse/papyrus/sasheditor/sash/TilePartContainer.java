@@ -516,8 +516,6 @@ public class TilePartContainer<T> {
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#drop()
 		 */
 		public void drop() {
-			System.out.println(TilePartContainer.this.getClass().getSimpleName() + ".drop(source=" + sourcePart + ", target=" + targetPart + "side=" + side);
-
 			// @TODO remove next cast
 			if(side == SWT.CENTER) { // Add to target folder
 				model.moveTab(sourcePart.getModel(), srcTabIndex, ((TabFolderPart<T>)targetPart).getModel(), -1);

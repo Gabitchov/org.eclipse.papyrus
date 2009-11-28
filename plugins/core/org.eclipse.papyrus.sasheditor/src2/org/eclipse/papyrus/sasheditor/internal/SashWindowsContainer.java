@@ -335,8 +335,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * 
 	 */
 	private void refreshTabsInternal() {
-		System.out.println("start synchronize2() ------------------------");
-		showTilesStatus();
+//		System.out.println("start synchronize2() ------------------------");
+//		showTilesStatus();
 
 		// Get the currently selected folder
 		PagePart oldActivePage = getActivePage();
@@ -361,8 +361,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// Reenable SWT and force layout
 		container.setRedraw(true);
 		container.layout(true, true);
-		System.out.println("end synchronize2() ------------------------");
-		showTilesStatus();
+//		System.out.println("end synchronize2() ------------------------");
+//		showTilesStatus();
 	}
 
 	/**
@@ -493,44 +493,19 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 *      org.eclipse.swt.graphics.Rectangle)
 		 */
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
-			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".drag(position=" + position + ", rectangle=" + dragRectangle + ")");
-			// if (!(draggedObject instanceof ITilePart)) {
-			// System.out.println("drag object is of bad type (" +draggedObject + "!=ITilePart)");
-			// return null;
-			// }
-
-			// @TODO remove the cast by changing the method. Only folder can be source and target
+			// TODO remove the cast by changing the method. Only folder can be source and target
 			final TabFolderPart sourcePart = (TabFolderPart)rootPart.findPart(draggedObject); // (ITilePart) draggedObject;
 			// Compute src tab index
-			// @TODO move that and previous in the sender of drag event. Use a class containing both as draggedObject.
+			// TODO move that and previous in the sender of drag event. Use a class containing both as draggedObject.
 			final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 
-			// if (!isStackType(sourcePart) && !isPaneType(sourcePart)) {
-			// return null;
-			// }
-
-			// boolean differentWindows = sourcePart.getWorkbenchWindow() != getWorkbenchWindow();
-			// boolean editorDropOK = ((sourcePart instanceof EditorPane) &&
-			// sourcePart.getWorkbenchWindow().getWorkbench() ==
-			// getWorkbenchWindow().getWorkbench());
-			// if (differentWindows && !editorDropOK) {
-			// return null;
-			// }
-
-			// If this container has no visible children
-			// if (getVisibleChildrenCount(this) == 0) {
-			// return createDropTarget(sourcePart, SWT.CENTER, SWT.CENTER, null);
-			// }
-
+			System.out.println("drag to position=" + position);
 			Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
 			AbstractPanelPart targetPart = null;
-			// ILayoutContainer sourceContainer = isStackType(sourcePart) ? (ILayoutContainer) sourcePart
-			// : sourcePart.getContainer();
 
 			// Check if the cursor is inside the container
 			if(containerDisplayBounds.contains(position)) {
 
-				System.out.println("Inside container bounds");
 				if(rootPart != null) {
 					targetPart = (AbstractPanelPart)rootPart.findPart(position);
 					// System.out.println("targetPart=" + targetPart
@@ -541,42 +516,29 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				if(targetPart != null) {
 					final Control targetControl = targetPart.getControl();
 
+					@SuppressWarnings( "restriction" )
 					final Rectangle targetBounds = DragUtil.getDisplayBounds(targetControl);
 
 					int side = Geometry.getClosestSide(targetBounds, position);
 					int distance = Geometry.getDistanceFromEdge(targetBounds, position, side);
-					//                    
-					// // is the source coming from a standalone part
-					// boolean standalone = (isStackType(sourcePart)
-					// && ((PartStack) sourcePart).isStandalone())
-					// || (isPaneType(sourcePart)
-					// && ((PartPane) sourcePart).getStack()!=null
-					// && ((PartPane) sourcePart).getStack().isStandalone());
-					//                     
-					// // Only allow dropping onto an existing stack from different windows
-					// if (differentWindows && targetPart instanceof EditorStack) {
-					// IDropTarget target = targetPart.getDropTarget(draggedObject, position);
-					// return target;
-					// }
-					//                     
+
 					// Reserve the 5 pixels around the edge of the part for the drop-on-edge cursor
 					// Check if the target can handle the drop.
 					if(distance >= 5) {
 						// Otherwise, ask the part if it has any special meaning for this drop location
-						// @TODO remove cast; change return type of findPart()
+						// TODO remove cast; change return type of findPart()
 						IDropTarget target = targetPart.getDropTarget(draggedObject, (TabFolderPart)sourcePart, position);
 						if(target != null) {
 							return target;
 						}
+					} else {
+						// We are on the boarder, try to drop on the parent 
+						// Warning : the parent could be the rootPart
+						System.out.println("DropTarget near the border");
 					}
 					//                     
 					if(distance > 30) {
-						// if (targetPart instanceof ILayoutContainer) {
-						// ILayoutContainer targetContainer = (ILayoutContainer)targetPart;
-						// if (targetContainer.allowsAdd(sourcePart)) {
 						side = SWT.CENTER;
-						// }
-						// }
 					}
 					//                     
 					// // If the part doesn't want to override this drop location then drop on the edge
@@ -591,30 +553,13 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 					if(sourcePart == targetPart) {
 						pointlessDrop = true;
 					}
-					//
-					// if ((sourceContainer != null)
-					// && (sourceContainer == targetPart)
-					// && getVisibleChildrenCount(sourceContainer) <= 1) {
-					// pointlessDrop = true;
-					// }
-					//
-					// if (side == SWT.CENTER
-					// && sourcePart.getContainer() == targetPart) {
-					// pointlessDrop = true;
-					// }
-					//
-					int cursor = side;
-					//
-					// if (pointlessDrop) {
-					// side = SWT.NONE;
-					// cursor = SWT.CENTER;
-					// }
-					//
-					return createDropTarget(sourcePart, srcTabIndex, side, cursor, targetPart);
+
+					return createDropTarget(sourcePart, srcTabIndex, side, side, targetPart);
 				}
 			} else {
 				// Cursor is outside the container
 				System.out.println("Outside container bounds");
+				// This will be used to create a new Window.
 				// We only allow dropping into a stack, not creating one
 				// if (differentWindows)
 				// return null;
@@ -622,17 +567,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				int side = Geometry.getClosestSide(containerDisplayBounds, position);
 
 				boolean pointlessDrop = false;
-				//
-				// if ((isStackType(sourcePart) && sourcePart.getContainer() == this)
-				// || (sourcePart.getContainer() != null
-				// && isPaneType(sourcePart)
-				// && getVisibleChildrenCount(sourcePart.getContainer()) <= 1)
-				// && ((LayoutPart)sourcePart.getContainer()).getContainer() == this) {
-				// if (root == null || getVisibleChildrenCount(this) <= 1) {
-				// pointlessDrop = true;
-				// }
-				// }
-				//
 				int cursor = Geometry.getOppositeSide(side);
 
 				if(pointlessDrop) {
@@ -641,9 +575,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 				return createDropTarget(sourcePart, srcTabIndex, side, cursor, null);
 			}
-			//
 			return null;
-		} // end method
+		} 
 
 	};
 
@@ -701,8 +634,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#drop()
 		 */
 		public void drop() {
-			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".drop(source=" + sourcePart + ", target=" + targetPart + "side=" + side);
-
 			// @TODO remove next cast
 			if(side == SWT.CENTER) { // Add to target folder
 				contentProvider.movePage(sourcePart.getPartModel(), srcTabIndex, ((TabFolderPart)targetPart).getPartModel(), -1);

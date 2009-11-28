@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.swt.SWT;
@@ -22,16 +22,11 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolder2Adapter;
 import org.eclipse.swt.custom.CTabFolderEvent;
 import org.eclipse.swt.custom.CTabItem;
-import org.eclipse.swt.events.DragDetectEvent;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.events.TraverseEvent;
-import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
@@ -61,22 +56,6 @@ public class PTabFolder {
 	 */
 	private EventsManager listenersManager = new EventsManager();
 
-	/**
-	 * Listen on menu event.
-	 */
-	private Listener menuListener = new Listener() {
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-		 */
-		public void handleEvent(Event event) {
-			Point globalPos = new Point(event.x, event.y);
-			handleContextMenu(globalPos, event);
-		}
-	};
-
 	private Listener dragListener = new Listener() {
 
 		public void handleEvent(Event e) {
@@ -85,14 +64,10 @@ public class PTabFolder {
 		}
 	};
 
-	private Listener mouseUpListener = new Listener() {
-
-		public void handleEvent(Event e) {
-			Point globalPos = ((Control)e.widget).toDisplay(e.x, e.y);
-			System.out.println("mouseUpListener(" + globalPos + ", event=" + e + ")");
-		}
-	};
-
+	/**
+	 * Listener on control activated event.
+	 * This event is used to set the tab as the active page.
+	 */
 	private Listener activateListener = new Listener() {
 
 		public void handleEvent(Event e) {
@@ -101,63 +76,15 @@ public class PTabFolder {
 		}
 	};
 
-	private SelectionListener selectionListener = new SelectionListener() {
-
-		public void widgetDefaultSelected(SelectionEvent e) {
-			System.out.println("selectionListener(event=" + e + ")");
-		}
-
-		public void widgetSelected(SelectionEvent e) {
-			System.out.println("selectionListener(event=" + e + ")");
-		}
-
-	};
-
-	private TraverseListener traverseListener = new TraverseListener() {
-
-		public void keyTraversed(TraverseEvent e) {
-			//			System.out.println("traverseListener(event=" + e + ")");
-		}
-
-	};
-
 	/**
-	 * 
+	 * Listen on menu detect.
+	 * The event is forwarded.
 	 */
-	private MouseListener mouseListener = new MouseListener() {
-
-		public void mouseDoubleClick(MouseEvent e) {
-			//			System.out.println("mouseDoubleClick(event=" + e + ")");
-		}
-
-		public void mouseDown(MouseEvent e) {
-			Point globalPos = ((Control)e.widget).toDisplay(e.x, e.y);
-			//			System.out.println("mouseDown(" + globalPos + ", event=" + e + ")");
-			handleFolderReselected(globalPos, e);
-		}
-
-		public void mouseUp(MouseEvent e) {
-			//			System.out.println("mousemouseUpListener(event=" + e + ")");
-		}
-
-	};
-
-
-	//	private DragDetectListener dragDetectListener = new DragDetectListener() {
-	//
-	//		public void dragDetected(DragDetectEvent e) {
-	//			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
-	//			handleDragDetectStarted(globalPos, e);
-	//		}
-	//
-	//	};
-
 	private MenuDetectListener menuDetectListener = new MenuDetectListener() {
 
 		public void menuDetected(MenuDetectEvent e) {
 			//			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
 			Point globalPos = new Point(e.x, e.y);
-			System.out.println("menuDetected(" + globalPos + ")");
 			handleMenuDetect(globalPos, e);
 		}
 
@@ -197,6 +124,7 @@ public class PTabFolder {
 		// TODO Move listener init in appropriate method.
 		newContainer.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int newPageIndex = newContainer.indexOf((CTabItem)e.item);
 				firePageChange(newPageIndex);
@@ -225,7 +153,7 @@ public class PTabFolder {
 		if(tabFolder.isDisposed())
 			return;
 
-		detachListeners(tabFolder, false);
+		detachListeners(tabFolder);
 		tabFolder.dispose();
 	}
 
@@ -234,68 +162,37 @@ public class PTabFolder {
 	 */
 	protected void attachListeners(CTabFolder theControl, boolean recursive) {
 
-		// Both following methods listen to the same event. 
-		// So use only one of them
-		theControl.addListener(SWT.MenuDetect, menuListener);
+		// Listen to menu event
 		theControl.addMenuDetectListener(menuDetectListener);
-		// Both listener works. Choose one
+		// Listen to drag event
 		PresentationUtil.addDragListener(theControl, dragListener);
-		// theControl.addDragDetectListener(dragDetectListener);
-		// Listen on mouse enter event.
-		//		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
-		//		theControl.addListener(SWT.MouseUp, mouseUpListener);
-		//		tabFolder.addSelectionListener(selectionListener);
-		//		tabFolder.addTraverseListener(traverseListener);
 
-		theControl.addMouseListener(mouseListener);
 		theControl.addListener(SWT.Activate, activateListener);
 
-		//		if (recursive && theControl instanceof Composite) {
-		//			Composite composite = (Composite) theControl;
-		//			Control[] children = composite.getChildren();
-		//
-		//			for (int i = 0; i < children.length; i++) {
-		//				Control control = children[i];
-		//
-		//				attachListeners(control, recursive);
-		//			}
-		//		}
 	}
 
 	/**
 	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.detachListeners(Control, boolean)
 	 */
-	protected void detachListeners(Control theControl, boolean recursive) {
-		theControl.removeListener(SWT.MenuDetect, menuListener);
+	private void detachListeners(Control theControl) {
 		theControl.removeMenuDetectListener(menuDetectListener);
 		//
 		PresentationUtil.removeDragListener(theControl, dragListener);
 		// theControl.removeDragDetectListener(dragDetectListener);
 		//		theControl.removeListener(SWT.MouseUp, mouseUpListener);
-		theControl.removeMouseListener(mouseListener);
 		theControl.removeListener(SWT.Activate, activateListener);
-
-		if(recursive && theControl instanceof Composite) {
-			Composite composite = (Composite)theControl;
-			Control[] children = composite.getChildren();
-
-			for(int i = 0; i < children.length; i++) {
-				Control control = children[i];
-
-				detachListeners(control, recursive);
-			}
-		}
 	}
 
+	/**
+	 * The context menu event has been fired, handle it.
+	 * Actually, it is forwarded to the {@link EventsManager}.
+	 * 
+	 * @param displayPos
+	 * @param e
+	 */
 	protected void handleContextMenu(Point displayPos, Event e) {
-		// if (isOnBorder(displayPos)) {
-		// return;
-		// }
 
 		CTabItem tab = getItem(displayPos);
-
-		System.out.println(this.getClass().getName() + ".handleContextMenu() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_SYSTEM_MENU, tab, displayPos);
 		listenersManager.fireContextMenuEvent(tab, e);
 	}
 
@@ -305,13 +202,7 @@ public class PTabFolder {
 	 */
 	protected void handleDragStarted(Point displayPos, Event e) {
 
-		// if (isOnBorder(displayPos)) {
-		// return;
-		// }
-
 		CTabItem tab = getItem(displayPos);
-		System.out.println(this.getClass().getName() + ".handleDragStarted() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_DRAG_START, tab, displayPos);
 
 		boolean allowSnapping = true;
 		Rectangle sourceBounds = Geometry.toDisplay(tabFolder.getParent(), tabFolder.getBounds());
@@ -320,23 +211,6 @@ public class PTabFolder {
 		} else { // drag item
 			DragUtil.performDrag(tab, sourceBounds, displayPos, allowSnapping);
 		}
-	}
-
-	/**
-	 * 
-	 * @param displayPos
-	 * @param e
-	 *        TODO REmove, it is not used.
-	 */
-	private void handleDragDetectStarted(Point displayPos, DragDetectEvent e) {
-
-		// if (isOnBorder(displayPos)) {
-		// return;
-		// }
-
-		CTabItem tab = getItem(displayPos);
-		System.out.println(this.getClass().getName() + ".handleDragDetectStarted() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_DRAG_START, tab, displayPos);
 	}
 
 	/**
@@ -353,8 +227,6 @@ public class PTabFolder {
 		}
 
 		CTabItem tab = getItem(displayPos);
-		System.out.println(this.getClass().getName() + ".handleMenuDetectStarted() for item=" + tab);
-		// fireEvent(TabFolderEvent.EVENT_DRAG_START, tab, displayPos);
 		listenersManager.fireMenuDetectEvent(tab, e);
 	}
 
@@ -369,13 +241,6 @@ public class PTabFolder {
 	 * @param e
 	 */
 	private void handleFolderReselected(Point displayPos, MouseEvent e) {
-
-		//		if (isOnBorder(displayPos)) {
-		//			return;
-		//		}
-
-		//		System.out.println(this.getClass().getName() + ".handleMouseDown() for item=" + getItem(displayPos));
-
 		int itemIndex = getItemIndex(displayPos);
 		// If click is not from an item, it can come from a click on border.
 		// restore the last selected item
@@ -419,9 +284,7 @@ public class PTabFolder {
 	public CTabItem getItem(Point toFind) {
 		CTabItem[] items = tabFolder.getItems();
 
-		for(int i = 0; i < items.length; i++) {
-			CTabItem item = items[i];
-
+		for(CTabItem item : items) {
 			if(getItemBounds(item).contains(toFind)) {
 				return item;
 			}
@@ -564,7 +427,7 @@ public class PTabFolder {
 		/**
 		 * List of event listeners.
 		 */
-		List<IPTabFolderListener> listeners = new ArrayList<IPTabFolderListener>();
+		Set<IPTabFolderListener> listeners = new HashSet<IPTabFolderListener>();
 
 		/**
 		 * Add a listener
@@ -572,9 +435,6 @@ public class PTabFolder {
 		 * @param listener
 		 */
 		public void addListener(IPTabFolderListener listener) {
-			if(listeners.contains(listener))
-				return;
-
 			listeners.add(listener);
 		}
 

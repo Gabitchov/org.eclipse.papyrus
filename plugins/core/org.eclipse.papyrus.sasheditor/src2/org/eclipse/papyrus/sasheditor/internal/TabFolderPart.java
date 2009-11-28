@@ -434,7 +434,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		if(tabUnderPointer == null) {
 			Rectangle titleArea = pTabFolder.getTabArea();
 
-			System.out.println("titleArea=" + titleArea + ", position=" + position);
 			// If we're dragging over the title area, treat this as a drop in the last
 			// tab position.
 			if(titleArea.contains(position) && pTabFolder.getTabFolder().getItemCount() > 0) {
@@ -557,11 +556,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#drop()
 		 */
 		public void drop() {
-			System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drop(source=" + sourcePart + "sourceIndex=" + sourceIndex + ", target=" + TabFolderPart.this + ", targetIndex="
-					+ targetIndex);
 
 			// move from a folder to another
-			if(sourcePart == TabFolderPart.this) { // move inside the same folder
+			if(sourcePart == TabFolderPart.this) { 
+				// move inside the same folder
 				getContentProvider().movePage(sourcePart.getPartModel(), sourceIndex, targetIndex);
 			} else { // move between folder
 				getContentProvider().movePage(sourcePart.getPartModel(), sourceIndex, TabFolderPart.this.getPartModel(), targetIndex);
