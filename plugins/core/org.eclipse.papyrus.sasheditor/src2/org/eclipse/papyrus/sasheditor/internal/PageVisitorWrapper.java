@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.sasheditor.internal;
 
+import org.eclipse.papyrus.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.sasheditor.editor.IPageVisitor;
 
 
@@ -16,6 +17,11 @@ import org.eclipse.papyrus.sasheditor.editor.IPageVisitor;
 public class PageVisitorWrapper extends PartVisitor {
 
 	/**
+	 * The public visitor.
+	 */
+	private IPageVisitor pageVisitor;
+	
+	/**
 	 * @param pageVisitor
 	 */
 	public PageVisitorWrapper(IPageVisitor pageVisitor) {
@@ -24,15 +30,10 @@ public class PageVisitorWrapper extends PartVisitor {
 	}
 
 	/**
-	 * The public visitor.
-	 */
-	private IPageVisitor pageVisitor;
-	
-	/**
 	 * We visit a Component part
 	 */
 	@Override
-	public boolean accept(ComponentPart part) {
+	public boolean acceptEditorTile(ComponentPart part) {
 		pageVisitor.accept(part);
 		return true;
 	}
@@ -41,8 +42,8 @@ public class PageVisitorWrapper extends PartVisitor {
 	 * We visit an {@link EditorPart}.
 	 */
 	@Override
-	public boolean accept(EditorPart part) {
-		pageVisitor.accept(part);
+	public boolean acceptEditorTile(EditorPart part) {
+		pageVisitor.accept((IEditorPage)part);
 		return true;
 	}
 }

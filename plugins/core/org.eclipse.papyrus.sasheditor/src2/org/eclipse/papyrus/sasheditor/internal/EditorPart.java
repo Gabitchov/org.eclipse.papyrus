@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.sasheditor.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
-import org.eclipse.papyrus.sasheditor.editor.IComponentPage;
+import org.eclipse.papyrus.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -46,7 +46,7 @@ import org.eclipse.ui.part.IWorkbenchPartOrientation;
  * 
  */
 @SuppressWarnings("restriction")
-public class EditorPart extends PagePart implements IComponentPage {
+public class EditorPart extends PagePart implements IEditorPage {
 
 	/**
 	 * The model representing the editor.
@@ -93,8 +93,8 @@ public class EditorPart extends PagePart implements IComponentPage {
 		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 		 */
 		public void handleEvent(Event event) {
-			Point globalPos = new Point(event.x, event.y);
-			System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
+//			Point globalPos = new Point(event.x, event.y);
+//			System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
 		}
 	};
 

@@ -235,7 +235,9 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		for( IEditorPart editorPart : visitor.getPages())
 		{
 			if( editorPart.isDirty())
+			{
 				return true;
+			}
 		}
 		
 		return false;
@@ -290,11 +292,8 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		 */
 		public void accept(IEditorPage page) {
 			
-			IEditorPart editor = page.getIEditorPart();
-			
-			// Null values are also filtered out.
-			if( editor instanceof EditorPart)
-				pages.add(editor);
+			IEditorPart editor = page.getIEditorPart();		
+			pages.add(editor);
 		}
 	}
 }

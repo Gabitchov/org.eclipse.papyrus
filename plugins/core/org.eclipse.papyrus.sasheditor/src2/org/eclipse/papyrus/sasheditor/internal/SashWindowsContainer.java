@@ -191,6 +191,13 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void pageChangedEvent(PagePart childPart) {
+		
+		// Check if it is really a change before changing the model (which can throw change event)
+		// The folder model change is done before the tracker fires the listeners, like this
+		// listeners can check the model.
+		if(getActivePage() == childPart)
+			return;
+		
 		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
 		pageChanged(childPart);
 	}

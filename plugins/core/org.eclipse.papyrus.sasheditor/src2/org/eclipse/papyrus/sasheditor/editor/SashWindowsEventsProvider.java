@@ -207,8 +207,6 @@ public class SashWindowsEventsProvider {
 	 */
 	private void activeEditorChanged(IEditorPart newEditor) {
 
-		System.out.println("activeEditorChanged(" + newEditor + ")");
-		
 		// Editor has changed. It can be null.
 		// Compute new container.
 		ISashWindowsContainer newContainer = null;
@@ -255,7 +253,6 @@ public class SashWindowsEventsProvider {
 	 * @param activeEditor
 	 */
 	private void fireContainerChanged(ISashWindowsContainer newContainer) {
-		System.out.println("fireContainerChanged(" + newContainer + ")");
 		// Propagate to all the listeners
 		containerEventsManager.fireEvent(newContainer);
 	}
@@ -268,7 +265,6 @@ public class SashWindowsEventsProvider {
 	 */
 	private void firePageChanged(IPage newPage) {
 
-		System.out.println("event mngr firePageChanged(" + newPage + ")");
 		activePage = newPage;
 		// Propagate to all the listeners
 		pageEventsManager.fireEvent(newPage);

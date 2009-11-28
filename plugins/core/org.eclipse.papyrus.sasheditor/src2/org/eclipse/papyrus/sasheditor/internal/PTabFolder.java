@@ -97,7 +97,6 @@ public class PTabFolder {
 
 		public void handleEvent(Event e) {
 			Point globalPos = ((Control)e.widget).toDisplay(e.x, e.y);
-			System.out.println("activateListener(" + globalPos + ", event=" + e + ")");
 			handleFolderReselected(globalPos, null);
 		}
 	};
