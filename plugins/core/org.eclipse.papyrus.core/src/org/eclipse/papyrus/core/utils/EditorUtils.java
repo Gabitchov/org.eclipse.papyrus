@@ -100,12 +100,21 @@ public class EditorUtils {
 		// Lookup ServiceRegistry
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		if(page == null)
-			throw new IllegalStateException("No Active Page can be found.");
+		{
+			return null;
+//			throw new IllegalStateException("No Active Page can be found.");
+		}
 		IEditorPart editorPart = page.getActiveEditor();
 		if(editorPart == null)
-			throw new IllegalStateException("No Active Editor can be found.");
+		{
+			return null;
+//			throw new IllegalStateException("No Active Editor can be found.");
+		}
 		if(!(editorPart instanceof CoreMultiDiagramEditor))
-			throw new IllegalStateException("No CoreMultiDiagramEditor can be found.");
+		{
+			return null;
+//			throw new IllegalStateException("No CoreMultiDiagramEditor can be found.");
+		}
 
 		return editorPart;
 
@@ -254,6 +263,8 @@ public class EditorUtils {
 		try {
 			ServicesRegistry registry = getServiceRegistry();
 			return registry == null ? null : registry.getService(TransactionalEditingDomain.class);
+		} catch (IllegalStateException e) {
+			// Registry can't be found, do nothing.
 		} catch (ServiceException e) {
 			// FIXME wait to use log
 			e.printStackTrace();
