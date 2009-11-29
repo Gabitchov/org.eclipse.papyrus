@@ -9,8 +9,9 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Emilien Perico emilien.perico@atosorigin.com - add methods to manage di resource
  *
-  *****************************************************************************/
+ *****************************************************************************/
 
 package org.eclipse.papyrus.sashwindows.di.util;
 

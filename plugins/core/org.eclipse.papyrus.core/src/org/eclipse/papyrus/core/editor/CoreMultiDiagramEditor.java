@@ -89,6 +89,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a> Refactoring.
  * 
  *         TODO : remove GMF dependency !
  */
