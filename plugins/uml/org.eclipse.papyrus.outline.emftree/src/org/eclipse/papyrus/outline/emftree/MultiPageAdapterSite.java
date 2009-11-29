@@ -73,23 +73,19 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	 * @param includeEditorInput
 	 * 
 	 */
-	public void registerContextMenu(MenuManager menuManager, ISelectionProvider selectionProvider,
-			boolean includeEditorInput) {
+	public void registerContextMenu(MenuManager menuManager, ISelectionProvider selectionProvider, boolean includeEditorInput) {
 		site.registerContextMenu(menuManager, selectionProvider, includeEditorInput);
 	}
 
 	/**
-	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(java.lang.String,
-	 *      org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider,
-	 *      boolean)
+	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider, boolean)
 	 * @param menuId
 	 * @param menuManager
 	 * @param selectionProvider
 	 * @param includeEditorInput
 	 * 
 	 */
-	public void registerContextMenu(String menuId, MenuManager menuManager, ISelectionProvider selectionProvider,
-			boolean includeEditorInput) {
+	public void registerContextMenu(String menuId, MenuManager menuManager, ISelectionProvider selectionProvider, boolean includeEditorInput) {
 		site.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput);
 
 	}
@@ -141,8 +137,7 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(org.eclipse.jface.action.MenuManager,
-	 *      org.eclipse.jface.viewers.ISelectionProvider)
+	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider)
 	 * @param menuManager
 	 * @param selectionProvider
 	 * 
@@ -153,8 +148,7 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(java.lang.String,
-	 *      org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider)
+	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider)
 	 * @param menuId
 	 * @param menuManager
 	 * @param selectionProvider

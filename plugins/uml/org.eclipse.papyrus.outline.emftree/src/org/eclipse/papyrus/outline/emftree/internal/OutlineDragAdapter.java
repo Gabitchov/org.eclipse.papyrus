@@ -117,15 +117,7 @@ public class OutlineDragAdapter implements DragSourceListener {
 		while (it.hasNext()) {
 			Object sel = it.next();
 			// Ignore diagram objects
-			if ((sel instanceof IWrapperItemProvider || sel instanceof FeatureMap.Entry || sel instanceof EObject) /*
-																													 * &&
-																													 * !
-																													 * (
-																													 * sel
-																													 * instanceof
-																													 * View
-																													 * )
-																													 */) {
+			if ((sel instanceof IWrapperItemProvider || sel instanceof FeatureMap.Entry || sel instanceof EObject) /* && !(sel instanceof View) */) {
 				transferData.add(AdapterFactoryEditingDomain.unwrap(sel));
 			}
 		}

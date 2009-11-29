@@ -8,13 +8,5 @@
             priority="1">
       </contentoutline>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
-      <actionBarContributor
-            actionBarContributorClass="org.eclipse.papyrus.di.presentation.DiActionBarContributor"
-            id="DiActionBarContributor"
-            implementingClass="org.eclipse.papyrus.di.presentation.DiActionBarContributor">
-      </actionBarContributor>
-   </extension>
 
 </plugin>

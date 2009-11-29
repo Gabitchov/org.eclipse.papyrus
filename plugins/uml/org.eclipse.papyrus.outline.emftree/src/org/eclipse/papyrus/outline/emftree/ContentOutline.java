@@ -124,13 +124,11 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
 
 		// Get the EditorActionBarContributor requested by this particular EMF editor.
-		// The EditorActionBarContributor should be registered in extensions under the specified
-		// name
-		String EditorActionBarContributorId = "DiActionBarContributor";
-		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry()
-				.getActionBarContributor(EditorActionBarContributorId);
-		IEditorSite site = new MultiPageAdapterSite(multiEditor.getEditorSite(), actionBarContributor);
-		this.editorSite = site;
+		// The EditorActionBarContributor should be registered in extensions under the specified name
+//		String EditorActionBarContributorId = "DiActionBarContributor";
+//		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry().getActionBarContributor(EditorActionBarContributorId);
+//		IEditorSite site = new MultiPageAdapterSite(multiEditor.getEditorSite(), actionBarContributor);
+		this.editorSite = multiEditor.getEditorSite();
 		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
 		initAdapterFactory();
 
@@ -155,8 +153,7 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		if (!editingDomain.getResourceSet().getResources().isEmpty()) {
 			// Select the root object in the view.
 			//
-			contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources()
-					.get(0)), true);
+			contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 		}
 		// initDragAndDrop();
 	}
@@ -172,8 +169,7 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 	}
 
 	@Override
-	public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
-			IStatusLineManager statusLineManager) {
+	public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
 		super.makeContributions(menuManager, toolBarManager, statusLineManager);
 		// contentOutlineStatusLineManager = statusLineManager;
 	}
