@@ -14,13 +14,16 @@
 
 package org.eclipse.papyrus.sashwindows.di.util;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.sashwindows.di.PageList;
+import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.sashwindows.di.Window;
+import org.eclipse.papyrus.sashwindows.di.exception.SashEditorException;
 
 
 /**
@@ -87,5 +90,95 @@ public class DiUtils {
 		return null;
 	}
 
+	/**
+	 * Gets the page reference of the specified eObject
+	 * 
+	 * @param diResource
+	 * @param eObject
+	 * 
+	 * @return the page ref of eObject, null if not found
+	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
+	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 * instead ?
+	 */
+	static public PageRef getPageRef(Resource diResource, EObject eObject)
+	{
+		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
+		if (windowsMngr != null && windowsMngr.getPageList() != null) {
+			
+			for (PageRef pageRef : windowsMngr.getPageList().getAvailablePage()) {
+				
+				EObject emfPageIdentifier = pageRef.getEmfPageIdentifier();
+				if (eObject != null && eObject.equals(emfPageIdentifier)) {
+					return pageRef;
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Adds page to the page list of the sash windows manager
+	 * 
+	 * @param diResource
+	 * @param pageRef
+	 * @throws SashEditorException
+	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
+	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 * instead ?
+	 */
+	static public void addPageToPageList(Resource diResource, PageRef pageRef) throws SashEditorException {
+		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
+		addPageToPageList(windowsMngr, pageRef);
+	}
+	
+	/**
+	 * Adds page to the page list of the sash windows manager.
+	 * 
+	 * @param pageRef
+	 * @param windowsMngr
+	 * @throws SashEditorException
+	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
+	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 * instead ?
+	 */
+	static public void addPageToPageList(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
+		if (windowsMngr != null && windowsMngr.getPageList() != null) {
+			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
+		}
+		else {
+			throw new SashEditorException("Unable to add the page to the windows manager");
+		}
+	}
+	
+	/**
+	 * Adds page to tab folder.
+	 * 
+	 * @param windowsMngr
+	 * @param pageRef
+	 * @throws SashEditorException
+	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
+	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 * instead ?
+	 */
+	static public void addPageToTabFolder(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
+
+		// Check parameters
+		if(pageRef==null || pageRef.getPageIdentifier()==null)
+			throw new SashEditorException("Unable to add the page to the tab folder: parameters are null");
+		
+		SashModel sashModel = windowsMngr.getSashModel();
+		if (sashModel == null) {
+			throw new SashEditorException("Unable to add the page to the tab folder: can't find SashModel");
+		}
+		
+		// Get the currently active folder in order to add the page.
+		TabFolder tabFolder = sashModel.getCurrentSelection();
+		if( tabFolder == null)  {
+			throw new SashEditorException("Unable to add the page to the tab folder: No active folder");
+		}
+			
+        tabFolder.addPage(pageRef.getPageIdentifier());
+	}
 
 }
