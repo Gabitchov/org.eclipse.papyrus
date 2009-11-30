@@ -14,22 +14,37 @@
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.util.Log;
+import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
@@ -63,6 +78,18 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public Command getCommand(Request request) {
+		if (understandsRequest(request)) {
+			executeCommand(getApplyStereotypeCommand((ApplyStereotypeRequest) request));
+			return null;
+		} else
+			return super.getCommand(request);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean understandsRequest(Request req) {
 		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(req.getType())) {
 			return true;
@@ -70,17 +97,59 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		return super.understandsRequest(req);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		// command should be a composed command: apply stereotype, display stereotype and eventually
-		// change the name of the semantic element
-		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType()))
-			return getApplyStereotypeCommand((ApplyStereotypeRequest) request);
+	//
+	// /**
+	// * {@inheritDoc}
+	// */
+	// @Override
+	// public Command getCommand(Request request) {
+	// // command should be a composed command: apply stereotype, display stereotype and eventually
+	// // change the name of the semantic element
+	// if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType()))
+	// return getApplyStereotypeCommand((ApplyStereotypeRequest) request);
+	//
+	// return super.getCommand(request);
+	// }
 
-		return super.getCommand(request);
+	/**
+	 * Executes the supplied command inside an <code>unchecked action</code>
+	 * 
+	 * @param cmd
+	 *            command that can be executed (i.e., cmd.canExecute() == true)
+	 */
+	protected void executeCommand(final Command cmd) {
+		Map<String, Boolean> options = null;
+		EditPart ep = getHost();
+		boolean isActivating = true;
+		// use the viewer to determine if we are still initializing the diagram
+		// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+		// parent will not be a diagram edit part
+		EditPartViewer viewer = ep.getViewer();
+		if (viewer instanceof DiagramGraphicalViewer) {
+			isActivating = ((DiagramGraphicalViewer) viewer).isInitializing();
+		}
+
+		if (isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart) getHost(), false, false))
+			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+
+		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart) getHost()).getEditingDomain(),
+				StringStatics.BLANK, options) {
+
+			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+				cmd.execute();
+
+				return Status.OK_STATUS;
+			}
+		};
+		try {
+			operation.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
+					"executeCommand", e); //$NON-NLS-1$
+			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
+					"executeCommand", e); //$NON-NLS-1$
+		}
 	}
 
 	/**

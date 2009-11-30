@@ -19,13 +19,21 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
+import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.PapyrusTrace;
 
 /**
  * Creation tool that adds stereotype application after creation actions.
@@ -51,30 +59,55 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 
 	}
 
-	// /**
-	// * {@inheritDoc}
-	// */
-	// @Override
-	// protected Request createTargetRequest() {
-	// return new AspectCreateUnspecifiedTypeRequest(elementTypes, getPreferencesHint(),
-	// stereotypesToApply);
-	// }
-
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void performCreation(int button) {
 		antiScroll = true;
+		boolean requiresPostAction = requiresPostAction();
+		// EObject to listen
+		View eObject = (View) getTargetEditPart().getAdapter(View.class);
+		DiagramEventBroker eventBroker = null;
+		NotificationListener listener = null;
+		if (requiresPostAction) {
+			// register a listener to have information about element creation
+			// retrieves editing domain
+			TransactionalEditingDomain domain;
+			try {
+				domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
+				eventBroker = DiagramEventBroker.getInstance(domain);
+
+				if (eventBroker == null) {
+					return;
+				}
+				listener = new NotificationListener() {
+
+					public void notifyChanged(Notification notification) {
+						Shape newValue = (Shape) notification.getNewValue();
+						EditPart editPart = (EditPart) getCurrentViewer().getEditPartRegistry().get(newValue);
+						ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
+						request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
+						editPart.performRequest(request);
+					}
+				};
+
+				eventBroker.addNotificationListener(eObject, listener);
+			} catch (ServiceException e) {
+				PapyrusTrace.log(e);
+			}
+		}
 
 		EditPartViewer viewer = getCurrentViewer();
 		Command c = getCurrentCommand();
 		executeCurrentCommand();
 
-		// retrieve the list of stereotypes to apply, if any
-		if (requiresPostAction()) {
-			postAction(viewer, DiagramCommandStack.getReturnValues(c));
+		if (requiresPostAction) {
+			if (eventBroker != null) {
+				eventBroker.removeNotificationListener(eObject, listener);
+			}
 		}
+
 		selectAddedObject(viewer, DiagramCommandStack.getReturnValues(c));
 
 		antiScroll = false;

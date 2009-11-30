@@ -19,13 +19,21 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
+import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.PapyrusTrace;
 
 /**
  * Connection tool that adds stereotype application after creation actions.
@@ -51,6 +59,9 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected boolean handleCreateConnection() {
 		// When a connection is to be created, a dialog box may appear which
@@ -59,15 +70,53 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		// deactivation flag.
 		setAvoidDeactivation(true);
 
+		// inits the listener
+		View eObject = (View) getTargetEditPart().getAdapter(View.class);
+		DiagramEventBroker eventBroker = null;
+		NotificationListener listener = null;
+		boolean requiresPostAction = requiresPostAction();
+
+		// adds the listener
+		if (requiresPostAction) {
+			// register a listener to have information about element creation
+			// retrieves editing domain
+			TransactionalEditingDomain domain;
+			try {
+				domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
+				eventBroker = DiagramEventBroker.getInstance(domain);
+
+				if (eventBroker == null) {
+					return false;
+				}
+				listener = new NotificationListener() {
+
+					public void notifyChanged(Notification notification) {
+						Connector newValue = (Connector) notification.getNewValue();
+						EditPart editPart = (EditPart) getCurrentViewer().getEditPartRegistry().get(newValue);
+						ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
+						request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
+						editPart.performRequest(request);
+					}
+				};
+
+				eventBroker.addNotificationListener(eObject, listener);
+			} catch (ServiceException e) {
+				PapyrusTrace.log(e);
+			}
+		}
+
 		EditPartViewer viewer = getCurrentViewer();
 		Command endCommand = getCommand();
 		setCurrentCommand(endCommand);
 
 		executeCurrentCommand();
-		// retrieve the list of stereotypes to apply, if any
-		if (requiresPostAction()) {
-			postAction(viewer, DiagramCommandStack.getReturnValues(endCommand));
+
+		if (requiresPostAction) {
+			if (eventBroker != null) {
+				eventBroker.removeNotificationListener(eObject, listener);
+			}
 		}
+
 		selectAddedObject(viewer, DiagramCommandStack.getReturnValues(endCommand));
 
 		setAvoidDeactivation(false);
