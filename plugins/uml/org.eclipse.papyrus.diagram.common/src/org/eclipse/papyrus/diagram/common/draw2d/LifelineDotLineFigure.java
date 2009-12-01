@@ -16,6 +16,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 
 /**
  * The Class LifelineDotLineFigure.
@@ -39,7 +40,7 @@ public class LifelineDotLineFigure extends Shape {
 	private RectangleFigure crossAtEndRectangle;
 	
 	/** The DashLine figure where elements will be attached */
-	private RectangleFigure dashLineRectangle;
+	private NodeFigure dashLineRectangle;
 
 	// Methods
 
@@ -50,7 +51,7 @@ public class LifelineDotLineFigure extends Shape {
 		super();
 		
 		// Init dashLineRectangle
-		dashLineRectangle = new RectangleFigure();
+		dashLineRectangle = new NodeFigure();
 		dashLineRectangle.setParent(this);
 		
 		// Init crossAtEnd rectangle figure
@@ -175,7 +176,7 @@ public class LifelineDotLineFigure extends Shape {
 	/**
 	 * Get a rectangleFigure representing the dashLine
 	 */
-	public RectangleFigure getDashLineRectangle(){
+	public NodeFigure getDashLineRectangle(){
 		return dashLineRectangle;
 	}
 
