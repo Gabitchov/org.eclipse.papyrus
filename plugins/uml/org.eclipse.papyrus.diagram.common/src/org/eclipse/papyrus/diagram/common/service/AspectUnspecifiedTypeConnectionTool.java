@@ -70,6 +70,10 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		// deactivation flag.
 		setAvoidDeactivation(true);
 
+		
+		if(getTargetEditPart() == null){
+			return false;
+		}
 		// inits the listener
 		View eObject = (View) getTargetEditPart().getAdapter(View.class);
 		DiagramEventBroker eventBroker = null;
