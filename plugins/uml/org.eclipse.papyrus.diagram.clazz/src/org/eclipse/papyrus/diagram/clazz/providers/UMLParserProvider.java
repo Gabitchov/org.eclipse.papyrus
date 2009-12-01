@@ -46,9 +46,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneraliza
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName6EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;

@@ -34,7 +34,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		DiagramGeneralPreferencePage.initDefaults(store);
 
 		OperationPreferencePage.initDefaults(store);
 

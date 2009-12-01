@@ -90,8 +90,8 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 			if (eObject instanceof GenLink) {
 
 				// Create the behavior required by stereotype management (if not already created)
-				if (!hasCustomBehavior((GenLink) eObject)) {
-					addCustomBehavior((GenLink) eObject);
+				if (!hasCustomBehavior(((GenLink) eObject), STEREOTYPE_LABEL_POLICY_KEY)) {
+					addCustomBehavior((GenLink) eObject, STEREOTYPE_LABEL_POLICY_KEY, STEREOTYPE_LABEL_POLICY_CLASS);
 				}
 
 				// Create the GenLinkLabel used for stereotypes (if not already created)
@@ -102,47 +102,8 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 		}
 	}
 
-	/**
-	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as
-	 * parameter
-	 * 
-	 * @param genlink
-	 *            where the CustomBehavior is added
-	 */
-	private void addCustomBehavior(GenLink genlink) {
 
-		CustomBehaviour behavior = GMFGenFactory.eINSTANCE.createCustomBehaviour();
-		behavior.setKey(STEREOTYPE_LABEL_POLICY_KEY);
-		behavior.setEditPolicyQualifiedClassName(STEREOTYPE_LABEL_POLICY_CLASS);
-
-		genlink.getBehaviour().add(behavior);
-	}
-
-	/**
-	 * Check if the CustomBehavior for Applied Stereotype label display is already added
-	 * 
-	 * @param genlink
-	 *            the GenLink to test
-	 * @return true if the behavior with correct key already exists
-	 */
-	private boolean hasCustomBehavior(GenLink genlink) {
-
-		boolean hasCustomBehavior = false;
-
-		Iterator<Behaviour> it = genlink.getBehaviour().iterator();
-		while (it.hasNext() && !(hasCustomBehavior)) {
-			Behaviour behaviour = it.next();
-
-			if (behaviour instanceof CustomBehaviour) {
-				CustomBehaviour customBehavior = (CustomBehaviour) behaviour;
-				if (STEREOTYPE_LABEL_POLICY_KEY.equals(customBehavior.getKey())) {
-					hasCustomBehavior = true;
-				}
-			}
-		}
-
-		return hasCustomBehavior;
-	}
+	
 
 	/**
 	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as
@@ -259,67 +220,5 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 		return customParser;
 	}
 
-	/**
-	 * Find the GenClass node with specified name in the resource model (GenModel expected here)
-	 * 
-	 * @param resource
-	 *            the genmodel
-	 * @param name
-	 *            of the searched GenClass
-	 * @return genClass with chosen name or null
-	 */
-	private GenClass findGenClass(Resource resource, String name) {
 
-		GenClass genClass = null;
-		Iterator<EObject> it = resource.getAllContents();
-		while (it.hasNext() && (genClass == null)) {
-			EObject eobject = it.next();
-
-			if (eobject instanceof GenClass) {
-				GenClass current = (GenClass) eobject;
-				if (name.equals(current.getName())) {
-					genClass = current;
-				}
-			}
-		}
-		return genClass;
-	}
-
-	/**
-	 * Finds a GenFeature owned by a specified GenClass in the resource (genmodel)
-	 * 
-	 * @param resource
-	 *            the genmodel
-	 * @param genClassName
-	 *            the name of GenClass owning the searched feature
-	 * @param genFeatureName
-	 *            the name of the GenFeature
-	 * @return the found GenFeature node or null
-	 */
-	private GenFeature findGenFeature(Resource resource, String genClassName, String genFeatureName) {
-
-		GenFeature genFeature = null;
-
-		Iterator<EObject> it = resource.getAllContents();
-		while (it.hasNext() && (genFeature == null)) {
-			EObject eobject = it.next();
-
-			if (eobject instanceof GenClass) {
-				GenClass genClass = (GenClass) eobject;
-
-				if (genClassName.equals(genClass.getName())) {
-
-					Iterator<GenFeature> itGF = genClass.getAllGenFeatures().iterator();
-					while (itGF.hasNext() && (genFeature == null)) {
-						GenFeature currentGenFeature = itGF.next();
-
-						if (genFeatureName.equals(currentGenFeature.getEcoreFeature().getName())) {
-							genFeature = currentGenFeature;
-						}
-					}
-				}
-			}
-		}
-		return genFeature;
-	}
 }

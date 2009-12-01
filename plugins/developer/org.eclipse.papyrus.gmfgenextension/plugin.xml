@@ -24,16 +24,41 @@
             id="org.eclipse.papyrus.papyrusgmfgenextension.popupactions"
             objectClass="org.eclipse.emf.ecore.EObject">
                     <menu
+                          icon="icons/PapyrusLogo16x16.gif"
                           id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus"
                           label="Papyrus GMFGen Tools"
                           path="papyrus">
                     </menu>
+                    <action
+                          class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeQualifiedNameBehavior"
+                          enablesFor="*"
+                          id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.QualifiedNameDisplayEditPolicy"
+                          label="Add behavior to display qualified name"
+                          menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                       <enablement>
+                          <objectClass
+                                name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                          </objectClass>
+                       </enablement>
+                    </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddlNodeStereotypeDisplayBehavior"
+                       label="Add behavior to display applied stereotype for a node"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
                
                  <action
                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
                enablesFor="*"
                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
-               label="Add CustomBehavior for StereotypeLabelDisplay"
+               label="Add label to display applied stereotype for a link"
                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
                     <enablement>
                        <objectClass
@@ -41,6 +66,18 @@
                        </objectClass>
                     </enablement>
          </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddExternalNodeStereotypeDisplayBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddlNodeStereotypeDisplayBehavior"
+                       label="Add label to display applied stereotype as an external node label"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
                  <action
                        class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddHyperLinkPopupBarBehavior"
                        enablesFor="*"

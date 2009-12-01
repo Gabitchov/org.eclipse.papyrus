@@ -52,9 +52,12 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceItemSemanticEdit
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.InterfaceFigure;
 import org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -165,6 +168,9 @@ ClassifierEditPart
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InstanceSpecificationGraphicalNodeEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInterfaceItemSemanticEditPolicyCN());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);

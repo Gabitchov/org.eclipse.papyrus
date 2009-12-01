@@ -29,6 +29,7 @@ public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+
 		String elementName = "Class";
 		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName,
 				PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));

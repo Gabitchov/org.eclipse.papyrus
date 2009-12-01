@@ -56,54 +56,17 @@ public class AddHyperLinkPopupBarBehavior extends Action {
 			if (eObject instanceof GenNode) {
 
 				// Create the behavior required by stereotype management (if not already created)
-				if (!hasCustomBehavior((GenNode) eObject)) {
-					addCustomBehavior((GenNode) eObject);
+				if (!hasCustomBehavior((GenNode) eObject, POPUP_POLICY_KEY)) {
+					addCustomBehavior((GenNode) eObject,POPUP_POLICY_KEY,HYPERLINK_POPUPBAR_POLICY_CLASS);
 				}
 
 			}
 		}
 	}
 
-	/**
-	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as parameter
-	 * 
-	 * @param genNode
-	 *            where the CustomBehavior is added
-	 */
-	private void addCustomBehavior(GenNode genNode) {
 
-		CustomBehaviour behavior = GMFGenFactory.eINSTANCE.createCustomBehaviour();
-		behavior.setKey(POPUP_POLICY_KEY);
-		behavior.setEditPolicyQualifiedClassName(HYPERLINK_POPUPBAR_POLICY_CLASS);
 
-		genNode.getBehaviour().add(behavior);
-	}
-
-	/**
-	 * Check if the CustomBehavior for Applied Stereotype label display is already added
-	 * 
-	 * @param genNode
-	 *            the GenLink to test
-	 * @return true if the behavior with correct key already exists
-	 */
-	private boolean hasCustomBehavior(GenNode genNode) {
-
-		boolean hasCustomBehavior = false;
-
-		Iterator<Behaviour> it = genNode.getBehaviour().iterator();
-		while (it.hasNext() && !(hasCustomBehavior)) {
-			Behaviour behaviour = it.next();
-
-			if (behaviour instanceof CustomBehaviour) {
-				CustomBehaviour customBehavior = (CustomBehaviour) behaviour;
-				if (POPUP_POLICY_KEY.equals(customBehavior.getKey())) {
-					hasCustomBehavior = true;
-				}
-			}
-		}
-
-		return hasCustomBehavior;
-	}
+	
 
 
 
