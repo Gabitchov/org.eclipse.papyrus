@@ -30,11 +30,11 @@
                           path="papyrus">
                     </menu>
                     <action
-                          class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.QualifiedNameDisplayEditPolicy"
+                          class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeQualifiedNameBehavior"
                           enablesFor="*"
-                          id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.QualifiedNameDisplayEditPolicy"
+                          id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeQualifiedNameBehavior"
                           label="Add behavior to display qualified name"
-                          menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/QualifiedNameDisplayEditPolicy">
+                          menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeQualifiedNameBehavior">
                        <enablement>
                           <objectClass
                                 name="org.eclipse.gmf.codegen.gmfgen.GenNode">
@@ -67,11 +67,11 @@
                     </enablement>
          </action>
                  <action
-                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddExternalNodeStereotypeDisplayBehavior"
                        enablesFor="*"
-                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddExternalNodeStereotypeDisplayBehavior"
                        label="Add label to display applied stereotype as an external node label"
-                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeStereotypeDisplayBehavior">
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddExternalNodeStereotypeDisplayBehavior">
                     <enablement>
                        <objectClass
                              name="org.eclipse.gmf.codegen.gmfgen.GenNode">
