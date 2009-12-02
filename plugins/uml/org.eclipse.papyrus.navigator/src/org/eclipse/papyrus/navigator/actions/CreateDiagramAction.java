@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.navigator.actions;
 
+import static org.eclipse.papyrus.navigator.internal.Activator.log;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
@@ -17,7 +19,6 @@ import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.uml2.uml.PackageableElement;
 
 /**
@@ -61,23 +62,23 @@ public class CreateDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		
+
 		// Start LOG
-		if(Activator.getLogHelper().isDebugEnabled()){
-			Activator.getLogHelper().debug("Start - CreateDiagramAction#run"); //$NON-NLS-1$
+		if (log.isDebugEnabled()) {
+			log.debug("Start - CreateDiagramAction#run"); //$NON-NLS-1$
 		}
-		
+
 		try {
 			ICreationCommand creationCommand = getCreationCommandRegistry()
 					.getCommand(commandDescriptor.getCommandId());
 			creationCommand.createDiagram(EditorUtils.getDiResourceSet(), container, null);
 		} catch (NotFoundException e) {
-			Activator.getLogHelper().error(e);
+			log.error(e);
 		}
-		
+
 		// END LOG
-		if(Activator.getLogHelper().isDebugEnabled()){
-			Activator.getLogHelper().debug("End - CreateDiagramAction#run"); //$NON-NLS-1$
+		if (log.isDebugEnabled()) {
+			log.debug("End - CreateDiagramAction#run"); //$NON-NLS-1$
 		}
 	}
 

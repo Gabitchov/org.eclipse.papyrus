@@ -220,5 +220,43 @@
             needSeparator="true">
       </customAction>
    </extension>
-
+   <extension
+         point="org.eclipse.ltk.core.refactoring.deleteParticipants">
+      <deleteParticipant
+            class="org.eclipse.papyrus.navigator.internal.ltk.DeleteModelParticipant"
+            id="org.eclipse.papyrus.navigator.internal.ltk.DeleteModelParticipant"
+            name="Papyrus Model Deletion">
+         <enablement>
+			<with variable="element">
+			   <instanceof value="org.eclipse.core.resources.IFile"/>
+			</with>
+         </enablement>
+      </deleteParticipant>
+   </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.moveParticipants">
+      <moveParticipant
+            class="org.eclipse.papyrus.navigator.internal.ltk.MoveModelParticipant"
+            id="org.eclipse.papyrus.navigator.internal.ltk.MoveModelParticipant"
+            name="Papyrus Model Move">
+         <enablement>
+			<with variable="element">
+			   <instanceof value="org.eclipse.core.resources.IFile"/>
+			</with>
+         </enablement>
+      </moveParticipant>
+   </extension>
+ <!--  <extension
+         point="org.eclipse.ltk.core.refactoring.renameParticipants">
+      <renameParticipant
+            class="org.eclipse.papyrus.navigator.internal.ltk.RenameModelParticipant"
+            id="org.eclipse.papyrus.navigator.internal.ltk.RenameModelParticipant"
+            name="Papyrus Model Renaming">
+         <enablement>
+			<with variable="element">
+			   <instanceof value="org.eclipse.core.resources.IFile"/>
+			</with>
+         </enablement>
+      </renameParticipant>
+   </extension>-->
 </plugin>

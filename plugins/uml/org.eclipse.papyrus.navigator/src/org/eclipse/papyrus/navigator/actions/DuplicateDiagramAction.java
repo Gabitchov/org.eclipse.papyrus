@@ -18,8 +18,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigator.internal.Activator;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 
 /**
@@ -49,7 +49,7 @@ public class DuplicateDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
+		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
 
 			// Create a compound command containing removing of the sash and removing from GMF

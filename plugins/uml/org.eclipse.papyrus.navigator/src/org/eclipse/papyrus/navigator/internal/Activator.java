@@ -32,7 +32,8 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private static LogHelper logHelper;
+	/** The shared log helper. */
+	public static LogHelper log;
 
 	/**
 	 * The constructor
@@ -49,16 +50,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		logHelper = new LogHelper(plugin);
-	}
-
-	/**
-	 * Returns the log Helper.
-	 * 
-	 * @return The logHelper.
-	 */
-	public static LogHelper getLogHelper() {
-		return logHelper;
+		log = new LogHelper(plugin);
 	}
 
 	/*

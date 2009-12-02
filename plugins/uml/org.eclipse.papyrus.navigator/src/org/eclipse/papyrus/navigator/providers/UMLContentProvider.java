@@ -120,8 +120,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 
 		// 1. Retrieve children elements
 		Object[] modelChildren = super.getChildren(parentElement);
-		for (int i = 0; i < modelChildren.length; i++) {
-			Object child = modelChildren[i];
+		for (Object child : modelChildren) {
 			children.add(child);
 		}
 
@@ -185,6 +184,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void dispose() {
 		// Dispose objects
 		super.dispose();
@@ -200,8 +200,9 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 
 		// Walk on page (Diagram) references
 		for (Object page : pageMngr.allPages()) {
-			if (!(page instanceof Diagram))
+			if (!(page instanceof Diagram)) {
 				continue;
+			}
 			// We have a GMF Diagram
 			Diagram diagram = (Diagram) page;
 			if (owner.equals(diagram.getElement())) {
@@ -214,11 +215,11 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	}
 
 	private boolean canPopulateModelNavigator() {
-		return (NavigatorUtils.getMultiDiagramEditor() != null);
+		return (EditorUtils.getMultiDiagramEditor() != null);
 	}
 
 	private DiResourceSet getDiResourceSet() {
-		return NavigatorUtils.getDiResourceSet();
+		return EditorUtils.getDiResourceSet();
 	}
 
 	/**

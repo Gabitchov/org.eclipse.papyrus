@@ -29,8 +29,8 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigator.factory.IActionHandlerFactory;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
@@ -59,7 +59,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 
 		this.activeViewPart = getCommonNavigator();
 		this.actionsFactoriesMap = new HashMap<IActionHandlerFactory, ActionProperties>();
-		TransactionalEditingDomain editingDomain = NavigatorUtils.getTransactionalEditingDomain();
+		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
 
 		IConfigurationElement[] registry = Platform.getExtensionRegistry().getConfigurationElementsFor(
 				ACTION_HANDLER_EXTENSION_POINT_ID);

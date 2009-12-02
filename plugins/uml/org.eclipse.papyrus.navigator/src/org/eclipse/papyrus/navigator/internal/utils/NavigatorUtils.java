@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
@@ -19,11 +18,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPart;
@@ -39,48 +35,6 @@ import org.eclipse.ui.PlatformUI;
  *         dependency
  **/
 public class NavigatorUtils {
-
-	/**
-	 * Gets the multi diagram editor.
-	 * 
-	 * @return Get the current {@link IMultiDiagramEditor}
-	 * @deprecated Use the {@link EditorUtils#getMultiDiagramEditor()}
-	 */
-	@Deprecated
-	public static IMultiDiagramEditor getMultiDiagramEditor() {
-		return EditorUtils.getMultiDiagramEditor();
-	}
-
-	/**
-	 * @return Get the current {@link DiResourceSet}
-	 * 
-	 * @deprecated use {@link org.eclipse.papyrus.core.utils.EditorUtils#getDiResourceSet()}
-	 */
-	@Deprecated
-	public static DiResourceSet getDiResourceSet() {
-		return EditorUtils.getDiResourceSet();
-	}
-
-	/**
-	 * @return Get the current {@link TransactionalEditingDomain}
-	 * 
-	 * @deprecated use {@link EditorUtils#getTransactionalEditingDomain()}
-	 */
-	@Deprecated
-	public static TransactionalEditingDomain getTransactionalEditingDomain() {
-		return EditorUtils.getTransactionalEditingDomain();
-	}
-
-	/**
-	 * Gets the active <IEditorPart>.
-	 * 
-	 * @return the active editor
-	 * @deprecated Use the {@link EditorUtils#getActiveEditor()}
-	 */
-	@Deprecated
-	public static IEditorPart getActiveEditor() {
-		return EditorUtils.getWorkbenchActiveEditor();
-	}
 
 	/**
 	 * Find a <IViewPart> by it's id string.

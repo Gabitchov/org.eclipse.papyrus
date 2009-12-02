@@ -66,6 +66,8 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
+import static org.eclipse.papyrus.navigator.internal.Activator.log;
+
 /**
  * This class define a view used to navigate in UML model and resource
  * 
@@ -75,9 +77,35 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 public class ModelNavigator extends CommonNavigator implements IEditingDomainProvider {
 
 	/** ID Of the Navigator. */
-	public final static String ID_MODELNAVIGATOR = "org.eclipse.papyrus.navigator.modelExplorer";
+	public static final String ID_MODELNAVIGATOR = "org.eclipse.papyrus.navigator.modelExplorer";
+
+	// //
+	// fjcano #291192 :: type prefix in model explorer
+	// //
+	public static final String PROPERTY_REMOVEPREFIX = "org.eclipse.papyrus.navigator.view.removeTypePrefix";
+
+	public static final int IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY = 16774;
+
+	// //
+	// fjcano #290422 :: grouping children by type
+	// //
+	public static final String PROPERTY_GROUPCHILDS = "org.eclipse.papyrus.navigator.view.groupchilds";
+
+	public static final int IS_GROUPINGCHILDS_ENABLED_PROPERTY = 987;
+
+	// //
+	// fjcano #288599# :: enable linking by default in the model explorer
+	// //
+	private final String LINKING_ENABLED = "CommonNavigator.LINKING_ENABLED"; //$NON-NLS-1$ 
+
+	private boolean isRemovePrefixTypeEnabled = false;
 
 	private IWorkbenchPage page = null;
+
+	private boolean isGroupingChildsEnabled = false;
+
+	// optimize selection handling
+	private boolean handlingSelectionChanged = false;
 
 	/** {@link TransactionalEditingDomain} used to perform actions and commands. */
 	private TransactionalEditingDomain editingDomain = null;
@@ -90,6 +118,18 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private IPropertySheetPage propertySheetPage = null;
 
+	/**
+	 * {@link ResourceSetListener} to listen and react to changes in the resource set.
+	 */
+	private final ResourceSetListener resourceSetListener = new ResourceSetListenerImpl() {
+
+		@Override
+		public void resourceSetChanged(ResourceSetChangeEvent event) {
+			super.resourceSetChanged(event);
+			handleResourceSetChanged(event);
+		}
+	};
+
 	// //
 	// fjcano #290424 :: allow saving from the Model Explorer
 	// //
@@ -97,7 +137,23 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 
 	private final Saveable[] toEditorSaveableArray = new Saveable[] { toEditorSaveable };
 
-	public ToEditorSaveable getToEditorSaveable() {
+	/**
+	 * Make the synchronization between the editor and the model explorer active by default.
+	 */
+	@Override
+	public void init(IViewSite aSite, IMemento aMemento) throws PartInitException {
+		super.init(aSite, aMemento);
+		// fjcano #288599# :: linking enabled by default
+		if (memento != null) {
+			Integer linkingEnabledInteger = memento.getInteger(LINKING_ENABLED);
+			setLinkingEnabled(((linkingEnabledInteger != null) ? linkingEnabledInteger.intValue() == 1 : true));
+		} else {
+			// fjcano :: linking is enabled by default.
+			setLinkingEnabled(true);
+		}
+	}
+
+	private ToEditorSaveable getToEditorSaveable() {
 		// fjcano #290424 :: allow saving from the Model Explorer
 		return toEditorSaveable;
 	}
@@ -133,30 +189,12 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	/**
 	 * Method to perform all necessary updates.
 	 */
-	public void doUpdate() {
+	private void doUpdate() {
 		// fjcano #290424 :: allow saving from the Model Explorer
 		if (getToEditorSaveable() != null) {
-			getToEditorSaveable().setEditor(getEditorPart());
+			getToEditorSaveable().setEditor(editorPart);
 		}
 	}
-
-	/**
-	 * Gets the active {@link IEditorPart}.
-	 * 
-	 * @return the editor part
-	 */
-	public IEditorPart getEditorPart() {
-		return editorPart;
-	}
-
-	// //
-	// fjcano #290422 :: grouping children by type
-	// //
-	public static final String PROPERTY_GROUPCHILDS = "org.eclipse.papyrus.navigator.view.groupchilds";
-
-	private boolean isGroupingChildsEnabled = false;
-
-	public static final int IS_GROUPINGCHILDS_ENABLED_PROPERTY = 987;
 
 	/**
 	 * Sets the grouping of children by type. Fires a property change that makes the model explorer
@@ -191,7 +229,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 * 
 	 * @return
 	 */
-	public IAction getGroupChildrenAction() {
+	private IAction getGroupChildrenAction() {
 		// fjcano :: #290422
 		IAction groupChildsAction = new GroupChildrenAction(this);
 		ImageDescriptor folderIcon = PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
@@ -200,15 +238,6 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		groupChildsAction.setHoverImageDescriptor(folderIcon);
 		return groupChildsAction;
 	}
-
-	// //
-	// fjcano #291192 :: type prefix in model explorer
-	// //
-	public static final String PROPERTY_REMOVEPREFIX = "es.cv.gvcase.ide.navigator.view.removeTypePrefix";
-
-	private boolean isRemovePrefixTypeEnabled = false;
-
-	public static final int IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY = 16774;
 
 	/**
 	 * Set the isRemovePrefixTypeEnabled to the given value and fire a property change event.
@@ -232,11 +261,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		return isRemovePrefixTypeEnabled;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public IAction getRemoveTypesPrefixAction() {
+	private IAction getRemoveTypesPrefixAction() {
 		// fjcano #291192
 		IAction removeTypesPrefixAction = new RemoveTypePrefixAction(this);
 		ImageDescriptor clearIcon = PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
@@ -246,11 +271,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		return removeTypesPrefixAction;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public IAction getSearchAction() {
+	private IAction getSearchAction() {
 		// fjcano #290425 :: add search element action to model navigator
 		IAction searchAction = new SearchElementAction(this);
 		ImageDescriptor magnifyingGlassIcon = Activator.getImageDescriptor("icons/etool16/search.gif");
@@ -271,19 +292,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		getViewSite().getActionBars().getToolBarManager().add(getRemoveTypesPrefixAction());
 		// fjcano #290425 :: add search action to model navigator
 		getViewSite().getActionBars().getToolBarManager().add(getSearchAction());
-	};
-
-	/**
-	 * {@link ResourceSetListener} to listen and react to changes in the resource set.
-	 */
-	ResourceSetListener resourceSetListener = new ResourceSetListenerImpl() {
-
-		@Override
-		public void resourceSetChanged(ResourceSetChangeEvent event) {
-			super.resourceSetChanged(event);
-			handleResourceSetChanged(event);
-		}
-	};
+	}
 
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
 		// Refresh global viewer
@@ -341,9 +350,9 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	/**
 	 * Activate the Model Explorer.
 	 */
-	public void activate() {
-		this.editorPart = NavigatorUtils.getMultiDiagramEditor();
-		this.editingDomain = NavigatorUtils.getTransactionalEditingDomain();
+	private void activate() {
+		this.editorPart = EditorUtils.getMultiDiagramEditor();
+		this.editingDomain = EditorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
 			editingDomain.addResourceSetListener(resourceSetListener);
 		}
@@ -355,7 +364,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	/**
 	 * Deactivate the Model Explorer.
 	 */
-	public void deactivate() {
+	private void deactivate() {
 		editorPart = null;
 		if (editingDomain != null) {
 			editingDomain.removeResourceSetListener(resourceSetListener);
@@ -383,7 +392,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	/**
 	 * Forces the viewer to be refreshed.
 	 */
-	public void refreshViewer() {
+	private void refreshViewer() {
 		CommonViewer viewer = getCommonViewer();
 		if (viewer != null && viewer.getTree().isDisposed() == false) {
 			viewer.refresh();
@@ -446,7 +455,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 * @return
 	 */
 	private IPropertySheetPage getPropertySheetPage() {
-		final IMultiDiagramEditor multiDiagramEditor = NavigatorUtils.getMultiDiagramEditor();
+		final IMultiDiagramEditor multiDiagramEditor = EditorUtils.getMultiDiagramEditor();
 		if (multiDiagramEditor != null) {
 			if (propertySheetPage == null) {
 				// An 'EEF' properties view
@@ -476,16 +485,13 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		return commonViewer;
 	}
 
-	// optimize selection handling
-	private boolean handlingSelectionChanged = false;
-
 	/**
 	 * Handle a selection change in the editor.
 	 * 
 	 * @param part
 	 * @param selection
 	 */
-	protected void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part, ISelection selection) {
+	private void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part, ISelection selection) {
 		// Handle selection from diagram editor
 		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
@@ -504,29 +510,21 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 * 
 	 * @param event
 	 */
-	protected void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {
+	private void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {
 		// Handle selection from common viewer
 		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
-			IEditorPart editor = NavigatorUtils.getActiveEditor();
-			if (editor instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor multiDiagramEditor = (IMultiDiagramEditor) editor;
-				IEditorPart activeEditor = multiDiagramEditor.getActiveEditor();
-				// TODO break GMF dependency (maybe add a new method in
-				// IMultiDiagramEditor) Cedric
-				// ?
-				if (activeEditor instanceof DiagramEditor) {
-					// set editor selection and select the EditParts
-					IDiagramGraphicalViewer diagramGraphicalViewer = ((DiagramEditor) activeEditor)
-							.getDiagramGraphicalViewer();
-					List<?> editPartsToSelect = NavigatorUtils.getEditPartsFromSelection(event.getSelection(),
-							diagramGraphicalViewer);
-					StructuredSelection selectedEditParts = new StructuredSelection(editPartsToSelect);
-					diagramGraphicalViewer.setSelection(selectedEditParts);
-					if (!selectedEditParts.isEmpty()) {
-						EditPart editPart = (EditPart) selectedEditParts.getFirstElement();
-						diagramGraphicalViewer.reveal(editPart);
-					}
+			DiagramEditor editor = EditorUtils.lookupActiveDiagramEditor();
+			if (editor != null) {
+				// set editor selection and select the EditParts
+				IDiagramGraphicalViewer diagramGraphicalViewer = editor.getDiagramGraphicalViewer();
+				List<?> editPartsToSelect = NavigatorUtils.getEditPartsFromSelection(event.getSelection(),
+						diagramGraphicalViewer);
+				StructuredSelection selectedEditParts = new StructuredSelection(editPartsToSelect);
+				diagramGraphicalViewer.setSelection(selectedEditParts);
+				if (!selectedEditParts.isEmpty()) {
+					EditPart editPart = (EditPart) selectedEditParts.getFirstElement();
+					diagramGraphicalViewer.reveal(editPart);
 				}
 			}
 			this.handlingSelectionChanged = false;
@@ -538,8 +536,8 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	@Override
 	protected void handleDoubleClick(DoubleClickEvent anEvent) {
-		if (Activator.getLogHelper().isDebugEnabled()) {
-			Activator.getLogHelper().debug("Model Navigator got a double click");
+		if (log.isDebugEnabled()) {
+			log.debug("Model Navigator got a double click");
 		}
 		IAction openHandler = getViewSite().getActionBars().getGlobalActionHandler(ICommonActionConstants.OPEN);
 		if (openHandler != null) {
@@ -562,29 +560,16 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		}
 	}
 
-	// /**
-	// * Handle double click on a Papyrus Diagram.
-	// *
-	// * @param diagram
-	// */
-	// protected void handleDoubleClickOnDiagram(Diagram diagram) {
-	// // fjcano #287943 :: handle double click on a papyrus diagram
-	// System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : "
-	// + diagram);
-	// if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
-	// // open the diagram if not already open
-	// EditorUtils.getIPageMngr().openPage(diagram);
-	// }
-	// }
-
 	/**
 	 * Handle double click on a GMF Diagram.
 	 * 
 	 * @param diagram
 	 */
-	protected void handleDoubleClickOnDiagram(Diagram diagram) {
+	private void handleDoubleClickOnDiagram(Diagram diagram) {
 		// fjcano #287943 :: handle double click on a gmf diagram
-		System.out.println("#ModelNavigator-> handleDoubleClickOnDiagram : " + diagram);
+		if (log.isDebugEnabled()) {
+			log.debug("#ModelNavigator-> handleDoubleClickOnDiagram : " + diagram);
+		}
 		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
 			// open the diagram if not already open
 			EditorUtils.getIPageMngr().openPage(diagram);
@@ -598,27 +583,6 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	public EditingDomain getEditingDomain() {
 		return editingDomain;
-	}
-
-	// //
-	// fjcano #288599# :: enable linking by default in the model explorer
-	// //
-	private final String LINKING_ENABLED = "CommonNavigator.LINKING_ENABLED"; //$NON-NLS-1$ 
-
-	/**
-	 * Make the synchronization between the editor and the model explorer active by default.
-	 */
-	@Override
-	public void init(IViewSite aSite, IMemento aMemento) throws PartInitException {
-		super.init(aSite, aMemento);
-		// fjcano #288599# :: linking enabled by default
-		if (memento != null) {
-			Integer linkingEnabledInteger = memento.getInteger(LINKING_ENABLED);
-			setLinkingEnabled(((linkingEnabledInteger != null) ? linkingEnabledInteger.intValue() == 1 : true));
-		} else {
-			// fjcano :: linking is enabled by default.
-			setLinkingEnabled(true);
-		}
 	}
 
 }

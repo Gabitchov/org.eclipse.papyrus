@@ -25,7 +25,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 
 /**
@@ -62,7 +62,7 @@ public class CreateChildActionProvider extends AbstractSubmenuActionProvider {
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
 			selectedElement = ((IStructuredSelection) selection).getFirstElement();
 
-			TransactionalEditingDomain domain = NavigatorUtils.getTransactionalEditingDomain();
+			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
 			if (domain == null) {
 				return;
 			}
@@ -115,7 +115,7 @@ public class CreateChildActionProvider extends AbstractSubmenuActionProvider {
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
 				if (descriptor instanceof CommandParameter) {
-					actions.add(new CreateChildAction(NavigatorUtils.getTransactionalEditingDomain(), selection,
+					actions.add(new CreateChildAction(EditorUtils.getTransactionalEditingDomain(), selection,
 							descriptor));
 				}
 			}
