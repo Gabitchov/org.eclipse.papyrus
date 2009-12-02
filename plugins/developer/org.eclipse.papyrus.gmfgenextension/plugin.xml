@@ -30,11 +30,11 @@
                           path="papyrus">
                     </menu>
                     <action
-                          class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeQualifiedNameBehavior"
+                          class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.QualifiedNameDisplayEditPolicy"
                           enablesFor="*"
                           id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.QualifiedNameDisplayEditPolicy"
                           label="Add behavior to display qualified name"
-                          menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                          menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/QualifiedNameDisplayEditPolicy">
                        <enablement>
                           <objectClass
                                 name="org.eclipse.gmf.codegen.gmfgen.GenNode">
@@ -44,9 +44,9 @@
                  <action
                        class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
                        enablesFor="*"
-                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddlNodeStereotypeDisplayBehavior"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
                        label="Add behavior to display applied stereotype for a node"
-                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeStereotypeDisplayBehavior">
                     <enablement>
                        <objectClass
                              name="org.eclipse.gmf.codegen.gmfgen.GenNode">
@@ -67,11 +67,11 @@
                     </enablement>
          </action>
                  <action
-                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddExternalNodeStereotypeDisplayBehavior"
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
                        enablesFor="*"
-                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddlNodeStereotypeDisplayBehavior"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
                        label="Add label to display applied stereotype as an external node label"
-                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeStereotypeDisplayBehavior">
                     <enablement>
                        <objectClass
                              name="org.eclipse.gmf.codegen.gmfgen.GenNode">
@@ -81,9 +81,9 @@
                  <action
                        class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddHyperLinkPopupBarBehavior"
                        enablesFor="*"
-                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction..AddHyperLinkPopupBarBehavior"
-                       label="Ad hyperlink PopupBar Behavior"
-                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddHyperLinkPopupBarBehavior"
+                       label="Add hyperlink PopupBar Behavior"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior">
                     <enablement>
                        <objectClass
                              name="org.eclipse.gmf.codegen.gmfgen.GenNode">
