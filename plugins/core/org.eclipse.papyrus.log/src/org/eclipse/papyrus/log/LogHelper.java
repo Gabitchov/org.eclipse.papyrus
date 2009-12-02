@@ -8,7 +8,7 @@
  * Contributors:
  *     Atos Origin - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.navigator.internal;
+package org.eclipse.papyrus.log;
 
 import java.lang.reflect.InvocationTargetException;
 
