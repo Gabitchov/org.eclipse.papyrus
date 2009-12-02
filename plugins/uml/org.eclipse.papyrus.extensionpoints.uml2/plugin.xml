@@ -85,11 +85,4 @@
             provider="Eclipse.org">
       </metamodel>
    </extension>
-    <extension
-          point="org.eclipse.papyrus.extensionpoints.uml2.UMLProfile">
-       <profile
-             name="org.eclipse.papyrus.extensionpoints.uml2.profile1"
-             path="org.eclipse.papyrus.extensionpoints.uml2.profile1">
-       </profile>
-    </extension>
 </plugin>
