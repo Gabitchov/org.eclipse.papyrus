@@ -247,11 +247,18 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	@Override
 	public void dispose() {
 		super.dispose();
-		navigator.dispose();
-		overview.dispose();
+		// Navigator, overview... can be null
+		if (navigator != null) {
+			navigator.dispose();
+		}
+		if (overview != null) {
+			overview.dispose();
+		}
 
-		// Remove selection change listener
-		multiEditor.getSite().getPage().removePostSelectionListener(this);
+		if (multiEditor != null) {
+			// Remove selection change listener
+			multiEditor.getSite().getPage().removePostSelectionListener(this);
+		}
 	}
 
 	/**
