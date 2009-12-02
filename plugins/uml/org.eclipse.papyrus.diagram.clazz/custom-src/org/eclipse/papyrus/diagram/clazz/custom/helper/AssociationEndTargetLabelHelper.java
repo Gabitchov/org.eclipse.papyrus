@@ -52,6 +52,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 				Iterator<Property> propertiesIterator = ((Association) ((View) editPart.getModel()).getElement())
 						.getMemberEnds().iterator();
 
+				//find the last
 				while (propertiesIterator.hasNext()) {
 					Property currentProperty = (Property) propertiesIterator.next();
 					if (currentProperty.getType().equals(target)) {

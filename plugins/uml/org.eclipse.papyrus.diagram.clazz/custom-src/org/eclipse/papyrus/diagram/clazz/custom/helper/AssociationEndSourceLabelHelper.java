@@ -51,8 +51,8 @@ public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
 
 				Iterator<Property> propertiesIterator = ((Association) ((View) editPart.getModel()).getElement())
 						.getMemberEnds().iterator();
-
-				while (propertiesIterator.hasNext()) {
+				//find the first
+				while (propertiesIterator.hasNext()&&propertyToDisplay==null) {
 					Property currentProperty = (Property) propertiesIterator.next();
 					if (currentProperty.getType().equals(source)) {
 						propertyToDisplay = currentProperty;
