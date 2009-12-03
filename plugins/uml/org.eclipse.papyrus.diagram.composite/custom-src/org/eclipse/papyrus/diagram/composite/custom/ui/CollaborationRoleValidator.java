@@ -41,7 +41,7 @@ public class CollaborationRoleValidator implements ISelectionStatusValidator {
 			if (selection[0] instanceof ConnectableElement) {
 				status = new Status(IStatus.OK, UMLDiagramEditorPlugin.ID, "Selection validated.");
 			} else {
-				status = new Status(IStatus.WARNING, UMLDiagramEditorPlugin.ID,
+				status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,
 						"Selection has to be a ConnectableElement.");
 			}
 		}
