@@ -5278,14 +5278,20 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getDurationObservation_2093ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+		DurationObservation modelElement = (DurationObservation) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List getTimeObservation_2094ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+		TimeObservation modelElement = (TimeObservation) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement));
+		return result;
 	}
 
 	/**
@@ -5985,6 +5991,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6010,6 +6018,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6035,6 +6045,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6060,6 +6072,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6085,6 +6099,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6110,6 +6126,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6135,6 +6153,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6160,6 +6180,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6185,6 +6207,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6210,6 +6234,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6235,6 +6261,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6260,6 +6288,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6285,6 +6315,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6310,6 +6342,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6335,6 +6369,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6360,6 +6396,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6385,6 +6423,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6410,6 +6450,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6435,6 +6477,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6460,6 +6504,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6485,6 +6531,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6510,6 +6558,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6535,6 +6585,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6560,6 +6612,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6585,6 +6639,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6610,6 +6666,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6635,6 +6693,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6660,6 +6720,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6685,6 +6747,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6710,6 +6774,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6735,6 +6801,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6760,6 +6828,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6785,6 +6855,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6810,6 +6882,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6835,6 +6909,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6860,6 +6936,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6885,6 +6963,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6910,6 +6990,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6935,6 +7017,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6960,6 +7044,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -6985,6 +7071,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7010,6 +7098,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7035,6 +7125,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7060,6 +7152,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7085,6 +7179,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7110,6 +7206,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7135,6 +7233,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7160,6 +7260,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7185,6 +7287,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7225,6 +7329,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7250,6 +7356,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7275,6 +7383,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7300,6 +7410,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7325,6 +7437,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7350,6 +7464,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7375,6 +7491,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7400,6 +7518,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7425,6 +7545,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7450,6 +7572,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7475,6 +7599,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7500,6 +7626,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7525,6 +7653,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7550,6 +7680,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7575,6 +7707,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7600,6 +7734,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7625,6 +7761,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7650,6 +7788,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7675,6 +7815,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7700,6 +7842,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7725,6 +7869,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7750,6 +7896,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7775,6 +7923,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7800,6 +7950,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7825,6 +7977,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7850,6 +8004,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7875,6 +8031,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7900,6 +8058,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7925,6 +8085,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7950,6 +8112,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -7975,6 +8139,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8127,6 +8293,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8152,6 +8320,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8177,6 +8347,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8202,6 +8374,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8227,6 +8401,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8252,6 +8428,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8277,6 +8455,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8302,6 +8482,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8327,6 +8509,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8352,6 +8536,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8377,6 +8563,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -8417,6 +8605,8 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4015(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4016(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
 		return result;
 	}
 
@@ -9131,6 +9321,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4015(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4016(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement));
 		return result;
 	}
 
@@ -9152,6 +9343,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4015(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4016(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement));
 		return result;
 	}
 
@@ -11371,6 +11563,40 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(NamedElement target,
+			Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getTimeObservation_Event()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.TimeObservationEvent_4018, ConnectorTimeObservationEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(NamedElement target,
+			Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getDurationObservation_Event()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.DurationObservationEvent_4019, ConnectorDurationObservationEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(Comment source) {
 		Collection result = new LinkedList();
 		for (Iterator destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
@@ -12001,6 +12227,34 @@ public class UMLDiagramUpdater {
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.InformationFlow_4016,
 					InformationFlowEditPart.VISUAL_ID));
 
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_TimeObservation_Event_4018(TimeObservation source) {
+		Collection result = new LinkedList();
+		NamedElement destination = source.getEvent();
+		if (destination == null) {
+			return result;
+		}
+		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.TimeObservationEvent_4018,
+				ConnectorTimeObservationEditPart.VISUAL_ID));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_DurationObservation_Event_4019(
+			DurationObservation source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getEvents().iterator(); destinations.hasNext();) {
+			NamedElement destination = (NamedElement) destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.DurationObservationEvent_4019,
+					ConnectorDurationObservationEditPart.VISUAL_ID));
 		}
 		return result;
 	}

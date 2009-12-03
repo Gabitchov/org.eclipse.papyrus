@@ -700,41 +700,65 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser durationObservationName_5176Parser;
+	private IParser durationObservationName_5151Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDurationObservationName_5176Parser() {
-		if (durationObservationName_5176Parser == null) {
+	private IParser getDurationObservationName_5151Parser() {
+		if (durationObservationName_5151Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			durationObservationName_5176Parser = parser;
+			durationObservationName_5151Parser = parser;
 		}
-		return durationObservationName_5176Parser;
+		return durationObservationName_5151Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser timeObservationName_5177Parser;
+	private AppliedStereotypeParser durationObservationName_5152Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTimeObservationName_5177Parser() {
-		if (timeObservationName_5177Parser == null) {
+	private IParser getDurationObservationName_5152Parser() {
+		if (durationObservationName_5152Parser == null) {
+			durationObservationName_5152Parser = new AppliedStereotypeParser();
+		}
+		return durationObservationName_5152Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser timeObservationName_5142Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservationName_5142Parser() {
+		if (timeObservationName_5142Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			timeObservationName_5177Parser = parser;
+			timeObservationName_5142Parser = parser;
 		}
-		return timeObservationName_5177Parser;
+		return timeObservationName_5142Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser timeObservationName_5143Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservationName_5143Parser() {
+		if (timeObservationName_5143Parser == null) {
+			timeObservationName_5143Parser = new AppliedStereotypeParser();
+		}
+		return timeObservationName_5143Parser;
 	}
 
 	/**
@@ -2461,9 +2485,13 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		case ExecutionEventNameEditPart.VISUAL_ID:
 			return getExecutionEventName_5175Parser();
 		case DurationObservationNameEditPart.VISUAL_ID:
-			return getDurationObservationName_5176Parser();
+			return getDurationObservationName_5151Parser();
+		case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
+			return getDurationObservationName_5152Parser();
 		case TimeObservationNameEditPart.VISUAL_ID:
-			return getTimeObservationName_5177Parser();
+			return getTimeObservationName_5142Parser();
+		case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
+			return getTimeObservationName_5143Parser();
 		case LiteralBooleanNameEditPart.VISUAL_ID:
 			return getLiteralBooleanName_5178Parser();
 		case LiteralIntegerNameEditPart.VISUAL_ID:

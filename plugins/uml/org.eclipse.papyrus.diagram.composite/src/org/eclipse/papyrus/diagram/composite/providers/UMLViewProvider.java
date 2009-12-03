@@ -132,12 +132,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
-									// element type
+					// element type
 				}
 				if (domainElement != null
 						&& visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element
-									// type
+					// type
 				}
 			} else {
 				if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
@@ -245,7 +245,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
-										// domain element
+						// domain element
 					}
 					break;
 				default:
@@ -325,7 +325,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
-							// as in element type
+			// as in element type
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -614,6 +614,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case InformationFlowEditPart.VISUAL_ID:
 			return createInformationFlow_4016(getSemanticElement(semanticAdapter), containerView, index, persisted,
 					preferencesHint);
+		case ConnectorTimeObservationEditPart.VISUAL_ID:
+			return createTimeObservationEvent_4018(containerView, index, persisted, preferencesHint);
+		case ConnectorDurationObservationEditPart.VISUAL_ID:
+			return createDurationObservationEvent_4019(containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -1474,10 +1478,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	public Node createDurationObservation_2093(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DurationObservationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
@@ -1486,11 +1487,23 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
+		initForegroundFromPrefs(node, prefStore, "DurationObservation");
+
 		initFontStyleFromPrefs(node, prefStore, "DurationObservation");
 
 		initBackgroundFromPrefs(node, prefStore, "DurationObservation");
 
-		Node label5176 = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationNameEditPart.VISUAL_ID));
+		Node label5151 = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationNameEditPart.VISUAL_ID));
+		label5151.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5151 = (Location) label5151.getLayoutConstraint();
+		location5151.setX(0);
+		location5151.setY(5);
+		Node label5152 = createLabel(node, UMLVisualIDRegistry
+				.getType(DurationObservationStereotypeLabelEditPart.VISUAL_ID));
+		label5152.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5152 = (Location) label5152.getLayoutConstraint();
+		location5152.setX(0);
+		location5152.setY(5);
 		return node;
 	}
 
@@ -1499,10 +1512,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	public Node createTimeObservation_2094(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(TimeObservationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
@@ -1511,11 +1521,23 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
+		initForegroundFromPrefs(node, prefStore, "TimeObservation");
+
 		initFontStyleFromPrefs(node, prefStore, "TimeObservation");
 
 		initBackgroundFromPrefs(node, prefStore, "TimeObservation");
 
-		Node label5177 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationNameEditPart.VISUAL_ID));
+		Node label5142 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationNameEditPart.VISUAL_ID));
+		label5142.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5142 = (Location) label5142.getLayoutConstraint();
+		location5142.setX(0);
+		location5142.setY(5);
+		Node label5143 = createLabel(node, UMLVisualIDRegistry
+				.getType(TimeObservationStereotypeLabelEditPart.VISUAL_ID));
+		label5143.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5143 = (Location) label5143.getLayoutConstraint();
+		location5143.setX(0);
+		location5143.setY(5);
 		return node;
 	}
 
@@ -3446,6 +3468,58 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Edge createTimeObservationEvent_4018(View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(ConnectorTimeObservationEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createDurationObservationEvent_4019(View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(ConnectorDurationObservationEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
 	private void stampShortcut(View containerView, Node target) {
 		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -3479,6 +3553,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		} else {
 			rv = NotationFactory.eINSTANCE.createDecorationNode();
 		}
+		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+
 		if (hasTitle) {
 			TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
 			ts.setShowTitle(true);

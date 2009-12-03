@@ -636,6 +636,16 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType TimeObservationEvent_4018 = getElementType("org.eclipse.papyrus.diagram.composite.TimeObservationEvent_4018"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationObservationEvent_4019 = getElementType("org.eclipse.papyrus.diagram.composite.DurationObservationEvent_4019"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -967,6 +977,10 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(Generalization_4015, UMLPackage.eINSTANCE.getGeneralization());
 
 			elements.put(InformationFlow_4016, UMLPackage.eINSTANCE.getInformationFlow());
+
+			elements.put(TimeObservationEvent_4018, UMLPackage.eINSTANCE.getTimeObservation_Event());
+
+			elements.put(DurationObservationEvent_4019, UMLPackage.eINSTANCE.getDurationObservation_Event());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -1099,6 +1113,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Connector_4013);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4015);
 			KNOWN_ELEMENT_TYPES.add(InformationFlow_4016);
+			KNOWN_ELEMENT_TYPES.add(TimeObservationEvent_4018);
+			KNOWN_ELEMENT_TYPES.add(DurationObservationEvent_4019);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -1338,6 +1354,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return Generalization_4015;
 		case InformationFlowEditPart.VISUAL_ID:
 			return InformationFlow_4016;
+		case ConnectorTimeObservationEditPart.VISUAL_ID:
+			return TimeObservationEvent_4018;
+		case ConnectorDurationObservationEditPart.VISUAL_ID:
+			return DurationObservationEvent_4019;
 		}
 		return null;
 	}

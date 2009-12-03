@@ -37,6 +37,10 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.CommentAnnotatedEleme
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ComponentRealizationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ComponentRealizationReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorDurationObservationCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorDurationObservationReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorTimeObservationCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorTimeObservationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DependencyCreateCommand;
@@ -64,6 +68,8 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentRealizationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorDurationObservationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DeploymentEditPart;
@@ -195,6 +201,20 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 			if (UMLVisualIDRegistry.getVisualID(incomingLink) == InformationFlowEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -384,6 +404,20 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						continue;
 					}
+					if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(),
+								null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
+					if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(),
+								null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
 				}
 				for (Iterator it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge) it.next();
@@ -558,6 +592,20 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							if (UMLVisualIDRegistry.getVisualID(incomingLink) == InformationFlowEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource()
+										.getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource()
+										.getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
@@ -767,6 +815,12 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 		if (UMLElementTypes.InformationFlow_4016 == req.getElementType()) {
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if (UMLElementTypes.TimeObservationEvent_4018 == req.getElementType()) {
+			return null;
+		}
+		if (UMLElementTypes.DurationObservationEvent_4019 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -815,6 +869,12 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 		}
 		if (UMLElementTypes.InformationFlow_4016 == req.getElementType()) {
 			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.TimeObservationEvent_4018 == req.getElementType()) {
+			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (UMLElementTypes.DurationObservationEvent_4019 == req.getElementType()) {
+			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -867,6 +927,10 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+		case ConnectorTimeObservationEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConnectorTimeObservationReorientCommand(req));
+		case ConnectorDurationObservationEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConnectorDurationObservationReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

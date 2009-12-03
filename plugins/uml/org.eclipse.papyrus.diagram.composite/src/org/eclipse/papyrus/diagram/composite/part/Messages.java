@@ -346,12 +346,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Contraint8CreationTool_title;
+	public static String Constraint8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Contraint8CreationTool_desc;
+	public static String Constraint8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String TimeObservation9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String TimeObservation9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DurationObservation10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DurationObservation10CreationTool_desc;
 
 	/**
 	 * @generated

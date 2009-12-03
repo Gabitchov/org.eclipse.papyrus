@@ -27,10 +27,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
@@ -40,8 +38,6 @@ import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
 /**
@@ -76,11 +72,6 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	/** The editing domain. */
 	private TransactionalEditingDomain editingDomain;
 
-	/**
-	 * The diagram shown by this editor.
-	 */
-	private Diagram diagram;
-
 	private IDocumentProvider documentProvider;
 
 	/**
@@ -92,19 +83,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	public UmlCompositeDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
 			throws BackboneException, ServiceException {
-		super(servicesRegistry);
-		this.diagram = diagram;
-		// IEditorContextRegistry contextRegistry;
-		// contextRegistry = (IEditorContextRegistry)
-		// servicesRegistry.getService(IEditorContextRegistry.class);
-		//
-		// // Get the context by its ID
-		// this.context = (GmfEditorContext)
-		// contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
-
-		// overrides editing domain created by super constructor
-		// setDocumentProvider(context.getDocumentProvider());
-		// System.err.println(this.getClass().getName());
+		super(servicesRegistry, diagram);
 
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
 		documentProvider = new GmfMultiDiagramDocumentProvider(editingDomain);
@@ -152,26 +131,6 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	}
 
 	/**
-	 * @return the diagram
-	 */
-	@Override
-	public Diagram getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	@Override
-	final protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			return documentProvider;
-		}
-		return super.getDocumentProvider(input);
-	}
-
-	/**
 	 * Returns an editing domain id used to retrive an editing domain from the editing domain
 	 * registry. Clients should override this if they wish to use a shared editing domain for this
 	 * editor. If null is returned then a new editing domain will be created per editor instance.
@@ -192,13 +151,6 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
 	}
-
-	/**
-	 * @return the parentEditor
-	 */
-	// public GmfEditorContext getSharedObjects() {
-	// return context;
-	// }
 
 	/**
 	 * 
@@ -241,60 +193,13 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite().getPage().getActiveEditor();
-			// If not the active editor, ignore selection changed.
-			if (this.equals(editor.getActiveEditor())) {
-				updateActions(getSelectionActions());
-				super.selectionChanged(part, selection);
-			} else {
-				super.selectionChanged(part, selection);
-			}
-		} else {
-			super.selectionChanged(part, selection);
-		}
-		// from
-		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
-		// ISelection)
-		if (part == this) {
-			rebuildStatusLine();
-		}
-	}
-
-	/**
-	 * @param diagram
-	 *            the diagram to set
-	 */
-	public void setDiagram(Diagram diagram) {
-		this.diagram = diagram;
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			setDocumentProvider(documentProvider);
-		} else {
-			super.setDocumentProvider(input);
-		}
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	@Override
 	public void setInput(IEditorInput input) {
 		try {
 			// We are in a nested editor.
 			// Provide an URI with fragment in order to reuse the same Resource
 			// and to set the diagram to the fragment.
 			// First, compute the URI
-			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(diagram));
+			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(getDiagram()));
 			System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")"); //$NON-NLS-1$
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
@@ -303,14 +208,5 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 			Shell shell = getSite().getShell();
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}
-
 	}
-
-	/**
-	 * @param parentEditor
-	 *            the parentEditor to set
-	 */
-	// public void setSharedObject(GmfEditorContext parentEditor) {
-	// this.context = parentEditor;
-	// }
 }

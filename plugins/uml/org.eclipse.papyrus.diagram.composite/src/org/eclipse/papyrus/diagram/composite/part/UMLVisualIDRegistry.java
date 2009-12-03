@@ -3818,9 +3818,15 @@ public class UMLVisualIDRegistry {
 			if (DurationObservationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (DurationObservationStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case TimeObservationEditPart.VISUAL_ID:
 			if (TimeObservationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (TimeObservationStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -6689,6 +6695,12 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "Port");

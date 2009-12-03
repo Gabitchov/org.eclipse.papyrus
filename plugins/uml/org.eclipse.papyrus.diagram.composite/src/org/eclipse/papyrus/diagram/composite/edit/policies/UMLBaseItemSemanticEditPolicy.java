@@ -54,10 +54,12 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.TimeObservation;
 
 /**
  * @generated
@@ -446,6 +448,32 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
+			if (source != null) {
+				if (source.getEvent() != null) {
+					return false;
+				}
+			}
+
+			return canExistTimeObservationEvent_4018(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
+			if (source != null) {
+				if (source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
+					return false;
+				}
+			}
+
+			return canExistDurationObservationEvent_4019(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistLink_4001() {
 			return true;
 		}
@@ -576,6 +604,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistInformationFlow_4016(Package container, Element source, Element target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
 			return true;
 		}
 	}

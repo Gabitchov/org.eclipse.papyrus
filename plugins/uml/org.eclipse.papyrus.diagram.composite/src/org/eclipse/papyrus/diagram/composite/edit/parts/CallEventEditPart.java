@@ -277,7 +277,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -308,7 +309,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -3219,7 +3221,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -6129,7 +6132,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -6149,6 +6153,8 @@ ShapeNodeEditPart {
 		types.add(UMLElementTypes.Dependency_4010);
 		types.add(UMLElementTypes.Generalization_4015);
 		types.add(UMLElementTypes.InformationFlow_4016);
+		types.add(UMLElementTypes.TimeObservationEvent_4018);
+		types.add(UMLElementTypes.DurationObservationEvent_4019);
 		return types;
 	}
 
@@ -6162,7 +6168,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -9080,6 +9087,12 @@ ShapeNodeEditPart {
 		}
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Comment_3097);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.TimeObservation_2094);
+		}
+		if (relationshipType == UMLElementTypes.DurationObservationEvent_4019) {
+			types.add(UMLElementTypes.DurationObservation_2093);
 		}
 		return types;
 	}

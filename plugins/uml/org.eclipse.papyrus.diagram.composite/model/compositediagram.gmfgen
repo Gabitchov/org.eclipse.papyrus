@@ -4649,13 +4649,16 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="DurationObservationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="NamedElementDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class NamedElementDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fNamedElementNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public NamedElementDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fNamedElementNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fNamedElementNameLabel.setText(&quot;&quot;);&#xA;&#x9;fNamedElementNameLabel.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fNamedElementNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getNamedElementNameLabel() {&#xA;&#x9;&#x9;return fNamedElementNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FNAMEDELEMENTNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.figures.DurationObservationNodeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation"/>
@@ -4674,27 +4677,42 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5176"
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5151"
             editPartClassName="DurationObservationNameEditPart"
-            itemSemanticEditPolicyClassName="DurationObservationNameItemSemanticEditPolicy"
-            elementIcon="true">
+            itemSemanticEditPolicyClassName="DurationObservationNameItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getNamedElementNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"
-                fixedForeground="true"/>
-          </viewmap>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              parser="/0/@labelParsers/@implementations.0">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5152"
+            editPartClassName="DurationObservationStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="DurationObservationStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.1"
+              viewPattern="&lt;&lt;{0}>>"
+              editorPattern="&lt;&lt;{0}>>"
+              editPattern="&lt;&lt;{0}>>">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -4713,13 +4731,16 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="TimeObservationEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="NamedElementDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class NamedElementDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fNamedElementNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public NamedElementDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fNamedElementNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fNamedElementNameLabel.setText(&quot;&quot;);&#xA;&#x9;fNamedElementNameLabel.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fNamedElementNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getNamedElementNameLabel() {&#xA;&#x9;&#x9;return fNamedElementNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FNAMEDELEMENTNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.figures.TimeObservationNodeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
@@ -4738,27 +4759,42 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5177"
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5142"
             editPartClassName="TimeObservationNameEditPart"
-            itemSemanticEditPolicyClassName="TimeObservationNameItemSemanticEditPolicy"
-            elementIcon="true">
+            itemSemanticEditPolicyClassName="TimeObservationNameItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getNamedElementNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"
-                fixedForeground="true"/>
-          </viewmap>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
-              viewPattern="{0}  "
-              editorPattern="{0}"
-              editPattern="{0}">
+              parser="/0/@labelParsers/@implementations.0">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5143"
+            editPartClassName="TimeObservationStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="TimeObservationStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.1"
+              viewPattern="&lt;&lt;{0}>>"
+              editorPattern="&lt;&lt;{0}>>"
+              editPattern="&lt;&lt;{0}>>">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -7212,6 +7248,46 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DirectedRelationship/target"/>
         </modelFacet>
       </links>
+      <links
+          visualID="4018"
+          editPartClassName="ConnectorTimeObservationEditPart"
+          itemSemanticEditPolicyClassName="ConnectorTimeObservationItemSemanticEditPolicy"
+          createCommandClassName="ConnectorTimeObservationCreateCommand"
+          reorientCommandClassName="ConnectorTimeObservationReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="LinkDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class LinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public LinkDescriptor() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation/event"/>
+        </modelFacet>
+      </links>
+      <links
+          visualID="4019"
+          editPartClassName="ConnectorDurationObservationEditPart"
+          itemSemanticEditPolicyClassName="ConnectorDurationObservationItemSemanticEditPolicy"
+          createCommandClassName="ConnectorDurationObservationCreateCommand"
+          reorientCommandClassName="ConnectorDurationObservationReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="LinkDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class LinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public LinkDescriptor() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation/event"/>
+        </modelFacet>
+      </links>
       <compartments
           visualID="7033"
           editPartClassName="DataTypeAttributeCompartmentEditPart"
@@ -8279,11 +8355,26 @@
               genNodes="/0/@diagram/@childNodes.26 /0/@diagram/@topLevelNodes.49"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Contraint"
+              title="Constraint"
               description="Create new Constraint"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              createMethodName="createConstraint8CreationTool"
               genNodes="/0/@diagram/@topLevelNodes.54"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="TimeObservation"
+              description="Create new TimeObservation"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              genNodes="/0/@diagram/@topLevelNodes.34"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="DurationObservation"
+              description="Create new DurationObservation"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+              genNodes="/0/@diagram/@topLevelNodes.33"/>
         </groups>
         <groups
             title="Edges"
@@ -8297,7 +8388,7 @@
               description="Create new Link (Comment / Constraint)"
               largeIconPath="icons/obj16/Link.gif"
               smallIconPath="icons/obj16/Link.gif"
-              genLinks="/0/@diagram/@links.1 /0/@diagram/@links.2"/>
+              genLinks="/0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.16 /0/@diagram/@links.17"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Connector"
@@ -8443,10 +8534,10 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labelModelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labelModelFacet /0/@diagram/@childNodes.27/@labelModelFacet /0/@diagram/@childNodes.28/@labelModelFacet /0/@diagram/@childNodes.31/@labelModelFacet /0/@diagram/@childNodes.32/@labelModelFacet /0/@diagram/@childNodes.33/@labelModelFacet /0/@diagram/@childNodes.34/@labelModelFacet /0/@diagram/@childNodes.35/@labelModelFacet /0/@diagram/@childNodes.36/@labelModelFacet /0/@diagram/@childNodes.37/@labelModelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.41/@labelModelFacet /0/@diagram/@childNodes.42/@labelModelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.21/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.22/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.23/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.24/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.25/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.26/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.29/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.30/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.31/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.32/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.34/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.35/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.36/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.38/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.39/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.40/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.41/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.42/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.43/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.44/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.45/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.46/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.47/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.48/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.49/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.50/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.51/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.52/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.53/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.54/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.2/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labelModelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labelModelFacet /0/@diagram/@childNodes.27/@labelModelFacet /0/@diagram/@childNodes.28/@labelModelFacet /0/@diagram/@childNodes.31/@labelModelFacet /0/@diagram/@childNodes.32/@labelModelFacet /0/@diagram/@childNodes.33/@labelModelFacet /0/@diagram/@childNodes.34/@labelModelFacet /0/@diagram/@childNodes.35/@labelModelFacet /0/@diagram/@childNodes.36/@labelModelFacet /0/@diagram/@childNodes.37/@labelModelFacet /0/@diagram/@childNodes.38/@labelModelFacet /0/@diagram/@childNodes.39/@labelModelFacet /0/@diagram/@childNodes.40/@labelModelFacet /0/@diagram/@childNodes.41/@labelModelFacet /0/@diagram/@childNodes.42/@labelModelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.20/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.21/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.22/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.23/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.24/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.25/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.26/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.29/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.30/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.31/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.32/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.35/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.36/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.37/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.38/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.39/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.40/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.41/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.42/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.43/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.44/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.45/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.46/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.47/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.48/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.49/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.50/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.51/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.52/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.53/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.54/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.1/@modelFacet /0/@diagram/@links.13/@labels.2/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.34/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.3/@modelFacet /0/@diagram/@links.11/@labels.2/@modelFacet"
+          uses="/0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@links.13/@labels.3/@modelFacet /0/@diagram/@links.11/@labels.2/@modelFacet /0/@diagram/@topLevelNodes.34/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.33/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -8479,6 +8570,18 @@
         genView="/0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.12 /0/@diagram/@links.14 /0/@diagram/@links.13 /0/@diagram/@links.11"
         name="ExtendedUMLLinks"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Adds a superclass for DurationObservationEditPart, TimeObservationEditPart"
+        genView="/0/@diagram/@topLevelNodes.34 /0/@diagram/@topLevelNodes.33"
+        name="AbstractObservationEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.composite.custom.edit.parts.AbstractObservationEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="add a super class to TimeObservationSteteorypeLabelEditPart, DurationObservationStereotypeLabelEditPart"
+        genView="/0/@diagram/@topLevelNodes.34/@labels.1 /0/@diagram/@topLevelNodes.33/@labels.1"
+        name="AbstractLabelEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Port locator"

@@ -14,27 +14,31 @@
 package org.eclipse.papyrus.diagram.composite.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -42,22 +46,24 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.parts.AbstractObservationEditPart;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.figures.TimeObservationNodeFigure;
 import org.eclipse.papyrus.diagram.composite.edit.policies.TimeObservationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
 public class TimeObservationEditPart extends
 
-ShapeNodeEditPart {
+AbstractObservationEditPart {
 
 	/**
 	 * @generated
@@ -88,9 +94,22 @@ ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TimeObservationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeIconlDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children
 		// add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 *Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -100,6 +119,19 @@ ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View) child.getModel();
+				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				case TimeObservationNameEditPart.VISUAL_ID:
+				case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
+					return new BorderItemSelectionEditPolicy() {
+
+						protected List createSelectionHandles() {
+							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+							mh.setBorder(null);
+							return Collections.singletonList(mh);
+						}
+					};
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
@@ -122,64 +154,28 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		NamedElementDescriptor figure = new NamedElementDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new TimeObservationNodeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public NamedElementDescriptor getPrimaryShape() {
-		return (NamedElementDescriptor) primaryShape;
+	public TimeObservationNodeFigure getPrimaryShape() {
+		return (TimeObservationNodeFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof TimeObservationNameEditPart) {
-			((TimeObservationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNamedElementNameLabel());
-			return true;
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if (borderItemEditPart instanceof TimeObservationNameEditPart
+				|| borderItemEditPart instanceof TimeObservationStereotypeLabelEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
-
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof TimeObservationNameEditPart) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		return getContentPane();
 	}
 
 	/**
@@ -198,7 +194,7 @@ ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -216,11 +212,6 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(5);
-			nodeShape.setLayoutManager(layout);
-		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -277,7 +268,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -295,6 +287,7 @@ ShapeNodeEditPart {
 		types.add(UMLElementTypes.Dependency_4010);
 		types.add(UMLElementTypes.Generalization_4015);
 		types.add(UMLElementTypes.InformationFlow_4016);
+		types.add(UMLElementTypes.TimeObservationEvent_4018);
 		return types;
 	}
 
@@ -308,7 +301,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -3205,6 +3199,246 @@ ShapeNodeEditPart {
 		}
 		if (targetEditPart instanceof CommentEditPartCN) {
 			types.add(UMLElementTypes.InformationFlow_4016);
+		}
+		if (targetEditPart instanceof ActivityCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InteractionCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ProtocolStateMachineCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof StateMachineCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof FunctionBehaviorCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof OpaqueBehaviorCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ComponentCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DeviceCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ExecutionEnvironmentCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof NodeCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ClassCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ClassClassifierEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof CollaborationCompositeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InterfaceEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof EnumerationEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ActorEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DeploymentSpecificationEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ArtifactEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof SignalEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof UseCaseEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof SignalEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof CallEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof AnyReceiveEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof SendSignalEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof SendOperationEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ChangeEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof TimeEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof CreationEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ExecutionEventEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.TimeObservationEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof LiteralBooleanEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof LiteralIntegerEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof LiteralNullEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof LiteralStringEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof LiteralUnlimitedNaturalEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof StringExpressionEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof OpaqueExpressionEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof TimeExpressionEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ExpressionEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DurationEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof TimeIntervalEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DurationIntervalEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof IntervalEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InstanceValueEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof IntervalConstraintEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InteractionConstraintEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof PortEditPart) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof CollaborationRoleEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof CollaborationUseEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ActivityCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InteractionCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ProtocolStateMachineCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof StateMachineCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof FunctionBehaviorCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof OpaqueBehaviorCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ComponentCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DeviceCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ExecutionEnvironmentCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof NodeCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ClassCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof CollaborationCompositeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InterfaceEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DataTypeEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ActorEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof DeploymentSpecificationEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof ArtifactEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof SignalEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
+		}
+		if (targetEditPart instanceof UseCaseEditPartCN) {
+			types.add(UMLElementTypes.TimeObservationEvent_4018);
 		}
 		return types;
 	}
@@ -3219,7 +3453,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -6117,6 +6352,246 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Comment_3097);
 		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Activity_2060);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Interaction_2061);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.ProtocolStateMachine_2062);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.StateMachine_2063);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.FunctionBehavior_2064);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.OpaqueBehavior_2065);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Component_2069);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Device_2070);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.ExecutionEnvironment_2071);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Node_2072);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Class_2073);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Class_2074);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Collaboration_2075);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Interface_2076);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.PrimitiveType_2066);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Enumeration_2067);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DataType_2068);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Actor_2077);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DeploymentSpecification_2078);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Artifact_2079);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.InformationItem_2080);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Signal_2081);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.UseCase_2082);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.SignalEvent_2083);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.CallEvent_2084);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.AnyReceiveEvent_2085);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.SendSignalEvent_2086);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.SendOperationEvent_2087);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.ChangeEvent_2088);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.TimeEvent_2089);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.CreationEvent_2090);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DestructionEvent_2091);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.ExecutionEvent_2092);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DurationObservation_2093);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.TimeObservation_2094);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.LiteralBoolean_2095);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.LiteralInteger_2096);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.LiteralNull_2097);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.LiteralString_2098);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.LiteralUnlimitedNatural_2099);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.StringExpression_2100);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.OpaqueExpression_2101);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.TimeExpression_2102);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Expression_2103);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Duration_2104);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.TimeInterval_2105);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DurationInterval_2106);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Interval_2107);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.InstanceValue_2108);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DurationConstraint_2110);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.TimeConstraint_2111);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.IntervalConstraint_2112);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.InteractionConstraint_2113);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Constraint_2114);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Port_3069);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Property_3070);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.ConnectableElement_3115);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.CollaborationUse_3071);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Activity_3072);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Interaction_3073);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.StateMachine_3075);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Component_3081);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Device_3082);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Node_3084);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Class_3085);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Collaboration_3086);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Interface_3087);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.PrimitiveType_3078);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Enumeration_3079);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DataType_3080);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Actor_3091);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Artifact_3093);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.InformationItem_3094);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.Signal_3095);
+		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.UseCase_3096);
+		}
 		return types;
 	}
 
@@ -6129,7 +6604,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -6149,6 +6625,8 @@ ShapeNodeEditPart {
 		types.add(UMLElementTypes.Dependency_4010);
 		types.add(UMLElementTypes.Generalization_4015);
 		types.add(UMLElementTypes.InformationFlow_4016);
+		types.add(UMLElementTypes.TimeObservationEvent_4018);
+		types.add(UMLElementTypes.DurationObservationEvent_4019);
 		return types;
 	}
 
@@ -6162,7 +6640,8 @@ ShapeNodeEditPart {
 																							 * .gmf.
 																							 * runtime
 																							 * .
-																							 * emf.type
+																							 * emf.
+																							 * type
 																							 * .
 																							 * core.
 																							 * IElementType
@@ -9081,75 +9560,14 @@ ShapeNodeEditPart {
 		if (relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Comment_3097);
 		}
+		if (relationshipType == UMLElementTypes.TimeObservationEvent_4018) {
+			types.add(UMLElementTypes.TimeObservation_2094);
+		}
+		if (relationshipType == UMLElementTypes.DurationObservationEvent_4019) {
+			types.add(UMLElementTypes.DurationObservation_2093);
+		}
 		return types;
 	}
-
-	/**
-	 * @generated
-	 */
-	public class NamedElementDescriptor extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fNamedElementNameLabel;
-
-		/**
-		 * @generated
-		 */
-		public NamedElementDescriptor() {
-			this.setLineWidth(1);
-			this.setForegroundColor(ColorConstants.black);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fNamedElementNameLabel = new WrappingLabel();
-			fNamedElementNameLabel.setText("");
-			fNamedElementNameLabel.setForegroundColor(ColorConstants.black);
-
-			fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);
-
-			this.add(fNamedElementNameLabel);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getNamedElementNameLabel() {
-			return fNamedElementNameLabel;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FNAMEDELEMENTNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 	/**
 	 * @generated

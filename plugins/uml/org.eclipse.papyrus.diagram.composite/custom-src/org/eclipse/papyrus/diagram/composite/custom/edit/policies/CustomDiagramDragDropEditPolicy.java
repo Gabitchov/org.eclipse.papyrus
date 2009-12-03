@@ -28,20 +28,26 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.ConnectorHelper;
+import org.eclipse.papyrus.diagram.composite.custom.helper.DurationObservationHelper;
+import org.eclipse.papyrus.diagram.composite.custom.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -52,7 +58,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/** List of VISUAL_ID for which a specific Drop behavior is provided */
 	public int[] secificDropNode = { DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID,
-			ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, PropertyPartEditPartCN.VISUAL_ID };
+			ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, PropertyPartEditPartCN.VISUAL_ID,
+			TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
 
 	/**
 	 * Default constructor
@@ -114,6 +121,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropPort(dropRequest, location, (Port) semanticElement, nodeVISUALID);
 			case PropertyPartEditPartCN.VISUAL_ID:
 				return dropProperty(dropRequest, location, (Property) semanticElement, nodeVISUALID);
+			case TimeObservationEditPart.VISUAL_ID:
+				return dropTimeObservation(dropRequest, location, (TimeObservation) semanticElement, nodeVISUALID);
+			case DurationObservationEditPart.VISUAL_ID:
+				return dropDurationObservation(dropRequest, location, (DurationObservation) semanticElement,
+						nodeVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			}
@@ -273,4 +285,52 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		return UnexecutableCommand.INSTANCE;
 	}
+
+	/**
+	 * Returns the drop command for DurationObservation nodes.
+	 * 
+	 * @param dropRequest
+	 *            the drop request
+	 * @param location
+	 *            the location to drop the element
+	 * @param droppedElement
+	 *            the element to drop
+	 * @param nodeVISUALID
+	 *            the visual identifier of the EditPart of the dropped element
+	 * @return the drop command
+	 * 
+	 */
+	protected Command dropDurationObservation(DropObjectsRequest dropRequest, Point location,
+			DurationObservation droppedElement, int nodeVISUALID) {
+
+		DurationObservationHelper durationObservationHelper = new DurationObservationHelper(getEditingDomain());
+		return durationObservationHelper.dropDurationObservation((DurationObservation) droppedElement, getViewer(),
+				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
+						.getNotationView());
+
+	}
+
+	/**
+	 * Returns the drop command for TimeObservation nodes.
+	 * 
+	 * @param dropRequest
+	 *            the drop request
+	 * @param location
+	 *            the location to drop the element
+	 * @param droppedElement
+	 *            the element to drop
+	 * @param nodeVISUALID
+	 *            the visual identifier of the EditPart of the dropped element
+	 * @return the drop command
+	 * 
+	 */
+	protected Command dropTimeObservation(DropObjectsRequest dropRequest, Point location,
+			TimeObservation droppedElement, int nodeVISUALID) {
+
+		TimeObservationHelper timeObservationHelper = new TimeObservationHelper(getEditingDomain());
+		return timeObservationHelper.dropTimeObservation((TimeObservation) droppedElement, getViewer(),
+				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
+						.getNotationView());
+	}
+
 }

@@ -80,7 +80,11 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  * @generated
  */
-public class PortNameEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
+public class PortNameEditPart
+
+extends LabelEditPart
+
+implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * @generated
