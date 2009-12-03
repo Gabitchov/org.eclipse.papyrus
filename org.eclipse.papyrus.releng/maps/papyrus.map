@@ -19,6 +19,7 @@ plugin@org.eclipse.papyrus.wizards=SVN,trunk,svn://dev.eclipse.org/svnroot/model
 plugin@org.eclipse.papyrus.extensionpoints.editors=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.extensionpoints.editors
 plugin@org.eclipse.papyrus.preferences=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.preferences
 plugin@org.eclipse.papyrus.editor=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.editor
+plugin@org.eclipse.papyrus.log=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.log
 
 # uml
 plugin@org.eclipse.papyrus.diagram.common=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.diagram.common
