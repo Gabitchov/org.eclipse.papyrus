@@ -207,7 +207,7 @@
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/PapyrusLogo16x16.gif"
          id="org.eclipse.papyrus.wizards.createumlmodel"
-         name="Create a new model">
+         name="Papyrus Model">
       <selection
             class="org.eclipse.core.resources.IResource">
       </selection>
