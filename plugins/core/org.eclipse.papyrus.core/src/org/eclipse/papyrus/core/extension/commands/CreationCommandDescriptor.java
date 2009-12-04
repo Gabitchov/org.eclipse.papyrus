@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Jerome Benois (Obeo) jerome.benois@obeo.fr - initial API and implementation
+ *     Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - add condition to the create command (task #296902)
  *******************************************************************************/
 package org.eclipse.papyrus.core.extension.commands;
 
@@ -28,6 +29,8 @@ public class CreationCommandDescriptor {
 
 	protected ImageDescriptor icon;
 
+	protected ICreationCondition condition;
+
 	public String getCommandId() {
 		return commandId;
 	}
@@ -38,6 +41,10 @@ public class CreationCommandDescriptor {
 
 	public ImageDescriptor getIcon() {
 		return icon;
+	}
+
+	public ICreationCondition getCondition() {
+		return condition;
 	}
 
 	/**
@@ -52,7 +59,7 @@ public class CreationCommandDescriptor {
 	 * @throws BackboneException
 	 */
 	protected ICreationCommand getCommand() throws BackboneException {
-		if(instance == null)
+		if (instance == null)
 			instance = createCommand();
 
 		return instance;
@@ -63,13 +70,16 @@ public class CreationCommandDescriptor {
 			ICreationCommand command = creationCommandClass.newInstance();
 			return command;
 		} catch (SecurityException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by
+			// programmer.
 			throw new RuntimeException(e);
 		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by
+			// programmer.
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be solved by programmer.
+			// Lets propagate. This is an implementation problem that should be solved by
+			// programmer.
 			throw new RuntimeException(e);
 		}
 	}

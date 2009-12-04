@@ -157,7 +157,7 @@ An ActionBarContributor can be shared among several Editors or Views.
    <element name="creationCommand">
       <annotation>
          <documentation>
-            A creation command use to create a new diagram.
+            A creation command used to create a new diagram.
          </documentation>
       </annotation>
       <complexType>
@@ -192,6 +192,16 @@ An ActionBarContributor can be shared among several Editors or Views.
                </documentation>
                <appinfo>
                   <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="creationCondition" type="string">
+            <annotation>
+               <documentation>
+                  this condition is evaluated at diagram creation menu and if the method returning boolean in the interface returns false then the diagram will not be available
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCondition"/>
                </appinfo>
             </annotation>
          </attribute>

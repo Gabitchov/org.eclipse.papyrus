@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Jerome Benois (Obeo) jerome.benois@obeo.fr - initial API and implementation
+ *     Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - add condition to the create command (task #296902)
  *******************************************************************************/
 package org.eclipse.papyrus.core.extension.commands;
 
@@ -34,6 +35,9 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 	/** constant for the attribute creationCommandClass **/
 	public final static String CREATION_COMMAND_CLASS_ATTR = "creationCommandClass";
 
+	/** constant for the attribute creationCommandClass **/
+	public final static String CONDITION_COMMAND_CLASS_ATTR = "creationCondition";
+
 	/** constant for the attribute label **/
 	public final static String LABEL_ATTR = "label";
 
@@ -54,22 +58,36 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 	 * Create a CreationCommand instance corresponding to the ConfigurationElement.
 	 * 
 	 * @param element
-	 *        an {@link IConfigurationElement} see eclipse extension point
-	 * @return a CreationCommandDescriptor structure that contains information to the creation diagram command
+	 *            an {@link IConfigurationElement} see eclipse extension point
+	 * @return a CreationCommandDescriptor structure that contains information to the creation
+	 *         diagram command
 	 * @throws BadNameExtensionException
 	 **/
 	public CreationCommandDescriptor createCreationCommand(IConfigurationElement element) throws ExtensionException {
 		CreationCommandDescriptor res;
-
 		checkTagName(element, CREATION_COMMAND_EXTENSIONPOINT);
-
 		res = new CreationCommandDescriptor();
-		res.creationCommandClass = (Class<ICreationCommand>)parseClass(element, CREATION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
+		res.creationCommandClass = (Class<ICreationCommand>) parseClass(element, CREATION_COMMAND_CLASS_ATTR,
+				CREATION_COMMAND_EXTENSIONPOINT);
 		res.commandId = element.getAttribute(ID_ATTRIBUTE);
 		res.label = element.getAttribute(LABEL_ATTR);
 		String iconPath = element.getAttribute(ICON_ATTR);
-		if(iconPath != null) {
+		if (iconPath != null) {
 			res.icon = AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);
+		}
+		String attributeForCreationCondition = element.getAttribute(CONDITION_COMMAND_CLASS_ATTR);
+		if (attributeForCreationCondition != null && attributeForCreationCondition.length() > 0) {
+			Class<ICreationCondition> classCondition = (Class<ICreationCondition>) parseClass(element,
+					CONDITION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
+			if (classCondition != null) {
+				try {
+					res.condition = classCondition.newInstance();
+				} catch (InstantiationException e) {
+					throw new ExtensionException("can nott instantiate class : " + e.getMessage());
+				} catch (IllegalAccessException e) {
+					throw new ExtensionException("can nott acces to class : " + e.getMessage());
+				}
+			}
 		}
 		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a creation command ready " + res);
 
