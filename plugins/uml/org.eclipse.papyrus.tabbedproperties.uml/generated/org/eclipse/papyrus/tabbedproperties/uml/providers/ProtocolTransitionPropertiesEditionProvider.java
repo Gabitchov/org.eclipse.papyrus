@@ -40,7 +40,7 @@ public class ProtocolTransitionPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ProtocolTransition) {
+		if(eObject instanceof ProtocolTransition) {
 			return new ProtocolTransitionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ProtocolTransitionPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ProtocolTransition) {
-			if (ProtocolTransitionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ProtocolTransition) {
+			if(ProtocolTransitionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ProtocolTransitionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

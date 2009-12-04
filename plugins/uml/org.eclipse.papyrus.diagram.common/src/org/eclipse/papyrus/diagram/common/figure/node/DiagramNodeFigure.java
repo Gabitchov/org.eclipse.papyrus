@@ -32,8 +32,8 @@ public class DiagramNodeFigure extends RectangleFigure {
 			int minimumWith = 0;
 			int minimumHeight = 0;
 			// display name
-			for (int i = 0; i < container.getChildren().size(); i++) {
-				minimumHeight = minimumHeight + ((IFigure) container.getChildren().get(i)).getPreferredSize().height;
+			for(int i = 0; i < container.getChildren().size(); i++) {
+				minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height;
 			}
 
 			return new Dimension(minimumWith, minimumHeight);
@@ -45,11 +45,11 @@ public class DiagramNodeFigure extends RectangleFigure {
 		 */
 		public void layout(IFigure container) {
 			List childrenList = container.getChildren();
-			for (int i = 0; i < container.getChildren().size(); i++) {
-				Rectangle bound = new Rectangle(((IFigure) childrenList.get(i)).getBounds());
-				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
-				if (i > 0) {
-					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
+			for(int i = 0; i < container.getChildren().size(); i++) {
+				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
+				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
+				if(i > 0) {
+					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
 					bound.x = getBounds().x;
 					bound.width = container.getBounds().width;
 
@@ -59,7 +59,7 @@ public class DiagramNodeFigure extends RectangleFigure {
 					bound.width = container.getBounds().width;
 
 				}
-				((IFigure) childrenList.get(i)).setBounds(bound);
+				((IFigure)childrenList.get(i)).setBounds(bound);
 			}
 
 		}

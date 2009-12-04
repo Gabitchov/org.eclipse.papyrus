@@ -29,14 +29,14 @@ public class PropertyHasNameConstraint extends AbstractModelConstraint {
 
 	public IStatus validate(IValidationContext ctx) {
 
-		if (ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
-			Property property = (Property) ctx.getTarget();
+		if(ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
+			Property property = (Property)ctx.getTarget();
 
-			if (!property.isSetName()) {
+			if(!property.isSetName()) {
 				return ctx.createFailureStatus(ctx.getTarget());
 			}
 
-			if ("".equals(property.getName())) {
+			if("".equals(property.getName())) {
 				return ctx.createFailureStatus(ctx.getTarget());
 			}
 		}

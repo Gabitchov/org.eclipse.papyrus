@@ -22,19 +22,23 @@ import org.eclipse.swt.widgets.Shell;
  * The Class ComboSelectionDialog.
  */
 public class ComboSelectionDialog extends ChooseDialog {
-	
+
 	/**
 	 * The index of selection.
 	 */
-	public int indexOfSelection=0;
-	
+	public int indexOfSelection = 0;
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param parentShell the parent shell
-	 * @param message the message
-	 * @param listofChoice the listof choice
-	 * @param initial the initial
+	 * @param parentShell
+	 *        the parent shell
+	 * @param message
+	 *        the message
+	 * @param listofChoice
+	 *        the listof choice
+	 * @param initial
+	 *        the initial
 	 */
 	public ComboSelectionDialog(Shell parentShell, String message, String[] listofChoice, String initial) {
 		super(parentShell);
@@ -42,13 +46,13 @@ public class ComboSelectionDialog extends ChooseDialog {
 		elementList = listofChoice;
 		initialValue = initial;
 	}
-	
+
 	/**
 	 * Ok pressed.
 	 */
 	@Override
-	protected void okPressed(){
-		value=combo.getText();
+	protected void okPressed() {
+		value = combo.getText();
 		indexOfSelection = combo.getSelectionIndex();
 		super.okPressed();
 	}

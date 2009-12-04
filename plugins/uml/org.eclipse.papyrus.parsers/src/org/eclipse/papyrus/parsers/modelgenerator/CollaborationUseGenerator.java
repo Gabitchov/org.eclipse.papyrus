@@ -39,7 +39,7 @@ public class CollaborationUseGenerator {
 	 * Default Constructor.
 	 * 
 	 * @param collaborationUse
-	 *            the CollaborationUse to modify
+	 *        the CollaborationUse to modify
 	 */
 	public CollaborationUseGenerator(CollaborationUse collaborationUse) {
 		this.collaborationUse = collaborationUse;
@@ -50,7 +50,7 @@ public class CollaborationUseGenerator {
 	 * Parse the label of the CollaborationUse and modify CollaborationUse attributes.
 	 * 
 	 * @param label
-	 *            the label that defines the CollaborationUse
+	 *        the label that defines the CollaborationUse
 	 */
 	public void parseAndModifyCollaborationUse(String label) {
 		try {
@@ -62,11 +62,11 @@ public class CollaborationUseGenerator {
 		} catch (RecognitionException e) {
 			PapyrusParsersPlugin.getDefault().getLog().log(
 					new Status(IStatus.ERROR, PapyrusParsersPlugin.PLUGIN_ID, IStatus.OK,
-							"could not parse the property label: " + label, e));
+					"could not parse the property label: " + label, e));
 		} catch (RuntimeException e) {
 			PapyrusParsersPlugin.getDefault().getLog().log(
 					new Status(IStatus.ERROR, PapyrusParsersPlugin.PLUGIN_ID, IStatus.OK,
-							"could not parse the property label: " + label, e));
+					"could not parse the property label: " + label, e));
 		}
 	}
 
@@ -74,7 +74,7 @@ public class CollaborationUseGenerator {
 	 * Parse the label of the CollaborationUse and validate it.
 	 * 
 	 * @param label
-	 *            the label that defines the CollaborationUse
+	 *        the label that defines the CollaborationUse
 	 * 
 	 * @return null if label is valid, else return the message that describes the error.
 	 */
@@ -103,7 +103,7 @@ public class CollaborationUseGenerator {
 	 * Parse the label of the CollaborationUse, and generates an exception if does not validate.
 	 * 
 	 * @param label
-	 *            the label that defines the CollaborationUse
+	 *        the label that defines the CollaborationUse
 	 * 
 	 * @return null if label is valid, else return the message that describes the error.
 	 */
@@ -122,8 +122,8 @@ public class CollaborationUseGenerator {
 		} catch (RecognitionException re) {
 
 		} catch (RuntimeException tse) {
-			if (tse instanceof TypeRecognitionException)
-				return ((TypeRecognitionException) tse).getTypeName();
+			if(tse instanceof TypeRecognitionException)
+				return ((TypeRecognitionException)tse).getTypeName();
 		}
 		return null;
 	}

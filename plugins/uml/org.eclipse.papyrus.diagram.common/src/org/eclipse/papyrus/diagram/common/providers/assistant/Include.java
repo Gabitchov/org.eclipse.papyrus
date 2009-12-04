@@ -26,10 +26,10 @@ public class Include {
 	public List<ElementType> ElementType;
 
 	public List addTypes(List types) {
-		if (types != null) {
-			for (ElementType elementType : this.ElementType) {
+		if(types != null) {
+			for(ElementType elementType : this.ElementType) {
 				IElementType type = elementType.getElementType(elementType.typeID);
-				if (type != null && !types.contains(type)) {
+				if(type != null && !types.contains(type)) {
 					types.add(type);
 				}
 			}

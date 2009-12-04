@@ -41,10 +41,13 @@ public class LinkColorGroup extends AbstractGroup {
 	/**
 	 * creation of a colorGroup Composite.
 	 * 
-	 * @param parent the parent of the composite
-	 * @param dialogPage to set the page in field editor
-	 * @param title the title
-	 */    
+	 * @param parent
+	 *        the parent of the composite
+	 * @param dialogPage
+	 *        to set the page in field editor
+	 * @param title
+	 *        the title
+	 */
 
 	public LinkColorGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
@@ -63,7 +66,8 @@ public class LinkColorGroup extends AbstractGroup {
 	/**
 	 * Creates the content.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 */
 	protected void createContent(Composite parent) {
 		toolbar = new Group(parent, SWT.SHADOW_NONE);
@@ -74,7 +78,7 @@ public class LinkColorGroup extends AbstractGroup {
 		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT),
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
 		fontColorEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(fontColorEditor);
 
 		Composite lineColorEditorCompo = getEncapsulatedCompo(toolbar);
@@ -82,7 +86,7 @@ public class LinkColorGroup extends AbstractGroup {
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
 
 		lineColorEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(lineColorEditor);
 	}
 

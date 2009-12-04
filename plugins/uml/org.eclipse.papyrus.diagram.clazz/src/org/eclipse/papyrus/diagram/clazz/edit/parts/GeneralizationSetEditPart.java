@@ -48,7 +48,7 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -58,8 +58,8 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
+		if(childEditPart instanceof ConstraintLabelEditPart) {
+			((ConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
 			return true;
 		}
 		return false;
@@ -93,14 +93,14 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	public GeneralizationSet getPrimaryShape() {
-		return (GeneralizationSet) getFigure();
+		return (GeneralizationSet)getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -110,7 +110,7 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintLabelEditPart) {
+		if(childEditPart instanceof ConstraintLabelEditPart) {
 			return true;
 		}
 		return false;

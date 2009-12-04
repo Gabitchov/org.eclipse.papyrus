@@ -52,9 +52,9 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 */
 	public static PortandflowsFactory init() {
 		try {
-			PortandflowsFactory thePortandflowsFactory = (PortandflowsFactory) EPackage.Registry.INSTANCE
+			PortandflowsFactory thePortandflowsFactory = (PortandflowsFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows");
-			if (thePortandflowsFactory != null) {
+			if(thePortandflowsFactory != null) {
 				return thePortandflowsFactory;
 			}
 		} catch (Exception exception) {
@@ -88,7 +88,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case PortandflowsPackage.FLOW_DIRECTION:
 			return convertFlowDirectionToString(eDataType, instanceValue);
 		default:
@@ -103,7 +103,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case PortandflowsPackage.FLOW_PORT:
 			return createFlowPort();
 		case PortandflowsPackage.FLOW_PROPERTY:
@@ -124,7 +124,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 */
 	public FlowDirection createFlowDirectionFromString(EDataType eDataType, String initialValue) {
 		FlowDirection result = FlowDirection.get(initialValue);
-		if (result == null)
+		if(result == null)
 			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
 					+ eDataType.getName() + "'");
 		return result;
@@ -167,7 +167,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case PortandflowsPackage.FLOW_DIRECTION:
 			return createFlowDirectionFromString(eDataType, initialValue);
 		default:
@@ -191,7 +191,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 * @generated
 	 */
 	public PortandflowsPackage getPortandflowsPackage() {
-		return (PortandflowsPackage) getEPackage();
+		return (PortandflowsPackage)getEPackage();
 	}
 
 } // PortandflowsFactoryImpl

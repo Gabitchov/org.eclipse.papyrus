@@ -50,7 +50,7 @@ public class DefaultDirectEditorConfiguration implements IDirectEditorConfigurat
 	 * Sets the language of the edited body
 	 * 
 	 * @param language
-	 *            the language of the edited body
+	 *        the language of the edited body
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
@@ -67,7 +67,7 @@ public class DefaultDirectEditorConfiguration implements IDirectEditorConfigurat
 	 * {@inheritDoc}
 	 */
 	public SourceViewerConfiguration getSourceViewerConfiguration() {
-		if (sourceViewerConfiguration == null) {
+		if(sourceViewerConfiguration == null) {
 			sourceViewerConfiguration = new SourceViewerConfiguration();
 		}
 		return sourceViewerConfiguration;
@@ -122,7 +122,7 @@ public class DefaultDirectEditorConfiguration implements IDirectEditorConfigurat
 	 * Sets the object to edit
 	 * 
 	 * @param objectToEdit
-	 *            the object to edit
+	 *        the object to edit
 	 */
 	public void setObjectToEdit(Object objectToEdit) {
 		this.objectToEdit = objectToEdit;
@@ -132,7 +132,7 @@ public class DefaultDirectEditorConfiguration implements IDirectEditorConfigurat
 	 * {@inheritDoc}
 	 */
 	public IInputValidator getInputValidator() {
-		if (validator == null) {
+		if(validator == null) {
 			validator = new IInputValidator() {
 
 				public String isValid(String newText) {

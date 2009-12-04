@@ -50,14 +50,14 @@ public class Region2ItemSemanticEditPolicy extends
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		if (!(getSemanticElement() instanceof Region))
+		if(!(getSemanticElement() instanceof Region))
 			return new CompoundCommand();
 
-		Region r = (Region) getSemanticElement();
+		Region r = (Region)getSemanticElement();
 
 		StateMachine sm = r.containingStateMachine();
 
-		if (sm.getRegions().size() <= 1)
+		if(sm.getRegions().size() <= 1)
 			return new CompoundCommand();
 
 		CompoundCommand cc = getDestroyEdgesCommand();
@@ -71,19 +71,19 @@ public class Region2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected void addDestroyChildNodesCommand(CompoundCommand cmd) {
-		View view = (View) getHost().getModel();
+		View view = (View)getHost().getModel();
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation != null) {
+		if(annotation != null) {
 			return;
 		}
-		for (Iterator it = view.getChildren().iterator(); it.hasNext();) {
-			Node node = (Node) it.next();
-			switch (UMLVisualIDRegistry.getVisualID(node)) {
+		for(Iterator it = view.getChildren().iterator(); it.hasNext();) {
+			Node node = (Node)it.next();
+			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case RegionSubvertices2EditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit
+				for(Iterator cit = node.getChildren().iterator(); cit
 						.hasNext();) {
-					Node cnode = (Node) cit.next();
-					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case StateEditPart.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
@@ -146,11 +146,11 @@ public class Region2ItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return null;
 		}
@@ -165,14 +165,14 @@ public class Region2ItemSemanticEditPolicy extends
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
@@ -189,7 +189,7 @@ public class Region2ItemSemanticEditPolicy extends
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case ElementOwnedCommentEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementOwnedCommentReorientCommand(req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

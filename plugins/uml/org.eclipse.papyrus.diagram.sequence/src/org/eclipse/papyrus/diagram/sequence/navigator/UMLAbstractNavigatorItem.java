@@ -27,7 +27,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
+		final Class[] supportedTypes = new Class[]{ ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
 
 			public String getContributorId() {
@@ -37,7 +37,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.diagram.sequence.navigator.UMLAbstractNavigatorItem
+				if(adaptableObject instanceof org.eclipse.papyrus.diagram.sequence.navigator.UMLAbstractNavigatorItem
 						&& adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
 				}

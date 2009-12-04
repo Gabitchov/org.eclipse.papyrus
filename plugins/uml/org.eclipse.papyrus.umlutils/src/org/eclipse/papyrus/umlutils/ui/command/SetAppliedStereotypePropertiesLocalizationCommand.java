@@ -34,11 +34,11 @@ public class SetAppliedStereotypePropertiesLocalizationCommand extends CreateEAn
 	 * Instantiates a new sets the applied stereotype to display command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param stereotypeList
-	 *            the stereotype list
+	 *        the stereotype list
 	 */
 	public SetAppliedStereotypePropertiesLocalizationCommand(TransactionalEditingDomain domain, EModelElement object,
 			String appliedStereotypePropertiesKind) {
@@ -52,7 +52,7 @@ public class SetAppliedStereotypePropertiesLocalizationCommand extends CreateEAn
 	@Override
 	protected void doExecute() {
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (oldAnnotation == null) {
+		if(oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}

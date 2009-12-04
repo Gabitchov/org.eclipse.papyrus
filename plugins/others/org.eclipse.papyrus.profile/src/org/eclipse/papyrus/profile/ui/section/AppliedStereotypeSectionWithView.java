@@ -46,9 +46,9 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	 * Creates the controls.
 	 * 
 	 * @param tabbedPropertySheetPage
-	 *            the tabbed property sheet page
+	 *        the tabbed property sheet page
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -88,27 +88,27 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (selection instanceof IStructuredSelection) {
-			Object input = ((IStructuredSelection) selection).getFirstElement();
+		if(selection instanceof IStructuredSelection) {
+			Object input = ((IStructuredSelection)selection).getFirstElement();
 
-			if (part instanceof IEditingDomainProvider) {
-				this.editingDomain = (TransactionalEditingDomain) ((IEditingDomainProvider) part).getEditingDomain();
+			if(part instanceof IEditingDomainProvider) {
+				this.editingDomain = (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
 				appliedStereotypeComposite.setDomain(editingDomain);
 				propertyComposite.setDomain(editingDomain);
 			}
 
-			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
-				GraphicalEditPart graphicalEditPart = (GraphicalEditPart) input;
-				View view = (View) graphicalEditPart.getModel();
-				Element UMLElement = (Element) view.getElement();
-				if (UMLElement != null) {
+			if(input instanceof GraphicalEditPart && ((GraphicalEditPart)input).getModel() instanceof View) {
+				GraphicalEditPart graphicalEditPart = (GraphicalEditPart)input;
+				View view = (View)graphicalEditPart.getModel();
+				Element UMLElement = (Element)view.getElement();
+				if(UMLElement != null) {
 					appliedStereotypeComposite.setDiagramElement(view);
 					propertyComposite.setDiagramElement(view);
 					appliedStereotypeComposite.setElement(UMLElement);
 					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
 				}
-			} else if (input instanceof Element) {
-				Element UMLElement = (Element) input;
+			} else if(input instanceof Element) {
+				Element UMLElement = (Element)input;
 				appliedStereotypeComposite.setDiagramElement(UMLElement);
 				appliedStereotypeComposite.setElement(UMLElement);
 				appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
@@ -127,9 +127,9 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	 */
 	public void dispose() {
 		super.dispose();
-		if (appliedStereotypeComposite != null)
+		if(appliedStereotypeComposite != null)
 			appliedStereotypeComposite.disposeListeners();
-		if (propertyComposite != null)
+		if(propertyComposite != null)
 			propertyComposite.disposeListeners();
 	}
 }

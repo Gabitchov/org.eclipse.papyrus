@@ -33,8 +33,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.standard.Instantiate}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.standard.Instantiate} object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -59,7 +58,7 @@ public class InstantiateItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_UsagePropertyDescriptor(object);
@@ -74,10 +73,10 @@ public class InstantiateItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addBase_UsagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Instantiate_base_Usage_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Instantiate_base_Usage_feature",
-						"_UI_Instantiate_type"), StandardPackage.Literals.INSTANTIATE__BASE_USAGE, true, false, true,
+				"_UI_Instantiate_type"), StandardPackage.Literals.INSTANTIATE__BASE_USAGE, true, false, true,
 				null, null, null));
 	}
 
@@ -104,8 +103,7 @@ public class InstantiateItemProvider extends ItemProviderAdapter implements IEdi
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

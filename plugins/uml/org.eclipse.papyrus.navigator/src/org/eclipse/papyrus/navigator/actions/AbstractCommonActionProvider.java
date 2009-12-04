@@ -46,8 +46,8 @@ public abstract class AbstractCommonActionProvider extends CommonActionProvider 
 	 */
 	protected CommonNavigator getCommonNavigator() {
 		IViewPart part = NavigatorUtils.findViewPart(getViewerID());
-		if (part instanceof CommonNavigator) {
-			return ((CommonNavigator) part);
+		if(part instanceof CommonNavigator) {
+			return ((CommonNavigator)part);
 		}
 		return null;
 	}
@@ -70,8 +70,8 @@ public abstract class AbstractCommonActionProvider extends CommonActionProvider 
 	 */
 	protected Object getFirstSelectedElement() {
 		ISelection selection = getSelection();
-		if (selection instanceof StructuredSelection) {
-			return ((StructuredSelection) selection).getFirstElement();
+		if(selection instanceof StructuredSelection) {
+			return ((StructuredSelection)selection).getFirstElement();
 		}
 		return null;
 	}

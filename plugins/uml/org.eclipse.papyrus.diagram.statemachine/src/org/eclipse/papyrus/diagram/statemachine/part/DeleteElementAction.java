@@ -71,20 +71,20 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	@Override
 	protected Command getCommand(Request request) {
 		List operationSet = getOperationSet();
-		if (operationSet.isEmpty()) {
+		if(operationSet.isEmpty()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Iterator editParts = operationSet.iterator();
 		CompositeTransactionalCommand command = new CompositeTransactionalCommand(
 				getEditingDomain(), getCommandLabel());
-		while (editParts.hasNext()) {
-			EditPart editPart = (EditPart) editParts.next();
+		while(editParts.hasNext()) {
+			EditPart editPart = (EditPart)editParts.next();
 			Command curCommand = editPart.getCommand(request);
-			if (curCommand != null) {
+			if(curCommand != null) {
 				command.compose(new CommandProxy(curCommand));
 			}
 		}
-		if (command.isEmpty() || command.size() != operationSet.size()) {
+		if(command.isEmpty() || command.size() != operationSet.size()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return new ICommandProxy(command);

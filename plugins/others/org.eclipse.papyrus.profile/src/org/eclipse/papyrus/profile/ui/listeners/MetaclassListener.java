@@ -34,17 +34,23 @@ import org.eclipse.uml2.uml.Type;
  * The Class MetaclassListener.
  */
 public class MetaclassListener extends PropertyListener {
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param table the table
-	 * @param element the element
-	 * @param stereotype the stereotype
-	 * @param property the property
-	 * @param parent the parent
+	 * @param table
+	 *        the table
+	 * @param element
+	 *        the element
+	 * @param stereotype
+	 *        the stereotype
+	 * @param property
+	 *        the property
+	 * @param parent
+	 *        the parent
 	 * 
-	 * @throws Exception the exception
+	 * @throws Exception
+	 *         the exception
 	 */
 	public MetaclassListener(AbstractPanel parent, Table table, Property property, Stereotype stereotype, Element element) throws Exception {
 		super(parent, table, property, stereotype, element);
@@ -52,101 +58,109 @@ public class MetaclassListener extends PropertyListener {
 			init();
 		} catch (NoValueException e) {
 			throw e;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Handle event.
 	 * 
-	 * @param event the event
+	 * @param event
+	 *        the event
 	 */
 	@Override
 	public void handleEvent(Event event) {
 		Type type = property.getType();
 		// Try to retrieve type of the metaclass
-		Class metaType  = null;
+		Class metaType = null;
 		try {
-			metaType = Class.forName("org.eclipse.uml2.uml." + type.getName());							
+			metaType = Class.forName("org.eclipse.uml2.uml." + type.getName());
 		} catch (Exception e) {
-			Message.error("No class found with this name : org.eclipse.uml2.uml."+type.getName());
+			Message.error("No class found with this name : org.eclipse.uml2.uml." + type.getName());
 			return;
 		}
 
 		// Fetching all instances in the model applicable to this property value
 		final ArrayList filteredElements = Util.getInstancesFilteredByType(element, metaType, null);
 		// No element : error !!!
-		if (filteredElements.size() <= 0) {
+		if(filteredElements.size() <= 0) {
 			Message.warning(
 					"No element stereotyped "
-					+((Stereotype) type).getName()
-					+" found in the model.");
+					+ ((Stereotype)type).getName()
+					+ " found in the model.");
 			return;
 		}
-		
+
 		itemDClicked(filteredElements);
 	}
-	
+
 	/**
 	 * When doubleclicked : opens a dialog to allow edition of a new Metaclass
 	 * for multivalued property.
 	 * 
-	 * @param selectedElt the element that owns the stereotype
-	 * @param value the current value or list of values of the property if isMultivalued
-	 * @param isMultivalued is the property multivalued or not
-	 * @param selectedProp the selected property
-	 * @param filteredElements list of instances in the model that are possible values for this property
-	 * @param currentStereotype the stereotype associated to selectedProp
-	 * @param filteredElts the filtered elts
+	 * @param selectedElt
+	 *        the element that owns the stereotype
+	 * @param value
+	 *        the current value or list of values of the property if isMultivalued
+	 * @param isMultivalued
+	 *        is the property multivalued or not
+	 * @param selectedProp
+	 *        the selected property
+	 * @param filteredElements
+	 *        list of instances in the model that are possible values for this property
+	 * @param currentStereotype
+	 *        the stereotype associated to selectedProp
+	 * @param filteredElts
+	 *        the filtered elts
 	 */
 	private void itemDClicked(ArrayList filteredElts) {
 		Type type = property.getType();
-		
+
 		// selected value index
 		int index = table.getSelectionIndex();
-		if (index == -1) {
+		if(index == -1) {
 			return;
 		}
 		// Removed already added elements from selection list
 		// Except current selection which is default one !!!
-		if (isMultivalued) {
-			if (values != null) {
-				filteredElts.removeAll(values);					
+		if(isMultivalued) {
+			if(values != null) {
+				filteredElts.removeAll(values);
 			}
 			filteredElts.add(table.getItem(index).getData());
 		}
 
 		String[] elementsNames = Util.getStringArrayFromList(filteredElts);
 		// if no possible selection : abort
-		if (elementsNames == null) {
+		if(elementsNames == null) {
 			Message.warning("No element stereotyped <<" + type.getName() + ">> was found in the model.");
 			return;
 		}
 
 		// Retrieve initial value...
 		String initialValue = "";
-		initialValue = table.getItem(index).getText();		
-		if (initialValue.equals("") && (elementsNames.length > 0)) {
+		initialValue = table.getItem(index).getText();
+		if(initialValue.equals("") && (elementsNames.length > 0)) {
 			initialValue = elementsNames[0];
 		}
-		
+
 		ComboSelectionDialog valueDialog = new ComboSelectionDialog(parent.getShell(), "New value:", elementsNames, initialValue);
 
 		int val = valueDialog.open();
-		if ((val == InputDialog.OK) && (valueDialog.indexOfSelection != -1)) {
+		if((val == InputDialog.OK) && (valueDialog.indexOfSelection != -1)) {
 			// Affect newValue
-			if (isMultivalued) {
+			if(isMultivalued) {
 				// Set newValue in value list
 				ArrayList newValues = new ArrayList();
 				newValues.addAll(values);
 				newValues.set(index, filteredElts.get(valueDialog.indexOfSelection));
 				element.setValue(stereotype, property.getName(), newValues);
 			} else {
-				element.setValue(stereotype, property.getName(),filteredElts.get(valueDialog.indexOfSelection));
+				element.setValue(stereotype, property.getName(), filteredElts.get(valueDialog.indexOfSelection));
 			}
 			// Force model change
 			Util.touchModel(element);
 		}
-		
+
 		// Close dialog box and refresh table
 		valueDialog.close();
 		parent.refresh();

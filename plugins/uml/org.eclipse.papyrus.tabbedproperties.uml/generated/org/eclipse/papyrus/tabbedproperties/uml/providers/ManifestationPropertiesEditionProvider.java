@@ -40,7 +40,7 @@ public class ManifestationPropertiesEditionProvider implements IPropertiesEditio
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Manifestation) {
+		if(eObject instanceof Manifestation) {
 			return new ManifestationPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ManifestationPropertiesEditionProvider implements IPropertiesEditio
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Manifestation) {
-			if (ManifestationBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Manifestation) {
+			if(ManifestationBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ManifestationBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

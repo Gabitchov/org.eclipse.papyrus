@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 /**
- * The Class FontGroupComposite contains a field to manage preference to display a text in a label 
+ * The Class FontGroupComposite contains a field to manage preference to display a text in a label
  */
 public class FontGroup extends AbstractGroup {
 
@@ -37,12 +37,12 @@ public class FontGroup extends AbstractGroup {
 	 * Instantiates a new font group composite.
 	 * 
 	 * @param parent
-	 *            the parent of the composite
+	 *        the parent of the composite
 	 * @param String
-	 *            the title of the page
+	 *        the title of the page
 	 * @param dialogPage
-	 *            to set the page in field editor
-	 **/    
+	 *        to set the page in field editor
+	 **/
 	public FontGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 		createContent(parent);
@@ -52,7 +52,7 @@ public class FontGroup extends AbstractGroup {
 	 * Creates the content.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	protected void createContent(Composite parent) {
 		Group fontGroup = new Group(parent, SWT.SHADOW_NONE);
@@ -60,7 +60,7 @@ public class FontGroup extends AbstractGroup {
 		fontGroup.setText(FONT_GROUPBOX_LABEL);
 		fontFieldEditor = new FontFieldEditor(PreferenceConstantHelper.getElementConstant(getTitle(),
 				PreferenceConstantHelper.FONT), fontGroup);
-		
+
 		addFieldEditor(fontFieldEditor);
 	}
 

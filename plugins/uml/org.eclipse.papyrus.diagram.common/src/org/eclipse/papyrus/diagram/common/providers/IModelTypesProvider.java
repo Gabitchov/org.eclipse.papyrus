@@ -25,7 +25,7 @@ public interface IModelTypesProvider {
 	 * Gets the text for the given IElementType.
 	 * 
 	 * @param hint
-	 *            hint must adapt to IElementType.
+	 *        hint must adapt to IElementType.
 	 * @return
 	 */
 	// @unused
@@ -35,7 +35,7 @@ public interface IModelTypesProvider {
 	 * Gets the image for the given IElementType.
 	 * 
 	 * @param hint
-	 *            hint must adapt to IElementType
+	 *        hint must adapt to IElementType
 	 * @return
 	 */
 	// @unused

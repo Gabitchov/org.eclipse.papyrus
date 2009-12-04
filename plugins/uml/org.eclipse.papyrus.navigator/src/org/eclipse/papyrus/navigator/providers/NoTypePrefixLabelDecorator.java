@@ -39,9 +39,9 @@ public class NoTypePrefixLabelDecorator extends LabelDecorator {
 	private static String prefixTypeReplacement = "";
 
 	protected String removeTypeName(Object element, String label) {
-		if (element != null && label != null) {
+		if(element != null && label != null) {
 			String typePrefix = getTypePrefix(element);
-			if (typePrefix != null) {
+			if(typePrefix != null) {
 				label = label.replaceAll(typePrefix, prefixTypeReplacement);
 				label = label.trim();
 			}
@@ -55,10 +55,10 @@ public class NoTypePrefixLabelDecorator extends LabelDecorator {
 	}
 
 	protected String getTypeName(Object element) {
-		if (element instanceof EObject) {
-			EObject eObject = (EObject) element;
-			if (eObject.eClass() != null) {
-				if (eObject.eClass().getName() != null) {
+		if(element instanceof EObject) {
+			EObject eObject = (EObject)element;
+			if(eObject.eClass() != null) {
+				if(eObject.eClass().getName() != null) {
 					return convertNameToDisplayName(eObject.eClass().getName());
 				}
 			}
@@ -67,14 +67,14 @@ public class NoTypePrefixLabelDecorator extends LabelDecorator {
 	}
 
 	protected String convertNameToDisplayName(String name) {
-		if (name == null) {
+		if(name == null) {
 			return name;
 		}
 		StringBuilder displayNameBuilder = new StringBuilder(name.length() + 5);
 		char character = 'a';
-		for (int index = 0; index < name.length(); index++) {
+		for(int index = 0; index < name.length(); index++) {
 			character = name.charAt(index);
-			if (Character.isUpperCase(character) && index > 0) {
+			if(Character.isUpperCase(character) && index > 0) {
 				displayNameBuilder.append(" ");
 				displayNameBuilder.append(character);
 			} else {

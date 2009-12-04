@@ -27,14 +27,11 @@ import org.eclipse.uml2.uml.NamedElement;
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getText <em>Text</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getId <em>Id</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerived <em>Derived</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom <em>Derived From
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy <em>Satisfied By
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom <em>Derived From </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy <em>Satisfied By </em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy <em>Refined By</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo <em>Traced To</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy <em>Verified By</em>}
- * </li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy <em>Verified By</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getMaster <em>Master</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}</li>
  * </ul>
@@ -49,8 +46,7 @@ public interface Requirement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -66,8 +62,7 @@ public interface Requirement extends EObject {
 	 * Returns the value of the '<em><b>Derived</b></em>' reference list. The list contents are of
 	 * type {@link org.eclipse.papyrus.sysml.requirements.Requirement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Derived</em>' reference list isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Derived</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -82,8 +77,7 @@ public interface Requirement extends EObject {
 	 * Returns the value of the '<em><b>Derived From</b></em>' reference list. The list contents are
 	 * of type {@link org.eclipse.papyrus.sysml.requirements.Requirement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Derived From</em>' reference list isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Derived From</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -97,8 +91,7 @@ public interface Requirement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -113,8 +106,7 @@ public interface Requirement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Master</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Master</em>' reference isn't clear, there really should be more of
-	 * a description here...
+	 * If the meaning of the '<em>Master</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -129,8 +121,7 @@ public interface Requirement extends EObject {
 	 * Returns the value of the '<em><b>Refined By</b></em>' reference list. The list contents are
 	 * of type {@link org.eclipse.uml2.uml.NamedElement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Refined By</em>' reference list isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Refined By</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -145,8 +136,7 @@ public interface Requirement extends EObject {
 	 * Returns the value of the '<em><b>Satisfied By</b></em>' reference list. The list contents are
 	 * of type {@link org.eclipse.uml2.uml.NamedElement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Satisfied By</em>' reference list isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Satisfied By</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -160,8 +150,7 @@ public interface Requirement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Text</em>' attribute isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Text</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -177,8 +166,7 @@ public interface Requirement extends EObject {
 	 * Returns the value of the '<em><b>Traced To</b></em>' reference list. The list contents are of
 	 * type {@link org.eclipse.uml2.uml.NamedElement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Traced To</em>' reference list isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Traced To</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -193,8 +181,7 @@ public interface Requirement extends EObject {
 	 * Returns the value of the '<em><b>Verified By</b></em>' reference list. The list contents are
 	 * of type {@link org.eclipse.papyrus.sysml.requirements.TestCase}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Verified By</em>' reference list isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Verified By</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -206,12 +193,11 @@ public interface Requirement extends EObject {
 	EList<TestCase> getVerifiedBy();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}'
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}'
 	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 *        the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */
@@ -222,7 +208,7 @@ public interface Requirement extends EObject {
 	 * <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Id</em>' attribute.
+	 *        the new value of the '<em>Id</em>' attribute.
 	 * @see #getId()
 	 * @generated
 	 */
@@ -233,7 +219,7 @@ public interface Requirement extends EObject {
 	 * <em>Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Text</em>' attribute.
+	 *        the new value of the '<em>Text</em>' attribute.
 	 * @see #getText()
 	 * @generated
 	 */

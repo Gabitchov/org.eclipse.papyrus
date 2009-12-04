@@ -38,14 +38,14 @@ public class DiagramValidationProvider extends AbstractContributionItemProvider
 
 	protected IAction createAction(String actionId,
 			IWorkbenchPartDescriptor partDescriptor) {
-		if (ValidationAction.VALIDATE_ACTION_KEY.equals(actionId)) {
+		if(ValidationAction.VALIDATE_ACTION_KEY.equals(actionId)) {
 			ValidationAction va = new ValidationAction(partDescriptor);
 			try {
 				String imagePath = "";
 				Image image = null;
 				imagePath = FileLocator.toFileURL(
 						Platform.getBundle(Activator.ID).getResource(
-								"icons")).getPath();
+						"icons")).getPath();
 				imagePath += "validation.gif";
 				image = new Image(PlatformUI.getWorkbench().getDisplay(),
 						imagePath);
@@ -64,6 +64,7 @@ public class DiagramValidationProvider extends AbstractContributionItemProvider
 			TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
+
 			public void run() {
 				try {
 					op.run();
@@ -71,7 +72,7 @@ public class DiagramValidationProvider extends AbstractContributionItemProvider
 				}
 			}
 		};
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {

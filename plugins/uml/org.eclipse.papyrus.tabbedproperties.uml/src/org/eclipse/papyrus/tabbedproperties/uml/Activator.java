@@ -66,7 +66,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Logs an error into the plugin's log
 	 * 
 	 * @param string
-	 *            the message of the error
+	 *        the message of the error
 	 */
 	public static void logWarning(String string) {
 		getDefault().getLog().log(new Status(IStatus.WARNING, PLUGIN_ID, string));
@@ -76,7 +76,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Logs an error into the plugin's log
 	 * 
 	 * @param string
-	 *            the message of the error
+	 *        the message of the error
 	 */
 	public static void logError(String string) {
 		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, string));
@@ -86,7 +86,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Logs an exception into the plugin's log
 	 * 
 	 * @param exception
-	 *            the exception to log
+	 *        the exception to log
 	 */
 	public static void logException(Exception exception) {
 		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, exception.getLocalizedMessage(), exception));

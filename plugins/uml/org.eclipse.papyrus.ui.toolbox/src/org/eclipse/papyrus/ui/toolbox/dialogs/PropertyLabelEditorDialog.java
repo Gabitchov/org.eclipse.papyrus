@@ -144,10 +144,10 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 	 */
 	@Override
 	protected void buttonPressed(int buttonId) {
-		if (buttonId == CREATE_BUTTON_ID) {
+		if(buttonId == CREATE_BUTTON_ID) {
 			value = viewer.getDocument().get();
 			createPressed();
-		} else if (buttonId == IDialogConstants.CANCEL_ID) {
+		} else if(buttonId == IDialogConstants.CANCEL_ID) {
 			value = initialValue;
 			final PropertyGenerator generator = new PropertyGenerator(property);
 			// command
@@ -161,8 +161,8 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 			LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
 			// all the types that have been created during the dialog session
 			// are deleted
-			for (Type t : dynamicallyCreatedTypes) {
-				((org.eclipse.uml2.uml.Package) t.getOwner()).getPackagedElements().remove(t);
+			for(Type t : dynamicallyCreatedTypes) {
+				((org.eclipse.uml2.uml.Package)t.getOwner()).getPackagedElements().remove(t);
 				t.setPackage(null);
 			}
 			super.buttonPressed(buttonId);
@@ -173,7 +173,7 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 
 	protected void createPressed() {
 		// add an additional menu to the add Button
-		if (CREATION_MODE == TYPE_CREATION) {
+		if(CREATION_MODE == TYPE_CREATION) {
 			createMenuForCreateButton();
 			menu.setVisible(true);
 		} else { // CREATION_MODE == BINDING_DEFINITION
@@ -194,8 +194,8 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 		selectionListeners = new ArrayList<SelectionListener>();
 		// add an item for each metaclass that comply with the Type metaclass
 		List concreteTypeMetaclasses = LookForElement.getMetaclasses(UMLPackage.eINSTANCE.getType(), false, property);
-		for (Iterator i = concreteTypeMetaclasses.iterator(); i.hasNext();) {
-			org.eclipse.uml2.uml.Type currentType = (org.eclipse.uml2.uml.Type) i.next();
+		for(Iterator i = concreteTypeMetaclasses.iterator(); i.hasNext();) {
+			org.eclipse.uml2.uml.Type currentType = (org.eclipse.uml2.uml.Type)i.next();
 			menu.setEnabled(true);
 			menuItems.add(new MenuItem(menu, SWT.PUSH));
 			MenuItem item = menuItems.get(menuItems.size() - 1);
@@ -203,7 +203,7 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 			try {
 				menuItems.get(menuItems.size() - 1).addSelectionListener(
 						new CreateElementSelectionListener(Class.forName("org.eclipse.uml2.uml."
-								+ currentType.getName())));
+						+ currentType.getName())));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -273,7 +273,7 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 	 * Sets or clears the error message. If not <code>null</code>, the OK button is disabled.
 	 * 
 	 * @param errorMessage
-	 *            the error message, or <code>null</code> to clear
+	 *        the error message, or <code>null</code> to clear
 	 * 
 	 * @since 3.0
 	 */
@@ -293,13 +293,13 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 		// }
 		super.setErrorMessage(errorMessage);
 		Control button = getButton(CREATE_BUTTON_ID);
-		if (button != null) {
-			if (errorMessage == null) {
+		if(button != null) {
+			if(errorMessage == null) {
 				button.setEnabled(false);
-			} else if (errorMessage.startsWith("Type")) {
+			} else if(errorMessage.startsWith("Type")) {
 				button.setEnabled(true);
 				CREATION_MODE = TYPE_CREATION;
-			} else if (errorMessage.startsWith("Parameters")) {
+			} else if(errorMessage.startsWith("Parameters")) {
 				button.setEnabled(true);
 				CREATION_MODE = BINDING_DEFINITION;
 			} else {
@@ -339,12 +339,12 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 		 * @param event
 		 */
 		public void verifyKey(VerifyEvent event) {
-			if ((event.stateMask == SWT.CTRL) && (event.character == ' ')) {
-				if (viewer.canDoOperation(ISourceViewer.CONTENTASSIST_PROPOSALS)) {
+			if((event.stateMask == SWT.CTRL) && (event.character == ' ')) {
+				if(viewer.canDoOperation(ISourceViewer.CONTENTASSIST_PROPOSALS)) {
 					viewer.doOperation(ISourceViewer.CONTENTASSIST_PROPOSALS);
 				}
 				event.doit = false;
-			} else if (event.character == SWT.CR) {
+			} else if(event.character == SWT.CR) {
 				event.doit = false;
 			}
 		}

@@ -40,7 +40,7 @@ public class TimeConstraintPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof TimeConstraint) {
+		if(eObject instanceof TimeConstraint) {
 			return new TimeConstraintPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class TimeConstraintPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof TimeConstraint) {
-			if (TimeConstraintBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof TimeConstraint) {
+			if(TimeConstraintBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new TimeConstraintBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

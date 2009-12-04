@@ -35,21 +35,21 @@ public class FontHelper {
 	 * array of font sizes
 	 */
 	protected static final String[] FONT_SIZES = { "8", //$NON-NLS-1$
-			"9", //$NON-NLS-1$
-			"10", //$NON-NLS-1$
-			"11", //$NON-NLS-1$
-			"12", //$NON-NLS-1$
-			"14", //$NON-NLS-1$
-			"16", //$NON-NLS-1$
-			"18", //$NON-NLS-1$
-			"20", //$NON-NLS-1$
-			"22", //$NON-NLS-1$
-			"24", //$NON-NLS-1$
-			"26", //$NON-NLS-1$
-			"28", //$NON-NLS-1$
-			"36", //$NON-NLS-1$
-			"48", //$NON-NLS-1$
-			"72" }; //$NON-NLS-1$
+	"9", //$NON-NLS-1$
+	"10", //$NON-NLS-1$
+	"11", //$NON-NLS-1$
+	"12", //$NON-NLS-1$
+	"14", //$NON-NLS-1$
+	"16", //$NON-NLS-1$
+	"18", //$NON-NLS-1$
+	"20", //$NON-NLS-1$
+	"22", //$NON-NLS-1$
+	"24", //$NON-NLS-1$
+	"26", //$NON-NLS-1$
+	"28", //$NON-NLS-1$
+	"36", //$NON-NLS-1$
+	"48", //$NON-NLS-1$
+	"72" }; //$NON-NLS-1$
 
 	/**
 	 * Return the font names for the default display.
@@ -57,14 +57,14 @@ public class FontHelper {
 	 * @return String array of font names as String objects for the default display.
 	 */
 	static public String[] getFontNames() {
-		if (FONT_NAMES != null)
+		if(FONT_NAMES != null)
 			return FONT_NAMES;
 
 		// add the names into a set to get a set of unique names
 		Set<String> stringItems = new HashSet<String>();
 		FontData[] fontDatas = Display.getDefault().getFontList(null, true);
-		for (int i = 0; i < fontDatas.length; i++) {
-			if (fontDatas[i].getName() != null) {
+		for(int i = 0; i < fontDatas.length; i++) {
+			if(fontDatas[i].getName() != null) {
 				stringItems.add(fontDatas[i].getName());
 			}
 		}
@@ -72,7 +72,7 @@ public class FontHelper {
 		// add strings into the array
 		String strings[] = new String[stringItems.size()];
 		int i = 0;
-		for (Iterator<String> it = stringItems.iterator(); it.hasNext();) {
+		for(Iterator<String> it = stringItems.iterator(); it.hasNext();) {
 			strings[i++] = it.next();
 		}
 

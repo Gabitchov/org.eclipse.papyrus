@@ -40,7 +40,7 @@ public class ReadVariableActionPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ReadVariableAction) {
+		if(eObject instanceof ReadVariableAction) {
 			return new ReadVariableActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ReadVariableActionPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ReadVariableAction) {
-			if (ReadVariableActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ReadVariableAction) {
+			if(ReadVariableActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ReadVariableActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

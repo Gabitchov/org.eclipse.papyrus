@@ -45,7 +45,7 @@ public class CollaborationUseLabelSourceViewerConfiguration extends SourceViewer
 	 * Creates a new CollaborationUseLabelSourceViewerConfiguration
 	 * 
 	 * @param collaborationUse
-	 *            the {@link CollaborationUse} to edit
+	 *        the {@link CollaborationUse} to edit
 	 */
 	public CollaborationUseLabelSourceViewerConfiguration(CollaborationUse collaborationUse) {
 		setCollaborationUse(collaborationUse);
@@ -128,7 +128,7 @@ public class CollaborationUseLabelSourceViewerConfiguration extends SourceViewer
 	 * Sets the {@link CollaborationUse} to Edit
 	 * 
 	 * @param collaborationUse
-	 *            the {@link CollaborationUse} to edit
+	 *        the {@link CollaborationUse} to edit
 	 */
 	public void setCollaborationUse(CollaborationUse collaborationUse) {
 		this.collaborationUse = collaborationUse;

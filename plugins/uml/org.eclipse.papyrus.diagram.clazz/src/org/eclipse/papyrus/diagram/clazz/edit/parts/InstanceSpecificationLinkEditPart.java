@@ -68,7 +68,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx) getFigure();
+		return (PolylineConnectionEx)getFigure();
 	}
 
 }

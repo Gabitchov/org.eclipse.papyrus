@@ -558,7 +558,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		public void drop() {
 
 			// move from a folder to another
-			if(sourcePart == TabFolderPart.this) { 
+			if(sourcePart == TabFolderPart.this) {
 				// move inside the same folder
 				getContentProvider().movePage(sourcePart.getPartModel(), sourceIndex, targetIndex);
 			} else { // move between folder
@@ -950,9 +950,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param visitor
 	 */
 	public boolean visitChildren(IPartVisitor visitor) {
-		
+
 		for(TabItemPart child : currentTabItems) {
-			if( !child.visit(visitor) )
+			if(!child.visit(visitor))
 				return false;
 		}
 		// All children have accepter the visit, continue visiting.

@@ -33,8 +33,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.uml.standard.ImplementationClass} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.standard.ImplementationClass} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated
@@ -60,7 +59,7 @@ public class ImplementationClassItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ClassPropertyDescriptor(object);
@@ -75,11 +74,11 @@ public class ImplementationClassItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ImplementationClass_base_Class_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_ImplementationClass_base_Class_feature",
-						"_UI_ImplementationClass_type"), StandardPackage.Literals.IMPLEMENTATION_CLASS__BASE_CLASS,
+				"_UI_PropertyDescriptor_description", "_UI_ImplementationClass_base_Class_feature",
+				"_UI_ImplementationClass_type"), StandardPackage.Literals.IMPLEMENTATION_CLASS__BASE_CLASS,
 				true, false, true, null, null, null));
 	}
 
@@ -106,8 +105,7 @@ public class ImplementationClassItemProvider extends ItemProviderAdapter impleme
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

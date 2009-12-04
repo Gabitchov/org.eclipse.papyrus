@@ -108,8 +108,8 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getVisualID(View view) {
-		if (view instanceof Diagram) {
-			if (PackageEditPart.MODEL_ID.equals(view.getType())) {
+		if(view instanceof Diagram) {
+			if(PackageEditPart.MODEL_ID.equals(view.getType())) {
 				return PackageEditPart.VISUAL_ID;
 			} else {
 				return -1;
@@ -123,12 +123,12 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getModelID(View view) {
 		View diagram = view.getDiagram();
-		while (view != diagram) {
+		while(view != diagram) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-			if (annotation != null) {
-				return (String) annotation.getDetails().get("modelID"); //$NON-NLS-1$
+			if(annotation != null) {
+				return (String)annotation.getDetails().get("modelID"); //$NON-NLS-1$
 			}
-			view = (View) view.eContainer();
+			view = (View)view.eContainer();
 		}
 		return diagram != null ? diagram.getType() : null;
 	}
@@ -140,7 +140,7 @@ public class UMLVisualIDRegistry {
 		try {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
+			if(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
 				UMLDiagramEditorPlugin.getInstance()
 						.logError("Unable to parse view type as a visualID number: " + type);
 			}
@@ -159,11 +159,11 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getDiagramVisualID(EObject domainElement) {
-		if (domainElement == null) {
+		if(domainElement == null) {
 			return -1;
 		}
-		if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-				&& isDiagram((Package) domainElement)) {
+		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+				&& isDiagram((Package)domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
 
@@ -174,69 +174,69 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
-		if (domainElement == null) {
+		if(domainElement == null) {
 			return -1;
 		}
 		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
 				.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
-		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
 		}
-		switch (containerVisualID) {
+		switch(containerVisualID) {
 		case LifelineEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return ActionExecutionSpecificationEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return LifelineEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return InteractionUseEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return InteractionOperandEditPart.VISUAL_ID;
 			}
 			break;
 		case PackageEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return InteractionEditPart.VISUAL_ID;
@@ -252,114 +252,114 @@ public class UMLVisualIDRegistry {
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
 				.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
-		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
-		switch (containerVisualID) {
+		switch(containerVisualID) {
 		case InteractionEditPart.VISUAL_ID:
-			if (InteractionNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(InteractionNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (InteractionInteractionCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(InteractionInteractionCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case LifelineEditPart.VISUAL_ID:
-			if (LifelineNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(LifelineNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (ActionExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
+			if(ActionExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (BehaviorExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
+			if(BehaviorExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
-			if (ActionExecutionSpecificationNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(ActionExecutionSpecificationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case InteractionUseEditPart.VISUAL_ID:
-			if (InteractionUseNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(InteractionUseNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (InteractionUseName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(InteractionUseName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case CombinedFragmentEditPart.VISUAL_ID:
-			if (CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if (LifelineEditPart.VISUAL_ID == nodeVisualID) {
+			if(LifelineEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (InteractionUseEditPart.VISUAL_ID == nodeVisualID) {
+			if(InteractionUseEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-			if (InteractionOperandEditPart.VISUAL_ID == nodeVisualID) {
+			if(InteractionOperandEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case PackageEditPart.VISUAL_ID:
-			if (InteractionEditPart.VISUAL_ID == nodeVisualID) {
+			if(InteractionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case MessageEditPart.VISUAL_ID:
-			if (MessageNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(MessageNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case Message2EditPart.VISUAL_ID:
-			if (MessageName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(MessageName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case Message3EditPart.VISUAL_ID:
-			if (MessageName3EditPart.VISUAL_ID == nodeVisualID) {
+			if(MessageName3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case Message4EditPart.VISUAL_ID:
-			if (MessageName4EditPart.VISUAL_ID == nodeVisualID) {
+			if(MessageName4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case Message5EditPart.VISUAL_ID:
-			if (MessageName5EditPart.VISUAL_ID == nodeVisualID) {
+			if(MessageName5EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case Message6EditPart.VISUAL_ID:
-			if (MessageName6EditPart.VISUAL_ID == nodeVisualID) {
+			if(MessageName6EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case Message7EditPart.VISUAL_ID:
-			if (MessageName7EditPart.VISUAL_ID == nodeVisualID) {
+			if(MessageName7EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -371,54 +371,54 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getLinkWithClassVisualID(EObject domainElement) {
-		if (domainElement == null) {
+		if(domainElement == null) {
 			return -1;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4003((Message) domainElement)
+		&& isMessage_4003((Message)domainElement)
 
 		) {
 			return MessageEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4004((Message) domainElement)
+		&& isMessage_4004((Message)domainElement)
 
 		) {
 			return Message2EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4005((Message) domainElement)
+		&& isMessage_4005((Message)domainElement)
 
 		) {
 			return Message3EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4006((Message) domainElement)
+		&& isMessage_4006((Message)domainElement)
 
 		) {
 			return Message4EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4007((Message) domainElement)
+		&& isMessage_4007((Message)domainElement)
 
 		) {
 			return Message5EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4008((Message) domainElement)
+		&& isMessage_4008((Message)domainElement)
 
 		) {
 			return Message6EditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4009((Message) domainElement)
+		&& isMessage_4009((Message)domainElement)
 
 		) {
 			return Message7EditPart.VISUAL_ID;
@@ -440,85 +440,78 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4003(Message domainElement) {
-		if (Message_4003_Constraint == null) { // lazy initialization
-			Message_4003_Constraint = UMLOCLFactory.getExpression(
-					"self.messageSort=MessageSort::synchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		if(Message_4003_Constraint == null) { // lazy initialization
+			Message_4003_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::synchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4003_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
 	private static boolean isMessage_4004(Message domainElement) {
-		if (Message_4004_Constraint == null) { // lazy initialization
+		if(Message_4004_Constraint == null) { // lazy initialization
 			Message_4004_Constraint = UMLOCLFactory
-					.getExpression(
-							"self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+					.getExpression("self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4004_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
 	private static boolean isMessage_4005(Message domainElement) {
-		if (Message_4005_Constraint == null) { // lazy initialization
-			Message_4005_Constraint = UMLOCLFactory.getExpression(
-					"self.messageSort=MessageSort::reply", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		if(Message_4005_Constraint == null) { // lazy initialization
+			Message_4005_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::reply", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4005_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
 	private static boolean isMessage_4006(Message domainElement) {
-		if (Message_4006_Constraint == null) { // lazy initialization
-			Message_4006_Constraint = UMLOCLFactory.getExpression(
-					"self.messageSort=MessageSort::createMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		if(Message_4006_Constraint == null) { // lazy initialization
+			Message_4006_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::createMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4006_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
 	private static boolean isMessage_4007(Message domainElement) {
-		if (Message_4007_Constraint == null) { // lazy initialization
-			Message_4007_Constraint = UMLOCLFactory.getExpression(
-					"self.messageSort=MessageSort::deleteMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		if(Message_4007_Constraint == null) { // lazy initialization
+			Message_4007_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::deleteMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4007_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
 	private static boolean isMessage_4008(Message domainElement) {
-		if (Message_4008_Constraint == null) { // lazy initialization
-			Message_4008_Constraint = UMLOCLFactory.getExpression(
-					"self.receiveEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		if(Message_4008_Constraint == null) { // lazy initialization
+			Message_4008_Constraint = UMLOCLFactory.getExpression("self.receiveEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4008_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
 	private static boolean isMessage_4009(Message domainElement) {
-		if (Message_4009_Constraint == null) { // lazy initialization
-			Message_4009_Constraint = UMLOCLFactory.getExpression(
-					"self.sendEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+		if(Message_4009_Constraint == null) { // lazy initialization
+			Message_4009_Constraint = UMLOCLFactory.getExpression("self.sendEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4009_Constraint.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	// test
@@ -532,7 +525,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static ViewInfo getDiagramViewInfo() {
-		if (diagramViewInfo == null) {
+		if(diagramViewInfo == null) {
 			diagramViewInfo = getPackage_1000ViewInfo();
 		}
 		return diagramViewInfo;

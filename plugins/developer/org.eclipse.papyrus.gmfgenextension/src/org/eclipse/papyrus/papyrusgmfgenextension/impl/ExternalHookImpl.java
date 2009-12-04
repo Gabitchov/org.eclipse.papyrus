@@ -22,17 +22,19 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl#getClasspath <em>Classpath</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl#getClasspath <em>Classpath</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ExternalHookImpl extends CommentedElementImpl implements ExternalHook {
+
 	/**
 	 * The default value of the '{@link #getClasspath() <em>Classpath</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getClasspath()
 	 * @generated
 	 * @ordered
@@ -43,6 +45,7 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	 * The cached value of the '{@link #getClasspath() <em>Classpath</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getClasspath()
 	 * @generated
 	 * @ordered
@@ -52,6 +55,7 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExternalHookImpl() {
@@ -61,6 +65,7 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,6 +76,7 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getClasspath() {
@@ -80,25 +86,27 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setClasspath(String newClasspath) {
 		String oldClasspath = classpath;
 		classpath = newClasspath;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH, oldClasspath, classpath));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
-				return getClasspath();
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
+			return getClasspath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -106,14 +114,15 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
-				setClasspath((String)newValue);
-				return;
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
+			setClasspath((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -121,14 +130,15 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
-				setClasspath(CLASSPATH_EDEFAULT);
-				return;
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
+			setClasspath(CLASSPATH_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -136,13 +146,14 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
-				return CLASSPATH_EDEFAULT == null ? classpath != null : !CLASSPATH_EDEFAULT.equals(classpath);
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK__CLASSPATH:
+			return CLASSPATH_EDEFAULT == null ? classpath != null : !CLASSPATH_EDEFAULT.equals(classpath);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -150,11 +161,13 @@ public class ExternalHookImpl extends CommentedElementImpl implements ExternalHo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (classpath: ");

@@ -30,8 +30,8 @@ public class UMLSheetLabelProvider extends DecoratingLabelProvider {
 	@Override
 	public String getText(Object element) {
 		Object selected = unwrap(element);
-		if (selected instanceof UMLNavigatorGroup) {
-			return ((UMLNavigatorGroup) selected).getGroupName();
+		if(selected instanceof UMLNavigatorGroup) {
+			return ((UMLNavigatorGroup)selected).getGroupName();
 		}
 		return super.getText(selected);
 	}
@@ -48,15 +48,15 @@ public class UMLSheetLabelProvider extends DecoratingLabelProvider {
 	 * @generated
 	 */
 	private Object unwrap(Object element) {
-		if (element instanceof IStructuredSelection) {
-			return unwrap(((IStructuredSelection) element).getFirstElement());
+		if(element instanceof IStructuredSelection) {
+			return unwrap(((IStructuredSelection)element).getFirstElement());
 		}
-		if (element instanceof EditPart) {
-			return unwrapEditPart((EditPart) element);
+		if(element instanceof EditPart) {
+			return unwrapEditPart((EditPart)element);
 		}
-		if (element instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) element).getAdapter(View.class);
-			if (view != null) {
+		if(element instanceof IAdaptable) {
+			View view = (View)((IAdaptable)element).getAdapter(View.class);
+			if(view != null) {
 				return unwrapView(view);
 			}
 		}
@@ -67,8 +67,8 @@ public class UMLSheetLabelProvider extends DecoratingLabelProvider {
 	 * @generated
 	 */
 	private Object unwrapEditPart(EditPart p) {
-		if (p.getModel() instanceof View) {
-			return unwrapView((View) p.getModel());
+		if(p.getModel() instanceof View) {
+			return unwrapView((View)p.getModel());
 		}
 		return p.getModel();
 	}

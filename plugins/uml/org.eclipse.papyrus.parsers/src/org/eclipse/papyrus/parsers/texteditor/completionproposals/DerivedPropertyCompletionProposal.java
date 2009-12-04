@@ -62,8 +62,8 @@ public class DerivedPropertyCompletionProposal implements ICompletionProposalCom
 		ICompletionProposal proposal = null;
 
 		// adds all standard multiplicities (static strings...)
-		for (int i = 0; i < derivedPropertyStrings.length; i++) {
-			if (derivedPropertyStrings[i].startsWith(prefix)) {
+		for(int i = 0; i < derivedPropertyStrings.length; i++) {
+			if(derivedPropertyStrings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(derivedPropertyStrings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, derivedPropertyStrings[i].length(), null, derivedPropertyStringsName[i],

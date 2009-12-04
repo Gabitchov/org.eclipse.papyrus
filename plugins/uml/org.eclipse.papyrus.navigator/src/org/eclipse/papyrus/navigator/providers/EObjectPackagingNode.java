@@ -34,7 +34,7 @@ public class EObjectPackagingNode extends PackagingNode {
 
 	public EObjectPackagingNode(EClass eClass, EObject parent) {
 		super(eClass.getName(), parent);
-		if (eClass == null || parent == null) {
+		if(eClass == null || parent == null) {
 			throw new IllegalArgumentException("No EClass or EObject provided");
 		}
 		this.eClass = eClass;
@@ -46,8 +46,8 @@ public class EObjectPackagingNode extends PackagingNode {
 	 * @return
 	 */
 	public EObject getEObjectParent() {
-		if (getParent() instanceof EObject) {
-			return (EObject) getParent();
+		if(getParent() instanceof EObject) {
+			return (EObject)getParent();
 		}
 		return null;
 	}
@@ -78,13 +78,13 @@ public class EObjectPackagingNode extends PackagingNode {
 
 	private Collection<Object> findContainedEClassElements() {
 		EObject parent = getEObjectParent();
-		if (parent == null) {
+		if(parent == null) {
 			return Collections.EMPTY_SET;
 		}
 		Collection<Object> elements = new ArrayList<Object>();
-		for (EObject content : parent.eContents()) {
-			if (content != null && content.eClass() != null && content.eClass().getName() != null) {
-				if (content.eClass().getName().equals(getEClass().getName())) {
+		for(EObject content : parent.eContents()) {
+			if(content != null && content.eClass() != null && content.eClass().getName() != null) {
+				if(content.eClass().getName().equals(getEClass().getName())) {
 					elements.add(content);
 				}
 			}
@@ -97,9 +97,9 @@ public class EObjectPackagingNode extends PackagingNode {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof EObjectPackagingNode) {
-			EObjectPackagingNode other = (EObjectPackagingNode) obj;
-			if (other.getEClass() != null && other.getEClass().equals(getEClass()) && other.getEObjectParent() != null
+		if(obj instanceof EObjectPackagingNode) {
+			EObjectPackagingNode other = (EObjectPackagingNode)obj;
+			if(other.getEClass() != null && other.getEClass().equals(getEClass()) && other.getEObjectParent() != null
 					&& other.getEObjectParent().equals(getEObjectParent())) {
 				return true;
 			}

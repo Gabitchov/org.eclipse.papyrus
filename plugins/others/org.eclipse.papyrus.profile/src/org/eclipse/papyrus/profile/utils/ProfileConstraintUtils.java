@@ -30,9 +30,9 @@ public class ProfileConstraintUtils {
 
 	public static boolean isStereotypeProperty(EObject eObject) {
 		boolean isStereotypeProperty = false;
-		if (eObject instanceof Property) {
-			Property property = (Property) eObject;
-			if (property.getOwner() instanceof Stereotype) {
+		if(eObject instanceof Property) {
+			Property property = (Property)eObject;
+			if(property.getOwner() instanceof Stereotype) {
 				isStereotypeProperty = true;
 			}
 		}
@@ -41,7 +41,7 @@ public class ProfileConstraintUtils {
 
 	public static boolean hasType(Property property) {
 		boolean hasType = false;
-		if (property.getType() != null) {
+		if(property.getType() != null) {
 			hasType = true;
 		}
 		return hasType;
@@ -49,11 +49,11 @@ public class ProfileConstraintUtils {
 
 	public static boolean hasDefaultValueRequired(Property property) {
 		boolean hasDefaultValueRequired = true;
-		if (hasType(property)) {
+		if(hasType(property)) {
 			Type type = property.getType();
 
-			if ((type instanceof PrimitiveType) || (type instanceof Enumeration)) {
-				if ((property.getLower() != 0) && !(property.isSetDefault())) {
+			if((type instanceof PrimitiveType) || (type instanceof Enumeration)) {
+				if((property.getLower() != 0) && !(property.isSetDefault())) {
 					hasDefaultValueRequired = false;
 				}
 			}
@@ -63,13 +63,13 @@ public class ProfileConstraintUtils {
 
 	public static boolean hasLowerMultiplicityRequired(Property property) {
 		boolean hasDefaultValueRequired = true;
-		if (hasType(property)) {
+		if(hasType(property)) {
 			Type type = property.getType();
 
-			if (!(type instanceof PrimitiveType) && !(type instanceof Enumeration)) {
-				if (property.getLower() != 0) {
-					if (property.isSetName() && property.getName().length() > 5) {
-						if (!"base_".equals(property.getName().substring(0, 5))) {
+			if(!(type instanceof PrimitiveType) && !(type instanceof Enumeration)) {
+				if(property.getLower() != 0) {
+					if(property.isSetName() && property.getName().length() > 5) {
+						if(!"base_".equals(property.getName().substring(0, 5))) {
 							hasDefaultValueRequired = false;
 						}
 					} else {
@@ -84,12 +84,12 @@ public class ProfileConstraintUtils {
 	public static boolean hasUniqueName(Property property) {
 		boolean hasUniqueName = true;
 
-		if ((property.isSetName()) && (!"".equals(property.getName())) && (property.getOwner() instanceof Stereotype)) {
-			Stereotype owner = (Stereotype) property.getOwner();
+		if((property.isSetName()) && (!"".equals(property.getName())) && (property.getOwner() instanceof Stereotype)) {
+			Stereotype owner = (Stereotype)property.getOwner();
 			Iterator<Property> it = owner.getAllAttributes().iterator();
-			while (it.hasNext()) {
-				Property current = (Property) it.next();
-				if (current.isSetName() && (current != property) && (current.getName().equals(property.getName()))) {
+			while(it.hasNext()) {
+				Property current = (Property)it.next();
+				if(current.isSetName() && (current != property) && (current.getName().equals(property.getName()))) {
 					hasUniqueName = false;
 				}
 			}

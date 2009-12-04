@@ -80,8 +80,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
-		implements PrimaryShapeEditPart {
+public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart implements PrimaryShapeEditPart {
 
 	/**
 	 * @generated
@@ -110,18 +109,13 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AcceptEventAction2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AcceptEventAction2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new DeleteOnlyViewComponentEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new AcceptEventAction2CanonicalEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new AcceptEventAction2CanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -136,10 +130,9 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				// Commented to show the "virtual" link that links the two nodes
 				// if (child instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart) {
-				// 	return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
+				// return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
 				// }
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -177,22 +170,16 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AcceptEventActionName3EditPart) {
-			((AcceptEventActionName3EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAcceptEventActionFigure_name());
+			((AcceptEventActionName3EditPart) childEditPart).setLabel(getPrimaryShape().getFigureAcceptEventActionFigure_name());
 			return true;
 		}
 		if (childEditPart instanceof AcceptEventActionName4EditPart) {
-			((AcceptEventActionName4EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAcceptEventActionFigure_stereotypes());
+			((AcceptEventActionName4EditPart) childEditPart).setLabel(getPrimaryShape().getFigureAcceptEventActionFigure_stereotypes());
 			return true;
 		}
 		if (childEditPart instanceof OutputPinEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
-					PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(
-					((OutputPinEditPart) childEditPart).getFigure(), locator);
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -204,8 +191,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
 		if (childEditPart instanceof OutputPinEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(
-					((OutputPinEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -249,16 +235,14 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	 * @generated not
 	 */
 	protected NodeFigure createNodePlate() {
-		AcceptEventAction2NodeFigure result = new AcceptEventAction2NodeFigure(
-				getMapMode().DPtoLP(160), getMapMode().DPtoLP(60));
+		AcceptEventAction2NodeFigure result = new AcceptEventAction2NodeFigure(getMapMode().DPtoLP(160), getMapMode().DPtoLP(60));
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -273,8 +257,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects
-	 * layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *            instance of generated figure class
@@ -305,8 +288,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(AcceptEventActionName3EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(AcceptEventActionName3EditPart.VISUAL_ID));
 	}
 
 	/**
@@ -326,11 +308,9 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
-						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) event.getFeature(), event
-							.getNewValue());
+					style.eSet((EStructuralFeature) event.getFeature(), event.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -342,15 +322,13 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.add(UMLPackage.eINSTANCE.getExecutableNode_Handler());
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		DiagramEditPartsUtil
-				.handleNotificationForDiagram(this, event, features);
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, event, features);
 	}
 
 	/**
 	 * @NOT-generated
 	 */
-	public class AcceptEventAction2NodeFigure extends DefaultSizeNodeFigure
-			implements IPolygonAnchorableFigure {
+	public class AcceptEventAction2NodeFigure extends DefaultSizeNodeFigure implements IPolygonAnchorableFigure {
 
 		public AcceptEventAction2NodeFigure(Dimension defSize) {
 			super(defSize.width, defSize.height);
@@ -370,8 +348,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 			polygonList.addPoint(r.x + r.width, r.y);
 			polygonList.addPoint(r.x + r.width, r.y + r.height);
 			polygonList.addPoint(r.x, r.y + r.height);
-			polygonList.addPoint(r.x + (int) (r.width * 0.15), r.y + r.height
-					/ 2);
+			polygonList.addPoint(r.x + (int) (r.width * 0.15), r.y + r.height / 2);
 			polygonList.addPoint(r.x, r.y);
 
 			return polygonList;
@@ -394,6 +371,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		 * @generated
 		 */
 		private WrappingLabel fFigureAcceptEventActionFigure_stereotypes;
+
 		/**
 		 * @generated
 		 */
@@ -407,27 +385,18 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 			BorderLayout layoutThis = new BorderLayout();
 			this.setLayoutManager(layoutThis);
 
-			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode()
-					.DPtoLP(0)));
-			this.addPoint(new Point(getMapMode().DPtoLP(15), getMapMode()
-					.DPtoLP(30)));
-			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode()
-					.DPtoLP(60)));
-			this.addPoint(new Point(getMapMode().DPtoLP(100), getMapMode()
-					.DPtoLP(60)));
-			this.addPoint(new Point(getMapMode().DPtoLP(100), getMapMode()
-					.DPtoLP(0)));
-			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode()
-					.DPtoLP(0)));
+			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
+			this.addPoint(new Point(getMapMode().DPtoLP(15), getMapMode().DPtoLP(30)));
+			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(60)));
+			this.addPoint(new Point(getMapMode().DPtoLP(100), getMapMode().DPtoLP(60)));
+			this.addPoint(new Point(getMapMode().DPtoLP(100), getMapMode().DPtoLP(0)));
+			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			this.setFill(true);
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16),
-					getMapMode().DPtoLP(6)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(6)));
 
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(2),
-					getMapMode().DPtoLP(35), getMapMode().DPtoLP(2),
-					getMapMode().DPtoLP(15)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(35), getMapMode().DPtoLP(2), getMapMode().DPtoLP(15)));
 			createContents();
 		}
 
@@ -439,17 +408,14 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 			fFigureAcceptEventActionFigure_stereotypes = new WrappingLabel();
 			fFigureAcceptEventActionFigure_stereotypes.setText("");
 
-			fFigureAcceptEventActionFigure_stereotypes
-					.setFont(FFIGUREACCEPTEVENTACTIONFIGURE_STEREOTYPES_FONT);
+			fFigureAcceptEventActionFigure_stereotypes.setFont(FFIGUREACCEPTEVENTACTIONFIGURE_STEREOTYPES_FONT);
 
-			this.add(fFigureAcceptEventActionFigure_stereotypes,
-					BorderLayout.TOP);
+			this.add(fFigureAcceptEventActionFigure_stereotypes, BorderLayout.TOP);
 
 			fFigureAcceptEventActionFigure_name = new WrappingLabel();
 			fFigureAcceptEventActionFigure_name.setText("");
 
-			fFigureAcceptEventActionFigure_name
-					.setFont(FFIGUREACCEPTEVENTACTIONFIGURE_NAME_FONT);
+			fFigureAcceptEventActionFigure_name.setFont(FFIGUREACCEPTEVENTACTIONFIGURE_NAME_FONT);
 
 			this.add(fFigureAcceptEventActionFigure_name, BorderLayout.CENTER);
 
@@ -459,6 +425,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		 * @generated
 		 */
 		private final PointList myTemplate = new PointList();
+
 		/**
 		 * @generated
 		 */
@@ -502,7 +469,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		private Rectangle getTemplateBounds() {
 			if (myTemplateBounds == null) {
 				myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-				//just safety -- we are going to use this as divider 
+				// just safety -- we are going to use this as divider
 				if (myTemplateBounds.width < 1) {
 					myTemplateBounds.width = 1;
 				}
@@ -558,19 +525,18 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREACCEPTEVENTACTIONFIGURE_STEREOTYPES_FONT = new Font(
-			Display.getCurrent(), "SANS", 9, SWT.NORMAL);
+	static final Font FFIGUREACCEPTEVENTACTIONFIGURE_STEREOTYPES_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
 
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREACCEPTEVENTACTIONFIGURE_NAME_FONT = new Font(
-			Display.getCurrent(), "SANS", 10, SWT.BOLD);
+	static final Font FFIGUREACCEPTEVENTACTIONFIGURE_NAME_FONT = new Font(Display.getCurrent(), "SANS", 10, SWT.BOLD);
 
 	/**
 	 * @generated
 	 */
 	public class AcceptEventActionFigureAux extends AcceptEventActionFigure {
+
 		/**
 		 * @generated
 		 */
@@ -586,8 +552,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		 */
 		public AcceptEventActionFigureAux() {
 			super();
-			stereotypeParent = super
-					.getFigureAcceptEventActionFigure_stereotypes().getParent();
+			stereotypeParent = super.getFigureAcceptEventActionFigure_stereotypes().getParent();
 			createContents();
 		}
 
@@ -595,13 +560,12 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		 * @generated NOT
 		 */
 		private void createContents() {
-			if (stereotypeParent.getChildren().contains(
-					super.getFigureAcceptEventActionFigure_stereotypes())) {
-				stereotypeParent.getChildren().remove(
-						super.getFigureAcceptEventActionFigure_stereotypes());
+			if (stereotypeParent.getChildren().contains(super.getFigureAcceptEventActionFigure_stereotypes())) {
+				stereotypeParent.getChildren().remove(super.getFigureAcceptEventActionFigure_stereotypes());
 			}
 
 			figureStereotypeLabel = new WrappingLabel() {
+
 				@Override
 				public void setText(String text) {
 					if (stereotypeParent == null || text == null) {
@@ -624,13 +588,10 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 			};
 			figureStereotypeLabel.setText("");
 
-			Font stereotypeLabelFont = new Font(Display.getCurrent(), "SANS",
-					9, SWT.NORMAL);
+			Font stereotypeLabelFont = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
 			figureStereotypeLabel.setFont(stereotypeLabelFont);
 
-			figureStereotypeLabel.setBorder(new MarginBorder(getMapMode()
-					.DPtoLP(2), getMapMode().DPtoLP(2), getMapMode().DPtoLP(2),
-					getMapMode().DPtoLP(2)));
+			figureStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(2), getMapMode().DPtoLP(2), getMapMode().DPtoLP(2)));
 
 			this.add(figureStereotypeLabel, BorderLayout.TOP);
 		}
@@ -653,8 +614,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		IFigure childFigure = ((GraphicalEditPart) child).getFigure();
 		// the only change is here! getContentPaneFor() is used instead of
 		// getContentPane()
-		LayoutManager layout = getContentPaneFor((IGraphicalEditPart) child)
-				.getLayoutManager();
+		LayoutManager layout = getContentPaneFor((IGraphicalEditPart) child).getLayoutManager();
 		Object constraint = null;
 		if (layout != null)
 			constraint = layout.getConstraint(childFigure);
@@ -667,8 +627,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	 * @generated
 	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(
-				AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
 	}
 
@@ -706,9 +665,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
 				if (gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart
-							&& ((GraphicalEditPart) gEP)
-									.resolveSemanticElement() == resolveSemanticElement()) {
+					if (gEP instanceof GraphicalEditPart && ((GraphicalEditPart) gEP).resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
@@ -737,8 +694,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
-				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
+		if (changesFromDefaultStyle().contains(NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
 			super.setBackgroundColor(color);
@@ -752,8 +708,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 		parent.setBackgroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresBackgroundColor((IFigure) obj, color);
 			}
 		}
@@ -765,8 +720,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
-				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
 			super.setForegroundColor(color);
@@ -781,8 +735,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresForegroundColor((IFigure) obj, color);
 			}
 		}
@@ -795,8 +748,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
-				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
 			super.setFontColor(color);
@@ -811,8 +763,7 @@ public class AcceptEventAction2EditPart extends AbstractBorderedShapeEditPart
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresFontColor((IFigure) obj, color);
 			}
 		}

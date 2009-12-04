@@ -83,7 +83,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Sets the view pattern.
 	 * 
 	 * @param viewPattern
-	 *            the view pattern
+	 *        the view pattern
 	 * 
 	 * @generated
 	 */
@@ -97,7 +97,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Creates the view processor.
 	 * 
 	 * @param viewPattern
-	 *            the view pattern
+	 *        the view pattern
 	 * 
 	 * @return the message format
 	 * 
@@ -133,7 +133,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Sets the edit pattern.
 	 * 
 	 * @param editPattern
-	 *            the edit pattern
+	 *        the edit pattern
 	 * 
 	 * @generated
 	 */
@@ -147,7 +147,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Creates the edit processor.
 	 * 
 	 * @param editPattern
-	 *            the edit pattern
+	 *        the edit pattern
 	 * 
 	 * @return the message format
 	 * 
@@ -161,9 +161,9 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the print string.
 	 * 
 	 * @param adapter
-	 *            the adapter
+	 *        the adapter
 	 * @param flags
-	 *            the flags
+	 *        the flags
 	 * 
 	 * @return the prints the string
 	 * 
@@ -177,9 +177,9 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the edit string.
 	 * 
 	 * @param adapter
-	 *            the adapter
+	 *        the adapter
 	 * @param flags
-	 *            the flags
+	 *        the flags
 	 * 
 	 * @return the edits the string
 	 * 
@@ -193,13 +193,13 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the string by pattern.
 	 * 
 	 * @param adapter
-	 *            the adapter
+	 *        the adapter
 	 * @param flags
-	 *            the flags
+	 *        the flags
 	 * @param pattern
-	 *            the pattern
+	 *        the pattern
 	 * @param processor
-	 *            the processor
+	 *        the processor
 	 * 
 	 * @return the string by pattern
 	 * 
@@ -211,9 +211,9 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Checks if is valid edit string.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * @param editString
-	 *            the edit string
+	 *        the edit string
 	 * 
 	 * @return the i parser edit status
 	 * 
@@ -222,7 +222,7 @@ public abstract class UMLAbstractParser implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
-		if (values == null) {
+		if(values == null) {
 			return new ParserEditStatus(ID, IParserEditStatus.UNEDITABLE, "Invalid input at " + pos.getErrorIndex());
 		}
 		return validateNewValues(values);
@@ -232,7 +232,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Validate new values.
 	 * 
 	 * @param values
-	 *            the values
+	 *        the values
 	 * 
 	 * @return the i parser edit status
 	 * 
@@ -246,11 +246,11 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the parse command.
 	 * 
 	 * @param adapter
-	 *            the adapter
+	 *        the adapter
 	 * @param newString
-	 *            the new string
+	 *        the new string
 	 * @param flags
-	 *            the flags
+	 *        the flags
 	 * 
 	 * @return the parses the command
 	 * 
@@ -258,7 +258,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 */
 	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 		Object[] values = getEditProcessor().parse(newString, new ParsePosition(0));
-		if (values == null || validateNewValues(values).getCode() != IParserEditStatus.EDITABLE) {
+		if(values == null || validateNewValues(values).getCode() != IParserEditStatus.EDITABLE) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return getParseCommand(adapter, values);
@@ -268,9 +268,9 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the parse command.
 	 * 
 	 * @param adapter
-	 *            the adapter
+	 *        the adapter
 	 * @param values
-	 *            the values
+	 *        the values
 	 * 
 	 * @return the parses the command
 	 * 
@@ -282,7 +282,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the completion processor.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return the completion processor
 	 * 
@@ -296,11 +296,11 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the modification command.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * @param feature
-	 *            the feature
+	 *        the feature
 	 * @param value
-	 *            the value
+	 *        the value
 	 * 
 	 * @return the modification command
 	 * 
@@ -308,7 +308,7 @@ public abstract class UMLAbstractParser implements IParser {
 	 */
 	protected ICommand getModificationCommand(EObject element, EStructuralFeature feature, Object value) {
 		value = getValidNewValue(feature, value);
-		if (value instanceof InvalidValue) {
+		if(value instanceof InvalidValue) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		SetRequest request = new SetRequest(element, feature, value);
@@ -319,9 +319,9 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the valid value.
 	 * 
 	 * @param feature
-	 *            the feature
+	 *        the feature
 	 * @param value
-	 *            the value
+	 *        the value
 	 * 
 	 * @return the valid value
 	 * 
@@ -329,10 +329,10 @@ public abstract class UMLAbstractParser implements IParser {
 	 */
 	protected Object getValidValue(EStructuralFeature feature, Object value) {
 		EClassifier type = feature.getEType();
-		if (type instanceof EDataType) {
+		if(type instanceof EDataType) {
 			Class iClass = type.getInstanceClass();
-			if (String.class.equals(iClass)) {
-				if (value == null) {
+			if(String.class.equals(iClass)) {
+				if(value == null) {
 					value = ""; //$NON-NLS-1$
 				}
 			}
@@ -344,9 +344,9 @@ public abstract class UMLAbstractParser implements IParser {
 	 * Gets the valid new value.
 	 * 
 	 * @param feature
-	 *            the feature
+	 *        the feature
 	 * @param value
-	 *            the value
+	 *        the value
 	 * 
 	 * @return the valid new value
 	 * 
@@ -354,22 +354,22 @@ public abstract class UMLAbstractParser implements IParser {
 	 */
 	protected Object getValidNewValue(EStructuralFeature feature, Object value) {
 		EClassifier type = feature.getEType();
-		if (type instanceof EDataType) {
+		if(type instanceof EDataType) {
 			Class iClass = type.getInstanceClass();
-			if (Boolean.TYPE.equals(iClass)) {
-				if (value instanceof Boolean) {
+			if(Boolean.TYPE.equals(iClass)) {
+				if(value instanceof Boolean) {
 					// ok
-				} else if (value instanceof String) {
-					value = Boolean.valueOf((String) value);
+				} else if(value instanceof String) {
+					value = Boolean.valueOf((String)value);
 				} else {
 					value = new InvalidValue("Value of type Boolean is expected");
 				}
-			} else if (Character.TYPE.equals(iClass)) {
-				if (value instanceof Character) {
+			} else if(Character.TYPE.equals(iClass)) {
+				if(value instanceof Character) {
 					// ok
-				} else if (value instanceof String) {
-					String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof String) {
+					String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						value = new Character(s.charAt(0));
@@ -377,14 +377,14 @@ public abstract class UMLAbstractParser implements IParser {
 				} else {
 					value = new InvalidValue("Value of type Character is expected");
 				}
-			} else if (Byte.TYPE.equals(iClass)) {
-				if (value instanceof Byte) {
+			} else if(Byte.TYPE.equals(iClass)) {
+				if(value instanceof Byte) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Byte(((Number) value).byteValue());
-				} else if (value instanceof String) {
-					String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Byte(((Number)value).byteValue());
+				} else if(value instanceof String) {
+					String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -396,14 +396,14 @@ public abstract class UMLAbstractParser implements IParser {
 				} else {
 					value = new InvalidValue("Value of type Byte is expected");
 				}
-			} else if (Short.TYPE.equals(iClass)) {
-				if (value instanceof Short) {
+			} else if(Short.TYPE.equals(iClass)) {
+				if(value instanceof Short) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Short(((Number) value).shortValue());
-				} else if (value instanceof String) {
-					String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Short(((Number)value).shortValue());
+				} else if(value instanceof String) {
+					String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -415,14 +415,14 @@ public abstract class UMLAbstractParser implements IParser {
 				} else {
 					value = new InvalidValue("Value of type Short is expected");
 				}
-			} else if (Integer.TYPE.equals(iClass)) {
-				if (value instanceof Integer) {
+			} else if(Integer.TYPE.equals(iClass)) {
+				if(value instanceof Integer) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Integer(((Number) value).intValue());
-				} else if (value instanceof String) {
-					String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Integer(((Number)value).intValue());
+				} else if(value instanceof String) {
+					String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -434,14 +434,14 @@ public abstract class UMLAbstractParser implements IParser {
 				} else {
 					value = new InvalidValue("Value of type Integer is expected");
 				}
-			} else if (Long.TYPE.equals(iClass)) {
-				if (value instanceof Long) {
+			} else if(Long.TYPE.equals(iClass)) {
+				if(value instanceof Long) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Long(((Number) value).longValue());
-				} else if (value instanceof String) {
-					String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Long(((Number)value).longValue());
+				} else if(value instanceof String) {
+					String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -453,14 +453,14 @@ public abstract class UMLAbstractParser implements IParser {
 				} else {
 					value = new InvalidValue("Value of type Long is expected");
 				}
-			} else if (Float.TYPE.equals(iClass)) {
-				if (value instanceof Float) {
+			} else if(Float.TYPE.equals(iClass)) {
+				if(value instanceof Float) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Float(((Number) value).floatValue());
-				} else if (value instanceof String) {
-					String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Float(((Number)value).floatValue());
+				} else if(value instanceof String) {
+					String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -472,14 +472,14 @@ public abstract class UMLAbstractParser implements IParser {
 				} else {
 					value = new InvalidValue("Value of type Float is expected");
 				}
-			} else if (Double.TYPE.equals(iClass)) {
-				if (value instanceof Double) {
+			} else if(Double.TYPE.equals(iClass)) {
+				if(value instanceof Double) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Double(((Number) value).doubleValue());
-				} else if (value instanceof String) {
-					String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Double(((Number)value).doubleValue());
+				} else if(value instanceof String) {
+					String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -491,10 +491,10 @@ public abstract class UMLAbstractParser implements IParser {
 				} else {
 					value = new InvalidValue("Value of type Double is expected");
 				}
-			} else if (type instanceof EEnum) {
-				if (value instanceof String) {
-					EEnumLiteral literal = ((EEnum) type).getEEnumLiteralByLiteral((String) value);
-					if (literal == null) {
+			} else if(type instanceof EEnum) {
+				if(value instanceof String) {
+					EEnumLiteral literal = ((EEnum)type).getEEnumLiteralByLiteral((String)value);
+					if(literal == null) {
 						value = new InvalidValue("Unknown literal: " + value);
 					} else {
 						value = literal.getInstance();
@@ -521,7 +521,7 @@ public abstract class UMLAbstractParser implements IParser {
 		 * The Constructor.
 		 * 
 		 * @param description
-		 *            the description
+		 *        the description
 		 * 
 		 * @generated
 		 */

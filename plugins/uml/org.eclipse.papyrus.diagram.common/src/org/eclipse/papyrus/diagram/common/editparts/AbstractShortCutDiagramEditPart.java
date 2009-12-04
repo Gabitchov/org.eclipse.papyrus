@@ -55,7 +55,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * 
 	 */
 	protected IEditorFactoryRegistry getEditorRegistry() {
-		if (editorRegistry == null) {
+		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
 		return editorRegistry;
@@ -86,17 +86,17 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 		int width = 34;
 		int height = 20;
 		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**
 	 * refresh the icon by taking in account the type of the diagram
 	 */
 	private void refreshIcons() {
-		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram) resolveSemanticElement()));
+		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement()));
 	}
 
 }

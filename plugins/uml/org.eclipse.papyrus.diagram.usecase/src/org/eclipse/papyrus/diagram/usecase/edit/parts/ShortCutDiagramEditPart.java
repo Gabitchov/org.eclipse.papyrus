@@ -110,20 +110,20 @@ AbstractBorderedShapeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case DiagramNameEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+									return new BorderItemSelectionEditPolicy() {
 
 						protected List createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
 					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -151,14 +151,14 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public DiagramNodeFigure getPrimaryShape() {
-		return (DiagramNodeFigure) primaryShape;
+		return (DiagramNodeFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof DiagramNameEditPart) {
+		if(borderItemEditPart instanceof DiagramNameEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -197,7 +197,7 @@ AbstractBorderedShapeEditPart {
 	 * for generated figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -208,7 +208,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -218,7 +218,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -227,8 +227,8 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -249,7 +249,7 @@ AbstractBorderedShapeEditPart {
 	 *@generated NOT
 	 */
 	protected IEditorFactoryRegistry getEditorRegistry() {
-		if (editorRegistry == null) {
+		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
 		return editorRegistry;
@@ -274,17 +274,17 @@ AbstractBorderedShapeEditPart {
 		int width = 34;
 		int height = 20;
 		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	private void refreshIcons() {
-		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram) resolveSemanticElement()));
+		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement()));
 
 	}
 
@@ -292,8 +292,8 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -309,39 +309,39 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
 				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
 				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
 						PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
 						PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
 						PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore,
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
 					prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
 				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
 					PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
 					.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

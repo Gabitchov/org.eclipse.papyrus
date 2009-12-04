@@ -30,12 +30,12 @@ import org.eclipse.uml2.uml.Package;
 
 
 /**
- * This view displays different panels, given a selected element. For a package (and model), 
- * it displays all profiles applied to this package. For an UML element, it displays 
+ * This view displays different panels, given a selected element. For a package (and model),
+ * it displays all profiles applied to this package. For an UML element, it displays
  * stereotypes applied to this element.
- * <p>Panels are created using a factory, which should be overloaded when using a new selection
- * manager.
- *  
+ * <p>
+ * Panels are created using a factory, which should be overloaded when using a new selection manager.
+ * 
  */
 public class ProfilePanelView extends ViewPart implements ISelectionListener, IPartListener {
 
@@ -44,18 +44,21 @@ public class ProfilePanelView extends ViewPart implements ISelectionListener, IP
 
 	/** The current target. */
 	protected Object currentTarget;
-	
+
 	// keeps the reference to the panel (abstract class)
 	/** The panel. */
 	protected AbstractPanel panel;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.IWorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
 	 */
 	/**
 	 * Creates the part control.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -72,91 +75,118 @@ public class ProfilePanelView extends ViewPart implements ISelectionListener, IP
 	@Override
 	public void setFocus() {
 		panel.setFocus();
-	}    
+	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.ISelectionListener#selectionChanged(org.eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
 	 */
 	/**
 	 * Selection changed.
 	 * 
-	 * @param part the part
-	 * @param selection the selection
+	 * @param part
+	 *        the part
+	 * @param selection
+	 *        the selection
 	 */
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		
-		if (! selection.isEmpty()) {
 
-			IStructuredSelection sSelection = (IStructuredSelection) selection;
+		if(!selection.isEmpty()) {
+
+			IStructuredSelection sSelection = (IStructuredSelection)selection;
 			Object previousTarget = currentTarget;
 			currentTarget = null;
 
 			//If more or less than 1 element is selected then nothing is active
-			if (sSelection.size() == 1) {
+			if(sSelection.size() == 1) {
 				// Retrieve selected object
 				Object object = sSelection.getFirstElement();
 				// If the object is an edit part, try to get semantic bridge
-				if (object instanceof Package) {
-					currentTarget = (Package) object;
-				} else if (object instanceof Element) {
-					currentTarget = (Element) object;
+				if(object instanceof Package) {
+					currentTarget = (Package)object;
+				} else if(object instanceof Element) {
+					currentTarget = (Element)object;
 				} else {
 					currentTarget = null;
 				}
 			}
-			if (previousTarget != currentTarget) {
-				switchUI();	
+			if(previousTarget != currentTarget) {
+				switchUI();
 			}
 		} else {
 			currentTarget = null;
-			switchUI();	
+			switchUI();
 		}
 	}
-	
+
 	// IPartListener methods implementation
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.IPartListener#partActivated(org.eclipse.ui.IWorkbenchPart)
 	 */
 	/**
 	 * Part activated.
 	 * 
-	 * @param part the part
+	 * @param part
+	 *        the part
 	 */
-	public void partActivated(IWorkbenchPart part) {}
-	/* (non-Javadoc)
+	public void partActivated(IWorkbenchPart part) {
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.IPartListener#partDeactivated(org.eclipse.ui.IWorkbenchPart)
 	 */
 	/**
 	 * Part deactivated.
 	 * 
-	 * @param part the part
+	 * @param part
+	 *        the part
 	 */
-	public void partDeactivated(IWorkbenchPart part) {}
-	/* (non-Javadoc)
+	public void partDeactivated(IWorkbenchPart part) {
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.IPartListener#partBroughtToTop(org.eclipse.ui.IWorkbenchPart)
 	 */
 	/**
 	 * Part brought to top.
 	 * 
-	 * @param part the part
+	 * @param part
+	 *        the part
 	 */
-	public void partBroughtToTop(IWorkbenchPart part) {}
-	/* (non-Javadoc)
+	public void partBroughtToTop(IWorkbenchPart part) {
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.IPartListener#partOpened(org.eclipse.ui.IWorkbenchPart)
 	 */
 	/**
 	 * Part opened.
 	 * 
-	 * @param part the part
+	 * @param part
+	 *        the part
 	 */
-	public void partOpened(IWorkbenchPart part) {}
-	/* (non-Javadoc)
+	public void partOpened(IWorkbenchPart part) {
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.IPartListener#partClosed(org.eclipse.ui.IWorkbenchPart)
 	 */
 	/**
 	 * Part closed.
 	 * 
-	 * @param part the part
+	 * @param part
+	 *        the part
 	 */
 	public void partClosed(IWorkbenchPart part) {
 		switchUIDefault();
@@ -167,24 +197,25 @@ public class ProfilePanelView extends ViewPart implements ISelectionListener, IP
 	 * newly selected element.
 	 */
 	protected void switchUI() {
-		if ((currentTarget != null) && (currentTarget instanceof Element)) {
+		if((currentTarget != null) && (currentTarget instanceof Element)) {
 
-			/* test to check if the panel is not disposed.
+			/*
+			 * test to check if the panel is not disposed.
 			 * Closing the panel view and open it again creates a second
 			 * instance of panel, one of it is disposed, the new one is active
 			 */
-			if(!panel.isDisposed()) {	
+			if(!panel.isDisposed()) {
 				panel.exitAction();
 				panel.dispose();
 
-				if (currentTarget instanceof Package) {
+				if(currentTarget instanceof Package) {
 					panel = new AppliedProfilePanel(this.parent, 0);
 					panel.createContent();
-					((AppliedProfilePanel) panel).setSelected((Package) currentTarget);
-				} else if (currentTarget instanceof Element) {
+					((AppliedProfilePanel)panel).setSelected((Package)currentTarget);
+				} else if(currentTarget instanceof Element) {
 					panel = new AppliedStereotypePanel(this.parent, 0);
 					panel.createContent();
-					((AppliedStereotypePanel) panel).setSelected((Element) currentTarget);
+					((AppliedStereotypePanel)panel).setSelected((Element)currentTarget);
 				} else {
 					panel = new DefaultPanel(this.parent, 0);
 					panel.createContent();
@@ -201,7 +232,7 @@ public class ProfilePanelView extends ViewPart implements ISelectionListener, IP
 	 * Replace current panel with default.
 	 */
 	private void switchUIDefault() {
-		if(!panel.isDisposed()) {	
+		if(!panel.isDisposed()) {
 			// Flush previous
 			panel.exitAction();
 			panel.dispose();

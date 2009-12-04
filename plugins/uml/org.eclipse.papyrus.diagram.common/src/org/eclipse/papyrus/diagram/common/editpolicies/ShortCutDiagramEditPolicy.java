@@ -46,9 +46,9 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 		 * Instantiates a new open diagram command.
 		 * 
 		 * @param domain
-		 *            the domain
+		 *        the domain
 		 * @param diagram
-		 *            the diagram
+		 *        the diagram
 		 */
 		public OpenDiagramCommand(TransactionalEditingDomain domain, Diagram diagram) {
 			super(domain, "open diagram", null);
@@ -63,7 +63,7 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 				throws ExecutionException {
 			try {
 				IPageMngr pageMngr = EditorUtils.getIPageMngr();
-				if (pageMngr.isOpen(diagramToOpen)) {
+				if(pageMngr.isOpen(diagramToOpen)) {
 					pageMngr.closePage(diagramToOpen);
 				}
 				pageMngr.openPage(diagramToOpen);
@@ -79,8 +79,8 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 	 */
 	@Override
 	protected Command getOpenCommand(Request request) {
-		Diagram diagram = (Diagram) ((GraphicalEditPart) getHost()).getNotationView().getElement();
-		OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart) getHost())
+		Diagram diagram = (Diagram)((GraphicalEditPart)getHost()).getNotationView().getElement();
+		OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart)getHost())
 				.getEditingDomain(), diagram);
 		return new ICommandProxy(openDiagramCommand);
 	}

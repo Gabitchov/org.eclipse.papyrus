@@ -31,14 +31,14 @@ import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 public class ObjectNodeTypeParser implements IParser {
+
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = (EObject) element.getAdapter(EObject.class);
 		if (eObject instanceof ObjectNode) {
 			StringBuffer printStringBuffer = new StringBuffer(20);
 			ObjectNode objectNode = (ObjectNode) eObject;
@@ -57,7 +57,7 @@ public class ObjectNodeTypeParser implements IParser {
 	}
 
 	public String getEditString(IAdaptable element, int flags) {
-		EObject eObject = (EObject)element.getAdapter(EObject.class);
+		EObject eObject = (EObject) element.getAdapter(EObject.class);
 		if (eObject instanceof NamedElement) {
 			return ((NamedElement) eObject).getName();
 		}
@@ -67,8 +67,7 @@ public class ObjectNodeTypeParser implements IParser {
 	public boolean isAffectingEvent(Object event, int flags) {
 		if (event instanceof Notification) {
 			Object feature = ((Notification) event).getFeature();
-			return UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) ||
-			UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature);
+			return UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature);
 		}
 		return false;
 	}

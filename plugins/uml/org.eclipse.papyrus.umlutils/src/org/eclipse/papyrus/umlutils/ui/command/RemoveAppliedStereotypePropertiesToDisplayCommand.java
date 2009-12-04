@@ -34,11 +34,11 @@ public class RemoveAppliedStereotypePropertiesToDisplayCommand extends CreateEAn
 	 * Instantiates a new sets the applied stereotype to display command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param stereotypePropertyList
-	 *            the stereotype list
+	 *        the stereotype list
 	 */
 	public RemoveAppliedStereotypePropertiesToDisplayCommand(TransactionalEditingDomain domain, EModelElement object,
 			String stereotypePropertyList) {
@@ -55,14 +55,14 @@ public class RemoveAppliedStereotypePropertiesToDisplayCommand extends CreateEAn
 				.getObject());
 
 		StringTokenizer appliedStereotypeToken = new StringTokenizer(stereotypePropertiesListToRemove, ",");
-		while (appliedStereotypeToken.hasMoreElements()) {
+		while(appliedStereotypeToken.hasMoreElements()) {
 			String tokenToRemove = appliedStereotypeToken.nextToken();
 			stereotypePropertiesList = stereotypePropertiesList.replaceAll("," + tokenToRemove.trim(), "");
 			stereotypePropertiesList = stereotypePropertiesList.replaceAll(tokenToRemove.trim(), "");
 		}
 
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (oldAnnotation == null) {
+		if(oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}

@@ -18,7 +18,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
  * Editor factory for Papyrus MultiEditor.
  * 
  * @author fjcano
- *
+ * 
  */
 public class StateMachineDiagramEditorFactory extends GmfEditorFactory {
 

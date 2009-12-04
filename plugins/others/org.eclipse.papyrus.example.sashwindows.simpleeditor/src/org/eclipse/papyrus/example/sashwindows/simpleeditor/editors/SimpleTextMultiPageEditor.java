@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.example.sashwindows.simpleeditor.editors;
 
 
@@ -76,6 +76,7 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 
 	/** The text widget used in page 2. */
 	private StyledText text;
+
 	/**
 	 * Creates a multi-page editor example.
 	 */
@@ -83,31 +84,31 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 		super();
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
 	}
-	
+
 	/**
 	 * Create and initialize the pageProvider.
 	 */
-	protected ISashWindowsContentProvider createPageProvider()
-	{
+	protected ISashWindowsContentProvider createPageProvider() {
 		SimpleSashWindowsContentProvider pageProvider = new SimpleSashWindowsContentProvider();
 		// Adding requested pages
-		pageProvider.addPage( new Page0() );
-		pageProvider.addPage( new Page1() );
-		pageProvider.addPage( new Page2() );
-		pageProvider.addPage( new Page0() );
-		
-		
+		pageProvider.addPage(new Page0());
+		pageProvider.addPage(new Page1());
+		pageProvider.addPage(new Page2());
+		pageProvider.addPage(new Page0());
+
+
 		return pageProvider;
 	}
 
 	/**
 	 * Description of the first page
+	 * 
 	 * @author dumoulin
 	 */
 	public class Page0 implements IEditorModel {
 
 		public IEditorPart createIEditorPart() throws PartInitException {
-				editor = new TextEditor();
+			editor = new TextEditor();
 			return editor;
 		}
 
@@ -127,9 +128,10 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Describe the page1
+	 * 
 	 * @author dumoulin
 	 */
 	public class Page1 implements IComponentModel {
@@ -145,8 +147,9 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 			gd.horizontalSpan = 2;
 			fontButton.setLayoutData(gd);
 			fontButton.setText("Change Font...");
-			
+
 			fontButton.addSelectionListener(new SelectionAdapter() {
+
 				public void widgetSelected(SelectionEvent event) {
 					setFont();
 				}
@@ -166,9 +169,9 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 		public Object getRawModel() {
 			return this;
 		}
-		
+
 	}
-	
+
 	public class Page2 implements IComponentModel {
 
 		public Composite createPartControl(Composite parent) {
@@ -188,7 +191,7 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 		public String getTabTitle() {
 			return "Preview";
 		}
-		
+
 		public Object getRawModel() {
 			return this;
 		}
@@ -196,20 +199,21 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 	}
 
 	/**
-	 * The <code>MultiPageEditorPart</code> implementation of this 
-	 * <code>IWorkbenchPart</code> method disposes all nested editors.
+	 * The <code>MultiPageEditorPart</code> implementation of this <code>IWorkbenchPart</code> method disposes all nested editors.
 	 * Subclasses may extend.
 	 */
 	public void dispose() {
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
 		super.dispose();
 	}
+
 	/**
 	 * Saves the multi-page editor's document.
 	 */
 	public void doSave(IProgressMonitor monitor) {
 		getEditor(0).doSave(monitor);
 	}
+
 	/**
 	 * Saves the multi-page editor's document as another file.
 	 * Also updates the text for page 0's tab, and updates this multi-page editor's input
@@ -221,57 +225,65 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 		setPageText(0, editor.getTitle());
 		setInput(editor.getEditorInput());
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * Method declared on IEditorPart
 	 */
 	public void gotoMarker(IMarker marker) {
 		setActivePage(0);
 		IDE.gotoMarker(getEditor(0), marker);
 	}
+
 	/**
 	 * The <code>MultiPageEditorExample</code> implementation of this method
 	 * checks that the input is an instance of <code>IFileEditorInput</code>.
 	 */
 	public void init(IEditorSite site, IEditorInput editorInput)
-		throws PartInitException {
-		if (!(editorInput instanceof IFileEditorInput))
+			throws PartInitException {
+		if(!(editorInput instanceof IFileEditorInput))
 			throw new PartInitException("Invalid Input: Must be IFileEditorInput");
 		super.init(site, editorInput);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * Method declared on IEditorPart.
 	 */
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
+
 	/**
 	 * Calculates the contents of page 2 when the it is activated.
 	 */
 	protected void pageChange(int newPageIndex) {
 		super.pageChange(newPageIndex);
-		if (newPageIndex == 2) {
+		if(newPageIndex == 2) {
 			sortWords();
 		}
 	}
+
 	/**
 	 * Closes all project files on project close.
 	 */
-	public void resourceChanged(final IResourceChangeEvent event){
-		if(event.getType() == IResourceChangeEvent.PRE_CLOSE){
-			Display.getDefault().asyncExec(new Runnable(){
-				public void run(){
+	public void resourceChanged(final IResourceChangeEvent event) {
+		if(event.getType() == IResourceChangeEvent.PRE_CLOSE) {
+			Display.getDefault().asyncExec(new Runnable() {
+
+				public void run() {
 					IWorkbenchPage[] pages = getSite().getWorkbenchWindow().getPages();
-					for (int i = 0; i<pages.length; i++){
-						if(((FileEditorInput)editor.getEditorInput()).getFile().getProject().equals(event.getResource())){
+					for(int i = 0; i < pages.length; i++) {
+						if(((FileEditorInput)editor.getEditorInput()).getFile().getProject().equals(event.getResource())) {
 							IEditorPart editorPart = pages[i].findEditor(editor.getEditorInput());
-							pages[i].closeEditor(editorPart,true);
+							pages[i].closeEditor(editorPart, true);
 						}
 					}
-				}            
+				}
 			});
 		}
 	}
+
 	/**
 	 * Sets the font related data to be applied to the text in page 2.
 	 */
@@ -279,32 +291,33 @@ public class SimpleTextMultiPageEditor extends MultiPageEditor implements IResou
 		FontDialog fontDialog = new FontDialog(getSite().getShell());
 		fontDialog.setFontList(text.getFont().getFontData());
 		FontData fontData = fontDialog.open();
-		if (fontData != null) {
-			if (font != null)
+		if(fontData != null) {
+			if(font != null)
 				font.dispose();
 			font = new Font(text.getDisplay(), fontData);
 			text.setFont(font);
 		}
 	}
+
 	/**
 	 * Sorts the words in page 0, and shows them in page 2.
 	 */
 	void sortWords() {
 
 		String editorText =
-			editor.getDocumentProvider().getDocument(editor.getEditorInput()).get();
+				editor.getDocumentProvider().getDocument(editor.getEditorInput()).get();
 
 		StringTokenizer tokenizer =
-			new StringTokenizer(editorText, " \t\n\r\f!@#\u0024%^&*()-_=+`~[]{};:'\",.<>/?|\\");
+				new StringTokenizer(editorText, " \t\n\r\f!@#\u0024%^&*()-_=+`~[]{};:'\",.<>/?|\\");
 		ArrayList editorWords = new ArrayList();
-		while (tokenizer.hasMoreTokens()) {
+		while(tokenizer.hasMoreTokens()) {
 			editorWords.add(tokenizer.nextToken());
 		}
 
 		Collections.sort(editorWords, Collator.getInstance());
 		StringWriter displayText = new StringWriter();
-		for (int i = 0; i < editorWords.size(); i++) {
-			displayText.write(((String) editorWords.get(i)));
+		for(int i = 0; i < editorWords.size(); i++) {
+			displayText.write(((String)editorWords.get(i)));
 			displayText.write(System.getProperty("line.separator"));
 		}
 		text.setText(displayText.toString());

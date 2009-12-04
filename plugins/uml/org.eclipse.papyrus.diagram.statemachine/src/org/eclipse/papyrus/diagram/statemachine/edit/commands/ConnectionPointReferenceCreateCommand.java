@@ -48,6 +48,7 @@ public class ConnectionPointReferenceCreateCommand extends CreateElementCommand 
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -84,12 +85,12 @@ public class ConnectionPointReferenceCreateCommand extends CreateElementCommand 
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
+		EObject container = ((CreateElementRequest)getRequest())
 				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -102,10 +103,10 @@ public class ConnectionPointReferenceCreateCommand extends CreateElementCommand 
 	protected EClass getEClassToEdit() {
 
 		EObject eObject = getElementToEdit();
-		if (eObject != null) {
+		if(eObject != null) {
 			return eObject.eClass();
 		}
-		if (eClass != null) {
+		if(eClass != null) {
 			return eClass;
 		}
 		return UMLPackage.eINSTANCE.getState();
@@ -116,12 +117,12 @@ public class ConnectionPointReferenceCreateCommand extends CreateElementCommand 
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
+		if(getRequest().getParameters().get(
 				MultiDiagramUtil.BelongToDiagramSource) != null) {
 			Object parameter = getRequest().getParameters().get(
 					MultiDiagramUtil.BelongToDiagramSource);
-			if (parameter instanceof Diagram) {
-				return (Diagram) parameter;
+			if(parameter instanceof Diagram) {
+				return (Diagram)parameter;
 			}
 		}
 		return null;
@@ -135,12 +136,12 @@ public class ConnectionPointReferenceCreateCommand extends CreateElementCommand 
 		Pseudostate point = ConnectionPointReferenceCreationReferenceProvider.SelectedConnectionPoint;
 		ConnectionPointReferenceCreationReferenceProvider.SelectedConnectionPoint = null;
 
-		ConnectionPointReference newElement = (ConnectionPointReference) super
+		ConnectionPointReference newElement = (ConnectionPointReference)super
 				.doDefaultElementCreation();
-		if (newElement != null) {
+		if(newElement != null) {
 			ElementInitializers.init_ConnectionPointReference_2006(newElement);
 			Diagram diagram = getDiagramFromRequest();
-			if (diagram != null) {
+			if(diagram != null) {
 				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
 						newElement);
 			} else {
@@ -158,19 +159,19 @@ public class ConnectionPointReferenceCreateCommand extends CreateElementCommand 
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
 
-		State state = getElementToEdit() instanceof State ? (State) getElementToEdit()
+		State state = getElementToEdit() instanceof State ? (State)getElementToEdit()
 				: null;
 		StateMachine subMachine = state != null ? state.getSubmachine() : null;
 
-		if (subMachine == null) {
+		if(subMachine == null) {
 			return CommandResult.newCancelledCommandResult();
 		}
 
 		Pseudostate point = ConnectionPointReferenceCreationReferenceProvider
 				.SelectConectionPointDialog(getRequest().getEditingDomain(),
-						subMachine, PseudostateKind.ENTRY_POINT_LITERAL);
+				subMachine, PseudostateKind.ENTRY_POINT_LITERAL);
 
-		if (point == null) {
+		if(point == null) {
 			return CommandResult.newCancelledCommandResult();
 		}
 

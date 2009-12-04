@@ -53,15 +53,21 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -109,15 +115,21 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 
 	/**
 	 * Init the actual
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initActual(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the actual
-	 * @param newValue the actual to update
+	 * 
+	 * @param newValue
+	 *        the actual to update
 	 */
 	public void updateActual(EObject newValue);
 
@@ -125,7 +137,7 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * Adds the given filter to the actual edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToActual(ViewerFilter filter);
@@ -134,7 +146,7 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * Adds the given filter to the actual edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToActual(ViewerFilter filter);
@@ -175,15 +187,21 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedActual
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedActual(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedActual
-	 * @param newValue the ownedActual to update
+	 * 
+	 * @param newValue
+	 *        the ownedActual to update
 	 */
 	public void updateOwnedActual(EObject newValue);
 
@@ -191,7 +209,7 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * Adds the given filter to the ownedActual edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedActual(ViewerFilter filter);
@@ -200,7 +218,7 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * Adds the given filter to the ownedActual edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedActual(ViewerFilter filter);
@@ -209,11 +227,6 @@ public interface TemplateParameterSubstitutionPropertiesEditionPart {
 	 * @return true if the given element is contained inside the ownedActual table
 	 */
 	public boolean isContainedInOwnedActualTable(EObject element);
-
-
-
-
-
 
 
 

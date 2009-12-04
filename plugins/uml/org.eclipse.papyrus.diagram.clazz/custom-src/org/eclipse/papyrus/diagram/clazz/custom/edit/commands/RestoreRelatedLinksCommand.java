@@ -83,16 +83,16 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	}
 
 	private void cleanAdd(Collection<UMLLinkDescriptor> result, View view, List<?> descriptors) {
-		for (Object object : descriptors) {
-			if (false == object instanceof UMLLinkDescriptor) {
+		for(Object object : descriptors) {
+			if(false == object instanceof UMLLinkDescriptor) {
 				continue;
 			}
-			UMLLinkDescriptor descriptor = (UMLLinkDescriptor) object;
-			if (cleanContains(result, descriptor)) {
+			UMLLinkDescriptor descriptor = (UMLLinkDescriptor)object;
+			if(cleanContains(result, descriptor)) {
 				continue;
 			}
 			// check owner
-			if (!isOwner(view, descriptor)) {
+			if(!isOwner(view, descriptor)) {
 				continue;
 			}
 			result.add(descriptor);
@@ -103,18 +103,18 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * Detect if similar descriptor already exist in given collection.
 	 * 
 	 * @param result
-	 *            the collection of unique ingoing and outgoing links descriptors
+	 *        the collection of unique ingoing and outgoing links descriptors
 	 * @param umlLinkDescriptor
-	 *            the descriptor to search
+	 *        the descriptor to search
 	 * @return true if already exist
 	 */
 	private boolean cleanContains(Collection<? extends UMLLinkDescriptor> result, UMLLinkDescriptor umlLinkDescriptor) {
-		for (Object object : result) {
-			if (false == object instanceof UMLLinkDescriptor) {
+		for(Object object : result) {
+			if(false == object instanceof UMLLinkDescriptor) {
 				continue;
 			}
-			UMLLinkDescriptor descriptor = (UMLLinkDescriptor) object;
-			if (descriptor.getModelElement() == umlLinkDescriptor.getModelElement()
+			UMLLinkDescriptor descriptor = (UMLLinkDescriptor)object;
+			if(descriptor.getModelElement() == umlLinkDescriptor.getModelElement()
 					&& descriptor.getSource() == umlLinkDescriptor.getSource()
 					&& descriptor.getDestination() == umlLinkDescriptor.getDestination()
 					&& descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
@@ -126,16 +126,16 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			// "Association.endType"
 			// it seems GMF Node cannot use two structuralFeature for one graphical Node ... (dixit
 			// Patrick)
-			if (descriptor.getModelElement() instanceof Association
+			if(descriptor.getModelElement() instanceof Association
 					&& umlLinkDescriptor.getModelElement() instanceof Association) {
-				Association assoc1 = (Association) descriptor.getModelElement();
-				Association assoc2 = (Association) umlLinkDescriptor.getModelElement();
-				if (assoc1.getEndTypes().size() > 1 && assoc2.getEndTypes().size() > 1) {
+				Association assoc1 = (Association)descriptor.getModelElement();
+				Association assoc2 = (Association)umlLinkDescriptor.getModelElement();
+				if(assoc1.getEndTypes().size() > 1 && assoc2.getEndTypes().size() > 1) {
 					Type source1 = assoc1.getEndTypes().get(0);
 					Type target1 = assoc1.getEndTypes().get(1);
 					Type source2 = assoc2.getEndTypes().get(0);
 					Type target2 = assoc2.getEndTypes().get(1);
-					if (source1.equals(source2) && target1.equals(target2)) {
+					if(source1.equals(source2) && target1.equals(target2)) {
 						return true;
 					}
 				}
@@ -156,7 +156,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	protected Collection<? extends UMLLinkDescriptor> collectPartRelatedLinks(View view,
 			Map<EObject, View> domain2NotationMap) {
 		Collection<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		if (!domain2NotationMap.containsKey(view.getElement())) {
+		if(!domain2NotationMap.containsKey(view.getElement())) {
 			// We must prevent duplicate descriptors
 			List<?> outgoingDescriptors = UMLDiagramUpdater.getOutgoingLinks(view);
 			cleanAdd(result, view, outgoingDescriptors);
@@ -164,7 +164,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			List<?> incomingDescriptors = UMLDiagramUpdater.getIncomingLinks(view);
 			cleanAdd(result, view, incomingDescriptors);
 		}
-		if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+		if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 			domain2NotationMap.put(view.getElement(), view);
 		}
 		return result;
@@ -181,17 +181,17 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		// map diagram
 		mapModel(diagram, domain2NotationMap);
 
-		for (UMLLinkDescriptor nextLinkDescriptor : linkDescriptors) {
+		for(UMLLinkDescriptor nextLinkDescriptor : linkDescriptors) {
 			EditPart sourceEditPart = getEditPart(nextLinkDescriptor.getSource(), domain2NotationMap);
 			EditPart targetEditPart = getEditPart(nextLinkDescriptor.getDestination(), domain2NotationMap);
 
 			// If the parts are still null...
-			if (sourceEditPart == null || targetEditPart == null) {
+			if(sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
 			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
 					nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND, false, host
-							.getDiagramPreferencesHint());
+					.getDiagramPreferencesHint());
 			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
 			ccr.setType(RequestConstants.REQ_CONNECTION_START);
 			ccr.setSourceEditPart(sourceEditPart);
@@ -199,7 +199,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			ccr.setTargetEditPart(targetEditPart);
 			ccr.setType(RequestConstants.REQ_CONNECTION_END);
 			Command cmd = targetEditPart.getCommand(ccr);
-			if (cmd != null && cmd.canExecute()) {
+			if(cmd != null && cmd.canExecute()) {
 				CommandUtil.executeCommand(cmd, host);
 			}
 		}
@@ -216,15 +216,15 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		// To register all EditPart in the global visualIDRegistry
 		host().refresh();
 
-		for (Object object : adapters) {
-			if (object instanceof IAdaptable) {
-				IAdaptable ad = (IAdaptable) object;
-				View view = (View) ad.getAdapter(View.class);
-				if (view != null) {
+		for(Object object : adapters) {
+			if(object instanceof IAdaptable) {
+				IAdaptable ad = (IAdaptable)object;
+				View view = (View)ad.getAdapter(View.class);
+				if(view != null) {
 					refreshRelatedLinks(view);
 				}
-			} else if (object instanceof View) {
-				refreshRelatedLinks((View) object);
+			} else if(object instanceof View) {
+				refreshRelatedLinks((View)object);
 			}
 
 		}
@@ -240,8 +240,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 */
 	protected EditPart getEditPart(EObject domainModelElement, Map<? extends EObject, ? extends View> domain2NotationMap) {
 		View view = domain2NotationMap.get(domainModelElement);
-		if (view != null) {
-			return (EditPart) host.getViewer().getEditPartRegistry().get(view);
+		if(view != null) {
+			return (EditPart)host.getViewer().getEditPartRegistry().get(view);
 		}
 		return null;
 	}
@@ -262,14 +262,14 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 
 		// Collect all related link from graphical model
 		Collection<Edge> existingLinks = new LinkedList<Edge>();
-		for (Object edge : notationView.getTargetEdges()) {
-			if (edge instanceof Edge && false == existingLinks.contains(edge)) {
-				existingLinks.add((Edge) edge);
+		for(Object edge : notationView.getTargetEdges()) {
+			if(edge instanceof Edge && false == existingLinks.contains(edge)) {
+				existingLinks.add((Edge)edge);
 			}
 		}
-		for (Object edge : notationView.getSourceEdges()) {
-			if (edge instanceof Edge && false == existingLinks.contains(edge)) {
-				existingLinks.add((Edge) edge);
+		for(Object edge : notationView.getSourceEdges()) {
+			if(edge instanceof Edge && false == existingLinks.contains(edge)) {
+				existingLinks.add((Edge)edge);
 			}
 		}
 
@@ -277,11 +277,11 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		setViewVisible(existingLinks);
 
 		// Remove already existing links
-		for (Iterator<Edge> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
+		for(Iterator<Edge> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if (diagramLinkVisualID == -1) {
-				if (nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
+			if(diagramLinkVisualID == -1) {
+				if(nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
 				continue;
@@ -289,10 +289,10 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			EObject diagramLinkObject = nextDiagramLink.getElement();
 			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for (Iterator<? extends UMLLinkDescriptor> LinkDescriptorsIterator = linkDescriptors.iterator(); LinkDescriptorsIterator
+			for(Iterator<? extends UMLLinkDescriptor> LinkDescriptorsIterator = linkDescriptors.iterator(); LinkDescriptorsIterator
 					.hasNext();) {
 				UMLLinkDescriptor nextLinkDescriptor = LinkDescriptorsIterator.next();
-				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
+				if(diagramLinkObject == nextLinkDescriptor.getModelElement()
 						&& diagramLinkSrc == nextLinkDescriptor.getSource()
 						&& diagramLinkDst == nextLinkDescriptor.getDestination()
 						&& diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
@@ -314,10 +314,10 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	private boolean isOwner(View view, UMLLinkDescriptor descriptor) {
 		EObject source = descriptor.getSource();
 		EObject dest = descriptor.getDestination();
-		if (source != null && source.equals(view.getElement())) {
+		if(source != null && source.equals(view.getElement())) {
 			return true;
 		}
-		if (dest != null && dest.equals(view.getElement())) {
+		if(dest != null && dest.equals(view.getElement())) {
 			return true;
 		}
 		return false;
@@ -330,24 +330,24 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * @param domain2NotationMap
 	 */
 	protected void mapModel(View view, Map<EObject, View> domain2NotationMap) {
-		if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
+		if(!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
 			return;
 		}
 
-		if (visualIds.contains(UMLVisualIDRegistry.getVisualID(view))) {
-			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) {
+		if(visualIds.contains(UMLVisualIDRegistry.getVisualID(view))) {
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) {
 				domain2NotationMap.put(view.getElement(), view);
 			}
 		}
 
 		@SuppressWarnings("unchecked")
 		EList<View> children = view.getChildren();
-		for (View child : children) {
+		for(View child : children) {
 			mapModel(child, domain2NotationMap);
 		}
 		@SuppressWarnings("unchecked")
 		EList<View> sourceEdges = view.getSourceEdges();
-		for (View edge : sourceEdges) {
+		for(View edge : sourceEdges) {
 			mapModel(edge, domain2NotationMap);
 		}
 	}
@@ -373,14 +373,14 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * @param views
 	 */
 	protected void setViewVisible(Collection<? extends View> views) {
-		for (View view : views) {
-			if (view.isVisible()) {
+		for(View view : views) {
+			if(view.isVisible()) {
 				continue;
 			}
 			SetPropertyCommand cmd = new SetPropertyCommand(host.getEditingDomain(),
 					"Restore related linksCommand show view", new EObjectAdapter(view), Properties.ID_ISVISIBLE,
 					Boolean.TRUE);
-			if (cmd != null && cmd.canExecute()) {
+			if(cmd != null && cmd.canExecute()) {
 				CommandUtil.executeCommand(new ICommandProxy(cmd), host);
 			}
 		}

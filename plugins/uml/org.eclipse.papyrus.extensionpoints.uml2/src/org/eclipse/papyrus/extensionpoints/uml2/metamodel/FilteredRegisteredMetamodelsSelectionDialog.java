@@ -32,13 +32,13 @@ public class FilteredRegisteredMetamodelsSelectionDialog extends FilteredRegiste
 	 * Creates a new instance of the class
 	 * 
 	 * @param shell
-	 *            the parent shell
+	 *        the parent shell
 	 * @param multi
-	 *            the multiple selection flag
+	 *        the multiple selection flag
 	 * @param input
-	 *            the input in which selection is done
+	 *        the input in which selection is done
 	 * @param alreadySelected
-	 *            list of already selected items
+	 *        list of already selected items
 	 */
 	public FilteredRegisteredMetamodelsSelectionDialog(Shell shell, boolean multi, Object[] input,
 			Collection alreadySelected) {
@@ -50,7 +50,7 @@ public class FilteredRegisteredMetamodelsSelectionDialog extends FilteredRegiste
 	 */
 	protected IDialogSettings getDialogSettings() {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
-		if (settings == null) {
+		if(settings == null) {
 			settings = Activator.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
 		}
 		return settings;

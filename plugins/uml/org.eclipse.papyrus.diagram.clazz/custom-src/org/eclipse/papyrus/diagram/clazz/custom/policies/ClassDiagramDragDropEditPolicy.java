@@ -52,27 +52,27 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	 * binary association that is dropped.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the semantic link
+	 *        the semantic link
 	 * @param nodeVISUALID
-	 *            the node visualid
+	 *        the node visualid
 	 * 
 	 * @return the command
 	 */
 	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
 		Collection endtypes = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
-		if (endtypes.size() == 2) {
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[1];
+		if(endtypes.size() == 2) {
+			Element source = (Element)endtypes.toArray()[0];
+			Element target = (Element)endtypes.toArray()[1];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001,
 					dropRequest.getLocation(), semanticLink));
 		}
-		if (endtypes.size() > 2) {
+		if(endtypes.size() > 2) {
 			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
-			return associationHelper.dropMutliAssociation((Association) semanticLink, getViewer(),
-					getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
-							.getNotationView());
+			return associationHelper.dropMutliAssociation((Association)semanticLink, getViewer(),
+					getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
+					.getNotationView());
 		}
 		return UnexecutableCommand.INSTANCE;
 
@@ -82,47 +82,47 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	 * this method send a Command that create views for associationClass
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the semantic link
+	 *        the semantic link
 	 * @param nodeVISUALID
-	 *            the node visualid
+	 *        the node visualid
 	 * 
 	 * @return the command
 	 */
 	protected Command dropAssociationClass(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
 		AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
-		return associationClassHelper.dropAssociationClass((AssociationClass) semanticLink, getViewer(),
-				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
-						.getNotationView());
+		return associationClassHelper.dropAssociationClass((AssociationClass)semanticLink, getViewer(),
+				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
+				.getNotationView());
 	}
 
 	/**
 	 * this method send a command to create views to display
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the semantic link
+	 *        the semantic link
 	 * @param nodeVISUALID
-	 *            the node visualid
+	 *        the node visualid
 	 * 
 	 * @return the command
 	 */
 	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
 		Collection sources = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection targets = ClassLinkMappingHelper.getInstance().getTarget(semanticLink);
-		if (sources.size() == 1 && targets.size() == 1) {
-			Element source = (Element) sources.toArray()[0];
-			Element target = (Element) targets.toArray()[0];
+		if(sources.size() == 1 && targets.size() == 1) {
+			Element source = (Element)sources.toArray()[0];
+			Element target = (Element)targets.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4008,
 					dropRequest.getLocation(), semanticLink));
 		}
-		if (sources.size() > 1 || targets.size() > 1) {
+		if(sources.size() > 1 || targets.size() > 1) {
 			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain());
-			return dependencyHelper.dropMutliDependency((Dependency) semanticLink, getViewer(),
-					getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
-							.getNotationView());
+			return dependencyHelper.dropMutliDependency((Dependency)semanticLink, getViewer(),
+					getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
+					.getNotationView());
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -132,7 +132,7 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	 */
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID,
 			int linkVISUALID) {
-		switch (nodeVISUALID) {
+		switch(nodeVISUALID) {
 		case 2014:
 			return dropDependency(dropRequest, semanticLink, nodeVISUALID);
 		case 2013:

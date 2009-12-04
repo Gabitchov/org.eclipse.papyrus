@@ -42,11 +42,11 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends Can
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getInterfaceNestedClassifierCompartment_7008SemanticChildren(viewObject)
+		for(Iterator it = UMLDiagramUpdater.getInterfaceNestedClassifierCompartment_7008SemanticChildren(viewObject)
 				.iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -56,9 +56,9 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends Can
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case Class3EditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -76,7 +76,7 @@ public class InterfaceNestedClassifierCompartmentCanonicalEditPolicy extends Can
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInterface_NestedClassifier());
 		}

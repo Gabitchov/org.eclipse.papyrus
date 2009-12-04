@@ -59,17 +59,17 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 
 		// Parse selected GenLink(s) and add the desired CustomBehavior
 		Iterator<EObject> it = getSelectedEObject().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof Palette) {
+			if(eObject instanceof Palette) {
 				monitor.beginTask("Generate palette icons", IProgressMonitor.UNKNOWN);
-				generateIconsForEntry((Palette) eObject, monitor);
-			} else if (eObject instanceof ToolGroup) {
+				generateIconsForEntry((Palette)eObject, monitor);
+			} else if(eObject instanceof ToolGroup) {
 				monitor.beginTask("Generate group icons", IProgressMonitor.UNKNOWN);
-				generateIconsForGroup((ToolGroup) eObject, monitor);
-			} else if (eObject instanceof ToolEntry) {
+				generateIconsForGroup((ToolGroup)eObject, monitor);
+			} else if(eObject instanceof ToolEntry) {
 				monitor.beginTask("Generate entry icons", IProgressMonitor.UNKNOWN);
-				generateIconsForEntry((ToolEntry) eObject, monitor);
+				generateIconsForEntry((ToolEntry)eObject, monitor);
 			}
 			try {
 				eObject.eResource().save(new HashMap());
@@ -77,7 +77,7 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 				e.printStackTrace();
 			}
 
-			if (!messages.isEmpty()) {
+			if(!messages.isEmpty()) {
 				MessageDialog
 						.openInformation(Display.getCurrent().getActiveShell(), "Information", messages.toString());
 				System.err.println(messages);
@@ -89,36 +89,36 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 	 * Generates both the small and large icons field for the specified group, and the sub tools
 	 * 
 	 * @param toolEntry
-	 *            the tool entry to modify
+	 *        the tool entry to modify
 	 * @param monitor
-	 *            the progress monitor that displays the task currently run
+	 *        the progress monitor that displays the task currently run
 	 */
 	private void generateIconsForGroup(ToolGroup group, IProgressMonitor monitor) {
 		// monitor.subTask("Generate " + ((group.getTitle() != null) ? group.getTitle() : "<group>")
 		// + "icons");
-		if (group.getSmallIconPath() == null) {
+		if(group.getSmallIconPath() == null) {
 			group.setSmallIconPath("platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif");
 			messages.add("INFO: added small icon for " + group);
 			modifiedElements++;
 		}
 
-		if (group.getLargeIconPath() == null) {
+		if(group.getLargeIconPath() == null) {
 			group.setLargeIconPath("platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif");
 			messages.add("INFO: added large icon for " + group);
 		}
 
 		monitor.subTask("Generate group entries icons");
 		// get all sub tools, and generate for them
-		for (ToolGroupItem entry : group.getEntries()) {
-			if (entry instanceof ToolEntry) {
-				generateIconsForEntry((ToolEntry) entry, monitor);
+		for(ToolGroupItem entry : group.getEntries()) {
+			if(entry instanceof ToolEntry) {
+				generateIconsForEntry((ToolEntry)entry, monitor);
 			}
 		}
 	}
 
 	private void generateIconsForEntry(Palette eObject, IProgressMonitor monitor) {
-		Iterator<ToolGroup> it = ((Palette) eObject).getGroups().iterator();
-		while (it.hasNext()) {
+		Iterator<ToolGroup> it = ((Palette)eObject).getGroups().iterator();
+		while(it.hasNext()) {
 			generateIconsForGroup(it.next(), monitor);
 		}
 
@@ -128,39 +128,39 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 	 * Generates both the small and large icons field for the specified toolentry
 	 * 
 	 * @param toolEntry
-	 *            the tool entry to modify
+	 *        the tool entry to modify
 	 * @param monitor
-	 *            the progress monitor that displays the task currently run
+	 *        the progress monitor that displays the task currently run
 	 */
 	private void generateIconsForEntry(ToolEntry toolEntry, IProgressMonitor monitor) {
 		// retrieve viewed model element
 		EList<GenCommonBase> list = toolEntry.getElements();
 		GenClass genClass = null;
 		String name = "";
-		if (!list.isEmpty()) {
+		if(!list.isEmpty()) {
 			// two possiblities: either entry is a genNode or a genLink
 			GenCommonBase base = list.get(0);
-			if (base instanceof GenNode) {
-				TypeModelFacet facet = ((GenNode) base).getModelFacet();
-				if (facet != null) {
+			if(base instanceof GenNode) {
+				TypeModelFacet facet = ((GenNode)base).getModelFacet();
+				if(facet != null) {
 					genClass = facet.getMetaClass();
 
 				}
-			} else if (base instanceof GenLink) {
-				LinkModelFacet facet = ((GenLink) base).getModelFacet();
-				if (facet instanceof TypeLinkModelFacet) {
-					genClass = ((TypeLinkModelFacet) facet).getMetaClass();
+			} else if(base instanceof GenLink) {
+				LinkModelFacet facet = ((GenLink)base).getModelFacet();
+				if(facet instanceof TypeLinkModelFacet) {
+					genClass = ((TypeLinkModelFacet)facet).getMetaClass();
 				}
 			}
 		}
 
-		if (genClass == null) {
+		if(genClass == null) {
 			messages.add("ERROR: " + toolEntry + " : impossible to find its gen class associated");
 			return;
 		}
 
 		// check name is not null null
-		if (genClass != null) {
+		if(genClass != null) {
 			name = genClass.getName();
 		}
 		assert name != null : "impossible to find a name for model element: " + toolEntry;
@@ -169,7 +169,7 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 		// retrieve icon for the element
 		// TODO: should be filled using a configuration
 
-		if (getEclassPackageNsURI(genClass).equals("http://www.eclipse.org/uml2/3.0.0/UML")) {
+		if(getEclassPackageNsURI(genClass).equals("http://www.eclipse.org/uml2/3.0.0/UML")) {
 			smallIconPath = "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/" + name + ".gif";
 		} else {
 			return;
@@ -177,13 +177,13 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 
 		String largeIconPath = smallIconPath;
 
-		if (toolEntry.getSmallIconPath() == null || "".equals(toolEntry.getSmallIconPath())) {
+		if(toolEntry.getSmallIconPath() == null || "".equals(toolEntry.getSmallIconPath())) {
 			toolEntry.setSmallIconPath(smallIconPath);
 			modifiedElements++;
 		} else {
 			messages.add("INFO: " + toolEntry + " small icon field was not modified because it was already filled");
 		}
-		if (toolEntry.getLargeIconPath() == null || "".equals(toolEntry.getLargeIconPath())) {
+		if(toolEntry.getLargeIconPath() == null || "".equals(toolEntry.getLargeIconPath())) {
 			toolEntry.setLargeIconPath(largeIconPath);
 			messages.add("INFO: " + toolEntry + " large icon field was not modified because it was already filled");
 		}
@@ -195,14 +195,14 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 	 * Returns the nsURI of the EPackage of the given gen class
 	 * 
 	 * @param genClass
-	 *            the gen class the nsuri should retrieved from.
+	 *        the gen class the nsuri should retrieved from.
 	 * @return <code>""</code> if nothing was found
 	 */
 	private String getEclassPackageNsURI(GenClass genClass) {
 		final EClass eClass = genClass.getEcoreClass();
-		if (eClass != null) {
+		if(eClass != null) {
 			final EPackage ePackage = eClass.getEPackage();
-			if (ePackage != null) {
+			if(ePackage != null) {
 				return (ePackage.getNsURI() != null ? ePackage.getNsURI() : "");
 			} else {
 				messages.add("ERROR: " + eClass + " has no associated epackage");

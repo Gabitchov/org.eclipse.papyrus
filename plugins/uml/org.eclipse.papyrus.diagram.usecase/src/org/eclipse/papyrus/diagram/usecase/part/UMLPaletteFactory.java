@@ -121,61 +121,61 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(USECASE_TOOL_PACKAGE)) {
+		if(toolId.equals(USECASE_TOOL_PACKAGE)) {
 			return createPackage1CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_SUBJECT)) {
+		if(toolId.equals(USECASE_TOOL_SUBJECT)) {
 			return createSubject2CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_ACTOR)) {
+		if(toolId.equals(USECASE_TOOL_ACTOR)) {
 			return createActor3CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_USECASE)) {
+		if(toolId.equals(USECASE_TOOL_USECASE)) {
 			return createUseCase4CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_CONSTRAINT)) {
+		if(toolId.equals(USECASE_TOOL_CONSTRAINT)) {
 			return createConstraint5CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_COMMENT)) {
+		if(toolId.equals(USECASE_TOOL_COMMENT)) {
 			return createComment6CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_EXTENSIONPOINT)) {
+		if(toolId.equals(USECASE_TOOL_EXTENSIONPOINT)) {
 			return createExtensionPoint1CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_ASSOCIATION)) {
+		if(toolId.equals(USECASE_TOOL_ASSOCIATION)) {
 			return createAssociation1CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_GENERALIZATION)) {
+		if(toolId.equals(USECASE_TOOL_GENERALIZATION)) {
 			return createGeneralization2CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_DEPENDENCY)) {
+		if(toolId.equals(USECASE_TOOL_DEPENDENCY)) {
 			return createDependency3CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_ABSTRACTION)) {
+		if(toolId.equals(USECASE_TOOL_ABSTRACTION)) {
 			return createAbstraction4CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_REALIZATION)) {
+		if(toolId.equals(USECASE_TOOL_REALIZATION)) {
 			return createRealization5CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_USAGE)) {
+		if(toolId.equals(USECASE_TOOL_USAGE)) {
 			return createUsage6CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_PACKAGEMERGE)) {
+		if(toolId.equals(USECASE_TOOL_PACKAGEMERGE)) {
 			return createPackageMerge7CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_PACKAGEIMPORT)) {
+		if(toolId.equals(USECASE_TOOL_PACKAGEIMPORT)) {
 			return createPackageImport8CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_INCLUDE)) {
+		if(toolId.equals(USECASE_TOOL_INCLUDE)) {
 			return createInclude9CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_EXTEND)) {
+		if(toolId.equals(USECASE_TOOL_EXTEND)) {
 			return createExtend10CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_CONSTRAINTLINK)) {
+		if(toolId.equals(USECASE_TOOL_CONSTRAINTLINK)) {
 			return createConstrainedElement11CreationTool();
 		}
-		if (toolId.equals(USECASE_TOOL_COMMENTLINK)) {
+		if(toolId.equals(USECASE_TOOL_COMMENTLINK)) {
 			return createCommentlink12CreationTool();
 		}
 

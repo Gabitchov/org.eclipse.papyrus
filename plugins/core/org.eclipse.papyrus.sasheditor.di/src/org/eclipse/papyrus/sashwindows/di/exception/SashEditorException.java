@@ -10,18 +10,19 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sashwindows.di.exception;
 
 
 /**
  * Exception for the Sash editor system
+ * 
  * @author eperico
  */
 public class SashEditorException extends Exception {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * Instantiates a new sash editor exception.
 	 */

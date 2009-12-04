@@ -56,8 +56,8 @@ public class PropertyParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public String getEditString(final IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
+		if(element instanceof EObjectAdapter) {
+			final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 			return PropertyUtil.getCustomLabel(property, ICustomAppearence.DISP_NAME);
 		}
 		return "";
@@ -68,11 +68,11 @@ public class PropertyParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
+		final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
 		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement
-				.getTransactionalEditingDomain(), "Edit Property", (List) null) {
+				.getTransactionalEditingDomain(), "Edit Property", (List)null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)

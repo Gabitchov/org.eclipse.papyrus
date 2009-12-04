@@ -52,7 +52,7 @@ public class ConnectorHelper extends ElementHelper {
 	 * Constructor
 	 * 
 	 * @param editDomain
-	 *            the editing domain
+	 *        the editing domain
 	 */
 	public ConnectorHelper(TransactionalEditingDomain editDomain) {
 		super();
@@ -63,15 +63,15 @@ public class ConnectorHelper extends ElementHelper {
 	 * This method returns the drop command to use for Connector links. Mainly based on
 	 * 
 	 * @param connector
-	 *            the connector to drop
+	 *        the connector to drop
 	 * @param linkVisualID
-	 *            the visual identifier of the EditPart of the dropped Connector
+	 *        the visual identifier of the EditPart of the dropped Connector
 	 * @param viewer
 	 * @param host
-	 *            the EditPart of the element where the Connector is drop
+	 *        the EditPart of the element where the Connector is drop
 	 * @param diagramPreferencesHint
 	 * @param location
-	 *            the location where the Connector is dropped
+	 *        the location where the Connector is dropped
 	 * @param containerView
 	 * @return the drop command for Connector
 	 */
@@ -92,50 +92,50 @@ public class ConnectorHelper extends ElementHelper {
 
 		// descriptor of the link
 		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
-				UMLElementTypes.getElementType(linkVisualID), ((IHintedType) UMLElementTypes
-						.getElementType(linkVisualID)).getSemanticHint(), diagramPreferencesHint);
+				UMLElementTypes.getElementType(linkVisualID), ((IHintedType)UMLElementTypes
+				.getElementType(linkVisualID)).getSemanticHint(), diagramPreferencesHint);
 
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
-		if (sourceEditPart == null) {
+		if(sourceEditPart == null) {
 			// creation of the node
 			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(sourceRole), Node.class, null,
-					ViewUtil.APPEND, false, ((IGraphicalEditPart) host).getDiagramPreferencesHint());
+					ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart) host).getEditingDomain(),
-					descriptor, ((View) host.getModel()));
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(),
+					descriptor, ((View)host.getModel()));
 			cc.compose(nodeCreationCommand);
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-					(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x,
-							location.y + 100));
+					(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x,
+					location.y + 100));
 			cc.compose(setBoundsCommand);
 
-			sourceAdapter = (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue();
+			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 		} else {
 			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
 		}
-		if (targetEditPart == null) {
+		if(targetEditPart == null) {
 			// creation of the node
 			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(targetRole), Node.class, null,
-					ViewUtil.APPEND, false, ((IGraphicalEditPart) host).getDiagramPreferencesHint());
+					ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart) host).getEditingDomain(),
-					descriptor, ((View) host.getModel()));
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(),
+					descriptor, ((View)host.getModel()));
 			cc.compose(nodeCreationCommand);
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-					(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x,
-							location.y - 100));
+					(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x,
+					location.y - 100));
 			cc.compose(setBoundsCommand);
-			targetAdapter = (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue();
+			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 
 		} else {
 			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
 		}
 
 		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(
-				getEditingDomain(), ((IHintedType) UMLElementTypes.getElementType(linkVisualID)).getSemanticHint(),
+				getEditingDomain(), ((IHintedType)UMLElementTypes.getElementType(linkVisualID)).getSemanticHint(),
 				sourceAdapter, targetAdapter, viewer, diagramPreferencesHint, linkdescriptor, null);
 		aLinkCommand.setElement(connector);
 		cc.compose(aLinkCommand);
@@ -146,9 +146,9 @@ public class ConnectorHelper extends ElementHelper {
 	 * This method resolve the EditPart of the GraphicalElement attached to a ConnectorEnd.
 	 * 
 	 * @param role
-	 *            the role of the considered ConnectorEnd
+	 *        the role of the considered ConnectorEnd
 	 * @param partWithPort
-	 *            the partWithPort feature of the considered ConnectorEnd
+	 *        the partWithPort feature of the considered ConnectorEnd
 	 * @param viewer
 	 * @return the searched EditPart or null
 	 */
@@ -156,21 +156,21 @@ public class ConnectorHelper extends ElementHelper {
 		Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
 		EditPart foundEditPart = null;
-		while (editPartIterator.hasNext() && foundEditPart == null) {
+		while(editPartIterator.hasNext() && foundEditPart == null) {
 
 			EditPart currentEditPart = editPartIterator.next();
 
-			if ((currentEditPart instanceof ShapeNodeEditPart)
-					&& (role.equals(((ShapeNodeEditPart) currentEditPart).resolveSemanticElement()))) {
+			if((currentEditPart instanceof ShapeNodeEditPart)
+					&& (role.equals(((ShapeNodeEditPart)currentEditPart).resolveSemanticElement()))) {
 
-				if (partWithPort == null) {
+				if(partWithPort == null) {
 
 					foundEditPart = currentEditPart;
 
 				} else { // (partWithPort != null
 
-					ShapeNodeEditPart graphicalParent = (ShapeNodeEditPart) currentEditPart.getParent();
-					if (partWithPort.equals(graphicalParent.resolveSemanticElement())) {
+					ShapeNodeEditPart graphicalParent = (ShapeNodeEditPart)currentEditPart.getParent();
+					if(partWithPort.equals(graphicalParent.resolveSemanticElement())) {
 
 						foundEditPart = currentEditPart;
 
@@ -178,6 +178,6 @@ public class ConnectorHelper extends ElementHelper {
 				}
 			}
 		}
-		return (ShapeNodeEditPart) foundEditPart;
+		return (ShapeNodeEditPart)foundEditPart;
 	}
 }

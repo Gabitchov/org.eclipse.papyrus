@@ -35,7 +35,7 @@ public interface LayouttoolInterface {
 	 * Is a node.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return true, if the EditPart is a node
 	 */
@@ -45,7 +45,7 @@ public interface LayouttoolInterface {
 	 * Is a relationship.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return true, if the EditPart is a relationship
 	 */
@@ -55,7 +55,7 @@ public interface LayouttoolInterface {
 	 * Get bounds of EditPart.
 	 * 
 	 * @param element
-	 *            the Node to have their coordinates
+	 *        the Node to have their coordinates
 	 * 
 	 * @return Rectangle coordinates of the node
 	 */
@@ -65,7 +65,7 @@ public interface LayouttoolInterface {
 	 * Get source of relationship.
 	 * 
 	 * @param element
-	 *            relationship to have his source
+	 *        relationship to have his source
 	 * 
 	 * @return EditPart source node of the relationship
 	 */
@@ -75,7 +75,7 @@ public interface LayouttoolInterface {
 	 * Get destination of relationship.
 	 * 
 	 * @param element
-	 *            relationship to have his destination
+	 *        relationship to have his destination
 	 * 
 	 * @return EditPart destination node of the relationship
 	 */
@@ -85,7 +85,7 @@ public interface LayouttoolInterface {
 	 * Get layout area.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return Rectangle coordinates of layout area
 	 */
@@ -95,7 +95,7 @@ public interface LayouttoolInterface {
 	 * Execute layout.
 	 * 
 	 * @param map
-	 *            the map
+	 *        the map
 	 */
 	void execute(Map<EditPart, Rectangle> map);
 

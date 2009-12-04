@@ -57,8 +57,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInteractionName_5001Parser() {
-		if (interactionName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(interactionName_5001Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("sd: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -77,7 +77,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getLifelineName_5002Parser() {
-		if (lifelineName_5002Parser == null) {
+		if(lifelineName_5002Parser == null) {
 			lifelineName_5002Parser = new LifelineCustomParsers();
 		}
 		return lifelineName_5002Parser;
@@ -92,8 +92,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getActionExecutionSpecificationName_5005Parser() {
-		if (actionExecutionSpecificationName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(actionExecutionSpecificationName_5005Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			actionExecutionSpecificationName_5005Parser = parser;
 		}
@@ -109,8 +109,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInteractionUseName_5003Parser() {
-		if (interactionUseName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(interactionUseName_5003Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Ref"); //$NON-NLS-1$
 			parser.setEditorPattern("Ref"); //$NON-NLS-1$
@@ -129,7 +129,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInteractionUseName_5004Parser() {
-		if (interactionUseName_5004Parser == null) {
+		if(interactionUseName_5004Parser == null) {
 			interactionUseName_5004Parser = new InteractionUseCustomParsers();
 		}
 		return interactionUseName_5004Parser;
@@ -144,8 +144,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getMessageName_6001Parser() {
-		if (messageName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(messageName_6001Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			messageName_6001Parser = parser;
 		}
@@ -161,8 +161,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getMessageName_6002Parser() {
-		if (messageName_6002Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(messageName_6002Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			messageName_6002Parser = parser;
 		}
@@ -178,8 +178,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getMessageName_6003Parser() {
-		if (messageName_6003Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(messageName_6003Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			messageName_6003Parser = parser;
 		}
@@ -195,8 +195,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getMessageName_6004Parser() {
-		if (messageName_6004Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(messageName_6004Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			messageName_6004Parser = parser;
 		}
@@ -212,8 +212,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getMessageName_6005Parser() {
-		if (messageName_6005Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(messageName_6005Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			messageName_6005Parser = parser;
 		}
@@ -229,8 +229,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getMessageName_6006Parser() {
-		if (messageName_6006Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(messageName_6006Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			messageName_6006Parser = parser;
 		}
@@ -246,8 +246,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getMessageName_6007Parser() {
-		if (messageName_6007Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if(messageName_6007Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			messageName_6007Parser = parser;
 		}
@@ -258,7 +258,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	protected IParser getParser(int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
 			return getInteractionName_5001Parser();
 		case LifelineNameEditPart.VISUAL_ID:
@@ -300,12 +300,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String) hint.getAdapter(String.class);
-		if (vid != null) {
+		String vid = (String)hint.getAdapter(String.class);
+		if(vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View) hint.getAdapter(View.class);
-		if (view != null) {
+		View view = (View)hint.getAdapter(View.class);
+		if(view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
 		return null;
@@ -315,9 +315,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	public boolean provides(IOperation operation) {
-		if (operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (UMLElementTypes.getElement(hint) == null) {
+		if(operation instanceof GetParserOperation) {
+			IAdaptable hint = ((GetParserOperation)operation).getHint();
+			if(UMLElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;
@@ -348,7 +348,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		 * @generated
 		 */
 		public Object getAdapter(Class adapter) {
-			if (IElementType.class.equals(adapter)) {
+			if(IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);

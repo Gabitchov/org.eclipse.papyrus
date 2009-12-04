@@ -69,22 +69,21 @@ public class ValidateAction extends Action {
 	public void run() {
 		IWorkbenchPart workbenchPart = workbenchPartDescriptor.getPartPage()
 				.getActivePart();
-		if (workbenchPart instanceof IDiagramWorkbenchPart) {
-			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart) workbenchPart;
+		if(workbenchPart instanceof IDiagramWorkbenchPart) {
+			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart)workbenchPart;
 			try {
 				new WorkspaceModifyDelegatingOperation(
 						new IRunnableWithProgress() {
 
-							public void run(IProgressMonitor monitor)
-									throws InterruptedException,
-									InvocationTargetException {
-								runValidation(part.getDiagramEditPart(), part
-										.getDiagram());
-							}
-						}).run(new NullProgressMonitor());
+					public void run(IProgressMonitor monitor)
+							throws InterruptedException,
+							InvocationTargetException {
+						runValidation(part.getDiagramEditPart(), part
+								.getDiagram());
+					}
+				}).run(new NullProgressMonitor());
 			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Validation action failed", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError("Validation action failed", e); //$NON-NLS-1$
 			}
 		}
 	}
@@ -94,20 +93,19 @@ public class ValidateAction extends Action {
 	 */
 	public static void runValidation(View view) {
 		try {
-			if (UMLDiagramEditorUtil.openDiagram(view.eResource())) {
+			if(UMLDiagramEditorUtil.openDiagram(view.eResource())) {
 				IEditorPart editorPart = PlatformUI.getWorkbench()
 						.getActiveWorkbenchWindow().getActivePage()
 						.getActiveEditor();
-				if (editorPart instanceof IDiagramWorkbenchPart) {
-					runValidation(((IDiagramWorkbenchPart) editorPart)
+				if(editorPart instanceof IDiagramWorkbenchPart) {
+					runValidation(((IDiagramWorkbenchPart)editorPart)
 							.getDiagramEditPart(), view);
 				} else {
 					runNonUIValidation(view);
 				}
 			}
 		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Validation action failed", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Validation action failed", e); //$NON-NLS-1$
 		}
 	}
 
@@ -140,7 +138,7 @@ public class ValidateAction extends Action {
 	 * @generated
 	 */
 	private static Diagnostic runEMFValidator(View target) {
-		if (target.isSetElement() && target.getElement() != null) {
+		if(target.isSetElement() && target.getElement() != null) {
 			return new Diagnostician() {
 
 				public String getObjectLabel(EObject eObject) {
@@ -157,15 +155,15 @@ public class ValidateAction extends Action {
 	private static void validate(DiagramEditPart diagramEditPart, View view) {
 		IFile target = view.eResource() != null ? WorkspaceSynchronizer
 				.getFile(view.eResource()) : null;
-		if (target != null) {
+		if(target != null) {
 			UMLMarkerNavigationProvider.deleteMarkers(target);
 		}
 		Diagnostic diagnostic = runEMFValidator(view);
 		createMarkers(target, diagnostic, diagramEditPart);
-		IBatchValidator validator = (IBatchValidator) ModelValidationService
+		IBatchValidator validator = (IBatchValidator)ModelValidationService
 				.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
-		if (view.isSetElement() && view.getElement() != null) {
+		if(view.isSetElement() && view.getElement() != null) {
 			IStatus status = validator.validate(view.getElement());
 			createMarkers(target, status, diagramEditPart);
 		}
@@ -176,16 +174,16 @@ public class ValidateAction extends Action {
 	 */
 	private static void createMarkers(IFile target, IStatus validationStatus,
 			DiagramEditPart diagramEditPart) {
-		if (validationStatus.isOK()) {
+		if(validationStatus.isOK()) {
 			return;
 		}
 		final IStatus rootStatus = validationStatus;
 		List allStatuses = new ArrayList();
 		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(
 				diagramEditPart.getDiagramView(), collectTargetElements(
-						rootStatus, new HashSet(), allStatuses));
-		for (Iterator it = allStatuses.iterator(); it.hasNext();) {
-			IConstraintStatus nextStatus = (IConstraintStatus) it.next();
+				rootStatus, new HashSet(), allStatuses));
+		for(Iterator it = allStatuses.iterator(); it.hasNext();) {
+			IConstraintStatus nextStatus = (IConstraintStatus)it.next();
 			View view = UMLDiagramEditorUtil.findView(diagramEditPart,
 					nextStatus.getTarget(), element2ViewMap);
 			addMarker(diagramEditPart.getViewer(), target, view.eResource()
@@ -200,21 +198,21 @@ public class ValidateAction extends Action {
 	 */
 	private static void createMarkers(IFile target,
 			Diagnostic emfValidationStatus, DiagramEditPart diagramEditPart) {
-		if (emfValidationStatus.getSeverity() == Diagnostic.OK) {
+		if(emfValidationStatus.getSeverity() == Diagnostic.OK) {
 			return;
 		}
 		final Diagnostic rootStatus = emfValidationStatus;
 		List allDiagnostics = new ArrayList();
 		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(
 				diagramEditPart.getDiagramView(), collectTargetElements(
-						rootStatus, new HashSet(), allDiagnostics));
-		for (Iterator it = emfValidationStatus.getChildren().iterator(); it
+				rootStatus, new HashSet(), allDiagnostics));
+		for(Iterator it = emfValidationStatus.getChildren().iterator(); it
 				.hasNext();) {
-			Diagnostic nextDiagnostic = (Diagnostic) it.next();
+			Diagnostic nextDiagnostic = (Diagnostic)it.next();
 			List data = nextDiagnostic.getData();
-			if (data != null && !data.isEmpty()
+			if(data != null && !data.isEmpty()
 					&& data.get(0) instanceof EObject) {
-				EObject element = (EObject) data.get(0);
+				EObject element = (EObject)data.get(0);
 				View view = UMLDiagramEditorUtil.findView(diagramEditPart,
 						element, element2ViewMap);
 				addMarker(
@@ -234,7 +232,7 @@ public class ValidateAction extends Action {
 	private static void addMarker(EditPartViewer viewer, IFile target,
 			String elementId, String location, String message,
 			int statusSeverity) {
-		if (target == null) {
+		if(target == null) {
 			return;
 		}
 		UMLMarkerNavigationProvider.addMarker(target, elementId, location,
@@ -245,13 +243,13 @@ public class ValidateAction extends Action {
 	 * @generated
 	 */
 	private static int diagnosticToStatusSeverity(int diagnosticSeverity) {
-		if (diagnosticSeverity == Diagnostic.OK) {
+		if(diagnosticSeverity == Diagnostic.OK) {
 			return IStatus.OK;
-		} else if (diagnosticSeverity == Diagnostic.INFO) {
+		} else if(diagnosticSeverity == Diagnostic.INFO) {
 			return IStatus.INFO;
-		} else if (diagnosticSeverity == Diagnostic.WARNING) {
+		} else if(diagnosticSeverity == Diagnostic.WARNING) {
 			return IStatus.WARNING;
-		} else if (diagnosticSeverity == Diagnostic.ERROR
+		} else if(diagnosticSeverity == Diagnostic.ERROR
 				|| diagnosticSeverity == Diagnostic.CANCEL) {
 			return IStatus.ERROR;
 		}
@@ -263,14 +261,14 @@ public class ValidateAction extends Action {
 	 */
 	private static Set collectTargetElements(IStatus status,
 			Set targetElementCollector, List allConstraintStatuses) {
-		if (status instanceof IConstraintStatus) {
+		if(status instanceof IConstraintStatus) {
 			targetElementCollector
-					.add(((IConstraintStatus) status).getTarget());
+					.add(((IConstraintStatus)status).getTarget());
 			allConstraintStatuses.add(status);
 		}
-		if (status.isMultiStatus()) {
+		if(status.isMultiStatus()) {
 			IStatus[] children = status.getChildren();
-			for (int i = 0; i < children.length; i++) {
+			for(int i = 0; i < children.length; i++) {
 				collectTargetElements(children[i], targetElementCollector,
 						allConstraintStatuses);
 			}
@@ -285,16 +283,16 @@ public class ValidateAction extends Action {
 			Set targetElementCollector, List allDiagnostics) {
 		List data = diagnostic.getData();
 		EObject target = null;
-		if (data != null && !data.isEmpty() && data.get(0) instanceof EObject) {
-			target = (EObject) data.get(0);
+		if(data != null && !data.isEmpty() && data.get(0) instanceof EObject) {
+			target = (EObject)data.get(0);
 			targetElementCollector.add(target);
 			allDiagnostics.add(diagnostic);
 		}
-		if (diagnostic.getChildren() != null
+		if(diagnostic.getChildren() != null
 				&& !diagnostic.getChildren().isEmpty()) {
-			for (Iterator it = diagnostic.getChildren().iterator(); it
+			for(Iterator it = diagnostic.getChildren().iterator(); it
 					.hasNext();) {
-				collectTargetElements((Diagnostic) it.next(),
+				collectTargetElements((Diagnostic)it.next(),
 						targetElementCollector, allDiagnostics);
 			}
 		}

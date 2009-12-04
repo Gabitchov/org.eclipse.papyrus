@@ -31,33 +31,33 @@ import java.util.List;
  */
 public abstract class BodyDeclaration extends Node {
 
-    private JavadocComment javaDoc;
+	private JavadocComment javaDoc;
 
-    private List<AnnotationExpr> annotations;
+	private List<AnnotationExpr> annotations;
 
-    public BodyDeclaration() {
-    }
+	public BodyDeclaration() {
+	}
 
-    public BodyDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, List<AnnotationExpr> annotations, JavadocComment javaDoc) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.javaDoc = javaDoc;
-        this.annotations = annotations;
-    }
+	public BodyDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, List<AnnotationExpr> annotations, JavadocComment javaDoc) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.javaDoc = javaDoc;
+		this.annotations = annotations;
+	}
 
-    public final JavadocComment getJavaDoc() {
-        return javaDoc;
-    }
+	public final JavadocComment getJavaDoc() {
+		return javaDoc;
+	}
 
-    public final List<AnnotationExpr> getAnnotations() {
-        return annotations;
-    }
+	public final List<AnnotationExpr> getAnnotations() {
+		return annotations;
+	}
 
-    public final void setJavaDoc(JavadocComment javaDoc) {
-        this.javaDoc = javaDoc;
-    }
+	public final void setJavaDoc(JavadocComment javaDoc) {
+		this.javaDoc = javaDoc;
+	}
 
-    public final void setAnnotations(List<AnnotationExpr> annotations) {
-        this.annotations = annotations;
-    }
+	public final void setAnnotations(List<AnnotationExpr> annotations) {
+		this.annotations = annotations;
+	}
 
 }

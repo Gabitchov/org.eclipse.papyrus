@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import java.util.Collection;
@@ -45,21 +45,23 @@ import org.eclipse.papyrus.di.SemanticModelBridge;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getContained <em>Contained</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getLink <em>Link</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getSemanticModel <em>Semantic Model</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getPosition <em>Position</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getAnchorage <em>Anchorage</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getContained <em>Contained</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getLink <em>Link</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getSemanticModel <em>Semantic Model</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getPosition <em>Position</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphElementImpl#getAnchorage <em>Anchorage</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class GraphElementImpl extends DiagramElementImpl implements GraphElement {
+
 	/**
 	 * The cached value of the '{@link #getContained() <em>Contained</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getContained()
 	 * @generated
 	 * @ordered
@@ -70,6 +72,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	 * The cached value of the '{@link #getLink() <em>Link</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLink()
 	 * @generated
 	 * @ordered
@@ -80,6 +83,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	 * The cached value of the '{@link #getSemanticModel() <em>Semantic Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSemanticModel()
 	 * @generated
 	 * @ordered
@@ -90,6 +94,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	 * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPosition()
 	 * @generated
 	 * @ordered
@@ -100,6 +105,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	 * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPosition()
 	 * @generated
 	 * @ordered
@@ -110,6 +116,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	 * The cached value of the '{@link #getAnchorage() <em>Anchorage</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAnchorage()
 	 * @generated
 	 * @ordered
@@ -119,6 +126,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphElementImpl() {
@@ -128,6 +136,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,10 +147,11 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<DiagramElement> getContained() {
-		if (contained == null) {
+		if(contained == null) {
 			contained = new EObjectContainmentWithInverseEList<DiagramElement>(DiagramElement.class, this, DiPackage.GRAPH_ELEMENT__CONTAINED, DiPackage.DIAGRAM_ELEMENT__CONTAINER);
 		}
 		return contained;
@@ -150,10 +160,11 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<DiagramLink> getLink() {
-		if (link == null) {
+		if(link == null) {
 			link = new EObjectContainmentEList<DiagramLink>(DiagramLink.class, this, DiPackage.GRAPH_ELEMENT__LINK);
 		}
 		return link;
@@ -162,6 +173,7 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SemanticModelBridge getSemanticModel() {
@@ -171,14 +183,18 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSemanticModel(SemanticModelBridge newSemanticModel, NotificationChain msgs) {
 		SemanticModelBridge oldSemanticModel = semanticModel;
 		semanticModel = newSemanticModel;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL, oldSemanticModel, newSemanticModel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -186,25 +202,27 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSemanticModel(SemanticModelBridge newSemanticModel) {
-		if (newSemanticModel != semanticModel) {
+		if(newSemanticModel != semanticModel) {
 			NotificationChain msgs = null;
-			if (semanticModel != null)
+			if(semanticModel != null)
 				msgs = ((InternalEObject)semanticModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL, null, msgs);
-			if (newSemanticModel != null)
+			if(newSemanticModel != null)
 				msgs = ((InternalEObject)newSemanticModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL, null, msgs);
 			msgs = basicSetSemanticModel(newSemanticModel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL, newSemanticModel, newSemanticModel));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Point getPosition() {
@@ -214,22 +232,24 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPosition(Point newPosition) {
 		Point oldPosition = position;
 		position = newPosition;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.GRAPH_ELEMENT__POSITION, oldPosition, position));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<GraphConnector> getAnchorage() {
-		if (anchorage == null) {
+		if(anchorage == null) {
 			anchorage = new EObjectContainmentWithInverseEList<GraphConnector>(GraphConnector.class, this, DiPackage.GRAPH_ELEMENT__ANCHORAGE, DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT);
 		}
 		return anchorage;
@@ -238,16 +258,17 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.GRAPH_ELEMENT__CONTAINED:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContained()).basicAdd(otherEnd, msgs);
-			case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnchorage()).basicAdd(otherEnd, msgs);
+		switch(featureID) {
+		case DiPackage.GRAPH_ELEMENT__CONTAINED:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getContained()).basicAdd(otherEnd, msgs);
+		case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnchorage()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -255,19 +276,20 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.GRAPH_ELEMENT__CONTAINED:
-				return ((InternalEList<?>)getContained()).basicRemove(otherEnd, msgs);
-			case DiPackage.GRAPH_ELEMENT__LINK:
-				return ((InternalEList<?>)getLink()).basicRemove(otherEnd, msgs);
-			case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
-				return basicSetSemanticModel(null, msgs);
-			case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
-				return ((InternalEList<?>)getAnchorage()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case DiPackage.GRAPH_ELEMENT__CONTAINED:
+			return ((InternalEList<?>)getContained()).basicRemove(otherEnd, msgs);
+		case DiPackage.GRAPH_ELEMENT__LINK:
+			return ((InternalEList<?>)getLink()).basicRemove(otherEnd, msgs);
+		case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
+			return basicSetSemanticModel(null, msgs);
+		case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
+			return ((InternalEList<?>)getAnchorage()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -275,21 +297,22 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.GRAPH_ELEMENT__CONTAINED:
-				return getContained();
-			case DiPackage.GRAPH_ELEMENT__LINK:
-				return getLink();
-			case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
-				return getSemanticModel();
-			case DiPackage.GRAPH_ELEMENT__POSITION:
-				return getPosition();
-			case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
-				return getAnchorage();
+		switch(featureID) {
+		case DiPackage.GRAPH_ELEMENT__CONTAINED:
+			return getContained();
+		case DiPackage.GRAPH_ELEMENT__LINK:
+			return getLink();
+		case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
+			return getSemanticModel();
+		case DiPackage.GRAPH_ELEMENT__POSITION:
+			return getPosition();
+		case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
+			return getAnchorage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -297,30 +320,31 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.GRAPH_ELEMENT__CONTAINED:
-				getContained().clear();
-				getContained().addAll((Collection<? extends DiagramElement>)newValue);
-				return;
-			case DiPackage.GRAPH_ELEMENT__LINK:
-				getLink().clear();
-				getLink().addAll((Collection<? extends DiagramLink>)newValue);
-				return;
-			case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
-				setSemanticModel((SemanticModelBridge)newValue);
-				return;
-			case DiPackage.GRAPH_ELEMENT__POSITION:
-				setPosition((Point)newValue);
-				return;
-			case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
-				getAnchorage().clear();
-				getAnchorage().addAll((Collection<? extends GraphConnector>)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.GRAPH_ELEMENT__CONTAINED:
+			getContained().clear();
+			getContained().addAll((Collection<? extends DiagramElement>)newValue);
+			return;
+		case DiPackage.GRAPH_ELEMENT__LINK:
+			getLink().clear();
+			getLink().addAll((Collection<? extends DiagramLink>)newValue);
+			return;
+		case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
+			setSemanticModel((SemanticModelBridge)newValue);
+			return;
+		case DiPackage.GRAPH_ELEMENT__POSITION:
+			setPosition((Point)newValue);
+			return;
+		case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
+			getAnchorage().clear();
+			getAnchorage().addAll((Collection<? extends GraphConnector>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -328,26 +352,27 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.GRAPH_ELEMENT__CONTAINED:
-				getContained().clear();
-				return;
-			case DiPackage.GRAPH_ELEMENT__LINK:
-				getLink().clear();
-				return;
-			case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
-				setSemanticModel((SemanticModelBridge)null);
-				return;
-			case DiPackage.GRAPH_ELEMENT__POSITION:
-				setPosition(POSITION_EDEFAULT);
-				return;
-			case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
-				getAnchorage().clear();
-				return;
+		switch(featureID) {
+		case DiPackage.GRAPH_ELEMENT__CONTAINED:
+			getContained().clear();
+			return;
+		case DiPackage.GRAPH_ELEMENT__LINK:
+			getLink().clear();
+			return;
+		case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
+			setSemanticModel((SemanticModelBridge)null);
+			return;
+		case DiPackage.GRAPH_ELEMENT__POSITION:
+			setPosition(POSITION_EDEFAULT);
+			return;
+		case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
+			getAnchorage().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -355,21 +380,22 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.GRAPH_ELEMENT__CONTAINED:
-				return contained != null && !contained.isEmpty();
-			case DiPackage.GRAPH_ELEMENT__LINK:
-				return link != null && !link.isEmpty();
-			case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
-				return semanticModel != null;
-			case DiPackage.GRAPH_ELEMENT__POSITION:
-				return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
-			case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
-				return anchorage != null && !anchorage.isEmpty();
+		switch(featureID) {
+		case DiPackage.GRAPH_ELEMENT__CONTAINED:
+			return contained != null && !contained.isEmpty();
+		case DiPackage.GRAPH_ELEMENT__LINK:
+			return link != null && !link.isEmpty();
+		case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
+			return semanticModel != null;
+		case DiPackage.GRAPH_ELEMENT__POSITION:
+			return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
+		case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
+			return anchorage != null && !anchorage.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -377,11 +403,13 @@ public class GraphElementImpl extends DiagramElementImpl implements GraphElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (position: ");

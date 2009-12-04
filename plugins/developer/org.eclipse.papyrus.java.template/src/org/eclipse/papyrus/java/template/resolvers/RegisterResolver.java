@@ -24,8 +24,9 @@ import org.osgi.framework.BundleListener;
 
 /**
  * This class registers the resolver into the ContextTypeRegistry
+ * 
  * @author tlandre
- *
+ * 
  */
 public class RegisterResolver implements IStartup {
 
@@ -39,24 +40,26 @@ public class RegisterResolver implements IStartup {
 	public void earlyStartup() {
 		// check if plug-in org.eclipse.jdt.ui is already active
 		Bundle bundle = Platform.getBundle(Activator.PLUGIN_ID);
-		if (bundle != null && bundle.getState() == Bundle.ACTIVE) {
+		if(bundle != null && bundle.getState() == Bundle.ACTIVE) {
 			// register resolvers
 			registerResolvers();
 		} else {
 			// register listener to get informed, when plug-in becomes active
 			final BundleContext bundleContext = Activator.getDefault().getBundle().getBundleContext();
-			if(bundleContext != null){
+			if(bundleContext != null) {
 				bundleContext.addBundleListener(new BundleListener() {
-	
-					/* (non-Javadoc)
+
+					/*
+					 * (non-Javadoc)
+					 * 
 					 * @see org.osgi.framework.BundleListener#bundleChanged(org.osgi.framework.BundleEvent)
 					 */
 					public void bundleChanged(final BundleEvent pEvent) {
 						Bundle bundle = pEvent.getBundle();
-						if (!Activator.PLUGIN_ID.equals(bundle.getSymbolicName())) {
+						if(!Activator.PLUGIN_ID.equals(bundle.getSymbolicName())) {
 							return;
 						}
-						if (bundle.getState() == Bundle.ACTIVE) {
+						if(bundle.getState() == Bundle.ACTIVE) {
 							// register resolvers
 							registerResolvers();
 							bundleContext.removeBundleListener(this);
@@ -75,10 +78,10 @@ public class RegisterResolver implements IStartup {
 	private void registerResolvers() {
 		final ContextTypeRegistry codeTemplateContextRegistry = JavaPlugin.getDefault().getTemplateContextRegistry();
 		final Iterator ctIter = codeTemplateContextRegistry.contextTypes();
-		while (ctIter.hasNext()) {
+		while(ctIter.hasNext()) {
 			Object object = ctIter.next();
-			if (object instanceof CompilationUnitContextType) {
-				CompilationUnitContextType contextType = (CompilationUnitContextType) object;
+			if(object instanceof CompilationUnitContextType) {
+				CompilationUnitContextType contextType = (CompilationUnitContextType)object;
 				// Add the bundle activator resolver
 				contextType.addResolver(new BundleActivatorResolver());
 			}

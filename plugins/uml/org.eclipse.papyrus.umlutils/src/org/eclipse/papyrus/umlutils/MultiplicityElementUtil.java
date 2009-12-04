@@ -44,11 +44,11 @@ public class MultiplicityElementUtil {
 		int lower = element.getLower();
 		int upper = element.getUpper();
 
-		if (lower == upper) {
+		if(lower == upper) {
 			buffer.append(lower);
-		} else if ((lower == 0) && (upper == -1)) {
+		} else if((lower == 0) && (upper == -1)) {
 			buffer.append("*");
-		} else if (upper == -1) {
+		} else if(upper == -1) {
 			buffer.append(lower);
 			buffer.append("..*");
 		} else {

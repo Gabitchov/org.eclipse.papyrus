@@ -43,11 +43,11 @@ public class ClassOperationCompartment2CanonicalEditPolicy extends CanonicalEdit
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getClassOperationCompartment_7018SemanticChildren(viewObject).iterator(); it
+		for(Iterator it = UMLDiagramUpdater.getClassOperationCompartment_7018SemanticChildren(viewObject).iterator(); it
 				.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -57,10 +57,10 @@ public class ClassOperationCompartment2CanonicalEditPolicy extends CanonicalEdit
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case ReceptionEditPart.VISUAL_ID:
 		case Operation3EditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -78,7 +78,7 @@ public class ClassOperationCompartment2CanonicalEditPolicy extends CanonicalEdit
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedReception());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedOperation());

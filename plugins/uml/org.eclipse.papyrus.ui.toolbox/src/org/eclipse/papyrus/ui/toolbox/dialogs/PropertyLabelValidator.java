@@ -44,7 +44,7 @@ public class PropertyLabelValidator implements IInputValidator {
 	 * 
 	 * 
 	 * @param property
-	 *            the property to set
+	 *        the property to set
 	 */
 	public void setProperty(Property property) {
 		this.property = property;

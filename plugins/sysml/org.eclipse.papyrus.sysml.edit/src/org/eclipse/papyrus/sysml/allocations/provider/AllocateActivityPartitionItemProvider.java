@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
@@ -62,7 +61,7 @@ public class AllocateActivityPartitionItemProvider extends ItemProviderAdapter i
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ActivityPartitionPropertyDescriptor(object);
@@ -77,12 +76,12 @@ public class AllocateActivityPartitionItemProvider extends ItemProviderAdapter i
 	 * @generated
 	 */
 	protected void addBase_ActivityPartitionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_AllocateActivityPartition_base_ActivityPartition_feature",
-						"_UI_AllocateActivityPartition_type"),
+				"_UI_PropertyDescriptor_description",
+				"_UI_AllocateActivityPartition_base_ActivityPartition_feature",
+				"_UI_AllocateActivityPartition_type"),
 				AllocationsPackage.Literals.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, true, false, true,
 				null, null, null));
 	}
@@ -110,8 +109,7 @@ public class AllocateActivityPartitionItemProvider extends ItemProviderAdapter i
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

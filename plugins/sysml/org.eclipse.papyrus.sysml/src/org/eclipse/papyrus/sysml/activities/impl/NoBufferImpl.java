@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.ObjectNode;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.NoBufferImpl#getBase_ObjectNode <em>Base
- * Object Node</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.NoBufferImpl#getBase_ObjectNode <em>Base Object Node</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,9 +71,9 @@ public class NoBufferImpl extends EObjectImpl implements NoBuffer {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.NO_BUFFER__BASE_OBJECT_NODE:
-			if (resolve)
+			if(resolve)
 				return getBase_ObjectNode();
 			return basicGetBase_ObjectNode();
 		}
@@ -88,7 +87,7 @@ public class NoBufferImpl extends EObjectImpl implements NoBuffer {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.NO_BUFFER__BASE_OBJECT_NODE:
 			return base_ObjectNode != null;
 		}
@@ -102,9 +101,9 @@ public class NoBufferImpl extends EObjectImpl implements NoBuffer {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.NO_BUFFER__BASE_OBJECT_NODE:
-			setBase_ObjectNode((ObjectNode) newValue);
+			setBase_ObjectNode((ObjectNode)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +126,9 @@ public class NoBufferImpl extends EObjectImpl implements NoBuffer {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.NO_BUFFER__BASE_OBJECT_NODE:
-			setBase_ObjectNode((ObjectNode) null);
+			setBase_ObjectNode((ObjectNode)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +140,11 @@ public class NoBufferImpl extends EObjectImpl implements NoBuffer {
 	 * @generated
 	 */
 	public ObjectNode getBase_ObjectNode() {
-		if (base_ObjectNode != null && base_ObjectNode.eIsProxy()) {
-			InternalEObject oldBase_ObjectNode = (InternalEObject) base_ObjectNode;
-			base_ObjectNode = (ObjectNode) eResolveProxy(oldBase_ObjectNode);
-			if (base_ObjectNode != oldBase_ObjectNode) {
-				if (eNotificationRequired())
+		if(base_ObjectNode != null && base_ObjectNode.eIsProxy()) {
+			InternalEObject oldBase_ObjectNode = (InternalEObject)base_ObjectNode;
+			base_ObjectNode = (ObjectNode)eResolveProxy(oldBase_ObjectNode);
+			if(base_ObjectNode != oldBase_ObjectNode) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							ActivitiesPackage.NO_BUFFER__BASE_OBJECT_NODE, oldBase_ObjectNode, base_ObjectNode));
 			}
@@ -161,7 +160,7 @@ public class NoBufferImpl extends EObjectImpl implements NoBuffer {
 	public void setBase_ObjectNode(ObjectNode newBase_ObjectNode) {
 		ObjectNode oldBase_ObjectNode = base_ObjectNode;
 		base_ObjectNode = newBase_ObjectNode;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.NO_BUFFER__BASE_OBJECT_NODE,
 					oldBase_ObjectNode, base_ObjectNode));
 	}

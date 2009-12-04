@@ -74,11 +74,11 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -100,17 +100,17 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InteractionOperand newElement = UMLFactory.eINSTANCE.createInteractionOperand();
 
-		CombinedFragment owner = (CombinedFragment) getElementToEdit();
+		CombinedFragment owner = (CombinedFragment)getElementToEdit();
 		owner.getOperands().add(newElement);
 
 		// Add all combined fragment's covered lifelines on interaction operand
-		for (InteractionOperand operand : owner.getOperands()) {
+		for(InteractionOperand operand : owner.getOperands()) {
 			operand.getCovereds().addAll(owner.getCovereds());
 		}
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -119,12 +119,12 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	 */
 	protected void doConfigure(InteractionOperand newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

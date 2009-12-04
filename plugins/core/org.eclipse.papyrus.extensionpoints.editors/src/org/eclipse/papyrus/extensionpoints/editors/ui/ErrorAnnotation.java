@@ -24,11 +24,11 @@ public class ErrorAnnotation extends Annotation implements IAnnotationPresentati
 	 * Creates a new annotation with the given properties.
 	 * 
 	 * @param type
-	 *            the unique name of this annotation type
+	 *        the unique name of this annotation type
 	 * @param isPersistent
-	 *            <code>true</code> if this annotation is persistent, <code>false</code> otherwise
+	 *        <code>true</code> if this annotation is persistent, <code>false</code> otherwise
 	 * @param text
-	 *            the text associated with this annotation
+	 *        the text associated with this annotation
 	 */
 	public ErrorAnnotation(boolean isPersistent, String text) {
 		super(TYPE, isPersistent, text);
@@ -38,7 +38,7 @@ public class ErrorAnnotation extends Annotation implements IAnnotationPresentati
 	 * Creates a new annotation with the given persistence state.
 	 * 
 	 * @param isPersistent
-	 *            <code>true</code> if persistent, <code>false</code> otherwise
+	 *        <code>true</code> if persistent, <code>false</code> otherwise
 	 */
 	// @unused
 	public ErrorAnnotation(boolean isPersistent) {
@@ -59,7 +59,7 @@ public class ErrorAnnotation extends Annotation implements IAnnotationPresentati
 	private static class DisplayDisposeRunnable implements Runnable {
 
 		public void run() {
-			if (fgErrorImage != null) {
+			if(fgErrorImage != null) {
 				fgErrorImage.dispose();
 				fgErrorImage = null;
 			}
@@ -79,7 +79,7 @@ public class ErrorAnnotation extends Annotation implements IAnnotationPresentati
 	 */
 	public void paint(GC gc, Canvas canvas, Rectangle rectangle) {
 		Image image = getImage(canvas.getDisplay());
-		if (image != null) {
+		if(image != null) {
 			ImageUtilities.drawImage(image, gc, canvas, rectangle, SWT.CENTER, SWT.TOP);
 		}
 	}
@@ -88,7 +88,7 @@ public class ErrorAnnotation extends Annotation implements IAnnotationPresentati
 	 * Returns the image to be drawn
 	 * 
 	 * @param display
-	 *            the current display
+	 *        the current display
 	 * @return the image to be drawn
 	 */
 	protected Image getImage(Display display) {
@@ -97,7 +97,7 @@ public class ErrorAnnotation extends Annotation implements IAnnotationPresentati
 	}
 
 	private void initializeImages(Display display) {
-		if (fgErrorImage == null) {
+		if(fgErrorImage == null) {
 
 			ImageDescriptor descriptor = ImageDescriptor.createFromFile(ErrorAnnotation.class, "images/error.gif"); //$NON-NLS-1$
 			fgErrorImage = descriptor.createImage(display);

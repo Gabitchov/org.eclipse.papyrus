@@ -50,14 +50,14 @@ public class DuplicateDiagramAction extends Action {
 	@Override
 	public void run() {
 		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 
 			// Create a compound command containing removing of the sash and removing from GMF
 			// resource.
 			CompoundCommand command = new CompoundCommand();
 
 			// Clone the current diagram
-			final Diagram newDiagram = (Diagram) EcoreUtil.copy(diagram);
+			final Diagram newDiagram = (Diagram)EcoreUtil.copy(diagram);
 			// Give a new name
 			newDiagram.setName("Copy of " + diagram.getName());
 

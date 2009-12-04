@@ -38,12 +38,9 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getBase_NamedElement <em>Base
- * Named Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedFrom <em>
- * Allocated From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedTo <em>Allocated
- * To</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedFrom <em> Allocated From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedTo <em>Allocated To</em>}</li>
  * </ul>
  * </p>
  * 
@@ -86,9 +83,9 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT:
-			if (resolve)
+			if(resolve)
 				return getBase_NamedElement();
 			return basicGetBase_NamedElement();
 		case AllocationsPackage.ALLOCATED__ALLOCATED_FROM:
@@ -106,7 +103,7 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT:
 			return base_NamedElement != null;
 		case AllocationsPackage.ALLOCATED__ALLOCATED_FROM:
@@ -125,9 +122,9 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT:
-			setBase_NamedElement((NamedElement) newValue);
+			setBase_NamedElement((NamedElement)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,9 +147,9 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT:
-			setBase_NamedElement((NamedElement) null);
+			setBase_NamedElement((NamedElement)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -170,21 +167,21 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		EList<NamedElement> allocatedFrom = new BasicEList<NamedElement>();
 		Allocate currentAllocate = null;
 
-		if (getBase_NamedElement() != null) {
+		if(getBase_NamedElement() != null) {
 			// Find Allocate link
 			Iterator<DirectedRelationship> itDep = getBase_NamedElement().getTargetDirectedRelationships().iterator();
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentAllocate = (Allocate) ElementUtil.hasStereotype(currentDRelationship,
+				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDRelationship,
 						AllocationsPackage.eINSTANCE.getAllocate());
 
-				if (currentAllocate != null) {
+				if(currentAllocate != null) {
 					EList<Element> targets = currentAllocate.getBase_Abstraction().getSources();
 					Iterator<Element> it = targets.iterator();
-					while (it.hasNext()) {
+					while(it.hasNext()) {
 						Element currentElt = it.next();
-						if (currentElt instanceof NamedElement) {
-							allocatedFrom.add((NamedElement) currentElt);
+						if(currentElt instanceof NamedElement) {
+							allocatedFrom.add((NamedElement)currentElt);
 						}
 					}
 				}
@@ -206,15 +203,15 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		EList<NamedElement> allocatedFrom = new BasicEList<NamedElement>();
 		Allocate currentAllocate = null;
 
-		if (getBase_NamedElement() != null) {
+		if(getBase_NamedElement() != null) {
 			// Find Allocate link
 			Iterator<Dependency> itDep = getBase_NamedElement().getClientDependencies().iterator();
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentAllocate = (Allocate) ElementUtil.hasStereotype(currentDependency, AllocationsPackage.eINSTANCE
+				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDependency, AllocationsPackage.eINSTANCE
 						.getAllocate());
 
-				if (currentAllocate != null) {
+				if(currentAllocate != null) {
 					allocatedFrom.addAll(currentAllocate.getBase_Abstraction().getSuppliers());
 				}
 			}
@@ -229,11 +226,11 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 	 * @generated
 	 */
 	public NamedElement getBase_NamedElement() {
-		if (base_NamedElement != null && base_NamedElement.eIsProxy()) {
-			InternalEObject oldBase_NamedElement = (InternalEObject) base_NamedElement;
-			base_NamedElement = (NamedElement) eResolveProxy(oldBase_NamedElement);
-			if (base_NamedElement != oldBase_NamedElement) {
-				if (eNotificationRequired())
+		if(base_NamedElement != null && base_NamedElement.eIsProxy()) {
+			InternalEObject oldBase_NamedElement = (InternalEObject)base_NamedElement;
+			base_NamedElement = (NamedElement)eResolveProxy(oldBase_NamedElement);
+			if(base_NamedElement != oldBase_NamedElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 			}
@@ -249,7 +246,7 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 	public void setBase_NamedElement(NamedElement newBase_NamedElement) {
 		NamedElement oldBase_NamedElement = base_NamedElement;
 		base_NamedElement = newBase_NamedElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT,
 					oldBase_NamedElement, base_NamedElement));
 	}

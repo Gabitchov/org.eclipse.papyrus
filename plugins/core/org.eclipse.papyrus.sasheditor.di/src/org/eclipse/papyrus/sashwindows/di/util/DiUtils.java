@@ -29,6 +29,7 @@ import org.eclipse.papyrus.sashwindows.di.exception.SashEditorException;
 
 /**
  * Set of utility methods
+ * 
  * @author dumoulin
  */
 public class DiUtils {
@@ -36,6 +37,7 @@ public class DiUtils {
 	/**
 	 * Create a default SashModel with one window and one folder.
 	 * Set the current folder.
+	 * 
 	 * @param diResource
 	 * @return
 	 */
@@ -45,31 +47,32 @@ public class DiUtils {
 		SashModel sashModel = DiFactory.eINSTANCE.createSashModel();
 		Window window = DiFactory.eINSTANCE.createWindow();
 		sashModel.getWindows().add(window);
-		
+
 		TabFolder folder = DiFactory.eINSTANCE.createTabFolder();
 		window.setPanel(folder);
 		// Default folder
 		sashModel.setCurrentSelection(folder);
-		
+
 		return sashModel;
 	}
 
 	/**
 	 * Create a default SashWindowsMngr with one PageLit and one default SashModel.
 	 * Set the current folder.
+	 * 
 	 * @param diResource
 	 * @return
 	 */
 	static public SashWindowsMngr createDefaultSashWindowsMngr() {
 		SashWindowsMngr model;
-		
+
 		model = DiFactory.eINSTANCE.createSashWindowsMngr();
-		
+
 		// SashModel
 		SashModel layout = createDefaultSashModel();
-		
+
 		model.setSashModel(layout);
-		
+
 		// PageList
 		PageList pageList = DiFactory.eINSTANCE.createPageList();
 		model.setPageList(pageList);
@@ -78,14 +81,14 @@ public class DiUtils {
 
 	/**
 	 * Lookup for the SashModel object in the resource.
-	 * @param diResource 
+	 * 
+	 * @param diResource
 	 * @return The {@link DiSashModel} or null if not found.
 	 */
 	static public SashWindowsMngr lookupSashWindowsMngr(Resource diResource) {
-		
-		for( Object node : diResource.getContents() )
-		{
-			if( node instanceof SashWindowsMngr)
+
+		for(Object node : diResource.getContents()) {
+			if(node instanceof SashWindowsMngr)
 				return (SashWindowsMngr)node;
 		}
 		return null;
@@ -98,88 +101,86 @@ public class DiUtils {
 	 * @param eObject
 	 * 
 	 * @return the page ref of eObject, null if not found
-	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
-	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
-	 * instead ?
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
-	static public PageRef getPageRef(Resource diResource, EObject eObject)
-	{
+	static public PageRef getPageRef(Resource diResource, EObject eObject) {
 		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
-		if (windowsMngr != null && windowsMngr.getPageList() != null) {
-			
-			for (PageRef pageRef : windowsMngr.getPageList().getAvailablePage()) {
-				
+		if(windowsMngr != null && windowsMngr.getPageList() != null) {
+
+			for(PageRef pageRef : windowsMngr.getPageList().getAvailablePage()) {
+
 				EObject emfPageIdentifier = pageRef.getEmfPageIdentifier();
-				if (eObject != null && eObject.equals(emfPageIdentifier)) {
+				if(eObject != null && eObject.equals(emfPageIdentifier)) {
 					return pageRef;
 				}
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Adds page to the page list of the sash windows manager
 	 * 
 	 * @param diResource
 	 * @param pageRef
 	 * @throws SashEditorException
-	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
-	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
-	 * instead ?
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
 	static public void addPageToPageList(Resource diResource, PageRef pageRef) throws SashEditorException {
 		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
 		addPageToPageList(windowsMngr, pageRef);
 	}
-	
+
 	/**
 	 * Adds page to the page list of the sash windows manager.
 	 * 
 	 * @param pageRef
 	 * @param windowsMngr
 	 * @throws SashEditorException
-	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
-	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
-	 * instead ?
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
 	static public void addPageToPageList(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
-		if (windowsMngr != null && windowsMngr.getPageList() != null) {
+		if(windowsMngr != null && windowsMngr.getPageList() != null) {
 			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
-		}
-		else {
+		} else {
 			throw new SashEditorException("Unable to add the page to the windows manager");
 		}
 	}
-	
+
 	/**
 	 * Adds page to tab folder.
 	 * 
 	 * @param windowsMngr
 	 * @param pageRef
 	 * @throws SashEditorException
-	 * TODO This method use too low level mechanism for its implementation. Consider to move it in a 
-	 * more appropriate class. Furthermore, some similar methods already exist. Can't we use them
-	 * instead ?
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
 	static public void addPageToTabFolder(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
 
 		// Check parameters
-		if(pageRef==null || pageRef.getPageIdentifier()==null)
+		if(pageRef == null || pageRef.getPageIdentifier() == null)
 			throw new SashEditorException("Unable to add the page to the tab folder: parameters are null");
-		
+
 		SashModel sashModel = windowsMngr.getSashModel();
-		if (sashModel == null) {
+		if(sashModel == null) {
 			throw new SashEditorException("Unable to add the page to the tab folder: can't find SashModel");
 		}
-		
+
 		// Get the currently active folder in order to add the page.
 		TabFolder tabFolder = sashModel.getCurrentSelection();
-		if( tabFolder == null)  {
+		if(tabFolder == null) {
 			throw new SashEditorException("Unable to add the page to the tab folder: No active folder");
 		}
-			
-        tabFolder.addPage(pageRef.getPageIdentifier());
+
+		tabFolder.addPage(pageRef.getPageIdentifier());
 	}
 
 }

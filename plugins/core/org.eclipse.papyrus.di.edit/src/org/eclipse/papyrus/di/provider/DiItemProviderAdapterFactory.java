@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 import java.util.ArrayList;
@@ -41,13 +41,16 @@ import org.eclipse.papyrus.di.util.DiAdapterFactory;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DiItemProviderAdapterFactory extends DiAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -56,6 +59,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -64,6 +68,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -72,6 +77,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiItemProviderAdapterFactory() {
@@ -86,6 +92,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.DiagramElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramElementItemProvider diagramElementItemProvider;
@@ -94,11 +101,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.DiagramElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDiagramElementAdapter() {
-		if (diagramElementItemProvider == null) {
+		if(diagramElementItemProvider == null) {
 			diagramElementItemProvider = new DiagramElementItemProvider(this);
 		}
 
@@ -109,6 +117,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.GraphElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphElementItemProvider graphElementItemProvider;
@@ -117,11 +126,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.GraphElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createGraphElementAdapter() {
-		if (graphElementItemProvider == null) {
+		if(graphElementItemProvider == null) {
 			graphElementItemProvider = new GraphElementItemProvider(this);
 		}
 
@@ -132,6 +142,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.Reference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ReferenceItemProvider referenceItemProvider;
@@ -140,11 +151,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.Reference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createReferenceAdapter() {
-		if (referenceItemProvider == null) {
+		if(referenceItemProvider == null) {
 			referenceItemProvider = new ReferenceItemProvider(this);
 		}
 
@@ -155,6 +167,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.Property} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PropertyItemProvider propertyItemProvider;
@@ -163,11 +176,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.Property}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPropertyAdapter() {
-		if (propertyItemProvider == null) {
+		if(propertyItemProvider == null) {
 			propertyItemProvider = new PropertyItemProvider(this);
 		}
 
@@ -178,6 +192,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.GraphEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphEdgeItemProvider graphEdgeItemProvider;
@@ -186,11 +201,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.GraphEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createGraphEdgeAdapter() {
-		if (graphEdgeItemProvider == null) {
+		if(graphEdgeItemProvider == null) {
 			graphEdgeItemProvider = new GraphEdgeItemProvider(this);
 		}
 
@@ -201,6 +217,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.GraphConnector} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphConnectorItemProvider graphConnectorItemProvider;
@@ -209,11 +226,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.GraphConnector}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createGraphConnectorAdapter() {
-		if (graphConnectorItemProvider == null) {
+		if(graphConnectorItemProvider == null) {
 			graphConnectorItemProvider = new GraphConnectorItemProvider(this);
 		}
 
@@ -224,6 +242,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.GraphNode} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphNodeItemProvider graphNodeItemProvider;
@@ -232,11 +251,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.GraphNode}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createGraphNodeAdapter() {
-		if (graphNodeItemProvider == null) {
+		if(graphNodeItemProvider == null) {
 			graphNodeItemProvider = new GraphNodeItemProvider(this);
 		}
 
@@ -247,6 +267,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.DiagramLink} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramLinkItemProvider diagramLinkItemProvider;
@@ -255,11 +276,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.DiagramLink}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDiagramLinkAdapter() {
-		if (diagramLinkItemProvider == null) {
+		if(diagramLinkItemProvider == null) {
 			diagramLinkItemProvider = new DiagramLinkItemProvider(this);
 		}
 
@@ -270,6 +292,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.Diagram} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramItemProvider diagramItemProvider;
@@ -278,11 +301,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.Diagram}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDiagramAdapter() {
-		if (diagramItemProvider == null) {
+		if(diagramItemProvider == null) {
 			diagramItemProvider = new DiagramItemProvider(this);
 		}
 
@@ -293,6 +317,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.SemanticModelBridge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SemanticModelBridgeItemProvider semanticModelBridgeItemProvider;
@@ -301,11 +326,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.SemanticModelBridge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createSemanticModelBridgeAdapter() {
-		if (semanticModelBridgeItemProvider == null) {
+		if(semanticModelBridgeItemProvider == null) {
 			semanticModelBridgeItemProvider = new SemanticModelBridgeItemProvider(this);
 		}
 
@@ -316,6 +342,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.SimpleSemanticModelElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SimpleSemanticModelElementItemProvider simpleSemanticModelElementItemProvider;
@@ -324,11 +351,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.SimpleSemanticModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createSimpleSemanticModelElementAdapter() {
-		if (simpleSemanticModelElementItemProvider == null) {
+		if(simpleSemanticModelElementItemProvider == null) {
 			simpleSemanticModelElementItemProvider = new SimpleSemanticModelElementItemProvider(this);
 		}
 
@@ -339,6 +367,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.Uml1SemanticModelBridge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Uml1SemanticModelBridgeItemProvider uml1SemanticModelBridgeItemProvider;
@@ -347,11 +376,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.Uml1SemanticModelBridge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createUml1SemanticModelBridgeAdapter() {
-		if (uml1SemanticModelBridgeItemProvider == null) {
+		if(uml1SemanticModelBridgeItemProvider == null) {
 			uml1SemanticModelBridgeItemProvider = new Uml1SemanticModelBridgeItemProvider(this);
 		}
 
@@ -362,6 +392,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.CoreSemanticModelBridge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CoreSemanticModelBridgeItemProvider coreSemanticModelBridgeItemProvider;
@@ -370,11 +401,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.CoreSemanticModelBridge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createCoreSemanticModelBridgeAdapter() {
-		if (coreSemanticModelBridgeItemProvider == null) {
+		if(coreSemanticModelBridgeItemProvider == null) {
 			coreSemanticModelBridgeItemProvider = new CoreSemanticModelBridgeItemProvider(this);
 		}
 
@@ -385,6 +417,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.LeafElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LeafElementItemProvider leafElementItemProvider;
@@ -393,11 +426,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.LeafElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createLeafElementAdapter() {
-		if (leafElementItemProvider == null) {
+		if(leafElementItemProvider == null) {
 			leafElementItemProvider = new LeafElementItemProvider(this);
 		}
 
@@ -408,6 +442,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.TextElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TextElementItemProvider textElementItemProvider;
@@ -416,11 +451,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.TextElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createTextElementAdapter() {
-		if (textElementItemProvider == null) {
+		if(textElementItemProvider == null) {
 			textElementItemProvider = new TextElementItemProvider(this);
 		}
 
@@ -431,6 +467,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.Image} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ImageItemProvider imageItemProvider;
@@ -439,11 +476,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.Image}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createImageAdapter() {
-		if (imageItemProvider == null) {
+		if(imageItemProvider == null) {
 			imageItemProvider = new ImageItemProvider(this);
 		}
 
@@ -454,6 +492,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.GraphicPrimitive} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphicPrimitiveItemProvider graphicPrimitiveItemProvider;
@@ -462,11 +501,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.GraphicPrimitive}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createGraphicPrimitiveAdapter() {
-		if (graphicPrimitiveItemProvider == null) {
+		if(graphicPrimitiveItemProvider == null) {
 			graphicPrimitiveItemProvider = new GraphicPrimitiveItemProvider(this);
 		}
 
@@ -477,6 +517,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.Polilyne} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PolilyneItemProvider polilyneItemProvider;
@@ -485,11 +526,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.Polilyne}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPolilyneAdapter() {
-		if (polilyneItemProvider == null) {
+		if(polilyneItemProvider == null) {
 			polilyneItemProvider = new PolilyneItemProvider(this);
 		}
 
@@ -500,6 +542,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.di.Ellipse} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EllipseItemProvider ellipseItemProvider;
@@ -508,11 +551,12 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This creates an adapter for a {@link org.eclipse.papyrus.di.Ellipse}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createEllipseAdapter() {
-		if (ellipseItemProvider == null) {
+		if(ellipseItemProvider == null) {
 			ellipseItemProvider = new EllipseItemProvider(this);
 		}
 
@@ -523,6 +567,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -533,6 +578,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -542,6 +588,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -553,6 +600,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -563,13 +611,14 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if(isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if(!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -581,6 +630,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -591,6 +641,7 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -601,42 +652,63 @@ public class DiItemProviderAdapterFactory extends DiAdapterFactory implements Co
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if(parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
+	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (diagramElementItemProvider != null) diagramElementItemProvider.dispose();
-		if (graphElementItemProvider != null) graphElementItemProvider.dispose();
-		if (referenceItemProvider != null) referenceItemProvider.dispose();
-		if (propertyItemProvider != null) propertyItemProvider.dispose();
-		if (graphEdgeItemProvider != null) graphEdgeItemProvider.dispose();
-		if (graphConnectorItemProvider != null) graphConnectorItemProvider.dispose();
-		if (graphNodeItemProvider != null) graphNodeItemProvider.dispose();
-		if (diagramLinkItemProvider != null) diagramLinkItemProvider.dispose();
-		if (diagramItemProvider != null) diagramItemProvider.dispose();
-		if (semanticModelBridgeItemProvider != null) semanticModelBridgeItemProvider.dispose();
-		if (simpleSemanticModelElementItemProvider != null) simpleSemanticModelElementItemProvider.dispose();
-		if (uml1SemanticModelBridgeItemProvider != null) uml1SemanticModelBridgeItemProvider.dispose();
-		if (coreSemanticModelBridgeItemProvider != null) coreSemanticModelBridgeItemProvider.dispose();
-		if (leafElementItemProvider != null) leafElementItemProvider.dispose();
-		if (textElementItemProvider != null) textElementItemProvider.dispose();
-		if (imageItemProvider != null) imageItemProvider.dispose();
-		if (graphicPrimitiveItemProvider != null) graphicPrimitiveItemProvider.dispose();
-		if (polilyneItemProvider != null) polilyneItemProvider.dispose();
-		if (ellipseItemProvider != null) ellipseItemProvider.dispose();
+		if(diagramElementItemProvider != null)
+			diagramElementItemProvider.dispose();
+		if(graphElementItemProvider != null)
+			graphElementItemProvider.dispose();
+		if(referenceItemProvider != null)
+			referenceItemProvider.dispose();
+		if(propertyItemProvider != null)
+			propertyItemProvider.dispose();
+		if(graphEdgeItemProvider != null)
+			graphEdgeItemProvider.dispose();
+		if(graphConnectorItemProvider != null)
+			graphConnectorItemProvider.dispose();
+		if(graphNodeItemProvider != null)
+			graphNodeItemProvider.dispose();
+		if(diagramLinkItemProvider != null)
+			diagramLinkItemProvider.dispose();
+		if(diagramItemProvider != null)
+			diagramItemProvider.dispose();
+		if(semanticModelBridgeItemProvider != null)
+			semanticModelBridgeItemProvider.dispose();
+		if(simpleSemanticModelElementItemProvider != null)
+			simpleSemanticModelElementItemProvider.dispose();
+		if(uml1SemanticModelBridgeItemProvider != null)
+			uml1SemanticModelBridgeItemProvider.dispose();
+		if(coreSemanticModelBridgeItemProvider != null)
+			coreSemanticModelBridgeItemProvider.dispose();
+		if(leafElementItemProvider != null)
+			leafElementItemProvider.dispose();
+		if(textElementItemProvider != null)
+			textElementItemProvider.dispose();
+		if(imageItemProvider != null)
+			imageItemProvider.dispose();
+		if(graphicPrimitiveItemProvider != null)
+			graphicPrimitiveItemProvider.dispose();
+		if(polilyneItemProvider != null)
+			polilyneItemProvider.dispose();
+		if(ellipseItemProvider != null)
+			ellipseItemProvider.dispose();
 	}
 
 }

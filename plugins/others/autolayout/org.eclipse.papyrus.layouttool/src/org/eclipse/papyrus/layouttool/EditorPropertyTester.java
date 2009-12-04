@@ -32,19 +32,19 @@ public class EditorPropertyTester extends PropertyTester {
 	 * Test if the current editor is a registered editor.
 	 * 
 	 * @param receiver
-	 *            the receiver
+	 *        the receiver
 	 * @param property
-	 *            the property
+	 *        the property
 	 * @param args
-	 *            the args
+	 *        the args
 	 * @param expectedValue
-	 *            the expected value
+	 *        the expected value
 	 * 
 	 * @return true, if test
 	 */
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		if (receiver instanceof IWorkbenchPart && "isCorrectEditor".equals(property)) {
-			IWorkbenchPart part = (IWorkbenchPart) receiver;
+		if(receiver instanceof IWorkbenchPart && "isCorrectEditor".equals(property)) {
+			IWorkbenchPart part = (IWorkbenchPart)receiver;
 			return LayoutToolExtensionPointManager.getInstance().getSubEditor(part) != null;
 		}
 		return false;

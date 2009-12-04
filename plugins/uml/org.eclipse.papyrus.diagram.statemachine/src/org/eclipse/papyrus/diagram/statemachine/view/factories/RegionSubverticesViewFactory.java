@@ -37,7 +37,7 @@ public class RegionSubverticesViewFactory extends BasicNodeViewFactory {
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
-		if (semanticHint == null) {
+		if(semanticHint == null) {
 			semanticHint = UMLVisualIDRegistry
 					.getType(RegionSubverticesEditPart.VISUAL_ID);
 			view.setType(semanticHint);
@@ -52,9 +52,9 @@ public class RegionSubverticesViewFactory extends BasicNodeViewFactory {
 	 * @generated
 	 */
 	protected void setupCompartmentTitle(View view) {
-		TitleStyle titleStyle = (TitleStyle) view
+		TitleStyle titleStyle = (TitleStyle)view
 				.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-		if (titleStyle != null) {
+		if(titleStyle != null) {
 			titleStyle.setShowTitle(true);
 		}
 	}
@@ -63,9 +63,9 @@ public class RegionSubverticesViewFactory extends BasicNodeViewFactory {
 	 * @generated
 	 */
 	protected void setupCompartmentCollapsed(View view) {
-		DrawerStyle drawerStyle = (DrawerStyle) view
+		DrawerStyle drawerStyle = (DrawerStyle)view
 				.getStyle(NotationPackage.eINSTANCE.getDrawerStyle());
-		if (drawerStyle != null) {
+		if(drawerStyle != null) {
 			drawerStyle.setCollapsed(false);
 		}
 	}

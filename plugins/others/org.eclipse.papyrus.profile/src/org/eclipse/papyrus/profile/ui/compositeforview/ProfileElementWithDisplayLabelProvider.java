@@ -28,17 +28,17 @@ public class ProfileElementWithDisplayLabelProvider extends ProfileElementLabelP
 	 * Gets the image.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the image
 	 */
 	@Override
 	public Image getImage(Object object) {
 
-		if (object instanceof TreeObject) {
+		if(object instanceof TreeObject) {
 
-			TreeObject to = (TreeObject) object;
-			if (to.isDisplay()) {
+			TreeObject to = (TreeObject)object;
+			if(to.isDisplay()) {
 				return ImageManager.IMG_STEREOTYPEDISPLAYED;
 			}
 		}

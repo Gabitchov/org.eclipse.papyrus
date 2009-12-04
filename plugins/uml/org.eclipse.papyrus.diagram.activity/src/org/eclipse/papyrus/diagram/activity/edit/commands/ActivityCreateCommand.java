@@ -23,6 +23,7 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -40,8 +41,7 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ActivityCreateCommand create(CreateElementRequest req,
-			EObject eObject) {
+	public static ActivityCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new ActivityCreateCommand(req, eObject);
 	}
 
@@ -58,8 +58,7 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -90,10 +89,8 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
-				MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(
-					MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -110,8 +107,7 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Activity newElement = (Activity) super.doDefaultElementCreation();
 		if (newElement != null) {
-			Object feature = getElementToEdit().eGet(getContainmentFeature(),
-					true);
+			Object feature = getElementToEdit().eGet(getContainmentFeature(), true);
 			if (feature instanceof List) {
 				((List) feature).add(newElement);
 			}
@@ -119,11 +115,9 @@ public class ActivityCreateCommand extends CreateElementCommand {
 			UMLElementTypes.init_Activity_1001(newElement);
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-						newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-						UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

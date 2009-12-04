@@ -29,14 +29,16 @@ import org.eclipse.swt.graphics.Color;
 public class PackageFigure extends NodeNamedElementFigure {
 
 	private final RectangleFigure shapeCompartment;
+
 	/**
-	 * gap in x to display  name stereotypes and qualified name 
+	 * gap in x to display name stereotypes and qualified name
 	 */
-	protected final int GAP_X=10;
+	protected final int GAP_X = 10;
+
 	/**
 	 * gap in y to display the first label at the top of the package
 	 */
-	protected final int GAP_Y=5;
+	protected final int GAP_Y = 5;
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -54,8 +56,8 @@ public class PackageFigure extends NodeNamedElementFigure {
 			int minimumWith = 0;
 			int minimumHeight = 0;
 			// display name
-			if (getNameLabel() != null) {
-				if (getNameLabel().getPreferredSize().width > minimumWith) {
+			if(getNameLabel() != null) {
+				if(getNameLabel().getPreferredSize().width > minimumWith) {
 					minimumWith = getNameLabel().getPreferredSize().width;
 				}
 				minimumHeight += getNameLabel().getPreferredSize().height;
@@ -70,18 +72,18 @@ public class PackageFigure extends NodeNamedElementFigure {
 		 */
 		public void layout(IFigure container) {
 			List childrenList = container.getChildren();
-			for (int i = 0; i < container.getChildren().size(); i++) {
-				Rectangle bound = new Rectangle(((IFigure) childrenList.get(i)).getBounds());
-				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
-				if (i > 0) {
-					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
+			for(int i = 0; i < container.getChildren().size(); i++) {
+				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
+				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
+				if(i > 0) {
+					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
 					bound.x = getBounds().x + GAP_X;
 				} else {
 					bound.x = getBounds().x + GAP_X;
-					bound.y = getBounds().y+ GAP_Y;
+					bound.y = getBounds().y + GAP_Y;
 
 				}
-				((IFigure) childrenList.get(i)).setBounds(bound);
+				((IFigure)childrenList.get(i)).setBounds(bound);
 			}
 			// container
 			Rectangle lastRectangle = getPackageableElementFigure().getBounds();
@@ -89,7 +91,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 			lastRectangle.x = container.getBounds().x;
 			lastRectangle.width = getBounds().width;
 			getPackageableElementFigure().setBounds(lastRectangle);
-			if (getGMFPackageableElementContainer() != null) {
+			if(getGMFPackageableElementContainer() != null) {
 				getGMFPackageableElementContainer().setBounds(lastRectangle);
 			}
 		}
@@ -117,8 +119,8 @@ public class PackageFigure extends NodeNamedElementFigure {
 	 * @return the gmf container
 	 */
 	public ShapeCompartmentFigure getGMFPackageableElementContainer() {
-		if (shapeCompartment.getChildren().size() > 0) {
-			return (ShapeCompartmentFigure) shapeCompartment.getChildren().get(0);
+		if(shapeCompartment.getChildren().size() > 0) {
+			return (ShapeCompartmentFigure)shapeCompartment.getChildren().get(0);
 		}
 		return null;
 	}
@@ -136,10 +138,10 @@ public class PackageFigure extends NodeNamedElementFigure {
 		// the index of the shape container
 		int indexShapeContainer = getChildren().indexOf(shapeCompartment);
 		Rectangle headerBound = new Rectangle(0, 0, 0, 0);
-		for (int i = 0; i < indexShapeContainer; i++) {
-			IFigure currentchild = (IFigure) this.getChildren().get(i);
-			if (currentchild.getPreferredSize().width +2*GAP_X> headerBound.width) {
-				headerBound.width = currentchild.getPreferredSize().width + 2*GAP_X;
+		for(int i = 0; i < indexShapeContainer; i++) {
+			IFigure currentchild = (IFigure)this.getChildren().get(i);
+			if(currentchild.getPreferredSize().width + 2 * GAP_X > headerBound.width) {
+				headerBound.width = currentchild.getPreferredSize().width + 2 * GAP_X;
 			}
 			headerBound.height += currentchild.getPreferredSize().height;
 		}
@@ -147,7 +149,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 
 		headerBound.x = this.getBounds().x;
 		headerBound.y = this.getBounds().y;
-		headerBound.height =getPackageableElementFigure().getBounds().y-headerBound.y;
+		headerBound.height = getPackageableElementFigure().getBounds().y - headerBound.y;
 		return headerBound;
 	}
 
@@ -173,7 +175,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 	 */
 	@Override
 	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
-		if (isUsingGradient()) {
+		if(isUsingGradient()) {
 			applyTransparency(graphics);
 			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
 			graphics.fillRectangle(getHeader());

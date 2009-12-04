@@ -26,89 +26,101 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 /**
- * this is dialog that display all profiles and package  in a tree view
+ * this is dialog that display all profiles and package in a tree view
  */
 public class ProfileTreeSelectionDialog extends ElementImportTreeSelectionDialog {
-	
+
 	/** Array that keeps the list of qualified names of subprofiles to be pre-selected */
 	List<String> subProfilesList;
-	
+
 	/**
 	 * constructor
-	 * @param model of the profile 
-	 * @param parent the shell
+	 * 
+	 * @param model
+	 *        of the profile
+	 * @param parent
+	 *        the shell
 	 */
-	public ProfileTreeSelectionDialog(Shell parent, Package model){
+	public ProfileTreeSelectionDialog(Shell parent, Package model) {
 		super(parent, model);
 		subProfilesList = new ArrayList<String>();
 	}
 
 	/**
 	 * constructor
-	 * @param model of the profile 
-	 * @param parent the shell
+	 * 
+	 * @param model
+	 *        of the profile
+	 * @param parent
+	 *        the shell
 	 */
 	public ProfileTreeSelectionDialog(Shell parent, List<Package> model) {
 		this(parent, model, new ArrayList<String>());
 	}
-	
+
 	/**
 	 * constructor
-	 * @param model of the profile 
-	 * @param parent the shell
-	 * @param 
+	 * 
+	 * @param model
+	 *        of the profile
+	 * @param parent
+	 *        the shell
+	 * @param
 	 */
 	public ProfileTreeSelectionDialog(Shell parent, List<Package> model, List<String> subprofiles) {
 		super(parent, model);
 		subProfilesList = subprofiles;
 	}
-	
-	
+
+
 	/**
 	 * Returns the elements to import.
+	 * 
 	 * @return a list of profile even, hte user selects a package
 	 */
-	public ArrayList getResult(){
-		ArrayList<Profile> profileList= new ArrayList<Profile>();
-		Iterator<Element> iter= elementsToImport.iterator();
-		while(iter.hasNext()){
-			Element currentElement= (Element) iter.next();
-			if (currentElement instanceof Profile){
+	public ArrayList getResult() {
+		ArrayList<Profile> profileList = new ArrayList<Profile>();
+		Iterator<Element> iter = elementsToImport.iterator();
+		while(iter.hasNext()) {
+			Element currentElement = (Element)iter.next();
+			if(currentElement instanceof Profile) {
 				profileList.add((Profile)currentElement);
 			}
 		}
 		return profileList;
 	}
+
 	/*
 	 * (non-Javadoc)
-	 * @see com.cea.papyrus.ui.dialogs.ElementImportTreeSelectionDialog#buildImportTreeList(org.eclipse.swt.widgets.TreeItem, org.eclipse.uml2.uml.Package)
+	 * 
+	 * @see com.cea.papyrus.ui.dialogs.ElementImportTreeSelectionDialog#buildImportTreeList(org.eclipse.swt.widgets.TreeItem,
+	 * org.eclipse.uml2.uml.Package)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param _package 
-	 * @param elemTree 
+	 * @param _package
+	 * @param elemTree
 	 */
-	protected void buildImportTreeList(TreeItem elemTree, Package _package){
+	protected void buildImportTreeList(TreeItem elemTree, Package _package) {
 		Iterator elemIter = _package.getPackagedElements().iterator();
 		while(elemIter.hasNext()) {
-			Element elem = (Element) elemIter.next();
-			if(elem instanceof Profile){
+			Element elem = (Element)elemIter.next();
+			if(elem instanceof Profile) {
 				TreeItem item = new TreeItem(elemTree, SWT.NONE);
 				item.setText(((Package)elem).getName());
 				item.setData(elem);
 				item.setImage(IMG_PROFILE);
 				// test if the element is in the list of pre selected profiles. If yes, it checks the item
 				String name = ((Profile)elem).getQualifiedName();
-				if(name!=null) {
+				if(name != null) {
 					if(subProfilesList.contains(name)) {
 						item.setChecked(true);
 						elementsToImport.add(elem);
 					}
 				}
 				buildImportTreeList(item, (Package)elem);
-			}
-			else if(elem instanceof Package){
+			} else if(elem instanceof Package) {
 				TreeItem item = new TreeItem(elemTree, SWT.NONE);
 				item.setText(((Package)elem).getName());
 				item.setData(elem);
@@ -117,7 +129,7 @@ public class ProfileTreeSelectionDialog extends ElementImportTreeSelectionDialog
 			}
 		}
 	}
-	
+
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		shell.setText("Choose profile(s) to apply");

@@ -40,71 +40,76 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 	 * LabelProvider for stereotype completion proposal provider with qualified names.
 	 */
 	final private StereotypeQualifiedLabelProvider qualifiedLabelProvider = new StereotypeQualifiedLabelProvider();
-	
+
 	/**
 	 * Default Constructor.
 	 * 
-	 * @param parentShell the parent shell
-	 * @param theElement the UML element to be modified
+	 * @param parentShell
+	 *        the parent shell
+	 * @param theElement
+	 *        the UML element to be modified
 	 */
-	public ChooseSetStereotypeDialog(Shell parentShell, org.eclipse.uml2.uml.Element theElement){
+	public ChooseSetStereotypeDialog(Shell parentShell, org.eclipse.uml2.uml.Element theElement) {
 		super(parentShell,
 				"Applicable Stereotypes: ",
-		"Applied Stereotypes: ");
+				"Applied Stereotypes: ");
 		labelProvider = new StereotypeLabelProvider();
 		decoratedContentProposalProvider = new StereotypeContentProposalProvider();
-	
+
 		Iterator<Stereotype> stereotypes = theElement.getAppliedStereotypes().iterator();
-		while (stereotypes.hasNext()){
+		while(stereotypes.hasNext()) {
 			selectedElementList.addElement(stereotypes.next());
 		}
-		
+
 		stereotypes = theElement.getApplicableStereotypes().iterator();
-		while (stereotypes.hasNext()){
+		while(stereotypes.hasNext()) {
 			Stereotype current = (Stereotype)stereotypes.next();
 			if(!selectedElementList.contains(current)) {
 				possibleElementList.addElement(current);
 			}
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.papyrus.ui.dialogs.ChooseSetAssistedDialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	/**
 	 * Creates the dialog area.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 * 
 	 * @return the control
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Control composite = super.createDialogArea(parent);
-		
+
 		// Add 2 columns to the table area
 		// possibleElementsTable.setLinesVisible(true);
 		possibleElementsTable.setHeaderVisible(true);
 
 		// 1st column with image/checkboxes - NOTE: The SWT.CENTER has no effect!!
-		TableColumn column = new TableColumn(possibleElementsTable, SWT.CENTER, 0);		
+		TableColumn column = new TableColumn(possibleElementsTable, SWT.CENTER, 0);
 		column.setText("Stereotype");
 		column.setWidth(150);
 		column.addSelectionListener(new SelectionAdapter() {
-	       	
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				possibleElementsTableViewer.setSorter(new AlphabeticalViewerSorter(0));
 			}
 		});
-		
+
 		// 2nd column with task Description
 		column = new TableColumn(possibleElementsTable, SWT.LEFT, 1);
 		column.setText("Information");
 		column.setWidth(165);
 		// Add listener to column so tasks are sorted by description when clicked 
 		column.addSelectionListener(new SelectionAdapter() {
-       	
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				possibleElementsTableViewer.setSorter(new AlphabeticalViewerSorter(1));
@@ -113,26 +118,29 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 
 		// set sorter to the possible element table viewer 
 		possibleElementsTableViewer.setSorter(new AlphabeticalViewerSorter(0));
-		
+
 		return composite;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.papyrus.ui.dialogs.ChooseSetAssistedDialog#runAddElement(java.lang.String)
 	 */
 	/**
 	 * Run add element.
 	 * 
-	 * @param name the name
+	 * @param name
+	 *        the name
 	 */
 	@Override
 	protected void runAddElement(String name) {
 		// find the stereotype in the list
-		Stereotype stereotype =null;
+		Stereotype stereotype = null;
 		Iterator<Stereotype> it = possibleElementList.getElements().iterator();
-		while (it.hasNext()) {
-			Stereotype element = (Stereotype) it.next();
-			if( name.equalsIgnoreCase(element.getName()) || name.equalsIgnoreCase(element.getQualifiedName())) {
+		while(it.hasNext()) {
+			Stereotype element = (Stereotype)it.next();
+			if(name.equalsIgnoreCase(element.getName()) || name.equalsIgnoreCase(element.getQualifiedName())) {
 				stereotype = element;
 			}
 		}
@@ -141,13 +149,16 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.papyrus.ui.dialogs.ChooseSetAssistedDialog#isSelectableElement(java.lang.String)
 	 */
 	/**
 	 * Checks if is selectable element.
 	 * 
-	 * @param text the text
+	 * @param text
+	 *        the text
 	 * 
 	 * @return true, if is selectable element
 	 */
@@ -155,9 +166,9 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 	protected boolean isSelectableElement(String text) {
 		// iterate through all possibilities and return true if text corresponds
 		Iterator<Stereotype> it = possibleElementList.getElements().iterator();
-		while (it.hasNext()) {
-			Stereotype element = (Stereotype) it.next();
-			if( text.equalsIgnoreCase(element.getName()) || text.equalsIgnoreCase(element.getQualifiedName())) {
+		while(it.hasNext()) {
+			Stereotype element = (Stereotype)it.next();
+			if(text.equalsIgnoreCase(element.getName()) || text.equalsIgnoreCase(element.getQualifiedName())) {
 				return true;
 			}
 		}
@@ -172,14 +183,18 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 	 */
 	public class StereotypeContentProposalProvider extends DecoratedContentProposalProvider {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see com.cea.papyrus.ui.dialogs.ChooseSetAssistedDialog.DecoratedContentProposalProvider#getProposals(java.lang.String, int)
 		 */
 		/**
 		 * Gets the proposals.
 		 * 
-		 * @param contents the contents
-		 * @param position the position
+		 * @param contents
+		 *        the contents
+		 * @param position
+		 *        the position
 		 * 
 		 * @return the proposals
 		 */
@@ -194,16 +209,16 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 					final String simpleName = stereotype.getName();
 					final String qualifiedName = stereotype.getQualifiedName();
 
-					if( position < simpleName.length() && contents.substring(0, position).equalsIgnoreCase(simpleName.substring(0, position))) {
+					if(position < simpleName.length() && contents.substring(0, position).equalsIgnoreCase(simpleName.substring(0, position))) {
 						proposals.add(new DecoratedContentProposal(stereotype, labelProvider));
 					}
 
-					if( position < qualifiedName.length() && contents.substring(0, position).equalsIgnoreCase(qualifiedName.substring(0, position))) {
+					if(position < qualifiedName.length() && contents.substring(0, position).equalsIgnoreCase(qualifiedName.substring(0, position))) {
 						proposals.add(new DecoratedContentProposal(stereotype, qualifiedLabelProvider));
 					}
 				}
 			}
-			
+
 			Collections.sort(proposals);
 			return proposals.toArray(new DecoratedContentProposal[proposals.size()]);
 		}

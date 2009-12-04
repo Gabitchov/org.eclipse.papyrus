@@ -59,31 +59,42 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, LinkEndCreationDataPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil qualifierEditUtil;
+
 	protected ReferencesTable<? extends EObject> qualifier;
+
 	protected List<ViewerFilter> qualifierBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> qualifierFilters = new ArrayList<ViewerFilter>();
+
 	protected Button isReplaceAll;
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public LinkEndCreationDataPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite,
+	 *      org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -95,11 +106,12 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createControls(org.eclipse.ui.forms.widgets.FormToolkit,
+	 *      org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
@@ -107,7 +119,7 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		// Start of user code for additional ui definition
 
 		// End of user code
-		
+
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -125,16 +137,31 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		createIsReplaceAllCheckbox(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.LinkEndCreationDataPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.LinkEndCreationDataPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndCreationData.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -150,7 +177,7 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndCreationDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndCreationData.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndCreationDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndCreationData.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -162,11 +189,11 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -203,10 +230,10 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -218,16 +245,31 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createQualifierTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.qualifier = new ReferencesTable<QualifierValue>(UMLMessages.LinkEndCreationDataPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<QualifierValue>() {			
-			public void handleAdd() { addToQualifier();}
-			public void handleEdit(QualifierValue element) { editQualifier(element); }
-			public void handleMove(QualifierValue element, int oldIndex, int newIndex) { moveQualifier(element, oldIndex, newIndex); }
-			public void handleRemove(QualifierValue element) { removeFromQualifier(element); }
-			public void navigateTo(QualifierValue element) { }
+		this.qualifier = new ReferencesTable<QualifierValue>(UMLMessages.LinkEndCreationDataPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<QualifierValue>() {
+
+			public void handleAdd() {
+				addToQualifier();
+			}
+
+			public void handleEdit(QualifierValue element) {
+				editQualifier(element);
+			}
+
+			public void handleMove(QualifierValue element, int oldIndex, int newIndex) {
+				moveQualifier(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(QualifierValue element) {
+				removeFromQualifier(element);
+			}
+
+			public void navigateTo(QualifierValue element) {
+			}
 		});
 		this.qualifier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndCreationData.qualifier, UMLViewsRepository.FORM_KIND));
 		this.qualifier.createControls(parent, widgetFactory);
@@ -243,7 +285,7 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		qualifierEditUtil.moveElement(element, oldIndex, newIndex);
 		qualifier.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndCreationDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndCreationData.qualifier, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndCreationDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndCreationData.qualifier, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -255,11 +297,11 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				qualifierEditUtil.addElement(propertiesEditionObject);
 				qualifier.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -296,10 +338,10 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				qualifierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				qualifier.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -311,17 +353,18 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		// End of user code
 
 	}
+
 	protected void createIsReplaceAllCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isReplaceAll = widgetFactory.createButton(parent, UMLMessages.LinkEndCreationDataPropertiesEditionPart_IsReplaceAllLabel, SWT.CHECK);
 		isReplaceAll.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndCreationDataPropertiesEditionPartForm.this, UMLViewsRepository.LinkEndCreationData.isReplaceAll, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isReplaceAll.getSelection())));
 			}
 
@@ -332,12 +375,12 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndCreationData.isReplaceAll, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
 
-	
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
 
 		// End of user code
-		
+
 	}
 
 	/**
@@ -388,12 +431,13 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndCreationDataPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndCreationDataPropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -406,7 +450,7 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndCreationDataPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -491,12 +535,13 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndCreationDataPropertiesEditionPart#initQualifier(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndCreationDataPropertiesEditionPart#initQualifier(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initQualifier(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			qualifierEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			qualifierEditUtil = new EMFListEditUtil(current, feature);
@@ -509,7 +554,7 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndCreationDataPropertiesEditionPart#updateQualifier(EObject newValue)
 	 */
 	public void updateQualifier(EObject newValue) {
-		if(qualifierEditUtil != null){
+		if(qualifierEditUtil != null) {
 			qualifierEditUtil.reinit(newValue);
 			qualifier.refresh();
 		}
@@ -561,7 +606,7 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndCreationDataPropertiesEditionPart#setIsReplaceAll(Boolean newValue)
 	 */
 	public void setIsReplaceAll(Boolean newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			isReplaceAll.setSelection(newValue.booleanValue());
 		} else {
 			isReplaceAll.setSelection(false);
@@ -572,15 +617,8 @@ public class LinkEndCreationDataPropertiesEditionPartForm extends CompositePrope
 
 
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
 
 	// End of user code
 
-}	
+}

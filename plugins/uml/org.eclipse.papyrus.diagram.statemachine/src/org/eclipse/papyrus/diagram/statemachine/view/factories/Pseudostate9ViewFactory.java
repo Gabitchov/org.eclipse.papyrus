@@ -37,7 +37,7 @@ public class Pseudostate9ViewFactory extends AbstractShapeViewFactory {
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
-		if (semanticHint == null) {
+		if(semanticHint == null) {
 			semanticHint = UMLVisualIDRegistry
 					.getType(Pseudostate9EditPart.VISUAL_ID);
 			view.setType(semanticHint);
@@ -45,8 +45,8 @@ public class Pseudostate9ViewFactory extends AbstractShapeViewFactory {
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
 				index, persisted);
 		IAdaptable eObjectAdapter = null;
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-		if (eObject != null) {
+		EObject eObject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
 		getViewService().createNode(eObjectAdapter, view,

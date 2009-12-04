@@ -80,31 +80,31 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Generalization_4010 == req.getElementType()) {
+		if(UMLElementTypes.Generalization_4010 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Association_4011 == req.getElementType()) {
+		if(UMLElementTypes.Association_4011 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
+		if(UMLElementTypes.Dependency_4013 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.Abstraction_4015 == req.getElementType()) {
+		if(UMLElementTypes.Abstraction_4015 == req.getElementType()) {
 			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Usage_4016 == req.getElementType()) {
+		if(UMLElementTypes.Usage_4016 == req.getElementType()) {
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Realization_4017 == req.getElementType()) {
+		if(UMLElementTypes.Realization_4017 == req.getElementType()) {
 			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.PackageImport_4019 == req.getElementType()) {
+		if(UMLElementTypes.PackageImport_4019 == req.getElementType()) {
 			return getGEFWrapper(new PackageImportCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -114,31 +114,31 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Generalization_4010 == req.getElementType()) {
+		if(UMLElementTypes.Generalization_4010 == req.getElementType()) {
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Association_4011 == req.getElementType()) {
+		if(UMLElementTypes.Association_4011 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
+		if(UMLElementTypes.Dependency_4013 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Abstraction_4015 == req.getElementType()) {
+		if(UMLElementTypes.Abstraction_4015 == req.getElementType()) {
 			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Usage_4016 == req.getElementType()) {
+		if(UMLElementTypes.Usage_4016 == req.getElementType()) {
 			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Realization_4017 == req.getElementType()) {
+		if(UMLElementTypes.Realization_4017 == req.getElementType()) {
 			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.PackageImport_4019 == req.getElementType()) {
+		if(UMLElementTypes.PackageImport_4019 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -151,7 +151,7 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case GeneralizationEditPart.VISUAL_ID:
 			return getGEFWrapper(new GeneralizationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
@@ -177,7 +177,7 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 * @generated
 	 */
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

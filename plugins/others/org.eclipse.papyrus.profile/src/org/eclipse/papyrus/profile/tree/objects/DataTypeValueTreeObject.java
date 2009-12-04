@@ -27,7 +27,7 @@ public class DataTypeValueTreeObject extends ValueTreeObject {
 
 	@Override
 	public void editMe() {
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
 		Property property = pTO.getProperty();
 		Type type = property.getType();
 

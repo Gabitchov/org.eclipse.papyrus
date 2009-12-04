@@ -48,11 +48,11 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 		String title = ""; //$NON-NLS-1$
 		EObject eObject = getModel(element);
 		IItemLabelProvider itemLabelProvider = getItemLabelProvider(eObject);
-		if (itemLabelProvider != null) {
+		if(itemLabelProvider != null) {
 			title = itemLabelProvider.getText(eObject);
 		}
 
-		if ("".equals(title)) { //$NON-NLS-1$
+		if("".equals(title)) { //$NON-NLS-1$
 			title = super.getText(eObject);
 		}
 
@@ -64,7 +64,7 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 		Image result = null;
 		EObject eObject = getModel(element);
 		IItemLabelProvider itemLabelProvider = getItemLabelProvider(eObject);
-		if (itemLabelProvider != null) {
+		if(itemLabelProvider != null) {
 			result = getImageFromObject(itemLabelProvider.getImage(eObject));
 		}
 
@@ -73,13 +73,13 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 
 	private EObject getModel(Object element) {
 		EObject eObject = null;
-		if (element != null && element instanceof StructuredSelection) {
-			StructuredSelection selection = (StructuredSelection) element;
+		if(element != null && element instanceof StructuredSelection) {
+			StructuredSelection selection = (StructuredSelection)element;
 			Object o = selection.getFirstElement();
-			if (o instanceof EObject) {
-				eObject = (EObject) o;
-			} else if (o instanceof IGraphicalEditPart) {
-				IGraphicalEditPart editPart = (IGraphicalEditPart) o;
+			if(o instanceof EObject) {
+				eObject = (EObject)o;
+			} else if(o instanceof IGraphicalEditPart) {
+				IGraphicalEditPart editPart = (IGraphicalEditPart)o;
 				eObject = editPart.resolveSemanticElement();
 			}
 		}
@@ -88,8 +88,8 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 
 	private IItemLabelProvider getItemLabelProvider(EObject eObject) {
 		IItemLabelProvider itemLabelProvider = null;
-		if (eObject != null) {
-			itemLabelProvider = (IItemLabelProvider) getEditFactory(eObject).adapt(eObject, IItemLabelProviderClass);
+		if(eObject != null) {
+			itemLabelProvider = (IItemLabelProvider)getEditFactory(eObject).adapt(eObject, IItemLabelProviderClass);
 		}
 		return itemLabelProvider;
 	}
@@ -98,7 +98,7 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 	 * Gets the edit factory.
 	 * 
 	 * @param eobject
-	 *            the eobject
+	 *        the eobject
 	 * 
 	 * @return the edits the factory
 	 */
@@ -111,20 +111,20 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 	 * Gets the factory from uri.
 	 * 
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * 
 	 * @return the factory
 	 */
 	public static AdapterFactory getFactory(String uri) {
 		AdapterFactory factory = factories.get(uri);
-		if (factory == null) {
+		if(factory == null) {
 			IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
 					EXT_FACTORIES);
-			for (IConfigurationElement e : extensions) {
-				if (uri.equals(e.getAttribute("uri"))) { //$NON-NLS-1$
+			for(IConfigurationElement e : extensions) {
+				if(uri.equals(e.getAttribute("uri"))) { //$NON-NLS-1$
 					try {
-						factory = (AdapterFactory) e.createExecutableExtension("class"); //$NON-NLS-1$
-						if (factory != null) {
+						factory = (AdapterFactory)e.createExecutableExtension("class"); //$NON-NLS-1$
+						if(factory != null) {
 							factories.put(uri, factory);
 						}
 					} catch (CoreException e1) {

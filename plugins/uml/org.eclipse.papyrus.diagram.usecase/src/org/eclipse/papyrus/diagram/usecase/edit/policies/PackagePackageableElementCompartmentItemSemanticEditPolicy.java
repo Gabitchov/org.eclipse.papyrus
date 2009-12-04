@@ -39,22 +39,22 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Constraint_3010 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_3010 == req.getElementType()) {
 			return getGEFWrapper(new Constraint3CreateCommand(req));
 		}
-		if (UMLElementTypes.Actor_3011 == req.getElementType()) {
+		if(UMLElementTypes.Actor_3011 == req.getElementType()) {
 			return getGEFWrapper(new Actor3CreateCommand(req));
 		}
-		if (UMLElementTypes.UseCase_3012 == req.getElementType()) {
+		if(UMLElementTypes.UseCase_3012 == req.getElementType()) {
 			return getGEFWrapper(new UseCase4CreateCommand(req));
 		}
-		if (UMLElementTypes.Component_3013 == req.getElementType()) {
+		if(UMLElementTypes.Component_3013 == req.getElementType()) {
 			return getGEFWrapper(new Component3CreateCommand(req));
 		}
-		if (UMLElementTypes.Package_3014 == req.getElementType()) {
+		if(UMLElementTypes.Package_3014 == req.getElementType()) {
 			return getGEFWrapper(new PackageCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Comment_3015 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3015 == req.getElementType()) {
 			return getGEFWrapper(new Comment2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

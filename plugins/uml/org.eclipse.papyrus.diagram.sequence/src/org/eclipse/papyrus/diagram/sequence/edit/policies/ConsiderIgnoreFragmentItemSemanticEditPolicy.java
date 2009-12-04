@@ -100,21 +100,21 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View) getHost().getModel();
+		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge) it.next();
-			if (UMLVisualIDRegistry.getVisualID(incomingLink) == MessageEditPart.VISUAL_ID) {
+		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge)it.next();
+			if(UMLVisualIDRegistry.getVisualID(incomingLink) == MessageEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge) it.next();
-			if (UMLVisualIDRegistry.getVisualID(outgoingLink) == MessageEditPart.VISUAL_ID) {
+		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge)it.next();
+			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == MessageEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -123,12 +123,12 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		}
 
 		IUndoableOperation destroyMessagesCommand = addDestroyMessagesCommand();
-		if (destroyMessagesCommand != null) {
+		if(destroyMessagesCommand != null) {
 			cmd.add(destroyMessagesCommand);
 		}
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation == null) {
+		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
@@ -144,39 +144,39 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated NOT
 	 */
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View) getHost().getModel();
-		for (Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node) nit.next();
-			switch (UMLVisualIDRegistry.getVisualID(node)) {
+		View view = (View)getHost().getModel();
+		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
+			Node node = (Node)nit.next();
+			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node) cit.next();
-					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
+				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case InteractionOperandEditPart.VISUAL_ID:
-						for (Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
-							Edge incomingLink = (Edge) it.next();
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == MessageEditPart.VISUAL_ID) {
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == MessageEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(incomingLink) == Message2EditPart.VISUAL_ID) {
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == Message2EditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								continue;
 							}
 						}
-						for (Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
-							Edge outgoingLink = (Edge) it.next();
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == MessageEditPart.VISUAL_ID) {
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == MessageEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 								continue;
 							}
-							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == Message2EditPart.VISUAL_ID) {
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == Message2EditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -211,25 +211,25 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if(UMLElementTypes.Message_4003 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if(UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if(UMLElementTypes.Message_4005 == req.getElementType()) {
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_4006 == req.getElementType()) {
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if(UMLElementTypes.Message_4007 == req.getElementType()) {
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if(UMLElementTypes.Message_4008 == req.getElementType()) {
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -239,25 +239,25 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if(UMLElementTypes.Message_4003 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if(UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if(UMLElementTypes.Message_4005 == req.getElementType()) {
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_4006 == req.getElementType()) {
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if(UMLElementTypes.Message_4007 == req.getElementType()) {
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if(UMLElementTypes.Message_4008 == req.getElementType()) {
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -270,7 +270,7 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case MessageEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageReorientCommand(req));
 		case Message2EditPart.VISUAL_ID:
@@ -294,23 +294,23 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * 
 	 * @generated NOT
 	 * @param cmd
-	 *            The command
+	 *        The command
 	 */
 	private IUndoableOperation addDestroyMessagesCommand() {
 		// Delete messages on the combined fragment
 		CompositeCommand cmd = new DeleteCommandWithPopup("Delete messages of combined fragment");
-		Rectangle combinedFragmentBounds = ((GraphicalEditPart) getHost()).getFigure().getBounds();
-		for (Object child : getHost().getParent().getChildren()) {
-			if (child instanceof LifelineEditPart) {
-				for (Object littlechild : ((LifelineEditPart) child).getChildren()) {
-					if (littlechild instanceof ActionExecutionSpecificationEditPart
+		Rectangle combinedFragmentBounds = ((GraphicalEditPart)getHost()).getFigure().getBounds();
+		for(Object child : getHost().getParent().getChildren()) {
+			if(child instanceof LifelineEditPart) {
+				for(Object littlechild : ((LifelineEditPart)child).getChildren()) {
+					if(littlechild instanceof ActionExecutionSpecificationEditPart
 							|| littlechild instanceof BehaviorExecutionSpecificationEditPart) {
-						ShapeNodeEditPart editPart = (ShapeNodeEditPart) littlechild;
+						ShapeNodeEditPart editPart = (ShapeNodeEditPart)littlechild;
 						Rectangle executionSpecificationBounds = editPart.getFigure().getBounds();
-						if (combinedFragmentBounds.intersects(executionSpecificationBounds)) {
+						if(combinedFragmentBounds.intersects(executionSpecificationBounds)) {
 							cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), editPart
 									.resolveSemanticElement(), false)));
-							cmd.add(new DeleteCommand(getEditingDomain(), (View) editPart.getModel()));
+							cmd.add(new DeleteCommand(getEditingDomain(), (View)editPart.getModel()));
 						}
 					}
 				}
@@ -331,7 +331,7 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
 				throws ExecutionException {
-			if (showMessageDialog(DELETE_FROM_MODEL_DLG_TITLE, DELETE_FROM_MODEL_DLG_MESSAGE)) {
+			if(showMessageDialog(DELETE_FROM_MODEL_DLG_TITLE, DELETE_FROM_MODEL_DLG_MESSAGE)) {
 				return super.doExecuteWithResult(progressMonitor, info);
 			}
 			return null;
@@ -342,18 +342,18 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		 * 
 		 * @generated NOT
 		 * @param title
-		 *            The title
+		 *        The title
 		 * @param message
-		 *            The message
+		 *        The message
 		 * @return True if user click on OK
 		 */
 		private boolean showMessageDialog(String title, String message) {
 			MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(Display.getCurrent()
-					.getActiveShell(), title, message, null, false, (IPreferenceStore) ((IGraphicalEditPart) getHost())
+					.getActiveShell(), title, message, null, false, (IPreferenceStore)((IGraphicalEditPart)getHost())
 					.getDiagramPreferencesHint().getPreferenceStore(),
 					IPreferenceConstants.PREF_PROMPT_ON_DEL_FROM_MODEL);
 
-			if (dialog.getReturnCode() == IDialogConstants.YES_ID)
+			if(dialog.getReturnCode() == IDialogConstants.YES_ID)
 				return true;
 			else
 				return false;

@@ -36,98 +36,106 @@ public class PropertyListener implements Listener {
 	 * The property.
 	 */
 	protected final Property property;
-	
+
 	/**
 	 * The stereotype.
 	 */
 	protected final Stereotype stereotype;
-	
+
 	/**
 	 * The element.
 	 */
 	protected final Element element;
-	
+
 	/**
 	 * The parent.
 	 */
 	protected final AbstractPanel parent;
-	
+
 	/**
 	 * The table.
 	 */
 	protected final Table table;
-	
+
 	/**
 	 * The is multivalued.
 	 */
 	protected final boolean isMultivalued;
-	
+
 	/**
 	 * The values.
 	 */
 	protected List values;
-	
+
 	/**
 	 * The value.
 	 */
 	protected Object value;
-	
+
 	/**
 	 * Constructor.
 	 * 
-	 * @param element the element
-	 * @param table the table
-	 * @param stereotype the stereotype
-	 * @param property the property
-	 * @param parent the parent
+	 * @param element
+	 *        the element
+	 * @param table
+	 *        the table
+	 * @param stereotype
+	 *        the stereotype
+	 * @param property
+	 *        the property
+	 * @param parent
+	 *        the parent
 	 * 
-	 * @throws Exception 	 */
+	 * @throws Exception
+	 */
 	public PropertyListener(AbstractPanel parent, Table table, Property property, Stereotype stereotype, Element element) {
 		super();
-		
+
 		// Set properties
 		this.property = property;
 		this.stereotype = stereotype;
 		this.element = element;
 		this.parent = parent;
 		this.table = table;
-		
+
 		// Retrieve iisMultivalued property
 		this.isMultivalued = property.isMultivalued();
 	}
-	
+
 	/**
 	 * Init.
 	 * 
-	 * @throws NoValueException the no value exception
+	 * @throws NoValueException
+	 *         the no value exception
 	 */
 	protected void init() throws NoValueException {
 		// Retrieve current value
 		Object tmp = Util.getValueOrDefault(element, stereotype, property);
-		if (isMultivalued) {
-			this.values = (List) tmp;
+		if(isMultivalued) {
+			this.values = (List)tmp;
 		} else {
 			this.value = tmp;
 		}
-		
+
 		// No value exception
-		if (isMultivalued) {
-			if ((values == null) || (values.size() == 0)) {
+		if(isMultivalued) {
+			if((values == null) || (values.size() == 0)) {
 				//exception
 				throw new NoValueException();
 			}
 		} else {
-			if (value == null) {
+			if(value == null) {
 				//exception
 				throw new NoValueException();
 			}
 		}
 	}
-	
+
 	/**
 	 * Handle event.
 	 * 
-	 * @param event the event
+	 * @param event
+	 *        the event
 	 */
 	public void handleEvent(Event event) {
 		// TODO Auto-generated method stub

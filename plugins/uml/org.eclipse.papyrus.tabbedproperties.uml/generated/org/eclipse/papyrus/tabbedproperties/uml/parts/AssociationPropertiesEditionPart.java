@@ -35,7 +35,9 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -50,14 +52,19 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -72,7 +79,9 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isDerived
-	 * @param newValue the new isDerived to set
+	 * 
+	 * @param newValue
+	 *        the new isDerived to set
 	 */
 	public void setIsDerived(Boolean newValue);
 
@@ -87,7 +96,9 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isAbstract
-	 * @param newValue the new isAbstract to set
+	 * 
+	 * @param newValue
+	 *        the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
 
@@ -102,7 +113,9 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *        the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
 
@@ -137,15 +150,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedEnd
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedEnd(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedEnd
-	 * @param newValue the ownedEnd to update
+	 * 
+	 * @param newValue
+	 *        the ownedEnd to update
 	 */
 	public void updateOwnedEnd(EObject newValue);
 
@@ -153,7 +172,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the ownedEnd edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedEnd(ViewerFilter filter);
@@ -162,7 +181,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the ownedEnd edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedEnd(ViewerFilter filter);
@@ -193,15 +212,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the memberEnd
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initMemberEnd(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the memberEnd
-	 * @param newValue the memberEnd to update
+	 * 
+	 * @param newValue
+	 *        the memberEnd to update
 	 */
 	public void updateMemberEnd(EObject newValue);
 
@@ -209,7 +234,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the memberEnd edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToMemberEnd(ViewerFilter filter);
@@ -218,7 +243,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the memberEnd edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToMemberEnd(ViewerFilter filter);
@@ -249,15 +274,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the navigableOwnedEnd
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initNavigableOwnedEnd(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the navigableOwnedEnd
-	 * @param newValue the navigableOwnedEnd to update
+	 * 
+	 * @param newValue
+	 *        the navigableOwnedEnd to update
 	 */
 	public void updateNavigableOwnedEnd(EObject newValue);
 
@@ -265,7 +296,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the navigableOwnedEnd edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToNavigableOwnedEnd(ViewerFilter filter);
@@ -274,7 +305,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the navigableOwnedEnd edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToNavigableOwnedEnd(ViewerFilter filter);
@@ -315,15 +346,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the templateBinding
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * @param newValue the templateBinding to update
+	 * 
+	 * @param newValue
+	 *        the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -331,7 +368,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the templateBinding edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToTemplateBinding(ViewerFilter filter);
@@ -340,7 +377,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the templateBinding edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
@@ -371,15 +408,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the useCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the useCase
-	 * @param newValue the useCase to update
+	 * 
+	 * @param newValue
+	 *        the useCase to update
 	 */
 	public void updateUseCase(EObject newValue);
 
@@ -387,7 +430,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the useCase edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToUseCase(ViewerFilter filter);
@@ -396,7 +439,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the useCase edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToUseCase(ViewerFilter filter);
@@ -437,15 +480,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedUseCase
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedUseCase(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedUseCase
-	 * @param newValue the ownedUseCase to update
+	 * 
+	 * @param newValue
+	 *        the ownedUseCase to update
 	 */
 	public void updateOwnedUseCase(EObject newValue);
 
@@ -453,7 +502,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the ownedUseCase edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedUseCase(ViewerFilter filter);
@@ -462,7 +511,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the ownedUseCase edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedUseCase(ViewerFilter filter);
@@ -503,15 +552,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the collaborationUse
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initCollaborationUse(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the collaborationUse
-	 * @param newValue the collaborationUse to update
+	 * 
+	 * @param newValue
+	 *        the collaborationUse to update
 	 */
 	public void updateCollaborationUse(EObject newValue);
 
@@ -519,7 +574,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the collaborationUse edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToCollaborationUse(ViewerFilter filter);
@@ -528,7 +583,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the collaborationUse edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCollaborationUse(ViewerFilter filter);
@@ -569,15 +624,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the substitution
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initSubstitution(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the substitution
-	 * @param newValue the substitution to update
+	 * 
+	 * @param newValue
+	 *        the substitution to update
 	 */
 	public void updateSubstitution(EObject newValue);
 
@@ -585,7 +646,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the substitution edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToSubstitution(ViewerFilter filter);
@@ -594,7 +655,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the substitution edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSubstitution(ViewerFilter filter);
@@ -625,15 +686,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedClassifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initRedefinedClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedClassifier
-	 * @param newValue the redefinedClassifier to update
+	 * 
+	 * @param newValue
+	 *        the redefinedClassifier to update
 	 */
 	public void updateRedefinedClassifier(EObject newValue);
 
@@ -641,7 +708,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the redefinedClassifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToRedefinedClassifier(ViewerFilter filter);
@@ -650,7 +717,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the redefinedClassifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedClassifier(ViewerFilter filter);
@@ -691,15 +758,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the generalization
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initGeneralization(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalization
-	 * @param newValue the generalization to update
+	 * 
+	 * @param newValue
+	 *        the generalization to update
 	 */
 	public void updateGeneralization(EObject newValue);
 
@@ -707,7 +780,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the generalization edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToGeneralization(ViewerFilter filter);
@@ -716,7 +789,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the generalization edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToGeneralization(ViewerFilter filter);
@@ -747,15 +820,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the powertypeExtent
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPowertypeExtent(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the powertypeExtent
-	 * @param newValue the powertypeExtent to update
+	 * 
+	 * @param newValue
+	 *        the powertypeExtent to update
 	 */
 	public void updatePowertypeExtent(EObject newValue);
 
@@ -763,7 +842,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the powertypeExtent edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPowertypeExtent(ViewerFilter filter);
@@ -772,7 +851,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the powertypeExtent edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPowertypeExtent(ViewerFilter filter);
@@ -813,15 +892,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *        the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -829,7 +914,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToElementImport(ViewerFilter filter);
@@ -838,7 +923,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
@@ -879,15 +964,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *        the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -895,7 +986,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPackageImport(ViewerFilter filter);
@@ -904,7 +995,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
@@ -945,15 +1036,21 @@ public interface AssociationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *        the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -961,7 +1058,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedRule(ViewerFilter filter);
@@ -970,7 +1067,7 @@ public interface AssociationPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
@@ -979,11 +1076,6 @@ public interface AssociationPropertiesEditionPart {
 	 * @return true if the given element is contained inside the ownedRule table
 	 */
 	public boolean isContainedInOwnedRuleTable(EObject element);
-
-
-
-
-
 
 
 

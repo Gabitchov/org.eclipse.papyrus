@@ -68,7 +68,7 @@ public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public AssociationDescriptor getPrimaryShape() {
-		return (AssociationDescriptor) getFigure();
+		return (AssociationDescriptor)getFigure();
 	}
 
 	/**

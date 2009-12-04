@@ -27,8 +27,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#isIsEncapsulated <em>Is Encapsulated
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#isIsEncapsulated <em>Is Encapsulated </em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
@@ -92,11 +91,11 @@ public class BlockImpl extends EObjectImpl implements Block {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BLOCK__IS_ENCAPSULATED:
 			return isIsEncapsulated();
 		case BlocksPackage.BLOCK__BASE_CLASS:
-			if (resolve)
+			if(resolve)
 				return getBase_Class();
 			return basicGetBase_Class();
 		}
@@ -110,7 +109,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BLOCK__IS_ENCAPSULATED:
 			return isEncapsulated != IS_ENCAPSULATED_EDEFAULT;
 		case BlocksPackage.BLOCK__BASE_CLASS:
@@ -126,12 +125,12 @@ public class BlockImpl extends EObjectImpl implements Block {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BLOCK__IS_ENCAPSULATED:
-			setIsEncapsulated((Boolean) newValue);
+			setIsEncapsulated((Boolean)newValue);
 			return;
 		case BlocksPackage.BLOCK__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) newValue);
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,12 +153,12 @@ public class BlockImpl extends EObjectImpl implements Block {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BLOCK__IS_ENCAPSULATED:
 			setIsEncapsulated(IS_ENCAPSULATED_EDEFAULT);
 			return;
 		case BlocksPackage.BLOCK__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) null);
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -171,11 +170,11 @@ public class BlockImpl extends EObjectImpl implements Block {
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject) base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class) eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+		if(base_Class != null && base_Class.eIsProxy()) {
+			InternalEObject oldBase_Class = (InternalEObject)base_Class;
+			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.BLOCK__BASE_CLASS,
 							oldBase_Class, base_Class));
 			}
@@ -200,7 +199,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BLOCK__BASE_CLASS, oldBase_Class,
 					base_Class));
 	}
@@ -213,7 +212,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 	public void setIsEncapsulated(boolean newIsEncapsulated) {
 		boolean oldIsEncapsulated = isEncapsulated;
 		isEncapsulated = newIsEncapsulated;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BLOCK__IS_ENCAPSULATED,
 					oldIsEncapsulated, isEncapsulated));
 	}
@@ -225,7 +224,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if(eIsProxy())
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

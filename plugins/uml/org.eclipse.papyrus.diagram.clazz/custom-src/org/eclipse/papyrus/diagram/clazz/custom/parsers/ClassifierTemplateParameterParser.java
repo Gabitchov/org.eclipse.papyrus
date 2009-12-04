@@ -40,22 +40,22 @@ public class ClassifierTemplateParameterParser implements IParser {
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final ClassifierTemplateParameter templateParam = ((ClassifierTemplateParameter) ((EObjectAdapter) element)
+		if(element instanceof EObjectAdapter) {
+			final ClassifierTemplateParameter templateParam = ((ClassifierTemplateParameter)((EObjectAdapter)element)
 					.getRealObject());
-			if (templateParam.getOwnedParameteredElement() == null) {
+			if(templateParam.getOwnedParameteredElement() == null) {
 				return "<UNDEFINED>";
 			}
 			String out = "";
-			if (templateParam.getOwnedParameteredElement() instanceof Classifier) {
-				Classifier namedElement = (Classifier) templateParam.getOwnedParameteredElement();
+			if(templateParam.getOwnedParameteredElement() instanceof Classifier) {
+				Classifier namedElement = (Classifier)templateParam.getOwnedParameteredElement();
 				out = out + namedElement.getName() + ": " + namedElement.eClass().getName();
 			}
-			if (!templateParam.getConstrainingClassifiers().isEmpty()) {
+			if(!templateParam.getConstrainingClassifiers().isEmpty()) {
 				out = out + ">";
-				for (int i = 0; i < templateParam.getConstrainingClassifiers().size(); i++) {
+				for(int i = 0; i < templateParam.getConstrainingClassifiers().size(); i++) {
 					out = out + templateParam.getConstrainingClassifiers().get(i).getName();
-					if (i < templateParam.getConstrainingClassifiers().size() - 1) {
+					if(i < templateParam.getConstrainingClassifiers().size() - 1) {
 						out = out + ", ";
 					}
 				}

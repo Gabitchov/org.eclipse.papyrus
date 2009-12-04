@@ -47,11 +47,11 @@ public class AddEObjectReferencesToDiagram extends AbstractTransactionalCommand 
 	 * Instantiates a new adds the e object references to diagram.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param eObjects
-	 *            the e objects
+	 *        the e objects
 	 */
 	public AddEObjectReferencesToDiagram(TransactionalEditingDomain domain, Diagram diagram, List<EObject> eObjects) {
 		super(domain, "Add EObject references to Diagram", null);
@@ -87,7 +87,7 @@ public class AddEObjectReferencesToDiagram extends AbstractTransactionalCommand 
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		for (EObject eObject : eObjects) {
+		for(EObject eObject : eObjects) {
 			addReferences(eObject);
 		}
 		return CommandResult.newOKCommandResult();
@@ -97,11 +97,11 @@ public class AddEObjectReferencesToDiagram extends AbstractTransactionalCommand 
 	 * Adds the references.
 	 * 
 	 * @param eObject
-	 *            the e object
+	 *        the e object
 	 */
 	private void addReferences(EObject eObject) {
-		if (addContents) {
-			for (EObject e : eObject.eContents()) {
+		if(addContents) {
+			for(EObject e : eObject.eContents()) {
 				addReferences(e);
 			}
 		}

@@ -40,7 +40,7 @@ public class DestroyObjectActionPropertiesEditionProvider implements IProperties
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof DestroyObjectAction) {
+		if(eObject instanceof DestroyObjectAction) {
 			return new DestroyObjectActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class DestroyObjectActionPropertiesEditionProvider implements IProperties
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof DestroyObjectAction) {
-			if (DestroyObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof DestroyObjectAction) {
+			if(DestroyObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new DestroyObjectActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

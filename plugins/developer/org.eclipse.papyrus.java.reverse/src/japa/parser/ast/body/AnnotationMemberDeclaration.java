@@ -34,64 +34,64 @@ import java.util.List;
  */
 public final class AnnotationMemberDeclaration extends BodyDeclaration {
 
-    private int modifiers;
+	private int modifiers;
 
-    private Type type;
+	private Type type;
 
-    private String name;
+	private String name;
 
-    private Expression defaultValue;
+	private Expression defaultValue;
 
-    public AnnotationMemberDeclaration() {
-    }
+	public AnnotationMemberDeclaration() {
+	}
 
-    public AnnotationMemberDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, int modifiers, List<AnnotationExpr> annotations, Type type, String name, Expression defaultValue) {
-        super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc);
-        this.modifiers = modifiers;
-        this.type = type;
-        this.name = name;
-        this.defaultValue = defaultValue;
-    }
+	public AnnotationMemberDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, int modifiers, List<AnnotationExpr> annotations, Type type, String name, Expression defaultValue) {
+		super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc);
+		this.modifiers = modifiers;
+		this.type = type;
+		this.name = name;
+		this.defaultValue = defaultValue;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Expression getDefaultValue() {
-        return defaultValue;
-    }
+	public Expression getDefaultValue() {
+		return defaultValue;
+	}
 
-    public int getModifiers() {
-        return modifiers;
-    }
+	public int getModifiers() {
+		return modifiers;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Type getType() {
-        return type;
-    }
+	public Type getType() {
+		return type;
+	}
 
-    public void setDefaultValue(Expression defaultValue) {
-        this.defaultValue = defaultValue;
-    }
+	public void setDefaultValue(Expression defaultValue) {
+		this.defaultValue = defaultValue;
+	}
 
-    public void setModifiers(int modifiers) {
-        this.modifiers = modifiers;
-    }
+	public void setModifiers(int modifiers) {
+		this.modifiers = modifiers;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setType(Type type) {
-        this.type = type;
-    }
+	public void setType(Type type) {
+		this.type = type;
+	}
 }

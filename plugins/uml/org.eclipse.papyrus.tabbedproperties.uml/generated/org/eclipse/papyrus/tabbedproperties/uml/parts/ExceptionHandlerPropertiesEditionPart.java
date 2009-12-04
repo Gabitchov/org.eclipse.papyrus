@@ -53,15 +53,21 @@ public interface ExceptionHandlerPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -109,15 +115,21 @@ public interface ExceptionHandlerPropertiesEditionPart {
 
 	/**
 	 * Init the exceptionType
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initExceptionType(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the exceptionType
-	 * @param newValue the exceptionType to update
+	 * 
+	 * @param newValue
+	 *        the exceptionType to update
 	 */
 	public void updateExceptionType(EObject newValue);
 
@@ -125,7 +137,7 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 * Adds the given filter to the exceptionType edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToExceptionType(ViewerFilter filter);
@@ -134,7 +146,7 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 * Adds the given filter to the exceptionType edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToExceptionType(ViewerFilter filter);
@@ -143,11 +155,6 @@ public interface ExceptionHandlerPropertiesEditionPart {
 	 * @return true if the given element is contained inside the exceptionType table
 	 */
 	public boolean isContainedInExceptionTypeTable(EObject element);
-
-
-
-
-
 
 
 

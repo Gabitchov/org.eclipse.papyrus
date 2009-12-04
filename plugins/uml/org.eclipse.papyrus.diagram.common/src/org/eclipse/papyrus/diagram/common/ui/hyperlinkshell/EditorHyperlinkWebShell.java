@@ -47,8 +47,8 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 		getEditHyperlinkShell().pack();
 		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
 		getEditHyperlinkShell().open();
-		while (!getEditHyperlinkShell().isDisposed()) {
-			if (!display.readAndDispatch())
+		while(!getEditHyperlinkShell().isDisposed()) {
+			if(!display.readAndDispatch())
 				display.sleep();
 		}
 	}
@@ -62,7 +62,7 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 
 		this.getObjectcLabel().setText(HYPERLINKS_LABEL);
 		// fill information
-		if (hyperLinkWeb != null) {
+		if(hyperLinkWeb != null) {
 			this.getObjectLabeltext().setText(hyperLinkWeb.getHyperLinkWeb());
 			this.getTooltipInputText().setText(hyperLinkWeb.getTooltipText());
 		} else {
@@ -90,7 +90,7 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				if (hyperLinkWeb == null) {
+				if(hyperLinkWeb == null) {
 					hyperLinkWeb = new HyperLinkWeb();
 				}
 				hyperLinkWeb.setHyperLinkWeb(getObjectLabeltext().getText().trim());
@@ -104,7 +104,7 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 		});
 		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
-		if (usedefaultTooltip) {
+		if(usedefaultTooltip) {
 			getTooltipInputText().setEditable(false);
 			getTooltipInputText().setText(getObjectLabeltext().getText());
 		}
@@ -113,7 +113,7 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 
 			public void mouseUp(MouseEvent e) {
 				usedefaultTooltip = getUseDefaultCheckBox().getSelection();
-				if (usedefaultTooltip) {
+				if(usedefaultTooltip) {
 					getTooltipInputText().setEditable(false);
 					getTooltipInputText().setText(getObjectLabeltext().getText());
 				} else {
@@ -133,7 +133,7 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 		getObjectLabeltext().addKeyListener(new KeyListener() {
 
 			public void keyReleased(KeyEvent e) {
-				if (usedefaultTooltip) {
+				if(usedefaultTooltip) {
 					getTooltipInputText().setText(getObjectLabeltext().getText());
 				}
 			}
@@ -156,7 +156,7 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 	 * Sets the hyper link web.
 	 * 
 	 * @param hyperLinkWeb
-	 *            the hyperLinkWeb to set
+	 *        the hyperLinkWeb to set
 	 */
 	public void setHyperLinkWeb(HyperLinkWeb hyperLinkWeb) {
 		this.hyperLinkWeb = hyperLinkWeb;

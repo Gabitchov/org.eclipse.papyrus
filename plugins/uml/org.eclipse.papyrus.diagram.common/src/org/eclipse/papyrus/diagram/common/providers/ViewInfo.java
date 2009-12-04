@@ -88,7 +88,7 @@ public interface ViewInfo {
 	 * Sets the type.
 	 * 
 	 * @param type
-	 *            the new type
+	 *        the new type
 	 */
 	// @unused
 	void setType(int type);
@@ -97,7 +97,7 @@ public interface ViewInfo {
 	 * Sets the visual id.
 	 * 
 	 * @param visualID
-	 *            the new visual id
+	 *        the new visual id
 	 */
 	// @unused
 	void setVisualID(int visualID);
@@ -106,7 +106,7 @@ public interface ViewInfo {
 	 * Sets the children.
 	 * 
 	 * @param children
-	 *            the new children
+	 *        the new children
 	 */
 	// @unused
 	void setChildren(Collection<ViewInfo> children);
@@ -115,7 +115,7 @@ public interface ViewInfo {
 	 * Sets the label.
 	 * 
 	 * @param label
-	 *            the new label
+	 *        the new label
 	 */
 	// @unused
 	void setLabel(String label);
@@ -124,7 +124,7 @@ public interface ViewInfo {
 	 * Sets the parent.
 	 * 
 	 * @param parent
-	 *            the new parent
+	 *        the new parent
 	 */
 	void setParent(ViewInfo parent);
 
@@ -132,9 +132,9 @@ public interface ViewInfo {
 	 * Adds the node.
 	 * 
 	 * @param parentVisualID
-	 *            the parent visual id
+	 *        the parent visual id
 	 * @param info
-	 *            the info
+	 *        the info
 	 * 
 	 * @return true, if successful
 	 */

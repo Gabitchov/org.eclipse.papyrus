@@ -34,8 +34,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * A field editor that display a button and a small rectangle under it to show the color selected.
  * 
- * This field editor is inspired by the class
- * {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection
+ * This field editor is inspired by the class {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection
  * <em>ColorsAndFontsPropertySection</em>}
  * 
  * @author tlandre
@@ -55,11 +54,11 @@ public class ColorFieldEditor extends FieldEditor {
 	 * Default constructor
 	 * 
 	 * @param name
-	 *            the preference name to use
+	 *        the preference name to use
 	 * @param image
-	 *            the image to display
+	 *        the image to display
 	 * @param parent
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	public ColorFieldEditor(String name, Image image, Composite parent) {
 		super(name, "", parent); // $NON-NLS-1$
@@ -107,7 +106,7 @@ public class ColorFieldEditor extends FieldEditor {
 
 	private void doLoadColor(RGB rgb) {
 		updateButtonImage(rgb);
-		if (colorSelector != null) {
+		if(colorSelector != null) {
 			colorSelector.setPreviousColor(FigureUtilities.RGBToInteger(rgb));
 		}
 
@@ -115,7 +114,7 @@ public class ColorFieldEditor extends FieldEditor {
 
 	@Override
 	protected void doStore() {
-		if (colorSelector != null) {
+		if(colorSelector != null) {
 			PreferenceConverter.setValue(getPreferenceStore(), getPreferenceName(), colorSelector.getSelectedColor());
 		}
 	}
@@ -133,7 +132,7 @@ public class ColorFieldEditor extends FieldEditor {
 		Point location = button.getParent().toDisplay(r.x, r.y);
 		colorSelector.open(location);
 
-		if (colorSelector.getSelectedColor() == null && !colorSelector.useDefaultColor()) {
+		if(colorSelector.getSelectedColor() == null && !colorSelector.useDefaultColor()) {
 			return;
 		}
 		updateButtonImage(colorSelector.getSelectedColor());
@@ -141,7 +140,7 @@ public class ColorFieldEditor extends FieldEditor {
 	}
 
 	private void updateButtonImage(RGB rgb) {
-		if (!colorButton.isDisposed() && colorButton.getImage() != null && !colorButton.getImage().isDisposed()) {
+		if(!colorButton.isDisposed() && colorButton.getImage() != null && !colorButton.getImage().isDisposed()) {
 			colorButton.getImage().dispose();
 			Image overlyedImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), rgb).createImage();
 			colorButton.setImage(overlyedImage);
@@ -163,9 +162,9 @@ public class ColorFieldEditor extends FieldEditor {
 		 * Creates a new color menu image descriptor
 		 * 
 		 * @param basicIcon
-		 *            The basic Image data
+		 *        The basic Image data
 		 * @param rgb
-		 *            The color bar RGB value
+		 *        The color bar RGB value
 		 */
 		public ColorOverlayImageDescriptor(ImageData basicImgData, RGB rgb) {
 			this.basicImgData = basicImgData;
@@ -178,10 +177,10 @@ public class ColorFieldEditor extends FieldEditor {
 		protected void drawCompositeImage(int width, int height) {
 
 			// draw the thin color bar underneath
-			if (rgb != null) {
+			if(rgb != null) {
 				ImageData colorBar = new ImageData(width, height / 5, 1,
 
-				new PaletteData(new RGB[] { rgb }));
+				new PaletteData(new RGB[]{ rgb }));
 				drawImage(colorBar, 0, height - height / 5);
 
 			}

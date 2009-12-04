@@ -55,13 +55,13 @@ public class ElementOwnedCommentReorientCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Element) {
+		if(false == referenceOwner instanceof Element) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -71,24 +71,24 @@ public class ElementOwnedCommentReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Comment && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Comment && newEnd instanceof Element)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistElementOwnedComment_3002(getNewSource(),
-						getOldTarget());
+				getOldTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Comment && newEnd instanceof Comment)) {
+		if(!(oldEnd instanceof Comment && newEnd instanceof Comment)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistElementOwnedComment_3002(getOldSource(),
-						getNewTarget());
+				getNewTarget());
 	}
 
 	/**
@@ -97,14 +97,13 @@ public class ElementOwnedCommentReorientCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -132,27 +131,27 @@ public class ElementOwnedCommentReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Element getOldSource() {
-		return (Element) referenceOwner;
+		return (Element)referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewSource() {
-		return (Element) newEnd;
+		return (Element)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Comment getOldTarget() {
-		return (Comment) oldEnd;
+		return (Comment)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Comment getNewTarget() {
-		return (Comment) newEnd;
+		return (Comment)newEnd;
 	}
 }

@@ -24,18 +24,20 @@ import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashWindowsMngrImpl#getPageList <em>Page List</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashWindowsMngrImpl#getSashModel <em>Sash Model</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashWindowsMngrImpl#getPageList <em>Page List</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashWindowsMngrImpl#getSashModel <em>Sash Model</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr {
+
 	/**
 	 * The cached value of the '{@link #getPageList() <em>Page List</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPageList()
 	 * @generated
 	 * @ordered
@@ -46,6 +48,7 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	 * The cached value of the '{@link #getSashModel() <em>Sash Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSashModel()
 	 * @generated
 	 * @ordered
@@ -55,6 +58,7 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SashWindowsMngrImpl() {
@@ -64,6 +68,7 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,6 +79,7 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PageList getPageList() {
@@ -83,14 +89,18 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPageList(PageList newPageList, NotificationChain msgs) {
 		PageList oldPageList = pageList;
 		pageList = newPageList;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST, oldPageList, newPageList);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -98,25 +108,27 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPageList(PageList newPageList) {
-		if (newPageList != pageList) {
+		if(newPageList != pageList) {
 			NotificationChain msgs = null;
-			if (pageList != null)
+			if(pageList != null)
 				msgs = ((InternalEObject)pageList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST, null, msgs);
-			if (newPageList != null)
+			if(newPageList != null)
 				msgs = ((InternalEObject)newPageList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST, null, msgs);
 			msgs = basicSetPageList(newPageList, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST, newPageList, newPageList));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SashModel getSashModel() {
@@ -126,14 +138,18 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSashModel(SashModel newSashModel, NotificationChain msgs) {
 		SashModel oldSashModel = sashModel;
 		sashModel = newSashModel;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL, oldSashModel, newSashModel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -141,34 +157,36 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSashModel(SashModel newSashModel) {
-		if (newSashModel != sashModel) {
+		if(newSashModel != sashModel) {
 			NotificationChain msgs = null;
-			if (sashModel != null)
+			if(sashModel != null)
 				msgs = ((InternalEObject)sashModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL, null, msgs);
-			if (newSashModel != null)
+			if(newSashModel != null)
 				msgs = ((InternalEObject)newSashModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL, null, msgs);
 			msgs = basicSetSashModel(newSashModel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL, newSashModel, newSashModel));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
-				return basicSetPageList(null, msgs);
-			case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
-				return basicSetSashModel(null, msgs);
+		switch(featureID) {
+		case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
+			return basicSetPageList(null, msgs);
+		case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
+			return basicSetSashModel(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -176,15 +194,16 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
-				return getPageList();
-			case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
-				return getSashModel();
+		switch(featureID) {
+		case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
+			return getPageList();
+		case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
+			return getSashModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,17 +211,18 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
-				setPageList((PageList)newValue);
-				return;
-			case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
-				setSashModel((SashModel)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
+			setPageList((PageList)newValue);
+			return;
+		case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
+			setSashModel((SashModel)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -210,17 +230,18 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
-				setPageList((PageList)null);
-				return;
-			case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
-				setSashModel((SashModel)null);
-				return;
+		switch(featureID) {
+		case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
+			setPageList((PageList)null);
+			return;
+		case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
+			setSashModel((SashModel)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -228,15 +249,16 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
-				return pageList != null;
-			case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
-				return sashModel != null;
+		switch(featureID) {
+		case DiPackage.SASH_WINDOWS_MNGR__PAGE_LIST:
+			return pageList != null;
+		case DiPackage.SASH_WINDOWS_MNGR__SASH_MODEL:
+			return sashModel != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -37,13 +37,9 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getSendSignalAction_2005SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next())
-					.getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
-					nextValue)) {
+		for (Iterator it = UMLDiagramUpdater.getSendSignalAction_2005SemanticChildren(viewObject).iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -60,8 +56,7 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
-					(View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case InputPin3EditPart.VISUAL_ID:
 				return actualID != suggestedID;
@@ -86,8 +81,7 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getSendSignalAction_Target());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getSendSignalAction_Target());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -114,5 +108,5 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	public boolean canCreate(EObject object) {
 		return false;
 	}
-	
+
 }

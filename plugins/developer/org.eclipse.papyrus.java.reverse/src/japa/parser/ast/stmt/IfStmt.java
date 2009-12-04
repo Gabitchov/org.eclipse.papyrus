@@ -30,53 +30,53 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class IfStmt extends Statement {
 
-    private Expression condition;
+	private Expression condition;
 
-    private Statement thenStmt;
+	private Statement thenStmt;
 
-    private Statement elseStmt;
+	private Statement elseStmt;
 
-    public IfStmt() {
-    }
+	public IfStmt() {
+	}
 
-    public IfStmt(int beginLine, int beginColumn, int endLine, int endColumn, Expression condition, Statement thenStmt, Statement elseStmt) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.condition = condition;
-        this.thenStmt = thenStmt;
-        this.elseStmt = elseStmt;
-    }
+	public IfStmt(int beginLine, int beginColumn, int endLine, int endColumn, Expression condition, Statement thenStmt, Statement elseStmt) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.condition = condition;
+		this.thenStmt = thenStmt;
+		this.elseStmt = elseStmt;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Expression getCondition() {
-        return condition;
-    }
+	public Expression getCondition() {
+		return condition;
+	}
 
-    public Statement getElseStmt() {
-        return elseStmt;
-    }
+	public Statement getElseStmt() {
+		return elseStmt;
+	}
 
-    public Statement getThenStmt() {
-        return thenStmt;
-    }
+	public Statement getThenStmt() {
+		return thenStmt;
+	}
 
-    public void setCondition(Expression condition) {
-        this.condition = condition;
-    }
+	public void setCondition(Expression condition) {
+		this.condition = condition;
+	}
 
-    public void setElseStmt(Statement elseStmt) {
-        this.elseStmt = elseStmt;
-    }
+	public void setElseStmt(Statement elseStmt) {
+		this.elseStmt = elseStmt;
+	}
 
-    public void setThenStmt(Statement thenStmt) {
-        this.thenStmt = thenStmt;
-    }
+	public void setThenStmt(Statement thenStmt) {
+		this.thenStmt = thenStmt;
+	}
 }

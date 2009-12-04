@@ -52,9 +52,9 @@ public abstract class RegisteredElementExtensionPoint {
 	 * Creates a new AbstractExtensionPoint.
 	 * 
 	 * @param configElt
-	 *            the configuration element for the extension point
+	 *        the configuration element for the extension point
 	 * @param ordinal
-	 *            the place of the extension point in the list of registered elements
+	 *        the place of the extension point in the list of registered elements
 	 */
 	public RegisteredElementExtensionPoint(IConfigurationElement configElt, int ordinal) {
 		this.configElement = configElt;
@@ -73,26 +73,26 @@ public abstract class RegisteredElementExtensionPoint {
 	 * Returns the given value for the specified element
 	 * 
 	 * @param defaultValue
-	 *            value given to the property if it is not already set
+	 *        value given to the property if it is not already set
 	 * @param isRequired
-	 *            <code>true</code> if the property must be set
+	 *        <code>true</code> if the property must be set
 	 * @param configElt
-	 *            configuration element from which to retrieve property value
+	 *        configuration element from which to retrieve property value
 	 * @param name
-	 *            name of the property
+	 *        name of the property
 	 * @return the value of the given property, or the specified defaultValue
 	 */
 	protected static String getAttribute(IConfigurationElement configElt, String name, String defaultValue,
 			boolean isRequired) {
 		String value = configElt.getAttribute(name);
 
-		if (value != null) {
+		if(value != null) {
 			return value;
-		} else if (defaultValue != null) {
+		} else if(defaultValue != null) {
 			return defaultValue;
 		}
 
-		if (isRequired) {
+		if(isRequired) {
 			throw new IllegalArgumentException("Missing " + name + " attribute");
 		}
 
@@ -107,12 +107,12 @@ public abstract class RegisteredElementExtensionPoint {
 	protected Image getImage(String iconPath, IConfigurationElement configElement) {
 
 		// no image associated to this plug-in
-		if (iconPath == null) {
+		if(iconPath == null) {
 			return null;
 		}
 
 		String extensionPluginId = "";
-		if (configElement != null) {
+		if(configElement != null) {
 			IExtension extension = configElement.getDeclaringExtension();
 			extensionPluginId = extension.getContributor().getName();
 		} else {
@@ -146,7 +146,7 @@ public abstract class RegisteredElementExtensionPoint {
 	 * Sets the name of the extension point
 	 * 
 	 * @param name
-	 *            the name to set
+	 *        the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -165,7 +165,7 @@ public abstract class RegisteredElementExtensionPoint {
 	 * Sets the description of the extension point
 	 * 
 	 * @param description
-	 *            the description to set
+	 *        the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -184,7 +184,7 @@ public abstract class RegisteredElementExtensionPoint {
 	 * Sets the provider of the extension point
 	 * 
 	 * @param provider
-	 *            the provider to set
+	 *        the provider to set
 	 */
 	public void setProvider(String provider) {
 		this.provider = provider;

@@ -40,7 +40,7 @@ public class RemoveStructuralFeatureValueActionPropertiesEditionProvider impleme
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof RemoveStructuralFeatureValueAction) {
+		if(eObject instanceof RemoveStructuralFeatureValueAction) {
 			return new RemoveStructuralFeatureValueActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class RemoveStructuralFeatureValueActionPropertiesEditionProvider impleme
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof RemoveStructuralFeatureValueAction) {
-			if (RemoveStructuralFeatureValueActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof RemoveStructuralFeatureValueAction) {
+			if(RemoveStructuralFeatureValueActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new RemoveStructuralFeatureValueActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

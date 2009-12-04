@@ -138,20 +138,20 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Element) {
+		if(source != null && false == source instanceof Element) {
 			return false;
 		}
-		if (target != null && false == target instanceof Element) {
+		if(target != null && false == target instanceof Element) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
+		if(getContainer() == null) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4004(getContainer(), getSource(),
@@ -164,13 +164,13 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException(CREATE_LINK_ERROR_MSG);
 		}
 
 		// Retrieve container of call event which is an instance of Package
 		Package eventContainer = CommandHelper.getEventContainer(container.getOwner());
-		if (eventContainer != null) {
+		if(eventContainer != null) {
 			// Create the Async Message
 			Message message = container.createMessage("");
 
@@ -183,14 +183,14 @@ public class Message2CreateCommand extends EditElementCommand {
 			Event sendEvent = null;
 			Event receiveEvent = null;
 
-			if (signature instanceof Operation) {
-				sendEvent = CommandHelper.createSendOperationEvent(eventContainer, (Operation) signature);
-				receiveEvent = CommandHelper.createReceiveOperationEvent(eventContainer, (Operation) signature);
+			if(signature instanceof Operation) {
+				sendEvent = CommandHelper.createSendOperationEvent(eventContainer, (Operation)signature);
+				receiveEvent = CommandHelper.createReceiveOperationEvent(eventContainer, (Operation)signature);
 				message.setMessageSort(MessageSort.ASYNCH_CALL_LITERAL);
 
-			} else if (signature instanceof Signal) {
-				sendEvent = CommandHelper.createSendSignalEvent(eventContainer, (Signal) signature);
-				receiveEvent = CommandHelper.createReceiveSignalEvent(eventContainer, (Signal) signature);
+			} else if(signature instanceof Signal) {
+				sendEvent = CommandHelper.createSendSignalEvent(eventContainer, (Signal)signature);
+				receiveEvent = CommandHelper.createReceiveSignalEvent(eventContainer, (Signal)signature);
 				message.setMessageSort(MessageSort.ASYNCH_SIGNAL_LITERAL);
 			} else {
 				sendEvent = CommandHelper.createCallEvent(eventContainer);
@@ -205,7 +205,7 @@ public class Message2CreateCommand extends EditElementCommand {
 			setCoveredLifeline(getSource(), startMsg);
 			setCoveredLifeline(getTarget(), endMsg);
 
-			if (startMsg != null && endMsg != null) {
+			if(startMsg != null && endMsg != null) {
 				message.setSendEvent(startMsg);
 				message.setReceiveEvent(endMsg);
 				endMsg.setMessage(message);
@@ -213,7 +213,7 @@ public class Message2CreateCommand extends EditElementCommand {
 
 				ElementInitializers.init_Message_4004(message);
 				doConfigure(message, monitor, info);
-				((CreateElementRequest) getRequest()).setNewElement(message);
+				((CreateElementRequest)getRequest()).setNewElement(message);
 				return CommandResult.newOKCommandResult(message);
 			} else {
 				return CommandResult.newCancelledCommandResult();
@@ -228,15 +228,15 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * @param messageEnd
 	 */
 	private void setCoveredLifeline(Element element, MessageEnd messageEnd) {
-		if (messageEnd instanceof MessageOccurrenceSpecification) {
+		if(messageEnd instanceof MessageOccurrenceSpecification) {
 			Lifeline sourceLL = null;
-			if (element instanceof ExecutionSpecification) {
-				sourceLL = ((ExecutionSpecification) element).getCovereds().get(0);
-			} else if (element instanceof Lifeline) {
-				sourceLL = (Lifeline) element;
+			if(element instanceof ExecutionSpecification) {
+				sourceLL = ((ExecutionSpecification)element).getCovereds().get(0);
+			} else if(element instanceof Lifeline) {
+				sourceLL = (Lifeline)element;
 			}
 
-			CommandHelper.setSingleCovered(sourceLL, (MessageOccurrenceSpecification) messageEnd);
+			CommandHelper.setSingleCovered(sourceLL, (MessageOccurrenceSpecification)messageEnd);
 		}
 	}
 
@@ -245,22 +245,22 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * 
 	 * @genereated NOT
 	 * @param interaction
-	 *            The Interaction
+	 *        The Interaction
 	 * @param callEvent
-	 *            The call event
+	 *        The call event
 	 * @param element
-	 *            The element
+	 *        The element
 	 * @param direction
-	 *            The message direction
+	 *        The message direction
 	 * @return A MessageOccurrenceSpecification if element is ExecutionSpecification or Lifeline. A
 	 *         Gate if element is Interaction or CombinedFragment or InteractionUse
 	 */
 	private static MessageEnd createMessageEnd(Interaction interaction, Event event, Element element,
 			MessageDirection direction) {
 		MessageEnd endMsg = null;
-		if (element instanceof ExecutionSpecification || element instanceof Lifeline) {
+		if(element instanceof ExecutionSpecification || element instanceof Lifeline) {
 			endMsg = CommandHelper.doCreateMessageOccurrence(interaction, event);
-		} else if (element instanceof Interaction || element instanceof CombinedFragment
+		} else if(element instanceof Interaction || element instanceof CombinedFragment
 				|| element instanceof InteractionUse) {
 			endMsg = doCreateGate(element, direction);
 		}
@@ -272,25 +272,25 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * 
 	 * @generated NOT
 	 * @param element
-	 *            The element
+	 *        The element
 	 * @param direction
-	 *            The message direction
+	 *        The message direction
 	 * @return The gate
 	 * @throws IllegalArgumentException
-	 *             if the element is not a right element type
+	 *         if the element is not a right element type
 	 */
 	private static Gate doCreateGate(Element element, MessageDirection direction) {
 		Gate gate = null;
 
-		if (element instanceof Interaction) {
-			gate = ((Interaction) element).createFormalGate("");
-		} else if (element instanceof CombinedFragment) {
-			gate = ((CombinedFragment) element).createCfragmentGate("");
-		} else if (element instanceof InteractionUse) {
+		if(element instanceof Interaction) {
+			gate = ((Interaction)element).createFormalGate("");
+		} else if(element instanceof CombinedFragment) {
+			gate = ((CombinedFragment)element).createCfragmentGate("");
+		} else if(element instanceof InteractionUse) {
 			Shell shell = Display.getCurrent().getActiveShell();
-			InteractionUse interactionUse = (InteractionUse) element;
+			InteractionUse interactionUse = (InteractionUse)element;
 
-			if (interactionUse.getRefersTo() == null) {
+			if(interactionUse.getRefersTo() == null) {
 				MessageDialog.openError(shell, NO_REFERENCED_INTERACTION_DIALOG_TITLE,
 						NO_REFERENCED_INTERACTION_DIALOG_MSG);
 				return null;
@@ -304,20 +304,20 @@ public class Message2CreateCommand extends EditElementCommand {
 			dialog.setMultipleSelection(false);
 
 			List<Gate> gates = new ArrayList<Gate>();
-			for (Gate actualGate : ((InteractionUse) element).getActualGates()) {
-				if (actualGate.getName().startsWith(direction.getName())) {
+			for(Gate actualGate : ((InteractionUse)element).getActualGates()) {
+				if(actualGate.getName().startsWith(direction.getName())) {
 					gates.add(actualGate);
 				}
 			}
 			dialog.setElements(gates.toArray());
-			if (dialog.open() == Window.OK) {
-				gate = (Gate) dialog.getFirstResult();
+			if(dialog.open() == Window.OK) {
+				gate = (Gate)dialog.getFirstResult();
 			}
 		} else {
 			throw new IllegalArgumentException(WRONG_GATE_CONTAINER_TYPE_ERROR_MSG);
 		}
 
-		if (gate != null) {
+		if(gate != null) {
 			ElementInitializers.init_NamedElement(gate, direction.toString().toLowerCase() + "_");
 		}
 
@@ -328,14 +328,14 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(Message newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -351,14 +351,14 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Element getSource() {
-		return (Element) source;
+		return (Element)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getTarget() {
-		return (Element) target;
+		return (Element)target;
 	}
 
 	/**
@@ -378,9 +378,9 @@ public class Message2CreateCommand extends EditElementCommand {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof Interaction) {
-				return (Interaction) element;
+		for(EObject element = source; element != null; element = element.eContainer()) {
+			if(element instanceof Interaction) {
+				return (Interaction)element;
 			}
 		}
 		return null;

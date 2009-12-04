@@ -40,7 +40,7 @@ public class PortPropertiesEditionProvider implements IPropertiesEditionProvider
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Port) {
+		if(eObject instanceof Port) {
 			return new PortPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class PortPropertiesEditionProvider implements IPropertiesEditionProvider
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Port) {
-			if (PortBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Port) {
+			if(PortBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new PortBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

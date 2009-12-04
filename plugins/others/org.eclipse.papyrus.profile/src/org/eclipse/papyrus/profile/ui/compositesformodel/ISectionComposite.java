@@ -25,17 +25,19 @@ public interface ISectionComposite {
 	/**
 	 * Creates the content of the Section.
 	 * 
-	 * @param factory the factory used to create the widgets for the section
-	 * @param parent the parent of the composite for this section
+	 * @param factory
+	 *        the factory used to create the widgets for the section
+	 * @param parent
+	 *        the parent of the composite for this section
 	 * 
 	 * @return the top level Composite of this section
 	 */
 	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory);
-	
+
 	/**
 	 * Refresh the contents of the controls displayed in this section.
 	 */
 	public void refresh();
-	
-	
+
+
 }

@@ -57,15 +57,15 @@ public class DiagramEditPartsUtil {
 	 * Gets a list of all GraphicalEditParts in the diagram of the given EditPart.
 	 * 
 	 * @param editPart
-	 *            Any <code>EditPart</code> in the diagram. The TopGraphicalNode will be found from
-	 *            this.
+	 *        Any <code>EditPart</code> in the diagram. The TopGraphicalNode will be found from
+	 *        this.
 	 * 
 	 * @return a list containing all <code>GraphicalEditPart</code> in the diagram.
 	 */
 	// @unused
 	public static List<IGraphicalEditPart> getAllEditParts(EditPart editPart) {
 
-		if (editPart == null) {
+		if(editPart == null) {
 			return null;
 		}
 
@@ -73,8 +73,8 @@ public class DiagramEditPartsUtil {
 
 		List<IGraphicalEditPart> editParts = new ArrayList<IGraphicalEditPart>();
 
-		if (editPart instanceof IGraphicalEditPart) {
-			editParts.add((IGraphicalEditPart) editPart);
+		if(editPart instanceof IGraphicalEditPart) {
+			editParts.add((IGraphicalEditPart)editPart);
 		}
 		addEditPartGraphicalChildren(editPart, editParts);
 
@@ -85,13 +85,13 @@ public class DiagramEditPartsUtil {
 	 * Returns the upper most EditPart in the hierarchy of the given EditPart.
 	 * 
 	 * @param editPart
-	 *            A non-null EditPart
+	 *        A non-null EditPart
 	 * 
 	 * @return The upper most EditPart in the hierarchy; may be the same EditPart
 	 */
 	public static EditPart getTopMostEditPart(EditPart editPart) {
 
-		if (editPart == null) {
+		if(editPart == null) {
 			return null;
 		}
 
@@ -99,7 +99,7 @@ public class DiagramEditPartsUtil {
 
 		actual = editPart;
 
-		while ((parent = actual.getParent()) != null) {
+		while((parent = actual.getParent()) != null) {
 			actual = parent;
 		}
 
@@ -110,35 +110,35 @@ public class DiagramEditPartsUtil {
 	 * Gets the diagram edit part.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 * 
 	 * @return the diagram edit part
 	 */
 	// @unused
 	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
-		if (editPart == null) {
+		if(editPart == null) {
 			return null;
 		}
 
-		if (editPart instanceof IGraphicalEditPart) {
-			IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart) editPart;
+		if(editPart instanceof IGraphicalEditPart) {
+			IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart)editPart;
 			View view = graphicalEditPart.getNotationView();
 			Diagram diagram = view.getDiagram();
 			Object object = graphicalEditPart.getViewer().getEditPartRegistry().get(diagram);
-			if (object instanceof DiagramEditPart) {
-				return (DiagramEditPart) object;
+			if(object instanceof DiagramEditPart) {
+				return (DiagramEditPart)object;
 			}
 		}
 
-		if (editPart instanceof DiagramEditPart) {
-			return (DiagramEditPart) editPart;
+		if(editPart instanceof DiagramEditPart) {
+			return (DiagramEditPart)editPart;
 		}
 
 		EditPart actual = editPart;
 		EditPart parent = null;
-		while ((parent = actual.getParent()) != null) {
-			if (parent instanceof DiagramEditPart) {
-				return (DiagramEditPart) parent;
+		while((parent = actual.getParent()) != null) {
+			if(parent instanceof DiagramEditPart) {
+				return (DiagramEditPart)parent;
 			} else {
 				actual = parent;
 			}
@@ -151,11 +151,11 @@ public class DiagramEditPartsUtil {
 	 * Handle notification for diagram.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 * @param notification
-	 *            the notification
+	 *        the notification
 	 * @param features
-	 *            the features
+	 *        the features
 	 */
 	// @unused
 	public static void handleNotificationForDiagram(IGraphicalEditPart editPart, Notification notification,
@@ -165,8 +165,8 @@ public class DiagramEditPartsUtil {
 		Object feature = notification.getFeature();
 		Object oldValue = notification.getOldValue();
 		Object newValue = notification.getNewValue();
-		if (notifier != null && notifier == element) {
-			if (feature != null && oldValue != null && oldValue != newValue && features.contains(feature)) {
+		if(notifier != null && notifier == element) {
+			if(feature != null && oldValue != null && oldValue != newValue && features.contains(feature)) {
 				DiagramEditPartsUtil.updateDiagram(editPart);
 			}
 
@@ -177,11 +177,11 @@ public class DiagramEditPartsUtil {
 	 * Handle notification for view.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 * @param notification
-	 *            the notification
+	 *        the notification
 	 * @param features
-	 *            the features
+	 *        the features
 	 */
 	// @unused
 	public static void handleNotificationForView(IGraphicalEditPart editPart, Notification notification,
@@ -191,8 +191,8 @@ public class DiagramEditPartsUtil {
 		Object feature = notification.getFeature();
 		Object oldValue = notification.getOldValue();
 		Object newValue = notification.getNewValue();
-		if (notifier != null && notifier == element) {
-			if (feature != null && oldValue != null && oldValue != newValue && features.contains(feature)) {
+		if(notifier != null && notifier == element) {
+			if(feature != null && oldValue != null && oldValue != newValue && features.contains(feature)) {
 				DiagramEditPartsUtil.updateEditPart(editPart);
 			}
 
@@ -203,25 +203,25 @@ public class DiagramEditPartsUtil {
 	 * Update a <View>.
 	 * 
 	 * @param view
-	 *            the view
+	 *        the view
 	 */
 	// @unused
 	public static void updateDiagram(View view) {
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		view = view.getDiagram();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		EObject element = view.getElement();
-		if (element == null) {
+		if(element == null) {
 			return;
 		}
 
 		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(element);
-		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
+		for(Iterator it = editPolicies.iterator(); it.hasNext();) {
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy)it.next();
 			nextEditPolicy.refresh();
 		}
 	}
@@ -230,28 +230,28 @@ public class DiagramEditPartsUtil {
 	 * Update diagram.
 	 * 
 	 * @param editPart
-	 *            any edit part in the <Diagram>
+	 *        any edit part in the <Diagram>
 	 */
 	public static void updateDiagram(IGraphicalEditPart editPart) {
-		if (editPart == null) {
+		if(editPart == null) {
 			return;
 		}
 		View view = editPart.getNotationView();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		view = view.getDiagram();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		EObject element = view.getElement();
-		if (element == null) {
+		if(element == null) {
 			return;
 		}
 
 		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(element);
-		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
+		for(Iterator it = editPolicies.iterator(); it.hasNext();) {
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy)it.next();
 			nextEditPolicy.refresh();
 		}
 	}
@@ -260,24 +260,24 @@ public class DiagramEditPartsUtil {
 	 * Update EditPart.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 */
 	public static void updateEditPart(IGraphicalEditPart editPart) {
-		if (editPart == null) {
+		if(editPart == null) {
 			return;
 		}
 		View view = editPart.getNotationView();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		EObject element = view.getElement();
-		if (element == null) {
+		if(element == null) {
 			return;
 		}
 
 		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(element);
-		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
+		for(Iterator it = editPolicies.iterator(); it.hasNext();) {
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy)it.next();
 			nextEditPolicy.refresh();
 		}
 	}
@@ -286,30 +286,30 @@ public class DiagramEditPartsUtil {
 	 * Update EditPart and all contained EditPart that share the same type of model element.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 * @param eClass
-	 *            the e class
+	 *        the e class
 	 */
 	public static void updateEditPartAndChildren(IGraphicalEditPart editPart, EClass eClass) {
-		if (editPart == null) {
+		if(editPart == null) {
 			return;
 		}
 		View view = editPart.getNotationView();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 
-		for (Object child : editPart.getChildren()) {
-			if (child instanceof IGraphicalEditPart) {
-				updateEditPartAndChildren(((IGraphicalEditPart) child), eClass);
+		for(Object child : editPart.getChildren()) {
+			if(child instanceof IGraphicalEditPart) {
+				updateEditPartAndChildren(((IGraphicalEditPart)child), eClass);
 			}
 		}
 
 		EObject element = view.getElement();
-		if (eClass != null && eClass.isInstance(element)) {
+		if(eClass != null && eClass.isInstance(element)) {
 			List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(element);
-			for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-				CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
+			for(Iterator it = editPolicies.iterator(); it.hasNext();) {
+				CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy)it.next();
 				nextEditPolicy.refresh();
 			}
 		}
@@ -319,21 +319,21 @@ public class DiagramEditPartsUtil {
 	 * Adds the edit part graphical children.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 * @param list
-	 *            the list
+	 *        the list
 	 */
 	private static void addEditPartGraphicalChildren(EditPart editPart, List<IGraphicalEditPart> list) {
 
-		if (editPart == null) {
+		if(editPart == null) {
 			return;
 		}
 
 		List<EditPart> children = editPart.getChildren();
 
-		for (EditPart ep : children) {
-			if (ep instanceof IGraphicalEditPart) {
-				list.add((IGraphicalEditPart) ep);
+		for(EditPart ep : children) {
+			if(ep instanceof IGraphicalEditPart) {
+				list.add((IGraphicalEditPart)ep);
 			}
 			addEditPartGraphicalChildren(ep, list);
 		}
@@ -344,13 +344,13 @@ public class DiagramEditPartsUtil {
 	 * Gets the e object views.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return the e object views
 	 */
 	public static List getEObjectViews(EObject element) {
 		List views = new ArrayList();
-		if (element != null) {
+		if(element != null) {
 			EReference[] features = { NotationPackage.eINSTANCE.getView_Element() };
 			views.addAll(EMFCoreUtil.getReferencers(element, features));
 		}
@@ -361,18 +361,18 @@ public class DiagramEditPartsUtil {
 	 * Find the views associated with the given eObject in the viewer
 	 * 
 	 * @param parserElement
-	 *            the
+	 *        the
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * @return views found if any
 	 */
 	public static List<View> findViews(EObject parserElement, EditPartViewer viewer) {
 		List<View> modelElements = new ArrayList<View>();
-		if (parserElement != null) {
-			for (Object ep : viewer.getEditPartRegistry().keySet()) {
-				if (ep instanceof View) {
-					View view = (View) ep;
-					if (parserElement.equals(view.getElement())) {
+		if(parserElement != null) {
+			for(Object ep : viewer.getEditPartRegistry().keySet()) {
+				if(ep instanceof View) {
+					View view = (View)ep;
+					if(parserElement.equals(view.getElement())) {
 						modelElements.add(view);
 					}
 				}
@@ -385,37 +385,37 @@ public class DiagramEditPartsUtil {
 	 * Finds the <EditPart>s for the <EObject>s in the selection.
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * 
 	 * @return the edits the parts from selection
 	 */
 	// @unused
 	public static List<EditPart> getEditPartsFromSelection(ISelection selection, IDiagramGraphicalViewer viewer) {
-		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
-			StructuredSelection structuredSelection = (StructuredSelection) selection;
+		if(selection instanceof StructuredSelection && !selection.isEmpty()) {
+			StructuredSelection structuredSelection = (StructuredSelection)selection;
 			// look for Views of the EObjects in the selection
 			List<View> views = new ArrayList<View>();
-			for (Object o : structuredSelection.toList()) {
-				if (o instanceof EObject) {
-					List referencerViews = getEObjectViews((EObject) o);
-					for (Object ro : referencerViews) {
-						if (ro instanceof View) {
-							views.add((View) ro);
+			for(Object o : structuredSelection.toList()) {
+				if(o instanceof EObject) {
+					List referencerViews = getEObjectViews((EObject)o);
+					for(Object ro : referencerViews) {
+						if(ro instanceof View) {
+							views.add((View)ro);
 						}
 					}
 				}
 			}
-			if (!views.isEmpty()) {
+			if(!views.isEmpty()) {
 				List<EditPart> editParts = new ArrayList<EditPart>();
-				for (View view : views) {
+				for(View view : views) {
 					Object ep = viewer.getEditPartRegistry().get(view);
-					if (ep instanceof EditPart) {
-						editParts.add((EditPart) ep);
+					if(ep instanceof EditPart) {
+						editParts.add((EditPart)ep);
 					}
 				}
-				if (!editParts.isEmpty()) {
+				if(!editParts.isEmpty()) {
 					return editParts;
 				}
 			}
@@ -428,15 +428,15 @@ public class DiagramEditPartsUtil {
 	 * Gets the edits the part from view.
 	 * 
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param anyEditPart
-	 *            the any edit part
+	 *        the any edit part
 	 * 
 	 * @return the edits the part from view
 	 */
 	public static EditPart getEditPartFromView(View view, EditPart anyEditPart) {
-		if (view != null) {
-			return (EditPart) anyEditPart.getViewer().getEditPartRegistry().get(view);
+		if(view != null) {
+			return (EditPart)anyEditPart.getViewer().getEditPartRegistry().get(view);
 		}
 		return null;
 	}
@@ -449,15 +449,15 @@ public class DiagramEditPartsUtil {
 	 * Find diagram from plugin.
 	 * 
 	 * @param plugin
-	 *            the plugin
+	 *        the plugin
 	 * 
 	 * @return the diagram
 	 */
 	public static Diagram findDiagramFromPlugin(AbstractUIPlugin plugin) {
 		IEditorPart editor = plugin.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
-		if (editor instanceof DiagramEditor) {
-			return ((DiagramEditor) editor).getDiagram();
+		if(editor instanceof DiagramEditor) {
+			return ((DiagramEditor)editor).getDiagram();
 		}
 
 		return null;
@@ -467,15 +467,15 @@ public class DiagramEditPartsUtil {
 	 * Find diagram from edit part.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 * 
 	 * @return the diagram
 	 */
 	public static Diagram findDiagramFromEditPart(EditPart editPart) {
 		Object object = editPart.getModel();
 
-		if (object instanceof View) {
-			return ((View) object).getDiagram();
+		if(object instanceof View) {
+			return ((View)object).getDiagram();
 		}
 
 		return null;
@@ -487,17 +487,17 @@ public class DiagramEditPartsUtil {
 	 * Refresh i text aware edit parts.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 */
 	public static void refreshITextAwareEditParts(EditPart editPart) {
 
-		for (Object obj : editPart.getChildren()) {
-			if (obj instanceof EditPart) {
-				refreshITextAwareEditParts((EditPart) obj);
+		for(Object obj : editPart.getChildren()) {
+			if(obj instanceof EditPart) {
+				refreshITextAwareEditParts((EditPart)obj);
 			}
 		}
 
-		if (editPart instanceof ITextAwareEditPart) {
+		if(editPart instanceof ITextAwareEditPart) {
 			editPart.refresh();
 		}
 	}

@@ -69,7 +69,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 	 * Sets the diagram list.
 	 * 
 	 * @param diagramList
-	 *            the diagramList to set
+	 *        the diagramList to set
 	 */
 	public void setDiagramList(ArrayList<HyperLinkDiagram> diagramList) {
 		this.diagramList.clear();
@@ -92,7 +92,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 	 * Sets the document list.
 	 * 
 	 * @param documentList
-	 *            the documentList to set
+	 *        the documentList to set
 	 */
 	public void setDocumentList(ArrayList<HyperlinkDocument> documentList) {
 		this.documentList.clear();
@@ -113,7 +113,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 	 * Sets the hyperlink web list.
 	 * 
 	 * @param hyperlinkWebList
-	 *            the hyperlinkWebList to set
+	 *        the hyperlinkWebList to set
 	 */
 	public void setHyperlinkWebList(ArrayList<HyperLinkWeb> hyperlinkWebList) {
 		this.hyperlinkWebList.clear();
@@ -136,11 +136,11 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param viewer
-		 *            the viewer
+		 *        the viewer
 		 * @param oldInput
-		 *            the old input
+		 *        the old input
 		 * @param newInput
-		 *            the new input
+		 *        the new input
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		}
@@ -149,13 +149,13 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param inputElement
-		 *            the input element
+		 *        the input element
 		 * 
 		 * @return the elements
 		 */
 		public Object[] getElements(Object inputElement) {
-			if (inputElement instanceof ArrayList<?>) {
-				return ((ArrayList<?>) inputElement).toArray();
+			if(inputElement instanceof ArrayList<?>) {
+				return ((ArrayList<?>)inputElement).toArray();
 			}
 			return null;
 		}
@@ -174,7 +174,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * Instantiates a new object label provider.
 		 * 
 		 * @param imagePath
-		 *            the image path
+		 *        the image path
 		 */
 		public ObjectLabelProvider(String imagePath) {
 			theImagePath = imagePath;
@@ -184,16 +184,16 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param element
-		 *            the element
+		 *        the element
 		 * 
 		 * @return the image
 		 */
 		public Image getImage(Object element) {
-			if (element instanceof HyperlinkDocument || element instanceof HyperLinkWeb) {
+			if(element instanceof HyperlinkDocument || element instanceof HyperLinkWeb) {
 				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", theImagePath)
 						.createImage();
-			} else if (element instanceof HyperLinkDiagram) {
-				return editorRegistry.getEditorIcon(((HyperLinkDiagram) element).getDiagram());
+			} else if(element instanceof HyperLinkDiagram) {
+				return editorRegistry.getEditorIcon(((HyperLinkDiagram)element).getDiagram());
 			}
 			return null;
 		}
@@ -202,22 +202,22 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param element
-		 *            the element
+		 *        the element
 		 * 
 		 * @return the text
 		 */
 		public String getText(Object element) {
 			String out = "";
-			if (element instanceof HyperLinkDiagram) {
-				out = ((HyperLinkDiagram) element).getDiagram().getName();
-			} else if (element instanceof HyperlinkDocument) {
-				out = ((HyperlinkDocument) element).getHyperlinkDocument();
-			} else if (element instanceof HyperLinkWeb) {
-				out = ((HyperLinkWeb) element).getHyperLinkWeb();
+			if(element instanceof HyperLinkDiagram) {
+				out = ((HyperLinkDiagram)element).getDiagram().getName();
+			} else if(element instanceof HyperlinkDocument) {
+				out = ((HyperlinkDocument)element).getHyperlinkDocument();
+			} else if(element instanceof HyperLinkWeb) {
+				out = ((HyperLinkWeb)element).getHyperLinkWeb();
 			} else {
 				return null;
 			}
-			out = out + SEP + ((HyperlinkObject) element).getTooltipText();
+			out = out + SEP + ((HyperlinkObject)element).getTooltipText();
 			return out;
 		}
 
@@ -225,7 +225,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param listener
-		 *            the listener
+		 *        the listener
 		 */
 		public void addListener(ILabelProviderListener listener) {
 		}
@@ -240,9 +240,9 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param element
-		 *            the element
+		 *        the element
 		 * @param property
-		 *            the property
+		 *        the property
 		 * 
 		 * @return true, if checks if is label property
 		 */
@@ -255,7 +255,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param listener
-		 *            the listener
+		 *        the listener
 		 */
 		public void removeListener(ILabelProviderListener listener) {
 			// TODO Auto-generated method stub
@@ -298,15 +298,15 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 	 * Instantiates a new hyper link manager shell2.
 	 * 
 	 * @param editorFactoryRegistry
-	 *            the editor factory registry
+	 *        the editor factory registry
 	 * @param model
-	 *            the model that contains all elements
+	 *        the model that contains all elements
 	 * @param domain
-	 *            the domain inorder to execute command
+	 *        the domain inorder to execute command
 	 * @param umlElement
-	 *            the uml element linked to the view
+	 *        the uml element linked to the view
 	 * @param aview
-	 *            the aview of the uml element
+	 *        the aview of the uml element
 	 */
 	public HyperLinkManagerShell2(IEditorFactoryRegistry editorFactoryRegistry, TransactionalEditingDomain domain,
 			Element umlElement, View aview, Package model) {
@@ -356,28 +356,28 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 						HyperlinkHelper.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
 				// save hyperlink Document list
 				Iterator<HyperlinkDocument> iterdoc = documentList.iterator();
-				while (iterdoc.hasNext()) {
+				while(iterdoc.hasNext()) {
 					HyperlinkDocument currentDocument = iterdoc.next();
 					transactionalEditingDomain.getCommandStack().execute(
 							HyperlinkHelper.getAddHyperLinkDocumentCommand(transactionalEditingDomain, view,
-									currentDocument.getTooltipText(), currentDocument.getHyperlinkDocument()));
+							currentDocument.getTooltipText(), currentDocument.getHyperlinkDocument()));
 				}
 
 				// save hyperlinkWeb list
 				Iterator<HyperLinkWeb> iterweb = hyperlinkWebList.iterator();
-				while (iterweb.hasNext()) {
+				while(iterweb.hasNext()) {
 					HyperLinkWeb currentWeb = iterweb.next();
 					transactionalEditingDomain.getCommandStack().execute(
 							HyperlinkHelper.getAddHyperLinkWebCommand(transactionalEditingDomain, view, currentWeb
-									.getTooltipText(), currentWeb.getHyperLinkWeb()));
+							.getTooltipText(), currentWeb.getHyperLinkWeb()));
 				}
 				// save hyperlink Document list
 				Iterator<HyperLinkDiagram> iterDiag = diagramList.iterator();
-				while (iterDiag.hasNext()) {
+				while(iterDiag.hasNext()) {
 					HyperLinkDiagram currentDiag = iterDiag.next();
 					transactionalEditingDomain.getCommandStack().execute(
 							HyperlinkHelper.getAddHyperLinkDiagamCommand(transactionalEditingDomain, view, currentDiag
-									.getTooltipText(), currentDiag.getDiagram().getName(), currentDiag.getDiagram()));
+							.getTooltipText(), currentDiag.getDiagram().getName(), currentDiag.getDiagram()));
 				}
 
 				getHyperLinkShell().close();
@@ -407,7 +407,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 			public void mouseDown(MouseEvent e) {
 				EditorHyperlinkWebShell editor = new EditorHyperlinkWebShell();
 				editor.open();
-				if (editor.getHyperLinkWeb() != null) {
+				if(editor.getHyperLinkWeb() != null) {
 					hyperlinkWebList.add(editor.getHyperLinkWeb());
 					hyperlinkWeblistTableViewer.setInput(getHyperlinkWebList());
 				}
@@ -425,8 +425,8 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 
 			public void mouseDown(MouseEvent e) {
 
-				if (hyperlinkWeblistTableViewer.getTable().getSelection().length != 0) {
-					HyperLinkWeb hyperLinkWeb = (HyperLinkWeb) ((IStructuredSelection) hyperlinkWeblistTableViewer
+				if(hyperlinkWeblistTableViewer.getTable().getSelection().length != 0) {
+					HyperLinkWeb hyperLinkWeb = (HyperLinkWeb)((IStructuredSelection)hyperlinkWeblistTableViewer
 							.getSelection()).getFirstElement();
 					EditorHyperlinkWebShell editor = new EditorHyperlinkWebShell();
 					editor.setHyperLinkWeb(hyperLinkWeb);
@@ -468,7 +468,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 			public void mouseDown(MouseEvent e) {
 				EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
 				editor.open();
-				if (editor.getHyperlinkDocument() != null) {
+				if(editor.getHyperlinkDocument() != null) {
 					documentList.add(editor.getHyperlinkDocument());
 					documentlistTableViewer.setInput(getDocumentList());
 				}
@@ -483,8 +483,8 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				if (documentlistTableViewer.getTable().getSelection().length != 0) {
-					HyperlinkDocument hyperLinkdoc = (HyperlinkDocument) ((IStructuredSelection) documentlistTableViewer
+				if(documentlistTableViewer.getTable().getSelection().length != 0) {
+					HyperlinkDocument hyperLinkdoc = (HyperlinkDocument)((IStructuredSelection)documentlistTableViewer
 							.getSelection()).getFirstElement();
 					EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
 					editor.setHyperlinkDocument(hyperLinkdoc);
@@ -520,7 +520,7 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 			public void mouseDown(MouseEvent e) {
 				EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
 				editor.open();
-				if (editor.getHyperLinkDiagram() != null) {
+				if(editor.getHyperLinkDiagram() != null) {
 					diagramList.add(editor.getHyperLinkDiagram());
 					diagramlistTableViewer.setInput(getDiagramList());
 				}
@@ -535,8 +535,8 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				if (diagramlistTableViewer.getTable().getSelection().length != 0) {
-					HyperLinkDiagram hyperLinkdiagram = (HyperLinkDiagram) ((IStructuredSelection) diagramlistTableViewer
+				if(diagramlistTableViewer.getTable().getSelection().length != 0) {
+					HyperLinkDiagram hyperLinkdiagram = (HyperLinkDiagram)((IStructuredSelection)diagramlistTableViewer
 							.getSelection()).getFirstElement();
 					EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
 					editor.setHyperLinkDiagram(hyperLinkdiagram);
@@ -563,8 +563,8 @@ public class HyperLinkManagerShell2 extends AbstractHyperLinkManagerShell {
 		getHyperLinkShell().pack();
 		getHyperLinkShell().setBounds(500, 500, 500, 300);
 		getHyperLinkShell().open();
-		while (!getHyperLinkShell().isDisposed()) {
-			if (!display.readAndDispatch())
+		while(!getHyperLinkShell().isDisposed()) {
+			if(!display.readAndDispatch())
 				display.sleep();
 		}
 	}

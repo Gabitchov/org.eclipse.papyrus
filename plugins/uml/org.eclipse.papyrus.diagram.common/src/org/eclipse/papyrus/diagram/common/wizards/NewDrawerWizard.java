@@ -30,7 +30,7 @@ public class NewDrawerWizard extends Wizard {
 	 * Creates a NewDrawerWizard.
 	 * 
 	 * @param paletteContainerProxy
-	 *            the element where to add the new drawer
+	 *        the element where to add the new drawer
 	 */
 	public NewDrawerWizard(PaletteContainerProxy paletteContainerProxy) {
 		this.paletteContainerProxy = paletteContainerProxy;

@@ -53,19 +53,19 @@ public class UMLCreateShortcutAction implements IObjectActionDelegate {
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		mySelectedElement = null;
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.size() == 1) {
-				if (structuredSelection.getFirstElement() instanceof StateMachineEditPart) {
-					mySelectedElement = (StateMachineEditPart) structuredSelection
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			if(structuredSelection.size() == 1) {
+				if(structuredSelection.getFirstElement() instanceof StateMachineEditPart) {
+					mySelectedElement = (StateMachineEditPart)structuredSelection
 							.getFirstElement();
 				}
-				if (structuredSelection.getFirstElement() instanceof RegionSubverticesEditPart) {
-					mySelectedElement = (RegionSubverticesEditPart) structuredSelection
+				if(structuredSelection.getFirstElement() instanceof RegionSubverticesEditPart) {
+					mySelectedElement = (RegionSubverticesEditPart)structuredSelection
 							.getFirstElement();
 				}
-				if (structuredSelection.getFirstElement() instanceof RegionSubvertices2EditPart) {
-					mySelectedElement = (RegionSubvertices2EditPart) structuredSelection
+				if(structuredSelection.getFirstElement() instanceof RegionSubvertices2EditPart) {
+					mySelectedElement = (RegionSubvertices2EditPart)structuredSelection
 							.getFirstElement();
 				}
 			}
@@ -84,11 +84,11 @@ public class UMLCreateShortcutAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		final View view = (View) mySelectedElement.getModel();
+		final View view = (View)mySelectedElement.getModel();
 		UMLElementChooserDialog elementChooser = new UMLElementChooserDialog(
 				myShell, view);
 		int result = elementChooser.open();
-		if (result != Window.OK) {
+		if(result != Window.OK) {
 			return;
 		}
 		URI selectedModelElementURI = elementChooser
@@ -101,11 +101,11 @@ public class UMLCreateShortcutAction implements IObjectActionDelegate {
 			UMLDiagramEditorPlugin
 					.getInstance()
 					.logError(
-							"Exception while loading object: " + selectedModelElementURI.toString(), e); //$NON-NLS-1$
+					"Exception while loading object: " + selectedModelElementURI.toString(), e); //$NON-NLS-1$
 			return;
 		}
 
-		if (selectedElement == null) {
+		if(selectedElement == null) {
 			return;
 		}
 		CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
@@ -120,8 +120,7 @@ public class UMLCreateShortcutAction implements IObjectActionDelegate {
 					new NullProgressMonitor(), null);
 			DiagramEditPartsUtil.updateDiagram(mySelectedElement);
 		} catch (ExecutionException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Unable to create shortcut", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Unable to create shortcut", e); //$NON-NLS-1$
 		}
 	}
 

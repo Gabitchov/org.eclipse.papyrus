@@ -37,16 +37,16 @@ public class CollaborationCompositeCompartmentItemSemanticEditPolicyCN extends U
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Property_3070 == req.getElementType()) {
+		if(UMLElementTypes.Property_3070 == req.getElementType()) {
 			return getGEFWrapper(new PropertyPartCreateCommandCN(req));
 		}
-		if (UMLElementTypes.CollaborationUse_3071 == req.getElementType()) {
+		if(UMLElementTypes.CollaborationUse_3071 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationUseCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Comment_3097 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3097 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
-		if (UMLElementTypes.ConnectableElement_3115 == req.getElementType()) {
+		if(UMLElementTypes.ConnectableElement_3115 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationRoleCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);

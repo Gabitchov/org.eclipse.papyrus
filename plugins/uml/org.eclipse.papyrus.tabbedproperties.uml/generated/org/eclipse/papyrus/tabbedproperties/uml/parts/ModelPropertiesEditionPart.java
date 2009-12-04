@@ -35,7 +35,9 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -50,14 +52,19 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -72,7 +79,9 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Defines a new viewpoint
-	 * @param newValue the new viewpoint to set
+	 * 
+	 * @param newValue
+	 *        the new viewpoint to set
 	 */
 	public void setViewpoint(String newValue);
 
@@ -107,15 +116,21 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the templateBinding
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * @param newValue the templateBinding to update
+	 * 
+	 * @param newValue
+	 *        the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -123,7 +138,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the templateBinding edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToTemplateBinding(ViewerFilter filter);
@@ -132,7 +147,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the templateBinding edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
@@ -173,15 +188,21 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the packageMerge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPackageMerge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageMerge
-	 * @param newValue the packageMerge to update
+	 * 
+	 * @param newValue
+	 *        the packageMerge to update
 	 */
 	public void updatePackageMerge(EObject newValue);
 
@@ -189,7 +210,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the packageMerge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPackageMerge(ViewerFilter filter);
@@ -198,7 +219,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the packageMerge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageMerge(ViewerFilter filter);
@@ -239,15 +260,21 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the packagedElement
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPackagedElement(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packagedElement
-	 * @param newValue the packagedElement to update
+	 * 
+	 * @param newValue
+	 *        the packagedElement to update
 	 */
 	public void updatePackagedElement(EObject newValue);
 
@@ -255,7 +282,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the packagedElement edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPackagedElement(ViewerFilter filter);
@@ -264,7 +291,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the packagedElement edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackagedElement(ViewerFilter filter);
@@ -305,15 +332,21 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *        the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -321,7 +354,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToElementImport(ViewerFilter filter);
@@ -330,7 +363,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
@@ -371,15 +404,21 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *        the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -387,7 +426,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPackageImport(ViewerFilter filter);
@@ -396,7 +435,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
@@ -437,15 +476,21 @@ public interface ModelPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *        the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -453,7 +498,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedRule(ViewerFilter filter);
@@ -462,7 +507,7 @@ public interface ModelPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
@@ -471,11 +516,6 @@ public interface ModelPropertiesEditionPart {
 	 * @return true if the given element is contained inside the ownedRule table
 	 */
 	public boolean isContainedInOwnedRuleTable(EObject element);
-
-
-
-
-
 
 
 

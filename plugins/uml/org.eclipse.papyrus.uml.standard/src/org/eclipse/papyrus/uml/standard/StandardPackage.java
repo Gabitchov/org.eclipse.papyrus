@@ -324,8 +324,7 @@ public interface StandardPackage extends EPackage {
 	int IMPLEMENT_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl
 	 * <em>Implementation Class</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl
@@ -1007,8 +1006,7 @@ public interface StandardPackage extends EPackage {
 	EClass getAuxiliary();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Auxiliary#getBase_Class <em>Base Class</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Auxiliary#getBase_Class <em>Base Class</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -1029,8 +1027,7 @@ public interface StandardPackage extends EPackage {
 	EClass getBuildComponent();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.BuildComponent#getBase_Component
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.BuildComponent#getBase_Component
 	 * <em>Base Component</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Component</em>'.
@@ -1051,8 +1048,7 @@ public interface StandardPackage extends EPackage {
 	EClass getCreate();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature
 	 * <em>Base Behavioral Feature</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Behavioral Feature</em>'.
@@ -1063,8 +1059,7 @@ public interface StandardPackage extends EPackage {
 	EReference getCreate_Base_BehavioralFeature();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Create#getBase_Usage <em>Base Usage</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Create#getBase_Usage <em>Base Usage</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Usage</em>'.
@@ -1085,8 +1080,7 @@ public interface StandardPackage extends EPackage {
 	EClass getCall();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Call#getBase_Usage <em>Base Usage</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Call#getBase_Usage <em>Base Usage</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Usage</em>'.
@@ -1107,9 +1101,8 @@ public interface StandardPackage extends EPackage {
 	EClass getDerive();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Derive#getBase_Abstraction <em>Base Abstraction</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Derive#getBase_Abstraction <em>Base Abstraction</em>} '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Abstraction</em>'.
 	 * @see org.eclipse.papyrus.uml.standard.Derive#getBase_Abstraction()
@@ -1129,8 +1122,7 @@ public interface StandardPackage extends EPackage {
 	EClass getDestroy();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature
 	 * <em>Base Behavioral Feature</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Behavioral Feature</em>'.
@@ -1151,8 +1143,7 @@ public interface StandardPackage extends EPackage {
 	EClass getFocus();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Focus#getBase_Class <em>Base Class</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Focus#getBase_Class <em>Base Class</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -1173,8 +1164,7 @@ public interface StandardPackage extends EPackage {
 	EClass getFramework();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Framework#getBase_Package <em>Base Package</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Framework#getBase_Package <em>Base Package</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Package</em>'.
@@ -1195,9 +1185,8 @@ public interface StandardPackage extends EPackage {
 	EClass getImplement();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Implement#getBase_Component <em>Base Component</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Implement#getBase_Component <em>Base Component</em>} '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Component</em>'.
 	 * @see org.eclipse.papyrus.uml.standard.Implement#getBase_Component()
@@ -1207,8 +1196,7 @@ public interface StandardPackage extends EPackage {
 	EReference getImplement_Base_Component();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.eclipse.papyrus.uml.standard.ImplementationClass <em>Implementation Class</em>}'.
+	 * Returns the meta object for class ' {@link org.eclipse.papyrus.uml.standard.ImplementationClass <em>Implementation Class</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Implementation Class</em>'.
@@ -1218,8 +1206,7 @@ public interface StandardPackage extends EPackage {
 	EClass getImplementationClass();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.ImplementationClass#getBase_Class
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.ImplementationClass#getBase_Class
 	 * <em>Base Class</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -1240,8 +1227,7 @@ public interface StandardPackage extends EPackage {
 	EClass getInstantiate();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Instantiate#getBase_Usage <em>Base Usage</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Instantiate#getBase_Usage <em>Base Usage</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Usage</em>'.
@@ -1262,8 +1248,7 @@ public interface StandardPackage extends EPackage {
 	EClass getMetaclass();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Metaclass#getBase_Class <em>Base Class</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Metaclass#getBase_Class <em>Base Class</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -1284,8 +1269,7 @@ public interface StandardPackage extends EPackage {
 	EClass getModelLibrary();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.ModelLibrary#getBase_Package <em>Base Package</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.ModelLibrary#getBase_Package <em>Base Package</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Package</em>'.
@@ -1306,9 +1290,8 @@ public interface StandardPackage extends EPackage {
 	EClass getRefine();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Refine#getBase_Abstraction <em>Base Abstraction</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Refine#getBase_Abstraction <em>Base Abstraction</em>} '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Abstraction</em>'.
 	 * @see org.eclipse.papyrus.uml.standard.Refine#getBase_Abstraction()
@@ -1328,8 +1311,7 @@ public interface StandardPackage extends EPackage {
 	EClass getResponsibility();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Responsibility#getBase_Usage <em>Base Usage</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Responsibility#getBase_Usage <em>Base Usage</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Usage</em>'.
@@ -1350,8 +1332,7 @@ public interface StandardPackage extends EPackage {
 	EClass getScript();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Script#getBase_Artifact <em>Base Artifact</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Script#getBase_Artifact <em>Base Artifact</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Artifact</em>'.
@@ -1372,8 +1353,7 @@ public interface StandardPackage extends EPackage {
 	EClass getSend();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Send#getBase_Usage <em>Base Usage</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Send#getBase_Usage <em>Base Usage</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Usage</em>'.
@@ -1394,9 +1374,8 @@ public interface StandardPackage extends EPackage {
 	EClass getTrace();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Trace#getBase_Abstraction <em>Base Abstraction</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Trace#getBase_Abstraction <em>Base Abstraction</em>} '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Abstraction</em>'.
 	 * @see org.eclipse.papyrus.uml.standard.Trace#getBase_Abstraction()
@@ -1416,8 +1395,7 @@ public interface StandardPackage extends EPackage {
 	EClass getType();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Type#getBase_Class <em>Base Class</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Type#getBase_Class <em>Base Class</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -1438,8 +1416,7 @@ public interface StandardPackage extends EPackage {
 	EClass getUtility();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Utility#getBase_Class <em>Base Class</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Utility#getBase_Class <em>Base Class</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -1460,8 +1437,7 @@ public interface StandardPackage extends EPackage {
 	EClass getDocument();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Document#getBase_Artifact <em>Base Artifact</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Document#getBase_Artifact <em>Base Artifact</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Artifact</em>'.
@@ -1482,8 +1458,7 @@ public interface StandardPackage extends EPackage {
 	EClass getEntity();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Entity#getBase_Component <em>Base Component</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Entity#getBase_Component <em>Base Component</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Component</em>'.
@@ -1504,8 +1479,7 @@ public interface StandardPackage extends EPackage {
 	EClass getExecutable();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Executable#getBase_Artifact <em>Base Artifact</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Executable#getBase_Artifact <em>Base Artifact</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Artifact</em>'.
@@ -1526,8 +1500,7 @@ public interface StandardPackage extends EPackage {
 	EClass getFile();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.File#getBase_Artifact <em>Base Artifact</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.File#getBase_Artifact <em>Base Artifact</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Artifact</em>'.
@@ -1548,8 +1521,7 @@ public interface StandardPackage extends EPackage {
 	EClass getLibrary();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Library#getBase_Artifact <em>Base Artifact</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Library#getBase_Artifact <em>Base Artifact</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Artifact</em>'.
@@ -1570,8 +1542,7 @@ public interface StandardPackage extends EPackage {
 	EClass getProcess();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Process#getBase_Component <em>Base Component</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Process#getBase_Component <em>Base Component</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Component</em>'.
@@ -1592,8 +1563,7 @@ public interface StandardPackage extends EPackage {
 	EClass getRealization();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Realization#getBase_Classifier
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Realization#getBase_Classifier
 	 * <em>Base Classifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Classifier</em>'.
@@ -1614,8 +1584,7 @@ public interface StandardPackage extends EPackage {
 	EClass getService();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Service#getBase_Component <em>Base Component</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Service#getBase_Component <em>Base Component</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Component</em>'.
@@ -1636,8 +1605,7 @@ public interface StandardPackage extends EPackage {
 	EClass getSource();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Source#getBase_Artifact <em>Base Artifact</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Source#getBase_Artifact <em>Base Artifact</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Artifact</em>'.
@@ -1658,8 +1626,7 @@ public interface StandardPackage extends EPackage {
 	EClass getSpecification();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Specification#getBase_Classifier
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Specification#getBase_Classifier
 	 * <em>Base Classifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Classifier</em>'.
@@ -1680,9 +1647,8 @@ public interface StandardPackage extends EPackage {
 	EClass getSubsystem();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Subsystem#getBase_Component <em>Base Component</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Subsystem#getBase_Component <em>Base Component</em>} '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Component</em>'.
 	 * @see org.eclipse.papyrus.uml.standard.Subsystem#getBase_Component()
@@ -1702,8 +1668,7 @@ public interface StandardPackage extends EPackage {
 	EClass getMetamodel();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.Metamodel#getBase_Model <em>Base Model</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.Metamodel#getBase_Model <em>Base Model</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Model</em>'.
@@ -1724,8 +1689,7 @@ public interface StandardPackage extends EPackage {
 	EClass getSystemModel();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.uml.standard.SystemModel#getBase_Model <em>Base Model</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.uml.standard.SystemModel#getBase_Model <em>Base Model</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Model</em>'.
@@ -1759,8 +1723,7 @@ public interface StandardPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.AuxiliaryImpl <em>Auxiliary</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.AuxiliaryImpl <em>Auxiliary</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.AuxiliaryImpl
@@ -1778,9 +1741,8 @@ public interface StandardPackage extends EPackage {
 		EReference AUXILIARY__BASE_CLASS = eINSTANCE.getAuxiliary_Base_Class();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.BuildComponentImpl <em>Build Component</em>}
-		 * ' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.BuildComponentImpl <em>Build Component</em>} ' class. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.BuildComponentImpl
 		 * @see org.eclipse.papyrus.uml.standard.impl.StandardPackageImpl#getBuildComponent()
@@ -1859,8 +1821,7 @@ public interface StandardPackage extends EPackage {
 		EReference DERIVE__BASE_ABSTRACTION = eINSTANCE.getDerive_Base_Abstraction();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.DestroyImpl <em>Destroy</em>}' class. <!--
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.DestroyImpl <em>Destroy</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.DestroyImpl
@@ -1896,8 +1857,7 @@ public interface StandardPackage extends EPackage {
 		EReference FOCUS__BASE_CLASS = eINSTANCE.getFocus_Base_Class();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.FrameworkImpl <em>Framework</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.FrameworkImpl <em>Framework</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.FrameworkImpl
@@ -1915,8 +1875,7 @@ public interface StandardPackage extends EPackage {
 		EReference FRAMEWORK__BASE_PACKAGE = eINSTANCE.getFramework_Base_Package();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.ImplementImpl <em>Implement</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.ImplementImpl <em>Implement</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.ImplementImpl
@@ -1934,8 +1893,7 @@ public interface StandardPackage extends EPackage {
 		EReference IMPLEMENT__BASE_COMPONENT = eINSTANCE.getImplement_Base_Component();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl
 		 * <em>Implementation Class</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl
@@ -1953,8 +1911,7 @@ public interface StandardPackage extends EPackage {
 		EReference IMPLEMENTATION_CLASS__BASE_CLASS = eINSTANCE.getImplementationClass_Base_Class();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.InstantiateImpl <em>Instantiate</em>}'
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.InstantiateImpl <em>Instantiate</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.InstantiateImpl
@@ -1972,8 +1929,7 @@ public interface StandardPackage extends EPackage {
 		EReference INSTANTIATE__BASE_USAGE = eINSTANCE.getInstantiate_Base_Usage();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.MetaclassImpl <em>Metaclass</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.MetaclassImpl <em>Metaclass</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.MetaclassImpl
@@ -1991,8 +1947,7 @@ public interface StandardPackage extends EPackage {
 		EReference METACLASS__BASE_CLASS = eINSTANCE.getMetaclass_Base_Class();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.ModelLibraryImpl <em>Model Library</em>}'
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.ModelLibraryImpl <em>Model Library</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.ModelLibraryImpl
@@ -2028,8 +1983,7 @@ public interface StandardPackage extends EPackage {
 		EReference REFINE__BASE_ABSTRACTION = eINSTANCE.getRefine_Base_Abstraction();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.ResponsibilityImpl <em>Responsibility</em>}'
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.ResponsibilityImpl <em>Responsibility</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.ResponsibilityImpl
@@ -2119,8 +2073,7 @@ public interface StandardPackage extends EPackage {
 		EReference TYPE__BASE_CLASS = eINSTANCE.getType_Base_Class();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.UtilityImpl <em>Utility</em>}' class. <!--
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.UtilityImpl <em>Utility</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.UtilityImpl
@@ -2138,8 +2091,7 @@ public interface StandardPackage extends EPackage {
 		EReference UTILITY__BASE_CLASS = eINSTANCE.getUtility_Base_Class();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.DocumentImpl <em>Document</em>}' class. <!--
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.DocumentImpl <em>Document</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.DocumentImpl
@@ -2175,8 +2127,7 @@ public interface StandardPackage extends EPackage {
 		EReference ENTITY__BASE_COMPONENT = eINSTANCE.getEntity_Base_Component();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.ExecutableImpl <em>Executable</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.ExecutableImpl <em>Executable</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.ExecutableImpl
@@ -2212,8 +2163,7 @@ public interface StandardPackage extends EPackage {
 		EReference FILE__BASE_ARTIFACT = eINSTANCE.getFile_Base_Artifact();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.LibraryImpl <em>Library</em>}' class. <!--
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.LibraryImpl <em>Library</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.LibraryImpl
@@ -2231,8 +2181,7 @@ public interface StandardPackage extends EPackage {
 		EReference LIBRARY__BASE_ARTIFACT = eINSTANCE.getLibrary_Base_Artifact();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.ProcessImpl <em>Process</em>}' class. <!--
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.ProcessImpl <em>Process</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.ProcessImpl
@@ -2250,8 +2199,7 @@ public interface StandardPackage extends EPackage {
 		EReference PROCESS__BASE_COMPONENT = eINSTANCE.getProcess_Base_Component();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.RealizationImpl <em>Realization</em>}'
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.RealizationImpl <em>Realization</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.RealizationImpl
@@ -2269,8 +2217,7 @@ public interface StandardPackage extends EPackage {
 		EReference REALIZATION__BASE_CLASSIFIER = eINSTANCE.getRealization_Base_Classifier();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.ServiceImpl <em>Service</em>}' class. <!--
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.ServiceImpl <em>Service</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.ServiceImpl
@@ -2306,8 +2253,7 @@ public interface StandardPackage extends EPackage {
 		EReference SOURCE__BASE_ARTIFACT = eINSTANCE.getSource_Base_Artifact();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.SpecificationImpl <em>Specification</em>}'
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.SpecificationImpl <em>Specification</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.SpecificationImpl
@@ -2325,8 +2271,7 @@ public interface StandardPackage extends EPackage {
 		EReference SPECIFICATION__BASE_CLASSIFIER = eINSTANCE.getSpecification_Base_Classifier();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.SubsystemImpl <em>Subsystem</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.SubsystemImpl <em>Subsystem</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.SubsystemImpl
@@ -2344,8 +2289,7 @@ public interface StandardPackage extends EPackage {
 		EReference SUBSYSTEM__BASE_COMPONENT = eINSTANCE.getSubsystem_Base_Component();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.MetamodelImpl <em>Metamodel</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.MetamodelImpl <em>Metamodel</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.MetamodelImpl
@@ -2363,8 +2307,7 @@ public interface StandardPackage extends EPackage {
 		EReference METAMODEL__BASE_MODEL = eINSTANCE.getMetamodel_Base_Model();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.uml.standard.impl.SystemModelImpl <em>System Model</em>}'
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.uml.standard.impl.SystemModelImpl <em>System Model</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.uml.standard.impl.SystemModelImpl

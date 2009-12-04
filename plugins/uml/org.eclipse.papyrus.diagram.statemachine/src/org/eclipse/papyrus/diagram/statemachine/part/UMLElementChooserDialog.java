@@ -85,7 +85,7 @@ public class UMLElementChooserDialog extends Dialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite composite = (Composite) super.createDialogArea(parent);
+		Composite composite = (Composite)super.createDialogArea(parent);
 		getShell().setText(
 				Messages.UMLElementChooserDialog_SelectModelElementTitle);
 		createModelBrowser(composite);
@@ -147,9 +147,9 @@ public class UMLElementChooserDialog extends Dialog {
 	@Override
 	public int open() {
 		int result = super.open();
-		for (Iterator it = myEditingDomain.getResourceSet().getResources()
+		for(Iterator it = myEditingDomain.getResourceSet().getResources()
 				.iterator(); it.hasNext();) {
-			Resource resource = (Resource) it.next();
+			Resource resource = (Resource)it.next();
 			resource.unload();
 		}
 		myEditingDomain.dispose();
@@ -172,7 +172,7 @@ public class UMLElementChooserDialog extends Dialog {
 		 */
 		private AdapterFactoryContentProvider myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
+				.getItemProvidersAdapterFactory());
 
 		/**
 		 * @generated
@@ -180,24 +180,24 @@ public class UMLElementChooserDialog extends Dialog {
 		public Object[] getChildren(Object parentElement) {
 			Object[] result = myWorkbenchContentProvider
 					.getChildren(parentElement);
-			if (result != null && result.length > 0) {
+			if(result != null && result.length > 0) {
 				return result;
 			}
-			if (parentElement instanceof IFile) {
-				IFile modelFile = (IFile) parentElement;
+			if(parentElement instanceof IFile) {
+				IFile modelFile = (IFile)parentElement;
 				IPath resourcePath = modelFile.getFullPath();
 				ResourceSet resourceSet = myEditingDomain.getResourceSet();
 				try {
 					Resource modelResource = resourceSet.getResource(URI
 							.createPlatformResourceURI(resourcePath.toString(),
-									true), true);
+							true), true);
 					return myAdapterFctoryContentProvier
 							.getChildren(modelResource);
 				} catch (WrappedException e) {
 					UMLDiagramEditorPlugin
 							.getInstance()
 							.logError(
-									"Unable to load resource: " + resourcePath.toString(), e); //$NON-NLS-1$
+							"Unable to load resource: " + resourcePath.toString(), e); //$NON-NLS-1$
 				}
 				return Collections.EMPTY_LIST.toArray();
 			}
@@ -209,12 +209,12 @@ public class UMLElementChooserDialog extends Dialog {
 		 */
 		public Object getParent(Object element) {
 			Object parent = myWorkbenchContentProvider.getParent(element);
-			if (parent != null) {
+			if(parent != null) {
 				return parent;
 			}
-			if (element instanceof EObject) {
-				EObject eObject = (EObject) element;
-				if (eObject.eContainer() == null
+			if(element instanceof EObject) {
+				EObject eObject = (EObject)element;
+				if(eObject.eContainer() == null
 						&& eObject.eResource().getURI().isFile()) {
 					String path = eObject.eResource().getURI().path();
 					return ResourcesPlugin.getWorkspace().getRoot()
@@ -229,8 +229,8 @@ public class UMLElementChooserDialog extends Dialog {
 		 * @generated
 		 */
 		public boolean hasChildren(Object element) {
-			if (element instanceof IFile) {
-				return isValidModelFile((IFile) element);
+			if(element instanceof IFile) {
+				return isValidModelFile((IFile)element);
 			}
 			return myWorkbenchContentProvider.hasChildren(element)
 					|| myAdapterFctoryContentProvier.hasChildren(element);
@@ -279,7 +279,7 @@ public class UMLElementChooserDialog extends Dialog {
 		 */
 		private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
+				.getItemProvidersAdapterFactory());
 
 		/**
 		 * @generated
@@ -321,7 +321,7 @@ public class UMLElementChooserDialog extends Dialog {
 		public boolean isLabelProperty(Object element, String property) {
 			return myWorkbenchLabelProvider.isLabelProperty(element, property)
 					|| myAdapterFactoryLabelProvider.isLabelProperty(element,
-							property);
+					property);
 		}
 
 		/**
@@ -345,11 +345,11 @@ public class UMLElementChooserDialog extends Dialog {
 		@Override
 		public boolean select(Viewer viewer, Object parentElement,
 				Object element) {
-			if (element instanceof IContainer) {
+			if(element instanceof IContainer) {
 				return true;
 			}
-			if (element instanceof IFile) {
-				IFile file = (IFile) element;
+			if(element instanceof IFile) {
+				IFile file = (IFile)element;
 				return isValidModelFile(file);
 			}
 			return true;
@@ -366,31 +366,31 @@ public class UMLElementChooserDialog extends Dialog {
 		 * @generated
 		 */
 		public void selectionChanged(SelectionChangedEvent event) {
-			if (event.getSelection() instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) event
+			if(event.getSelection() instanceof IStructuredSelection) {
+				IStructuredSelection selection = (IStructuredSelection)event
 						.getSelection();
-				if (selection.size() == 1) {
+				if(selection.size() == 1) {
 					Object selectedElement = selection.getFirstElement();
-					if (selectedElement instanceof IWrapperItemProvider) {
-						selectedElement = ((IWrapperItemProvider) selectedElement)
+					if(selectedElement instanceof IWrapperItemProvider) {
+						selectedElement = ((IWrapperItemProvider)selectedElement)
 								.getValue();
 					}
-					if (selectedElement instanceof FeatureMap.Entry) {
-						selectedElement = ((FeatureMap.Entry) selectedElement)
+					if(selectedElement instanceof FeatureMap.Entry) {
+						selectedElement = ((FeatureMap.Entry)selectedElement)
 								.getValue();
 					}
-					if (selectedElement instanceof EObject) {
-						EObject selectedModelElement = (EObject) selectedElement;
+					if(selectedElement instanceof EObject) {
+						EObject selectedModelElement = (EObject)selectedElement;
 						setOkButtonEnabled(ViewService
 								.getInstance()
 								.provides(
-										Node.class,
-										new EObjectAdapter(selectedModelElement),
-										myView,
-										null,
-										ViewUtil.APPEND,
-										true,
-										UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+								Node.class,
+								new EObjectAdapter(selectedModelElement),
+								myView,
+								null,
+								ViewUtil.APPEND,
+								true,
+								UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 						mySelectedModelElementURI = EcoreUtil
 								.getURI(selectedModelElement);
 						return;

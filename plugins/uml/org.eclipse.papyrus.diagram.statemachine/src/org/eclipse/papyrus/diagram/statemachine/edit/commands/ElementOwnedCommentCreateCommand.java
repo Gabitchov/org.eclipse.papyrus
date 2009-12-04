@@ -43,16 +43,16 @@ public class ElementOwnedCommentCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Element) {
+		if(source != null && false == source instanceof Element) {
 			return false;
 		}
-		if (target != null && false == target instanceof Comment) {
+		if(target != null && false == target instanceof Comment) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -66,11 +66,10 @@ public class ElementOwnedCommentCreateCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if (getSource() != null && getTarget() != null) {
+		if(getSource() != null && getTarget() != null) {
 			getSource().getOwnedComments().add(getTarget());
 
 			// add the Element to the annotatedElement relation of the Comment
@@ -79,8 +78,8 @@ public class ElementOwnedCommentCreateCommand extends EditElementCommand {
 			// check the parent of the comment. If has not elements in
 			// annotatedElement relation, the parent will be this Element; if
 			// has more than one element, the parent will be the model
-			if (getTarget().getAnnotatedElements().size() > 1) {
-				Model root = (Model) getSource().eResource().getContents().get(
+			if(getTarget().getAnnotatedElements().size() > 1) {
+				Model root = (Model)getSource().eResource().getContents().get(
 						0);
 				root.getOwnedComments().add(getTarget());
 			}
@@ -92,13 +91,13 @@ public class ElementOwnedCommentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Element getSource() {
-		return (Element) source;
+		return (Element)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Comment getTarget() {
-		return (Comment) target;
+		return (Comment)target;
 	}
 }

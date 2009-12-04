@@ -47,7 +47,7 @@ public class AllocationsSwitch<T> {
 	 * @generated
 	 */
 	public AllocationsSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = AllocationsPackage.eINSTANCE;
 		}
 	}
@@ -58,7 +58,7 @@ public class AllocationsSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Allocate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -68,14 +68,13 @@ public class AllocationsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Allocate Activity Partition</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of ' <em>Allocate Activity Partition</em>'. <!-- begin-user-doc --> This
+	 * implementation returns
 	 * null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Allocate Activity Partition</em>'.
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of ' <em>Allocate Activity Partition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -89,7 +88,7 @@ public class AllocationsSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Allocated</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -104,7 +103,7 @@ public class AllocationsSwitch<T> {
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -121,7 +120,7 @@ public class AllocationsSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if(theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
@@ -148,25 +147,28 @@ public class AllocationsSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case AllocationsPackage.ALLOCATE: {
-			Allocate allocate = (Allocate) theEObject;
+		switch(classifierID) {
+		case AllocationsPackage.ALLOCATE:
+		{
+			Allocate allocate = (Allocate)theEObject;
 			T result = caseAllocate(allocate);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case AllocationsPackage.ALLOCATED: {
-			Allocated allocated = (Allocated) theEObject;
+		case AllocationsPackage.ALLOCATED:
+		{
+			Allocated allocated = (Allocated)theEObject;
 			T result = caseAllocated(allocated);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION: {
-			AllocateActivityPartition allocateActivityPartition = (AllocateActivityPartition) theEObject;
+		case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION:
+		{
+			AllocateActivityPartition allocateActivityPartition = (AllocateActivityPartition)theEObject;
 			T result = caseAllocateActivityPartition(allocateActivityPartition);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}

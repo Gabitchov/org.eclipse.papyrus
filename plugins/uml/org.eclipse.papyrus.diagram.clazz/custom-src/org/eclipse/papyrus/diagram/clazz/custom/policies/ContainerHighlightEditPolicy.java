@@ -36,7 +36,7 @@ public class ContainerHighlightEditPolicy extends org.eclipse.gef.editpolicies.G
 	 * {@inheritedDoc}
 	 */
 	public void eraseTargetFeedback(Request request) {
-		if (revertColor != null) {
+		if(revertColor != null) {
 			setContainerBackground(revertColor);
 			revertColor = null;
 		}
@@ -57,7 +57,7 @@ public class ContainerHighlightEditPolicy extends org.eclipse.gef.editpolicies.G
 	 * @return
 	 */
 	private IFigure getContainerFigure() {
-		return ((GraphicalEditPart) getHost()).getFigure();
+		return ((GraphicalEditPart)getHost()).getFigure();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ContainerHighlightEditPolicy extends org.eclipse.gef.editpolicies.G
 	 * set the color to the figure attached to the editpart
 	 * 
 	 * @param c
-	 *            the background color
+	 *        the background color
 	 */
 	private void setContainerBackground(Color c) {
 		getContainerFigure().setBackgroundColor(c);
@@ -82,7 +82,7 @@ public class ContainerHighlightEditPolicy extends org.eclipse.gef.editpolicies.G
 	 * change the color of the figure
 	 */
 	protected void showHighlight() {
-		if (revertColor == null) {
+		if(revertColor == null) {
 			revertColor = getContainerBackground();
 			setContainerBackground(ColorConstants.lightBlue);
 		}
@@ -93,7 +93,7 @@ public class ContainerHighlightEditPolicy extends org.eclipse.gef.editpolicies.G
 	 * {@inheritedDoc}
 	 */
 	public void showTargetFeedback(Request request) {
-		if (request.getType().equals(RequestConstants.REQ_MOVE) || request.getType().equals(RequestConstants.REQ_ADD)
+		if(request.getType().equals(RequestConstants.REQ_MOVE) || request.getType().equals(RequestConstants.REQ_ADD)
 				|| request.getType().equals(RequestConstants.REQ_CLONE)
 				|| request.getType().equals(RequestConstants.REQ_CONNECTION_START)
 				|| request.getType().equals(RequestConstants.REQ_CONNECTION_END)

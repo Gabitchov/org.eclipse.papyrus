@@ -55,8 +55,8 @@ public class ModelElementSelectionPage extends WizardPage implements
 	 */
 	public void setModelElement(EObject modelElement) {
 		selectedModelElement = modelElement;
-		if (modelVewer != null) {
-			if (selectedModelElement != null) {
+		if(modelVewer != null) {
+			if(selectedModelElement != null) {
 				modelVewer.setInput(selectedModelElement.eResource());
 				modelVewer.setSelection(new StructuredSelection(
 						selectedModelElement));
@@ -92,11 +92,11 @@ public class ModelElementSelectionPage extends WizardPage implements
 		modelVewer.getTree().setLayoutData(layoutData);
 		modelVewer.setContentProvider(new AdapterFactoryContentProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory()));
+				.getItemProvidersAdapterFactory()));
 		modelVewer.setLabelProvider(new AdapterFactoryLabelProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory()));
-		if (selectedModelElement != null) {
+				.getItemProvidersAdapterFactory()));
+		if(selectedModelElement != null) {
 			modelVewer.setInput(selectedModelElement.eResource());
 			modelVewer.setSelection(new StructuredSelection(
 					selectedModelElement));
@@ -105,8 +105,8 @@ public class ModelElementSelectionPage extends WizardPage implements
 
 			public void selectionChanged(SelectionChangedEvent event) {
 				ModelElementSelectionPage.this
-						.updateSelection((IStructuredSelection) event
-								.getSelection());
+						.updateSelection((IStructuredSelection)event
+						.getSelection());
 			}
 		});
 
@@ -127,18 +127,18 @@ public class ModelElementSelectionPage extends WizardPage implements
 	 */
 	protected void updateSelection(IStructuredSelection selection) {
 		selectedModelElement = null;
-		if (selection.size() == 1) {
+		if(selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
-			if (selectedElement instanceof IWrapperItemProvider) {
-				selectedElement = ((IWrapperItemProvider) selectedElement)
+			if(selectedElement instanceof IWrapperItemProvider) {
+				selectedElement = ((IWrapperItemProvider)selectedElement)
 						.getValue();
 			}
-			if (selectedElement instanceof FeatureMap.Entry) {
-				selectedElement = ((FeatureMap.Entry) selectedElement)
+			if(selectedElement instanceof FeatureMap.Entry) {
+				selectedElement = ((FeatureMap.Entry)selectedElement)
 						.getValue();
 			}
-			if (selectedElement instanceof EObject) {
-				selectedModelElement = (EObject) selectedElement;
+			if(selectedElement instanceof EObject) {
+				selectedModelElement = (EObject)selectedElement;
 			}
 		}
 		setPageComplete(validatePage());

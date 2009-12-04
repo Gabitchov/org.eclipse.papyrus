@@ -40,7 +40,7 @@ public class OpaqueBehaviorUtil {
 	 * language.
 	 * 
 	 * @param language
-	 *            the language in which the body is written
+	 *        the language in which the body is written
 	 * @return the value of 'Body' at the index i
 	 */
 	// @unused
@@ -49,7 +49,7 @@ public class OpaqueBehaviorUtil {
 		String tmp = "";
 
 		index = getBodyIndex(behavior, language);
-		if ((index > -1) && (index < behavior.getBodies().size())) {
+		if((index > -1) && (index < behavior.getBodies().size())) {
 			tmp = behavior.getBodies().get(index);
 		}
 
@@ -60,7 +60,7 @@ public class OpaqueBehaviorUtil {
 	 * Returns the index of the body for a given langauge.
 	 * 
 	 * @param language
-	 *            the language of the body to find
+	 *        the language of the body to find
 	 * @return the index of the body in the list or -1 if not found
 	 */
 	public static int getBodyIndex(OpaqueBehavior behavior, String language) {
@@ -69,16 +69,16 @@ public class OpaqueBehaviorUtil {
 
 		// test if the language exists
 		Iterator<String> it = behavior.getLanguages().iterator();
-		while (it.hasNext() && !isFound) {
+		while(it.hasNext() && !isFound) {
 			String lang = it.next();
-			if (lang.equalsIgnoreCase(language)) {
+			if(lang.equalsIgnoreCase(language)) {
 				isFound = true;
 			} else {
 				index++;
 			}
 		}
 		// returns -1 if not found
-		if (!isFound) {
+		if(!isFound) {
 			index = -1;
 		}
 		return index;
@@ -88,15 +88,15 @@ public class OpaqueBehaviorUtil {
 	 * Sets the value of the 'Body' attribute for a given language.
 	 * 
 	 * @param value
-	 *            the new value of the 'Body'
+	 *        the new value of the 'Body'
 	 * @param language
-	 *            the langauge of the body to set
+	 *        the langauge of the body to set
 	 */
 	// @unused
 	public static void setBody(OpaqueBehavior behavior, String value, String language) {
 		// get the index of the given language
 		int index = getBodyIndex(behavior, language);
-		if (index == -1) {
+		if(index == -1) {
 			// this language does not exists, adds it to the end of the list
 			behavior.getLanguages().add(language);
 			behavior.getBodies().add(value);

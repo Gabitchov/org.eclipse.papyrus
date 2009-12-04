@@ -41,7 +41,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * set the color for the border
 	 * 
 	 * @param borderColor
-	 *            color
+	 *        color
 	 */
 	// @unused
 	public void setBorderColor(Color borderColor);
@@ -50,7 +50,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * set the shadow
 	 * 
 	 * @param shadow
-	 *            a boolean true if we want to display the shadow
+	 *        a boolean true if we want to display the shadow
 	 */
 	public void setShadow(boolean shadow);
 
@@ -79,7 +79,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * Comes from GMF Sets the value of isUsingGradient
 	 * 
 	 * @param b
-	 *            value for isUsingGradient
+	 *        value for isUsingGradient
 	 * @since 1.2
 	 */
 	public void setIsUsingGradient(boolean b);
@@ -88,7 +88,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * Comes from GMF {@link NodeFigure#setLineStyle}
 	 * 
 	 * @param s
-	 *            new line style
+	 *        new line style
 	 * @since 1.2
 	 */
 	public void setLineStyle(int s);

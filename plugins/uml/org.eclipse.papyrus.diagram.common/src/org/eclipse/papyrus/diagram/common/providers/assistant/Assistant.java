@@ -36,9 +36,9 @@ public class Assistant {
 	 * @return
 	 */
 	public List customizeTypesForEditPart(EditPart editPart, List types) {
-		for (AssistedEditPart assistedEditPart : this.AssistedEditPart) {
-			if (assistedEditPart.editPartClass != null) {
-				if (MDTUtil.isOfType(editPart.getClass(), assistedEditPart.editPartClass)) {
+		for(AssistedEditPart assistedEditPart : this.AssistedEditPart) {
+			if(assistedEditPart.editPartClass != null) {
+				if(MDTUtil.isOfType(editPart.getClass(), assistedEditPart.editPartClass)) {
 					types = assistedEditPart.customizeTypes(types);
 				}
 			}

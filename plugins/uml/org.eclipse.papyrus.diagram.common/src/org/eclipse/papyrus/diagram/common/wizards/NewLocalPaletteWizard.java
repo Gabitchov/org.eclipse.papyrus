@@ -35,7 +35,7 @@ public class NewLocalPaletteWizard extends Wizard {
 	 * Creates a NewLocalPaletteWizard.
 	 * 
 	 * @param part
-	 *            the editor part where the palette will be available
+	 *        the editor part where the palette will be available
 	 */
 	public NewLocalPaletteWizard(IEditorPart part) {
 		this.editorPart = part;

@@ -32,7 +32,7 @@ public abstract class IconStylePreferencePage extends AbstractPreferencePage {
 	}
 
 	protected void createIconStyleGroup(Composite parent) {
-		String[][] choices = new String[][] {
+		String[][] choices = new String[][]{
 				{ ALTERNATIVE_STYLE_ICON_LABEL, UMLPreferencesConstants.PREF_ICON_STYLE_CHEERFUL },
 				{ ECLIPSE_STYLE_ICON_LABEL, UMLPreferencesConstants.PREF_ICON_STYLE_STANDARD } };
 		myIconStyleFieldEditor = new RadioGroupFieldEditor(UMLPreferencesConstants.PREF_ICON_STYLE,

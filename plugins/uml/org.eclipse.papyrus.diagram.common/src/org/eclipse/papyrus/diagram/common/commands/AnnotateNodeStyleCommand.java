@@ -50,13 +50,13 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 	 * Constructor.
 	 * 
 	 * @param ep
-	 *            The EditPart whose Node is being modified
+	 *        The EditPart whose Node is being modified
 	 * @param attr
-	 *            The Node's attribute that is being changed (the style)
+	 *        The Node's attribute that is being changed (the style)
 	 * @param domain
-	 *            The Editing domain
+	 *        The Editing domain
 	 * @param affectedFiles
-	 *            List of affected files. It may be null.
+	 *        List of affected files. It may be null.
 	 */
 	// @unused
 	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain,
@@ -68,15 +68,15 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 	 * Constructor.
 	 * 
 	 * @param ep
-	 *            The EditPart whose Node is being modified
+	 *        The EditPart whose Node is being modified
 	 * @param attr
-	 *            The Node's attribute that is being changed (the style)
+	 *        The Node's attribute that is being changed (the style)
 	 * @param domain
-	 *            The Editing domain
+	 *        The Editing domain
 	 * @param label
-	 *            The command's label
+	 *        The command's label
 	 * @param affectedFiles
-	 *            List of affected files. It may be null.
+	 *        List of affected files. It may be null.
 	 */
 	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain,
 			String commandLabel, List affectedFiles) {
@@ -126,35 +126,35 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 		EAnnotation eAnn = getAppearenceEAnnotation();
 
 		// If there is no EAnnotation, create it
-		if (eAnn == null) {
+		if(eAnn == null) {
 			eAnn = createAppearenceEAnnotation();
 		}
 
 		// If change is already added, don't continue
-		if (eAnn.getReferences().contains(attribute)) {
+		if(eAnn.getReferences().contains(attribute)) {
 			return;
 		}
 
 		// Background
-		if (NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
+		if(NotationPackage.eINSTANCE.getFillStyle_FillColor().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.FILL_STYLE__FILL_COLOR);
 		}
 
 		// Foreground
-		if (NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
+		if(NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.LINE_STYLE__LINE_COLOR);
 		}
 
 		// Font
-		if (NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
+		if(NotationPackage.eINSTANCE.getFontStyle_FontName().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_NAME);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_COLOR);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__FONT_HEIGHT);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_Bold().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__BOLD);
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_Italic().equals(attribute)) {
 			eAnn.getReferences().add(NotationPackage.Literals.FONT_STYLE__ITALIC);
 		}
 	}

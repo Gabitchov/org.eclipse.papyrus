@@ -62,7 +62,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		Element element = getUMLElement();
@@ -70,7 +70,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		// adds a listener on the view and the element controlled by the editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
 
-		if (element == null) {
+		if(element == null) {
 			return;
 		}
 		getDiagramEventBroker().addNotificationListener(element, this);
@@ -79,7 +79,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		// add listener to react to the application and remove of a stereotype
 
 		// add a lister to each already applied stereotyped
-		for (EObject stereotypeApplication : element.getStereotypeApplications()) {
+		for(EObject stereotypeApplication : element.getStereotypeApplications()) {
 			getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);
 		}
 
@@ -93,15 +93,15 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		Element element = getUMLElement();
-		if (element == null) {
+		if(element == null) {
 			return;
 		}
 		// remove listeners to applied stereotyped
-		for (EObject stereotypeApplication : element.getStereotypeApplications()) {
+		for(EObject stereotypeApplication : element.getStereotypeApplications()) {
 			getDiagramEventBroker().removeNotificationListener(stereotypeApplication, this);
 		}
 		// remove notification on element and view
@@ -116,8 +116,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -129,7 +129,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * @return the uml element controlled by the host edit part
 	 */
 	protected Element getUMLElement() {
-		return (Element) getView().getElement();
+		return (Element)getView().getElement();
 	}
 
 	/**
@@ -138,7 +138,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
-		return (View) getHost().getModel();
+		return (View)getHost().getModel();
 	}
 
 	/**
@@ -153,24 +153,24 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		// - the stereotype application list has changed
 		final int eventType = notification.getEventType();
 
-		if (eventType == PapyrusStereotypeListener.APPLIED_STEREOTYPE) {
+		if(eventType == PapyrusStereotypeListener.APPLIED_STEREOTYPE) {
 			// a stereotype was applied to the notifier
 			// then a new listener should be added to the stereotype application
-			getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
-		} else if (eventType == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE) {
-			getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
+			getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
+		} else if(eventType == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE) {
+			getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 		}
 
 		// if element that has changed is a stereotype => refresh the label.
-		if (notification.getNotifier() instanceof EAnnotation) {
-			if (VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation) notification.getNotifier())
+		if(notification.getNotifier() instanceof EAnnotation) {
+			if(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier())
 					.getSource()) {
 				// stereotype annotation has changed => refresh label display
 				refreshDisplay();
 			}
 		}
 		// the value of a property of stereotype has changed
-		if (notification.getNotifier() instanceof DynamicEObjectImpl) {
+		if(notification.getNotifier() instanceof DynamicEObjectImpl) {
 			refreshDisplay();
 		}
 	}
@@ -185,9 +185,9 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * generates a map.
 	 * 
 	 * @param stereotypesToDisplay
-	 *            the list of stereotypes to display
+	 *        the list of stereotypes to display
 	 * @param stereotypesPropertiesToDisplay
-	 *            the properties of stereotypes to display
+	 *        the properties of stereotypes to display
 	 * @return a map. The keys are the name of displayed stereotypes, the corresponding data is a
 	 *         collection of its properties to be displayed
 	 */
@@ -197,11 +197,11 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 		StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay,
 				VisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
-		while (stringTokenizer.hasMoreTokens()) {
+		while(stringTokenizer.hasMoreTokens()) {
 			String propertyName = stringTokenizer.nextToken();
 			// retrieve the name of the stereotype for this property
 			String stereotypeName = propertyName.substring(0, propertyName.lastIndexOf(".")); // stereotypequalifiedName.propertyname
-			if (!propertiesMap.containsKey(stereotypeName)) {
+			if(!propertiesMap.containsKey(stereotypeName)) {
 				List<String> propertiesForStereotype = new ArrayList<String>();
 				propertiesMap.put(stereotypeName, propertiesForStereotype);
 			}
@@ -219,18 +219,18 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	public Image stereotypeIconToDisplay() {
 		String stereotypespresentationKind = AppliedStereotypeHelper
-				.getAppliedStereotypePresentationKind((View) getHost().getModel());
-		if (stereotypespresentationKind == null) {
+				.getAppliedStereotypePresentationKind((View)getHost().getModel());
+		if(stereotypespresentationKind == null) {
 			return null;
 		}
-		if (stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
+		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
 				|| stereotypespresentationKind
-						.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+				.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getHost().getModel());
+			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getHost().getModel());
 			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			if (tokenizer.hasMoreTokens()) {
+			if(tokenizer.hasMoreTokens()) {
 				String firstStereotypeName = tokenizer.nextToken();
 				Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
 				return Activator.getIconElement(getUMLElement(), stereotype, false);

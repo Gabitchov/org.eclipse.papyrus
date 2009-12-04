@@ -50,10 +50,10 @@ public class DisplayAllAssociationBranchCommand implements IObjectActionDelegate
 	 * {@inheritedDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
-			if (selectedobject instanceof AssociationNodeEditPart) {
-				selectedElement = (AssociationNodeEditPart) selectedobject;
+		if(selection instanceof IStructuredSelection) {
+			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
+			if(selectedobject instanceof AssociationNodeEditPart) {
+				selectedElement = (AssociationNodeEditPart)selectedobject;
 			}
 		}
 	}

@@ -40,7 +40,7 @@ public class TestIdentityActionPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof TestIdentityAction) {
+		if(eObject instanceof TestIdentityAction) {
 			return new TestIdentityActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class TestIdentityActionPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof TestIdentityAction) {
-			if (TestIdentityActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof TestIdentityAction) {
+			if(TestIdentityActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new TestIdentityActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

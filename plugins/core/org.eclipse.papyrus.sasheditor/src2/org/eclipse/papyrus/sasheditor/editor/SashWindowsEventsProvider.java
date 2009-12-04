@@ -79,7 +79,7 @@ public class SashWindowsEventsProvider {
 		}
 
 		public void partActivated(IWorkbenchPart part) {
-//			System.out.println("partActivated(" + part + ") - activeEditor: " + workbenchPage.getActiveEditor());
+			//			System.out.println("partActivated(" + part + ") - activeEditor: " + workbenchPage.getActiveEditor());
 			checkActiveEditorChange();
 		}
 	};
@@ -118,23 +118,22 @@ public class SashWindowsEventsProvider {
 			throw new IllegalArgumentException("page should not be null.");
 
 		workbenchPage = page;
-		
+
 		// Get the currently active container, if any.
 		ISashWindowsContainer newContainer = null;
 		IEditorPart editorPart = page.getActiveEditor();
-		if( editorPart != null)
-		{
+		if(editorPart != null) {
 			newContainer = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
 		}
 
-//		// Set SashContainer and ActivePage
-//		currentContainer = newContainer;
-//		if( currentContainer != null)
-//		{
-//			activePage = newContainer.getActiveSashWindowsPage();
-//			System.err.println("activePage=" + activePage.getPageTitle()
-//					+ ", tab index=" + currentContainer.);
-//		}
+		//		// Set SashContainer and ActivePage
+		//		currentContainer = newContainer;
+		//		if( currentContainer != null)
+		//		{
+		//			activePage = newContainer.getActiveSashWindowsPage();
+		//			System.err.println("activePage=" + activePage.getPageTitle()
+		//					+ ", tab index=" + currentContainer.);
+		//		}
 	}
 
 	/**
@@ -197,24 +196,24 @@ public class SashWindowsEventsProvider {
 
 		workbenchPage.addPartListener(workbenchPartListener);
 	}
-	
+
 	/**
 	 * This method is called when the active editor has change.
 	 * The method checks the new editor and send appropriate events.
 	 * The editor can be null.
 	 * 
-	 * @param newEditor The new editor of null if none is set.
+	 * @param newEditor
+	 *        The new editor of null if none is set.
 	 */
 	private void activeEditorChanged(IEditorPart newEditor) {
 
 		// Editor has changed. It can be null.
 		// Compute new container.
 		ISashWindowsContainer newContainer = null;
-		if( newEditor != null)
-		{
+		if(newEditor != null) {
 			newContainer = (ISashWindowsContainer)newEditor.getAdapter(ISashWindowsContainer.class);
 		}
-		
+
 		// Throw event if necessary
 		if(newContainer != currentContainer)
 			activeContainerChanged(newContainer);

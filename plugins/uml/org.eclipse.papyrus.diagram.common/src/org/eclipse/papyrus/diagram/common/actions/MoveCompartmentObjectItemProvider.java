@@ -26,6 +26,7 @@ import org.eclipse.ui.IWorkbenchPage;
  */
 public class MoveCompartmentObjectItemProvider extends
 		AbstractContributionItemProvider implements IProvider {
+
 	/** The Constant MENU_CREATE_DIAGRAM. */
 	public static final String MENU_CREATE_DIAGRAM = "menu_order_within_compartment"; //$NON-NLS-1$
 
@@ -35,7 +36,7 @@ public class MoveCompartmentObjectItemProvider extends
 	@Override
 	protected IMenuManager createMenuManager(String menuId,
 			IWorkbenchPartDescriptor partDescriptor) {
-		if (!MENU_CREATE_DIAGRAM.equals(menuId)) {
+		if(!MENU_CREATE_DIAGRAM.equals(menuId)) {
 			return super.createMenuManager(menuId, partDescriptor);
 		}
 		MenuManager menuManager = new MenuManager("Compartment Order");
@@ -58,7 +59,7 @@ public class MoveCompartmentObjectItemProvider extends
 		 * Instantiates a new menu builder.
 		 * 
 		 * @param workbenchPart
-		 *            the workbench part
+		 *        the workbench part
 		 */
 		public MenuBuilder(IWorkbenchPartDescriptor workbenchPart) {
 			myWorkbenchPart = workbenchPart;
@@ -75,7 +76,7 @@ public class MoveCompartmentObjectItemProvider extends
 		 * Builds the menu.
 		 * 
 		 * @param manager
-		 *            the manager
+		 *        the manager
 		 */
 		public void buildMenu(IMenuManager manager) {
 			manager.removeAll();

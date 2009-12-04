@@ -40,7 +40,7 @@ public class UnmarshallActionPropertiesEditionProvider implements IPropertiesEdi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof UnmarshallAction) {
+		if(eObject instanceof UnmarshallAction) {
 			return new UnmarshallActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class UnmarshallActionPropertiesEditionProvider implements IPropertiesEdi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof UnmarshallAction) {
-			if (UnmarshallActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof UnmarshallAction) {
+			if(UnmarshallActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new UnmarshallActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

@@ -35,23 +35,24 @@ public class ReApplyProfiles extends AbstractViewActionDelegate {
 	public void init(IViewPart view) {
 		// do nothing particular
 	}
-	
+
 	/**
 	 * Run.
 	 * 
-	 * @param action the action
+	 * @param action
+	 *        the action
 	 */
 	@Override
 	public void run(IAction action) {
-		
-		if (selectedElement == null) { // Cancel was selected
+
+		if(selectedElement == null) { // Cancel was selected
 			return;
 		}
-		
-		if (selectedElement instanceof Package) {
-			Package pack = (Package) selectedElement;
+
+		if(selectedElement instanceof Package) {
+			Package pack = (Package)selectedElement;
 			Iterator<Profile> profilesIt = pack.getAllAppliedProfiles().iterator();
-			while (profilesIt.hasNext()) {
+			while(profilesIt.hasNext()) {
 				Profile prof = profilesIt.next();
 				EPackage ep = prof.getDefinition();
 				pack.applyProfile(prof);

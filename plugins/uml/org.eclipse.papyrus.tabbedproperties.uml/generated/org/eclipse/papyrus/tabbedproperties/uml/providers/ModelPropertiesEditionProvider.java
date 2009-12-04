@@ -40,7 +40,7 @@ public class ModelPropertiesEditionProvider implements IPropertiesEditionProvide
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Model) {
+		if(eObject instanceof Model) {
 			return new ModelPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ModelPropertiesEditionProvider implements IPropertiesEditionProvide
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Model) {
-			if (ModelBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Model) {
+			if(ModelBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ModelBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

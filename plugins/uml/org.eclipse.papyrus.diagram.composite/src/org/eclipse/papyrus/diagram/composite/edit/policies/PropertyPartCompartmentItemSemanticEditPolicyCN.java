@@ -35,10 +35,10 @@ public class PropertyPartCompartmentItemSemanticEditPolicyCN extends UMLBaseItem
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Property_3070 == req.getElementType()) {
+		if(UMLElementTypes.Property_3070 == req.getElementType()) {
 			return getGEFWrapper(new PropertyPartCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Comment_3097 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3097 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);

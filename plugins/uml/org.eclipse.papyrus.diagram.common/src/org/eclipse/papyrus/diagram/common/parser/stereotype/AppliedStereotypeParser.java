@@ -35,10 +35,10 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	private static final MessageFormat APPLIED_PROFILE = new MessageFormat("\u00AB{0}\u00BB"); //$NON-NLS-1$
 
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
-		if (notification instanceof Notification) {
-			Object feature = ((Notification) notification).getFeature();
-			if (feature instanceof EStructuralFeature) {
-				EStructuralFeature featureImpl = (EStructuralFeature) feature;
+		if(notification instanceof Notification) {
+			Object feature = ((Notification)notification).getFeature();
+			if(feature instanceof EStructuralFeature) {
+				EStructuralFeature featureImpl = (EStructuralFeature)feature;
 				return featureImpl.getName().startsWith(Extension.METACLASS_ROLE_PREFIX);
 			}
 		}
@@ -46,7 +46,7 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	}
 
 	public List<?> getSemanticElementsBeingParsed(EObject eObject) {
-		Element element = (Element) eObject;
+		Element element = (Element)eObject;
 		List<EObject> result = new LinkedList<EObject>();
 		// result.add(element);
 		result.addAll(element.getStereotypeApplications());
@@ -60,7 +60,7 @@ public class AppliedStereotypeParser implements ISemanticParser {
 		remaining.removeAll(element.getAppliedStereotypes());
 
 		List<String> names = new LinkedList<String>();
-		for (Stereotype next : remaining) {
+		for(Stereotype next : remaining) {
 			names.add(next.getName());
 		}
 		return new FixedSetCompletionProcessor(names);
@@ -69,12 +69,12 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	public String getEditString(IAdaptable element, int flags) {
 		Element subject = doAdapt(element);
 		List<Stereotype> stereos = subject.getAppliedStereotypes();
-		if (stereos.isEmpty()) {
+		if(stereos.isEmpty()) {
 			return ""; //$NON-NLS-1$
 		}
 		StringBuffer result = new StringBuffer();
-		for (Stereotype next : stereos) {
-			if (result.length() > 0) {
+		for(Stereotype next : stereos) {
+			if(result.length() > 0) {
 				result.append(", "); //$NON-NLS-1$
 			}
 			result.append(next.getName());
@@ -89,7 +89,7 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	public String getPrintString(IAdaptable element, int flags) {
 		String editString = getEditString(element, flags);
 		return editString == null || editString.length() == 0 ? editString : APPLIED_PROFILE
-				.format(new Object[] { editString });
+				.format(new Object[]{ editString });
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
@@ -101,7 +101,7 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	}
 
 	private Element doAdapt(IAdaptable adaptable) {
-		Element element = (Element) adaptable.getAdapter(EObject.class);
+		Element element = (Element)adaptable.getAdapter(EObject.class);
 		return element;
 	}
 

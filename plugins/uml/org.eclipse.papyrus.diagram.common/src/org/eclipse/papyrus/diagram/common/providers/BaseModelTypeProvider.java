@@ -40,8 +40,8 @@ public class BaseModelTypeProvider implements IModelTypesProvider {
 	 * Returns the display name of the given IElementType
 	 */
 	public String getTextHelper(IAdaptable hint) {
-		IElementType elementType = (IElementType) Platform.getAdapterManager().getAdapter(hint, IElementType.class);
-		if (elementType != null) {
+		IElementType elementType = (IElementType)Platform.getAdapterManager().getAdapter(hint, IElementType.class);
+		if(elementType != null) {
 			return elementType.getDisplayName();
 		}
 		return UNKNOWN_TEXT;

@@ -58,13 +58,13 @@ public class IncludeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Include) {
+		if(false == getElementToEdit() instanceof Include) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -74,14 +74,14 @@ public class IncludeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof UseCase && newEnd instanceof UseCase)) {
+		if(!(oldEnd instanceof UseCase && newEnd instanceof UseCase)) {
 			return false;
 		}
 		UseCase target = getLink().getAddition();
-		if (!(getLink().eContainer() instanceof UseCase)) {
+		if(!(getLink().eContainer() instanceof UseCase)) {
 			return false;
 		}
-		UseCase container = (UseCase) getLink().eContainer();
+		UseCase container = (UseCase)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInclude_4008(container, getNewSource(), target);
 	}
 
@@ -89,14 +89,14 @@ public class IncludeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof UseCase && newEnd instanceof UseCase)) {
+		if(!(oldEnd instanceof UseCase && newEnd instanceof UseCase)) {
 			return false;
 		}
 		UseCase source = getLink().getIncludingCase();
-		if (!(getLink().eContainer() instanceof UseCase)) {
+		if(!(getLink().eContainer() instanceof UseCase)) {
 			return false;
 		}
-		UseCase container = (UseCase) getLink().eContainer();
+		UseCase container = (UseCase)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInclude_4008(container, source, getNewTarget());
 	}
 
@@ -104,13 +104,13 @@ public class IncludeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -136,34 +136,34 @@ public class IncludeReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Include getLink() {
-		return (Include) getElementToEdit();
+		return (Include)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected UseCase getOldSource() {
-		return (UseCase) oldEnd;
+		return (UseCase)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected UseCase getNewSource() {
-		return (UseCase) newEnd;
+		return (UseCase)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected UseCase getOldTarget() {
-		return (UseCase) oldEnd;
+		return (UseCase)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected UseCase getNewTarget() {
-		return (UseCase) newEnd;
+		return (UseCase)newEnd;
 	}
 }

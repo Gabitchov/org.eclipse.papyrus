@@ -61,8 +61,7 @@ public class ControlFlowCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public ControlFlowCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public ControlFlowCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request);
 		this.source = source;
 		this.target = target;
@@ -73,8 +72,7 @@ public class ControlFlowCreateCommand extends CreateElementCommand {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null; element = element.eContainer()) {
 			if (element instanceof Activity) {
 				container = (Activity) element;
 				super.setElementToEdit(container);
@@ -104,9 +102,7 @@ public class ControlFlowCreateCommand extends CreateElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateControlFlow_3001(getContainer(), getSource(),
-						getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateControlFlow_3001(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -114,10 +110,8 @@ public class ControlFlowCreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
-				MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(
-					MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -141,11 +135,9 @@ public class ControlFlowCreateCommand extends CreateElementCommand {
 
 		Diagram diagram = getDiagramFromRequest();
 		if (diagram != null) {
-			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-					newElement);
+			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
 		} else {
-			MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-					UMLDiagramEditorPlugin.getInstance(), newElement);
+			MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
 		}
 		// fjcano : if in an ActivityPartition, add the ControlFlow to it.
 		if (getSource().getInPartitions().size() > 0) {
@@ -167,11 +159,9 @@ public class ControlFlowCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}

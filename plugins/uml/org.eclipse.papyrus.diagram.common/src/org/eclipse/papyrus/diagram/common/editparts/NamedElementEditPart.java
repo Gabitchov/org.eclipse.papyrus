@@ -23,7 +23,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * this editpart manage the  font and icon of the name label and qualified name label. 
+ * this editpart manage the font and icon of the name label and qualified name label.
  * 
  */
 public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart {
@@ -36,7 +36,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	}
 
 	public NamedElement getNamedElement() {
-		return (NamedElement) getUMLElement();
+		return (NamedElement)getUMLElement();
 	}
 
 	/**
@@ -47,25 +47,25 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 		super.handleNotificationEvent(event);
 
 		// set the figure active when the feature of the of a class is true
-		if (resolveSemanticElement() != null) {
+		if(resolveSemanticElement() != null) {
 			refreshIconNamedLabel();
 			refreshFontColor();
 		}
 	}
 
 	private void refreshIconNamedLabel() {
-		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View) getModel()));
+		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View)getModel()));
 	}
 
-	
+
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		if(getNodeNamedElementFigure()!=null&& resolveSemanticElement()!=null){
+		if(getNodeNamedElementFigure() != null && resolveSemanticElement() != null) {
 			refreshIconNamedLabel();
 			refreshFontColor();
 		}
-		
+
 	}
 
 	/**
@@ -73,24 +73,24 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	 * call super.refreshLabelsFont(font)
 	 * 
 	 * @param font
-	 *            the font to use
+	 *        the font to use
 	 */
 	protected void refreshLabelsFont(Font font) {
 		super.refreshLabelsFont(font);
 		// Apply the font to the Name Label
 		getNodeNamedElementFigure().getNameLabel().setFont(font);
 		// Apply the font to the Qualified Name
-		if (getNodeNamedElementFigure().getQualifiedNameLabel() != null) {
+		if(getNodeNamedElementFigure().getQualifiedNameLabel() != null) {
 			getNodeNamedElementFigure().getQualifiedNameLabel().setFont(font);
 		}
 		// Apply the font to the tagged Label
-		if (getNodeNamedElementFigure().getTaggedLabel() != null) {
+		if(getNodeNamedElementFigure().getTaggedLabel() != null) {
 			getNodeNamedElementFigure().getTaggedLabel().setFont(font);
 		}
 	}
 
 	private IPapyrusNodeNamedElementFigure getNodeNamedElementFigure() {
-		return (IPapyrusNodeNamedElementFigure) getPrimaryShape();
+		return (IPapyrusNodeNamedElementFigure)getPrimaryShape();
 	}
 
 	/**
@@ -101,11 +101,11 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	protected void setFontColor(Color color) {
 		super.setFontColor(color);
 		// Qualified Name
-		if (getNodeNamedElementFigure().getQualifiedNameLabel() != null) {
+		if(getNodeNamedElementFigure().getQualifiedNameLabel() != null) {
 			getNodeNamedElementFigure().getQualifiedNameLabel().setForegroundColor(color);
 		}
 		// TaggedLabel
-		if (getNodeNamedElementFigure().getTaggedLabel() != null) {
+		if(getNodeNamedElementFigure().getTaggedLabel() != null) {
 			getNodeNamedElementFigure().getTaggedLabel().setForegroundColor(color);
 		}
 	}

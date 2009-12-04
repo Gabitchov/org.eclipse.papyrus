@@ -59,7 +59,7 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -75,9 +75,9 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	 * Default constructor
 	 */
 	public CommentPropertiesEditionComponent(EObject comment, String editing_mode) {
-		if (comment instanceof Comment) {
+		if(comment instanceof Comment) {
 			this.comment = (Comment)comment;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.comment.eAdapters().add(semanticAdapter);
 			}
@@ -99,16 +99,18 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					CommentPropertiesEditionComponent.this.dispose();
 				else {
-					if (UMLPackage.eINSTANCE.getComment_Body().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setBody((String)msg.getNewValue());
+					if(UMLPackage.eINSTANCE.getComment_Body().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setBody((String)msg.getNewValue());
+						} else {
+							basePart.setBody((String)"");
 						}
-						else{basePart.setBody((String)"");}}
+					}
 
-					if (UMLPackage.eINSTANCE.getComment_AnnotatedElement().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getComment_AnnotatedElement().equals(msg.getFeature()))
 						basePart.updateAnnotatedElement(comment);
 
 
@@ -124,7 +126,7 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.Comment.class;
 		return super.translatePart(key);
 	}
@@ -141,14 +143,13 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (comment != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(comment != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (CommentPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Comment.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -161,30 +162,30 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.Comment.class)
-			this.basePart = (CommentPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.Comment.class)
+			this.basePart = (CommentPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.Comment.class) {
+		if(basePart != null && key == UMLViewsRepository.Comment.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final Comment comment = (Comment)elt;
 			// init values
-			if (comment.getBody() != null)
+			if(comment.getBody() != null)
 				basePart.setBody(comment.getBody());
 
 			basePart.initAnnotatedElement(comment, null, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-			
+
 			// init filters
 
 			basePart.addFilterToAnnotatedElement(new ViewerFilter() {
@@ -195,7 +196,7 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInAnnotatedElementTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -216,23 +217,22 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (comment != null) {
+		if(comment != null) {
 			cc.append(SetCommand.create(editingDomain, comment, UMLPackage.eINSTANCE.getComment_Body(), basePart.getBody()));
 
 			List annotatedElementToAddFromAnnotatedElement = basePart.getAnnotatedElementToAdd();
-			for (Iterator iter = annotatedElementToAddFromAnnotatedElement.iterator(); iter.hasNext();)
+			for(Iterator iter = annotatedElementToAddFromAnnotatedElement.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, comment, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), iter.next()));
 			List annotatedElementToRemoveFromAnnotatedElement = basePart.getAnnotatedElementToRemove();
-			for (Iterator iter = annotatedElementToRemoveFromAnnotatedElement.iterator(); iter.hasNext();)
+			for(Iterator iter = annotatedElementToRemoveFromAnnotatedElement.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, comment, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), iter.next()));
 			//List annotatedElementToMoveFromAnnotatedElement = basePart.getAnnotatedElementToMove();
 			//for (Iterator iter = annotatedElementToMoveFromAnnotatedElement.iterator(); iter.hasNext();){
@@ -242,7 +242,7 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -254,7 +254,7 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof Comment) {
+		if(source instanceof Comment) {
 			Comment commentToUpdate = (Comment)source;
 			commentToUpdate.setBody(basePart.getBody());
 
@@ -262,8 +262,7 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 
 
 			return commentToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -274,36 +273,36 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.Comment.body == event.getAffectedEditor())
+			if(UMLViewsRepository.Comment.body == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, comment, UMLPackage.eINSTANCE.getComment_Body(), event.getNewValue()));
 
-			if (UMLViewsRepository.Comment.annotatedElement == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Comment.annotatedElement == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, comment, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, comment, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, comment, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
-				if (UMLViewsRepository.Comment.body == event.getAffectedEditor())
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
+				if(UMLViewsRepository.Comment.body == event.getAffectedEditor())
 					basePart.setMessageForBody(diag.getMessage(), IMessageProvider.ERROR);
 
 
 
 			} else {
-				if (UMLViewsRepository.Comment.body == event.getAffectedEditor())
+				if(UMLViewsRepository.Comment.body == event.getAffectedEditor())
 					basePart.unsetMessageForBody();
 
 
@@ -319,10 +318,10 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.Comment.body == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Comment.body == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getComment_Body().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getComment_Body().getEAttributeType(), newValue);
 				}
@@ -341,12 +340,11 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(comment);
 		// Start of user code for custom validation check
 
@@ -362,7 +360,7 @@ public class CommentPropertiesEditionComponent extends StandardPropertiesEdition
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			comment.eAdapters().remove(semanticAdapter);
 	}
 

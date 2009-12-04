@@ -69,7 +69,7 @@ public class RemoveVariableValueActionBasePropertiesEditionComponent extends Sta
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -85,9 +85,9 @@ public class RemoveVariableValueActionBasePropertiesEditionComponent extends Sta
 	 * Default constructor
 	 */
 	public RemoveVariableValueActionBasePropertiesEditionComponent(EObject removeVariableValueAction, String editing_mode) {
-		if (removeVariableValueAction instanceof RemoveVariableValueAction) {
+		if(removeVariableValueAction instanceof RemoveVariableValueAction) {
 			this.removeVariableValueAction = (RemoveVariableValueAction)removeVariableValueAction;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.removeVariableValueAction.eAdapters().add(semanticAdapter);
 			}
@@ -109,53 +109,55 @@ public class RemoveVariableValueActionBasePropertiesEditionComponent extends Sta
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					RemoveVariableValueActionBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(removeVariableValueAction);
 					}
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setName((String)msg.getNewValue());
-}
-						else{basePart.setName("");}}
-					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setName((String)msg.getNewValue());
+						} else {
+							basePart.setName("");
+						}
+					}
+					if(UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
 						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 						basePart.updateClientDependency(removeVariableValueAction);
-					if (UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(msg.getFeature()) && basePart != null)
 						basePart.setIsLeaf((Boolean)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getActivityNode_Outgoing().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getActivityNode_Outgoing().equals(msg.getFeature()))
 						basePart.updateOutgoing(removeVariableValueAction);
-					if (UMLPackage.eINSTANCE.getActivityNode_Incoming().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getActivityNode_Incoming().equals(msg.getFeature()))
 						basePart.updateIncoming(removeVariableValueAction);
-					if (UMLPackage.eINSTANCE.getActivityNode_InPartition().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getActivityNode_InPartition().equals(msg.getFeature()))
 						basePart.updateInPartition(removeVariableValueAction);
-					if (UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion().equals(msg.getFeature()))
 						basePart.updateInInterruptibleRegion(removeVariableValueAction);
-					if (UMLPackage.eINSTANCE.getActivityNode_RedefinedNode().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getActivityNode_RedefinedNode().equals(msg.getFeature()))
 						basePart.updateRedefinedNode(removeVariableValueAction);
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getExecutableNode_Handler()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getExecutableNode_Handler())) {
 						basePart.updateHandler(removeVariableValueAction);
 					}
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getAction_LocalPrecondition()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getAction_LocalPrecondition())) {
 						basePart.updateLocalPrecondition(removeVariableValueAction);
 					}
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getAction_LocalPostcondition()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getAction_LocalPostcondition())) {
 						basePart.updateLocalPostcondition(removeVariableValueAction);
 					}
-					if (UMLPackage.eINSTANCE.getRemoveVariableValueAction_IsRemoveDuplicates().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getRemoveVariableValueAction_IsRemoveDuplicates().equals(msg.getFeature()) && basePart != null)
 						basePart.setIsRemoveDuplicates((Boolean)msg.getNewValue());
 
 
@@ -172,7 +174,7 @@ public class RemoveVariableValueActionBasePropertiesEditionComponent extends Sta
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.RemoveVariableValueAction.class;
 		return super.translatePart(key);
 	}
@@ -189,14 +191,13 @@ public class RemoveVariableValueActionBasePropertiesEditionComponent extends Sta
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (removeVariableValueAction != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(removeVariableValueAction != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (RemoveVariableValueActionPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.RemoveVariableValueAction.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -209,32 +210,32 @@ public class RemoveVariableValueActionBasePropertiesEditionComponent extends Sta
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.RemoveVariableValueAction.class)
-			this.basePart = (RemoveVariableValueActionPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.RemoveVariableValueAction.class)
+			this.basePart = (RemoveVariableValueActionPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.RemoveVariableValueAction.class) {
+		if(basePart != null && key == UMLViewsRepository.RemoveVariableValueAction.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final RemoveVariableValueAction removeVariableValueAction = (RemoveVariableValueAction)elt;
 			// init values
 			basePart.initOwnedComment(removeVariableValueAction, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
-			if (removeVariableValueAction.getName() != null)
+			if(removeVariableValueAction.getName() != null)
 				basePart.setName(removeVariableValueAction.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), removeVariableValueAction.getVisibility());
+			basePart.initVisibility((EEnum)UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), removeVariableValueAction.getVisibility());
 			basePart.initClientDependency(removeVariableValueAction, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
-basePart.setIsLeaf(removeVariableValueAction.isLeaf());
+			basePart.setIsLeaf(removeVariableValueAction.isLeaf());
 
 			basePart.initOutgoing(removeVariableValueAction, null, UMLPackage.eINSTANCE.getActivityNode_Outgoing());
 			basePart.initIncoming(removeVariableValueAction, null, UMLPackage.eINSTANCE.getActivityNode_Incoming());
@@ -244,19 +245,19 @@ basePart.setIsLeaf(removeVariableValueAction.isLeaf());
 			basePart.initHandler(removeVariableValueAction, null, UMLPackage.eINSTANCE.getExecutableNode_Handler());
 			basePart.initLocalPrecondition(removeVariableValueAction, null, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			basePart.initLocalPostcondition(removeVariableValueAction, null, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
+			basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 
-			
+
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -274,7 +275,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientDependencyTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -293,7 +294,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInOutgoingTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -311,7 +312,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInIncomingTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -329,7 +330,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInInPartitionTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -347,7 +348,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInInInterruptibleRegionTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -365,7 +366,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInRedefinedNodeTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -377,13 +378,13 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			// End of user code
 			basePart.addFilterToHandler(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof ExceptionHandler); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof ExceptionHandler); //$NON-NLS-1$ 
 
 				}
 
@@ -393,13 +394,13 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			// End of user code
 			basePart.addFilterToLocalPrecondition(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
 
 				}
 
@@ -409,13 +410,13 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			// End of user code
 			basePart.addFilterToLocalPostcondition(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
 
 				}
 
@@ -435,53 +436,40 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (removeVariableValueAction != null) {
+		if(removeVariableValueAction != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Comment nextElement = (Comment)iter.next();
+				Comment ownedComment = (Comment)ownedCommentToRefreshFromOwnedComment.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+			for(Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
@@ -490,10 +478,10 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			cc.append(SetCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
-			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
-			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
 			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
@@ -503,10 +491,10 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			cc.append(SetCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), basePart.getIsLeaf()));
 
 			List outgoingToAddFromOutgoing = basePart.getOutgoingToAdd();
-			for (Iterator iter = outgoingToAddFromOutgoing.iterator(); iter.hasNext();)
+			for(Iterator iter = outgoingToAddFromOutgoing.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Outgoing(), iter.next()));
 			List outgoingToRemoveFromOutgoing = basePart.getOutgoingToRemove();
-			for (Iterator iter = outgoingToRemoveFromOutgoing.iterator(); iter.hasNext();)
+			for(Iterator iter = outgoingToRemoveFromOutgoing.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Outgoing(), iter.next()));
 			//List outgoingToMoveFromOutgoing = basePart.getOutgoingToMove();
 			//for (Iterator iter = outgoingToMoveFromOutgoing.iterator(); iter.hasNext();){
@@ -514,10 +502,10 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			//	cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityEdge(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List incomingToAddFromIncoming = basePart.getIncomingToAdd();
-			for (Iterator iter = incomingToAddFromIncoming.iterator(); iter.hasNext();)
+			for(Iterator iter = incomingToAddFromIncoming.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Incoming(), iter.next()));
 			List incomingToRemoveFromIncoming = basePart.getIncomingToRemove();
-			for (Iterator iter = incomingToRemoveFromIncoming.iterator(); iter.hasNext();)
+			for(Iterator iter = incomingToRemoveFromIncoming.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Incoming(), iter.next()));
 			//List incomingToMoveFromIncoming = basePart.getIncomingToMove();
 			//for (Iterator iter = incomingToMoveFromIncoming.iterator(); iter.hasNext();){
@@ -525,10 +513,10 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			//	cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityEdge(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List inPartitionToAddFromInPartition = basePart.getInPartitionToAdd();
-			for (Iterator iter = inPartitionToAddFromInPartition.iterator(); iter.hasNext();)
+			for(Iterator iter = inPartitionToAddFromInPartition.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InPartition(), iter.next()));
 			List inPartitionToRemoveFromInPartition = basePart.getInPartitionToRemove();
-			for (Iterator iter = inPartitionToRemoveFromInPartition.iterator(); iter.hasNext();)
+			for(Iterator iter = inPartitionToRemoveFromInPartition.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InPartition(), iter.next()));
 			//List inPartitionToMoveFromInPartition = basePart.getInPartitionToMove();
 			//for (Iterator iter = inPartitionToMoveFromInPartition.iterator(); iter.hasNext();){
@@ -536,10 +524,10 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			//	cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityPartition(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List inInterruptibleRegionToAddFromInInterruptibleRegion = basePart.getInInterruptibleRegionToAdd();
-			for (Iterator iter = inInterruptibleRegionToAddFromInInterruptibleRegion.iterator(); iter.hasNext();)
+			for(Iterator iter = inInterruptibleRegionToAddFromInInterruptibleRegion.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), iter.next()));
 			List inInterruptibleRegionToRemoveFromInInterruptibleRegion = basePart.getInInterruptibleRegionToRemove();
-			for (Iterator iter = inInterruptibleRegionToRemoveFromInInterruptibleRegion.iterator(); iter.hasNext();)
+			for(Iterator iter = inInterruptibleRegionToRemoveFromInInterruptibleRegion.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), iter.next()));
 			//List inInterruptibleRegionToMoveFromInInterruptibleRegion = basePart.getInInterruptibleRegionToMove();
 			//for (Iterator iter = inInterruptibleRegionToMoveFromInInterruptibleRegion.iterator(); iter.hasNext();){
@@ -547,10 +535,10 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			//	cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getInterruptibleActivityRegion(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List redefinedNodeToAddFromRedefinedNode = basePart.getRedefinedNodeToAdd();
-			for (Iterator iter = redefinedNodeToAddFromRedefinedNode.iterator(); iter.hasNext();)
+			for(Iterator iter = redefinedNodeToAddFromRedefinedNode.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_RedefinedNode(), iter.next()));
 			List redefinedNodeToRemoveFromRedefinedNode = basePart.getRedefinedNodeToRemove();
-			for (Iterator iter = redefinedNodeToRemoveFromRedefinedNode.iterator(); iter.hasNext();)
+			for(Iterator iter = redefinedNodeToRemoveFromRedefinedNode.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_RedefinedNode(), iter.next()));
 			//List redefinedNodeToMoveFromRedefinedNode = basePart.getRedefinedNodeToMove();
 			//for (Iterator iter = redefinedNodeToMoveFromRedefinedNode.iterator(); iter.hasNext();){
@@ -558,86 +546,86 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 			//	cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List handlerToAddFromHandler = basePart.getHandlerToAdd();
-			for (Iterator iter = handlerToAddFromHandler.iterator(); iter.hasNext();)
+			for(Iterator iter = handlerToAddFromHandler.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getExecutableNode_Handler(), iter.next()));
 			Map handlerToRefreshFromHandler = basePart.getHandlerToEdit();
-			for (Iterator iter = handlerToRefreshFromHandler.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				ExceptionHandler nextElement = (ExceptionHandler) iter.next();
-				ExceptionHandler handler = (ExceptionHandler) handlerToRefreshFromHandler.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = handlerToRefreshFromHandler.keySet().iterator(); iter.hasNext();) {
+
+
+
+				ExceptionHandler nextElement = (ExceptionHandler)iter.next();
+				ExceptionHandler handler = (ExceptionHandler)handlerToRefreshFromHandler.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, handler.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List handlerToRemoveFromHandler = basePart.getHandlerToRemove();
-			for (Iterator iter = handlerToRemoveFromHandler.iterator(); iter.hasNext();)
+			for(Iterator iter = handlerToRemoveFromHandler.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List handlerToMoveFromHandler = basePart.getHandlerToMove();
-			for (Iterator iter = handlerToMoveFromHandler.iterator(); iter.hasNext();){
+			for(Iterator iter = handlerToMoveFromHandler.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getExceptionHandler(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List localPreconditionToAddFromLocalPrecondition = basePart.getLocalPreconditionToAdd();
-			for (Iterator iter = localPreconditionToAddFromLocalPrecondition.iterator(); iter.hasNext();)
+			for(Iterator iter = localPreconditionToAddFromLocalPrecondition.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getAction_LocalPrecondition(), iter.next()));
 			Map localPreconditionToRefreshFromLocalPrecondition = basePart.getLocalPreconditionToEdit();
-			for (Iterator iter = localPreconditionToRefreshFromLocalPrecondition.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Constraint nextElement = (Constraint) iter.next();
-				Constraint localPrecondition = (Constraint) localPreconditionToRefreshFromLocalPrecondition.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = localPreconditionToRefreshFromLocalPrecondition.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Constraint nextElement = (Constraint)iter.next();
+				Constraint localPrecondition = (Constraint)localPreconditionToRefreshFromLocalPrecondition.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, localPrecondition.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List localPreconditionToRemoveFromLocalPrecondition = basePart.getLocalPreconditionToRemove();
-			for (Iterator iter = localPreconditionToRemoveFromLocalPrecondition.iterator(); iter.hasNext();)
+			for(Iterator iter = localPreconditionToRemoveFromLocalPrecondition.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List localPreconditionToMoveFromLocalPrecondition = basePart.getLocalPreconditionToMove();
-			for (Iterator iter = localPreconditionToMoveFromLocalPrecondition.iterator(); iter.hasNext();){
+			for(Iterator iter = localPreconditionToMoveFromLocalPrecondition.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List localPostconditionToAddFromLocalPostcondition = basePart.getLocalPostconditionToAdd();
-			for (Iterator iter = localPostconditionToAddFromLocalPostcondition.iterator(); iter.hasNext();)
+			for(Iterator iter = localPostconditionToAddFromLocalPostcondition.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getAction_LocalPostcondition(), iter.next()));
 			Map localPostconditionToRefreshFromLocalPostcondition = basePart.getLocalPostconditionToEdit();
-			for (Iterator iter = localPostconditionToRefreshFromLocalPostcondition.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Constraint nextElement = (Constraint) iter.next();
-				Constraint localPostcondition = (Constraint) localPostconditionToRefreshFromLocalPostcondition.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = localPostconditionToRefreshFromLocalPostcondition.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Constraint nextElement = (Constraint)iter.next();
+				Constraint localPostcondition = (Constraint)localPostconditionToRefreshFromLocalPostcondition.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, localPostcondition.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List localPostconditionToRemoveFromLocalPostcondition = basePart.getLocalPostconditionToRemove();
-			for (Iterator iter = localPostconditionToRemoveFromLocalPostcondition.iterator(); iter.hasNext();)
+			for(Iterator iter = localPostconditionToRemoveFromLocalPostcondition.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List localPostconditionToMoveFromLocalPostcondition = basePart.getLocalPostconditionToMove();
-			for (Iterator iter = localPostconditionToMoveFromLocalPostcondition.iterator(); iter.hasNext();){
+			for(Iterator iter = localPostconditionToMoveFromLocalPostcondition.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
@@ -646,7 +634,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -658,7 +646,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof RemoveVariableValueAction) {
+		if(source instanceof RemoveVariableValueAction) {
 			RemoveVariableValueAction removeVariableValueActionToUpdate = (RemoveVariableValueAction)source;
 			removeVariableValueActionToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			removeVariableValueActionToUpdate.setName(basePart.getName());
@@ -681,8 +669,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 
 
 			return removeVariableValueActionToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -693,196 +680,174 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.RemoveVariableValueAction.ownedComment == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.RemoveVariableValueAction.ownedComment == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Comment oldValue = (Comment)event.getOldValue();
 					Comment newValue = (Comment)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the removeVariableValueAction update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor())
+			if(UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
-			if (UMLViewsRepository.RemoveVariableValueAction.visibility == event.getAffectedEditor())
+			if(UMLViewsRepository.RemoveVariableValueAction.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
-			if (UMLViewsRepository.RemoveVariableValueAction.clientDependency == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.RemoveVariableValueAction.clientDependency == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.isLeaf == event.getAffectedEditor())
+			if(UMLViewsRepository.RemoveVariableValueAction.isLeaf == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf(), event.getNewValue()));
 
-			if (UMLViewsRepository.RemoveVariableValueAction.outgoing == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.RemoveVariableValueAction.outgoing == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Outgoing(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Outgoing(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Outgoing(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.incoming == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.RemoveVariableValueAction.incoming == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Incoming(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Incoming(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_Incoming(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.inPartition == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.RemoveVariableValueAction.inPartition == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InPartition(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InPartition(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InPartition(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.inInterruptibleRegion == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.RemoveVariableValueAction.inInterruptibleRegion == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.redefinedNode == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.RemoveVariableValueAction.redefinedNode == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_RedefinedNode(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_RedefinedNode(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getActivityNode_RedefinedNode(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.handler == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.RemoveVariableValueAction.handler == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					ExceptionHandler oldValue = (ExceptionHandler)event.getOldValue();
 					ExceptionHandler newValue = (ExceptionHandler)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the removeVariableValueAction update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getExecutableNode_Handler(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getExceptionHandler(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.localPrecondition == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.RemoveVariableValueAction.localPrecondition == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Constraint oldValue = (Constraint)event.getOldValue();
 					Constraint newValue = (Constraint)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the removeVariableValueAction update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getAction_LocalPrecondition(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getConstraint(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.localPostcondition == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.RemoveVariableValueAction.localPostcondition == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Constraint oldValue = (Constraint)event.getOldValue();
 					Constraint newValue = (Constraint)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the removeVariableValueAction update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getAction_LocalPostcondition(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getConstraint(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.RemoveVariableValueAction.isRemoveDuplicates == event.getAffectedEditor())
+			if(UMLViewsRepository.RemoveVariableValueAction.isRemoveDuplicates == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, removeVariableValueAction, UMLPackage.eINSTANCE.getRemoveVariableValueAction_IsRemoveDuplicates(), event.getNewValue()));
 
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
 
-				if (UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor())
+				if(UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
 
 
 
 
-
-
-
-
-
-
-
-
-
 			} else {
 
-				if (UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor())
+				if(UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
-
-
-
-
-
-
-
-
-
 
 
 
@@ -908,22 +873,22 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor()) {
+				if(UMLViewsRepository.RemoveVariableValueAction.name == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.RemoveVariableValueAction.visibility == event.getAffectedEditor()) {
+				if(UMLViewsRepository.RemoveVariableValueAction.visibility == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.RemoveVariableValueAction.isLeaf == event.getAffectedEditor()) {
+				if(UMLViewsRepository.RemoveVariableValueAction.isLeaf == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.RemoveVariableValueAction.isRemoveDuplicates == event.getAffectedEditor()) {
+				if(UMLViewsRepository.RemoveVariableValueAction.isRemoveDuplicates == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getRemoveVariableValueAction_IsRemoveDuplicates().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getRemoveVariableValueAction_IsRemoveDuplicates().getEAttributeType(), newValue);
 				}
@@ -942,12 +907,11 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(removeVariableValueAction);
 		// Start of user code for custom validation check
 
@@ -963,7 +927,7 @@ basePart.setIsRemoveDuplicates(removeVariableValueAction.isRemoveDuplicates());
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			removeVariableValueAction.eAdapters().remove(semanticAdapter);
 	}
 

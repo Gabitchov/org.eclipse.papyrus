@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
@@ -62,7 +61,7 @@ public class FlowSpecificationItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_InterfacePropertyDescriptor(object);
@@ -77,11 +76,11 @@ public class FlowSpecificationItemProvider extends ItemProviderAdapter implement
 	 * @generated
 	 */
 	protected void addBase_InterfacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_FlowSpecification_base_Interface_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_FlowSpecification_base_Interface_feature",
-						"_UI_FlowSpecification_type"), PortandflowsPackage.Literals.FLOW_SPECIFICATION__BASE_INTERFACE,
+				"_UI_PropertyDescriptor_description", "_UI_FlowSpecification_base_Interface_feature",
+				"_UI_FlowSpecification_type"), PortandflowsPackage.Literals.FLOW_SPECIFICATION__BASE_INTERFACE,
 				true, false, true, null, null, null));
 	}
 
@@ -108,8 +107,7 @@ public class FlowSpecificationItemProvider extends ItemProviderAdapter implement
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

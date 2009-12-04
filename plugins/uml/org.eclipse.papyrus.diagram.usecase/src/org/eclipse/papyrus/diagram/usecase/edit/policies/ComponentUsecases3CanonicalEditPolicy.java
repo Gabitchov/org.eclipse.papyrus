@@ -33,11 +33,11 @@ public class ComponentUsecases3CanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getComponentUsecases_7015SemanticChildren(viewObject).iterator(); it
+		for(Iterator it = UMLDiagramUpdater.getComponentUsecases_7015SemanticChildren(viewObject).iterator(); it
 				.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -47,13 +47,13 @@ public class ComponentUsecases3CanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case UseCase3EditPart.VISUAL_ID:
 		case Component2EditPart.VISUAL_ID:
 		case Comment2EditPart.VISUAL_ID:
 		case Constraint2EditPart.VISUAL_ID:
 		case Actor4EditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -71,7 +71,7 @@ public class ComponentUsecases3CanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClassifier_OwnedUseCase());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getComponent_PackagedElement());

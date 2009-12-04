@@ -40,8 +40,7 @@ public class ElementOwnedCommentReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ElementOwnedCommentReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ElementOwnedCommentReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -73,9 +72,7 @@ public class ElementOwnedCommentReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Comment && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistElementOwnedComment_3005(getNewSource(),
-						getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistElementOwnedComment_3005(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -85,20 +82,16 @@ public class ElementOwnedCommentReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Comment && newEnd instanceof Comment)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistElementOwnedComment_3005(getOldSource(),
-						getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistElementOwnedComment_3005(getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

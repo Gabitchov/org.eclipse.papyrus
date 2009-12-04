@@ -63,9 +63,9 @@ public class CollaborationRoleTreeContentProvider implements ITreeContentProvide
 	public Object[] getElements(Object inputElement) {
 		Object[] children = null;
 
-		if (inputElement instanceof CollaborationUse) {
-			CollaborationUse parentUMLElement = (CollaborationUse) inputElement;
-			if (parentUMLElement.getType() != null) {
+		if(inputElement instanceof CollaborationUse) {
+			CollaborationUse parentUMLElement = (CollaborationUse)inputElement;
+			if(parentUMLElement.getType() != null) {
 				children = parentUMLElement.getType().getCollaborationRoles().toArray();
 			}
 		}

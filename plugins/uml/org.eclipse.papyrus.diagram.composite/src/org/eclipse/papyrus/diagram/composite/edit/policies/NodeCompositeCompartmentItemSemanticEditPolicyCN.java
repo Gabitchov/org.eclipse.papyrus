@@ -58,79 +58,79 @@ public class NodeCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseIte
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Property_3070 == req.getElementType()) {
+		if(UMLElementTypes.Property_3070 == req.getElementType()) {
 			return getGEFWrapper(new PropertyPartCreateCommandCN(req));
 		}
-		if (UMLElementTypes.CollaborationUse_3071 == req.getElementType()) {
+		if(UMLElementTypes.CollaborationUse_3071 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationUseCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Activity_3072 == req.getElementType()) {
+		if(UMLElementTypes.Activity_3072 == req.getElementType()) {
 			return getGEFWrapper(new ActivityCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Interaction_3073 == req.getElementType()) {
+		if(UMLElementTypes.Interaction_3073 == req.getElementType()) {
 			return getGEFWrapper(new InteractionCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.ProtocolStateMachine_3074 == req.getElementType()) {
+		if(UMLElementTypes.ProtocolStateMachine_3074 == req.getElementType()) {
 			return getGEFWrapper(new ProtocolStateMachineCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.StateMachine_3075 == req.getElementType()) {
+		if(UMLElementTypes.StateMachine_3075 == req.getElementType()) {
 			return getGEFWrapper(new StateMachineCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.FunctionBehavior_3076 == req.getElementType()) {
+		if(UMLElementTypes.FunctionBehavior_3076 == req.getElementType()) {
 			return getGEFWrapper(new FunctionBehaviorCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.OpaqueBehavior_3077 == req.getElementType()) {
+		if(UMLElementTypes.OpaqueBehavior_3077 == req.getElementType()) {
 			return getGEFWrapper(new OpaqueBehaviorCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Component_3081 == req.getElementType()) {
+		if(UMLElementTypes.Component_3081 == req.getElementType()) {
 			return getGEFWrapper(new ComponentCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Device_3082 == req.getElementType()) {
+		if(UMLElementTypes.Device_3082 == req.getElementType()) {
 			return getGEFWrapper(new DeviceCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.ExecutionEnvironment_3083 == req.getElementType()) {
+		if(UMLElementTypes.ExecutionEnvironment_3083 == req.getElementType()) {
 			return getGEFWrapper(new ExecutionEnvironmentCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Node_3084 == req.getElementType()) {
+		if(UMLElementTypes.Node_3084 == req.getElementType()) {
 			return getGEFWrapper(new NodeCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Class_3085 == req.getElementType()) {
+		if(UMLElementTypes.Class_3085 == req.getElementType()) {
 			return getGEFWrapper(new ClassCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Collaboration_3086 == req.getElementType()) {
+		if(UMLElementTypes.Collaboration_3086 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationCompositeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Interface_3087 == req.getElementType()) {
+		if(UMLElementTypes.Interface_3087 == req.getElementType()) {
 			return getGEFWrapper(new InterfaceCreateCommandCN(req));
 		}
-		if (UMLElementTypes.PrimitiveType_3078 == req.getElementType()) {
+		if(UMLElementTypes.PrimitiveType_3078 == req.getElementType()) {
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Enumeration_3079 == req.getElementType()) {
+		if(UMLElementTypes.Enumeration_3079 == req.getElementType()) {
 			return getGEFWrapper(new EnumerationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.DataType_3080 == req.getElementType()) {
+		if(UMLElementTypes.DataType_3080 == req.getElementType()) {
 			return getGEFWrapper(new DataTypeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Actor_3091 == req.getElementType()) {
+		if(UMLElementTypes.Actor_3091 == req.getElementType()) {
 			return getGEFWrapper(new ActorCreateCommandCN(req));
 		}
-		if (UMLElementTypes.DeploymentSpecification_3092 == req.getElementType()) {
+		if(UMLElementTypes.DeploymentSpecification_3092 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentSpecificationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Artifact_3093 == req.getElementType()) {
+		if(UMLElementTypes.Artifact_3093 == req.getElementType()) {
 			return getGEFWrapper(new ArtifactCreateCommandCN(req));
 		}
-		if (UMLElementTypes.InformationItem_3094 == req.getElementType()) {
+		if(UMLElementTypes.InformationItem_3094 == req.getElementType()) {
 			return getGEFWrapper(new InformationItemCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Signal_3095 == req.getElementType()) {
+		if(UMLElementTypes.Signal_3095 == req.getElementType()) {
 			return getGEFWrapper(new SignalCreateCommandCN(req));
 		}
-		if (UMLElementTypes.UseCase_3096 == req.getElementType()) {
+		if(UMLElementTypes.UseCase_3096 == req.getElementType()) {
 			return getGEFWrapper(new UseCaseCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Comment_3097 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3097 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);

@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Artifact;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.LibraryImpl#getBase_Artifact <em>Base Artifact
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.LibraryImpl#getBase_Artifact <em>Base Artifact </em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,11 +71,11 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	 * @generated
 	 */
 	public Artifact getBase_Artifact() {
-		if (base_Artifact != null && base_Artifact.eIsProxy()) {
-			InternalEObject oldBase_Artifact = (InternalEObject) base_Artifact;
-			base_Artifact = (Artifact) eResolveProxy(oldBase_Artifact);
-			if (base_Artifact != oldBase_Artifact) {
-				if (eNotificationRequired())
+		if(base_Artifact != null && base_Artifact.eIsProxy()) {
+			InternalEObject oldBase_Artifact = (InternalEObject)base_Artifact;
+			base_Artifact = (Artifact)eResolveProxy(oldBase_Artifact);
+			if(base_Artifact != oldBase_Artifact) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.LIBRARY__BASE_ARTIFACT,
 							oldBase_Artifact, base_Artifact));
 			}
@@ -101,7 +100,7 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	public void setBase_Artifact(Artifact newBase_Artifact) {
 		Artifact oldBase_Artifact = base_Artifact;
 		base_Artifact = newBase_Artifact;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.LIBRARY__BASE_ARTIFACT,
 					oldBase_Artifact, base_Artifact));
 	}
@@ -113,9 +112,9 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.LIBRARY__BASE_ARTIFACT:
-			if (resolve)
+			if(resolve)
 				return getBase_Artifact();
 			return basicGetBase_Artifact();
 		}
@@ -129,9 +128,9 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.LIBRARY__BASE_ARTIFACT:
-			setBase_Artifact((Artifact) newValue);
+			setBase_Artifact((Artifact)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,9 +143,9 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.LIBRARY__BASE_ARTIFACT:
-			setBase_Artifact((Artifact) null);
+			setBase_Artifact((Artifact)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -159,7 +158,7 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.LIBRARY__BASE_ARTIFACT:
 			return base_Artifact != null;
 		}

@@ -47,8 +47,7 @@ public class SetActivityPartitionChildrenInActivity extends Command {
 	 * @param activity
 	 *            the activity
 	 */
-	public SetActivityPartitionChildrenInActivity(
-			ActivityPartition activityPartition, Activity activity) {
+	public SetActivityPartitionChildrenInActivity(ActivityPartition activityPartition, Activity activity) {
 		parentActivity = activity;
 
 		addChildCommands(activityPartition, actualCommand);
@@ -62,8 +61,7 @@ public class SetActivityPartitionChildrenInActivity extends Command {
 	 * @param cc
 	 *            the cc
 	 */
-	private void addChildCommands(ActivityPartition activityPartition,
-			CompoundCommand cc) {
+	private void addChildCommands(ActivityPartition activityPartition, CompoundCommand cc) {
 		List<EObject> children = new ArrayList();
 		children.addAll(activityPartition.getNodes());
 		children.addAll(activityPartition.getSubpartitions());
@@ -86,16 +84,14 @@ public class SetActivityPartitionChildrenInActivity extends Command {
 
 		if (object instanceof ActivityNode) {
 			reference = UMLPackage.eINSTANCE.getActivityNode_Activity();
-			SetRequest request = new SetRequest(object, reference,
-					parentActivity);
+			SetRequest request = new SetRequest(object, reference, parentActivity);
 			cc.add(new ICommandProxy(new SetValueCommand(request)));
 			return;
 		}
 		if (object instanceof ActivityPartition) {
 			addChildCommands((ActivityPartition) object, cc);
 			reference = UMLPackage.eINSTANCE.getActivityGroup_InActivity();
-			SetRequest request = new SetRequest(object, reference,
-					parentActivity);
+			SetRequest request = new SetRequest(object, reference, parentActivity);
 			cc.add(new ICommandProxy(new SetValueCommand(request)));
 			return;
 		}

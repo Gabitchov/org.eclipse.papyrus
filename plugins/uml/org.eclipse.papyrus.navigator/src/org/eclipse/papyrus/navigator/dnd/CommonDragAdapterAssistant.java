@@ -28,14 +28,14 @@ public class CommonDragAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public Transfer[] getSupportedTransferTypes() {
-		Transfer[] transfer = new Transfer[] { LocalSelectionTransfer.getInstance() };
+		Transfer[] transfer = new Transfer[]{ LocalSelectionTransfer.getInstance() };
 		return transfer;
 	}
 
 	@Override
 	public boolean setDragData(DragSourceEvent anEvent, IStructuredSelection selection) {
 		Object o = selection.getFirstElement();
-		if (o instanceof PackageableElement) {
+		if(o instanceof PackageableElement) {
 			anEvent.data = o;
 			return true;
 		}

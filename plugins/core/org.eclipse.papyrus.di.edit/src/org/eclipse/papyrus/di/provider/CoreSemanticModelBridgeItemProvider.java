@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 
@@ -35,20 +35,23 @@ import org.eclipse.papyrus.di.DiPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.di.CoreSemanticModelBridge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class CoreSemanticModelBridgeItemProvider
-	extends SemanticModelBridgeItemProvider
-	implements
+		extends SemanticModelBridgeItemProvider
+		implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CoreSemanticModelBridgeItemProvider(AdapterFactory adapterFactory) {
@@ -59,11 +62,12 @@ public class CoreSemanticModelBridgeItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addElementPropertyDescriptor(object);
@@ -75,28 +79,30 @@ public class CoreSemanticModelBridgeItemProvider
 	 * This adds a property descriptor for the Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CoreSemanticModelBridge_element_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CoreSemanticModelBridge_element_feature", "_UI_CoreSemanticModelBridge_type"),
-				 DiPackage.Literals.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_CoreSemanticModelBridge_element_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_CoreSemanticModelBridge_element_feature", "_UI_CoreSemanticModelBridge_type"),
+				DiPackage.Literals.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
 	 * This returns CoreSemanticModelBridge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,14 +114,15 @@ public class CoreSemanticModelBridgeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((CoreSemanticModelBridge)object).getPresentation();
 		return label == null || label.length() == 0 ?
-			getString("_UI_CoreSemanticModelBridge_type") :
-			getString("_UI_CoreSemanticModelBridge_type") + " " + label;
+				getString("_UI_CoreSemanticModelBridge_type") :
+				getString("_UI_CoreSemanticModelBridge_type") + " " + label;
 	}
 
 	/**
@@ -123,6 +130,7 @@ public class CoreSemanticModelBridgeItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,6 +144,7 @@ public class CoreSemanticModelBridgeItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

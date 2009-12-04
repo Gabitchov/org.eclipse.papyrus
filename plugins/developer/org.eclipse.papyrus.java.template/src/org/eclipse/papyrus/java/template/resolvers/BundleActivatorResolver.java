@@ -23,8 +23,9 @@ import org.osgi.framework.Constants;
 
 /**
  * This class creates a new variable which resolve the activator class of the compilation unit.
+ * 
  * @author tlandre
- *
+ * 
  */
 public class BundleActivatorResolver extends TemplateVariableResolver {
 
@@ -43,14 +44,14 @@ public class BundleActivatorResolver extends TemplateVariableResolver {
 	@Override
 	protected String resolve(final TemplateContext pContext) {
 		String result = null;
-		if (pContext instanceof CompilationUnitContext) {
-			final CompilationUnitContext context = (CompilationUnitContext) pContext;
+		if(pContext instanceof CompilationUnitContext) {
+			final CompilationUnitContext context = (CompilationUnitContext)pContext;
 			final IPluginModelBase pluginModelBase = PluginRegistry.findModel(getProject(context));
 			Bundle bundle = getBundle(pluginModelBase);
-			if (bundle != null) {
+			if(bundle != null) {
 				Object obj = bundle.getHeaders().get(Constants.BUNDLE_ACTIVATOR);
-				if (obj instanceof String) {
-					result = (String) obj;
+				if(obj instanceof String) {
+					result = (String)obj;
 				}
 			}
 		}
@@ -59,12 +60,14 @@ public class BundleActivatorResolver extends TemplateVariableResolver {
 
 	/**
 	 * Get the bundle associated with the IPluginModelBase
-	 * @param pluginModelBase a pluginModelBase. May be null.
+	 * 
+	 * @param pluginModelBase
+	 *        a pluginModelBase. May be null.
 	 * @return the bundle found or null.
 	 */
 	private Bundle getBundle(IPluginModelBase pluginModelBase) {
 		Bundle bundle = null;
-		if(pluginModelBase != null && pluginModelBase.getBundleDescription() != null){
+		if(pluginModelBase != null && pluginModelBase.getBundleDescription() != null) {
 			bundle = Platform.getBundle(pluginModelBase.getBundleDescription().getSymbolicName());
 		}
 		return bundle;
@@ -72,16 +75,18 @@ public class BundleActivatorResolver extends TemplateVariableResolver {
 
 	/**
 	 * Get the project of the compilation unit (if any) associated with the given JavaContext
-	 * @param context the JavaContext. Must be not null.
+	 * 
+	 * @param context
+	 *        the JavaContext. Must be not null.
 	 * @return the project found or null
 	 */
 	@SuppressWarnings("restriction")
 	private IProject getProject(CompilationUnitContext context) {
 		IProject project = null;
 		ICompilationUnit compilationUnit = context.getCompilationUnit();
-		if(compilationUnit != null){
+		if(compilationUnit != null) {
 			IJavaProject javaProject = compilationUnit.getJavaProject();
-			if(javaProject != null){
+			if(javaProject != null) {
 				project = javaProject.getProject();
 			}
 		}

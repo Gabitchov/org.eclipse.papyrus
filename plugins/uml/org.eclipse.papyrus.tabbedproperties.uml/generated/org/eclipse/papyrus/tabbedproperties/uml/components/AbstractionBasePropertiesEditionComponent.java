@@ -62,7 +62,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -78,9 +78,9 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	 * Default constructor
 	 */
 	public AbstractionBasePropertiesEditionComponent(EObject abstraction, String editing_mode) {
-		if (abstraction instanceof Abstraction) {
+		if(abstraction instanceof Abstraction) {
 			this.abstraction = (Abstraction)abstraction;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.abstraction.eAdapters().add(semanticAdapter);
 			}
@@ -102,20 +102,22 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					AbstractionBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setName((String)msg.getNewValue());
-}
-						else{basePart.setName("");}}
-					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setName((String)msg.getNewValue());
+						} else {
+							basePart.setName("");
+						}
+					}
+					if(UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
 						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getDependency_Supplier().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getDependency_Supplier().equals(msg.getFeature()))
 						basePart.updateSupplier(abstraction);
-					if (UMLPackage.eINSTANCE.getDependency_Client().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getDependency_Client().equals(msg.getFeature()))
 						basePart.updateClient(abstraction);
 
 
@@ -131,7 +133,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.Abstraction.class;
 		return super.translatePart(key);
 	}
@@ -148,14 +150,13 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (abstraction != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(abstraction != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (AbstractionPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Abstraction.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -168,32 +169,32 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.Abstraction.class)
-			this.basePart = (AbstractionPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.Abstraction.class)
+			this.basePart = (AbstractionPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.Abstraction.class) {
+		if(basePart != null && key == UMLViewsRepository.Abstraction.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final Abstraction abstraction = (Abstraction)elt;
 			// init values
-			if (abstraction.getName() != null)
+			if(abstraction.getName() != null)
 				basePart.setName(abstraction.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), abstraction.getVisibility());
+			basePart.initVisibility((EEnum)UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), abstraction.getVisibility());
 			basePart.initSupplier(abstraction, null, UMLPackage.eINSTANCE.getDependency_Supplier());
 			basePart.initClient(abstraction, null, UMLPackage.eINSTANCE.getDependency_Client());
-			
+
 			// init filters
 
 
@@ -205,7 +206,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInSupplierTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -223,7 +224,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -244,27 +245,24 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 
 
 
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (abstraction != null) {
+		if(abstraction != null) {
 			cc.append(SetCommand.create(editingDomain, abstraction, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
 
 			cc.append(SetCommand.create(editingDomain, abstraction, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List supplierToAddFromSupplier = basePart.getSupplierToAdd();
-			for (Iterator iter = supplierToAddFromSupplier.iterator(); iter.hasNext();)
+			for(Iterator iter = supplierToAddFromSupplier.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
 			List supplierToRemoveFromSupplier = basePart.getSupplierToRemove();
-			for (Iterator iter = supplierToRemoveFromSupplier.iterator(); iter.hasNext();)
+			for(Iterator iter = supplierToRemoveFromSupplier.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
 			//List supplierToMoveFromSupplier = basePart.getSupplierToMove();
 			//for (Iterator iter = supplierToMoveFromSupplier.iterator(); iter.hasNext();){
@@ -272,10 +270,10 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 			//	cc.append(MoveCommand.create(editingDomain, abstraction, UMLPackage.eINSTANCE.getNamedElement(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List clientToAddFromClient = basePart.getClientToAdd();
-			for (Iterator iter = clientToAddFromClient.iterator(); iter.hasNext();)
+			for(Iterator iter = clientToAddFromClient.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
 			List clientToRemoveFromClient = basePart.getClientToRemove();
-			for (Iterator iter = clientToRemoveFromClient.iterator(); iter.hasNext();)
+			for(Iterator iter = clientToRemoveFromClient.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
 			//List clientToMoveFromClient = basePart.getClientToMove();
 			//for (Iterator iter = clientToMoveFromClient.iterator(); iter.hasNext();){
@@ -285,7 +283,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -297,7 +295,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof Abstraction) {
+		if(source instanceof Abstraction) {
 			Abstraction abstractionToUpdate = (Abstraction)source;
 			abstractionToUpdate.setName(basePart.getName());
 
@@ -308,8 +306,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 
 
 			return abstractionToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -320,41 +317,41 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.Abstraction.name == event.getAffectedEditor())
+			if(UMLViewsRepository.Abstraction.name == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
-			if (UMLViewsRepository.Abstraction.visibility == event.getAffectedEditor())
+			if(UMLViewsRepository.Abstraction.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
-			if (UMLViewsRepository.Abstraction.supplier == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Abstraction.supplier == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.Abstraction.client == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Abstraction.client == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, abstraction, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
-				if (UMLViewsRepository.Abstraction.name == event.getAffectedEditor())
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
+				if(UMLViewsRepository.Abstraction.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
 
@@ -362,7 +359,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 
 
 			} else {
-				if (UMLViewsRepository.Abstraction.name == event.getAffectedEditor())
+				if(UMLViewsRepository.Abstraction.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
 
 
@@ -389,14 +386,14 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.Abstraction.name == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Abstraction.name == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.Abstraction.visibility == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Abstraction.visibility == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
 				}
@@ -415,12 +412,11 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(abstraction);
 		// Start of user code for custom validation check
 
@@ -436,7 +432,7 @@ public class AbstractionBasePropertiesEditionComponent extends StandardPropertie
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			abstraction.eAdapters().remove(semanticAdapter);
 	}
 

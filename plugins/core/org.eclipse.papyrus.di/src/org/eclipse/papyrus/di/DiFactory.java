@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -20,14 +20,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.di.DiPackage
  * @generated
  */
 public interface DiFactory extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	DiFactory eINSTANCE = org.eclipse.papyrus.di.impl.DiFactoryImpl.init();
@@ -36,6 +39,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Diagram Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Diagram Element</em>'.
 	 * @generated
 	 */
@@ -45,6 +49,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Graph Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Graph Element</em>'.
 	 * @generated
 	 */
@@ -54,6 +59,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Reference</em>'.
 	 * @generated
 	 */
@@ -63,6 +69,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Property</em>'.
 	 * @generated
 	 */
@@ -72,6 +79,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Graph Edge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Graph Edge</em>'.
 	 * @generated
 	 */
@@ -81,6 +89,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Graph Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Graph Connector</em>'.
 	 * @generated
 	 */
@@ -90,6 +99,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Graph Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Graph Node</em>'.
 	 * @generated
 	 */
@@ -99,6 +109,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Diagram Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Diagram Link</em>'.
 	 * @generated
 	 */
@@ -108,6 +119,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Diagram</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Diagram</em>'.
 	 * @generated
 	 */
@@ -117,6 +129,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Semantic Model Bridge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Semantic Model Bridge</em>'.
 	 * @generated
 	 */
@@ -126,6 +139,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Simple Semantic Model Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Simple Semantic Model Element</em>'.
 	 * @generated
 	 */
@@ -135,6 +149,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Uml1 Semantic Model Bridge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Uml1 Semantic Model Bridge</em>'.
 	 * @generated
 	 */
@@ -144,6 +159,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Core Semantic Model Bridge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Core Semantic Model Bridge</em>'.
 	 * @generated
 	 */
@@ -153,6 +169,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Leaf Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Leaf Element</em>'.
 	 * @generated
 	 */
@@ -162,6 +179,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Text Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Text Element</em>'.
 	 * @generated
 	 */
@@ -171,6 +189,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Image</em>'.
 	 * @generated
 	 */
@@ -180,6 +199,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Graphic Primitive</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Graphic Primitive</em>'.
 	 * @generated
 	 */
@@ -189,6 +209,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Polilyne</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Polilyne</em>'.
 	 * @generated
 	 */
@@ -198,6 +219,7 @@ public interface DiFactory extends EFactory {
 	 * Returns a new object of class '<em>Ellipse</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Ellipse</em>'.
 	 * @generated
 	 */
@@ -207,6 +229,7 @@ public interface DiFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

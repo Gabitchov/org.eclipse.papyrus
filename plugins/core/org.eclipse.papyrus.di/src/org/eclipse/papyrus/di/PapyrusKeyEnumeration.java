@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di;
 
 import java.util.Arrays;
@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Papyrus Key Enumeration</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.di.DiPackage#getPapyrusKeyEnumeration()
  * @model
  * @generated
@@ -33,6 +34,7 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	 * The '<em><b>Papyruseditpart</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #PAPYRUSEDITPART_VALUE
 	 * @generated
 	 * @ordered
@@ -43,10 +45,10 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	 * The '<em><b>Papyruseditpart</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Papyruseditpart</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Papyruseditpart</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #PAPYRUSEDITPART
 	 * @model name="papyruseditpart"
 	 * @generated
@@ -58,17 +60,19 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	 * An array of all the '<em><b>Papyrus Key Enumeration</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static final PapyrusKeyEnumeration[] VALUES_ARRAY =
-		new PapyrusKeyEnumeration[] {
+			new PapyrusKeyEnumeration[]{
 			PAPYRUSEDITPART,
-		};
+			};
 
 	/**
 	 * A public read-only list of all the '<em><b>Papyrus Key Enumeration</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<PapyrusKeyEnumeration> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -77,12 +81,13 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	 * Returns the '<em><b>Papyrus Key Enumeration</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static PapyrusKeyEnumeration get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			PapyrusKeyEnumeration result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -93,12 +98,13 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	 * Returns the '<em><b>Papyrus Key Enumeration</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static PapyrusKeyEnumeration getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			PapyrusKeyEnumeration result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -109,11 +115,13 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	 * Returns the '<em><b>Papyrus Key Enumeration</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static PapyrusKeyEnumeration get(int value) {
-		switch (value) {
-			case PAPYRUSEDITPART_VALUE: return PAPYRUSEDITPART;
+		switch(value) {
+		case PAPYRUSEDITPART_VALUE:
+			return PAPYRUSEDITPART;
 		}
 		return null;
 	}
@@ -121,6 +129,7 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -128,6 +137,7 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -135,6 +145,7 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -143,6 +154,7 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private PapyrusKeyEnumeration(int value, String name, String literal) {
@@ -154,39 +166,43 @@ public enum PapyrusKeyEnumeration implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
+
 } //PapyrusKeyEnumeration

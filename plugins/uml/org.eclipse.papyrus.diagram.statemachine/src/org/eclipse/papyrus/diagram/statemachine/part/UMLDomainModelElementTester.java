@@ -15,751 +15,751 @@ public class UMLDomainModelElementTester extends PropertyTester {
 	 */
 	public boolean test(Object receiver, String method, Object[] args,
 			Object expectedValue) {
-		if (false == receiver instanceof EObject) {
+		if(false == receiver instanceof EObject) {
 			return false;
 		}
-		EObject eObject = (EObject) receiver;
+		EObject eObject = (EObject)receiver;
 		EClass eClass = eObject.eClass();
-		if (eClass == UMLPackage.eINSTANCE.getComment()) {
+		if(eClass == UMLPackage.eINSTANCE.getComment()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPackage()) {
+		if(eClass == UMLPackage.eINSTANCE.getPackage()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPackageableElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getPackageableElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getNamedElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getNamedElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDependency()) {
+		if(eClass == UMLPackage.eINSTANCE.getDependency()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDirectedRelationship()) {
+		if(eClass == UMLPackage.eINSTANCE.getDirectedRelationship()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRelationship()) {
+		if(eClass == UMLPackage.eINSTANCE.getRelationship()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getNamespace()) {
+		if(eClass == UMLPackage.eINSTANCE.getNamespace()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getElementImport()) {
+		if(eClass == UMLPackage.eINSTANCE.getElementImport()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPackageImport()) {
+		if(eClass == UMLPackage.eINSTANCE.getPackageImport()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConstraint()) {
+		if(eClass == UMLPackage.eINSTANCE.getConstraint()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getValueSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getValueSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTypedElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getTypedElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getType()) {
+		if(eClass == UMLPackage.eINSTANCE.getType()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAssociation()) {
+		if(eClass == UMLPackage.eINSTANCE.getAssociation()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getClassifier()) {
+		if(eClass == UMLPackage.eINSTANCE.getClassifier()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRedefinableElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getRedefinableElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTemplateableElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getTemplateableElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTemplateBinding()) {
+		if(eClass == UMLPackage.eINSTANCE.getTemplateBinding()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTemplateSignature()) {
+		if(eClass == UMLPackage.eINSTANCE.getTemplateSignature()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTemplateParameter()) {
+		if(eClass == UMLPackage.eINSTANCE.getTemplateParameter()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getParameterableElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getParameterableElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTemplateParameterSubstitution()) {
+		if(eClass == UMLPackage.eINSTANCE.getTemplateParameterSubstitution()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getGeneralization()) {
+		if(eClass == UMLPackage.eINSTANCE.getGeneralization()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getGeneralizationSet()) {
+		if(eClass == UMLPackage.eINSTANCE.getGeneralizationSet()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getFeature()) {
+		if(eClass == UMLPackage.eINSTANCE.getFeature()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSubstitution()) {
+		if(eClass == UMLPackage.eINSTANCE.getSubstitution()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRealization()) {
+		if(eClass == UMLPackage.eINSTANCE.getRealization()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAbstraction()) {
+		if(eClass == UMLPackage.eINSTANCE.getAbstraction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getOpaqueExpression()) {
+		if(eClass == UMLPackage.eINSTANCE.getOpaqueExpression()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getParameter()) {
+		if(eClass == UMLPackage.eINSTANCE.getParameter()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getMultiplicityElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getMultiplicityElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConnectableElement()) {
+		if(eClass == UMLPackage.eINSTANCE.getConnectableElement()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE
+		if(eClass == UMLPackage.eINSTANCE
 				.getConnectableElementTemplateParameter()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConnectorEnd()) {
+		if(eClass == UMLPackage.eINSTANCE.getConnectorEnd()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getProperty()) {
+		if(eClass == UMLPackage.eINSTANCE.getProperty()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDeploymentTarget()) {
+		if(eClass == UMLPackage.eINSTANCE.getDeploymentTarget()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDeployment()) {
+		if(eClass == UMLPackage.eINSTANCE.getDeployment()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDeployedArtifact()) {
+		if(eClass == UMLPackage.eINSTANCE.getDeployedArtifact()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDeploymentSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getDeploymentSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getArtifact()) {
+		if(eClass == UMLPackage.eINSTANCE.getArtifact()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getManifestation()) {
+		if(eClass == UMLPackage.eINSTANCE.getManifestation()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getOperation()) {
+		if(eClass == UMLPackage.eINSTANCE.getOperation()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getBehavioralFeature()) {
+		if(eClass == UMLPackage.eINSTANCE.getBehavioralFeature()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getBehavior()) {
+		if(eClass == UMLPackage.eINSTANCE.getBehavior()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getClass_()) {
+		if(eClass == UMLPackage.eINSTANCE.getClass_()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getBehavioredClassifier()) {
+		if(eClass == UMLPackage.eINSTANCE.getBehavioredClassifier()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInterfaceRealization()) {
+		if(eClass == UMLPackage.eINSTANCE.getInterfaceRealization()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInterface()) {
+		if(eClass == UMLPackage.eINSTANCE.getInterface()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReception()) {
+		if(eClass == UMLPackage.eINSTANCE.getReception()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSignal()) {
+		if(eClass == UMLPackage.eINSTANCE.getSignal()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getProtocolStateMachine()) {
+		if(eClass == UMLPackage.eINSTANCE.getProtocolStateMachine()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStateMachine()) {
+		if(eClass == UMLPackage.eINSTANCE.getStateMachine()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRegion()) {
+		if(eClass == UMLPackage.eINSTANCE.getRegion()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getVertex()) {
+		if(eClass == UMLPackage.eINSTANCE.getVertex()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTransition()) {
+		if(eClass == UMLPackage.eINSTANCE.getTransition()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTrigger()) {
+		if(eClass == UMLPackage.eINSTANCE.getTrigger()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPort()) {
+		if(eClass == UMLPackage.eINSTANCE.getPort()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getState()) {
+		if(eClass == UMLPackage.eINSTANCE.getState()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConnectionPointReference()) {
+		if(eClass == UMLPackage.eINSTANCE.getConnectionPointReference()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPseudostate()) {
+		if(eClass == UMLPackage.eINSTANCE.getPseudostate()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getProtocolConformance()) {
+		if(eClass == UMLPackage.eINSTANCE.getProtocolConformance()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getEncapsulatedClassifier()) {
+		if(eClass == UMLPackage.eINSTANCE.getEncapsulatedClassifier()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStructuredClassifier()) {
+		if(eClass == UMLPackage.eINSTANCE.getStructuredClassifier()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConnector()) {
+		if(eClass == UMLPackage.eINSTANCE.getConnector()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExtension()) {
+		if(eClass == UMLPackage.eINSTANCE.getExtension()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExtensionEnd()) {
+		if(eClass == UMLPackage.eINSTANCE.getExtensionEnd()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStereotype()) {
+		if(eClass == UMLPackage.eINSTANCE.getStereotype()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getImage()) {
+		if(eClass == UMLPackage.eINSTANCE.getImage()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getProfile()) {
+		if(eClass == UMLPackage.eINSTANCE.getProfile()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getModel()) {
+		if(eClass == UMLPackage.eINSTANCE.getModel()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getParameterSet()) {
+		if(eClass == UMLPackage.eINSTANCE.getParameterSet()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDataType()) {
+		if(eClass == UMLPackage.eINSTANCE.getDataType()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getOperationTemplateParameter()) {
+		if(eClass == UMLPackage.eINSTANCE.getOperationTemplateParameter()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStructuralFeature()) {
+		if(eClass == UMLPackage.eINSTANCE.getStructuralFeature()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCollaborationUse()) {
+		if(eClass == UMLPackage.eINSTANCE.getCollaborationUse()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCollaboration()) {
+		if(eClass == UMLPackage.eINSTANCE.getCollaboration()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getUseCase()) {
+		if(eClass == UMLPackage.eINSTANCE.getUseCase()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInclude()) {
+		if(eClass == UMLPackage.eINSTANCE.getInclude()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExtend()) {
+		if(eClass == UMLPackage.eINSTANCE.getExtend()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExtensionPoint()) {
+		if(eClass == UMLPackage.eINSTANCE.getExtensionPoint()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRedefinableTemplateSignature()) {
+		if(eClass == UMLPackage.eINSTANCE.getRedefinableTemplateSignature()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getClassifierTemplateParameter()) {
+		if(eClass == UMLPackage.eINSTANCE.getClassifierTemplateParameter()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStringExpression()) {
+		if(eClass == UMLPackage.eINSTANCE.getStringExpression()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExpression()) {
+		if(eClass == UMLPackage.eINSTANCE.getExpression()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getUsage()) {
+		if(eClass == UMLPackage.eINSTANCE.getUsage()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPackageMerge()) {
+		if(eClass == UMLPackage.eINSTANCE.getPackageMerge()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getProfileApplication()) {
+		if(eClass == UMLPackage.eINSTANCE.getProfileApplication()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getEnumeration()) {
+		if(eClass == UMLPackage.eINSTANCE.getEnumeration()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getEnumerationLiteral()) {
+		if(eClass == UMLPackage.eINSTANCE.getEnumerationLiteral()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInstanceSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getInstanceSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSlot()) {
+		if(eClass == UMLPackage.eINSTANCE.getSlot()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPrimitiveType()) {
+		if(eClass == UMLPackage.eINSTANCE.getPrimitiveType()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLiteralSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getLiteralSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLiteralInteger()) {
+		if(eClass == UMLPackage.eINSTANCE.getLiteralInteger()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLiteralString()) {
+		if(eClass == UMLPackage.eINSTANCE.getLiteralString()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLiteralBoolean()) {
+		if(eClass == UMLPackage.eINSTANCE.getLiteralBoolean()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLiteralNull()) {
+		if(eClass == UMLPackage.eINSTANCE.getLiteralNull()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInstanceValue()) {
+		if(eClass == UMLPackage.eINSTANCE.getInstanceValue()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLiteralUnlimitedNatural()) {
+		if(eClass == UMLPackage.eINSTANCE.getLiteralUnlimitedNatural()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getOpaqueBehavior()) {
+		if(eClass == UMLPackage.eINSTANCE.getOpaqueBehavior()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getFunctionBehavior()) {
+		if(eClass == UMLPackage.eINSTANCE.getFunctionBehavior()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getOpaqueAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getOpaqueAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExecutableNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getExecutableNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActivityNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getActivityNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStructuredActivityNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getStructuredActivityNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActivityGroup()) {
+		if(eClass == UMLPackage.eINSTANCE.getActivityGroup()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActivity()) {
+		if(eClass == UMLPackage.eINSTANCE.getActivity()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getVariable()) {
+		if(eClass == UMLPackage.eINSTANCE.getVariable()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActivityEdge()) {
+		if(eClass == UMLPackage.eINSTANCE.getActivityEdge()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActivityPartition()) {
+		if(eClass == UMLPackage.eINSTANCE.getActivityPartition()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInterruptibleActivityRegion()) {
+		if(eClass == UMLPackage.eINSTANCE.getInterruptibleActivityRegion()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExceptionHandler()) {
+		if(eClass == UMLPackage.eINSTANCE.getExceptionHandler()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getObjectNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getObjectNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getOutputPin()) {
+		if(eClass == UMLPackage.eINSTANCE.getOutputPin()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPin()) {
+		if(eClass == UMLPackage.eINSTANCE.getPin()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInputPin()) {
+		if(eClass == UMLPackage.eINSTANCE.getInputPin()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCallAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getCallAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInvocationAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getInvocationAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSendSignalAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getSendSignalAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCallOperationAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getCallOperationAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCallBehaviorAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getCallBehaviorAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSequenceNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getSequenceNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getControlNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getControlNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getControlFlow()) {
+		if(eClass == UMLPackage.eINSTANCE.getControlFlow()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInitialNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getInitialNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActivityParameterNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getActivityParameterNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getValuePin()) {
+		if(eClass == UMLPackage.eINSTANCE.getValuePin()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getMessage()) {
+		if(eClass == UMLPackage.eINSTANCE.getMessage()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getMessageEnd()) {
+		if(eClass == UMLPackage.eINSTANCE.getMessageEnd()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInteraction()) {
+		if(eClass == UMLPackage.eINSTANCE.getInteraction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInteractionFragment()) {
+		if(eClass == UMLPackage.eINSTANCE.getInteractionFragment()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLifeline()) {
+		if(eClass == UMLPackage.eINSTANCE.getLifeline()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getPartDecomposition()) {
+		if(eClass == UMLPackage.eINSTANCE.getPartDecomposition()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInteractionUse()) {
+		if(eClass == UMLPackage.eINSTANCE.getInteractionUse()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getGate()) {
+		if(eClass == UMLPackage.eINSTANCE.getGate()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getGeneralOrdering()) {
+		if(eClass == UMLPackage.eINSTANCE.getGeneralOrdering()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getOccurrenceSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getOccurrenceSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInteractionOperand()) {
+		if(eClass == UMLPackage.eINSTANCE.getInteractionOperand()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInteractionConstraint()) {
+		if(eClass == UMLPackage.eINSTANCE.getInteractionConstraint()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExecutionSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getExecutionSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStateInvariant()) {
+		if(eClass == UMLPackage.eINSTANCE.getStateInvariant()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActionExecutionSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getActionExecutionSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getBehaviorExecutionSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getBehaviorExecutionSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExecutionEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getExecutionEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCreationEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getCreationEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDestructionEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getDestructionEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSendOperationEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getSendOperationEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getMessageEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getMessageEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSendSignalEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getSendSignalEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getMessageOccurrenceSpecification()) {
+		if(eClass == UMLPackage.eINSTANCE.getMessageOccurrenceSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE
+		if(eClass == UMLPackage.eINSTANCE
 				.getExecutionOccurrenceSpecification()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReceiveOperationEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getReceiveOperationEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReceiveSignalEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getReceiveSignalEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActor()) {
+		if(eClass == UMLPackage.eINSTANCE.getActor()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCallEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getCallEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getChangeEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getChangeEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSignalEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getSignalEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAnyReceiveEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getAnyReceiveEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getForkNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getForkNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getFlowFinalNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getFlowFinalNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getFinalNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getFinalNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCentralBufferNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getCentralBufferNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getMergeNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getMergeNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDecisionNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getDecisionNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActivityFinalNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getActivityFinalNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getComponentRealization()) {
+		if(eClass == UMLPackage.eINSTANCE.getComponentRealization()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getComponent()) {
+		if(eClass == UMLPackage.eINSTANCE.getComponent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCommunicationPath()) {
+		if(eClass == UMLPackage.eINSTANCE.getCommunicationPath()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDevice()) {
+		if(eClass == UMLPackage.eINSTANCE.getDevice()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExecutionEnvironment()) {
+		if(eClass == UMLPackage.eINSTANCE.getExecutionEnvironment()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCombinedFragment()) {
+		if(eClass == UMLPackage.eINSTANCE.getCombinedFragment()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getContinuation()) {
+		if(eClass == UMLPackage.eINSTANCE.getContinuation()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConsiderIgnoreFragment()) {
+		if(eClass == UMLPackage.eINSTANCE.getConsiderIgnoreFragment()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCreateObjectAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getCreateObjectAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDestroyObjectAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getDestroyObjectAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTestIdentityAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getTestIdentityAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadSelfAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReadSelfAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStructuralFeatureAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getStructuralFeatureAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadStructuralFeatureAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReadStructuralFeatureAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getWriteStructuralFeatureAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getWriteStructuralFeatureAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getClearStructuralFeatureAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getClearStructuralFeatureAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE
+		if(eClass == UMLPackage.eINSTANCE
 				.getRemoveStructuralFeatureValueAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLinkAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getLinkAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLinkEndData()) {
+		if(eClass == UMLPackage.eINSTANCE.getLinkEndData()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getQualifierValue()) {
+		if(eClass == UMLPackage.eINSTANCE.getQualifierValue()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadLinkAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReadLinkAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLinkEndCreationData()) {
+		if(eClass == UMLPackage.eINSTANCE.getLinkEndCreationData()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCreateLinkAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getCreateLinkAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getWriteLinkAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getWriteLinkAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDestroyLinkAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getDestroyLinkAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLinkEndDestructionData()) {
+		if(eClass == UMLPackage.eINSTANCE.getLinkEndDestructionData()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getClearAssociationAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getClearAssociationAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getBroadcastSignalAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getBroadcastSignalAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getSendObjectAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getSendObjectAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getValueSpecificationAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getValueSpecificationAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTimeExpression()) {
+		if(eClass == UMLPackage.eINSTANCE.getTimeExpression()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getObservation()) {
+		if(eClass == UMLPackage.eINSTANCE.getObservation()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDuration()) {
+		if(eClass == UMLPackage.eINSTANCE.getDuration()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDurationInterval()) {
+		if(eClass == UMLPackage.eINSTANCE.getDurationInterval()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInterval()) {
+		if(eClass == UMLPackage.eINSTANCE.getInterval()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTimeConstraint()) {
+		if(eClass == UMLPackage.eINSTANCE.getTimeConstraint()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getIntervalConstraint()) {
+		if(eClass == UMLPackage.eINSTANCE.getIntervalConstraint()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTimeInterval()) {
+		if(eClass == UMLPackage.eINSTANCE.getTimeInterval()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDurationConstraint()) {
+		if(eClass == UMLPackage.eINSTANCE.getDurationConstraint()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTimeObservation()) {
+		if(eClass == UMLPackage.eINSTANCE.getTimeObservation()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDurationObservation()) {
+		if(eClass == UMLPackage.eINSTANCE.getDurationObservation()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getFinalState()) {
+		if(eClass == UMLPackage.eINSTANCE.getFinalState()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getTimeEvent()) {
+		if(eClass == UMLPackage.eINSTANCE.getTimeEvent()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getVariableAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getVariableAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadVariableAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReadVariableAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getWriteVariableAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getWriteVariableAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getClearVariableAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getClearVariableAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAddVariableValueAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getAddVariableValueAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRemoveVariableValueAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getRemoveVariableValueAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getRaiseExceptionAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getRaiseExceptionAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getActionInputPin()) {
+		if(eClass == UMLPackage.eINSTANCE.getActionInputPin()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInformationItem()) {
+		if(eClass == UMLPackage.eINSTANCE.getInformationItem()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getInformationFlow()) {
+		if(eClass == UMLPackage.eINSTANCE.getInformationFlow()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadExtentAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReadExtentAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReclassifyObjectAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReclassifyObjectAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getStartClassifierBehaviorAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getStartClassifierBehaviorAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReadLinkObjectEndAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReadLinkObjectEndAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE
+		if(eClass == UMLPackage.eINSTANCE
 				.getReadLinkObjectEndQualifierAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getCreateLinkObjectAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getCreateLinkObjectAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAcceptEventAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getAcceptEventAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAcceptCallAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getAcceptCallAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReplyAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReplyAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getUnmarshallAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getUnmarshallAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getReduceAction()) {
+		if(eClass == UMLPackage.eINSTANCE.getReduceAction()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getJoinNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getJoinNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getDataStoreNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getDataStoreNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getObjectFlow()) {
+		if(eClass == UMLPackage.eINSTANCE.getObjectFlow()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getConditionalNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getConditionalNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getClause()) {
+		if(eClass == UMLPackage.eINSTANCE.getClause()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getLoopNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getLoopNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExpansionNode()) {
+		if(eClass == UMLPackage.eINSTANCE.getExpansionNode()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getExpansionRegion()) {
+		if(eClass == UMLPackage.eINSTANCE.getExpansionRegion()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getProtocolTransition()) {
+		if(eClass == UMLPackage.eINSTANCE.getProtocolTransition()) {
 			return true;
 		}
-		if (eClass == UMLPackage.eINSTANCE.getAssociationClass()) {
+		if(eClass == UMLPackage.eINSTANCE.getAssociationClass()) {
 			return true;
 		}
 		return false;

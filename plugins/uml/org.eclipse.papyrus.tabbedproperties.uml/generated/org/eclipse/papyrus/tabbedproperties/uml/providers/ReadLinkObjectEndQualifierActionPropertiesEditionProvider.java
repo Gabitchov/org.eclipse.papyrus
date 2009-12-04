@@ -40,7 +40,7 @@ public class ReadLinkObjectEndQualifierActionPropertiesEditionProvider implement
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ReadLinkObjectEndQualifierAction) {
+		if(eObject instanceof ReadLinkObjectEndQualifierAction) {
 			return new ReadLinkObjectEndQualifierActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ReadLinkObjectEndQualifierActionPropertiesEditionProvider implement
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ReadLinkObjectEndQualifierAction) {
-			if (ReadLinkObjectEndQualifierActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ReadLinkObjectEndQualifierAction) {
+			if(ReadLinkObjectEndQualifierActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ReadLinkObjectEndQualifierActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Model;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.MetamodelImpl#getBase_Model <em>Base Model</em>}
- * </li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.MetamodelImpl#getBase_Model <em>Base Model</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,11 +71,11 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 	 * @generated
 	 */
 	public Model getBase_Model() {
-		if (base_Model != null && base_Model.eIsProxy()) {
-			InternalEObject oldBase_Model = (InternalEObject) base_Model;
-			base_Model = (Model) eResolveProxy(oldBase_Model);
-			if (base_Model != oldBase_Model) {
-				if (eNotificationRequired())
+		if(base_Model != null && base_Model.eIsProxy()) {
+			InternalEObject oldBase_Model = (InternalEObject)base_Model;
+			base_Model = (Model)eResolveProxy(oldBase_Model);
+			if(base_Model != oldBase_Model) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.METAMODEL__BASE_MODEL,
 							oldBase_Model, base_Model));
 			}
@@ -101,7 +100,7 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 	public void setBase_Model(Model newBase_Model) {
 		Model oldBase_Model = base_Model;
 		base_Model = newBase_Model;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.METAMODEL__BASE_MODEL, oldBase_Model,
 					base_Model));
 	}
@@ -113,9 +112,9 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.METAMODEL__BASE_MODEL:
-			if (resolve)
+			if(resolve)
 				return getBase_Model();
 			return basicGetBase_Model();
 		}
@@ -129,9 +128,9 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.METAMODEL__BASE_MODEL:
-			setBase_Model((Model) newValue);
+			setBase_Model((Model)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,9 +143,9 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.METAMODEL__BASE_MODEL:
-			setBase_Model((Model) null);
+			setBase_Model((Model)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -159,7 +158,7 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.METAMODEL__BASE_MODEL:
 			return base_Model != null;
 		}

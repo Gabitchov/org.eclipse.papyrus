@@ -52,22 +52,32 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, LinkEndDestructionDataPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil qualifierEditUtil;
+
 	protected ReferencesTable<? extends EObject> qualifier;
+
 	protected List<ViewerFilter> qualifierBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> qualifierFilters = new ArrayList<ViewerFilter>();
+
 	protected Button isDestroyDuplicates;
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public LinkEndDestructionDataPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -75,25 +85,25 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
@@ -115,16 +125,31 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		createQualifierAdvancedTableComposition(propertiesGroup);
 		createIsDestroyDuplicatesCheckbox(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndDestructionData.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -140,7 +165,7 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartImpl.this, UMLViewsRepository.LinkEndDestructionData.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartImpl.this, UMLViewsRepository.LinkEndDestructionData.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -153,11 +178,11 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -197,10 +222,10 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -212,16 +237,31 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createQualifierAdvancedTableComposition(Composite parent) {
-		this.qualifier = new ReferencesTable<QualifierValue>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<QualifierValue>() {			
-			public void handleAdd() { addToQualifier();}
-			public void handleEdit(QualifierValue element) { editQualifier(element); }
-			public void handleMove(QualifierValue element, int oldIndex, int newIndex) { moveQualifier(element, oldIndex, newIndex); }
-			public void handleRemove(QualifierValue element) { removeFromQualifier(element); }
-			public void navigateTo(QualifierValue element) { }
+		this.qualifier = new ReferencesTable<QualifierValue>(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_QualifierLabel, new ReferencesTableListener<QualifierValue>() {
+
+			public void handleAdd() {
+				addToQualifier();
+			}
+
+			public void handleEdit(QualifierValue element) {
+				editQualifier(element);
+			}
+
+			public void handleMove(QualifierValue element, int oldIndex, int newIndex) {
+				moveQualifier(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(QualifierValue element) {
+				removeFromQualifier(element);
+			}
+
+			public void navigateTo(QualifierValue element) {
+			}
 		});
 		this.qualifier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.LinkEndDestructionData.qualifier, UMLViewsRepository.SWT_KIND));
 		this.qualifier.createControls(parent);
@@ -237,7 +277,7 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		EObject editedElement = qualifierEditUtil.foundCorrespondingEObject(element);
 		qualifierEditUtil.moveElement(element, oldIndex, newIndex);
 		qualifier.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartImpl.this, UMLViewsRepository.LinkEndDestructionData.qualifier, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LinkEndDestructionDataPropertiesEditionPartImpl.this, UMLViewsRepository.LinkEndDestructionData.qualifier, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -250,11 +290,11 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				qualifierEditUtil.addElement(propertiesEditionObject);
 				qualifier.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -294,10 +334,10 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				qualifierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				qualifier.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -309,6 +349,7 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 		// End of user code
 
 	}
+
 	protected void createIsDestroyDuplicatesCheckbox(Composite parent) {
 		isDestroyDuplicates = new Button(parent, SWT.CHECK);
 		isDestroyDuplicates.setText(UMLMessages.LinkEndDestructionDataPropertiesEditionPart_IsDestroyDuplicatesLabel);
@@ -374,12 +415,13 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -392,7 +434,7 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -410,7 +452,8 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -481,12 +524,13 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#initQualifier(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#initQualifier(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initQualifier(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			qualifierEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			qualifierEditUtil = new EMFListEditUtil(current, feature);
@@ -499,7 +543,7 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#updateQualifier(EObject newValue)
 	 */
 	public void updateQualifier(EObject newValue) {
-		if(qualifierEditUtil != null){
+		if(qualifierEditUtil != null) {
 			qualifierEditUtil.reinit(newValue);
 			qualifier.refresh();
 		}
@@ -555,7 +599,7 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.LinkEndDestructionDataPropertiesEditionPart#setIsDestroyDuplicates(Boolean newValue)
 	 */
 	public void setIsDestroyDuplicates(Boolean newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			isDestroyDuplicates.setSelection(newValue.booleanValue());
 		} else {
 			isDestroyDuplicates.setSelection(false);
@@ -569,9 +613,6 @@ public class LinkEndDestructionDataPropertiesEditionPartImpl extends CompositePr
 	public void unsetMessageForIsDestroyDuplicates() {
 
 	}
-
-
-
 
 
 

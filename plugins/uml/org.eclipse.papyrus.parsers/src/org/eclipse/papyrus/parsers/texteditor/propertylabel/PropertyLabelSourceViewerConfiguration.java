@@ -43,7 +43,7 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 	 * Creates a new PropertyLabelSourceViewerConfiguration
 	 * 
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 */
 	public PropertyLabelSourceViewerConfiguration(Property property) {
 		setProperty(property);
@@ -125,7 +125,7 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 	 * Sets the property to Edit
 	 * 
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 */
 	public void setProperty(Property property) {
 		this.property = property;

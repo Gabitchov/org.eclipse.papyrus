@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Probability}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Probability} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class ProbabilityItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ActivityEdgePropertyDescriptor(object);
@@ -78,10 +78,10 @@ public class ProbabilityItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addBase_ActivityEdgePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ActivityEdge_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ActivityEdge_feature",
-						"_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_ACTIVITY_EDGE, true,
+				"_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_ACTIVITY_EDGE, true,
 				false, true, null, null, null));
 	}
 
@@ -92,10 +92,10 @@ public class ProbabilityItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addBase_ParameterSetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ParameterSet_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ParameterSet_feature",
-						"_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_PARAMETER_SET, true,
+				"_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_PARAMETER_SET, true,
 				false, true, null, null, null));
 	}
 
@@ -106,10 +106,10 @@ public class ProbabilityItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addProbabilityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_probability_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Probability_probability_feature",
-						"_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__PROBABILITY, true, false,
+				"_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__PROBABILITY, true, false,
 				true, null, null, null));
 	}
 
@@ -136,8 +136,7 @@ public class ProbabilityItemProvider extends ItemProviderAdapter implements IEdi
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

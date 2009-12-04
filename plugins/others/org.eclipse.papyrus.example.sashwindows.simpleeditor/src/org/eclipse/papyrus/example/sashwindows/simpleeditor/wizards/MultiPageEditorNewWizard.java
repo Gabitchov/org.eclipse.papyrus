@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.example.sashwindows.simpleeditor.wizards;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -29,9 +29,9 @@ import org.eclipse.ui.*;
 import org.eclipse.ui.ide.IDE;
 
 /**
- * This is a sample new wizard. Its role is to create a new file 
+ * This is a sample new wizard. Its role is to create a new file
  * resource in the provided container. If the container resource
- * (a folder or a project) is selected in the workspace 
+ * (a folder or a project) is selected in the workspace
  * when the wizard is opened, it will accept it as the target
  * container. The wizard creates one file with the extension
  * "mpe". If a sample multi-page editor (also available
@@ -40,7 +40,9 @@ import org.eclipse.ui.ide.IDE;
  */
 
 public class MultiPageEditorNewWizard extends Wizard implements INewWizard {
+
 	private MultiPageEditorNewWizardPage page;
+
 	private ISelection selection;
 
 	/**
@@ -50,7 +52,7 @@ public class MultiPageEditorNewWizard extends Wizard implements INewWizard {
 		super();
 		setNeedsProgressMonitor(true);
 	}
-	
+
 	/**
 	 * Adding the page to the wizard.
 	 */
@@ -69,6 +71,7 @@ public class MultiPageEditorNewWizard extends Wizard implements INewWizard {
 		final String containerName = page.getContainerName();
 		final String fileName = page.getFileName();
 		IRunnableWithProgress op = new IRunnableWithProgress() {
+
 			public void run(IProgressMonitor monitor) throws InvocationTargetException {
 				try {
 					doFinish(containerName, fileName, monitor);
@@ -90,7 +93,7 @@ public class MultiPageEditorNewWizard extends Wizard implements INewWizard {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * The worker method. It will find the container, create the
 	 * file if missing or just replace its contents, and open
@@ -98,22 +101,22 @@ public class MultiPageEditorNewWizard extends Wizard implements INewWizard {
 	 */
 
 	private void doFinish(
-		String containerName,
-		String fileName,
-		IProgressMonitor monitor)
-		throws CoreException {
+			String containerName,
+			String fileName,
+			IProgressMonitor monitor)
+			throws CoreException {
 		// create a sample file
 		monitor.beginTask("Creating " + fileName, 2);
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IResource resource = root.findMember(new Path(containerName));
-		if (!resource.exists() || !(resource instanceof IContainer)) {
+		if(!resource.exists() || !(resource instanceof IContainer)) {
 			throwCoreException("Container \"" + containerName + "\" does not exist.");
 		}
-		IContainer container = (IContainer) resource;
+		IContainer container = (IContainer)resource;
 		final IFile file = container.getFile(new Path(fileName));
 		try {
 			InputStream stream = openContentStream();
-			if (file.exists()) {
+			if(file.exists()) {
 				file.setContents(stream, true, true, monitor);
 			} else {
 				file.create(stream, true, monitor);
@@ -124,9 +127,10 @@ public class MultiPageEditorNewWizard extends Wizard implements INewWizard {
 		monitor.worked(1);
 		monitor.setTaskName("Opening file for editing...");
 		getShell().getDisplay().asyncExec(new Runnable() {
+
 			public void run() {
 				IWorkbenchPage page =
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				try {
 					IDE.openEditor(page, file, true);
 				} catch (PartInitException e) {
@@ -135,26 +139,27 @@ public class MultiPageEditorNewWizard extends Wizard implements INewWizard {
 		});
 		monitor.worked(1);
 	}
-	
+
 	/**
 	 * We will initialize file contents with a sample text.
 	 */
 
 	private InputStream openContentStream() {
 		String contents =
-			"This is the initial file contents for *.mpe file that should be word-sorted in the Preview page of the multi-page editor";
+				"This is the initial file contents for *.mpe file that should be word-sorted in the Preview page of the multi-page editor";
 		return new ByteArrayInputStream(contents.getBytes());
 	}
 
 	private void throwCoreException(String message) throws CoreException {
 		IStatus status =
-			new Status(IStatus.ERROR, "org.eclipse.papyrus.example.core", IStatus.OK, message, null);
+				new Status(IStatus.ERROR, "org.eclipse.papyrus.example.core", IStatus.OK, message, null);
 		throw new CoreException(status);
 	}
 
 	/**
 	 * We will accept the selection in the workbench to see if
 	 * we can initialize from it.
+	 * 
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {

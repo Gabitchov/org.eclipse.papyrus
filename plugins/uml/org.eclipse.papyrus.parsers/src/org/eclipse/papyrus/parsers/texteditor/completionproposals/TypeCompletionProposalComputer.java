@@ -58,7 +58,7 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 	 * 
 	 * 
 	 * @param element
-	 *            the element to set
+	 *        the element to set
 	 */
 	public void setElement(Element element) {
 		this.element = element;
@@ -80,21 +80,21 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 		ICompletionProposal proposal = null;
 
 		// first, add <Undefined>
-		if (UNDEFINED_TYPE.startsWith(prefix)) {
+		if(UNDEFINED_TYPE.startsWith(prefix)) {
 			proposal = new CompletionProposal(UNDEFINED_TYPE, documentOffset - prefix.length(), prefix.length()
 					+ selectionRange, UNDEFINED_TYPE.length(), null, UNDEFINED_TYPE, null, "Undefined Type");
 			v.add(proposal);
 		}
 
-		if (element != null) {
+		if(element != null) {
 			// then, all accessible types, by alphabetic order...
 			Set<Type> types = computeAccessibleTypeList(element);
 			// generate the list of types, in alphabetical order
 			Iterator<Type> it = types.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				Type type = it.next();
 				String name = type.getName();
-				if (name.startsWith(prefix)) {
+				if(name.startsWith(prefix)) {
 					// create a completion processor for the type if prefix
 					// corresponds
 					proposal = new CompletionProposal(name, documentOffset - prefix.length(), prefix.length()
@@ -120,9 +120,9 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 
 		// In the context where element is owned by a template,
 		// types declared in the context of the template must also be added
-		if (element.getOwner() != null && element.getOwner() instanceof TemplateableElement) {
-			TemplateableElement template = (TemplateableElement) element.getOwner();
-			if (template.isTemplate()) {
+		if(element.getOwner() != null && element.getOwner() instanceof TemplateableElement) {
+			TemplateableElement template = (TemplateableElement)element.getOwner();
+			if(template.isTemplate()) {
 				list.addAll(TemplateSignatureUtil.getAccessibleTypes(template.getOwnedTemplateSignature()));
 			}
 		}

@@ -59,13 +59,13 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof InformationFlow) {
+		if(false == getElementToEdit() instanceof InformationFlow) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -75,17 +75,17 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		if (getLink().getTargets().size() != 1) {
+		if(getLink().getTargets().size() != 1) {
 			return false;
 		}
-		Element target = (Element) getLink().getTargets().get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Element target = (Element)getLink().getTargets().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, getNewSource(),
 				target);
 	}
@@ -94,17 +94,17 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		if (getLink().getSources().size() != 1) {
+		if(getLink().getSources().size() != 1) {
 			return false;
 		}
-		Element source = (Element) getLink().getSources().get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Element source = (Element)getLink().getSources().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, source,
 				getNewTarget());
 	}
@@ -113,13 +113,13 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -143,34 +143,34 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected InformationFlow getLink() {
-		return (InformationFlow) getElementToEdit();
+		return (InformationFlow)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldSource() {
-		return (Element) oldEnd;
+		return (Element)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewSource() {
-		return (Element) newEnd;
+		return (Element)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element) oldEnd;
+		return (Element)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element) newEnd;
+		return (Element)newEnd;
 	}
 }

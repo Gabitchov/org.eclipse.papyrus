@@ -21,18 +21,18 @@ import org.eclipse.uml2.uml.Package;
 
 public class AppliedProfileSectionFilter extends ShapeEditPartPropertySectionFilter {
 
-	public boolean select(Object object) {		
-		if (object instanceof ShapeEditPart) {
-			if (((ShapeEditPart) object).resolveSemanticElement() != null && ((ShapeEditPart) object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Package) {
+	public boolean select(Object object) {
+		if(object instanceof ShapeEditPart) {
+			if(((ShapeEditPart)object).resolveSemanticElement() != null && ((ShapeEditPart)object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Package) {
 				return true;
 			}
-		}else if(object instanceof DiagramEditPart){
+		} else if(object instanceof DiagramEditPart) {
 			DiagramEditPart diagramEditPart = (DiagramEditPart)object;
-			if(diagramEditPart.resolveSemanticElement()!=null && diagramEditPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Package){
+			if(diagramEditPart.resolveSemanticElement() != null && diagramEditPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Package) {
 				return true;
 			}
-			
-		}else if(object instanceof Package){
+
+		} else if(object instanceof Package) {
 			return true;
 		}
 

@@ -46,5 +46,5 @@ public class JoinNode2CanonicalEditPolicy extends CanonicalEditPolicy {
 	public boolean canCreate(EObject object) {
 		return false;
 	}
-	
+
 }

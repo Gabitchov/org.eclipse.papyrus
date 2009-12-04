@@ -68,7 +68,7 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -84,9 +84,9 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	 * Default constructor
 	 */
 	public CollaborationUseBasePropertiesEditionComponent(EObject collaborationUse, String editing_mode) {
-		if (collaborationUse instanceof CollaborationUse) {
+		if(collaborationUse instanceof CollaborationUse) {
 			this.collaborationUse = (CollaborationUse)collaborationUse;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.collaborationUse.eAdapters().add(semanticAdapter);
 			}
@@ -108,25 +108,27 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					CollaborationUseBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(collaborationUse);
 					}
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setName((String)msg.getNewValue());
-}
-						else{basePart.setName("");}}
-					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setName((String)msg.getNewValue());
+						} else {
+							basePart.setName("");
+						}
+					}
+					if(UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
 						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 						basePart.updateClientDependency(collaborationUse);
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getCollaborationUse_RoleBinding()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getCollaborationUse_RoleBinding())) {
 						basePart.updateRoleBinding(collaborationUse);
@@ -145,7 +147,7 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.CollaborationUse.class;
 		return super.translatePart(key);
 	}
@@ -162,14 +164,13 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (collaborationUse != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(collaborationUse != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (CollaborationUsePropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.CollaborationUse.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -182,43 +183,43 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.CollaborationUse.class)
-			this.basePart = (CollaborationUsePropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.CollaborationUse.class)
+			this.basePart = (CollaborationUsePropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.CollaborationUse.class) {
+		if(basePart != null && key == UMLViewsRepository.CollaborationUse.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final CollaborationUse collaborationUse = (CollaborationUse)elt;
 			// init values
 			basePart.initOwnedComment(collaborationUse, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
-			if (collaborationUse.getName() != null)
+			if(collaborationUse.getName() != null)
 				basePart.setName(collaborationUse.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), collaborationUse.getVisibility());
+			basePart.initVisibility((EEnum)UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), collaborationUse.getVisibility());
 			basePart.initClientDependency(collaborationUse, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
 			basePart.initRoleBinding(collaborationUse, null, UMLPackage.eINSTANCE.getCollaborationUse_RoleBinding());
-			
+
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -236,7 +237,7 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientDependencyTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -248,13 +249,13 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 			// End of user code
 			basePart.addFilterToRoleBinding(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Dependency); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Dependency); //$NON-NLS-1$ 
 
 				}
 
@@ -273,44 +274,40 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 
 
 
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (collaborationUse != null) {
+		if(collaborationUse != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Comment nextElement = (Comment)iter.next();
+				Comment ownedComment = (Comment)ownedCommentToRefreshFromOwnedComment.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+			for(Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
@@ -319,10 +316,10 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 			cc.append(SetCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
-			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
-			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
 			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
@@ -330,37 +327,37 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 			//	cc.append(MoveCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List roleBindingToAddFromRoleBinding = basePart.getRoleBindingToAdd();
-			for (Iterator iter = roleBindingToAddFromRoleBinding.iterator(); iter.hasNext();)
+			for(Iterator iter = roleBindingToAddFromRoleBinding.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getCollaborationUse_RoleBinding(), iter.next()));
 			Map roleBindingToRefreshFromRoleBinding = basePart.getRoleBindingToEdit();
-			for (Iterator iter = roleBindingToRefreshFromRoleBinding.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Dependency nextElement = (Dependency) iter.next();
-				Dependency roleBinding = (Dependency) roleBindingToRefreshFromRoleBinding.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = roleBindingToRefreshFromRoleBinding.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Dependency nextElement = (Dependency)iter.next();
+				Dependency roleBinding = (Dependency)roleBindingToRefreshFromRoleBinding.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, roleBinding.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List roleBindingToRemoveFromRoleBinding = basePart.getRoleBindingToRemove();
-			for (Iterator iter = roleBindingToRemoveFromRoleBinding.iterator(); iter.hasNext();)
+			for(Iterator iter = roleBindingToRemoveFromRoleBinding.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List roleBindingToMoveFromRoleBinding = basePart.getRoleBindingToMove();
-			for (Iterator iter = roleBindingToMoveFromRoleBinding.iterator(); iter.hasNext();){
+			for(Iterator iter = roleBindingToMoveFromRoleBinding.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, collaborationUse, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
 			}
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -372,7 +369,7 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof CollaborationUse) {
+		if(source instanceof CollaborationUse) {
 			CollaborationUse collaborationUseToUpdate = (CollaborationUse)source;
 			collaborationUseToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			collaborationUseToUpdate.setName(basePart.getName());
@@ -384,8 +381,7 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 
 
 			return collaborationUseToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -396,78 +392,76 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.CollaborationUse.ownedComment == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.CollaborationUse.ownedComment == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Comment oldValue = (Comment)event.getOldValue();
 					Comment newValue = (Comment)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the collaborationUse update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor())
+			if(UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
-			if (UMLViewsRepository.CollaborationUse.visibility == event.getAffectedEditor())
+			if(UMLViewsRepository.CollaborationUse.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
-			if (UMLViewsRepository.CollaborationUse.clientDependency == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.CollaborationUse.clientDependency == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.CollaborationUse.roleBinding == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.CollaborationUse.roleBinding == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Dependency oldValue = (Dependency)event.getOldValue();
 					Dependency newValue = (Dependency)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the collaborationUse update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getCollaborationUse_RoleBinding(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, collaborationUse, UMLPackage.eINSTANCE.getDependency(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
 
-				if (UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor())
+				if(UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
 
@@ -476,7 +470,7 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 
 			} else {
 
-				if (UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor())
+				if(UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
 
 
@@ -494,14 +488,14 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor()) {
+				if(UMLViewsRepository.CollaborationUse.name == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.CollaborationUse.visibility == event.getAffectedEditor()) {
+				if(UMLViewsRepository.CollaborationUse.visibility == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
 				}
@@ -520,12 +514,11 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(collaborationUse);
 		// Start of user code for custom validation check
 
@@ -541,7 +534,7 @@ public class CollaborationUseBasePropertiesEditionComponent extends StandardProp
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			collaborationUse.eAdapters().remove(semanticAdapter);
 	}
 

@@ -55,15 +55,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -71,7 +77,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -80,7 +86,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -101,7 +107,9 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -116,14 +124,19 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -148,15 +161,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *        the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -164,7 +183,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter);
@@ -173,7 +192,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
@@ -194,7 +213,9 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *        the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
 
@@ -219,15 +240,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the outgoing
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOutgoing(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the outgoing
-	 * @param newValue the outgoing to update
+	 * 
+	 * @param newValue
+	 *        the outgoing to update
 	 */
 	public void updateOutgoing(EObject newValue);
 
@@ -235,7 +262,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the outgoing edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOutgoing(ViewerFilter filter);
@@ -244,7 +271,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the outgoing edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOutgoing(ViewerFilter filter);
@@ -275,15 +302,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the incoming
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initIncoming(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the incoming
-	 * @param newValue the incoming to update
+	 * 
+	 * @param newValue
+	 *        the incoming to update
 	 */
 	public void updateIncoming(EObject newValue);
 
@@ -291,7 +324,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the incoming edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToIncoming(ViewerFilter filter);
@@ -300,7 +333,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the incoming edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToIncoming(ViewerFilter filter);
@@ -331,15 +364,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the inPartition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initInPartition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inPartition
-	 * @param newValue the inPartition to update
+	 * 
+	 * @param newValue
+	 *        the inPartition to update
 	 */
 	public void updateInPartition(EObject newValue);
 
@@ -347,7 +386,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the inPartition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToInPartition(ViewerFilter filter);
@@ -356,7 +395,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the inPartition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToInPartition(ViewerFilter filter);
@@ -387,15 +426,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the inInterruptibleRegion
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inInterruptibleRegion
-	 * @param newValue the inInterruptibleRegion to update
+	 * 
+	 * @param newValue
+	 *        the inInterruptibleRegion to update
 	 */
 	public void updateInInterruptibleRegion(EObject newValue);
 
@@ -403,7 +448,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the inInterruptibleRegion edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToInInterruptibleRegion(ViewerFilter filter);
@@ -412,7 +457,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the inInterruptibleRegion edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToInInterruptibleRegion(ViewerFilter filter);
@@ -443,15 +488,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the redefinedNode
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initRedefinedNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedNode
-	 * @param newValue the redefinedNode to update
+	 * 
+	 * @param newValue
+	 *        the redefinedNode to update
 	 */
 	public void updateRedefinedNode(EObject newValue);
 
@@ -459,7 +510,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the redefinedNode edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToRedefinedNode(ViewerFilter filter);
@@ -468,7 +519,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the redefinedNode edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedNode(ViewerFilter filter);
@@ -509,15 +560,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the handler
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initHandler(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the handler
-	 * @param newValue the handler to update
+	 * 
+	 * @param newValue
+	 *        the handler to update
 	 */
 	public void updateHandler(EObject newValue);
 
@@ -525,7 +582,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the handler edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToHandler(ViewerFilter filter);
@@ -534,7 +591,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the handler edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToHandler(ViewerFilter filter);
@@ -575,15 +632,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the localPrecondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initLocalPrecondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the localPrecondition
-	 * @param newValue the localPrecondition to update
+	 * 
+	 * @param newValue
+	 *        the localPrecondition to update
 	 */
 	public void updateLocalPrecondition(EObject newValue);
 
@@ -591,7 +654,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the localPrecondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToLocalPrecondition(ViewerFilter filter);
@@ -600,7 +663,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the localPrecondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToLocalPrecondition(ViewerFilter filter);
@@ -641,15 +704,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the localPostcondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initLocalPostcondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the localPostcondition
-	 * @param newValue the localPostcondition to update
+	 * 
+	 * @param newValue
+	 *        the localPostcondition to update
 	 */
 	public void updateLocalPostcondition(EObject newValue);
 
@@ -657,7 +726,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the localPostcondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToLocalPostcondition(ViewerFilter filter);
@@ -666,7 +735,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the localPostcondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToLocalPostcondition(ViewerFilter filter);
@@ -707,15 +776,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *        the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -723,7 +798,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToElementImport(ViewerFilter filter);
@@ -732,7 +807,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
@@ -773,15 +848,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *        the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -789,7 +870,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPackageImport(ViewerFilter filter);
@@ -798,7 +879,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
@@ -839,15 +920,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *        the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -855,7 +942,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedRule(ViewerFilter filter);
@@ -864,7 +951,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
@@ -905,15 +992,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the variable
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initVariable(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the variable
-	 * @param newValue the variable to update
+	 * 
+	 * @param newValue
+	 *        the variable to update
 	 */
 	public void updateVariable(EObject newValue);
 
@@ -921,7 +1014,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the variable edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToVariable(ViewerFilter filter);
@@ -930,7 +1023,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the variable edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToVariable(ViewerFilter filter);
@@ -971,15 +1064,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the edge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the edge
-	 * @param newValue the edge to update
+	 * 
+	 * @param newValue
+	 *        the edge to update
 	 */
 	public void updateEdge(EObject newValue);
 
@@ -987,7 +1086,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the edge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToEdge(ViewerFilter filter);
@@ -996,7 +1095,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the edge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToEdge(ViewerFilter filter);
@@ -1017,7 +1116,9 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Defines a new mustIsolate
-	 * @param newValue the new mustIsolate to set
+	 * 
+	 * @param newValue
+	 *        the new mustIsolate to set
 	 */
 	public void setMustIsolate(Boolean newValue);
 
@@ -1052,15 +1153,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the node
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the node
-	 * @param newValue the node to update
+	 * 
+	 * @param newValue
+	 *        the node to update
 	 */
 	public void updateNode(EObject newValue);
 
@@ -1068,7 +1175,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the node edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToNode(ViewerFilter filter);
@@ -1077,7 +1184,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the node edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToNode(ViewerFilter filter);
@@ -1098,7 +1205,9 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Defines a new isTestedFirst
-	 * @param newValue the new isTestedFirst to set
+	 * 
+	 * @param newValue
+	 *        the new isTestedFirst to set
 	 */
 	public void setIsTestedFirst(Boolean newValue);
 
@@ -1123,15 +1232,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the bodyPart
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initBodyPart(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the bodyPart
-	 * @param newValue the bodyPart to update
+	 * 
+	 * @param newValue
+	 *        the bodyPart to update
 	 */
 	public void updateBodyPart(EObject newValue);
 
@@ -1139,7 +1254,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the bodyPart edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToBodyPart(ViewerFilter filter);
@@ -1148,7 +1263,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the bodyPart edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToBodyPart(ViewerFilter filter);
@@ -1179,15 +1294,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the setupPart
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initSetupPart(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the setupPart
-	 * @param newValue the setupPart to update
+	 * 
+	 * @param newValue
+	 *        the setupPart to update
 	 */
 	public void updateSetupPart(EObject newValue);
 
@@ -1195,7 +1316,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the setupPart edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToSetupPart(ViewerFilter filter);
@@ -1204,7 +1325,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the setupPart edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSetupPart(ViewerFilter filter);
@@ -1235,15 +1356,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the test
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initTest(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the test
-	 * @param newValue the test to update
+	 * 
+	 * @param newValue
+	 *        the test to update
 	 */
 	public void updateTest(EObject newValue);
 
@@ -1251,7 +1378,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the test edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToTest(ViewerFilter filter);
@@ -1260,7 +1387,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the test edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTest(ViewerFilter filter);
@@ -1301,15 +1428,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the result
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initResult(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the result
-	 * @param newValue the result to update
+	 * 
+	 * @param newValue
+	 *        the result to update
 	 */
 	public void updateResult(EObject newValue);
 
@@ -1317,7 +1450,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the result edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToResult(ViewerFilter filter);
@@ -1326,7 +1459,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the result edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToResult(ViewerFilter filter);
@@ -1357,15 +1490,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the loopVariable
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initLoopVariable(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the loopVariable
-	 * @param newValue the loopVariable to update
+	 * 
+	 * @param newValue
+	 *        the loopVariable to update
 	 */
 	public void updateLoopVariable(EObject newValue);
 
@@ -1373,7 +1512,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the loopVariable edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToLoopVariable(ViewerFilter filter);
@@ -1382,7 +1521,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the loopVariable edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToLoopVariable(ViewerFilter filter);
@@ -1413,15 +1552,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the bodyOutput
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initBodyOutput(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the bodyOutput
-	 * @param newValue the bodyOutput to update
+	 * 
+	 * @param newValue
+	 *        the bodyOutput to update
 	 */
 	public void updateBodyOutput(EObject newValue);
 
@@ -1429,7 +1574,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the bodyOutput edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToBodyOutput(ViewerFilter filter);
@@ -1438,7 +1583,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the bodyOutput edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToBodyOutput(ViewerFilter filter);
@@ -1479,15 +1624,21 @@ public interface LoopNodePropertiesEditionPart {
 
 	/**
 	 * Init the loopVariableInput
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initLoopVariableInput(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the loopVariableInput
-	 * @param newValue the loopVariableInput to update
+	 * 
+	 * @param newValue
+	 *        the loopVariableInput to update
 	 */
 	public void updateLoopVariableInput(EObject newValue);
 
@@ -1495,7 +1646,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the loopVariableInput edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToLoopVariableInput(ViewerFilter filter);
@@ -1504,7 +1655,7 @@ public interface LoopNodePropertiesEditionPart {
 	 * Adds the given filter to the loopVariableInput edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToLoopVariableInput(ViewerFilter filter);
@@ -1513,11 +1664,6 @@ public interface LoopNodePropertiesEditionPart {
 	 * @return true if the given element is contained inside the loopVariableInput table
 	 */
 	public boolean isContainedInLoopVariableInputTable(EObject element);
-
-
-
-
-
 
 
 

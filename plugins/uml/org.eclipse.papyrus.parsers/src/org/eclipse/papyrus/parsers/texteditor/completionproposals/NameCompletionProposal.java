@@ -62,8 +62,8 @@ public class NameCompletionProposal implements ICompletionProposalComputer {
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < nameStrings.length; i++) {
-			if (nameStrings[i].startsWith(prefix)) {
+		for(int i = 0; i < nameStrings.length; i++) {
+			if(nameStrings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(nameStrings[i], documentOffset - prefix.length(), prefix.length()
 						+ selectionRange, nameStrings[i].length(), null, nameStringsName[i], null, nameStringsInfo[i]);
 				v.add(proposal);

@@ -48,8 +48,8 @@ public class VSL_BooleanValue_CompletionProposal implements ICompletionProposalC
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < TVL_BooleanValue_Strings.length; i++) {
-			if (TVL_BooleanValue_Strings[i].startsWith(prefix)) {
+		for(int i = 0; i < TVL_BooleanValue_Strings.length; i++) {
+			if(TVL_BooleanValue_Strings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(TVL_BooleanValue_Strings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, TVL_BooleanValue_Strings[i].length(), null, TVL_BooleanValue_StringName[i],

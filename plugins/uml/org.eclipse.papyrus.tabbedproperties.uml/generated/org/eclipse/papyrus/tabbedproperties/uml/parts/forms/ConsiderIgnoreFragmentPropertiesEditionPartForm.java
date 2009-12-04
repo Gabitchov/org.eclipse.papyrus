@@ -82,53 +82,86 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ConsiderIgnoreFragmentPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<? extends EObject> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil coveredEditUtil;
+
 	protected ReferencesTable<? extends EObject> covered;
+
 	protected List<ViewerFilter> coveredBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> coveredFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil generalOrderingEditUtil;
+
 	protected ReferencesTable<? extends EObject> generalOrdering;
+
 	protected List<ViewerFilter> generalOrderingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> generalOrderingFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFComboViewer interactionOperator;
+
 	protected EMFListEditUtil operandEditUtil;
+
 	protected ReferencesTable<? extends EObject> operand;
+
 	protected List<ViewerFilter> operandBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> operandFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil cfragmentGateEditUtil;
+
 	protected ReferencesTable<? extends EObject> cfragmentGate;
+
 	protected List<ViewerFilter> cfragmentGateBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> cfragmentGateFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil messageEditUtil;
+
 	protected ReferencesTable<? extends EObject> message;
+
 	protected List<ViewerFilter> messageBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> messageFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public ConsiderIgnoreFragmentPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite,
+	 *      org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -140,11 +173,12 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createControls(org.eclipse.ui.forms.widgets.FormToolkit,
+	 *      org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
@@ -152,7 +186,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		// Start of user code for additional ui definition
 
 		// End of user code
-		
+
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -177,16 +211,31 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		createMessageReferencesTable(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -202,7 +251,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -214,11 +263,11 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -256,10 +305,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -271,6 +320,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		// End of user code
 
 	}
+
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConsiderIgnoreFragment.name, UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
@@ -286,7 +336,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -299,7 +349,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -312,8 +362,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 */
 			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
+				if(e.character == SWT.CR) {
+					if(propertiesEditionComponent != null)
 						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
@@ -321,6 +371,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConsiderIgnoreFragment.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -336,36 +387,50 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
 
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+						"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						clientDependency.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.clientDependency, UMLViewsRepository.FORM_KIND));
 		this.clientDependency.createControls(parent, widgetFactory);
@@ -411,10 +476,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -426,29 +491,43 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		// End of user code
 
 	}
+
 	protected void createCoveredReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.covered = new ReferencesTable<Lifeline>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_CoveredLabel, new ReferencesTableListener<Lifeline>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Lifeline> dialog = new TabElementTreeSelectionDialog<Lifeline>(resourceSet, coveredFilters, coveredBusinessFilters,
-				"Lifeline", UMLPackage.eINSTANCE.getLifeline(), current.eResource()) {
+						"Lifeline", UMLPackage.eINSTANCE.getLifeline(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!coveredEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!coveredEditUtil.getVirtualList().contains(elem))
 								coveredEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.covered,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						covered.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Lifeline element) { editCovered(element); }
-			public void handleMove(Lifeline element, int oldIndex, int newIndex) { moveCovered(element, oldIndex, newIndex); }
-			public void handleRemove(Lifeline element) { removeFromCovered(element); }
-			public void navigateTo(Lifeline element) { }
+
+			public void handleEdit(Lifeline element) {
+				editCovered(element);
+			}
+
+			public void handleMove(Lifeline element, int oldIndex, int newIndex) {
+				moveCovered(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Lifeline element) {
+				removeFromCovered(element);
+			}
+
+			public void navigateTo(Lifeline element) {
+			}
 		});
 		this.covered.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.covered, UMLViewsRepository.FORM_KIND));
 		this.covered.createControls(parent, widgetFactory);
@@ -494,10 +573,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				coveredEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				covered.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -509,16 +588,31 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createGeneralOrderingTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.generalOrdering = new ReferencesTable<GeneralOrdering>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_GeneralOrderingLabel, new ReferencesTableListener<GeneralOrdering>() {			
-			public void handleAdd() { addToGeneralOrdering();}
-			public void handleEdit(GeneralOrdering element) { editGeneralOrdering(element); }
-			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) { moveGeneralOrdering(element, oldIndex, newIndex); }
-			public void handleRemove(GeneralOrdering element) { removeFromGeneralOrdering(element); }
-			public void navigateTo(GeneralOrdering element) { }
+		this.generalOrdering = new ReferencesTable<GeneralOrdering>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_GeneralOrderingLabel, new ReferencesTableListener<GeneralOrdering>() {
+
+			public void handleAdd() {
+				addToGeneralOrdering();
+			}
+
+			public void handleEdit(GeneralOrdering element) {
+				editGeneralOrdering(element);
+			}
+
+			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) {
+				moveGeneralOrdering(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(GeneralOrdering element) {
+				removeFromGeneralOrdering(element);
+			}
+
+			public void navigateTo(GeneralOrdering element) {
+			}
 		});
 		this.generalOrdering.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.generalOrdering, UMLViewsRepository.FORM_KIND));
 		this.generalOrdering.createControls(parent, widgetFactory);
@@ -534,7 +628,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		EObject editedElement = generalOrderingEditUtil.foundCorrespondingEObject(element);
 		generalOrderingEditUtil.moveElement(element, oldIndex, newIndex);
 		generalOrdering.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.generalOrdering, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.generalOrdering, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -546,11 +640,11 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				generalOrderingEditUtil.addElement(propertiesEditionObject);
 				generalOrdering.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -588,10 +682,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				generalOrderingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				generalOrdering.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -603,6 +697,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		// End of user code
 
 	}
+
 	protected void createInteractionOperatorEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_InteractionOperatorLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ConsiderIgnoreFragment.interactionOperator, UMLViewsRepository.FORM_KIND));
 		interactionOperator = new EMFComboViewer(parent);
@@ -618,23 +713,38 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.interactionOperator, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getInteractionOperator()));
 			}
 
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.interactionOperator, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOperandTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.operand = new ReferencesTable<InteractionOperand>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_OperandLabel, new ReferencesTableListener<InteractionOperand>() {			
-			public void handleAdd() { addToOperand();}
-			public void handleEdit(InteractionOperand element) { editOperand(element); }
-			public void handleMove(InteractionOperand element, int oldIndex, int newIndex) { moveOperand(element, oldIndex, newIndex); }
-			public void handleRemove(InteractionOperand element) { removeFromOperand(element); }
-			public void navigateTo(InteractionOperand element) { }
+		this.operand = new ReferencesTable<InteractionOperand>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_OperandLabel, new ReferencesTableListener<InteractionOperand>() {
+
+			public void handleAdd() {
+				addToOperand();
+			}
+
+			public void handleEdit(InteractionOperand element) {
+				editOperand(element);
+			}
+
+			public void handleMove(InteractionOperand element, int oldIndex, int newIndex) {
+				moveOperand(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(InteractionOperand element) {
+				removeFromOperand(element);
+			}
+
+			public void navigateTo(InteractionOperand element) {
+			}
 		});
 		this.operand.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.operand, UMLViewsRepository.FORM_KIND));
 		this.operand.createControls(parent, widgetFactory);
@@ -650,7 +760,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		EObject editedElement = operandEditUtil.foundCorrespondingEObject(element);
 		operandEditUtil.moveElement(element, oldIndex, newIndex);
 		operand.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.operand, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.operand, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -662,11 +772,11 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				operandEditUtil.addElement(propertiesEditionObject);
 				operand.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -704,10 +814,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				operandEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				operand.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -719,16 +829,31 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createCfragmentGateTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.cfragmentGate = new ReferencesTable<Gate>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_CfragmentGateLabel, new ReferencesTableListener<Gate>() {			
-			public void handleAdd() { addToCfragmentGate();}
-			public void handleEdit(Gate element) { editCfragmentGate(element); }
-			public void handleMove(Gate element, int oldIndex, int newIndex) { moveCfragmentGate(element, oldIndex, newIndex); }
-			public void handleRemove(Gate element) { removeFromCfragmentGate(element); }
-			public void navigateTo(Gate element) { }
+		this.cfragmentGate = new ReferencesTable<Gate>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_CfragmentGateLabel, new ReferencesTableListener<Gate>() {
+
+			public void handleAdd() {
+				addToCfragmentGate();
+			}
+
+			public void handleEdit(Gate element) {
+				editCfragmentGate(element);
+			}
+
+			public void handleMove(Gate element, int oldIndex, int newIndex) {
+				moveCfragmentGate(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Gate element) {
+				removeFromCfragmentGate(element);
+			}
+
+			public void navigateTo(Gate element) {
+			}
 		});
 		this.cfragmentGate.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.cfragmentGate, UMLViewsRepository.FORM_KIND));
 		this.cfragmentGate.createControls(parent, widgetFactory);
@@ -744,7 +869,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		EObject editedElement = cfragmentGateEditUtil.foundCorrespondingEObject(element);
 		cfragmentGateEditUtil.moveElement(element, oldIndex, newIndex);
 		cfragmentGate.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.cfragmentGate, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.cfragmentGate, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -756,11 +881,11 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				cfragmentGateEditUtil.addElement(propertiesEditionObject);
 				cfragmentGate.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -798,10 +923,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				cfragmentGateEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				cfragmentGate.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -813,29 +938,43 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		// End of user code
 
 	}
+
 	protected void createMessageReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.message = new ReferencesTable<NamedElement>(UMLMessages.ConsiderIgnoreFragmentPropertiesEditionPart_MessageLabel, new ReferencesTableListener<NamedElement>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(resourceSet, messageFilters, messageBusinessFilters,
-				"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+						"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!messageEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!messageEditUtil.getVirtualList().contains(elem))
 								messageEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConsiderIgnoreFragmentPropertiesEditionPartForm.this, UMLViewsRepository.ConsiderIgnoreFragment.message,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						message.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(NamedElement element) { editMessage(element); }
-			public void handleMove(NamedElement element, int oldIndex, int newIndex) { moveMessage(element, oldIndex, newIndex); }
-			public void handleRemove(NamedElement element) { removeFromMessage(element); }
-			public void navigateTo(NamedElement element) { }
+
+			public void handleEdit(NamedElement element) {
+				editMessage(element);
+			}
+
+			public void handleMove(NamedElement element, int oldIndex, int newIndex) {
+				moveMessage(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(NamedElement element) {
+				removeFromMessage(element);
+			}
+
+			public void navigateTo(NamedElement element) {
+			}
 		});
 		this.message.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ConsiderIgnoreFragment.message, UMLViewsRepository.FORM_KIND));
 		this.message.createControls(parent, widgetFactory);
@@ -877,10 +1016,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				messageEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				message.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -893,12 +1032,12 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 
 	}
 
-	
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
 
 		// End of user code
-		
+
 	}
 
 	/**
@@ -949,12 +1088,13 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -967,7 +1107,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -985,7 +1125,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -1019,10 +1160,10 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -1040,7 +1181,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
@@ -1098,12 +1239,13 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initClientDependency(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
@@ -1116,7 +1258,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil != null){
+		if(clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -1134,7 +1276,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
@@ -1143,7 +1286,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#isContainedInClientDependencyTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#isContainedInClientDependencyTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInClientDependencyTable(EObject element) {
 		return clientDependencyEditUtil.contains(element);
@@ -1184,12 +1328,13 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initCovered(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initCovered(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			coveredEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			coveredEditUtil = new EMFListEditUtil(current, feature);
@@ -1202,7 +1347,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#updateCovered(EObject newValue)
 	 */
 	public void updateCovered(EObject newValue) {
-		if(coveredEditUtil != null){
+		if(coveredEditUtil != null) {
 			coveredEditUtil.reinit(newValue);
 			covered.refresh();
 		}
@@ -1287,12 +1432,13 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initGeneralOrdering(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initGeneralOrdering(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			generalOrderingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			generalOrderingEditUtil = new EMFListEditUtil(current, feature);
@@ -1305,7 +1451,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#updateGeneralOrdering(EObject newValue)
 	 */
 	public void updateGeneralOrdering(EObject newValue) {
-		if(generalOrderingEditUtil != null){
+		if(generalOrderingEditUtil != null) {
 			generalOrderingEditUtil.reinit(newValue);
 			generalOrdering.refresh();
 		}
@@ -1323,7 +1469,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterGeneralOrdering(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterGeneralOrdering(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToGeneralOrdering(ViewerFilter filter) {
 		generalOrderingBusinessFilters.add(filter);
@@ -1332,7 +1479,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#isContainedInGeneralOrderingTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#isContainedInGeneralOrderingTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInGeneralOrderingTable(EObject element) {
 		return generalOrderingEditUtil.contains(element);
@@ -1348,14 +1496,15 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#getInteractionOperator()
 	 */
 	public Enumerator getInteractionOperator() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) interactionOperator.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)interactionOperator.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initInteractionOperator(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initInteractionOperator(EEnum eenum, Enumerator
+	 *      current)
 	 */
 	public void initInteractionOperator(EEnum eenum, Enumerator current) {
 		interactionOperator.setInput(eenum.getELiterals());
@@ -1423,12 +1572,13 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initOperand(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initOperand(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOperand(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			operandEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			operandEditUtil = new EMFListEditUtil(current, feature);
@@ -1441,7 +1591,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#updateOperand(EObject newValue)
 	 */
 	public void updateOperand(EObject newValue) {
-		if(operandEditUtil != null){
+		if(operandEditUtil != null) {
 			operandEditUtil.reinit(newValue);
 			operand.refresh();
 		}
@@ -1526,12 +1676,13 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initCfragmentGate(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initCfragmentGate(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initCfragmentGate(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			cfragmentGateEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			cfragmentGateEditUtil = new EMFListEditUtil(current, feature);
@@ -1544,7 +1695,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#updateCfragmentGate(EObject newValue)
 	 */
 	public void updateCfragmentGate(EObject newValue) {
-		if(cfragmentGateEditUtil != null){
+		if(cfragmentGateEditUtil != null) {
 			cfragmentGateEditUtil.reinit(newValue);
 			cfragmentGate.refresh();
 		}
@@ -1562,7 +1713,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterCfragmentGate(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#addBusinessFilterCfragmentGate(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToCfragmentGate(ViewerFilter filter) {
 		cfragmentGateBusinessFilters.add(filter);
@@ -1571,7 +1723,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#isContainedInCfragmentGateTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#isContainedInCfragmentGateTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInCfragmentGateTable(EObject element) {
 		return cfragmentGateEditUtil.contains(element);
@@ -1612,12 +1765,13 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initMessage(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#initMessage(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initMessage(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			messageEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			messageEditUtil = new EMFListEditUtil(current, feature);
@@ -1630,7 +1784,7 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ConsiderIgnoreFragmentPropertiesEditionPart#updateMessage(EObject newValue)
 	 */
 	public void updateMessage(EObject newValue) {
-		if(messageEditUtil != null){
+		if(messageEditUtil != null) {
 			messageEditUtil.reinit(newValue);
 			message.refresh();
 		}
@@ -1667,15 +1821,8 @@ public class ConsiderIgnoreFragmentPropertiesEditionPartForm extends CompositePr
 
 
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
 
 	// End of user code
 
-}	
+}

@@ -28,8 +28,8 @@ public class ExtensionLabelProvider extends LabelProvider {
 	@Override
 	public String getText(Object obj) {
 
-		if (obj instanceof RegisteredElementExtensionPoint) {
-			return ((RegisteredElementExtensionPoint) obj).name;
+		if(obj instanceof RegisteredElementExtensionPoint) {
+			return ((RegisteredElementExtensionPoint)obj).name;
 		} else {
 			return "unknown object";
 		}

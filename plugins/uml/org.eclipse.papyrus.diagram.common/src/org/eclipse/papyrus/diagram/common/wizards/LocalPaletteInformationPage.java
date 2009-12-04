@@ -86,7 +86,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	protected boolean validateOnLaunch = false;
 
 	static {
-		priorityList = new String[] { ProviderPriority.LOWEST.getName(), ProviderPriority.LOW.getName(),
+		priorityList = new String[]{ ProviderPriority.LOWEST.getName(), ProviderPriority.LOW.getName(),
 				ProviderPriority.MEDIUM.getName(), ProviderPriority.HIGH.getName(), ProviderPriority.HIGHEST.getName() };
 	}
 
@@ -94,7 +94,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * Creates a new wizard page with the given name, title, and image.
 	 * 
 	 * @param part
-	 *            the editor part in which the wizard was created
+	 *        the editor part in which the wizard was created
 	 */
 	public LocalPaletteInformationPage(IEditorPart part) {
 		super(Messages.Local_Palette_InfoPage_Name, Messages.Local_Palette_InfoPage_Title, Activator
@@ -128,7 +128,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 		// Show description on opening
 		setErrorMessage(null);
 		setMessage(null);
-		if (validateOnLaunch) {
+		if(validateOnLaunch) {
 			setPageComplete(validatePage());
 		}
 		setControl(control);
@@ -140,8 +140,8 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	public void intializeValues() {
 		initName("");
 		String editorIDValue = "";
-		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
-			editorIDValue = ((DiagramEditorWithFlyOutPalette) editorPart).getContributorId();
+		if(editorPart instanceof DiagramEditorWithFlyOutPalette) {
+			editorIDValue = ((DiagramEditorWithFlyOutPalette)editorPart).getContributorId();
 		}
 		initEditorID(editorIDValue);
 		initPaletteID(System.getProperty("user.name") + "_" + System.currentTimeMillis());
@@ -154,8 +154,8 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	public void intializeValues(PapyrusPaletteService.LocalProviderDescriptor descriptor) {
 		initName(descriptor.getContributionName());
 		String editorIDValue = "";
-		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
-			editorIDValue = ((DiagramEditorWithFlyOutPalette) editorPart).getContributorId();
+		if(editorPart instanceof DiagramEditorWithFlyOutPalette) {
+			editorIDValue = ((DiagramEditorWithFlyOutPalette)editorPart).getContributorId();
 		}
 		initEditorID(editorIDValue);
 		initPaletteID(descriptor.getContributionID());
@@ -203,7 +203,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * inits the name field value
 	 * 
 	 * @param value
-	 *            value to set
+	 *        value to set
 	 */
 	protected void initName(String value) {
 		name = value;
@@ -213,7 +213,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * inits the priority value
 	 * 
 	 * @param value
-	 *            value to set
+	 *        value to set
 	 */
 	protected void initPriority(ProviderPriority value) {
 		this.priority = value; // by default, Medium
@@ -223,7 +223,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * inits the palette id value
 	 * 
 	 * @param value
-	 *            value to set
+	 *        value to set
 	 */
 	protected void initPaletteID(String value) {
 		paletteID = value;
@@ -234,7 +234,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * inits the editor id value
 	 * 
 	 * @param value
-	 *            value to set
+	 *        value to set
 	 */
 	protected void initEditorID(String value) {
 		editorID = value;
@@ -245,28 +245,28 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 */
 	protected boolean validatePage() {
 		boolean valid = true;
-		if (advancedComposite != null && !advancedComposite.isDisposed()) {
-			if (-1 == priorityCombo.getSelectionIndex()) {
+		if(advancedComposite != null && !advancedComposite.isDisposed()) {
+			if(-1 == priorityCombo.getSelectionIndex()) {
 				setErrorMessage(Messages.Local_Palette_Error_Priority);
 				valid = false;
 			}
-			if ("".equals(getEditorID())) {
+			if("".equals(getEditorID())) {
 				setErrorMessage(Messages.Local_Palette_Error_EditorId);
 				valid = false;
 			}
 
-			if ("".equals(getPaletteID())) {
+			if("".equals(getPaletteID())) {
 				setErrorMessage(Messages.Local_Palette_Error_PaletteId);
 				valid = false;
 			}
 		}
 
-		if ("".equals(getPaletteName())) {
+		if("".equals(getPaletteName())) {
 			setErrorMessage(Messages.Local_Palette_Error_Name);
 			valid = false;
 		}
 
-		if (valid) {
+		if(valid) {
 			setMessage(null);
 			setErrorMessage(null);
 		}
@@ -277,7 +277,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * Creates the widget for advanced options.
 	 * 
 	 * @param parent
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	protected void createAdvancedControls(Composite parent) {
 		advancedButton = new Button(parent, SWT.PUSH);
@@ -318,9 +318,9 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * Shows/hides the advanced option widgets.
 	 */
 	protected void handleAdvancedButtonSelect() {
-		Composite composite = (Composite) getControl();
+		Composite composite = (Composite)getControl();
 
-		if (advancedComposite != null) {
+		if(advancedComposite != null) {
 			advancedComposite.dispose();
 			advancedComposite = null;
 			advancedButton.setText(Messages.Dialog_Advanced_Button_Closed);
@@ -334,7 +334,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * creates the control area for the priority
 	 * 
 	 * @param control
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	protected void createPriorityControl(Composite control) {
 		final Label priorityLabel = new Label(control, SWT.NONE);
@@ -364,7 +364,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * creates the control area for the id definition
 	 * 
 	 * @param control
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	protected void createIDControl(Composite control) {
 		final Label idLabel = new Label(control, SWT.NONE);
@@ -392,7 +392,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * creates the control area for the name definition
 	 * 
 	 * @param control
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	protected void createNameControl(Composite control) {
 		final Label nameLabel = new Label(control, SWT.NONE);
@@ -414,7 +414,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * creates the control area for the name definition
 	 * 
 	 * @param control
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	protected void createEditorIDControl(Composite control) {
 		final Label editorLabel = new Label(control, SWT.NONE);
@@ -447,18 +447,18 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	}
 
 	/**
-	 * The <code>WizardNewFileCreationPage</code> implementation of this <code>Listener</code>
-	 * method handles all events and enablements for controls on this page. Subclasses may extend.
+	 * The <code>WizardNewFileCreationPage</code> implementation of this <code>Listener</code> method handles all events and enablements for controls
+	 * on this page. Subclasses may extend.
 	 */
 	public void handleEvent(Event event) {
 		Widget widget = event.widget;
-		if (widget.equals(nameText)) {
+		if(widget.equals(nameText)) {
 			name = nameText.getText();
-		} else if (widget.equals(idText)) {
+		} else if(widget.equals(idText)) {
 			paletteID = idText.getText();
-		} else if (widget.equals(editorText)) {
+		} else if(widget.equals(editorText)) {
 			editorID = editorText.getText();
-		} else if (widget.equals(priorityCombo)) {
+		} else if(widget.equals(priorityCombo)) {
 			priority = ProviderPriority.parse(priorityCombo.getText());
 		}
 		setPageComplete(validatePage());

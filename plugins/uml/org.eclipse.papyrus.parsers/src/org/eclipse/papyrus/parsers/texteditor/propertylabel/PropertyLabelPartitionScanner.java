@@ -44,7 +44,7 @@ public class PropertyLabelPartitionScanner extends RuleBasedPartitionScanner {
 	public PropertyLabelPartitionScanner() {
 		IToken tagString = new Token(PROPERTY_MODIFIERS_STRING);
 		IPredicateRule[] rules = new IPredicateRule[1];
-		rules[0] = new MultiLineRule("{", "}", tagString, (char) 0, true);
+		rules[0] = new MultiLineRule("{", "}", tagString, (char)0, true);
 		setPredicateRules(rules);
 	}
 

@@ -30,8 +30,8 @@ public class CenterLayout extends StackLayout {
 		final int centerY = r.y + r.height / 2;
 		List children = figure.getChildren();
 		IFigure child;
-		for (int i = 0; i < children.size(); i++) {
-			child = (IFigure) children.get(i);
+		for(int i = 0; i < children.size(); i++) {
+			child = (IFigure)children.get(i);
 			Dimension prefSize = child.getPreferredSize(r.width, r.height);
 			RECTANGLE.x = centerX - prefSize.width / 2;
 			RECTANGLE.y = centerY - prefSize.height / 2;

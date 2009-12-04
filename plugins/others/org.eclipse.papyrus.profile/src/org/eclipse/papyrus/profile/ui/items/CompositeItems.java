@@ -29,60 +29,66 @@ import org.eclipse.uml2.uml.Property;
  * The Class CompositeItems.
  */
 public class CompositeItems {
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param table the table
-	 * @param value the value
-	 * @param property the property
+	 * @param table
+	 *        the table
+	 * @param value
+	 *        the value
+	 * @param property
+	 *        the property
 	 */
-	public CompositeItems (Table table, Property property, Object value) {
-		
-		// Checking rule
-		if (property.getLower() > 0) {
-			Message.error(
-					"Property of type Stereotype and multiplicity lower value != 0.\n" 
-					+" The profile is ill formed !");
-		}
-		
-		if (property.isMultivalued()) { // property is multivalued
-			final List propValues = (List) value;
+	public CompositeItems(Table table, Property property, Object value) {
 
-			for(int i=0; i<propValues.size(); i++) {
+		// Checking rule
+		if(property.getLower() > 0) {
+			Message.error(
+					"Property of type Stereotype and multiplicity lower value != 0.\n"
+					+ " The profile is ill formed !");
+		}
+
+		if(property.isMultivalued()) { // property is multivalued
+			final List propValues = (List)value;
+
+			for(int i = 0; i < propValues.size(); i++) {
 				createItem(table, property, propValues.get(i));
 			}
 
 		} else { // property is not multivalued
 
 			// if the property has a value
-			if (value != null) {
+			if(value != null) {
 				createItem(table, property, value);
 			}
 		}
 	}
-	
+
 	/**
 	 * Creates a new item for current objet int the table.
 	 * 
-	 * @param table the table
-	 * @param object the object
-	 * @param property the property
+	 * @param table
+	 *        the table
+	 * @param object
+	 *        the object
+	 * @param property
+	 *        the property
 	 */
 	private void createItem(Table table, Property property, Object object) {
-		
+
 		EObject eObject = null;
-		
+
 		// Prepare Item data
-		if (object instanceof EObject) {
-			eObject = (EObject) object;
-			
+		if(object instanceof EObject) {
+			eObject = (EObject)object;
+
 		} else { // Error
-			String err = "Type "+object.toString()+" of Property "+property.getName()+" is not an EObject.";
+			String err = "Type " + object.toString() + " of Property " + property.getName() + " is not an EObject.";
 			Message.error(err);
 		}
-		
-		if (eObject != null) {
+
+		if(eObject != null) {
 			// Prepare Item label
 			TableItem propValueItem = new TableItem(table, SWT.NONE);
 			propValueItem.setText(eObject.getClass().getName());

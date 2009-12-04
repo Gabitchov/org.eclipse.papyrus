@@ -36,11 +36,11 @@ public class SubCompartmentLayoutManager extends AbstractLayout {
 
 	public void layout(IFigure container) {
 		int containersize = container.getChildren().size();
-		for (int i = 0; i < container.getChildren().size(); i++) {
-			Rectangle bound = new Rectangle(((IFigure) container.getChildren().get(i)).getBounds());
-			bound.setSize(getPreferedSize(((IFigure) container.getChildren().get(i))));
-			if (i > 0) {
-				bound.y = ((IFigure) container.getChildren().get(i - 1)).getBounds().getBottomLeft().y + 1;
+		for(int i = 0; i < container.getChildren().size(); i++) {
+			Rectangle bound = new Rectangle(((IFigure)container.getChildren().get(i)).getBounds());
+			bound.setSize(getPreferedSize(((IFigure)container.getChildren().get(i))));
+			if(i > 0) {
+				bound.y = ((IFigure)container.getChildren().get(i - 1)).getBounds().getBottomLeft().y + 1;
 				bound.x = container.getBounds().x;
 				bound.width = container.getBounds().width;
 			} else {
@@ -49,23 +49,23 @@ public class SubCompartmentLayoutManager extends AbstractLayout {
 				bound.width = container.getBounds().width;
 
 			}
-			((IFigure) container.getChildren().get(i)).setBounds(bound);
+			((IFigure)container.getChildren().get(i)).setBounds(bound);
 		}
 		// container
-		if (containersize > 0) {
-			Rectangle lastRectangle = ((IFigure) container.getChildren().get(containersize - 1)).getBounds();
+		if(containersize > 0) {
+			Rectangle lastRectangle = ((IFigure)container.getChildren().get(containersize - 1)).getBounds();
 			lastRectangle.height = container.getBounds().y + container.getBounds().height - lastRectangle.y;
 			lastRectangle.width = container.getBounds().width;
-			((IFigure) container.getChildren().get(containersize - 1)).setBounds(lastRectangle);
+			((IFigure)container.getChildren().get(containersize - 1)).setBounds(lastRectangle);
 		}
 	}
 
 	public Dimension getPreferedSize(IFigure figure) {
 		Dimension dim = figure.getPreferredSize();
-		if (figure.getChildren().size() > 0) {
-			if (figure.getChildren().get(0) instanceof ResizableCompartmentFigure) {
-				dim.height = ((ResizableCompartmentFigure) figure.getChildren().get(0)).getPreferredSize().height + 10;
-				if (dim.height == 0) {
+		if(figure.getChildren().size() > 0) {
+			if(figure.getChildren().get(0) instanceof ResizableCompartmentFigure) {
+				dim.height = ((ResizableCompartmentFigure)figure.getChildren().get(0)).getPreferredSize().height + 10;
+				if(dim.height == 0) {
 					dim.height = 20;
 				}
 
@@ -78,14 +78,14 @@ public class SubCompartmentLayoutManager extends AbstractLayout {
 	 * Sets the constraint for the given figure.
 	 * 
 	 * @param child
-	 *            the child
+	 *        the child
 	 * @param constraint
-	 *            the child's new constraint
+	 *        the child's new constraint
 	 */
 	@Override
 	public void setConstraint(IFigure child, Object constraint) {
-		if (constraint instanceof Rectangle && ((Rectangle) constraint).height > MINIMUMCOMPARTMENTSIZE) {
-			preferedHeight = ((Rectangle) constraint).height;
+		if(constraint instanceof Rectangle && ((Rectangle)constraint).height > MINIMUMCOMPARTMENTSIZE) {
+			preferedHeight = ((Rectangle)constraint).height;
 		} else {
 			preferedHeight = MINIMUMCOMPARTMENTSIZE;
 		}

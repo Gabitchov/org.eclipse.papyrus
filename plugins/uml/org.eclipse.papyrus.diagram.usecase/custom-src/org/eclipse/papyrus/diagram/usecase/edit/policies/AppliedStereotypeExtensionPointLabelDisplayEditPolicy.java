@@ -32,7 +32,7 @@ public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends Appli
 	 */
 	@Override
 	protected ExtensionPoint getUMLElement() {
-		return (ExtensionPoint) super.getUMLElement();
+		return (ExtensionPoint)super.getUMLElement();
 	}
 
 	/**
@@ -41,14 +41,14 @@ public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends Appli
 	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		ExtensionPointLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
+		ExtensionPointLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)getHost());
 		super.refreshDisplay();
 	}
 
 	@Override
 	protected void refreshStereotypeDisplay() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

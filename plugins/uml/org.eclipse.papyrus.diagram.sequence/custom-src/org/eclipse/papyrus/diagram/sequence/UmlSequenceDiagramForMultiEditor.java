@@ -83,10 +83,10 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 		this.diagram = diagram;
 		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 		IEditorContextRegistry contextRegistry;
-		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
+		contextRegistry = (IEditorContextRegistry)servicesRegistry.getService(IEditorContextRegistry.class);
 
 		// Get the context by its ID
-		this.context = (GmfEditorContext) contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
+		this.context = (GmfEditorContext)contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
 
 		// overrides editing domain created by super constructor
 
@@ -108,7 +108,7 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	 * {@inheritDoc}
 	 */
 	protected final IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if(input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return context.getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
@@ -118,7 +118,7 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	 * {@inheritDoc}
 	 */
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if(input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(context.getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
@@ -151,16 +151,16 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 
 	/**
 	 * @param diagram
-	 *            the diagram to set
+	 *        the diagram to set
 	 */
 	public void setDiagram(Diagram diagram) {
 		this.diagram = diagram;
@@ -222,7 +222,7 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 
 	/**
 	 * @param parentEditor
-	 *            the parentEditor to set
+	 *        the parentEditor to set
 	 */
 	public void setSharedObject(GmfEditorContext parentEditor) {
 		this.context = parentEditor;

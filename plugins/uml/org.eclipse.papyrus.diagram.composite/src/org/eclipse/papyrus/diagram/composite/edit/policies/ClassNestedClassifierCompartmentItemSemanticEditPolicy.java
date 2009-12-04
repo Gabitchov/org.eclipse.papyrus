@@ -45,40 +45,40 @@ public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends UMLB
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Activity_3103 == req.getElementType()) {
+		if(UMLElementTypes.Activity_3103 == req.getElementType()) {
 			return getGEFWrapper(new ActivityCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.Interaction_3104 == req.getElementType()) {
+		if(UMLElementTypes.Interaction_3104 == req.getElementType()) {
 			return getGEFWrapper(new InteractionCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.ProtocolStateMachine_3105 == req.getElementType()) {
+		if(UMLElementTypes.ProtocolStateMachine_3105 == req.getElementType()) {
 			return getGEFWrapper(new ProtocolStateMachineCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.StateMachine_3106 == req.getElementType()) {
+		if(UMLElementTypes.StateMachine_3106 == req.getElementType()) {
 			return getGEFWrapper(new StateMachineCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.FunctionBehavior_3107 == req.getElementType()) {
+		if(UMLElementTypes.FunctionBehavior_3107 == req.getElementType()) {
 			return getGEFWrapper(new FunctionBehaviorCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.OpaqueBehavior_3108 == req.getElementType()) {
+		if(UMLElementTypes.OpaqueBehavior_3108 == req.getElementType()) {
 			return getGEFWrapper(new OpaqueBehaviorCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.Collaboration_3109 == req.getElementType()) {
+		if(UMLElementTypes.Collaboration_3109 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.Interface_3110 == req.getElementType()) {
+		if(UMLElementTypes.Interface_3110 == req.getElementType()) {
 			return getGEFWrapper(new InterfaceCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.Enumeration_3111 == req.getElementType()) {
+		if(UMLElementTypes.Enumeration_3111 == req.getElementType()) {
 			return getGEFWrapper(new EnumerationCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.PrimitiveType_3112 == req.getElementType()) {
+		if(UMLElementTypes.PrimitiveType_3112 == req.getElementType()) {
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.DataType_3113 == req.getElementType()) {
+		if(UMLElementTypes.DataType_3113 == req.getElementType()) {
 			return getGEFWrapper(new DataTypeCreateCommandCLN(req));
 		}
-		if (UMLElementTypes.Class_3114 == req.getElementType()) {
+		if(UMLElementTypes.Class_3114 == req.getElementType()) {
 			return getGEFWrapper(new ClassCreateCommandCLN(req));
 		}
 		return super.getCreateCommand(req);

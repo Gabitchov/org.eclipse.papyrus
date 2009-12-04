@@ -68,9 +68,9 @@ public class UseCaseDiagramEditPart extends DiagramEditPart {
 	protected void handleNotificationEvent(Notification event) {
 
 		super.handleNotificationEvent(event);
-		if (event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
+		if(event.getNotifier() instanceof EAnnotation) {
+			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
+			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
 				// modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
@@ -82,7 +82,7 @@ public class UseCaseDiagramEditPart extends DiagramEditPart {
 	 */
 	public Object getAdapter(Class adapter) {
 
-		if (adapter != null && adapter.equals(ViewInfo.class)) {
+		if(adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);

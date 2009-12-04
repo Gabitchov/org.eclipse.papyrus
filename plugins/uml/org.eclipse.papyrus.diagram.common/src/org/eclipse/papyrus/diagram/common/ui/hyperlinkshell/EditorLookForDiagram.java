@@ -84,7 +84,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	 * Sets the selected diagram.
 	 * 
 	 * @param selectedDiagram
-	 *            the selectedDiagram to set
+	 *        the selectedDiagram to set
 	 */
 	protected void setSelectedDiagram(Diagram selectedDiagram) {
 		this.selectedDiagram = selectedDiagram;
@@ -105,8 +105,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	/**
 	 * The listener interface for receiving diagramCreate events. The class that is interested in
 	 * processing a diagramCreate event implements this interface, and the object created with that
-	 * class is registered with a component using the component's
-	 * <code>addDiagramCreateListener<code> method. When
+	 * class is registered with a component using the component's <code>addDiagramCreateListener<code> method. When
 	 * the diagramCreate event occurs, that object's appropriate
 	 * method is invoked.
 	 * 
@@ -130,20 +129,20 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param e
-		 *            the e
+		 *        the e
 		 */
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			try {
-				Element elt = (Element) ((IStructuredSelection) treeViewer.getSelection()).getFirstElement();
+				Element elt = (Element)((IStructuredSelection)treeViewer.getSelection()).getFirstElement();
 
 				setContainer(elt);
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-				IEditorContextRegistry contextRegistry = (IEditorContextRegistry) servicesRegistry
+				IEditorContextRegistry contextRegistry = (IEditorContextRegistry)servicesRegistry
 						.getService(IEditorContextRegistry.class);
 
 				// Get the context by its ID
-				BackboneContext editorContext = (BackboneContext) contextRegistry
+				BackboneContext editorContext = (BackboneContext)contextRegistry
 						.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
 				ICreationCommand creationCommand = iCreationCommandRegistry
 						.getCommand(commandDescriptor.getCommandId());
@@ -168,13 +167,13 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * Instantiates a new diagram create listener.
 		 * 
 		 * @param commandDescriptor
-		 *            the command descriptor
+		 *        the command descriptor
 		 * @param backboneContext
-		 *            the backbone context
+		 *        the backbone context
 		 * @param container
-		 *            the container
+		 *        the container
 		 * @param iCreationCommandRegistry
-		 *            the i creation command registry
+		 *        the i creation command registry
 		 */
 		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, BackboneContext backboneContext,
 				Element container, ICreationCommandRegistry iCreationCommandRegistry) {
@@ -189,7 +188,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * Sets the container.
 		 * 
 		 * @param container
-		 *            the new container
+		 *        the new container
 		 */
 		public void setContainer(Element container) {
 			this.container = container;
@@ -208,7 +207,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * Instantiates a new object label provider.
 		 * 
 		 * @param imagePath
-		 *            the image path
+		 *        the image path
 		 */
 		public ObjectLabelProvider(String imagePath) {
 			theImagePath = imagePath;
@@ -218,12 +217,12 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param element
-		 *            the element
+		 *        the element
 		 * 
 		 * @return the image
 		 */
 		public Image getImage(Object element) {
-			if (element instanceof Diagram) {
+			if(element instanceof Diagram) {
 				return editorRegistry.getEditorIcon((element));
 			}
 			return null;
@@ -233,14 +232,14 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param element
-		 *            the element
+		 *        the element
 		 * 
 		 * @return the text
 		 */
 		public String getText(Object element) {
 			String out = "";
-			if (element instanceof Diagram) {
-				out = ((Diagram) element).getName();
+			if(element instanceof Diagram) {
+				out = ((Diagram)element).getName();
 			} else {
 				return element.toString();
 			}
@@ -251,7 +250,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param listener
-		 *            the listener
+		 *        the listener
 		 */
 		public void addListener(ILabelProviderListener listener) {
 		}
@@ -266,9 +265,9 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param element
-		 *            the element
+		 *        the element
 		 * @param property
-		 *            the property
+		 *        the property
 		 * 
 		 * @return true, if checks if is label property
 		 */
@@ -281,7 +280,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * {@inheritedDoc}.
 		 * 
 		 * @param listener
-		 *            the listener
+		 *        the listener
 		 */
 		public void removeListener(ILabelProviderListener listener) {
 		}
@@ -344,9 +343,9 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	 * Instantiates a new editor look for diagram.
 	 * 
 	 * @param editorFactoryRegistry
-	 *            the editor factory registry
+	 *        the editor factory registry
 	 * @param amodel
-	 *            the amodel
+	 *        the amodel
 	 */
 	public EditorLookForDiagram(IEditorFactoryRegistry editorFactoryRegistry, Package amodel) {
 		super();
@@ -362,7 +361,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 			@Override
 			public Image getImage(Object object) {
-				if (object instanceof Diagram) {
+				if(object instanceof Diagram) {
 					return editorRegistry.getEditorIcon((object));
 				} else {
 					return super.getImage(object);
@@ -386,7 +385,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		getNewDiagrambutton().setMenu(diagramMenuButton);
 		CreationCommandRegistry commandRegistry = new CreationCommandRegistry(
 				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		for (CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
+		for(CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
 			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
 			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, null, commandRegistry));
 			menuItem.setText(desc.getLabel());
@@ -404,10 +403,10 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection = (IStructuredSelection) getModeFilteredTree().getViewer()
+				IStructuredSelection iSelection = (IStructuredSelection)getModeFilteredTree().getViewer()
 						.getSelection();
 				Iterator iterator = iSelection.iterator();
-				while (iterator.hasNext()) {
+				while(iterator.hasNext()) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr();
 					pageMngr.removePage(iterator.next());
 				}
@@ -423,10 +422,10 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		getModeFilteredTree().getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selection = ((IStructuredSelection) getModeFilteredTree().getViewer().getSelection())
+				Object selection = ((IStructuredSelection)getModeFilteredTree().getViewer().getSelection())
 						.getFirstElement();
-				if (selection instanceof Diagram) {
-					selectedDiagram = (Diagram) selection;
+				if(selection instanceof Diagram) {
+					selectedDiagram = (Diagram)selection;
 				}
 
 			}
@@ -437,10 +436,10 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		getDiagramfilteredTree().getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selection = ((IStructuredSelection) getDiagramfilteredTree().getViewer().getSelection())
+				Object selection = ((IStructuredSelection)getDiagramfilteredTree().getViewer().getSelection())
 						.getFirstElement();
-				if (selection instanceof Diagram) {
-					selectedDiagram = (Diagram) selection;
+				if(selection instanceof Diagram) {
+					selectedDiagram = (Diagram)selection;
 				}
 
 			}
@@ -483,8 +482,8 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		getLookforShell().pack();
 		getLookforShell().setBounds(500, 500, 500, 300);
 		getLookforShell().open();
-		while (!getLookforShell().isDisposed()) {
-			if (!display.readAndDispatch()) {
+		while(!getLookforShell().isDisposed()) {
+			if(!display.readAndDispatch()) {
 				display.sleep();
 			}
 		}

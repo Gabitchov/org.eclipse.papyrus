@@ -40,7 +40,7 @@ public class ReadIsClassifiedObjectActionPropertiesEditionProvider implements IP
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ReadIsClassifiedObjectAction) {
+		if(eObject instanceof ReadIsClassifiedObjectAction) {
 			return new ReadIsClassifiedObjectActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ReadIsClassifiedObjectActionPropertiesEditionProvider implements IP
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ReadIsClassifiedObjectAction) {
-			if (ReadIsClassifiedObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ReadIsClassifiedObjectAction) {
+			if(ReadIsClassifiedObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ReadIsClassifiedObjectActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

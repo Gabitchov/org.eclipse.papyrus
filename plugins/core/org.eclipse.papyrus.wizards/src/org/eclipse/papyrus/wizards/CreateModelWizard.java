@@ -95,7 +95,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		// fjcano #293135 :: support model templates
 		addPage(selectTemplateWizardPage);
 		addPage(selectDiagramKindPage);
-		if (domainModelURI != null) {
+		if(domainModelURI != null) {
 			addPage(selectRootElementPage);
 		}
 	}
@@ -104,24 +104,23 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * Initializes this creation wizard using the passed workbench and object
 	 * selection.
 	 * <p>
-	 * This method is called after the no argument constructor and before other
-	 * methods are called.
+	 * This method is called after the no argument constructor and before other methods are called.
 	 * </p>
 	 * 
 	 * @param workbench
-	 *            the current workbench
+	 *        the current workbench
 	 * @param selection
-	 *            the current object selection
+	 *        the current object selection
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.diResourceSet = new DiResourceSet();
 		// set the di file name with the selected domain model
-		if (selection != null && !selection.isEmpty()) {
-			if (selection.getFirstElement() instanceof IFile) {
-				IFile file = (IFile) selection.getFirstElement();
+		if(selection != null && !selection.isEmpty()) {
+			if(selection.getFirstElement() instanceof IFile) {
+				IFile file = (IFile)selection.getFirstElement();
 				String extension = file.getFileExtension();
-				if ("uml".equals(extension)) {
+				if("uml".equals(extension)) {
 					this.domainModelURI = URI.createPlatformResourceURI(file
 							.getFullPath().toString(), true);
 
@@ -142,7 +141,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		if (domainModelURI == null) {
+		if(domainModelURI == null) {
 			this.newModelFilePage = new NewModelFilePage(
 					"Create a new Papyrus model",
 					"Create a new empty Papyrus model", selection, false);
@@ -157,8 +156,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/**
 	 * This method will be invoked, when the "Finish" button is pressed.
 	 * 
-	 * @return <code>true</code> if everything runs without problems,
-	 *         <code>false</code> if an exception must be caught.
+	 * @return <code>true</code> if everything runs without problems, <code>false</code> if an exception must be caught.
 	 * 
 	 */
 	@Override
@@ -170,6 +168,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 			RecordingCommand command = new RecordingCommand(diResourceSet
 					.getTransactionalEditingDomain()) {
+
 				@Override
 				protected void doExecute() {
 					// Create Model Resource, Notation Resource, DI Resource
@@ -178,7 +177,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 					// Initialize Model Resource
 					Resource modelResource = diResourceSet.getModelResource();
-					if (modelResource != null) {
+					if(modelResource != null) {
 						IPath path = new Path(newFile.getName());
 						initializeModelResource(modelResource, path
 								.removeFileExtension().toString());
@@ -201,13 +200,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			// open newly created file in the editor
 			IWorkbenchPage page = workbench.getActiveWorkbenchWindow()
 					.getActivePage();
-			if ((newFile != null) && (page != null)) {
+			if((newFile != null) && (page != null)) {
 
 				String diagramName = selectDiagramKindPage.getDiagramName();
 				ICreationCommand creationCommand = selectDiagramKindPage
 						.getCreationCommand();
 
-				if (creationCommand == null) {
+				if(creationCommand == null) {
 					// Create an empty editor (no diagrams opened)
 					// Geting an IPageMngr is enough to initialize the
 					// SashSystem.
@@ -216,7 +215,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 							.getTransactionalEditingDomain());
 				} else {
 					// Create requested diagram.
-					if (domainModelURI != null) {
+					if(domainModelURI != null) {
 						creationCommand.createDiagram(diResourceSet,
 								selectRootElementPage.getModelElement(),
 								diagramName);
@@ -250,17 +249,17 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected String getModelContentType() {
 		return "";
 	}
-	
+
 	// fjcano #293135 :: support model templates
 	protected void initializeModelResource(Resource resource,
 			String rootElementName) {
-		if (isInitializeFromTemplate()) {
+		if(isInitializeFromTemplate()) {
 			Resource templateResource = loadTemplateResource();
 			List<EObject> eObjectsToAdd = new ArrayList<EObject>();
-			for (EObject eObject : templateResource.getContents()) {
+			for(EObject eObject : templateResource.getContents()) {
 				eObjectsToAdd.add(EcoreUtil.copy(eObject));
 			}
-			for (EObject eObject : eObjectsToAdd) {
+			for(EObject eObject : eObjectsToAdd) {
 				resource.getContents().add(eObject);
 			}
 		} else {
@@ -287,13 +286,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		String templatePath = getTemplatePath();
 		java.net.URL templateURL = Platform.getBundle(templatePluginID)
 				.getResource(templatePath);
-		if (templatePath != null) {
+		if(templatePath != null) {
 			String fullUri = templateURL.getPath();
 			URI uri = URI.createPlatformPluginURI(templatePluginID + fullUri,
 					true);
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(uri, true);
-			if (resource.isLoaded()) {
+			if(resource.isLoaded()) {
 				return resource;
 			}
 		}

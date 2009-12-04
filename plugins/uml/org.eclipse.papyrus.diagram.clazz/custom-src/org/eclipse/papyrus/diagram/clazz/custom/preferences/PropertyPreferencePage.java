@@ -110,11 +110,11 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	 * Creates a button with the {@link SWT#CHECK} style.
 	 * 
 	 * @param parent
-	 *            the parent of the button
+	 *        the parent of the button
 	 * @param label
-	 *            the label of the button
+	 *        the label of the button
 	 * @param mask
-	 *            the value controlled by the button
+	 *        the value controlled by the button
 	 * @return the button created
 	 */
 	protected Button createCheckButton(Composite parent, String label, int mask) {
@@ -128,7 +128,7 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	 * Creates the group and check boxes to choose the kind of display
 	 * 
 	 * @param parent
-	 *            the parent composite that holds the group
+	 *        the parent composite that holds the group
 	 */
 	protected void createLabelPreferencesButtons(Composite parent) {
 		// create group that host the buttons
@@ -260,7 +260,7 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 		IPreferenceStore store = getPreferenceStore();
 		// checks the stored value and the actual one, so does not refresh diagram if it is not
 		// needed
-		if (propertyValue != store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE)) {
+		if(propertyValue != store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE)) {
 			store.setValue(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE, propertyValue);
 		}
 	}

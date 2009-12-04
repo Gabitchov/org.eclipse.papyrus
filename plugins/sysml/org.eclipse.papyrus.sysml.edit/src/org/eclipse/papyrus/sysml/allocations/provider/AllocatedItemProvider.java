@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocated}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocated} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class AllocatedItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_NamedElementPropertyDescriptor(object);
@@ -78,10 +78,10 @@ public class AllocatedItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addBase_NamedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_base_NamedElement_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Allocated_base_NamedElement_feature",
-						"_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__BASE_NAMED_ELEMENT, true, false,
+				"_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__BASE_NAMED_ELEMENT, true, false,
 				true, null, null, null));
 	}
 
@@ -92,10 +92,10 @@ public class AllocatedItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addAllocatedFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedFrom_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedFrom_feature",
-						"_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_FROM, false, false,
+				"_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_FROM, false, false,
 				false, null, null, null));
 	}
 
@@ -106,10 +106,10 @@ public class AllocatedItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addAllocatedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedTo_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedTo_feature",
-						"_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_TO, false, false,
+				"_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_TO, false, false,
 				false, null, null, null));
 	}
 
@@ -136,8 +136,7 @@ public class AllocatedItemProvider extends ItemProviderAdapter implements IEditi
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

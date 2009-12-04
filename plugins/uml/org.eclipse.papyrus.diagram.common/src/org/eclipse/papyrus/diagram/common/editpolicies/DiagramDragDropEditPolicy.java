@@ -46,7 +46,7 @@ public class DiagramDragDropEditPolicy extends
 	 * Instantiates a new diagram drag drop edit policy.
 	 * 
 	 * @param resolver
-	 *            the resolver
+	 *        the resolver
 	 */
 	public DiagramDragDropEditPolicy(ViewResolver resolver) {
 		this.resolver = resolver;
@@ -58,8 +58,8 @@ public class DiagramDragDropEditPolicy extends
 	 * @return the graphical host
 	 */
 	public IGraphicalEditPart getGraphicalHost() {
-		if (getHost() instanceof IGraphicalEditPart) {
-			return (IGraphicalEditPart) getHost();
+		if(getHost() instanceof IGraphicalEditPart) {
+			return (IGraphicalEditPart)getHost();
 		}
 		return null;
 	}
@@ -81,12 +81,12 @@ public class DiagramDragDropEditPolicy extends
 		Command edgesCommand = buildAddEObjectsReferencesCommand(edgeObjects);
 		command = command == null ? edgesCommand : command.chain(edgesCommand);
 		// if no nodes or edges are to be added, there is nothing to do.
-		if (command == null) {
+		if(command == null) {
 			return null;
 		}
 		// build the create views commands.
 		Command viewsCommand = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
-		if (viewsCommand != null && viewsCommand.canExecute()) {
+		if(viewsCommand != null && viewsCommand.canExecute()) {
 			command = command.chain(viewsCommand);
 		}
 		// update diagram.
@@ -99,16 +99,16 @@ public class DiagramDragDropEditPolicy extends
 	 * Find nodes in drop.
 	 * 
 	 * @param request
-	 *            the request
+	 *        the request
 	 * 
 	 * @return the list< e object>
 	 */
 	protected List<EObject> findNodesInDrop(DropObjectsRequest request) {
 		List<EObject> nodes = new ArrayList<EObject>();
-		for (Object object : request.getObjects()) {
-			if (object instanceof EObject) {
-				EObject element = (EObject) object;
-				if (resolver.isEObjectNode(element)) {
+		for(Object object : request.getObjects()) {
+			if(object instanceof EObject) {
+				EObject element = (EObject)object;
+				if(resolver.isEObjectNode(element)) {
 					nodes.add(element);
 				}
 			}
@@ -120,16 +120,16 @@ public class DiagramDragDropEditPolicy extends
 	 * Find edges in drop.
 	 * 
 	 * @param request
-	 *            the request
+	 *        the request
 	 * 
 	 * @return the list< e object>
 	 */
 	protected List<EObject> findEdgesInDrop(DropObjectsRequest request) {
 		List<EObject> edges = new ArrayList<EObject>();
-		for (Object object : request.getObjects()) {
-			if (object instanceof EObject) {
-				EObject element = (EObject) object;
-				if (resolver.isEObjectLink(element)) {
+		for(Object object : request.getObjects()) {
+			if(object instanceof EObject) {
+				EObject element = (EObject)object;
+				if(resolver.isEObjectLink(element)) {
 					edges.add(element);
 				}
 			}
@@ -141,15 +141,15 @@ public class DiagramDragDropEditPolicy extends
 	 * Creates the view descriptors.
 	 * 
 	 * @param elements
-	 *            the elements
+	 *        the elements
 	 * 
 	 * @return the list< view descriptor>
 	 */
 	protected List<ViewDescriptor> createViewDescriptors(List<EObject> elements) {
 		List<ViewDescriptor> viewDescriptors = new ArrayList<ViewDescriptor>();
-		for (EObject element : elements) {
+		for(EObject element : elements) {
 			int semanticHint = resolver.getEObjectSemanticHint(element);
-			if (semanticHint > -1) {
+			if(semanticHint > -1) {
 				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String
 						.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
 				viewDescriptors.add(viewDescriptor);
@@ -162,16 +162,16 @@ public class DiagramDragDropEditPolicy extends
 	 * Builds the add e objects references command.
 	 * 
 	 * @param elements
-	 *            the elements
+	 *        the elements
 	 * 
 	 * @return the command
 	 */
 	protected Command buildAddEObjectsReferencesCommand(List<EObject> elements) {
-		if (elements != null && elements.size() > 0) {
+		if(elements != null && elements.size() > 0) {
 			TransactionalEditingDomain domain = getGraphicalHost().getEditingDomain();
 			View view = getGraphicalHost().getNotationView();
-			Diagram diagram = view instanceof Diagram ? (Diagram) view : null;
-			if (diagram != null) {
+			Diagram diagram = view instanceof Diagram ? (Diagram)view : null;
+			if(diagram != null) {
 				return new ICommandProxy(new AddEObjectReferencesToDiagram(domain, diagram, elements));
 			}
 		}

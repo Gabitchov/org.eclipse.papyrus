@@ -53,15 +53,21 @@ public interface ImagePropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface ImagePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface ImagePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -99,7 +105,9 @@ public interface ImagePropertiesEditionPart {
 
 	/**
 	 * Defines a new content
-	 * @param newValue the new content to set
+	 * 
+	 * @param newValue
+	 *        the new content to set
 	 */
 	public void setContent(String newValue);
 
@@ -114,7 +122,9 @@ public interface ImagePropertiesEditionPart {
 
 	/**
 	 * Defines a new location
-	 * @param newValue the new location to set
+	 * 
+	 * @param newValue
+	 *        the new location to set
 	 */
 	public void setLocation(String newValue);
 
@@ -129,14 +139,15 @@ public interface ImagePropertiesEditionPart {
 
 	/**
 	 * Defines a new format
-	 * @param newValue the new format to set
+	 * 
+	 * @param newValue
+	 *        the new format to set
 	 */
 	public void setFormat(String newValue);
 
 	public void setMessageForFormat(String msg, int msgLevel);
 
 	public void unsetMessageForFormat();
-
 
 
 

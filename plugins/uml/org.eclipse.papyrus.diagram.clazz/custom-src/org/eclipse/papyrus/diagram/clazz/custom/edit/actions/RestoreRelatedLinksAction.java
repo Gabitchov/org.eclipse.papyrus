@@ -60,14 +60,14 @@ public class RestoreRelatedLinksAction extends AbstractAction {
 	public void run() {
 		List<View> selection = getSelection();
 
-		if (selection.isEmpty()) {
+		if(selection.isEmpty()) {
 			return;
 		}
 
-		if (false == getHost() instanceof DiagramEditPart) {
+		if(false == getHost() instanceof DiagramEditPart) {
 			return;
 		}
-		DiagramEditPart diagramEditPart = (DiagramEditPart) getHost();
+		DiagramEditPart diagramEditPart = (DiagramEditPart)getHost();
 
 		final DiagramCommandStack commandStack = getHost().getDiagramEditDomain().getDiagramCommandStack();
 		CompoundCommand cmd = new CompoundCommand("Restore Related Links");

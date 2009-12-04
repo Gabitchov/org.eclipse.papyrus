@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 public class MessagePartModel implements IComponentModel {
 
 	private String title;
+
 	private String msg;
 
 	static private int count = 0;
@@ -38,8 +39,7 @@ public class MessagePartModel implements IComponentModel {
 	}
 
 	/**
-	 * Return the control to be shown.
-	 * {@inheritDoc}
+	 * Return the control to be shown. {@inheritDoc}
 	 */
 	public Composite createPartControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);

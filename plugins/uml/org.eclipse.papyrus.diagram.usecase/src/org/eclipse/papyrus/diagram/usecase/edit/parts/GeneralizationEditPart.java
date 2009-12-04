@@ -67,7 +67,7 @@ public class GeneralizationEditPart extends ConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	public SolidLineWDstClosedArrow getPrimaryShape() {
-		return (SolidLineWDstClosedArrow) getFigure();
+		return (SolidLineWDstClosedArrow)getFigure();
 	}
 
 	/**

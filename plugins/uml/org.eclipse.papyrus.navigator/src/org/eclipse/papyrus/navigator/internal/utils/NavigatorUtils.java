@@ -40,19 +40,19 @@ public class NavigatorUtils {
 	 * Find a <IViewPart> by it's id string.
 	 * 
 	 * @param viewID
-	 *            the view id
+	 *        the view id
 	 * 
 	 * @return the i view part
 	 */
 	public static IViewPart findViewPart(String viewID) {
 		IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.findViewReference(viewID);
-		if (reference == null) {
+		if(reference == null) {
 			return null;
 		}
 		IWorkbenchPart part = reference.getPart(false);
-		if (part instanceof IViewPart) {
-			return (IViewPart) part;
+		if(part instanceof IViewPart) {
+			return (IViewPart)part;
 		} else {
 			return null;
 		}
@@ -62,34 +62,34 @@ public class NavigatorUtils {
 	 * Unwraps selection. Gets <EObject>s from <EditPart>s, from <View>s or from <EObject>s
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * 
 	 * @return the i selection
 	 */
 	public static ISelection unwrapSelection(ISelection selection) {
-		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
+		if(selection instanceof StructuredSelection && !selection.isEmpty()) {
 			List<EObject> selectionList = new ArrayList<EObject>();
-			StructuredSelection structuredSelection = (StructuredSelection) selection;
-			for (Iterator<?> iterator = structuredSelection.iterator(); iterator.hasNext();) {
+			StructuredSelection structuredSelection = (StructuredSelection)selection;
+			for(Iterator<?> iterator = structuredSelection.iterator(); iterator.hasNext();) {
 				Object next = iterator.next();
-				if (next instanceof EditPart) {
-					Object model = ((EditPart) next).getModel();
+				if(next instanceof EditPart) {
+					Object model = ((EditPart)next).getModel();
 					EObject element = null;
-					if (model instanceof View) {
-						element = ((View) model).getElement();
-					} else if (model instanceof EObject) {
-						element = (EObject) model;
+					if(model instanceof View) {
+						element = ((View)model).getElement();
+					} else if(model instanceof EObject) {
+						element = (EObject)model;
 					}
-					if (element != null) {
+					if(element != null) {
 						selectionList.add(element);
 					}
-				} else if (next instanceof View) {
-					EObject element = ((View) next).getElement();
-					if (element != null) {
+				} else if(next instanceof View) {
+					EObject element = ((View)next).getElement();
+					if(element != null) {
 						selectionList.add(element);
 					}
-				} else if (next instanceof EObject) {
-					selectionList.add((EObject) next);
+				} else if(next instanceof EObject) {
+					selectionList.add((EObject)next);
 				}
 			}
 			return new StructuredSelection(selectionList);
@@ -102,36 +102,36 @@ public class NavigatorUtils {
 	 * Finds the <EditPart>s for the <EObject>s in the selection.
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * 
 	 * @return the edits the parts from selection
 	 */
 	public static List<EditPart> getEditPartsFromSelection(ISelection selection, IDiagramGraphicalViewer viewer) {
-		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
-			StructuredSelection structuredSelection = (StructuredSelection) selection;
+		if(selection instanceof StructuredSelection && !selection.isEmpty()) {
+			StructuredSelection structuredSelection = (StructuredSelection)selection;
 			// look for Views of the EObjects in the selection
 			List<View> views = new ArrayList<View>();
-			for (Object o : structuredSelection.toList()) {
-				if (o instanceof EObject) {
-					List<Object> referencerViews = getEObjectViews((EObject) o);
-					for (Object ro : referencerViews) {
-						if (ro instanceof View) {
-							views.add((View) ro);
+			for(Object o : structuredSelection.toList()) {
+				if(o instanceof EObject) {
+					List<Object> referencerViews = getEObjectViews((EObject)o);
+					for(Object ro : referencerViews) {
+						if(ro instanceof View) {
+							views.add((View)ro);
 						}
 					}
 				}
 			}
-			if (!views.isEmpty()) {
+			if(!views.isEmpty()) {
 				List<EditPart> editParts = new ArrayList<EditPart>();
-				for (View view : views) {
+				for(View view : views) {
 					Object ep = viewer.getEditPartRegistry().get(view);
-					if (ep instanceof EditPart) {
-						editParts.add((EditPart) ep);
+					if(ep instanceof EditPart) {
+						editParts.add((EditPart)ep);
 					}
 				}
-				if (!editParts.isEmpty()) {
+				if(!editParts.isEmpty()) {
 					return editParts;
 				}
 			}
@@ -143,14 +143,14 @@ public class NavigatorUtils {
 	 * Gets the given <EObject> views.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return the e object views
 	 */
 	// @unused
 	public static List<Object> getEObjectViews(EObject element) {
 		List<Object> views = new ArrayList<Object>();
-		if (element != null) {
+		if(element != null) {
 			EReference[] features = { NotationPackage.eINSTANCE.getView_Element() };
 			Collection<?> referencers = EMFCoreUtil.getReferencers(element, features);
 			views.addAll(referencers);
@@ -166,7 +166,7 @@ public class NavigatorUtils {
 	 * Gets the object name or empty string.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the object name or empty string
 	 */
@@ -183,37 +183,37 @@ public class NavigatorUtils {
 	 * Gets the object name.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the object name
 	 */
 	// @unused
 	public static String getObjectName(Object object) {
-		if (object == null) {
+		if(object == null) {
 			return null;
 		}
 		Method method = null;
 		Object o = null;
-		for (String methodName : getNameNames) {
+		for(String methodName : getNameNames) {
 			try {
-				method = object.getClass().getMethod(methodName, (Class[]) null);
+				method = object.getClass().getMethod(methodName, (Class[])null);
 			} catch (NoSuchMethodException e) {
 				method = null;
 			}
-			if (method != null) {
+			if(method != null) {
 				break;
 			}
 		}
-		if (method != null) {
+		if(method != null) {
 			try {
-				o = method.invoke(object, (Object[]) null);
+				o = method.invoke(object, (Object[])null);
 			} catch (IllegalAccessException ex) {
 				return null;
 			} catch (InvocationTargetException ex) {
 				return null;
 			}
-			if (o instanceof String) {
-				return (String) o;
+			if(o instanceof String) {
+				return (String)o;
 			}
 		}
 		return null;
@@ -227,7 +227,7 @@ public class NavigatorUtils {
 	// @unused
 	public static void openDiagram(Diagram diagram) {
 		IPageMngr pageManager = EditorUtils.getIPageMngr();
-		if (pageManager != null) {
+		if(pageManager != null) {
 			pageManager.openPage(diagram);
 		}
 	}
@@ -239,7 +239,7 @@ public class NavigatorUtils {
 	 */
 	// @unused
 	public static void openViewPart(String viewPartID) {
-		if (viewPartID == null) {
+		if(viewPartID == null) {
 			return;
 		}
 		try {

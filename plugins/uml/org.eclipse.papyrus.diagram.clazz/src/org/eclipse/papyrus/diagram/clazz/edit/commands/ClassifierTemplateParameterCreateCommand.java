@@ -75,11 +75,11 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -100,14 +100,14 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 
 		ClassifierTemplateParameter newElement = UMLFactory.eINSTANCE.createClassifierTemplateParameter();
 
-		TemplateSignature owner = (TemplateSignature) getElementToEdit();
+		TemplateSignature owner = (TemplateSignature)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
-		TemplateSignature childHolder = (TemplateSignature) getElementToEdit();
+		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -116,12 +116,12 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	 */
 	protected void doConfigure(ClassifierTemplateParameter newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

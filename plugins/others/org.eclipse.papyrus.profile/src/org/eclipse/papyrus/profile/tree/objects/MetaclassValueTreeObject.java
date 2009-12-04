@@ -37,9 +37,9 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 	 * The Constructor.
 	 * 
 	 * @param value
-	 *            the value
+	 *        the value
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public MetaclassValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
 		super(parent, value, domain);
@@ -51,8 +51,8 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 	 */
 	@Override
 	public void editMe() {
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
-		Element elt = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
+		Element elt = ((StereotypedElementTreeObject)getParent().getParent().getParent()).getElement();
 		Property property = pTO.getProperty();
 		Type type = property.getType();
 
@@ -68,16 +68,16 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 		// Fetching all instances in the model applicable to this property value
 		final ArrayList filteredElements = Util.getInstancesFilteredByType(elt, metaType, null);
 		// No element : error !!!
-		if (filteredElements.size() <= 0) {
+		if(filteredElements.size() <= 0) {
 			Message.warning("No element of type " + type.getName() + " found in the model.");
 			return;
 		}
 
 		// Removed already added elements from selection list
 		// Except current selection which is default one !!!
-		if (property.isMultivalued()) {
-			List values = (List) pTO.getValue();
-			if (values != null) {
+		if(property.isMultivalued()) {
+			List values = (List)pTO.getValue();
+			if(values != null) {
 				filteredElements.removeAll(values);
 			}
 			filteredElements.add(value);
@@ -86,7 +86,7 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 		String[] elementsNames = Util.getStringArrayFromList(filteredElements);
 
 		// if no possible selection : abort
-		if (elementsNames == null) {
+		if(elementsNames == null) {
 			Message.warning("No element of type " + type.getName() + " found in the model.");
 			return;
 		}
@@ -94,7 +94,7 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 		ProfileElementLabelProvider labelProvider = new ProfileElementLabelProvider();
 		ComboSelectionDialog valueDialog = new ComboSelectionDialog(new Shell(), "New value:", elementsNames, labelProvider.getText(this));
 		int val = valueDialog.open();
-		if ((val == ComboSelectionDialog.OK) && (valueDialog.indexOfSelection != -1)) {
+		if((val == ComboSelectionDialog.OK) && (valueDialog.indexOfSelection != -1)) {
 			Object newValue = filteredElements.get(valueDialog.indexOfSelection);
 			updateValue(newValue);
 		}

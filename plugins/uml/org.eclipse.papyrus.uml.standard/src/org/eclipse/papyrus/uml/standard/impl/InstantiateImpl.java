@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Usage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.InstantiateImpl#getBase_Usage <em>Base Usage
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.InstantiateImpl#getBase_Usage <em>Base Usage </em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,11 +71,11 @@ public class InstantiateImpl extends EObjectImpl implements Instantiate {
 	 * @generated
 	 */
 	public Usage getBase_Usage() {
-		if (base_Usage != null && base_Usage.eIsProxy()) {
-			InternalEObject oldBase_Usage = (InternalEObject) base_Usage;
-			base_Usage = (Usage) eResolveProxy(oldBase_Usage);
-			if (base_Usage != oldBase_Usage) {
-				if (eNotificationRequired())
+		if(base_Usage != null && base_Usage.eIsProxy()) {
+			InternalEObject oldBase_Usage = (InternalEObject)base_Usage;
+			base_Usage = (Usage)eResolveProxy(oldBase_Usage);
+			if(base_Usage != oldBase_Usage) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.INSTANTIATE__BASE_USAGE,
 							oldBase_Usage, base_Usage));
 			}
@@ -101,7 +100,7 @@ public class InstantiateImpl extends EObjectImpl implements Instantiate {
 	public void setBase_Usage(Usage newBase_Usage) {
 		Usage oldBase_Usage = base_Usage;
 		base_Usage = newBase_Usage;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.INSTANTIATE__BASE_USAGE,
 					oldBase_Usage, base_Usage));
 	}
@@ -113,9 +112,9 @@ public class InstantiateImpl extends EObjectImpl implements Instantiate {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.INSTANTIATE__BASE_USAGE:
-			if (resolve)
+			if(resolve)
 				return getBase_Usage();
 			return basicGetBase_Usage();
 		}
@@ -129,9 +128,9 @@ public class InstantiateImpl extends EObjectImpl implements Instantiate {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.INSTANTIATE__BASE_USAGE:
-			setBase_Usage((Usage) newValue);
+			setBase_Usage((Usage)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,9 +143,9 @@ public class InstantiateImpl extends EObjectImpl implements Instantiate {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.INSTANTIATE__BASE_USAGE:
-			setBase_Usage((Usage) null);
+			setBase_Usage((Usage)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -159,7 +158,7 @@ public class InstantiateImpl extends EObjectImpl implements Instantiate {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.INSTANTIATE__BASE_USAGE:
 			return base_Usage != null;
 		}

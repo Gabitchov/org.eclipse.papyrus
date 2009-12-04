@@ -46,8 +46,8 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 		getEditHyperlinkShell().pack();
 		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
 		getEditHyperlinkShell().open();
-		while (!getEditHyperlinkShell().isDisposed()) {
-			if (!display.readAndDispatch())
+		while(!getEditHyperlinkShell().isDisposed()) {
+			if(!display.readAndDispatch())
 				display.sleep();
 		}
 	}
@@ -56,9 +56,9 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 	 * Instantiates a new editor hyperlink diagram shell.
 	 * 
 	 * @param editorFactoryRegistry
-	 *            the editor factory registry
+	 *        the editor factory registry
 	 * @param model
-	 *            the model
+	 *        the model
 	 */
 	public EditorHyperlinkDiagramShell(IEditorFactoryRegistry editorFactoryRegistry, Package model) {
 		super();
@@ -70,7 +70,7 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
 		getObjectLabeltext().setEditable(false);
-		if (usedefaultTooltip) {
+		if(usedefaultTooltip) {
 			getTooltipInputText().setEditable(false);
 			getTooltipInputText().setText(getObjectLabeltext().getText());
 		}
@@ -79,7 +79,7 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 
 			public void mouseUp(MouseEvent e) {
 				usedefaultTooltip = getUseDefaultCheckBox().getSelection();
-				if (usedefaultTooltip) {
+				if(usedefaultTooltip) {
 					getTooltipInputText().setEditable(false);
 					getTooltipInputText().setText(getObjectLabeltext().getText());
 				} else {
@@ -104,16 +104,16 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 				EditorLookForDiagram editorLookForDiagram = new EditorLookForDiagram(editorRegistry, amodel);
 
 				editorLookForDiagram.open();
-				if (hyperLinkDiagram == null) {
+				if(hyperLinkDiagram == null) {
 					hyperLinkDiagram = new HyperLinkDiagram();
 				}
 				hyperLinkDiagram.setDiagram(editorLookForDiagram.getSelectedDiagram());
-				if (hyperLinkDiagram.getDiagram() != null) {
+				if(hyperLinkDiagram.getDiagram() != null) {
 					getObjectLabeltext().setText(hyperLinkDiagram.getDiagram().getName());
 				} else {
 					getObjectLabeltext().setText("UNDEFINED");
 				}
-				if (usedefaultTooltip) {
+				if(usedefaultTooltip) {
 					getTooltipInputText().setText(getObjectLabeltext().getText());
 				}
 			}
@@ -144,10 +144,10 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 
 			public void mouseDown(MouseEvent e) {
 
-				if (hyperLinkDiagram != null) {
+				if(hyperLinkDiagram != null) {
 					hyperLinkDiagram.setTooltipText(getTooltipInputText().getText().trim());
 					// if diagram is null, maybe bad selection or other it return null!
-					if (hyperLinkDiagram.getDiagram() == null) {
+					if(hyperLinkDiagram.getDiagram() == null) {
 						hyperLinkDiagram = null;
 					}
 				}
@@ -172,7 +172,7 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 	 * Sets the hyper link diagram.
 	 * 
 	 * @param hyperLinkDiagram
-	 *            the hyperLinkDiagram to set
+	 *        the hyperLinkDiagram to set
 	 */
 	protected void setHyperLinkDiagram(HyperLinkDiagram hyperLinkDiagram) {
 		getObjectLabeltext().setText(hyperLinkDiagram.getDiagram().getName());

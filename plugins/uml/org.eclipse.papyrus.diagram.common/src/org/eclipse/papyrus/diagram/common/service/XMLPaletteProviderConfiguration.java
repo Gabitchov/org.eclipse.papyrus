@@ -44,32 +44,32 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	 * configuration element
 	 * 
 	 * @param configElement
-	 *            The provider XML configuration element
+	 *        The provider XML configuration element
 	 */
 	private XMLPaletteProviderConfiguration(IConfigurationElement configElement) {
 		IConfigurationElement configChildren[];
 
 		// read the editor object if any
 		configChildren = configElement.getChildren(IPapyrusPaletteConstant.EDITOR);
-		if (configChildren.length > 0) {
+		if(configChildren.length > 0) {
 			editor = new EditorDescriptor(configChildren[0]);
 		}
 
 		name = configElement.getDeclaringExtension().getLabel();
-		if (name == null || name.equals("")) {
+		if(name == null || name.equals("")) {
 			name = configElement.getDeclaringExtension().getContributor().getName();
 		}
 
-		if (name == null || name.equals("")) {
+		if(name == null || name.equals("")) {
 			name = "<Unnamed>";
-		} else if (name.equals("%ext.presentationPaletteProvider")) {
+		} else if(name.equals("%ext.presentationPaletteProvider")) {
 			name = "Presentation Palette";
-		} else if (name.equals("org.eclipse.gmf.runtime.diagram.ui.geoshapes")) {
+		} else if(name.equals("org.eclipse.gmf.runtime.diagram.ui.geoshapes")) {
 			name = "Geoshapes";
 		}
 
 		id = configElement.getDeclaringExtension().getUniqueIdentifier();
-		if (id == null || id.equals("")) {
+		if(id == null || id.equals("")) {
 			id = configElement.getDeclaringExtension().getContributor().getName();
 		}
 
@@ -102,7 +102,7 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	 * Builds a new provider contribution descriptor by parsing its configuration element
 	 * 
 	 * @param configElement
-	 *            A provider configuration element
+	 *        A provider configuration element
 	 * @return A provider XML contribution descriptor
 	 */
 	public static XMLPaletteProviderConfiguration parse(IConfigurationElement configElement) {
@@ -114,13 +114,13 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	 * Determines if the provider understands the given context
 	 * 
 	 * @param targetEditor
-	 *            The target editor
+	 *        The target editor
 	 * @param targetContent
-	 *            The target editor's content
+	 *        The target editor's content
 	 * @return boolean <code>true</code> if it supports; <code>false</code> otherwise
 	 */
 	public boolean supports(IEditorPart targetEditor, Object targetContent) {
-		if (editor != null && !editor.sameAs(targetEditor))
+		if(editor != null && !editor.sameAs(targetEditor))
 			return false;
 		return true;
 	}
@@ -137,7 +137,7 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 		 * Initializes a new editor descriptor by reading the configuration element
 		 * 
 		 * @param configElement
-		 *            The contribution configuration element
+		 *        The contribution configuration element
 		 */
 		public EditorDescriptor(IConfigurationElement configElement) {
 			super(configElement);
@@ -148,17 +148,17 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 		 * Determines whether this contribution is applicable to the given editor
 		 * 
 		 * @param editor
-		 *            The target editor
+		 *        The target editor
 		 * @return <code>true</code> if applicable <code>false</code> if not
 		 */
 		public boolean sameAs(Object object) {
-			if (!(object instanceof DiagramEditorWithFlyOutPalette)) {
+			if(!(object instanceof DiagramEditorWithFlyOutPalette)) {
 				return false;
 			}
 
 			// will never work, ID of the site is the multi diagram editor...
-			if (targetId != null) {
-				if (!targetId.equals(((DiagramEditorWithFlyOutPalette) object).getContributorId())) {
+			if(targetId != null) {
+				if(!targetId.equals(((DiagramEditorWithFlyOutPalette)object).getContributorId())) {
 					return false;
 				}
 			}

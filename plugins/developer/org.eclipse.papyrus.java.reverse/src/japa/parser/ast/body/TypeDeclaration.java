@@ -30,43 +30,43 @@ import java.util.List;
  */
 public abstract class TypeDeclaration extends BodyDeclaration {
 
-    private String name;
+	private String name;
 
-    private int modifiers;
+	private int modifiers;
 
-    private List<BodyDeclaration> members;
+	private List<BodyDeclaration> members;
 
-    public TypeDeclaration() {
-    }
+	public TypeDeclaration() {
+	}
 
-    public TypeDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, List<AnnotationExpr> annotations, JavadocComment javaDoc, String name, int modifiers, List<BodyDeclaration> members) {
-        super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc);
-        this.name = name;
-        this.modifiers = modifiers;
-        this.members = members;
-    }
+	public TypeDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, List<AnnotationExpr> annotations, JavadocComment javaDoc, String name, int modifiers, List<BodyDeclaration> members) {
+		super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc);
+		this.name = name;
+		this.modifiers = modifiers;
+		this.members = members;
+	}
 
-    public final List<BodyDeclaration> getMembers() {
-        return members;
-    }
+	public final List<BodyDeclaration> getMembers() {
+		return members;
+	}
 
-    public final int getModifiers() {
-        return modifiers;
-    }
+	public final int getModifiers() {
+		return modifiers;
+	}
 
-    public final String getName() {
-        return name;
-    }
+	public final String getName() {
+		return name;
+	}
 
-    public void setMembers(List<BodyDeclaration> members) {
-        this.members = members;
-    }
+	public void setMembers(List<BodyDeclaration> members) {
+		this.members = members;
+	}
 
-    public final void setModifiers(int modifiers) {
-        this.modifiers = modifiers;
-    }
+	public final void setModifiers(int modifiers) {
+		this.modifiers = modifiers;
+	}
 
-    public final void setName(String name) {
-        this.name = name;
-    }
+	public final void setName(String name) {
+		this.name = name;
+	}
 }

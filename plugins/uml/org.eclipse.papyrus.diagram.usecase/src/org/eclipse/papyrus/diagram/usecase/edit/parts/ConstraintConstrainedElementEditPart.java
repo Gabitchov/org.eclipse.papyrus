@@ -64,7 +64,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	public DashedLineConnection getPrimaryShape() {
-		return (DashedLineConnection) getFigure();
+		return (DashedLineConnection)getFigure();
 	}
 
 	/**

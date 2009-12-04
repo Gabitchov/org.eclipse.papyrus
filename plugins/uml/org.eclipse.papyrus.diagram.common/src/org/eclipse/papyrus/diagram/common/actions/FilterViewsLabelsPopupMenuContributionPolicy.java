@@ -35,11 +35,11 @@ public class FilterViewsLabelsPopupMenuContributionPolicy implements IPopupMenuC
 	 * org.eclipse.core.runtime.IConfigurationElement)
 	 */
 	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection ss = (IStructuredSelection) selection;
-			for (Object o : ss.toList()) {
-				if (o instanceof IGraphicalEditPart) {
-					if (((IGraphicalEditPart) o).getNotationView() instanceof Diagram) {
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection ss = (IStructuredSelection)selection;
+			for(Object o : ss.toList()) {
+				if(o instanceof IGraphicalEditPart) {
+					if(((IGraphicalEditPart)o).getNotationView() instanceof Diagram) {
 
 						return true;
 					}

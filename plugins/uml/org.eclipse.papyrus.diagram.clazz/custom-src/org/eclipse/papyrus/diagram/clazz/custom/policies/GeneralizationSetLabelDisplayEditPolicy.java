@@ -48,8 +48,8 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * {@inheritDoc}
 	 */
 	public void activate() {
-		getDiagramEventBroker().addNotificationListener(((EObject) getHost().getModel()), this);
-		getDiagramEventBroker().addNotificationListener(((View) getHost().getModel()).getElement(), this);
+		getDiagramEventBroker().addNotificationListener(((EObject)getHost().getModel()), this);
+		getDiagramEventBroker().addNotificationListener(((View)getHost().getModel()).getElement(), this);
 	}
 
 	/**
@@ -57,8 +57,8 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * {@inheritDoc}
 	 */
 	public void deactivate() {
-		getDiagramEventBroker().removeNotificationListener(((EObject) getHost().getModel()), this);
-		getDiagramEventBroker().removeNotificationListener(((View) getHost().getModel()).getElement(), this);
+		getDiagramEventBroker().removeNotificationListener(((EObject)getHost().getModel()), this);
+		getDiagramEventBroker().removeNotificationListener(((View)getHost().getModel()).getElement(), this);
 	}
 
 	/**
@@ -78,12 +78,12 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 		// get the link that refer the same model element
 		GeneralizationSetEditPart edgeToMove = null;
 		Iterator iterator = linkList.iterator();
-		while (iterator.hasNext()) {
+		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
-			if (currentObject instanceof GeneralizationSetEditPart) {
-				if (((GeneralizationSetEditPart) getHost()).resolveSemanticElement().equals(
-						((GeneralizationSetEditPart) currentObject).resolveSemanticElement())) {
-					result.add((GeneralizationSetEditPart) currentObject);
+			if(currentObject instanceof GeneralizationSetEditPart) {
+				if(((GeneralizationSetEditPart)getHost()).resolveSemanticElement().equals(
+						((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
+					result.add((GeneralizationSetEditPart)currentObject);
 				}
 			}
 		}
@@ -96,8 +96,8 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * @return the diagram event broker
 	 */
 	private DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -108,38 +108,38 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * {@inheritedDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		if (getHost().getViewer() instanceof DiagramGraphicalViewer) {
-			if (getHost() instanceof GeneralizationSetEditPart) {
-				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart) getHost())
+		if(getHost().getViewer() instanceof DiagramGraphicalViewer) {
+			if(getHost() instanceof GeneralizationSetEditPart) {
+				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart)getHost())
 						.resolveSemanticElement());
-				List<EditPart> editpartList = ((DiagramGraphicalViewer) (getHost().getViewer()))
+				List<EditPart> editpartList = ((DiagramGraphicalViewer)(getHost().getViewer()))
 						.findEditPartsForElement(elementID, GeneralizationSetEditPart.class);
-				if (editpartList.size() > 1 && editpartList.indexOf(getHost()) > 0) {
-					for (int i = 0; i < getHost().getChildren().size(); i++) {
-						((View) ((EditPart) getHost().getChildren().get(i)).getModel()).setVisible(false);
+				if(editpartList.size() > 1 && editpartList.indexOf(getHost()) > 0) {
+					for(int i = 0; i < getHost().getChildren().size(); i++) {
+						((View)((EditPart)getHost().getChildren().get(i)).getModel()).setVisible(false);
 					}
 				}
 			}
 		}
-		if (notification.getNotifier() instanceof RelativeBendpoints) {
-			if (getAllSameSemanticGeneralizationSet(
-					((GeneralizationEditPart) ((GeneralizationSetEditPart) getHost()).getTarget())).size() != 0) {
+		if(notification.getNotifier() instanceof RelativeBendpoints) {
+			if(getAllSameSemanticGeneralizationSet(
+					((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getTarget())).size() != 0) {
 				ReconnectRequest reconnectRequest = new ReconnectRequest();
 				reconnectRequest.setType(GraphicalNodeEditPolicy.REQ_RECONNECT_TARGET);
-				reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart) getHost()));
-				reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart) getHost()).getTarget());
-				Command command = ((GeneralizationSetEditPart) getHost()).getTarget().getCommand(reconnectRequest);
-				((GeneralizationSetEditPart) getHost()).getDiagramEditDomain().getDiagramCommandStack()
+				reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart)getHost()));
+				reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart)getHost()).getTarget());
+				Command command = ((GeneralizationSetEditPart)getHost()).getTarget().getCommand(reconnectRequest);
+				((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack()
 						.execute(command);
 			}
-			if (getAllSameSemanticGeneralizationSet(
-					((GeneralizationEditPart) ((GeneralizationSetEditPart) getHost()).getSource())).size() != 0) {
+			if(getAllSameSemanticGeneralizationSet(
+					((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getSource())).size() != 0) {
 				ReconnectRequest reconnectRequest = new ReconnectRequest();
 				reconnectRequest.setType(GraphicalNodeEditPolicy.REQ_RECONNECT_SOURCE);
-				reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart) getHost()));
-				reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart) getHost()).getSource());
-				Command command = ((GeneralizationSetEditPart) getHost()).getSource().getCommand(reconnectRequest);
-				((GeneralizationSetEditPart) getHost()).getDiagramEditDomain().getDiagramCommandStack()
+				reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart)getHost()));
+				reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart)getHost()).getSource());
+				Command command = ((GeneralizationSetEditPart)getHost()).getSource().getCommand(reconnectRequest);
+				((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack()
 						.execute(command);
 			}
 		}

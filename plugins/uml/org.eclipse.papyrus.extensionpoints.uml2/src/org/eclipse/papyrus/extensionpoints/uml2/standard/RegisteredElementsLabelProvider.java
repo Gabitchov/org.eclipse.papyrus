@@ -20,10 +20,10 @@ public class RegisteredElementsLabelProvider extends LabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if (!(element instanceof RegisteredElementExtensionPoint)) {
+		if(!(element instanceof RegisteredElementExtensionPoint)) {
 			return super.getImage(element);
 		}
-		RegisteredElementExtensionPoint abstractExtensionPoint = (RegisteredElementExtensionPoint) element;
+		RegisteredElementExtensionPoint abstractExtensionPoint = (RegisteredElementExtensionPoint)element;
 		return abstractExtensionPoint.getImage();
 	}
 
@@ -32,10 +32,10 @@ public class RegisteredElementsLabelProvider extends LabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
-		if (!(element instanceof RegisteredElementExtensionPoint)) {
+		if(!(element instanceof RegisteredElementExtensionPoint)) {
 			return super.getText(element);
 		}
-		RegisteredElementExtensionPoint abstractExtensionPoint = (RegisteredElementExtensionPoint) element;
+		RegisteredElementExtensionPoint abstractExtensionPoint = (RegisteredElementExtensionPoint)element;
 		return abstractExtensionPoint.getName();
 	}
 }

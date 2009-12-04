@@ -31,9 +31,9 @@ public class MultilineLabelDirectEditManager extends LabelDirectEditManager {
 	 * 
 	 * @param locator
 	 * @param labelCtrl
-	 *            The label to edit
+	 *        The label to edit
 	 * @param source
-	 *            The EditPart owning the label.
+	 *        The EditPart owning the label.
 	 */
 	// @unused
 	public MultilineLabelDirectEditManager(GraphicalEditPart source, CellEditorLocator locator,

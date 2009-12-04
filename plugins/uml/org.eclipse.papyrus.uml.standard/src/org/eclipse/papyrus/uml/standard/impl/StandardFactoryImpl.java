@@ -67,9 +67,9 @@ public class StandardFactoryImpl extends EFactoryImpl implements StandardFactory
 	 */
 	public static StandardFactory init() {
 		try {
-			StandardFactory theStandardFactory = (StandardFactory) EPackage.Registry.INSTANCE
+			StandardFactory theStandardFactory = (StandardFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/uml2/schemas/Standard/1");
-			if (theStandardFactory != null) {
+			if(theStandardFactory != null) {
 				return theStandardFactory;
 			}
 		} catch (Exception exception) {
@@ -94,7 +94,7 @@ public class StandardFactoryImpl extends EFactoryImpl implements StandardFactory
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case StandardPackage.AUXILIARY:
 			return createAuxiliary();
 		case StandardPackage.BUILD_COMPONENT:
@@ -502,7 +502,7 @@ public class StandardFactoryImpl extends EFactoryImpl implements StandardFactory
 	 * @generated
 	 */
 	public StandardPackage getStandardPackage() {
-		return (StandardPackage) getEPackage();
+		return (StandardPackage)getEPackage();
 	}
 
 	/**

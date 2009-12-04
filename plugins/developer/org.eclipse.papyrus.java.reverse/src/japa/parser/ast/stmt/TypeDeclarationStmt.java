@@ -30,31 +30,31 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class TypeDeclarationStmt extends Statement {
 
-    private TypeDeclaration typeDecl;
+	private TypeDeclaration typeDecl;
 
-    public TypeDeclarationStmt() {
-    }
+	public TypeDeclarationStmt() {
+	}
 
-    public TypeDeclarationStmt(int beginLine, int beginColumn, int endLine, int endColumn, TypeDeclaration typeDecl) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.typeDecl = typeDecl;
-    }
+	public TypeDeclarationStmt(int beginLine, int beginColumn, int endLine, int endColumn, TypeDeclaration typeDecl) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.typeDecl = typeDecl;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public TypeDeclaration getTypeDeclaration() {
-        return typeDecl;
-    }
+	public TypeDeclaration getTypeDeclaration() {
+		return typeDecl;
+	}
 
-    public void setTypeDeclaration(TypeDeclaration typeDecl) {
-        this.typeDecl = typeDecl;
-    }
+	public void setTypeDeclaration(TypeDeclaration typeDecl) {
+		this.typeDecl = typeDecl;
+	}
 }

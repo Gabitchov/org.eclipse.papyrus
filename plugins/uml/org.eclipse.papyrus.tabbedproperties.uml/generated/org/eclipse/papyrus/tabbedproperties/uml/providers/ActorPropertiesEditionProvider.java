@@ -40,7 +40,7 @@ public class ActorPropertiesEditionProvider implements IPropertiesEditionProvide
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Actor) {
+		if(eObject instanceof Actor) {
 			return new ActorPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ActorPropertiesEditionProvider implements IPropertiesEditionProvide
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Actor) {
-			if (ActorBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Actor) {
+			if(ActorBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ActorBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

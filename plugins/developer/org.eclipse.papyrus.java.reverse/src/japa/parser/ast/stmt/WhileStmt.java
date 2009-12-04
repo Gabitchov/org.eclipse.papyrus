@@ -30,42 +30,42 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class WhileStmt extends Statement {
 
-    private Expression condition;
+	private Expression condition;
 
-    private Statement body;
+	private Statement body;
 
-    public WhileStmt() {
-    }
+	public WhileStmt() {
+	}
 
-    public WhileStmt(int beginLine, int beginColumn, int endLine, int endColumn, Expression condition, Statement body) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.condition = condition;
-        this.body = body;
-    }
+	public WhileStmt(int beginLine, int beginColumn, int endLine, int endColumn, Expression condition, Statement body) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.condition = condition;
+		this.body = body;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Statement getBody() {
-        return body;
-    }
+	public Statement getBody() {
+		return body;
+	}
 
-    public Expression getCondition() {
-        return condition;
-    }
+	public Expression getCondition() {
+		return condition;
+	}
 
-    public void setBody(Statement body) {
-        this.body = body;
-    }
+	public void setBody(Statement body) {
+		this.body = body;
+	}
 
-    public void setCondition(Expression condition) {
-        this.condition = condition;
-    }
+	public void setCondition(Expression condition) {
+		this.condition = condition;
+	}
 }

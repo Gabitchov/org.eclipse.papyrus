@@ -43,13 +43,9 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getCallOperationAction_2027SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next())
-					.getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
-					nextValue)) {
+		for (Iterator it = UMLDiagramUpdater.getCallOperationAction_2027SemanticChildren(viewObject).iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -66,8 +62,7 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
-					(View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case OutputPin4EditPart.VISUAL_ID:
 			case InputPin5EditPart.VISUAL_ID:
@@ -86,26 +81,16 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 		if (oldView instanceof Node && newView instanceof Node) {
 			Node oldNode = (Node) oldView;
 			Node newNode = (Node) newView;
-			if (oldNode.getLayoutConstraint() instanceof Location
-					&& newNode.getLayoutConstraint() instanceof Location) {
-				((Location) newNode.getLayoutConstraint())
-						.setX(((Location) oldNode.getLayoutConstraint()).getX());
-				((Location) newNode.getLayoutConstraint())
-						.setY(((Location) oldNode.getLayoutConstraint()).getY());
+			if (oldNode.getLayoutConstraint() instanceof Location && newNode.getLayoutConstraint() instanceof Location) {
+				((Location) newNode.getLayoutConstraint()).setX(((Location) oldNode.getLayoutConstraint()).getX());
+				((Location) newNode.getLayoutConstraint()).setY(((Location) oldNode.getLayoutConstraint()).getY());
 			}
-			if (oldNode.getLayoutConstraint() instanceof Size
-					&& newNode.getLayoutConstraint() instanceof Size) {
-				((Size) newNode.getLayoutConstraint()).setWidth(((Size) oldNode
-						.getLayoutConstraint()).getWidth());
-				((Size) newNode.getLayoutConstraint())
-						.setHeight(((Size) oldNode.getLayoutConstraint())
-								.getHeight());
+			if (oldNode.getLayoutConstraint() instanceof Size && newNode.getLayoutConstraint() instanceof Size) {
+				((Size) newNode.getLayoutConstraint()).setWidth(((Size) oldNode.getLayoutConstraint()).getWidth());
+				((Size) newNode.getLayoutConstraint()).setHeight(((Size) oldNode.getLayoutConstraint()).getHeight());
 			}
-			if (oldNode.getLayoutConstraint() instanceof Ratio
-					&& newNode.getLayoutConstraint() instanceof Ratio) {
-				((Ratio) newNode.getLayoutConstraint())
-						.setValue(((Ratio) oldNode.getLayoutConstraint())
-								.getValue());
+			if (oldNode.getLayoutConstraint() instanceof Ratio && newNode.getLayoutConstraint() instanceof Ratio) {
+				((Ratio) newNode.getLayoutConstraint()).setValue(((Ratio) oldNode.getLayoutConstraint()).getValue());
 			}
 			newNode.persist();
 		}
@@ -126,12 +111,9 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getCallAction_Result());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getInvocationAction_Argument());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getCallOperationAction_Target());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallAction_Result());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInvocationAction_Argument());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallOperationAction_Target());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -158,5 +140,5 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 	public boolean canCreate(EObject object) {
 		return false;
 	}
-	
+
 }

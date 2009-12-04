@@ -36,8 +36,8 @@ public class PaletteProfileApplicationListener implements IPapyrusListener {
 	public void notifyChanged(Notification notification) {
 		// check notification is relevant for us
 		// notifier shoud be instance of profileApplication. In this case, reload the palette
-		if (notification.getNotifier() instanceof ProfileApplication) {
-			if (Notification.SET == notification.getEventType()) {
+		if(notification.getNotifier() instanceof ProfileApplication) {
+			if(Notification.SET == notification.getEventType()) {
 				PapyrusPaletteService.getInstance().providerChanged(
 						new ProviderChangeEvent(PapyrusPaletteService.getInstance()));
 			}

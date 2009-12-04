@@ -23,7 +23,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * An UML edge is an edge that owns a label to display applied stereotypes
  */
-public class UMLEdgeFigure extends PolylineConnectionEx implements IPapyrusUMLElementFigure{
+public class UMLEdgeFigure extends PolylineConnectionEx implements IPapyrusUMLElementFigure {
 
 	/** Child label that displays applied stereotypes string */
 	protected WrappingLabel appliedStereotypeLabel;
@@ -50,8 +50,7 @@ public class UMLEdgeFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 	 * Creates the contents of the figure, i.e. child node. This basic implementation creates only a
 	 * new stereotype label.
 	 * <p>
-	 * This method should be called when the parent figure is created, or when the label was removed
-	 * and a string has to be displayed.
+	 * This method should be called when the parent figure is created, or when the label was removed and a string has to be displayed.
 	 * </p>
 	 */
 	protected void createContents() {
@@ -75,18 +74,17 @@ public class UMLEdgeFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 	 * This implementation checks if the specified string is null or not.
 	 * <ul>
 	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays
-	 * the specified string.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays the specified string.</li>
 	 * </ul>
 	 * </p>
 	 * 
 	 * @param stereotypes
-	 *            the string representing the stereotypes to be displayed
+	 *        the string representing the stereotypes to be displayed
 	 */
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 
 		// Set stereotype text on figure
-		if (!"".equals(stereotypes)) {
+		if(!"".equals(stereotypes)) {
 			appliedStereotypeLabel.setText(stereotypes);
 		} else {
 			appliedStereotypeLabel.setText("");

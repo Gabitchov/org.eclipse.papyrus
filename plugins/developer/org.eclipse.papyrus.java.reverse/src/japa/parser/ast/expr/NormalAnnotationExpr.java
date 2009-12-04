@@ -31,43 +31,43 @@ import java.util.List;
  */
 public final class NormalAnnotationExpr extends AnnotationExpr {
 
-    private NameExpr name;
+	private NameExpr name;
 
-    private List<MemberValuePair> pairs;
+	private List<MemberValuePair> pairs;
 
-    public NormalAnnotationExpr() {
-    }
+	public NormalAnnotationExpr() {
+	}
 
-    public NormalAnnotationExpr(int beginLine, int beginColumn, int endLine, int endColumn, NameExpr name, List<MemberValuePair> pairs) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.name = name;
-        this.pairs = pairs;
-    }
+	public NormalAnnotationExpr(int beginLine, int beginColumn, int endLine, int endColumn, NameExpr name, List<MemberValuePair> pairs) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.name = name;
+		this.pairs = pairs;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public NameExpr getName() {
-        return name;
-    }
+	public NameExpr getName() {
+		return name;
+	}
 
-    public List<MemberValuePair> getPairs() {
-        return pairs;
-    }
+	public List<MemberValuePair> getPairs() {
+		return pairs;
+	}
 
-    public void setName(NameExpr name) {
-        this.name = name;
-    }
+	public void setName(NameExpr name) {
+		this.name = name;
+	}
 
-    public void setPairs(List<MemberValuePair> pairs) {
-        this.pairs = pairs;
-    }
+	public void setPairs(List<MemberValuePair> pairs) {
+		this.pairs = pairs;
+	}
 
 }

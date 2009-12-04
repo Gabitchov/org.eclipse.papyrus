@@ -51,9 +51,9 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	 */
 	public static ModelelementsFactory init() {
 		try {
-			ModelelementsFactory theModelelementsFactory = (ModelelementsFactory) EPackage.Registry.INSTANCE
+			ModelelementsFactory theModelelementsFactory = (ModelelementsFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements");
-			if (theModelelementsFactory != null) {
+			if(theModelelementsFactory != null) {
 				return theModelelementsFactory;
 			}
 		} catch (Exception exception) {
@@ -78,7 +78,7 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case ModelelementsPackage.CONFORM:
 			return createConform();
 		case ModelelementsPackage.VIEW:
@@ -150,7 +150,7 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	 * @generated
 	 */
 	public ModelelementsPackage getModelelementsPackage() {
-		return (ModelelementsPackage) getEPackage();
+		return (ModelelementsPackage)getEPackage();
 	}
 
 } // ModelelementsFactoryImpl

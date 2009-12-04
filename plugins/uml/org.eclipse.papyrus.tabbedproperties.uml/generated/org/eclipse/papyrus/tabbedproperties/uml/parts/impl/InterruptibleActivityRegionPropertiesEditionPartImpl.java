@@ -55,25 +55,38 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class InterruptibleActivityRegionPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, InterruptibleActivityRegionPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil nodeEditUtil;
+
 	protected ReferencesTable<? extends EObject> node;
+
 	protected List<ViewerFilter> nodeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> nodeFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil interruptingEdgeEditUtil;
+
 	protected ReferencesTable<? extends EObject> interruptingEdge;
+
 	protected List<ViewerFilter> interruptingEdgeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> interruptingEdgeFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public InterruptibleActivityRegionPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -81,25 +94,25 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
@@ -121,16 +134,31 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		createNodeAdvancedReferencesTable(propertiesGroup);
 		createInterruptingEdgeAdvancedReferencesTable(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.InterruptibleActivityRegionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.InterruptibleActivityRegionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InterruptibleActivityRegion.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -146,7 +174,7 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InterruptibleActivityRegionPropertiesEditionPartImpl.this, UMLViewsRepository.InterruptibleActivityRegion.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InterruptibleActivityRegionPropertiesEditionPartImpl.this, UMLViewsRepository.InterruptibleActivityRegion.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -159,11 +187,11 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -203,10 +231,10 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -218,19 +246,21 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		// End of user code
 
 	}
+
 	protected void createNodeAdvancedReferencesTable(Composite parent) {
 		this.node = new ReferencesTable<ActivityNode>(UMLMessages.InterruptibleActivityRegionPropertiesEditionPart_NodeLabel, new ReferencesTableListener<ActivityNode>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityNode> dialog = new TabElementTreeSelectionDialog<ActivityNode>(resourceSet, nodeFilters, nodeBusinessFilters,
-				"ActivityNode", UMLPackage.eINSTANCE.getActivityNode(), current.eResource()) {
+						"ActivityNode", UMLPackage.eINSTANCE.getActivityNode(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!nodeEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!nodeEditUtil.getVirtualList().contains(elem))
 								nodeEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InterruptibleActivityRegionPropertiesEditionPartImpl.this, UMLViewsRepository.InterruptibleActivityRegion.node,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						node.refresh();
 					}
@@ -238,10 +268,21 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityNode element) { editNode(element); }
-			public void handleMove(ActivityNode element, int oldIndex, int newIndex) { moveNode(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityNode element) { removeFromNode(element); }
-			public void navigateTo(ActivityNode element) { }
+
+			public void handleEdit(ActivityNode element) {
+				editNode(element);
+			}
+
+			public void handleMove(ActivityNode element, int oldIndex, int newIndex) {
+				moveNode(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityNode element) {
+				removeFromNode(element);
+			}
+
+			public void navigateTo(ActivityNode element) {
+			}
 		});
 		this.node.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InterruptibleActivityRegion.node, UMLViewsRepository.SWT_KIND));
 		this.node.createControls(parent);
@@ -284,10 +325,10 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				nodeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				node.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -299,19 +340,21 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		// End of user code
 
 	}
+
 	protected void createInterruptingEdgeAdvancedReferencesTable(Composite parent) {
 		this.interruptingEdge = new ReferencesTable<ActivityEdge>(UMLMessages.InterruptibleActivityRegionPropertiesEditionPart_InterruptingEdgeLabel, new ReferencesTableListener<ActivityEdge>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, interruptingEdgeFilters, interruptingEdgeBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+						"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!interruptingEdgeEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!interruptingEdgeEditUtil.getVirtualList().contains(elem))
 								interruptingEdgeEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InterruptibleActivityRegionPropertiesEditionPartImpl.this, UMLViewsRepository.InterruptibleActivityRegion.interruptingEdge,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						interruptingEdge.refresh();
 					}
@@ -319,10 +362,21 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityEdge element) { editInterruptingEdge(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveInterruptingEdge(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromInterruptingEdge(element); }
-			public void navigateTo(ActivityEdge element) { }
+
+			public void handleEdit(ActivityEdge element) {
+				editInterruptingEdge(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveInterruptingEdge(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromInterruptingEdge(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.interruptingEdge.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InterruptibleActivityRegion.interruptingEdge, UMLViewsRepository.SWT_KIND));
 		this.interruptingEdge.createControls(parent);
@@ -365,10 +419,10 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				interruptingEdgeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				interruptingEdge.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -437,12 +491,13 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#initOwnedComment(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -455,7 +510,7 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -473,7 +528,8 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -482,7 +538,8 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#isContainedInOwnedCommentTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#isContainedInOwnedCommentTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInOwnedCommentTable(EObject element) {
 		return ownedCommentEditUtil.contains(element);
@@ -527,12 +584,13 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#initNode(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#initNode(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initNode(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			nodeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			nodeEditUtil = new EMFListEditUtil(current, feature);
@@ -545,7 +603,7 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#updateNode(EObject newValue)
 	 */
 	public void updateNode(EObject newValue) {
-		if(nodeEditUtil != null){
+		if(nodeEditUtil != null) {
 			nodeEditUtil.reinit(newValue);
 			node.refresh();
 		}
@@ -617,12 +675,13 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#initInterruptingEdge(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#initInterruptingEdge(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initInterruptingEdge(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			interruptingEdgeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			interruptingEdgeEditUtil = new EMFListEditUtil(current, feature);
@@ -635,7 +694,7 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#updateInterruptingEdge(EObject newValue)
 	 */
 	public void updateInterruptingEdge(EObject newValue) {
-		if(interruptingEdgeEditUtil != null){
+		if(interruptingEdgeEditUtil != null) {
 			interruptingEdgeEditUtil.reinit(newValue);
 			interruptingEdge.refresh();
 		}
@@ -644,7 +703,8 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#addFilterInterruptingEdge(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#addFilterInterruptingEdge(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToInterruptingEdge(ViewerFilter filter) {
 		interruptingEdgeFilters.add(filter);
@@ -653,7 +713,8 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#addBusinessFilterInterruptingEdge(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#addBusinessFilterInterruptingEdge(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInterruptingEdge(ViewerFilter filter) {
 		interruptingEdgeBusinessFilters.add(filter);
@@ -662,7 +723,8 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#isContainedInInterruptingEdgeTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterruptibleActivityRegionPropertiesEditionPart#isContainedInInterruptingEdgeTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInInterruptingEdgeTable(EObject element) {
 		return interruptingEdgeEditUtil.contains(element);
@@ -675,9 +737,6 @@ public class InterruptibleActivityRegionPropertiesEditionPartImpl extends Compos
 	public void unsetMessageForInterruptingEdge() {
 
 	}
-
-
-
 
 
 

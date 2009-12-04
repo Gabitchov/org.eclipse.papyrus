@@ -39,8 +39,7 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated
@@ -66,7 +65,7 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_PropertyPropertyDescriptor(object);
@@ -82,10 +81,10 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature",
-						"_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY, true,
+				"_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY, true,
 				false, true, null, null, null));
 	}
 
@@ -96,10 +95,10 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature",
-						"_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false,
+				"_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false,
 				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -121,7 +120,7 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	@Override
 	public String getText(Object object) {
-		FlowDirection labelValue = ((FlowProperty) object).getDirection();
+		FlowDirection labelValue = ((FlowProperty)object).getDirection();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_FlowProperty_type")
 				: getString("_UI_FlowProperty_type") + " " + label;
@@ -129,8 +128,7 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -138,7 +136,7 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FlowProperty.class)) {
+		switch(notification.getFeatureID(FlowProperty.class)) {
 		case PortandflowsPackage.FLOW_PROPERTY__DIRECTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

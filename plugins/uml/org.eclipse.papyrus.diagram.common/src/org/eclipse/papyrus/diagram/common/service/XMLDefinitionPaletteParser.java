@@ -28,7 +28,7 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Create a new XMLDefinitionPaletteParser
 	 * 
 	 * @param factory
-	 *            the factory used to create elements from the parsing of the xml file
+	 *        the factory used to create elements from the parsing of the xml file
 	 */
 	public XMLDefinitionPaletteParser(AbstractXMLDefinitionPaletteFactory factory) {
 		this.factory = factory;
@@ -38,13 +38,13 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Parse the given node, assuming its type is a palette definition
 	 * 
 	 * @param node
-	 *            the node to parse
+	 *        the node to parse
 	 */
 	public void parsePaletteDefinition(Node paletteDefinitionNode) {
 		NodeList nodes = paletteDefinitionNode.getChildNodes();
-		for (int i = 0; i < nodes.getLength(); i++) {
+		for(int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
-			if (CONTENT.equals(node.getNodeName())) {
+			if(CONTENT.equals(node.getNodeName())) {
 				factory.traverseContentNode(node);
 				parsePaletteContent(node);
 			}
@@ -55,24 +55,24 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Parse the given node, assuming its type is a palette content
 	 * 
 	 * @param node
-	 *            the node to parse
+	 *        the node to parse
 	 * @param root
-	 *            the palette root to fill
+	 *        the palette root to fill
 	 */
 	public void parsePaletteContent(Node paletteContentNode) {
 		NodeList nodes = paletteContentNode.getChildNodes();
-		for (int i = 0; i < nodes.getLength(); i++) {
+		for(int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
 			String name = node.getNodeName();
-			if (DRAWER.equals(name)) {
+			if(DRAWER.equals(name)) {
 				parserDrawerNode(node);
-			} else if (STACK.equals(name)) {
+			} else if(STACK.equals(name)) {
 				parserStackNode(node);
-			} else if (SEPARATOR.equals(name)) {
+			} else if(SEPARATOR.equals(name)) {
 				parseSeparatorNode(node);
-			} else if (TOOL.equals(name)) {
+			} else if(TOOL.equals(name)) {
 				parseToolNode(node);
-			} else if (ASPECT_TOOL.equals(name)) {
+			} else if(ASPECT_TOOL.equals(name)) {
 				parseAspectToolNode(node);
 			}
 
@@ -83,7 +83,7 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Parse the given aspect node, assuming its type is a palette aspect tool
 	 * 
 	 * @param node
-	 *            the node to parse
+	 *        the node to parse
 	 */
 	private void parseAspectToolNode(Node node) {
 		factory.traverseAspectToolEntryNode(node);
@@ -93,11 +93,11 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Parse the given node, assuming its type is a palette drawer
 	 * 
 	 * @param node
-	 *            the node to parse
+	 *        the node to parse
 	 */
 	public void parserDrawerNode(Node node) {
 		factory.traverseDrawerNode(node);
-		if (node.getChildNodes().getLength() > 0) {
+		if(node.getChildNodes().getLength() > 0) {
 			parsePaletteContent(node);
 		}
 		// return entry;
@@ -107,12 +107,12 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Parse the given node, assuming its type is a stack
 	 * 
 	 * @param node
-	 *            the node to parse
+	 *        the node to parse
 	 */
 	public void parserStackNode(Node node) {
 		factory.traverseStackNode(node);
 
-		if (node.getChildNodes().getLength() > 0) {
+		if(node.getChildNodes().getLength() > 0) {
 			parsePaletteContent(node);
 		}
 	}
@@ -121,12 +121,12 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Parse the given node, assuming its type is a node
 	 * 
 	 * @param node
-	 *            the node to parse
+	 *        the node to parse
 	 */
 	public void parseToolNode(Node node) {
 		factory.traverseToolEntryNode(node);
 
-		if (node.getChildNodes().getLength() > 0) {
+		if(node.getChildNodes().getLength() > 0) {
 			parsePaletteContent(node);
 		}
 	}
@@ -135,12 +135,12 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Parse the given node, assuming its type is a separator
 	 * 
 	 * @param node
-	 *            the node to parse
+	 *        the node to parse
 	 */
 	public void parseSeparatorNode(Node node) {
 		factory.traverseSeparatorNode(node);
 
-		if (node.getChildNodes().getLength() > 0) {
+		if(node.getChildNodes().getLength() > 0) {
 			parsePaletteContent(node);
 		}
 	}

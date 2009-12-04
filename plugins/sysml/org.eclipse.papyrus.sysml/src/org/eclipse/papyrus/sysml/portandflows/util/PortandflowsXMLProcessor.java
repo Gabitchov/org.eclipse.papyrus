@@ -46,7 +46,7 @@ public class PortandflowsXMLProcessor extends XMLProcessor {
 	 */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
+		if(registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new PortandflowsResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new PortandflowsResourceFactoryImpl());

@@ -61,7 +61,7 @@ public class UnitItemProvider extends ItemProviderAdapter implements IEditingDom
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_InstanceSpecificationPropertyDescriptor(object);
@@ -77,11 +77,11 @@ public class UnitItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * @generated
 	 */
 	protected void addBase_InstanceSpecificationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Unit_base_InstanceSpecification_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_Unit_base_InstanceSpecification_feature",
-						"_UI_Unit_type"), BlocksPackage.Literals.UNIT__BASE_INSTANCE_SPECIFICATION, true, false, true,
+				"_UI_PropertyDescriptor_description", "_UI_Unit_base_InstanceSpecification_feature",
+				"_UI_Unit_type"), BlocksPackage.Literals.UNIT__BASE_INSTANCE_SPECIFICATION, true, false, true,
 				null, null, null));
 	}
 
@@ -92,7 +92,7 @@ public class UnitItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * @generated
 	 */
 	protected void addDimensionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_dimension_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_Unit_dimension_feature", "_UI_Unit_type"),
 				BlocksPackage.Literals.UNIT__DIMENSION, true, false, true, null, null, null));
@@ -121,8 +121,7 @@ public class UnitItemProvider extends ItemProviderAdapter implements IEditingDom
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -38,9 +38,9 @@ public class StereotypeValueTreeObject extends ValueTreeObject {
 	 * Creates a new StereotypeValueTreeObject.
 	 * 
 	 * @param value
-	 *            the value
+	 *        the value
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public StereotypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
 		super(parent, value, domain);
@@ -55,16 +55,16 @@ public class StereotypeValueTreeObject extends ValueTreeObject {
 	@Override
 	public void editMe() {
 
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
-		Element elt = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
+		Element elt = ((StereotypedElementTreeObject)getParent().getParent().getParent()).getElement();
 		Property property = pTO.getProperty();
 		Type type = property.getType();
 
-		final ArrayList filteredElements = Util.getInstancesFilteredByType(elt, null, (Stereotype) type);
+		final ArrayList filteredElements = Util.getInstancesFilteredByType(elt, null, (Stereotype)type);
 
 		String[] elementsNames = Util.getStringArrayFromList(filteredElements);
 		// if no possible selection : abort
-		if (elementsNames == null) {
+		if(elementsNames == null) {
 			Message.warning("No element stereotyped <<" + type.getName() + ">> was found in the model.");
 			return;
 		}
@@ -72,12 +72,12 @@ public class StereotypeValueTreeObject extends ValueTreeObject {
 		ProfileElementLabelProvider labelProvider = new ProfileElementLabelProvider();
 		ComboSelectionDialog valueDialog = new ComboSelectionDialog(new Shell(), "New value:", elementsNames, labelProvider.getText(this));
 		int val = valueDialog.open();
-		if ((val == ComboSelectionDialog.OK) && (valueDialog.indexOfSelection != -1)) {
-			Element newElement = (Element) filteredElements.get(valueDialog.indexOfSelection);
-			EObject newValue = newElement.getStereotypeApplication((Stereotype) type);
-			if (newValue == null) { // the selected element is stereotyped with stereotype specializing type
-				EList<Stereotype> specialStereotypes = newElement.getAppliedSubstereotypes((Stereotype) type);
-				if (!specialStereotypes.isEmpty()) {
+		if((val == ComboSelectionDialog.OK) && (valueDialog.indexOfSelection != -1)) {
+			Element newElement = (Element)filteredElements.get(valueDialog.indexOfSelection);
+			EObject newValue = newElement.getStereotypeApplication((Stereotype)type);
+			if(newValue == null) { // the selected element is stereotyped with stereotype specializing type
+				EList<Stereotype> specialStereotypes = newElement.getAppliedSubstereotypes((Stereotype)type);
+				if(!specialStereotypes.isEmpty()) {
 					newValue = newElement.getStereotypeApplication(specialStereotypes.get(0));
 				}
 			}

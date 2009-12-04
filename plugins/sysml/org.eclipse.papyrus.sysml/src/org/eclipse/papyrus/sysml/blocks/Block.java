@@ -36,8 +36,7 @@ public interface Block extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -52,8 +51,7 @@ public interface Block extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Is Encapsulated</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Encapsulated</em>' attribute isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Is Encapsulated</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -70,7 +68,7 @@ public interface Block extends EObject {
 	 * <em>Base Class</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 *        the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */
@@ -81,7 +79,7 @@ public interface Block extends EObject {
 	 * <em>Is Encapsulated</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Is Encapsulated</em>' attribute.
+	 *        the new value of the '<em>Is Encapsulated</em>' attribute.
 	 * @see #isIsEncapsulated()
 	 * @generated
 	 */

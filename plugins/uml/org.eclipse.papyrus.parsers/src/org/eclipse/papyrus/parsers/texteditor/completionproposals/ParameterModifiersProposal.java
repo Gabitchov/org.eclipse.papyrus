@@ -52,7 +52,7 @@ public class ParameterModifiersProposal implements ICompletionProposalComputer {
 		ICompletionProposal proposal = null;
 
 		// first, add [] ans set the cursor after left curly
-		if (EMPTY_MODIFIERS.startsWith(prefix)) {
+		if(EMPTY_MODIFIERS.startsWith(prefix)) {
 			proposal = new CompletionProposal(EMPTY_MODIFIERS, documentOffset - prefix.length(), prefix.length()
 					+ selectionRange, 1, null, "{ <ParameterModifiers> }", null, "Parameter modifiers");
 			v.add(proposal);

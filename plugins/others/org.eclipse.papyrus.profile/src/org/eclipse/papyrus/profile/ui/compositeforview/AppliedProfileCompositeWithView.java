@@ -30,9 +30,9 @@ public class AppliedProfileCompositeWithView extends org.eclipse.papyrus.profile
 	 * The Constructor.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * @param factory
-	 *            the factory
+	 *        the factory
 	 */
 	public AppliedProfileCompositeWithView(Composite parent, TabbedPropertySheetWidgetFactory factory) {
 		super(parent, factory);
@@ -189,16 +189,16 @@ public class AppliedProfileCompositeWithView extends org.eclipse.papyrus.profile
 	public void removeProfileDisplaying() {
 		// Retrieve indices of selected profiles to unapply
 		int[] selectionIndices = getProfiles().getSelectionIndices();
-		if ((selectionIndices == null) || (selectionIndices.length == 0)) {
+		if((selectionIndices == null) || (selectionIndices.length == 0)) {
 			return;
 		}
 
 		// Parse selection
-		for (int i = 0; i < selectionIndices.length; i++) {
+		for(int i = 0; i < selectionIndices.length; i++) {
 			int currentIndex = selectionIndices[i];
 			// Remove TAG_PROFILE_CHANGED when it exists
 			String itemName = getProfiles().getItem(currentIndex).replace(TAG_PROFILE_CHANGED, "");
-			Profile profileToUnapply = (Profile) getProfiles().getData(itemName);
+			Profile profileToUnapply = (Profile)getProfiles().getData(itemName);
 			// set of diagrams
 			// Iterator<Diagram> diagramIter = modelManager.getDiagrams().iterator();
 			// while (diagramIter.hasNext()) {

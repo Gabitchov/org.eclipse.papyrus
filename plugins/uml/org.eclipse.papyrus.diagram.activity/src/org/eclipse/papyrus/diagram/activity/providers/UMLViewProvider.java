@@ -197,11 +197,9 @@ public class UMLViewProvider extends AbstractViewProvider {
 	 * @generated
 	 */
 	@Override
-	protected Class getDiagramViewClass(IAdaptable semanticAdapter,
-			String diagramKind) {
+	protected Class getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
 		EObject semanticElement = getSemanticElement(semanticAdapter);
-		if (PackageEditPart.MODEL_ID.equals(diagramKind)
-				&& UMLVisualIDRegistry.getDiagramVisualID(semanticElement) != -1) {
+		if (PackageEditPart.MODEL_ID.equals(diagramKind) && UMLVisualIDRegistry.getDiagramVisualID(semanticElement) != -1) {
 			return PackageViewFactory.class;
 		}
 		return null;
@@ -211,8 +209,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 	 * @generated
 	 */
 	@Override
-	protected Class getNodeViewClass(IAdaptable semanticAdapter,
-			View containerView, String semanticHint) {
+	protected Class getNodeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		if (containerView == null) {
 			return null;
 		}
@@ -226,8 +223,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 			if (elementType != null || domainElement == null) {
 				return null;
 			}
-			visualID = UMLVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
 			if (elementType != null) {
@@ -235,27 +231,22 @@ public class UMLViewProvider extends AbstractViewProvider {
 				// Both parameters should describe exactly the same diagram element.
 				// In addition we check that visualID returned by VisualIDRegistry.getNodeVisualID() for
 				// domainElement (if specified) is the same as in element type.
-				if (!UMLElementTypes.isKnownElementType(elementType)
-						|| (!(elementType instanceof IHintedType))) {
+				if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 					return null; // foreign element type
 				}
-				String elementTypeHint = ((IHintedType) elementType)
-						.getSemanticHint();
+				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!semanticHint.equals(elementTypeHint)) {
 					return null; // if semantic hint is specified it should be the same as in element type
 				}
-				if (domainElement != null
-						&& visualID != UMLVisualIDRegistry.getNodeVisualID(
-								containerView, domainElement)) {
+				if (domainElement != null && visualID != UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement)) {
 					return null; // visual id for node EClass should match visual id from element type
 				}
 			} else {
 				// Element type is not specified. Domain element should be present.
 				// This method is called with EObjectAdapter as parameter from:
-				//   - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint preferencesHint) 
-				//   - generated ViewFactory.decorateView() for parent element
-				if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
-						.getModelID(containerView))) {
+				// - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint preferencesHint)
+				// - generated ViewFactory.decorateView() for parent element
+				if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 					return null; // foreign diagram
 				}
 				switch (visualID) {
@@ -294,273 +285,199 @@ public class UMLViewProvider extends AbstractViewProvider {
 				case ActivityPartition2EditPart.VISUAL_ID:
 				case OpaqueAction2EditPart.VISUAL_ID:
 				case AcceptEventAction2EditPart.VISUAL_ID:
-					if (domainElement == null
-							|| visualID != UMLVisualIDRegistry.getNodeVisualID(
-									containerView, domainElement)) {
+					if (domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement)) {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
 				case ActivityNameEditPart.VISUAL_ID:
 				case ActivitySubverticesEditPart.VISUAL_ID:
-					if (ActivityEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ActivityEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case CommentBodyEditPart.VISUAL_ID:
-					if (CommentEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (CommentEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case SendObjectActionNameEditPart.VISUAL_ID:
 				case SendObjectActionName2EditPart.VISUAL_ID:
-					if (SendObjectActionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (SendObjectActionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case InputPinNameEditPart.VISUAL_ID:
-					if (InputPinEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (InputPinEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case InputPinName2EditPart.VISUAL_ID:
-					if (InputPin2EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (InputPin2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ValuePinNameEditPart.VISUAL_ID:
-					if (ValuePinEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ValuePinEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case SendSignalActionNameEditPart.VISUAL_ID:
 				case SendSignalActionName2EditPart.VISUAL_ID:
-					if (SendSignalActionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (SendSignalActionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case InputPinName3EditPart.VISUAL_ID:
-					if (InputPin3EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (InputPin3EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case AcceptEventActionNameEditPart.VISUAL_ID:
 				case AcceptEventActionName2EditPart.VISUAL_ID:
-					if (AcceptEventActionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (AcceptEventActionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case OutputPinNameEditPart.VISUAL_ID:
-					if (OutputPinEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (OutputPinEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ActivityFinalNodeNameEditPart.VISUAL_ID:
-					if (ActivityFinalNodeEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ActivityFinalNodeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case DecisionNodeNameEditPart.VISUAL_ID:
-					if (DecisionNodeEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (DecisionNodeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case MergeNodeNameEditPart.VISUAL_ID:
-					if (MergeNodeEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (MergeNodeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case InitialNodeNameEditPart.VISUAL_ID:
-					if (InitialNodeEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (InitialNodeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case DataStoreNodeNameEditPart.VISUAL_ID:
-					if (DataStoreNodeEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (DataStoreNodeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case OpaqueActionNameEditPart.VISUAL_ID:
 				case OpaqueActionName2EditPart.VISUAL_ID:
-					if (OpaqueActionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (OpaqueActionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case OutputPinName2EditPart.VISUAL_ID:
-					if (OutputPin2EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (OutputPin2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case InputPinName4EditPart.VISUAL_ID:
-					if (InputPin4EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (InputPin4EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ValuePinName2EditPart.VISUAL_ID:
-					if (ValuePin2EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ValuePin2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case FlowFinalNodeNameEditPart.VISUAL_ID:
-					if (FlowFinalNodeEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (FlowFinalNodeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case PinNameEditPart.VISUAL_ID:
-					if (PinEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (PinEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case CreateObjectActionNameEditPart.VISUAL_ID:
 				case CreateObjectActionName2EditPart.VISUAL_ID:
-					if (CreateObjectActionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (CreateObjectActionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case OutputPinName3EditPart.VISUAL_ID:
-					if (OutputPin3EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (OutputPin3EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case CallBehaviorActionNameEditPart.VISUAL_ID:
 				case CallBehaviorActionName2EditPart.VISUAL_ID:
-					if (CallBehaviorActionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (CallBehaviorActionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case OutputPinName4EditPart.VISUAL_ID:
-					if (OutputPin4EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (OutputPin4EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case InputPinName5EditPart.VISUAL_ID:
-					if (InputPin5EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (InputPin5EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case CallOperationActionNameEditPart.VISUAL_ID:
 				case CallOperationActionName2EditPart.VISUAL_ID:
-					if (CallOperationActionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (CallOperationActionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case InputPinName6EditPart.VISUAL_ID:
-					if (InputPin6EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (InputPin6EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ActivityParameterNodeNameEditPart.VISUAL_ID:
-					if (ActivityParameterNodeEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ActivityParameterNodeEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ActivityPartitionNameEditPart.VISUAL_ID:
 				case ActivityPartitionActivityPartitionCompartmentEditPart.VISUAL_ID:
-					if (ActivityPartitionEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ActivityPartitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ActivityPartitionName2EditPart.VISUAL_ID:
 				case ActivityPartitionActivityPartitionCompartment2EditPart.VISUAL_ID:
-					if (ActivityPartition2EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ActivityPartition2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case OpaqueActionName3EditPart.VISUAL_ID:
 				case OpaqueActionName4EditPart.VISUAL_ID:
-					if (OpaqueAction2EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (OpaqueAction2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case AcceptEventActionName3EditPart.VISUAL_ID:
 				case AcceptEventActionName4EditPart.VISUAL_ID:
-					if (AcceptEventAction2EditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (AcceptEventAction2EditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ControlFlowNameEditPart.VISUAL_ID:
-					if (ControlFlowEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ControlFlowEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ObjectFlowNameEditPart.VISUAL_ID:
-					if (ObjectFlowEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ObjectFlowEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case ZigZagLabelEditPart.VISUAL_ID:
-					if (ExceptionHandlerEditPart.VISUAL_ID != UMLVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+					if (ExceptionHandlerEditPart.VISUAL_ID != UMLVisualIDRegistry.getVisualID(containerView) || containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -576,8 +493,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 	 * @generated
 	 */
 	protected Class getNodeViewClass(View containerView, int visualID) {
-		if (containerView == null
-				|| !UMLVisualIDRegistry.canCreateNode(containerView, visualID)) {
+		if (containerView == null || !UMLVisualIDRegistry.canCreateNode(containerView, visualID)) {
 			return null;
 		}
 		switch (visualID) {
@@ -755,11 +671,9 @@ public class UMLViewProvider extends AbstractViewProvider {
 	 * @generated
 	 */
 	@Override
-	protected Class getEdgeViewClass(IAdaptable semanticAdapter,
-			View containerView, String semanticHint) {
+	protected Class getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
-		if (!UMLElementTypes.isKnownElementType(elementType)
-				|| (!(elementType instanceof IHintedType))) {
+		if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 			return null; // foreign element type
 		}
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
@@ -771,9 +685,7 @@ public class UMLViewProvider extends AbstractViewProvider {
 		}
 		int visualID = UMLVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(semanticAdapter);
-		if (domainElement != null
-				&& visualID != UMLVisualIDRegistry
-						.getLinkWithClassVisualID(domainElement)) {
+		if (domainElement != null && visualID != UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
 			return null; // visual id for link EClass should match visual id from element type
 		}
 		return getEdgeViewClass(visualID);

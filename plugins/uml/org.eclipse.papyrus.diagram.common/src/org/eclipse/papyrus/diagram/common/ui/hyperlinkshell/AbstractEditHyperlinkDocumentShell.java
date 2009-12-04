@@ -225,7 +225,7 @@ public class AbstractEditHyperlinkDocumentShell {
 	 * Sets the cancel button.
 	 * 
 	 * @param cancelButton
-	 *            the cancelButton to set
+	 *        the cancelButton to set
 	 */
 	// @unused
 	protected void setCancelButton(Button cancelButton) {

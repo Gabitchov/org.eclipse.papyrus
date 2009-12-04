@@ -68,7 +68,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public LinkDescriptor getPrimaryShape() {
-		return (LinkDescriptor) getFigure();
+		return (LinkDescriptor)getFigure();
 	}
 
 	/**

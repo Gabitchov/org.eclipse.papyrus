@@ -35,7 +35,7 @@ public class ApplyStereotypeRequest extends CreateRequest {
 	 * Creates a new ApplyStereotypeRequest
 	 * 
 	 * @param objects
-	 *            the list of stereotypes to apply, identified by their qualified names
+	 *        the list of stereotypes to apply, identified by their qualified names
 	 */
 	public ApplyStereotypeRequest(List<String> stereotypes) {
 		super();

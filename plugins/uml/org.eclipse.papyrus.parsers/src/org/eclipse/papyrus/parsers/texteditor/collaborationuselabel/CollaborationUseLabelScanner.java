@@ -62,7 +62,7 @@ public class CollaborationUseLabelScanner extends RuleBasedScanner implements IC
 		IRule[] rules = new IRule[2];
 
 		WordRule wordRule = new WordRule(new PropertyWordDetector(), other);
-		for (int i = 0; i < VisibilityCompletionProposal.visibilityStrings.length; i++) {
+		for(int i = 0; i < VisibilityCompletionProposal.visibilityStrings.length; i++) {
 			// wordRule.addWord(getWordWithoutQuotes(visibilityStrings[i]), keyword);
 		}
 

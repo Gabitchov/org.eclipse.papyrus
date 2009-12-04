@@ -20,6 +20,7 @@ public class CommentCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -55,12 +56,12 @@ public class CommentCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
+		EObject container = ((CreateElementRequest)getRequest())
 				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -73,10 +74,10 @@ public class CommentCreateCommand extends CreateElementCommand {
 	protected EClass getEClassToEdit() {
 
 		EObject eObject = getElementToEdit();
-		if (eObject != null) {
+		if(eObject != null) {
 			return eObject.eClass();
 		}
-		if (eClass != null) {
+		if(eClass != null) {
 			return eClass;
 		}
 		return UMLPackage.eINSTANCE.getElement();
@@ -87,12 +88,12 @@ public class CommentCreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
+		if(getRequest().getParameters().get(
 				MultiDiagramUtil.BelongToDiagramSource) != null) {
 			Object parameter = getRequest().getParameters().get(
 					MultiDiagramUtil.BelongToDiagramSource);
-			if (parameter instanceof Diagram) {
-				return (Diagram) parameter;
+			if(parameter instanceof Diagram) {
+				return (Diagram)parameter;
 			}
 		}
 		return null;
@@ -100,8 +101,8 @@ public class CommentCreateCommand extends CreateElementCommand {
 
 	@Override
 	protected EObject doDefaultElementCreation() {
-		Comment newElement = (Comment) super.doDefaultElementCreation();
-		if (newElement != null) {
+		Comment newElement = (Comment)super.doDefaultElementCreation();
+		if(newElement != null) {
 			MultiDiagramUtil.addEAnnotationReferenceToDiagram(
 					UMLDiagramEditorPlugin.getInstance(), newElement);
 		}

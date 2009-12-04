@@ -43,9 +43,9 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus handleDrop(CommonDropAdapter dropAdapter, DropTargetEvent dropTargetEvent, Object dropTarget) {
-		Package targetElement = (Package) dropTarget;
-		if (LocalSelectionTransfer.getInstance().isSupportedType(dropAdapter.getCurrentTransfer())) {
-			switch (dropAdapter.getCurrentOperation()) {
+		Package targetElement = (Package)dropTarget;
+		if(LocalSelectionTransfer.getInstance().isSupportedType(dropAdapter.getCurrentTransfer())) {
+			switch(dropAdapter.getCurrentOperation()) {
 			case DND.DROP_MOVE:
 				handleDropMove(targetElement);
 				break;
@@ -59,7 +59,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus validateDrop(Object target, int operation, TransferData transferType) {
-		if (target instanceof Package) {
+		if(target instanceof Package) {
 			return Status.OK_STATUS;
 		}
 		return Status.CANCEL_STATUS;
@@ -67,11 +67,11 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	private void handleDropMove(final Package target) {
 		ISelection s = LocalSelectionTransfer.getInstance().getSelection();
-		if (s instanceof IStructuredSelection) {
-			List<?> selectedElements = ((IStructuredSelection) s).toList();
-			for (Object o : selectedElements) {
-				if (o instanceof PackageableElement) {
-					PackageableElement element = (PackageableElement) o;
+		if(s instanceof IStructuredSelection) {
+			List<?> selectedElements = ((IStructuredSelection)s).toList();
+			for(Object o : selectedElements) {
+				if(o instanceof PackageableElement) {
+					PackageableElement element = (PackageableElement)o;
 					moveElementTo(element, target);
 				}
 			}
@@ -80,14 +80,14 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	private void moveElementTo(final PackageableElement element, final Package target) {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		if (editingDomain != null && (element.getNamespace() instanceof Package)) {
+		if(editingDomain != null && (element.getNamespace() instanceof Package)) {
 			ChangeCommand changeCommand = new ChangeCommand(editingDomain, new Runnable() {
 
 				public void run() {
 					Namespace oldOwner = element.getNamespace();
-					if (oldOwner instanceof Package) {
+					if(oldOwner instanceof Package) {
 						// Remove from the old package
-						Package pkg = (Package) oldOwner;
+						Package pkg = (Package)oldOwner;
 						pkg.getPackagedElements().remove(element);
 
 						// Add to the new package
@@ -96,7 +96,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				}
 			}, "Move " + element.getName() + " to " + target.getName());
 
-			if (changeCommand.canExecute()) {
+			if(changeCommand.canExecute()) {
 				editingDomain.getCommandStack().execute(changeCommand);
 			}
 		}
@@ -104,7 +104,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	private TransactionalEditingDomain getEditingDomain() {
 		BackboneContext backboneContext = getBackboneContext();
-		if (backboneContext != null) {
+		if(backboneContext != null) {
 			return backboneContext.getTransactionalEditingDomain();
 		}
 		return null;
@@ -112,7 +112,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	private BackboneContext getBackboneContext() {
 		IMultiDiagramEditor multiDiagramEditor = getMultiDiagramEditor();
-		if (multiDiagramEditor != null) {
+		if(multiDiagramEditor != null) {
 			return multiDiagramEditor.getDefaultContext();
 		}
 		return null;
@@ -120,8 +120,8 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	private IMultiDiagramEditor getMultiDiagramEditor() {
 		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if (editorPart instanceof IMultiDiagramEditor) {
-			return (IMultiDiagramEditor) editorPart;
+		if(editorPart instanceof IMultiDiagramEditor) {
+			return (IMultiDiagramEditor)editorPart;
 		}
 		return null;
 	}

@@ -209,38 +209,36 @@ public class SashWindowsContainerTest extends TestCase {
 
 		// Get the active editor
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
-		
+
 		CollectRawModelVisitor pageVisitor = new CollectRawModelVisitor();
 		container.visit(pageVisitor);
-		
+
 		// Check each elements
 		Collection results = pageVisitor.collected;
 		assertEquals("list are of same size", models.size(), results.size());
-		for( Object model : models)
-		{
+		for(Object model : models) {
 			assertTrue("model is in the collected list", results.contains(model));
 		}
 	}
-	
+
 	protected class CollectRawModelVisitor implements IPageVisitor {
 
 		Collection<Object> collected = new ArrayList<Object>();
-		
+
 		public void accept(IComponentPage page) {
-			collected.add(page.getRawModel());			
+			collected.add(page.getRawModel());
 		}
 
 		public void accept(IEditorPage page) {
-			collected.add(page.getRawModel());			
+			collected.add(page.getRawModel());
 		}
 	}
-	
+
 	/**
 	 * Test the lookup of a page by its raw model
 	 * Test method for {@link SashWindowsContainer#lookupModelPage(Object)}
 	 */
-	public void testlookupModelPage()
-	{
+	public void testlookupModelPage() {
 		// Create 
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
 

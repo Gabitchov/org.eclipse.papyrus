@@ -30,17 +30,23 @@ import org.eclipse.uml2.uml.Stereotype;
  * The Class EnumerationListener.
  */
 public class EnumerationListener extends PropertyListener {
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param table the table
-	 * @param element the element
-	 * @param stereotype the stereotype
-	 * @param property the property
-	 * @param parent the parent
+	 * @param table
+	 *        the table
+	 * @param element
+	 *        the element
+	 * @param stereotype
+	 *        the stereotype
+	 * @param property
+	 *        the property
+	 * @param parent
+	 *        the parent
 	 * 
-	 * @throws Exception the exception
+	 * @throws Exception
+	 *         the exception
 	 */
 	public EnumerationListener(AbstractPanel parent, Table table, Property property, Stereotype stereotype, Element element) throws Exception {
 		super(parent, table, property, stereotype, element);
@@ -48,55 +54,61 @@ public class EnumerationListener extends PropertyListener {
 			init();
 		} catch (NoValueException e) {
 			throw e;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Handle event.
 	 * 
-	 * @param event the event
+	 * @param event
+	 *        the event
 	 */
 	@Override
 	public void handleEvent(Event event) {
 		itemDClicked();
 	}
-	
+
 	/**
 	 * When doubleclicked : opens a dialog to allow edition of a new Enumeration
 	 * for multivalued property.
 	 * 
-	 * @param selectedElt the element that owns the stereotype
-	 * @param value the current value or list of values of the property if isMultivalued
-	 * @param isMultivalued is the property multivalued or not
-	 * @param selectedProp the selected property
-	 * @param currentStereotype the stereotype associated to selectedProp
+	 * @param selectedElt
+	 *        the element that owns the stereotype
+	 * @param value
+	 *        the current value or list of values of the property if isMultivalued
+	 * @param isMultivalued
+	 *        is the property multivalued or not
+	 * @param selectedProp
+	 *        the selected property
+	 * @param currentStereotype
+	 *        the stereotype associated to selectedProp
 	 */
 	private void itemDClicked() {
 		// selected value index
 		int index = table.getSelectionIndex();
-		
+
 		// Current Enumeration
-		Enumeration enumeration = (Enumeration) property.getType();
-		
+		Enumeration enumeration = (Enumeration)property.getType();
+
 		// Create and Open combo box
 		InputDialogEnumeration valueDialog = new InputDialogEnumeration(parent.getShell(), property, value, index);
 		int val = valueDialog.open();
 
 		int literalIdx;
-		if ((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
+		if((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
 			literalIdx = valueDialog.getSelectionIndex();
-			if (isMultivalued) {
+			if(isMultivalued) {
 				values.set(index, enumeration.getOwnedLiterals().get(literalIdx));
 				element.setValue(stereotype, property.getName(), values);
-				
+
 			} else {
 				Object selectedLiteral = enumeration.getOwnedLiterals().get(literalIdx);
-				element.setValue(stereotype, property.getName(),selectedLiteral);
+				element.setValue(stereotype, property.getName(), selectedLiteral);
 			}
 			// Force model change
 			Util.touchModel(element);
 		}
-		
+
 		// Close dialog box and refresh table
 		valueDialog.close();
 		parent.refresh();

@@ -66,7 +66,7 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * @return single instance of EditingDomainRegistry
 	 */
 	public static EditingDomainRegistry getInstance() {
-		if (instance == null) {
+		if(instance == null) {
 			instance = new EditingDomainRegistry();
 		}
 		return instance;
@@ -76,7 +76,7 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * Start listening.
 	 */
 	private void startListening() {
-		if (listening) {
+		if(listening) {
 			return;
 		}
 		try {
@@ -93,9 +93,9 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * Calculate key.
 	 * 
 	 * @param editorID
-	 *            the editor id
+	 *        the editor id
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * 
 	 * @return the string
 	 */
@@ -109,9 +109,9 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * Gets the.
 	 * 
 	 * @param editorID
-	 *            the editor id
+	 *        the editor id
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * 
 	 * @return the transactional editing domain
 	 */
@@ -122,7 +122,7 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 		String key = calculateKey(editorID, uri);
 		TransactionalEditingDomain oldDomain = null;
 		TransactionalEditingDomain newDomain = null;
-		if (containsKey(key)) {
+		if(containsKey(key)) {
 			oldDomain = super.get(key);
 			oldDomain.getCommandStack().flush();
 			return oldDomain;
@@ -145,10 +145,10 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 			}
 
 			public void notifyChanged(Notification notification) {
-				if (diagramResourceModifiedFilter.matches(notification)) {
+				if(diagramResourceModifiedFilter.matches(notification)) {
 					Object value = notification.getNewValue();
-					if (value instanceof Resource) {
-						((Resource) value).setTrackingModification(true);
+					if(value instanceof Resource) {
+						((Resource)value).setTrackingModification(true);
 					}
 				}
 			}
@@ -169,27 +169,27 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 */
 	@Override
 	public TransactionalEditingDomain get(Object okey) {
-		if (okey == null || okey instanceof String == false) {
+		if(okey == null || okey instanceof String == false) {
 			return null;
 		}
-		return get((String) okey, null);
+		return get((String)okey, null);
 	}
 
 	/**
 	 * Gets the uri from i editor input.
 	 * 
 	 * @param input
-	 *            the input
+	 *        the input
 	 * 
 	 * @return the uri from i editor input
 	 */
 	private String getUriFromIEditorInput(IEditorInput input) {
 		String uri = null;
-		if (input instanceof FileEditorInput) {
-			uri = ((FileEditorInput) input).getPath().toString();
+		if(input instanceof FileEditorInput) {
+			uri = ((FileEditorInput)input).getPath().toString();
 			uri = MDTUtil.fullFilePathToResourceURI(uri).toString();
-		} else if (input instanceof URIEditorInput) {
-			uri = ((URIEditorInput) input).getURI().trimFragment().toString();
+		} else if(input instanceof URIEditorInput) {
+			uri = ((URIEditorInput)input).getURI().trimFragment().toString();
 		}
 		return uri;
 	}
@@ -198,15 +198,15 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * Gets the iD from editor.
 	 * 
 	 * @param editor
-	 *            the editor
+	 *        the editor
 	 * 
 	 * @return the iD from editor
 	 */
 	private String getIDFromEditor(IEditorPart editor) {
-		if (editor instanceof CachedResourcesDiagramEditor) {
-			IDocumentProvider documentProvider = ((CachedResourcesDiagramEditor) editor).getDocumentProvider();
-			if (documentProvider instanceof CachedResourcesDocumentProvider) {
-				return ((CachedResourcesDocumentProvider) documentProvider).getEditingDomainID();
+		if(editor instanceof CachedResourcesDiagramEditor) {
+			IDocumentProvider documentProvider = ((CachedResourcesDiagramEditor)editor).getDocumentProvider();
+			if(documentProvider instanceof CachedResourcesDocumentProvider) {
+				return ((CachedResourcesDocumentProvider)documentProvider).getEditingDomainID();
 			}
 		}
 		return null;
@@ -216,15 +216,15 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * Clean registry.
 	 * 
 	 * @param partReference
-	 *            the part reference
+	 *        the part reference
 	 */
 	private void cleanRegistry(IWorkbenchPartReference partReference) {
-		if (isChangingCachedEditors()) {
+		if(isChangingCachedEditors()) {
 			return;
 		}
-		if (partReference instanceof IEditorReference) {
+		if(partReference instanceof IEditorReference) {
 			List<IEditorReference> editors = new ArrayList<IEditorReference>();
-			for (IEditorReference editorReference : partReference.getPage().getEditorReferences()) {
+			for(IEditorReference editorReference : partReference.getPage().getEditorReferences()) {
 				editors.add(editorReference);
 			}
 			// editors.add((IEditorReference) partReference);
@@ -236,14 +236,14 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * Clean registry.
 	 * 
 	 * @param editors
-	 *            the editors
+	 *        the editors
 	 */
 	private void cleanRegistry(List<IEditorReference> editors) {
 		// get keys list from open editors
 		List<String> keys = new ArrayList<String>();
-		for (IEditorReference editor : editors) {
+		for(IEditorReference editor : editors) {
 			IEditorPart editorPart = editor.getEditor(false);
-			if (editorPart != null) {
+			if(editorPart != null) {
 				String uri = getUriFromIEditorInput(editorPart.getEditorInput());
 				String id = getIDFromEditor(editorPart);
 				String key = calculateKey(id, uri);
@@ -252,18 +252,18 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 		}
 		// find keys that are no longer in use
 		List<String> keysToRemove = new ArrayList<String>();
-		for (String key : keySet()) {
-			if (keys.contains(key) == false) {
+		for(String key : keySet()) {
+			if(keys.contains(key) == false) {
 				keysToRemove.add(key);
 			}
 		}
 		// remove unused keys
-		for (Entry<String, TransactionalEditingDomain> entry : entrySet()) {
-			if (keysToRemove.contains(entry.getKey())) {
+		for(Entry<String, TransactionalEditingDomain> entry : entrySet()) {
+			if(keysToRemove.contains(entry.getKey())) {
 				entry.getValue().dispose();
 			}
 		}
-		for (String key : keysToRemove) {
+		for(String key : keysToRemove) {
 			remove(key);
 		}
 	}
@@ -353,7 +353,7 @@ public class EditingDomainRegistry extends HashMap<String, TransactionalEditingD
 	 * Sets the changing cached editors.
 	 * 
 	 * @param changingCachedEditors
-	 *            the new changing cached editors
+	 *        the new changing cached editors
 	 */
 	public void setChangingCachedEditors(boolean changingCachedEditors) {
 		this.changingCachedEditors = changingCachedEditors;

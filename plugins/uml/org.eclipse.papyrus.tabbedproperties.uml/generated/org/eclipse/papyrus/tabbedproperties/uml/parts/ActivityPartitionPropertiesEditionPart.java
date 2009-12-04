@@ -55,15 +55,21 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -71,7 +77,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -80,7 +86,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -101,7 +107,9 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -116,14 +124,19 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -148,15 +161,21 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *        the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -164,7 +183,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter);
@@ -173,7 +192,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
@@ -194,7 +213,9 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isDimension
-	 * @param newValue the new isDimension to set
+	 * 
+	 * @param newValue
+	 *        the new isDimension to set
 	 */
 	public void setIsDimension(Boolean newValue);
 
@@ -209,7 +230,9 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isExternal
-	 * @param newValue the new isExternal to set
+	 * 
+	 * @param newValue
+	 *        the new isExternal to set
 	 */
 	public void setIsExternal(Boolean newValue);
 
@@ -234,15 +257,21 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Init the node
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the node
-	 * @param newValue the node to update
+	 * 
+	 * @param newValue
+	 *        the node to update
 	 */
 	public void updateNode(EObject newValue);
 
@@ -250,7 +279,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the node edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToNode(ViewerFilter filter);
@@ -259,7 +288,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the node edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToNode(ViewerFilter filter);
@@ -300,15 +329,21 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Init the subpartition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initSubpartition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the subpartition
-	 * @param newValue the subpartition to update
+	 * 
+	 * @param newValue
+	 *        the subpartition to update
 	 */
 	public void updateSubpartition(EObject newValue);
 
@@ -316,7 +351,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the subpartition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToSubpartition(ViewerFilter filter);
@@ -325,7 +360,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the subpartition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSubpartition(ViewerFilter filter);
@@ -356,15 +391,21 @@ public interface ActivityPartitionPropertiesEditionPart {
 
 	/**
 	 * Init the edge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the edge
-	 * @param newValue the edge to update
+	 * 
+	 * @param newValue
+	 *        the edge to update
 	 */
 	public void updateEdge(EObject newValue);
 
@@ -372,7 +413,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the edge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToEdge(ViewerFilter filter);
@@ -381,7 +422,7 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * Adds the given filter to the edge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToEdge(ViewerFilter filter);
@@ -390,11 +431,6 @@ public interface ActivityPartitionPropertiesEditionPart {
 	 * @return true if the given element is contained inside the edge table
 	 */
 	public boolean isContainedInEdgeTable(EObject element);
-
-
-
-
-
 
 
 

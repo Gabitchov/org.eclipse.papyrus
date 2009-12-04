@@ -26,7 +26,7 @@ public class Message {
 	 * Print error on screen.
 	 * 
 	 * @param msg
-	 *            the msg
+	 *        the msg
 	 */
 	public static void error(String msg) {
 		Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, msg));
@@ -36,7 +36,7 @@ public class Message {
 	 * Print warning on screen.
 	 * 
 	 * @param msg
-	 *            the msg
+	 *        the msg
 	 */
 	public static void warning(String msg) {
 		Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, msg));

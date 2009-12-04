@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -24,13 +24,15 @@ import org.eclipse.papyrus.di.GraphicPrimitive;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class GraphicPrimitiveImpl extends LeafElementImpl implements GraphicPrimitive {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphicPrimitiveImpl() {
@@ -40,6 +42,7 @@ public class GraphicPrimitiveImpl extends LeafElementImpl implements GraphicPrim
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

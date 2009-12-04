@@ -71,13 +71,13 @@ public class PropertyLabelScanner extends RuleBasedScanner implements IPropertyL
 		IRule[] rules = new IRule[2];
 
 		WordRule wordRule = new WordRule(new PropertyWordDetector(), other);
-		for (int i = 0; i < VisibilityCompletionProposal.visibilityStrings.length; i++) {
+		for(int i = 0; i < VisibilityCompletionProposal.visibilityStrings.length; i++) {
 			// wordRule.addWord(getWordWithoutQuotes(visibilityStrings[i]), keyword);
 		}
-		for (int i = 0; i < DerivedPropertyCompletionProposal.derivedPropertyStrings.length; i++) {
+		for(int i = 0; i < DerivedPropertyCompletionProposal.derivedPropertyStrings.length; i++) {
 			// wordRule.addWord(getWordWithoutQuotes(isDerivedStrings[i]), keyword);
 		}
-		for (int i = 0; i < PropertyModifierProposal.modifiersStrings.length; i++) {
+		for(int i = 0; i < PropertyModifierProposal.modifiersStrings.length; i++) {
 			wordRule.addWord(PropertyModifierProposal.modifiersStrings[i].trim(), keyword);
 		}
 

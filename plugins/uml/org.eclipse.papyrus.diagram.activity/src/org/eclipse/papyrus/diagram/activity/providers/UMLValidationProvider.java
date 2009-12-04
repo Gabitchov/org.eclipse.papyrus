@@ -41,10 +41,10 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 	/**
 	 * @generated
 	 */
-	public static void runWithConstraints(
-			TransactionalEditingDomain editingDomain, Runnable operation) {
+	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
+
 			public void run() {
 				try {
 					constraintsActive = true;
@@ -58,8 +58,7 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Validation failed", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError("Validation failed", e); //$NON-NLS-1$
 			}
 		} else {
 			task.run();
@@ -69,8 +68,7 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 	/**
 	 * @generated
 	 */
-	protected IAction createAction(String actionId,
-			IWorkbenchPartDescriptor partDescriptor) {
+	protected IAction createAction(String actionId, IWorkbenchPartDescriptor partDescriptor) {
 		if (ValidateAction.VALIDATE_ACTION_KEY.equals(actionId)) {
 			return new ValidateAction(partDescriptor);
 		}
@@ -85,9 +83,7 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive
-					&& PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
-							.getModelID((View) object));
+			return constraintsActive && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}

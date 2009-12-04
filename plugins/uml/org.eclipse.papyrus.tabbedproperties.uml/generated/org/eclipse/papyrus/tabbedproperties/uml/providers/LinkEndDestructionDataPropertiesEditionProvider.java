@@ -40,7 +40,7 @@ public class LinkEndDestructionDataPropertiesEditionProvider implements IPropert
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof LinkEndDestructionData) {
+		if(eObject instanceof LinkEndDestructionData) {
 			return new LinkEndDestructionDataPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class LinkEndDestructionDataPropertiesEditionProvider implements IPropert
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof LinkEndDestructionData) {
-			if (LinkEndDestructionDataBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof LinkEndDestructionData) {
+			if(LinkEndDestructionDataBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new LinkEndDestructionDataBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

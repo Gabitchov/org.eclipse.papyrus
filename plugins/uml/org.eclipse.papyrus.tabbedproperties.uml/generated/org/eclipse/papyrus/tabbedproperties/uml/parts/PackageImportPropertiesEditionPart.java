@@ -29,21 +29,21 @@ public interface PackageImportPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
-
-
-
-
-
 
 
 

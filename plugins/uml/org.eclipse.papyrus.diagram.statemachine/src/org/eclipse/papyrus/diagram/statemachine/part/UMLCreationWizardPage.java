@@ -49,11 +49,11 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	protected IPath getFilePath() {
 		IPath path = getContainerFullPath();
-		if (path == null) {
+		if(path == null) {
 			path = new Path(""); //$NON-NLS-1$
 		}
 		String fileName = getFileName();
-		if (fileName != null) {
+		if(fileName != null) {
 			path = path.append(fileName);
 		}
 		return path;
@@ -75,11 +75,11 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	@Override
 	protected boolean validatePage() {
-		if (!super.validatePage()) {
+		if(!super.validatePage()) {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null
+		if(extension != null
 				&& !getFilePath().toString().endsWith("." + extension)) {
 			setErrorMessage(NLS.bind(
 					Messages.UMLCreationWizardPageExtensionError, extension));
@@ -90,12 +90,13 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
 	 * #174315 Automatically set diagram file extension
+	 * 
 	 * @generated
 	 */
 	@Override
 	public IWizardPage getNextPage() {
 		IWizardPage nextPage = super.getNextPage();
-		if ("DiagramModelFile".equals(getName())
+		if("DiagramModelFile".equals(getName())
 				&& "DomainModelFile".equals(nextPage.getName())) {
 			setDomainFileName(nextPage);
 		}
@@ -104,13 +105,14 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
 	 * #174315 Automatically set diagram file extension
+	 * 
 	 * @generated
 	 */
 	protected void setDomainFileName(IWizardPage nextPage) {
-		UMLCreationWizardPage nextWizardPage = (UMLCreationWizardPage) nextPage;
+		UMLCreationWizardPage nextWizardPage = (UMLCreationWizardPage)nextPage;
 		String fileName = getFileName();
 		String extension = getExtension();
-		if (fileName.endsWith(extension)) {
+		if(fileName.endsWith(extension)) {
 			fileName = fileName.substring(0, fileName.length()
 					- extension.length());
 		}

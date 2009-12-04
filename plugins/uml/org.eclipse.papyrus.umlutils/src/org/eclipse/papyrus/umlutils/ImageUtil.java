@@ -60,22 +60,22 @@ public class ImageUtil {
 	 * Set the content of an {@link Image} with a file (containing an image).
 	 * 
 	 * @param image
-	 *            the UML {@link Image} to set
+	 *        the UML {@link Image} to set
 	 * @param imageFile
-	 *            the icon
+	 *        the icon
 	 */
 	// @unused
 	public static void setContent(Image image, File imageFile) {
 
 		try {
 			String rawImageData = "";
-			if (imageFile != null) {
+			if(imageFile != null) {
 				byte[] byteFlow = getBytesFromFile(imageFile);
 
 				rawImageData = "";
 
 				// file reading
-				for (byte element : byteFlow) {
+				for(byte element : byteFlow) {
 					rawImageData = rawImageData + element + "%";
 				}
 			} else {
@@ -94,18 +94,18 @@ public class ImageUtil {
 	 * Get the content of an {@link Image} as {@link org.eclipse.swt.graphics.Image}
 	 * 
 	 * @param image
-	 *            the UML {@link Image} to set
+	 *        the UML {@link Image} to set
 	 * 
 	 * @return {@link org.eclipse.swt.graphics.Image} content
 	 */
 	public static org.eclipse.swt.graphics.Image getContent(Image image) {
 
-		if (image == null) {
+		if(image == null) {
 			// null parameter
 			return null;
 		}
 
-		if (image.getContent() == null) {
+		if(image.getContent() == null) {
 			// null image
 			return null;
 		}
@@ -117,7 +117,7 @@ public class ImageUtil {
 
 		// decoding image
 		int j = 0;
-		while (strToken.hasMoreTokens()) {
+		while(strToken.hasMoreTokens()) {
 			target[j] = (new Byte(strToken.nextToken()).byteValue());
 			j++;
 		}
@@ -129,11 +129,10 @@ public class ImageUtil {
 	}
 
 	/**
-	 * Get the image specified by the location property of an {@link Image} as
-	 * {@link org.eclipse.swt.graphics.Image}
+	 * Get the image specified by the location property of an {@link Image} as {@link org.eclipse.swt.graphics.Image}
 	 * 
 	 * @param image
-	 *            the UML {@link Image} to set
+	 *        the UML {@link Image} to set
 	 * 
 	 * @return {@link org.eclipse.swt.graphics.Image} image
 	 */
@@ -144,10 +143,10 @@ public class ImageUtil {
 		// Try to instantiate an SWT image from the path stored
 		// in UML Image location property
 		String location = image.getLocation();
-		if ((location != null) && !("".equals(location))) {
+		if((location != null) && !("".equals(location))) {
 
 			URI iconURI = URI.createURI(location);
-			if (iconURI.isRelative()) {
+			if(iconURI.isRelative()) {
 				URI pluginURI = URI.createPlatformPluginURI(location, true);
 				iconURI = iconURI.resolve(pluginURI);
 			}
@@ -159,7 +158,7 @@ public class ImageUtil {
 			} catch (Exception e) {
 				Activator.getDefault().getLog().log(
 						new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Could not create image from location : "
-								+ location, e));
+						+ location, e));
 			}
 		}
 
@@ -170,12 +169,12 @@ public class ImageUtil {
 	 * Read an image file content.
 	 * 
 	 * @param file
-	 *            the file
+	 *        the file
 	 * 
 	 * @return a table of bytes of the file content
 	 * 
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *         Signals that an I/O exception has occurred.
 	 */
 	public static byte[] getBytesFromFile(File file) throws IOException {
 
@@ -188,22 +187,22 @@ public class ImageUtil {
 		// It needs to be an int type.
 		// Before converting to an int type, check
 		// to ensure that file is not larger than Integer.MAX_VALUE.
-		if (length > Integer.MAX_VALUE) {
+		if(length > Integer.MAX_VALUE) {
 			throw new IOException("Image too big to encode");
 		}
 
 		// Create the byte array to hold the data
-		byte[] bytes = new byte[(int) length];
+		byte[] bytes = new byte[(int)length];
 
 		// Read in the bytes
 		int offset = 0;
 		int numRead = 0;
-		while ((offset < bytes.length) && ((numRead = is.read(bytes, offset, bytes.length - offset)) >= 0)) {
+		while((offset < bytes.length) && ((numRead = is.read(bytes, offset, bytes.length - offset)) >= 0)) {
 			offset += numRead;
 		}
 
 		// Ensure all the bytes have been read in
-		if (offset < bytes.length) {
+		if(offset < bytes.length) {
 			throw new IOException("Could not completely read file " + file.getName());
 		}
 
@@ -217,27 +216,27 @@ public class ImageUtil {
 	 * Associates an expression to an image.
 	 * 
 	 * @param image
-	 *            the image
+	 *        the image
 	 * @param expression
-	 *            the expression
+	 *        the expression
 	 */
 	// @unused
 	public static void setExpression(org.eclipse.uml2.uml.Image image, String expression) {
 
 		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
 		// Create annotation for icon selection if it does not exist
-		if (ea_Image == null) {
+		if(ea_Image == null) {
 			ea_Image = image.createEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
 		}
 
 		// If expression == "" remove the EAnnotation
-		if ("".equals(expression)) {
+		if("".equals(expression)) {
 			ea_Image.getDetails().removeKey(IMAGE_EXPR_KEY);
 		} else {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_EXPR_KEY, expression);
 		}
 
-		if (!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
+		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
 				&& !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
 			ea_Image.setEModelElement(null);
 		}
@@ -247,7 +246,7 @@ public class ImageUtil {
 	 * Returns the expression associated to the image.
 	 * 
 	 * @param image
-	 *            the image
+	 *        the image
 	 * 
 	 * @return the expression associated to the image
 	 */
@@ -255,7 +254,7 @@ public class ImageUtil {
 		EAnnotation ea_ImageExpr = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
 
 		String expr = null;
-		if ((ea_ImageExpr != null) && (ea_ImageExpr.getDetails().containsKey(ImageUtil.IMAGE_EXPR_KEY))) {
+		if((ea_ImageExpr != null) && (ea_ImageExpr.getDetails().containsKey(ImageUtil.IMAGE_EXPR_KEY))) {
 			expr = ea_ImageExpr.getDetails().get(ImageUtil.IMAGE_EXPR_KEY);
 		}
 		return expr;
@@ -265,27 +264,27 @@ public class ImageUtil {
 	 * Associates kind to an image.
 	 * 
 	 * @param image
-	 *            the image
+	 *        the image
 	 * @param kind
-	 *            of image (icon / shape)
+	 *        of image (icon / shape)
 	 */
 	// @unused
 	public static void setKind(org.eclipse.uml2.uml.Image image, String kind) {
 
 		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
 		// Create annotation for icon selection if it does not exist
-		if (ea_Image == null) {
+		if(ea_Image == null) {
 			ea_Image = image.createEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
 		}
 
 		// If expression == "" remove the EAnnotation
-		if ("".equals(kind)) {
+		if("".equals(kind)) {
 			ea_Image.getDetails().removeKey(IMAGE_KIND_KEY);
 		} else {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_KIND_KEY, kind);
 		}
 
-		if (!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
+		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
 				&& !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
 			ea_Image.setEModelElement(null);
 		}
@@ -295,7 +294,7 @@ public class ImageUtil {
 	 * Returns the kind of the image (icon or shape for Papyrus).
 	 * 
 	 * @param image
-	 *            the image
+	 *        the image
 	 * 
 	 * @return kind of image
 	 */
@@ -303,7 +302,7 @@ public class ImageUtil {
 		EAnnotation ea_ImageExpr = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
 
 		String kind = null;
-		if ((ea_ImageExpr != null) && (ea_ImageExpr.getDetails().containsKey(ImageUtil.IMAGE_KIND_KEY))) {
+		if((ea_ImageExpr != null) && (ea_ImageExpr.getDetails().containsKey(ImageUtil.IMAGE_KIND_KEY))) {
 			kind = ea_ImageExpr.getDetails().get(ImageUtil.IMAGE_KIND_KEY);
 		}
 		return kind;
@@ -313,9 +312,9 @@ public class ImageUtil {
 	 * Evaluates the "Expression" EAnnotation associated to the image.
 	 * 
 	 * @param element
-	 *            on which the stereotype (owning current image) is applied
+	 *        on which the stereotype (owning current image) is applied
 	 * @param image
-	 *            the image
+	 *        the image
 	 * 
 	 * @return true if the expression is correct
 	 */
@@ -328,18 +327,18 @@ public class ImageUtil {
 
 		String propName = null;
 		String literal = null;
-		Stereotype st = (Stereotype) image.getOwner();
+		Stereotype st = (Stereotype)image.getOwner();
 
 		// Retrieve Expression
 		String expression = ImageUtil.getExpression(image);
-		if (expression == null) {
+		if(expression == null) {
 			// No expression to check
 			return false;
 		}
 
 		// Parse and test expression
 		StringTokenizer sToken = new StringTokenizer(expression.replace(" ", ""), "=");
-		if (sToken.countTokens() == 2) {
+		if(sToken.countTokens() == 2) {
 			propName = sToken.nextToken();
 			literal = sToken.nextToken();
 
@@ -348,12 +347,12 @@ public class ImageUtil {
 			return false;
 		}
 
-		if (element.getValue(st, propName) != null) {
+		if(element.getValue(st, propName) != null) {
 			/* extract property value from applied stereotype */
 			Object val = element.getValue(st, propName);
 
-			if (val instanceof EnumerationLiteral) {
-				if (((EnumerationLiteral) val).getLabel().equals(literal)) {
+			if(val instanceof EnumerationLiteral) {
+				if(((EnumerationLiteral)val).getLabel().equals(literal)) {
 					return true;
 				}
 			}
@@ -366,9 +365,9 @@ public class ImageUtil {
 	 * Test expression on every image, stop on first verified expression.
 	 * 
 	 * @param element
-	 *            the element to check
+	 *        the element to check
 	 * @param images
-	 *            the list of images to check
+	 *        the list of images to check
 	 * 
 	 * @return first image verifying its expression
 	 */
@@ -376,9 +375,9 @@ public class ImageUtil {
 
 		Image image = null;
 		Iterator<Image> it = images.iterator();
-		while ((image == null) && it.hasNext()) {
+		while((image == null) && it.hasNext()) {
 			Image current = it.next();
-			if (ImageUtil.evalExpression(current, element)) {
+			if(ImageUtil.evalExpression(current, element)) {
 				image = current;
 			}
 		}
@@ -390,14 +389,14 @@ public class ImageUtil {
 	 * Create an Id to store and retrieve image (SWT) In registry.
 	 * 
 	 * @param image
-	 *            the image
+	 *        the image
 	 * 
 	 * @return the image id
 	 */
 	public static String getImageId(Image image) {
 		String id = "";
 
-		Stereotype owner = (Stereotype) image.getOwner();
+		Stereotype owner = (Stereotype)image.getOwner();
 		id += owner.getQualifiedName() + "_img_" + owner.getIcons().indexOf(image);
 
 		return id;

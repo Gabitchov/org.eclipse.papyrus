@@ -54,7 +54,7 @@ public class DeleteDiagramAction extends Action {
 	@Override
 	public void run() {
 		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 
 			// Create a compound command containing removing of the sash and removing from GMF
 			// resource.

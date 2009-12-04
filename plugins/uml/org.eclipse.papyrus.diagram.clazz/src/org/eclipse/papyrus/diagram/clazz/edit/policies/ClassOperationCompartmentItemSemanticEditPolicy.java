@@ -35,10 +35,10 @@ public class ClassOperationCompartmentItemSemanticEditPolicy extends UMLBaseItem
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Reception_3011 == req.getElementType()) {
+		if(UMLElementTypes.Reception_3011 == req.getElementType()) {
 			return getGEFWrapper(new ReceptionCreateCommand(req));
 		}
-		if (UMLElementTypes.Operation_3013 == req.getElementType()) {
+		if(UMLElementTypes.Operation_3013 == req.getElementType()) {
 			return getGEFWrapper(new Operation3CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

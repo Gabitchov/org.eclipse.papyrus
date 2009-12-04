@@ -38,7 +38,7 @@ public class CreateDiagramAction extends Action {
 	 * Constructor
 	 * 
 	 * @param selectedObject
-	 *            the selected Element on which the diagram is to be associated
+	 *        the selected Element on which the diagram is to be associated
 	 */
 	public CreateDiagramAction(PackageableElement selectedElement, CreationCommandDescriptor commandDescriptor) {
 		this.container = selectedElement;
@@ -64,7 +64,7 @@ public class CreateDiagramAction extends Action {
 	public void run() {
 
 		// Start LOG
-		if (log.isDebugEnabled()) {
+		if(log.isDebugEnabled()) {
 			log.debug("Start - CreateDiagramAction#run"); //$NON-NLS-1$
 		}
 
@@ -77,13 +77,13 @@ public class CreateDiagramAction extends Action {
 		}
 
 		// END LOG
-		if (log.isDebugEnabled()) {
+		if(log.isDebugEnabled()) {
 			log.debug("End - CreateDiagramAction#run"); //$NON-NLS-1$
 		}
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if (creationCommandRegistry == null) {
+		if(creationCommandRegistry == null) {
 			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		}
 		return creationCommandRegistry;

@@ -39,13 +39,9 @@ public class OpaqueActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getOpaqueAction_2014SemanticChildren(viewObject).iterator(); it
-				.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next())
-					.getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
-					nextValue)) {
+		for (Iterator it = UMLDiagramUpdater.getOpaqueAction_2014SemanticChildren(viewObject).iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -62,8 +58,7 @@ public class OpaqueActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
-					(View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case OutputPin2EditPart.VISUAL_ID:
 			case InputPin4EditPart.VISUAL_ID:
@@ -90,10 +85,8 @@ public class OpaqueActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getOpaqueAction_OutputValue());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getOpaqueAction_InputValue());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getOpaqueAction_OutputValue());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getOpaqueAction_InputValue());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -120,5 +113,5 @@ public class OpaqueActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	public boolean canCreate(EObject object) {
 		return false;
 	}
-	
+
 }

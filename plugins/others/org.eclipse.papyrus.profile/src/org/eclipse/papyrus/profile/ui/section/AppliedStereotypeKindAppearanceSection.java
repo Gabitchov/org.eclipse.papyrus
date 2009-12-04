@@ -109,9 +109,9 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	 * Creates the controls.
 	 * 
 	 * @param tabbedPropertySheetPage
-	 *            the tabbed property sheet page
+	 *        the tabbed property sheet page
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -137,10 +137,10 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 		comboStereotypeAppearanceListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if (diagramElement != null) {
-					if (((View) (diagramElement)).getElement() != null) {
+				if(diagramElement != null) {
+					if(((View)(diagramElement)).getElement() != null) {
 
-						org.eclipse.uml2.uml.Element elt = (Element) ((View) (diagramElement)).getElement();
+						org.eclipse.uml2.uml.Element elt = (Element)((View)(diagramElement)).getElement();
 
 						// get the first displayed stereotype
 						Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, elt);
@@ -149,13 +149,13 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 						boolean hasShapes = ElementUtil.hasShapes(elt, stereotype);
 						String appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 						String stereotypeAppearance = comboStereotypeAppearance.getText();
-						if (stereotypeAppearance.equals(TEXT)) {
+						if(stereotypeAppearance.equals(TEXT)) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-						} else if (stereotypeAppearance.equals(ICON) && hasIcons) {
+						} else if(stereotypeAppearance.equals(ICON) && hasIcons) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION;
-						} else if (stereotypeAppearance.equals(TEXT_AND_ICON) && hasIcons) {
+						} else if(stereotypeAppearance.equals(TEXT_AND_ICON) && hasIcons) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION;
-						} else if (stereotypeAppearance.equals(SHAPE) && hasShapes) {
+						} else if(stereotypeAppearance.equals(SHAPE) && hasShapes) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION;
 						}
 						String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(diagramElement);
@@ -188,13 +188,13 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 		comboStereotypeAlignementListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if (diagramElement != null) {
-					if (((View) (diagramElement)).getElement() != null) {
+				if(diagramElement != null) {
+					if(((View)(diagramElement)).getElement() != null) {
 
 						String appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-						if (comboStereotypeAlignement.getText().equals(HORIZONTAL)) {
+						if(comboStereotypeAlignement.getText().equals(HORIZONTAL)) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
-						} else if (comboStereotypeAlignement.getText().equals(VERTICAL)) {
+						} else if(comboStereotypeAlignement.getText().equals(VERTICAL)) {
 							appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION;
 						}
 						String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(diagramElement);
@@ -230,7 +230,7 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 		comboStereotypeDisplayListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if (diagramElement != null) {
+				if(diagramElement != null) {
 					stereotypePlacePresentation = comboStereotypeDisplayPlace.getText();
 
 					RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, diagramElement, stereotypePlacePresentation);
@@ -251,11 +251,11 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (selection instanceof IStructuredSelection) {
-			Object input = ((IStructuredSelection) selection).getFirstElement();
+		if(selection instanceof IStructuredSelection) {
+			Object input = ((IStructuredSelection)selection).getFirstElement();
 
-			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
-				diagramElement = (EModelElement) ((GraphicalEditPart) input).getModel();
+			if(input instanceof GraphicalEditPart && ((GraphicalEditPart)input).getModel() instanceof View) {
+				diagramElement = (EModelElement)((GraphicalEditPart)input).getModel();
 			} else {
 				// re-init the diagram element. Else, could cause a bug,
 				// when the user selects a diagram element, then a non diagram element.
@@ -263,14 +263,14 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 				diagramElement = null;
 			}
 			// When the selection is computed from the outline, get the associated editor
-			if (part instanceof ContentOutline) {
-				IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
-				if (contributedView != null) {
-					part = (IWorkbenchPart) contributedView.getContributingPart();
+			if(part instanceof ContentOutline) {
+				IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part).getAdapter(IContributedContentsView.class));
+				if(contributedView != null) {
+					part = (IWorkbenchPart)contributedView.getContributingPart();
 				}
 			}
-			if (part instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor editor = (IMultiDiagramEditor) part;
+			if(part instanceof IMultiDiagramEditor) {
+				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
 				BackboneContext backbone = editor.getDefaultContext();
 				domain = editor.getDefaultContext().getTransactionalEditingDomain();
 			} else
@@ -289,11 +289,11 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	}
 
 	private void refreshStereotypeDisplayLocation() {
-		if (comboStereotypeDisplayPlace != null && !comboStereotypeDisplayPlace.isDisposed()) {
+		if(comboStereotypeDisplayPlace != null && !comboStereotypeDisplayPlace.isDisposed()) {
 			comboStereotypeDisplayPlace.removeSelectionListener(comboStereotypeDisplayListener);
 
-			if (diagramElement != null) {
-				if (isComboEnabled()) {
+			if(diagramElement != null) {
+				if(isComboEnabled()) {
 					comboStereotypeDisplayPlace.setEnabled(true);
 					stereotypePlacePresentation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(diagramElement);
 					comboStereotypeDisplayPlace.setText(stereotypePlacePresentation);
@@ -307,10 +307,11 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	}
 
 	/**
-	 * Helper method to indicate whether comboStereotypePropertiesPlace is enabled or not. The combo is enabled only within class and requirement diagram
+	 * Helper method to indicate whether comboStereotypePropertiesPlace is enabled or not. The combo is enabled only within class and requirement
+	 * diagram
 	 */
 	private boolean isComboEnabled() {
-		if (!AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(diagramElement).equals("")) {
+		if(!AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(diagramElement).equals("")) {
 			return true;
 		}
 		return false;
@@ -320,38 +321,38 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	 * Refresh Stereotype Alignement combo.
 	 */
 	private void refreshStereotypeAlignment() {
-		if (!comboStereotypeAlignement.isDisposed()) {
+		if(!comboStereotypeAlignement.isDisposed()) {
 
 			comboStereotypeAlignement.removeSelectionListener(comboStereotypeAlignementListener);
 
-			if (diagramElement != null) {
-				if (((View) (diagramElement)).getElement() != null && ((Element) ((View) (diagramElement)).getElement()).getAppliedStereotypes().size() != 0) {
+			if(diagramElement != null) {
+				if(((View)(diagramElement)).getElement() != null && ((Element)((View)(diagramElement)).getElement()).getAppliedStereotypes().size() != 0) {
 					comboStereotypeAlignement.setEnabled(true);
 
 					final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 
-					if (stereotypePresentation != null) {
+					if(stereotypePresentation != null) {
 
-						org.eclipse.uml2.uml.Element elt = (Element) ((View) (diagramElement)).getElement();
+						org.eclipse.uml2.uml.Element elt = (Element)((View)(diagramElement)).getElement();
 						// get the first displayed stereotype
 						Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, elt);
 
 						boolean hasIcons = ElementUtil.hasIcons(elt, stereotype);
 						boolean hasShapes = ElementUtil.hasShapes(elt, stereotype);
 
-						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+						if(stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAlignement.setEnabled(false);
-						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+						} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAlignement.setEnabled(true);
-						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
+						} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
 							comboStereotypeAlignement.setEnabled(false);
 						} else {
 							comboStereotypeAlignement.setEnabled(true);
 						}
 
-						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION)) {
+						if(stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION)) {
 							comboStereotypeAlignement.setText(HORIZONTAL);
-						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION)) {
+						} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION)) {
 							comboStereotypeAlignement.setText(VERTICAL);
 						} else {
 							comboStereotypeAlignement.setText(HORIZONTAL);
@@ -374,28 +375,28 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	 * Refresh Stereotype appearance combo.
 	 */
 	private void refreshStereotypeAppearance() {
-		if (!comboStereotypeAppearance.isDisposed()) {
+		if(!comboStereotypeAppearance.isDisposed()) {
 			comboStereotypeAppearance.removeSelectionListener(comboStereotypeAppearanceListener);
 
-			if (diagramElement != null) {
-				if (((View) (diagramElement)).getElement() != null && ((Element) ((View) (diagramElement)).getElement()).getAppliedStereotypes().size() != 0) {
+			if(diagramElement != null) {
+				if(((View)(diagramElement)).getElement() != null && ((Element)((View)(diagramElement)).getElement()).getAppliedStereotypes().size() != 0) {
 					comboStereotypeAppearance.setEnabled(true);
 
 					final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 
-					if (stereotypePresentation != null) {
+					if(stereotypePresentation != null) {
 
-						org.eclipse.uml2.uml.Element elt = (Element) ((View) (diagramElement)).getElement();
+						org.eclipse.uml2.uml.Element elt = (Element)((View)(diagramElement)).getElement();
 						// get the first displayed stereotype
 						Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, elt);
 
 						boolean hasIcons = ElementUtil.hasIcons(elt, stereotype);
 						boolean hasShapes = ElementUtil.hasShapes(elt, stereotype);
-						if (stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+						if(stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAppearance.setText(ICON);
-						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+						} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 							comboStereotypeAppearance.setText(TEXT_AND_ICON);
-						} else if (stereotypePresentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
+						} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
 							comboStereotypeAppearance.setText(SHAPE);
 						} else {
 							comboStereotypeAppearance.setText(TEXT);
@@ -419,16 +420,16 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	 * {@inheritDoc}
 	 */
 	public void dispose() {
-		if (comboStereotypeAppearance != null && !comboStereotypeAppearance.isDisposed()) {
+		if(comboStereotypeAppearance != null && !comboStereotypeAppearance.isDisposed()) {
 			comboStereotypeAppearance.removeSelectionListener(comboStereotypeAppearanceListener);
 		}
-		if (comboStereotypeAlignement != null && !comboStereotypeAlignement.isDisposed()) {
+		if(comboStereotypeAlignement != null && !comboStereotypeAlignement.isDisposed()) {
 			comboStereotypeAlignement.removeSelectionListener(comboStereotypeAlignementListener);
 		}
-		if (comboStereotypeDisplayPlace != null && !comboStereotypeDisplayPlace.isDisposed()) {
+		if(comboStereotypeDisplayPlace != null && !comboStereotypeDisplayPlace.isDisposed()) {
 			comboStereotypeDisplayPlace.removeSelectionListener(comboStereotypeDisplayListener);
 		}
-		if (diagramElement != null) {
+		if(diagramElement != null) {
 			diagramElement.eAdapters().remove(this);
 		}
 		super.dispose();

@@ -25,7 +25,7 @@ public interface ViewResolver {
 	 * Checks if is e object node.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return true, if is e object node
 	 */
@@ -35,7 +35,7 @@ public interface ViewResolver {
 	 * Checks if is e object link.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return true, if is e object link
 	 */
@@ -45,7 +45,7 @@ public interface ViewResolver {
 	 * Gets the e object semantic hint.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return the e object semantic hint
 	 */

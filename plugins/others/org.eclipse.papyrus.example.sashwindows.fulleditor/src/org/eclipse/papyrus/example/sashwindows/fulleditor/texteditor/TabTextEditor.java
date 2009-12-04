@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.example.sashwindows.fulleditor.texteditor;
 
 import org.eclipse.ui.editors.text.TextEditor;
@@ -18,6 +18,7 @@ import org.eclipse.ui.editors.text.TextEditor;
 
 /**
  * A TextEditor that can be used as Tab of a sashes window.
+ * 
  * @author dumoulin
  */
 public class TabTextEditor extends TextEditor {
@@ -29,8 +30,7 @@ public class TabTextEditor extends TextEditor {
 	}
 
 	/**
-	 * Set the name of this part.
-	 * {@inheritDoc}
+	 * Set the name of this part. {@inheritDoc}
 	 */
 	@Override
 	public void setPartName(String partName) {

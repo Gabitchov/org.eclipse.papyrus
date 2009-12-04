@@ -31,53 +31,53 @@ import java.util.List;
  */
 public final class ClassOrInterfaceType extends Type {
 
-    private ClassOrInterfaceType scope;
+	private ClassOrInterfaceType scope;
 
-    private String name;
+	private String name;
 
-    private List<Type> typeArgs;
+	private List<Type> typeArgs;
 
-    public ClassOrInterfaceType() {
-    }
+	public ClassOrInterfaceType() {
+	}
 
-    public ClassOrInterfaceType(int beginLine, int beginColumn, int endLine, int endColumn, ClassOrInterfaceType scope, String name, List<Type> typeArgs) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.scope = scope;
-        this.name = name;
-        this.typeArgs = typeArgs;
-    }
+	public ClassOrInterfaceType(int beginLine, int beginColumn, int endLine, int endColumn, ClassOrInterfaceType scope, String name, List<Type> typeArgs) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.scope = scope;
+		this.name = name;
+		this.typeArgs = typeArgs;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public ClassOrInterfaceType getScope() {
-        return scope;
-    }
+	public ClassOrInterfaceType getScope() {
+		return scope;
+	}
 
-    public List<Type> getTypeArgs() {
-        return typeArgs;
-    }
+	public List<Type> getTypeArgs() {
+		return typeArgs;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setScope(ClassOrInterfaceType scope) {
-        this.scope = scope;
-    }
+	public void setScope(ClassOrInterfaceType scope) {
+		this.scope = scope;
+	}
 
-    public void setTypeArgs(List<Type> typeArgs) {
-        this.typeArgs = typeArgs;
-    }
+	public void setTypeArgs(List<Type> typeArgs) {
+		this.typeArgs = typeArgs;
+	}
 }

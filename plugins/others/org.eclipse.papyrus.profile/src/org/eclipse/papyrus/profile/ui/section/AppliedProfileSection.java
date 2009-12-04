@@ -72,19 +72,19 @@ public class AppliedProfileSection extends AbstractPropertySection {
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (selection instanceof IStructuredSelection) {
-			Object input = ((IStructuredSelection) selection).getFirstElement();
-			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
-				GraphicalEditPart graphicalEditPart = (GraphicalEditPart) input;
-				View view = (View) graphicalEditPart.getModel();				
-				if (view.getElement() != null) {
+		if(selection instanceof IStructuredSelection) {
+			Object input = ((IStructuredSelection)selection).getFirstElement();
+			if(input instanceof GraphicalEditPart && ((GraphicalEditPart)input).getModel() instanceof View) {
+				GraphicalEditPart graphicalEditPart = (GraphicalEditPart)input;
+				View view = (View)graphicalEditPart.getModel();
+				if(view.getElement() != null) {
 					appliedProfileComposite.setSelection(selection);
 				}
-			}else if(input instanceof EModelElement){
+			} else if(input instanceof EModelElement) {
 				appliedProfileComposite.setSelection(selection);
 			}
-			if(part instanceof IEditingDomainProvider){
-				TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) ((IEditingDomainProvider)part).getEditingDomain();
+			if(part instanceof IEditingDomainProvider) {
+				TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
 				appliedProfileComposite.setDomain(editingDomain);
 			}
 		}
@@ -95,7 +95,7 @@ public class AppliedProfileSection extends AbstractPropertySection {
 	 */
 	public void dispose() {
 		super.dispose();
-		if (appliedProfileComposite != null)
+		if(appliedProfileComposite != null)
 			appliedProfileComposite.disposeListeners();
 	}
 }

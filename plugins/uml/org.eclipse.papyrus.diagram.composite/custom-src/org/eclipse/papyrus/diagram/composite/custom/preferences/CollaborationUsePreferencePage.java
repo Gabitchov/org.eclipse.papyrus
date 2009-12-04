@@ -51,7 +51,7 @@ public class CollaborationUsePreferencePage extends AbstractPapyrusElementPrefer
 		 * Default Constructor.
 		 * 
 		 * @param style
-		 *            of label display
+		 *        of label display
 		 */
 		public AppearenceSelectionListener(int style) {
 			this.style = style;
@@ -112,11 +112,11 @@ public class CollaborationUsePreferencePage extends AbstractPapyrusElementPrefer
 	 * Creates a button with the {@link SWT#CHECK} style.
 	 * 
 	 * @param parent
-	 *            the parent of the button
+	 *        the parent of the button
 	 * @param label
-	 *            the label of the button
+	 *        the label of the button
 	 * @param mask
-	 *            the value controlled by the button
+	 *        the value controlled by the button
 	 * @return the button created
 	 */
 	protected Button createCheckButton(Composite parent, String label, int mask) {
@@ -130,7 +130,7 @@ public class CollaborationUsePreferencePage extends AbstractPapyrusElementPrefer
 	 * Creates the group and check boxes to choose the kind of display
 	 * 
 	 * @param parent
-	 *            the parent composite that holds the group
+	 *        the parent composite that holds the group
 	 */
 	protected void createLabelPreferencesButtons(Composite parent) {
 		// create group that host the buttons
@@ -225,7 +225,7 @@ public class CollaborationUsePreferencePage extends AbstractPapyrusElementPrefer
 		IPreferenceStore store = getPreferenceStore();
 		// checks the stored value and the actual one, so does not refresh diagram if it is not
 		// needed
-		if (propertyValue != store.getInt(IPapyrusCollaborationUsePreferencesConstant.LABEL_DISPLAY_PREFERENCE)) {
+		if(propertyValue != store.getInt(IPapyrusCollaborationUsePreferencesConstant.LABEL_DISPLAY_PREFERENCE)) {
 			store.setValue(IPapyrusCollaborationUsePreferencesConstant.LABEL_DISPLAY_PREFERENCE, propertyValue);
 		}
 	}

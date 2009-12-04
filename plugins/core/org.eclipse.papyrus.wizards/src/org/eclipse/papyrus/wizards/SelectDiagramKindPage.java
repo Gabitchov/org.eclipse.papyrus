@@ -156,7 +156,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * Validate the changes on the page.
 	 */
 	private void dialogChanged() {
-		if ((nameText.getText() == null) || nameText.getText().length() == 0) {
+		if((nameText.getText() == null) || nameText.getText().length() == 0) {
 			updateStatus("The diagram name must entered");
 			return;
 		}
@@ -164,11 +164,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void fillList(CCombo list) {
-		for (CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+		for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
 			list.add(desc.getLabel());
 			list.setData(DIAGRAM_KIND_ID + list.getItemCount(), desc.getCommandId());
 		}
-		if (diagramList.getItemCount() > 0) {
+		if(diagramList.getItemCount() > 0) {
 			diagramList.select(0);
 			// Uncomment next if we always want a default diagram.
 			// Ensure that this is the ClassDiagram !!
@@ -178,7 +178,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private void handleListSelected() {
 		int i = diagramList.getSelectionIndex();
-		String diagramKindId = (String) diagramList.getData(DIAGRAM_KIND_ID + (i + 1));
+		String diagramKindId = (String)diagramList.getData(DIAGRAM_KIND_ID + (i + 1));
 		try {
 			this.creationCommand = getCreationCommandRegistry().getCommand(diagramKindId);
 		} catch (NotFoundException e) {
@@ -187,7 +187,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if (creationCommandRegistry == null) {
+		if(creationCommandRegistry == null) {
 			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		}
 		return creationCommandRegistry;
@@ -197,7 +197,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * Update page status.
 	 * 
 	 * @param message
-	 *            is the error message.
+	 *        is the error message.
 	 */
 	private void updateStatus(String message) {
 		setErrorMessage(message);

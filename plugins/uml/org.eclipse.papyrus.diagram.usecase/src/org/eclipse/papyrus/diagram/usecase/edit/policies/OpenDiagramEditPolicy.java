@@ -61,15 +61,15 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 	 */
 	protected Command getOpenCommand(Request request) {
 		EditPart targetEditPart = getTargetEditPart(request);
-		if (false == targetEditPart.getModel() instanceof View) {
+		if(false == targetEditPart.getModel() instanceof View) {
 			return null;
 		}
-		View view = (View) targetEditPart.getModel();
+		View view = (View)targetEditPart.getModel();
 		Style link = view.getStyle(NotationPackage.eINSTANCE.getHintedDiagramLinkStyle());
-		if (false == link instanceof HintedDiagramLinkStyle) {
+		if(false == link instanceof HintedDiagramLinkStyle) {
 			return null;
 		}
-		return new ICommandProxy(new OpenDiagramCommand((HintedDiagramLinkStyle) link));
+		return new ICommandProxy(new OpenDiagramCommand((HintedDiagramLinkStyle)link));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 				throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
-				if (diagram == null) {
+				if(diagram == null) {
 					diagram = intializeNewDiagram();
 				}
 				URI uri = EcoreUtil.getURI(diagram);
@@ -128,15 +128,15 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 */
 		protected Diagram intializeNewDiagram() throws ExecutionException {
 			Diagram d = ViewService.createDiagram(getDiagramDomainElement(), getDiagramKind(), getPreferencesHint());
-			if (d == null) {
+			if(d == null) {
 				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind");
 			}
 			diagramFacet.setDiagramLink(d);
 			assert diagramFacet.eResource() != null;
 			diagramFacet.eResource().getContents().add(d);
 			EObject container = diagramFacet.eContainer();
-			while (container instanceof View) {
-				((View) container).persist();
+			while(container instanceof View) {
+				((View)container).persist();
 				container = container.eContainer();
 			}
 			try {
@@ -145,10 +145,10 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException,
 							InterruptedException {
 						try {
-							for (Iterator it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it
+							for(Iterator it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it
 									.hasNext();) {
-								Resource nextResource = (Resource) it.next();
-								if (nextResource.isLoaded() && !getEditingDomain().isReadOnly(nextResource)) {
+								Resource nextResource = (Resource)it.next();
+								if(nextResource.isLoaded() && !getEditingDomain().isReadOnly(nextResource)) {
 									nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
 								}
 							}
@@ -170,7 +170,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 */
 		protected EObject getDiagramDomainElement() {
 			// use same element as associated with EP
-			return ((View) diagramFacet.eContainer()).getElement();
+			return ((View)diagramFacet.eContainer()).getElement();
 		}
 
 		/**

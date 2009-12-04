@@ -65,10 +65,10 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 
 	@Override
 	protected void initializeDiagram(EObject diagram) {
-		if (diagram != null) {
-			if (diagram instanceof Diagram) {
-				Diagram diag = (Diagram) diagram;
-				if (interaction != null) {
+		if(diagram != null) {
+			if(diagram instanceof Diagram) {
+				Diagram diag = (Diagram)diagram;
+				if(interaction != null) {
 					diag.setElement(interaction);
 					createInteractionGraph(interaction, diag);
 				}
@@ -83,7 +83,7 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 		TransactionalEditingDomain editingdomain = getDefaultContext().getResourceSet().getTransactionalEditingDomain();
 
 		EObject selectedElement = getSelectedElement();
-		if (selectedElement != null) {
+		if(selectedElement != null) {
 			// Create the request
 			CreateElementRequest request = new CreateElementRequest(editingdomain, selectedElement,
 					UMLElementTypes.Interaction_2001);
@@ -92,7 +92,7 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 			InteractionCreateCommand createCommand = InteractionCreateCommand.create(request, selectedElement);
 
 			// Execute the command
-			if (createCommand != null) {
+			if(createCommand != null) {
 				try {
 					createCommand.execute(null, null);
 				} catch (ExecutionException e) {
@@ -102,9 +102,9 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 			}
 
 			// retrieve the result
-			if (request != null) {
-				if (request.getNewElement() instanceof Interaction) {
-					interaction = (Interaction) (request.getNewElement());
+			if(request != null) {
+				if(request.getNewElement() instanceof Interaction) {
+					interaction = (Interaction)(request.getNewElement());
 				}
 			}
 		}
@@ -117,11 +117,11 @@ public class CreateSequenceDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 	@Override
 	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
 		Diagram diagram = null;
-		if (owner instanceof Package) {
+		if(owner instanceof Package) {
 			diagram = super.createDiagram(diagramResource, owner, name);
 		} else {
-			if (owner instanceof Element) {
-				Element element = (Element) owner;
+			if(owner instanceof Element) {
+				Element element = (Element)owner;
 				diagram = super.createDiagram(diagramResource, element.getModel(), name);
 			}
 		}

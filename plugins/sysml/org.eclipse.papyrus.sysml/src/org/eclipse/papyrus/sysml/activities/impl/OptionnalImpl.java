@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Parameter;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.OptionnalImpl#getBase_Parameter <em>Base
- * Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.OptionnalImpl#getBase_Parameter <em>Base Parameter</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,9 +71,9 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.OPTIONNAL__BASE_PARAMETER:
-			if (resolve)
+			if(resolve)
 				return getBase_Parameter();
 			return basicGetBase_Parameter();
 		}
@@ -88,7 +87,7 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.OPTIONNAL__BASE_PARAMETER:
 			return base_Parameter != null;
 		}
@@ -102,9 +101,9 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.OPTIONNAL__BASE_PARAMETER:
-			setBase_Parameter((Parameter) newValue);
+			setBase_Parameter((Parameter)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +126,9 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.OPTIONNAL__BASE_PARAMETER:
-			setBase_Parameter((Parameter) null);
+			setBase_Parameter((Parameter)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +140,11 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 	 * @generated
 	 */
 	public Parameter getBase_Parameter() {
-		if (base_Parameter != null && base_Parameter.eIsProxy()) {
-			InternalEObject oldBase_Parameter = (InternalEObject) base_Parameter;
-			base_Parameter = (Parameter) eResolveProxy(oldBase_Parameter);
-			if (base_Parameter != oldBase_Parameter) {
-				if (eNotificationRequired())
+		if(base_Parameter != null && base_Parameter.eIsProxy()) {
+			InternalEObject oldBase_Parameter = (InternalEObject)base_Parameter;
+			base_Parameter = (Parameter)eResolveProxy(oldBase_Parameter);
+			if(base_Parameter != oldBase_Parameter) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							ActivitiesPackage.OPTIONNAL__BASE_PARAMETER, oldBase_Parameter, base_Parameter));
 			}
@@ -161,7 +160,7 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 	public void setBase_Parameter(Parameter newBase_Parameter) {
 		Parameter oldBase_Parameter = base_Parameter;
 		base_Parameter = newBase_Parameter;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.OPTIONNAL__BASE_PARAMETER,
 					oldBase_Parameter, base_Parameter));
 	}

@@ -40,7 +40,7 @@ public class OperationPropertiesEditionProvider implements IPropertiesEditionPro
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Operation) {
+		if(eObject instanceof Operation) {
 			return new OperationPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class OperationPropertiesEditionProvider implements IPropertiesEditionPro
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Operation) {
-			if (OperationBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Operation) {
+			if(OperationBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new OperationBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

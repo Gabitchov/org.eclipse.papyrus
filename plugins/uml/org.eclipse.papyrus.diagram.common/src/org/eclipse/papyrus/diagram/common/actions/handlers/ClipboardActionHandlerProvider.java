@@ -31,7 +31,7 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 	 * Returns a global action handler that supports operations (cut, copy, and paste).
 	 * 
 	 * @param context
-	 *            the context
+	 *        the context
 	 * 
 	 * @return the global action handler
 	 */
@@ -40,7 +40,7 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 
 		/* Create the handler */
 
-		if (!getHandlerList().containsKey(context.getActivePart())) {
+		if(!getHandlerList().containsKey(context.getActivePart())) {
 
 			getHandlerList().put(context.getActivePart(), getClipboardActionHandler());
 
@@ -71,7 +71,7 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 				 */
 				public void partClosed(IWorkbenchPart part) {
 					/* Remove the cache associated with the part */
-					if (part != null && part == localPart && getHandlerList().containsKey(part)) {
+					if(part != null && part == localPart && getHandlerList().containsKey(part)) {
 						getHandlerList().remove(part);
 						localPart.getSite().getPage().removePartListener(this);
 						localPart = null;
@@ -94,7 +94,7 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 			});
 		}
 
-		return (ClipboardActionHandler) getHandlerList().get(context.getActivePart());
+		return (ClipboardActionHandler)getHandlerList().get(context.getActivePart());
 	}
 
 	/**

@@ -51,18 +51,24 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ClassifierTemplateParameterPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ClassifierTemplateParameterPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Button allowSubstitutable;
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public ClassifierTemplateParameterPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -70,25 +76,25 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
@@ -109,16 +115,31 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 		createOwnedCommentAdvancedTableComposition(propertiesGroup);
 		createAllowSubstitutableCheckbox(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ClassifierTemplateParameterPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ClassifierTemplateParameterPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ClassifierTemplateParameter.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -134,7 +155,7 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ClassifierTemplateParameterPropertiesEditionPartImpl.this, UMLViewsRepository.ClassifierTemplateParameter.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ClassifierTemplateParameterPropertiesEditionPartImpl.this, UMLViewsRepository.ClassifierTemplateParameter.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -147,11 +168,11 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -191,10 +212,10 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -206,6 +227,7 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 		// End of user code
 
 	}
+
 	protected void createAllowSubstitutableCheckbox(Composite parent) {
 		allowSubstitutable = new Button(parent, SWT.CHECK);
 		allowSubstitutable.setText(UMLMessages.ClassifierTemplateParameterPropertiesEditionPart_AllowSubstitutableLabel);
@@ -271,12 +293,13 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#initOwnedComment(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -289,7 +312,7 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -307,7 +330,8 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -316,7 +340,8 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#isContainedInOwnedCommentTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#isContainedInOwnedCommentTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInOwnedCommentTable(EObject element) {
 		return ownedCommentEditUtil.contains(element);
@@ -345,7 +370,7 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ClassifierTemplateParameterPropertiesEditionPart#setAllowSubstitutable(Boolean newValue)
 	 */
 	public void setAllowSubstitutable(Boolean newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			allowSubstitutable.setSelection(newValue.booleanValue());
 		} else {
 			allowSubstitutable.setSelection(false);
@@ -359,9 +384,6 @@ public class ClassifierTemplateParameterPropertiesEditionPartImpl extends Compos
 	public void unsetMessageForAllowSubstitutable() {
 
 	}
-
-
-
 
 
 

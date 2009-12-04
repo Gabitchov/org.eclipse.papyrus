@@ -51,7 +51,7 @@ public class UMLDiagramEditorIDs {
 	 */
 	// @unused
 	public static List<String> getAllModelIDs() {
-		if (allModelIDs == null) {
+		if(allModelIDs == null) {
 			allModelIDs = new ArrayList<String>();
 			allModelIDs.add(ClazzModelID);
 			allModelIDs.add(ActivityModelID);

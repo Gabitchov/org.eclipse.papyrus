@@ -40,7 +40,7 @@ public class RaiseExceptionActionPropertiesEditionProvider implements IPropertie
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof RaiseExceptionAction) {
+		if(eObject instanceof RaiseExceptionAction) {
 			return new RaiseExceptionActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class RaiseExceptionActionPropertiesEditionProvider implements IPropertie
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof RaiseExceptionAction) {
-			if (RaiseExceptionActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof RaiseExceptionAction) {
+			if(RaiseExceptionActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new RaiseExceptionActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

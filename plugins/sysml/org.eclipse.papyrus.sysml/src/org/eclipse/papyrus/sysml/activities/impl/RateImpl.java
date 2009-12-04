@@ -30,10 +30,8 @@ import org.eclipse.uml2.uml.Parameter;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_Parameter <em>Base
- * Parameter</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_ActivityEdge <em>Base
- * Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_Parameter <em>Base Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getRate <em>Rate</em>}</li>
  * </ul>
  * </p>
@@ -115,17 +113,17 @@ public class RateImpl extends EObjectImpl implements Rate {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.RATE__BASE_PARAMETER:
-			if (resolve)
+			if(resolve)
 				return getBase_Parameter();
 			return basicGetBase_Parameter();
 		case ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE:
-			if (resolve)
+			if(resolve)
 				return getBase_ActivityEdge();
 			return basicGetBase_ActivityEdge();
 		case ActivitiesPackage.RATE__RATE:
-			if (resolve)
+			if(resolve)
 				return getRate();
 			return basicGetRate();
 		}
@@ -139,7 +137,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.RATE__BASE_PARAMETER:
 			return base_Parameter != null;
 		case ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE:
@@ -157,15 +155,15 @@ public class RateImpl extends EObjectImpl implements Rate {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.RATE__BASE_PARAMETER:
-			setBase_Parameter((Parameter) newValue);
+			setBase_Parameter((Parameter)newValue);
 			return;
 		case ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE:
-			setBase_ActivityEdge((ActivityEdge) newValue);
+			setBase_ActivityEdge((ActivityEdge)newValue);
 			return;
 		case ActivitiesPackage.RATE__RATE:
-			setRate((InstanceSpecification) newValue);
+			setRate((InstanceSpecification)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,15 +186,15 @@ public class RateImpl extends EObjectImpl implements Rate {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ActivitiesPackage.RATE__BASE_PARAMETER:
-			setBase_Parameter((Parameter) null);
+			setBase_Parameter((Parameter)null);
 			return;
 		case ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE:
-			setBase_ActivityEdge((ActivityEdge) null);
+			setBase_ActivityEdge((ActivityEdge)null);
 			return;
 		case ActivitiesPackage.RATE__RATE:
-			setRate((InstanceSpecification) null);
+			setRate((InstanceSpecification)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -208,11 +206,11 @@ public class RateImpl extends EObjectImpl implements Rate {
 	 * @generated
 	 */
 	public ActivityEdge getBase_ActivityEdge() {
-		if (base_ActivityEdge != null && base_ActivityEdge.eIsProxy()) {
-			InternalEObject oldBase_ActivityEdge = (InternalEObject) base_ActivityEdge;
-			base_ActivityEdge = (ActivityEdge) eResolveProxy(oldBase_ActivityEdge);
-			if (base_ActivityEdge != oldBase_ActivityEdge) {
-				if (eNotificationRequired())
+		if(base_ActivityEdge != null && base_ActivityEdge.eIsProxy()) {
+			InternalEObject oldBase_ActivityEdge = (InternalEObject)base_ActivityEdge;
+			base_ActivityEdge = (ActivityEdge)eResolveProxy(oldBase_ActivityEdge);
+			if(base_ActivityEdge != oldBase_ActivityEdge) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE, oldBase_ActivityEdge, base_ActivityEdge));
 			}
@@ -226,11 +224,11 @@ public class RateImpl extends EObjectImpl implements Rate {
 	 * @generated
 	 */
 	public Parameter getBase_Parameter() {
-		if (base_Parameter != null && base_Parameter.eIsProxy()) {
-			InternalEObject oldBase_Parameter = (InternalEObject) base_Parameter;
-			base_Parameter = (Parameter) eResolveProxy(oldBase_Parameter);
-			if (base_Parameter != oldBase_Parameter) {
-				if (eNotificationRequired())
+		if(base_Parameter != null && base_Parameter.eIsProxy()) {
+			InternalEObject oldBase_Parameter = (InternalEObject)base_Parameter;
+			base_Parameter = (Parameter)eResolveProxy(oldBase_Parameter);
+			if(base_Parameter != oldBase_Parameter) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.RATE__BASE_PARAMETER,
 							oldBase_Parameter, base_Parameter));
 			}
@@ -244,11 +242,11 @@ public class RateImpl extends EObjectImpl implements Rate {
 	 * @generated
 	 */
 	public InstanceSpecification getRate() {
-		if (rate != null && rate.eIsProxy()) {
-			InternalEObject oldRate = (InternalEObject) rate;
-			rate = (InstanceSpecification) eResolveProxy(oldRate);
-			if (rate != oldRate) {
-				if (eNotificationRequired())
+		if(rate != null && rate.eIsProxy()) {
+			InternalEObject oldRate = (InternalEObject)rate;
+			rate = (InstanceSpecification)eResolveProxy(oldRate);
+			if(rate != oldRate) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.RATE__RATE, oldRate,
 							rate));
 			}
@@ -264,7 +262,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 	public void setBase_ActivityEdge(ActivityEdge newBase_ActivityEdge) {
 		ActivityEdge oldBase_ActivityEdge = base_ActivityEdge;
 		base_ActivityEdge = newBase_ActivityEdge;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE,
 					oldBase_ActivityEdge, base_ActivityEdge));
 	}
@@ -277,7 +275,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 	public void setBase_Parameter(Parameter newBase_Parameter) {
 		Parameter oldBase_Parameter = base_Parameter;
 		base_Parameter = newBase_Parameter;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__BASE_PARAMETER,
 					oldBase_Parameter, base_Parameter));
 	}
@@ -290,7 +288,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 	public void setRate(InstanceSpecification newRate) {
 		InstanceSpecification oldRate = rate;
 		rate = newRate;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__RATE, oldRate, rate));
 	}
 

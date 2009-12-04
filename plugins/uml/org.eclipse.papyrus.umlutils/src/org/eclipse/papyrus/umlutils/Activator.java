@@ -129,7 +129,7 @@ public class Activator extends Plugin {
 	 * Logs a warning message in the plugin log
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public static void logWarning(String message) {
 		getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, message));
@@ -139,7 +139,7 @@ public class Activator extends Plugin {
 	 * Logs an error message in the plugin log
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public static void logError(String message) {
 		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message));
@@ -149,7 +149,7 @@ public class Activator extends Plugin {
 	 * Logs an information message in the plugin log
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public static void logInfo(String message) {
 		getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, message));
@@ -159,7 +159,7 @@ public class Activator extends Plugin {
 	 * Logs an error message in the plugin log
 	 * 
 	 * @param exception
-	 *            the exception to log
+	 *        the exception to log
 	 */
 	public static void logException(Exception exception) {
 		getDefault().getLog().log(

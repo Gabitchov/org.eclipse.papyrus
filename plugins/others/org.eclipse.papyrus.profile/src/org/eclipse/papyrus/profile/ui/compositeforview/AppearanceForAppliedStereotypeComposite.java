@@ -66,7 +66,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		 * Mouse double click.
 		 * 
 		 * @param e
-		 *            the e
+		 *        the e
 		 */
 		public void mouseDoubleClick(MouseEvent e) {
 			// do nothing
@@ -76,7 +76,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		 * Mouse down.
 		 * 
 		 * @param e
-		 *            the e
+		 *        the e
 		 */
 		public void mouseDown(MouseEvent e) {
 			// do nothing
@@ -86,17 +86,17 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		 * Mouse up.
 		 * 
 		 * @param e
-		 *            the e
+		 *        the e
 		 */
 		public void mouseUp(MouseEvent e) {
 			boolean withQualifiedName = false;
-			if (e.getSource().equals(displayButtonQN)) {
+			if(e.getSource().equals(displayButtonQN)) {
 				withQualifiedName = true;
 			}
 			TreeItem[] selectedTreeItems = getTree().getSelection();
 			displayButtonPressed(withQualifiedName);
 			// Keep selection
-			if (!getTree().isDisposed()) {
+			if(!getTree().isDisposed()) {
 				getTree().setSelection(selectedTreeItems);
 			}
 
@@ -134,7 +134,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * The Constructor.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public AppearanceForAppliedStereotypeComposite(Composite parent, TransactionalEditingDomain domain) {
 		super(parent);
@@ -210,25 +210,25 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 */
 	public void displayButtonPressed(boolean withQualifiedName) {
 		// If nothing selected : abort
-		if (getTree().getSelection().length < 1) {
+		if(getTree().getSelection().length < 1) {
 			return;
 		}
 
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (getDiagramElement() == null) {
+		if(getDiagramElement() == null) {
 			return;
 		}
 
 		TreeItem[] treeSelection = getTree().getSelection();
-		for (int i = 0; i < treeSelection.length; i++) {
+		for(int i = 0; i < treeSelection.length; i++) {
 			// stereotypesTree.getSelection()[0]
-			if (treeSelection[i].getData() instanceof AppliedStereotypeTreeObject) {
-				Stereotype stereo = ((AppliedStereotypeTreeObject) treeSelection[i].getData()).getStereotype();
+			if(treeSelection[i].getData() instanceof AppliedStereotypeTreeObject) {
+				Stereotype stereo = ((AppliedStereotypeTreeObject)treeSelection[i].getData()).getStereotype();
 
-				if (treeSelection[i].getImage().equals(ImageManager.IMG_STEREOTYPE)) {
+				if(treeSelection[i].getImage().equals(ImageManager.IMG_STEREOTYPE)) {
 					displayStereotype(stereo);
 					treeSelection[i].setImage(ImageManager.IMG_STEREOTYPEDISPLAYED);
-					if (withQualifiedName) {
+					if(withQualifiedName) {
 						displayStereotypeWithQN(stereo);
 
 						treeSelection[i].setImage(ImageManager.DISPLAYED_STEREOTYPE_QN);
@@ -241,22 +241,22 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 				}
 			}
 
-			else if (treeSelection[i].getData() instanceof AppliedStereotypePropertyTreeObject) {
-				Property prop = ((AppliedStereotypePropertyTreeObject) treeSelection[i].getData()).getProperty();
+			else if(treeSelection[i].getData() instanceof AppliedStereotypePropertyTreeObject) {
+				Property prop = ((AppliedStereotypePropertyTreeObject)treeSelection[i].getData()).getProperty();
 
-				if (treeSelection[i].getImage().equals(ImageManager.IMG_DISPLAYEDPROPERTY)) {
+				if(treeSelection[i].getImage().equals(ImageManager.IMG_DISPLAYEDPROPERTY)) {
 					// removeStereotypePropertyDisplay(prop, ((StereotypeTreeObject) (treeSelection[i].getParentItem().getData())).getStereotype());
-					removeStereotypeProperty(((AppliedStereotypeTreeObject) (treeSelection[i].getParentItem().getData())).getStereotype(), ((AppliedStereotypePropertyTreeObject) treeSelection[i]
+					removeStereotypeProperty(((AppliedStereotypeTreeObject)(treeSelection[i].getParentItem().getData())).getStereotype(), ((AppliedStereotypePropertyTreeObject)treeSelection[i]
 							.getData()).getProperty());
 					treeSelection[i].setImage(ImageManager.IMG_PROPERTY);
 				}
 
 				else {
 					// if the stereotype owning the property we want to display is not displayed, we display it!
-					if (!isInStereotypeDisplay(((AppliedStereotypeTreeObject) (treeSelection[i].getParentItem().getData())).getStereotype())) {
-						displayStereotype(((AppliedStereotypeTreeObject) (treeSelection[i].getParentItem().getData())).getStereotype());
+					if(!isInStereotypeDisplay(((AppliedStereotypeTreeObject)(treeSelection[i].getParentItem().getData())).getStereotype())) {
+						displayStereotype(((AppliedStereotypeTreeObject)(treeSelection[i].getParentItem().getData())).getStereotype());
 					}
-					addStereotypePropertyDisplay(prop, ((AppliedStereotypeTreeObject) (treeSelection[i].getParentItem().getData())).getStereotype());
+					addStereotypePropertyDisplay(prop, ((AppliedStereotypeTreeObject)(treeSelection[i].getParentItem().getData())).getStereotype());
 					treeSelection[i].setImage(ImageManager.IMG_DISPLAYEDPROPERTY);
 				}
 			}
@@ -267,7 +267,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 
 	protected void addStereotypePropertyDisplay(final Property prop, final Stereotype stereotype) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {
@@ -299,7 +299,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * {@inheritDoc}
 	 */
 	public void disposeListeners() {
-		if (displayButton != null && !displayButton.isDisposed())
+		if(displayButton != null && !displayButton.isDisposed())
 			displayButton.removeMouseListener(displayButtonListener);
 	}
 
@@ -320,18 +320,18 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * {@inheritDoc}
 	 */
 	public Element getSelected() {
-		Object input = ((IStructuredSelection) selection).getFirstElement();
-		if (input instanceof IUMLEditPart) {
-			return ((IUMLEditPart) input).getUMLElement();
+		Object input = ((IStructuredSelection)selection).getFirstElement();
+		if(input instanceof IUMLEditPart) {
+			return ((IUMLEditPart)input).getUMLElement();
 		} else {
 			return null;
 		}
 	}
 
 	private IUMLEditPart getSelectedEditPart() {
-		Object input = ((IStructuredSelection) selection).getFirstElement();
-		if (input instanceof IUMLEditPart) {
-			return (IUMLEditPart) input;
+		Object input = ((IStructuredSelection)selection).getFirstElement();
+		if(input instanceof IUMLEditPart) {
+			return (IUMLEditPart)input;
 
 		} else {
 			return null;
@@ -343,11 +343,11 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 */
 	protected Boolean isInStereotypeDisplay(Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (getDiagramElement() == null) {
+		if(getDiagramElement() == null) {
 			return false;
 		}
 		String stereotypeList = AppliedStereotypeHelper.getStereotypesToDisplay(getDiagramElement());
-		if (stereotypeList.contains(st.getQualifiedName())) {
+		if(stereotypeList.contains(st.getQualifiedName())) {
 			return true;
 		}
 		return false;
@@ -357,13 +357,13 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * {@inheritDoc}
 	 */
 	public void refresh() {
-		if (diagramElement != null) {
+		if(diagramElement != null) {
 			displayedProfileElementLabelProvider.setDisplayedStereotype(AppliedStereotypeHelper.getStereotypesToDisplay(diagramElement));
 			displayedProfileElementLabelProvider.setDisplayedStereotypeWithQN(AppliedStereotypeHelper.getStereotypesQNToDisplay(diagramElement));
 			displayedProfileElementLabelProvider.setDisplayedProperty(AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(diagramElement));
 		}
 		super.refresh();
-		if ((diagramElement == null) && (!displayButton.isDisposed())) {
+		if((diagramElement == null) && (!displayButton.isDisposed())) {
 			displayButton.setEnabled(false);
 			displayButton.setToolTipText("Stereotypes can only be displayed for elements with graphical representation. " + "Currently edited element is a non graphical element. "
 					+ "(example: an element selected in the outline is not a graphical element)");
@@ -379,7 +379,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 */
 	protected void removeStereotypeDisplay(Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
@@ -392,7 +392,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
-		if (event == null) {
+		if(event == null) {
 			return;
 		}
 	}
@@ -403,11 +403,11 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * Sets the diagram element.
 	 * 
 	 * @param diagramElement
-	 *            the diagram element
+	 *        the diagram element
 	 */
 	public void setDiagramElement(EModelElement diagramElement) {
 		this.diagramElement = diagramElement;
-		((ProfileElementWithDisplayContentProvider) treeViewer.getContentProvider()).setDiagramElement(diagramElement);
+		((ProfileElementWithDisplayContentProvider)treeViewer.getContentProvider()).setDiagramElement(diagramElement);
 	}
 
 	public void setDomain(TransactionalEditingDomain domain) {
@@ -418,7 +418,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * Sets the selection.
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 */
 	public void setSelection(ISelection selection) {
 		this.selection = selection;
@@ -602,11 +602,11 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * Display the stereotype once it is applied
 	 * 
 	 * @param st
-	 *            the stereotype to add
+	 *        the stereotype to add
 	 */
 	protected void displayStereotype(final Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {
@@ -635,7 +635,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 
 	protected void removeStereotypeProperty(final Stereotype st, final Property property) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {
@@ -666,11 +666,11 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * Display the stereotype once it is applied
 	 * 
 	 * @param st
-	 *            the stereotype to add
+	 *        the stereotype to add
 	 */
 	protected void displayStereotypeProperties(final Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {
@@ -701,11 +701,11 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * Display the stereotype once it is applied
 	 * 
 	 * @param st
-	 *            the stereotype to add
+	 *        the stereotype to add
 	 */
 	protected void displayStereotypeWithQN(final Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {
@@ -735,11 +735,11 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * Remove a stereotype from the list of stereotypes to display.
 	 * 
 	 * @param st
-	 *            the stereotype to remove
+	 *        the stereotype to remove
 	 */
 	protected void removeDisplayStereotype(final Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {

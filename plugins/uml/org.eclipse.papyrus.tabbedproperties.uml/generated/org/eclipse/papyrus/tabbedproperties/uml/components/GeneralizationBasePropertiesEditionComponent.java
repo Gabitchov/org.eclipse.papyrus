@@ -58,7 +58,7 @@ public class GeneralizationBasePropertiesEditionComponent extends StandardProper
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -74,9 +74,9 @@ public class GeneralizationBasePropertiesEditionComponent extends StandardProper
 	 * Default constructor
 	 */
 	public GeneralizationBasePropertiesEditionComponent(EObject generalization, String editing_mode) {
-		if (generalization instanceof Generalization) {
+		if(generalization instanceof Generalization) {
 			this.generalization = (Generalization)generalization;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.generalization.eAdapters().add(semanticAdapter);
 			}
@@ -98,13 +98,13 @@ public class GeneralizationBasePropertiesEditionComponent extends StandardProper
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					GeneralizationBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable().equals(msg.getFeature()) && basePart != null)
 						basePart.setIsSubstitutable((Boolean)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet().equals(msg.getFeature()))
 						basePart.updateGeneralizationSet(generalization);
 
 
@@ -120,7 +120,7 @@ public class GeneralizationBasePropertiesEditionComponent extends StandardProper
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.Generalization.class;
 		return super.translatePart(key);
 	}
@@ -137,14 +137,13 @@ public class GeneralizationBasePropertiesEditionComponent extends StandardProper
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (generalization != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(generalization != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (GeneralizationPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Generalization.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -157,29 +156,29 @@ public class GeneralizationBasePropertiesEditionComponent extends StandardProper
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.Generalization.class)
-			this.basePart = (GeneralizationPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.Generalization.class)
+			this.basePart = (GeneralizationPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.Generalization.class) {
+		if(basePart != null && key == UMLViewsRepository.Generalization.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final Generalization generalization = (Generalization)elt;
 			// init values
-basePart.setIsSubstitutable(generalization.isSubstitutable());
+			basePart.setIsSubstitutable(generalization.isSubstitutable());
 
 			basePart.initGeneralizationSet(generalization, null, UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet());
-			
+
 			// init filters
 
 			basePart.addFilterToGeneralizationSet(new ViewerFilter() {
@@ -190,7 +189,7 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInGeneralizationSetTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -211,23 +210,22 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (generalization != null) {
+		if(generalization != null) {
 			cc.append(SetCommand.create(editingDomain, generalization, UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable(), basePart.getIsSubstitutable()));
 
 			List generalizationSetToAddFromGeneralizationSet = basePart.getGeneralizationSetToAdd();
-			for (Iterator iter = generalizationSetToAddFromGeneralizationSet.iterator(); iter.hasNext();)
+			for(Iterator iter = generalizationSetToAddFromGeneralizationSet.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, generalization, UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet(), iter.next()));
 			List generalizationSetToRemoveFromGeneralizationSet = basePart.getGeneralizationSetToRemove();
-			for (Iterator iter = generalizationSetToRemoveFromGeneralizationSet.iterator(); iter.hasNext();)
+			for(Iterator iter = generalizationSetToRemoveFromGeneralizationSet.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, generalization, UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet(), iter.next()));
 			//List generalizationSetToMoveFromGeneralizationSet = basePart.getGeneralizationSetToMove();
 			//for (Iterator iter = generalizationSetToMoveFromGeneralizationSet.iterator(); iter.hasNext();){
@@ -237,7 +235,7 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -249,7 +247,7 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof Generalization) {
+		if(source instanceof Generalization) {
 			Generalization generalizationToUpdate = (Generalization)source;
 			generalizationToUpdate.setIsSubstitutable(new Boolean(basePart.getIsSubstitutable()).booleanValue());
 
@@ -257,8 +255,7 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 
 
 			return generalizationToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -269,29 +266,29 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.Generalization.isSubstitutable == event.getAffectedEditor())
+			if(UMLViewsRepository.Generalization.isSubstitutable == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, generalization, UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable(), event.getNewValue()));
 
-			if (UMLViewsRepository.Generalization.generalizationSet == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Generalization.generalizationSet == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, generalization, UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, generalization, UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, generalization, UMLPackage.eINSTANCE.getGeneralization_GeneralizationSet(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
 
 
 
@@ -312,10 +309,10 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.Generalization.isSubstitutable == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Generalization.isSubstitutable == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable().getEAttributeType(), newValue);
 				}
@@ -334,12 +331,11 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(generalization);
 		// Start of user code for custom validation check
 
@@ -355,7 +351,7 @@ basePart.setIsSubstitutable(generalization.isSubstitutable());
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			generalization.eAdapters().remove(semanticAdapter);
 	}
 

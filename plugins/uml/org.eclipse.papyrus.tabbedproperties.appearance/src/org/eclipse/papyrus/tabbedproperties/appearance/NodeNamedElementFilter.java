@@ -7,8 +7,8 @@ import org.eclipse.uml2.uml.NamedElement;
 public class NodeNamedElementFilter implements IFilter {
 
 	public boolean select(Object object) {
-		if (object instanceof GraphicalEditPart
-				&& ((GraphicalEditPart) object).getNotationView().getElement() instanceof NamedElement)
+		if(object instanceof GraphicalEditPart
+				&& ((GraphicalEditPart)object).getNotationView().getElement() instanceof NamedElement)
 			return true;
 
 		return false;

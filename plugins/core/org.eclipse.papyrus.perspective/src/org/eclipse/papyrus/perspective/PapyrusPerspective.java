@@ -41,7 +41,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 	 * Add actions into the workbench UI.
 	 * 
 	 * @param layout
-	 *            the page layout
+	 *        the page layout
 	 * 
 	 * @see org.eclipse.ui.IPerspectiveFactory#createInitialLayout(org.eclipse.ui.IPageLayout)
 	 */
@@ -68,7 +68,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 	 * Defines the layout of the perspective (where and which views are available).
 	 * 
 	 * @param layout
-	 *            the page layout
+	 *        the page layout
 	 * 
 	 * @see org.eclipse.ui.IPerspectiveFactory#createInitialLayout(org.eclipse.ui.IPageLayout)
 	 */
@@ -77,16 +77,16 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		String editorArea = layout.getEditorArea();
 
 		// Place the Model Explorer and the Resource Navigator to the left of editor area.
-		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float) 0.20, editorArea);
+		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float)0.20, editorArea);
 		left.addView(ModelNavigator.ID_MODELNAVIGATOR);
 		left.addView(IPageLayout.ID_RES_NAV);
 
 		// place outline under the navigator
-		IFolderLayout left_bottom = layout.createFolder("left_bottom", IPageLayout.BOTTOM, (float) 0.70, "left");
+		IFolderLayout left_bottom = layout.createFolder("left_bottom", IPageLayout.BOTTOM, (float)0.70, "left");
 		left_bottom.addView(IPageLayout.ID_OUTLINE);
 
 		// place properties under the editor
-		IFolderLayout bottom = layout.createFolder("under", IPageLayout.BOTTOM, (float) 0.70, editorArea);
+		IFolderLayout bottom = layout.createFolder("under", IPageLayout.BOTTOM, (float)0.70, editorArea);
 		bottom.addView(IPageLayout.ID_PROP_SHEET);
 		// bottom.addView("org.eclipse.pde.runtime.LogView");
 	}

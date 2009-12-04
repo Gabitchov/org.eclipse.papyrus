@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Comment;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl#getBase_Comment <em>Base
- * Comment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl#getBase_Comment <em>Base Comment</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,9 +71,9 @@ public class ProblemImpl extends EObjectImpl implements Problem {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.PROBLEM__BASE_COMMENT:
-			if (resolve)
+			if(resolve)
 				return getBase_Comment();
 			return basicGetBase_Comment();
 		}
@@ -88,7 +87,7 @@ public class ProblemImpl extends EObjectImpl implements Problem {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.PROBLEM__BASE_COMMENT:
 			return base_Comment != null;
 		}
@@ -102,9 +101,9 @@ public class ProblemImpl extends EObjectImpl implements Problem {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.PROBLEM__BASE_COMMENT:
-			setBase_Comment((Comment) newValue);
+			setBase_Comment((Comment)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +126,9 @@ public class ProblemImpl extends EObjectImpl implements Problem {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.PROBLEM__BASE_COMMENT:
-			setBase_Comment((Comment) null);
+			setBase_Comment((Comment)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +140,11 @@ public class ProblemImpl extends EObjectImpl implements Problem {
 	 * @generated
 	 */
 	public Comment getBase_Comment() {
-		if (base_Comment != null && base_Comment.eIsProxy()) {
-			InternalEObject oldBase_Comment = (InternalEObject) base_Comment;
-			base_Comment = (Comment) eResolveProxy(oldBase_Comment);
-			if (base_Comment != oldBase_Comment) {
-				if (eNotificationRequired())
+		if(base_Comment != null && base_Comment.eIsProxy()) {
+			InternalEObject oldBase_Comment = (InternalEObject)base_Comment;
+			base_Comment = (Comment)eResolveProxy(oldBase_Comment);
+			if(base_Comment != oldBase_Comment) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							ModelelementsPackage.PROBLEM__BASE_COMMENT, oldBase_Comment, base_Comment));
 			}
@@ -161,7 +160,7 @@ public class ProblemImpl extends EObjectImpl implements Problem {
 	public void setBase_Comment(Comment newBase_Comment) {
 		Comment oldBase_Comment = base_Comment;
 		base_Comment = newBase_Comment;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.PROBLEM__BASE_COMMENT,
 					oldBase_Comment, base_Comment));
 	}

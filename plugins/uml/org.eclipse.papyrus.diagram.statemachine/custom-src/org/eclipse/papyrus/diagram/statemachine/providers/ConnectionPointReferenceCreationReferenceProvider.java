@@ -36,9 +36,12 @@ public class ConnectionPointReferenceCreationReferenceProvider {
 	/**
 	 * Select conection point dialog.
 	 * 
-	 * @param domain the domain
-	 * @param stateMachine the state machine
-	 * @param kind the kind
+	 * @param domain
+	 *        the domain
+	 * @param stateMachine
+	 *        the state machine
+	 * @param kind
+	 *        the kind
 	 * 
 	 * @return the pseudostate
 	 */
@@ -50,13 +53,13 @@ public class ConnectionPointReferenceCreationReferenceProvider {
 				Display.getCurrent().getActiveShell(), stateMachine, kind);
 
 		SelectedConnectionPoint = null;
-		if (selectDialog.open() == Window.OK) {
+		if(selectDialog.open() == Window.OK) {
 			Collection<Pseudostate> selectedConnectionReferences = selectDialog
 					.getSelectedConnectionPoints();
 
-			if (!selectedConnectionReferences.isEmpty()) {
-				for (Pseudostate ps : selectedConnectionReferences) {
-					if (ps.getKind().equals(kind)) {
+			if(!selectedConnectionReferences.isEmpty()) {
+				for(Pseudostate ps : selectedConnectionReferences) {
+					if(ps.getKind().equals(kind)) {
 						SelectedConnectionPoint = ps;
 						return SelectedConnectionPoint;
 					}

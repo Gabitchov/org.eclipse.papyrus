@@ -67,7 +67,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -83,9 +83,9 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	 * Default constructor
 	 */
 	public ManifestationBasePropertiesEditionComponent(EObject manifestation, String editing_mode) {
-		if (manifestation instanceof Manifestation) {
+		if(manifestation instanceof Manifestation) {
 			this.manifestation = (Manifestation)manifestation;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.manifestation.eAdapters().add(semanticAdapter);
 			}
@@ -107,27 +107,29 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					ManifestationBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(manifestation);
 					}
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setName((String)msg.getNewValue());
-}
-						else{basePart.setName("");}}
-					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setName((String)msg.getNewValue());
+						} else {
+							basePart.setName("");
+						}
+					}
+					if(UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
 						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 						basePart.updateClientDependency(manifestation);
-					if (UMLPackage.eINSTANCE.getDependency_Supplier().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getDependency_Supplier().equals(msg.getFeature()))
 						basePart.updateSupplier(manifestation);
-					if (UMLPackage.eINSTANCE.getDependency_Client().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getDependency_Client().equals(msg.getFeature()))
 						basePart.updateClient(manifestation);
 
 
@@ -143,7 +145,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.Manifestation.class;
 		return super.translatePart(key);
 	}
@@ -160,14 +162,13 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (manifestation != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(manifestation != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (ManifestationPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Manifestation.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -180,44 +181,44 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.Manifestation.class)
-			this.basePart = (ManifestationPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.Manifestation.class)
+			this.basePart = (ManifestationPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.Manifestation.class) {
+		if(basePart != null && key == UMLViewsRepository.Manifestation.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final Manifestation manifestation = (Manifestation)elt;
 			// init values
 			basePart.initOwnedComment(manifestation, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
-			if (manifestation.getName() != null)
+			if(manifestation.getName() != null)
 				basePart.setName(manifestation.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), manifestation.getVisibility());
+			basePart.initVisibility((EEnum)UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), manifestation.getVisibility());
 			basePart.initClientDependency(manifestation, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
 			basePart.initSupplier(manifestation, null, UMLPackage.eINSTANCE.getDependency_Supplier());
 			basePart.initClient(manifestation, null, UMLPackage.eINSTANCE.getDependency_Client());
-			
+
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -235,7 +236,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientDependencyTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -253,7 +254,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInSupplierTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -271,7 +272,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -292,45 +293,40 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 
 
 
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (manifestation != null) {
+		if(manifestation != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Comment nextElement = (Comment)iter.next();
+				Comment ownedComment = (Comment)ownedCommentToRefreshFromOwnedComment.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+			for(Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
@@ -339,10 +335,10 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 			cc.append(SetCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
-			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
-			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
 			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
@@ -350,10 +346,10 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 			//	cc.append(MoveCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List supplierToAddFromSupplier = basePart.getSupplierToAdd();
-			for (Iterator iter = supplierToAddFromSupplier.iterator(); iter.hasNext();)
+			for(Iterator iter = supplierToAddFromSupplier.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
 			List supplierToRemoveFromSupplier = basePart.getSupplierToRemove();
-			for (Iterator iter = supplierToRemoveFromSupplier.iterator(); iter.hasNext();)
+			for(Iterator iter = supplierToRemoveFromSupplier.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
 			//List supplierToMoveFromSupplier = basePart.getSupplierToMove();
 			//for (Iterator iter = supplierToMoveFromSupplier.iterator(); iter.hasNext();){
@@ -361,10 +357,10 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 			//	cc.append(MoveCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List clientToAddFromClient = basePart.getClientToAdd();
-			for (Iterator iter = clientToAddFromClient.iterator(); iter.hasNext();)
+			for(Iterator iter = clientToAddFromClient.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
 			List clientToRemoveFromClient = basePart.getClientToRemove();
-			for (Iterator iter = clientToRemoveFromClient.iterator(); iter.hasNext();)
+			for(Iterator iter = clientToRemoveFromClient.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
 			//List clientToMoveFromClient = basePart.getClientToMove();
 			//for (Iterator iter = clientToMoveFromClient.iterator(); iter.hasNext();){
@@ -374,7 +370,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -386,7 +382,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof Manifestation) {
+		if(source instanceof Manifestation) {
 			Manifestation manifestationToUpdate = (Manifestation)source;
 			manifestationToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			manifestationToUpdate.setName(basePart.getName());
@@ -399,8 +395,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 
 
 			return manifestationToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -411,84 +406,81 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.Manifestation.ownedComment == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.Manifestation.ownedComment == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Comment oldValue = (Comment)event.getOldValue();
 					Comment newValue = (Comment)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the manifestation update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.Manifestation.name == event.getAffectedEditor())
+			if(UMLViewsRepository.Manifestation.name == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
-			if (UMLViewsRepository.Manifestation.visibility == event.getAffectedEditor())
+			if(UMLViewsRepository.Manifestation.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
-			if (UMLViewsRepository.Manifestation.clientDependency == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Manifestation.clientDependency == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.Manifestation.supplier == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Manifestation.supplier == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.Manifestation.client == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Manifestation.client == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, manifestation, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
 
-				if (UMLViewsRepository.Manifestation.name == event.getAffectedEditor())
+				if(UMLViewsRepository.Manifestation.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
 
 
 
 
-
 			} else {
 
-				if (UMLViewsRepository.Manifestation.name == event.getAffectedEditor())
+				if(UMLViewsRepository.Manifestation.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
-
 
 
 
@@ -514,14 +506,14 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.Manifestation.name == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Manifestation.name == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.Manifestation.visibility == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Manifestation.visibility == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
 				}
@@ -540,12 +532,11 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(manifestation);
 		// Start of user code for custom validation check
 
@@ -561,7 +552,7 @@ public class ManifestationBasePropertiesEditionComponent extends StandardPropert
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			manifestation.eAdapters().remove(semanticAdapter);
 	}
 

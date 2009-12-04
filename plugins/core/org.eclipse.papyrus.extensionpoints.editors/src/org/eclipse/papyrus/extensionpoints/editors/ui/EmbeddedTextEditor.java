@@ -119,7 +119,7 @@ public class EmbeddedTextEditor extends TextEditor {
 
 		closeListener.close();
 
-		if (save) {
+		if(save) {
 			// get command stack of the 'parent' editor
 			Command command = new ICommandProxy(new AbstractTransactionalCommand(transactionalEditingDomain,
 					"Edit property", null) {
@@ -127,7 +127,7 @@ public class EmbeddedTextEditor extends TextEditor {
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 						throws ExecutionException {
-					return CommandResult.newOKCommandResult(((EmbeddedEditorDocumentProvider) getDocumentProvider())
+					return CommandResult.newOKCommandResult(((EmbeddedEditorDocumentProvider)getDocumentProvider())
 							.applyChanges(getEditorInput()));
 				}
 			});
@@ -179,7 +179,7 @@ public class EmbeddedTextEditor extends TextEditor {
 		 * Default constructor.
 		 * 
 		 * @param viewer
-		 *            the viewer to listen
+		 *        the viewer to listen
 		 */
 		public LabelKeyListener(SourceViewer viewer) {
 			this.viewer = viewer;
@@ -189,8 +189,8 @@ public class EmbeddedTextEditor extends TextEditor {
 		 * {@inheritDoc}
 		 */
 		public void verifyKey(VerifyEvent event) {
-			if (event.stateMask == SWT.CTRL) {
-				switch (event.character) {
+			if(event.stateMask == SWT.CTRL) {
+				switch(event.character) {
 				case ' ':
 					callOperation(event, ISourceViewer.CONTENTASSIST_PROPOSALS);
 					break;
@@ -212,7 +212,7 @@ public class EmbeddedTextEditor extends TextEditor {
 				default:
 					// no success using key event 'z' or 'y' : using keycode
 					// instead...
-					switch (event.keyCode) {
+					switch(event.keyCode) {
 					case 122: // z
 						callOperation(event, ITextOperationTarget.UNDO);
 						break;
@@ -223,11 +223,11 @@ public class EmbeddedTextEditor extends TextEditor {
 						break;
 					}
 				}
-			} else if (event.character == SWT.CR) {
+			} else if(event.character == SWT.CR) {
 				EmbeddedTextEditor.this.close(true);
 				event.doit = false;
-			} else if (event.character == SWT.DEL) {
-				if (viewer.canDoOperation(ITextOperationTarget.DELETE)) {
+			} else if(event.character == SWT.DEL) {
+				if(viewer.canDoOperation(ITextOperationTarget.DELETE)) {
 					viewer.doOperation(ITextOperationTarget.DELETE);
 				}
 			}
@@ -237,12 +237,12 @@ public class EmbeddedTextEditor extends TextEditor {
 		 * Try to call the specified operation on the viewer
 		 * 
 		 * @param event
-		 *            the event to check
+		 *        the event to check
 		 * @param code
-		 *            the code of the operation to call
+		 *        the code of the operation to call
 		 */
 		private void callOperation(VerifyEvent event, int code) {
-			if (viewer.canDoOperation(code)) {
+			if(viewer.canDoOperation(code)) {
 				viewer.doOperation(code);
 			}
 			event.doit = false;
@@ -263,7 +263,7 @@ public class EmbeddedTextEditor extends TextEditor {
 		 * Default constructor.
 		 * 
 		 * @param viewer
-		 *            the viewer to listen
+		 *        the viewer to listen
 		 */
 		public ControlListener(SourceViewer viewer) {
 			this.viewer = viewer;

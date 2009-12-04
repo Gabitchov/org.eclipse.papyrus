@@ -51,8 +51,7 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	 * @generated
 	 */
 	@Override
-	protected ICommand getCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return null;
 	}
 

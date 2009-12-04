@@ -26,15 +26,13 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusUMLElementFigure {
 	 * <p>
 	 * This implementation checks if the specified string is null or not.
 	 * <ul>
-	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes
-	 * properties with brace.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype properties label if needed
-	 * and displays the specified string.</li>
+	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes properties with brace.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype properties label if needed and displays the specified string.</li>
 	 * </ul>
 	 * </p>
 	 * 
 	 * @param stereotypeProperties
-	 *            the string representing the stereotype properties to be displayed
+	 *        the string representing the stereotype properties to be displayed
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties);
 
@@ -45,7 +43,7 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusUMLElementFigure {
 	 * removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
-	 *            the string to be displayed.
+	 *        the string to be displayed.
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties);
 
@@ -57,6 +55,6 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusUMLElementFigure {
 	 * @return the stereotypes label
 	 */
 	public Label getStereotypesLabel();
-	
-	
+
+
 }

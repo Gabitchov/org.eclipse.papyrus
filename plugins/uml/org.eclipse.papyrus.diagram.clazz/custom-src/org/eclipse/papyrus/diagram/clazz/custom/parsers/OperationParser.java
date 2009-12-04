@@ -53,8 +53,8 @@ public class OperationParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public String getEditString(final IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final Operation operation = ((Operation) ((EObjectAdapter) element).getRealObject());
+		if(element instanceof EObjectAdapter) {
+			final Operation operation = ((Operation)((EObjectAdapter)element).getRealObject());
 			return operation.getName();
 		}
 		return "";
@@ -65,11 +65,11 @@ public class OperationParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		final Operation operation = ((Operation) ((EObjectAdapter) element).getRealObject());
+		final Operation operation = ((Operation)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
 		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement
-				.getTransactionalEditingDomain(), "Edit Operation", (List) null) {
+				.getTransactionalEditingDomain(), "Edit Operation", (List)null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)

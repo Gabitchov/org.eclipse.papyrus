@@ -53,8 +53,8 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * {@inheritDoc}
 	 */
 	public void activate() {
-		getDiagramEventBroker().addNotificationListener(((EObject) getHost().getModel()), this);
-		getDiagramEventBroker().addNotificationListener(((View) getHost().getModel()).getElement(), this);
+		getDiagramEventBroker().addNotificationListener(((EObject)getHost().getModel()), this);
+		getDiagramEventBroker().addNotificationListener(((View)getHost().getModel()).getElement(), this);
 		super.activate();
 	}
 
@@ -63,8 +63,8 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * {@inheritDoc}
 	 */
 	public void deactivate() {
-		getDiagramEventBroker().removeNotificationListener(((EObject) getHost().getModel()), this);
-		getDiagramEventBroker().removeNotificationListener(((View) getHost().getModel()).getElement(), this);
+		getDiagramEventBroker().removeNotificationListener(((EObject)getHost().getModel()), this);
+		getDiagramEventBroker().removeNotificationListener(((View)getHost().getModel()).getElement(), this);
 		super.deactivate();
 	}
 
@@ -73,20 +73,20 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * also been deleted.
 	 * 
 	 * @param views
-	 *            an iterator on a list of views.
+	 *        an iterator on a list of views.
 	 * @return <tt>true</tt> if the host editpart should be refreshed; either one one of the
 	 *         supplied views was deleted or has been reparented.
 	 */
 	protected final boolean deleteViews(Iterator views) {
 
 		final CompoundCommand cc = new CompoundCommand(DiagramUIMessages.DeleteCommand_Label);
-		while (views.hasNext()) {
-			View view = (View) views.next();
+		while(views.hasNext()) {
+			View view = (View)views.next();
 			cc.add(getDeleteViewCommand(view));
 		}
 
 		boolean doDelete = !cc.isEmpty() && cc.canExecute();
-		if (doDelete) {
+		if(doDelete) {
 			executeCommand(cc);
 		}
 		return doDelete;
@@ -96,7 +96,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * Executes the supplied command inside an <code>unchecked action</code>
 	 * 
 	 * @param cmd
-	 *            command that can be executed (i.e., cmd.canExecute() == true)
+	 *        command that can be executed (i.e., cmd.canExecute() == true)
 	 */
 	protected void executeCommand(final Command cmd) {
 		Map options = null;
@@ -106,14 +106,14 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 		// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
 		// parent will not be a diagram edit part
 		EditPartViewer viewer = ep.getViewer();
-		if (viewer instanceof DiagramGraphicalViewer) {
-			isActivating = ((DiagramGraphicalViewer) viewer).isInitializing();
+		if(viewer instanceof DiagramGraphicalViewer) {
+			isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
 		}
 
-		if (isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart) getHost(), false, false))
+		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)getHost(), false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
-		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart) getHost()).getEditingDomain(),
+		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)getHost()).getEditingDomain(),
 				StringStatics.BLANK, options) {
 
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -126,19 +126,17 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 		try {
 			operation.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-					"executeCommand", e); //$NON-NLS-1$
-			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"executeCommand", e); //$NON-NLS-1$
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "executeCommand", e); //$NON-NLS-1$
+			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "executeCommand", e); //$NON-NLS-1$
 		}
 	}
 
 	private List findOrphanView(Iterator<EObject> viewChildrenIterator) {
 		ArrayList<EObject> orphanView = new ArrayList<EObject>();
-		while (viewChildrenIterator.hasNext()) {
+		while(viewChildrenIterator.hasNext()) {
 			EObject view = viewChildrenIterator.next();
-			if (view instanceof View) {
-				if (isOrphaned((View) view)) {
+			if(view instanceof View) {
+				if(isOrphaned((View)view)) {
 					orphanView.add(view);
 				}
 			}
@@ -150,11 +148,11 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * gets a {@link Command} to delete the supplied {@link View}.
 	 * 
 	 * @param view
-	 *            view to use
+	 *        view to use
 	 * @return command
 	 */
 	protected Command getDeleteViewCommand(View view) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		return new ICommandProxy(new DeleteCommand(editingDomain, view));
 	}
 
@@ -164,15 +162,15 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * @return the diagram event broker
 	 */
 	private DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
 	}
 
 	public void init(int[] notOrphanVisualID) {
-		for (int i = 0; i < notOrphanVisualID.length; i++) {
+		for(int i = 0; i < notOrphanVisualID.length; i++) {
 			notOrphanList.add(new Integer(notOrphanVisualID[i]));
 		}
 	}
@@ -180,7 +178,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	protected boolean isOrphaned(View view) {
 		String semanticHint = view.getType();
 		boolean t = view.isSetElement();
-		if (isInteger(semanticHint) && notOrphanList.contains(new Integer(semanticHint))) {
+		if(isInteger(semanticHint) && notOrphanList.contains(new Integer(semanticHint))) {
 			return false;
 		}
 		return !view.isSetElement();
@@ -190,14 +188,14 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * Checks if the string is an integer.
 	 * 
 	 * @param s
-	 *            the specified string
+	 *        the specified string
 	 * 
 	 * @return true, if is integer
 	 */
 	public static boolean isInteger(String s) {
 		boolean result = false;
 		Matcher matcher = digit.matcher(s);
-		if (matcher != null) {
+		if(matcher != null) {
 			result = matcher.matches();
 		}
 		return result;
@@ -208,7 +206,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * {@inheritDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		if (Notification.REMOVE == notification.getEventType() || Notification.SET == notification.getEventType()) {
+		if(Notification.REMOVE == notification.getEventType() || Notification.SET == notification.getEventType()) {
 			refreshViews();
 		}
 	}
@@ -222,7 +220,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 		EObject semanticChild;
 		//
 		// current connection views
-		Iterator<EObject> viewChildrenIterator = ((EObject) getHost().getModel()).eContents().iterator();
+		Iterator<EObject> viewChildrenIterator = ((EObject)getHost().getModel()).eContents().iterator();
 
 		List orphaned = findOrphanView(viewChildrenIterator);
 		//
@@ -235,11 +233,11 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 
 		return viewDescriptors;
 	}
-	
+
 	/**
 	 * launch a weak synchronization. It could be useful in order to clean a diagram by an external tool.
 	 */
-	public void forceRefresh(){
+	public void forceRefresh() {
 		refreshViews();
 	}
 }

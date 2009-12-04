@@ -41,7 +41,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	 * Instantiates a new papyrus uncontrol action when a controlled model object is selected.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 */
 	public PapyrusUncontrolAction(EditingDomain domain) {
 		super(domain, EMFEditUIPlugin.INSTANCE.getString("_UI_Uncontrol_menu_item"));
@@ -68,12 +68,12 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 		boolean result = false;
 		this.selection = theSelection;
 
-		if (selection.size() == 1) {
+		if(selection.size() == 1) {
 			Object object = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
 			// Check whether the selected object is controllable
 			result = domain.isControllable(object);
-			if (result) {
-				eObject = (EObject) object;
+			if(result) {
+				eObject = (EObject)object;
 				result = AdapterFactoryEditingDomain.isControlled(eObject);
 			} else {
 				eObject = null;

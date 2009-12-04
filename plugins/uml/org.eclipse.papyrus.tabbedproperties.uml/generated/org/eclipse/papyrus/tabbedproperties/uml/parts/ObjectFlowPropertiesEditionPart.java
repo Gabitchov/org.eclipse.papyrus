@@ -55,15 +55,21 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -71,7 +77,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -80,7 +86,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -101,7 +107,9 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -116,14 +124,19 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -148,15 +161,21 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *        the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -164,7 +183,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter);
@@ -173,7 +192,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
@@ -194,7 +213,9 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *        the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
 
@@ -219,15 +240,21 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedEdge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initRedefinedEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedEdge
-	 * @param newValue the redefinedEdge to update
+	 * 
+	 * @param newValue
+	 *        the redefinedEdge to update
 	 */
 	public void updateRedefinedEdge(EObject newValue);
 
@@ -235,7 +262,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the redefinedEdge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToRedefinedEdge(ViewerFilter filter);
@@ -244,7 +271,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the redefinedEdge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedEdge(ViewerFilter filter);
@@ -275,15 +302,21 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Init the inPartition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initInPartition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the inPartition
-	 * @param newValue the inPartition to update
+	 * 
+	 * @param newValue
+	 *        the inPartition to update
 	 */
 	public void updateInPartition(EObject newValue);
 
@@ -291,7 +324,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the inPartition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToInPartition(ViewerFilter filter);
@@ -300,7 +333,7 @@ public interface ObjectFlowPropertiesEditionPart {
 	 * Adds the given filter to the inPartition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToInPartition(ViewerFilter filter);
@@ -321,7 +354,9 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Defines a new isMulticast
-	 * @param newValue the new isMulticast to set
+	 * 
+	 * @param newValue
+	 *        the new isMulticast to set
 	 */
 	public void setIsMulticast(Boolean newValue);
 
@@ -336,14 +371,11 @@ public interface ObjectFlowPropertiesEditionPart {
 
 	/**
 	 * Defines a new isMultireceive
-	 * @param newValue the new isMultireceive to set
+	 * 
+	 * @param newValue
+	 *        the new isMultireceive to set
 	 */
 	public void setIsMultireceive(Boolean newValue);
-
-
-
-
-
 
 
 

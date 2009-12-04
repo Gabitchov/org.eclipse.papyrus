@@ -58,27 +58,28 @@ public class ElementOwnedCommentEditPart extends ConnectionNodeEditPart
 		// ** install new ConnectionEditPolicy
 		installEditPolicy(EditPolicy.CONNECTION_ROLE,
 				new ConnectionEditPolicy() {
-					@Override
-					protected boolean shouldDeleteSemantic() {
-						return false;
-					}
 
-					@Override
-					protected Command createDeleteViewCommand(
-							GroupRequest deleteRequest) {
-						Command command = super
-								.createDeleteViewCommand(deleteRequest);
-						command = command
-								.chain(new ICommandProxy(
-										new RemoveEObjectReferencesFromDiagram(
-												getEditingDomain(),
-												ElementOwnedCommentEditPart.this
-														.getDiagramView(),
-												Collections
-														.singletonList(resolveSemanticElement()))));
-						return command;
-					}
-				});
+			@Override
+			protected boolean shouldDeleteSemantic() {
+				return false;
+			}
+
+			@Override
+			protected Command createDeleteViewCommand(
+					GroupRequest deleteRequest) {
+				Command command = super
+						.createDeleteViewCommand(deleteRequest);
+				command = command
+						.chain(new ICommandProxy(
+						new RemoveEObjectReferencesFromDiagram(
+						getEditingDomain(),
+						ElementOwnedCommentEditPart.this
+						.getDiagramView(),
+						Collections
+						.singletonList(resolveSemanticElement()))));
+				return command;
+			}
+		});
 	}
 
 	/**
@@ -99,7 +100,7 @@ public class ElementOwnedCommentEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	public CommentLinkFigure getPrimaryShape() {
-		return (CommentLinkFigure) getFigure();
+		return (CommentLinkFigure)getFigure();
 	}
 
 	/**
@@ -135,7 +136,7 @@ public class ElementOwnedCommentEditPart extends ConnectionNodeEditPart
 	 */
 	@Override
 	public Command getCommand(Request _request) {
-		if (_request instanceof GroupRequest
+		if(_request instanceof GroupRequest
 				&& RequestConstants.REQ_DELETE.equals(_request.getType())) {
 			return getEditPolicy(EditPolicyRoles.SEMANTIC_ROLE).getCommand(
 					_request);

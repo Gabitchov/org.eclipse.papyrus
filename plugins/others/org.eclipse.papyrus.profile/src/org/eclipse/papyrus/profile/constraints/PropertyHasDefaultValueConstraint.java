@@ -28,10 +28,10 @@ public class PropertyHasDefaultValueConstraint extends AbstractModelConstraint {
 
 	public IStatus validate(IValidationContext ctx) {
 
-		if (ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
-			Property property = (Property) ctx.getTarget();
+		if(ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
+			Property property = (Property)ctx.getTarget();
 
-			if (!ProfileConstraintUtils.hasDefaultValueRequired(property)) {
+			if(!ProfileConstraintUtils.hasDefaultValueRequired(property)) {
 				return ctx.createFailureStatus(ctx.getTarget());
 			}
 		}

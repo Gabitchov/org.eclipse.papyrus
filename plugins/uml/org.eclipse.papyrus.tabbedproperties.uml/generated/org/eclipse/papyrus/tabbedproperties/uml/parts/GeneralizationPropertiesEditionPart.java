@@ -32,7 +32,9 @@ public interface GeneralizationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isSubstitutable
-	 * @param newValue the new isSubstitutable to set
+	 * 
+	 * @param newValue
+	 *        the new isSubstitutable to set
 	 */
 	public void setIsSubstitutable(Boolean newValue);
 
@@ -57,15 +59,21 @@ public interface GeneralizationPropertiesEditionPart {
 
 	/**
 	 * Init the generalizationSet
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initGeneralizationSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalizationSet
-	 * @param newValue the generalizationSet to update
+	 * 
+	 * @param newValue
+	 *        the generalizationSet to update
 	 */
 	public void updateGeneralizationSet(EObject newValue);
 
@@ -73,7 +81,7 @@ public interface GeneralizationPropertiesEditionPart {
 	 * Adds the given filter to the generalizationSet edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToGeneralizationSet(ViewerFilter filter);
@@ -82,7 +90,7 @@ public interface GeneralizationPropertiesEditionPart {
 	 * Adds the given filter to the generalizationSet edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToGeneralizationSet(ViewerFilter filter);
@@ -91,11 +99,6 @@ public interface GeneralizationPropertiesEditionPart {
 	 * @return true if the given element is contained inside the generalizationSet table
 	 */
 	public boolean isContainedInGeneralizationSetTable(EObject element);
-
-
-
-
-
 
 
 

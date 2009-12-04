@@ -23,21 +23,17 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class CommentAnnotatedElementItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @NOT-generated
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (request instanceof GroupRequest
-				&& RequestConstants.REQ_DELETE.equals(request.getType())) {
+		if (request instanceof GroupRequest && RequestConstants.REQ_DELETE.equals(request.getType())) {
 			CommentAnnotatedElementEditPart ep = (CommentAnnotatedElementEditPart) getHost();
-			DestroyReferenceRequest drr = new DestroyReferenceRequest(
-					((View) ep.getSource().getModel()).getElement(),
-					UMLPackage.eINSTANCE.getComment_AnnotatedElement(),
-					((View) ep.getTarget().getModel()).getElement(), false);
+			DestroyReferenceRequest drr = new DestroyReferenceRequest(((View) ep.getSource().getModel()).getElement(), UMLPackage.eINSTANCE.getComment_AnnotatedElement(), ((View) ep.getTarget()
+					.getModel()).getElement(), false);
 			return getDestroyReferenceCommand(drr);
 		}
 		return super.getCommand(request);
@@ -53,17 +49,13 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends
 
 		cc.add(getGEFWrapper(new DestroyReferenceCommand(req)));
 
-		if (c.getAnnotatedElements().size() < 2
-				|| c.getAnnotatedElements().size() > 2) {
+		if (c.getAnnotatedElements().size() < 2 || c.getAnnotatedElements().size() > 2) {
 			Model m = (Model) c.eResource().getContents().get(0);
-			SetRequest sr = new SetRequest(m, UMLPackage.eINSTANCE
-					.getElement_OwnedComment(), c);
+			SetRequest sr = new SetRequest(m, UMLPackage.eINSTANCE.getElement_OwnedComment(), c);
 			cc.add(new ICommandProxy(new SetValueCommand(sr)));
 		} else {
-			Element e = findNewParent((Element) req.getReferencedObject(), c
-					.getAnnotatedElements());
-			SetRequest sr = new SetRequest(e, UMLPackage.eINSTANCE
-					.getElement_OwnedComment(), c);
+			Element e = findNewParent((Element) req.getReferencedObject(), c.getAnnotatedElements());
+			SetRequest sr = new SetRequest(e, UMLPackage.eINSTANCE.getElement_OwnedComment(), c);
 			cc.add(new ICommandProxy(new SetValueCommand(sr)));
 		}
 

@@ -69,11 +69,11 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (selection instanceof IStructuredSelection) {
-			Object input = ((IStructuredSelection) selection).getFirstElement();
+		if(selection instanceof IStructuredSelection) {
+			Object input = ((IStructuredSelection)selection).getFirstElement();
 
-			if (part instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor editor = (IMultiDiagramEditor) part;
+			if(part instanceof IMultiDiagramEditor) {
+				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
 				BackboneContext backbone = editor.getDefaultContext();
 				domain = editor.getDefaultContext().getTransactionalEditingDomain();
 				appearanceForAppliedStereotype.setDomain(domain);
@@ -81,15 +81,15 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 				domain = null;
 			}
 
-			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
+			if(input instanceof GraphicalEditPart && ((GraphicalEditPart)input).getModel() instanceof View) {
 				appearanceForAppliedStereotype.setSelection(selection);
-				diagramElement = (EModelElement) ((AbstractGraphicalEditPart) input).getModel();
+				diagramElement = (EModelElement)((AbstractGraphicalEditPart)input).getModel();
 
-				if ((diagramElement instanceof View) && ((View) diagramElement).getElement() != null) {
-					appearanceForAppliedStereotype.setElement((Element) ((View) diagramElement).getElement());
-					appearanceForAppliedStereotype.setInput(new StereotypedElementTreeObject((Element) ((View) diagramElement).getElement(), domain));
+				if((diagramElement instanceof View) && ((View)diagramElement).getElement() != null) {
+					appearanceForAppliedStereotype.setElement((Element)((View)diagramElement).getElement());
+					appearanceForAppliedStereotype.setInput(new StereotypedElementTreeObject((Element)((View)diagramElement).getElement(), domain));
 
-					diagramElement = (EModelElement) ((AbstractGraphicalEditPart) input).getModel();
+					diagramElement = (EModelElement)((AbstractGraphicalEditPart)input).getModel();
 					appearanceForAppliedStereotype.setDiagramElement(diagramElement);
 
 				} else {
@@ -99,10 +99,10 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 					diagramElement = null;
 				}
 				// When the selection is computed from the outline, get the associated editor
-				if (part instanceof ContentOutline) {
-					IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
-					if (contributedView != null) {
-						part = (IWorkbenchPart) contributedView.getContributingPart();
+				if(part instanceof ContentOutline) {
+					IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part).getAdapter(IContributedContentsView.class));
+					if(contributedView != null) {
+						part = (IWorkbenchPart)contributedView.getContributingPart();
 					}
 				}
 			}
@@ -119,7 +119,7 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 	 */
 	public void dispose() {
 		super.dispose();
-		if (appearanceForAppliedStereotype != null)
+		if(appearanceForAppliedStereotype != null)
 			appearanceForAppliedStereotype.disposeListeners();
 	}
 }

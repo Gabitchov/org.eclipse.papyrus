@@ -68,27 +68,42 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class EnumerationLiteralPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, EnumerationLiteralPropertiesEditionPart {
 
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	protected EMFListEditUtil deploymentEditUtil;
+
 	protected ReferencesTable<? extends EObject> deployment;
+
 	protected List<ViewerFilter> deploymentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> deploymentFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil slotEditUtil;
+
 	protected ReferencesTable<? extends EObject> slot;
+
 	protected List<ViewerFilter> slotBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> slotFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil classifierEditUtil;
+
 	protected ReferencesTable<? extends EObject> classifier;
+
 	protected List<ViewerFilter> classifierBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> classifierFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public EnumerationLiteralPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -96,25 +111,25 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
@@ -136,6 +151,7 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		createVisibilityEMFComboViewer(generalGroup);
 		createGeneralHBox1HBox(generalGroup);
 	}
+
 	protected void createNameText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.EnumerationLiteralPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.EnumerationLiteral.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
@@ -149,14 +165,15 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EnumerationLiteralPropertiesEditionPartImpl.this, UMLViewsRepository.EnumerationLiteral.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.EnumerationLiteral.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.EnumerationLiteralPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.EnumerationLiteral.visibility, UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -166,30 +183,46 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		visibility.getCombo().setLayoutData(visibilityData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.EnumerationLiteral.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createGeneralHBox1HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan=2;
+		gridData.horizontalSpan = 2;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox1HBox = new HorizontalBox(container);
 		//create sub figures
-				createDeploymentAdvancedTableComposition(generalHBox1HBox);
-				createSlotAdvancedTableComposition(generalHBox1HBox);
-				createClassifierAdvancedReferencesTable(generalHBox1HBox);
+		createDeploymentAdvancedTableComposition(generalHBox1HBox);
+		createSlotAdvancedTableComposition(generalHBox1HBox);
+		createClassifierAdvancedReferencesTable(generalHBox1HBox);
 		parent.pack();
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createDeploymentAdvancedTableComposition(Composite parent) {
-		this.deployment = new ReferencesTable<Deployment>(UMLMessages.EnumerationLiteralPropertiesEditionPart_DeploymentLabel, new ReferencesTableListener<Deployment>() {			
-			public void handleAdd() { addToDeployment();}
-			public void handleEdit(Deployment element) { editDeployment(element); }
-			public void handleMove(Deployment element, int oldIndex, int newIndex) { moveDeployment(element, oldIndex, newIndex); }
-			public void handleRemove(Deployment element) { removeFromDeployment(element); }
-			public void navigateTo(Deployment element) { }
+		this.deployment = new ReferencesTable<Deployment>(UMLMessages.EnumerationLiteralPropertiesEditionPart_DeploymentLabel, new ReferencesTableListener<Deployment>() {
+
+			public void handleAdd() {
+				addToDeployment();
+			}
+
+			public void handleEdit(Deployment element) {
+				editDeployment(element);
+			}
+
+			public void handleMove(Deployment element, int oldIndex, int newIndex) {
+				moveDeployment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Deployment element) {
+				removeFromDeployment(element);
+			}
+
+			public void navigateTo(Deployment element) {
+			}
 		});
 		this.deployment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.EnumerationLiteral.deployment, UMLViewsRepository.SWT_KIND));
 		this.deployment.createControls(parent);
@@ -205,7 +238,7 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		EObject editedElement = deploymentEditUtil.foundCorrespondingEObject(element);
 		deploymentEditUtil.moveElement(element, oldIndex, newIndex);
 		deployment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EnumerationLiteralPropertiesEditionPartImpl.this, UMLViewsRepository.EnumerationLiteral.deployment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EnumerationLiteralPropertiesEditionPartImpl.this, UMLViewsRepository.EnumerationLiteral.deployment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -218,11 +251,11 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				deploymentEditUtil.addElement(propertiesEditionObject);
 				deployment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -261,10 +294,10 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				deploymentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				deployment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -276,16 +309,31 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createSlotAdvancedTableComposition(Composite parent) {
-		this.slot = new ReferencesTable<Slot>(UMLMessages.EnumerationLiteralPropertiesEditionPart_SlotLabel, new ReferencesTableListener<Slot>() {			
-			public void handleAdd() { addToSlot();}
-			public void handleEdit(Slot element) { editSlot(element); }
-			public void handleMove(Slot element, int oldIndex, int newIndex) { moveSlot(element, oldIndex, newIndex); }
-			public void handleRemove(Slot element) { removeFromSlot(element); }
-			public void navigateTo(Slot element) { }
+		this.slot = new ReferencesTable<Slot>(UMLMessages.EnumerationLiteralPropertiesEditionPart_SlotLabel, new ReferencesTableListener<Slot>() {
+
+			public void handleAdd() {
+				addToSlot();
+			}
+
+			public void handleEdit(Slot element) {
+				editSlot(element);
+			}
+
+			public void handleMove(Slot element, int oldIndex, int newIndex) {
+				moveSlot(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Slot element) {
+				removeFromSlot(element);
+			}
+
+			public void navigateTo(Slot element) {
+			}
 		});
 		this.slot.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.EnumerationLiteral.slot, UMLViewsRepository.SWT_KIND));
 		this.slot.createControls(parent);
@@ -301,7 +349,7 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		EObject editedElement = slotEditUtil.foundCorrespondingEObject(element);
 		slotEditUtil.moveElement(element, oldIndex, newIndex);
 		slot.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EnumerationLiteralPropertiesEditionPartImpl.this, UMLViewsRepository.EnumerationLiteral.slot, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EnumerationLiteralPropertiesEditionPartImpl.this, UMLViewsRepository.EnumerationLiteral.slot, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -314,11 +362,11 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				slotEditUtil.addElement(propertiesEditionObject);
 				slot.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -356,10 +404,10 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				slotEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				slot.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -371,19 +419,21 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		// End of user code
 
 	}
+
 	protected void createClassifierAdvancedReferencesTable(Composite parent) {
 		this.classifier = new ReferencesTable<Classifier>(UMLMessages.EnumerationLiteralPropertiesEditionPart_ClassifierLabel, new ReferencesTableListener<Classifier>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Classifier> dialog = new TabElementTreeSelectionDialog<Classifier>(resourceSet, classifierFilters, classifierBusinessFilters,
-				"Classifier", UMLPackage.eINSTANCE.getClassifier(), current.eResource()) {
+						"Classifier", UMLPackage.eINSTANCE.getClassifier(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!classifierEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!classifierEditUtil.getVirtualList().contains(elem))
 								classifierEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EnumerationLiteralPropertiesEditionPartImpl.this, UMLViewsRepository.EnumerationLiteral.classifier,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						classifier.refresh();
 					}
@@ -391,10 +441,21 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 				};
 				dialog.open();
 			}
-			public void handleEdit(Classifier element) { editClassifier(element); }
-			public void handleMove(Classifier element, int oldIndex, int newIndex) { moveClassifier(element, oldIndex, newIndex); }
-			public void handleRemove(Classifier element) { removeFromClassifier(element); }
-			public void navigateTo(Classifier element) { }
+
+			public void handleEdit(Classifier element) {
+				editClassifier(element);
+			}
+
+			public void handleMove(Classifier element, int oldIndex, int newIndex) {
+				moveClassifier(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Classifier element) {
+				removeFromClassifier(element);
+			}
+
+			public void navigateTo(Classifier element) {
+			}
 		});
 		this.classifier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.EnumerationLiteral.classifier, UMLViewsRepository.SWT_KIND));
 		this.classifier.createControls(parent);
@@ -436,10 +497,10 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				classifierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				classifier.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -475,10 +536,10 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -496,7 +557,7 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
@@ -575,12 +636,13 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#initDeployment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#initDeployment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initDeployment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			deploymentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			deploymentEditUtil = new EMFListEditUtil(current, feature);
@@ -593,7 +655,7 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#updateDeployment(EObject newValue)
 	 */
 	public void updateDeployment(EObject newValue) {
-		if(deploymentEditUtil != null){
+		if(deploymentEditUtil != null) {
 			deploymentEditUtil.reinit(newValue);
 			deployment.refresh();
 		}
@@ -682,12 +744,13 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#initSlot(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#initSlot(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initSlot(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			slotEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			slotEditUtil = new EMFListEditUtil(current, feature);
@@ -700,7 +763,7 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#updateSlot(EObject newValue)
 	 */
 	public void updateSlot(EObject newValue) {
-		if(slotEditUtil != null){
+		if(slotEditUtil != null) {
 			slotEditUtil.reinit(newValue);
 			slot.refresh();
 		}
@@ -772,12 +835,13 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#initClassifier(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#initClassifier(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initClassifier(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			classifierEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			classifierEditUtil = new EMFListEditUtil(current, feature);
@@ -790,7 +854,7 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.EnumerationLiteralPropertiesEditionPart#updateClassifier(EObject newValue)
 	 */
 	public void updateClassifier(EObject newValue) {
-		if(classifierEditUtil != null){
+		if(classifierEditUtil != null) {
 			classifierEditUtil.reinit(newValue);
 			classifier.refresh();
 		}
@@ -830,9 +894,6 @@ public class EnumerationLiteralPropertiesEditionPartImpl extends CompositeProper
 	public void unsetMessageForClassifier() {
 
 	}
-
-
-
 
 
 

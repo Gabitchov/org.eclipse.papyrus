@@ -72,7 +72,7 @@ public class StickMan extends ShadowShape {
 	 * Setup the points to draw the stickMan figure.
 	 * 
 	 * @param rectangle
-	 *            the specified rectangle
+	 *        the specified rectangle
 	 * 
 	 * @return the point list
 	 */
@@ -88,7 +88,7 @@ public class StickMan extends ShadowShape {
 		int Y2 = Math.round(H * FACTOR2);
 		int Y3 = H - (X1 - 1);
 		int STEP = Math.round(W / BASE_W);
-		if (STEP < 1) {
+		if(STEP < 1) {
 			STEP = 1;
 		}
 
@@ -115,7 +115,7 @@ public class StickMan extends ShadowShape {
 		yPoints[9] = Y3 + STEP;
 
 		// reflect points 0..8
-		for (int i = 0; i <= 8; i++) {
+		for(int i = 0; i <= 8; i++) {
 			xPoints[18 - i] = -xPoints[i];
 			yPoints[18 - i] = yPoints[i];
 		}
@@ -125,14 +125,14 @@ public class StickMan extends ShadowShape {
 		yPoints[19] = yPoints[0];
 
 		// shift all points and copy to integer.
-		for (int i = 0; i < P_NUM; i++) {
+		for(int i = 0; i < P_NUM; i++) {
 			xPoints[i] += X1;
 
 			xPoints[i] += rectangle.x;
 			yPoints[i] += rectangle.y;
 		}
 
-		for (int i = 0; i < xPoints.length; i++) {
+		for(int i = 0; i < xPoints.length; i++) {
 			pl.addPoint(xPoints[i], yPoints[i]);
 		}
 

@@ -69,7 +69,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 * sets the back ground color of this edit part
 	 * 
 	 * @param color
-	 *            the new value of the back ground color
+	 *        the new value of the back ground color
 	 */
 	protected void setBackgroundColor(Color color) {
 		getPrimaryShape().setBackgroundColor(color);
@@ -83,10 +83,9 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	@Override
 	protected void setGradient(GradientData gradient) {
 		IPapyrusNodeFigure fig = getPrimaryShape();
-		FillStyle style = (FillStyle) getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-		if (gradient != null) {
-			fig.setIsUsingGradient(true);
-			;
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(gradient != null) {
+			fig.setIsUsingGradient(true);;
 			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
 		} else {
 			fig.setIsUsingGradient(false);
@@ -97,7 +96,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 * sets the font color
 	 * 
 	 * @param color
-	 *            the new value of the font color
+	 *        the new value of the font color
 	 */
 	protected void setFontColor(Color color) {
 		// NULL implementation
@@ -107,7 +106,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 * sets the fore ground color of this edit part's figure
 	 * 
 	 * @param color
-	 *            the new value of the foregroundcolor
+	 *        the new value of the foregroundcolor
 	 */
 	protected void setForegroundColor(Color color) {
 		getPrimaryShape().setForegroundColor(color);
@@ -117,6 +116,6 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 * Refresh the shadow of the figure
 	 */
 	protected void refreshShadow() {
-		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View) getModel()));
+		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
 	}
 }

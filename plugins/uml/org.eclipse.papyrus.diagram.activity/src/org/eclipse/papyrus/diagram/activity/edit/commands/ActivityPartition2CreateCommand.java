@@ -21,6 +21,7 @@ public class ActivityPartition2CreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -29,8 +30,7 @@ public class ActivityPartition2CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public ActivityPartition2CreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public ActivityPartition2CreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -39,8 +39,7 @@ public class ActivityPartition2CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ActivityPartition2CreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static ActivityPartition2CreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new ActivityPartition2CreateCommand(req, eObject);
 	}
 
@@ -57,8 +56,7 @@ public class ActivityPartition2CreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -89,10 +87,8 @@ public class ActivityPartition2CreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
-				MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(
-					MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -105,8 +101,7 @@ public class ActivityPartition2CreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		ActivityPartition newElement = (ActivityPartition) super
-				.doDefaultElementCreation();
+		ActivityPartition newElement = (ActivityPartition) super.doDefaultElementCreation();
 		if (newElement != null) {
 			ActivityPartition owner = (ActivityPartition) getElementToEdit();
 			owner.getSubpartitions().add(newElement);
@@ -115,11 +110,9 @@ public class ActivityPartition2CreateCommand extends CreateElementCommand {
 
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-						newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-						UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

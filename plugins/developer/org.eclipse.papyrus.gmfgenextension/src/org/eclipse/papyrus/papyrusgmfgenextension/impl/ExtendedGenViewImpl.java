@@ -33,22 +33,24 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getGenView <em>Gen View</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#isIsAbstract <em>Is Abstract</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getSuperGenViews <em>Super Gen Views</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getPropRefreshHook <em>Prop Refresh Hook</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getGenView <em>Gen View</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getSuperGenViews <em>Super Gen Views</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getPropRefreshHook <em>Prop Refresh Hook</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ExtendedGenViewImpl extends CommentedElementImpl implements ExtendedGenView {
+
 	/**
 	 * The cached value of the '{@link #getGenView() <em>Gen View</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getGenView()
 	 * @generated
 	 * @ordered
@@ -59,6 +61,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsAbstract()
 	 * @generated
 	 * @ordered
@@ -69,6 +72,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsAbstract()
 	 * @generated
 	 * @ordered
@@ -79,6 +83,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The cached value of the '{@link #getSuperGenViews() <em>Super Gen Views</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperGenViews()
 	 * @generated
 	 * @ordered
@@ -89,6 +94,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The cached value of the '{@link #getPropRefreshHook() <em>Prop Refresh Hook</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPropRefreshHook()
 	 * @generated
 	 * @ordered
@@ -99,6 +105,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -109,6 +116,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -119,6 +127,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The default value of the '{@link #getSuperOwnedEditPart() <em>Super Owned Edit Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperOwnedEditPart()
 	 * @generated
 	 * @ordered
@@ -129,6 +138,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	 * The cached value of the '{@link #getSuperOwnedEditPart() <em>Super Owned Edit Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperOwnedEditPart()
 	 * @generated
 	 * @ordered
@@ -138,6 +148,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ExtendedGenViewImpl() {
@@ -147,6 +158,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,10 +169,11 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<GenCommonBase> getGenView() {
-		if (genView == null) {
+		if(genView == null) {
 			genView = new EObjectResolvingEList<GenCommonBase>(GenCommonBase.class, this, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW);
 		}
 		return genView;
@@ -169,6 +182,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsAbstract() {
@@ -178,22 +192,24 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsAbstract(boolean newIsAbstract) {
 		boolean oldIsAbstract = isAbstract;
 		isAbstract = newIsAbstract;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT, oldIsAbstract, isAbstract));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<GenCommonBase> getSuperGenViews() {
-		if (superGenViews == null) {
+		if(superGenViews == null) {
 			superGenViews = new EObjectResolvingEList<GenCommonBase>(GenCommonBase.class, this, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS);
 		}
 		return superGenViews;
@@ -202,6 +218,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PropertyRefreshHook getPropRefreshHook() {
@@ -211,14 +228,18 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPropRefreshHook(PropertyRefreshHook newPropRefreshHook, NotificationChain msgs) {
 		PropertyRefreshHook oldPropRefreshHook = propRefreshHook;
 		propRefreshHook = newPropRefreshHook;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK, oldPropRefreshHook, newPropRefreshHook);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -226,25 +247,27 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPropRefreshHook(PropertyRefreshHook newPropRefreshHook) {
-		if (newPropRefreshHook != propRefreshHook) {
+		if(newPropRefreshHook != propRefreshHook) {
 			NotificationChain msgs = null;
-			if (propRefreshHook != null)
+			if(propRefreshHook != null)
 				msgs = ((InternalEObject)propRefreshHook).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK, null, msgs);
-			if (newPropRefreshHook != null)
+			if(newPropRefreshHook != null)
 				msgs = ((InternalEObject)newPropRefreshHook).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK, null, msgs);
 			msgs = basicSetPropRefreshHook(newPropRefreshHook, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK, newPropRefreshHook, newPropRefreshHook));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -254,18 +277,20 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSuperOwnedEditPart() {
@@ -275,25 +300,27 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSuperOwnedEditPart(String newSuperOwnedEditPart) {
 		String oldSuperOwnedEditPart = superOwnedEditPart;
 		superOwnedEditPart = newSuperOwnedEditPart;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART, oldSuperOwnedEditPart, superOwnedEditPart));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
-				return basicSetPropRefreshHook(null, msgs);
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
+			return basicSetPropRefreshHook(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -301,23 +328,24 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
-				return getGenView();
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
-				return isIsAbstract();
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
-				return getSuperGenViews();
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
-				return getPropRefreshHook();
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
-				return getName();
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
-				return getSuperOwnedEditPart();
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
+			return getGenView();
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
+			return isIsAbstract();
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
+			return getSuperGenViews();
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
+			return getPropRefreshHook();
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
+			return getName();
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
+			return getSuperOwnedEditPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -325,32 +353,33 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
-				getGenView().clear();
-				getGenView().addAll((Collection<? extends GenCommonBase>)newValue);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
-				setIsAbstract((Boolean)newValue);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
-				getSuperGenViews().clear();
-				getSuperGenViews().addAll((Collection<? extends GenCommonBase>)newValue);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
-				setPropRefreshHook((PropertyRefreshHook)newValue);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
-				setName((String)newValue);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
-				setSuperOwnedEditPart((String)newValue);
-				return;
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
+			getGenView().clear();
+			getGenView().addAll((Collection<? extends GenCommonBase>)newValue);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
+			setIsAbstract((Boolean)newValue);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
+			getSuperGenViews().clear();
+			getSuperGenViews().addAll((Collection<? extends GenCommonBase>)newValue);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
+			setPropRefreshHook((PropertyRefreshHook)newValue);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
+			setName((String)newValue);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
+			setSuperOwnedEditPart((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -358,29 +387,30 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
-				getGenView().clear();
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
-				setIsAbstract(IS_ABSTRACT_EDEFAULT);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
-				getSuperGenViews().clear();
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
-				setPropRefreshHook((PropertyRefreshHook)null);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
-				setSuperOwnedEditPart(SUPER_OWNED_EDIT_PART_EDEFAULT);
-				return;
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
+			getGenView().clear();
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
+			setIsAbstract(IS_ABSTRACT_EDEFAULT);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
+			getSuperGenViews().clear();
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
+			setPropRefreshHook((PropertyRefreshHook)null);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
+			setSuperOwnedEditPart(SUPER_OWNED_EDIT_PART_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -388,23 +418,24 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
-				return genView != null && !genView.isEmpty();
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
-				return isAbstract != IS_ABSTRACT_EDEFAULT;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
-				return superGenViews != null && !superGenViews.isEmpty();
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
-				return propRefreshHook != null;
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
-				return SUPER_OWNED_EDIT_PART_EDEFAULT == null ? superOwnedEditPart != null : !SUPER_OWNED_EDIT_PART_EDEFAULT.equals(superOwnedEditPart);
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__GEN_VIEW:
+			return genView != null && !genView.isEmpty();
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__IS_ABSTRACT:
+			return isAbstract != IS_ABSTRACT_EDEFAULT;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS:
+			return superGenViews != null && !superGenViews.isEmpty();
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK:
+			return propRefreshHook != null;
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART:
+			return SUPER_OWNED_EDIT_PART_EDEFAULT == null ? superOwnedEditPart != null : !SUPER_OWNED_EDIT_PART_EDEFAULT.equals(superOwnedEditPart);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -412,11 +443,13 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isAbstract: ");

@@ -37,7 +37,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	private static PropertyLabelHelper labelHelper;
 
 	public static PropertyLabelHelper getInstance() {
-		if (labelHelper == null) {
+		if(labelHelper == null) {
 			labelHelper = new PropertyLabelHelper();
 		}
 		return labelHelper;
@@ -61,20 +61,20 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * Computes the label that should be displayed by the figure managed by this edit part.
 	 * 
 	 * @param editPart
-	 *            the edit part that controls the {@link Property} to be displayed
+	 *        the edit part that controls the {@link Property} to be displayed
 	 * @return the label corresponding to the specific display of the property ("default" display
 	 *         given by preferences or specific display given by eAnnotation).
 	 */
 	protected String elementLabel(GraphicalEditPart editPart) {
 		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 
-		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart
+		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart
 				.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if (policy != null) {
+		if(policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}
 		Property elem = getUMLElement(editPart);
-		if (elem != null) {
+		if(elem != null) {
 			return PropertyUtil.getCustomLabel(elem, displayValue);
 		}
 		return "";
@@ -120,7 +120,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
-		return (Property) ((View) editPart.getModel()).getElement();
+		return (Property)((View)editPart.getModel()).getElement();
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * Refreshes the label of the figure associated to the specified edit part
 	 * 
 	 * @param editPart
-	 *            the edit part managing the refreshed figure
+	 *        the edit part managing the refreshed figure
 	 */
 	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
 		IFigure figure = editPart.getFigure();
@@ -158,15 +158,15 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 		// a max number ?!
 		// solution: set all images to null, and then add the correct icons
 		int i = 0;
-		while (((WrappingLabel) figure).getIcon(i) != null) {
-			((WrappingLabel) figure).setIcon(null, i);
+		while(((WrappingLabel)figure).getIcon(i) != null) {
+			((WrappingLabel)figure).setIcon(null, i);
 			i++;
 		}
 		i = 0;
-		for (Image image : imageToDisplay) {
-			((WrappingLabel) figure).setIcon(image, i);
+		for(Image image : imageToDisplay) {
+			((WrappingLabel)figure).setIcon(image, i);
 			i++;
 		}
-		((WrappingLabel) figure).setText(labelToDisplay(editPart));
+		((WrappingLabel)figure).setText(labelToDisplay(editPart));
 	}
 }

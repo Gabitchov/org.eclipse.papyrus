@@ -117,7 +117,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		loadResourceAction.setActiveWorkbenchPart(activeViewPart);
 
 		ISelectionProvider selectionProvider = null;
-		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
+		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
 			selectionProvider.addSelectionChangedListener(deleteAction);
 			selectionProvider.addSelectionChangedListener(cutAction);
@@ -139,7 +139,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		loadResourceAction.setActiveWorkbenchPart(null);
 
 		ISelectionProvider selectionProvider = null;
-		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
+		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
 			selectionProvider.removeSelectionChangedListener(deleteAction);
 			selectionProvider.removeSelectionChangedListener(cutAction);

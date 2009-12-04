@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import java.util.Collection;
@@ -44,19 +44,21 @@ import org.eclipse.papyrus.di.GraphElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl#getPosition <em>Position</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl#getGraphEdge <em>Graph Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl#getGraphElement <em>Graph Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl#getPosition <em>Position</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl#getGraphEdge <em>Graph Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl#getGraphElement <em>Graph Element</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
+
 	/**
 	 * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPosition()
 	 * @generated
 	 * @ordered
@@ -67,6 +69,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	 * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPosition()
 	 * @generated
 	 * @ordered
@@ -77,6 +80,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	 * The cached value of the '{@link #getGraphEdge() <em>Graph Edge</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getGraphEdge()
 	 * @generated
 	 * @ordered
@@ -86,6 +90,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphConnectorImpl() {
@@ -95,6 +100,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,6 +111,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Point getPosition() {
@@ -114,22 +121,24 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPosition(Point newPosition) {
 		Point oldPosition = position;
 		position = newPosition;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.GRAPH_CONNECTOR__POSITION, oldPosition, position));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<GraphEdge> getGraphEdge() {
-		if (graphEdge == null) {
+		if(graphEdge == null) {
 			graphEdge = new EObjectWithInverseResolvingEList.ManyInverse<GraphEdge>(GraphEdge.class, this, DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE, DiPackage.GRAPH_EDGE__ANCHOR);
 		}
 		return graphEdge;
@@ -138,16 +147,19 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphElement getGraphElement() {
-		if (eContainerFeatureID != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT) return null;
+		if(eContainerFeatureID != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT)
+			return null;
 		return (GraphElement)eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetGraphElement(GraphElement newGraphElement, NotificationChain msgs) {
@@ -158,39 +170,41 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGraphElement(GraphElement newGraphElement) {
-		if (newGraphElement != eInternalContainer() || (eContainerFeatureID != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT && newGraphElement != null)) {
-			if (EcoreUtil.isAncestor(this, newGraphElement))
+		if(newGraphElement != eInternalContainer() || (eContainerFeatureID != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT && newGraphElement != null)) {
+			if(EcoreUtil.isAncestor(this, newGraphElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGraphElement != null)
+			if(newGraphElement != null)
 				msgs = ((InternalEObject)newGraphElement).eInverseAdd(this, DiPackage.GRAPH_ELEMENT__ANCHORAGE, GraphElement.class, msgs);
 			msgs = basicSetGraphElement(newGraphElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT, newGraphElement, newGraphElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGraphEdge()).basicAdd(otherEnd, msgs);
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGraphElement((GraphElement)otherEnd, msgs);
+		switch(featureID) {
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getGraphEdge()).basicAdd(otherEnd, msgs);
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetGraphElement((GraphElement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -198,15 +212,16 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
-				return ((InternalEList<?>)getGraphEdge()).basicRemove(otherEnd, msgs);
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
-				return basicSetGraphElement(null, msgs);
+		switch(featureID) {
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
+			return ((InternalEList<?>)getGraphEdge()).basicRemove(otherEnd, msgs);
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
+			return basicSetGraphElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -214,13 +229,14 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, DiPackage.GRAPH_ELEMENT__ANCHORAGE, GraphElement.class, msgs);
+		switch(eContainerFeatureID) {
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
+			return eInternalContainer().eInverseRemove(this, DiPackage.GRAPH_ELEMENT__ANCHORAGE, GraphElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -228,17 +244,18 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.GRAPH_CONNECTOR__POSITION:
-				return getPosition();
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
-				return getGraphEdge();
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
-				return getGraphElement();
+		switch(featureID) {
+		case DiPackage.GRAPH_CONNECTOR__POSITION:
+			return getPosition();
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
+			return getGraphEdge();
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
+			return getGraphElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,22 +263,23 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.GRAPH_CONNECTOR__POSITION:
-				setPosition((Point)newValue);
-				return;
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
-				getGraphEdge().clear();
-				getGraphEdge().addAll((Collection<? extends GraphEdge>)newValue);
-				return;
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
-				setGraphElement((GraphElement)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.GRAPH_CONNECTOR__POSITION:
+			setPosition((Point)newValue);
+			return;
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
+			getGraphEdge().clear();
+			getGraphEdge().addAll((Collection<? extends GraphEdge>)newValue);
+			return;
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
+			setGraphElement((GraphElement)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -269,20 +287,21 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.GRAPH_CONNECTOR__POSITION:
-				setPosition(POSITION_EDEFAULT);
-				return;
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
-				getGraphEdge().clear();
-				return;
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
-				setGraphElement((GraphElement)null);
-				return;
+		switch(featureID) {
+		case DiPackage.GRAPH_CONNECTOR__POSITION:
+			setPosition(POSITION_EDEFAULT);
+			return;
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
+			getGraphEdge().clear();
+			return;
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
+			setGraphElement((GraphElement)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -290,17 +309,18 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.GRAPH_CONNECTOR__POSITION:
-				return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
-				return graphEdge != null && !graphEdge.isEmpty();
-			case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
-				return getGraphElement() != null;
+		switch(featureID) {
+		case DiPackage.GRAPH_CONNECTOR__POSITION:
+			return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_EDGE:
+			return graphEdge != null && !graphEdge.isEmpty();
+		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
+			return getGraphElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -308,11 +328,13 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (position: ");

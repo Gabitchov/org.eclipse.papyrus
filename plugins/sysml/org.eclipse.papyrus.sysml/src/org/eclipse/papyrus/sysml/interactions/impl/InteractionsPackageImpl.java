@@ -59,9 +59,8 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 	 * upon which it depends.
 	 * 
 	 * <p>
-	 * This method is used to initialize {@link InteractionsPackage#eINSTANCE} when that field is
-	 * accessed. Clients should not invoke it directly. Instead, they should simply access that
-	 * field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link InteractionsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -69,11 +68,11 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 	 * @generated
 	 */
 	public static InteractionsPackage init() {
-		if (isInited)
-			return (InteractionsPackage) EPackage.Registry.INSTANCE.getEPackage(InteractionsPackage.eNS_URI);
+		if(isInited)
+			return (InteractionsPackage)EPackage.Registry.INSTANCE.getEPackage(InteractionsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl) (EPackage.Registry.INSTANCE
+		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl)(EPackage.Registry.INSTANCE
 				.get(eNS_URI) instanceof InteractionsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
 				: new InteractionsPackageImpl());
 
@@ -83,38 +82,38 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl) (EPackage.Registry.INSTANCE
+		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
-		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl) (EPackage.Registry.INSTANCE
+		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ModelelementsPackage.eNS_URI) instanceof ModelelementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ModelelementsPackage.eNS_URI)
 				: ModelelementsPackage.eINSTANCE);
-		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl) (EPackage.Registry.INSTANCE
+		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(BlocksPackage.eNS_URI) instanceof BlocksPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BlocksPackage.eNS_URI) : BlocksPackage.eINSTANCE);
-		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl) (EPackage.Registry.INSTANCE
+		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI) instanceof PortandflowsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI)
 				: PortandflowsPackage.eINSTANCE);
-		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl) (EPackage.Registry.INSTANCE
+		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ConstraintsPackage.eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ConstraintsPackage.eNS_URI) : ConstraintsPackage.eINSTANCE);
-		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl) (EPackage.Registry.INSTANCE
+		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) instanceof ActivitiesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) : ActivitiesPackage.eINSTANCE);
-		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl) (EPackage.Registry.INSTANCE
+		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) instanceof AllocationsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) : AllocationsPackage.eINSTANCE);
-		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl) (EPackage.Registry.INSTANCE
+		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI)
 				: RequirementsPackage.eINSTANCE);
-		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl) (EPackage.Registry.INSTANCE
+		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI) instanceof StatemachinesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI)
 				: StatemachinesPackage.eINSTANCE);
-		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl) (EPackage.Registry.INSTANCE
+		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) instanceof UsecasesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) : UsecasesPackage.eINSTANCE);
 
@@ -174,13 +173,13 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package package URI
 	 * value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init
-	 * init()}, which also performs initialization of the package, or returns the registered
-	 * package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.sysml.interactions.InteractionsPackage#eNS_URI
@@ -198,7 +197,7 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if(isCreated)
 			return;
 		isCreated = true;
 
@@ -221,7 +220,7 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 	 * @generated
 	 */
 	public InteractionsFactory getInteractionsFactory() {
-		return (InteractionsFactory) getEFactoryInstance();
+		return (InteractionsFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -231,7 +230,7 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if(isInitialized)
 			return;
 		isInitialized = true;
 

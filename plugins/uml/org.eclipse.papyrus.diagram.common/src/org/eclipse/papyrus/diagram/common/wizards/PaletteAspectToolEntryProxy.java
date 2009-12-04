@@ -26,7 +26,7 @@ public class PaletteAspectToolEntryProxy extends PaletteEntryProxy {
 	 * Creates a new {@link PaletteAspectToolEntryProxy}
 	 * 
 	 * @param entry
-	 *            the proxied entry
+	 *        the proxied entry
 	 */
 	public PaletteAspectToolEntryProxy(AspectCreationEntry entry) {
 		super(entry);
@@ -37,7 +37,7 @@ public class PaletteAspectToolEntryProxy extends PaletteEntryProxy {
 	 */
 	@Override
 	public AspectCreationEntry getEntry() {
-		return (AspectCreationEntry) super.getEntry();
+		return (AspectCreationEntry)super.getEntry();
 	}
 
 	/**

@@ -43,21 +43,21 @@ public class SlotParser implements IParser {
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final Slot slot = ((Slot) ((EObjectAdapter) element).getRealObject());
-			if (slot.getDefiningFeature() == null) {
+		if(element instanceof EObjectAdapter) {
+			final Slot slot = ((Slot)((EObjectAdapter)element).getRealObject());
+			if(slot.getDefiningFeature() == null) {
 				return "<UNDEFINED>";
 			}
 			String result = slot.getDefiningFeature().getName();
-			if (slot.getValues().isEmpty()) {
+			if(slot.getValues().isEmpty()) {
 				return result;
 			} else {
 				result = result + ": ";
 				Iterator<ValueSpecification> iter = slot.getValues().iterator();
-				while (iter.hasNext()) {
+				while(iter.hasNext()) {
 					ValueSpecification currentSpecification = iter.next();
-					if (currentSpecification instanceof InstanceValue) {
-						result = result + ((InstanceValue) currentSpecification).getInstance().getName() + ", ";
+					if(currentSpecification instanceof InstanceValue) {
+						result = result + ((InstanceValue)currentSpecification).getInstance().getName() + ", ";
 					} else {
 						result = result + currentSpecification.stringValue() + ", ";
 					}

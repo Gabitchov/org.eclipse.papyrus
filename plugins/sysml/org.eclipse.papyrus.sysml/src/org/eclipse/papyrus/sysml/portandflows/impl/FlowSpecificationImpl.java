@@ -23,8 +23,7 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.uml2.uml.Interface;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Flow Specification</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Flow Specification</b></em> '. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -72,9 +71,9 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE:
-			if (resolve)
+			if(resolve)
 				return getBase_Interface();
 			return basicGetBase_Interface();
 		}
@@ -88,7 +87,7 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE:
 			return base_Interface != null;
 		}
@@ -102,9 +101,9 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE:
-			setBase_Interface((Interface) newValue);
+			setBase_Interface((Interface)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +126,9 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE:
-			setBase_Interface((Interface) null);
+			setBase_Interface((Interface)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +140,11 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 	 * @generated
 	 */
 	public Interface getBase_Interface() {
-		if (base_Interface != null && base_Interface.eIsProxy()) {
-			InternalEObject oldBase_Interface = (InternalEObject) base_Interface;
-			base_Interface = (Interface) eResolveProxy(oldBase_Interface);
-			if (base_Interface != oldBase_Interface) {
-				if (eNotificationRequired())
+		if(base_Interface != null && base_Interface.eIsProxy()) {
+			InternalEObject oldBase_Interface = (InternalEObject)base_Interface;
+			base_Interface = (Interface)eResolveProxy(oldBase_Interface);
+			if(base_Interface != oldBase_Interface) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE, oldBase_Interface, base_Interface));
 			}
@@ -161,7 +160,7 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 	public void setBase_Interface(Interface newBase_Interface) {
 		Interface oldBase_Interface = base_Interface;
 		base_Interface = newBase_Interface;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE, oldBase_Interface, base_Interface));
 	}

@@ -53,15 +53,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -109,15 +115,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 
 	/**
 	 * Init the node
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initNode(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the node
-	 * @param newValue the node to update
+	 * 
+	 * @param newValue
+	 *        the node to update
 	 */
 	public void updateNode(EObject newValue);
 
@@ -125,7 +137,7 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * Adds the given filter to the node edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToNode(ViewerFilter filter);
@@ -134,7 +146,7 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * Adds the given filter to the node edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToNode(ViewerFilter filter);
@@ -165,15 +177,21 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 
 	/**
 	 * Init the interruptingEdge
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initInterruptingEdge(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the interruptingEdge
-	 * @param newValue the interruptingEdge to update
+	 * 
+	 * @param newValue
+	 *        the interruptingEdge to update
 	 */
 	public void updateInterruptingEdge(EObject newValue);
 
@@ -181,7 +199,7 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * Adds the given filter to the interruptingEdge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToInterruptingEdge(ViewerFilter filter);
@@ -190,7 +208,7 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * Adds the given filter to the interruptingEdge edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToInterruptingEdge(ViewerFilter filter);
@@ -199,11 +217,6 @@ public interface InterruptibleActivityRegionPropertiesEditionPart {
 	 * @return true if the given element is contained inside the interruptingEdge table
 	 */
 	public boolean isContainedInInterruptingEdgeTable(EObject element);
-
-
-
-
-
 
 
 

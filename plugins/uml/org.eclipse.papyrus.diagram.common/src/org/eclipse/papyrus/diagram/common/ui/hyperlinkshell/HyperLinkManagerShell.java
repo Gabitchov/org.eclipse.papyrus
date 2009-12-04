@@ -75,8 +75,7 @@ public class HyperLinkManagerShell {
 	/**
 	 * The listener interface for receiving diagramCreate events. The class that is interested in
 	 * processing a diagramCreate event implements this interface, and the object created with that
-	 * class is registered with a component using the component's
-	 * <code>addDiagramCreateListener<code> method. When
+	 * class is registered with a component using the component's <code>addDiagramCreateListener<code> method. When
 	 * the diagramCreate event occurs, that object's appropriate
 	 * method is invoked.
 	 * 
@@ -103,11 +102,11 @@ public class HyperLinkManagerShell {
 		public void widgetSelected(SelectionEvent e) {
 			try {
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-				IEditorContextRegistry contextRegistry = (IEditorContextRegistry) servicesRegistry
+				IEditorContextRegistry contextRegistry = (IEditorContextRegistry)servicesRegistry
 						.getService(IEditorContextRegistry.class);
 
 				// Get the context by its ID
-				BackboneContext editorContext = (BackboneContext) contextRegistry
+				BackboneContext editorContext = (BackboneContext)contextRegistry
 						.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
 				ICreationCommand creationCommand = iCreationCommandRegistry
 						.getCommand(commandDescriptor.getCommandId());
@@ -131,13 +130,13 @@ public class HyperLinkManagerShell {
 		 * Instantiates a new diagram create listener.
 		 * 
 		 * @param commandDescriptor
-		 *            the command descriptor
+		 *        the command descriptor
 		 * @param backboneContext
-		 *            the backbone context
+		 *        the backbone context
 		 * @param container
-		 *            the container
+		 *        the container
 		 * @param iCreationCommandRegistry
-		 *            the i creation command registry
+		 *        the i creation command registry
 		 */
 		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, BackboneContext backboneContext,
 				Element container, ICreationCommandRegistry iCreationCommandRegistry) {
@@ -158,7 +157,7 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Image getImage(Object element) {
-			if (element instanceof Diagram) {
+			if(element instanceof Diagram) {
 				return editorRegistry.getEditorIcon((element));
 			}
 			return null;
@@ -168,8 +167,8 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public String getText(Object element) {
-			if (element instanceof Diagram) {
-				return ((Diagram) element).getName();
+			if(element instanceof Diagram) {
+				return ((Diagram)element).getName();
 			}
 			return null;
 		}
@@ -213,7 +212,7 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Image getImage(Object element) {
-			if (element instanceof String) {
+			if(element instanceof String) {
 				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
 						"/icons/obj16/hyperlink.gif").createImage();
 			}
@@ -224,8 +223,8 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public String getText(Object element) {
-			if (element instanceof String) {
-				return ((String) element);
+			if(element instanceof String) {
+				return ((String)element);
 			}
 			return null;
 		}
@@ -269,7 +268,7 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Image getImage(Object element) {
-			if (element instanceof String) {
+			if(element instanceof String) {
 				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
 						"/icons/obj16/file.gif").createImage();
 			}
@@ -280,8 +279,8 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public String getText(Object element) {
-			if (element instanceof String) {
-				return ((String) element);
+			if(element instanceof String) {
+				return ((String)element);
 			}
 			return null;
 		}
@@ -337,7 +336,7 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if (element != null) {
+			if(element != null) {
 				return getSubDiagrams().toArray();
 			}
 			return null;
@@ -366,7 +365,7 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if (inputElement != null) {
+			if(inputElement != null) {
 				// return
 				// HyperlinkHelper.getAllreferencedDocument((EModelElement)
 				// inputElement).toArray();
@@ -397,7 +396,7 @@ public class HyperLinkManagerShell {
 		 * {@inheritedDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if (inputElement != null) {
+			if(inputElement != null) {
 				// return HyperlinkHelper.getAllHyperLink((EModelElement)
 				// inputElement).toArray();
 			}
@@ -422,13 +421,13 @@ public class HyperLinkManagerShell {
 	 * Instantiates a new hyper link manager shell.
 	 * 
 	 * @param umlElement
-	 *            the uml element
+	 *        the uml element
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param editorFactoryRegistry
-	 *            the editor factory registry
+	 *        the editor factory registry
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 */
 	// @unused
 	public HyperLinkManagerShell(Element umlElement, View view, IEditorFactoryRegistry editorFactoryRegistry,
@@ -607,7 +606,7 @@ public class HyperLinkManagerShell {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				if (textfield1.getText() != null && !textfield1.getText().trim().equals("")) {
+				if(textfield1.getText() != null && !textfield1.getText().trim().equals("")) {
 					System.out.println("widgetSelected() '" + textfield1.getText().trim() + "'"); // TODO
 					// Auto-generated
 					// Event
@@ -644,9 +643,9 @@ public class HyperLinkManagerShell {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection = (IStructuredSelection) hyperLinkTableViewer.getSelection();
+				IStructuredSelection iSelection = (IStructuredSelection)hyperLinkTableViewer.getSelection();
 				Iterator iterator = iSelection.iterator();
-				while (iterator.hasNext()) {
+				while(iterator.hasNext()) {
 					domain.getCommandStack().execute(
 							HyperlinkHelper.getRemoveHyperlinkCommand(domain, view, "" + iterator.next()));
 				}
@@ -716,9 +715,9 @@ public class HyperLinkManagerShell {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection = (IStructuredSelection) documentTableViewer.getSelection();
+				IStructuredSelection iSelection = (IStructuredSelection)documentTableViewer.getSelection();
 				Iterator iterator = iSelection.iterator();
-				while (iterator.hasNext()) {
+				while(iterator.hasNext()) {
 					domain.getCommandStack().execute(
 							HyperlinkHelper.getRemoveHyperlinkCommand(domain, view, "" + iterator.next()));
 				}
@@ -766,7 +765,7 @@ public class HyperLinkManagerShell {
 		diagramAddButton.setMenu(diagramMenuButton);
 		CreationCommandRegistry commandRegistry = new CreationCommandRegistry(
 				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		for (CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
+		for(CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
 			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
 			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, element, commandRegistry));
 			menuItem.setText(desc.getLabel());
@@ -785,9 +784,9 @@ public class HyperLinkManagerShell {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection = (IStructuredSelection) diagramTableViewer.getSelection();
+				IStructuredSelection iSelection = (IStructuredSelection)diagramTableViewer.getSelection();
 				Iterator iterator = iSelection.iterator();
-				while (iterator.hasNext()) {
+				while(iterator.hasNext()) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr();
 					pageMngr.removePage(iterator.next());
 				}
@@ -804,16 +803,16 @@ public class HyperLinkManagerShell {
 	 */
 	protected ArrayList<Diagram> getSubDiagrams() {
 		ArrayList<Diagram> result = new ArrayList<Diagram>();
-		if (element != null) {
+		if(element != null) {
 			try {
 				IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 				Iterator<Object> iterator = iPageMngr.allPages().iterator();
-				while (iterator.hasNext()) {
+				while(iterator.hasNext()) {
 					Object current = iterator.next();
-					if (current instanceof Diagram) {
-						Element diagElement = (Element) ((Diagram) current).getElement();
-						if (element.equals(diagElement) || element.allOwnedElements().contains(diagElement)) {
-							result.add((Diagram) current);
+					if(current instanceof Diagram) {
+						Element diagElement = (Element)((Diagram)current).getElement();
+						if(element.equals(diagElement) || element.allOwnedElements().contains(diagElement)) {
+							result.add((Diagram)current);
 						}
 					}
 				}

@@ -348,13 +348,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 				break;
 
 			case ActivityPartitionActivityPartitionCompartmentEditPart.VISUAL_ID:
-				ep = new ActivityPartitionActivityPartitionCompartmentEditPart(
-						view);
+				ep = new ActivityPartitionActivityPartitionCompartmentEditPart(view);
 				break;
 
 			case ActivityPartitionActivityPartitionCompartment2EditPart.VISUAL_ID:
-				ep = new ActivityPartitionActivityPartitionCompartment2EditPart(
-						view);
+				ep = new ActivityPartitionActivityPartitionCompartment2EditPart(view);
 				break;
 
 			case ControlFlowEditPart.VISUAL_ID:
@@ -394,8 +392,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				break;
 			}
 			if (ep != null) {
-				ep.installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-						ShowViewEditPolicy.createOpenEditPolicy());
+				ep.installEditPolicy(EditPolicyRoles.OPEN_ROLE, ShowViewEditPolicy.createOpenEditPolicy());
 				return ep;
 			}
 		}
@@ -413,8 +410,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
@@ -453,15 +449,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -501,10 +493,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
+			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

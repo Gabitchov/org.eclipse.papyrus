@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -33,23 +33,25 @@ import org.eclipse.swt.graphics.RGB;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DiFactory init() {
 		try {
-			DiFactory theDiFactory = (DiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/di"); 
-			if (theDiFactory != null) {
+			DiFactory theDiFactory = (DiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/di");
+			if(theDiFactory != null) {
 				return theDiFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new DiFactoryImpl();
@@ -59,6 +61,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiFactoryImpl() {
@@ -68,88 +71,111 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case DiPackage.DIAGRAM_ELEMENT: return createDiagramElement();
-			case DiPackage.GRAPH_ELEMENT: return createGraphElement();
-			case DiPackage.REFERENCE: return createReference();
-			case DiPackage.PROPERTY: return createProperty();
-			case DiPackage.GRAPH_EDGE: return createGraphEdge();
-			case DiPackage.GRAPH_CONNECTOR: return createGraphConnector();
-			case DiPackage.GRAPH_NODE: return createGraphNode();
-			case DiPackage.DIAGRAM_LINK: return createDiagramLink();
-			case DiPackage.DIAGRAM: return createDiagram();
-			case DiPackage.SEMANTIC_MODEL_BRIDGE: return createSemanticModelBridge();
-			case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT: return createSimpleSemanticModelElement();
-			case DiPackage.UML1_SEMANTIC_MODEL_BRIDGE: return createUml1SemanticModelBridge();
-			case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE: return createCoreSemanticModelBridge();
-			case DiPackage.LEAF_ELEMENT: return createLeafElement();
-			case DiPackage.TEXT_ELEMENT: return createTextElement();
-			case DiPackage.IMAGE: return createImage();
-			case DiPackage.GRAPHIC_PRIMITIVE: return createGraphicPrimitive();
-			case DiPackage.POLILYNE: return createPolilyne();
-			case DiPackage.ELLIPSE: return createEllipse();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case DiPackage.DIAGRAM_ELEMENT:
+			return createDiagramElement();
+		case DiPackage.GRAPH_ELEMENT:
+			return createGraphElement();
+		case DiPackage.REFERENCE:
+			return createReference();
+		case DiPackage.PROPERTY:
+			return createProperty();
+		case DiPackage.GRAPH_EDGE:
+			return createGraphEdge();
+		case DiPackage.GRAPH_CONNECTOR:
+			return createGraphConnector();
+		case DiPackage.GRAPH_NODE:
+			return createGraphNode();
+		case DiPackage.DIAGRAM_LINK:
+			return createDiagramLink();
+		case DiPackage.DIAGRAM:
+			return createDiagram();
+		case DiPackage.SEMANTIC_MODEL_BRIDGE:
+			return createSemanticModelBridge();
+		case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT:
+			return createSimpleSemanticModelElement();
+		case DiPackage.UML1_SEMANTIC_MODEL_BRIDGE:
+			return createUml1SemanticModelBridge();
+		case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE:
+			return createCoreSemanticModelBridge();
+		case DiPackage.LEAF_ELEMENT:
+			return createLeafElement();
+		case DiPackage.TEXT_ELEMENT:
+			return createTextElement();
+		case DiPackage.IMAGE:
+			return createImage();
+		case DiPackage.GRAPHIC_PRIMITIVE:
+			return createGraphicPrimitive();
+		case DiPackage.POLILYNE:
+			return createPolilyne();
+		case DiPackage.ELLIPSE:
+			return createEllipse();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case DiPackage.PAPYRUS_KEY_ENUMERATION:
-				return createPapyrusKeyEnumerationFromString(eDataType, initialValue);
-			case DiPackage.POINT:
-				return createPointFromString(eDataType, initialValue);
-			case DiPackage.DIMENSION:
-				return createDimensionFromString(eDataType, initialValue);
-			case DiPackage.DOUBLE:
-				return createDoubleFromString(eDataType, initialValue);
-			case DiPackage.RGB:
-				return createRGBFromString(eDataType, initialValue);
-			case DiPackage.STRING:
-				return createStringFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case DiPackage.PAPYRUS_KEY_ENUMERATION:
+			return createPapyrusKeyEnumerationFromString(eDataType, initialValue);
+		case DiPackage.POINT:
+			return createPointFromString(eDataType, initialValue);
+		case DiPackage.DIMENSION:
+			return createDimensionFromString(eDataType, initialValue);
+		case DiPackage.DOUBLE:
+			return createDoubleFromString(eDataType, initialValue);
+		case DiPackage.RGB:
+			return createRGBFromString(eDataType, initialValue);
+		case DiPackage.STRING:
+			return createStringFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case DiPackage.PAPYRUS_KEY_ENUMERATION:
-				return convertPapyrusKeyEnumerationToString(eDataType, instanceValue);
-			case DiPackage.POINT:
-				return convertPointToString(eDataType, instanceValue);
-			case DiPackage.DIMENSION:
-				return convertDimensionToString(eDataType, instanceValue);
-			case DiPackage.DOUBLE:
-				return convertDoubleToString(eDataType, instanceValue);
-			case DiPackage.RGB:
-				return convertRGBToString(eDataType, instanceValue);
-			case DiPackage.STRING:
-				return convertStringToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case DiPackage.PAPYRUS_KEY_ENUMERATION:
+			return convertPapyrusKeyEnumerationToString(eDataType, instanceValue);
+		case DiPackage.POINT:
+			return convertPointToString(eDataType, instanceValue);
+		case DiPackage.DIMENSION:
+			return convertDimensionToString(eDataType, instanceValue);
+		case DiPackage.DOUBLE:
+			return convertDoubleToString(eDataType, instanceValue);
+		case DiPackage.RGB:
+			return convertRGBToString(eDataType, instanceValue);
+		case DiPackage.STRING:
+			return convertStringToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramElement createDiagramElement() {
@@ -160,6 +186,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphElement createGraphElement() {
@@ -170,6 +197,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Reference createReference() {
@@ -180,6 +208,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Property createProperty() {
@@ -190,6 +219,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphEdge createGraphEdge() {
@@ -200,6 +230,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphConnector createGraphConnector() {
@@ -210,6 +241,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphNode createGraphNode() {
@@ -220,6 +252,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramLink createDiagramLink() {
@@ -230,6 +263,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram createDiagram() {
@@ -240,6 +274,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SemanticModelBridge createSemanticModelBridge() {
@@ -250,6 +285,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SimpleSemanticModelElement createSimpleSemanticModelElement() {
@@ -260,6 +296,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Uml1SemanticModelBridge createUml1SemanticModelBridge() {
@@ -270,6 +307,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CoreSemanticModelBridge createCoreSemanticModelBridge() {
@@ -280,6 +318,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LeafElement createLeafElement() {
@@ -290,6 +329,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TextElement createTextElement() {
@@ -300,6 +340,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Image createImage() {
@@ -310,6 +351,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphicPrimitive createGraphicPrimitive() {
@@ -320,6 +362,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Polilyne createPolilyne() {
@@ -330,6 +373,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Ellipse createEllipse() {
@@ -340,17 +384,20 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PapyrusKeyEnumeration createPapyrusKeyEnumerationFromString(EDataType eDataType, String initialValue) {
 		PapyrusKeyEnumeration result = PapyrusKeyEnumeration.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if(result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertPapyrusKeyEnumerationToString(EDataType eDataType, Object instanceValue) {
@@ -360,55 +407,64 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT 
+	 * 
+	 * @generated NOT
 	 */
 	public Point createPointFromString(EDataType eDataType, String initialValue) {
 		//return (Point)super.createFromString(eDataType, initialValue);
-		if (initialValue == null) return null;
-		java.util.StringTokenizer st = new java.util.StringTokenizer(initialValue,":");
-		return new Point(new Double(st.nextToken()).doubleValue(),new Double(st.nextToken()).doubleValue());
+		if(initialValue == null)
+			return null;
+		java.util.StringTokenizer st = new java.util.StringTokenizer(initialValue, ":");
+		return new Point(new Double(st.nextToken()).doubleValue(), new Double(st.nextToken()).doubleValue());
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public String convertPointToString(EDataType eDataType, Object instanceValue) {
 		//return super.convertToString(eDataType, instanceValue);
-		if (instanceValue == null) return null;
-		
-		return ""+ ((Point) (instanceValue)).x+":"+((Point) (instanceValue)).y;
-		
+		if(instanceValue == null)
+			return null;
+
+		return "" + ((Point)(instanceValue)).x + ":" + ((Point)(instanceValue)).y;
+
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Dimension createDimensionFromString(EDataType eDataType, String initialValue) {
 		//return (Dimension)super.createFromString(eDataType, initialValue);
-		if (initialValue == null) return null;
-		java.util.StringTokenizer st = new java.util.StringTokenizer(initialValue,":");
-		return new Dimension(new Integer(st.nextToken()).intValue(),new Integer(st.nextToken()).intValue());
+		if(initialValue == null)
+			return null;
+		java.util.StringTokenizer st = new java.util.StringTokenizer(initialValue, ":");
+		return new Dimension(new Integer(st.nextToken()).intValue(), new Integer(st.nextToken()).intValue());
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public String convertDimensionToString(EDataType eDataType, Object instanceValue) {
 		//return super.convertToString(eDataType, instanceValue);
-		if (instanceValue == null) return null;
-		
-		return ""+ ((Dimension) (instanceValue)).width+":"+((Dimension) (instanceValue)).height;
+		if(instanceValue == null)
+			return null;
+
+		return "" + ((Dimension)(instanceValue)).width + ":" + ((Dimension)(instanceValue)).height;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Double createDoubleFromString(EDataType eDataType, String initialValue) {
@@ -418,6 +474,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertDoubleToString(EDataType eDataType, Object instanceValue) {
@@ -427,30 +484,35 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public RGB createRGBFromString(EDataType eDataType, String initialValue) {
 		//return (RGB)super.createFromString(eDataType, initialValue);
-		if (initialValue == null) return null;
-		java.util.StringTokenizer st = new java.util.StringTokenizer(initialValue,":");
-		return new RGB(new Integer(st.nextToken()).intValue(),new Integer(st.nextToken()).intValue(),new Integer(st.nextToken()).intValue());
+		if(initialValue == null)
+			return null;
+		java.util.StringTokenizer st = new java.util.StringTokenizer(initialValue, ":");
+		return new RGB(new Integer(st.nextToken()).intValue(), new Integer(st.nextToken()).intValue(), new Integer(st.nextToken()).intValue());
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public String convertRGBToString(EDataType eDataType, Object instanceValue) {
 		//return super.convertToString(eDataType, instanceValue);
-		if (instanceValue == null) return null;
+		if(instanceValue == null)
+			return null;
 
-		return ""+ ((RGB) (instanceValue)).red+":"+((RGB) (instanceValue)).green+":"+((RGB) (instanceValue)).blue;
+		return "" + ((RGB)(instanceValue)).red + ":" + ((RGB)(instanceValue)).green + ":" + ((RGB)(instanceValue)).blue;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String createStringFromString(EDataType eDataType, String initialValue) {
@@ -460,6 +522,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertStringToString(EDataType eDataType, Object instanceValue) {
@@ -469,6 +532,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiPackage getDiPackage() {
@@ -478,6 +542,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

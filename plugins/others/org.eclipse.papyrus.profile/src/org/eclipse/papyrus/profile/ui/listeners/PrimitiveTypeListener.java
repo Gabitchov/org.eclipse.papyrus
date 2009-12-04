@@ -30,17 +30,23 @@ import org.eclipse.uml2.uml.Type;
  * The Class PrimitiveTypeListener.
  */
 public class PrimitiveTypeListener extends PropertyListener {
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param table the table
-	 * @param element the element
-	 * @param stereotype the stereotype
-	 * @param property the property
-	 * @param parent the parent
+	 * @param table
+	 *        the table
+	 * @param element
+	 *        the element
+	 * @param stereotype
+	 *        the stereotype
+	 * @param property
+	 *        the property
+	 * @param parent
+	 *        the parent
 	 * 
-	 * @throws Exception the exception
+	 * @throws Exception
+	 *         the exception
 	 */
 	public PrimitiveTypeListener(AbstractPanel parent, Table table, Property property, Stereotype stereotype, Element element) throws Exception {
 		super(parent, table, property, stereotype, element);
@@ -48,39 +54,45 @@ public class PrimitiveTypeListener extends PropertyListener {
 			init();
 		} catch (NoValueException e) {
 			throw e;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Handle event.
 	 * 
-	 * @param event the event
+	 * @param event
+	 *        the event
 	 */
 	@Override
 	public void handleEvent(Event event) {
 		itemDClicked();
 	}
-	
+
 	/**
 	 * When doubleclicked : opens a dialog to allow edition of a new PrimitiveType.
 	 * 
-	 * @param selectedElt the element that owns the stereotype
-	 * @param value the current value or list of values of the property if isMultivalued
-	 * @param isMultivalued is the property multivalued or not
-	 * @param selectedProp the selected property
-	 * @param currentStereotype the stereotype associated to selectedProp
+	 * @param selectedElt
+	 *        the element that owns the stereotype
+	 * @param value
+	 *        the current value or list of values of the property if isMultivalued
+	 * @param isMultivalued
+	 *        is the property multivalued or not
+	 * @param selectedProp
+	 *        the selected property
+	 * @param currentStereotype
+	 *        the stereotype associated to selectedProp
 	 */
-	private void itemDClicked () {
-		
+	private void itemDClicked() {
+
 		int index = table.getSelectionIndex();
 		Type type = property.getType();
 
 		// Creates a dialog box to enter value
 		InputDialogPrimitiveType valueDialog = new InputDialogPrimitiveType(table.getShell(), property, value, index);
 		int val = valueDialog.open();
-		
+
 		// Treat Cancel case first
-		if (val == InputDialogPrimitiveType.CANCEL) {
+		if(val == InputDialogPrimitiveType.CANCEL) {
 			// Close dialog box
 			valueDialog.close();
 			// And quit
@@ -91,9 +103,9 @@ public class PrimitiveTypeListener extends PropertyListener {
 		String dialogValue = valueDialog.getValue();
 		// Treat dialogValue
 		Object newValue = Util.getValueObjectFromString(dialogValue, type);
-		if (newValue != null) {
+		if(newValue != null) {
 			// Affect newValue
-			if (isMultivalued) {
+			if(isMultivalued) {
 				// Set newValue in value list
 				values.set(index, newValue);
 				element.setValue(stereotype, property.getName(), values);
@@ -103,7 +115,7 @@ public class PrimitiveTypeListener extends PropertyListener {
 			// Force model change
 			Util.touchModel(element);
 		}
-		
+
 		// Close dialog box and refresh table
 		valueDialog.close();
 		parent.refresh();

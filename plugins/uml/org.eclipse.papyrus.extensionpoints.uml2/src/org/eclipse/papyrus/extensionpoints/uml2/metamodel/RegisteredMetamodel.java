@@ -48,7 +48,7 @@ public class RegisteredMetamodel extends RegisteredElementExtensionPoint {
 	 */
 	public static RegisteredMetamodel[] getRegisteredMetamodels() {
 		// list was already computed, returns it.
-		if (RegisteredMetamodels != null) {
+		if(RegisteredMetamodels != null) {
 			return RegisteredMetamodels;
 		}
 		List<RegisteredMetamodel> metamodels = new ArrayList<RegisteredMetamodel>();
@@ -56,10 +56,10 @@ public class RegisteredMetamodel extends RegisteredElementExtensionPoint {
 				ExtensionIds.METAMODEL_EXTENSION_ID);
 
 		// Read configuration elements for the current extension
-		for (int j = 0; j < configElements.length; j++) {
+		for(int j = 0; j < configElements.length; j++) {
 			RegisteredMetamodel proxy = parseMetamodelExtension(configElements[j], metamodels.size());
 
-			if (proxy != null) {
+			if(proxy != null) {
 				metamodels.add(proxy);
 			}
 		} // end of configElements loop
@@ -80,7 +80,7 @@ public class RegisteredMetamodel extends RegisteredElementExtensionPoint {
 	 * found is returned
 	 * 
 	 * @param name
-	 *            the name of the metamodel to find
+	 *        the name of the metamodel to find
 	 * @return the RegisteredMetamodel with given name or <code>null</code> if no metamodel was
 	 *         found.
 	 */
@@ -93,24 +93,24 @@ public class RegisteredMetamodel extends RegisteredElementExtensionPoint {
 	 * found, the first found is returned.
 	 * 
 	 * @param name
-	 *            the name of the metamodel to find
+	 *        the name of the metamodel to find
 	 * @param path
-	 *            the path of the metamodel file
+	 *        the path of the metamodel file
 	 * @return the RegisteredMetamodel with given name or <code>null</code> if no metamodel was
 	 *         found.
 	 */
 	public static RegisteredMetamodel getRegisteredMetamodel(String name, String path) {
 		Assert.isNotNull(name);
 		RegisteredMetamodel[] metamodels = getRegisteredMetamodels();
-		for (int i = 0; i < metamodels.length; i++) {
+		for(int i = 0; i < metamodels.length; i++) {
 			RegisteredMetamodel metamodel = metamodels[i];
 
 			// name corresponds. is path equal?
-			if (name.equals(metamodel.name)) {
+			if(name.equals(metamodel.name)) {
 				// no path indicated => first name that corresponds => profile returned
-				if (path == null) {
+				if(path == null) {
 					return metamodel;
-				} else if (path.equals(metamodel.path)) {
+				} else if(path.equals(metamodel.path)) {
 					return metamodel;
 				}
 			}
@@ -122,20 +122,20 @@ public class RegisteredMetamodel extends RegisteredElementExtensionPoint {
 	 * Retrieve all information from the configuration element
 	 * 
 	 * @param ordinal
-	 *            index in the set of registered profiles
+	 *        index in the set of registered profiles
 	 * @param configElt
-	 *            the configuration element from which to retrieve the registered profile
+	 *        the configuration element from which to retrieve the registered profile
 	 * @return the registered profile
 	 */
 	private static RegisteredMetamodel parseMetamodelExtension(IConfigurationElement configElt, int ordinal) {
-		if (!TAG_METAMODEL.equals(configElt.getName())) {
+		if(!TAG_METAMODEL.equals(configElt.getName())) {
 			return null;
 		}
 		try {
 			return new RegisteredMetamodel(configElt, ordinal);
 		} catch (Exception e) {
 			String name = configElt.getAttribute(ExtensionIds.ATT_NAME);
-			if (name == null) {
+			if(name == null) {
 				name = "[missing name attribute]";
 			}
 			String msg = "Failed to load metamodel named " + name + " in "

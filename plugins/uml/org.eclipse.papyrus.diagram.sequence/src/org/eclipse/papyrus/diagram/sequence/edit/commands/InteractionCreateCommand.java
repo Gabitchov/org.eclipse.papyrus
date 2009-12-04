@@ -76,11 +76,11 @@ public class InteractionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -103,20 +103,20 @@ public class InteractionCreateCommand extends EditElementCommand {
 
 		EObject elementToEdit = getElementToEdit();
 
-		if (elementToEdit instanceof Package) {
-			if (((Package) elementToEdit).getPackagedElements() != null) {
-				((Package) elementToEdit).getPackagedElements().add(newElement);
+		if(elementToEdit instanceof Package) {
+			if(((Package)elementToEdit).getPackagedElements() != null) {
+				((Package)elementToEdit).getPackagedElements().add(newElement);
 			}
 			// the interaction will be created in a behavioredClassifier
-		} else if (elementToEdit instanceof BehavioredClassifier) {
-			((BehavioredClassifier) elementToEdit).setClassifierBehavior(newElement);
+		} else if(elementToEdit instanceof BehavioredClassifier) {
+			((BehavioredClassifier)elementToEdit).setClassifierBehavior(newElement);
 		}
 
 		UMLElementTypes.init_Interaction_2001(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -125,12 +125,12 @@ public class InteractionCreateCommand extends EditElementCommand {
 	 */
 	protected void doConfigure(Interaction newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

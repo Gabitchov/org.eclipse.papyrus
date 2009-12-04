@@ -95,7 +95,7 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	 * @return
 	 */
 	public char[] getCompletionProposalAutoActivationCharacters() {
-		return new char[] { ':' };
+		return new char[]{ ':' };
 	}
 
 	/*
@@ -107,7 +107,7 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	 * @return
 	 */
 	public char[] getContextInformationAutoActivationCharacters() {
-		return new char[] { '#' };
+		return new char[]{ '#' };
 	}
 
 	/*
@@ -140,17 +140,17 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	 * part of the string (is a Java identifier).
 	 * 
 	 * @param viewer
-	 *            the text viewer where the current document is shown
+	 *        the text viewer where the current document is shown
 	 * @param documentOffset
-	 *            the offset on which the end of the calculated string is
+	 *        the offset on which the end of the calculated string is
 	 * 
 	 * @return the string that will be completed
 	 */
 	public String getPrefix(ITextViewer viewer, int documentOffset) {
 		try {
-			if (documentOffset != 0) {
+			if(documentOffset != 0) {
 				char c = viewer.getDocument().getChar(documentOffset - 1);
-				if (Character.isJavaIdentifierPart(c) || (c == '\'')) {
+				if(Character.isJavaIdentifierPart(c) || (c == '\'')) {
 					return getPrefix(viewer, documentOffset - 1) + c;
 				}
 			}
@@ -173,9 +173,9 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	 */
 	public String getPrefixForType(ITextViewer viewer, int documentOffset) {
 		try {
-			if (documentOffset != 0) {
+			if(documentOffset != 0) {
 				char c = viewer.getDocument().getChar(documentOffset - 1);
-				if (Character.isJavaIdentifierPart(c) || (c == '<')) {
+				if(Character.isJavaIdentifierPart(c) || (c == '<')) {
 					return getPrefixForType(viewer, documentOffset - 1) + c;
 				}
 			}
@@ -195,9 +195,9 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	 */
 	public String getPrefixForMultiplicity(ITextViewer viewer, int documentOffset) {
 		try {
-			if (documentOffset != 0) {
+			if(documentOffset != 0) {
 				char c = viewer.getDocument().getChar(documentOffset - 1);
-				if (Character.isJavaIdentifierPart(c) || (c == '[') || (c == '.')) {
+				if(Character.isJavaIdentifierPart(c) || (c == '[') || (c == '.')) {
 					return getPrefixForMultiplicity(viewer, documentOffset - 1) + c;
 				}
 			}
@@ -235,9 +235,9 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	public Collection<ICompletionProposal> createCompletionProposals(String[] proposals, String[] proposalsInfo,
 			String prefix, int documentOffset) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-		for (int i = 0; i < proposals.length; i++) {
+		for(int i = 0; i < proposals.length; i++) {
 			// test if the proposal starts with the prefix given in parameter
-			if (proposals[i].startsWith(prefix)) {
+			if(proposals[i].startsWith(prefix)) {
 				v.add(new CompletionProposal(proposals[i], documentOffset - prefix.length(), prefix.length(),
 						proposals[i].length(), null, proposals[i], null, proposalsInfo[i]));
 			}
@@ -259,9 +259,9 @@ public class LabelCompletionProcessor implements IContentAssistProcessor {
 	public Collection<ICompletionProposal> createCompletionProposalsWithDifferentName(String[] proposals,
 			String[] proposalsInfo, String[] proposalsName, String prefix, int documentOffset) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-		for (int i = 0; i < proposals.length; i++) {
+		for(int i = 0; i < proposals.length; i++) {
 			// test if the proposal starts with the prefix given in parameter
-			if (proposals[i].startsWith(prefix)) {
+			if(proposals[i].startsWith(prefix)) {
 
 				v.add(new CompletionProposal(proposals[i], documentOffset - prefix.length(), prefix.length(),
 						proposals[i].length(), null, proposalsName[i], null, proposalsInfo[i]));

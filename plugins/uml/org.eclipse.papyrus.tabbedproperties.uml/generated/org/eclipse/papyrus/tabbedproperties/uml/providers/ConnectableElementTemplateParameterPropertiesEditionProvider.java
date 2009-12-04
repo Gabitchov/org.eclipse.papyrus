@@ -40,7 +40,7 @@ public class ConnectableElementTemplateParameterPropertiesEditionProvider implem
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ConnectableElementTemplateParameter) {
+		if(eObject instanceof ConnectableElementTemplateParameter) {
 			return new ConnectableElementTemplateParameterPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ConnectableElementTemplateParameterPropertiesEditionProvider implem
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ConnectableElementTemplateParameter) {
-			if (ConnectableElementTemplateParameterBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ConnectableElementTemplateParameter) {
+			if(ConnectableElementTemplateParameterBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ConnectableElementTemplateParameterBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

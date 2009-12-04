@@ -29,43 +29,43 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class ArrayAccessExpr extends Expression {
 
-    private Expression name;
+	private Expression name;
 
-    private Expression index;
+	private Expression index;
 
-    public ArrayAccessExpr() {
-    }
+	public ArrayAccessExpr() {
+	}
 
-    public ArrayAccessExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression name, Expression index) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.name = name;
-        this.index = index;
-    }
+	public ArrayAccessExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression name, Expression index) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.name = name;
+		this.index = index;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Expression getIndex() {
-        return index;
-    }
+	public Expression getIndex() {
+		return index;
+	}
 
-    public Expression getName() {
-        return name;
-    }
+	public Expression getName() {
+		return name;
+	}
 
-    public void setIndex(Expression index) {
-        this.index = index;
-    }
+	public void setIndex(Expression index) {
+		this.index = index;
+	}
 
-    public void setName(Expression name) {
-        this.name = name;
-    }
+	public void setName(Expression name) {
+		this.name = name;
+	}
 
 }

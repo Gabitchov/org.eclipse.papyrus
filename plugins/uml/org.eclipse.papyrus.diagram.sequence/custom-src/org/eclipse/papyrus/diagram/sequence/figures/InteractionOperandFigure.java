@@ -26,7 +26,7 @@ public class InteractionOperandFigure extends PapyrusNodeFigure {
 	@Override
 	public void paintFigure(Graphics graphics) {
 		super.paintFigure(graphics);
-		if (lineSeparator) {
+		if(lineSeparator) {
 			graphics.setLineStyle(getLineStyle());
 			graphics.setLineWidth(2);
 			graphics.drawLine(getBounds().getTopLeft(), getBounds().getTopRight());

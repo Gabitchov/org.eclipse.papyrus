@@ -49,8 +49,8 @@ public class VSL_Real_CompletionProposal implements ICompletionProposalComputer 
 		// adds each Completion proposal
 		ICompletionProposal proposal = null;
 		// adds all name (static strings...)
-		for (int i = 0; i < TVL_Real_Strings.length; i++) {
-			if (TVL_Real_Strings[i].startsWith(prefix)) {
+		for(int i = 0; i < TVL_Real_Strings.length; i++) {
+			if(TVL_Real_Strings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(TVL_Real_Strings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, TVL_Real_Strings[i].length(), null, TVL_Real_StringsName[i], null,

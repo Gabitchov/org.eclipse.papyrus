@@ -11,14 +11,14 @@ public class PapyrusRubberbandDragTracker extends RubberbandDragTracker {
 
 	protected boolean handleButtonDown(int button) {
 		System.err.println("PapyrusRubberbandDragTracker click detected " + button);
-		if ((PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null)
+		if((PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null)
 				&& (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor() != null)) {
 
 			IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 					.getActiveEditor();
 
-			if (editorPart instanceof CoreMultiDiagramEditor) {
-				CoreMultiDiagramEditor multiEditorPart = (CoreMultiDiagramEditor) editorPart;
+			if(editorPart instanceof CoreMultiDiagramEditor) {
+				CoreMultiDiagramEditor multiEditorPart = (CoreMultiDiagramEditor)editorPart;
 				// multiEditorPart.refreshTabs();
 			}
 		}

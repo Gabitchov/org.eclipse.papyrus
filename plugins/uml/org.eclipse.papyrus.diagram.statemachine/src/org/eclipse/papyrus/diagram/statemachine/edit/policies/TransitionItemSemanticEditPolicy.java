@@ -46,11 +46,11 @@ public class TransitionItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return null;
 		}
@@ -65,14 +65,14 @@ public class TransitionItemSemanticEditPolicy extends
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
@@ -89,7 +89,7 @@ public class TransitionItemSemanticEditPolicy extends
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case ElementOwnedCommentEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementOwnedCommentReorientCommand(req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

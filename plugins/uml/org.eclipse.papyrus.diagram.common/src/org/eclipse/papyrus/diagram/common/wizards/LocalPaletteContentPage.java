@@ -212,7 +212,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Creates a new wizard page with the given name, title, and image.
 	 * 
 	 * @param part
-	 *            the editor part in which the wizard was created
+	 *        the editor part in which the wizard was created
 	 */
 	public LocalPaletteContentPage(IEditorPart part) {
 		super(Messages.Local_Palette_ContentPage_Name, Messages.Local_Palette_ContentPage_Title, Activator
@@ -268,7 +268,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		storedPreferences = PapyrusPalettePreferences.getHiddenPalettes(editorPart);
 
 		// remove all, but should only remove visible palettes
-		for (String id : storedPreferences) {
+		for(String id : storedPreferences) {
 			PapyrusPalettePreferences.changePaletteVisibility(id, editorPart, true);
 		}
 	}
@@ -278,7 +278,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	public void restorePreferences() {
 		// remove all, but should only remove visible palettes
-		for (String id : storedPreferences) {
+		for(String id : storedPreferences) {
 			PapyrusPalettePreferences.changePaletteVisibility(id, editorPart, false);
 		}
 	}
@@ -287,7 +287,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * creates the palette preview group
 	 */
 	protected void createPalettePreviewGroup() {
-		Composite parent = (Composite) getControl();
+		Composite parent = (Composite)getControl();
 		Composite paletteComposite = new Composite(parent, SWT.NONE);
 
 		GridLayout layout = new GridLayout(2, true);
@@ -336,12 +336,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 */
 			public void doubleClick(DoubleClickEvent event) {
 				// retrieve current item double clicked...
-				ITreeSelection selection = (TreeSelection) event.getSelection();
+				ITreeSelection selection = (TreeSelection)event.getSelection();
 				Object firstSelected = selection.getFirstElement();
-				if (firstSelected instanceof PaletteLocalDrawerProxy) {
+				if(firstSelected instanceof PaletteLocalDrawerProxy) {
 					UpdateLocalDrawerWizard wizard = new UpdateLocalDrawerWizard(
-							((PaletteLocalDrawerProxy) firstSelected).getParent(),
-							(PaletteLocalDrawerProxy) firstSelected);
+							((PaletteLocalDrawerProxy)firstSelected).getParent(),
+							(PaletteLocalDrawerProxy)firstSelected);
 					WizardDialog dialog = new WizardDialog(getShell(), wizard);
 					dialog.open();
 					paletteTreeViewer.refresh();
@@ -356,7 +356,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	protected void addPalettePreviewDropSupport() {
 		// transfer types
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+		Transfer[] transfers = new Transfer[]{ LocalSelectionTransfer.getTransfer() };
 
 		// drag listener
 		DropTargetListener listener = new TreeDropTargetEffect(paletteTreeViewer.getTree()) {
@@ -369,42 +369,42 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				super.drop(event);
 
 				// create proxy and adds it to its target parent
-				PaletteEntryProxy target = (PaletteEntryProxy) ((TreeItem) event.item).getData();
-				if (target == null) {
-					target = (PaletteContainerProxy) paletteTreeViewer.getInput();
+				PaletteEntryProxy target = (PaletteEntryProxy)((TreeItem)event.item).getData();
+				if(target == null) {
+					target = (PaletteContainerProxy)paletteTreeViewer.getInput();
 				}
 
 				// get the elements from the drag listener (either a palette entry or a palette
 				// entry proxy)
-				IStructuredSelection transferedSelection = (IStructuredSelection) LocalSelectionTransfer.getTransfer()
+				IStructuredSelection transferedSelection = (IStructuredSelection)LocalSelectionTransfer.getTransfer()
 						.nativeToJava(event.currentDataType);
-				Object entry = ((IStructuredSelection) transferedSelection).getFirstElement();
+				Object entry = ((IStructuredSelection)transferedSelection).getFirstElement();
 
 				// creates the proxy for the element to be dropped
 				PaletteEntryProxy entryProxy;
-				if (entry instanceof AspectCreationEntry) {
-					entryProxy = new PaletteAspectToolEntryProxy((AspectCreationEntry) entry);
-				} else if (entry instanceof ToolEntry) {
-					entryProxy = new PaletteEntryProxy((ToolEntry) entry);
-				} else if (entry instanceof PaletteDrawer) {
-					entryProxy = new PaletteContainerProxy((PaletteDrawer) entry);
-				} else if (entry instanceof PaletteEntryProxy) {
-					entryProxy = ((PaletteEntryProxy) entry);
+				if(entry instanceof AspectCreationEntry) {
+					entryProxy = new PaletteAspectToolEntryProxy((AspectCreationEntry)entry);
+				} else if(entry instanceof ToolEntry) {
+					entryProxy = new PaletteEntryProxy((ToolEntry)entry);
+				} else if(entry instanceof PaletteDrawer) {
+					entryProxy = new PaletteContainerProxy((PaletteDrawer)entry);
+				} else if(entry instanceof PaletteEntryProxy) {
+					entryProxy = ((PaletteEntryProxy)entry);
 				} else {
 					return;
 				}
-				if (target instanceof PaletteContainerProxy) {
+				if(target instanceof PaletteContainerProxy) {
 					// tries to remove from its parent if possible
-					if (entryProxy.getParent() != null) {
+					if(entryProxy.getParent() != null) {
 						entryProxy.getParent().removeChild(entryProxy);
 					}
-					((PaletteContainerProxy) target).addChild(entryProxy);
-				} else if (target instanceof PaletteEntryProxy) {
+					((PaletteContainerProxy)target).addChild(entryProxy);
+				} else if(target instanceof PaletteEntryProxy) {
 					// tries to remove from its parent if possible
-					if (entryProxy.getParent() != null) {
+					if(entryProxy.getParent() != null) {
 						entryProxy.getParent().removeChild(entryProxy);
 					}
-					((PaletteEntryProxy) target).getParent().addChild(entryProxy, ((PaletteEntryProxy) target));
+					((PaletteEntryProxy)target).getParent().addChild(entryProxy, ((PaletteEntryProxy)target));
 				} else {
 					// add to parent...
 					target.getParent().addChild(entryProxy);
@@ -420,7 +420,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			public void dragOver(DropTargetEvent event) {
 				super.dragOver(event);
 
-				IStructuredSelection transferedSelection = (IStructuredSelection) LocalSelectionTransfer.getTransfer()
+				IStructuredSelection transferedSelection = (IStructuredSelection)LocalSelectionTransfer.getTransfer()
 						.nativeToJava(event.currentDataType);
 				// check selection is compatible for drop target
 
@@ -440,7 +440,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected void addPalettePreviewDragSupport() {
 
 		// transfer types
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+		Transfer[] transfers = new Transfer[]{ LocalSelectionTransfer.getTransfer() };
 
 		// drag listener
 		DragSourceListener listener = new DragSourceAdapter() {
@@ -472,47 +472,47 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Checks if the selection can be added to the target widget
 	 * 
 	 * @param transferedSelection
-	 *            the selection to be dropped
+	 *        the selection to be dropped
 	 * @param widget
-	 *            the widget where to drop
+	 *        the widget where to drop
 	 * @return <code>true</code> if element can be dropped
 	 */
 	protected void checkSelectionForDrop(IStructuredSelection transferedSelection, TreeItem item, DropTargetEvent event) {
 		event.detail = DND.DROP_NONE;
-		Object entry = ((IStructuredSelection) transferedSelection).getFirstElement();
+		Object entry = ((IStructuredSelection)transferedSelection).getFirstElement();
 		// handle only first selected element
-		if (item == null) {
+		if(item == null) {
 			// adding to the root, should only be a drawer
-			if (entry instanceof PaletteDrawer) {
+			if(entry instanceof PaletteDrawer) {
 				event.detail = DND.DROP_LINK;
 			}
 		} else {
-			PaletteEntryProxy targetProxy = (PaletteEntryProxy) item.getData();
-			switch (targetProxy.getType()) {
+			PaletteEntryProxy targetProxy = (PaletteEntryProxy)item.getData();
+			switch(targetProxy.getType()) {
 			case DRAWER:
-				if (entry instanceof ToolEntry) {
+				if(entry instanceof ToolEntry) {
 					event.detail = DND.DROP_LINK;
-				} else if (entry instanceof PaletteEntryProxy) {
+				} else if(entry instanceof PaletteEntryProxy) {
 					event.detail = DND.DROP_MOVE;
 				}
 				break;
 			case STACK:
-				if (entry instanceof ToolEntry) {
+				if(entry instanceof ToolEntry) {
 					event.detail = DND.DROP_LINK;
-				} else if (entry instanceof PaletteEntryProxy && !(entry instanceof PaletteLocalStackProxy)) {
+				} else if(entry instanceof PaletteEntryProxy && !(entry instanceof PaletteLocalStackProxy)) {
 					event.detail = DND.DROP_MOVE;
 				}
 				break;
 			case TOOL:
-				if (entry instanceof ToolEntry) {
+				if(entry instanceof ToolEntry) {
 					event.detail = DND.DROP_LINK; // add the selected tool before the destination
 					// tool
-				} else if (entry instanceof PaletteEntryProxy) {
+				} else if(entry instanceof PaletteEntryProxy) {
 					event.detail = DND.DROP_MOVE; // moves the element before the entry
 				}
 				break;
 			case SEPARATOR:
-				if (entry instanceof PaletteEntryProxy) {
+				if(entry instanceof PaletteEntryProxy) {
 					event.detail = DND.DROP_MOVE;
 				}
 				break;
@@ -553,7 +553,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			// URL url = bundle.getEntry(path);
 
 			File file = Activator.getDefault().getStateLocation().append(xmlPath).toFile();
-			if (!file.exists()) {
+			if(!file.exists()) {
 				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + file);
 			} else {
 				Document document = documentBuilder.parse(file);
@@ -561,9 +561,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 						editorPart, editorPart.getEditorInput(), new PaletteRoot());
 				XMLDefinitionPaletteProxyFactory factory = new XMLDefinitionPaletteProxyFactory(entries);
 				XMLDefinitionPaletteParser parser = new XMLDefinitionPaletteParser(factory);
-				for (int i = 0; i < document.getChildNodes().getLength(); i++) {
+				for(int i = 0; i < document.getChildNodes().getLength(); i++) {
 					Node node = document.getChildNodes().item(i);
-					if (IPapyrusPaletteConstant.PALETTE_DEFINITION.equals(node.getNodeName())) {
+					if(IPapyrusPaletteConstant.PALETTE_DEFINITION.equals(node.getNodeName())) {
 						parser.parsePaletteDefinition(node);
 					}
 				}
@@ -589,9 +589,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Saves the xml document into file
 	 * 
 	 * @param document
-	 *            the document to save
+	 *        the document to save
 	 * @param path
-	 *            name of the file
+	 *        name of the file
 	 * @return the file created or updated
 	 */
 	protected File loadDocument(Document document, String path) {
@@ -639,7 +639,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			public void handleEvent(Event event) {
 				// retrieve selected container
 				PaletteContainerProxy containerProxy;
-				containerProxy = (PaletteContainerProxy) paletteTreeViewer.getInput();
+				containerProxy = (PaletteContainerProxy)paletteTreeViewer.getInput();
 				NewDrawerWizard wizard = new NewDrawerWizard(containerProxy);
 				WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
 				wizardDialog.open();
@@ -662,21 +662,21 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 */
 			public void handleEvent(Event event) {
 				// retrieve selected element
-				Object object = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
+				Object object = ((IStructuredSelection)paletteTreeViewer.getSelection()).getFirstElement();
 
 				// if element = drawer => the new stack must be created at the end of the drawer's
 				// children list
 				// if element = tool => must be placed before this tool
 				// else : nothinng to do
-				if (object instanceof PaletteLocalDrawerProxy) {
+				if(object instanceof PaletteLocalDrawerProxy) {
 					String id = generateID("Stack");
 					PaletteLocalStackProxy proxy = new PaletteLocalStackProxy(id);
-					((PaletteLocalDrawerProxy) object).addChild(proxy);
-				} else if (object instanceof PaletteEntryProxy) {
+					((PaletteLocalDrawerProxy)object).addChild(proxy);
+				} else if(object instanceof PaletteEntryProxy) {
 					String id = generateID("Stack");
 					PaletteLocalStackProxy proxy = new PaletteLocalStackProxy(id);
 					// retrieve parent
-					PaletteEntryProxy childProxy = (PaletteEntryProxy) object;
+					PaletteEntryProxy childProxy = (PaletteEntryProxy)object;
 					PaletteContainerProxy parentProxy = childProxy.getParent();
 					parentProxy.addChild(proxy, childProxy);
 				}
@@ -691,7 +691,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Generates the ID for a local element
 	 * 
 	 * @param base
-	 *            the begining of the id
+	 *        the begining of the id
 	 * @return the separator id
 	 */
 	protected String generateID(String base) {
@@ -716,21 +716,21 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 */
 			public void handleEvent(Event event) {
 				// retrieve selected element
-				Object object = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
+				Object object = ((IStructuredSelection)paletteTreeViewer.getSelection()).getFirstElement();
 
 				// if element = drawer => the new stack must be created at the end of the drawer's
 				// children list
 				// if element = tool => must be placed before this tool
 				// else : nothinng to do
-				if (object instanceof PaletteLocalDrawerProxy) {
+				if(object instanceof PaletteLocalDrawerProxy) {
 					String id = generateID("Separator");
 					PaletteLocalSeparatorProxy proxy = new PaletteLocalSeparatorProxy(id);
-					((PaletteLocalDrawerProxy) object).addChild(proxy);
-				} else if (object instanceof PaletteEntryProxy) {
+					((PaletteLocalDrawerProxy)object).addChild(proxy);
+				} else if(object instanceof PaletteEntryProxy) {
 					String id = generateID("Separator");
 					PaletteLocalSeparatorProxy proxy = new PaletteLocalSeparatorProxy(id);
 					// retrieve parent
-					PaletteEntryProxy childProxy = (PaletteEntryProxy) object;
+					PaletteEntryProxy childProxy = (PaletteEntryProxy)object;
 					PaletteContainerProxy parentProxy = childProxy.getParent();
 					parentProxy.addChild(proxy, childProxy);
 				}
@@ -745,13 +745,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Creates a toolbar item.
 	 * 
 	 * @param toolbar
-	 *            the parent toolbar
+	 *        the parent toolbar
 	 * @param itemIcon
-	 *            path for icon
+	 *        path for icon
 	 * @param tooltip
-	 *            tooltip text for the toolbar item
+	 *        tooltip text for the toolbar item
 	 * @param listener
-	 *            listener for tool bar item
+	 *        listener for tool bar item
 	 */
 	protected void createToolBarItem(ToolBar toolbar, String itemIcon, String tooltip, Listener listener) {
 		ToolItem item = new ToolItem(toolbar, SWT.BORDER);
@@ -764,7 +764,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * creates the buttons to add/remove entries
 	 */
 	protected void createAddRemoveButtons() {
-		Composite composite = new Composite((Composite) getControl(), SWT.NONE);
+		Composite composite = new Composite((Composite)getControl(), SWT.NONE);
 		GridLayout layout = new GridLayout(1, true);
 		composite.setLayout(layout);
 
@@ -801,18 +801,18 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 				// get source and target selection
 				// check source entry can be added to target entry
-				Object source = ((IStructuredSelection) availableToolsViewer.getSelection()).getFirstElement();
-				Object target = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
+				Object source = ((IStructuredSelection)availableToolsViewer.getSelection()).getFirstElement();
+				Object target = ((IStructuredSelection)paletteTreeViewer.getSelection()).getFirstElement();
 
 				// manage add button
-				if (isAddValidTarget(source, target)) {
+				if(isAddValidTarget(source, target)) {
 					addButton.setEnabled(true);
 				} else {
 					addButton.setEnabled(false);
 				}
 
 				// manage remove button
-				if (isRemoveValidSource(target)) {
+				if(isRemoveValidSource(target)) {
 					removeButton.setEnabled(true);
 				} else {
 					removeButton.setEnabled(false);
@@ -824,13 +824,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 * Returns true if the source can be added to the target
 			 * 
 			 * @param source
-			 *            the source object
+			 *        the source object
 			 * @param target
-			 *            the target object
+			 *        the target object
 			 * @return <code>true</code> if the source can be added to the target
 			 */
 			protected boolean isAddValidTarget(Object source, Object target) {
-				if (!(source instanceof PaletteEntry)) {
+				if(!(source instanceof PaletteEntry)) {
 					return false;
 				}
 
@@ -839,15 +839,15 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				// case2: source is a palette tool
 				// it can't be added to the root element
 				// it can only be added to a container element (drawer or stack)
-				if (source instanceof PaletteDrawer) {
-					if (target == null) {
+				if(source instanceof PaletteDrawer) {
+					if(target == null) {
 						return true;
 					}
 					return false;
-				} else if (source instanceof ToolEntry) {
-					if (target instanceof PaletteEntryProxy) {
-						EntryType type = ((PaletteEntryProxy) target).getType();
-						switch (type) {
+				} else if(source instanceof ToolEntry) {
+					if(target instanceof PaletteEntryProxy) {
+						EntryType type = ((PaletteEntryProxy)target).getType();
+						switch(type) {
 						case DRAWER:
 						case STACK:
 							return true;
@@ -864,12 +864,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 * Returns true if the source can be added to the target
 			 * 
 			 * @param source
-			 *            the source object
+			 *        the source object
 			 * @return <code>true</code> if the source can be removed (not null and instanceof
 			 *         PaletteEntryProxy)
 			 */
 			protected boolean isRemoveValidSource(Object source) {
-				if (source instanceof PaletteEntryProxy) {
+				if(source instanceof PaletteEntryProxy) {
 					return true;
 				}
 				return false;
@@ -887,31 +887,31 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			public void mouseUp(MouseEvent e) {
 				// add the element selected on the left to the right tree
 				// check the selection.
-				IStructuredSelection selection = (IStructuredSelection) availableToolsViewer.getSelection();
-				if (selection == null || selection.size() < 1) {
+				IStructuredSelection selection = (IStructuredSelection)availableToolsViewer.getSelection();
+				if(selection == null || selection.size() < 1) {
 					return;
 				}
-				PaletteEntry entry = (PaletteEntry) selection.getFirstElement();
-				if (entry == null) {
+				PaletteEntry entry = (PaletteEntry)selection.getFirstElement();
+				if(entry == null) {
 					return;
 				}
 
 				// find the selection on the right
-				selection = (IStructuredSelection) paletteTreeViewer.getSelection();
+				selection = (IStructuredSelection)paletteTreeViewer.getSelection();
 
-				PaletteEntryProxy parentNode = (PaletteEntryProxy) selection.getFirstElement();
+				PaletteEntryProxy parentNode = (PaletteEntryProxy)selection.getFirstElement();
 				// Bugfix: only drawers can be added to root element
-				if (parentNode == null && entry instanceof PaletteDrawer) {
-					parentNode = (PaletteContainerProxy) paletteTreeViewer.getInput();
+				if(parentNode == null && entry instanceof PaletteDrawer) {
+					parentNode = (PaletteContainerProxy)paletteTreeViewer.getInput();
 				}
 
 				// check we have a containe here
-				if (!(parentNode instanceof PaletteContainerProxy)) {
+				if(!(parentNode instanceof PaletteContainerProxy)) {
 					return;
 				}
 
 				// create a new entry in the document
-				createNodeFromEntry(entry, (PaletteContainerProxy) parentNode);
+				createNodeFromEntry(entry, (PaletteContainerProxy)parentNode);
 				paletteTreeViewer.refresh();
 			}
 
@@ -935,19 +935,19 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Creates a node in the xml document from the given entry
 	 * 
 	 * @param entry
-	 *            the palette entry from which to create the node
+	 *        the palette entry from which to create the node
 	 * @param parentNode
-	 *            the parent node for the newly created node
+	 *        the parent node for the newly created node
 	 */
 	protected void createNodeFromEntry(PaletteEntry entry, PaletteContainerProxy parent) {
 		PaletteEntryProxy proxy = null;
 
-		if (entry instanceof PaletteContainer) {
-			proxy = new PaletteContainerProxy((PaletteContainer) entry);
-		} else if (entry instanceof AspectCreationEntry) {
-			proxy = new PaletteAspectToolEntryProxy((AspectCreationEntry) entry);
+		if(entry instanceof PaletteContainer) {
+			proxy = new PaletteContainerProxy((PaletteContainer)entry);
+		} else if(entry instanceof AspectCreationEntry) {
+			proxy = new PaletteAspectToolEntryProxy((AspectCreationEntry)entry);
 		} else {
-			proxy = new PaletteEntryProxy((PaletteEntry) entry);
+			proxy = new PaletteEntryProxy((PaletteEntry)entry);
 		}
 		parent.addChild(proxy);
 	}
@@ -962,12 +962,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				// remove the element selected on the right
 				// add the element selected on the left to the right tree
 				// check the selection.
-				IStructuredSelection selection = (IStructuredSelection) paletteTreeViewer.getSelection();
-				if (selection == null || selection.size() < 1) {
+				IStructuredSelection selection = (IStructuredSelection)paletteTreeViewer.getSelection();
+				if(selection == null || selection.size() < 1) {
 					return;
 				}
-				PaletteEntryProxy proxyToDelete = (PaletteEntryProxy) selection.getFirstElement();
-				if (proxyToDelete == null) {
+				PaletteEntryProxy proxyToDelete = (PaletteEntryProxy)selection.getFirstElement();
+				if(proxyToDelete == null) {
 					return;
 				}
 
@@ -998,7 +998,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * creates the available entries group
 	 */
 	protected void createAvailableToolsGroup() {
-		Composite parent = (Composite) getControl();
+		Composite parent = (Composite)getControl();
 		Composite availableToolsComposite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, true);
 		layout.marginHeight = 0;
@@ -1039,10 +1039,10 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 */
 			@Override
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				if (element instanceof PaletteStack && "noteStack".equals(((PaletteStack) element).getId())) {
+				if(element instanceof PaletteStack && "noteStack".equals(((PaletteStack)element).getId())) {
 					return false;
-				} else if (element instanceof PaletteToolbar
-						&& "standardGroup".equals(((PaletteToolbar) element).getId())) {
+				} else if(element instanceof PaletteToolbar
+						&& "standardGroup".equals(((PaletteToolbar)element).getId())) {
 					return false;
 				}
 				return true;
@@ -1058,7 +1058,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Creates the profile combo
 	 * 
 	 * @param availableToolsComposite
-	 *            the available tools composite
+	 *        the available tools composite
 	 * @return the created combo
 	 */
 	protected Combo createProfileCombo(Composite availableToolsComposite) {
@@ -1072,11 +1072,11 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		List<Profile> profiles = getAllAppliedProfiles();
 
 		int profileNumber = profiles.size();
-		for (int i = 0; i < profileNumber; i++) {
+		for(int i = 0; i < profileNumber; i++) {
 			profileComboList.add(i, profiles.get(i).getName());
 		}
 		profileComboList.add(UML_TOOLS_LABEL);
-		profileCombo.setItems(profileComboList.toArray(new String[] {}));
+		profileCombo.setItems(profileComboList.toArray(new String[]{}));
 
 		// add selection listener for the combo. selects the "UML tools" item
 		profileCombo.addSelectionListener(new ProfileComboSelectionListener());
@@ -1093,13 +1093,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	protected List<Profile> getAllAppliedProfiles() {
 		Package topPackage = null;
-		if (editorPart instanceof DiagramEditorWithFlyOutPalette) {
-			EObject element = ((DiagramEditorWithFlyOutPalette) editorPart).getDiagram().getElement();
-			if (element instanceof org.eclipse.uml2.uml.Element) {
-				topPackage = ((org.eclipse.uml2.uml.Element) element).getNearestPackage();
+		if(editorPart instanceof DiagramEditorWithFlyOutPalette) {
+			EObject element = ((DiagramEditorWithFlyOutPalette)editorPart).getDiagram().getElement();
+			if(element instanceof org.eclipse.uml2.uml.Element) {
+				topPackage = ((org.eclipse.uml2.uml.Element)element).getNearestPackage();
 			}
 		}
-		if (topPackage != null) {
+		if(topPackage != null) {
 			return topPackage.getAllAppliedProfiles();
 		}
 		return Collections.EMPTY_LIST;
@@ -1110,7 +1110,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	protected void addAvailableToolsDragSupport() {
 		// transfer types
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+		Transfer[] transfers = new Transfer[]{ LocalSelectionTransfer.getTransfer() };
 
 		// drag listener
 		DragSourceListener listener = new DragSourceAdapter() {
@@ -1142,7 +1142,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Adds elements to the tool bar for available tools viewer
 	 * 
 	 * @param toolbar
-	 *            the toolbar to populate
+	 *        the toolbar to populate
 	 */
 	protected void populateAvailableToolsToolBar(ToolBar toolbar) {
 		toggleContentProvider = createCheckToolBarItem(toolbar, SWITCH_CONTENT_PROVIDER_ICON,
@@ -1164,16 +1164,16 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 * {@inheritDoc}
 			 */
 			public void handleEvent(Event event) {
-				if (!(event.widget instanceof ToolItem)) {
+				if(!(event.widget instanceof ToolItem)) {
 					return;
 				}
-				ToolItem item = ((ToolItem) event.widget);
+				ToolItem item = ((ToolItem)event.widget);
 				// retrieve current profile selected in the combo profile
 				int index = profileCombo.getSelectionIndex();
 				Collection<PaletteEntry> standardEntries = getAllStandardEntries();
 				Profile profile = getAllAppliedProfiles().get(index);
 
-				if (item.getSelection()) {
+				if(item.getSelection()) {
 					availableToolsViewer.setContentProvider(new ProfileToolsMetaclassStereotypeTreeContentProvider(
 							profile, standardEntries));
 					item.setSelection(true);
@@ -1201,11 +1201,11 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 * {@inheritDoc}
 			 */
 			public void handleEvent(Event event) {
-				if (!(event.widget instanceof ToolItem)) {
+				if(!(event.widget instanceof ToolItem)) {
 					return;
 				}
-				ToolItem item = ((ToolItem) event.widget);
-				if (item.getSelection()) {
+				ToolItem item = ((ToolItem)event.widget);
+				if(item.getSelection()) {
 					// elements should be hidden
 					availableToolsViewer.addFilter(drawerFilter);
 					item.setSelection(true);
@@ -1229,11 +1229,11 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			 * {@inheritDoc}
 			 */
 			public void handleEvent(Event event) {
-				if (!(event.widget instanceof ToolItem)) {
+				if(!(event.widget instanceof ToolItem)) {
 					return;
 				}
-				ToolItem item = ((ToolItem) event.widget);
-				if (item.getSelection()) {
+				ToolItem item = ((ToolItem)event.widget);
+				if(item.getSelection()) {
 					// elements should be hidden
 					availableToolsViewer.addFilter(toolFilter);
 					item.setSelection(true);
@@ -1249,13 +1249,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Creates a toolbar item which can be checked.
 	 * 
 	 * @param toolbar
-	 *            the parent toolbar
+	 *        the parent toolbar
 	 * @param shownElementsIcon
-	 *            path for shown elements icon
+	 *        path for shown elements icon
 	 * @param listener
-	 *            listener for button action
+	 *        listener for button action
 	 * @param tooltip
-	 *            tooltip text for the toolbar item
+	 *        tooltip text for the toolbar item
 	 */
 	protected ToolItem createCheckToolBarItem(ToolBar toolbar, String shownElementsIcon, String tooltip,
 			Listener listener) {
@@ -1272,7 +1272,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected boolean validatePage() {
 		boolean valid = true;
 
-		if (valid) {
+		if(valid) {
 			setMessage(null);
 			setErrorMessage(null);
 		}
@@ -1280,8 +1280,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * The <code>WizardNewFileCreationPage</code> implementation of this <code>Listener</code>
-	 * method handles all events and enablements for controls on this page. Subclasses may extend.
+	 * The <code>WizardNewFileCreationPage</code> implementation of this <code>Listener</code> method handles all events and enablements for controls
+	 * on this page. Subclasses may extend.
 	 */
 	public void handleEvent(Event event) {
 		setPageComplete(validatePage());
@@ -1296,7 +1296,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * Constructor
 		 * 
 		 * @param viewer
-		 *            The viewer whose ContentProvider this content provider is
+		 *        The viewer whose ContentProvider this content provider is
 		 */
 		public UMLToolsTreeContentProvider() {
 		}
@@ -1307,15 +1307,15 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = null;
 
-			if (inputElement instanceof Collection<?>) {
-				elements = ((Collection<?>) inputElement).toArray();
-			} else if (inputElement instanceof PaletteRoot) {
+			if(inputElement instanceof Collection<?>) {
+				elements = ((Collection<?>)inputElement).toArray();
+			} else if(inputElement instanceof PaletteRoot) {
 				// paletteUil.getAllEntries(...) to add drawers
 				// if so, uncomment the addFilterbutton for drawers in populate tool bar
-				elements = PaletteUtil.getAllToolEntries(((PaletteRoot) inputElement)).toArray();
+				elements = PaletteUtil.getAllToolEntries(((PaletteRoot)inputElement)).toArray();
 			}
 
-			if (elements == null) {
+			if(elements == null) {
 				elements = new Object[0];
 			}
 			return elements;
@@ -1340,12 +1340,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		public Object[] getChildren(Object parentElement) {
 			Object[] elements = null;
 
-			if (parentElement instanceof Collection<?>) {
-				elements = ((Collection<?>) parentElement).toArray();
-			} else if (parentElement instanceof PaletteRoot) {
+			if(parentElement instanceof Collection<?>) {
+				elements = ((Collection<?>)parentElement).toArray();
+			} else if(parentElement instanceof PaletteRoot) {
 				// paletteUil.getAllEntries(...) to add drawers
 				// if so, uncomment the addFilterbutton for drawers in populate tool bar
-				elements = PaletteUtil.getAllToolEntries(((PaletteRoot) parentElement)).toArray();
+				elements = PaletteUtil.getAllToolEntries(((PaletteRoot)parentElement)).toArray();
 			}
 
 			return elements;
@@ -1369,8 +1369,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * Label provider for palette tools.
 	 * <P>
-	 * We should be using the Palette label provider from GEF, if it was not with visibility
-	 * "package"...
+	 * We should be using the Palette label provider from GEF, if it was not with visibility "package"...
 	 * 
 	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
 	 * 
@@ -1381,13 +1380,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Image getImage(Object element) {
-			if (element instanceof PaletteEntry) {
-				ImageDescriptor descriptor = ((PaletteEntry) element).getSmallIcon();
-				if (descriptor == null) {
+			if(element instanceof PaletteEntry) {
+				ImageDescriptor descriptor = ((PaletteEntry)element).getSmallIcon();
+				if(descriptor == null) {
 					return null;
 				}
 				return Activator.getPluginIconImage(Activator.ID, descriptor);
-			} else if (element instanceof Stereotype) {
+			} else if(element instanceof Stereotype) {
 				return Activator.getPluginIconImage(Activator.ID, "/icons/stereotype.gif");
 			}
 			return null;
@@ -1397,10 +1396,10 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public String getText(Object element) {
-			if (element instanceof PaletteEntry) {
-				return ((PaletteEntry) element).getLabel();
-			} else if (element instanceof Stereotype) {
-				return ((Stereotype) element).getName();
+			if(element instanceof PaletteEntry) {
+				return ((PaletteEntry)element).getLabel();
+			} else if(element instanceof Stereotype) {
+				return ((Stereotype)element).getName();
 			}
 			return "unknown element";
 		}
@@ -1438,8 +1437,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * Label provider for palette tools.
 	 * <P>
-	 * We should be using the Palette label provider from GEF, if it was not with visibility
-	 * "package"...
+	 * We should be using the Palette label provider from GEF, if it was not with visibility "package"...
 	 * 
 	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
 	 * 
@@ -1450,8 +1448,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Image getImage(Object element) {
-			if (element instanceof PaletteEntryProxy) {
-				return ((PaletteEntryProxy) element).getImage();
+			if(element instanceof PaletteEntryProxy) {
+				return ((PaletteEntryProxy)element).getImage();
 			}
 			return null;
 		}
@@ -1460,8 +1458,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public String getText(Object element) {
-			if (element instanceof PaletteEntryProxy) {
-				return ((PaletteEntryProxy) element).getLabel();
+			if(element instanceof PaletteEntryProxy) {
+				return ((PaletteEntryProxy)element).getLabel();
 			}
 			return "unknown element";
 		}
@@ -1506,7 +1504,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 */
 		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
-			if (element instanceof PaletteDrawer) {
+			if(element instanceof PaletteDrawer) {
 				return false;
 			}
 			return true;
@@ -1524,7 +1522,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 */
 		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
-			if (element instanceof ToolEntry) {
+			if(element instanceof ToolEntry) {
 				return false;
 			}
 			return true;
@@ -1547,7 +1545,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * Creates a new PaletteContentProvider.
 		 * 
 		 * @param treeviewer
-		 *            tree viewer this provider provides content
+		 *        tree viewer this provider provides content
 		 */
 		public PaletteContentProvider(TreeViewer treeviewer) {
 			this.viewer = treeviewer;
@@ -1564,8 +1562,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object[] getChildren(Object parentElement) {
-			if (parentElement instanceof PaletteEntryProxy) {
-				List<PaletteEntryProxy> children = ((PaletteEntryProxy) parentElement).getChildren();
+			if(parentElement instanceof PaletteEntryProxy) {
+				List<PaletteEntryProxy> children = ((PaletteEntryProxy)parentElement).getChildren();
 				return (children != null) ? children.toArray() : new Object[0];
 			}
 			return null;
@@ -1575,9 +1573,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public boolean hasChildren(Object element) {
-			if (element instanceof PaletteEntryProxy) {
-				return ((PaletteEntryProxy) element).getChildren() != null
-						&& !((PaletteEntryProxy) element).getChildren().isEmpty();
+			if(element instanceof PaletteEntryProxy) {
+				return ((PaletteEntryProxy)element).getChildren() != null
+						&& !((PaletteEntryProxy)element).getChildren().isEmpty();
 			}
 			return false;
 		}
@@ -1587,7 +1585,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 */
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = getChildren(inputElement);
-			if (elements == null) {
+			if(elements == null) {
 				elements = new Object[0];
 			}
 			return elements;
@@ -1597,8 +1595,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object getParent(Object element) {
-			if (element instanceof PaletteEntryProxy) {
-				return ((PaletteEntryProxy) element).getParent();
+			if(element instanceof PaletteEntryProxy) {
+				return ((PaletteEntryProxy)element).getParent();
 			}
 			return null;
 		}
@@ -1609,8 +1607,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// if (root != null)
 			// traverseModel(root, false);
-			if (newInput != null) {
-				rootProxy = (PaletteContainerProxy) newInput;
+			if(newInput != null) {
+				rootProxy = (PaletteContainerProxy)newInput;
 				// traverseModel(root, true);
 			}
 		}
@@ -1620,7 +1618,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Performs all action on finish
 	 * 
 	 * @param id
-	 *            the path for the file
+	 *        the path for the file
 	 */
 	public void performFinish(String path) {
 		// creates the document
@@ -1634,7 +1632,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	protected Set<String> collectRequiredProfiles() {
 		Set<String> profiles = new HashSet<String>();
-		PaletteContainerProxy rootProxy = (PaletteContainerProxy) paletteTreeViewer.getInput();
+		PaletteContainerProxy rootProxy = (PaletteContainerProxy)paletteTreeViewer.getInput();
 		collectRequiredProfiles(rootProxy.getChildren(), profiles);
 		return profiles;
 	}
@@ -1643,12 +1641,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * collect the required profiles from all tool provided by the local palette definition
 	 */
 	protected void collectRequiredProfiles(List<PaletteEntryProxy> proxies, Set<String> requiredProfiles) {
-		for (PaletteEntryProxy proxy : proxies) {
+		for(PaletteEntryProxy proxy : proxies) {
 			// add profile(s) if relevant, check for children
 
-			if (proxy instanceof PaletteAspectToolEntryProxy) {
+			if(proxy instanceof PaletteAspectToolEntryProxy) {
 				// list of profiles
-				for (String stereotypeQN : ((PaletteAspectToolEntryProxy) proxy).getStereotypesQNList()) {
+				for(String stereotypeQN : ((PaletteAspectToolEntryProxy)proxy).getStereotypesQNList()) {
 					// retrieve list of profiles from the stereotype QN (only remove last segment
 					// ?!)
 					String profileName = stereotypeQN.substring(0, stereotypeQN.lastIndexOf(NamedElement.SEPARATOR));
@@ -1656,7 +1654,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				}
 			}
 
-			if (proxy.getChildren() != null) {
+			if(proxy.getChildren() != null) {
 				collectRequiredProfiles(proxy.getChildren(), requiredProfiles);
 			}
 		}
@@ -1666,9 +1664,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Saves the xml document into file
 	 * 
 	 * @param document
-	 *            the document to save
+	 *        the document to save
 	 * @param path
-	 *            name of the file
+	 *        name of the file
 	 * @return the file created or updated
 	 */
 	protected File saveDocument(Document document, String path) {
@@ -1722,13 +1720,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Generates the xml content for the palette
 	 * 
 	 * @param document
-	 *            the document to fill
+	 *        the document to fill
 	 * @param contentElement
-	 *            the root for the xml content
+	 *        the root for the xml content
 	 */
 	protected void generateXMLPaletteContent(Document document, Element contentElement) {
-		PaletteContainerProxy rootProxy = (PaletteContainerProxy) paletteTreeViewer.getInput();
-		for (PaletteEntryProxy proxy : rootProxy.getChildren()) {
+		PaletteContainerProxy rootProxy = (PaletteContainerProxy)paletteTreeViewer.getInput();
+		for(PaletteEntryProxy proxy : rootProxy.getChildren()) {
 			generateXMLPaletteContainerProxy(document, contentElement, proxy);
 		}
 	}
@@ -1737,9 +1735,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Generates the xml content for the given container
 	 * 
 	 * @param document
-	 *            the document to fill
+	 *        the document to fill
 	 * @param containerProxy
-	 *            the entry proxy
+	 *        the entry proxy
 	 */
 	protected void generateXMLPaletteContainerProxy(Document document, Element contentElement,
 			PaletteEntryProxy containerProxy) {
@@ -1747,12 +1745,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		Element element = null;
 		List<PaletteEntryProxy> children = containerProxy.getChildren();
 		// generate the element
-		switch (containerProxy.getType()) {
+		switch(containerProxy.getType()) {
 		case DRAWER:
 			element = document.createElement(IPapyrusPaletteConstant.DRAWER);
 			element.setAttribute(IPapyrusPaletteConstant.NAME, containerProxy.getLabel());
-			if (containerProxy instanceof PaletteLocalDrawerProxy) {
-				element.setAttribute(IPapyrusPaletteConstant.ICON_PATH, ((PaletteLocalDrawerProxy) containerProxy)
+			if(containerProxy instanceof PaletteLocalDrawerProxy) {
+				element.setAttribute(IPapyrusPaletteConstant.ICON_PATH, ((PaletteLocalDrawerProxy)containerProxy)
 						.getImagePath());
 			}
 			break;
@@ -1768,8 +1766,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		case ASPECT_TOOL:
 			element = document.createElement(IPapyrusPaletteConstant.ASPECT_TOOL);
 			// try to cast the element into PaletteAspectToolEntryProxy
-			if (containerProxy instanceof PaletteAspectToolEntryProxy) {
-				PaletteAspectToolEntryProxy aspectEntryProxy = (PaletteAspectToolEntryProxy) containerProxy;
+			if(containerProxy instanceof PaletteAspectToolEntryProxy) {
+				PaletteAspectToolEntryProxy aspectEntryProxy = (PaletteAspectToolEntryProxy)containerProxy;
 				element.setAttribute(IPapyrusPaletteConstant.ID, aspectEntryProxy.getId());
 				element.setAttribute(IPapyrusPaletteConstant.NAME, aspectEntryProxy.getLabel());
 				element.setAttribute(IPapyrusPaletteConstant.DESCRIPTION, aspectEntryProxy.getEntry().getDescription());
@@ -1788,8 +1786,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		element.setAttribute(IPapyrusPaletteConstant.ID, containerProxy.getId());
 		contentElement.appendChild(element);
 
-		if (children != null) {
-			for (PaletteEntryProxy proxy : children) {
+		if(children != null) {
+			for(PaletteEntryProxy proxy : children) {
 				generateXMLPaletteContainerProxy(document, element, proxy);
 			}
 		}
@@ -1815,20 +1813,20 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			String label1 = "";
 			String label2 = "";
 
-			if (e1 instanceof PaletteEntry) {
-				label1 = ((PaletteEntry) e1).getLabel();
-			} else if (e1 instanceof Stereotype) {
-				label1 = ((Stereotype) e1).getName();
+			if(e1 instanceof PaletteEntry) {
+				label1 = ((PaletteEntry)e1).getLabel();
+			} else if(e1 instanceof Stereotype) {
+				label1 = ((Stereotype)e1).getName();
 			}
-			if (e2 instanceof PaletteEntry) {
-				label2 = ((PaletteEntry) e2).getLabel();
-			} else if (e2 instanceof Stereotype) {
-				label2 = ((Stereotype) e2).getName();
+			if(e2 instanceof PaletteEntry) {
+				label2 = ((PaletteEntry)e2).getLabel();
+			} else if(e2 instanceof Stereotype) {
+				label2 = ((Stereotype)e2).getName();
 			}
 
-			if (label1 == null)
+			if(label1 == null)
 				return 1;
-			if (label2 == null)
+			if(label2 == null)
 				return -1;
 
 			return label1.compareTo(label2);
@@ -1856,13 +1854,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 			Collection<PaletteEntry> standardEntries = getAllStandardEntries();
 			// retrieve the profile or uml standards tools to display
-			if (UML_TOOLS_LABEL.equals(name)) {
+			if(UML_TOOLS_LABEL.equals(name)) {
 				// change content provider
 				availableToolsViewer.setContentProvider(new UMLToolsTreeContentProvider());
 				availableToolsViewer.setInput(standardEntries);
 				toggleContentProvider.setEnabled(false);
 			} else {
-				if (toggleContentProvider != null && !toggleContentProvider.isDisposed()) {
+				if(toggleContentProvider != null && !toggleContentProvider.isDisposed()) {
 					toggleContentProvider.setEnabled(true);
 					toggleContentProvider.setSelection(true);
 				}
@@ -1882,36 +1880,36 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * generates the input for the available tools viewer, given the profile
 		 * 
 		 * @param profile
-		 *            the profile for which tools are computed
+		 *        the profile for which tools are computed
 		 * @param standardEntries
-		 *            the list of standard entries
+		 *        the list of standard entries
 		 */
 		@SuppressWarnings("unchecked")
 		protected void generateAvailableToolsViewerInput(Profile profile, Collection<PaletteEntry> standardEntries) {
 			List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
 			// for each tool in the palette entry, checks which stereotypes can be applied ...
-			for (PaletteEntry entry : standardEntries) {
+			for(PaletteEntry entry : standardEntries) {
 				// retrieve the element type created by the tool.
-				if (entry instanceof CombinedTemplateCreationEntry) {
-					EClass toolMetaclass = getToolMetaclass((CombinedTemplateCreationEntry) entry);
+				if(entry instanceof CombinedTemplateCreationEntry) {
+					EClass toolMetaclass = getToolMetaclass((CombinedTemplateCreationEntry)entry);
 					// checks the tool entry really creates a UML element (for example, constraint
 					// link
 					// does not create a stereotype
-					if (toolMetaclass != null) {
+					if(toolMetaclass != null) {
 						// for each stereotype, checks if it can be applied to the kind of element
 						// created
-						for (Stereotype stereotype : profile.getOwnedStereotypes()) {
+						for(Stereotype stereotype : profile.getOwnedStereotypes()) {
 							// checks if the stereotype can be applied to the tool metaclass
 							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
-							for (Class stMetaclass : metaclasses) {
+							for(Class stMetaclass : metaclasses) {
 								// get Eclass
 								java.lang.Class metaclassClass = stMetaclass.getClass();
-								if (metaclassClass != null) {
-									java.lang.Class toolMetaClassInstanceClass = (java.lang.Class) toolMetaclass
+								if(metaclassClass != null) {
+									java.lang.Class toolMetaClassInstanceClass = (java.lang.Class)toolMetaclass
 											.getInstanceClass();
 									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass
 											.getName());
-									if (((EClass) metaClassifier).isSuperTypeOf(toolMetaclass)) {
+									if(((EClass)metaClassifier).isSuperTypeOf(toolMetaclass)) {
 										// should create the palette entry
 										HashMap properties = new HashMap();
 										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
@@ -1921,9 +1919,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName()
 												+ " (" + entry.getLabel() + ")", "Create an element with a stereotype",
 												entry.getId() + "." + stereotype.getName(), Activator
-														.getImageDescriptor("/icons/papyrus/PapyrusLogo16x16.gif"),
-												(CombinedTemplateCreationEntry) entry, properties);
-										entries.add((PaletteEntry) aspectEntry);
+												.getImageDescriptor("/icons/papyrus/PapyrusLogo16x16.gif"),
+												(CombinedTemplateCreationEntry)entry, properties);
+										entries.add((PaletteEntry)aspectEntry);
 									}
 								}
 							}
@@ -1950,9 +1948,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * Creates a new ProfileToolsStereotypeMetaclassTreeContentProvider.
 		 * 
 		 * @param profile
-		 *            the profile for which tools are built
+		 *        the profile for which tools are built
 		 * @param standardEntries
-		 *            list of standard uml tools palette entries
+		 *        list of standard uml tools palette entries
 		 */
 		public ProfileToolsStereotypeMetaclassTreeContentProvider(Profile profile,
 				Collection<PaletteEntry> standardEntries) {
@@ -1963,25 +1961,25 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object[] getChildren(Object parentElement) {
-			if (parentElement instanceof Profile) {
-				return ((Profile) parentElement).getOwnedStereotypes().toArray();
-			} else if (parentElement instanceof Stereotype) {
+			if(parentElement instanceof Profile) {
+				return ((Profile)parentElement).getOwnedStereotypes().toArray();
+			} else if(parentElement instanceof Stereotype) {
 				List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
-				Stereotype stereotype = (Stereotype) parentElement;
+				Stereotype stereotype = (Stereotype)parentElement;
 
-				for (PaletteEntry entry : standardEntries) {
+				for(PaletteEntry entry : standardEntries) {
 					// retrieve the element type created by the tool.
-					if (entry instanceof CombinedTemplateCreationEntry) {
-						EClass toolMetaclass = getToolMetaclass((CombinedTemplateCreationEntry) entry);
-						if (toolMetaclass != null) {
+					if(entry instanceof CombinedTemplateCreationEntry) {
+						EClass toolMetaclass = getToolMetaclass((CombinedTemplateCreationEntry)entry);
+						if(toolMetaclass != null) {
 							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
-							for (Class stMetaclass : metaclasses) {
+							for(Class stMetaclass : metaclasses) {
 								// get Eclass
 								java.lang.Class metaclassClass = stMetaclass.getClass();
-								if (metaclassClass != null) {
+								if(metaclassClass != null) {
 									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass
 											.getName());
-									if (((EClass) metaClassifier).isSuperTypeOf(toolMetaclass)) {
+									if(((EClass)metaClassifier).isSuperTypeOf(toolMetaclass)) {
 										// should create the palette entry
 										HashMap properties = new HashMap();
 										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
@@ -1991,8 +1989,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName()
 												+ " (" + entry.getLabel() + ")", "Create an element with a stereotype",
 												entry.getId() + "." + stereotype.getName(), entry.getSmallIcon(),
-												(CombinedTemplateCreationEntry) entry, properties);
-										entries.add((PaletteEntry) aspectEntry);
+												(CombinedTemplateCreationEntry)entry, properties);
+										entries.add((PaletteEntry)aspectEntry);
 									}
 								}
 
@@ -2009,8 +2007,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object getParent(Object element) {
-			if (element instanceof Stereotype) {
-				return ((Stereotype) element).getProfile();
+			if(element instanceof Stereotype) {
+				return ((Stereotype)element).getProfile();
 			}
 			return null;
 		}
@@ -2019,9 +2017,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public boolean hasChildren(Object element) {
-			if (element instanceof Profile) {
+			if(element instanceof Profile) {
 				return true;
-			} else if (element instanceof Stereotype) {
+			} else if(element instanceof Stereotype) {
 				return true;
 			}
 			return false;
@@ -2031,8 +2029,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if (inputElement instanceof Profile) {
-				List<Stereotype> stereotypes = ((Profile) inputElement).getOwnedStereotypes();
+			if(inputElement instanceof Profile) {
+				List<Stereotype> stereotypes = ((Profile)inputElement).getOwnedStereotypes();
 				return stereotypes.toArray();
 			}
 			return new Object[0];
@@ -2069,9 +2067,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * Creates a new ProfileToolsMetaclassStereotypeTreeContentProvider.
 		 * 
 		 * @param profile
-		 *            the profile for which tools are built
+		 *        the profile for which tools are built
 		 * @param standardEntries
-		 *            list of standard uml tools palette entries
+		 *        list of standard uml tools palette entries
 		 */
 		public ProfileToolsMetaclassStereotypeTreeContentProvider(Profile profile,
 				Collection<PaletteEntry> standardEntries) {
@@ -2083,26 +2081,26 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object[] getChildren(Object parentElement) {
-			if (parentElement instanceof Profile) {
+			if(parentElement instanceof Profile) {
 				return standardEntries.toArray();
-			} else if (parentElement instanceof AspectCreationEntry) {
+			} else if(parentElement instanceof AspectCreationEntry) {
 				return new Object[0];
-			} else if (parentElement instanceof PaletteEntry) {
+			} else if(parentElement instanceof PaletteEntry) {
 				List<AspectCreationEntry> entries = new ArrayList<AspectCreationEntry>();
 				// display all stereotypes applicable to the type of element created by this tool
-				if (parentElement instanceof CombinedTemplateCreationEntry) {
-					CombinedTemplateCreationEntry entry = (CombinedTemplateCreationEntry) parentElement;
+				if(parentElement instanceof CombinedTemplateCreationEntry) {
+					CombinedTemplateCreationEntry entry = (CombinedTemplateCreationEntry)parentElement;
 					EClass toolMetaclass = getToolMetaclass(entry);
-					if (toolMetaclass != null) {
-						for (Stereotype stereotype : profile.getOwnedStereotypes()) {
+					if(toolMetaclass != null) {
+						for(Stereotype stereotype : profile.getOwnedStereotypes()) {
 							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
-							for (Class stMetaclass : metaclasses) {
+							for(Class stMetaclass : metaclasses) {
 								// get Eclass
 								java.lang.Class metaclassClass = stMetaclass.getClass();
-								if (metaclassClass != null) {
+								if(metaclassClass != null) {
 									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass
 											.getName());
-									if (((EClass) metaClassifier).isSuperTypeOf(toolMetaclass)) {
+									if(((EClass)metaClassifier).isSuperTypeOf(toolMetaclass)) {
 										// should create the palette entry
 										HashMap properties = new HashMap();
 										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
@@ -2112,7 +2110,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName()
 												+ " (" + entry.getLabel() + ")", "Create an element with a stereotype",
 												entry.getId() + "." + stereotype.getName(), entry.getSmallIcon(),
-												(CombinedTemplateCreationEntry) entry, properties);
+												(CombinedTemplateCreationEntry)entry, properties);
 										entries.add(aspectEntry);
 									}
 								}
@@ -2130,8 +2128,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object getParent(Object element) {
-			if (element instanceof Stereotype) {
-				return ((Stereotype) element).getProfile();
+			if(element instanceof Stereotype) {
+				return ((Stereotype)element).getProfile();
 			}
 			return null;
 		}
@@ -2140,11 +2138,11 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public boolean hasChildren(Object element) {
-			if (element instanceof Profile) {
+			if(element instanceof Profile) {
 				return true;
-			} else if (element instanceof AspectCreationEntry) {
+			} else if(element instanceof AspectCreationEntry) {
 				return false;
-			} else if (element instanceof PaletteEntry) {
+			} else if(element instanceof PaletteEntry) {
 				return true;
 			}
 			return false;
@@ -2154,7 +2152,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
-			if (inputElement instanceof Profile) {
+			if(inputElement instanceof Profile) {
 				return standardEntries.toArray();
 			}
 			return new Object[0];
@@ -2192,21 +2190,21 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * Returns the type of metaclasses created by the toolentry
 	 * 
 	 * @param entry
-	 *            the entry for which metaclass created is searched
+	 *        the entry for which metaclass created is searched
 	 * @return the type of metaclasses created by the toolentry or <code>null</code>.
 	 */
 	protected EClass getToolMetaclass(CombinedTemplateCreationEntry entry) {
 		Tool tool = entry.createTool();
 		List<IElementType> types = null;
-		if (tool instanceof AspectUnspecifiedTypeCreationTool) {
-			types = ((AspectUnspecifiedTypeCreationTool) tool).getElementTypes();
-		} else if (tool instanceof AspectUnspecifiedTypeConnectionTool) {
-			types = ((AspectUnspecifiedTypeConnectionTool) tool).getElementTypes();
+		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
+			types = ((AspectUnspecifiedTypeCreationTool)tool).getElementTypes();
+		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
+			types = ((AspectUnspecifiedTypeConnectionTool)tool).getElementTypes();
 		}
-		if (types != null && types.size() > 0) {
+		if(types != null && types.size() > 0) {
 			IElementType type = types.get(0);
-			if (type instanceof SpecializationType) {
-				type = ((SpecializationType) type).getSpecializedTypes()[0];
+			if(type instanceof SpecializationType) {
+				type = ((SpecializationType)type).getSpecializedTypes()[0];
 			}
 			return type.getEClass();
 		}

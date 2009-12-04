@@ -16,79 +16,73 @@ import org.eclipse.uml2.uml.Package;
  * Instance of this class allows to lookup for a Classifier.
  * Lookup is done in the provided paths.
  * Classifier or Package are not created. An error is thrown when not found.
+ * 
  * @author dumoulin
- *
+ * 
  * @TODO rename to ClasspathCatalog
  */
 public class ClassifierCatalog {
 
 	/** Model containing the paths */
 	protected Resource model;
-	
+
 	/** model Package used as root of all searchpaths */
 	private Package modelRootPackage;
-	
+
 	/** The package containing the current compilation unit. First package searched */
 	private Package currentCompilationUnitPackage;
-	
+
 	/**
 	 * List of packages from where the lookup is done.
 	 */
 	protected List<SearchPackage> paths = new ArrayList<SearchPackage>();;
-	
+
 	/**
 	 * Constructor.
 	 */
 	public ClassifierCatalog(Resource model) {
 		this.model = model;
-		paths.add(new ResourceSearcPackage() );
+		paths.add(new ResourceSearcPackage());
 	}
-	
+
 	/**
 	 * Constructor.
 	 */
-	public ClassifierCatalog( Resource model, List<String> packageNames) {
+	public ClassifierCatalog(Resource model, List<String> packageNames) {
 		this.model = model;
-		for( String name : packageNames)
-		{
-			if("/".equals(name) )
-			{
+		for(String name : packageNames) {
+			if("/".equals(name)) {
 				paths.add(new ResourceSearcPackage());
-			}
-			else
-			{
-				List<String> qualifiedName =  dirToQualifiedName(name);
+			} else {
+				List<String> qualifiedName = dirToQualifiedName(name);
 				// Get corresponding package if any
 				paths.add(new AbsoluteSearchPackage(qualifiedName));
 			}
 
 		}
 	}
-	
+
 	/**
 	 * Constructor.
 	 * search paths are relative to the specified package.
 	 */
-	public ClassifierCatalog( Package modelRootPackage, List<String> packageNames) {
+	public ClassifierCatalog(Package modelRootPackage, List<String> packageNames) {
 		this.modelRootPackage = modelRootPackage;
-		for( String name : packageNames)
-		{
-			if("/".equals(name) )
-			{
+		for(String name : packageNames) {
+			if("/".equals(name)) {
 				paths.add(new ResourceSearcPackage());
-			}
-			else
-			{
-				List<String> qualifiedName =  dirToQualifiedName(name);
+			} else {
+				List<String> qualifiedName = dirToQualifiedName(name);
 				// Get corresponding package if any
 				paths.add(new RelativeSearchPackage(qualifiedName));
 			}
 
 		}
 	}
-	
+
 	/**
-	 * @param currentCompilationUnitPackage the currentCompilationUnitPackage to set
+	 * @param currentCompilationUnitPackage
+	 *        the currentCompilationUnitPackage to set
 	 */
 	public void setCurrentCompilationUnitPackage(Package currentCompilationUnitPackage) {
 		this.currentCompilationUnitPackage = currentCompilationUnitPackage;
@@ -97,83 +91,87 @@ public class ClassifierCatalog {
 	/**
 	 * Get the qualified name from a directory like name.
 	 * Name is splitted arround '/'
+	 * 
 	 * @param name
 	 * @return
 	 */
-	private List<String> dirToQualifiedName(String qname)
-	{
-	  String[] splittedName = qname.split("/");	
-	  return Arrays.asList(splittedName);
+	private List<String> dirToQualifiedName(String qname) {
+		String[] splittedName = qname.split("/");
+		return Arrays.asList(splittedName);
 	}
 
-	
+
 	/**
 	 * Get the classifier by its qname.
+	 * 
 	 * @param qualifiedName
 	 * @return
 	 */
-	public Classifier getClassifier(String qualifiedName)
-	{
+	public Classifier getClassifier(String qualifiedName) {
 		List<String> qname = UmlUtils.toQualifiedName(qualifiedName);
-		return getClassifier( qname);
+		return getClassifier(qname);
 	}
-	
+
 	/**
 	 * Get the classifier by its qualified name.
+	 * 
 	 * @param qualifiedName
 	 * @return
 	 */
-	public Classifier getClassifier(List<String> qualifiedName) 
-	{
+	public Classifier getClassifier(List<String> qualifiedName) {
 		return lookupNamedElement(qualifiedName, null);
-//		for( Package path : paths)
-//		{
-//			NamedElement res = getNamedElement(path, qualifiedName);
-//			if(res != null )
-//				return (Classifier)res;
-//		}
-//		
-//		return null;
+		//		for( Package path : paths)
+		//		{
+		//			NamedElement res = getNamedElement(path, qualifiedName);
+		//			if(res != null )
+		//				return (Classifier)res;
+		//		}
+		//		
+		//		return null;
 	}
-	
+
 	/**
-	 * Look for the specified element in each of the path of the model. 
+	 * Look for the specified element in each of the path of the model.
 	 * Return the first corresponding element found in paths.
-	 * @param qualifiedName Expected name.
-	 * @param type Expected type or null.
+	 * 
+	 * @param qualifiedName
+	 *        Expected name.
+	 * @param type
+	 *        Expected type or null.
 	 * @return
 	 */
-	private Classifier lookupNamedElement(List<String> qualifiedName, EClass type)
-	{
-		
+	private Classifier lookupNamedElement(List<String> qualifiedName, EClass type) {
+
 		// search on current CU
-		if(currentCompilationUnitPackage != null)
-		{
+		if(currentCompilationUnitPackage != null) {
 			Classifier res = UmlUtils.lookupClassifier(currentCompilationUnitPackage, qualifiedName, type);
-			if(res != null )
+			if(res != null)
 				return res;
 		}
-		
-	    // loop on searchpaths
-		for( SearchPackage path : paths)
-		{
+
+		// loop on searchpaths
+		for(SearchPackage path : paths) {
 			Classifier res = path.getUmlClassifier(qualifiedName, type);
-			if(res != null )
+			if(res != null)
 				return res;
 		}
-		
-		return null;	
+
+		return null;
 	}
-	
-		
+
+
 	/**
 	 * Class corresponding to one searchpath.
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	abstract private class SearchPackage {
+
 		protected Package umlPackage;
+
 		protected List<String> packageQualifiedName;
+
 		/**
 		 * @param qualifiedName
 		 */
@@ -181,14 +179,15 @@ public class ClassifierCatalog {
 			super();
 			this.packageQualifiedName = qualifiedName;
 		}
-		
+
 		abstract public Classifier getUmlClassifier(List<String> qualifiedName, EClass expectedType);
 	}
-	
+
 	/**
 	 * This represent a searchpackage whose name is absolute from the resource.
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	private class AbsoluteSearchPackage extends SearchPackage {
 
@@ -196,14 +195,15 @@ public class ClassifierCatalog {
 			super(qualifiedName);
 		}
 
-		/** 
+		/**
 		 * Get the uml package corresponding to the path.
+		 * 
 		 * @return
 		 */
 		private Package getPathPackage() {
 			if(umlPackage != null)
 				return umlPackage;
-			
+
 			// Try to find package
 			umlPackage = UmlUtils.lookupPackage(model, packageQualifiedName);
 			return umlPackage;
@@ -215,17 +215,18 @@ public class ClassifierCatalog {
 		@Override
 		public Classifier getUmlClassifier(List<String> qualifiedName, EClass expectedType) {
 			Package p = getPathPackage();
-			if(p==null)
+			if(p == null)
 				return null;
-			
+
 			return UmlUtils.lookupClassifier(p, qualifiedName, expectedType);
 		}
 	}
-	
+
 	/**
 	 * This represent search package relative to the modelRootPackage..
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	private class RelativeSearchPackage extends SearchPackage {
 
@@ -233,15 +234,16 @@ public class ClassifierCatalog {
 			super(qualifiedName);
 		}
 
-		/** 
+		/**
 		 * Get the uml package corresponding to the path.
 		 * Search from the modelRootPackage.
+		 * 
 		 * @return
 		 */
 		private Package getPathPackage() {
 			if(umlPackage != null)
 				return umlPackage;
-			
+
 			// Try to find package
 			umlPackage = UmlUtils.lookupPackage(modelRootPackage, packageQualifiedName);
 			return umlPackage;
@@ -253,21 +255,22 @@ public class ClassifierCatalog {
 		@Override
 		public Classifier getUmlClassifier(List<String> qualifiedName, EClass expectedType) {
 			Package p = getPathPackage();
-			if(p==null)
+			if(p == null)
 				return null;
-			
+
 			return UmlUtils.lookupClassifier(p, qualifiedName, expectedType);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Search is done in the resource directly.
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	private class ResourceSearcPackage extends SearchPackage {
-		
+
 		public ResourceSearcPackage() {
 			super(null);
 			// TODO Auto-generated constructor stub
@@ -280,6 +283,6 @@ public class ClassifierCatalog {
 		public Classifier getUmlClassifier(List<String> qualifiedName, EClass expectedType) {
 			return UmlUtils.lookupClassifier(model, qualifiedName, expectedType);
 		}
-		
+
 	}
 }

@@ -35,9 +35,9 @@ public class ReferencePropertyDescriptor extends EMFCompositeSourcePropertyDescr
 
 	@Override
 	protected CellEditor doCreateEditor(Composite composite) {
-		final EStructuralFeature feature = (EStructuralFeature) getFeature();
+		final EStructuralFeature feature = (EStructuralFeature)getFeature();
 		UMLElementChooserDialog dialog = new ReferenceElementChooserDialog(composite.getShell(),
-				myItemProvidersAdapterFactory, (EObject) object, feature) {
+				myItemProvidersAdapterFactory, (EObject)object, feature) {
 
 			@Override
 			protected boolean isValid(EObject selectedElement) {

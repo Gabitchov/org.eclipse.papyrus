@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -35,20 +35,22 @@ import org.eclipse.papyrus.di.GraphElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getDiagram <em>Diagram</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getZoom <em>Zoom</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getViewport <em>Viewport</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getGraphElement <em>Graph Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getDiagram <em>Diagram</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getZoom <em>Zoom</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getViewport <em>Viewport</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl#getGraphElement <em>Graph Element</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
+
 	/**
 	 * The cached value of the '{@link #getDiagram() <em>Diagram</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDiagram()
 	 * @generated
 	 * @ordered
@@ -59,6 +61,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	 * The default value of the '{@link #getZoom() <em>Zoom</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getZoom()
 	 * @generated
 	 * @ordered
@@ -69,6 +72,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	 * The cached value of the '{@link #getZoom() <em>Zoom</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getZoom()
 	 * @generated
 	 * @ordered
@@ -79,6 +83,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	 * The default value of the '{@link #getViewport() <em>Viewport</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getViewport()
 	 * @generated
 	 * @ordered
@@ -89,6 +94,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	 * The cached value of the '{@link #getViewport() <em>Viewport</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getViewport()
 	 * @generated
 	 * @ordered
@@ -99,6 +105,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	 * The cached value of the '{@link #getGraphElement() <em>Graph Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getGraphElement()
 	 * @generated
 	 * @ordered
@@ -108,6 +115,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramLinkImpl() {
@@ -117,6 +125,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,14 +136,15 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram getDiagram() {
-		if (diagram != null && diagram.eIsProxy()) {
+		if(diagram != null && diagram.eIsProxy()) {
 			InternalEObject oldDiagram = (InternalEObject)diagram;
 			diagram = (Diagram)eResolveProxy(oldDiagram);
-			if (diagram != oldDiagram) {
-				if (eNotificationRequired())
+			if(diagram != oldDiagram) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.DIAGRAM_LINK__DIAGRAM, oldDiagram, diagram));
 			}
 		}
@@ -144,6 +154,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram basicGetDiagram() {
@@ -153,18 +164,20 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDiagram(Diagram newDiagram) {
 		Diagram oldDiagram = diagram;
 		diagram = newDiagram;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_LINK__DIAGRAM, oldDiagram, diagram));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getZoom() {
@@ -174,18 +187,20 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setZoom(double newZoom) {
 		double oldZoom = zoom;
 		zoom = newZoom;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_LINK__ZOOM, oldZoom, zoom));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Point getViewport() {
@@ -195,26 +210,28 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setViewport(Point newViewport) {
 		Point oldViewport = viewport;
 		viewport = newViewport;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_LINK__VIEWPORT, oldViewport, viewport));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphElement getGraphElement() {
-		if (graphElement != null && graphElement.eIsProxy()) {
+		if(graphElement != null && graphElement.eIsProxy()) {
 			InternalEObject oldGraphElement = (InternalEObject)graphElement;
 			graphElement = (GraphElement)eResolveProxy(oldGraphElement);
-			if (graphElement != oldGraphElement) {
-				if (eNotificationRequired())
+			if(graphElement != oldGraphElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT, oldGraphElement, graphElement));
 			}
 		}
@@ -224,6 +241,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphElement basicGetGraphElement() {
@@ -233,33 +251,37 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGraphElement(GraphElement newGraphElement) {
 		GraphElement oldGraphElement = graphElement;
 		graphElement = newGraphElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT, oldGraphElement, graphElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_LINK__DIAGRAM:
-				if (resolve) return getDiagram();
-				return basicGetDiagram();
-			case DiPackage.DIAGRAM_LINK__ZOOM:
-				return new Double(getZoom());
-			case DiPackage.DIAGRAM_LINK__VIEWPORT:
-				return getViewport();
-			case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
-				if (resolve) return getGraphElement();
-				return basicGetGraphElement();
+		switch(featureID) {
+		case DiPackage.DIAGRAM_LINK__DIAGRAM:
+			if(resolve)
+				return getDiagram();
+			return basicGetDiagram();
+		case DiPackage.DIAGRAM_LINK__ZOOM:
+			return new Double(getZoom());
+		case DiPackage.DIAGRAM_LINK__VIEWPORT:
+			return getViewport();
+		case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
+			if(resolve)
+				return getGraphElement();
+			return basicGetGraphElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -267,23 +289,24 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_LINK__DIAGRAM:
-				setDiagram((Diagram)newValue);
-				return;
-			case DiPackage.DIAGRAM_LINK__ZOOM:
-				setZoom(((Double)newValue).doubleValue());
-				return;
-			case DiPackage.DIAGRAM_LINK__VIEWPORT:
-				setViewport((Point)newValue);
-				return;
-			case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
-				setGraphElement((GraphElement)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.DIAGRAM_LINK__DIAGRAM:
+			setDiagram((Diagram)newValue);
+			return;
+		case DiPackage.DIAGRAM_LINK__ZOOM:
+			setZoom(((Double)newValue).doubleValue());
+			return;
+		case DiPackage.DIAGRAM_LINK__VIEWPORT:
+			setViewport((Point)newValue);
+			return;
+		case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
+			setGraphElement((GraphElement)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -291,23 +314,24 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_LINK__DIAGRAM:
-				setDiagram((Diagram)null);
-				return;
-			case DiPackage.DIAGRAM_LINK__ZOOM:
-				setZoom(ZOOM_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_LINK__VIEWPORT:
-				setViewport(VIEWPORT_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
-				setGraphElement((GraphElement)null);
-				return;
+		switch(featureID) {
+		case DiPackage.DIAGRAM_LINK__DIAGRAM:
+			setDiagram((Diagram)null);
+			return;
+		case DiPackage.DIAGRAM_LINK__ZOOM:
+			setZoom(ZOOM_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_LINK__VIEWPORT:
+			setViewport(VIEWPORT_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
+			setGraphElement((GraphElement)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -315,19 +339,20 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_LINK__DIAGRAM:
-				return diagram != null;
-			case DiPackage.DIAGRAM_LINK__ZOOM:
-				return zoom != ZOOM_EDEFAULT;
-			case DiPackage.DIAGRAM_LINK__VIEWPORT:
-				return VIEWPORT_EDEFAULT == null ? viewport != null : !VIEWPORT_EDEFAULT.equals(viewport);
-			case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
-				return graphElement != null;
+		switch(featureID) {
+		case DiPackage.DIAGRAM_LINK__DIAGRAM:
+			return diagram != null;
+		case DiPackage.DIAGRAM_LINK__ZOOM:
+			return zoom != ZOOM_EDEFAULT;
+		case DiPackage.DIAGRAM_LINK__VIEWPORT:
+			return VIEWPORT_EDEFAULT == null ? viewport != null : !VIEWPORT_EDEFAULT.equals(viewport);
+		case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
+			return graphElement != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -335,11 +360,13 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (zoom: ");

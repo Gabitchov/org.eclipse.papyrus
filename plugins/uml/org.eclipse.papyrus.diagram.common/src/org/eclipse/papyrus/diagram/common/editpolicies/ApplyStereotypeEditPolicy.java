@@ -79,8 +79,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (understandsRequest(request)) {
-			executeCommand(getApplyStereotypeCommand((ApplyStereotypeRequest) request));
+		if(understandsRequest(request)) {
+			executeCommand(getApplyStereotypeCommand((ApplyStereotypeRequest)request));
 			return null;
 		} else
 			return super.getCommand(request);
@@ -91,7 +91,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 */
 	@Override
 	public boolean understandsRequest(Request req) {
-		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(req.getType())) {
+		if(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(req.getType())) {
 			return true;
 		}
 		return super.understandsRequest(req);
@@ -115,7 +115,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 * Executes the supplied command inside an <code>unchecked action</code>
 	 * 
 	 * @param cmd
-	 *            command that can be executed (i.e., cmd.canExecute() == true)
+	 *        command that can be executed (i.e., cmd.canExecute() == true)
 	 */
 	protected void executeCommand(final Command cmd) {
 		Map<String, Boolean> options = null;
@@ -125,14 +125,14 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
 		// parent will not be a diagram edit part
 		EditPartViewer viewer = ep.getViewer();
-		if (viewer instanceof DiagramGraphicalViewer) {
-			isActivating = ((DiagramGraphicalViewer) viewer).isInitializing();
+		if(viewer instanceof DiagramGraphicalViewer) {
+			isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
 		}
 
-		if (isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart) getHost(), false, false))
+		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)getHost(), false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
-		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart) getHost()).getEditingDomain(),
+		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)getHost()).getEditingDomain(),
 				StringStatics.BLANK, options) {
 
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -145,10 +145,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		try {
 			operation.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-					"executeCommand", e); //$NON-NLS-1$
-			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"executeCommand", e); //$NON-NLS-1$
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "executeCommand", e); //$NON-NLS-1$
+			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "executeCommand", e); //$NON-NLS-1$
 		}
 	}
 
@@ -157,26 +155,25 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if (understandsRequest(request)) {
+		if(understandsRequest(request)) {
 			return getHost();
 		}
 		return super.getTargetEditPart(request);
 	}
 
 	/**
-	 * Returns the <code>Command</code> contribution for the given
-	 * <code>ApplyStereotypeRequest</code>
+	 * Returns the <code>Command</code> contribution for the given <code>ApplyStereotypeRequest</code>
 	 * 
 	 * @param request
-	 *            the request linked to this edit policy
+	 *        the request linked to this edit policy
 	 * @return the command that applies the stereotype or <code>null</code>
 	 */
 	protected Command getApplyStereotypeCommand(ApplyStereotypeRequest request) {
 		final ApplyStereotypeRequest _request = request;
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, "Apply Stereotype");
 		final List<EObject> result = new ArrayList<EObject>();
-		final Element element = ((IUMLEditPart) getHost()).getUMLElement();
+		final Element element = ((IUMLEditPart)getHost()).getUMLElement();
 
 		// 1. apply stereotypes
 		cc.compose(new AbstractTransactionalCommand(editingDomain, "Apply Stereotype", null) {
@@ -186,16 +183,16 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 					throws ExecutionException {
 
 				// retrieves the edit part on which stereotype request is made
-				if (getHost() instanceof IUMLEditPart) {
-					if (element == null) {
+				if(getHost() instanceof IUMLEditPart) {
+					if(element == null) {
 						return null;
 					}
 					// retrieves the list of stereotypes to be applied
 					List<String> stereotypeQNames = _request.getStereotypesToApply();
-					for (String stereotypeQName : stereotypeQNames) {
+					for(String stereotypeQName : stereotypeQNames) {
 						// retrieve the stereotype to apply
 						Stereotype stereotype = element.getApplicableStereotype(stereotypeQName);
-						if (stereotype == null) {
+						if(stereotype == null) {
 							// stereotype has no been found. should ask for profile application ?
 							PapyrusTrace.log(IStatus.WARNING, "impossible to retrieve the stereotype "
 									+ stereotypeQName);
@@ -212,7 +209,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		// check if the name of base element must be changed (don't bother what is the value of the
 		// element, only the key is needed
 		Object newName = request.getExtendedData().get(ApplyStereotypeRequest.NEW_EDIT_PART_NAME);
-		if (newName != null) {
+		if(newName != null) {
 			cc.compose(new AbstractTransactionalCommand(editingDomain, "Edit Base Element Name", null) {
 
 				@Override
@@ -220,8 +217,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 						throws ExecutionException {
 
 					// retrieves the edit part on which stereotype request is made
-					if (getHost() instanceof IUMLEditPart) {
-						if (!(element instanceof NamedElement)) {
+					if(getHost() instanceof IUMLEditPart) {
+						if(!(element instanceof NamedElement)) {
 							return null;
 						}
 
@@ -231,7 +228,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 						// find a new name for the element
 						String name = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(),
 								stereotypeName);
-						((NamedElement) element).setName(name);
+						((NamedElement)element).setName(name);
 
 					}
 					return CommandResult.newOKCommandResult(result);
@@ -252,7 +249,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 * Returns the list of stereotypes to display
 	 * 
 	 * @param request
-	 *            the request that triggers this policy
+	 *        the request that triggers this policy
 	 * @return the list of stereotypes to display
 	 */
 	public String getStereotypeList(ApplyStereotypeRequest request) {
@@ -260,10 +257,10 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		// string input of the display stereotype command.
 		StringBuffer buffer = new StringBuffer();
 		Iterator<String> it = request.getStereotypesToApply().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			String stereotypeQN = it.next();
 			buffer.append(stereotypeQN);
-			if (it.hasNext()) {
+			if(it.hasNext()) {
 				buffer.append(", ");
 			}
 		}

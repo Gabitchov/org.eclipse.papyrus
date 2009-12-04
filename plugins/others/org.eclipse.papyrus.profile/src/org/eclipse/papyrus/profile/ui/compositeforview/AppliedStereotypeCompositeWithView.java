@@ -50,7 +50,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * The Constructor.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public AppliedStereotypeCompositeWithView(Composite parent, TransactionalEditingDomain domain) {
 		super(parent);
@@ -62,9 +62,9 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * Creates the content.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * @param factory
-	 *            the factory
+	 *        the factory
 	 * 
 	 * @return the composite
 	 */
@@ -84,7 +84,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * Sets the selection.
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 */
 	public void setSelection(ISelection selection) {
 		this.selection = selection;
@@ -94,18 +94,18 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * Sets the diagram element.
 	 * 
 	 * @param diagramElement
-	 *            the diagram element
+	 *        the diagram element
 	 */
 	public void setDiagramElement(EModelElement diagramElement) {
 		this.diagramElement = diagramElement;
-		((ProfileElementWithDisplayContentProvider) treeViewer.getContentProvider()).setDiagramElement(diagramElement);
+		((ProfileElementWithDisplayContentProvider)treeViewer.getContentProvider()).setDiagramElement(diagramElement);
 	}
 
 	/**
 	 * Sets the property composite associated to this stereotype composite
 	 * 
 	 * @param propertyComposite
-	 *            the composite associated to this stereotype composite used for stereotype property display.
+	 *        the composite associated to this stereotype composite used for stereotype property display.
 	 */
 	public void setPropertyComposite(AppliedStereotypePropertyCompositeWithView propertyComposite) {
 		this.propertyComposite = propertyComposite;
@@ -134,13 +134,13 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * Display the stereotype once it is applied
 	 * 
 	 * @param st
-	 *            the stereotype to add
+	 *        the stereotype to add
 	 */
 	@Override
 	public void applyStereotype(final Element elt, final Stereotype st) {
 		super.applyStereotype(elt, st);
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {
@@ -171,13 +171,13 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * Remove a stereotype from the list of stereotypes to display.
 	 * 
 	 * @param st
-	 *            the stereotype to remove
+	 *        the stereotype to remove
 	 */
 	@Override
 	protected void unapplyStereotype(final Element elt, final Stereotype st) {
 		super.unapplyStereotype(elt, st);
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		if (diagramElement == null) {
+		if(diagramElement == null) {
 			return;
 		}
 		try {
@@ -223,20 +223,20 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * Selection changed.
 	 * 
 	 * @param event
-	 *            the event
+	 *        the event
 	 */
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
-		if (event == null) {
+		if(event == null) {
 			propertyComposite.setInput(null);
 			return;
 		}
 
-		IStructuredSelection structSelection = (IStructuredSelection) event.getSelection();
+		IStructuredSelection structSelection = (IStructuredSelection)event.getSelection();
 		Object selection = structSelection.getFirstElement();
 
-		if (selection instanceof AppliedStereotypePropertyTreeObject) {
-			propertyComposite.setInput((AppliedStereotypePropertyTreeObject) selection);
+		if(selection instanceof AppliedStereotypePropertyTreeObject) {
+			propertyComposite.setInput((AppliedStereotypePropertyTreeObject)selection);
 		} else {
 			propertyComposite.setInput(null);
 		}

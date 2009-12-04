@@ -40,7 +40,7 @@ public class ProfileApplicationPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ProfileApplication) {
+		if(eObject instanceof ProfileApplication) {
 			return new ProfileApplicationPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ProfileApplicationPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ProfileApplication) {
-			if (ProfileApplicationBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ProfileApplication) {
+			if(ProfileApplicationBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ProfileApplicationBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

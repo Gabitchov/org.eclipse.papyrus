@@ -63,27 +63,34 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class CommentPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, CommentPropertiesEditionPart {
 
 	protected Text body;
+
 	private EMFListEditUtil annotatedElementEditUtil;
+
 	protected ReferencesTable<? extends EObject> annotatedElement;
+
 	protected List<ViewerFilter> annotatedElementBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> annotatedElementFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public CommentPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite,
+	 *      org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -95,11 +102,12 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createControls(org.eclipse.ui.forms.widgets.FormToolkit,
+	 *      org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
@@ -107,7 +115,7 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 		// Start of user code for additional ui definition
 
 		// End of user code
-		
+
 	}
 
 	protected void createGeneralGroup(FormToolkit widgetFactory, final Composite view) {
@@ -124,6 +132,7 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 		createAnnotatedElementReferencesTable(widgetFactory, generalGroup);
 		generalSection.setClient(generalGroup);
 	}
+
 	protected void createBodyTextarea(FormToolkit widgetFactory, Composite parent) {
 		Label bodyLabel = FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.CommentPropertiesEditionPart_BodyLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Comment.body, UMLViewsRepository.FORM_KIND));
 		GridData bodyLabelData = new GridData(GridData.FILL_HORIZONTAL);
@@ -142,7 +151,7 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CommentPropertiesEditionPartForm.this, UMLViewsRepository.Comment.body, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, body.getText()));
 			}
 
@@ -155,8 +164,8 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 */
 			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
+				if(e.character == SWT.CR) {
+					if(propertiesEditionComponent != null)
 						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CommentPropertiesEditionPartForm.this, UMLViewsRepository.Comment.body, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, body.getText()));
 				}
 			}
@@ -164,29 +173,43 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Comment.body, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createAnnotatedElementReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.annotatedElement = new ReferencesTable<Element>(UMLMessages.CommentPropertiesEditionPart_AnnotatedElementLabel, new ReferencesTableListener<Element>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Element> dialog = new TabElementTreeSelectionDialog<Element>(resourceSet, annotatedElementFilters, annotatedElementBusinessFilters,
-				"Element", UMLPackage.eINSTANCE.getElement(), current.eResource()) {
+						"Element", UMLPackage.eINSTANCE.getElement(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!annotatedElementEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!annotatedElementEditUtil.getVirtualList().contains(elem))
 								annotatedElementEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CommentPropertiesEditionPartForm.this, UMLViewsRepository.Comment.annotatedElement,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						annotatedElement.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Element element) { editAnnotatedElement(element); }
-			public void handleMove(Element element, int oldIndex, int newIndex) { moveAnnotatedElement(element, oldIndex, newIndex); }
-			public void handleRemove(Element element) { removeFromAnnotatedElement(element); }
-			public void navigateTo(Element element) { }
+
+			public void handleEdit(Element element) {
+				editAnnotatedElement(element);
+			}
+
+			public void handleMove(Element element, int oldIndex, int newIndex) {
+				moveAnnotatedElement(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Element element) {
+				removeFromAnnotatedElement(element);
+			}
+
+			public void navigateTo(Element element) {
+			}
 		});
 		this.annotatedElement.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Comment.annotatedElement, UMLViewsRepository.FORM_KIND));
 		this.annotatedElement.createControls(parent, widgetFactory);
@@ -227,10 +250,10 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				annotatedElementEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				annotatedElement.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -243,12 +266,12 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 
 	}
 
-	
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
 
 		// End of user code
-		
+
 	}
 
 	/**
@@ -266,10 +289,10 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CommentPropertiesEditionPart#setBody(String newValue)
 	 */
 	public void setBody(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			body.setText(newValue);
 		} else {
-			body.setText("");  //$NON-NLS-1$
+			body.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -312,12 +335,13 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CommentPropertiesEditionPart#initAnnotatedElement(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CommentPropertiesEditionPart#initAnnotatedElement(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initAnnotatedElement(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			annotatedElementEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			annotatedElementEditUtil = new EMFListEditUtil(current, feature);
@@ -330,7 +354,7 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CommentPropertiesEditionPart#updateAnnotatedElement(EObject newValue)
 	 */
 	public void updateAnnotatedElement(EObject newValue) {
-		if(annotatedElementEditUtil != null){
+		if(annotatedElementEditUtil != null) {
 			annotatedElementEditUtil.reinit(newValue);
 			annotatedElement.refresh();
 		}
@@ -367,15 +391,8 @@ public class CommentPropertiesEditionPartForm extends CompositePropertiesEdition
 
 
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
 
 	// End of user code
 
-}	
+}

@@ -59,7 +59,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 	/**
 	 * @param compartmentLayoutHelper
-	 *            the compartmentLayoutHelper to set
+	 *        the compartmentLayoutHelper to set
 	 */
 	protected void setCompartmentLayoutHelper(ICompartmentLayoutHelper compartmentLayoutHelper) {
 		this.compartmentLayoutHelper = compartmentLayoutHelper;
@@ -69,7 +69,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * Creates a new UmlNodeEditPart.
 	 * 
 	 * @param view
-	 *            the view controlled by this edit part
+	 *        the view controlled by this edit part
 	 */
 	public UMLNodeEditPart(View view) {
 		super(view);
@@ -84,7 +84,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * {@inheritDoc}
 	 */
 	public Element getUMLElement() {
-		return (Element) resolveSemanticElement();
+		return (Element)resolveSemanticElement();
 	}
 
 	/**
@@ -93,14 +93,14 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
-		if (event.getNotifier() instanceof EAnnotation) {
-			if (VisualInformationPapyrusConstant.LAYOUTFIGURE.equals(((EAnnotation) event.getNotifier()).getSource())) {
+		if(event.getNotifier() instanceof EAnnotation) {
+			if(VisualInformationPapyrusConstant.LAYOUTFIGURE.equals(((EAnnotation)event.getNotifier()).getSource())) {
 				changeLayoutCompartment();
 			}
 		}
 
 		Object feature = event.getFeature();
-		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			refreshFontColor();
 		}
 	}
@@ -119,12 +119,12 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * this method has in charge to apply the good layout policy on compartments
 	 */
 	protected void changeLayoutCompartment() {
-		if (getCompartmentLayoutHelper() != null) {
+		if(getCompartmentLayoutHelper() != null) {
 			Iterator<EditPart> childrenIterator = getChildren().iterator();
-			while (childrenIterator.hasNext()) {
+			while(childrenIterator.hasNext()) {
 				EditPart currentEditPart = childrenIterator.next();
-				if (currentEditPart instanceof ListCompartmentEditPart) {
-					getCompartmentLayoutHelper().applyLayout((ListCompartmentEditPart) currentEditPart);
+				if(currentEditPart instanceof ListCompartmentEditPart) {
+					getCompartmentLayoutHelper().applyLayout((ListCompartmentEditPart)currentEditPart);
 				}
 			}
 		}
@@ -135,7 +135,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType())) {
+		if(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType())) {
 			return this;
 		}
 		return super.getTargetEditPart(request);
@@ -157,8 +157,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (style != null) {
+		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
+		if(style != null) {
 			// Get the font
 			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
 			Font newFont = getResourceManager().createFont(fontDescriptor);
@@ -166,7 +166,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 			refreshLabelsFont(newFont);
 
 			// Dispose previous Font and FontDescriptor
-			if (cachedFontDescriptor != null) {
+			if(cachedFontDescriptor != null) {
 				getResourceManager().destroyFont(cachedFontDescriptor);
 			}
 			cachedFontDescriptor = fontDescriptor;
@@ -178,11 +178,11 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * call super.refreshLabelsFont(font)
 	 * 
 	 * @param font
-	 *            the font to use
+	 *        the font to use
 	 */
 	protected void refreshLabelsFont(Font font) {
-		if (((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
-			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel().setFont(font);
+		if(((IPapyrusNodeUMLElementFigure)getPrimaryShape()).getStereotypesLabel() != null) {
+			((IPapyrusNodeUMLElementFigure)getPrimaryShape()).getStereotypesLabel().setFont(font);
 		}
 
 	}
@@ -191,7 +191,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * Update the fontData
 	 * 
 	 * @param style
-	 *            the font style of the figure
+	 *        the font style of the figure
 	 * @return the new font data to use
 	 */
 	protected FontData getFontData(FontStyle style) {
@@ -205,8 +205,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	@Override
 	protected void setFontColor(Color color) {
 		super.setFontColor(color);
-		if (((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel() != null) {
-			((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel().setForegroundColor(color);
+		if(((IPapyrusNodeUMLElementFigure)getPrimaryShape()).getStereotypesLabel() != null) {
+			((IPapyrusNodeUMLElementFigure)getPrimaryShape()).getStereotypesLabel().setForegroundColor(color);
 		}
 	}
 

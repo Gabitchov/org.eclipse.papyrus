@@ -66,8 +66,8 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(org.eclipse.jface.action.MenuManager,
-	 *      org.eclipse.jface.viewers.ISelectionProvider, boolean)
+	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider,
+	 *      boolean)
 	 * @param menuManager
 	 * @param selectionProvider
 	 * @param includeEditorInput
@@ -78,7 +78,8 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider, boolean)
+	 * @see org.eclipse.ui.IEditorSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager,
+	 *      org.eclipse.jface.viewers.ISelectionProvider, boolean)
 	 * @param menuId
 	 * @param menuManager
 	 * @param selectionProvider
@@ -148,7 +149,8 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager, org.eclipse.jface.viewers.ISelectionProvider)
+	 * @see org.eclipse.ui.IWorkbenchPartSite#registerContextMenu(java.lang.String, org.eclipse.jface.action.MenuManager,
+	 *      org.eclipse.jface.viewers.ISelectionProvider)
 	 * @param menuId
 	 * @param menuManager
 	 * @param selectionProvider
@@ -241,8 +243,8 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	 * 
 	 */
 	public void activate() {
-		if (site instanceof INestable)
-			((INestable) site).activate();
+		if(site instanceof INestable)
+			((INestable)site).activate();
 	}
 
 	/**
@@ -251,8 +253,8 @@ public class MultiPageAdapterSite implements IEditorSite, INestable {
 	 * 
 	 */
 	public void deactivate() {
-		if (site instanceof INestable)
-			((INestable) site).deactivate();
+		if(site instanceof INestable)
+			((INestable)site).deactivate();
 	}
 
 }

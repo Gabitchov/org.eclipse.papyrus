@@ -31,8 +31,7 @@ import org.eclipse.ui.services.IServiceLocator;
 public class DirectEditorsContributionItem extends ContributionItem implements IWorkbenchContribution {
 
 	/**
-	 * Service locator given to this contribution item using the {@link IWorkbenchContribution}
-	 * interface.
+	 * Service locator given to this contribution item using the {@link IWorkbenchContribution} interface.
 	 */
 	private IServiceLocator serviceLocator;
 
@@ -58,7 +57,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	 */
 	@Override
 	public void dispose() {
-		if (subMenuItem != null && !subMenuItem.isDisposed()) {
+		if(subMenuItem != null && !subMenuItem.isDisposed()) {
 			subMenuItem.dispose();
 		}
 	}
@@ -83,7 +82,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		// first case: this class was not able to retrieve the selection service
 		// or does not understand the current selection.
 		// does not build any sub-menu and returns.
-		if (selectedElement == null) {
+		if(selectedElement == null) {
 			return;
 		}
 
@@ -91,7 +90,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		final Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selectedElement);
 
 		// no object found: exit
-		if (businessObject == null) {
+		if(businessObject == null) {
 			return;
 		}
 
@@ -102,7 +101,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		// if configurations is not empty, a submenu should open to select which
 		// editor to use...
 
-		if (configurations.size() < 1) {
+		if(configurations.size() < 1) {
 			return;
 		}
 
@@ -114,7 +113,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 			Collection<DirectEditorExtensionPoint> configurations) {
 		// create direct item, and then create sub-items
 		subMenuItem = new MenuItem(menu, SWT.CASCADE);
-		String type = ((businessObject instanceof EObject) ? ((EObject) businessObject).eClass().getName() : "");
+		String type = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getName() : "");
 
 		subMenuItem.setText("Edit " + type);
 
@@ -124,18 +123,18 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 
 		// items on the submenu
 		// there are as many items as configurations
-		Class fullType = ((businessObject instanceof EObject) ? ((EObject) businessObject).eClass().getInstanceClass()
+		Class fullType = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getInstanceClass()
 				: null);
 		final DirectEditorExtensionPoint defaultConfig = DirectEditorExtensionPoint
 				.getDefautDirectEditorConfiguration(fullType);
 
-		for (final DirectEditorExtensionPoint configuration : configurations) {
+		for(final DirectEditorExtensionPoint configuration : configurations) {
 			MenuItem item = new MenuItem(subMenu, SWT.NONE);
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("Using ");
 			buffer.append(configuration.getLanguage());
 			buffer.append(" Editor");
-			if (configuration.equals(defaultConfig)) {
+			if(configuration.equals(defaultConfig)) {
 				buffer.append(" (Default)");
 			}
 			item.setText(buffer.toString());
@@ -154,7 +153,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 				public void widgetSelected(SelectionEvent e) {
 					// launch editor
 					GMFEmbeddedEditorActionDelegate actionDelegate = new GMFEmbeddedEditorActionDelegate();
-					actionDelegate.setActivePart(null, ((CoreMultiDiagramEditor) PlatformUI.getWorkbench()
+					actionDelegate.setActivePart(null, ((CoreMultiDiagramEditor)PlatformUI.getWorkbench()
 							.getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getActiveEditor());
 					actionDelegate.selectionChanged(null, getSelection());
 					actionDelegate.setExtensionPointConfiguration(configuration);
@@ -172,8 +171,8 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	protected Object getSelectedElement() {
 		ISelection selection = getSelection();
 		// this checks if it is the good instance AND if it is not null
-		if (selection instanceof IStructuredSelection) {
-			return ((IStructuredSelection) selection).getFirstElement();
+		if(selection instanceof IStructuredSelection) {
+			return ((IStructuredSelection)selection).getFirstElement();
 		}
 		return null;
 	}
@@ -185,7 +184,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	 */
 	protected ISelection getSelection() {
 		ISelectionService selectionService = getSelectionService();
-		if (selectionService != null) {
+		if(selectionService != null) {
 			return selectionService.getSelection();
 		}
 		return null;
@@ -198,7 +197,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	 *         service was found.
 	 */
 	protected ISelectionService getSelectionService() {
-		ISelectionService selectionService = (ISelectionService) serviceLocator.getService(ISelectionService.class);
+		ISelectionService selectionService = (ISelectionService)serviceLocator.getService(ISelectionService.class);
 		return selectionService;
 	}
 
@@ -231,8 +230,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	}
 
 	/**
-	 * The default implementation of this <code>IContributionItem</code> method returns
-	 * <code>false</code>. Subclasses may override.
+	 * The default implementation of this <code>IContributionItem</code> method returns <code>false</code>. Subclasses may override.
 	 */
 	@Override
 	public boolean isDirty() {
@@ -241,8 +239,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	}
 
 	/**
-	 * The default implementation of this <code>IContributionItem</code> method returns
-	 * <code>true</code>. Subclasses may override.
+	 * The default implementation of this <code>IContributionItem</code> method returns <code>true</code>. Subclasses may override.
 	 */
 	@Override
 	public boolean isEnabled() {
@@ -250,8 +247,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	}
 
 	/**
-	 * The default implementation of this <code>IContributionItem</code> method returns
-	 * <code>false</code>. Subclasses may override.
+	 * The default implementation of this <code>IContributionItem</code> method returns <code>false</code>. Subclasses may override.
 	 */
 	@Override
 	public boolean isDynamic() {
@@ -259,8 +255,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	}
 
 	/**
-	 * The default implementation of this <code>IContributionItem</code> method returns
-	 * <code>false</code>. Subclasses may override.
+	 * The default implementation of this <code>IContributionItem</code> method returns <code>false</code>. Subclasses may override.
 	 */
 	@Override
 	public boolean isGroupMarker() {
@@ -268,8 +263,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	}
 
 	/**
-	 * The default implementation of this <code>IContributionItem</code> method returns
-	 * <code>false</code>. Subclasses may override.
+	 * The default implementation of this <code>IContributionItem</code> method returns <code>false</code>. Subclasses may override.
 	 */
 	@Override
 	public boolean isSeparator() {
@@ -293,8 +287,8 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	}
 
 	/**
-	 * The <code>ContributionItem</code> implementation of this method declared on
-	 * <code>IContributionItem</code> does nothing. Subclasses should override to update their
+	 * The <code>ContributionItem</code> implementation of this method declared on <code>IContributionItem</code> does nothing. Subclasses should
+	 * override to update their
 	 * state.
 	 */
 	@Override

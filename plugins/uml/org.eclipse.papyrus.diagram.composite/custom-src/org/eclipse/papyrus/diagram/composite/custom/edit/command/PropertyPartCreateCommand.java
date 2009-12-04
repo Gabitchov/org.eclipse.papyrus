@@ -42,9 +42,9 @@ public class PropertyPartCreateCommand extends
 	 */
 	@Override
 	public boolean canExecute() {
-		Property target = (Property) getElementToEdit();
+		Property target = (Property)getElementToEdit();
 
-		if ((target.getType() != null) && (target.getType() instanceof StructuredClassifier)) {
+		if((target.getType() != null) && (target.getType() instanceof StructuredClassifier)) {
 			return true;
 		}
 
@@ -65,14 +65,14 @@ public class PropertyPartCreateCommand extends
 
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
-		StructuredClassifier owner = (StructuredClassifier) ((Property) getElementToEdit()).getType();
+		StructuredClassifier owner = (StructuredClassifier)((Property)getElementToEdit()).getType();
 		owner.getOwnedAttributes().add(newElement);
 
 		UMLElementTypes.init_Property_3070(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 }

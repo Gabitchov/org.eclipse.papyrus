@@ -52,7 +52,7 @@ public class UMLValidationProvider {
 				}
 			}
 		};
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
@@ -67,11 +67,11 @@ public class UMLValidationProvider {
 	 * @generated
 	 */
 	static boolean isInDefaultEditorContext(Object object) {
-		if (shouldConstraintsBePrivate() && !constraintsActive) {
+		if(shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
-		if (object instanceof View) {
-			return constraintsActive && ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+		if(object instanceof View) {
+			return constraintsActive && ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View)object));
 		}
 		return true;
 	}

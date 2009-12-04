@@ -10,7 +10,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.resource;
 
 import org.eclipse.emf.common.util.EList;
@@ -37,8 +37,7 @@ public interface Resource extends EObject {
 	 * Returns the value of the '<em><b>Eobjects</b></em>' containment reference list. The list
 	 * contents are of type {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Eobjects</em>' containment reference list isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Eobjects</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 

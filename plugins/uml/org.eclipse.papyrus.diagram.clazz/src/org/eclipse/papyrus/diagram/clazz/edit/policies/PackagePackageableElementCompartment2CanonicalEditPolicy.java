@@ -53,11 +53,11 @@ public class PackagePackageableElementCompartment2CanonicalEditPolicy extends Ca
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getPackagePackageableElementCompartment_7016SemanticChildren(viewObject)
+		for(Iterator it = UMLDiagramUpdater.getPackagePackageableElementCompartment_7016SemanticChildren(viewObject)
 				.iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -67,7 +67,7 @@ public class PackagePackageableElementCompartment2CanonicalEditPolicy extends Ca
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 		case ComponentEditPartCN.VISUAL_ID:
 		case SignalEditPartCN.VISUAL_ID:
@@ -80,7 +80,7 @@ public class PackagePackageableElementCompartment2CanonicalEditPolicy extends Ca
 		case DataTypeEditPartCN.VISUAL_ID:
 		case Comment2EditPart.VISUAL_ID:
 		case Constraint2EditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -98,7 +98,7 @@ public class PackagePackageableElementCompartment2CanonicalEditPolicy extends Ca
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());

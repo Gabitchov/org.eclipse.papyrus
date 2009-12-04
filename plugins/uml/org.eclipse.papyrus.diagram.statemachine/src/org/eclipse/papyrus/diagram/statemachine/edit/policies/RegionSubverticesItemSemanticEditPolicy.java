@@ -37,96 +37,96 @@ public class RegionSubverticesItemSemanticEditPolicy extends
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
-		if (UMLElementTypes.State_2002 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.State_2002 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new StateCreateCommand(req));
 		}
-		if (UMLElementTypes.State_2003 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.State_2003 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new State2CreateCommand(req));
 		}
-		if (UMLElementTypes.State_2005 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.State_2005 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new State3CreateCommand(req));
 		}
-		if (UMLElementTypes.FinalState_2008 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.FinalState_2008 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new FinalStateCreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2009 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2009 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new PseudostateCreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2010 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2010 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new Pseudostate2CreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2011 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2011 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new Pseudostate3CreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2012 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2012 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new Pseudostate4CreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2013 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2013 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new Pseudostate5CreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2014 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2014 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new Pseudostate6CreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2015 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2015 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new Pseudostate7CreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2016 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2016 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}
 			return getGEFWrapper(new Pseudostate8CreateCommand(req));
 		}
-		if (UMLElementTypes.State_2017 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.State_2017 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Subvertex());
 			}

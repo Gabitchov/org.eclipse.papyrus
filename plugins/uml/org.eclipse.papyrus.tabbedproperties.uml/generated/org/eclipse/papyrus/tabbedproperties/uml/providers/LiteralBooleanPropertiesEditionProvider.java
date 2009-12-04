@@ -40,7 +40,7 @@ public class LiteralBooleanPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof LiteralBoolean) {
+		if(eObject instanceof LiteralBoolean) {
 			return new LiteralBooleanPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class LiteralBooleanPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof LiteralBoolean) {
-			if (LiteralBooleanBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof LiteralBoolean) {
+			if(LiteralBooleanBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new LiteralBooleanBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

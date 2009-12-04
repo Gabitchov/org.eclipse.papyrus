@@ -67,14 +67,14 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		GraphicalEditPart dependencyNodeEditPart = null;
 
 		// 1. Semanctic deletion of the client or supplier
-		GraphicalEditPart branchSource = (GraphicalEditPart) selectedElement.getSource();
-		GraphicalEditPart branchtarget = (GraphicalEditPart) selectedElement.getTarget();
+		GraphicalEditPart branchSource = (GraphicalEditPart)selectedElement.getSource();
+		GraphicalEditPart branchtarget = (GraphicalEditPart)selectedElement.getTarget();
 		EStructuralFeature feature = null;
 		ArrayList<NamedElement> newValue = new ArrayList<NamedElement>();
 
-		if (branchSource.resolveSemanticElement() instanceof Dependency) {
+		if(branchSource.resolveSemanticElement() instanceof Dependency) {
 			// target is the supplier of the dependency
-			dependency = (Dependency) branchSource.resolveSemanticElement();
+			dependency = (Dependency)branchSource.resolveSemanticElement();
 			dependencyNodeEditPart = branchSource;
 			newValue.addAll(dependency.getSuppliers());
 			newValue.remove(branchtarget.resolveSemanticElement());
@@ -83,7 +83,7 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		} else {
 			// source is the client of the dependency to remove
 			feature = UMLPackage.eINSTANCE.getDependency_Client();
-			dependency = (Dependency) branchtarget.resolveSemanticElement();
+			dependency = (Dependency)branchtarget.resolveSemanticElement();
 			dependencyNodeEditPart = branchtarget;
 			newValue.addAll(dependency.getClients());
 			newValue.remove(branchSource.resolveSemanticElement());
@@ -99,7 +99,7 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		// 3. test if it exists more than 2 branches
 		int branchNumber = dependencyNodeEditPart.getSourceConnections().size()
 				+ dependencyNodeEditPart.getTargetConnections().size();
-		if (branchNumber == 3) {
+		if(branchNumber == 3) {
 			// 4. Graphical deletion of the node
 			command.add(new ICommandProxy(new DeleteCommand(domain, dependencyNodeEditPart.getNotationView())));
 			// 5. Graphical creation of the binary dependency
@@ -112,15 +112,15 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 			targetList.addAll(dependencyNodeEditPart.getTargetConnections());
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
-			PreferencesHint preferencesHint = ((GraphicalEditPart) ((ConnectionEditPart) (sourceList.get(0)))
+			PreferencesHint preferencesHint = ((GraphicalEditPart)((ConnectionEditPart)(sourceList.get(0)))
 					.getTarget()).getDiagramPreferencesHint();
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4008,
-					((IHintedType) UMLElementTypes.Dependency_4008).getSemanticHint(), preferencesHint);
+					((IHintedType)UMLElementTypes.Dependency_4008).getSemanticHint(), preferencesHint);
 
 			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(
-					domain, ((IHintedType) UMLElementTypes.Dependency_4008).getSemanticHint(), new SemanticAdapter(
-							null, (((ConnectionEditPart) (targetList.get(0))).getSource()).getModel()),
-					new SemanticAdapter(null, (((ConnectionEditPart) (sourceList.get(0))).getTarget()).getModel()),
+					domain, ((IHintedType)UMLElementTypes.Dependency_4008).getSemanticHint(), new SemanticAdapter(
+					null, (((ConnectionEditPart)(targetList.get(0))).getSource()).getModel()),
+					new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(0))).getTarget()).getModel()),
 					sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(dependency);
 			command.add(new ICommandProxy(binaryCommand));
@@ -134,10 +134,10 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 	 * {@inheritedDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
-			if (selectedobject instanceof DependencyBranchEditPart) {
-				selectedElement = (DependencyBranchEditPart) selectedobject;
+		if(selection instanceof IStructuredSelection) {
+			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
+			if(selectedobject instanceof DependencyBranchEditPart) {
+				selectedElement = (DependencyBranchEditPart)selectedobject;
 			}
 		}
 	}

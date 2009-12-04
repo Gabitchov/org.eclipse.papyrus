@@ -22,6 +22,7 @@ public class ActivityParameterNodeCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -30,8 +31,7 @@ public class ActivityParameterNodeCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public ActivityParameterNodeCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public ActivityParameterNodeCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -40,8 +40,7 @@ public class ActivityParameterNodeCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ActivityParameterNodeCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static ActivityParameterNodeCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new ActivityParameterNodeCreateCommand(req, eObject);
 	}
 
@@ -58,8 +57,7 @@ public class ActivityParameterNodeCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -90,10 +88,8 @@ public class ActivityParameterNodeCreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
-				MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(
-					MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -106,8 +102,7 @@ public class ActivityParameterNodeCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		ActivityParameterNode newElement = (ActivityParameterNode) super
-				.doDefaultElementCreation();
+		ActivityParameterNode newElement = (ActivityParameterNode) super.doDefaultElementCreation();
 		if (newElement != null) {
 			Activity owner = (Activity) getElementToEdit();
 			owner.getNodes().add(newElement);
@@ -116,11 +111,9 @@ public class ActivityParameterNodeCreateCommand extends CreateElementCommand {
 
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-						newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-						UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

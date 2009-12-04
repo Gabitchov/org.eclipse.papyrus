@@ -19,7 +19,7 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			UMLDiagramEditorPlugin.getInstance()
-					.getItemProvidersAdapterFactory());
+			.getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -31,9 +31,9 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public Image getImage(Object element) {
-		if (element instanceof UMLDomainNavigatorItem) {
+		if(element instanceof UMLDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getImage(((UMLDomainNavigatorItem) element).getEObject());
+					.getImage(((UMLDomainNavigatorItem)element).getEObject());
 		}
 		return null;
 	}
@@ -42,9 +42,9 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public String getText(Object element) {
-		if (element instanceof UMLDomainNavigatorItem) {
+		if(element instanceof UMLDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getText(((UMLDomainNavigatorItem) element).getEObject());
+					.getText(((UMLDomainNavigatorItem)element).getEObject());
 		}
 		return null;
 	}

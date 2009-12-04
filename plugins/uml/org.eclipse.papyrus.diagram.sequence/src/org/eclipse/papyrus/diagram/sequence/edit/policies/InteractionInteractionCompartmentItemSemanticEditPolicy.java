@@ -37,16 +37,16 @@ public class InteractionInteractionCompartmentItemSemanticEditPolicy extends UML
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Lifeline_3001 == req.getElementType()) {
+		if(UMLElementTypes.Lifeline_3001 == req.getElementType()) {
 			return getGEFWrapper(new LifelineCreateCommand(req));
 		}
-		if (UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
+		if(UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
 			return getGEFWrapper(new InteractionUseCreateCommand(req));
 		}
-		if (UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
+		if(UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
 			return getGEFWrapper(new ConsiderIgnoreFragmentCreateCommand(req));
 		}
-		if (UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
+		if(UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
 			return getGEFWrapper(new CombinedFragmentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

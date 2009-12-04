@@ -38,8 +38,8 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -64,7 +64,7 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ClassPropertyDescriptor(object);
@@ -84,10 +84,10 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_base_Class_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_base_Class_feature",
-						"_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__BASE_CLASS, true, false, true,
+				"_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__BASE_CLASS, true, false, true,
 				null, null, null));
 	}
 
@@ -98,10 +98,10 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addStakeHoldersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_stakeHolders_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_stakeHolders_feature",
-						"_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__STAKE_HOLDERS, true, false,
+				"_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__STAKE_HOLDERS, true, false,
 				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -112,7 +112,7 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addPurposePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_purpose_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_ViewPoint_purpose_feature", "_UI_ViewPoint_type"),
 				ModelelementsPackage.Literals.VIEW_POINT__PURPOSE, true, false, false,
@@ -126,7 +126,7 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addConcernsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_concerns_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_ViewPoint_concerns_feature", "_UI_ViewPoint_type"),
 				ModelelementsPackage.Literals.VIEW_POINT__CONCERNS, true, false, false,
@@ -141,11 +141,11 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	protected void addLanguagesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ViewPoint_languages_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_ViewPoint_languages_feature",
-								"_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__LANGUAGES, true,
-						false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ViewPoint_languages_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ViewPoint_languages_feature",
+				"_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__LANGUAGES, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_methods_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_ViewPoint_methods_feature", "_UI_ViewPoint_type"),
 				ModelelementsPackage.Literals.VIEW_POINT__METHODS, true, false, false,
@@ -180,15 +180,14 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ViewPoint) object).getPurpose();
+		String label = ((ViewPoint)object).getPurpose();
 		return label == null || label.length() == 0 ? getString("_UI_ViewPoint_type") : getString("_UI_ViewPoint_type")
 				+ " " + label;
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -196,7 +195,7 @@ public class ViewPointItemProvider extends ItemProviderAdapter implements IEditi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ViewPoint.class)) {
+		switch(notification.getFeatureID(ViewPoint.class)) {
 		case ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS:
 		case ModelelementsPackage.VIEW_POINT__PURPOSE:
 		case ModelelementsPackage.VIEW_POINT__CONCERNS:

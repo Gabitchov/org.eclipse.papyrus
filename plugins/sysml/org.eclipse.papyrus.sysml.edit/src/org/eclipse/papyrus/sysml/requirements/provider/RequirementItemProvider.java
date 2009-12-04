@@ -38,8 +38,7 @@ import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.requirements.Requirement} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.Requirement} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated
@@ -65,7 +64,7 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addTextPropertyDescriptor(object);
@@ -89,7 +88,7 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addTextPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_text_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_Requirement_text_feature", "_UI_Requirement_type"),
 				RequirementsPackage.Literals.REQUIREMENT__TEXT, true, false, false,
@@ -103,7 +102,7 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_id_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_Requirement_id_feature", "_UI_Requirement_type"),
 				RequirementsPackage.Literals.REQUIREMENT__ID, true, false, false,
@@ -117,10 +116,10 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addDerivedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_derived_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_derived_feature",
-						"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__DERIVED, false, false,
+				"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__DERIVED, false, false,
 				false, null, null, null));
 	}
 
@@ -131,10 +130,10 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addDerivedFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_derivedFrom_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_derivedFrom_feature",
-						"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__DERIVED_FROM, false, false,
+				"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__DERIVED_FROM, false, false,
 				false, null, null, null));
 	}
 
@@ -145,10 +144,10 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addSatisfiedByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_satisfiedBy_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_satisfiedBy_feature",
-						"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__SATISFIED_BY, false, false,
+				"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__SATISFIED_BY, false, false,
 				false, null, null, null));
 	}
 
@@ -159,10 +158,10 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addRefinedByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_refinedBy_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_refinedBy_feature",
-						"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__REFINED_BY, false, false,
+				"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__REFINED_BY, false, false,
 				false, null, null, null));
 	}
 
@@ -173,10 +172,10 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addTracedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_tracedTo_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_tracedTo_feature",
-						"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__TRACED_TO, false, false,
+				"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__TRACED_TO, false, false,
 				false, null, null, null));
 	}
 
@@ -187,10 +186,10 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addVerifiedByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_verifiedBy_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_verifiedBy_feature",
-						"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__VERIFIED_BY, false, false,
+				"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__VERIFIED_BY, false, false,
 				false, null, null, null));
 	}
 
@@ -201,7 +200,7 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addMasterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_master_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_Requirement_master_feature", "_UI_Requirement_type"),
 				RequirementsPackage.Literals.REQUIREMENT__MASTER, false, false, false, null, null, null));
@@ -214,10 +213,10 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_base_Class_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_base_Class_feature",
-						"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__BASE_CLASS, true, false,
+				"_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__BASE_CLASS, true, false,
 				true, null, null, null));
 	}
 
@@ -239,15 +238,14 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Requirement) object).getId();
+		String label = ((Requirement)object).getId();
 		return label == null || label.length() == 0 ? getString("_UI_Requirement_type")
 				: getString("_UI_Requirement_type") + " " + label;
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -255,7 +253,7 @@ public class RequirementItemProvider extends ItemProviderAdapter implements IEdi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Requirement.class)) {
+		switch(notification.getFeatureID(Requirement.class)) {
 		case RequirementsPackage.REQUIREMENT__TEXT:
 		case RequirementsPackage.REQUIREMENT__ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

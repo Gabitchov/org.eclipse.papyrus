@@ -64,42 +64,43 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 		// ** install new ConnectionEditPolicy
 		installEditPolicy(EditPolicy.CONNECTION_ROLE,
 				new ConnectionEditPolicy() {
-					@Override
-					protected boolean shouldDeleteSemantic() {
-						return false;
-					}
 
-					@Override
-					protected Command createDeleteViewCommand(
-							GroupRequest deleteRequest) {
-						Command command = super
-								.createDeleteViewCommand(deleteRequest);
-						command = command
-								.chain(new ICommandProxy(
-										new RemoveEObjectReferencesFromDiagram(
-												getEditingDomain(),
-												TransitionEditPart.this
-														.getDiagramView(),
-												Collections
-														.singletonList(resolveSemanticElement()))));
-						return command;
-					}
-				});
+			@Override
+			protected boolean shouldDeleteSemantic() {
+				return false;
+			}
+
+			@Override
+			protected Command createDeleteViewCommand(
+					GroupRequest deleteRequest) {
+				Command command = super
+						.createDeleteViewCommand(deleteRequest);
+				command = command
+						.chain(new ICommandProxy(
+						new RemoveEObjectReferencesFromDiagram(
+						getEditingDomain(),
+						TransitionEditPart.this
+						.getDiagramView(),
+						Collections
+						.singletonList(resolveSemanticElement()))));
+				return command;
+			}
+		});
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof TransitionNameEditPart) {
-			((TransitionNameEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof TransitionNameEditPart) {
+			((TransitionNameEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getFigureTransitionNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof TransitionName2EditPart) {
-			((TransitionName2EditPart) childEditPart)
+		if(childEditPart instanceof TransitionName2EditPart) {
+			((TransitionName2EditPart)childEditPart)
 					.setLabel(getPrimaryShape()
-							.getFigureTransitionStereotypesLabel());
+					.getFigureTransitionStereotypesLabel());
 			return true;
 		}
 		return false;
@@ -110,7 +111,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -134,7 +135,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public TransitionConnection getPrimaryShape() {
-		return (TransitionConnection) getFigure();
+		return (TransitionConnection)getFigure();
 	}
 
 	/**
@@ -146,6 +147,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		private WrappingLabel fFigureTransitionNameLabel;
+
 		/**
 		 * @generated
 		 */
@@ -223,6 +225,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 	 */
 	static final Font FFIGURETRANSITIONNAMELABEL_FONT = new Font(Display
 			.getCurrent(), "SANS", 9, SWT.NORMAL);
+
 	/**
 	 * @generated
 	 */

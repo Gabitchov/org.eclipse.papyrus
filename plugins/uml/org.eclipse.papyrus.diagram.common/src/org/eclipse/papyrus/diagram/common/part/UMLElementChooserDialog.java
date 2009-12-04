@@ -79,7 +79,7 @@ public class UMLElementChooserDialog extends Dialog {
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite composite = (Composite) super.createDialogArea(parent);
+		Composite composite = (Composite)super.createDialogArea(parent);
 		getShell().setText("Select model element");
 		createModelBrowser(composite);
 		setInput(myTreeViewer);
@@ -119,8 +119,8 @@ public class UMLElementChooserDialog extends Dialog {
 	@Override
 	public int open() {
 		int result = super.open();
-		for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
-			Resource resource = (Resource) it.next();
+		for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+			Resource resource = (Resource)it.next();
 			resource.unload();
 		}
 		myEditingDomain.dispose();
@@ -140,11 +140,11 @@ public class UMLElementChooserDialog extends Dialog {
 
 		public Object[] getChildren(Object parentElement) {
 			Object[] result = myWorkbenchContentProvider.getChildren(parentElement);
-			if (result != null && result.length > 0) {
+			if(result != null && result.length > 0) {
 				return result;
 			}
-			if (parentElement instanceof IFile) {
-				IFile modelFile = (IFile) parentElement;
+			if(parentElement instanceof IFile) {
+				IFile modelFile = (IFile)parentElement;
 				IPath resourcePath = modelFile.getFullPath();
 				ResourceSet resourceSet = myEditingDomain.getResourceSet();
 				try {
@@ -162,14 +162,14 @@ public class UMLElementChooserDialog extends Dialog {
 
 		public Object getParent(Object element) {
 			Object parent = myWorkbenchContentProvider.getParent(element);
-			if (parent != null) {
+			if(parent != null) {
 				return parent;
 			}
-			if (false == element instanceof EObject) {
+			if(false == element instanceof EObject) {
 				return null;
 			}
-			EObject eObject = (EObject) element;
-			if (eObject.eContainer() == null && eObject.eResource().getURI().isFile()) {
+			EObject eObject = (EObject)element;
+			if(eObject.eContainer() == null && eObject.eResource().getURI().isFile()) {
 				String path = eObject.eResource().getURI().path();
 				return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(path));
 			}
@@ -177,8 +177,8 @@ public class UMLElementChooserDialog extends Dialog {
 		}
 
 		public boolean hasChildren(Object element) {
-			if (element instanceof IFile) {
-				return isValidModelFile((IFile) element);
+			if(element instanceof IFile) {
+				return isValidModelFile((IFile)element);
 			}
 			return myWorkbenchContentProvider.hasChildren(element)
 					|| myAdapterFctoryContentProvier.hasChildren(element);
@@ -191,13 +191,13 @@ public class UMLElementChooserDialog extends Dialog {
 
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = myWorkbenchContentProvider.getElements(inputElement);
-			if (elements != null && elements.length > 0) {
+			if(elements != null && elements.length > 0) {
 				return elements;
 			}
-			if (false == inputElement instanceof Resource) {
+			if(false == inputElement instanceof Resource) {
 				return Collections.EMPTY_LIST.toArray();
 			}
-			Resource modelResource = (Resource) inputElement;
+			Resource modelResource = (Resource)inputElement;
 			return myAdapterFctoryContentProvier.getChildren(modelResource);
 		}
 
@@ -255,18 +255,18 @@ public class UMLElementChooserDialog extends Dialog {
 	private class OkButtonEnabler implements ISelectionChangedListener {
 
 		public void selectionChanged(SelectionChangedEvent event) {
-			if (event.getSelection() instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-				if (selection.size() == 1) {
+			if(event.getSelection() instanceof IStructuredSelection) {
+				IStructuredSelection selection = (IStructuredSelection)event.getSelection();
+				if(selection.size() == 1) {
 					Object selectedElement = selection.getFirstElement();
-					if (selectedElement instanceof IWrapperItemProvider) {
-						selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
+					if(selectedElement instanceof IWrapperItemProvider) {
+						selectedElement = ((IWrapperItemProvider)selectedElement).getValue();
 					}
-					if (selectedElement instanceof FeatureMap.Entry) {
-						selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
+					if(selectedElement instanceof FeatureMap.Entry) {
+						selectedElement = ((FeatureMap.Entry)selectedElement).getValue();
 					}
-					if (selectedElement instanceof EObject) {
-						EObject selectedModelElement = (EObject) selectedElement;
+					if(selectedElement instanceof EObject) {
+						EObject selectedModelElement = (EObject)selectedElement;
 						setOkButtonEnabled(isValid(selectedModelElement));
 						mySelectedModelElementURI = EcoreUtil.getURI(selectedModelElement);
 						return;

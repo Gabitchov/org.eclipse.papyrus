@@ -29,32 +29,32 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class EnclosedExpr extends Expression {
 
-    private Expression inner;
+	private Expression inner;
 
-    public EnclosedExpr() {
-    }
+	public EnclosedExpr() {
+	}
 
-    public EnclosedExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression inner) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.inner = inner;
-    }
+	public EnclosedExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression inner) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.inner = inner;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Expression getInner() {
-        return inner;
-    }
+	public Expression getInner() {
+		return inner;
+	}
 
-    public void setInner(Expression inner) {
-        this.inner = inner;
-    }
+	public void setInner(Expression inner) {
+		this.inner = inner;
+	}
 
 }

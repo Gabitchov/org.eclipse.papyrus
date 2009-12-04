@@ -46,7 +46,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 * Instantiates a new filter views labels action.
 	 * 
 	 * @param workbenchPage
-	 *            the workbench page
+	 *        the workbench page
 	 */
 	public FilterViewsLabelsAction(IWorkbenchPage workbenchPage) {
 		super(workbenchPage);
@@ -57,7 +57,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 * Instantiates a new filter views labels action.
 	 * 
 	 * @param workbenchpart
-	 *            the workbenchpart
+	 *        the workbenchpart
 	 */
 	// @unused
 	public FilterViewsLabelsAction(IWorkbenchPart workbenchpart) {
@@ -113,7 +113,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 */
 	@Override
 	public void run() {
-		if (getDiagramEditPart() == null || getTransactionalEditingDomain() == null) {
+		if(getDiagramEditPart() == null || getTransactionalEditingDomain() == null) {
 			return;
 		}
 		// // show dialog to user
@@ -121,7 +121,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 				.getActiveShell(), getDiagramEditPart());
 		int result = dialog.open();
 		// // filter the selected elements
-		if (result == Window.OK) {
+		if(result == Window.OK) {
 			executeCommand(dialog.getSelected());
 		}
 	}
@@ -132,12 +132,12 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 * @return the transactional editing domain
 	 */
 	protected TransactionalEditingDomain getTransactionalEditingDomain() {
-		if (getDiagramEditPart() != null) {
+		if(getDiagramEditPart() != null) {
 			EObject eObject = getDiagramEditPart().getNotationView();
 			return TransactionUtil.getEditingDomain(eObject);
 		}
-		if (getDiagramEditPart() != null) {
-			if (getDiagramEditPart().getDiagramEditDomain() instanceof TransactionalEditingDomain) {
+		if(getDiagramEditPart() != null) {
+			if(getDiagramEditPart().getDiagramEditDomain() instanceof TransactionalEditingDomain) {
 				return getDiagramEditPart().getEditingDomain();
 			}
 		}
@@ -150,8 +150,8 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 * @return the diagram
 	 */
 	protected Diagram getDiagram() {
-		if (getDiagramEditPart() != null) {
-			Diagram diagram = (Diagram) getDiagramEditPart().getNotationView();
+		if(getDiagramEditPart() != null) {
+			Diagram diagram = (Diagram)getDiagramEditPart().getNotationView();
 			return diagram;
 		}
 		return null;
@@ -161,7 +161,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 * Execute command.
 	 * 
 	 * @param infos
-	 *            the infos
+	 *        the infos
 	 */
 	protected void executeCommand(final Collection<Integer> infos) {
 		final Diagram diagram = getDiagram();

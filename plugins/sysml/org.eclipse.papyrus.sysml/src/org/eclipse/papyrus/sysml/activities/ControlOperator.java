@@ -24,10 +24,8 @@ import org.eclipse.uml2.uml.Operation;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation <em>Base
- * Operation</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior <em>Base
- * Behavior</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation <em>Base Operation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior <em>Base Behavior</em>}</li>
  * </ul>
  * </p>
  * 
@@ -40,8 +38,7 @@ public interface ControlOperator extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Behavior</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Behavior</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Behavior</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -56,8 +53,7 @@ public interface ControlOperator extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Operation</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Operation</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Operation</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -70,24 +66,22 @@ public interface ControlOperator extends EObject {
 	Operation getBase_Operation();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior
 	 * <em>Base Behavior</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Behavior</em>' reference.
+	 *        the new value of the '<em>Base Behavior</em>' reference.
 	 * @see #getBase_Behavior()
 	 * @generated
 	 */
 	void setBase_Behavior(Behavior value);
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation
 	 * <em>Base Operation</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Operation</em>' reference.
+	 *        the new value of the '<em>Base Operation</em>' reference.
 	 * @see #getBase_Operation()
 	 * @generated
 	 */

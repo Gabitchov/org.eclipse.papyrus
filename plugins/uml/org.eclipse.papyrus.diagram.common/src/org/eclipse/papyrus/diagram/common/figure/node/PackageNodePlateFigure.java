@@ -44,10 +44,10 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 		Rectangle anchorableRectangle = getHandleBounds();
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y);
 		// get the package figure, this is its soon
-		if (this.getChildren().size() > 0) {
+		if(this.getChildren().size() > 0) {
 			// take in account the header of the package
-			if (getChildren().get(0) instanceof PackageFigure) {
-				PackageFigure packageFigure = (PackageFigure) getChildren().get(0);
+			if(getChildren().get(0) instanceof PackageFigure) {
+				PackageFigure packageFigure = (PackageFigure)getChildren().get(0);
 				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y);
 				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y
 						+ packageFigure.getHeader().height);

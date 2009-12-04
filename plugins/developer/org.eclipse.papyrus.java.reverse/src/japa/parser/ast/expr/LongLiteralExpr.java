@@ -29,27 +29,27 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public class LongLiteralExpr extends StringLiteralExpr {
 
-    public LongLiteralExpr() {
-    }
+	public LongLiteralExpr() {
+	}
 
-    public LongLiteralExpr(int beginLine, int beginColumn, int endLine, int endColumn, String value) {
-        super(beginLine, beginColumn, endLine, endColumn, value);
-    }
+	public LongLiteralExpr(int beginLine, int beginColumn, int endLine, int endColumn, String value) {
+		super(beginLine, beginColumn, endLine, endColumn, value);
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public final boolean isMinValue() {
-        return value != null && //
-                value.length() == 20 && //
-                value.startsWith("9223372036854775808") && //
-                (value.charAt(19) == 'L' || value.charAt(19) == 'l');
-    }
+	public final boolean isMinValue() {
+		return value != null && //
+		value.length() == 20 && //
+		value.startsWith("9223372036854775808") && //
+		(value.charAt(19) == 'L' || value.charAt(19) == 'l');
+	}
 }

@@ -30,42 +30,42 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class InitializerDeclaration extends BodyDeclaration {
 
-    private boolean isStatic;
+	private boolean isStatic;
 
-    private BlockStmt block;
+	private BlockStmt block;
 
-    public InitializerDeclaration() {
-    }
+	public InitializerDeclaration() {
+	}
 
-    public InitializerDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, boolean isStatic, BlockStmt block) {
-        super(beginLine, beginColumn, endLine, endColumn, null, javaDoc);
-        this.isStatic = isStatic;
-        this.block = block;
-    }
+	public InitializerDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, boolean isStatic, BlockStmt block) {
+		super(beginLine, beginColumn, endLine, endColumn, null, javaDoc);
+		this.isStatic = isStatic;
+		this.block = block;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public BlockStmt getBlock() {
-        return block;
-    }
+	public BlockStmt getBlock() {
+		return block;
+	}
 
-    public boolean isStatic() {
-        return isStatic;
-    }
+	public boolean isStatic() {
+		return isStatic;
+	}
 
-    public void setBlock(BlockStmt block) {
-        this.block = block;
-    }
+	public void setBlock(BlockStmt block) {
+		this.block = block;
+	}
 
-    public void setStatic(boolean isStatic) {
-        this.isStatic = isStatic;
-    }
+	public void setStatic(boolean isStatic) {
+		this.isStatic = isStatic;
+	}
 }

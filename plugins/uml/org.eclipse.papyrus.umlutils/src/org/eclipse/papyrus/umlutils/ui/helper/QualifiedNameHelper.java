@@ -27,18 +27,18 @@ public class QualifiedNameHelper {
 	 * get the depth to display for the qualified name from a eannotation in the view
 	 * 
 	 * @param modelElement
-	 *            the view where is attach the element
+	 *        the view where is attach the element
 	 * @return the depth
 	 */
 	public static int getQualifiedNameDepth(EModelElement modelElement) {
 		EAnnotation stereotypeDisplayKind = modelElement
 				.getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
-			if (entries != null) {
+			if(entries != null) {
 				String depthString = entries.get(VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH);
-				if (depthString != null) {
+				if(depthString != null) {
 					Integer i = new Integer(depthString);
 					return i.intValue();
 				}
@@ -51,11 +51,11 @@ public class QualifiedNameHelper {
 	 * Gets the sets the qualifed name depth command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param depth
-	 *            the depth
+	 *        the depth
 	 * 
 	 * @return the sets the qualifed name depth command
 	 */

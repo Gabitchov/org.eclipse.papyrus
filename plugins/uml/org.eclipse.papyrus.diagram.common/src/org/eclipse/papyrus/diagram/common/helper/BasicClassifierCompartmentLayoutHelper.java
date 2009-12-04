@@ -58,12 +58,12 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * Checks if is automatic.
 	 * 
 	 * @param eModelElement
-	 *            the e model element
+	 *        the e model element
 	 * 
 	 * @return true, if is automatic
 	 */
 	public boolean isAutomatic(EModelElement eModelElement) {
-		if ((super.getLayoutKindFromView(eModelElement)).equals(automaticToolBox.getLayout())) {
+		if((super.getLayoutKindFromView(eModelElement)).equals(automaticToolBox.getLayout())) {
 			return true;
 		}
 		return false;
@@ -73,12 +73,12 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * Checks if is manual.
 	 * 
 	 * @param eModelElement
-	 *            the e model element
+	 *        the e model element
 	 * 
 	 * @return true, if is manual
 	 */
 	public boolean isManual(EModelElement eModelElement) {
-		if ((super.getLayoutKindFromView(eModelElement)).equals(manualtoolBox.getLayout())) {
+		if((super.getLayoutKindFromView(eModelElement)).equals(manualtoolBox.getLayout())) {
 			return true;
 		}
 		return false;
@@ -88,9 +88,9 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * Sets the manual layout kind on view.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * 
 	 * @return the sets the layout kind command
 	 */
@@ -103,9 +103,9 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * Sets the automatic layout kind on view.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * 
 	 * @return the sets the layout kind command
 	 */

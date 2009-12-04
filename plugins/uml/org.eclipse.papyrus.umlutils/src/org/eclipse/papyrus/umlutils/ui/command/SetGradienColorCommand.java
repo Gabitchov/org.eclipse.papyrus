@@ -34,11 +34,11 @@ public class SetGradienColorCommand extends CreateEAnnotationCommand {
 	 * Instantiates a new sets the qualified name depth command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param depht
-	 *            the depht
+	 *        the depht
 	 */
 	// @unused
 	public SetGradienColorCommand(TransactionalEditingDomain domain, EModelElement object, boolean gradient) {

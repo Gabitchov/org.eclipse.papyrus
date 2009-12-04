@@ -47,9 +47,9 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	 */
 	public static UsecasesFactory init() {
 		try {
-			UsecasesFactory theUsecasesFactory = (UsecasesFactory) EPackage.Registry.INSTANCE
+			UsecasesFactory theUsecasesFactory = (UsecasesFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases");
-			if (theUsecasesFactory != null) {
+			if(theUsecasesFactory != null) {
 				return theUsecasesFactory;
 			}
 		} catch (Exception exception) {
@@ -83,7 +83,7 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case UsecasesPackage.DUMMY:
 			return convertDummyToString(eDataType, instanceValue);
 		default:
@@ -98,7 +98,7 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,7 +110,7 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	 * @generated
 	 */
 	public String createDummyFromString(EDataType eDataType, String initialValue) {
-		return (String) super.createFromString(eDataType, initialValue);
+		return (String)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case UsecasesPackage.DUMMY:
 			return createDummyFromString(eDataType, initialValue);
 		default:
@@ -134,7 +134,7 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	 * @generated
 	 */
 	public UsecasesPackage getUsecasesPackage() {
-		return (UsecasesPackage) getEPackage();
+		return (UsecasesPackage)getEPackage();
 	}
 
 } // UsecasesFactoryImpl

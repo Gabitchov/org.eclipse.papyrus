@@ -30,16 +30,19 @@ public class PrimitiveTypeItems {
 	/**
 	 * Creates new PrimitiveType items in the property table.
 	 * 
-	 * @param table the table
-	 * @param value current value of the property
-	 * @param property currently selected property
+	 * @param table
+	 *        the table
+	 * @param value
+	 *        current value of the property
+	 * @param property
+	 *        currently selected property
 	 */
 	public PrimitiveTypeItems(Table table, Property property, Object value) {
-		if(property.isMultivalued()) { 
+		if(property.isMultivalued()) {
 			// property is multivalued
-			final List propValues = (List) value;
+			final List propValues = (List)value;
 
-			for (int i=0 ; i < propValues.size() ; i++) {
+			for(int i = 0; i < propValues.size(); i++) {
 				// Create item in property table
 				TableItem propValueItem = new TableItem(table, SWT.NONE);
 				propValueItem.setText(propValues.get(i).toString());
@@ -49,7 +52,7 @@ public class PrimitiveTypeItems {
 		} else { // property is not multivalued
 
 			// if the property has a value
-			if (value != null) {
+			if(value != null) {
 				TableItem propValueItem = new TableItem(table, SWT.NONE);
 				propValueItem.setText(value.toString());
 			}

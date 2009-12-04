@@ -59,17 +59,17 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 	@Override
 	protected Command getOpenCommand(Request request) {
 		EditPart targetEditPart = getTargetEditPart(request);
-		if (false == targetEditPart.getModel() instanceof View) {
+		if(false == targetEditPart.getModel() instanceof View) {
 			return null;
 		}
-		View view = (View) targetEditPart.getModel();
+		View view = (View)targetEditPart.getModel();
 		Style link = view.getStyle(NotationPackage.eINSTANCE
 				.getHintedDiagramLinkStyle());
-		if (false == link instanceof HintedDiagramLinkStyle) {
+		if(false == link instanceof HintedDiagramLinkStyle) {
 			return null;
 		}
 		return new ICommandProxy(new OpenDiagramCommand(
-				(HintedDiagramLinkStyle) link));
+				(HintedDiagramLinkStyle)link));
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 				IAdaptable info) throws ExecutionException {
-			if (selectSubmachineOnOpenDiagrams(getDiagramDomainElement())) {
+			if(selectSubmachineOnOpenDiagrams(getDiagramDomainElement())) {
 				return CommandResult.newOKCommandResult();
 			}
 			return doExecuteWithResultGen(monitor, info);
@@ -116,7 +116,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 				throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
-				if (diagram == null) {
+				if(diagram == null) {
 					diagram = intializeNewDiagram();
 				}
 				URI uri = diagram.eResource().getURI();
@@ -146,7 +146,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		protected Diagram intializeNewDiagram() throws ExecutionException {
 			Diagram d = ViewService.createDiagram(getDiagramDomainElement(),
 					getDiagramKind(), getPreferencesHint());
-			if (d == null) {
+			if(d == null) {
 				throw new ExecutionException("Can't create diagram of '"
 						+ getDiagramKind() + "' kind");
 			}
@@ -155,17 +155,18 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			diagramFacet.eResource().getContents().add(d);
 			try {
 				new WorkspaceModifyOperation() {
+
 					protected void execute(IProgressMonitor monitor)
 							throws CoreException, InvocationTargetException,
 							InterruptedException {
 						try {
-							for (Iterator it = diagramFacet.eResource()
+							for(Iterator it = diagramFacet.eResource()
 									.getResourceSet().getResources().iterator(); it
 									.hasNext();) {
-								Resource nextResource = (Resource) it.next();
-								if (nextResource.isLoaded()
+								Resource nextResource = (Resource)it.next();
+								if(nextResource.isLoaded()
 										&& !getEditingDomain().isReadOnly(
-												nextResource)) {
+										nextResource)) {
 									nextResource.save(UMLDiagramEditorUtil
 											.getSaveOptions());
 								}
@@ -191,8 +192,8 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 */
 		protected EObject getDiagramDomainElement() {
 			EObject domainElement = getDiagramDomainElementGen();
-			if (domainElement instanceof State) {
-				State state = (State) domainElement;
+			if(domainElement instanceof State) {
+				State state = (State)domainElement;
 				return state.getSubmachine();
 			}
 			return domainElement;
@@ -203,7 +204,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 */
 		protected EObject getDiagramDomainElementGen() {
 			// use same element as associated with EP
-			return ((View) diagramFacet.eContainer()).getElement();
+			return ((View)diagramFacet.eContainer()).getElement();
 		}
 
 		/**
@@ -235,18 +236,18 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			IWorkbenchPage workbenchPage = PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getActivePage();
 			IEditorReference[] editorRefs = workbenchPage.getEditorReferences();
-			for (int i = 0; i < editorRefs.length; i++) {
+			for(int i = 0; i < editorRefs.length; i++) {
 				IEditorPart editorPart = editorRefs[i].getEditor(true);
-				if (editorPart instanceof DiagramEditor) {
-					DiagramEditPart diagramEditPart = ((DiagramEditor) editorPart)
+				if(editorPart instanceof DiagramEditor) {
+					DiagramEditPart diagramEditPart = ((DiagramEditor)editorPart)
 							.getDiagramEditPart();
 					EditPart editPart = findTopLevelElementInDiagram(
 							diagramEditPart, submachine);
-					if (editPart != null) {
-						if (getDiagramToOpen() == null) {
+					if(editPart != null) {
+						if(getDiagramToOpen() == null) {
 							diagramFacet
-									.setDiagramLink(((DiagramEditor) editorPart)
-											.getDiagram());
+									.setDiagramLink(((DiagramEditor)editorPart)
+									.getDiagram());
 						}
 						workbenchPage.activate(editorPart);
 						diagramEditPart.getViewer().select(editPart);
@@ -263,16 +264,16 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 */
 		private EditPart findTopLevelElementInDiagram(
 				DiagramEditPart diagramEditPart, EObject element) {
-			IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramEditPart
+			IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer)diagramEditPart
 					.getViewer();
 
 			String elementID = EMFCoreUtil.getProxyID(element);
 			List<?> foundEditParts = viewer.findEditPartsForElement(elementID,
 					IGraphicalEditPart.class);
-			for (Iterator<?> iterator = foundEditParts.iterator(); iterator
+			for(Iterator<?> iterator = foundEditParts.iterator(); iterator
 					.hasNext();) {
-				EditPart editPart = (EditPart) iterator.next();
-				if (!(editPart instanceof DiagramEditPart)) {
+				EditPart editPart = (EditPart)iterator.next();
+				if(!(editPart instanceof DiagramEditPart)) {
 					return editPart;
 				}
 			}
@@ -282,10 +283,10 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 
 	protected static String getDiagramName(EObject diagramDomainElement) {
 		String result = null;
-		if (diagramDomainElement instanceof NamedElement) {
-			NamedElement named = (NamedElement) diagramDomainElement;
+		if(diagramDomainElement instanceof NamedElement) {
+			NamedElement named = (NamedElement)diagramDomainElement;
 			result = named.getQualifiedName();
-			if (result == null || result.length() == 0) {
+			if(result == null || result.length() == 0) {
 				result = named.getName();
 			}
 		}

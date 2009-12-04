@@ -35,7 +35,7 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 	 * Creates a new EmbeddedEditorDocumentProvider.
 	 * 
 	 * @param textEditor
-	 *            the editor linked to this document provider
+	 *        the editor linked to this document provider
 	 */
 	public EmbeddedEditorDocumentProvider(EmbeddedTextEditor textEditor) {
 		super();
@@ -72,12 +72,12 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 	 * Returns the string label to edit.
 	 * 
 	 * @param element
-	 *            the edited element
+	 *        the edited element
 	 * @return the text corresponding to the edited element
 	 */
 	protected String getLabelToEdit(Object element) {
-		if (element instanceof EmbeddedEditorInput) {
-			EObject object = ((EmbeddedEditorInput) element).getEditedObject();
+		if(element instanceof EmbeddedEditorInput) {
+			EObject object = ((EmbeddedEditorInput)element).getEditedObject();
 			return textEditor.getDirectEditorConfiguration().getTextToEdit(object);
 		}
 		return element.toString();
@@ -87,14 +87,14 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 	 * Applies changes to the model, given the new text
 	 * 
 	 * @param element
-	 *            the element modified
+	 *        the element modified
 	 * @return the result of the modification
 	 */
 	protected Object applyChanges(Object element) {
-		if (element instanceof EmbeddedEditorInput) {
-			EObject object = ((EmbeddedEditorInput) element).getEditedObject();
+		if(element instanceof EmbeddedEditorInput) {
+			EObject object = ((EmbeddedEditorInput)element).getEditedObject();
 			return textEditor.getDirectEditorConfiguration().postEditAction(object,
-					getDocument(((EmbeddedEditorInput) element)).get());
+					getDocument(((EmbeddedEditorInput)element)).get());
 		}
 		return element.toString();
 	}

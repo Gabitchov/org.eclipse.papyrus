@@ -29,14 +29,14 @@ public class ModelTypesProviderFactory implements IModelTypesProviderFactory {
 	private static Map<String, IModelTypesProvider> mapEditorID2IModelTypesProvider = null;
 
 	protected static Map<String, IModelTypesProvider> getMapEditorID2IModelTypesProvider() {
-		if (mapEditorID2IModelTypesProvider == null) {
+		if(mapEditorID2IModelTypesProvider == null) {
 			mapEditorID2IModelTypesProvider = new HashMap<String, IModelTypesProvider>();
 		}
 		return mapEditorID2IModelTypesProvider;
 	}
 
 	public IModelTypesProvider getProviderForEditor(String editorID) {
-		if (getMapEditorID2IModelTypesProvider().containsKey(editorID)) {
+		if(getMapEditorID2IModelTypesProvider().containsKey(editorID)) {
 			return getMapEditorID2IModelTypesProvider().get(editorID);
 		}
 		return null;

@@ -52,11 +52,11 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * The Constructor.
 	 * 
 	 * @param value
-	 *            the value
+	 *        the value
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * @param domain
-	 *            editing domain used to modify element values
+	 *        editing domain used to modify element values
 	 */
 	public ValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
 		super(parent, null, domain);
@@ -86,38 +86,38 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 */
 	public void removeMe() {
 
-		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
-		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
+		Property property = ((AppliedStereotypePropertyTreeObject)getParent()).getProperty();
+		Stereotype stereotype = ((AppliedStereotypeTreeObject)getParent().getParent()).getStereotype();
+		Element element = ((StereotypedElementTreeObject)getParent().getParent().getParent()).element;
 		int lower = property.getLower();
 		int upper = property.getUpper();
 
 		// if lower multiplicity is equal to upper multiplicity
-		if (lower == upper) {
+		if(lower == upper) {
 			Message.warning("Multiplicity of this property is" + lower + ".." + upper + "\n" + "Impossible to remove a value.");
 			return;
 		}
 
-		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
+		Object currentVal = ((AppliedStereotypePropertyTreeObject)getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
 
-		if (((lower == 0) && (upper == 1))) {
-			if (currentVal != null) {
+		if(((lower == 0) && (upper == 1))) {
+			if(currentVal != null) {
 				tempValues.add(currentVal);
 			}
 
-		} else if (upper != 1) {
-			EList currentValues = (EList) currentVal;
+		} else if(upper != 1) {
+			EList currentValues = (EList)currentVal;
 
-			for (int i = 0; i < currentValues.size(); i++) {
+			for(int i = 0; i < currentValues.size(); i++) {
 				tempValues.add(currentValues.get(i));
 			}
 		}
 
-		if ((lower == 0) || (tempValues.size() > lower)) {
+		if((lower == 0) || (tempValues.size() > lower)) {
 			tempValues.remove(value);
 
-			if (property.isMultivalued()) {
+			if(property.isMultivalued()) {
 				element.setValue(stereotype, property.getName(), tempValues);
 			} else {
 				element.setValue(stereotype, property.getName(), null);
@@ -141,17 +141,17 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeUp(int index) {
 
-		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
-		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
+		Property property = ((AppliedStereotypePropertyTreeObject)getParent()).getProperty();
+		Stereotype stereotype = ((AppliedStereotypeTreeObject)getParent().getParent()).getStereotype();
+		Element element = ((StereotypedElementTreeObject)getParent().getParent().getParent()).element;
 
-		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
+		Object currentVal = ((AppliedStereotypePropertyTreeObject)getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
 
-		if (property.isMultivalued()) {
-			EList currentValues = (EList) currentVal;
+		if(property.isMultivalued()) {
+			EList currentValues = (EList)currentVal;
 
-			for (int i = 0; i < currentValues.size(); i++) {
+			for(int i = 0; i < currentValues.size(); i++) {
 				tempValues.add(currentValues.get(i));
 			}
 		} else {
@@ -159,7 +159,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 			return;
 		}
 
-		if (index < 1) {
+		if(index < 1) {
 			// Not found of already on top...
 			return;
 		}
@@ -183,17 +183,17 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeDown(int index) {
 
-		Property property = ((AppliedStereotypePropertyTreeObject) getParent()).getProperty();
-		Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-		Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).element;
+		Property property = ((AppliedStereotypePropertyTreeObject)getParent()).getProperty();
+		Stereotype stereotype = ((AppliedStereotypeTreeObject)getParent().getParent()).getStereotype();
+		Element element = ((StereotypedElementTreeObject)getParent().getParent().getParent()).element;
 
-		Object currentVal = ((AppliedStereotypePropertyTreeObject) getParent()).getValue();
+		Object currentVal = ((AppliedStereotypePropertyTreeObject)getParent()).getValue();
 		ArrayList tempValues = new ArrayList();
 
-		if (property.isMultivalued()) {
-			EList currentValues = (EList) currentVal;
+		if(property.isMultivalued()) {
+			EList currentValues = (EList)currentVal;
 
-			for (int i = 0; i < currentValues.size(); i++) {
+			for(int i = 0; i < currentValues.size(); i++) {
 				tempValues.add(currentValues.get(i));
 			}
 		} else {
@@ -201,7 +201,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 			return;
 		}
 
-		if ((index == -1) || (index >= tempValues.size() - 1)) {
+		if((index == -1) || (index >= tempValues.size() - 1)) {
 			// Not found or already on top...
 			return;
 		}
@@ -222,9 +222,9 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * Creates the instance.
 	 * 
 	 * @param newValue
-	 *            the new value
+	 *        the new value
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return the value tree object
 	 */
@@ -235,22 +235,22 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 		ValueTreeObject newVTO = null;
 
 		/** primitive type **/
-		if (type instanceof PrimitiveType) {
+		if(type instanceof PrimitiveType) {
 			newVTO = PrimitiveTypeValueTreeObject.createInstance(parent, newValue, domain);
 			/** Composite **/
-		} else if ((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
+		} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
 			//
 			/** Enumeration **/
-		} else if (type instanceof Enumeration) {
+		} else if(type instanceof Enumeration) {
 			newVTO = new EnumerationValueTreeObject(parent, newValue, domain);
 			/** DataType **/
-		} else if (type instanceof DataType) {
+		} else if(type instanceof DataType) {
 			newVTO = new DataTypeValueTreeObject(parent, newValue, domain);
 			/** Stereotype **/
-		} else if (type instanceof Stereotype) {
+		} else if(type instanceof Stereotype) {
 			newVTO = new StereotypeValueTreeObject(parent, newValue, domain);
 			/** Metaclass **/
-		} else if (Util.isMetaclass(type)) {
+		} else if(Util.isMetaclass(type)) {
 			newVTO = new MetaclassValueTreeObject(parent, newValue, domain);
 		}
 
@@ -261,7 +261,7 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * Update value.
 	 * 
 	 * @param newValue
-	 *            the new value
+	 *        the new value
 	 */
 	protected void updateValue(final Object newValue) {
 
@@ -273,20 +273,20 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 			 */
 			@Override
 			protected void doExecute() {
-				AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
-				Stereotype stereotype = ((AppliedStereotypeTreeObject) getParent().getParent()).getStereotype();
-				Element element = ((StereotypedElementTreeObject) getParent().getParent().getParent()).getElement();
+				AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
+				Stereotype stereotype = ((AppliedStereotypeTreeObject)getParent().getParent()).getStereotype();
+				Element element = ((StereotypedElementTreeObject)getParent().getParent().getParent()).getElement();
 
 				Property property = pTO.getProperty();
 
-				if (newValue != null) {
+				if(newValue != null) {
 					// Affect newValue in UML model
-					if (property.isMultivalued()) {
+					if(property.isMultivalued()) {
 						List values = new ArrayList();
-						values.addAll((List) pTO.getValue());
+						values.addAll((List)pTO.getValue());
 						List tmpChildren = Arrays.asList(pTO.getChildren());
 						int index = tmpChildren.indexOf(this);
-						if (index == -1) {
+						if(index == -1) {
 							return;
 						}
 						// Set newValue in value list

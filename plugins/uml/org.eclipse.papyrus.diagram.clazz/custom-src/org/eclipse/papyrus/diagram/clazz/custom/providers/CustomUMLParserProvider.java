@@ -73,7 +73,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	}
 
 	protected IParser getAssociationBranchRole() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		IParser parser = new CustomMessageFormatParser(features, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), 0);
 		return parser;
 
@@ -83,7 +83,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getAssociationName_6002Parser() {
-		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
+		EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
 		return parser;
 	}
@@ -133,7 +133,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	protected IParser getParser(int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case PropertyEditPart.VISUAL_ID:
 			return getCustomPropertyParser();
 		case OperationEditPart.VISUAL_ID:

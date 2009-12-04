@@ -30,7 +30,7 @@ public interface IPropertyAccessor {
 	 * Set the new value opf the property.
 	 * 
 	 * @param value
-	 *            the new value of the property
+	 *        the new value of the property
 	 */
 	// @unused
 	public abstract void setValue(String value);

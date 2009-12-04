@@ -20,28 +20,31 @@ package org.eclipse.papyrus.profile.ui.dialogs;
  * The Interface IListViewer.
  */
 public interface IListViewer {
-	
+
 	/**
 	 * Update the view to reflect the fact that an element was added
 	 * to the element list.
 	 * 
-	 * @param element element to add
+	 * @param element
+	 *        element to add
 	 */
 	public void addElement(Object element);
-	
+
 	/**
 	 * Update the view to reflect the fact that an element was removed
 	 * from the element list.
 	 * 
-	 * @param element the element to remove from the list
+	 * @param element
+	 *        the element to remove from the list
 	 */
 	public void removeElement(Object element);
-	
+
 	/**
 	 * Update the view to reflect the fact that one of the element
 	 * was modified.
 	 * 
-	 * @param element the element that was modified
+	 * @param element
+	 *        the element that was modified
 	 */
 	public void updateElement(Object element);
 }

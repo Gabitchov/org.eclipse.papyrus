@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di;
 
 
@@ -18,27 +18,28 @@ package org.eclipse.papyrus.di;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Text Element</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.TextElement#getText <em>Text</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.TextElement#getText <em>Text</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.di.DiPackage#getTextElement()
  * @model
  * @generated
  */
 public interface TextElement extends LeafElement {
+
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Text</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Text</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
 	 * @see org.eclipse.papyrus.di.DiPackage#getTextElement_Text()
@@ -51,7 +52,9 @@ public interface TextElement extends LeafElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.TextElement#getText <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Text</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Text</em>' attribute.
 	 * @see #getText()
 	 * @generated
 	 */

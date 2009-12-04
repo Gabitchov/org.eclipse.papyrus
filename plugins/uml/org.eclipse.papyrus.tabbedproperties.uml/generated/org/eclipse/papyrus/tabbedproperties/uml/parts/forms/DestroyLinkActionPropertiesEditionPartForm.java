@@ -88,73 +88,126 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, DestroyLinkActionPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<? extends EObject> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	protected Button isLeaf;
+
 	private EMFListEditUtil outgoingEditUtil;
+
 	protected ReferencesTable<? extends EObject> outgoing;
+
 	protected List<ViewerFilter> outgoingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> outgoingFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil incomingEditUtil;
+
 	protected ReferencesTable<? extends EObject> incoming;
+
 	protected List<ViewerFilter> incomingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> incomingFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil inPartitionEditUtil;
+
 	protected ReferencesTable<? extends EObject> inPartition;
+
 	protected List<ViewerFilter> inPartitionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inPartitionFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil inInterruptibleRegionEditUtil;
+
 	protected ReferencesTable<? extends EObject> inInterruptibleRegion;
+
 	protected List<ViewerFilter> inInterruptibleRegionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inInterruptibleRegionFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil redefinedNodeEditUtil;
+
 	protected ReferencesTable<? extends EObject> redefinedNode;
+
 	protected List<ViewerFilter> redefinedNodeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> redefinedNodeFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil handlerEditUtil;
+
 	protected ReferencesTable<? extends EObject> handler;
+
 	protected List<ViewerFilter> handlerBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> handlerFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil localPreconditionEditUtil;
+
 	protected ReferencesTable<? extends EObject> localPrecondition;
+
 	protected List<ViewerFilter> localPreconditionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> localPreconditionFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil localPostconditionEditUtil;
+
 	protected ReferencesTable<? extends EObject> localPostcondition;
+
 	protected List<ViewerFilter> localPostconditionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> localPostconditionFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil endDataEditUtil;
+
 	protected ReferencesTable<? extends EObject> endData;
+
 	protected List<ViewerFilter> endDataBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> endDataFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil inputValueEditUtil;
+
 	protected ReferencesTable<? extends EObject> inputValue;
+
 	protected List<ViewerFilter> inputValueBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inputValueFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public DestroyLinkActionPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite,
+	 *      org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -166,11 +219,12 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createControls(org.eclipse.ui.forms.widgets.FormToolkit,
+	 *      org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
@@ -178,7 +232,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// Start of user code for additional ui definition
 
 		// End of user code
-		
+
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -208,16 +262,31 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		createInputValueTableComposition(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.DestroyLinkActionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.DestroyLinkActionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -233,7 +302,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -245,11 +314,11 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -286,10 +355,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -301,6 +370,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.DestroyLinkActionPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.DestroyLinkAction.name, UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
@@ -316,7 +386,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -329,7 +399,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -342,8 +412,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 */
 			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
+				if(e.character == SWT.CR) {
+					if(propertiesEditionComponent != null)
 						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
@@ -351,6 +421,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.DestroyLinkActionPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.DestroyLinkAction.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -366,36 +437,50 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
 
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.DestroyLinkActionPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+						"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						clientDependency.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.clientDependency, UMLViewsRepository.FORM_KIND));
 		this.clientDependency.createControls(parent, widgetFactory);
@@ -440,10 +525,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -455,17 +540,18 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	protected void createIsLeafCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isLeaf = widgetFactory.createButton(parent, UMLMessages.DestroyLinkActionPropertiesEditionPart_IsLeafLabel, SWT.CHECK);
 		isLeaf.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.isLeaf, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isLeaf.getSelection())));
 			}
 
@@ -475,29 +561,43 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		isLeaf.setLayoutData(isLeafData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.isLeaf, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createOutgoingReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.outgoing = new ReferencesTable<ActivityEdge>(UMLMessages.DestroyLinkActionPropertiesEditionPart_OutgoingLabel, new ReferencesTableListener<ActivityEdge>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, outgoingFilters, outgoingBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+						"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!outgoingEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!outgoingEditUtil.getVirtualList().contains(elem))
 								outgoingEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.outgoing,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						outgoing.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityEdge element) { editOutgoing(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveOutgoing(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromOutgoing(element); }
-			public void navigateTo(ActivityEdge element) { }
+
+			public void handleEdit(ActivityEdge element) {
+				editOutgoing(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveOutgoing(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromOutgoing(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.outgoing.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.outgoing, UMLViewsRepository.FORM_KIND));
 		this.outgoing.createControls(parent, widgetFactory);
@@ -538,10 +638,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				outgoingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				outgoing.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -553,29 +653,43 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	protected void createIncomingReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.incoming = new ReferencesTable<ActivityEdge>(UMLMessages.DestroyLinkActionPropertiesEditionPart_IncomingLabel, new ReferencesTableListener<ActivityEdge>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, incomingFilters, incomingBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+						"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!incomingEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!incomingEditUtil.getVirtualList().contains(elem))
 								incomingEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.incoming,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						incoming.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityEdge element) { editIncoming(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveIncoming(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromIncoming(element); }
-			public void navigateTo(ActivityEdge element) { }
+
+			public void handleEdit(ActivityEdge element) {
+				editIncoming(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveIncoming(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromIncoming(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.incoming.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.incoming, UMLViewsRepository.FORM_KIND));
 		this.incoming.createControls(parent, widgetFactory);
@@ -616,10 +730,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				incomingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				incoming.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -631,29 +745,43 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	protected void createInPartitionReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.inPartition = new ReferencesTable<ActivityPartition>(UMLMessages.DestroyLinkActionPropertiesEditionPart_InPartitionLabel, new ReferencesTableListener<ActivityPartition>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityPartition> dialog = new TabElementTreeSelectionDialog<ActivityPartition>(resourceSet, inPartitionFilters, inPartitionBusinessFilters,
-				"ActivityPartition", UMLPackage.eINSTANCE.getActivityPartition(), current.eResource()) {
+						"ActivityPartition", UMLPackage.eINSTANCE.getActivityPartition(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inPartitionEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!inPartitionEditUtil.getVirtualList().contains(elem))
 								inPartitionEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.inPartition,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						inPartition.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityPartition element) { editInPartition(element); }
-			public void handleMove(ActivityPartition element, int oldIndex, int newIndex) { moveInPartition(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityPartition element) { removeFromInPartition(element); }
-			public void navigateTo(ActivityPartition element) { }
+
+			public void handleEdit(ActivityPartition element) {
+				editInPartition(element);
+			}
+
+			public void handleMove(ActivityPartition element, int oldIndex, int newIndex) {
+				moveInPartition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityPartition element) {
+				removeFromInPartition(element);
+			}
+
+			public void navigateTo(ActivityPartition element) {
+			}
 		});
 		this.inPartition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.inPartition, UMLViewsRepository.FORM_KIND));
 		this.inPartition.createControls(parent, widgetFactory);
@@ -698,10 +826,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				inPartitionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inPartition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -713,29 +841,43 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	protected void createInInterruptibleRegionReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.inInterruptibleRegion = new ReferencesTable<InterruptibleActivityRegion>(UMLMessages.DestroyLinkActionPropertiesEditionPart_InInterruptibleRegionLabel, new ReferencesTableListener<InterruptibleActivityRegion>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<InterruptibleActivityRegion> dialog = new TabElementTreeSelectionDialog<InterruptibleActivityRegion>(resourceSet, inInterruptibleRegionFilters, inInterruptibleRegionBusinessFilters,
-				"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion(), current.eResource()) {
+						"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
 								inInterruptibleRegionEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.inInterruptibleRegion,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						inInterruptibleRegion.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(InterruptibleActivityRegion element) { editInInterruptibleRegion(element); }
-			public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) { moveInInterruptibleRegion(element, oldIndex, newIndex); }
-			public void handleRemove(InterruptibleActivityRegion element) { removeFromInInterruptibleRegion(element); }
-			public void navigateTo(InterruptibleActivityRegion element) { }
+
+			public void handleEdit(InterruptibleActivityRegion element) {
+				editInInterruptibleRegion(element);
+			}
+
+			public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) {
+				moveInInterruptibleRegion(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(InterruptibleActivityRegion element) {
+				removeFromInInterruptibleRegion(element);
+			}
+
+			public void navigateTo(InterruptibleActivityRegion element) {
+			}
 		});
 		this.inInterruptibleRegion.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.inInterruptibleRegion, UMLViewsRepository.FORM_KIND));
 		this.inInterruptibleRegion.createControls(parent, widgetFactory);
@@ -781,10 +923,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				inInterruptibleRegionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inInterruptibleRegion.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -796,29 +938,43 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	protected void createRedefinedNodeReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.redefinedNode = new ReferencesTable<ActivityNode>(UMLMessages.DestroyLinkActionPropertiesEditionPart_RedefinedNodeLabel, new ReferencesTableListener<ActivityNode>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityNode> dialog = new TabElementTreeSelectionDialog<ActivityNode>(resourceSet, redefinedNodeFilters, redefinedNodeBusinessFilters,
-				"ActivityNode", UMLPackage.eINSTANCE.getActivityNode(), current.eResource()) {
+						"ActivityNode", UMLPackage.eINSTANCE.getActivityNode(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!redefinedNodeEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!redefinedNodeEditUtil.getVirtualList().contains(elem))
 								redefinedNodeEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.redefinedNode,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						redefinedNode.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityNode element) { editRedefinedNode(element); }
-			public void handleMove(ActivityNode element, int oldIndex, int newIndex) { moveRedefinedNode(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityNode element) { removeFromRedefinedNode(element); }
-			public void navigateTo(ActivityNode element) { }
+
+			public void handleEdit(ActivityNode element) {
+				editRedefinedNode(element);
+			}
+
+			public void handleMove(ActivityNode element, int oldIndex, int newIndex) {
+				moveRedefinedNode(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityNode element) {
+				removeFromRedefinedNode(element);
+			}
+
+			public void navigateTo(ActivityNode element) {
+			}
 		});
 		this.redefinedNode.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.redefinedNode, UMLViewsRepository.FORM_KIND));
 		this.redefinedNode.createControls(parent, widgetFactory);
@@ -859,10 +1015,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				redefinedNodeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				redefinedNode.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -874,16 +1030,31 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createHandlerTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.handler = new ReferencesTable<ExceptionHandler>(UMLMessages.DestroyLinkActionPropertiesEditionPart_HandlerLabel, new ReferencesTableListener<ExceptionHandler>() {			
-			public void handleAdd() { addToHandler();}
-			public void handleEdit(ExceptionHandler element) { editHandler(element); }
-			public void handleMove(ExceptionHandler element, int oldIndex, int newIndex) { moveHandler(element, oldIndex, newIndex); }
-			public void handleRemove(ExceptionHandler element) { removeFromHandler(element); }
-			public void navigateTo(ExceptionHandler element) { }
+		this.handler = new ReferencesTable<ExceptionHandler>(UMLMessages.DestroyLinkActionPropertiesEditionPart_HandlerLabel, new ReferencesTableListener<ExceptionHandler>() {
+
+			public void handleAdd() {
+				addToHandler();
+			}
+
+			public void handleEdit(ExceptionHandler element) {
+				editHandler(element);
+			}
+
+			public void handleMove(ExceptionHandler element, int oldIndex, int newIndex) {
+				moveHandler(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ExceptionHandler element) {
+				removeFromHandler(element);
+			}
+
+			public void navigateTo(ExceptionHandler element) {
+			}
 		});
 		this.handler.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.handler, UMLViewsRepository.FORM_KIND));
 		this.handler.createControls(parent, widgetFactory);
@@ -899,7 +1070,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		EObject editedElement = handlerEditUtil.foundCorrespondingEObject(element);
 		handlerEditUtil.moveElement(element, oldIndex, newIndex);
 		handler.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.handler, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.handler, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -911,11 +1082,11 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				handlerEditUtil.addElement(propertiesEditionObject);
 				handler.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -951,10 +1122,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				handlerEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				handler.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -966,16 +1137,31 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createLocalPreconditionTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.localPrecondition = new ReferencesTable<Constraint>(UMLMessages.DestroyLinkActionPropertiesEditionPart_LocalPreconditionLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToLocalPrecondition();}
-			public void handleEdit(Constraint element) { editLocalPrecondition(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveLocalPrecondition(element, oldIndex, newIndex); }
-			public void handleRemove(Constraint element) { removeFromLocalPrecondition(element); }
-			public void navigateTo(Constraint element) { }
+		this.localPrecondition = new ReferencesTable<Constraint>(UMLMessages.DestroyLinkActionPropertiesEditionPart_LocalPreconditionLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToLocalPrecondition();
+			}
+
+			public void handleEdit(Constraint element) {
+				editLocalPrecondition(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveLocalPrecondition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromLocalPrecondition(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.localPrecondition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.localPrecondition, UMLViewsRepository.FORM_KIND));
 		this.localPrecondition.createControls(parent, widgetFactory);
@@ -991,7 +1177,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		EObject editedElement = localPreconditionEditUtil.foundCorrespondingEObject(element);
 		localPreconditionEditUtil.moveElement(element, oldIndex, newIndex);
 		localPrecondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.localPrecondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.localPrecondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -1003,11 +1189,11 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				localPreconditionEditUtil.addElement(propertiesEditionObject);
 				localPrecondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1045,10 +1231,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				localPreconditionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				localPrecondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1060,16 +1246,31 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createLocalPostconditionTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.localPostcondition = new ReferencesTable<Constraint>(UMLMessages.DestroyLinkActionPropertiesEditionPart_LocalPostconditionLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToLocalPostcondition();}
-			public void handleEdit(Constraint element) { editLocalPostcondition(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveLocalPostcondition(element, oldIndex, newIndex); }
-			public void handleRemove(Constraint element) { removeFromLocalPostcondition(element); }
-			public void navigateTo(Constraint element) { }
+		this.localPostcondition = new ReferencesTable<Constraint>(UMLMessages.DestroyLinkActionPropertiesEditionPart_LocalPostconditionLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToLocalPostcondition();
+			}
+
+			public void handleEdit(Constraint element) {
+				editLocalPostcondition(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveLocalPostcondition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromLocalPostcondition(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.localPostcondition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.localPostcondition, UMLViewsRepository.FORM_KIND));
 		this.localPostcondition.createControls(parent, widgetFactory);
@@ -1085,7 +1286,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		EObject editedElement = localPostconditionEditUtil.foundCorrespondingEObject(element);
 		localPostconditionEditUtil.moveElement(element, oldIndex, newIndex);
 		localPostcondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.localPostcondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.localPostcondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -1097,11 +1298,11 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				localPostconditionEditUtil.addElement(propertiesEditionObject);
 				localPostcondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1139,10 +1340,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				localPostconditionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				localPostcondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1154,16 +1355,31 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createEndDataTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.endData = new ReferencesTable<LinkEndData>(UMLMessages.DestroyLinkActionPropertiesEditionPart_EndDataLabel, new ReferencesTableListener<LinkEndData>() {			
-			public void handleAdd() { addToEndData();}
-			public void handleEdit(LinkEndData element) { editEndData(element); }
-			public void handleMove(LinkEndData element, int oldIndex, int newIndex) { moveEndData(element, oldIndex, newIndex); }
-			public void handleRemove(LinkEndData element) { removeFromEndData(element); }
-			public void navigateTo(LinkEndData element) { }
+		this.endData = new ReferencesTable<LinkEndData>(UMLMessages.DestroyLinkActionPropertiesEditionPart_EndDataLabel, new ReferencesTableListener<LinkEndData>() {
+
+			public void handleAdd() {
+				addToEndData();
+			}
+
+			public void handleEdit(LinkEndData element) {
+				editEndData(element);
+			}
+
+			public void handleMove(LinkEndData element, int oldIndex, int newIndex) {
+				moveEndData(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(LinkEndData element) {
+				removeFromEndData(element);
+			}
+
+			public void navigateTo(LinkEndData element) {
+			}
 		});
 		this.endData.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.endData, UMLViewsRepository.FORM_KIND));
 		this.endData.createControls(parent, widgetFactory);
@@ -1179,7 +1395,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		EObject editedElement = endDataEditUtil.foundCorrespondingEObject(element);
 		endDataEditUtil.moveElement(element, oldIndex, newIndex);
 		endData.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.endData, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.endData, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -1191,11 +1407,11 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				endDataEditUtil.addElement(propertiesEditionObject);
 				endData.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1231,10 +1447,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				endDataEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				endData.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1246,16 +1462,31 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createInputValueTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.inputValue = new ReferencesTable<InputPin>(UMLMessages.DestroyLinkActionPropertiesEditionPart_InputValueLabel, new ReferencesTableListener<InputPin>() {			
-			public void handleAdd() { addToInputValue();}
-			public void handleEdit(InputPin element) { editInputValue(element); }
-			public void handleMove(InputPin element, int oldIndex, int newIndex) { moveInputValue(element, oldIndex, newIndex); }
-			public void handleRemove(InputPin element) { removeFromInputValue(element); }
-			public void navigateTo(InputPin element) { }
+		this.inputValue = new ReferencesTable<InputPin>(UMLMessages.DestroyLinkActionPropertiesEditionPart_InputValueLabel, new ReferencesTableListener<InputPin>() {
+
+			public void handleAdd() {
+				addToInputValue();
+			}
+
+			public void handleEdit(InputPin element) {
+				editInputValue(element);
+			}
+
+			public void handleMove(InputPin element, int oldIndex, int newIndex) {
+				moveInputValue(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(InputPin element) {
+				removeFromInputValue(element);
+			}
+
+			public void navigateTo(InputPin element) {
+			}
 		});
 		this.inputValue.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.DestroyLinkAction.inputValue, UMLViewsRepository.FORM_KIND));
 		this.inputValue.createControls(parent, widgetFactory);
@@ -1271,7 +1502,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		EObject editedElement = inputValueEditUtil.foundCorrespondingEObject(element);
 		inputValueEditUtil.moveElement(element, oldIndex, newIndex);
 		inputValue.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.inputValue, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DestroyLinkActionPropertiesEditionPartForm.this, UMLViewsRepository.DestroyLinkAction.inputValue, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -1283,11 +1514,11 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				inputValueEditUtil.addElement(propertiesEditionObject);
 				inputValue.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1324,10 +1555,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				inputValueEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inputValue.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1340,12 +1571,12 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 
 	}
 
-	
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
 
 		// End of user code
-		
+
 	}
 
 	/**
@@ -1396,12 +1627,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -1414,7 +1646,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -1466,10 +1698,10 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -1487,7 +1719,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
@@ -1545,12 +1777,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initClientDependency(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
@@ -1563,7 +1796,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil != null){
+		if(clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -1581,7 +1814,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
@@ -1615,7 +1849,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#setIsLeaf(Boolean newValue)
 	 */
 	public void setIsLeaf(Boolean newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			isLeaf.setSelection(newValue.booleanValue());
 		} else {
 			isLeaf.setSelection(false);
@@ -1657,12 +1891,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initOutgoing(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initOutgoing(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOutgoing(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			outgoingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			outgoingEditUtil = new EMFListEditUtil(current, feature);
@@ -1675,7 +1910,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateOutgoing(EObject newValue)
 	 */
 	public void updateOutgoing(EObject newValue) {
-		if(outgoingEditUtil != null){
+		if(outgoingEditUtil != null) {
 			outgoingEditUtil.reinit(newValue);
 			outgoing.refresh();
 		}
@@ -1743,12 +1978,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initIncoming(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initIncoming(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initIncoming(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			incomingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			incomingEditUtil = new EMFListEditUtil(current, feature);
@@ -1761,7 +1997,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateIncoming(EObject newValue)
 	 */
 	public void updateIncoming(EObject newValue) {
-		if(incomingEditUtil != null){
+		if(incomingEditUtil != null) {
 			incomingEditUtil.reinit(newValue);
 			incoming.refresh();
 		}
@@ -1829,12 +2065,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initInPartition(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initInPartition(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initInPartition(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			inPartitionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			inPartitionEditUtil = new EMFListEditUtil(current, feature);
@@ -1847,7 +2084,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateInPartition(EObject newValue)
 	 */
 	public void updateInPartition(EObject newValue) {
-		if(inPartitionEditUtil != null){
+		if(inPartitionEditUtil != null) {
 			inPartitionEditUtil.reinit(newValue);
 			inPartition.refresh();
 		}
@@ -1915,12 +2152,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initInInterruptibleRegion(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			inInterruptibleRegionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			inInterruptibleRegionEditUtil = new EMFListEditUtil(current, feature);
@@ -1933,7 +2171,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateInInterruptibleRegion(EObject newValue)
 	 */
 	public void updateInInterruptibleRegion(EObject newValue) {
-		if(inInterruptibleRegionEditUtil != null){
+		if(inInterruptibleRegionEditUtil != null) {
 			inInterruptibleRegionEditUtil.reinit(newValue);
 			inInterruptibleRegion.refresh();
 		}
@@ -1951,7 +2189,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterInInterruptibleRegion(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterInInterruptibleRegion(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInInterruptibleRegion(ViewerFilter filter) {
 		inInterruptibleRegionBusinessFilters.add(filter);
@@ -1960,7 +2199,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#isContainedInInInterruptibleRegionTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#isContainedInInInterruptibleRegionTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInInInterruptibleRegionTable(EObject element) {
 		return inInterruptibleRegionEditUtil.contains(element);
@@ -2001,12 +2241,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initRedefinedNode(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initRedefinedNode(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initRedefinedNode(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			redefinedNodeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			redefinedNodeEditUtil = new EMFListEditUtil(current, feature);
@@ -2019,7 +2260,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateRedefinedNode(EObject newValue)
 	 */
 	public void updateRedefinedNode(EObject newValue) {
-		if(redefinedNodeEditUtil != null){
+		if(redefinedNodeEditUtil != null) {
 			redefinedNodeEditUtil.reinit(newValue);
 			redefinedNode.refresh();
 		}
@@ -2104,12 +2345,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initHandler(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initHandler(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initHandler(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			handlerEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			handlerEditUtil = new EMFListEditUtil(current, feature);
@@ -2122,7 +2364,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateHandler(EObject newValue)
 	 */
 	public void updateHandler(EObject newValue) {
-		if(handlerEditUtil != null){
+		if(handlerEditUtil != null) {
 			handlerEditUtil.reinit(newValue);
 			handler.refresh();
 		}
@@ -2207,12 +2449,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initLocalPrecondition(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initLocalPrecondition(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initLocalPrecondition(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			localPreconditionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			localPreconditionEditUtil = new EMFListEditUtil(current, feature);
@@ -2225,7 +2468,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateLocalPrecondition(EObject newValue)
 	 */
 	public void updateLocalPrecondition(EObject newValue) {
-		if(localPreconditionEditUtil != null){
+		if(localPreconditionEditUtil != null) {
 			localPreconditionEditUtil.reinit(newValue);
 			localPrecondition.refresh();
 		}
@@ -2243,7 +2486,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterLocalPrecondition(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterLocalPrecondition(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToLocalPrecondition(ViewerFilter filter) {
 		localPreconditionBusinessFilters.add(filter);
@@ -2310,12 +2554,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initLocalPostcondition(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initLocalPostcondition(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initLocalPostcondition(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			localPostconditionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			localPostconditionEditUtil = new EMFListEditUtil(current, feature);
@@ -2328,7 +2573,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateLocalPostcondition(EObject newValue)
 	 */
 	public void updateLocalPostcondition(EObject newValue) {
-		if(localPostconditionEditUtil != null){
+		if(localPostconditionEditUtil != null) {
 			localPostconditionEditUtil.reinit(newValue);
 			localPostcondition.refresh();
 		}
@@ -2346,7 +2591,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterLocalPostcondition(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#addBusinessFilterLocalPostcondition(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToLocalPostcondition(ViewerFilter filter) {
 		localPostconditionBusinessFilters.add(filter);
@@ -2355,7 +2601,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#isContainedInLocalPostconditionTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#isContainedInLocalPostconditionTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInLocalPostconditionTable(EObject element) {
 		return localPostconditionEditUtil.contains(element);
@@ -2413,12 +2660,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initEndData(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initEndData(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initEndData(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			endDataEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			endDataEditUtil = new EMFListEditUtil(current, feature);
@@ -2431,7 +2679,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateEndData(EObject newValue)
 	 */
 	public void updateEndData(EObject newValue) {
-		if(endDataEditUtil != null){
+		if(endDataEditUtil != null) {
 			endDataEditUtil.reinit(newValue);
 			endData.refresh();
 		}
@@ -2516,12 +2764,13 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initInputValue(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#initInputValue(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initInputValue(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			inputValueEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			inputValueEditUtil = new EMFListEditUtil(current, feature);
@@ -2534,7 +2783,7 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.DestroyLinkActionPropertiesEditionPart#updateInputValue(EObject newValue)
 	 */
 	public void updateInputValue(EObject newValue) {
-		if(inputValueEditUtil != null){
+		if(inputValueEditUtil != null) {
 			inputValueEditUtil.reinit(newValue);
 			inputValue.refresh();
 		}
@@ -2571,15 +2820,8 @@ public class DestroyLinkActionPropertiesEditionPartForm extends CompositePropert
 
 
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
 
 	// End of user code
 
-}	
+}

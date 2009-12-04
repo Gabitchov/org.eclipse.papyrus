@@ -59,8 +59,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 	/**
 	 * The listener interface for receiving dialog events. The class that is interested in
 	 * processing a dialog event implements this interface, and the object created with that class
-	 * is registered with a component using the component's
-	 * <code>addDialogListener<code> method. When
+	 * is registered with a component using the component's <code>addDialogListener<code> method. When
 	 * the dialog event occurs, that object's appropriate
 	 * method is invoked.
 	 * 
@@ -84,11 +83,11 @@ public class GeneralizationSetHelper extends ElementHelper {
 		 * Instantiates a new dialog listener.
 		 * 
 		 * @param generalizationSetList
-		 *            the generalization set list
+		 *        the generalization set list
 		 * @param combo
-		 *            the combo
+		 *        the combo
 		 * @param buttonOK
-		 *            the button ok
+		 *        the button ok
 		 */
 		public DialogListener(ArrayList<GeneralizationSet> generalizationSetList, List combo, Button buttonOK) {
 			this.ageneralizationSetList = generalizationSetList;
@@ -109,14 +108,14 @@ public class GeneralizationSetHelper extends ElementHelper {
 		 * {@inheritedDoc}
 		 */
 		public void handleEvent(Event event) {
-			if (event.widget.equals(abuttonOk)) {
+			if(event.widget.equals(abuttonOk)) {
 				// look for selected button
 				int selectedButtonIndex = 0;
 				selectedButtonIndex = acombo.getSelectionIndex();
-				if (selectedButtonIndex >= 0) {
+				if(selectedButtonIndex >= 0) {
 					ageneralizationSet = ageneralizationSetList.get(selectedButtonIndex);
 				}
-				((Shell) abuttonOk.getParent()).close();
+				((Shell)abuttonOk.getParent()).close();
 
 			}
 		}
@@ -132,7 +131,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * Instantiates a new generalization set helper.
 	 * 
 	 * @param editDomain
-	 *            the edit domain
+	 *        the edit domain
 	 */
 	public GeneralizationSetHelper(TransactionalEditingDomain editDomain) {
 		this.editDomain = editDomain;
@@ -142,11 +141,11 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * Creates the generalization set.
 	 * 
 	 * @param source
-	 *            the source of the GenralizationSet
+	 *        the source of the GenralizationSet
 	 * @param target
-	 *            the target the Target of the Generalization
+	 *        the target the Target of the Generalization
 	 * @param container
-	 *            the container of the GeneralizationSet
+	 *        the container of the GeneralizationSet
 	 * 
 	 * @return the generalization set
 	 */
@@ -156,24 +155,24 @@ public class GeneralizationSetHelper extends ElementHelper {
 		final ArrayList<GeneralizationSet> generalizationSetList = new ArrayList<GeneralizationSet>(source
 				.getGeneralizationSets());
 		Iterator<GeneralizationSet> iterator = target.getGeneralizationSets().iterator();
-		while (iterator.hasNext()) {
-			GeneralizationSet currentGeneralizationSet = (GeneralizationSet) iterator.next();
-			if (!generalizationSetList.contains(currentGeneralizationSet)) {
+		while(iterator.hasNext()) {
+			GeneralizationSet currentGeneralizationSet = (GeneralizationSet)iterator.next();
+			if(!generalizationSetList.contains(currentGeneralizationSet)) {
 				generalizationSetList.add(currentGeneralizationSet);
 			}
 		}
-		if (generalizationSetList.size() > 0) {
+		if(generalizationSetList.size() > 0) {
 			launchDialog(generalizationSetList, getEditingDomain());
 		}
-		if (generalizationSettoCreate == null) {
+		if(generalizationSettoCreate == null) {
 			generalizationSettoCreate = UMLFactory.eINSTANCE.createGeneralizationSet();
 			container.getPackagedElements().add(generalizationSettoCreate);
 
 		}
-		if (!generalizationSettoCreate.getGeneralizations().contains(source)) {
+		if(!generalizationSettoCreate.getGeneralizations().contains(source)) {
 			generalizationSettoCreate.getGeneralizations().add(source);
 		}
-		if (!generalizationSettoCreate.getGeneralizations().contains(target)) {
+		if(!generalizationSettoCreate.getGeneralizations().contains(target)) {
 			generalizationSettoCreate.getGeneralizations().add(target);
 		}
 		return generalizationSettoCreate;
@@ -183,14 +182,14 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * In change to move anchor of other GeneralizationSet when moving one
 	 * 
 	 * @param request
-	 *            a request ReconnectRequest
+	 *        a request ReconnectRequest
 	 * @param command
-	 *            the command that will move anchor of other Generalization that have the same
-	 *            semantic
+	 *        the command that will move anchor of other Generalization that have the same
+	 *        semantic
 	 * @param node
-	 *            the node
+	 *        the node
 	 * @param targetAnchor
-	 *            the target anchor
+	 *        the target anchor
 	 * 
 	 * @return the move target
 	 */
@@ -208,21 +207,21 @@ public class GeneralizationSetHelper extends ElementHelper {
 		// get the link that refer the same model element
 		GeneralizationSetEditPart edgeToMove = null;
 		Iterator iterator = linkList.iterator();
-		while (iterator.hasNext()) {
+		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
-			if (currentObject instanceof GeneralizationSetEditPart) {
-				if (((GeneralizationSetEditPart) request.getConnectionEditPart()).resolveSemanticElement().equals(
-						((GeneralizationSetEditPart) currentObject).resolveSemanticElement())) {
-					edgeToMove = (GeneralizationSetEditPart) currentObject;
+			if(currentObject instanceof GeneralizationSetEditPart) {
+				if(((GeneralizationSetEditPart)request.getConnectionEditPart()).resolveSemanticElement().equals(
+						((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
+					edgeToMove = (GeneralizationSetEditPart)currentObject;
 				}
 			}
 		}
 		cc.add(command);
-		if (edgeToMove != null) {
+		if(edgeToMove != null) {
 			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(getEditingDomain(),
 					StringStatics.BLANK);
-			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View) edgeToMove.getModel()));
-			if (node.getSourceConnections().contains(edgeToMove)) {
+			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View)edgeToMove.getModel()));
+			if(node.getSourceConnections().contains(edgeToMove)) {
 				scaCommandbis.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(targetAnchor));
 			} else {
 				scaCommandbis.setNewTargetTerminal(node.mapConnectionAnchorToTerminal(targetAnchor));
@@ -238,9 +237,9 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * GeneralizationSet that have the same semantic
 	 * 
 	 * @param request
-	 *            the request
+	 *        the request
 	 * @param node
-	 *            the node
+	 *        the node
 	 * 
 	 * @return the reconnect source command
 	 */
@@ -248,7 +247,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 		//System.err.println("custom reconnection for GeneralizationSet source");
 		//System.err.println("node--> " + node);
 
-		if (node == null)
+		if(node == null)
 			return null;
 
 		TransactionalEditingDomain editingDomain = getEditingDomain();
@@ -256,10 +255,10 @@ public class GeneralizationSetHelper extends ElementHelper {
 		ConnectionAnchor sourceAnchor = node.getSourceConnectionAnchor(request);
 		//System.err.println("sourceAnchor--> " + sourceAnchor.getReferencePoint());
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
-		sceCommand.setEdgeAdaptor(new EObjectAdapter((View) request.getConnectionEditPart().getModel()));
-		sceCommand.setNewSourceAdaptor(new EObjectAdapter((View) node.getModel()));
+		sceCommand.setEdgeAdaptor(new EObjectAdapter((View)request.getConnectionEditPart().getModel()));
+		sceCommand.setNewSourceAdaptor(new EObjectAdapter((View)node.getModel()));
 		SetConnectionAnchorsCommand scaCommand = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
-		scaCommand.setEdgeAdaptor(new EObjectAdapter((View) request.getConnectionEditPart().getModel()));
+		scaCommand.setEdgeAdaptor(new EObjectAdapter((View)request.getConnectionEditPart().getModel()));
 		scaCommand.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
 
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_SetConnectionEndsCommand_Source);
@@ -276,20 +275,20 @@ public class GeneralizationSetHelper extends ElementHelper {
 		// get the link that refer the same model element
 		GeneralizationSetEditPart edgeToMove = null;
 		Iterator iterator = linkList.iterator();
-		while (iterator.hasNext()) {
+		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
-			if (currentObject instanceof GeneralizationSetEditPart) {
-				if (((GeneralizationSetEditPart) request.getConnectionEditPart()).resolveSemanticElement().equals(
-						((GeneralizationSetEditPart) currentObject).resolveSemanticElement())) {
-					edgeToMove = (GeneralizationSetEditPart) currentObject;
+			if(currentObject instanceof GeneralizationSetEditPart) {
+				if(((GeneralizationSetEditPart)request.getConnectionEditPart()).resolveSemanticElement().equals(
+						((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
+					edgeToMove = (GeneralizationSetEditPart)currentObject;
 				}
 			}
 		}
-		if (edgeToMove != null) {
+		if(edgeToMove != null) {
 			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(editingDomain,
 					StringStatics.BLANK);
-			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View) edgeToMove.getModel()));
-			if (node.getSourceConnections().contains(edgeToMove)) {
+			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View)edgeToMove.getModel()));
+			if(node.getSourceConnections().contains(edgeToMove)) {
 				scaCommandbis.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
 			} else {
 				scaCommandbis.setNewTargetTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
@@ -305,9 +304,9 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * create a new semantic or reuse an existed semantic
 	 * 
 	 * @param generalizationSetList
-	 *            the generalization set list
+	 *        the generalization set list
 	 * @param editingDomain
-	 *            the editing domain
+	 *        the editing domain
 	 */
 	private void launchDialog(final ArrayList<GeneralizationSet> generalizationSetList,
 			TransactionalEditingDomain editingDomain) {
@@ -363,9 +362,9 @@ public class GeneralizationSetHelper extends ElementHelper {
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
 				gridData.horizontalSpan = 2;
 				list.setLayoutData(gridData);
-				for (int i = 0; i < generalizationSetList.size(); i++) {
+				for(int i = 0; i < generalizationSetList.size(); i++) {
 
-					if (generalizationSetList.get(i).getLabel() != null) {
+					if(generalizationSetList.get(i).getLabel() != null) {
 						list.add(generalizationSetList.get(i).getLabel());
 					} else {
 						list.add("GeneralizationSet" + i);
@@ -405,8 +404,8 @@ public class GeneralizationSetHelper extends ElementHelper {
 				cancel.addListener(SWT.Selection, listener);
 				dialog.pack();
 				dialog.open();
-				while (!dialog.isDisposed()) {
-					if (!display.readAndDispatch())
+				while(!dialog.isDisposed()) {
+					if(!display.readAndDispatch())
 						display.sleep();
 				}
 				generalizationSettoCreate = listener.getResult();

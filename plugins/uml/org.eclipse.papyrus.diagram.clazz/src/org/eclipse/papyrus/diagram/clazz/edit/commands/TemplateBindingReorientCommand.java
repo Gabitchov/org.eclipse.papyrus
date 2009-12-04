@@ -59,13 +59,13 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof TemplateBinding) {
+		if(false == getElementToEdit() instanceof TemplateBinding) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -75,17 +75,17 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof TemplateableElement && newEnd instanceof TemplateableElement)) {
+		if(!(oldEnd instanceof TemplateableElement && newEnd instanceof TemplateableElement)) {
 			return false;
 		}
-		if (getLink().getTargets().size() != 1) {
+		if(getLink().getTargets().size() != 1) {
 			return false;
 		}
-		Element target = (Element) getLink().getTargets().get(0);
-		if (!(getLink().eContainer() instanceof TemplateableElement)) {
+		Element target = (Element)getLink().getTargets().get(0);
+		if(!(getLink().eContainer() instanceof TemplateableElement)) {
 			return false;
 		}
-		TemplateableElement container = (TemplateableElement) getLink().eContainer();
+		TemplateableElement container = (TemplateableElement)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistTemplateBinding_4015(container, getNewSource(),
 				target);
 	}
@@ -94,14 +94,14 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
 		TemplateableElement source = getLink().getBoundElement();
-		if (!(getLink().eContainer() instanceof TemplateableElement)) {
+		if(!(getLink().eContainer() instanceof TemplateableElement)) {
 			return false;
 		}
-		TemplateableElement container = (TemplateableElement) getLink().eContainer();
+		TemplateableElement container = (TemplateableElement)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistTemplateBinding_4015(container, source,
 				getNewTarget());
 	}
@@ -110,13 +110,13 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -141,34 +141,34 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected TemplateBinding getLink() {
-		return (TemplateBinding) getElementToEdit();
+		return (TemplateBinding)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected TemplateableElement getOldSource() {
-		return (TemplateableElement) oldEnd;
+		return (TemplateableElement)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected TemplateableElement getNewSource() {
-		return (TemplateableElement) newEnd;
+		return (TemplateableElement)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element) oldEnd;
+		return (Element)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element) newEnd;
+		return (Element)newEnd;
 	}
 }

@@ -72,7 +72,7 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -88,9 +88,9 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	 * Default constructor
 	 */
 	public InteractionOperandBasePropertiesEditionComponent(EObject interactionOperand, String editing_mode) {
-		if (interactionOperand instanceof InteractionOperand) {
+		if(interactionOperand instanceof InteractionOperand) {
 			this.interactionOperand = (InteractionOperand)interactionOperand;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.interactionOperand.eAdapters().add(semanticAdapter);
 			}
@@ -112,47 +112,49 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					InteractionOperandBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(interactionOperand);
 					}
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setName((String)msg.getNewValue());
-}
-						else{basePart.setName("");}}
-					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setName((String)msg.getNewValue());
+						} else {
+							basePart.setName("");
+						}
+					}
+					if(UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
 						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 						basePart.updateClientDependency(interactionOperand);
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_ElementImport()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getNamespace_ElementImport())) {
 						basePart.updateElementImport(interactionOperand);
 					}
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_PackageImport()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getNamespace_PackageImport())) {
 						basePart.updatePackageImport(interactionOperand);
 					}
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getNamespace_OwnedRule()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getNamespace_OwnedRule())) {
 						basePart.updateOwnedRule(interactionOperand);
 					}
-					if (UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(msg.getFeature()))
 						basePart.updateCovered(interactionOperand);
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering())) {
 						basePart.updateGeneralOrdering(interactionOperand);
 					}
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getInteractionOperand_Fragment()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getInteractionOperand_Fragment())) {
 						basePart.updateFragment(interactionOperand);
@@ -171,7 +173,7 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.InteractionOperand.class;
 		return super.translatePart(key);
 	}
@@ -188,14 +190,13 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (interactionOperand != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(interactionOperand != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (InteractionOperandPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.InteractionOperand.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -208,30 +209,30 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.InteractionOperand.class)
-			this.basePart = (InteractionOperandPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.InteractionOperand.class)
+			this.basePart = (InteractionOperandPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.InteractionOperand.class) {
+		if(basePart != null && key == UMLViewsRepository.InteractionOperand.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final InteractionOperand interactionOperand = (InteractionOperand)elt;
 			// init values
 			basePart.initOwnedComment(interactionOperand, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
-			if (interactionOperand.getName() != null)
+			if(interactionOperand.getName() != null)
 				basePart.setName(interactionOperand.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), interactionOperand.getVisibility());
+			basePart.initVisibility((EEnum)UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), interactionOperand.getVisibility());
 			basePart.initClientDependency(interactionOperand, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
 			basePart.initElementImport(interactionOperand, null, UMLPackage.eINSTANCE.getNamespace_ElementImport());
 			basePart.initPackageImport(interactionOperand, null, UMLPackage.eINSTANCE.getNamespace_PackageImport());
@@ -239,17 +240,17 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			basePart.initCovered(interactionOperand, null, UMLPackage.eINSTANCE.getInteractionFragment_Covered());
 			basePart.initGeneralOrdering(interactionOperand, null, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering());
 			basePart.initFragment(interactionOperand, null, UMLPackage.eINSTANCE.getInteractionOperand_Fragment());
-			
+
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -267,7 +268,7 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientDependencyTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -279,13 +280,13 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			// End of user code
 			basePart.addFilterToElementImport(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof ElementImport); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof ElementImport); //$NON-NLS-1$ 
 
 				}
 
@@ -295,13 +296,13 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			// End of user code
 			basePart.addFilterToPackageImport(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof PackageImport); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof PackageImport); //$NON-NLS-1$ 
 
 				}
 
@@ -311,13 +312,13 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			// End of user code
 			basePart.addFilterToOwnedRule(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
 
 				}
 
@@ -333,7 +334,7 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInCoveredTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -345,13 +346,13 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			// End of user code
 			basePart.addFilterToGeneralOrdering(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof GeneralOrdering); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof GeneralOrdering); //$NON-NLS-1$ 
 
 				}
 
@@ -361,13 +362,13 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			// End of user code
 			basePart.addFilterToFragment(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof InteractionFragment); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof InteractionFragment); //$NON-NLS-1$ 
 
 				}
 
@@ -386,49 +387,40 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 
 
 
-
-
-
-
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (interactionOperand != null) {
+		if(interactionOperand != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Comment nextElement = (Comment)iter.next();
+				Comment ownedComment = (Comment)ownedCommentToRefreshFromOwnedComment.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+			for(Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
@@ -437,10 +429,10 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			cc.append(SetCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
-			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
-			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
 			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
@@ -448,94 +440,94 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			//	cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List elementImportToAddFromElementImport = basePart.getElementImportToAdd();
-			for (Iterator iter = elementImportToAddFromElementImport.iterator(); iter.hasNext();)
+			for(Iterator iter = elementImportToAddFromElementImport.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamespace_ElementImport(), iter.next()));
 			Map elementImportToRefreshFromElementImport = basePart.getElementImportToEdit();
-			for (Iterator iter = elementImportToRefreshFromElementImport.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				ElementImport nextElement = (ElementImport) iter.next();
-				ElementImport elementImport = (ElementImport) elementImportToRefreshFromElementImport.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = elementImportToRefreshFromElementImport.keySet().iterator(); iter.hasNext();) {
+
+
+
+				ElementImport nextElement = (ElementImport)iter.next();
+				ElementImport elementImport = (ElementImport)elementImportToRefreshFromElementImport.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, elementImport.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List elementImportToRemoveFromElementImport = basePart.getElementImportToRemove();
-			for (Iterator iter = elementImportToRemoveFromElementImport.iterator(); iter.hasNext();)
+			for(Iterator iter = elementImportToRemoveFromElementImport.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List elementImportToMoveFromElementImport = basePart.getElementImportToMove();
-			for (Iterator iter = elementImportToMoveFromElementImport.iterator(); iter.hasNext();){
+			for(Iterator iter = elementImportToMoveFromElementImport.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getElementImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List packageImportToAddFromPackageImport = basePart.getPackageImportToAdd();
-			for (Iterator iter = packageImportToAddFromPackageImport.iterator(); iter.hasNext();)
+			for(Iterator iter = packageImportToAddFromPackageImport.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamespace_PackageImport(), iter.next()));
 			Map packageImportToRefreshFromPackageImport = basePart.getPackageImportToEdit();
-			for (Iterator iter = packageImportToRefreshFromPackageImport.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				PackageImport nextElement = (PackageImport) iter.next();
-				PackageImport packageImport = (PackageImport) packageImportToRefreshFromPackageImport.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = packageImportToRefreshFromPackageImport.keySet().iterator(); iter.hasNext();) {
+
+
+
+				PackageImport nextElement = (PackageImport)iter.next();
+				PackageImport packageImport = (PackageImport)packageImportToRefreshFromPackageImport.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, packageImport.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List packageImportToRemoveFromPackageImport = basePart.getPackageImportToRemove();
-			for (Iterator iter = packageImportToRemoveFromPackageImport.iterator(); iter.hasNext();)
+			for(Iterator iter = packageImportToRemoveFromPackageImport.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List packageImportToMoveFromPackageImport = basePart.getPackageImportToMove();
-			for (Iterator iter = packageImportToMoveFromPackageImport.iterator(); iter.hasNext();){
+			for(Iterator iter = packageImportToMoveFromPackageImport.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getPackageImport(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List ownedRuleToAddFromOwnedRule = basePart.getOwnedRuleToAdd();
-			for (Iterator iter = ownedRuleToAddFromOwnedRule.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedRuleToAddFromOwnedRule.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), iter.next()));
 			Map ownedRuleToRefreshFromOwnedRule = basePart.getOwnedRuleToEdit();
-			for (Iterator iter = ownedRuleToRefreshFromOwnedRule.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Constraint nextElement = (Constraint) iter.next();
-				Constraint ownedRule = (Constraint) ownedRuleToRefreshFromOwnedRule.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = ownedRuleToRefreshFromOwnedRule.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Constraint nextElement = (Constraint)iter.next();
+				Constraint ownedRule = (Constraint)ownedRuleToRefreshFromOwnedRule.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedRule.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List ownedRuleToRemoveFromOwnedRule = basePart.getOwnedRuleToRemove();
-			for (Iterator iter = ownedRuleToRemoveFromOwnedRule.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedRuleToRemoveFromOwnedRule.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedRuleToMoveFromOwnedRule = basePart.getOwnedRuleToMove();
-			for (Iterator iter = ownedRuleToMoveFromOwnedRule.iterator(); iter.hasNext();){
+			for(Iterator iter = ownedRuleToMoveFromOwnedRule.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getConstraint(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List coveredToAddFromCovered = basePart.getCoveredToAdd();
-			for (Iterator iter = coveredToAddFromCovered.iterator(); iter.hasNext();)
+			for(Iterator iter = coveredToAddFromCovered.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), iter.next()));
 			List coveredToRemoveFromCovered = basePart.getCoveredToRemove();
-			for (Iterator iter = coveredToRemoveFromCovered.iterator(); iter.hasNext();)
+			for(Iterator iter = coveredToRemoveFromCovered.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), iter.next()));
 			//List coveredToMoveFromCovered = basePart.getCoveredToMove();
 			//for (Iterator iter = coveredToMoveFromCovered.iterator(); iter.hasNext();){
@@ -543,65 +535,65 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 			//	cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getLifeline(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List generalOrderingToAddFromGeneralOrdering = basePart.getGeneralOrderingToAdd();
-			for (Iterator iter = generalOrderingToAddFromGeneralOrdering.iterator(); iter.hasNext();)
+			for(Iterator iter = generalOrderingToAddFromGeneralOrdering.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering(), iter.next()));
 			Map generalOrderingToRefreshFromGeneralOrdering = basePart.getGeneralOrderingToEdit();
-			for (Iterator iter = generalOrderingToRefreshFromGeneralOrdering.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				GeneralOrdering nextElement = (GeneralOrdering) iter.next();
-				GeneralOrdering generalOrdering = (GeneralOrdering) generalOrderingToRefreshFromGeneralOrdering.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = generalOrderingToRefreshFromGeneralOrdering.keySet().iterator(); iter.hasNext();) {
+
+
+
+				GeneralOrdering nextElement = (GeneralOrdering)iter.next();
+				GeneralOrdering generalOrdering = (GeneralOrdering)generalOrderingToRefreshFromGeneralOrdering.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, generalOrdering.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List generalOrderingToRemoveFromGeneralOrdering = basePart.getGeneralOrderingToRemove();
-			for (Iterator iter = generalOrderingToRemoveFromGeneralOrdering.iterator(); iter.hasNext();)
+			for(Iterator iter = generalOrderingToRemoveFromGeneralOrdering.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List generalOrderingToMoveFromGeneralOrdering = basePart.getGeneralOrderingToMove();
-			for (Iterator iter = generalOrderingToMoveFromGeneralOrdering.iterator(); iter.hasNext();){
+			for(Iterator iter = generalOrderingToMoveFromGeneralOrdering.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getGeneralOrdering(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List fragmentToAddFromFragment = basePart.getFragmentToAdd();
-			for (Iterator iter = fragmentToAddFromFragment.iterator(); iter.hasNext();)
+			for(Iterator iter = fragmentToAddFromFragment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionOperand_Fragment(), iter.next()));
 			Map fragmentToRefreshFromFragment = basePart.getFragmentToEdit();
-			for (Iterator iter = fragmentToRefreshFromFragment.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				InteractionFragment nextElement = (InteractionFragment) iter.next();
-				InteractionFragment fragment = (InteractionFragment) fragmentToRefreshFromFragment.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = fragmentToRefreshFromFragment.keySet().iterator(); iter.hasNext();) {
+
+
+
+				InteractionFragment nextElement = (InteractionFragment)iter.next();
+				InteractionFragment fragment = (InteractionFragment)fragmentToRefreshFromFragment.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, fragment.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List fragmentToRemoveFromFragment = basePart.getFragmentToRemove();
-			for (Iterator iter = fragmentToRemoveFromFragment.iterator(); iter.hasNext();)
+			for(Iterator iter = fragmentToRemoveFromFragment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List fragmentToMoveFromFragment = basePart.getFragmentToMove();
-			for (Iterator iter = fragmentToMoveFromFragment.iterator(); iter.hasNext();){
+			for(Iterator iter = fragmentToMoveFromFragment.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment(), moveElement.getElement(), moveElement.getIndex()));
 			}
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -613,7 +605,7 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof InteractionOperand) {
+		if(source instanceof InteractionOperand) {
 			InteractionOperand interactionOperandToUpdate = (InteractionOperand)source;
 			interactionOperandToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			interactionOperandToUpdate.setName(basePart.getName());
@@ -630,8 +622,7 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 
 
 			return interactionOperandToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -642,194 +633,178 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.InteractionOperand.ownedComment == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.InteractionOperand.ownedComment == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Comment oldValue = (Comment)event.getOldValue();
 					Comment newValue = (Comment)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the interactionOperand update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor())
+			if(UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
-			if (UMLViewsRepository.InteractionOperand.visibility == event.getAffectedEditor())
+			if(UMLViewsRepository.InteractionOperand.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
-			if (UMLViewsRepository.InteractionOperand.clientDependency == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.InteractionOperand.clientDependency == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.InteractionOperand.elementImport == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.InteractionOperand.elementImport == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					ElementImport oldValue = (ElementImport)event.getOldValue();
 					ElementImport newValue = (ElementImport)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the interactionOperand update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamespace_ElementImport(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getElementImport(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.InteractionOperand.packageImport == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.InteractionOperand.packageImport == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					PackageImport oldValue = (PackageImport)event.getOldValue();
 					PackageImport newValue = (PackageImport)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the interactionOperand update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamespace_PackageImport(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getPackageImport(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.InteractionOperand.ownedRule == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.InteractionOperand.ownedRule == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Constraint oldValue = (Constraint)event.getOldValue();
 					Constraint newValue = (Constraint)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the interactionOperand update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getNamespace_OwnedRule(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getConstraint(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.InteractionOperand.covered == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.InteractionOperand.covered == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.InteractionOperand.generalOrdering == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.InteractionOperand.generalOrdering == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					GeneralOrdering oldValue = (GeneralOrdering)event.getOldValue();
 					GeneralOrdering newValue = (GeneralOrdering)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the interactionOperand update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getGeneralOrdering(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.InteractionOperand.fragment == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.InteractionOperand.fragment == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					InteractionFragment oldValue = (InteractionFragment)event.getOldValue();
 					InteractionFragment newValue = (InteractionFragment)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the interactionOperand update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionOperand_Fragment(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, interactionOperand, UMLPackage.eINSTANCE.getInteractionFragment(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
 
-				if (UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor())
+				if(UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
 
 
 
 
-
-
-
-
-
 			} else {
 
-				if (UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor())
+				if(UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
-
-
-
-
-
 
 
 
@@ -846,14 +821,14 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor()) {
+				if(UMLViewsRepository.InteractionOperand.name == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.InteractionOperand.visibility == event.getAffectedEditor()) {
+				if(UMLViewsRepository.InteractionOperand.visibility == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
 				}
@@ -872,12 +847,11 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(interactionOperand);
 		// Start of user code for custom validation check
 
@@ -893,7 +867,7 @@ public class InteractionOperandBasePropertiesEditionComponent extends StandardPr
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			interactionOperand.eAdapters().remove(semanticAdapter);
 	}
 

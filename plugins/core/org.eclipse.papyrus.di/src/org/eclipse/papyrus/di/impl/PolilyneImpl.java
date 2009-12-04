@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import java.util.Collection;
@@ -33,18 +33,20 @@ import org.eclipse.papyrus.di.Polilyne;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.PolilyneImpl#getWaypoints <em>Waypoints</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.PolilyneImpl#getClosed <em>Closed</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.PolilyneImpl#getWaypoints <em>Waypoints</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.PolilyneImpl#getClosed <em>Closed</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
+
 	/**
 	 * The cached value of the '{@link #getWaypoints() <em>Waypoints</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getWaypoints()
 	 * @generated
 	 * @ordered
@@ -55,6 +57,7 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	 * The cached value of the '{@link #getClosed() <em>Closed</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getClosed()
 	 * @generated
 	 * @ordered
@@ -64,6 +67,7 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PolilyneImpl() {
@@ -73,6 +77,7 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,10 +88,11 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Point> getWaypoints() {
-		if (waypoints == null) {
+		if(waypoints == null) {
 			waypoints = new EDataTypeUniqueEList<Point>(Point.class, this, DiPackage.POLILYNE__WAYPOINTS);
 		}
 		return waypoints;
@@ -95,10 +101,11 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Boolean> getClosed() {
-		if (closed == null) {
+		if(closed == null) {
 			closed = new EDataTypeUniqueEList<Boolean>(Boolean.class, this, DiPackage.POLILYNE__CLOSED);
 		}
 		return closed;
@@ -107,15 +114,16 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.POLILYNE__WAYPOINTS:
-				return getWaypoints();
-			case DiPackage.POLILYNE__CLOSED:
-				return getClosed();
+		switch(featureID) {
+		case DiPackage.POLILYNE__WAYPOINTS:
+			return getWaypoints();
+		case DiPackage.POLILYNE__CLOSED:
+			return getClosed();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -123,20 +131,21 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.POLILYNE__WAYPOINTS:
-				getWaypoints().clear();
-				getWaypoints().addAll((Collection<? extends Point>)newValue);
-				return;
-			case DiPackage.POLILYNE__CLOSED:
-				getClosed().clear();
-				getClosed().addAll((Collection<? extends Boolean>)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.POLILYNE__WAYPOINTS:
+			getWaypoints().clear();
+			getWaypoints().addAll((Collection<? extends Point>)newValue);
+			return;
+		case DiPackage.POLILYNE__CLOSED:
+			getClosed().clear();
+			getClosed().addAll((Collection<? extends Boolean>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -144,17 +153,18 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.POLILYNE__WAYPOINTS:
-				getWaypoints().clear();
-				return;
-			case DiPackage.POLILYNE__CLOSED:
-				getClosed().clear();
-				return;
+		switch(featureID) {
+		case DiPackage.POLILYNE__WAYPOINTS:
+			getWaypoints().clear();
+			return;
+		case DiPackage.POLILYNE__CLOSED:
+			getClosed().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -162,15 +172,16 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.POLILYNE__WAYPOINTS:
-				return waypoints != null && !waypoints.isEmpty();
-			case DiPackage.POLILYNE__CLOSED:
-				return closed != null && !closed.isEmpty();
+		switch(featureID) {
+		case DiPackage.POLILYNE__WAYPOINTS:
+			return waypoints != null && !waypoints.isEmpty();
+		case DiPackage.POLILYNE__CLOSED:
+			return closed != null && !closed.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -178,11 +189,13 @@ public class PolilyneImpl extends GraphicPrimitiveImpl implements Polilyne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (waypoints: ");

@@ -50,14 +50,14 @@ public class ImporLibrariesFromRepositoryAction extends AbstractPackageImportAct
 	 * returns the command that is executed by this action.
 	 * 
 	 * @param domain
-	 *            EMF editing domain used by the command
+	 *        EMF editing domain used by the command
 	 * @return the command that is executed by this action
 	 */
 	public ImportLibraryFromRepositoryCommand getCommand(EditingDomain domain) {
-		if (command == null) {
+		if(command == null) {
 			command = new ImportLibraryFromRepositoryCommand(domain);
 		}
-		return (ImportLibraryFromRepositoryCommand) command;
+		return (ImportLibraryFromRepositoryCommand)command;
 	}
 
 	/**
@@ -73,28 +73,28 @@ public class ImporLibrariesFromRepositoryAction extends AbstractPackageImportAct
 	 * Apply the result of the dialog, i.e. it adds package imports to libraries
 	 * 
 	 * @param librariesToImport
-	 *            the array of Libraries to import
+	 *        the array of Libraries to import
 	 */
 	protected void importLibraries(RegisteredLibrary[] librariesToImport) {
 		// retrieve the current resource set
 		ResourceSet resourceSet = Util.getResourceSet(selectedElement);
 
-		for (int i = 0; i < librariesToImport.length; i++) {
-			RegisteredLibrary currentLibrary = (RegisteredLibrary) (librariesToImport[i]);
+		for(int i = 0; i < librariesToImport.length; i++) {
+			RegisteredLibrary currentLibrary = (RegisteredLibrary)(librariesToImport[i]);
 			URI modelUri = currentLibrary.uri;
 
 			Resource modelResource = resourceSet.getResource(modelUri, true);
 			PackageImportTreeSelectionDialog eisd = new PackageImportTreeSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-					((Package) modelResource.getContents().get(0)));
+					((Package)modelResource.getContents().get(0)));
 			int ret = eisd.open();
 
-			if (ret == Window.OK) {
+			if(ret == Window.OK) {
 				ArrayList result = eisd.getResult();
 				Iterator resultIter = result.iterator();
-				while (resultIter.hasNext()) {
-					Element element = (Element) resultIter.next();
+				while(resultIter.hasNext()) {
+					Element element = (Element)resultIter.next();
 					PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
-					ei.setImportedPackage((Package) element);
+					ei.setImportedPackage((Package)element);
 					getSelectedElement().getPackageImports().add(ei);
 				}
 			}
@@ -112,14 +112,14 @@ public class ImporLibrariesFromRepositoryAction extends AbstractPackageImportAct
 	protected RegisteredLibrary[] getAvailableLibraries() {
 		List<RegisteredLibrary> libraries = new ArrayList<RegisteredLibrary>();
 		RegisteredLibrary[] allLibraries = RegisteredLibrary.getRegisteredLibraries();
-		for (int i = 0; i < allLibraries.length; i++) {
+		for(int i = 0; i < allLibraries.length; i++) {
 			RegisteredLibrary registeredLibrary = allLibraries[i];
 			List<String> importedPackageNames = PackageUtil.getImportedPackagesNames(getSelectedElement());
-			if (!(importedPackageNames.contains(registeredLibrary.getName()))) {
+			if(!(importedPackageNames.contains(registeredLibrary.getName()))) {
 				libraries.add(registeredLibrary);
 			}
 		}
-		return (RegisteredLibrary[]) libraries.toArray(new RegisteredLibrary[libraries.size()]);
+		return (RegisteredLibrary[])libraries.toArray(new RegisteredLibrary[libraries.size()]);
 	}
 
 	/**
@@ -133,10 +133,10 @@ public class ImporLibrariesFromRepositoryAction extends AbstractPackageImportAct
 	protected Collection<RegisteredLibrary> getImportedLibraries() {
 		List<RegisteredLibrary> libraries = new ArrayList<RegisteredLibrary>();
 		RegisteredLibrary[] allLibraries = RegisteredLibrary.getRegisteredLibraries();
-		for (int i = 0; i < allLibraries.length; i++) {
+		for(int i = 0; i < allLibraries.length; i++) {
 			RegisteredLibrary registeredLibrary = allLibraries[i];
 			List<String> importedPackageNames = PackageUtil.getImportedPackagesNames(getSelectedElement());
-			if (importedPackageNames.contains(registeredLibrary.getName())) {
+			if(importedPackageNames.contains(registeredLibrary.getName())) {
 				libraries.add(registeredLibrary);
 			}
 		}
@@ -152,13 +152,13 @@ public class ImporLibrariesFromRepositoryAction extends AbstractPackageImportAct
 		 * Creates a new ImportLibraryFromRepositoryCommand
 		 * 
 		 * @param editingDomain
-		 *            editing domain that manages the changed objects
+		 *        editing domain that manages the changed objects
 		 * @param runnable
-		 *            process that executes the modifications
+		 *        process that executes the modifications
 		 * @param label
-		 *            the label of the command
+		 *        the label of the command
 		 * @param description
-		 *            description of the command
+		 *        description of the command
 		 */
 		public ImportLibraryFromRepositoryCommand(EditingDomain editingDomain) {
 			super(editingDomain, new Runnable() {
@@ -173,10 +173,10 @@ public class ImporLibrariesFromRepositoryAction extends AbstractPackageImportAct
 					// Open Registered ModelLibrary selection dialog
 					FilteredRegisteredLibrariesSelectionDialog dialog = new FilteredRegisteredLibrariesSelectionDialog(shell, true, allLibraries, getImportedLibraries());
 					dialog.open();
-					if (Dialog.OK == dialog.getReturnCode()) {
+					if(Dialog.OK == dialog.getReturnCode()) {
 						// get the result, which is the set of libraries to import
 						List<Object> librariesToImport = Arrays.asList(dialog.getResult());
-						importLibraries((RegisteredLibrary[]) librariesToImport.toArray(new RegisteredLibrary[librariesToImport.size()]));
+						importLibraries((RegisteredLibrary[])librariesToImport.toArray(new RegisteredLibrary[librariesToImport.size()]));
 					}
 				}
 			}, "Import Libraries", "Import Libraries from Repository");

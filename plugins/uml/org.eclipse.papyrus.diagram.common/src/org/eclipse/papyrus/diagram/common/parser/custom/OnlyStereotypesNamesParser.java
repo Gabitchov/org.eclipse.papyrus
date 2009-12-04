@@ -29,30 +29,30 @@ public class OnlyStereotypesNamesParser implements IParser {
 
 	public String getPrintString(IAdaptable element, int flags) {
 
-		Element el = (Element) element.getAdapter(Element.class);
+		Element el = (Element)element.getAdapter(Element.class);
 
-		if (el != null) {
+		if(el != null) {
 			EList<Stereotype> stereotypes = el.getAppliedStereotypes();
 
-			if (stereotypes == null) {
+			if(stereotypes == null) {
 				return null;
 			}
 
-			if (stereotypes.size() <= 0) {
+			if(stereotypes.size() <= 0) {
 				return null;
 			}
 
-			String pString = "" + ((char) 171);
+			String pString = "" + ((char)171);
 
-			for (java.util.Iterator<Stereotype> it = stereotypes.iterator(); it.hasNext();) {
+			for(java.util.Iterator<Stereotype> it = stereotypes.iterator(); it.hasNext();) {
 				pString += it.next().getName();
 
-				if (it.hasNext()) {
+				if(it.hasNext()) {
 					pString += ", ";
 				}
 			}
 
-			pString += ((char) 187);
+			pString += ((char)187);
 
 			return pString;
 		}

@@ -41,18 +41,18 @@ public class AppliedStereotypeHelper {
 	 * get the list of stereotype to display from the eannotation.
 	 * 
 	 * @param view
-	 *            the view
+	 *        the view
 	 * 
 	 * @return the list of stereotypes to display separated by a comma. the applied stereotype to
 	 *         display is represented by the qualified name of the stereotype
 	 */
 	public static String getStereotypesToDisplay(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_LIST);
-			if (stereotypesToDisplay != null) {
+			if(stereotypesToDisplay != null) {
 				return stereotypesToDisplay;
 			}
 		}
@@ -63,17 +63,17 @@ public class AppliedStereotypeHelper {
 	 * Gets the applied stereotypes properties to display.
 	 * 
 	 * @param view
-	 *            the view the view that displays the stereotyped element
+	 *        the view the view that displays the stereotyped element
 	 * 
 	 * @return the applied stereotypes properties to display
 	 */
 	public static String getAppliedStereotypesPropertiesToDisplay(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY);
-			if (stereotypesToDisplay != null) {
+			if(stereotypesToDisplay != null) {
 				return stereotypesToDisplay;
 			}
 		}
@@ -84,20 +84,19 @@ public class AppliedStereotypeHelper {
 	 * checks if the applied stereotypes properties have to be displayed.
 	 * 
 	 * @param view
-	 *            the view the view that displays the stereotyped element
+	 *        the view the view that displays the stereotyped element
 	 * @param location
-	 *            the location where the properties have to be displayed.
+	 *        the location where the properties have to be displayed.
 	 * 
-	 * @return <code>true</code> if the applied stereotypes properties have to display,
-	 *         <code>false</code> in other case
+	 * @return <code>true</code> if the applied stereotypes properties have to display, <code>false</code> in other case
 	 */
 	public static boolean hasAppliedStereotypesPropertiesToDisplay(EModelElement view, String location) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			String placeToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION);
-			if (placeToDisplay != null && placeToDisplay.equals(location)) {
+			if(placeToDisplay != null && placeToDisplay.equals(location)) {
 				return true;
 			}
 		}
@@ -108,17 +107,17 @@ public class AppliedStereotypeHelper {
 	 * Gets the applied stereotypes properties localization.
 	 * 
 	 * @param view
-	 *            the view
+	 *        the view
 	 * 
 	 * @return the applied stereotypes properties localization
 	 */
 	public static String getAppliedStereotypesPropertiesLocalization(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION);
-			if (stereotypesToDisplay != null) {
+			if(stereotypesToDisplay != null) {
 				return stereotypesToDisplay;
 			}
 		}
@@ -129,17 +128,17 @@ public class AppliedStereotypeHelper {
 	 * get lhe list of stereotype to display with the qulifiedName.
 	 * 
 	 * @param view
-	 *            the view of the uml element
+	 *        the view of the uml element
 	 * 
 	 * @return the list of applied stereotype to display withe their qualified name
 	 */
 	public static String getStereotypesQNToDisplay(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
 			String stereotypesToDisplay = entries.get(VisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST);
-			if (stereotypesToDisplay != null) {
+			if(stereotypesToDisplay != null) {
 				return stereotypesToDisplay;
 			}
 		}
@@ -150,7 +149,7 @@ public class AppliedStereotypeHelper {
 	 * return the kind of display of applied stereotype.
 	 * 
 	 * @param view
-	 *            that contains the eannotation about the display
+	 *        that contains the eannotation about the display
 	 * 
 	 * @return VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION,
 	 *         VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION,
@@ -160,11 +159,11 @@ public class AppliedStereotypeHelper {
 	 */
 	public static String getAppliedStereotypePresentationKind(EModelElement view) {
 		EAnnotation stereotypeDisplayKind = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 			String stereotypespresentationKind = entries
 					.get(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND);
-			if (stereotypespresentationKind != null) {
+			if(stereotypespresentationKind != null) {
 				return stereotypespresentationKind;
 			}
 		}
@@ -175,13 +174,13 @@ public class AppliedStereotypeHelper {
 	 * Gets the applied.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param appliedStereotypeList
-	 *            the applied stereotype list
+	 *        the applied stereotype list
 	 * @param presentationKind
-	 *            see {@link VisualInformationPapyrusConstant} for the kind of presentation
+	 *        see {@link VisualInformationPapyrusConstant} for the kind of presentation
 	 * 
 	 * @return the applied
 	 */
@@ -194,11 +193,11 @@ public class AppliedStereotypeHelper {
 	 * add new applied stereotypes to display withe the qualified name.
 	 * 
 	 * @param domain
-	 *            the transactionnal edit domain
+	 *        the transactionnal edit domain
 	 * @param view
-	 *            the emodel element that is the display of the uml element
+	 *        the emodel element that is the display of the uml element
 	 * @param appliedStereotypeList
-	 *            the list of stereotype with qualified name to display
+	 *        the list of stereotype with qualified name to display
 	 * 
 	 * @return the command to display it
 	 */
@@ -211,13 +210,13 @@ public class AppliedStereotypeHelper {
 	 * Gets the adds the applied stereotype command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param appliedStereotypeListToAdd
-	 *            the applied stereotype list to add
+	 *        the applied stereotype list to add
 	 * @param presentationKind
-	 *            the presentation kind
+	 *        the presentation kind
 	 * 
 	 * @return the adds the applied stereotype command
 	 */
@@ -230,11 +229,11 @@ public class AppliedStereotypeHelper {
 	 * Gets the adds the applied stereotype propertiescommand.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param appliedStereotypeListToAdd
-	 *            the applied stereotype properties list to add
+	 *        the applied stereotype properties list to add
 	 * 
 	 * @return the adds the applied stereotype command
 	 */
@@ -247,13 +246,13 @@ public class AppliedStereotypeHelper {
 	 * Gets the removes the applied stereotype command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param appliedStereotypeListToRemove
-	 *            the applied stereotype list to remove
+	 *        the applied stereotype list to remove
 	 * @param presentationKind
-	 *            the presentation kind
+	 *        the presentation kind
 	 * 
 	 * @return the removes the applied stereotype command
 	 */
@@ -267,11 +266,11 @@ public class AppliedStereotypeHelper {
 	 * Gets the remove applied stereotype properties command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param appliedStereotypeListToRemove
-	 *            the applied stereotype list to remove
+	 *        the applied stereotype list to remove
 	 * 
 	 * @return the removes the applied stereotype properties command
 	 */
@@ -284,11 +283,11 @@ public class AppliedStereotypeHelper {
 	 * Gets the sets the applied stereotype properties localization command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param appliedStereotypePropertiesLocation
-	 *            the applied stereotype properties location
+	 *        the applied stereotype properties location
 	 * 
 	 * @return the sets the applied stereotype properties localization command
 	 */
@@ -306,7 +305,7 @@ public class AppliedStereotypeHelper {
 	public static Stereotype getFirstDisplayedStereotype(EModelElement model, Element element) {
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(model);
 		StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-		if (tokenizer.hasMoreTokens()) {
+		if(tokenizer.hasMoreTokens()) {
 			String firstStereotypeName = tokenizer.nextToken();
 			Stereotype stereotype = element.getAppliedStereotype(firstStereotypeName);
 			return stereotype;

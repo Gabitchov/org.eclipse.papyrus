@@ -53,15 +53,21 @@ public interface TemplateBindingPropertiesEditionPart {
 
 	/**
 	 * Init the parameterSubstitution
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initParameterSubstitution(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the parameterSubstitution
-	 * @param newValue the parameterSubstitution to update
+	 * 
+	 * @param newValue
+	 *        the parameterSubstitution to update
 	 */
 	public void updateParameterSubstitution(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface TemplateBindingPropertiesEditionPart {
 	 * Adds the given filter to the parameterSubstitution edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToParameterSubstitution(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface TemplateBindingPropertiesEditionPart {
 	 * Adds the given filter to the parameterSubstitution edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToParameterSubstitution(ViewerFilter filter);
@@ -87,11 +93,6 @@ public interface TemplateBindingPropertiesEditionPart {
 	 * @return true if the given element is contained inside the parameterSubstitution table
 	 */
 	public boolean isContainedInParameterSubstitutionTable(EObject element);
-
-
-
-
-
 
 
 

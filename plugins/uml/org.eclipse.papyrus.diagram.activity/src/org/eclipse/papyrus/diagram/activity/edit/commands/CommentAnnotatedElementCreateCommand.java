@@ -29,8 +29,7 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public CommentAnnotatedElementCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
+	public CommentAnnotatedElementCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -54,8 +53,7 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateCommentAnnotatedElement_3006(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateCommentAnnotatedElement_3006(getSource(), getTarget());
 	}
 
 	/**
@@ -64,11 +62,9 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
 			getSource().getAnnotatedElements().add(getTarget());
@@ -79,8 +75,7 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 			if (getSource().getAnnotatedElements().size() == 1) {
 				getTarget().getOwnedComments().add(getSource());
 			} else if (getSource().getAnnotatedElements().size() > 1) {
-				org.eclipse.uml2.uml.Package root = getTarget()
-						.getNearestPackage();
+				org.eclipse.uml2.uml.Package root = getTarget().getNearestPackage();
 				root.getOwnedComments().add(getSource());
 			}
 		}

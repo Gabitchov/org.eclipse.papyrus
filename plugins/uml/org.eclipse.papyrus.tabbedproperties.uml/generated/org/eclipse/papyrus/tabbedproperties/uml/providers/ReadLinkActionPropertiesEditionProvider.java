@@ -40,7 +40,7 @@ public class ReadLinkActionPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ReadLinkAction) {
+		if(eObject instanceof ReadLinkAction) {
 			return new ReadLinkActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ReadLinkActionPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ReadLinkAction) {
-			if (ReadLinkActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ReadLinkAction) {
+			if(ReadLinkActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ReadLinkActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

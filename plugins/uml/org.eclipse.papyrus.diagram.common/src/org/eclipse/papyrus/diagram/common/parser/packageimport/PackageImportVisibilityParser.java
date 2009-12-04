@@ -17,8 +17,7 @@ import org.eclipse.papyrus.diagram.common.parser.structural.UMLStructuralFeature
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * Parses PackageImport visibility this way: <li>public <-> import</li> <li>private <-> access</li>
- * <li>package, protected -> access.</li> <br>
+ * Parses PackageImport visibility this way: <li>public <-> import</li> <li>private <-> access</li> <li>package, protected -> access.</li> <br>
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
@@ -49,7 +48,7 @@ public class PackageImportVisibilityParser extends UMLStructuralFeatureParser {
 	@Override
 	public String getPrintString(IAdaptable adapter, int flags) {
 		String visibility = super.getPrintString(adapter, flags);
-		if (visibility.toUpperCase().equals("PUBLIC")) {
+		if(visibility.toUpperCase().equals("PUBLIC")) {
 			return (stereoBegin + "import" + stereoEnd);
 		} else {
 			return (stereoBegin + "access" + stereoEnd);

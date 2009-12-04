@@ -53,16 +53,14 @@ public class CompositeParser implements IParser {
 	/**
 	 * @generated
 	 */
-	public IParserEditStatus isValidEditString(IAdaptable adapter,
-			String editString) {
+	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		return writer.isValidEditString(adapter, editString);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ICommand getParseCommand(IAdaptable adapter, String newString,
-			int flags) {
+	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 		return writer.getParseCommand(adapter, newString, flags);
 	}
 

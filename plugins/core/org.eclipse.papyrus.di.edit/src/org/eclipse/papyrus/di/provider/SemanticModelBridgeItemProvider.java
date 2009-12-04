@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 
@@ -40,20 +40,23 @@ import org.eclipse.papyrus.di.SemanticModelBridge;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.di.SemanticModelBridge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SemanticModelBridgeItemProvider
-	extends ItemProviderAdapter
-	implements
+		extends ItemProviderAdapter
+		implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SemanticModelBridgeItemProvider(AdapterFactory adapterFactory) {
@@ -64,11 +67,12 @@ public class SemanticModelBridgeItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addPresentationPropertyDescriptor(object);
@@ -81,50 +85,53 @@ public class SemanticModelBridgeItemProvider
 	 * This adds a property descriptor for the Presentation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPresentationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SemanticModelBridge_presentation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SemanticModelBridge_presentation_feature", "_UI_SemanticModelBridge_type"),
-				 DiPackage.Literals.SEMANTIC_MODEL_BRIDGE__PRESENTATION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_SemanticModelBridge_presentation_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_SemanticModelBridge_presentation_feature", "_UI_SemanticModelBridge_type"),
+				DiPackage.Literals.SEMANTIC_MODEL_BRIDGE__PRESENTATION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Graph Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addGraphElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SemanticModelBridge_graphElement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SemanticModelBridge_graphElement_feature", "_UI_SemanticModelBridge_type"),
-				 DiPackage.Literals.SEMANTIC_MODEL_BRIDGE__GRAPH_ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_SemanticModelBridge_graphElement_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_SemanticModelBridge_graphElement_feature", "_UI_SemanticModelBridge_type"),
+				DiPackage.Literals.SEMANTIC_MODEL_BRIDGE__GRAPH_ELEMENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
 	 * This returns SemanticModelBridge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,14 +143,15 @@ public class SemanticModelBridgeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((SemanticModelBridge)object).getPresentation();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SemanticModelBridge_type") :
-			getString("_UI_SemanticModelBridge_type") + " " + label;
+				getString("_UI_SemanticModelBridge_type") :
+				getString("_UI_SemanticModelBridge_type") + " " + label;
 	}
 
 	/**
@@ -151,16 +159,17 @@ public class SemanticModelBridgeItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SemanticModelBridge.class)) {
-			case DiPackage.SEMANTIC_MODEL_BRIDGE__PRESENTATION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(SemanticModelBridge.class)) {
+		case DiPackage.SEMANTIC_MODEL_BRIDGE__PRESENTATION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -170,6 +179,7 @@ public class SemanticModelBridgeItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,6 +191,7 @@ public class SemanticModelBridgeItemProvider
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

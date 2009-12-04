@@ -27,7 +27,7 @@ public class NameLabelIconHelper {
 	 * get the display name label icon indication true or false
 	 * 
 	 * @param modelElement
-	 *            the view where is attach the element
+	 *        the view where is attach the element
 	 * @deprecated use showLabelIcon(EModelElement) instead
 	 */
 	@Deprecated
@@ -39,17 +39,17 @@ public class NameLabelIconHelper {
 	 * get the display name label icon indication true or false
 	 * 
 	 * @param modelElement
-	 *            the view where is attach the element
+	 *        the view where is attach the element
 	 */
 	public static boolean showLabelIcon(EModelElement modelElement) {
 		Boolean isShown = Boolean.FALSE;
 		EAnnotation stereotypeDisplayKind = modelElement
 				.getEAnnotation(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
-			if (entries != null) {
+			if(entries != null) {
 				String gradientvalueString = entries.get(VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON_VALUE);
-				if (gradientvalueString != null) {
+				if(gradientvalueString != null) {
 					isShown = new Boolean(gradientvalueString);
 				}
 			}
@@ -61,11 +61,11 @@ public class NameLabelIconHelper {
 	 * Gets the command to set the gradient to true are false.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param nameLabelIconValue
-	 *            true to display the icon of the element in labelName
+	 *        true to display the icon of the element in labelName
 	 * 
 	 * @return the command to set the gradient to true are false.
 	 */

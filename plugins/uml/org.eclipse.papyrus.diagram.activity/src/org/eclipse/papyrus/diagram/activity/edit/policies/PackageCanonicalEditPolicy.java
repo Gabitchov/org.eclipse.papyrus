@@ -847,5 +847,5 @@ public class PackageCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	public boolean canCreate(EObject object) {
 		return false;
 	}
-	
+
 }

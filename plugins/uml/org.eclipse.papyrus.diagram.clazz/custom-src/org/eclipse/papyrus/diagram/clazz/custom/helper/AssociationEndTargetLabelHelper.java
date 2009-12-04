@@ -31,7 +31,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 	private static AssociationEndTargetLabelHelper labelHelper;
 
 	public static AssociationEndTargetLabelHelper getInstance() {
-		if (labelHelper == null) {
+		if(labelHelper == null) {
 			labelHelper = new AssociationEndTargetLabelHelper();
 		}
 		return labelHelper;
@@ -41,21 +41,21 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
-		if ((View) editPart.getModel() != null && ((View) editPart.getModel()).eContainer() != null) {
-			Classifier target = (Classifier) ((Edge) ((View) editPart.getModel()).eContainer()).getTarget()
+		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
+			Classifier target = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getTarget()
 					.getElement();
 			Property propertyToDisplay = null;
-			if (((View) editPart.getModel()) != null
-					&& (((View) editPart.getModel()).getElement() instanceof Association)) {
+			if(((View)editPart.getModel()) != null
+					&& (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
 
-				Iterator<Property> propertiesIterator = ((Association) ((View) editPart.getModel()).getElement())
+				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement())
 						.getMemberEnds().iterator();
 
 				//find the last
-				while (propertiesIterator.hasNext()) {
-					Property currentProperty = (Property) propertiesIterator.next();
-					if (currentProperty.getType().equals(target)) {
+				while(propertiesIterator.hasNext()) {
+					Property currentProperty = (Property)propertiesIterator.next();
+					if(currentProperty.getType().equals(target)) {
 						propertyToDisplay = currentProperty;
 					}
 				}

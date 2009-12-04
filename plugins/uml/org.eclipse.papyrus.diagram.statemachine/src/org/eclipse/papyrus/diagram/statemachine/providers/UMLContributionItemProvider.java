@@ -19,7 +19,7 @@ public class UMLContributionItemProvider extends
 	 */
 	protected IAction createAction(String actionId,
 			IWorkbenchPartDescriptor partDescriptor) {
-		if (actionId.equals(PrintPreviewAction.ID)) {
+		if(actionId.equals(PrintPreviewAction.ID)) {
 			return new RenderedPrintPreviewAction(
 					new EnhancedPrintActionHelper());
 		}

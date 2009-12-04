@@ -25,7 +25,7 @@ public interface IModelGenerator {
 	 * validates the element, given its textual representation
 	 * 
 	 * @param label
-	 *            the label to validate
+	 *        the label to validate
 	 * @return the {@link IStatus} corresponding to the validation
 	 */
 	public IStatus validate(String label);
@@ -34,7 +34,7 @@ public interface IModelGenerator {
 	 * modifies the element, given its textual representation
 	 * 
 	 * @param label
-	 *            the label to validate
+	 *        the label to validate
 	 * @return the {@link IStatus} corresponding to the validation
 	 */
 	// @unused

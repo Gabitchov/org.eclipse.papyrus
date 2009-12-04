@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 
@@ -40,20 +40,23 @@ import org.eclipse.papyrus.di.GraphElement;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.di.GraphElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GraphElementItemProvider
-	extends DiagramElementItemProvider
-	implements
+		extends DiagramElementItemProvider
+		implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphElementItemProvider(AdapterFactory adapterFactory) {
@@ -64,11 +67,12 @@ public class GraphElementItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addPositionPropertyDescriptor(object);
@@ -80,22 +84,23 @@ public class GraphElementItemProvider
 	 * This adds a property descriptor for the Position feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphElement_position_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphElement_position_feature", "_UI_GraphElement_type"),
-				 DiPackage.Literals.GRAPH_ELEMENT__POSITION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_GraphElement_position_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_GraphElement_position_feature", "_UI_GraphElement_type"),
+				DiPackage.Literals.GRAPH_ELEMENT__POSITION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -104,11 +109,12 @@ public class GraphElementItemProvider
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED);
 			childrenFeatures.add(DiPackage.Literals.GRAPH_ELEMENT__LINK);
@@ -121,6 +127,7 @@ public class GraphElementItemProvider
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,6 +142,7 @@ public class GraphElementItemProvider
 	 * This returns GraphElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,6 +154,7 @@ public class GraphElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,22 +168,23 @@ public class GraphElementItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphElement.class)) {
-			case DiPackage.GRAPH_ELEMENT__POSITION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case DiPackage.GRAPH_ELEMENT__CONTAINED:
-			case DiPackage.GRAPH_ELEMENT__LINK:
-			case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
-			case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(GraphElement.class)) {
+		case DiPackage.GRAPH_ELEMENT__POSITION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case DiPackage.GRAPH_ELEMENT__CONTAINED:
+		case DiPackage.GRAPH_ELEMENT__LINK:
+		case DiPackage.GRAPH_ELEMENT__SEMANTIC_MODEL:
+		case DiPackage.GRAPH_ELEMENT__ANCHORAGE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -184,6 +194,7 @@ public class GraphElementItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,94 +202,94 @@ public class GraphElementItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createDiagramElement()));
+				DiFactory.eINSTANCE.createDiagramElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createGraphElement()));
+				DiFactory.eINSTANCE.createGraphElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createReference()));
+				DiFactory.eINSTANCE.createReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createGraphEdge()));
+				DiFactory.eINSTANCE.createGraphEdge()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createGraphNode()));
+				DiFactory.eINSTANCE.createGraphNode()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createDiagram()));
+				DiFactory.eINSTANCE.createDiagram()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createLeafElement()));
+				DiFactory.eINSTANCE.createLeafElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createTextElement()));
+				DiFactory.eINSTANCE.createTextElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createImage()));
+				DiFactory.eINSTANCE.createImage()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createGraphicPrimitive()));
+				DiFactory.eINSTANCE.createGraphicPrimitive()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createPolilyne()));
+				DiFactory.eINSTANCE.createPolilyne()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__CONTAINED,
-				 DiFactory.eINSTANCE.createEllipse()));
+				DiFactory.eINSTANCE.createEllipse()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__LINK,
-				 DiFactory.eINSTANCE.createDiagramLink()));
+				DiFactory.eINSTANCE.createDiagramLink()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__SEMANTIC_MODEL,
-				 DiFactory.eINSTANCE.createSemanticModelBridge()));
+				DiFactory.eINSTANCE.createSemanticModelBridge()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__SEMANTIC_MODEL,
-				 DiFactory.eINSTANCE.createSimpleSemanticModelElement()));
+				DiFactory.eINSTANCE.createSimpleSemanticModelElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__SEMANTIC_MODEL,
-				 DiFactory.eINSTANCE.createUml1SemanticModelBridge()));
+				DiFactory.eINSTANCE.createUml1SemanticModelBridge()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__SEMANTIC_MODEL,
-				 DiFactory.eINSTANCE.createCoreSemanticModelBridge()));
+				DiFactory.eINSTANCE.createCoreSemanticModelBridge()));
 
 		newChildDescriptors.add
-			(createChildParameter
+				(createChildParameter
 				(DiPackage.Literals.GRAPH_ELEMENT__ANCHORAGE,
-				 DiFactory.eINSTANCE.createGraphConnector()));
+				DiFactory.eINSTANCE.createGraphConnector()));
 	}
 
 }

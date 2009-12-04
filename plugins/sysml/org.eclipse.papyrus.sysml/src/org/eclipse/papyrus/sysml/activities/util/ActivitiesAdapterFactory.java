@@ -28,8 +28,8 @@ import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter
- * <code>createXXX</code> method for each class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.activities.ActivitiesPackage
  * @generated
@@ -103,7 +103,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public ActivitiesAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = ActivitiesPackage.eINSTANCE;
 		}
 	}
@@ -112,18 +112,17 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param target
-	 *            the object to adapt.
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.Continuous <em>Continuous</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Continuous <em>Continuous</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -137,8 +136,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.ControlOperator <em>Control Operator</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.ControlOperator <em>Control Operator</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -152,8 +150,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.Discrete <em>Discrete</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Discrete <em>Discrete</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -177,8 +174,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.NoBuffer <em>No Buffer</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.NoBuffer <em>No Buffer</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -192,8 +188,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.Optionnal <em>Optionnal</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Optionnal <em>Optionnal</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -207,8 +202,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.Overwrite <em>Overwrite</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Overwrite <em>Overwrite</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -222,8 +216,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.Probability <em>Probability</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Probability <em>Probability</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -237,8 +230,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.activities.Rate <em>Rate</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Rate <em>Rate</em>}'. <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -260,11 +252,11 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if(object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}

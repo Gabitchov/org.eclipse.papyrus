@@ -37,26 +37,26 @@ public class ValueSpecificationUtil {
 	public static String getSpecificationValue(ValueSpecification specification) {
 		String value = ""; //$NON-NLS-1$
 
-		switch (specification.eClass().getClassifierID()) {
+		switch(specification.eClass().getClassifierID()) {
 		case UMLPackage.LITERAL_STRING:
-			value = ((LiteralString) specification).getValue();
+			value = ((LiteralString)specification).getValue();
 			break;
 		case UMLPackage.LITERAL_BOOLEAN:
-			value = Boolean.toString(((LiteralBoolean) specification).booleanValue());
+			value = Boolean.toString(((LiteralBoolean)specification).booleanValue());
 			break;
 		case UMLPackage.LITERAL_INTEGER:
-			value = Integer.toString(((LiteralInteger) specification).getValue());
+			value = Integer.toString(((LiteralInteger)specification).getValue());
 			break;
 		case UMLPackage.LITERAL_UNLIMITED_NATURAL:
-			value = Integer.toString(((LiteralUnlimitedNatural) specification).getValue());
-			if ("-1".equals(value)) { //$NON-NLS-1$
+			value = Integer.toString(((LiteralUnlimitedNatural)specification).getValue());
+			if("-1".equals(value)) { //$NON-NLS-1$
 				value = "*"; //$NON-NLS-1$
 			}
 			break;
 		case UMLPackage.LITERAL_NULL:
 			break;
 		case UMLPackage.OPAQUE_EXPRESSION:
-			value = OpaqueExpressionUtil.getBodyForLanguage((OpaqueExpression) specification, "UML"); //$NON-NLS-1$
+			value = OpaqueExpressionUtil.getBodyForLanguage((OpaqueExpression)specification, "UML"); //$NON-NLS-1$
 			break;
 		case UMLPackage.EXPRESSION:
 			// TODO
@@ -64,7 +64,8 @@ public class ValueSpecificationUtil {
 		case UMLPackage.TIME_EXPRESSION:
 			// TODO
 			break;
-		default: {
+		default:
+		{
 			break;
 		}
 		}
@@ -75,36 +76,37 @@ public class ValueSpecificationUtil {
 	 * Sets the value of a specification, using a string value
 	 * 
 	 * @param specification
-	 *            the value specification to update
+	 *        the value specification to update
 	 * @param value
-	 *            the value to set
+	 *        the value to set
 	 */
 	// @unused
 	public static void restoreSpecificationValue(ValueSpecification specification, String value) {
-		if (value == null) {
+		if(value == null) {
 			return;
 		}
 
-		switch (specification.eClass().getClassifierID()) {
+		switch(specification.eClass().getClassifierID()) {
 		case UMLPackage.LITERAL_STRING:
-			restoreLiteralString((LiteralString) specification, value);
+			restoreLiteralString((LiteralString)specification, value);
 			break;
 		case UMLPackage.LITERAL_BOOLEAN:
-			restoreLiteralBoolean((LiteralBoolean) specification, value);
+			restoreLiteralBoolean((LiteralBoolean)specification, value);
 			break;
 		case UMLPackage.LITERAL_INTEGER:
-			restoreLiteralInteger((LiteralInteger) specification, value);
+			restoreLiteralInteger((LiteralInteger)specification, value);
 			break;
 		case UMLPackage.LITERAL_UNLIMITED_NATURAL:
-			restoreLiteralUnlimitedNatural((LiteralUnlimitedNatural) specification, value);
+			restoreLiteralUnlimitedNatural((LiteralUnlimitedNatural)specification, value);
 			break;
 		case UMLPackage.LITERAL_NULL:
-			restoreLiteralNull((LiteralNull) specification, value);
+			restoreLiteralNull((LiteralNull)specification, value);
 			break;
 		case UMLPackage.OPAQUE_EXPRESSION:
-			restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression) specification, value);
+			restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression)specification, value);
 			break;
-		default: {
+		default:
+		{
 			break;
 		}
 		}
@@ -114,9 +116,9 @@ public class ValueSpecificationUtil {
 	 * Sets the value of a literal string, using a string value
 	 * 
 	 * @param specification
-	 *            the literal string to update
+	 *        the literal string to update
 	 * @param value
-	 *            the new value
+	 *        the new value
 	 */
 	public static void restoreLiteralString(LiteralString specification, String value) {
 		specification.setValue(value);
@@ -126,9 +128,9 @@ public class ValueSpecificationUtil {
 	 * Sets the value of a literal, using a string value
 	 * 
 	 * @param specification
-	 *            the literal integer to update
+	 *        the literal integer to update
 	 * @param value
-	 *            the new value
+	 *        the new value
 	 */
 	public static void restoreLiteralInteger(LiteralInteger specification, String value) {
 		int intValue = 0;
@@ -144,12 +146,12 @@ public class ValueSpecificationUtil {
 	 * Sets the value of a literal boolean, using a string value
 	 * 
 	 * @param specification
-	 *            the literal boolean to update
+	 *        the literal boolean to update
 	 * @param value
-	 *            the new value
+	 *        the new value
 	 */
 	public static void restoreLiteralBoolean(LiteralBoolean specification, String value) {
-		if ("true".equals(value) || "1".equals(value)) {
+		if("true".equals(value) || "1".equals(value)) {
 			specification.setValue(true);
 		}
 		specification.setValue(false);
@@ -159,9 +161,9 @@ public class ValueSpecificationUtil {
 	 * Sets the value of a literal unlimited natural, using a string value
 	 * 
 	 * @param specification
-	 *            the literal unlimited natural to update
+	 *        the literal unlimited natural to update
 	 * @param value
-	 *            the new value
+	 *        the new value
 	 */
 	public static void restoreLiteralUnlimitedNatural(LiteralUnlimitedNatural specification, String value) {
 		int intValue = 0;
@@ -177,9 +179,9 @@ public class ValueSpecificationUtil {
 	 * Sets the value of a literal null, using a string value
 	 * 
 	 * @param specification
-	 *            the literal null to update
+	 *        the literal null to update
 	 * @param value
-	 *            the new value
+	 *        the new value
 	 */
 	public static void restoreLiteralNull(LiteralNull specification, String value) {
 		// nothing to set
@@ -189,9 +191,9 @@ public class ValueSpecificationUtil {
 	 * Sets the value of an opaque expression, using a string value
 	 * 
 	 * @param specification
-	 *            the opaque expression to update
+	 *        the opaque expression to update
 	 * @param value
-	 *            the new value
+	 *        the new value
 	 */
 	public static void restoreOpaqueExpression(org.eclipse.uml2.uml.OpaqueExpression specification, String value) {
 		// save in "UML" language, but should be desactivable

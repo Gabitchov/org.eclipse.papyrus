@@ -40,7 +40,7 @@ public class PinPropertiesEditionProvider implements IPropertiesEditionProvider 
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Pin) {
+		if(eObject instanceof Pin) {
 			return new PinPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class PinPropertiesEditionProvider implements IPropertiesEditionProvider 
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Pin) {
-			if (PinBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Pin) {
+			if(PinBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new PinBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Classifier;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.SpecificationImpl#getBase_Classifier <em>Base
- * Classifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.SpecificationImpl#getBase_Classifier <em>Base Classifier</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,11 +71,11 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated
 	 */
 	public Classifier getBase_Classifier() {
-		if (base_Classifier != null && base_Classifier.eIsProxy()) {
-			InternalEObject oldBase_Classifier = (InternalEObject) base_Classifier;
-			base_Classifier = (Classifier) eResolveProxy(oldBase_Classifier);
-			if (base_Classifier != oldBase_Classifier) {
-				if (eNotificationRequired())
+		if(base_Classifier != null && base_Classifier.eIsProxy()) {
+			InternalEObject oldBase_Classifier = (InternalEObject)base_Classifier;
+			base_Classifier = (Classifier)eResolveProxy(oldBase_Classifier);
+			if(base_Classifier != oldBase_Classifier) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							StandardPackage.SPECIFICATION__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 			}
@@ -101,7 +100,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	public void setBase_Classifier(Classifier newBase_Classifier) {
 		Classifier oldBase_Classifier = base_Classifier;
 		base_Classifier = newBase_Classifier;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.SPECIFICATION__BASE_CLASSIFIER,
 					oldBase_Classifier, base_Classifier));
 	}
@@ -113,9 +112,9 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.SPECIFICATION__BASE_CLASSIFIER:
-			if (resolve)
+			if(resolve)
 				return getBase_Classifier();
 			return basicGetBase_Classifier();
 		}
@@ -129,9 +128,9 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.SPECIFICATION__BASE_CLASSIFIER:
-			setBase_Classifier((Classifier) newValue);
+			setBase_Classifier((Classifier)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,9 +143,9 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.SPECIFICATION__BASE_CLASSIFIER:
-			setBase_Classifier((Classifier) null);
+			setBase_Classifier((Classifier)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -159,7 +158,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.SPECIFICATION__BASE_CLASSIFIER:
 			return base_Classifier != null;
 		}

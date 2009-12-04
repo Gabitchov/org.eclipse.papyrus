@@ -24,12 +24,12 @@ import org.eclipse.papyrus.diagram.common.helper.ICompartmentLayoutHelper;
 /**
  * The Class AutomaticCompartmentToolBox.
  */
-public class AutomaticCompartmentToolBox implements ILayoutToolBox{
-	
+public class AutomaticCompartmentToolBox implements ILayoutToolBox {
+
 
 	/** The AUTOMATI c_ layout. */
-	protected final String AUTOMATIC_LAYOUT ="Automatic_Layout";
-	
+	protected final String AUTOMATIC_LAYOUT = "Automatic_Layout";
+
 
 	/**
 	 * {@inheritDoc}

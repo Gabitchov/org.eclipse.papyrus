@@ -40,7 +40,7 @@ public class SubstitutionPropertiesEditionProvider implements IPropertiesEdition
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Substitution) {
+		if(eObject instanceof Substitution) {
 			return new SubstitutionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class SubstitutionPropertiesEditionProvider implements IPropertiesEdition
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Substitution) {
-			if (SubstitutionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Substitution) {
+			if(SubstitutionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new SubstitutionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

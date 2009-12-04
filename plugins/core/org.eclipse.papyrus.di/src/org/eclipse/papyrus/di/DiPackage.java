@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -25,21 +25,24 @@ import org.eclipse.emf.ecore.EReference;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.di.DiFactory
  * @model kind="package"
  * @generated
  */
 public interface DiPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "di";
@@ -48,6 +51,7 @@ public interface DiPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/0.7.0/di";
@@ -56,6 +60,7 @@ public interface DiPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "di";
@@ -64,6 +69,7 @@ public interface DiPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	DiPackage eINSTANCE = org.eclipse.papyrus.di.impl.DiPackageImpl.init();
@@ -72,6 +78,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.DiagramElementImpl <em>Diagram Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.DiagramElementImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDiagramElement()
 	 * @generated
@@ -82,6 +89,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -91,6 +99,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -100,6 +109,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -109,6 +119,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -118,6 +129,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -127,6 +139,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -136,6 +149,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -145,6 +159,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -154,6 +169,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -163,6 +179,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -172,6 +189,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -181,6 +199,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -190,6 +209,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -199,6 +219,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -208,6 +229,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -217,6 +239,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Diagram Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -226,6 +249,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.GraphElementImpl <em>Graph Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.GraphElementImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphElement()
 	 * @generated
@@ -236,6 +260,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -245,6 +270,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -254,6 +280,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -263,6 +290,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -272,6 +300,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -281,6 +310,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -290,6 +320,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -299,6 +330,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -308,6 +340,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -317,6 +350,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -326,6 +360,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -335,6 +370,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -344,6 +380,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -353,6 +390,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -362,6 +400,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -371,6 +410,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Contained</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -380,6 +420,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Link</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -389,6 +430,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -398,6 +440,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -407,6 +450,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Anchorage</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -416,6 +460,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Graph Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -425,6 +470,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.ReferenceImpl <em>Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.ReferenceImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getReference()
 	 * @generated
@@ -435,6 +481,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -444,6 +491,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -453,6 +501,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -462,6 +511,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -471,6 +521,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -480,6 +531,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -489,6 +541,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -498,6 +551,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -507,6 +561,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -516,6 +571,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -525,6 +581,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -534,6 +591,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -543,6 +601,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -552,6 +611,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -561,6 +621,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -570,6 +631,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Individual Representation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -579,6 +641,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Referenced</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -588,6 +651,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -597,6 +661,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.PropertyImpl <em>Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.PropertyImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getProperty()
 	 * @generated
@@ -607,6 +672,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -616,6 +682,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -625,6 +692,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -634,6 +702,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.GraphEdgeImpl <em>Graph Edge</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.GraphEdgeImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphEdge()
 	 * @generated
@@ -644,6 +713,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -653,6 +723,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -662,6 +733,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -671,6 +743,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -680,6 +753,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -689,6 +763,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -698,6 +773,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -707,6 +783,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -716,6 +793,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -725,6 +803,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -734,6 +813,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -743,6 +823,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -752,6 +833,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -761,6 +843,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -770,6 +853,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -779,6 +863,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Contained</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -788,6 +873,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Link</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -797,6 +883,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -806,6 +893,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -815,6 +903,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Anchorage</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -824,6 +913,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Anchor</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -833,6 +923,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Waypoints</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -842,6 +933,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Graph Edge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -851,6 +943,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl <em>Graph Connector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.GraphConnectorImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphConnector()
 	 * @generated
@@ -861,6 +954,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -870,6 +964,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Graph Edge</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -879,6 +974,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Graph Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -888,6 +984,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Graph Connector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -897,6 +994,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.GraphNodeImpl <em>Graph Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.GraphNodeImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphNode()
 	 * @generated
@@ -907,6 +1005,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -916,6 +1015,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -925,6 +1025,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -934,6 +1035,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -943,6 +1045,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -952,6 +1055,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -961,6 +1065,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -970,6 +1075,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -979,6 +1085,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -988,6 +1095,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -997,6 +1105,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1006,6 +1115,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1015,6 +1125,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1024,6 +1135,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1033,6 +1145,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1042,6 +1155,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Contained</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1051,6 +1165,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Link</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1060,6 +1175,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1069,6 +1185,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1078,6 +1195,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Anchorage</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1087,6 +1205,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1096,6 +1215,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Graph Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1105,6 +1225,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl <em>Diagram Link</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.DiagramLinkImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDiagramLink()
 	 * @generated
@@ -1115,6 +1236,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Diagram</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1124,6 +1246,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Zoom</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1133,6 +1256,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Viewport</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1142,6 +1266,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Graph Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1151,6 +1276,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Diagram Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1160,6 +1286,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.DiagramImpl <em>Diagram</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.DiagramImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDiagram()
 	 * @generated
@@ -1170,6 +1297,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1179,6 +1307,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1188,6 +1317,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1197,6 +1327,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1206,6 +1337,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1215,6 +1347,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1224,6 +1357,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1233,6 +1367,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1242,6 +1377,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1251,6 +1387,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1260,6 +1397,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1269,6 +1407,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1278,6 +1417,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1287,6 +1427,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1296,6 +1437,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1305,6 +1447,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Contained</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1314,6 +1457,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Link</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1323,6 +1467,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1332,6 +1477,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1341,6 +1487,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Anchorage</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1350,6 +1497,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1359,6 +1507,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Owner</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1368,6 +1517,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1377,6 +1527,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Zoom</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1386,6 +1537,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Viewport</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1395,6 +1547,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Diagram Link</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1404,6 +1557,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1413,6 +1567,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1422,6 +1577,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.SemanticModelBridgeImpl <em>Semantic Model Bridge</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.SemanticModelBridgeImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getSemanticModelBridge()
 	 * @generated
@@ -1432,6 +1588,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Presentation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1441,6 +1598,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Graph Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1450,6 +1608,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Semantic Model Bridge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1459,6 +1618,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.SimpleSemanticModelElementImpl <em>Simple Semantic Model Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.SimpleSemanticModelElementImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getSimpleSemanticModelElement()
 	 * @generated
@@ -1469,6 +1629,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Presentation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1478,6 +1639,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Graph Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1487,6 +1649,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Typeinfo</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1496,6 +1659,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Simple Semantic Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1505,6 +1669,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.Uml1SemanticModelBridgeImpl <em>Uml1 Semantic Model Bridge</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.Uml1SemanticModelBridgeImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getUml1SemanticModelBridge()
 	 * @generated
@@ -1515,6 +1680,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Presentation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1524,6 +1690,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Graph Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1533,6 +1700,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1542,6 +1710,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Uml1 Semantic Model Bridge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1551,6 +1720,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.CoreSemanticModelBridgeImpl <em>Core Semantic Model Bridge</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.CoreSemanticModelBridgeImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getCoreSemanticModelBridge()
 	 * @generated
@@ -1561,6 +1731,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Presentation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1570,6 +1741,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Graph Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1579,6 +1751,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1588,6 +1761,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Core Semantic Model Bridge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1597,6 +1771,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.LeafElementImpl <em>Leaf Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.LeafElementImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getLeafElement()
 	 * @generated
@@ -1607,6 +1782,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1616,6 +1792,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1625,6 +1802,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1634,6 +1812,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1643,6 +1822,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1652,6 +1832,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1661,6 +1842,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1670,6 +1852,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1679,6 +1862,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1688,6 +1872,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1697,6 +1882,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1706,6 +1892,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1715,6 +1902,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1724,6 +1912,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1733,6 +1922,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1742,6 +1932,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Leaf Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1751,6 +1942,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.TextElementImpl <em>Text Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.TextElementImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getTextElement()
 	 * @generated
@@ -1761,6 +1953,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1770,6 +1963,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1779,6 +1973,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1788,6 +1983,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1797,6 +1993,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1806,6 +2003,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1815,6 +2013,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1824,6 +2023,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1833,6 +2033,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1842,6 +2043,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1851,6 +2053,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1860,6 +2063,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1869,6 +2073,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1878,6 +2083,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1887,6 +2093,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1896,6 +2103,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1905,6 +2113,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Text Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1914,6 +2123,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.ImageImpl <em>Image</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.ImageImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getImage()
 	 * @generated
@@ -1924,6 +2134,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1933,6 +2144,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1942,6 +2154,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1951,6 +2164,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1960,6 +2174,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1969,6 +2184,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1978,6 +2194,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1987,6 +2204,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1996,6 +2214,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2005,6 +2224,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2014,6 +2234,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2023,6 +2244,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2032,6 +2254,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2041,6 +2264,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2050,6 +2274,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2059,6 +2284,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2068,6 +2294,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Mime Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2077,6 +2304,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2086,6 +2314,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.GraphicPrimitiveImpl <em>Graphic Primitive</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.GraphicPrimitiveImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphicPrimitive()
 	 * @generated
@@ -2096,6 +2325,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2105,6 +2335,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2114,6 +2345,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2123,6 +2355,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2132,6 +2365,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2141,6 +2375,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2150,6 +2385,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2159,6 +2395,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2168,6 +2405,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2177,6 +2415,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2186,6 +2425,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2195,6 +2435,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2204,6 +2445,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2213,6 +2455,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2222,6 +2465,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2231,6 +2475,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Graphic Primitive</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2240,6 +2485,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.PolilyneImpl <em>Polilyne</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.PolilyneImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getPolilyne()
 	 * @generated
@@ -2250,6 +2496,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2259,6 +2506,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2268,6 +2516,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2277,6 +2526,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2286,6 +2536,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2295,6 +2546,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2304,6 +2556,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2313,6 +2566,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2322,6 +2576,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2331,6 +2586,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2340,6 +2596,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2349,6 +2606,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2358,6 +2616,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2367,6 +2626,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2376,6 +2636,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2385,6 +2646,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Waypoints</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2394,6 +2656,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Closed</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2403,6 +2666,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Polilyne</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2412,6 +2676,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.impl.EllipseImpl <em>Ellipse</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.EllipseImpl
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getEllipse()
 	 * @generated
@@ -2422,6 +2687,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Property</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2431,6 +2697,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Visible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2440,6 +2707,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2449,6 +2717,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2458,6 +2727,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2467,6 +2737,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2476,6 +2747,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2485,6 +2757,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Line Thickness</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2494,6 +2767,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2503,6 +2777,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Foreground Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2512,6 +2787,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2521,6 +2797,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Border Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2530,6 +2807,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Translucent</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2539,6 +2817,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2548,6 +2827,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Semantic Child</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2557,6 +2837,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Center</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2566,6 +2847,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Radius X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2575,6 +2857,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Radius Y</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2584,6 +2867,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Rotation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2593,6 +2877,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>Start Angle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2602,6 +2887,7 @@ public interface DiPackage extends EPackage {
 	 * The feature id for the '<em><b>End Angle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2611,6 +2897,7 @@ public interface DiPackage extends EPackage {
 	 * The number of structural features of the '<em>Ellipse</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2620,6 +2907,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.di.PapyrusKeyEnumeration <em>Papyrus Key Enumeration</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.PapyrusKeyEnumeration
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getPapyrusKeyEnumeration()
 	 * @generated
@@ -2630,6 +2918,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '<em>Point</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.draw2d.geometry.Point
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getPoint()
 	 * @generated
@@ -2640,6 +2929,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '<em>Dimension</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.draw2d.geometry.Dimension
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDimension()
 	 * @generated
@@ -2650,6 +2940,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '<em>Double</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDouble()
 	 * @generated
 	 */
@@ -2659,6 +2950,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '<em>RGB</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.swt.graphics.RGB
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getRGB()
 	 * @generated
@@ -2669,6 +2961,7 @@ public interface DiPackage extends EPackage {
 	 * The meta object id for the '<em>String</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see java.lang.String
 	 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getString()
 	 * @generated
@@ -2680,6 +2973,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.DiagramElement <em>Diagram Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Diagram Element</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement
 	 * @generated
@@ -2690,6 +2984,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.di.DiagramElement#getProperty <em>Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Property</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getProperty()
 	 * @see #getDiagramElement()
@@ -2701,6 +2996,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#isIsVisible <em>Is Visible</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Is Visible</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#isIsVisible()
 	 * @see #getDiagramElement()
@@ -2712,6 +3008,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.di.DiagramElement#getReference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Reference</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getReference()
 	 * @see #getDiagramElement()
@@ -2723,6 +3020,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.di.DiagramElement#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the container reference '<em>Container</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getContainer()
 	 * @see #getDiagramElement()
@@ -2734,6 +3032,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getFontFamily <em>Font Family</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Font Family</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getFontFamily()
 	 * @see #getDiagramElement()
@@ -2745,6 +3044,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getFontSize <em>Font Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Font Size</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getFontSize()
 	 * @see #getDiagramElement()
@@ -2756,6 +3056,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getLineStyle <em>Line Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Line Style</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getLineStyle()
 	 * @see #getDiagramElement()
@@ -2767,6 +3068,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getLineThickness <em>Line Thickness</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Line Thickness</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getLineThickness()
 	 * @see #getDiagramElement()
@@ -2778,6 +3080,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getFontColor <em>Font Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Font Color</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getFontColor()
 	 * @see #getDiagramElement()
@@ -2789,6 +3092,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getForegroundColor <em>Foreground Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Foreground Color</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getForegroundColor()
 	 * @see #getDiagramElement()
@@ -2800,6 +3104,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getBackgroundColor <em>Background Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Background Color</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getBackgroundColor()
 	 * @see #getDiagramElement()
@@ -2811,6 +3116,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#getBorderColor <em>Border Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Border Color</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getBorderColor()
 	 * @see #getDiagramElement()
@@ -2822,6 +3128,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramElement#isTranslucent <em>Translucent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Translucent</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#isTranslucent()
 	 * @see #getDiagramElement()
@@ -2833,6 +3140,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.di.DiagramElement#getSemanticParent <em>Semantic Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Semantic Parent</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getSemanticParent()
 	 * @see #getDiagramElement()
@@ -2844,6 +3152,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.di.DiagramElement#getSemanticChild <em>Semantic Child</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Semantic Child</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramElement#getSemanticChild()
 	 * @see #getDiagramElement()
@@ -2855,6 +3164,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.GraphElement <em>Graph Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Graph Element</em>'.
 	 * @see org.eclipse.papyrus.di.GraphElement
 	 * @generated
@@ -2865,6 +3175,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.di.GraphElement#getContained <em>Contained</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Contained</em>'.
 	 * @see org.eclipse.papyrus.di.GraphElement#getContained()
 	 * @see #getGraphElement()
@@ -2876,6 +3187,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.di.GraphElement#getLink <em>Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Link</em>'.
 	 * @see org.eclipse.papyrus.di.GraphElement#getLink()
 	 * @see #getGraphElement()
@@ -2887,6 +3199,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.di.GraphElement#getSemanticModel <em>Semantic Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference '<em>Semantic Model</em>'.
 	 * @see org.eclipse.papyrus.di.GraphElement#getSemanticModel()
 	 * @see #getGraphElement()
@@ -2898,6 +3211,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.GraphElement#getPosition <em>Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Position</em>'.
 	 * @see org.eclipse.papyrus.di.GraphElement#getPosition()
 	 * @see #getGraphElement()
@@ -2909,6 +3223,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.di.GraphElement#getAnchorage <em>Anchorage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Anchorage</em>'.
 	 * @see org.eclipse.papyrus.di.GraphElement#getAnchorage()
 	 * @see #getGraphElement()
@@ -2920,6 +3235,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.Reference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Reference</em>'.
 	 * @see org.eclipse.papyrus.di.Reference
 	 * @generated
@@ -2927,9 +3243,11 @@ public interface DiPackage extends EPackage {
 	EClass getReference();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Reference#isIsIndividualRepresentation <em>Is Individual Representation</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Reference#isIsIndividualRepresentation
+	 * <em>Is Individual Representation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Is Individual Representation</em>'.
 	 * @see org.eclipse.papyrus.di.Reference#isIsIndividualRepresentation()
 	 * @see #getReference()
@@ -2941,6 +3259,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.di.Reference#getReferenced <em>Referenced</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Referenced</em>'.
 	 * @see org.eclipse.papyrus.di.Reference#getReferenced()
 	 * @see #getReference()
@@ -2952,6 +3271,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.Property <em>Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Property</em>'.
 	 * @see org.eclipse.papyrus.di.Property
 	 * @generated
@@ -2962,6 +3282,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Property#getKey <em>Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Key</em>'.
 	 * @see org.eclipse.papyrus.di.Property#getKey()
 	 * @see #getProperty()
@@ -2973,6 +3294,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Property#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Value</em>'.
 	 * @see org.eclipse.papyrus.di.Property#getValue()
 	 * @see #getProperty()
@@ -2984,6 +3306,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.GraphEdge <em>Graph Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Graph Edge</em>'.
 	 * @see org.eclipse.papyrus.di.GraphEdge
 	 * @generated
@@ -2994,6 +3317,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.di.GraphEdge#getAnchor <em>Anchor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Anchor</em>'.
 	 * @see org.eclipse.papyrus.di.GraphEdge#getAnchor()
 	 * @see #getGraphEdge()
@@ -3005,6 +3329,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.di.GraphEdge#getWaypoints <em>Waypoints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute list '<em>Waypoints</em>'.
 	 * @see org.eclipse.papyrus.di.GraphEdge#getWaypoints()
 	 * @see #getGraphEdge()
@@ -3016,6 +3341,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.GraphConnector <em>Graph Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Graph Connector</em>'.
 	 * @see org.eclipse.papyrus.di.GraphConnector
 	 * @generated
@@ -3026,6 +3352,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.GraphConnector#getPosition <em>Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Position</em>'.
 	 * @see org.eclipse.papyrus.di.GraphConnector#getPosition()
 	 * @see #getGraphConnector()
@@ -3037,6 +3364,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.di.GraphConnector#getGraphEdge <em>Graph Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Graph Edge</em>'.
 	 * @see org.eclipse.papyrus.di.GraphConnector#getGraphEdge()
 	 * @see #getGraphConnector()
@@ -3048,6 +3376,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.di.GraphConnector#getGraphElement <em>Graph Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the container reference '<em>Graph Element</em>'.
 	 * @see org.eclipse.papyrus.di.GraphConnector#getGraphElement()
 	 * @see #getGraphConnector()
@@ -3059,6 +3388,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.GraphNode <em>Graph Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Graph Node</em>'.
 	 * @see org.eclipse.papyrus.di.GraphNode
 	 * @generated
@@ -3069,6 +3399,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.GraphNode#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Size</em>'.
 	 * @see org.eclipse.papyrus.di.GraphNode#getSize()
 	 * @see #getGraphNode()
@@ -3080,6 +3411,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.DiagramLink <em>Diagram Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Diagram Link</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramLink
 	 * @generated
@@ -3090,6 +3422,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.di.DiagramLink#getDiagram <em>Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Diagram</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramLink#getDiagram()
 	 * @see #getDiagramLink()
@@ -3101,6 +3434,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramLink#getZoom <em>Zoom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Zoom</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramLink#getZoom()
 	 * @see #getDiagramLink()
@@ -3112,6 +3446,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.DiagramLink#getViewport <em>Viewport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Viewport</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramLink#getViewport()
 	 * @see #getDiagramLink()
@@ -3123,6 +3458,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.di.DiagramLink#getGraphElement <em>Graph Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Graph Element</em>'.
 	 * @see org.eclipse.papyrus.di.DiagramLink#getGraphElement()
 	 * @see #getDiagramLink()
@@ -3134,6 +3470,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.Diagram <em>Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Diagram</em>'.
 	 * @see org.eclipse.papyrus.di.Diagram
 	 * @generated
@@ -3144,6 +3481,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.di.Diagram#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference '<em>Owner</em>'.
 	 * @see org.eclipse.papyrus.di.Diagram#getOwner()
 	 * @see #getDiagram()
@@ -3155,6 +3493,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Diagram#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.di.Diagram#getName()
 	 * @see #getDiagram()
@@ -3166,6 +3505,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Diagram#getZoom <em>Zoom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Zoom</em>'.
 	 * @see org.eclipse.papyrus.di.Diagram#getZoom()
 	 * @see #getDiagram()
@@ -3177,6 +3517,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Diagram#getViewport <em>Viewport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Viewport</em>'.
 	 * @see org.eclipse.papyrus.di.Diagram#getViewport()
 	 * @see #getDiagram()
@@ -3188,6 +3529,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.di.Diagram#getDiagramLink <em>Diagram Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Diagram Link</em>'.
 	 * @see org.eclipse.papyrus.di.Diagram#getDiagramLink()
 	 * @see #getDiagram()
@@ -3199,6 +3541,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Diagram#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see org.eclipse.papyrus.di.Diagram#getType()
 	 * @see #getDiagram()
@@ -3210,6 +3553,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.SemanticModelBridge <em>Semantic Model Bridge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Semantic Model Bridge</em>'.
 	 * @see org.eclipse.papyrus.di.SemanticModelBridge
 	 * @generated
@@ -3220,6 +3564,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.SemanticModelBridge#getPresentation <em>Presentation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Presentation</em>'.
 	 * @see org.eclipse.papyrus.di.SemanticModelBridge#getPresentation()
 	 * @see #getSemanticModelBridge()
@@ -3231,6 +3576,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.di.SemanticModelBridge#getGraphElement <em>Graph Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Graph Element</em>'.
 	 * @see org.eclipse.papyrus.di.SemanticModelBridge#getGraphElement()
 	 * @see #getSemanticModelBridge()
@@ -3242,6 +3588,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.SimpleSemanticModelElement <em>Simple Semantic Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Simple Semantic Model Element</em>'.
 	 * @see org.eclipse.papyrus.di.SimpleSemanticModelElement
 	 * @generated
@@ -3252,6 +3599,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.SimpleSemanticModelElement#getTypeinfo <em>Typeinfo</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Typeinfo</em>'.
 	 * @see org.eclipse.papyrus.di.SimpleSemanticModelElement#getTypeinfo()
 	 * @see #getSimpleSemanticModelElement()
@@ -3263,6 +3611,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.Uml1SemanticModelBridge <em>Uml1 Semantic Model Bridge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Uml1 Semantic Model Bridge</em>'.
 	 * @see org.eclipse.papyrus.di.Uml1SemanticModelBridge
 	 * @generated
@@ -3273,6 +3622,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.di.Uml1SemanticModelBridge#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Element</em>'.
 	 * @see org.eclipse.papyrus.di.Uml1SemanticModelBridge#getElement()
 	 * @see #getUml1SemanticModelBridge()
@@ -3284,6 +3634,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.CoreSemanticModelBridge <em>Core Semantic Model Bridge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Core Semantic Model Bridge</em>'.
 	 * @see org.eclipse.papyrus.di.CoreSemanticModelBridge
 	 * @generated
@@ -3294,6 +3645,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.di.CoreSemanticModelBridge#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Element</em>'.
 	 * @see org.eclipse.papyrus.di.CoreSemanticModelBridge#getElement()
 	 * @see #getCoreSemanticModelBridge()
@@ -3305,6 +3657,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.LeafElement <em>Leaf Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Leaf Element</em>'.
 	 * @see org.eclipse.papyrus.di.LeafElement
 	 * @generated
@@ -3315,6 +3668,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.TextElement <em>Text Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Text Element</em>'.
 	 * @see org.eclipse.papyrus.di.TextElement
 	 * @generated
@@ -3325,6 +3679,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.TextElement#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Text</em>'.
 	 * @see org.eclipse.papyrus.di.TextElement#getText()
 	 * @see #getTextElement()
@@ -3336,6 +3691,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Image</em>'.
 	 * @see org.eclipse.papyrus.di.Image
 	 * @generated
@@ -3346,6 +3702,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Image#getUri <em>Uri</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Uri</em>'.
 	 * @see org.eclipse.papyrus.di.Image#getUri()
 	 * @see #getImage()
@@ -3357,6 +3714,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Image#getMimeType <em>Mime Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Mime Type</em>'.
 	 * @see org.eclipse.papyrus.di.Image#getMimeType()
 	 * @see #getImage()
@@ -3368,6 +3726,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.GraphicPrimitive <em>Graphic Primitive</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Graphic Primitive</em>'.
 	 * @see org.eclipse.papyrus.di.GraphicPrimitive
 	 * @generated
@@ -3378,6 +3737,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.Polilyne <em>Polilyne</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Polilyne</em>'.
 	 * @see org.eclipse.papyrus.di.Polilyne
 	 * @generated
@@ -3388,6 +3748,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.di.Polilyne#getWaypoints <em>Waypoints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute list '<em>Waypoints</em>'.
 	 * @see org.eclipse.papyrus.di.Polilyne#getWaypoints()
 	 * @see #getPolilyne()
@@ -3399,6 +3760,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.di.Polilyne#getClosed <em>Closed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute list '<em>Closed</em>'.
 	 * @see org.eclipse.papyrus.di.Polilyne#getClosed()
 	 * @see #getPolilyne()
@@ -3410,6 +3772,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.di.Ellipse <em>Ellipse</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Ellipse</em>'.
 	 * @see org.eclipse.papyrus.di.Ellipse
 	 * @generated
@@ -3420,6 +3783,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Ellipse#getCenter <em>Center</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Center</em>'.
 	 * @see org.eclipse.papyrus.di.Ellipse#getCenter()
 	 * @see #getEllipse()
@@ -3431,6 +3795,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Ellipse#getRadiusX <em>Radius X</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Radius X</em>'.
 	 * @see org.eclipse.papyrus.di.Ellipse#getRadiusX()
 	 * @see #getEllipse()
@@ -3442,6 +3807,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Ellipse#getRadiusY <em>Radius Y</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Radius Y</em>'.
 	 * @see org.eclipse.papyrus.di.Ellipse#getRadiusY()
 	 * @see #getEllipse()
@@ -3453,6 +3819,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Ellipse#getRotation <em>Rotation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Rotation</em>'.
 	 * @see org.eclipse.papyrus.di.Ellipse#getRotation()
 	 * @see #getEllipse()
@@ -3464,6 +3831,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Ellipse#getStartAngle <em>Start Angle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Start Angle</em>'.
 	 * @see org.eclipse.papyrus.di.Ellipse#getStartAngle()
 	 * @see #getEllipse()
@@ -3475,6 +3843,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.di.Ellipse#getEndAngle <em>End Angle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>End Angle</em>'.
 	 * @see org.eclipse.papyrus.di.Ellipse#getEndAngle()
 	 * @see #getEllipse()
@@ -3486,6 +3855,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.di.PapyrusKeyEnumeration <em>Papyrus Key Enumeration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for enum '<em>Papyrus Key Enumeration</em>'.
 	 * @see org.eclipse.papyrus.di.PapyrusKeyEnumeration
 	 * @generated
@@ -3496,6 +3866,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.draw2d.geometry.Point <em>Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for data type '<em>Point</em>'.
 	 * @see org.eclipse.draw2d.geometry.Point
 	 * @model instanceClass="org.eclipse.draw2d.geometry.Point"
@@ -3507,6 +3878,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.draw2d.geometry.Dimension <em>Dimension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for data type '<em>Dimension</em>'.
 	 * @see org.eclipse.draw2d.geometry.Dimension
 	 * @model instanceClass="org.eclipse.draw2d.geometry.Dimension"
@@ -3518,6 +3890,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for data type '<em>Double</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for data type '<em>Double</em>'.
 	 * @model instanceClass="double"
 	 * @generated
@@ -3528,6 +3901,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.swt.graphics.RGB <em>RGB</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for data type '<em>RGB</em>'.
 	 * @see org.eclipse.swt.graphics.RGB
 	 * @model instanceClass="org.eclipse.swt.graphics.RGB"
@@ -3539,6 +3913,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the meta object for data type '{@link java.lang.String <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for data type '<em>String</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"
@@ -3550,6 +3925,7 @@ public interface DiPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -3559,19 +3935,22 @@ public interface DiPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.DiagramElementImpl <em>Diagram Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.DiagramElementImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDiagramElement()
 		 * @generated
@@ -3582,6 +3961,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Property</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM_ELEMENT__PROPERTY = eINSTANCE.getDiagramElement_Property();
@@ -3590,6 +3970,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Is Visible</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__IS_VISIBLE = eINSTANCE.getDiagramElement_IsVisible();
@@ -3598,6 +3979,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Reference</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM_ELEMENT__REFERENCE = eINSTANCE.getDiagramElement_Reference();
@@ -3606,6 +3988,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM_ELEMENT__CONTAINER = eINSTANCE.getDiagramElement_Container();
@@ -3614,6 +3997,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Font Family</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__FONT_FAMILY = eINSTANCE.getDiagramElement_FontFamily();
@@ -3622,6 +4006,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Font Size</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__FONT_SIZE = eINSTANCE.getDiagramElement_FontSize();
@@ -3630,6 +4015,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Line Style</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__LINE_STYLE = eINSTANCE.getDiagramElement_LineStyle();
@@ -3638,6 +4024,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Line Thickness</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__LINE_THICKNESS = eINSTANCE.getDiagramElement_LineThickness();
@@ -3646,6 +4033,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Font Color</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__FONT_COLOR = eINSTANCE.getDiagramElement_FontColor();
@@ -3654,6 +4042,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Foreground Color</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__FOREGROUND_COLOR = eINSTANCE.getDiagramElement_ForegroundColor();
@@ -3662,6 +4051,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Background Color</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__BACKGROUND_COLOR = eINSTANCE.getDiagramElement_BackgroundColor();
@@ -3670,6 +4060,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Border Color</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__BORDER_COLOR = eINSTANCE.getDiagramElement_BorderColor();
@@ -3678,6 +4069,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Translucent</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_ELEMENT__TRANSLUCENT = eINSTANCE.getDiagramElement_Translucent();
@@ -3686,6 +4078,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Semantic Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM_ELEMENT__SEMANTIC_PARENT = eINSTANCE.getDiagramElement_SemanticParent();
@@ -3694,6 +4087,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Semantic Child</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM_ELEMENT__SEMANTIC_CHILD = eINSTANCE.getDiagramElement_SemanticChild();
@@ -3702,6 +4096,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.GraphElementImpl <em>Graph Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.GraphElementImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphElement()
 		 * @generated
@@ -3712,6 +4107,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Contained</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference GRAPH_ELEMENT__CONTAINED = eINSTANCE.getGraphElement_Contained();
@@ -3720,6 +4116,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Link</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference GRAPH_ELEMENT__LINK = eINSTANCE.getGraphElement_Link();
@@ -3728,6 +4125,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Semantic Model</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference GRAPH_ELEMENT__SEMANTIC_MODEL = eINSTANCE.getGraphElement_SemanticModel();
@@ -3736,6 +4134,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute GRAPH_ELEMENT__POSITION = eINSTANCE.getGraphElement_Position();
@@ -3744,6 +4143,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Anchorage</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference GRAPH_ELEMENT__ANCHORAGE = eINSTANCE.getGraphElement_Anchorage();
@@ -3752,6 +4152,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.ReferenceImpl <em>Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.ReferenceImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getReference()
 		 * @generated
@@ -3762,6 +4163,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Is Individual Representation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute REFERENCE__IS_INDIVIDUAL_REPRESENTATION = eINSTANCE.getReference_IsIndividualRepresentation();
@@ -3770,6 +4172,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Referenced</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference REFERENCE__REFERENCED = eINSTANCE.getReference_Referenced();
@@ -3778,6 +4181,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.PropertyImpl <em>Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.PropertyImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getProperty()
 		 * @generated
@@ -3788,6 +4192,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute PROPERTY__KEY = eINSTANCE.getProperty_Key();
@@ -3796,6 +4201,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute PROPERTY__VALUE = eINSTANCE.getProperty_Value();
@@ -3804,6 +4210,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.GraphEdgeImpl <em>Graph Edge</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.GraphEdgeImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphEdge()
 		 * @generated
@@ -3814,6 +4221,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Anchor</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference GRAPH_EDGE__ANCHOR = eINSTANCE.getGraphEdge_Anchor();
@@ -3822,6 +4230,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Waypoints</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute GRAPH_EDGE__WAYPOINTS = eINSTANCE.getGraphEdge_Waypoints();
@@ -3830,6 +4239,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.GraphConnectorImpl <em>Graph Connector</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.GraphConnectorImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphConnector()
 		 * @generated
@@ -3840,6 +4250,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute GRAPH_CONNECTOR__POSITION = eINSTANCE.getGraphConnector_Position();
@@ -3848,6 +4259,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Graph Edge</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference GRAPH_CONNECTOR__GRAPH_EDGE = eINSTANCE.getGraphConnector_GraphEdge();
@@ -3856,6 +4268,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Graph Element</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference GRAPH_CONNECTOR__GRAPH_ELEMENT = eINSTANCE.getGraphConnector_GraphElement();
@@ -3864,6 +4277,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.GraphNodeImpl <em>Graph Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.GraphNodeImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphNode()
 		 * @generated
@@ -3874,6 +4288,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute GRAPH_NODE__SIZE = eINSTANCE.getGraphNode_Size();
@@ -3882,6 +4297,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.DiagramLinkImpl <em>Diagram Link</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.DiagramLinkImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDiagramLink()
 		 * @generated
@@ -3892,6 +4308,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Diagram</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM_LINK__DIAGRAM = eINSTANCE.getDiagramLink_Diagram();
@@ -3900,6 +4317,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Zoom</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_LINK__ZOOM = eINSTANCE.getDiagramLink_Zoom();
@@ -3908,6 +4326,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Viewport</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM_LINK__VIEWPORT = eINSTANCE.getDiagramLink_Viewport();
@@ -3916,6 +4335,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Graph Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM_LINK__GRAPH_ELEMENT = eINSTANCE.getDiagramLink_GraphElement();
@@ -3924,6 +4344,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.DiagramImpl <em>Diagram</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.DiagramImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDiagram()
 		 * @generated
@@ -3934,6 +4355,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Owner</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM__OWNER = eINSTANCE.getDiagram_Owner();
@@ -3942,6 +4364,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM__NAME = eINSTANCE.getDiagram_Name();
@@ -3950,6 +4373,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Zoom</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM__ZOOM = eINSTANCE.getDiagram_Zoom();
@@ -3958,6 +4382,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Viewport</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM__VIEWPORT = eINSTANCE.getDiagram_Viewport();
@@ -3966,6 +4391,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Diagram Link</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DIAGRAM__DIAGRAM_LINK = eINSTANCE.getDiagram_DiagramLink();
@@ -3974,6 +4400,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DIAGRAM__TYPE = eINSTANCE.getDiagram_Type();
@@ -3982,6 +4409,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.SemanticModelBridgeImpl <em>Semantic Model Bridge</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.SemanticModelBridgeImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getSemanticModelBridge()
 		 * @generated
@@ -3992,6 +4420,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Presentation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute SEMANTIC_MODEL_BRIDGE__PRESENTATION = eINSTANCE.getSemanticModelBridge_Presentation();
@@ -4000,14 +4429,17 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Graph Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference SEMANTIC_MODEL_BRIDGE__GRAPH_ELEMENT = eINSTANCE.getSemanticModelBridge_GraphElement();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.SimpleSemanticModelElementImpl <em>Simple Semantic Model Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.SimpleSemanticModelElementImpl <em>Simple Semantic Model Element</em>}'
+		 * class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.SimpleSemanticModelElementImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getSimpleSemanticModelElement()
 		 * @generated
@@ -4018,14 +4450,17 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Typeinfo</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO = eINSTANCE.getSimpleSemanticModelElement_Typeinfo();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.Uml1SemanticModelBridgeImpl <em>Uml1 Semantic Model Bridge</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.Uml1SemanticModelBridgeImpl <em>Uml1 Semantic Model Bridge</em>}'
+		 * class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.Uml1SemanticModelBridgeImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getUml1SemanticModelBridge()
 		 * @generated
@@ -4036,14 +4471,17 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference UML1_SEMANTIC_MODEL_BRIDGE__ELEMENT = eINSTANCE.getUml1SemanticModelBridge_Element();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.CoreSemanticModelBridgeImpl <em>Core Semantic Model Bridge</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.CoreSemanticModelBridgeImpl <em>Core Semantic Model Bridge</em>}'
+		 * class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.CoreSemanticModelBridgeImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getCoreSemanticModelBridge()
 		 * @generated
@@ -4054,6 +4492,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT = eINSTANCE.getCoreSemanticModelBridge_Element();
@@ -4062,6 +4501,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.LeafElementImpl <em>Leaf Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.LeafElementImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getLeafElement()
 		 * @generated
@@ -4072,6 +4512,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.TextElementImpl <em>Text Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.TextElementImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getTextElement()
 		 * @generated
@@ -4082,6 +4523,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute TEXT_ELEMENT__TEXT = eINSTANCE.getTextElement_Text();
@@ -4090,6 +4532,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.ImageImpl <em>Image</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.ImageImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getImage()
 		 * @generated
@@ -4100,6 +4543,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute IMAGE__URI = eINSTANCE.getImage_Uri();
@@ -4108,6 +4552,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Mime Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute IMAGE__MIME_TYPE = eINSTANCE.getImage_MimeType();
@@ -4116,6 +4561,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.GraphicPrimitiveImpl <em>Graphic Primitive</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.GraphicPrimitiveImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getGraphicPrimitive()
 		 * @generated
@@ -4126,6 +4572,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.PolilyneImpl <em>Polilyne</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.PolilyneImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getPolilyne()
 		 * @generated
@@ -4136,6 +4583,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Waypoints</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute POLILYNE__WAYPOINTS = eINSTANCE.getPolilyne_Waypoints();
@@ -4144,6 +4592,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Closed</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute POLILYNE__CLOSED = eINSTANCE.getPolilyne_Closed();
@@ -4152,6 +4601,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.impl.EllipseImpl <em>Ellipse</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.EllipseImpl
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getEllipse()
 		 * @generated
@@ -4162,6 +4612,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Center</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ELLIPSE__CENTER = eINSTANCE.getEllipse_Center();
@@ -4170,6 +4621,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Radius X</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ELLIPSE__RADIUS_X = eINSTANCE.getEllipse_RadiusX();
@@ -4178,6 +4630,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Radius Y</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ELLIPSE__RADIUS_Y = eINSTANCE.getEllipse_RadiusY();
@@ -4186,6 +4639,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Rotation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ELLIPSE__ROTATION = eINSTANCE.getEllipse_Rotation();
@@ -4194,6 +4648,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Start Angle</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ELLIPSE__START_ANGLE = eINSTANCE.getEllipse_StartAngle();
@@ -4202,6 +4657,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em><b>End Angle</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ELLIPSE__END_ANGLE = eINSTANCE.getEllipse_EndAngle();
@@ -4210,6 +4666,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.di.PapyrusKeyEnumeration <em>Papyrus Key Enumeration</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.PapyrusKeyEnumeration
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getPapyrusKeyEnumeration()
 		 * @generated
@@ -4220,6 +4677,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em>Point</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.draw2d.geometry.Point
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getPoint()
 		 * @generated
@@ -4230,6 +4688,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em>Dimension</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.draw2d.geometry.Dimension
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDimension()
 		 * @generated
@@ -4240,6 +4699,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em>Double</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getDouble()
 		 * @generated
 		 */
@@ -4249,6 +4709,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em>RGB</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.swt.graphics.RGB
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getRGB()
 		 * @generated
@@ -4259,6 +4720,7 @@ public interface DiPackage extends EPackage {
 		 * The meta object literal for the '<em>String</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see java.lang.String
 		 * @see org.eclipse.papyrus.di.impl.DiPackageImpl#getString()
 		 * @generated

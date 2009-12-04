@@ -70,19 +70,19 @@ public class LabelEditorDialog extends Dialog {
 	 * </p>
 	 * 
 	 * @param dialogTitle
-	 *            the dialog title, or <code>null</code> if none
+	 *        the dialog title, or <code>null</code> if none
 	 * @param validator
-	 *            an input validator, or <code>null</code> if none
+	 *        an input validator, or <code>null</code> if none
 	 * @param parentShell
-	 *            the parent shell, or <code>null</code> to create a top-level shell
+	 *        the parent shell, or <code>null</code> to create a top-level shell
 	 * @param initialValue
-	 *            the initial input value, or <code>null</code> if none (equivalent to the empty
-	 *            string)
+	 *        the initial input value, or <code>null</code> if none (equivalent to the empty
+	 *        string)
 	 */
 	public LabelEditorDialog(Shell parentShell, String dialogTitle, String initialValue, IInputValidator validator) {
 		super(parentShell);
 		this.title = dialogTitle;
-		if (initialValue == null) {
+		if(initialValue == null) {
 			value = "";//$NON-NLS-1$
 		} else {
 			value = initialValue;
@@ -100,7 +100,7 @@ public class LabelEditorDialog extends Dialog {
 	 */
 	@Override
 	protected void buttonPressed(int buttonId) {
-		if (buttonId == IDialogConstants.OK_ID) {
+		if(buttonId == IDialogConstants.OK_ID) {
 			value = viewer.getDocument().get();
 		} else {
 			value = null;
@@ -121,7 +121,7 @@ public class LabelEditorDialog extends Dialog {
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		if (title != null) {
+		if(title != null) {
 			shell.setText(title);
 		}
 	}
@@ -168,15 +168,13 @@ public class LabelEditorDialog extends Dialog {
 	/**
 	 * Validates the input.
 	 * <p>
-	 * The default implementation of this framework method delegates the request to the supplied
-	 * input validator object; if it finds the input invalid, the error message is displayed in the
-	 * dialog's message line. This hook method is called whenever the text changes in the input
-	 * field.
+	 * The default implementation of this framework method delegates the request to the supplied input validator object; if it finds the input
+	 * invalid, the error message is displayed in the dialog's message line. This hook method is called whenever the text changes in the input field.
 	 * </p>
 	 */
 	protected void validateInput() {
 		String errorMessage = null;
-		if (validator != null) {
+		if(validator != null) {
 			errorMessage = validator.isValid(viewer.getDocument().get());
 		}
 		// Bug 16256: important not to treat "" (blank error) the same as null
@@ -188,13 +186,13 @@ public class LabelEditorDialog extends Dialog {
 	 * Sets or clears the error message. If not <code>null</code>, the OK button is disabled.
 	 * 
 	 * @param errorMessage
-	 *            the error message, or <code>null</code> to clear
+	 *        the error message, or <code>null</code> to clear
 	 * 
 	 * @since 3.0
 	 */
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
-		if ((errorMessageText != null) && !errorMessageText.isDisposed()) {
+		if((errorMessageText != null) && !errorMessageText.isDisposed()) {
 			Image errorImage = Activator.getImage("icons/error.gif");
 			errorMessageText.setImage(errorMessage == null ? null : errorImage);
 			errorMessageText.setText(errorMessage == null ? "" : errorMessage); //$NON-NLS-1$
@@ -203,7 +201,7 @@ public class LabelEditorDialog extends Dialog {
 			// button creation.
 			// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=113643
 			Control button = getButton(IDialogConstants.OK_ID);
-			if (button != null) {
+			if(button != null) {
 				button.setEnabled(errorMessage == null);
 			}
 		}

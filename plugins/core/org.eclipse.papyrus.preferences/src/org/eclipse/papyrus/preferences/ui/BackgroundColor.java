@@ -32,13 +32,14 @@ public class BackgroundColor extends AbstractGroup {
 
 	/**
 	 * Instantiates a new background color group.
+	 * 
 	 * @param parent
-	 *            the parent of the composite
+	 *        the parent of the composite
 	 * @param String
-	 *            the title of the page
+	 *        the title of the page
 	 * @param dialogPage
-	 *            to set the page in field editor
-	 **/            
+	 *        to set the page in field editor
+	 **/
 	public BackgroundColor(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
 		createContent(parent);
@@ -56,7 +57,7 @@ public class BackgroundColor extends AbstractGroup {
 	 * Creates the content.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public void createContent(Composite parent) {
 
@@ -72,17 +73,16 @@ public class BackgroundColor extends AbstractGroup {
 		Label useGradientLabel = new Label(useGradientCompo, SWT.NULL);
 		useGradientLabel.setText(Messages.AbstractPapyrusNodePreferencePage_Activate);
 		Composite useGradientFillEditorCompo = getEncapsulatedCompo(useGradientCompo);
-		useGradientFillEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.GRADIENT_POLICY),
-				"", useGradientFillEditorCompo); //$NON-NLS-1$
+		useGradientFillEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.GRADIENT_POLICY), "", useGradientFillEditorCompo); //$NON-NLS-1$
 		useGradientFillEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(useGradientFillEditor);
 
 		Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
 		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_GRADIENT),
 				gradientFillEditorCompo);
 		gradientFillEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(gradientFillEditor);
 	}
 

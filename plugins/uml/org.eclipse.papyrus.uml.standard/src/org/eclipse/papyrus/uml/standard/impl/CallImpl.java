@@ -71,11 +71,11 @@ public class CallImpl extends EObjectImpl implements Call {
 	 * @generated
 	 */
 	public Usage getBase_Usage() {
-		if (base_Usage != null && base_Usage.eIsProxy()) {
-			InternalEObject oldBase_Usage = (InternalEObject) base_Usage;
-			base_Usage = (Usage) eResolveProxy(oldBase_Usage);
-			if (base_Usage != oldBase_Usage) {
-				if (eNotificationRequired())
+		if(base_Usage != null && base_Usage.eIsProxy()) {
+			InternalEObject oldBase_Usage = (InternalEObject)base_Usage;
+			base_Usage = (Usage)eResolveProxy(oldBase_Usage);
+			if(base_Usage != oldBase_Usage) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.CALL__BASE_USAGE,
 							oldBase_Usage, base_Usage));
 			}
@@ -100,7 +100,7 @@ public class CallImpl extends EObjectImpl implements Call {
 	public void setBase_Usage(Usage newBase_Usage) {
 		Usage oldBase_Usage = base_Usage;
 		base_Usage = newBase_Usage;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.CALL__BASE_USAGE, oldBase_Usage,
 					base_Usage));
 	}
@@ -112,9 +112,9 @@ public class CallImpl extends EObjectImpl implements Call {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.CALL__BASE_USAGE:
-			if (resolve)
+			if(resolve)
 				return getBase_Usage();
 			return basicGetBase_Usage();
 		}
@@ -128,9 +128,9 @@ public class CallImpl extends EObjectImpl implements Call {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.CALL__BASE_USAGE:
-			setBase_Usage((Usage) newValue);
+			setBase_Usage((Usage)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,9 +143,9 @@ public class CallImpl extends EObjectImpl implements Call {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.CALL__BASE_USAGE:
-			setBase_Usage((Usage) null);
+			setBase_Usage((Usage)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -158,7 +158,7 @@ public class CallImpl extends EObjectImpl implements Call {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.CALL__BASE_USAGE:
 			return base_Usage != null;
 		}

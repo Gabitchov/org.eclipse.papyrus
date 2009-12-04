@@ -51,6 +51,7 @@ public class UMLPaletteFactory {
 
 	/**
 	 * Creates "Nodes" palette tool group
+	 * 
 	 * @generated
 	 */
 	private PaletteContainer createNodes1Group() {
@@ -75,6 +76,7 @@ public class UMLPaletteFactory {
 
 	/**
 	 * Creates "Links" palette tool group
+	 * 
 	 * @generated
 	 */
 	private PaletteContainer createLinks2Group() {
@@ -86,6 +88,7 @@ public class UMLPaletteFactory {
 
 	/**
 	 * Creates "Comments" palette tool group
+	 * 
 	 * @generated
 	 */
 	private PaletteContainer createComments3Group() {
@@ -98,6 +101,7 @@ public class UMLPaletteFactory {
 
 	/**
 	 * Creates "State" palette tool group
+	 * 
 	 * @generated
 	 */
 	private PaletteContainer createState2Group() {
@@ -114,7 +118,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createStateMachine1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.StateMachine_1001);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.StateMachine1CreationTool_title,
@@ -129,7 +133,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createRegion3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
 		types.add(UMLElementTypes.Region_2001);
 		types.add(UMLElementTypes.Region_2004);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -145,7 +149,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createFinalState4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.FinalState_2008);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.FinalState4CreationTool_title,
@@ -160,7 +164,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInitial5CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2009);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Initial5CreationTool_title,
@@ -175,7 +179,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createShallowHistory6CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2010);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.ShallowHistory6CreationTool_title,
@@ -190,7 +194,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDeepHistory7CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2011);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.DeepHistory7CreationTool_title,
@@ -205,7 +209,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createFork8CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2012);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Fork8CreationTool_title,
@@ -220,7 +224,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createJoin9CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2013);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Join9CreationTool_title,
@@ -235,7 +239,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createJunction10CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2014);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Junction10CreationTool_title,
@@ -250,7 +254,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createChoice11CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2015);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Choice11CreationTool_title,
@@ -265,7 +269,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createTerminate12CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Pseudostate_2016);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Terminate12CreationTool_title,
@@ -280,7 +284,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createEntryPoint13CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(4);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(4);
 		types.add(UMLElementTypes.ConnectionPointReference_2006);
 		types.add(UMLElementTypes.Pseudostate_2018);
 		types.add(UMLElementTypes.Pseudostate_2020);
@@ -290,10 +294,10 @@ public class UMLPaletteFactory {
 				Messages.EntryPoint13CreationTool_desc, types);
 		entry
 				.setSmallIcon(UMLDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
 		entry
 				.setLargeIcon(UMLDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
 		return entry;
 	}
 
@@ -301,7 +305,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createExitPoint14CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(4);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(4);
 		types.add(UMLElementTypes.ConnectionPointReference_2007);
 		types.add(UMLElementTypes.Pseudostate_2019);
 		types.add(UMLElementTypes.Pseudostate_2021);
@@ -311,10 +315,10 @@ public class UMLPaletteFactory {
 				Messages.ExitPoint14CreationTool_desc, types);
 		entry
 				.setSmallIcon(UMLDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
 		entry
 				.setLargeIcon(UMLDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
 		return entry;
 	}
 
@@ -322,7 +326,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createTransition1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Transition_3001);
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Transition1CreationTool_title,
@@ -337,7 +341,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createComment1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.Comment_2024);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Comment1CreationTool_title,
@@ -352,7 +356,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createCommentLink2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
 		types.add(UMLElementTypes.ElementOwnedComment_3002);
 		types.add(UMLElementTypes.CommentAnnotatedElement_3003);
 		LinkToolEntry entry = new LinkToolEntry(
@@ -368,7 +372,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createSimpleState1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.State_2002);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.SimpleState1CreationTool_title,
@@ -383,7 +387,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createCompositeState2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
 		types.add(UMLElementTypes.State_2003);
 		types.add(UMLElementTypes.State_2017);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -399,7 +403,7 @@ public class UMLPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createSubmachineState3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types.add(UMLElementTypes.State_2005);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.SubmachineState3CreationTool_title,
@@ -421,6 +425,7 @@ public class UMLPaletteFactory {
 		private final List elementTypes;
 
 		private boolean fixedSize = false;
+
 		private Dimension size = null;
 
 		/**
@@ -458,12 +463,12 @@ public class UMLPaletteFactory {
 			// that tool must be employed
 			boolean fixedSize = false;
 			Tool superTool = super.createTool();
-			if (superTool != null) {
+			if(superTool != null) {
 				return superTool;
 			}
 
 			Tool tool = null;
-			if (!fixedSize) {
+			if(!fixedSize) {
 				tool = new UnspecifiedTypeCreationTool(elementTypes);
 			} else {
 				//mgil: changed the way to create a new UnspecifiedFixedSizeType Creation element
@@ -491,23 +496,23 @@ public class UMLPaletteFactory {
 		protected void updateTargetRequest() {
 			super.updateTargetRequest();
 			Dimension d = getCreateRequest().getSize();
-			if (d == null) {
+			if(d == null) {
 				return;
 			}
 			int x = 0, y = 0;
-			if (d.width > size.width) {
+			if(d.width > size.width) {
 				x = d.width - size.width;
 				d.width = size.width;
 			}
-			if (d.height > size.height) {
+			if(d.height > size.height) {
 				y = d.height - size.height;
 				d.height = size.height;
 			}
 			Point p = getCreateRequest().getLocation();
-			if (p.x < getStartLocation().x) {
+			if(p.x < getStartLocation().x) {
 				p.x += x;
 			}
-			if (p.y < getStartLocation().y) {
+			if(p.y < getStartLocation().y) {
 				p.y += y;
 			}
 		}

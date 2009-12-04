@@ -34,7 +34,7 @@ public class ComponentNestedClassifierCompartmentItemSemanticEditPolicy extends 
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Class_3004 == req.getElementType()) {
+		if(UMLElementTypes.Class_3004 == req.getElementType()) {
 			return getGEFWrapper(new Class2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

@@ -58,9 +58,9 @@ public class LabelDirectEditManager extends DirectEditManager {
 	 * 
 	 * @param locator
 	 * @param labelCtrl
-	 *            The label to edit
+	 *        The label to edit
 	 * @param source
-	 *            The EditPart owning the label.
+	 *        The EditPart owning the label.
 	 */
 	public LabelDirectEditManager(GraphicalEditPart source, CellEditorLocator locator, ILabelControler labelCtrl) {
 		super(source, null, locator);
@@ -77,11 +77,11 @@ public class LabelDirectEditManager extends DirectEditManager {
 	 */
 	@Override
 	protected void bringDown() {
-		if (actionHandler != null) {
+		if(actionHandler != null) {
 			actionHandler.dispose();
 			actionHandler = null;
 		}
-		if (actionBars != null) {
+		if(actionBars != null) {
 			restoreSavedActions(actionBars);
 			actionBars.updateActionBars();
 			actionBars = null;

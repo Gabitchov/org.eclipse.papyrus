@@ -40,7 +40,7 @@ public class DeploymentSpecificationPropertiesEditionProvider implements IProper
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof DeploymentSpecification) {
+		if(eObject instanceof DeploymentSpecification) {
 			return new DeploymentSpecificationPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class DeploymentSpecificationPropertiesEditionProvider implements IProper
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof DeploymentSpecification) {
-			if (DeploymentSpecificationBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof DeploymentSpecification) {
+			if(DeploymentSpecificationBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new DeploymentSpecificationBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

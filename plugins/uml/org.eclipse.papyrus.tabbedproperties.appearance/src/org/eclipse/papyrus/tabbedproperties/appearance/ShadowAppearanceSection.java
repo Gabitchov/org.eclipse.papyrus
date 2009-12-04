@@ -68,9 +68,9 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 	 * Creates the controls.
 	 * 
 	 * @param tabbedPropertySheetPage
-	 *            the tabbed property sheet page
+	 *        the tabbed property sheet page
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -93,18 +93,18 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 		cheboxShadowAppearanceListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if (editPart != null) {
-					if (((View) editPart.getModel()) != null) {
+				if(editPart != null) {
+					if(((View)editPart.getModel()) != null) {
 
 						Boolean isChecked = checboxShadowAppearence.getSelection();
 
 						// createProperty value
 						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
 						// command creation
-						if (editingDomain != null) {
+						if(editingDomain != null) {
 							editingDomain.getCommandStack().execute(
-									new SetShadowFigureCommand(editingDomain, ((EModelElement) editPart.getModel()),
-											isChecked));
+									new SetShadowFigureCommand(editingDomain, ((EModelElement)editPart.getModel()),
+									isChecked));
 						}
 
 						refresh();
@@ -127,15 +127,15 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 	 */
 	@Override
 	public void refresh() {
-		if ((!checboxShadowAppearence.isDisposed())) {
+		if((!checboxShadowAppearence.isDisposed())) {
 
 			checboxShadowAppearence.removeSelectionListener(cheboxShadowAppearanceListener);
 
-			if (editPart != null) {
+			if(editPart != null) {
 
-				if ((editPart.getModel()) != null) {
+				if((editPart.getModel()) != null) {
 					checboxShadowAppearence.setSelection(ShadowFigureHelper
-							.getShadowFigureValue((EModelElement) editPart.getModel()));
+							.getShadowFigureValue((EModelElement)editPart.getModel()));
 
 				} else {
 					checboxShadowAppearence.setEnabled(false);
@@ -150,7 +150,7 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 	 */
 	public void dispose() {
 		super.dispose();
-		if (checboxShadowAppearence != null && !checboxShadowAppearence.isDisposed())
+		if(checboxShadowAppearence != null && !checboxShadowAppearence.isDisposed())
 			checboxShadowAppearence.removeSelectionListener(cheboxShadowAppearanceListener);
 	}
 
@@ -159,22 +159,22 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		Object input = ((IStructuredSelection) selection).getFirstElement();
+		Object input = ((IStructuredSelection)selection).getFirstElement();
 		// look for modelManager
-		if (input instanceof GraphicalEditPart) {
-			editPart = ((GraphicalEditPart) input);
+		if(input instanceof GraphicalEditPart) {
+			editPart = ((GraphicalEditPart)input);
 			// selectionChanged(selection);
 		}
 		// When the selection is computed from the outline, get the associated editor
-		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part)
+		if(part instanceof ContentOutline) {
+			IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part)
 					.getAdapter(IContributedContentsView.class));
-			if (contributedView != null) {
-				part = (IWorkbenchPart) contributedView.getContributingPart();
+			if(contributedView != null) {
+				part = (IWorkbenchPart)contributedView.getContributingPart();
 			}
 		}
-		if (part instanceof IMultiDiagramEditor) {
-			editor = (IMultiDiagramEditor) part;
+		if(part instanceof IMultiDiagramEditor) {
+			editor = (IMultiDiagramEditor)part;
 			backbone = editor.getDefaultContext();
 			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
 		} else

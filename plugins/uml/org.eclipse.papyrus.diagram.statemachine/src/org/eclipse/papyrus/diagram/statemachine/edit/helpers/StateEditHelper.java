@@ -23,13 +23,13 @@ public class StateEditHelper extends UMLBaseEditHelper {
 	 */
 	@Override
 	protected ICommand getConfigureCommand(ConfigureRequest req) {
-		if (req.getElementToConfigure() instanceof State
+		if(req.getElementToConfigure() instanceof State
 				&& req.getParameter(PARAMETER_CONFIGURE_SUBMACHINE) instanceof StateMachineWrapper) {
-			State state = (State) req.getElementToConfigure();
-			URI stateMachineURI = ((StateMachineWrapper) req
+			State state = (State)req.getElementToConfigure();
+			URI stateMachineURI = ((StateMachineWrapper)req
 					.getParameter(PARAMETER_CONFIGURE_SUBMACHINE))
 					.getStateMachineURI();
-			StateMachine stateMachine = (StateMachine) req.getEditingDomain()
+			StateMachine stateMachine = (StateMachine)req.getEditingDomain()
 					.getResourceSet().getEObject(stateMachineURI, true);
 			SetRequest request = new SetRequest(state, UMLPackage.eINSTANCE
 					.getState_Submachine(), stateMachine);

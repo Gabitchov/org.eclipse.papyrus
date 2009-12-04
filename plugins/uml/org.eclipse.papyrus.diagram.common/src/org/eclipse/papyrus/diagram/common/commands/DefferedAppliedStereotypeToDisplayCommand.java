@@ -45,11 +45,11 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 	 * Instantiates a new sets the applied stereotype to display command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param stereotypeList
-	 *            the stereotype list
+	 *        the stereotype list
 	 */
 	public DefferedAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, IAdaptable adapter,
 			String stereotypeList, String appliedStereotypepresentationKind) {
@@ -72,28 +72,28 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 	 */
 	@Override
 	protected void doExecute() {
-		View view = (View) adapter.getAdapter(View.class);
+		View view = (View)adapter.getAdapter(View.class);
 		EObject view_element = view.getElement();
-		Element element = (Element) view_element;
+		Element element = (Element)view_element;
 		Iterator<Stereotype> listStereotype = element.getAppliedStereotypes().iterator();
 		StringBuffer buffer = new StringBuffer();
-		while (listStereotype.hasNext()) {
+		while(listStereotype.hasNext()) {
 			Stereotype stereotypec = listStereotype.next();
 			String stereotype_string = stereotypec.getQualifiedName();
 			buffer.append(stereotype_string);
-			if (listStereotype.hasNext()) {
+			if(listStereotype.hasNext()) {
 				buffer.append(",");
 			}
 		}
 		stereotypeList = buffer.toString();
 
 		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(view);
-		if (!"".equals(stereoList)) {
+		if(!"".equals(stereoList)) {
 			stereoList = stereoList + ",";
 		}
 		stereoList = stereoList + stereotypeList;
 		EAnnotation oldAnnotation = view.getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (oldAnnotation == null) {
+		if(oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, view);
 		}

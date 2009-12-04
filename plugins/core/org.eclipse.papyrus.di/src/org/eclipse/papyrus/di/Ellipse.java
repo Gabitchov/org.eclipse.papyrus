@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -19,32 +19,33 @@ import org.eclipse.draw2d.geometry.Point;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ellipse</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.Ellipse#getCenter <em>Center</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.Ellipse#getRadiusX <em>Radius X</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.Ellipse#getRadiusY <em>Radius Y</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.Ellipse#getRotation <em>Rotation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.Ellipse#getStartAngle <em>Start Angle</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.Ellipse#getEndAngle <em>End Angle</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.Ellipse#getCenter <em>Center</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.Ellipse#getRadiusX <em>Radius X</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.Ellipse#getRadiusY <em>Radius Y</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.Ellipse#getRotation <em>Rotation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.Ellipse#getStartAngle <em>Start Angle</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.Ellipse#getEndAngle <em>End Angle</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.di.DiPackage#getEllipse()
  * @model
  * @generated
  */
 public interface Ellipse extends GraphicPrimitive {
+
 	/**
 	 * Returns the value of the '<em><b>Center</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Center</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Center</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Center</em>' attribute.
 	 * @see #setCenter(Point)
 	 * @see org.eclipse.papyrus.di.DiPackage#getEllipse_Center()
@@ -57,7 +58,9 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.Ellipse#getCenter <em>Center</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Center</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Center</em>' attribute.
 	 * @see #getCenter()
 	 * @generated
 	 */
@@ -67,10 +70,10 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Returns the value of the '<em><b>Radius X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Radius X</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Radius X</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Radius X</em>' attribute.
 	 * @see #setRadiusX(double)
 	 * @see org.eclipse.papyrus.di.DiPackage#getEllipse_RadiusX()
@@ -83,7 +86,9 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.Ellipse#getRadiusX <em>Radius X</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Radius X</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Radius X</em>' attribute.
 	 * @see #getRadiusX()
 	 * @generated
 	 */
@@ -93,10 +98,10 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Returns the value of the '<em><b>Radius Y</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Radius Y</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Radius Y</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Radius Y</em>' attribute.
 	 * @see #setRadiusY(double)
 	 * @see org.eclipse.papyrus.di.DiPackage#getEllipse_RadiusY()
@@ -109,7 +114,9 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.Ellipse#getRadiusY <em>Radius Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Radius Y</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Radius Y</em>' attribute.
 	 * @see #getRadiusY()
 	 * @generated
 	 */
@@ -119,10 +126,10 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Returns the value of the '<em><b>Rotation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Rotation</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Rotation</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Rotation</em>' attribute.
 	 * @see #setRotation(double)
 	 * @see org.eclipse.papyrus.di.DiPackage#getEllipse_Rotation()
@@ -135,7 +142,9 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.Ellipse#getRotation <em>Rotation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rotation</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Rotation</em>' attribute.
 	 * @see #getRotation()
 	 * @generated
 	 */
@@ -145,10 +154,10 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Returns the value of the '<em><b>Start Angle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Start Angle</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Start Angle</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Start Angle</em>' attribute.
 	 * @see #setStartAngle(double)
 	 * @see org.eclipse.papyrus.di.DiPackage#getEllipse_StartAngle()
@@ -161,7 +170,9 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.Ellipse#getStartAngle <em>Start Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Start Angle</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Start Angle</em>' attribute.
 	 * @see #getStartAngle()
 	 * @generated
 	 */
@@ -171,10 +182,10 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Returns the value of the '<em><b>End Angle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End Angle</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>End Angle</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>End Angle</em>' attribute.
 	 * @see #setEndAngle(double)
 	 * @see org.eclipse.papyrus.di.DiPackage#getEllipse_EndAngle()
@@ -187,7 +198,9 @@ public interface Ellipse extends GraphicPrimitive {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.Ellipse#getEndAngle <em>End Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End Angle</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>End Angle</em>' attribute.
 	 * @see #getEndAngle()
 	 * @generated
 	 */

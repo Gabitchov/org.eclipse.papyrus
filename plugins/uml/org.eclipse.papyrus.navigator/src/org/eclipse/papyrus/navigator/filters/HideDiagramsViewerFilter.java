@@ -22,12 +22,11 @@ import org.eclipse.jface.viewers.ViewerFilter;
 public class HideDiagramsViewerFilter extends ViewerFilter {
 
 	/**
-	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-	 *      java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		if (element instanceof Diagram) {
+		if(element instanceof Diagram) {
 			return false;
 		}
 		return true;

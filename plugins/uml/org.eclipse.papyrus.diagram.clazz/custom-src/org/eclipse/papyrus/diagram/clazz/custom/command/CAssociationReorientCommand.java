@@ -45,18 +45,18 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
 		// if (getLink().getEndTypes().size() != 1) {
-		if (getLink().getEndTypes().size() == 1) {
+		if(getLink().getEndTypes().size() == 1) {
 			return false;
 		}
-		Type target = (Type) getLink().getEndTypes().get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Type target = (Type)getLink().getEndTypes().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistAssociation_4001(container, getNewSource(), target);
 	}
@@ -65,19 +65,19 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
 
 		// if (getLink().getEndTypes().size() != 1) {
-		if (getLink().getEndTypes().size() == 1) {
+		if(getLink().getEndTypes().size() == 1) {
 			return false;
 		}
-		Type source = (Type) getLink().getEndTypes().get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Type source = (Type)getLink().getEndTypes().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistAssociation_4001(container, source, getNewTarget());
 	}

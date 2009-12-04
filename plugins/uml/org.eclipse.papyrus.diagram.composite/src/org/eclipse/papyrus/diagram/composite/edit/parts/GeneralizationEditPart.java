@@ -56,8 +56,8 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
-			((GeneralizationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
+			((GeneralizationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
@@ -68,7 +68,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,7 +78,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
+		if(childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -88,7 +88,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -110,7 +110,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public GeneralizationFigure getPrimaryShape() {
-		return (GeneralizationFigure) getFigure();
+		return (GeneralizationFigure)getFigure();
 	}
 
 }

@@ -63,9 +63,8 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 * upon which it depends.
 	 * 
 	 * <p>
-	 * This method is used to initialize {@link ConstraintsPackage#eINSTANCE} when that field is
-	 * accessed. Clients should not invoke it directly. Instead, they should simply access that
-	 * field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link ConstraintsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -73,11 +72,11 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 * @generated
 	 */
 	public static ConstraintsPackage init() {
-		if (isInited)
-			return (ConstraintsPackage) EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
+		if(isInited)
+			return (ConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl) (EPackage.Registry.INSTANCE
+		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl)(EPackage.Registry.INSTANCE
 				.get(eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
 				: new ConstraintsPackageImpl());
 
@@ -87,39 +86,39 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl) (EPackage.Registry.INSTANCE
+		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
-		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl) (EPackage.Registry.INSTANCE
+		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ModelelementsPackage.eNS_URI) instanceof ModelelementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ModelelementsPackage.eNS_URI)
 				: ModelelementsPackage.eINSTANCE);
-		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl) (EPackage.Registry.INSTANCE
+		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(BlocksPackage.eNS_URI) instanceof BlocksPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BlocksPackage.eNS_URI) : BlocksPackage.eINSTANCE);
-		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl) (EPackage.Registry.INSTANCE
+		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI) instanceof PortandflowsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI)
 				: PortandflowsPackage.eINSTANCE);
-		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl) (EPackage.Registry.INSTANCE
+		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) instanceof ActivitiesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) : ActivitiesPackage.eINSTANCE);
-		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl) (EPackage.Registry.INSTANCE
+		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) instanceof AllocationsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) : AllocationsPackage.eINSTANCE);
-		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl) (EPackage.Registry.INSTANCE
+		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI)
 				: RequirementsPackage.eINSTANCE);
-		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl) (EPackage.Registry.INSTANCE
+		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(InteractionsPackage.eNS_URI) instanceof InteractionsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(InteractionsPackage.eNS_URI)
 				: InteractionsPackage.eINSTANCE);
-		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl) (EPackage.Registry.INSTANCE
+		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI) instanceof StatemachinesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI)
 				: StatemachinesPackage.eINSTANCE);
-		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl) (EPackage.Registry.INSTANCE
+		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) instanceof UsecasesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) : UsecasesPackage.eINSTANCE);
 
@@ -186,13 +185,13 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package package URI
 	 * value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init
-	 * init()}, which also performs initialization of the package, or returns the registered
-	 * package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.sysml.constraints.ConstraintsPackage#eNS_URI
@@ -210,7 +209,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if(isCreated)
 			return;
 		isCreated = true;
 
@@ -245,7 +244,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 * @generated
 	 */
 	public EReference getConstraintProperty_Base_Property() {
-		return (EReference) constraintPropertyEClass.getEStructuralFeatures().get(0);
+		return (EReference)constraintPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -254,7 +253,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 * @generated
 	 */
 	public ConstraintsFactory getConstraintsFactory() {
-		return (ConstraintsFactory) getEFactoryInstance();
+		return (ConstraintsFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -264,7 +263,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if(isInitialized)
 			return;
 		isInitialized = true;
 
@@ -274,8 +273,8 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		BlocksPackage theBlocksPackage = (BlocksPackage) EPackage.Registry.INSTANCE.getEPackage(BlocksPackage.eNS_URI);
-		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		BlocksPackage theBlocksPackage = (BlocksPackage)EPackage.Registry.INSTANCE.getEPackage(BlocksPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
 

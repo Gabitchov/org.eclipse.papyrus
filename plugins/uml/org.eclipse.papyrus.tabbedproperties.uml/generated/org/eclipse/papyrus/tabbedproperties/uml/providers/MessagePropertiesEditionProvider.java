@@ -40,7 +40,7 @@ public class MessagePropertiesEditionProvider implements IPropertiesEditionProvi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Message) {
+		if(eObject instanceof Message) {
 			return new MessagePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class MessagePropertiesEditionProvider implements IPropertiesEditionProvi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Message) {
-			if (MessageBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Message) {
+			if(MessageBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new MessageBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

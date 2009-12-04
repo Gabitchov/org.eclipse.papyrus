@@ -24,15 +24,12 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Connector Property</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Connector Property</b></em> '. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getBase_Property <em>Base
- * Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getConnector <em>Connector
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getBase_Property <em>Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getConnector <em>Connector </em>}</li>
  * </ul>
  * </p>
  * 
@@ -94,13 +91,13 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY:
-			if (resolve)
+			if(resolve)
 				return getBase_Property();
 			return basicGetBase_Property();
 		case BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR:
-			if (resolve)
+			if(resolve)
 				return getConnector();
 			return basicGetConnector();
 		}
@@ -114,7 +111,7 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY:
 			return base_Property != null;
 		case BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR:
@@ -130,12 +127,12 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) newValue);
+			setBase_Property((Property)newValue);
 			return;
 		case BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR:
-			setConnector((Connector) newValue);
+			setConnector((Connector)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,12 +155,12 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) null);
+			setBase_Property((Property)null);
 			return;
 		case BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR:
-			setConnector((Connector) null);
+			setConnector((Connector)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -175,11 +172,11 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	 * @generated
 	 */
 	public Property getBase_Property() {
-		if (base_Property != null && base_Property.eIsProxy()) {
-			InternalEObject oldBase_Property = (InternalEObject) base_Property;
-			base_Property = (Property) eResolveProxy(oldBase_Property);
-			if (base_Property != oldBase_Property) {
-				if (eNotificationRequired())
+		if(base_Property != null && base_Property.eIsProxy()) {
+			InternalEObject oldBase_Property = (InternalEObject)base_Property;
+			base_Property = (Property)eResolveProxy(oldBase_Property);
+			if(base_Property != oldBase_Property) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 			}
@@ -193,11 +190,11 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	 * @generated
 	 */
 	public Connector getConnector() {
-		if (connector != null && connector.eIsProxy()) {
-			InternalEObject oldConnector = (InternalEObject) connector;
-			connector = (Connector) eResolveProxy(oldConnector);
-			if (connector != oldConnector) {
-				if (eNotificationRequired())
+		if(connector != null && connector.eIsProxy()) {
+			InternalEObject oldConnector = (InternalEObject)connector;
+			connector = (Connector)eResolveProxy(oldConnector);
+			if(connector != oldConnector) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR, oldConnector, connector));
 			}
@@ -213,7 +210,7 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	public void setBase_Property(Property newBase_Property) {
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY,
 					oldBase_Property, base_Property));
 	}
@@ -226,7 +223,7 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	public void setConnector(Connector newConnector) {
 		Connector oldConnector = connector;
 		connector = newConnector;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR,
 					oldConnector, connector));
 	}

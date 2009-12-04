@@ -28,7 +28,7 @@ public class InteractionsResourceImpl extends XMLResourceImpl {
 	 * Creates an instance of the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param uri
-	 *            the URI of the new resource.
+	 *        the URI of the new resource.
 	 * @generated
 	 */
 	public InteractionsResourceImpl(URI uri) {

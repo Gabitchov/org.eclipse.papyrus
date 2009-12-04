@@ -72,15 +72,15 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	 * @generated NOT
 	 */
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		result.setBorder(null);
 		IFigure contentPane = result.getContentPane();
-		if (contentPane != null) {
+		if(contentPane != null) {
 			contentPane.setBorder(null);
 			LayoutManager layout = contentPane.getLayoutManager();
-			if (layout instanceof ConstrainedToolbarLayout) {
-				ConstrainedToolbarLayout constrainedToolbarLayout = (ConstrainedToolbarLayout) layout;
+			if(layout instanceof ConstrainedToolbarLayout) {
+				ConstrainedToolbarLayout constrainedToolbarLayout = (ConstrainedToolbarLayout)layout;
 				constrainedToolbarLayout.setStretchMajorAxis(true);
 				constrainedToolbarLayout.setStretchMinorAxis(true);
 			}
@@ -113,8 +113,8 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	@Override
 	protected EditPart createChild(Object model) {
 		EditPart child = super.createChild(model);
-		if (getChildren() == null || getChildren().isEmpty() && child instanceof InteractionOperandEditPart) {
-			((InteractionOperandEditPart) child).setFirstOperand(true);
+		if(getChildren() == null || getChildren().isEmpty() && child instanceof InteractionOperandEditPart) {
+			((InteractionOperandEditPart)child).setFirstOperand(true);
 		}
 		return child;
 	}
@@ -123,7 +123,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	 * @generated
 	 */
 	protected void setRatio(Double ratio) {
-		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+		if(getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
 		}
 	}
@@ -138,20 +138,20 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 
-		if (feature instanceof EStructuralFeature) {
-			EStructuralFeature ref = (EStructuralFeature) feature;
+		if(feature instanceof EStructuralFeature) {
+			EStructuralFeature ref = (EStructuralFeature)feature;
 			String typeName = ref.getName();
-			if (CHILDREN_TYPE.equals(typeName)) {
-				if (event.getEventType() == Notification.UNSET || event.getEventType() == Notification.REMOVE) {
+			if(CHILDREN_TYPE.equals(typeName)) {
+				if(event.getEventType() == Notification.UNSET || event.getEventType() == Notification.REMOVE) {
 					List<?> children = getChildren();
-					if (children != null && children.size() > 1) {
+					if(children != null && children.size() > 1) {
 						Object firstChild = children.get(0);
-						if (firstChild instanceof InteractionOperandEditPart) {
-							InteractionOperandEditPart firstOperandChild = (InteractionOperandEditPart) firstChild;
+						if(firstChild instanceof InteractionOperandEditPart) {
+							InteractionOperandEditPart firstOperandChild = (InteractionOperandEditPart)firstChild;
 							firstOperandChild.setFirstOperand(false);
 							Object firstChildModel = firstOperandChild.getModel();
-							if (firstChildModel != null && firstChildModel.equals(event.getOldValue())) {
-								InteractionOperandEditPart secondOperandChild = (InteractionOperandEditPart) children
+							if(firstChildModel != null && firstChildModel.equals(event.getOldValue())) {
+								InteractionOperandEditPart secondOperandChild = (InteractionOperandEditPart)children
 										.get(1);
 								secondOperandChild.setFirstOperand(true);
 							}

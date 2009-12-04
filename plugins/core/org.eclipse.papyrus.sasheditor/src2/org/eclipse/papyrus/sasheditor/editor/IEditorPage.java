@@ -13,7 +13,7 @@ import org.eclipse.ui.IEditorPart;
  * in the SashContainer Visitor.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public interface IEditorPage extends IPage {
 

@@ -47,9 +47,9 @@ public class PortCreateCommand extends org.eclipse.papyrus.diagram.composite.edi
 	 */
 	@Override
 	public boolean canExecute() {
-		Property target = (Property) getElementToEdit();
+		Property target = (Property)getElementToEdit();
 
-		if ((target.getType() != null) && (target.getType() instanceof StructuredClassifier)) {
+		if((target.getType() != null) && (target.getType() instanceof StructuredClassifier)) {
 			return true;
 		}
 
@@ -69,14 +69,14 @@ public class PortCreateCommand extends org.eclipse.papyrus.diagram.composite.edi
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Port newElement = UMLFactory.eINSTANCE.createPort();
 
-		StructuredClassifier owner = (StructuredClassifier) ((Property) getElementToEdit()).getType();
+		StructuredClassifier owner = (StructuredClassifier)((Property)getElementToEdit()).getType();
 		owner.getOwnedAttributes().add(newElement);
 
 		UMLElementTypes.init_Port_3069(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 }

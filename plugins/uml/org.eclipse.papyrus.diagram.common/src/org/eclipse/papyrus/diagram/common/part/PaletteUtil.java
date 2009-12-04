@@ -51,22 +51,22 @@ public class PaletteUtil {
 	 * Returns the parent container by its ID
 	 * 
 	 * @param entry
-	 *            the palette container for which parent container is looked
+	 *        the palette container for which parent container is looked
 	 * @param parentID
-	 *            the id of the parent container
+	 *        the id of the parent container
 	 * @return the parent
 	 */
 	public static PaletteContainer getContainerByID(PaletteContainer container, String parentID) {
 		// check this element is the searched parent;
-		if (parentID.equals(container.getId())) {
+		if(parentID.equals(container.getId())) {
 			return container;
 		}
 
 		// element is not the parent. Look its children
 		Iterator<PaletteContainer> it = getDirectChildContainers(container).iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			PaletteContainer tmp = getContainerByID(it.next(), parentID);
-			if (tmp != null) {
+			if(tmp != null) {
 				return tmp;
 			}
 		}
@@ -77,9 +77,9 @@ public class PaletteUtil {
 	 * Returns the parent container by its ID
 	 * 
 	 * @param entry
-	 *            the palette entry for which parent container is looked
+	 *        the palette entry for which parent container is looked
 	 * @param parentID
-	 *            the id of the parent container
+	 *        the id of the parent container
 	 * @return the parent
 	 */
 	public static PaletteContainer getContainerByID(PaletteEntry entry, String parentID) {
@@ -92,17 +92,17 @@ public class PaletteUtil {
 	 * Return the child containers directly contained by the specified container
 	 * 
 	 * @param container
-	 *            the container to look in.
+	 *        the container to look in.
 	 * @return the list of directly contained elements
 	 */
 	@SuppressWarnings("unchecked")
 	public static List<PaletteContainer> getDirectChildContainers(PaletteContainer container) {
 		List<PaletteContainer> containers = new ArrayList<PaletteContainer>();
 		Iterator<PaletteEntry> it = container.getChildren().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			PaletteEntry entry = it.next();
-			if (entry instanceof PaletteContainer) {
-				containers.add((PaletteContainer) entry);
+			if(entry instanceof PaletteContainer) {
+				containers.add((PaletteContainer)entry);
 			}
 		}
 		return containers;
@@ -112,12 +112,12 @@ public class PaletteUtil {
 	 * Retrieves the root element for the given container
 	 * 
 	 * @param container
-	 *            the container for which the root is searched
+	 *        the container for which the root is searched
 	 * @return the root of the container
 	 */
 	public static PaletteContainer getRoot(PaletteContainer container) {
 		// if container has a parent, returns it.
-		if (container.getParent() != null) {
+		if(container.getParent() != null) {
 			return getRoot(container.getParent());
 		}
 		// else, root element is the container itself.
@@ -128,7 +128,7 @@ public class PaletteUtil {
 	 * Retrieves the root element for the given palette entry
 	 * 
 	 * @param container
-	 *            the container for which the root is searched
+	 *        the container for which the root is searched
 	 * @return the root of the container
 	 */
 	public static PaletteContainer getRoot(PaletteEntry entry) {
@@ -147,19 +147,19 @@ public class PaletteUtil {
 	 * return tool entries for the given {@link PaletteContainer} and its sub-containers
 	 * 
 	 * @param container
-	 *            the container that contains the ToolEntries
+	 *        the container that contains the ToolEntries
 	 * @return the list of tool entries or an empty list
 	 */
 	public static List<ToolEntry> getAllToolEntries(PaletteContainer container) {
 		final List<ToolEntry> entries = new ArrayList<ToolEntry>();
 		Iterator<PaletteEntry> it = container.getChildren().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			PaletteEntry entry = it.next();
-			if (entry instanceof ToolEntry) {
-				entries.add((ToolEntry) entry);
+			if(entry instanceof ToolEntry) {
+				entries.add((ToolEntry)entry);
 			}
-			if (entry instanceof PaletteContainer) {
-				entries.addAll(getAllToolEntries((PaletteContainer) entry));
+			if(entry instanceof PaletteContainer) {
+				entries.addAll(getAllToolEntries((PaletteContainer)entry));
 			}
 		}
 		return entries;
@@ -169,9 +169,9 @@ public class PaletteUtil {
 	 * Looks for the memento with the correct id from the root momento
 	 * 
 	 * @param rootMemento
-	 *            the root memento from which the memento is searched
+	 *        the root memento from which the memento is searched
 	 * @param id
-	 *            the id of the memento to search
+	 *        the id of the memento to search
 	 * @return the memento with the given ID or <code>null</code> if no memento was found
 	 */
 	// @unused
@@ -185,17 +185,17 @@ public class PaletteUtil {
 	 * Return all entries from a palette
 	 * 
 	 * @param paletteRoot
-	 *            the root from which tools are retrieved
+	 *        the root from which tools are retrieved
 	 * @return the list of entries
 	 */
 	public static List<PaletteEntry> getAllEntries(PaletteContainer container) {
 		List<PaletteEntry> elements = new ArrayList<PaletteEntry>();
-		for (Object object : container.getChildren()) {
-			if (object instanceof PaletteContainer) {
-				elements.add((PaletteContainer) object);
-				elements.addAll(getAllEntries((PaletteContainer) object));
-			} else if (object instanceof ToolEntry) {
-				elements.add((ToolEntry) object);
+		for(Object object : container.getChildren()) {
+			if(object instanceof PaletteContainer) {
+				elements.add((PaletteContainer)object);
+				elements.addAll(getAllEntries((PaletteContainer)object));
+			} else if(object instanceof ToolEntry) {
+				elements.add((ToolEntry)object);
 			}
 		}
 		return elements;
@@ -205,24 +205,24 @@ public class PaletteUtil {
 	 * Returns all available entries for the given editor ID
 	 * 
 	 * @param editorID
-	 *            the editor to be contributed
+	 *        the editor to be contributed
 	 * @param priority
-	 *            the priority max for the entries
+	 *        the priority max for the entries
 	 * @return the set of available entries
 	 */
 	public static Set<? extends PaletteEntry> getAvailableEntries(IEditorPart part, ProviderPriority priority) {
 		Set<? extends PaletteEntry> entries = new HashSet<PaletteEntry>();
 
 		// retrieve all provider for the given editor ID
-		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>) PapyrusPaletteService
+		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService
 				.getInstance().getProviders();
 		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(),
 				new PaletteRoot(), new HashMap<Object, Object>());
 		PaletteRoot root = new PaletteRoot();
 
-		for (PapyrusPaletteService.ProviderDescriptor descriptor : providers) {
-			if (descriptor.providesWithVisibility(operation)) {
-				((IPaletteProvider) descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root,
+		for(PapyrusPaletteService.ProviderDescriptor descriptor : providers) {
+			if(descriptor.providesWithVisibility(operation)) {
+				((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root,
 						new HashMap<Object, Object>());
 			}
 
@@ -235,13 +235,13 @@ public class PaletteUtil {
 	 * Returns the list of stereotypes String from a serialize string form
 	 * 
 	 * @param serializedForm
-	 *            the serialized form of the list of stereotypes
+	 *        the serialized form of the list of stereotypes
 	 * @return the list of stereotypes String from a serialize string form
 	 */
 	public static List<String> getStereotypeListFromString(String serializedForm) {
 		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ",");
 		List<String> list = new ArrayList<String>();
-		while (tokenizer.hasMoreElements()) {
+		while(tokenizer.hasMoreElements()) {
 			list.add(tokenizer.nextToken());
 		}
 		return list;
@@ -251,15 +251,15 @@ public class PaletteUtil {
 	 * Returns the list of stereotypes String under a serialized form
 	 * 
 	 * @param list
-	 *            the list of stereotypes to serialize
+	 *        the list of stereotypes to serialize
 	 * @return the list of stereotypes String under a serialized form
 	 */
 	public static String getSerializedStereotypeListFromList(List<String> list) {
 		StringBuffer buffer = new StringBuffer();
 		Iterator<String> it = list.listIterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			buffer.append(it.next());
-			if (it.hasNext()) {
+			if(it.hasNext()) {
 				buffer.append(",");
 			}
 		}
@@ -270,15 +270,15 @@ public class PaletteUtil {
 	 * Returns the list of profile Qualified Names String under a serialized form
 	 * 
 	 * @param list
-	 *            the list of profiles to serialize
+	 *        the list of profiles to serialize
 	 * @return the list of profiles String under a serialized form
 	 */
 	public static String getSerializedProfileListFromSet(Set<String> profiles) {
 		StringBuffer buffer = new StringBuffer();
 		Iterator<String> it = profiles.iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			buffer.append(it.next());
-			if (it.hasNext()) {
+			if(it.hasNext()) {
 				buffer.append(",");
 			}
 		}
@@ -289,13 +289,13 @@ public class PaletteUtil {
 	 * Returns the list of profiles String from a serialize string form
 	 * 
 	 * @param serializedForm
-	 *            the serialized form of the list of stereotypes
+	 *        the serialized form of the list of stereotypes
 	 * @return the list of profiles String from a serialize string form
 	 */
 	public static Set<String> getProfileSetFromString(String serializedForm) {
 		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ",");
 		Set<String> list = new HashSet<String>();
-		while (tokenizer.hasMoreElements()) {
+		while(tokenizer.hasMoreElements()) {
 			list.add(tokenizer.nextToken());
 		}
 		return list;
@@ -305,40 +305,40 @@ public class PaletteUtil {
 	 * returns <code>true</code> if the descriptor have all necessary profiles
 	 * 
 	 * @param part
-	 *            the editor part for which the palette is shown
+	 *        the editor part for which the palette is shown
 	 * @param papyrusProviderDesc
-	 *            the current provider descriptor to test
+	 *        the current provider descriptor to test
 	 * @return <code>true</code> if all required profile are present
 	 */
 	public static boolean areRequiredProfileApplied(IEditorPart part,
 			PapyrusPaletteService.ProviderDescriptor papyrusProviderDesc) {
-		if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
+		if(!(part instanceof DiagramEditorWithFlyOutPalette)) {
 			PapyrusTrace.log(IStatus.WARNING, "trying to check a papyrus palette descriptor outside papyrus framework");
 			return false;
 		}
-		if (papyrusProviderDesc instanceof PapyrusPaletteService.LocalProviderDescriptor) {
-			IPaletteDescription description = ((PapyrusPaletteService.LocalProviderDescriptor) papyrusProviderDesc)
+		if(papyrusProviderDesc instanceof PapyrusPaletteService.LocalProviderDescriptor) {
+			IPaletteDescription description = ((PapyrusPaletteService.LocalProviderDescriptor)papyrusProviderDesc)
 					.getDescription();
 			// checks the presence of required profile
-			Diagram diagram = ((DiagramEditorWithFlyOutPalette) part).getDiagram();
+			Diagram diagram = ((DiagramEditorWithFlyOutPalette)part).getDiagram();
 			EObject element = diagram.getElement();
-			if (element instanceof Element) {
-				org.eclipse.uml2.uml.Package package_ = ((Element) element).getNearestPackage();
+			if(element instanceof Element) {
+				org.eclipse.uml2.uml.Package package_ = ((Element)element).getNearestPackage();
 				List<Profile> appliedProfiles = package_.getAllAppliedProfiles();
 				List<String> appliedProfilesNames = new ArrayList<String>();
-				for (Profile profile : appliedProfiles) {
+				for(Profile profile : appliedProfiles) {
 					appliedProfilesNames.add(profile.getQualifiedName());
 				}
 
 				// compare to the list of profiles used by the palette
 				Map<String, String> properties = description.getProperties();
-				if (description != null) {
+				if(description != null) {
 					String requiredProfilesList = properties.get(IPapyrusPaletteConstant.PROFILE_LIST);
-					if (requiredProfilesList != null) {
+					if(requiredProfilesList != null) {
 						// parse requiredProfile string (profile1QN, profile2QN, etc.)
 						Set<String> requiredProfiles = PaletteUtil.getProfileSetFromString(requiredProfilesList);
-						for (String requiredProfileName : requiredProfiles) {
-							if (!appliedProfilesNames.contains(requiredProfileName)) {
+						for(String requiredProfileName : requiredProfiles) {
+							if(!appliedProfilesNames.contains(requiredProfileName)) {
 								return false;
 							}
 						}

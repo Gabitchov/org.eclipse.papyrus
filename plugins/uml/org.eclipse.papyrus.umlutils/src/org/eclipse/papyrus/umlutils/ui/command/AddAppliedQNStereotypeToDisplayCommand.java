@@ -38,11 +38,11 @@ public class AddAppliedQNStereotypeToDisplayCommand extends CreateEAnnotationCom
 	 * Instantiates a new sets the applied stereotype to display command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param stereotypeList
-	 *            the stereotype list
+	 *        the stereotype list
 	 */
 	public AddAppliedQNStereotypeToDisplayCommand(TransactionalEditingDomain domain, EModelElement object,
 			String stereotypeQNList) {
@@ -56,12 +56,12 @@ public class AddAppliedQNStereotypeToDisplayCommand extends CreateEAnnotationCom
 	@Override
 	protected void doExecute() {
 		String stereoListQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(this.getObject());
-		if (!"".equals(stereoListQN)) {
+		if(!"".equals(stereoListQN)) {
 			stereoListQN = stereoListQN + ",";
 		}
 		stereoListQN = stereoListQN + stereotypeListQN;
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (oldAnnotation == null) {
+		if(oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}

@@ -60,9 +60,9 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * create an association figure.
 	 * 
 	 * @param targetType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 * @param sourceType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	public AssociationFigure(int sourceType, int targetType) {
 		super();
@@ -104,7 +104,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * Gets the decoration.
 	 * 
 	 * @param typeDecoration
-	 *            the type decoration
+	 *        the type decoration
 	 * 
 	 * @return the appropriate decoration
 	 */
@@ -112,7 +112,7 @@ public class AssociationFigure extends PolylineConnectionEx {
 		int remain = typeDecoration % owned;
 		int navigationValue = remain / navigable;
 
-		if (navigationValue == 1) {
+		if(navigationValue == 1) {
 			return getNavigationDecoration();
 		}
 		return null;
@@ -143,9 +143,9 @@ public class AssociationFigure extends PolylineConnectionEx {
 	 * used to display end of the association.
 	 * 
 	 * @param targetType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 * @param sourceType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	public void setEnd(int sourceType, int targetType) {
 		this.setSourceDecoration(getDecoration(sourceType));

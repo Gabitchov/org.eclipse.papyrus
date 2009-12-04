@@ -40,7 +40,7 @@ public class SendOperationEventPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof SendOperationEvent) {
+		if(eObject instanceof SendOperationEvent) {
 			return new SendOperationEventPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class SendOperationEventPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof SendOperationEvent) {
-			if (SendOperationEventBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof SendOperationEvent) {
+			if(SendOperationEventBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new SendOperationEventBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

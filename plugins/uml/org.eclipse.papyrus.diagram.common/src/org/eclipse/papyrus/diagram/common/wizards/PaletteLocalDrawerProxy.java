@@ -22,7 +22,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * Creates a new PaletteContainer
 	 * 
 	 * @param drawer
-	 *            the drawer to cache
+	 *        the drawer to cache
 	 */
 	public PaletteLocalDrawerProxy(String name, String id, String imagePath) {
 		super(null);
@@ -75,7 +75,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * Sets the label of the drawer
 	 * 
 	 * @param label
-	 *            the label to set
+	 *        the label to set
 	 */
 	public void setLabel(String label) {
 		this.label = label;
@@ -85,7 +85,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * Sets the id of the drawer
 	 * 
 	 * @param id
-	 *            the id to set
+	 *        the id to set
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -95,7 +95,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * Sets the image path of the drawer
 	 * 
 	 * @param imagePath
-	 *            the imagePath to set
+	 *        the imagePath to set
 	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;

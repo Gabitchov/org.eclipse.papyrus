@@ -30,43 +30,43 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class CastExpr extends Expression {
 
-    private Type type;
+	private Type type;
 
-    private Expression expr;
+	private Expression expr;
 
-    public CastExpr() {
-    }
+	public CastExpr() {
+	}
 
-    public CastExpr(int beginLine, int beginColumn, int endLine, int endColumn, Type type, Expression expr) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.type = type;
-        this.expr = expr;
-    }
+	public CastExpr(int beginLine, int beginColumn, int endLine, int endColumn, Type type, Expression expr) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.type = type;
+		this.expr = expr;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Expression getExpr() {
-        return expr;
-    }
+	public Expression getExpr() {
+		return expr;
+	}
 
-    public Type getType() {
-        return type;
-    }
+	public Type getType() {
+		return type;
+	}
 
-    public void setExpr(Expression expr) {
-        this.expr = expr;
-    }
+	public void setExpr(Expression expr) {
+		this.expr = expr;
+	}
 
-    public void setType(Type type) {
-        this.type = type;
-    }
+	public void setType(Type type) {
+		this.type = type;
+	}
 
 }

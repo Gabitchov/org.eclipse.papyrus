@@ -41,13 +41,13 @@ public class State2CanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	@Override
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getState_2003SemanticChildren(
+		for(Iterator it = UMLDiagramUpdater.getState_2003SemanticChildren(
 				viewObject).iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next())
+			EObject nextValue = ((UMLNodeDescriptor)it.next())
 					.getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
+			if(MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
 					nextValue)) {
 				result.add(nextValue);
 			}
@@ -60,14 +60,14 @@ public class State2CanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	@Override
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
-		if (view.getType() == ViewType.NOTE || view.getType() == ViewType.TEXT) {
+		if(view.getType() == ViewType.NOTE || view.getType() == ViewType.TEXT) {
 			return false;
 		}
-		if (view.getElement() != null) {
+		if(view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
 			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
-					(View) getHost().getModel(), view.getElement());
-			switch (actualID) {
+					(View)getHost().getModel(), view.getElement());
+			switch(actualID) {
 			case Region2EditPart.VISUAL_ID:
 			case Pseudostate11EditPart.VISUAL_ID:
 			case Pseudostate12EditPart.VISUAL_ID:
@@ -82,29 +82,29 @@ public class State2CanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private void populateViewProperties(View oldView, View newView) {
-		if (oldView instanceof Node && newView instanceof Node) {
-			Node oldNode = (Node) oldView;
-			Node newNode = (Node) newView;
-			if (oldNode.getLayoutConstraint() instanceof Location
+		if(oldView instanceof Node && newView instanceof Node) {
+			Node oldNode = (Node)oldView;
+			Node newNode = (Node)newView;
+			if(oldNode.getLayoutConstraint() instanceof Location
 					&& newNode.getLayoutConstraint() instanceof Location) {
-				((Location) newNode.getLayoutConstraint())
-						.setX(((Location) oldNode.getLayoutConstraint()).getX());
-				((Location) newNode.getLayoutConstraint())
-						.setY(((Location) oldNode.getLayoutConstraint()).getY());
+				((Location)newNode.getLayoutConstraint())
+						.setX(((Location)oldNode.getLayoutConstraint()).getX());
+				((Location)newNode.getLayoutConstraint())
+						.setY(((Location)oldNode.getLayoutConstraint()).getY());
 			}
-			if (oldNode.getLayoutConstraint() instanceof Size
+			if(oldNode.getLayoutConstraint() instanceof Size
 					&& newNode.getLayoutConstraint() instanceof Size) {
-				((Size) newNode.getLayoutConstraint()).setWidth(((Size) oldNode
+				((Size)newNode.getLayoutConstraint()).setWidth(((Size)oldNode
 						.getLayoutConstraint()).getWidth());
-				((Size) newNode.getLayoutConstraint())
-						.setHeight(((Size) oldNode.getLayoutConstraint())
-								.getHeight());
+				((Size)newNode.getLayoutConstraint())
+						.setHeight(((Size)oldNode.getLayoutConstraint())
+						.getHeight());
 			}
-			if (oldNode.getLayoutConstraint() instanceof Ratio
+			if(oldNode.getLayoutConstraint() instanceof Ratio
 					&& newNode.getLayoutConstraint() instanceof Ratio) {
-				((Ratio) newNode.getLayoutConstraint())
-						.setValue(((Ratio) oldNode.getLayoutConstraint())
-								.getValue());
+				((Ratio)newNode.getLayoutConstraint())
+						.setValue(((Ratio)oldNode.getLayoutConstraint())
+						.getValue());
 			}
 			newNode.persist();
 		}
@@ -123,7 +123,7 @@ public class State2CanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	@Override
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Region());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
@@ -140,7 +140,7 @@ public class State2CanonicalEditPolicy extends CanonicalEditPolicy {
 		super.refreshSemantic();
 		// this will take care of the filtering of views
 		Diagram diagram = MDTUtil.getHostDiagram(this);
-		if (diagram != null) {
+		if(diagram != null) {
 			MDTUtil.filterDiagramViews(diagram);
 		}
 	}

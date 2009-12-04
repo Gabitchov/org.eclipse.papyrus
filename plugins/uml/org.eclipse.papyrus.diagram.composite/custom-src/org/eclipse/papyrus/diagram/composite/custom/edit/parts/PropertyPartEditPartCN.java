@@ -50,8 +50,8 @@ public abstract class PropertyPartEditPartCN extends NamedElementEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 
-		if ((resolveSemanticElement() != null) && (resolveSemanticElement().equals(event.getNotifier()))) {
-			if (UMLPackage.eINSTANCE.getProperty_Aggregation().equals(event.getFeature())) {
+		if((resolveSemanticElement() != null) && (resolveSemanticElement().equals(event.getNotifier()))) {
+			if(UMLPackage.eINSTANCE.getProperty_Aggregation().equals(event.getFeature())) {
 				refreshVisuals();
 			}
 		}
@@ -69,8 +69,8 @@ public abstract class PropertyPartEditPartCN extends NamedElementEditPart {
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		if ((resolveSemanticElement() != null) && (resolveSemanticElement() instanceof Property)) {
-			if (((Property) resolveSemanticElement()).getAggregation().equals(AggregationKind.SHARED_LITERAL)) {
+		if((resolveSemanticElement() != null) && (resolveSemanticElement() instanceof Property)) {
+			if(((Property)resolveSemanticElement()).getAggregation().equals(AggregationKind.SHARED_LITERAL)) {
 				getPrimaryShape().setLineStyle(Graphics.LINE_DASH);
 			} else {
 				getPrimaryShape().setLineStyle(Graphics.LINE_SOLID);

@@ -75,7 +75,7 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 	 * Sets the element that holds property displyed in property section.
 	 * 
 	 * @param element
-	 *            the element to set
+	 *        the element to set
 	 */
 	public void setElement(Element element) {
 		this.element = element;
@@ -87,7 +87,7 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 	 * @param style
 	 * @param isStereotypeTree
 	 * @param name
-	 *            text of the Label on the top left of this composite
+	 *        text of the Label on the top left of this composite
 	 * @param parent
 	 */
 	public AppearanceDecoratedTreeComposite(Composite parent, int style, String name, boolean isStereotypeTree) {
@@ -95,7 +95,7 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 		this.name = name;
 		this.setLayout(new FormLayout());
 
-		if (isStereotypeTree) {
+		if(isStereotypeTree) {
 			treeViewer = new ProfileElementTreeViewer(this);
 		} else {
 			// Property tree
@@ -106,7 +106,8 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.cea.papyrus.ui.composites.ISectionComposite#createContent(org.eclipse.swt.widgets.Composite, org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory)
+	 * @see com.cea.papyrus.ui.composites.ISectionComposite#createContent(org.eclipse.swt.widgets.Composite,
+	 * org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory)
 	 */
 	/**
 	 * 
@@ -138,8 +139,8 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 	 * @return the CommmandStack of the current editor
 	 */
 	public CommandStack getCommandStack() {
-		if (getActiveEditor() != null) {
-			return (CommandStack) getActiveEditor().getAdapter(CommandStack.class);
+		if(getActiveEditor() != null) {
+			return (CommandStack)getActiveEditor().getAdapter(CommandStack.class);
 		}
 		return null;
 	}

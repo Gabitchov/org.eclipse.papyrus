@@ -53,21 +53,21 @@ public class MOSKittEditorFactoryRegistry {
 	private static Map<String, IMOSKittEditorFactory> mapModel2Factory = null;
 
 	protected static Map<String, IMOSKittEditorFactory> getMapEditorID2Factory() {
-		if (mapEditorID2Factory == null) {
+		if(mapEditorID2Factory == null) {
 			mapEditorID2Factory = new HashMap<String, IMOSKittEditorFactory>();
 		}
 		return mapEditorID2Factory;
 	}
 
 	protected static Map<String, IMOSKittEditorFactory> getMapEClass2Factory() {
-		if (mapEClass2Factory == null) {
+		if(mapEClass2Factory == null) {
 			mapEClass2Factory = new HashMap<String, IMOSKittEditorFactory>();
 		}
 		return mapEClass2Factory;
 	}
 
 	protected static Map<String, IMOSKittEditorFactory> getMapModel2Factory() {
-		if (mapModel2Factory == null) {
+		if(mapModel2Factory == null) {
 			mapModel2Factory = new HashMap<String, IMOSKittEditorFactory>();
 		}
 		return mapModel2Factory;
@@ -77,22 +77,22 @@ public class MOSKittEditorFactoryRegistry {
 
 	// @unused
 	public IEditorPart getEditorFor(Object object) {
-		if (object == null) {
+		if(object == null) {
 			return null;
 		}
 		// check Diagram
-		Diagram diagram = (Diagram) Platform.getAdapterManager().getAdapter(object, Diagram.class);
-		if (diagram != null) {
+		Diagram diagram = (Diagram)Platform.getAdapterManager().getAdapter(object, Diagram.class);
+		if(diagram != null) {
 			return getEditorForDiagram(diagram);
 		}
 		// check EObject's EClass
-		EObject eObject = (EObject) Platform.getAdapterManager().getAdapter(object, EObject.class);
-		if (eObject != null) {
+		EObject eObject = (EObject)Platform.getAdapterManager().getAdapter(object, EObject.class);
+		if(eObject != null) {
 			return getEditorForEObject(eObject);
 		}
 		// check editorID
-		String editorID = (String) Platform.getAdapterManager().getAdapter(object, String.class);
-		if (editorID != null) {
+		String editorID = (String)Platform.getAdapterManager().getAdapter(object, String.class);
+		if(editorID != null) {
 			return getEditorForEditorID(editorID);
 		}
 		// no editor fot object
@@ -100,13 +100,13 @@ public class MOSKittEditorFactoryRegistry {
 	}
 
 	public IEditorPart getEditorForEditorID(String editorID) {
-		if (editorID == null) {
+		if(editorID == null) {
 			return null;
 		}
 		readExtensionPoint();
-		if (getMapEditorID2Factory().containsKey(editorID)) {
+		if(getMapEditorID2Factory().containsKey(editorID)) {
 			IMOSKittEditorFactory factory = getMapEditorID2Factory().get(editorID);
-			if (factory != null) {
+			if(factory != null) {
 				return factory.createEditorFor(editorID);
 			}
 		}
@@ -114,17 +114,17 @@ public class MOSKittEditorFactoryRegistry {
 	}
 
 	public IEditorPart getEditorForEObject(EObject eObject) {
-		if (eObject == null) {
+		if(eObject == null) {
 			return null;
 		}
 		readExtensionPoint();
 		Class eObjectClass = eObject.getClass();
 		// check for every EClass registered if any of them is a superclass of
 		// the given object.
-		for (String eClass : getMapEClass2Factory().keySet()) {
-			if (MDTUtil.isOfType(eObjectClass, eClass)) {
+		for(String eClass : getMapEClass2Factory().keySet()) {
+			if(MDTUtil.isOfType(eObjectClass, eClass)) {
 				IMOSKittEditorFactory factory = getMapEClass2Factory().get(eClass);
-				if (factory != null) {
+				if(factory != null) {
 					return factory.createEditorFor(eObject);
 				}
 			}
@@ -133,13 +133,13 @@ public class MOSKittEditorFactoryRegistry {
 	}
 
 	public IEditorPart getEditorForDiagram(Diagram diagram) {
-		if (diagram == null || diagram.getType() == null) {
+		if(diagram == null || diagram.getType() == null) {
 			return null;
 		}
 		readExtensionPoint();
-		if (getMapModel2Factory().containsKey(diagram.getType())) {
+		if(getMapModel2Factory().containsKey(diagram.getType())) {
 			IMOSKittEditorFactory factory = getMapModel2Factory().get(diagram.getType());
-			if (factory != null) {
+			if(factory != null) {
 				return factory.createEditorFor(diagram);
 			}
 		}
@@ -152,31 +152,31 @@ public class MOSKittEditorFactoryRegistry {
 
 	protected void readExtensionPoint() {
 		ExtensionPointParser parser = new ExtensionPointParser(ExtensionPointID,
-				new Class[] { MOSKittEditorFactory.class });
+				new Class[]{ MOSKittEditorFactory.class });
 		MOSKittEditorFactory factory = null;
 		List<MOSKittEditorFactory> factories = new ArrayList<MOSKittEditorFactory>();
 		// parse extension point
-		for (Object object : parser.parseExtensionPoint()) {
-			factory = (MOSKittEditorFactory) Platform.getAdapterManager()
+		for(Object object : parser.parseExtensionPoint()) {
+			factory = (MOSKittEditorFactory)Platform.getAdapterManager()
 					.getAdapter(object, MOSKittEditorFactory.class);
-			if (factory != null) {
+			if(factory != null) {
 				factories.add(factory);
 			}
 		}
 		// store all factories in the mappings
-		for (MOSKittEditorFactory editorFactoryElement : factories) {
+		for(MOSKittEditorFactory editorFactoryElement : factories) {
 			IMOSKittEditorFactory editorFactory = null;
-			if (editorFactoryElement.factory != null) {
-				editorFactory = (IMOSKittEditorFactory) Platform.getAdapterManager().getAdapter(
+			if(editorFactoryElement.factory != null) {
+				editorFactory = (IMOSKittEditorFactory)Platform.getAdapterManager().getAdapter(
 						editorFactoryElement.factory, IMOSKittEditorFactory.class);
-				if (editorFactory != null) {
-					if (editorFactoryElement.diagramType != null) {
+				if(editorFactory != null) {
+					if(editorFactoryElement.diagramType != null) {
 						getMapModel2Factory().put(editorFactoryElement.diagramType, editorFactory);
 					}
-					if (editorFactoryElement.eClass != null) {
+					if(editorFactoryElement.eClass != null) {
 						getMapEClass2Factory().put(editorFactoryElement.eClass, editorFactory);
 					}
-					if (editorFactoryElement.editorID != null) {
+					if(editorFactoryElement.editorID != null) {
 						getMapEditorID2Factory().put(editorFactoryElement.editorID, editorFactory);
 					}
 				}

@@ -28,10 +28,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 
 	@Override
 	public Command getAddCommand(Request request) {
-		if (request instanceof ChangeBoundsRequest) {
-			ChangeBoundsRequest cbr = (ChangeBoundsRequest) request;
-			for (EditPart ep : (List<EditPart>) cbr.getEditParts()) {
-				if (ep instanceof BehaviorExecutionSpecificationEditPart
+		if(request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest cbr = (ChangeBoundsRequest)request;
+			for(EditPart ep : (List<EditPart>)cbr.getEditParts()) {
+				if(ep instanceof BehaviorExecutionSpecificationEditPart
 						|| ep instanceof ActionExecutionSpecificationEditPart) {
 					// Prevent added BES on InteractionCompartmentEditPart
 					return UnexecutableCommand.INSTANCE;

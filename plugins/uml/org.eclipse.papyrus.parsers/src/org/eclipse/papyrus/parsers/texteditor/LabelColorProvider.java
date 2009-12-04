@@ -49,7 +49,7 @@ public class LabelColorProvider implements ILabelColorConstants {
 	 * @return the singleton instance
 	 */
 	public static LabelColorProvider getDefault() {
-		if (instance == null) {
+		if(instance == null) {
 			instance = new LabelColorProvider();
 		}
 		return instance;
@@ -64,7 +64,7 @@ public class LabelColorProvider implements ILabelColorConstants {
 	 * Set default colors in given preference store.
 	 * 
 	 * @param aStore
-	 *            the pref store
+	 *        the pref store
 	 */
 	public static void initializeDefaults(IPreferenceStore aStore) {
 		PreferenceConverter.setDefault(aStore, IPreferencesConstants.COLOR_DEFAULT, ILabelColorConstants.RGB_DEFAULT);
@@ -78,14 +78,14 @@ public class LabelColorProvider implements ILabelColorConstants {
 	 * then a new instance is created from according preferences value and stored in color table.
 	 * 
 	 * @param aName
-	 *            the name of the color
+	 *        the name of the color
 	 * 
 	 * @return the color instance
 	 */
 	public Color getColor(String aName) {
 
 		Color color = this.fColorTable.get(aName);
-		if (color == null) {
+		if(color == null) {
 			IPreferenceStore store = PapyrusParsersPlugin.getDefault().getPreferenceStore();
 
 			// PreferenceConverter.setValue(store, IPreferencesConstants.COLOR_KEYWORD,
@@ -93,7 +93,7 @@ public class LabelColorProvider implements ILabelColorConstants {
 			PreferenceConverter.setValue(store, IPreferencesConstants.COLOR_SYMBOL, ILabelColorConstants.RGB_SYMBOL);
 
 			RGB rgb = PreferenceConverter.getColor(store, IPreferencesConstants.PREFIX_COLOR + aName);
-			if (rgb != null) {
+			if(rgb != null) {
 				color = new Color(Display.getCurrent(), rgb);
 			} else {
 				color = Display.getCurrent().getSystemColor(SWT.COLOR_LIST_FOREGROUND);
@@ -109,7 +109,7 @@ public class LabelColorProvider implements ILabelColorConstants {
 	 */
 	public void dispose() {
 		Iterator<Color> colors = this.fColorTable.values().iterator();
-		while (colors.hasNext()) {
+		while(colors.hasNext()) {
 			colors.next().dispose();
 		}
 	}

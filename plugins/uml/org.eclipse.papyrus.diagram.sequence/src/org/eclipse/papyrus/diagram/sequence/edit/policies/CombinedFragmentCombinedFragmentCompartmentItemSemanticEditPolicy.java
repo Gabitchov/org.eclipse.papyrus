@@ -41,16 +41,16 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.InteractionOperand_3005 == req.getElementType()) {
-			CombinedFragment combinedFragment = (CombinedFragment) req.getContainer();
+		if(UMLElementTypes.InteractionOperand_3005 == req.getElementType()) {
+			CombinedFragment combinedFragment = (CombinedFragment)req.getContainer();
 			InteractionOperatorKind interactionOperator = combinedFragment.getInteractionOperator();
 			EList<InteractionOperand> operands = combinedFragment.getOperands();
-			if (interactionOperator != null
+			if(interactionOperator != null
 					&& !operands.isEmpty()
 					&& (InteractionOperatorKind.OPT_LITERAL.equals(interactionOperator)
-							|| InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator)
-							|| InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator) || InteractionOperatorKind.NEG_LITERAL
-							.equals(interactionOperator))) {
+					|| InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator)
+					|| InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator) || InteractionOperatorKind.NEG_LITERAL
+					.equals(interactionOperator))) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(new InteractionOperandCreateCommand(req));

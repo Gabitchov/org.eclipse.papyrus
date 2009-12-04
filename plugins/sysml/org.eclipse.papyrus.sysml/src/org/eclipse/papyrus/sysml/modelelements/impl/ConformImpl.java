@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Dependency;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl#getBase_Dependency <em>Base
- * Dependency</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,9 +71,9 @@ public class ConformImpl extends EObjectImpl implements Conform {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.CONFORM__BASE_DEPENDENCY:
-			if (resolve)
+			if(resolve)
 				return getBase_Dependency();
 			return basicGetBase_Dependency();
 		}
@@ -88,7 +87,7 @@ public class ConformImpl extends EObjectImpl implements Conform {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.CONFORM__BASE_DEPENDENCY:
 			return base_Dependency != null;
 		}
@@ -102,9 +101,9 @@ public class ConformImpl extends EObjectImpl implements Conform {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.CONFORM__BASE_DEPENDENCY:
-			setBase_Dependency((Dependency) newValue);
+			setBase_Dependency((Dependency)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +126,9 @@ public class ConformImpl extends EObjectImpl implements Conform {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.CONFORM__BASE_DEPENDENCY:
-			setBase_Dependency((Dependency) null);
+			setBase_Dependency((Dependency)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +140,11 @@ public class ConformImpl extends EObjectImpl implements Conform {
 	 * @generated
 	 */
 	public Dependency getBase_Dependency() {
-		if (base_Dependency != null && base_Dependency.eIsProxy()) {
-			InternalEObject oldBase_Dependency = (InternalEObject) base_Dependency;
-			base_Dependency = (Dependency) eResolveProxy(oldBase_Dependency);
-			if (base_Dependency != oldBase_Dependency) {
-				if (eNotificationRequired())
+		if(base_Dependency != null && base_Dependency.eIsProxy()) {
+			InternalEObject oldBase_Dependency = (InternalEObject)base_Dependency;
+			base_Dependency = (Dependency)eResolveProxy(oldBase_Dependency);
+			if(base_Dependency != oldBase_Dependency) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							ModelelementsPackage.CONFORM__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 			}
@@ -161,7 +160,7 @@ public class ConformImpl extends EObjectImpl implements Conform {
 	public void setBase_Dependency(Dependency newBase_Dependency) {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.CONFORM__BASE_DEPENDENCY,
 					oldBase_Dependency, base_Dependency));
 	}

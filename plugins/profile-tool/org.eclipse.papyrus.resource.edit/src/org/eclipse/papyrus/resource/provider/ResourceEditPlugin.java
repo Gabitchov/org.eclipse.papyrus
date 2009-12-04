@@ -10,7 +10,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.resource.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
@@ -44,7 +44,7 @@ public final class ResourceEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ResourceEditPlugin() {
-		super(new ResourceLocator[] {});
+		super(new ResourceLocator[]{});
 	}
 
 	/**

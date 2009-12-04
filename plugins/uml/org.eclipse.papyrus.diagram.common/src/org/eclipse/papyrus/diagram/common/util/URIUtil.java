@@ -36,14 +36,14 @@ public class URIUtil {
 	// @unused
 	public static IFile getFile(URI uri) {
 		String fileName = uri.toFileString();
-		if (fileName != null) {
+		if(fileName != null) {
 			return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(fileName));
 		}
-		if (uri.toString().startsWith("platform:/resource")) { //$NON-NLS-1$
+		if(uri.toString().startsWith("platform:/resource")) { //$NON-NLS-1$
 			String path = uri.toString().substring("platform:/resource".length()); //$NON-NLS-1$
 			IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-			if (workspaceResource instanceof IFile) {
-				return (IFile) workspaceResource;
+			if(workspaceResource instanceof IFile) {
+				return (IFile)workspaceResource;
 			}
 		}
 		return null;
@@ -67,18 +67,18 @@ public class URIUtil {
 	 */
 	public static URI getUri(IEditorInput input, String editorID) {
 		String uriString = null;
-		if (input instanceof URIEditorInput) {
+		if(input instanceof URIEditorInput) {
 			uriString = PathsUtil.getRelativeWorkspaceFromEditorInputWithFragment(input);
 		} else {
 			uriString = PathsUtil.getRelativeWorkspaceFromEditorInput(input);
 			String fragment = MDTUtil.getLastOpenedDiagramPropertyForEditor(uriString, editorID);
-			if (fragment != null) {
+			if(fragment != null) {
 				uriString = URI.createURI(uriString).appendFragment(fragment).toString();
 			}
 		}
-		if (input != null) {
+		if(input != null) {
 			URI uri = URI.createURI(uriString);
-			if (uri.hasFragment()) {
+			if(uri.hasFragment()) {
 				return uri;
 			}
 			ResourceSet resourceSet = new ResourceSetImpl();
@@ -86,7 +86,7 @@ public class URIUtil {
 					Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 			Resource resource = resourceSet.getResource(uri, true);
 			Diagram diagram = MDTUtil.getFirstDiagramFromResource(resource);
-			if (diagram != null) {
+			if(diagram != null) {
 				String fragment = resource.getURIFragment(diagram);
 				uri = uri.appendFragment(fragment);
 			}

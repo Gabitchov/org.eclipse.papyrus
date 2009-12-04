@@ -76,7 +76,7 @@ public class StandardSwitch<T> {
 	 * @generated
 	 */
 	public StandardSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = StandardPackage.eINSTANCE;
 		}
 	}
@@ -100,7 +100,7 @@ public class StandardSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if(theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
@@ -116,235 +116,268 @@ public class StandardSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case StandardPackage.AUXILIARY: {
-			Auxiliary auxiliary = (Auxiliary) theEObject;
+		switch(classifierID) {
+		case StandardPackage.AUXILIARY:
+		{
+			Auxiliary auxiliary = (Auxiliary)theEObject;
 			T result = caseAuxiliary(auxiliary);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.BUILD_COMPONENT: {
-			BuildComponent buildComponent = (BuildComponent) theEObject;
+		case StandardPackage.BUILD_COMPONENT:
+		{
+			BuildComponent buildComponent = (BuildComponent)theEObject;
 			T result = caseBuildComponent(buildComponent);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.CREATE: {
-			Create create = (Create) theEObject;
+		case StandardPackage.CREATE:
+		{
+			Create create = (Create)theEObject;
 			T result = caseCreate(create);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.CALL: {
-			Call call = (Call) theEObject;
+		case StandardPackage.CALL:
+		{
+			Call call = (Call)theEObject;
 			T result = caseCall(call);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.DERIVE: {
-			Derive derive = (Derive) theEObject;
+		case StandardPackage.DERIVE:
+		{
+			Derive derive = (Derive)theEObject;
 			T result = caseDerive(derive);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.DESTROY: {
-			Destroy destroy = (Destroy) theEObject;
+		case StandardPackage.DESTROY:
+		{
+			Destroy destroy = (Destroy)theEObject;
 			T result = caseDestroy(destroy);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.FOCUS: {
-			Focus focus = (Focus) theEObject;
+		case StandardPackage.FOCUS:
+		{
+			Focus focus = (Focus)theEObject;
 			T result = caseFocus(focus);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.FRAMEWORK: {
-			Framework framework = (Framework) theEObject;
+		case StandardPackage.FRAMEWORK:
+		{
+			Framework framework = (Framework)theEObject;
 			T result = caseFramework(framework);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.IMPLEMENT: {
-			Implement implement = (Implement) theEObject;
+		case StandardPackage.IMPLEMENT:
+		{
+			Implement implement = (Implement)theEObject;
 			T result = caseImplement(implement);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.IMPLEMENTATION_CLASS: {
-			ImplementationClass implementationClass = (ImplementationClass) theEObject;
+		case StandardPackage.IMPLEMENTATION_CLASS:
+		{
+			ImplementationClass implementationClass = (ImplementationClass)theEObject;
 			T result = caseImplementationClass(implementationClass);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.INSTANTIATE: {
-			Instantiate instantiate = (Instantiate) theEObject;
+		case StandardPackage.INSTANTIATE:
+		{
+			Instantiate instantiate = (Instantiate)theEObject;
 			T result = caseInstantiate(instantiate);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.METACLASS: {
-			Metaclass metaclass = (Metaclass) theEObject;
+		case StandardPackage.METACLASS:
+		{
+			Metaclass metaclass = (Metaclass)theEObject;
 			T result = caseMetaclass(metaclass);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.MODEL_LIBRARY: {
-			ModelLibrary modelLibrary = (ModelLibrary) theEObject;
+		case StandardPackage.MODEL_LIBRARY:
+		{
+			ModelLibrary modelLibrary = (ModelLibrary)theEObject;
 			T result = caseModelLibrary(modelLibrary);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.REFINE: {
-			Refine refine = (Refine) theEObject;
+		case StandardPackage.REFINE:
+		{
+			Refine refine = (Refine)theEObject;
 			T result = caseRefine(refine);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.RESPONSIBILITY: {
-			Responsibility responsibility = (Responsibility) theEObject;
+		case StandardPackage.RESPONSIBILITY:
+		{
+			Responsibility responsibility = (Responsibility)theEObject;
 			T result = caseResponsibility(responsibility);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.SCRIPT: {
-			Script script = (Script) theEObject;
+		case StandardPackage.SCRIPT:
+		{
+			Script script = (Script)theEObject;
 			T result = caseScript(script);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.SEND: {
-			Send send = (Send) theEObject;
+		case StandardPackage.SEND:
+		{
+			Send send = (Send)theEObject;
 			T result = caseSend(send);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.TRACE: {
-			Trace trace = (Trace) theEObject;
+		case StandardPackage.TRACE:
+		{
+			Trace trace = (Trace)theEObject;
 			T result = caseTrace(trace);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.TYPE: {
-			Type type = (Type) theEObject;
+		case StandardPackage.TYPE:
+		{
+			Type type = (Type)theEObject;
 			T result = caseType(type);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.UTILITY: {
-			Utility utility = (Utility) theEObject;
+		case StandardPackage.UTILITY:
+		{
+			Utility utility = (Utility)theEObject;
 			T result = caseUtility(utility);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.DOCUMENT: {
-			Document document = (Document) theEObject;
+		case StandardPackage.DOCUMENT:
+		{
+			Document document = (Document)theEObject;
 			T result = caseDocument(document);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.ENTITY: {
-			Entity entity = (Entity) theEObject;
+		case StandardPackage.ENTITY:
+		{
+			Entity entity = (Entity)theEObject;
 			T result = caseEntity(entity);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.EXECUTABLE: {
-			Executable executable = (Executable) theEObject;
+		case StandardPackage.EXECUTABLE:
+		{
+			Executable executable = (Executable)theEObject;
 			T result = caseExecutable(executable);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.FILE: {
-			File file = (File) theEObject;
+		case StandardPackage.FILE:
+		{
+			File file = (File)theEObject;
 			T result = caseFile(file);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.LIBRARY: {
-			Library library = (Library) theEObject;
+		case StandardPackage.LIBRARY:
+		{
+			Library library = (Library)theEObject;
 			T result = caseLibrary(library);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.PROCESS: {
-			org.eclipse.papyrus.uml.standard.Process process = (org.eclipse.papyrus.uml.standard.Process) theEObject;
+		case StandardPackage.PROCESS:
+		{
+			org.eclipse.papyrus.uml.standard.Process process = (org.eclipse.papyrus.uml.standard.Process)theEObject;
 			T result = caseProcess(process);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.REALIZATION: {
-			Realization realization = (Realization) theEObject;
+		case StandardPackage.REALIZATION:
+		{
+			Realization realization = (Realization)theEObject;
 			T result = caseRealization(realization);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.SERVICE: {
-			Service service = (Service) theEObject;
+		case StandardPackage.SERVICE:
+		{
+			Service service = (Service)theEObject;
 			T result = caseService(service);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.SOURCE: {
-			Source source = (Source) theEObject;
+		case StandardPackage.SOURCE:
+		{
+			Source source = (Source)theEObject;
 			T result = caseSource(source);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.SPECIFICATION: {
-			Specification specification = (Specification) theEObject;
+		case StandardPackage.SPECIFICATION:
+		{
+			Specification specification = (Specification)theEObject;
 			T result = caseSpecification(specification);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.SUBSYSTEM: {
-			Subsystem subsystem = (Subsystem) theEObject;
+		case StandardPackage.SUBSYSTEM:
+		{
+			Subsystem subsystem = (Subsystem)theEObject;
 			T result = caseSubsystem(subsystem);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.METAMODEL: {
-			Metamodel metamodel = (Metamodel) theEObject;
+		case StandardPackage.METAMODEL:
+		{
+			Metamodel metamodel = (Metamodel)theEObject;
 			T result = caseMetamodel(metamodel);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StandardPackage.SYSTEM_MODEL: {
-			SystemModel systemModel = (SystemModel) theEObject;
+		case StandardPackage.SYSTEM_MODEL:
+		{
+			SystemModel systemModel = (SystemModel)theEObject;
 			T result = caseSystemModel(systemModel);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -359,7 +392,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Auxiliary</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -374,7 +407,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Build Component</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -389,7 +422,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Create</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -404,7 +437,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Call</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -419,7 +452,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Derive</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -434,7 +467,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Destroy</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -449,7 +482,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Focus</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -464,7 +497,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Framework</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -479,7 +512,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Implement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -489,14 +522,13 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Implementation Class</em>'. <!-- begin-user-doc --> This implementation returns null;
+	 * Returns the result of interpreting the object as an instance of ' <em>Implementation Class</em>'. <!-- begin-user-doc --> This implementation
+	 * returns null;
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Implementation Class</em>'.
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of ' <em>Implementation Class</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -510,7 +542,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Instantiate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -525,7 +557,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Metaclass</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -540,7 +572,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Model Library</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -555,7 +587,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Refine</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -570,7 +602,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Responsibility</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -585,7 +617,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Script</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -600,7 +632,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Send</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -615,7 +647,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Trace</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -630,7 +662,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -645,7 +677,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Utility</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -660,7 +692,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Document</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -675,7 +707,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -690,7 +722,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Executable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -705,7 +737,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>File</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -720,7 +752,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Library</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -735,7 +767,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Process</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -750,7 +782,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Realization</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -765,7 +797,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Service</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -780,7 +812,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Source</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -795,7 +827,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -810,7 +842,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Subsystem</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -825,7 +857,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Metamodel</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -840,7 +872,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>System Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -855,7 +887,7 @@ public class StandardSwitch<T> {
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

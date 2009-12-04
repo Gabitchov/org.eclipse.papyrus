@@ -219,7 +219,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	/**
 	 * Overrides isDirty.
 	 * 
-	 * {@inheritDoc} 
+	 * {@inheritDoc}
 	 * 
 	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
 	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
@@ -231,15 +231,13 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		//		return sashContainer.isDirty();
 		EditorVisitor visitor = new EditorVisitor();
 		sashContainer.visit(visitor);
-		
-		for( IEditorPart editorPart : visitor.getPages())
-		{
-			if( editorPart.isDirty())
-			{
+
+		for(IEditorPart editorPart : visitor.getPages()) {
+			if(editorPart.isDirty()) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -254,26 +252,27 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		//		return sashContainer.isDirty();
 		EditorVisitor visitor = new EditorVisitor();
 		sashContainer.visit(visitor);
-		
-		for( IEditorPart editorPart : visitor.getPages())
-		{
+
+		for(IEditorPart editorPart : visitor.getPages()) {
 			editorPart.doSave(new NullProgressMonitor());
-		}	
+		}
 		firePropertyChange(PROP_DIRTY);
 	}
-	
+
 	/**
 	 * A visitor allowing to collect the available IEditor.
 	 * TODO : Remove
+	 * 
 	 * @author dumoulin
-	 *
+	 * 
 	 */
 	protected class EditorVisitor implements IPageVisitor {
 
 		private List<IEditorPart> pages = new ArrayList<IEditorPart>();
-		
+
 		/**
 		 * Get collected pages.
+		 * 
 		 * @return
 		 */
 		public List<IEditorPart> getPages() {
@@ -291,8 +290,8 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		 * 
 		 */
 		public void accept(IEditorPage page) {
-			
-			IEditorPart editor = page.getIEditorPart();		
+
+			IEditorPart editor = page.getIEditorPart();
 			pages.add(editor);
 		}
 	}

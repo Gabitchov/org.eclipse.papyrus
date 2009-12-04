@@ -32,16 +32,16 @@ public class ActivityUtil {
 	 * in an activity.
 	 * 
 	 * @param uml2Activity
-	 *            investigated
+	 *        investigated
 	 * @return the initial node of uml2Activity, null otherwise.
 	 */
 	// @unused
 	public static InitialNode getInitialNode(Activity uml2Activity) {
 		Iterator<ActivityNode> nodesIter = uml2Activity.getNodes().iterator();
-		while (nodesIter.hasNext()) {
+		while(nodesIter.hasNext()) {
 			ActivityNode currentNode = nodesIter.next();
-			if (currentNode instanceof InitialNode)
-				return (InitialNode) currentNode;
+			if(currentNode instanceof InitialNode)
+				return (InitialNode)currentNode;
 		}
 		return null;
 	}
@@ -52,15 +52,15 @@ public class ActivityUtil {
 	 * found is returned).
 	 * 
 	 * @param uml2ActivityNode
-	 *            origin node
+	 *        origin node
 	 * @return next node of uml2ActivityNode, null otherwise.
 	 */
 	// @unused
 	public static ActivityNode getNextNode(ActivityNode uml2ActivityNode) {
 		Iterator<ActivityEdge> edgeIter = uml2ActivityNode.getOutgoings().iterator();
-		while (edgeIter.hasNext()) {
+		while(edgeIter.hasNext()) {
 			ActivityEdge currentEdge = edgeIter.next();
-			if (currentEdge instanceof ControlFlow)
+			if(currentEdge instanceof ControlFlow)
 				return currentEdge.getTarget();
 		}
 		return null;

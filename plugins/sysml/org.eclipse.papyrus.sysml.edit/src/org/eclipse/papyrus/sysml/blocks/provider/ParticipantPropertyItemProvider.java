@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated
@@ -62,7 +61,7 @@ public class ParticipantPropertyItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_PropertyPropertyDescriptor(object);
@@ -78,11 +77,11 @@ public class ParticipantPropertyItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ParticipantProperty_base_Property_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_base_Property_feature",
-						"_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__BASE_PROPERTY,
+				"_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_base_Property_feature",
+				"_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__BASE_PROPERTY,
 				true, false, true, null, null, null));
 	}
 
@@ -93,10 +92,10 @@ public class ParticipantPropertyItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addEndPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_end_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_end_feature",
-						"_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__END, true, false,
+				"_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__END, true, false,
 				true, null, null, null));
 	}
 
@@ -123,8 +122,7 @@ public class ParticipantPropertyItemProvider extends ItemProviderAdapter impleme
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

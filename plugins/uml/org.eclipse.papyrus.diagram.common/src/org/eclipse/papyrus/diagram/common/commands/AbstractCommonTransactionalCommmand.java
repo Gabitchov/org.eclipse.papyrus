@@ -62,7 +62,7 @@ public abstract class AbstractCommonTransactionalCommmand extends AbstractTransa
 	 */
 	// @unused
 	public void executeInTransaction() {
-		if (getEditingDomain() != null) {
+		if(getEditingDomain() != null) {
 			getEditingDomain().getCommandStack().execute(toEMFCommand());
 		}
 	}

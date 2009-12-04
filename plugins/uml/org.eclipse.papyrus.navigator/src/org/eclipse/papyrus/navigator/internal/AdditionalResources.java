@@ -34,7 +34,7 @@ public class AdditionalResources {
 	 * Constructor
 	 * 
 	 * @param rSet
-	 *            the ResourceSet to be used to load these Additional Resources
+	 *        the ResourceSet to be used to load these Additional Resources
 	 */
 	public AdditionalResources(DiResourceSet diResourceSet) {
 		this.diResourceSet = diResourceSet;

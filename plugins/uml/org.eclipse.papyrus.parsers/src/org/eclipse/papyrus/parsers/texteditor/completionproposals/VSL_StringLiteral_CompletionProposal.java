@@ -46,8 +46,8 @@ public class VSL_StringLiteral_CompletionProposal implements ICompletionProposal
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < TVL_StringLiteral_Strings.length; i++) {
-			if (TVL_StringLiteral_Strings[i].startsWith(prefix)) {
+		for(int i = 0; i < TVL_StringLiteral_Strings.length; i++) {
+			if(TVL_StringLiteral_Strings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(TVL_StringLiteral_Strings[i], documentOffset - prefix.length(),
 						prefix.length() + selectionRange, TVL_StringLiteral_Strings[i].length() - 1, null,
 						TVL_StringLiteral_StringName[i], null, TVL_StringLiteral_StringsInfo[i]);

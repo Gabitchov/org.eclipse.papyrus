@@ -38,6 +38,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ConnectableElementTemplateParameterBasePropertySection extends AbstractPropertySection implements IFilter {
 
 	private Composite parent;
+
 	private IPropertiesEditionComponent propertiesEditionComponent;
 
 	/**
@@ -61,42 +62,41 @@ public class ConnectableElementTemplateParameterBasePropertySection extends Abst
 	}
 
 	/**
-	 * @see org.eclipse.ui.views.properties.tabbed.ISection#setInput(org.eclipse.ui.IWorkbenchPart,
-	 *      org.eclipse.jface.viewers.ISelection)
+	 * @see org.eclipse.ui.views.properties.tabbed.ISection#setInput(org.eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (!(selection instanceof IStructuredSelection) || 
+		if(!(selection instanceof IStructuredSelection) ||
 				!((part instanceof IEditingDomainProvider) || part.getAdapter(IEditingDomainProvider.class) != null)) {
 			return;
 		}
 
-		Object firstElement = ((IStructuredSelection) selection).getFirstElement();
+		Object firstElement = ((IStructuredSelection)selection).getFirstElement();
 		EObject newEObject = resolveSemanticObject(firstElement);
 
 		EditingDomain editingDomain = null;
-		if (part instanceof IEditingDomainProvider)
-			editingDomain = ((IEditingDomainProvider) part).getEditingDomain();
-		else if (part.getAdapter(IEditingDomainProvider.class) != null)
+		if(part instanceof IEditingDomainProvider)
+			editingDomain = ((IEditingDomainProvider)part).getEditingDomain();
+		else if(part.getAdapter(IEditingDomainProvider.class) != null)
 			editingDomain = ((IEditingDomainProvider)part.getAdapter(IEditingDomainProvider.class)).getEditingDomain();
 
-		if (editingDomain != null && newEObject != null && newEObject != eObject) {
+		if(editingDomain != null && newEObject != null && newEObject != eObject) {
 			eObject = newEObject;
-			if (eObject != null) {
+			if(eObject != null) {
 				IPropertiesEditionProvider provider = PropertiesEditionComponentService.getInstance().getProvider(eObject);
-				if (this.propertiesEditionComponent != null)
+				if(this.propertiesEditionComponent != null)
 					this.propertiesEditionComponent.dispose();
 				this.propertiesEditionComponent = provider.getPropertiesEditionComponent(eObject, IPropertiesEditionComponent.LIVE_MODE);
-				if (this.propertiesEditionComponent != null) {
+				if(this.propertiesEditionComponent != null) {
 					this.propertiesEditionComponent.setLiveEditingDomain(editingDomain);
 					// FIXME: find a better way to define the Form constant
 					this.editionPart = propertiesEditionComponent.getPropertiesEditionPart(1, ConnectableElementTemplateParameterBasePropertiesEditionComponent.BASE_PART); //$NON-NLS-1$
-					if (editionPart instanceof IFormPropertiesEditionPart) {
-						for (int i = 0; i < parent.getChildren().length; i++) {
-							Composite child = (Composite) parent.getChildren()[i];
+					if(editionPart instanceof IFormPropertiesEditionPart) {
+						for(int i = 0; i < parent.getChildren().length; i++) {
+							Composite child = (Composite)parent.getChildren()[i];
 							child.dispose();
 						}
-						((IFormPropertiesEditionPart) this.editionPart).createFigure(parent, getWidgetFactory());
+						((IFormPropertiesEditionPart)this.editionPart).createFigure(parent, getWidgetFactory());
 						parent.layout();
 						propertiesEditionComponent.initPart(propertiesEditionComponent.translatePart(ConnectableElementTemplateParameterBasePropertiesEditionComponent.BASE_PART), 1, eObject);
 					}
@@ -112,7 +112,7 @@ public class ConnectableElementTemplateParameterBasePropertySection extends Abst
 	 */
 	public void dispose() {
 		super.dispose();
-		if (this.propertiesEditionComponent != null) {
+		if(this.propertiesEditionComponent != null) {
 			this.propertiesEditionComponent.dispose();
 			this.propertiesEditionComponent = null;
 			this.editionPart = null;
@@ -128,17 +128,17 @@ public class ConnectableElementTemplateParameterBasePropertySection extends Abst
 		EObject eObjectToTest = resolveSemanticObject(toTest);
 		return eObjectToTest != null && eObjectToTest.eClass() == UMLPackage.eINSTANCE.getConnectableElementTemplateParameter();
 	}
-	
+
 	private EObject resolveSemanticObject(Object object) {
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			return (EObject)object;
-		} else if (object instanceof IAdaptable) {
+		} else if(object instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable)object;
-			if (adaptable.getAdapter(SemanticAdapter.class) != null) {
+			if(adaptable.getAdapter(SemanticAdapter.class) != null) {
 				SemanticAdapter semanticAdapter = (SemanticAdapter)adaptable
 						.getAdapter(SemanticAdapter.class);
 				return semanticAdapter.getEObject();
-			} else if (adaptable.getAdapter(EObject.class) != null) {
+			} else if(adaptable.getAdapter(EObject.class) != null) {
 				return (EObject)adaptable.getAdapter(EObject.class);
 			}
 		}

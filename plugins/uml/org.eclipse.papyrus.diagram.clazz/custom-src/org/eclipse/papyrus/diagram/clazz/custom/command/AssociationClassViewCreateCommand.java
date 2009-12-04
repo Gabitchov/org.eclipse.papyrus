@@ -59,7 +59,7 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		 * Instantiates a new semantic adapter.
 		 * 
 		 * @param element
-		 *            the element
+		 *        the element
 		 */
 		public SemanticAdapter(EObject element) {
 			this.element = element;
@@ -69,7 +69,7 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		 * {@inheritDoc}
 		 */
 		public Object getAdapter(Class adapter) {
-			if (adapter.equals(EObject.class)) {
+			if(adapter.equals(EObject.class)) {
 				return element;
 			}
 			return null;
@@ -108,17 +108,17 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 	 * constructor.
 	 * 
 	 * @param createConnectionViewAndElementRequest
-	 *            the request that is used to obtained the associationclass
+	 *        the request that is used to obtained the associationclass
 	 * @param domain
-	 *            the current edit domain
+	 *        the current edit domain
 	 * @param container
-	 *            the container view
+	 *        the container view
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * @param preferencesHint
-	 *            the preference hint of the diagram
+	 *        the preference hint of the diagram
 	 * @param point
-	 *            the location of the future association node
+	 *        the location of the future association node
 	 */
 	public AssociationClassViewCreateCommand(
 			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest,
@@ -143,9 +143,9 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		// AssociationClassViewFactory();
 
 		// creation of the element
-		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) createConnectionViewAndElementRequest)
+		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest)createConnectionViewAndElementRequest)
 				.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
-		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter
 				.getAdapter(CreateRelationshipRequest.class);
 		UMLViewProvider viewProvider = new UMLViewProvider();
 		this.node = viewProvider.createAssociationClass_2013(createElementRequest.getNewElement(), this.containerView,
@@ -157,8 +157,8 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		// true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
-		((Bounds) ((Node) this.node).getLayoutConstraint()).setX(location.x);
-		((Bounds) ((Node) this.node).getLayoutConstraint()).setY(location.y);
+		((Bounds)((Node)this.node).getLayoutConstraint()).setX(location.x);
+		((Bounds)((Node)this.node).getLayoutConstraint()).setY(location.y);
 		return CommandResult.newOKCommandResult(node);
 	}
 
@@ -167,11 +167,11 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 	 * {@inheritDoc}
 	 */
 	public List getAffectedFiles() {
-		if (viewer != null) {
+		if(viewer != null) {
 			EditPart editpart = viewer.getRootEditPart().getContents();
-			if (editpart instanceof IGraphicalEditPart) {
-				View view = (View) ((IGraphicalEditPart) editpart).getModel();
-				if (view != null) {
+			if(editpart instanceof IGraphicalEditPart) {
+				View view = (View)((IGraphicalEditPart)editpart).getModel();
+				if(view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
 					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
 				}

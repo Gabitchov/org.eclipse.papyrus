@@ -33,7 +33,7 @@ public abstract class CreateLinkToolBase extends UnspecifiedTypeConnectionTool {
 	@Override
 	@SuppressWarnings("unchecked")
 	protected Request createTargetRequest() {
-		CreateUnspecifiedTypeConnectionRequest request = (CreateUnspecifiedTypeConnectionRequest) super
+		CreateUnspecifiedTypeConnectionRequest request = (CreateUnspecifiedTypeConnectionRequest)super
 				.createTargetRequest();
 
 		// below is the only way to propagate extended data into
@@ -41,7 +41,7 @@ public abstract class CreateLinkToolBase extends UnspecifiedTypeConnectionTool {
 		HashMap extendedData = new HashMap();
 		extendedData.putAll(request.getExtendedData());
 		extendedData.putAll(createAdditionalExtendedData());
-		for (CreateRequest next : (List<CreateRequest>) request.getAllRequests()) {
+		for(CreateRequest next : (List<CreateRequest>)request.getAllRequests()) {
 			next.setExtendedData(extendedData);
 		}
 		return request;

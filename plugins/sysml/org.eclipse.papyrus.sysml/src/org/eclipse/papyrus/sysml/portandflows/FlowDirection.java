@@ -20,8 +20,8 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '
- * <em><b>Flow Direction</b></em>', and utility methods for working with them. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Flow Direction</b></em>', and utility methods for working with
+ * them. <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage#getFlowDirection()
  * @model
@@ -58,8 +58,7 @@ public enum FlowDirection implements Enumerator {
 	/**
 	 * The '<em><b>In</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>In</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>In</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -73,8 +72,7 @@ public enum FlowDirection implements Enumerator {
 	/**
 	 * The '<em><b>Out</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Out</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Out</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -88,8 +86,7 @@ public enum FlowDirection implements Enumerator {
 	/**
 	 * The '<em><b>Inout</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Inout</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Inout</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -106,7 +103,7 @@ public enum FlowDirection implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final FlowDirection[] VALUES_ARRAY = new FlowDirection[] { IN, OUT, INOUT, };
+	private static final FlowDirection[] VALUES_ARRAY = new FlowDirection[]{ IN, OUT, INOUT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Flow Direction</b></em>' enumerators. <!--
@@ -123,7 +120,7 @@ public enum FlowDirection implements Enumerator {
 	 * @generated
 	 */
 	public static FlowDirection get(int value) {
-		switch (value) {
+		switch(value) {
 		case IN_VALUE:
 			return IN;
 		case OUT_VALUE:
@@ -141,9 +138,9 @@ public enum FlowDirection implements Enumerator {
 	 * @generated
 	 */
 	public static FlowDirection get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			FlowDirection result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -157,9 +154,9 @@ public enum FlowDirection implements Enumerator {
 	 * @generated
 	 */
 	public static FlowDirection getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			FlowDirection result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}

@@ -36,10 +36,10 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanti
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.ClassifierTemplateParameter_3031 == req.getElementType()) {
+		if(UMLElementTypes.ClassifierTemplateParameter_3031 == req.getElementType()) {
 			return getGEFWrapper(new ClassifierTemplateParameterCreateCommand(req));
 		}
-		if (UMLElementTypes.TemplateParameter_3016 == req.getElementType()) {
+		if(UMLElementTypes.TemplateParameter_3016 == req.getElementType()) {
 			return getGEFWrapper(new TemplateParameterCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

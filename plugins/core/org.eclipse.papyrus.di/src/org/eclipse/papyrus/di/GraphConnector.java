@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -23,29 +23,30 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Graph Connector</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.GraphConnector#getPosition <em>Position</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.GraphConnector#getGraphEdge <em>Graph Edge</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.GraphConnector#getGraphElement <em>Graph Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.GraphConnector#getPosition <em>Position</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.GraphConnector#getGraphEdge <em>Graph Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.GraphConnector#getGraphElement <em>Graph Element</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.di.DiPackage#getGraphConnector()
  * @model
  * @generated
  */
 public interface GraphConnector extends EObject {
+
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Position</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Position</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Position</em>' attribute.
 	 * @see #setPosition(Point)
 	 * @see org.eclipse.papyrus.di.DiPackage#getGraphConnector_Position()
@@ -58,7 +59,9 @@ public interface GraphConnector extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.GraphConnector#getPosition <em>Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Position</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Position</em>' attribute.
 	 * @see #getPosition()
 	 * @generated
 	 */
@@ -70,10 +73,10 @@ public interface GraphConnector extends EObject {
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.di.GraphEdge#getAnchor <em>Anchor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Graph Edge</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Graph Edge</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Graph Edge</em>' reference list.
 	 * @see org.eclipse.papyrus.di.DiPackage#getGraphConnector_GraphEdge()
 	 * @see org.eclipse.papyrus.di.GraphEdge#getAnchor
@@ -87,10 +90,10 @@ public interface GraphConnector extends EObject {
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.di.GraphElement#getAnchorage <em>Anchorage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Graph Element</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Graph Element</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Graph Element</em>' container reference.
 	 * @see #setGraphElement(GraphElement)
 	 * @see org.eclipse.papyrus.di.DiPackage#getGraphConnector_GraphElement()
@@ -104,7 +107,9 @@ public interface GraphConnector extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.di.GraphConnector#getGraphElement <em>Graph Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graph Element</em>' container reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Graph Element</em>' container reference.
 	 * @see #getGraphElement()
 	 * @generated
 	 */

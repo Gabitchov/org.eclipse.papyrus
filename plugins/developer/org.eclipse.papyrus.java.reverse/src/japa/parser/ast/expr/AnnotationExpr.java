@@ -26,11 +26,11 @@ package japa.parser.ast.expr;
  */
 public abstract class AnnotationExpr extends Expression {
 
-    public AnnotationExpr() {
-    }
+	public AnnotationExpr() {
+	}
 
-    public AnnotationExpr(int beginLine, int beginColumn, int endLine, int endColumn) {
-        super(beginLine, beginColumn, endLine, endColumn);
-    }
+	public AnnotationExpr(int beginLine, int beginColumn, int endLine, int endColumn) {
+		super(beginLine, beginColumn, endLine, endColumn);
+	}
 
 }

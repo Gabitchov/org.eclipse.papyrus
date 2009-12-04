@@ -46,9 +46,9 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 	 * Creates a new XMLDefinitionPaletteFactory
 	 * 
 	 * @param root
-	 *            the palette root to fill
+	 *        the palette root to fill
 	 * @param predefinedEntries
-	 *            existing predefined entries
+	 *        existing predefined entries
 	 */
 	public XMLDefinitionPaletteProxyFactory(Map<String, PaletteEntry> predefinedEntries) {
 		this.predefinedEntries = predefinedEntries;
@@ -84,11 +84,11 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 	 * Returns the parent proxy for the given node
 	 * 
 	 * @param node
-	 *            the node for which the parent is searched
+	 *        the node for which the parent is searched
 	 * @return the parent of this node
 	 */
 	protected PaletteContainerProxy getParentProxy(Node node) {
-		return (PaletteContainerProxy) registry.get(node.getParentNode());
+		return (PaletteContainerProxy)registry.get(node.getParentNode());
 	}
 
 	/**
@@ -134,8 +134,8 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
 
-		if (entry instanceof AspectCreationEntry) {
-			PaletteAspectToolEntryProxy proxy = new PaletteAspectToolEntryProxy((AspectCreationEntry) entry);
+		if(entry instanceof AspectCreationEntry) {
+			PaletteAspectToolEntryProxy proxy = new PaletteAspectToolEntryProxy((AspectCreationEntry)entry);
 			getParentProxy(node).addChild(proxy);
 			registry.put(node, proxy);
 		} else {

@@ -43,11 +43,12 @@ import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
  * After the validation it marks the diagram file to show decoratos where errors occurred.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *
+ * 
  */
 public class ValidationAction extends Action {
 
 	public static final String VALIDATE_ACTION_KEY = "validateDiagramAction"; //$NON-NLS-1$
+
 	private IWorkbenchPartDescriptor workbenchPartDescriptor;
 
 	public ValidationAction(IWorkbenchPartDescriptor workbenchPartDescriptor) {
@@ -62,19 +63,19 @@ public class ValidationAction extends Action {
 	public void run() {
 		IWorkbenchPart workbenchPart = workbenchPartDescriptor.getPartPage()
 				.getActivePart();
-		if (workbenchPart instanceof IDiagramWorkbenchPart) {
-			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart) workbenchPart;
+		if(workbenchPart instanceof IDiagramWorkbenchPart) {
+			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart)workbenchPart;
 			try {
 				new WorkspaceModifyDelegatingOperation(
 						new IRunnableWithProgress() {
 
-							public void run(IProgressMonitor monitor)
-									throws InterruptedException,
-									InvocationTargetException {
-								runValidation(part.getDiagramEditPart(), part
-										.getDiagram());
-							}
-						}).run(new NullProgressMonitor());
+					public void run(IProgressMonitor monitor)
+							throws InterruptedException,
+							InvocationTargetException {
+						runValidation(part.getDiagramEditPart(), part
+								.getDiagram());
+					}
+				}).run(new NullProgressMonitor());
 			} catch (Exception e) {
 				Activator.getDefault().logError(
 						"Diagram Validation action failed", e);
@@ -110,7 +111,7 @@ public class ValidationAction extends Action {
 	private static void validate(DiagramEditPart diagramEditPart, View view) {
 		IFile target = view.eResource() != null ? WorkspaceSynchronizer
 				.getFile(view.eResource()) : null;
-		if (target != null) {
+		if(target != null) {
 			DiagramValidationMarkerNavigationProvider.deleteMarkers(target);
 		}
 		Diagnostic diagnostic = runEMFValidator(view);
@@ -124,11 +125,11 @@ public class ValidationAction extends Action {
 	 * @return
 	 */
 	private static Diagnostic runEMFValidator(View target) {
-		if (target.isSetElement() && target.getElement() != null) {
+		if(target.isSetElement() && target.getElement() != null) {
 			// do the validation on the root element to check all the elements
 			// contained into the model
 			EObject eo = target.getElement();
-			while (eo.eContainer() != null)
+			while(eo.eContainer() != null)
 				eo = eo.eContainer();
 
 			return new Diagnostician() {
@@ -150,36 +151,36 @@ public class ValidationAction extends Action {
 	 */
 	private static void createMarkers(IFile target,
 			Diagnostic emfValidationStatus, DiagramEditPart diagramEditPart) {
-		if (emfValidationStatus.getSeverity() == Diagnostic.OK) {
+		if(emfValidationStatus.getSeverity() == Diagnostic.OK) {
 			return;
 		}
-		for (Iterator<?> it = emfValidationStatus.getChildren().iterator(); it
+		for(Iterator<?> it = emfValidationStatus.getChildren().iterator(); it
 				.hasNext();) {
-			Diagnostic nextDiagnostic = (Diagnostic) it.next();
+			Diagnostic nextDiagnostic = (Diagnostic)it.next();
 			List<?> data = nextDiagnostic.getData();
-			if (data != null && !data.isEmpty()
+			if(data != null && !data.isEmpty()
 					&& data.get(0) instanceof EObject) {
-				EObject element = (EObject) data.get(0);
+				EObject element = (EObject)data.get(0);
 				List<?> list = DiagramEditPartsUtil.getEObjectViews(element);
 
 				// add the marker to the file if affected element has no
 				// graphical representation
-				if (list.size() == 0) {
+				if(list.size() == 0) {
 					addMarker(target, element.eResource().getURI().toString(),
 							EMFCoreUtil.getQualifiedName(element, true),
 							nextDiagnostic.getMessage(),
 							diagnosticToStatusSeverity(nextDiagnostic
-									.getSeverity()));
+							.getSeverity()));
 				}
 				// add the marker to the views if the element has representation
-				for (Object o : list) {
-					if (o instanceof View) {
-						View v = (View) o;
+				for(Object o : list) {
+					if(o instanceof View) {
+						View v = (View)o;
 						addMarker(target, v.eResource().getURIFragment(v),
 								EMFCoreUtil.getQualifiedName(element, true),
 								nextDiagnostic.getMessage(),
 								diagnosticToStatusSeverity(nextDiagnostic
-										.getSeverity()));
+								.getSeverity()));
 					}
 				}
 			}
@@ -197,7 +198,7 @@ public class ValidationAction extends Action {
 	 */
 	private static void addMarker(IFile target, String elementId,
 			String location, String message, int statusSeverity) {
-		if (target == null) {
+		if(target == null) {
 			return;
 		}
 		DiagramValidationMarkerNavigationProvider.addMarker(target, elementId,
@@ -211,13 +212,13 @@ public class ValidationAction extends Action {
 	 * @return
 	 */
 	private static int diagnosticToStatusSeverity(int diagnosticSeverity) {
-		if (diagnosticSeverity == Diagnostic.OK) {
+		if(diagnosticSeverity == Diagnostic.OK) {
 			return IStatus.OK;
-		} else if (diagnosticSeverity == Diagnostic.INFO) {
+		} else if(diagnosticSeverity == Diagnostic.INFO) {
 			return IStatus.INFO;
-		} else if (diagnosticSeverity == Diagnostic.WARNING) {
+		} else if(diagnosticSeverity == Diagnostic.WARNING) {
 			return IStatus.WARNING;
-		} else if (diagnosticSeverity == Diagnostic.ERROR
+		} else if(diagnosticSeverity == Diagnostic.ERROR
 				|| diagnosticSeverity == Diagnostic.CANCEL) {
 			return IStatus.ERROR;
 		}

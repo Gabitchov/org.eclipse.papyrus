@@ -24,7 +24,7 @@ public class GroupableLabelProvider extends LabelProvider {
 
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof PackagingNode) {
+		if(element instanceof PackagingNode) {
 			return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FOLDER);
 		}
 		return super.getImage(element);
@@ -32,8 +32,8 @@ public class GroupableLabelProvider extends LabelProvider {
 
 	@Override
 	public String getText(Object element) {
-		if (element instanceof PackagingNode) {
-			return "<" + ((PackagingNode) element).getName() + ">";
+		if(element instanceof PackagingNode) {
+			return "<" + ((PackagingNode)element).getName() + ">";
 		}
 		return super.getText(element);
 	}

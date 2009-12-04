@@ -42,7 +42,7 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	 * {@inheritDoc}
 	 */
 	public Image getImage(Object element) {
-		if (element instanceof Diagram) {
+		if(element instanceof Diagram) {
 			return getEditorRegistry().getEditorIcon(element);
 		}
 		return myAdapterFactoryLabelProvider.getImage(element);
@@ -52,8 +52,8 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	 * {@inheritDoc}
 	 */
 	public String getText(Object element) {
-		if (element instanceof Diagram) {
-			Diagram diagram = (Diagram) element;
+		if(element instanceof Diagram) {
+			Diagram diagram = (Diagram)element;
 			return myAdapterFactoryLabelProvider.getText(diagram.getElement());
 		}
 
@@ -95,7 +95,7 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	 * @return the singleton eINSTANCE of editor registry
 	 */
 	protected IEditorFactoryRegistry getEditorRegistry() {
-		if (editorRegistry == null) {
+		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
 		return editorRegistry;

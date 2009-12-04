@@ -24,9 +24,9 @@ public class UMLNavigatorSorter extends ViewerSorter {
 	 */
 	@Override
 	public int category(Object element) {
-		if (element instanceof UMLNavigatorItem) {
-			UMLNavigatorItem item = (UMLNavigatorItem) element;
-			if (item.getView().getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+		if(element instanceof UMLNavigatorItem) {
+			UMLNavigatorItem item = (UMLNavigatorItem)element;
+			if(item.getView().getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 				return SHORTCUTS_CATEGORY;
 			}
 			return UMLVisualIDRegistry.getVisualID(item.getView());

@@ -46,8 +46,8 @@ public class VSL_NullValue_CompletionProposal implements ICompletionProposalComp
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < TVL_NullValue_Strings.length; i++) {
-			if (TVL_NullValue_Strings[i].startsWith(prefix)) {
+		for(int i = 0; i < TVL_NullValue_Strings.length; i++) {
+			if(TVL_NullValue_Strings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(TVL_NullValue_Strings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, TVL_NullValue_Strings[i].length(), null, TVL_NullValue_StringName[i], null,

@@ -39,10 +39,10 @@ public class AssistedEditPart {
 	public List customizeTypes(List types) {
 		types = removeTypes(types);
 		types = addTypes(types);
-		if (customizerClass != null) {
-			AssistantCustomizeEditPart assistant = (AssistantCustomizeEditPart) Platform.getAdapterManager()
+		if(customizerClass != null) {
+			AssistantCustomizeEditPart assistant = (AssistantCustomizeEditPart)Platform.getAdapterManager()
 					.getAdapter(customizerClass, AssistantCustomizeEditPart.class);
-			if (assistant != null) {
+			if(assistant != null) {
 				types = assistant.customizeTypes(types);
 			}
 		}
@@ -56,8 +56,8 @@ public class AssistedEditPart {
 	 * @return
 	 */
 	protected List removeTypes(List types) {
-		if (this.Exclude != null && types != null) {
-			for (Exclude exclude : this.Exclude)
+		if(this.Exclude != null && types != null) {
+			for(Exclude exclude : this.Exclude)
 				types = exclude.removeTypes(types);
 		}
 		return types;
@@ -70,8 +70,8 @@ public class AssistedEditPart {
 	 * @return
 	 */
 	protected List addTypes(List types) {
-		if (this.Include != null && types != null) {
-			for (Include include : this.Include) {
+		if(this.Include != null && types != null) {
+			for(Include include : this.Include) {
 				types = include.addTypes(types);
 			}
 		}

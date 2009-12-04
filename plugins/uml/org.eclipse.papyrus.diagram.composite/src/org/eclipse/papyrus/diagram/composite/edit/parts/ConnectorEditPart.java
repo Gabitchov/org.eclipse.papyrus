@@ -56,22 +56,22 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConnectorNameEditPart) {
-			((ConnectorNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof ConnectorNameEditPart) {
+			((ConnectorNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
-			((ConnectorMultiplicitySourceEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
+			((ConnectorMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getMultiplicitySourceLabel());
 			return true;
 		}
-		if (childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
-			((ConnectorMultiplicityTargetEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
+			((ConnectorMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getMultiplicityTargetLabel());
 			return true;
 		}
-		if (childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
-			((ConnectorAppliedStereotypeEditPart) childEditPart)
+		if(childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
+			((ConnectorAppliedStereotypeEditPart)childEditPart)
 					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
@@ -82,7 +82,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -92,16 +92,16 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConnectorNameEditPart) {
+		if(childEditPart instanceof ConnectorNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
+		if(childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
+		if(childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -111,7 +111,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -133,7 +133,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public ConnectorFigure getPrimaryShape() {
-		return (ConnectorFigure) getFigure();
+		return (ConnectorFigure)getFigure();
 	}
 
 }

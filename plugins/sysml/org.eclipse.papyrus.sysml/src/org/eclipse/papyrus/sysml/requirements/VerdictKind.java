@@ -20,8 +20,8 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '
- * <em><b>Verdict Kind</b></em>', and utility methods for working with them. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Verdict Kind</b></em>', and utility methods for working with
+ * them. <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.requirements.RequirementsPackage#getVerdictKind()
  * @model
@@ -68,8 +68,7 @@ public enum VerdictKind implements Enumerator {
 	/**
 	 * The '<em><b>Pass</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Pass</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Pass</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -83,8 +82,7 @@ public enum VerdictKind implements Enumerator {
 	/**
 	 * The '<em><b>Fail</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Fail</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Fail</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -98,8 +96,7 @@ public enum VerdictKind implements Enumerator {
 	/**
 	 * The '<em><b>Inconclusive</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Inconclusive</b></em>' literal object isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of '<em><b>Inconclusive</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -113,8 +110,7 @@ public enum VerdictKind implements Enumerator {
 	/**
 	 * The '<em><b>Error</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Error</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Error</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -131,7 +127,7 @@ public enum VerdictKind implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final VerdictKind[] VALUES_ARRAY = new VerdictKind[] { PASS, FAIL, INCONCLUSIVE, ERROR, };
+	private static final VerdictKind[] VALUES_ARRAY = new VerdictKind[]{ PASS, FAIL, INCONCLUSIVE, ERROR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Verdict Kind</b></em>' enumerators. <!--
@@ -148,7 +144,7 @@ public enum VerdictKind implements Enumerator {
 	 * @generated
 	 */
 	public static VerdictKind get(int value) {
-		switch (value) {
+		switch(value) {
 		case PASS_VALUE:
 			return PASS;
 		case FAIL_VALUE:
@@ -168,9 +164,9 @@ public enum VerdictKind implements Enumerator {
 	 * @generated
 	 */
 	public static VerdictKind get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			VerdictKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -184,9 +180,9 @@ public enum VerdictKind implements Enumerator {
 	 * @generated
 	 */
 	public static VerdictKind getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			VerdictKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}

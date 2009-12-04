@@ -66,8 +66,8 @@ public class ModelElementSelectionPage extends WizardPage {
 	 */
 	public void setModelElement(EObject modelElement) {
 		selectedModelElement = modelElement;
-		if (modelViewer != null) {
-			if (selectedModelElement != null) {
+		if(modelViewer != null) {
+			if(selectedModelElement != null) {
 				modelViewer.setInput(selectedModelElement.eResource());
 				modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 			} else {
@@ -103,14 +103,14 @@ public class ModelElementSelectionPage extends WizardPage {
 				.getItemProvidersAdapterFactory()));
 		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance()
 				.getItemProvidersAdapterFactory()));
-		if (selectedModelElement != null) {
+		if(selectedModelElement != null) {
 			modelViewer.setInput(selectedModelElement.eResource());
 			modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 		}
 		modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				ModelElementSelectionPage.this.updateSelection((IStructuredSelection) event.getSelection());
+				ModelElementSelectionPage.this.updateSelection((IStructuredSelection)event.getSelection());
 			}
 		});
 
@@ -131,16 +131,16 @@ public class ModelElementSelectionPage extends WizardPage {
 	 */
 	protected void updateSelection(IStructuredSelection selection) {
 		selectedModelElement = null;
-		if (selection.size() == 1) {
+		if(selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
-			if (selectedElement instanceof IWrapperItemProvider) {
-				selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
+			if(selectedElement instanceof IWrapperItemProvider) {
+				selectedElement = ((IWrapperItemProvider)selectedElement).getValue();
 			}
-			if (selectedElement instanceof FeatureMap.Entry) {
-				selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
+			if(selectedElement instanceof FeatureMap.Entry) {
+				selectedElement = ((FeatureMap.Entry)selectedElement).getValue();
 			}
-			if (selectedElement instanceof EObject) {
-				selectedModelElement = (EObject) selectedElement;
+			if(selectedElement instanceof EObject) {
+				selectedModelElement = (EObject)selectedElement;
 			}
 		}
 		setPageComplete(validatePage());

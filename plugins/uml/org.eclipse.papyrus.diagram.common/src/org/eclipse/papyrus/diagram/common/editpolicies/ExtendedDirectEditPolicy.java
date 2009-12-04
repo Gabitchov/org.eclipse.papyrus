@@ -72,13 +72,13 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * The direct edit mechanism requires the edit part to handle the direct edit request.
 	 * 
 	 * @param req
-	 *            the request that called the direct edit.
+	 *        the request that called the direct edit.
 	 */
 	public Command performDirectEdit(DirectEditRequest req) {
-		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
+		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
-		switch (directEditionMode) {
+		switch(directEditionMode) {
 		case IDirectEdition.NO_DIRECT_EDITION:
 			// no direct edition mode => does nothing
 			return null;
@@ -88,7 +88,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 			final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), getUMLElement(), configuration
 					.getTextToEdit(getUMLElement()), configuration);
-			if (Window.OK == dialog.open()) {
+			if(Window.OK == dialog.open()) {
 				TransactionalEditingDomain domain = getEditingDomain();
 				try {
 					domain.runExclusive(new RunnableWithResult() {
@@ -133,7 +133,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
-		return (View) getHost().getModel();
+		return (View)getHost().getModel();
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * @return the {@link Element} managed by this edit part.
 	 */
 	protected Element getUMLElement() {
-		return (Element) getView().getElement();
+		return (Element)getView().getElement();
 	}
 
 	/**
@@ -154,11 +154,11 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * @return the style of direct edition
 	 */
 	public int getDirectEditionType() {
-		if (checkExtendedEditor()) {
+		if(checkExtendedEditor()) {
 			initExtendedEditorConfiguration();
 			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
 		}
-		if (checkDefaultEdition()) {
+		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
 
@@ -172,7 +172,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * @return <code>true</code> if an extended editor is present.
 	 */
 	protected boolean checkExtendedEditor() {
-		if (getUMLElement() != null) {
+		if(getUMLElement() != null) {
 			return DirectEditorsUtil.hasSpecificEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement()
 					.eClass().getInstanceClassName());
 		}
@@ -192,7 +192,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * Initializes the extended editor configuration
 	 */
 	protected void initExtendedEditorConfiguration() {
-		if (configuration == null) {
+		if(configuration == null) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement()
 					.eClass().getInstanceClassName());
 		}
@@ -204,7 +204,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 */
 	// @unused
 	protected void initLabelEditManager() {
-		if (manager == null) {
+		if(manager == null) {
 			// locator for the cell editor (on the name label)
 			CellEditorLocator locator = getTextCellEditorLocator();
 
@@ -218,10 +218,10 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 
 				@Override
 				public String getValue() {
-					if (isElementImport()) {
+					if(isElementImport()) {
 						return getElementImport().getAlias();
-					} else if (getUMLElement() instanceof NamedElement) {
-						return ((NamedElement) getUMLElement()).getName();
+					} else if(getUMLElement() instanceof NamedElement) {
+						return ((NamedElement)getUMLElement()).getName();
 					}
 					return "";
 
@@ -229,10 +229,10 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 
 				@Override
 				public void setValue(String value) {
-					if (isElementImport()) {
+					if(isElementImport()) {
 						getElementImport().setAlias(value);
-					} else if (getUMLElement() instanceof NamedElement) {
-						((NamedElement) getUMLElement()).setName(value);
+					} else if(getUMLElement() instanceof NamedElement) {
+						((NamedElement)getUMLElement()).setName(value);
 					}
 				}
 			};
@@ -240,15 +240,15 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 			ILabelControler labelControler = new FigureControler(getHostFigure(), accessor);
 
 			// creates the editing manager.
-			manager = new TextDirectEditManager((GraphicalEditPart) getHost(), TextCellEditorEx.class, locator);
+			manager = new TextDirectEditManager((GraphicalEditPart)getHost(), TextCellEditorEx.class, locator);
 		}
 	}
 
 	private CellEditorLocator getTextCellEditorLocator() {
-		if (getHostFigure() instanceof WrappingLabel) {
-			return new TextCellEditorLocator((WrappingLabel) getHostFigure());
-		} else if (getHostFigure() instanceof WrappingLabel) {
-			return new LabelCellEditorLocator((Label) getHostFigure());
+		if(getHostFigure() instanceof WrappingLabel) {
+			return new TextCellEditorLocator((WrappingLabel)getHostFigure());
+		} else if(getHostFigure() instanceof WrappingLabel) {
+			return new LabelCellEditorLocator((Label)getHostFigure());
 		} else {
 			Activator.log("Problem to locate the direct edit editor. Figure is neither a label nor a wrapping label");
 			return null;
@@ -267,12 +267,11 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	/**
 	 * Returns the element associated to the edit part hosting this edit policy
 	 * 
-	 * @return the element associated to the edit part hosting this edit policy or <code>null</code>
-	 *         if the element is not an element import
+	 * @return the element associated to the edit part hosting this edit policy or <code>null</code> if the element is not an element import
 	 */
 	public ElementImport getElementImport() {
-		if (isElementImport()) {
-			return (ElementImport) getUMLElement();
+		if(isElementImport()) {
+			return (ElementImport)getUMLElement();
 		}
 		return null;
 	}
@@ -302,16 +301,16 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+			if(getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			} else {
 				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
 				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
@@ -342,12 +341,12 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
 			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
 			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
@@ -359,7 +358,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 * @return the {@link TransactionalEditingDomain} of the host edit part.
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
 }

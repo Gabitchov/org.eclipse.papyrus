@@ -64,7 +64,7 @@ public class BlockItemProvider extends ItemProviderAdapter implements IEditingDo
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsEncapsulatedPropertyDescriptor(object);
@@ -80,7 +80,7 @@ public class BlockItemProvider extends ItemProviderAdapter implements IEditingDo
 	 * @generated
 	 */
 	protected void addIsEncapsulatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_isEncapsulated_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Block_isEncapsulated_feature", "_UI_Block_type"),
 				BlocksPackage.Literals.BLOCK__IS_ENCAPSULATED, true, false, false,
@@ -94,7 +94,7 @@ public class BlockItemProvider extends ItemProviderAdapter implements IEditingDo
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_base_Class_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_Block_base_Class_feature", "_UI_Block_type"),
 				BlocksPackage.Literals.BLOCK__BASE_CLASS, true, false, true, null, null, null));
@@ -118,14 +118,13 @@ public class BlockItemProvider extends ItemProviderAdapter implements IEditingDo
 	 */
 	@Override
 	public String getText(Object object) {
-		Block block = (Block) object;
+		Block block = (Block)object;
 		return getString("_UI_Block_type") + " " + block.isIsEncapsulated();
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -133,7 +132,7 @@ public class BlockItemProvider extends ItemProviderAdapter implements IEditingDo
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Block.class)) {
+		switch(notification.getFeatureID(Block.class)) {
 		case BlocksPackage.BLOCK__IS_ENCAPSULATED:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

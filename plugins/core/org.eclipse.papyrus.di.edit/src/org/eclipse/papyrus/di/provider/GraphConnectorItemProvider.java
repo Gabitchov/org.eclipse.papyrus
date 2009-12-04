@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 
@@ -42,20 +42,23 @@ import org.eclipse.papyrus.di.GraphConnector;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.di.GraphConnector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GraphConnectorItemProvider
-	extends ItemProviderAdapter
-	implements
+		extends ItemProviderAdapter
+		implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphConnectorItemProvider(AdapterFactory adapterFactory) {
@@ -66,11 +69,12 @@ public class GraphConnectorItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addPositionPropertyDescriptor(object);
@@ -83,50 +87,53 @@ public class GraphConnectorItemProvider
 	 * This adds a property descriptor for the Position feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphConnector_position_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphConnector_position_feature", "_UI_GraphConnector_type"),
-				 DiPackage.Literals.GRAPH_CONNECTOR__POSITION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_GraphConnector_position_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_GraphConnector_position_feature", "_UI_GraphConnector_type"),
+				DiPackage.Literals.GRAPH_CONNECTOR__POSITION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Graph Edge feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addGraphEdgePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphConnector_graphEdge_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphConnector_graphEdge_feature", "_UI_GraphConnector_type"),
-				 DiPackage.Literals.GRAPH_CONNECTOR__GRAPH_EDGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_GraphConnector_graphEdge_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_GraphConnector_graphEdge_feature", "_UI_GraphConnector_type"),
+				DiPackage.Literals.GRAPH_CONNECTOR__GRAPH_EDGE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
 	 * This returns GraphConnector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,6 +145,7 @@ public class GraphConnectorItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,8 +153,8 @@ public class GraphConnectorItemProvider
 		Point labelValue = ((GraphConnector)object).getPosition();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GraphConnector_type") :
-			getString("_UI_GraphConnector_type") + " " + label;
+				getString("_UI_GraphConnector_type") :
+				getString("_UI_GraphConnector_type") + " " + label;
 	}
 
 	/**
@@ -154,16 +162,17 @@ public class GraphConnectorItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphConnector.class)) {
-			case DiPackage.GRAPH_CONNECTOR__POSITION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(GraphConnector.class)) {
+		case DiPackage.GRAPH_CONNECTOR__POSITION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -173,6 +182,7 @@ public class GraphConnectorItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,6 +194,7 @@ public class GraphConnectorItemProvider
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

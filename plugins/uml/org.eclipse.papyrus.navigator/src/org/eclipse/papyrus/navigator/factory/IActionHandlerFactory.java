@@ -30,7 +30,7 @@ public interface IActionHandlerFactory {
 	 * Creates a new IActionHandler object.
 	 * 
 	 * @param editingDomain
-	 *            the editing domain
+	 *        the editing domain
 	 * 
 	 * @return the list of created actions
 	 */
@@ -47,7 +47,7 @@ public interface IActionHandlerFactory {
 	 * Activate the action.
 	 * 
 	 * @param activeViewPart
-	 *            the active view part
+	 *        the active view part
 	 */
 	void activate(CommonNavigator activeViewPart);
 
@@ -55,7 +55,7 @@ public interface IActionHandlerFactory {
 	 * Deactivate the action.
 	 * 
 	 * @param activeViewPart
-	 *            the active view part
+	 *        the active view part
 	 */
 	void deactivate(CommonNavigator activeViewPart);
 
@@ -63,7 +63,7 @@ public interface IActionHandlerFactory {
 	 * Update action from the selection
 	 * 
 	 * @param structuredSelection
-	 *            the structured selection
+	 *        the structured selection
 	 */
 	void update(IStructuredSelection structuredSelection);
 
@@ -75,7 +75,7 @@ public interface IActionHandlerFactory {
 	 * </p>
 	 * 
 	 * @param actionBars
-	 *            the part's action bars
+	 *        the part's action bars
 	 */
 	void fillActionBars(IActionBars actionBars);
 

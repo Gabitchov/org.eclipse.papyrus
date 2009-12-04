@@ -33,9 +33,9 @@ public abstract class AbstractPanel extends Composite {
 	 * Default constructor.
 	 * 
 	 * @param style
-	 *            the style of this composite
+	 *        the style of this composite
 	 * @param parent
-	 *            the parent of this composite
+	 *        the parent of this composite
 	 */
 	public AbstractPanel(Composite parent, int style) {
 		super(parent, style);

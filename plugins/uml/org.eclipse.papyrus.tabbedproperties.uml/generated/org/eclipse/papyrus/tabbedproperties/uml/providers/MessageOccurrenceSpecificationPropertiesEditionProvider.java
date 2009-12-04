@@ -40,7 +40,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionProvider implements 
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof MessageOccurrenceSpecification) {
+		if(eObject instanceof MessageOccurrenceSpecification) {
 			return new MessageOccurrenceSpecificationPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionProvider implements 
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof MessageOccurrenceSpecification) {
-			if (MessageOccurrenceSpecificationBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof MessageOccurrenceSpecification) {
+			if(MessageOccurrenceSpecificationBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new MessageOccurrenceSpecificationBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

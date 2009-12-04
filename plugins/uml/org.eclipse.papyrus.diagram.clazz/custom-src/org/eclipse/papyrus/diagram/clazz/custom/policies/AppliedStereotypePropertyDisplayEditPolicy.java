@@ -29,7 +29,7 @@ public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedS
 	 */
 	@Override
 	protected Property getUMLElement() {
-		return (Property) super.getUMLElement();
+		return (Property)super.getUMLElement();
 	};
 
 	/**
@@ -38,7 +38,7 @@ public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedS
 	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		PropertyLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
+		PropertyLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)getHost());
 	}
 
 }

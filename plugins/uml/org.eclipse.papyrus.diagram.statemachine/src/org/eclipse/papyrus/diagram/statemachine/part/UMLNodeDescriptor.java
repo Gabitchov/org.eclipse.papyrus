@@ -49,7 +49,7 @@ public class UMLNodeDescriptor {
 	 * @generated
 	 */
 	public String getType() {
-		if (myType == null) {
+		if(myType == null) {
 			myType = UMLVisualIDRegistry.getType(getVisualID());
 		}
 		return myType;

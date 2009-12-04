@@ -44,22 +44,22 @@ public class InstanceSpecificationGraphicalNodeEditPolicy extends CustomGraphica
 	 * {@inheritDoc}
 	 */
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-		if (!(request instanceof CreateConnectionViewRequest))
+		if(!(request instanceof CreateConnectionViewRequest))
 			return null;
 		AttachInstanceSpecifcationCommand instanceSpecifcationCommand = null;
-		CreateConnectionViewRequest req = (CreateConnectionViewRequest) request;
+		CreateConnectionViewRequest req = (CreateConnectionViewRequest)request;
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
-		Diagram diagramView = ((View) getHost().getModel()).getDiagram();
+		Diagram diagramView = ((View)getHost().getModel()).getDiagram();
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		CreateCommand createCommand = new CreateCommand(editingDomain, req.getConnectionViewDescriptor(), diagramView
 				.getDiagram());
 
-		if (req.getConnectionViewDescriptor().getSemanticHint()
+		if(req.getConnectionViewDescriptor().getSemanticHint()
 				.equals("" + InstanceSpecificationLinkEditPart.VISUAL_ID)) {
 			instanceSpecifcationCommand = new AttachInstanceSpecifcationCommand(getEditingDomain(),
-					((IAdaptable) createCommand.getCommandResult().getReturnValue()), getViewer());
+					((IAdaptable)createCommand.getCommandResult().getReturnValue()), getViewer());
 		}
-		setViewAdapter((IAdaptable) createCommand.getCommandResult().getReturnValue());
+		setViewAdapter((IAdaptable)createCommand.getCommandResult().getReturnValue());
 
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
 		sceCommand.setEdgeAdaptor(getViewAdapter());
@@ -74,7 +74,7 @@ public class InstanceSpecificationGraphicalNodeEditPolicy extends CustomGraphica
 		cc.compose(sceCommand);
 		cc.compose(scaCommand);
 		cc.compose(sbbCommand);
-		if (instanceSpecifcationCommand != null) {
+		if(instanceSpecifcationCommand != null) {
 			cc.compose(instanceSpecifcationCommand);
 		}
 		Command c = new ICommandProxy(cc);
@@ -83,7 +83,7 @@ public class InstanceSpecificationGraphicalNodeEditPolicy extends CustomGraphica
 	}
 
 	protected TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
 	/**
@@ -92,6 +92,6 @@ public class InstanceSpecificationGraphicalNodeEditPolicy extends CustomGraphica
 	 * @return the viewer
 	 */
 	protected EditPartViewer getViewer() {
-		return ((IGraphicalEditPart) getHost()).getViewer();
+		return ((IGraphicalEditPart)getHost()).getViewer();
 	}
 }

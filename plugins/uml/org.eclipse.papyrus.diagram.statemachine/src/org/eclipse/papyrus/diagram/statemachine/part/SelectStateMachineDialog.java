@@ -41,6 +41,7 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class SelectStateMachineDialog extends Dialog {
+
 	private TransactionalEditingDomain domain;
 
 	public SelectStateMachineDialog(Shell parentShell,
@@ -112,22 +113,23 @@ public class SelectStateMachineDialog extends Dialog {
 	private EObject mySelectedModelElement;
 
 	private class OkButtonEnabler implements ISelectionChangedListener {
+
 		public void selectionChanged(SelectionChangedEvent event) {
-			if (event.getSelection() instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) event
+			if(event.getSelection() instanceof IStructuredSelection) {
+				IStructuredSelection selection = (IStructuredSelection)event
 						.getSelection();
-				if (selection.size() == 1) {
+				if(selection.size() == 1) {
 					Object selectedElement = selection.getFirstElement();
-					if (selectedElement instanceof IWrapperItemProvider) {
-						selectedElement = ((IWrapperItemProvider) selectedElement)
+					if(selectedElement instanceof IWrapperItemProvider) {
+						selectedElement = ((IWrapperItemProvider)selectedElement)
 								.getValue();
 					}
-					if (selectedElement instanceof FeatureMap.Entry) {
-						selectedElement = ((FeatureMap.Entry) selectedElement)
+					if(selectedElement instanceof FeatureMap.Entry) {
+						selectedElement = ((FeatureMap.Entry)selectedElement)
 								.getValue();
 					}
-					if (selectedElement instanceof EObject) {
-						mySelectedModelElement = (EObject) selectedElement;
+					if(selectedElement instanceof EObject) {
+						mySelectedModelElement = (EObject)selectedElement;
 						setOkButtonEnabled(mySelectedModelElement != null
 								&& mySelectedModelElement.eClass() == UMLPackage.Literals.STATE_MACHINE);
 						return;
@@ -141,27 +143,28 @@ public class SelectStateMachineDialog extends Dialog {
 
 	private class ModelElementsTreeContentProvider implements
 			ITreeContentProvider {
+
 		public Object[] getChildren(Object parentElement) {
 			Object[] result = myWorkbenchContentProvider
 					.getChildren(parentElement);
-			if (result != null && result.length > 0) {
+			if(result != null && result.length > 0) {
 				return result;
 			}
-			if (parentElement instanceof IFile) {
-				IFile modelFile = (IFile) parentElement;
+			if(parentElement instanceof IFile) {
+				IFile modelFile = (IFile)parentElement;
 				IPath resourcePath = modelFile.getFullPath();
 				ResourceSet resourceSet = myEditingDomain.getResourceSet();
 				try {
 					Resource modelResource = resourceSet.getResource(URI
 							.createPlatformResourceURI(resourcePath.toString(),
-									true), true);
+							true), true);
 					return myAdapterFctoryContentProvier
 							.getChildren(modelResource);
 				} catch (WrappedException e) {
 					UMLDiagramEditorPlugin
 							.getInstance()
 							.logError(
-									"Unable to load resource: " + resourcePath.toString(), e); //$NON-NLS-1$
+							"Unable to load resource: " + resourcePath.toString(), e); //$NON-NLS-1$
 				}
 				return Collections.EMPTY_LIST.toArray();
 			}
@@ -170,12 +173,12 @@ public class SelectStateMachineDialog extends Dialog {
 
 		public Object getParent(Object element) {
 			Object parent = myWorkbenchContentProvider.getParent(element);
-			if (parent != null) {
+			if(parent != null) {
 				return parent;
 			}
-			if (element instanceof EObject) {
-				EObject eObject = (EObject) element;
-				if (eObject.eContainer() == null
+			if(element instanceof EObject) {
+				EObject eObject = (EObject)element;
+				if(eObject.eContainer() == null
 						&& eObject.eResource().getURI().isFile()) {
 					String path = eObject.eResource().getURI().path();
 					return ResourcesPlugin.getWorkspace().getRoot()
@@ -187,8 +190,8 @@ public class SelectStateMachineDialog extends Dialog {
 		}
 
 		public boolean hasChildren(Object element) {
-			if (element instanceof IFile) {
-				return isValidModelFile((IFile) element);
+			if(element instanceof IFile) {
+				return isValidModelFile((IFile)element);
 			}
 			return myWorkbenchContentProvider.hasChildren(element)
 					|| myAdapterFctoryContentProvier.hasChildren(element);
@@ -213,13 +216,16 @@ public class SelectStateMachineDialog extends Dialog {
 
 		private EditingDomain myEditingDomain = WorkspaceEditingDomainFactory.INSTANCE
 				.createEditingDomain();
+
 		private ITreeContentProvider myWorkbenchContentProvider = new WorkbenchContentProvider();
+
 		private AdapterFactoryContentProvider myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
+				.getItemProvidersAdapterFactory());
 	}
 
 	private class ModelElementsTreeLabelProvider implements ILabelProvider {
+
 		public Image getImage(Object element) {
 			Image result = myWorkbenchLabelProvider.getImage(element);
 			return result != null ? result : myAdapterFactoryLabelProvider
@@ -245,7 +251,7 @@ public class SelectStateMachineDialog extends Dialog {
 		public boolean isLabelProperty(Object element, String property) {
 			return myWorkbenchLabelProvider.isLabelProperty(element, property)
 					|| myAdapterFactoryLabelProvider.isLabelProperty(element,
-							property);
+					property);
 		}
 
 		public void removeListener(ILabelProviderListener listener) {
@@ -254,20 +260,22 @@ public class SelectStateMachineDialog extends Dialog {
 		}
 
 		private WorkbenchLabelProvider myWorkbenchLabelProvider = new WorkbenchLabelProvider();
+
 		private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
+				.getItemProvidersAdapterFactory());
 	}
 
 	private class ModelFilesFilter extends ViewerFilter {
+
 		@Override
 		public boolean select(Viewer viewer, Object parentElement,
 				Object element) {
-			if (element instanceof IContainer) {
+			if(element instanceof IContainer) {
 				return true;
 			}
-			if (element instanceof IFile) {
-				IFile file = (IFile) element;
+			if(element instanceof IFile) {
+				IFile file = (IFile)element;
 				return isValidModelFile(file);
 			}
 			return true;

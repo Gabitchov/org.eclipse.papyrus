@@ -40,7 +40,7 @@ public class ReplyActionPropertiesEditionProvider implements IPropertiesEditionP
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ReplyAction) {
+		if(eObject instanceof ReplyAction) {
 			return new ReplyActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ReplyActionPropertiesEditionProvider implements IPropertiesEditionP
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ReplyAction) {
-			if (ReplyActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ReplyAction) {
+			if(ReplyActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ReplyActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

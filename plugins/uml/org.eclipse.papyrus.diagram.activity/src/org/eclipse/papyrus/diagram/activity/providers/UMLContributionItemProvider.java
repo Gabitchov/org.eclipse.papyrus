@@ -11,17 +11,14 @@ import org.eclipse.jface.action.IAction;
  * @generated
  */
 
-public class UMLContributionItemProvider extends
-		AbstractContributionItemProvider {
+public class UMLContributionItemProvider extends AbstractContributionItemProvider {
 
 	/**
 	 * @generated
 	 */
-	protected IAction createAction(String actionId,
-			IWorkbenchPartDescriptor partDescriptor) {
+	protected IAction createAction(String actionId, IWorkbenchPartDescriptor partDescriptor) {
 		if (actionId.equals(PrintPreviewAction.ID)) {
-			return new RenderedPrintPreviewAction(
-					new EnhancedPrintActionHelper());
+			return new RenderedPrintPreviewAction(new EnhancedPrintActionHelper());
 		}
 		return super.createAction(actionId, partDescriptor);
 	}

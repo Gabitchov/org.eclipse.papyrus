@@ -27,10 +27,8 @@ import org.eclipse.swt.widgets.Layout;
  * </p>
  * <ul>
  * The following editor fields are initialized :
- * <li>{@link org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor}
- * <em>ColorFieldEditor</em></li>
- * <li>{@link org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor}
- * <em>FontFieldEditor</em></li>
+ * <li>{@link org.eclipse.papyrus.preferences.jface.preference.ColorFieldEditor} <em>ColorFieldEditor</em></li>
+ * <li>{@link org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor} <em>FontFieldEditor</em></li>
  * </ul>
  * 
  * @author tlandre
@@ -45,6 +43,7 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 
 	/**
 	 * create a local composite
+	 * 
 	 * @param parent
 	 * @return
 	 */
@@ -69,8 +68,7 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 	 * Get the specified preference type associated with this preference page.
 	 * 
 	 * @param preferenceType
-	 *            an int representing the preference type to retrieve. It must be a value defined in
-	 *            {@link PreferenceConstantHelper}
+	 *        an int representing the preference type to retrieve. It must be a value defined in {@link PreferenceConstantHelper}
 	 * @return the preference constant used to store the given prefence type.
 	 */
 	protected String getPreferenceConstant(int preferenceType) {

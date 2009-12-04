@@ -47,7 +47,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -57,13 +57,13 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
-			((AppliedStereotypeInterfaceRealizationEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
+			((AppliedStereotypeInterfaceRealizationEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
-		if (childEditPart instanceof InterfaceRealizationName2EditPart) {
-			((InterfaceRealizationName2EditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof InterfaceRealizationName2EditPart) {
+			((InterfaceRealizationName2EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -97,14 +97,14 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure) getFigure();
+		return (InterfaceRealizationFigure)getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -114,10 +114,10 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
+		if(childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof InterfaceRealizationName2EditPart) {
+		if(childEditPart instanceof InterfaceRealizationName2EditPart) {
 			return true;
 		}
 		return false;

@@ -25,13 +25,13 @@ public class ElementOwnedCommentItemSemanticEditPolicy extends
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (request instanceof GroupRequest
+		if(request instanceof GroupRequest
 				&& RequestConstants.REQ_DELETE.equals(request.getType())) {
-			ElementOwnedCommentEditPart ep = (ElementOwnedCommentEditPart) getHost();
+			ElementOwnedCommentEditPart ep = (ElementOwnedCommentEditPart)getHost();
 			DestroyReferenceRequest drr = new DestroyReferenceRequest(
-					((View) ep.getSource().getModel()).getElement(),
-					UMLPackage.eINSTANCE.getElement_OwnedComment(), ((View) ep
-							.getTarget().getModel()).getElement(), false);
+					((View)ep.getSource().getModel()).getElement(),
+					UMLPackage.eINSTANCE.getElement_OwnedComment(), ((View)ep
+					.getTarget().getModel()).getElement(), false);
 			return getDestroyReferenceCommand(drr);
 		}
 		return super.getCommand(request);
@@ -43,7 +43,7 @@ public class ElementOwnedCommentItemSemanticEditPolicy extends
 	@Override
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		EObject eObject = DiagramEditPartsUtil.getDiagramEditPart(
-				((ElementOwnedCommentEditPart) this.getHost()).getTarget())
+				((ElementOwnedCommentEditPart)this.getHost()).getTarget())
 				.resolveSemanticElement();
 
 		SetRequest sr = new SetRequest(eObject, UMLPackage.eINSTANCE

@@ -51,9 +51,9 @@ public class MultiStatusErrorReporter implements IErrorReporter {
 	 */
 	// @unused
 	public MultiStatus compileMultiStatus() {
-		if (childrens != null && !childrens.isEmpty()) {
+		if(childrens != null && !childrens.isEmpty()) {
 			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, "Message for Multistatus", null);
-			for (IStatus status : childrens) {
+			for(IStatus status : childrens) {
 				multiStatus.add(status);
 			}
 			return multiStatus;

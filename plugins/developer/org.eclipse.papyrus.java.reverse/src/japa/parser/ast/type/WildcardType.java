@@ -29,44 +29,44 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class WildcardType extends Type {
 
-    private ReferenceType ext;
+	private ReferenceType ext;
 
-    private ReferenceType sup;
+	private ReferenceType sup;
 
-    public WildcardType() {
-    }
+	public WildcardType() {
+	}
 
-    public WildcardType(int beginLine, int beginColumn, int endLine, int endColumn, ReferenceType ext, ReferenceType sup) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        assert ext == null || sup == null;
-        this.ext = ext;
-        this.sup = sup;
-    }
+	public WildcardType(int beginLine, int beginColumn, int endLine, int endColumn, ReferenceType ext, ReferenceType sup) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		assert ext == null || sup == null;
+		this.ext = ext;
+		this.sup = sup;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public ReferenceType getExtends() {
-        return ext;
-    }
+	public ReferenceType getExtends() {
+		return ext;
+	}
 
-    public ReferenceType getSuper() {
-        return sup;
-    }
+	public ReferenceType getSuper() {
+		return sup;
+	}
 
-    public void setExtends(ReferenceType ext) {
-        this.ext = ext;
-    }
+	public void setExtends(ReferenceType ext) {
+		this.ext = ext;
+	}
 
-    public void setSuper(ReferenceType sup) {
-        this.sup = sup;
-    }
+	public void setSuper(ReferenceType sup) {
+		this.sup = sup;
+	}
 
 }

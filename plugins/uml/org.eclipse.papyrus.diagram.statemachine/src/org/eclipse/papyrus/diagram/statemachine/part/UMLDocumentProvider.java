@@ -57,23 +57,22 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	protected ElementInfo createElementInfo(Object element)
 			throws CoreException {
-		if (false == element instanceof FileEditorInput
+		if(false == element instanceof FileEditorInput
 				&& false == element instanceof URIEditorInput) {
 			throw new CoreException(
 					new Status(
-							IStatus.ERROR,
-							UMLDiagramEditorPlugin.ID,
-							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+					IStatus.ERROR,
+					UMLDiagramEditorPlugin.ID,
+					0,
+					NLS
+					.bind(
+					Messages.UMLDocumentProvider_IncorrectInputError,
+					new Object[]{
+					element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
-		IEditorInput editorInput = (IEditorInput) element;
-		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
+		IEditorInput editorInput = (IEditorInput)element;
+		IDiagramDocument document = (IDiagramDocument)createDocument(editorInput);
 
 		CachedResourceSetInfo info = new CachedResourceSetInfo(document,
 				editorInput);
@@ -87,23 +86,22 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 */
 	@Override
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput
+		if(false == element instanceof FileEditorInput
 				&& false == element instanceof URIEditorInput) {
 			throw new CoreException(
 					new Status(
-							IStatus.ERROR,
-							UMLDiagramEditorPlugin.ID,
-							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+					IStatus.ERROR,
+					UMLDiagramEditorPlugin.ID,
+					0,
+					NLS
+					.bind(
+					Messages.UMLDocumentProvider_IncorrectInputError,
+					new Object[]{
+					element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
-		IDocument document = createEmptyDocument((IEditorInput) element);
-		setDocumentContent(document, (IEditorInput) element);
+		IDocument document = createEmptyDocument((IEditorInput)element);
+		setDocumentContent(document, (IEditorInput)element);
 		setupDocument(element, document);
 		return document;
 	}
@@ -113,8 +111,10 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 * content of the document is not changed. This default implementation is empty.
 	 * Subclasses may reimplement.
 	 * 
-	 * @param element the blue-print element
-	 * @param document the document to set up
+	 * @param element
+	 *        the blue-print element
+	 * @param document
+	 *        the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {
@@ -126,24 +126,24 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 */
 	protected void setDocumentContent(IDocument document, IEditorInput element)
 			throws CoreException {
-		IDiagramDocument diagramDocument = (IDiagramDocument) document;
+		IDiagramDocument diagramDocument = (IDiagramDocument)document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
+		if(element instanceof FileEditorInput) {
+			IStorage storage = ((FileEditorInput)element).getStorage();
 			Diagram diagram = DiagramIOUtil.load(domain, storage, true,
 					getProgressMonitor());
 			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
-			URI uri = ((URIEditorInput) element).getURI();
+		} else if(element instanceof URIEditorInput) {
+			URI uri = ((URIEditorInput)element).getURI();
 			Resource resource = null;
 			try {
 				resource = domain.getResourceSet().getResource(
 						uri.trimFragment(), false);
-				if (resource == null) {
+				if(resource == null) {
 					resource = domain.getResourceSet().createResource(
 							uri.trimFragment());
 				}
-				if (!resource.isLoaded()) {
+				if(!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory
 								.getDefaultLoadOptions());
@@ -155,18 +155,18 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 						throw e;
 					}
 				}
-				if (uri.fragment() != null) {
+				if(uri.fragment() != null) {
 					EObject rootElement = resource.getEObject(uri.fragment());
-					if (rootElement instanceof Diagram) {
-						document.setContent((Diagram) rootElement);
+					if(rootElement instanceof Diagram) {
+						document.setContent((Diagram)rootElement);
 						return;
 					}
 				} else {
-					for (Iterator it = resource.getContents().iterator(); it
+					for(Iterator it = resource.getContents().iterator(); it
 							.hasNext();) {
 						Object rootElement = it.next();
-						if (rootElement instanceof Diagram) {
-							document.setContent((Diagram) rootElement);
+						if(rootElement instanceof Diagram) {
+							document.setContent((Diagram)rootElement);
 							return;
 						}
 					}
@@ -175,34 +175,33 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 						Messages.UMLDocumentProvider_NoDiagramInResourceError);
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
-				if (e instanceof CoreException) {
-					thrownExcp = (CoreException) e;
+				if(e instanceof CoreException) {
+					thrownExcp = (CoreException)e;
 				} else {
 					String msg = e.getLocalizedMessage();
 					thrownExcp = new CoreException(
 							new Status(
-									IStatus.ERROR,
-									UMLDiagramEditorPlugin.ID,
-									0,
-									msg != null ? msg
-											: Messages.UMLDocumentProvider_DiagramLoadingError,
-									e));
+							IStatus.ERROR,
+							UMLDiagramEditorPlugin.ID,
+							0,
+							msg != null ? msg
+							: Messages.UMLDocumentProvider_DiagramLoadingError,
+							e));
 				}
 				throw thrownExcp;
 			}
 		} else {
 			throw new CoreException(
 					new Status(
-							IStatus.ERROR,
-							UMLDiagramEditorPlugin.ID,
-							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+					IStatus.ERROR,
+					UMLDiagramEditorPlugin.ID,
+					0,
+					NLS
+					.bind(
+					Messages.UMLDocumentProvider_IncorrectInputError,
+					new Object[]{
+					element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 	}
 
@@ -212,7 +211,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	public long getModificationStamp(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return computeModificationStamp(info);
 		}
 		return super.getModificationStamp(element);
@@ -224,9 +223,9 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	public boolean isDeleted(Object element) {
 		IDiagramDocument document = getDiagramDocument(element);
-		if (document != null) {
+		if(document != null) {
 			Resource diagramResource = document.getDiagram().eResource();
-			if (diagramResource != null) {
+			if(diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
 				return file == null || file.getLocation() == null
 						|| !file.getLocation().toFile().exists();
@@ -239,7 +238,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 * @generated
 	 */
 	public CachedResourceSetInfo getResourceSetInfo(Object editorInput) {
-		return (CachedResourceSetInfo) super.getElementInfo(editorInput);
+		return (CachedResourceSetInfo)super.getElementInfo(editorInput);
 	}
 
 	/**
@@ -249,19 +248,19 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	protected void doValidateState(Object element, Object computationContext)
 			throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection files2Validate = new ArrayList();
-			for (Iterator it = info.getResourceSet().getResources().iterator(); it
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it
 					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					files2Validate.add(file);
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate
-							.size()]), computationContext);
+					(IFile[])files2Validate.toArray(new IFile[files2Validate
+					.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -273,8 +272,8 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	public boolean isReadOnly(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
@@ -293,15 +292,15 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 */
 	@Override
 	public boolean isModifiable(Object element) {
-		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput
+		if(!isStateValidated(element)) {
+			if(element instanceof FileEditorInput
 					|| element instanceof URIEditorInput) {
 				return true;
 			}
 		}
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
@@ -320,12 +319,12 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 */
 	protected void updateCache(Object element) throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Iterator it = info.getResourceSet().getResources().iterator(); it
+		if(info != null) {
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it
 					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					info.setReadOnly(true);
 					info.setModifiable(false);
 					return;
@@ -343,7 +342,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	protected void doUpdateStateCache(Object element) throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			info.setUpdateCache(true);
 		}
 		super.doUpdateStateCache(element);
@@ -355,7 +354,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	public boolean isSynchronized(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return info.isSynchronized();
 		}
 		return super.isSynchronized(element);
@@ -367,18 +366,18 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	protected ISchedulingRule getResetRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Iterator it = info.getResourceSet().getResources().iterator(); it
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it
 					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
 							.modifyRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
+			return new MultiRule((ISchedulingRule[])rules
 					.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
@@ -390,17 +389,17 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	protected ISchedulingRule getSaveRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Iterator it = info.getResourceSet().getResources().iterator(); it
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it
 					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
+			return new MultiRule((ISchedulingRule[])rules
 					.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
@@ -412,18 +411,18 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Iterator it = info.getResourceSet().getResources().iterator(); it
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it
 					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
 							.refreshRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
+			return new MultiRule((ISchedulingRule[])rules
 					.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
@@ -435,19 +434,19 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	@Override
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection files = new ArrayList();
-			for (Iterator it = info.getResourceSet().getResources().iterator(); it
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it
 					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					files.add(file);
 				}
 			}
 			return ResourcesPlugin.getWorkspace().getRuleFactory()
 					.validateEditRule(
-							(IFile[]) files.toArray(new IFile[files.size()]));
+					(IFile[])files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
@@ -456,7 +455,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 * @generated
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
-		if (toCreateOrModify.exists())
+		if(toCreateOrModify.exists())
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(
 					toCreateOrModify);
 
@@ -470,7 +469,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
-		} while (parent != null && !parent.exists());
+		} while(parent != null && !parent.exists());
 
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(
 				toCreateOrModify);
@@ -483,10 +482,10 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	protected void doSynchronize(Object element, IProgressMonitor monitor)
 			throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Iterator it = info.getResourceSet().getResources().iterator(); it
+		if(info != null) {
+			for(Iterator it = info.getResourceSet().getResources().iterator(); it
 					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+				Resource nextResource = (Resource)it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
 			return;
@@ -501,15 +500,15 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	protected void doSaveDocument(IProgressMonitor monitor, Object element,
 			IDocument document, boolean overwrite) throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (!overwrite && !info.isSynchronized()) {
+		if(info != null) {
+			if(!overwrite && !info.isSynchronized()) {
 				throw new CoreException(
 						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								IResourceStatus.OUT_OF_SYNC_LOCAL,
-								Messages.UMLDocumentProvider_UnsynchronizedFileSaveError,
-								null));
+						IStatus.ERROR,
+						UMLDiagramEditorPlugin.ID,
+						IResourceStatus.OUT_OF_SYNC_LOCAL,
+						Messages.UMLDocumentProvider_UnsynchronizedFileSaveError,
+						null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
@@ -517,14 +516,14 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 			try {
 				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask,
 						resources.size() + 1); //"Saving diagram"
-				for (Iterator it = resources.iterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
+				for(Iterator it = resources.iterator(); it.hasNext();) {
+					Resource nextResource = (Resource)it.next();
 					monitor.setTaskName(NLS.bind(
 							Messages.UMLDocumentProvider_SaveNextResourceTask,
 							nextResource.getURI()));
-					if (nextResource.isLoaded()
+					if(nextResource.isLoaded()
 							&& !info.getEditingDomain()
-									.isReadOnly(nextResource)) {
+							.isReadOnly(nextResource)) {
 						try {
 							nextResource.save(UMLDiagramEditorUtil
 									.getSaveOptions());
@@ -533,7 +532,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 							throw new CoreException(new Status(IStatus.ERROR,
 									UMLDiagramEditorPlugin.ID,
 									EditorStatusCodes.RESOURCE_FAILURE, e
-											.getLocalizedMessage(), null));
+									.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -549,47 +548,47 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 		} else {
 			URI newResoruceURI;
 			List affectedFiles = null;
-			if (element instanceof FileEditorInput) {
-				IFile newFile = ((FileEditorInput) element).getFile();
+			if(element instanceof FileEditorInput) {
+				IFile newFile = ((FileEditorInput)element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
 				newResoruceURI = URI.createPlatformResourceURI(newFile
 						.getFullPath().toString(), true);
-			} else if (element instanceof URIEditorInput) {
-				newResoruceURI = ((URIEditorInput) element).getURI();
+			} else if(element instanceof URIEditorInput) {
+				newResoruceURI = ((URIEditorInput)element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(
 						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								0,
-								NLS
-										.bind(
-												Messages.UMLDocumentProvider_IncorrectInputError,
-												new Object[] {
-														element,
-														"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-								null));
+						IStatus.ERROR,
+						UMLDiagramEditorPlugin.ID,
+						0,
+						NLS
+						.bind(
+						Messages.UMLDocumentProvider_IncorrectInputError,
+						new Object[]{
+						element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 			}
-			if (false == document instanceof IDiagramDocument) {
+			if(false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(
 						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								0,
-								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+						IStatus.ERROR,
+						UMLDiagramEditorPlugin.ID,
+						0,
+						"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
-			IDiagramDocument diagramDocument = (IDiagramDocument) document;
+			IDiagramDocument diagramDocument = (IDiagramDocument)document;
 			final Resource newResource = diagramDocument.getEditingDomain()
 					.getResourceSet().createResource(newResoruceURI);
-			final Diagram diagramCopy = (Diagram) EcoreUtil
+			final Diagram diagramCopy = (Diagram)EcoreUtil
 					.copy(diagramDocument.getDiagram());
 			try {
 				new AbstractTransactionalCommand(diagramDocument
 						.getEditingDomain(), NLS.bind(
 						Messages.UMLDocumentProvider_SaveAsOperation,
 						diagramCopy.getName()), affectedFiles) {
+
 					protected CommandResult doExecuteWithResult(
 							IProgressMonitor monitor, IAdaptable info)
 							throws ExecutionException {
@@ -620,15 +619,15 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	protected void handleElementChanged(CachedResourceSetInfo info,
 			Resource changedResource, IProgressMonitor monitor) {
 		IFile file = WorkspaceSynchronizer.getFile(changedResource);
-		if (file != null) {
+		if(file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
 				UMLDiagramEditorPlugin
 						.getInstance()
 						.logError(
-								Messages.UMLDocumentProvider_handleElementContentChanged,
-								ex);
+						Messages.UMLDocumentProvider_handleElementContentChanged,
+						ex);
 				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
@@ -642,7 +641,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 		} catch (CoreException e) {
 			info.fStatus = e.getStatus();
 		}
-		if (!info.fCanBeSaved) {
+		if(!info.fCanBeSaved) {
 			info.setModificationStamp(computeModificationStamp(info));
 		}
 		addUnchangedElementListeners(info.getEditorInput(), info);
@@ -654,7 +653,7 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 */
 	@Override
 	protected void handleElementMoved(IEditorInput input, URI uri) {
-		if (input instanceof FileEditorInput) {
+		if(input instanceof FileEditorInput) {
 			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
 					new Path(URI.decode(uri.path())).removeFirstSegments(1));
 			fireElementMoved(input, newFile == null ? null
@@ -678,8 +677,8 @@ public class UMLDocumentProvider extends CachedResourcesDocumentProvider
 	 */
 	public IDiagramDocument getDiagramDocument(Object element) {
 		IDocument doc = getDocument(element);
-		if (doc instanceof IDiagramDocument) {
-			return (IDiagramDocument) doc;
+		if(doc instanceof IDiagramDocument) {
+			return (IDiagramDocument)doc;
 		}
 		return null;
 	}

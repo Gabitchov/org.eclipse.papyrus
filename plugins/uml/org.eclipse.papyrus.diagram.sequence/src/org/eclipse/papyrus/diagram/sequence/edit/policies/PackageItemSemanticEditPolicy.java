@@ -39,7 +39,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Interaction_2001 == req.getElementType()) {
+		if(UMLElementTypes.Interaction_2001 == req.getElementType()) {
 			return getGEFWrapper(new InteractionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -49,10 +49,10 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		Diagram currentDiagram = null;
-		if (getHost() instanceof IGraphicalEditPart) {
-			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView().getDiagram();
+		if(getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart)getHost()).getNotationView().getDiagram();
 		}
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
 	}

@@ -102,12 +102,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		// Retrieve drop location
 		Point location = dropRequest.getLocation().getCopy();
-		((GraphicalEditPart) getHost()).getContentPane().translateToRelative(location);
-		((GraphicalEditPart) getHost()).getContentPane().translateFromParent(location);
-		location.translate(((GraphicalEditPart) getHost()).getContentPane().getClientArea().getLocation().getNegated());
+		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
+		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
+		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
 
 		// Switch test over linkVisualID
-		switch (linkVISUALID) {
+		switch(linkVISUALID) {
 		case DependencyEditPart.VISUAL_ID:
 			return dropDependency(dropRequest, semanticElement, linkVISUALID);
 		case RoleBindingEditPart.VISUAL_ID:
@@ -116,15 +116,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			return dropConnector(dropRequest, semanticElement, linkVISUALID);
 		default:
 			// Switch test over nodeVISUALID
-			switch (nodeVISUALID) {
+			switch(nodeVISUALID) {
 			case PortEditPart.VISUAL_ID:
-				return dropPort(dropRequest, location, (Port) semanticElement, nodeVISUALID);
+				return dropPort(dropRequest, location, (Port)semanticElement, nodeVISUALID);
 			case PropertyPartEditPartCN.VISUAL_ID:
-				return dropProperty(dropRequest, location, (Property) semanticElement, nodeVISUALID);
+				return dropProperty(dropRequest, location, (Property)semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
-				return dropTimeObservation(dropRequest, location, (TimeObservation) semanticElement, nodeVISUALID);
+				return dropTimeObservation(dropRequest, location, (TimeObservation)semanticElement, nodeVISUALID);
 			case DurationObservationEditPart.VISUAL_ID:
-				return dropDurationObservation(dropRequest, location, (DurationObservation) semanticElement,
+				return dropDurationObservation(dropRequest, location, (DurationObservation)semanticElement,
 						nodeVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
@@ -136,11 +136,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Returns the drop command for Dependency links.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the element to drop
+	 *        the element to drop
 	 * @param linkVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
+	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
 	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
@@ -148,12 +148,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		Collection<?> targetEnds = CompositeLinkMappingHelper.getInstance().getTarget(semanticLink);
 
 		// Dependency with Unary ends
-		if ((sourceEnds != null) && (targetEnds != null) && (sourceEnds.size() == 1) && (targetEnds.size() == 1)) {
+		if((sourceEnds != null) && (targetEnds != null) && (sourceEnds.size() == 1) && (targetEnds.size() == 1)) {
 
-			Element source = (Element) sourceEnds.toArray()[0];
-			Element target = (Element) targetEnds.toArray()[0];
+			Element source = (Element)sourceEnds.toArray()[0];
+			Element target = (Element)targetEnds.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Dependency"), source, target, //$NON-NLS-1$
-					linkVISUALID, dropRequest.getLocation(), semanticLink));
+			linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -163,11 +163,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Returns the drop command for RoleBinding links.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the element to drop
+	 *        the element to drop
 	 * @param linkVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
+	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
 	protected Command dropRoleBinding(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
@@ -175,12 +175,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		Collection<?> targetEnds = CompositeLinkMappingHelper.getInstance().getTarget(semanticLink);
 
 		// Dependency with Unary ends
-		if ((sourceEnds != null) && (targetEnds != null) && (sourceEnds.size() == 1) && (targetEnds.size() == 1)) {
+		if((sourceEnds != null) && (targetEnds != null) && (sourceEnds.size() == 1) && (targetEnds.size() == 1)) {
 
-			Element source = (Element) semanticLink.getOwner();
-			Element target = (Element) targetEnds.toArray()[0];
+			Element source = (Element)semanticLink.getOwner();
+			Element target = (Element)targetEnds.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop RoleBinding"), source, target, //$NON-NLS-1$
-					linkVISUALID, dropRequest.getLocation(), semanticLink));
+			linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -190,22 +190,22 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Returns the drop command for Connector links.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the element to drop
+	 *        the element to drop
 	 * @param linkVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
+	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
 	protected Command dropConnector(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		Collection<?> connectorEnds = CompositeLinkMappingHelper.getInstance().getSource(semanticLink);
 
-		if ((connectorEnds != null) && (connectorEnds.size() == 2)) {
+		if((connectorEnds != null) && (connectorEnds.size() == 2)) {
 
 			ConnectorHelper helper = new ConnectorHelper(getEditingDomain());
-			return new ICommandProxy(helper.dropConnector((Connector) semanticLink, linkVISUALID, getViewer(),
-					getHost(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
-							.getNotationView()));
+			return new ICommandProxy(helper.dropConnector((Connector)semanticLink, linkVISUALID, getViewer(),
+					getHost(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
+					.getNotationView()));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -215,33 +215,33 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Returns the drop command for Property nodes.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param location
-	 *            the location to drop the element
+	 *        the location to drop the element
 	 * @param droppedElement
-	 *            the element to drop
+	 *        the element to drop
 	 * @param nodeVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
+	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
 	protected Command dropProperty(DropObjectsRequest dropRequest, Point location, Property droppedElement,
 			int nodeVISUALID) {
 
-		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
 		// Port inherits from Property this case should be excluded and treated separately
-		if (!(droppedElement instanceof Port)) {
+		if(!(droppedElement instanceof Port)) {
 
-			if ((graphicalParentObject instanceof Classifier)
-					&& (((Classifier) graphicalParentObject).getAttributes().contains(droppedElement))) {
+			if((graphicalParentObject instanceof Classifier)
+					&& (((Classifier)graphicalParentObject).getAttributes().contains(droppedElement))) {
 				// The graphical parent is the real owner of the dropped property.
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 
-			} else if (graphicalParentObject instanceof ConnectableElement) {
-				Type type = ((ConnectableElement) graphicalParentObject).getType();
-				if ((type != null) && (type instanceof Classifier)
-						&& (((Classifier) type).getAttributes().contains(droppedElement))) {
+			} else if(graphicalParentObject instanceof ConnectableElement) {
+				Type type = ((ConnectableElement)graphicalParentObject).getType();
+				if((type != null) && (type instanceof Classifier)
+						&& (((Classifier)type).getAttributes().contains(droppedElement))) {
 					// The graphical parent is a Property typed by a Classifier that owns of the
 					// dropped property.
 					return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
@@ -256,29 +256,29 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Returns the drop command for Port nodes.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param location
-	 *            the location to drop the element
+	 *        the location to drop the element
 	 * @param droppedElement
-	 *            the element to drop
+	 *        the element to drop
 	 * @param nodeVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
+	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
 	protected Command dropPort(DropObjectsRequest dropRequest, Point location, Port droppedElement, int nodeVISUALID) {
 
-		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
-		if ((graphicalParentObject instanceof EncapsulatedClassifier)
-				&& (((EncapsulatedClassifier) graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
+		if((graphicalParentObject instanceof EncapsulatedClassifier)
+				&& (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 
-		} else if (graphicalParentObject instanceof ConnectableElement) {
-			Type type = ((ConnectableElement) graphicalParentObject).getType();
+		} else if(graphicalParentObject instanceof ConnectableElement) {
+			Type type = ((ConnectableElement)graphicalParentObject).getType();
 
-			if ((type != null) && (type instanceof EncapsulatedClassifier)
-					&& (((EncapsulatedClassifier) type).getOwnedPorts().contains(droppedElement))) {
+			if((type != null) && (type instanceof EncapsulatedClassifier)
+					&& (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 			}
 		}
@@ -290,13 +290,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Returns the drop command for DurationObservation nodes.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param location
-	 *            the location to drop the element
+	 *        the location to drop the element
 	 * @param droppedElement
-	 *            the element to drop
+	 *        the element to drop
 	 * @param nodeVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
+	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 * 
 	 */
@@ -304,9 +304,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			DurationObservation droppedElement, int nodeVISUALID) {
 
 		DurationObservationHelper durationObservationHelper = new DurationObservationHelper(getEditingDomain());
-		return durationObservationHelper.dropDurationObservation((DurationObservation) droppedElement, getViewer(),
-				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
-						.getNotationView());
+		return durationObservationHelper.dropDurationObservation((DurationObservation)droppedElement, getViewer(),
+				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
+				.getNotationView());
 
 	}
 
@@ -314,13 +314,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Returns the drop command for TimeObservation nodes.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param location
-	 *            the location to drop the element
+	 *        the location to drop the element
 	 * @param droppedElement
-	 *            the element to drop
+	 *        the element to drop
 	 * @param nodeVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
+	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 * 
 	 */
@@ -328,9 +328,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			TimeObservation droppedElement, int nodeVISUALID) {
 
 		TimeObservationHelper timeObservationHelper = new TimeObservationHelper(getEditingDomain());
-		return timeObservationHelper.dropTimeObservation((TimeObservation) droppedElement, getViewer(),
-				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost())
-						.getNotationView());
+		return timeObservationHelper.dropTimeObservation((TimeObservation)droppedElement, getViewer(),
+				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
+				.getNotationView());
 	}
 
 }

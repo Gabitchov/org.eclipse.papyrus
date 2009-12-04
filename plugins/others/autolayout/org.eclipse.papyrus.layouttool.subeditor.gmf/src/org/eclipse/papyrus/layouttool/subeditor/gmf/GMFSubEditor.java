@@ -57,15 +57,15 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 */
 	public void execute(Map<EditPart, Rectangle> map) {
 		TransactionalEditingDomain ted = getTransactionalEditingDomain();
-		if (ted != null) {
+		if(ted != null) {
 			CommandStack cs = null;
 			// Add a command to apply new bounds of all nodes
-			for (Entry<EditPart, Rectangle> s : map.entrySet()) {
-				SetBoundsCommand boundsCommand = new SetBoundsCommand(ted, "apply layout", new EObjectAdapter((View) s
+			for(Entry<EditPart, Rectangle> s : map.entrySet()) {
+				SetBoundsCommand boundsCommand = new SetBoundsCommand(ted, "apply layout", new EObjectAdapter((View)s
 						.getKey().getModel()), s.getValue());
 				command.add(boundsCommand);
-				GraphicalEditPart gep = (GraphicalEditPart) s.getKey();
-				if (cs == null) {
+				GraphicalEditPart gep = (GraphicalEditPart)s.getKey();
+				if(cs == null) {
 					cs = gep.getViewer().getEditDomain().getCommandStack();
 				}
 			}
@@ -89,12 +89,12 @@ public class GMFSubEditor implements LayouttoolInterface {
 		TransactionalEditingDomain ted = null;
 		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor();
-		if (activeEditor instanceof IDiagramWorkbenchPart) {
-			IDiagramWorkbenchPart workbenchPart = (IDiagramWorkbenchPart) activeEditor;
-			ted = (TransactionalEditingDomain) workbenchPart.getAdapter(EditingDomain.class);
-			if (ted == null) {
-				if (workbenchPart instanceof DiagramEditor) {
-					DiagramEditor editor = (DiagramEditor) workbenchPart;
+		if(activeEditor instanceof IDiagramWorkbenchPart) {
+			IDiagramWorkbenchPart workbenchPart = (IDiagramWorkbenchPart)activeEditor;
+			ted = (TransactionalEditingDomain)workbenchPart.getAdapter(EditingDomain.class);
+			if(ted == null) {
+				if(workbenchPart instanceof DiagramEditor) {
+					DiagramEditor editor = (DiagramEditor)workbenchPart;
 					ted = editor.getEditingDomain();
 				}
 			}
@@ -108,10 +108,10 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 * @see org.eclipse.papyrus.layouttool.LayouttoolInterface#getBounds(org.eclipse.gef.EditPart)
 	 */
 	public Rectangle getBounds(EditPart element) {
-		if (element.getModel() instanceof Node) {
-			Node node = (Node) element.getModel();
-			if (node.getLayoutConstraint() instanceof Bounds) {
-				Bounds bounds = (Bounds) node.getLayoutConstraint();
+		if(element.getModel() instanceof Node) {
+			Node node = (Node)element.getModel();
+			if(node.getLayoutConstraint() instanceof Bounds) {
+				Bounds bounds = (Bounds)node.getLayoutConstraint();
 				return new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
 			}
 		}
@@ -124,10 +124,10 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 * @see org.eclipse.papyrus.layouttool.LayouttoolInterface#getTarget(org.eclipse.gef.EditPart)
 	 */
 	public EditPart getTarget(EditPart element) {
-		if (element.getModel() instanceof Edge) {
-			Edge edge = (Edge) element.getModel();
+		if(element.getModel() instanceof Edge) {
+			Edge edge = (Edge)element.getModel();
 			removeBendPoints(edge);
-			AbstractConnectionEditPart acep = (AbstractConnectionEditPart) element;
+			AbstractConnectionEditPart acep = (AbstractConnectionEditPart)element;
 			return acep.getTarget();
 		}
 		return null;
@@ -137,11 +137,11 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 * Removes the bend points.
 	 * 
 	 * @param edge
-	 *            the edge
+	 *        the edge
 	 */
 	public void removeBendPoints(Edge edge) {
 		SetConnectionBendpointsCommand scbc = new SetConnectionBendpointsCommand(getTransactionalEditingDomain());
-		scbc.setEdgeAdapter(new EObjectAdapter((View) edge));
+		scbc.setEdgeAdapter(new EObjectAdapter((View)edge));
 		scbc.setNewPointList(new PointList(), new Point(), new Point());
 		command.add(scbc);
 	}
@@ -153,15 +153,15 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 */
 	public Rectangle getLayoutArea(EditPart[] element) {
 		Rectangle bounds;
-		if (GMFLayoutAreaCreator.getBounds() != null) {
+		if(GMFLayoutAreaCreator.getBounds() != null) {
 			bounds = GMFLayoutAreaCreator.getBounds();
 			GMFLayoutAreaCreator.deleteLayoutArea();
 			return bounds;
 		}
-		for (EditPart e : element) {
-			if (e.getModel() instanceof Node) {
-				if (e.getParent() instanceof GraphicalEditPart) {
-					GraphicalEditPart gep = (GraphicalEditPart) e.getParent();
+		for(EditPart e : element) {
+			if(e.getModel() instanceof Node) {
+				if(e.getParent() instanceof GraphicalEditPart) {
+					GraphicalEditPart gep = (GraphicalEditPart)e.getParent();
 					bounds = gep.getFigure().getBounds();
 					bounds.x = 0;
 					bounds.y = 0;
@@ -178,10 +178,10 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 * @see org.eclipse.papyrus.layouttool.LayouttoolInterface#getSource(org.eclipse.gef.EditPart)
 	 */
 	public EditPart getSource(EditPart element) {
-		if (element.getModel() instanceof Edge) {
-			Edge edge = (Edge) element.getModel();
+		if(element.getModel() instanceof Edge) {
+			Edge edge = (Edge)element.getModel();
 			removeBendPoints(edge);
-			AbstractConnectionEditPart acep = (AbstractConnectionEditPart) element;
+			AbstractConnectionEditPart acep = (AbstractConnectionEditPart)element;
 			return acep.getSource();
 		}
 		return null;
@@ -193,8 +193,8 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 * @see org.eclipse.papyrus.layouttool.LayouttoolInterface#isNode(org.eclipse.gef.EditPart)
 	 */
 	public boolean isNode(EditPart element) {
-		if (element.getModel() instanceof Node) {
-			if (GMFLayoutAreaCreator.getArea() != null && element.equals(GMFLayoutAreaCreator.getArea())) {
+		if(element.getModel() instanceof Node) {
+			if(GMFLayoutAreaCreator.getArea() != null && element.equals(GMFLayoutAreaCreator.getArea())) {
 				return false;
 			}
 			return true;
@@ -208,7 +208,7 @@ public class GMFSubEditor implements LayouttoolInterface {
 	 * @see org.eclipse.papyrus.layouttool.LayouttoolInterface#isRelationship(org.eclipse.gef.EditPart)
 	 */
 	public boolean isRelationship(EditPart element) {
-		if (element.getModel() instanceof Edge) {
+		if(element.getModel() instanceof Edge) {
 			return true;
 		}
 		return false;

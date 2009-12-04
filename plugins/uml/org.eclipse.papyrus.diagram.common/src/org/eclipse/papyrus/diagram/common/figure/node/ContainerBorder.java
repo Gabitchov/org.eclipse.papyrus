@@ -46,11 +46,11 @@ public class ContainerBorder extends AbstractBorder {
 	 * Constructs a LineBorder with the specified color and of the specified width.
 	 * 
 	 * @param lineWidth
-	 *            The width of the line in pixels.
+	 *        The width of the line in pixels.
 	 * @param color
-	 *            The color of the border.
+	 *        The color of the border.
 	 * @param marginInsets
-	 *            The width of the margin in pixels.
+	 *        The width of the margin in pixels.
 	 * 
 	 * @since 2.0
 	 */
@@ -75,11 +75,11 @@ public class ContainerBorder extends AbstractBorder {
 	 * Constructs a LineBorder with the specified color and of the specified width.
 	 * 
 	 * @param allMargin
-	 *            The width of the margin in pixels.
+	 *        The width of the margin in pixels.
 	 * @param lineWidth
-	 *            The width of the line in pixels.
+	 *        The width of the line in pixels.
 	 * @param color
-	 *            The color of the border.
+	 *        The color of the border.
 	 * 
 	 * @since 2.0
 	 */
@@ -91,17 +91,17 @@ public class ContainerBorder extends AbstractBorder {
 	 * Constructs a LineBorder with the specified color and of the specified width.
 	 * 
 	 * @param lineWidth
-	 *            The width of the line in pixels.
+	 *        The width of the line in pixels.
 	 * @param color
-	 *            The color of the border.
+	 *        The color of the border.
 	 * @param r
-	 *            magin at rigth
+	 *        magin at rigth
 	 * @param t
-	 *            margin at top
+	 *        margin at top
 	 * @param l
-	 *            margin at left
+	 *        margin at left
 	 * @param b
-	 *            margin at bottom
+	 *        margin at bottom
 	 * 
 	 * @since 2.0
 	 */
@@ -113,7 +113,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * Constructs a LineBorder with the specified color and a width of 1 pixel.
 	 * 
 	 * @param color
-	 *            The color of the border.
+	 *        The color of the border.
 	 * 
 	 * @since 2.0
 	 */
@@ -126,7 +126,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * Constructs a black LineBorder with the specified width.
 	 * 
 	 * @param width
-	 *            The width of the border in pixels.
+	 *        The width of the border in pixels.
 	 * 
 	 * @since 2.0
 	 */
@@ -158,7 +158,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * sides always have equal width.
 	 * 
 	 * @param figure
-	 *            The figure this border belongs to
+	 *        The figure this border belongs to
 	 * 
 	 * @return This border's insets
 	 */
@@ -199,7 +199,7 @@ public class ContainerBorder extends AbstractBorder {
 		graphics.pushState();
 		Rectangle bounds = figure.getBounds();
 		graphics.setLineWidth(getLineWidth());
-		if (getColor() != null) {
+		if(getColor() != null) {
 			graphics.setForegroundColor(getColor());
 		}
 		// graphics.drawLine(tempRect.getTopLeft(), tempRect.getTopRight());
@@ -211,7 +211,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * Sets the line color for this border.
 	 * 
 	 * @param color
-	 *            The line color
+	 *        The line color
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -221,7 +221,7 @@ public class ContainerBorder extends AbstractBorder {
 	 * Sets the line width for this border.
 	 * 
 	 * @param width
-	 *            The line width
+	 *        The line width
 	 */
 	public void setLineWidth(int width) {
 		this.lineWidth = width;

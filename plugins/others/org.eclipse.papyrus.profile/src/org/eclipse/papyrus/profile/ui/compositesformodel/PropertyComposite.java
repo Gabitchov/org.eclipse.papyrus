@@ -64,7 +64,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	 * Creates a new PropertyComposite.
 	 * 
 	 * @param parent
-	 *            the parent StereotypePanel
+	 *        the parent StereotypePanel
 	 */
 	public PropertyComposite(AppliedStereotypePanel parent) {
 		super(parent, SWT.NONE, "Property values", false);
@@ -76,7 +76,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	 * Creates a new PropertyComposite.
 	 * 
 	 * @param parent
-	 *            the composite parent
+	 *        the composite parent
 	 */
 	public PropertyComposite(Composite parent) {
 		super(parent, SWT.NONE, "Property values", false);
@@ -89,7 +89,8 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.cea.papyrus.ui.composites.DecoratedTableComposite#createContent(org.eclipse.swt.widgets.Composite, org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory)
+	 * @see com.cea.papyrus.ui.composites.DecoratedTableComposite#createContent(org.eclipse.swt.widgets.Composite,
+	 * org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory)
 	 */
 	@Override
 	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
@@ -108,7 +109,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		treeViewer.setContentProvider(new ProfileElementContentProvider());
 		treeViewer.setLabelProvider(new ProfileElementLabelProvider());
 
-		if (parentPanel != null)
+		if(parentPanel != null)
 			getTree().addListener(SWT.MouseDoubleClick, new DoubleClickListener(parentPanel, treeViewer));
 	}
 
@@ -118,13 +119,13 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	@Override
 	public void refresh() {
 
-		if (treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
+		if(treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
 			treeViewer.refresh();
 
-			AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
-			if (pTO == null) {
+			AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
+			if(pTO == null) {
 				this.setVisible(false);
-			} else if ((pTO.getProperty() != null) && pTO.getProperty().isReadOnly()) {
+			} else if((pTO.getProperty() != null) && pTO.getProperty().isReadOnly()) {
 				upButton.setEnabled(false);
 				downButton.setEnabled(false);
 				removeButton.setEnabled(false);
@@ -136,7 +137,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 				addButton.setEnabled(true);
 
 				// If the property is Multivalued show Up - Down
-				if ((pTO.getChildren() != null) && (pTO.getChildren().length > 1)) {
+				if((pTO.getChildren() != null) && (pTO.getChildren().length > 1)) {
 					upButton.setEnabled(true);
 					downButton.setEnabled(true);
 				} else {
@@ -144,13 +145,13 @@ public class PropertyComposite extends DecoratedTreeComposite {
 					downButton.setEnabled(false);
 				}
 
-				if ((pTO.getChildren() != null) && (pTO.getChildren().length == pTO.getProperty().getLower())) {
+				if((pTO.getChildren() != null) && (pTO.getChildren().length == pTO.getProperty().getLower())) {
 					removeButton.setEnabled(false);
 				} else {
 					removeButton.setEnabled(true);
 				}
 
-				if ((pTO.getChildren() != null) && (pTO.getChildren().length == pTO.getProperty().getUpper())) {
+				if((pTO.getChildren() != null) && (pTO.getChildren().length == pTO.getProperty().getUpper())) {
 					addButton.setEnabled(false);
 				} else {
 					addButton.setEnabled(true);
@@ -169,12 +170,12 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	public void addButtonPressed() {
 
 		// Retrieve selections
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
 		Property property = pTO.getProperty();
-		Stereotype selectedSt = ((AppliedStereotypeTreeObject) pTO.getParent()).getStereotype();
-		Element selectedElt = ((StereotypedElementTreeObject) pTO.getParent().getParent()).getElement();
+		Stereotype selectedSt = ((AppliedStereotypeTreeObject)pTO.getParent()).getStereotype();
+		Element selectedElt = ((StereotypedElementTreeObject)pTO.getParent().getParent()).getElement();
 
-		if ((property == null) || (selectedSt == null) || (selectedElt == null)) {
+		if((property == null) || (selectedSt == null) || (selectedElt == null)) {
 			// Nothing selected
 			return;
 		}
@@ -186,9 +187,9 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		String typeName = type.getName();
 
 		// if lower multiplicity is equal to upper multiplicity : cannot add
-		if (lower == upper && selectedElt.getValue(selectedSt, property.getName()) != null) {
-			if (selectedElt.getValue(selectedSt, property.getName()) instanceof EList) {
-				if (((EList) selectedElt.getValue(selectedSt, property.getName())).size() >= upper) {
+		if(lower == upper && selectedElt.getValue(selectedSt, property.getName()) != null) {
+			if(selectedElt.getValue(selectedSt, property.getName()) instanceof EList) {
+				if(((EList)selectedElt.getValue(selectedSt, property.getName())).size() >= upper) {
 					Message.warning("Multiplicity of this property is " + property.getLower() + ".." + property.getUpper() + "\n" + "Impossible to add a new value.");
 					return;
 				}
@@ -201,35 +202,35 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		// Retrieve current value
 		ArrayList currentPropertyValues = new ArrayList();
 		Object currentValue = null;
-		if (selectedElt.hasValue(selectedSt, property.getName())) {
+		if(selectedElt.hasValue(selectedSt, property.getName())) {
 			currentValue = selectedElt.getValue(selectedSt, property.getName());
 
-			if (upper == 1) {
+			if(upper == 1) {
 				currentPropertyValues.add(currentValue);
 
 			} else { // if (upper != 1) {
-				EList currentValues = (EList) currentValue;
-				for (int i = 0; i < currentValues.size(); i++) {
+				EList currentValues = (EList)currentValue;
+				for(int i = 0; i < currentValues.size(); i++) {
 					currentPropertyValues.add(currentValues.get(i));
 				}
 			}
 		}
 
-		if (property.isMultivalued() || (currentPropertyValues.size() < upper)) {
+		if(property.isMultivalued() || (currentPropertyValues.size() < upper)) {
 			Object newValue = null;
 
 			// get a new value for the property
 			newValue = AppliedStereotypePropertyEditor.getNewValueForProperty(this.getShell(), property, selectedElt, type, currentPropertyValues);
 			// new value entered ?
-			if (newValue == null) {
+			if(newValue == null) {
 				// Refresh && quit
-				if (parentPanel != null)
+				if(parentPanel != null)
 					parentPanel.refresh();
 				return;
 			}
 
 			// Update property value(s)
-			if (property.isMultivalued()) {
+			if(property.isMultivalued()) {
 				// If newValue was enter, add to tempValues (future values list)
 				currentPropertyValues.add(newValue);
 				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
@@ -240,10 +241,10 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 			// Update tree && Refresh
 			pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
-			if (parentPanel != null)
+			if(parentPanel != null)
 				parentPanel.refresh();
 			// Force model change
-			if (parentPanel != null) {
+			if(parentPanel != null) {
 				// Util.touchModel(selectedElt);
 			}
 
@@ -258,24 +259,24 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	@Override
 	public void removeButtonPressed() {
 		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection == 0) {
+		if(nbrOfSelection == 0) {
 			return;
 		}
 
 		TreeItem[] items = getTree().getSelection();
-		for (int i = 0; i < nbrOfSelection; i++) {
-			ValueTreeObject vTO = (ValueTreeObject) items[i].getData();
+		for(int i = 0; i < nbrOfSelection; i++) {
+			ValueTreeObject vTO = (ValueTreeObject)items[i].getData();
 			// vTO.removeMe();
-			AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
+			AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
 			Property property = pTO.getProperty();
-			Stereotype stereotype = ((AppliedStereotypeTreeObject) pTO.getParent()).getStereotype();
-			Element selectedElt = ((StereotypedElementTreeObject) pTO.getParent().getParent()).getElement();
+			Stereotype stereotype = ((AppliedStereotypeTreeObject)pTO.getParent()).getStereotype();
+			Element selectedElt = ((StereotypedElementTreeObject)pTO.getParent().getParent()).getElement();
 
 			int lower = property.getLower();
 			int upper = property.getUpper();
 
 			// if lower multiplicity is equal to upper multiplicity
-			if (lower == upper) {
+			if(lower == upper) {
 				Message.warning("Multiplicity of this property is" + lower + ".." + upper + "\n" + "Impossible to remove a value.");
 				return;
 			}
@@ -283,23 +284,23 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			Object currentVal = pTO.getValue();
 			ArrayList tempValues = new ArrayList();
 
-			if (((lower == 0) && (upper == 1))) {
-				if (currentVal != null) {
+			if(((lower == 0) && (upper == 1))) {
+				if(currentVal != null) {
 					tempValues.add(currentVal);
 				}
 
-			} else if (upper != 1) {
-				EList currentValues = (EList) currentVal;
+			} else if(upper != 1) {
+				EList currentValues = (EList)currentVal;
 
-				for (int j = 0; j < currentValues.size(); j++) {
+				for(int j = 0; j < currentValues.size(); j++) {
 					tempValues.add(currentValues.get(j));
 				}
 			}
 
-			if ((lower == 0) || (tempValues.size() > lower)) {
+			if((lower == 0) || (tempValues.size() > lower)) {
 				tempValues.remove(vTO.getValue());
 
-				if (property.isMultivalued()) {
+				if(property.isMultivalued()) {
 					setPropertiesValue(selectedElt, stereotype, property, tempValues);
 				} else {
 					setPropertiesValue(selectedElt, stereotype, property, null);
@@ -313,7 +314,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			}
 
 		}
-		if (parentPanel != null)
+		if(parentPanel != null)
 			parentPanel.refresh();
 	}
 
@@ -323,23 +324,23 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	@Override
 	public void upButtonPressed() {
 		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection < 1) {
+		if(nbrOfSelection < 1) {
 			return;
 		}
 
 		TreeItem[] items = getTree().getSelection();
 		int indexFirst = getTree().indexOf(items[0]);
-		if (indexFirst == 0) {
+		if(indexFirst == 0) {
 			// do nothing
 			return;
 		}
 
-		for (int i = 0; i < nbrOfSelection; i++) {
-			ValueTreeObject vTO = (ValueTreeObject) items[i].getData();
+		for(int i = 0; i < nbrOfSelection; i++) {
+			ValueTreeObject vTO = (ValueTreeObject)items[i].getData();
 			int index = getTree().indexOf(items[i]);
 			vTO.moveMeUp(index);
 		}
-		if (parentPanel != null)
+		if(parentPanel != null)
 			parentPanel.refresh();
 	}
 
@@ -349,31 +350,31 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	@Override
 	public void downButtonPressed() {
 		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection < 1) {
+		if(nbrOfSelection < 1) {
 			return;
 		}
 
 		TreeItem[] items = getTree().getSelection();
 		// Get last value index
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
 		int indexLastValue = -1;
-		if (pTO.getChildren() != null) {
+		if(pTO.getChildren() != null) {
 			indexLastValue = pTO.getChildren().length - 1;
 		}
 		// Get last selection index
 		int indexLastSelection = getTree().indexOf(items[nbrOfSelection - 1]);
-		if ((indexLastValue == -1) || (indexLastSelection == indexLastValue)) {
+		if((indexLastValue == -1) || (indexLastSelection == indexLastValue)) {
 			// do nothing
 			return;
 		}
 
-		for (int i = 0; i < nbrOfSelection; i++) {
-			ValueTreeObject vTO = (ValueTreeObject) items[nbrOfSelection - 1 - i].getData();
+		for(int i = 0; i < nbrOfSelection; i++) {
+			ValueTreeObject vTO = (ValueTreeObject)items[nbrOfSelection - 1 - i].getData();
 			int index = getTree().indexOf(items[nbrOfSelection - 1 - i]);
 			vTO.moveMeDown(index);
 		}
 
-		if (parentPanel != null)
+		if(parentPanel != null)
 			parentPanel.refresh();
 	}
 
@@ -381,7 +382,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	 * Sets the input.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 */
 	public void setInput(AppliedStereotypePropertyTreeObject element) {
 		treeViewer.setInput(element);

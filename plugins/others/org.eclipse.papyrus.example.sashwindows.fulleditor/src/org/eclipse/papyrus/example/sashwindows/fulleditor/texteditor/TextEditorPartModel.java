@@ -10,7 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.example.sashwindows.fulleditor.texteditor;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
@@ -50,7 +50,7 @@ public class TextEditorPartModel implements IEditorModel {
 
 	public IEditorPart createIEditorPart() throws PartInitException {
 		editor = new TabTextEditor();
-		if (title == null)
+		if(title == null)
 			title = "newText" + count++;
 		return editor;
 	}

@@ -93,20 +93,20 @@ public class MDTUtil {
 	 * Add to a diagram the version of the first editor that will modify the diagram.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param version
-	 *            version of the editor that is going to modify the diagram
+	 *        version of the editor that is going to modify the diagram
 	 * 
 	 * @author gmerin
 	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
 	 */
 	public static void addDiagramVersion(Diagram diagram, String version) {
-		if (version == null) {
+		if(version == null) {
 			// if version is null no action will be taken:
 			return;
 		}
 		EAnnotation eAnnotation = diagram.getEAnnotation(EDITOR_VERSION);
-		if (eAnnotation == null) {
+		if(eAnnotation == null) {
 			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eAnnotation.setSource(EDITOR_VERSION);
 			// Add a detail to store the version
@@ -120,7 +120,7 @@ public class MDTUtil {
 	 * Obtain the diagram the version of first editor that modified the diagram.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return the diagram version
 	 * 
@@ -131,7 +131,7 @@ public class MDTUtil {
 	public static String getDiagramVersion(Diagram diagram) {
 		EAnnotation eAnnotation = diagram.getEAnnotation(EDITOR_VERSION);
 		// No version of the diagram
-		if (eAnnotation == null) {
+		if(eAnnotation == null) {
 			return null;
 		}
 		return eAnnotation.getDetails().get("version");
@@ -141,7 +141,7 @@ public class MDTUtil {
 	 * Obtain the plugin's version of the editor.
 	 * 
 	 * @param editor
-	 *            Editor Part
+	 *        Editor Part
 	 * 
 	 * @return the editor version
 	 * 
@@ -156,7 +156,7 @@ public class MDTUtil {
 	 * Obtain the plugin's version of the editor.
 	 * 
 	 * @param pluginId
-	 *            Plugin ID
+	 *        Plugin ID
 	 * 
 	 * @return The version of the plugin
 	 * 
@@ -165,10 +165,10 @@ public class MDTUtil {
 	 */
 	public static String getBundleVersion(String pluginId) {
 		Bundle bundle = Platform.getBundle(pluginId);
-		if (bundle == null) {
+		if(bundle == null) {
 			return null;
 		}
-		String version = (String) bundle.getHeaders().get(Constants.BUNDLE_VERSION);
+		String version = (String)bundle.getHeaders().get(Constants.BUNDLE_VERSION);
 		return version;
 	}
 
@@ -191,7 +191,7 @@ public class MDTUtil {
 	 * Full file path to resource.
 	 * 
 	 * @param filePath
-	 *            the file path
+	 *        the file path
 	 * 
 	 * @return the string
 	 */
@@ -204,7 +204,7 @@ public class MDTUtil {
 	 * Full file path to resource uri.
 	 * 
 	 * @param filePath
-	 *            the file path
+	 *        the file path
 	 * 
 	 * @return the uRI
 	 */
@@ -217,12 +217,12 @@ public class MDTUtil {
 	 * Gets the diagram name.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return the diagram name
 	 */
 	public static String getDiagramName(Diagram diagram) {
-		if (diagram != null) {
+		if(diagram != null) {
 			String type = diagram.getType();
 			String label = MOSKittEditorIDs.getExtensionsMapModelToLabel().get(type);
 			label = label != null ? label : "";
@@ -239,13 +239,13 @@ public class MDTUtil {
 	 * @return
 	 */
 	public static Diagram getDiagramFomEditor(IEditorPart editor) {
-		if (editor instanceof DiagramEditor) {
-			return ((DiagramEditor) editor).getDiagram();
+		if(editor instanceof DiagramEditor) {
+			return ((DiagramEditor)editor).getDiagram();
 		} else {
-			if (editor != null) {
+			if(editor != null) {
 				Object adapted = editor.getAdapter(Diagram.class);
-				if (adapted instanceof Diagram) {
-					return (Diagram) adapted;
+				if(adapted instanceof Diagram) {
+					return (Diagram)adapted;
 				}
 			}
 		}
@@ -265,12 +265,12 @@ public class MDTUtil {
 	 * Gets the preferences hint.
 	 * 
 	 * @param kind
-	 *            the kind
+	 *        the kind
 	 * 
 	 * @return the preferences hint
 	 * 
 	 * @throws ExecutionException
-	 *             the execution exception
+	 *         the execution exception
 	 */
 	public static PreferencesHint getPreferencesHint(String kind) throws ExecutionException {
 		String editor = MOSKittEditorIDs.getAllExtensionModelToEditor().get(kind);
@@ -293,14 +293,14 @@ public class MDTUtil {
 	 * Gets the root element resource.
 	 * 
 	 * @param editorPart
-	 *            the editor part
+	 *        the editor part
 	 * 
 	 * @return the root element resource
 	 */
 	public static Resource getRootElementResource(IEditorPart editorPart) {
 		EObject rootElement = getEditorRootelement(editorPart);
 		Resource resource = null;
-		if (rootElement != null) {
+		if(rootElement != null) {
 			resource = rootElement.eResource();
 		}
 		return resource;
@@ -310,19 +310,19 @@ public class MDTUtil {
 	 * Gets the editor rootelement.
 	 * 
 	 * @param editorPart
-	 *            the editor part
+	 *        the editor part
 	 * 
 	 * @return the editor rootelement
 	 */
 	public static EObject getEditorRootelement(IEditorPart editorPart) {
-		EditPart rootEditPart = (EditPart) editorPart.getAdapter(EditPart.class);
-		if (rootEditPart == null) {
+		EditPart rootEditPart = (EditPart)editorPart.getAdapter(EditPart.class);
+		if(rootEditPart == null) {
 			return null;
 		}
 		EObject rootElement = null;
-		Object object = ((EditPart) rootEditPart.getChildren().get(0)).getModel();
-		if (object instanceof View) {
-			rootElement = ((View) object).getElement();
+		Object object = ((EditPart)rootEditPart.getChildren().get(0)).getModel();
+		if(object instanceof View) {
+			rootElement = ((View)object).getElement();
 		}
 		return rootElement;
 	}
@@ -331,19 +331,19 @@ public class MDTUtil {
 	 * Gets the host diagram.
 	 * 
 	 * @param policy
-	 *            the policy
+	 *        the policy
 	 * 
 	 * @return the host diagram
 	 */
 	// @unused
 	public static Diagram getHostDiagram(EditPolicy policy) {
-		if (policy.getHost() instanceof IGraphicalEditPart) {
-			View view = ((IGraphicalEditPart) policy.getHost()).getNotationView();
-			if (view != null) {
+		if(policy.getHost() instanceof IGraphicalEditPart) {
+			View view = ((IGraphicalEditPart)policy.getHost()).getNotationView();
+			if(view != null) {
 				view = view.getDiagram();
 			}
-			if (view instanceof Diagram) {
-				return (Diagram) view;
+			if(view instanceof Diagram) {
+				return (Diagram)view;
 			}
 		}
 		return null;
@@ -359,10 +359,10 @@ public class MDTUtil {
 	// @unused
 	public static Diagram getDiagramFromRequest(IEditCommandRequest request) {
 		Diagram diagram = null;
-		if (request != null) {
+		if(request != null) {
 			Object data = request.getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
-			if (data instanceof Diagram) {
-				diagram = (Diagram) data;
+			if(data instanceof Diagram) {
+				diagram = (Diagram)data;
 			}
 		}
 		return diagram;
@@ -374,23 +374,23 @@ public class MDTUtil {
 
 	public static List<EObject> getRootElementsFromFile(IEditorInput input, ResourceSet resourceSet) {
 		URI uri = null;
-		IURIEditorInput uriEditorInput = (IURIEditorInput) Platform.getAdapterManager().getAdapter(input,
+		IURIEditorInput uriEditorInput = (IURIEditorInput)Platform.getAdapterManager().getAdapter(input,
 				IURIEditorInput.class);
-		if (uriEditorInput != null) {
+		if(uriEditorInput != null) {
 			uri = URI.createURI(uriEditorInput.getURI().toString());
 		} else {
-			IFileEditorInput fileEditorInput = (IFileEditorInput) Platform.getAdapterManager().getAdapter(input,
+			IFileEditorInput fileEditorInput = (IFileEditorInput)Platform.getAdapterManager().getAdapter(input,
 					IFileEditorInput.class);
-			if (fileEditorInput != null) {
+			if(fileEditorInput != null) {
 				uri = URI.createURI(fileEditorInput.getFile().getLocationURI().toString());
 			}
 		}
-		if (uri != null) {
+		if(uri != null) {
 			resourceSet = resourceSet != null ? resourceSet : new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(uri, true);
-			if (resource != null) {
+			if(resource != null) {
 				List<EObject> rootEObjects = new ArrayList<EObject>();
-				for (EObject eObject : resource.getContents()) {
+				for(EObject eObject : resource.getContents()) {
 					rootEObjects.add(eObject);
 				}
 				return rootEObjects;
@@ -403,7 +403,7 @@ public class MDTUtil {
 	 * Gets the object name or empty string.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the object name or empty string
 	 */
@@ -420,36 +420,36 @@ public class MDTUtil {
 	 * Gets the object name.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the object name
 	 */
 	public static String getObjectName(Object object) {
-		if (object == null) {
+		if(object == null) {
 			return null;
 		}
 		Method method = null;
 		Object o = null;
-		for (String methodName : getNameNames) {
+		for(String methodName : getNameNames) {
 			try {
-				method = object.getClass().getMethod(methodName, (Class[]) null);
+				method = object.getClass().getMethod(methodName, (Class[])null);
 			} catch (NoSuchMethodException e) {
 				method = null;
 			}
-			if (method != null) {
+			if(method != null) {
 				break;
 			}
 		}
-		if (method != null) {
+		if(method != null) {
 			try {
-				o = method.invoke(object, (Object[]) null);
+				o = method.invoke(object, (Object[])null);
 			} catch (IllegalAccessException ex) {
 				return null;
 			} catch (InvocationTargetException ex) {
 				return null;
 			}
-			if (o instanceof String) {
-				return (String) o;
+			if(o instanceof String) {
+				return (String)o;
 			}
 		}
 		return null;
@@ -459,19 +459,19 @@ public class MDTUtil {
 	 * Resolve semantic.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the e object
 	 */
 	public static EObject resolveSemantic(Object object) {
-		if (object instanceof EditPart) {
-			object = ((EditPart) object).getModel();
+		if(object instanceof EditPart) {
+			object = ((EditPart)object).getModel();
 		}
-		if (object instanceof View) {
-			object = ((View) object).getElement();
+		if(object instanceof View) {
+			object = ((View)object).getElement();
 		}
-		if (object instanceof EObject) {
-			return (EObject) object;
+		if(object instanceof EObject) {
+			return (EObject)object;
 		}
 		return null;
 	}
@@ -494,18 +494,18 @@ public class MDTUtil {
 
 	// @unused
 	public static CachedResourcesDiagramEditor getCachedResourcesDiagramEditorFromEditorRef(IEditorReference reference) {
-		if (reference == null) {
+		if(reference == null) {
 			return null;
 		}
 		IWorkbenchPart part = reference.getEditor(false);
 
-		if (part == null) {
+		if(part == null) {
 			return null;
 		}
 
-		CachedResourcesDiagramEditor editor = (CachedResourcesDiagramEditor) Platform.getAdapterManager().getAdapter(
+		CachedResourcesDiagramEditor editor = (CachedResourcesDiagramEditor)Platform.getAdapterManager().getAdapter(
 				part, CachedResourcesDiagramEditor.class);
-		if (editor != null) {
+		if(editor != null) {
 			return editor;
 		}
 		return null;
@@ -515,7 +515,7 @@ public class MDTUtil {
 	 * Sets the last opened diagram property.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return true, if successful
 	 */
@@ -527,7 +527,7 @@ public class MDTUtil {
 	 * Sets the last opened diagram property.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return true, if successful
 	 */
@@ -539,13 +539,13 @@ public class MDTUtil {
 	 * Sets the last opened diagram property.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return true, if successful
 	 */
 	public static boolean setLastOpenedDiagramProperty(Diagram diagram, String editorID,
 			boolean setEditorForFileProperty) {
-		if (editorID == null) {
+		if(editorID == null) {
 			editorID = MOSKittEditorIDs.getAllExtensionModelToEditor().get(diagram.getType());
 		}
 		// get Diagram fragment
@@ -561,7 +561,7 @@ public class MDTUtil {
 	 * Sets the last opened diagram property.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return true, if successful
 	 */
@@ -570,12 +570,12 @@ public class MDTUtil {
 		IPath filePath = new Path(path);
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(filePath);
 		// set IFile property
-		if (file != null) {
+		if(file != null) {
 			try {
 				QualifiedName propertyQualifiedName = getLastOpenedDiagramPropertyQualifiedNameForEditor(editorID);
 				file.setPersistentProperty(propertyQualifiedName, fragment);
 				// set the correct editor to edit
-				if (setEditorForFileProperty && editorID != null) {
+				if(setEditorForFileProperty && editorID != null) {
 					setEditorForDiagramProperty(file, editorID);
 				}
 				return true;
@@ -592,12 +592,12 @@ public class MDTUtil {
 	 * Sets the last opened diagram property.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return true, if successful
 	 */
 	public static boolean removeLastOpenedDiagramProperty(Diagram diagram) {
-		if (diagram == null || diagram.eResource() == null) {
+		if(diagram == null || diagram.eResource() == null) {
 			return false;
 		}
 
@@ -611,19 +611,19 @@ public class MDTUtil {
 		IPath filePath = new Path(path);
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(filePath);
 		// set IFile property
-		if (file != null) {
+		if(file != null) {
 			try {
 				file.setPersistentProperty(LastOpenedDiagramProperty, null);
 				// set the correct editor to edit
 				Diagram firstDiagram = null;
-				for (EObject elem : diagram.eResource().getContents()) {
-					if (elem instanceof Diagram) {
-						firstDiagram = (Diagram) elem;
+				for(EObject elem : diagram.eResource().getContents()) {
+					if(elem instanceof Diagram) {
+						firstDiagram = (Diagram)elem;
 						break;
 					}
 				}
 				String editorID = MOSKittEditorIDs.getAllExtensionModelToEditor().get(firstDiagram.getType());
-				if (editorID != null) {
+				if(editorID != null) {
 					setEditorForDiagramProperty(file, editorID);
 				}
 				return true;
@@ -640,18 +640,18 @@ public class MDTUtil {
 	 * Sets the editor for diagram property.
 	 * 
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * @param editorID
-	 *            the editor id
+	 *        the editor id
 	 * 
 	 * @throws CoreException
-	 *             the core exception
+	 *         the core exception
 	 */
 	public static void setEditorForDiagramProperty(URI uri, String editorID) {
 		String part1 = uri.path().replaceFirst("resource", "");
 		IPath path = new Path(part1);
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-		if (file != null) {
+		if(file != null) {
 			setEditorForDiagramProperty(file, editorID);
 		}
 	}
@@ -660,15 +660,15 @@ public class MDTUtil {
 	 * Sets the editor for diagram property.
 	 * 
 	 * @param file
-	 *            the file
+	 *        the file
 	 * @param editorID
-	 *            the editor id
+	 *        the editor id
 	 * 
 	 * @throws CoreException
-	 *             the core exception
+	 *         the core exception
 	 */
 	public static void setEditorForDiagramProperty(IFile file, String editorID) {
-		if (file != null) {
+		if(file != null) {
 			try {
 				file.setPersistentProperty(IDE.EDITOR_KEY, editorID);
 			} catch (CoreException ex) {
@@ -688,7 +688,7 @@ public class MDTUtil {
 		String part1 = uri.path().replaceFirst("resource", "");
 		IPath path = new Path(part1);
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-		if (file != null) {
+		if(file != null) {
 			return removeEditorForDiagramProperty(file);
 		}
 		return false;
@@ -712,10 +712,10 @@ public class MDTUtil {
 	// @unused
 	public static boolean setEditorForDiagramForFirstDiagram(Resource resource) {
 		Diagram diagram = MDTUtil.getFirstDiagramFromResource(resource);
-		if (diagram != null) {
+		if(diagram != null) {
 			String kind = diagram.getType();
 			String editorID = MOSKittEditorIDs.getAllExtensionModelToEditor().get(kind);
-			if (editorID != null) {
+			if(editorID != null) {
 				MDTUtil.setEditorForDiagramProperty(resource.getURI(), editorID);
 			}
 		}
@@ -726,7 +726,7 @@ public class MDTUtil {
 	 * Gets the last opened diagram property.
 	 * 
 	 * @param filePath
-	 *            the file path
+	 *        the file path
 	 * 
 	 * @return the last opened diagram property
 	 */
@@ -735,12 +735,12 @@ public class MDTUtil {
 	}
 
 	public static String getLastOpenedDiagramPropertyForEditor(String filePath, String editorID) {
-		if (filePath == null) {
+		if(filePath == null) {
 			return null;
 		}
 		IPath path = new Path(filePath);
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-		if (file != null) {
+		if(file != null) {
 			try {
 				return file.getPersistentProperty(getLastOpenedDiagramPropertyQualifiedNameForEditor(editorID));
 			} catch (CoreException ex) {
@@ -755,16 +755,16 @@ public class MDTUtil {
 	 * Copy editor input but uri.
 	 * 
 	 * @param input
-	 *            the input
+	 *        the input
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * 
 	 * @return the cached resources editor input
 	 */
 	public static CachedResourcesEditorInput copyEditorInputButUri(IEditorInput input, URI uri) {
 		CachedResourcesEditorInput cachedInput = new CachedResourcesEditorInput(uri, input.getName());
-		if (input instanceof CachedResourcesEditorInput) {
-			cachedInput.setUnload(((CachedResourcesEditorInput) input).isUnload());
+		if(input instanceof CachedResourcesEditorInput) {
+			cachedInput.setUnload(((CachedResourcesEditorInput)input).isUnload());
 		}
 		return cachedInput;
 	}
@@ -781,15 +781,15 @@ public class MDTUtil {
 	 */
 	// @unused
 	public static CachedResourcesEditorInput getValidEditorInput(URI editorInput, String editorID) {
-		if (editorID != null && editorInput != null) {
+		if(editorID != null && editorInput != null) {
 			// get the shared editing domain, that will have the resources
 			// already loaded and with the latest changes.
 			TransactionalEditingDomain domain = EditingDomainRegistry.getInstance().get(editorID,
 					editorInput.trimFragment().toString());
-			if (domain != null) {
+			if(domain != null) {
 				// search for the given diagram in all the resourceSet.
 				URI uri = getProperDiagramURIToOpen(domain.getResourceSet(), editorInput);
-				if (uri != null) {
+				if(uri != null) {
 					// if we found a matching diagram, return it as a
 					// CachedResourcesEditorInput
 					return new CachedResourcesEditorInput(uri, false);
@@ -809,19 +809,19 @@ public class MDTUtil {
 	public static URI getProperDiagramURIToOpen(ResourceSet resourceSet, URI editorInput) {
 		// search the target diagram in the resourceset.
 		EObject eObject = searchEObjectFromFragment(editorInput, resourceSet);
-		if (eObject != null) {
+		if(eObject != null) {
 			// if found, make sure it is a Diagram
-			Diagram diagram = (Diagram) Platform.getAdapterManager().getAdapter(eObject, Diagram.class);
-			if (diagram != null) {
+			Diagram diagram = (Diagram)Platform.getAdapterManager().getAdapter(eObject, Diagram.class);
+			if(diagram != null) {
 				// if it's a Diagram, return the proper URI
 				return diagram.eResource().getURI().appendFragment(diagram.eResource().getURIFragment(diagram));
 			}
 		}
 		// if target diagram is not found, look for the first Diagram
 		Resource resource = resourceSet.getResource(editorInput.trimFragment(), true);
-		if (resource != null) {
+		if(resource != null) {
 			Diagram diagram = getFirstDiagramFromResource(resource);
-			if (diagram != null) {
+			if(diagram != null) {
 				// if we find a diagram, return its URI.
 				return resource.getURI().appendFragment(resource.getURIFragment(diagram));
 			}
@@ -837,16 +837,16 @@ public class MDTUtil {
 	 * @return
 	 */
 	public static EObject searchEObjectFromFragment(URI uri, ResourceSet resourceSet) {
-		if (uri == null) {
+		if(uri == null) {
 			return null;
 		}
 		String uriFragment = uri.fragment();
-		if (uriFragment != null && uriFragment.length() > 0 && resourceSet != null) {
+		if(uriFragment != null && uriFragment.length() > 0 && resourceSet != null) {
 			resourceSet.getResource(uri.trimFragment(), true);
-			for (Resource resource : resourceSet.getResources()) {
+			for(Resource resource : resourceSet.getResources()) {
 				// search for the EObject in each Resource
 				EObject eObject = searchEObjectFromFragment(uriFragment, resource);
-				if (eObject != null) {
+				if(eObject != null) {
 					// if we find the target EObject in any of the Resources,
 					// return it.
 					return eObject;
@@ -864,7 +864,7 @@ public class MDTUtil {
 	 * @return
 	 */
 	public static EObject searchEObjectFromFragment(String uriFragment, Resource resource) {
-		if (uriFragment != null && uriFragment.length() > 0 && resource != null) {
+		if(uriFragment != null && uriFragment.length() > 0 && resource != null) {
 			// search for the EObject in the Resource.
 			return resource.getEObject(uriFragment);
 		}
@@ -878,11 +878,11 @@ public class MDTUtil {
 	 * @return
 	 */
 	public static Diagram getFirstDiagramFromResource(Resource resource) {
-		if (resource != null && resource.getContents().size() > 0) {
+		if(resource != null && resource.getContents().size() > 0) {
 			// look for a Diagram in the whole Resource
-			for (EObject eObject : resource.getContents()) {
-				Diagram diagram = (Diagram) Platform.getAdapterManager().getAdapter(eObject, Diagram.class);
-				if (diagram != null) {
+			for(EObject eObject : resource.getContents()) {
+				Diagram diagram = (Diagram)Platform.getAdapterManager().getAdapter(eObject, Diagram.class);
+				if(diagram != null) {
 					// the first Diagram found is returned.
 					return diagram;
 				}
@@ -899,16 +899,16 @@ public class MDTUtil {
 	 * @return
 	 */
 	public static boolean isOfType(Class clazz, String className) {
-		if (clazz == null || className == null) {
+		if(clazz == null || className == null) {
 			return false;
 		}
 		// check class
-		if (clazz.getName().equals(className)) {
+		if(clazz.getName().equals(className)) {
 			return true;
 		}
 		// look interfaces
-		for (Class c : clazz.getInterfaces()) {
-			if (isOfType(c, className)) {
+		for(Class c : clazz.getInterfaces()) {
+			if(isOfType(c, className)) {
 				return true;
 			}
 		}
@@ -920,18 +920,18 @@ public class MDTUtil {
 	 * Gets the edits the parts from selection.
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * 
 	 * @return the edits the parts from selection
 	 */
 	// @unused
 	public static List<EditPart> getEditPartsFromSelection(ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
+		if(selection instanceof IStructuredSelection) {
 			List<EditPart> editParts = new ArrayList<EditPart>();
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			for (Object object : structuredSelection.toList()) {
-				if (object instanceof EditPart) {
-					editParts.add((EditPart) object);
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			for(Object object : structuredSelection.toList()) {
+				if(object instanceof EditPart) {
+					editParts.add((EditPart)object);
 				}
 			}
 			return editParts;
@@ -943,18 +943,18 @@ public class MDTUtil {
 	 * Gets the e objects from selection.
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * 
 	 * @return the e objects from selection
 	 */
 	// @unused
 	public static List<EObject> getEObjectsFromSelection(ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
+		if(selection instanceof IStructuredSelection) {
 			List<EObject> eObjects = new ArrayList<EObject>();
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			for (Object object : structuredSelection.toList()) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			for(Object object : structuredSelection.toList()) {
 				EObject eObject = resolveSemantic(object);
-				if (eObject != null) {
+				if(eObject != null) {
 					eObjects.add(eObject);
 				}
 			}
@@ -967,26 +967,26 @@ public class MDTUtil {
 	 * Looks for <Diagram>s associated to an <EObject> and all its children.
 	 * 
 	 * @param eObject
-	 *            <EObject> to begin the search
+	 *        <EObject> to begin the search
 	 * @param gmfResource
-	 *            <GMFResource> to look for <Diagram>s. If null, a <GMFResource> will be looked up
-	 *            in the <EObject>'s <ResourceSet>, if any.
+	 *        <GMFResource> to look for <Diagram>s. If null, a <GMFResource> will be looked up
+	 *        in the <EObject>'s <ResourceSet>, if any.
 	 * 
 	 * @return the diagrams in hierarchy
 	 */
 	// @unused
 	public static List<Diagram> getDiagramsInHierarchy(EObject eObject, Resource gmfResource) {
 		// no eObject means nothing to search for
-		if (eObject == null) {
+		if(eObject == null) {
 			return Collections.EMPTY_LIST;
 		}
 		// no gmfResource given, we'll search one
-		if (gmfResource instanceof GMFResource == false) {
+		if(gmfResource instanceof GMFResource == false) {
 			Resource resource = eObject.eResource();
 			ResourceSet resourceSet = resource != null ? resource.getResourceSet() : null;
-			if (resourceSet != null) {
-				for (Resource resourceAux : resourceSet.getResources()) {
-					if (resourceAux instanceof GMFResource) {
+			if(resourceSet != null) {
+				for(Resource resourceAux : resourceSet.getResources()) {
+					if(resourceAux instanceof GMFResource) {
 						// gmfResource found
 						gmfResource = resourceAux;
 						break;
@@ -995,7 +995,7 @@ public class MDTUtil {
 			}
 		}
 		// no gmfResource given nor found. Nothing to do.
-		if (gmfResource instanceof GMFResource == false) {
+		if(gmfResource instanceof GMFResource == false) {
 			return Collections.EMPTY_LIST;
 		}
 		// start of search
@@ -1004,20 +1004,20 @@ public class MDTUtil {
 		// List of all <EObject>s to check
 		List<EObject> allEObjects = new ArrayList<EObject>();
 		allEObjects.add(eObject);
-		for (Iterator<EObject> iterator = eObject.eAllContents(); iterator.hasNext();) {
+		for(Iterator<EObject> iterator = eObject.eAllContents(); iterator.hasNext();) {
 			allEObjects.add(iterator.next());
 		}
 		// search for each <EObject>'s <Diagram>s
-		for (EObject element : allEObjects) {
-			for (EObject content : gmfResource.getContents()) {
-				if (content instanceof Diagram && element.equals(((Diagram) content).getElement())) {
+		for(EObject element : allEObjects) {
+			for(EObject content : gmfResource.getContents()) {
+				if(content instanceof Diagram && element.equals(((Diagram)content).getElement())) {
 					// a <Diagram> that references an affected <EObject> has
 					// been found
-					diagrams.add((Diagram) content);
+					diagrams.add((Diagram)content);
 				}
 			}
 		}
-		if (diagrams.size() > 0) {
+		if(diagrams.size() > 0) {
 			// some <Diagram>s were found
 			return diagrams;
 		}
@@ -1033,16 +1033,16 @@ public class MDTUtil {
 	 * Sets the elements to filter to diagram.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param infos
-	 *            the infos
+	 *        the infos
 	 */
 	public static void setElementsToFilterToDiagram(Diagram diagram, Collection<Integer> infos) {
-		if (diagram == null || infos == null) {
+		if(diagram == null || infos == null) {
 			return;
 		}
 		EAnnotation eAnnotation = diagram.getEAnnotation(FilterViewAndLabelsSource);
-		if (eAnnotation == null) {
+		if(eAnnotation == null) {
 			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eAnnotation.setSource(FilterViewAndLabelsSource);
 			diagram.getEAnnotations().add(eAnnotation);
@@ -1051,28 +1051,28 @@ public class MDTUtil {
 		Collection<Integer> toAdd = new ArrayList<Integer>();
 		Collection<Integer> toDelete = new ArrayList<Integer>();
 		// build toAdd list
-		for (Integer integer : infos) {
-			if (existing.contains(integer) == false) {
+		for(Integer integer : infos) {
+			if(existing.contains(integer) == false) {
 				toAdd.add(integer);
 			}
 		}
 		// build toDelete list
-		for (Integer integer : existing) {
-			if (infos.contains(integer) == false) {
+		for(Integer integer : existing) {
+			if(infos.contains(integer) == false) {
 				toDelete.add(integer);
 			}
 		}
 		// add
-		for (Integer integer : toAdd) {
+		for(Integer integer : toAdd) {
 			String key = String.valueOf(integer);
-			if (false == eAnnotation.getDetails().containsKey(key)) {
+			if(false == eAnnotation.getDetails().containsKey(key)) {
 				eAnnotation.getDetails().put(key, "");
 			}
 		}
 		// delete
-		for (Integer integer : toDelete) {
+		for(Integer integer : toDelete) {
 			String key = String.valueOf(integer);
-			if (true == eAnnotation.getDetails().containsKey(key)) {
+			if(true == eAnnotation.getDetails().containsKey(key)) {
 				eAnnotation.getDetails().remove(key);
 			}
 		}
@@ -1082,22 +1082,22 @@ public class MDTUtil {
 	 * Removes the element to filter from diagram.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param infos
-	 *            the infos
+	 *        the infos
 	 */
 	// @unused
 	public static void removeElementToFilterFromDiagram(Diagram diagram, Collection<ViewInfo> infos) {
-		if (diagram == null || infos == null || infos.size() <= 0) {
+		if(diagram == null || infos == null || infos.size() <= 0) {
 			return;
 		}
 		EAnnotation eAnnotation = diagram.getEAnnotation(FilterViewAndLabelsSource);
-		if (eAnnotation == null) {
+		if(eAnnotation == null) {
 			return;
 		}
-		for (ViewInfo info : infos) {
+		for(ViewInfo info : infos) {
 			String key = String.valueOf(info.getVisualID());
-			if (eAnnotation.getDetails().containsKey(key)) {
+			if(eAnnotation.getDetails().containsKey(key)) {
 				eAnnotation.getDetails().removeKey(key);
 			}
 		}
@@ -1107,17 +1107,17 @@ public class MDTUtil {
 	 * Gets the all views to filter from diagram.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return the all views to filter from diagram
 	 */
 	public static Collection<Integer> getAllViewsToFilterFromDiagram(Diagram diagram) {
 		EAnnotation eAnnotation = diagram.getEAnnotation(FilterViewAndLabelsSource);
-		if (eAnnotation == null) {
+		if(eAnnotation == null) {
 			return Collections.EMPTY_LIST;
 		}
 		Collection<Integer> keys = new ArrayList<Integer>();
-		for (String key : eAnnotation.getDetails().keySet()) {
+		for(String key : eAnnotation.getDetails().keySet()) {
 			keys.add(Integer.valueOf(key));
 		}
 		return keys;
@@ -1127,17 +1127,17 @@ public class MDTUtil {
 	 * Find element in diagram filter.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param visualID
-	 *            the visual id
+	 *        the visual id
 	 * 
 	 * @return true, if successful
 	 */
 	// @unused
 	public static boolean findElementInDiagramFilter(Diagram diagram, int visualID) {
-		if (diagram != null) {
+		if(diagram != null) {
 			EAnnotation eAnnotation = diagram.getEAnnotation(FilterViewAndLabelsSource);
-			if (eAnnotation == null) {
+			if(eAnnotation == null) {
 				return false;
 			}
 			String key = String.valueOf(visualID);
@@ -1150,24 +1150,24 @@ public class MDTUtil {
 	 * Filter diagram views.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 */
 	public static void filterDiagramViews(Diagram diagram) {
 		Collection<Integer> filters = getAllViewsToFilterFromDiagram(diagram);
 		Iterator<EObject> it = diagram.eAllContents();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof View) {
-				View view = (View) eObject;
+			if(eObject instanceof View) {
+				View view = (View)eObject;
 				Integer integer = null;
 				try {
 					integer = Integer.valueOf(view.getType());
 				} catch (NumberFormatException ex) {
 					integer = null;
 				}
-				if (integer != null) {
+				if(integer != null) {
 					SetRequest request = null;
-					if (filters.contains(integer)) {
+					if(filters.contains(integer)) {
 						request = new SetRequest(view, NotationPackage.eINSTANCE.getView_Visible(), false);
 					} else {
 						request = new SetRequest(view, NotationPackage.eINSTANCE.getView_Visible(), true);
@@ -1176,7 +1176,7 @@ public class MDTUtil {
 					Object value = request.getValue();
 					EObject elementToEdit = request.getElementToEdit();
 					EStructuralFeature feature = request.getFeature();
-					if (value != null && elementToEdit != null && feature != null
+					if(value != null && elementToEdit != null && feature != null
 							&& elementToEdit.eGet(feature) != null && !value.equals(elementToEdit.eGet(feature))) {
 						TransactionUtil.getEditingDomain(view).getCommandStack().execute(
 								new GMFtoEMFCommandWrapper(command));

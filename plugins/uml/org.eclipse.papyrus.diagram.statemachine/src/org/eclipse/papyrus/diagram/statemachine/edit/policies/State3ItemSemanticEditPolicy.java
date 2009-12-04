@@ -72,21 +72,21 @@ public class State3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
-		if (UMLElementTypes.ConnectionPointReference_2006 == req
+		if(UMLElementTypes.ConnectionPointReference_2006 == req
 				.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getState_Connection());
 			}
 			return getGEFWrapper(new ConnectionPointReferenceCreateCommand(req));
 		}
-		if (UMLElementTypes.ConnectionPointReference_2007 == req
+		if(UMLElementTypes.ConnectionPointReference_2007 == req
 				.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getState_Connection());
 			}
@@ -111,14 +111,14 @@ public class State3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	 * @generated
 	 */
 	protected void addDestroyChildNodesCommand(CompoundCommand cmd) {
-		View view = (View) getHost().getModel();
+		View view = (View)getHost().getModel();
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation != null) {
+		if(annotation != null) {
 			return;
 		}
-		for (Iterator it = view.getChildren().iterator(); it.hasNext();) {
-			Node node = (Node) it.next();
-			switch (UMLVisualIDRegistry.getVisualID(node)) {
+		for(Iterator it = view.getChildren().iterator(); it.hasNext();) {
+			Node node = (Node)it.next();
+			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
 				cmd.add(getDestroyElementCommand(node));
 				break;
@@ -145,15 +145,15 @@ public class State3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Transition_3001 == req.getElementType()) {
+		if(UMLElementTypes.Transition_3001 == req.getElementType()) {
 			return getGEFWrapper(new TransitionCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return null;
 		}
@@ -168,37 +168,37 @@ public class State3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Transition_3001 == req.getElementType()) {
+		if(UMLElementTypes.Transition_3001 == req.getElementType()) {
 			EObject sourceEObject = req.getSource();
 			EObject targetEObject = req.getTarget();
-			if (false == sourceEObject instanceof Vertex
+			if(false == sourceEObject instanceof Vertex
 					|| false == targetEObject instanceof Vertex) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			Vertex source = (Vertex) sourceEObject;
-			Vertex target = (Vertex) targetEObject;
-			Region container = (Region) getRelationshipContainer(source,
+			Vertex source = (Vertex)sourceEObject;
+			Vertex target = (Vertex)targetEObject;
+			Region container = (Region)getRelationshipContainer(source,
 					UMLPackage.eINSTANCE.getRegion(), req.getElementType());
 			// set correct region when source is an EntryPoint attached to a StateMachine
-			if (container == null && source instanceof Pseudostate) {
-				Pseudostate pseudoState = (Pseudostate) source;
-				if (pseudoState.getKind().equals(
+			if(container == null && source instanceof Pseudostate) {
+				Pseudostate pseudoState = (Pseudostate)source;
+				if(pseudoState.getKind().equals(
 						PseudostateKind.ENTRY_POINT_LITERAL)) {
-					container = (Region) getRelationshipContainer(target,
+					container = (Region)getRelationshipContainer(target,
 							UMLPackage.eINSTANCE.getRegion(), req
-									.getElementType());
+							.getElementType());
 					req.setContainer(container);
 				}
 			}
 			// end 
-			if (container == null) {
+			if(container == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			if (!UMLBaseItemSemanticEditPolicy.LinkConstraints
+			if(!UMLBaseItemSemanticEditPolicy.LinkConstraints
 					.canCreateTransition_3001(container, source, target)) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			if (req.getContainmentFeature() == null) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getRegion_Transition());
 			}
@@ -220,14 +220,14 @@ public class State3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 
 		// add the view element
 		req.setParameter(ReorientLinkIDs.nodeEditPart,
-				((IGraphicalEditPart) this.getHost()).getNotationView());
+				((IGraphicalEditPart)this.getHost()).getNotationView());
 		// add the view link
 		List list = DiagramEditPartsUtil.getEObjectViews(req.getRelationship());
-		if (list.size() > 0) {
+		if(list.size() > 0) {
 			req.setParameter(ReorientLinkIDs.linkEditPart, list.get(0));
 		}
 
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case TransitionEditPart.VISUAL_ID:
 			return getGEFWrapper(new TransitionReorientCommand(req));
 		}
@@ -243,7 +243,7 @@ public class State3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case ElementOwnedCommentEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementOwnedCommentReorientCommand(req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

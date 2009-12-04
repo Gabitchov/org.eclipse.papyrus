@@ -32,11 +32,11 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	@Override
 	public void fillContextMenu(IMenuManager menu) {
 		Object selectedElement = getFirstSelectedElement();
-		if (selectedElement instanceof PackageableElement) {
-			PackageableElement packageableElement = (PackageableElement) selectedElement;
+		if(selectedElement instanceof PackageableElement) {
+			PackageableElement packageableElement = (PackageableElement)selectedElement;
 			MenuManager newDiagramMenu = new MenuManager("New Diagram");
 			menu.add(newDiagramMenu);
-			for (CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
 				CreateDiagramAction createDiagramAction = new CreateDiagramAction(packageableElement, desc);
 				newDiagramMenu.add(createDiagramAction);
 			}
@@ -44,7 +44,7 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if (creationCommandRegistry == null) {
+		if(creationCommandRegistry == null) {
 			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		}
 		return creationCommandRegistry;

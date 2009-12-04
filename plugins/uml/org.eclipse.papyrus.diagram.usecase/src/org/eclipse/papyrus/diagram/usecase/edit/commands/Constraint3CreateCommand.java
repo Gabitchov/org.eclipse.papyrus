@@ -63,11 +63,11 @@ public class Constraint3CreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -88,16 +88,16 @@ public class Constraint3CreateCommand extends EditElementCommand {
 
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
-		Package owner = (Package) getElementToEdit();
+		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-		Namespace childHolder = (Namespace) getElementToEdit();
+		Namespace childHolder = (Namespace)getElementToEdit();
 		childHolder.getOwnedRules().add(newElement);
 
 		UMLElementTypes.init_Constraint_3010(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -106,12 +106,12 @@ public class Constraint3CreateCommand extends EditElementCommand {
 	 */
 	protected void doConfigure(Constraint newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

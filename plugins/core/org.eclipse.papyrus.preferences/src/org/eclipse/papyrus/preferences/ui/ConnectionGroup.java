@@ -34,13 +34,14 @@ public class ConnectionGroup extends AbstractGroup {
 
 	/**
 	 * Instantiates a new connection group composite.
+	 * 
 	 * @param parent
-	 *            the parent of the composite
+	 *        the parent of the composite
 	 * @param String
-	 *            the title of the page
+	 *        the title of the page
 	 * @param dialogPage
-	 *            to set the page in field editor
-	 **/    
+	 *        to set the page in field editor
+	 **/
 
 	public ConnectionGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
@@ -68,23 +69,23 @@ public class ConnectionGroup extends AbstractGroup {
 	/** The Constant SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_None, "" + Smoothness.NONE }, //$NON-NLS-2$
-			{ Messages.AbstractPapyrusLinkPreferencePage_Less, "" + Smoothness.LESS }, { Messages.AbstractPapyrusLinkPreferencePage_Normal, "" + Smoothness.NORMAL }, { Messages.AbstractPapyrusLinkPreferencePage_More, "" + Smoothness.MORE } }; //$NON-NLS-2$ //$NON-NLS-4$ //$NON-NLS-6$
+	{ Messages.AbstractPapyrusLinkPreferencePage_Less, "" + Smoothness.LESS }, { Messages.AbstractPapyrusLinkPreferencePage_Normal, "" + Smoothness.NORMAL }, { Messages.AbstractPapyrusLinkPreferencePage_More, "" + Smoothness.MORE } }; //$NON-NLS-2$ //$NON-NLS-4$ //$NON-NLS-6$
 
 	/** The Constant JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_None, "" + JumpLinkStatus.NONE }, { Messages.AbstractPapyrusLinkPreferencePage_Below, "" + JumpLinkStatus.BELOW }, //$NON-NLS-2$ //$NON-NLS-4$
-			{ Messages.AbstractPapyrusLinkPreferencePage_All, "" + JumpLinkStatus.ALL }, { Messages.AbstractPapyrusLinkPreferencePage_Above, "" + JumpLinkStatus.ABOVE } }; //$NON-NLS-2$ //$NON-NLS-4$
+	{ Messages.AbstractPapyrusLinkPreferencePage_All, "" + JumpLinkStatus.ALL }, { Messages.AbstractPapyrusLinkPreferencePage_Above, "" + JumpLinkStatus.ABOVE } }; //$NON-NLS-2$ //$NON-NLS-4$
 
 	/** The Constant JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_SemiCircle, "" + JumpLinkType.SEMICIRCLE }, { Messages.AbstractPapyrusLinkPreferencePage_Square, "" + JumpLinkType.SQUARE }, //$NON-NLS-2$ //$NON-NLS-4$
-			{ Messages.AbstractPapyrusLinkPreferencePage_Chamfered, "" + JumpLinkType.CHAMFERED } }; //$NON-NLS-2$
+	{ Messages.AbstractPapyrusLinkPreferencePage_Chamfered, "" + JumpLinkType.CHAMFERED } }; //$NON-NLS-2$
 
 	// TODO : check if Tree is always a valid possibility
 	/** The Constant ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES. */
 	private static final String[][] ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES = {
 			{ Messages.AbstractPapyrusLinkPreferencePage_Oblique, "" + Routing.MANUAL }, { Messages.AbstractPapyrusLinkPreferencePage_Rectilinear, "" + Routing.RECTILINEAR }, //$NON-NLS-2$ //$NON-NLS-4$
-			{ Messages.AbstractPapyrusLinkPreferencePage_Tree, "" + Routing.TREE } }; //$NON-NLS-2$
+	{ Messages.AbstractPapyrusLinkPreferencePage_Tree, "" + Routing.TREE } }; //$NON-NLS-2$
 
 	/** The routing styles combo field editor. */
 	private ComboFieldEditor routingStylesComboFieldEditor;
@@ -108,7 +109,7 @@ public class ConnectionGroup extends AbstractGroup {
 	 * Creates the content.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public void createContent(Composite parent) {
 		Group connectionGroup = new Group(parent, 2);
@@ -121,7 +122,7 @@ public class ConnectionGroup extends AbstractGroup {
 				connectionGroup);
 
 		addFieldEditor(smoothnessComboFieldEditor);
-		
+
 		createRoutingGroup(connectionGroup);
 		createJumpLinkGroup(connectionGroup);
 	}
@@ -130,7 +131,7 @@ public class ConnectionGroup extends AbstractGroup {
 	 * Creates the jump link group.
 	 * 
 	 * @param connectionGroup
-	 *            the connection group
+	 *        the connection group
 	 */
 
 	private void createJumpLinkGroup(Group connectionGroup) {
@@ -143,21 +144,21 @@ public class ConnectionGroup extends AbstractGroup {
 				JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL, JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES,
 				jumpLinkGroup);
 		jumpLinkStatusComboFieldEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(jumpLinkStatusComboFieldEditor);
 
 		jumpLinkTypeComboFieldEditor = new ComboFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_TYPE), JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL,
 				JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES, jumpLinkGroup);
 		jumpLinkTypeComboFieldEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(jumpLinkTypeComboFieldEditor);
 
 		jumpLinkReverseBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_REVERSE),
 				JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL, jumpLinkGroup);
 		jumpLinkReverseBooleanFieldEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(jumpLinkReverseBooleanFieldEditor);
 	}
 
@@ -165,7 +166,7 @@ public class ConnectionGroup extends AbstractGroup {
 	 * Creates the routing group.
 	 * 
 	 * @param connectionGroup
-	 *            the connection group
+	 *        the connection group
 	 */
 	private void createRoutingGroup(Group connectionGroup) {
 		Group routingGroup = new Group(connectionGroup, 2);
@@ -176,21 +177,21 @@ public class ConnectionGroup extends AbstractGroup {
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_STYLE), ROUTING_STYLES_COMBOFIELDEDITOR_LABEL,
 				ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES, routingGroup);
 		routingStylesComboFieldEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(routingStylesComboFieldEditor);
 
 		routingObstructionPolicyBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION),
 				ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingObstructionPolicyBooleanFieldEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(routingObstructionPolicyBooleanFieldEditor);
 
 		routingDistancePolicyBooleanFieldEditor = new BooleanFieldEditor(
 				getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_DISTANCE),
 				ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingDistancePolicyBooleanFieldEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(routingDistancePolicyBooleanFieldEditor);
 
 	}

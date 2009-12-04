@@ -23,7 +23,6 @@ public interface TemplateParameterPropertiesEditionPart {
 
 
 
-
 	// Start of user code for additional methods
 
 	// End of user code

@@ -23,7 +23,6 @@ import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 /**
  * This edit policy displays only icon of applied stereotypes if its exists *.
  * In order to use it, the edit part has to be {@link IPapyrusEditPart} and the associated figure has to be {@link IPapyrusUMLElementFigure}
- 
  */
 public class AppliedStereotypeIconlDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 
@@ -33,11 +32,11 @@ public class AppliedStereotypeIconlDisplayEditPolicy extends AppliedStereotypeLa
 	 */
 	@Override
 	protected void refreshStereotypeDisplay() {
-		if (getHost() instanceof IPapyrusEditPart) {
-			IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
+		if(getHost() instanceof IPapyrusEditPart) {
+			IFigure figure = ((IPapyrusEditPart)getHost()).getPrimaryShape();
 
-			if (figure instanceof IPapyrusUMLElementFigure) {
-				((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(null, stereotypeIconToDisplay());
+			if(figure instanceof IPapyrusUMLElementFigure) {
+				((IPapyrusUMLElementFigure)figure).setStereotypeDisplay(null, stereotypeIconToDisplay());
 			}
 		}
 	}

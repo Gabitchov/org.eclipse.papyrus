@@ -43,7 +43,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the backgound color of the figure.
 	 * 
 	 * @param backgroundColor
-	 *            the color in the background
+	 *        the color in the background
 	 */
 	public void setBackgroundColor(Color backgroundColor);
 
@@ -58,7 +58,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the border coler of the figure.
 	 * 
 	 * @param borderColor
-	 *            the color of the border of the figure
+	 *        the color of the border of the figure
 	 */
 	public void setBorderColor(Color borderColor);
 
@@ -67,7 +67,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * has got an image (icon).
 	 * 
 	 * @param img
-	 *            the icon that we want to display
+	 *        the icon that we want to display
 	 */
 	public void setAppliedStereotypeIcon(Image img);
 
@@ -83,7 +83,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the font of the figure.
 	 * 
 	 * @param font
-	 *            the font of the figure that we want to see. For instance, "Arial"
+	 *        the font of the figure that we want to see. For instance, "Arial"
 	 */
 	public void setfigureFont(String font);
 
@@ -98,7 +98,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the text fontsize of the figure.
 	 * 
 	 * @param fontSize
-	 *            that we want to see
+	 *        that we want to see
 	 */
 	public void setFontSize(int fontSize);
 
@@ -113,7 +113,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the Foreground of the figure.
 	 * 
 	 * @param foreGroundColor
-	 *            the color that we want ot see
+	 *        the color that we want ot see
 	 */
 	public void setForeGroundColor(Color foreGroundColor);
 
@@ -128,7 +128,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the fontColor of the text in the figure.
 	 * 
 	 * @param fontColor
-	 *            of the text in the figure
+	 *        of the text in the figure
 	 */
 	public void setFontColor(Color fontColor);
 
@@ -137,13 +137,13 @@ public interface IAbstractElementFigure extends IFigure {
 	 * stereotype.
 	 * 
 	 * @param presentation
-	 *            type of presentation
+	 *        type of presentation
 	 * @param hasIcon
-	 *            the has icon
+	 *        the has icon
 	 * @param hasShape
-	 *            the has shape
+	 *        the has shape
 	 * @param stereotypes
-	 *            String thaht contains Stereotype name
+	 *        String thaht contains Stereotype name
 	 */
 	public void refreshStereotypes(String stereotypes, String presentation, boolean hasIcon, boolean hasShape);
 
@@ -151,7 +151,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the name of the figure.
 	 * 
 	 * @param name
-	 *            na me of the figure
+	 *        na me of the figure
 	 */
 	public void setName(String name);
 
@@ -173,7 +173,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * set the qaulified name of the figure.
 	 * 
 	 * @param qualifiedName
-	 *            qulified name of the figure
+	 *        qulified name of the figure
 	 */
 	public void setQualifiedName(String qualifiedName);
 
@@ -194,7 +194,7 @@ public interface IAbstractElementFigure extends IFigure {
 	 * Set the stereotype value. If param is null, remove the label.
 	 * 
 	 * @param stereotypes
-	 *            String that contains list of stereotypes
+	 *        String that contains list of stereotypes
 	 */
 	public void setStereotypes(String stereotypes);
 }

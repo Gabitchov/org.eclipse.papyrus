@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.util;
 
 import java.util.List;
@@ -23,21 +23,23 @@ import org.eclipse.papyrus.di.*;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
- * to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.di.DiPackage
  * @generated
  */
 public class DiSwitch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static DiPackage modelPackage;
@@ -46,10 +48,11 @@ public class DiSwitch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = DiPackage.eINSTANCE;
 		}
 	}
@@ -58,6 +61,7 @@ public class DiSwitch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -69,17 +73,16 @@ public class DiSwitch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if(theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
+			return eSuperTypes.isEmpty() ?
 					defaultCase(theEObject) :
 					doSwitch(eSuperTypes.get(0), theEObject);
 		}
@@ -89,151 +92,216 @@ public class DiSwitch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case DiPackage.DIAGRAM_ELEMENT: {
-				DiagramElement diagramElement = (DiagramElement)theEObject;
-				T result = caseDiagramElement(diagramElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.GRAPH_ELEMENT: {
-				GraphElement graphElement = (GraphElement)theEObject;
-				T result = caseGraphElement(graphElement);
-				if (result == null) result = caseDiagramElement(graphElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.REFERENCE: {
-				Reference reference = (Reference)theEObject;
-				T result = caseReference(reference);
-				if (result == null) result = caseDiagramElement(reference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.PROPERTY: {
-				Property property = (Property)theEObject;
-				T result = caseProperty(property);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.GRAPH_EDGE: {
-				GraphEdge graphEdge = (GraphEdge)theEObject;
-				T result = caseGraphEdge(graphEdge);
-				if (result == null) result = caseGraphElement(graphEdge);
-				if (result == null) result = caseDiagramElement(graphEdge);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.GRAPH_CONNECTOR: {
-				GraphConnector graphConnector = (GraphConnector)theEObject;
-				T result = caseGraphConnector(graphConnector);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.GRAPH_NODE: {
-				GraphNode graphNode = (GraphNode)theEObject;
-				T result = caseGraphNode(graphNode);
-				if (result == null) result = caseGraphElement(graphNode);
-				if (result == null) result = caseDiagramElement(graphNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.DIAGRAM_LINK: {
-				DiagramLink diagramLink = (DiagramLink)theEObject;
-				T result = caseDiagramLink(diagramLink);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.DIAGRAM: {
-				Diagram diagram = (Diagram)theEObject;
-				T result = caseDiagram(diagram);
-				if (result == null) result = caseGraphNode(diagram);
-				if (result == null) result = caseGraphElement(diagram);
-				if (result == null) result = caseDiagramElement(diagram);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.SEMANTIC_MODEL_BRIDGE: {
-				SemanticModelBridge semanticModelBridge = (SemanticModelBridge)theEObject;
-				T result = caseSemanticModelBridge(semanticModelBridge);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT: {
-				SimpleSemanticModelElement simpleSemanticModelElement = (SimpleSemanticModelElement)theEObject;
-				T result = caseSimpleSemanticModelElement(simpleSemanticModelElement);
-				if (result == null) result = caseSemanticModelBridge(simpleSemanticModelElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.UML1_SEMANTIC_MODEL_BRIDGE: {
-				Uml1SemanticModelBridge uml1SemanticModelBridge = (Uml1SemanticModelBridge)theEObject;
-				T result = caseUml1SemanticModelBridge(uml1SemanticModelBridge);
-				if (result == null) result = caseSemanticModelBridge(uml1SemanticModelBridge);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE: {
-				CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge)theEObject;
-				T result = caseCoreSemanticModelBridge(coreSemanticModelBridge);
-				if (result == null) result = caseSemanticModelBridge(coreSemanticModelBridge);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.LEAF_ELEMENT: {
-				LeafElement leafElement = (LeafElement)theEObject;
-				T result = caseLeafElement(leafElement);
-				if (result == null) result = caseDiagramElement(leafElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.TEXT_ELEMENT: {
-				TextElement textElement = (TextElement)theEObject;
-				T result = caseTextElement(textElement);
-				if (result == null) result = caseLeafElement(textElement);
-				if (result == null) result = caseDiagramElement(textElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.IMAGE: {
-				Image image = (Image)theEObject;
-				T result = caseImage(image);
-				if (result == null) result = caseLeafElement(image);
-				if (result == null) result = caseDiagramElement(image);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.GRAPHIC_PRIMITIVE: {
-				GraphicPrimitive graphicPrimitive = (GraphicPrimitive)theEObject;
-				T result = caseGraphicPrimitive(graphicPrimitive);
-				if (result == null) result = caseLeafElement(graphicPrimitive);
-				if (result == null) result = caseDiagramElement(graphicPrimitive);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.POLILYNE: {
-				Polilyne polilyne = (Polilyne)theEObject;
-				T result = casePolilyne(polilyne);
-				if (result == null) result = caseGraphicPrimitive(polilyne);
-				if (result == null) result = caseLeafElement(polilyne);
-				if (result == null) result = caseDiagramElement(polilyne);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiPackage.ELLIPSE: {
-				Ellipse ellipse = (Ellipse)theEObject;
-				T result = caseEllipse(ellipse);
-				if (result == null) result = caseGraphicPrimitive(ellipse);
-				if (result == null) result = caseLeafElement(ellipse);
-				if (result == null) result = caseDiagramElement(ellipse);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		switch(classifierID) {
+		case DiPackage.DIAGRAM_ELEMENT:
+		{
+			DiagramElement diagramElement = (DiagramElement)theEObject;
+			T result = caseDiagramElement(diagramElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.GRAPH_ELEMENT:
+		{
+			GraphElement graphElement = (GraphElement)theEObject;
+			T result = caseGraphElement(graphElement);
+			if(result == null)
+				result = caseDiagramElement(graphElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.REFERENCE:
+		{
+			Reference reference = (Reference)theEObject;
+			T result = caseReference(reference);
+			if(result == null)
+				result = caseDiagramElement(reference);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.PROPERTY:
+		{
+			Property property = (Property)theEObject;
+			T result = caseProperty(property);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.GRAPH_EDGE:
+		{
+			GraphEdge graphEdge = (GraphEdge)theEObject;
+			T result = caseGraphEdge(graphEdge);
+			if(result == null)
+				result = caseGraphElement(graphEdge);
+			if(result == null)
+				result = caseDiagramElement(graphEdge);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.GRAPH_CONNECTOR:
+		{
+			GraphConnector graphConnector = (GraphConnector)theEObject;
+			T result = caseGraphConnector(graphConnector);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.GRAPH_NODE:
+		{
+			GraphNode graphNode = (GraphNode)theEObject;
+			T result = caseGraphNode(graphNode);
+			if(result == null)
+				result = caseGraphElement(graphNode);
+			if(result == null)
+				result = caseDiagramElement(graphNode);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.DIAGRAM_LINK:
+		{
+			DiagramLink diagramLink = (DiagramLink)theEObject;
+			T result = caseDiagramLink(diagramLink);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.DIAGRAM:
+		{
+			Diagram diagram = (Diagram)theEObject;
+			T result = caseDiagram(diagram);
+			if(result == null)
+				result = caseGraphNode(diagram);
+			if(result == null)
+				result = caseGraphElement(diagram);
+			if(result == null)
+				result = caseDiagramElement(diagram);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.SEMANTIC_MODEL_BRIDGE:
+		{
+			SemanticModelBridge semanticModelBridge = (SemanticModelBridge)theEObject;
+			T result = caseSemanticModelBridge(semanticModelBridge);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT:
+		{
+			SimpleSemanticModelElement simpleSemanticModelElement = (SimpleSemanticModelElement)theEObject;
+			T result = caseSimpleSemanticModelElement(simpleSemanticModelElement);
+			if(result == null)
+				result = caseSemanticModelBridge(simpleSemanticModelElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.UML1_SEMANTIC_MODEL_BRIDGE:
+		{
+			Uml1SemanticModelBridge uml1SemanticModelBridge = (Uml1SemanticModelBridge)theEObject;
+			T result = caseUml1SemanticModelBridge(uml1SemanticModelBridge);
+			if(result == null)
+				result = caseSemanticModelBridge(uml1SemanticModelBridge);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE:
+		{
+			CoreSemanticModelBridge coreSemanticModelBridge = (CoreSemanticModelBridge)theEObject;
+			T result = caseCoreSemanticModelBridge(coreSemanticModelBridge);
+			if(result == null)
+				result = caseSemanticModelBridge(coreSemanticModelBridge);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.LEAF_ELEMENT:
+		{
+			LeafElement leafElement = (LeafElement)theEObject;
+			T result = caseLeafElement(leafElement);
+			if(result == null)
+				result = caseDiagramElement(leafElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.TEXT_ELEMENT:
+		{
+			TextElement textElement = (TextElement)theEObject;
+			T result = caseTextElement(textElement);
+			if(result == null)
+				result = caseLeafElement(textElement);
+			if(result == null)
+				result = caseDiagramElement(textElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.IMAGE:
+		{
+			Image image = (Image)theEObject;
+			T result = caseImage(image);
+			if(result == null)
+				result = caseLeafElement(image);
+			if(result == null)
+				result = caseDiagramElement(image);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.GRAPHIC_PRIMITIVE:
+		{
+			GraphicPrimitive graphicPrimitive = (GraphicPrimitive)theEObject;
+			T result = caseGraphicPrimitive(graphicPrimitive);
+			if(result == null)
+				result = caseLeafElement(graphicPrimitive);
+			if(result == null)
+				result = caseDiagramElement(graphicPrimitive);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.POLILYNE:
+		{
+			Polilyne polilyne = (Polilyne)theEObject;
+			T result = casePolilyne(polilyne);
+			if(result == null)
+				result = caseGraphicPrimitive(polilyne);
+			if(result == null)
+				result = caseLeafElement(polilyne);
+			if(result == null)
+				result = caseDiagramElement(polilyne);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DiPackage.ELLIPSE:
+		{
+			Ellipse ellipse = (Ellipse)theEObject;
+			T result = caseEllipse(ellipse);
+			if(result == null)
+				result = caseGraphicPrimitive(ellipse);
+			if(result == null)
+				result = caseLeafElement(ellipse);
+			if(result == null)
+				result = caseDiagramElement(ellipse);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -243,7 +311,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Diagram Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -258,7 +328,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Graph Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -273,7 +345,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -288,7 +362,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Property</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -303,7 +379,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Graph Edge</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -318,7 +396,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Graph Connector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -333,7 +413,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Graph Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -348,7 +430,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Diagram Link</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -363,7 +447,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Diagram</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -378,7 +464,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Semantic Model Bridge</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -393,7 +481,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Simple Semantic Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -408,7 +498,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Uml1 Semantic Model Bridge</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -423,7 +515,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Core Semantic Model Bridge</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -438,7 +532,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Leaf Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -453,7 +549,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Text Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -468,7 +566,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Image</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -483,7 +583,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Graphic Primitive</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -498,7 +600,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Polilyne</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -513,7 +617,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Ellipse</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -528,7 +634,9 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

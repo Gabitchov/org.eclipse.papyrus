@@ -406,7 +406,7 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	/**
 	 * @param downHyperLinkbutton
-	 *            the downHyperLinkbutton to set
+	 *        the downHyperLinkbutton to set
 	 */
 	// @unused
 	public void setDownHyperLinkbutton(Button downHyperLinkbutton) {
@@ -423,7 +423,7 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	/**
 	 * @param hyperlinkListlabel
-	 *            the hyperlinkListlabel to set
+	 *        the hyperlinkListlabel to set
 	 */
 	// @unused
 	public void setHyperlinkListlabel(Label hyperlinkListlabel) {

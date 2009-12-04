@@ -136,7 +136,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		SashWindowsMngr windowsMngr = DiUtils.createDefaultSashWindowsMngr();
 
 		// add pages to the page list
-		for (Diagram diagram : diagrams) {
+		for(Diagram diagram : diagrams) {
 			PageRef pageRef = DiUtils.getPageRef(diResource, diagram);
 			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
 
@@ -168,7 +168,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 */
 	private Resource getResource(URI uri) {
 		Resource res = getEditingDomain().getResourceSet().getResource(uri, false);
-		if (res == null) {
+		if(res == null) {
 			res = getEditingDomain().getResourceSet().createResource(uri);
 		}
 		return res;
@@ -186,12 +186,12 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			// TODO save parent resources, check if it is useful
 			// diResourceSet.save(new NullProgressMonitor());
 		} catch (IOException exception) {
-			if (getEditingDomain().getCommandStack().canUndo()) {
+			if(getEditingDomain().getCommandStack().canUndo()) {
 				getEditingDomain().getCommandStack().undo();
 			}
 			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 					EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE
-							.getString("_WARN_CannotCreateResource"));
+					.getString("_WARN_CannotCreateResource"));
 			EMFEditUIPlugin.INSTANCE.log(exception);
 		}
 	}

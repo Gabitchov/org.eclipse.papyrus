@@ -87,7 +87,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 */
 	@Override
 	public boolean hasChildren(Object element) {
-		if (element instanceof Diagram) {
+		if(element instanceof Diagram) {
 			return false;
 		}
 		return getChildren(element).length > 0;
@@ -99,18 +99,18 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	@Override
 	public Object[] getChildren(Object parentElement) {
 		// Only display diagram (no graphNodes or graphEdges)
-		if (parentElement instanceof Diagram) {
+		if(parentElement instanceof Diagram) {
 			return EMPTY_ARRAY;
 		}
-		if (parentElement instanceof AdditionalResources) {
-			return ((AdditionalResources) parentElement).getResources().toArray();
+		if(parentElement instanceof AdditionalResources) {
+			return ((AdditionalResources)parentElement).getResources().toArray();
 		}
 
 		// fjcano #290422 :: add "Group children" action.
 		// if grouping is enabled, return the children in a folder organization
-		if (getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
+		if(getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
 				&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
-			ITreeItemContentProvider provider = (ITreeItemContentProvider) groupableFactory.adapt(parentElement,
+			ITreeItemContentProvider provider = (ITreeItemContentProvider)groupableFactory.adapt(parentElement,
 					ITreeItemContentProvider.class);
 			return provider == null ? null : provider.getChildren(parentElement).toArray();
 		}
@@ -120,17 +120,17 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 
 		// 1. Retrieve children elements
 		Object[] modelChildren = super.getChildren(parentElement);
-		for (Object child : modelChildren) {
+		for(Object child : modelChildren) {
 			children.add(child);
 		}
 
 		// 2. and associated diagrams
-		if (parentElement instanceof EObject || parentElement instanceof IWrapperItemProvider
+		if(parentElement instanceof EObject || parentElement instanceof IWrapperItemProvider
 				|| parentElement instanceof FeatureMap.Entry) {
 			Object object = AdapterFactoryEditingDomain.unwrap(parentElement);
-			if (object instanceof Element) {
-				Element owner = (Element) object;
-				if (owner != null) {
+			if(object instanceof Element) {
+				Element owner = (Element)object;
+				if(owner != null) {
 					children.addAll(findAllExistingDiagrams(owner));
 				}
 			}
@@ -147,15 +147,15 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		 * if (object instanceof IFile) return ((IResource) object).getParent(); return
 		 * super.getParent(object);
 		 */
-		if (getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
+		if(getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
 				&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
-			ITreeItemContentProvider provider = (ITreeItemContentProvider) groupableFactory.adapt(element,
+			ITreeItemContentProvider provider = (ITreeItemContentProvider)groupableFactory.adapt(element,
 					ITreeItemContentProvider.class);
 			return provider == null ? null : provider.getParent(element);
 		}
 
 		// Delegates
-		if (element instanceof IWrapperItemProvider || element instanceof FeatureMap.Entry
+		if(element instanceof IWrapperItemProvider || element instanceof FeatureMap.Entry
 				|| element instanceof EObject) {
 			return super.getParent(element);
 		}
@@ -166,7 +166,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	@Override
 	public Object[] getElements(Object object) {
 
-		if (canPopulateModelNavigator()) {
+		if(canPopulateModelNavigator()) {
 			this.diResourceSet = getDiResourceSet();
 			pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
 
@@ -192,20 +192,20 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 
 	/**
 	 * @param owner
-	 *            the owner of the diagrams
+	 *        the owner of the diagrams
 	 * @return the list of diagrams contained by the given owner
 	 */
 	private List<Diagram> findAllExistingDiagrams(Element owner) {
 		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
 
 		// Walk on page (Diagram) references
-		for (Object page : pageMngr.allPages()) {
-			if (!(page instanceof Diagram)) {
+		for(Object page : pageMngr.allPages()) {
+			if(!(page instanceof Diagram)) {
 				continue;
 			}
 			// We have a GMF Diagram
-			Diagram diagram = (Diagram) page;
-			if (owner.equals(diagram.getElement())) {
+			Diagram diagram = (Diagram)page;
+			if(owner.equals(diagram.getElement())) {
 				diagrams.add(diagram);
 			}
 
@@ -228,11 +228,11 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 * @param event
 	 */
 	public void resourceSetChanged(ResourceSetChangeEvent event) {
-		for (Object o : event.getNotifications()) {
-			if (o instanceof Notification) {
-				Notification n = (Notification) o;
-				if (n.getEventType() == Notification.ADD) {
-					if (getCommonNavigator() != null) {
+		for(Object o : event.getNotifications()) {
+			if(o instanceof Notification) {
+				Notification n = (Notification)o;
+				if(n.getEventType() == Notification.ADD) {
+					if(getCommonNavigator() != null) {
 						getCommonNavigator().getCommonViewer().setSelection(new StructuredSelection(n.getNewValue()));
 					}
 				}
@@ -248,15 +248,15 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 */
 	protected CommonNavigator getCommonNavigator() {
 		IViewPart part = NavigatorUtils.findViewPart(getViewerID());
-		if (part instanceof CommonNavigator) {
-			return ((CommonNavigator) part);
+		if(part instanceof CommonNavigator) {
+			return ((CommonNavigator)part);
 		}
 		return null;
 	}
 
 	protected ModelNavigator getModelNavigator() {
 		CommonNavigator nav = getCommonNavigator();
-		return nav instanceof ModelNavigator ? (ModelNavigator) nav : null;
+		return nav instanceof ModelNavigator ? (ModelNavigator)nav : null;
 	}
 
 	protected String getViewerID() {

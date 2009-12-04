@@ -23,13 +23,11 @@ import org.eclipse.papyrus.sysml.blocks.ParticipantProperty;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Participant Property</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Participant Property</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl#getBase_Property <em>
- * Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl#getBase_Property <em> Base Property</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl#getEnd <em>End</em>}</li>
  * </ul>
  * </p>
@@ -92,13 +90,13 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PARTICIPANT_PROPERTY__BASE_PROPERTY:
-			if (resolve)
+			if(resolve)
 				return getBase_Property();
 			return basicGetBase_Property();
 		case BlocksPackage.PARTICIPANT_PROPERTY__END:
-			if (resolve)
+			if(resolve)
 				return getEnd();
 			return basicGetEnd();
 		}
@@ -112,7 +110,7 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PARTICIPANT_PROPERTY__BASE_PROPERTY:
 			return base_Property != null;
 		case BlocksPackage.PARTICIPANT_PROPERTY__END:
@@ -128,12 +126,12 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PARTICIPANT_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) newValue);
+			setBase_Property((Property)newValue);
 			return;
 		case BlocksPackage.PARTICIPANT_PROPERTY__END:
-			setEnd((Property) newValue);
+			setEnd((Property)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -156,12 +154,12 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PARTICIPANT_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) null);
+			setBase_Property((Property)null);
 			return;
 		case BlocksPackage.PARTICIPANT_PROPERTY__END:
-			setEnd((Property) null);
+			setEnd((Property)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -173,11 +171,11 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	 * @generated
 	 */
 	public Property getBase_Property() {
-		if (base_Property != null && base_Property.eIsProxy()) {
-			InternalEObject oldBase_Property = (InternalEObject) base_Property;
-			base_Property = (Property) eResolveProxy(oldBase_Property);
-			if (base_Property != oldBase_Property) {
-				if (eNotificationRequired())
+		if(base_Property != null && base_Property.eIsProxy()) {
+			InternalEObject oldBase_Property = (InternalEObject)base_Property;
+			base_Property = (Property)eResolveProxy(oldBase_Property);
+			if(base_Property != oldBase_Property) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.PARTICIPANT_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 			}
@@ -191,11 +189,11 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	 * @generated
 	 */
 	public Property getEnd() {
-		if (end != null && end.eIsProxy()) {
-			InternalEObject oldEnd = (InternalEObject) end;
-			end = (Property) eResolveProxy(oldEnd);
-			if (end != oldEnd) {
-				if (eNotificationRequired())
+		if(end != null && end.eIsProxy()) {
+			InternalEObject oldEnd = (InternalEObject)end;
+			end = (Property)eResolveProxy(oldEnd);
+			if(end != oldEnd) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.PARTICIPANT_PROPERTY__END,
 							oldEnd, end));
 			}
@@ -211,7 +209,7 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	public void setBase_Property(Property newBase_Property) {
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.PARTICIPANT_PROPERTY__BASE_PROPERTY,
 					oldBase_Property, base_Property));
 	}
@@ -224,7 +222,7 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 	public void setEnd(Property newEnd) {
 		Property oldEnd = end;
 		end = newEnd;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.PARTICIPANT_PROPERTY__END, oldEnd, end));
 	}
 

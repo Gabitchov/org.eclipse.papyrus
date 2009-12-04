@@ -41,39 +41,38 @@ public class StateMachine2ViewFactory extends AbstractShapeViewFactory {
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
-		if (semanticHint == null) {
+		if(semanticHint == null) {
 			semanticHint = UMLVisualIDRegistry
 					.getType(StateMachine2EditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
 				index, persisted);
-		if (!StateMachineEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+		if(!StateMachineEditPart.MODEL_ID.equals(UMLVisualIDRegistry
 				.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
 					.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put(
-					"modelID", StateMachineEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", StateMachineEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
 		IAdaptable eObjectAdapter = null;
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-		if (eObject != null) {
+		EObject eObject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
 		getViewService()
 				.createNode(
-						eObjectAdapter,
-						view,
-						UMLVisualIDRegistry
-								.getType(StateMachineNameEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
+				eObjectAdapter,
+				view,
+				UMLVisualIDRegistry
+				.getType(StateMachineNameEditPart.VISUAL_ID),
+				ViewUtil.APPEND, true, getPreferencesHint());
 		getViewService().createNode(
 				eObjectAdapter,
 				view,
 				UMLVisualIDRegistry
-						.getType(StateMachineName2EditPart.VISUAL_ID),
+				.getType(StateMachineName2EditPart.VISUAL_ID),
 				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

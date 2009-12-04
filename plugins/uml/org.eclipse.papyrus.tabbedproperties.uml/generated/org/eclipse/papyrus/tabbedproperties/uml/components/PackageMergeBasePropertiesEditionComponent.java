@@ -46,7 +46,7 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -62,9 +62,9 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 * Default constructor
 	 */
 	public PackageMergeBasePropertiesEditionComponent(EObject packageMerge, String editing_mode) {
-		if (packageMerge instanceof PackageMerge) {
+		if(packageMerge instanceof PackageMerge) {
 			this.packageMerge = (PackageMerge)packageMerge;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.packageMerge.eAdapters().add(semanticAdapter);
 			}
@@ -86,7 +86,7 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					PackageMergeBasePropertiesEditionComponent.this.dispose();
 				else {
 
@@ -103,7 +103,7 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.PackageMerge.class;
 		return super.translatePart(key);
 	}
@@ -120,14 +120,13 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (packageMerge != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(packageMerge != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (PackageMergePropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.PackageMerge.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -140,26 +139,26 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.PackageMerge.class)
-			this.basePart = (PackageMergePropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.PackageMerge.class)
+			this.basePart = (PackageMergePropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.PackageMerge.class) {
+		if(basePart != null && key == UMLViewsRepository.PackageMerge.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final PackageMerge packageMerge = (PackageMerge)elt;
 			// init values
-			
+
 			// init filters
 		}
 		// init values for referenced views
@@ -175,15 +174,15 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (packageMerge != null) {
+		if(packageMerge != null) {
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -195,13 +194,12 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof PackageMerge) {
+		if(source instanceof PackageMerge) {
 			PackageMerge packageMergeToUpdate = (PackageMerge)source;
 
 
 			return packageMergeToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -212,18 +210,18 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
 
 
 			} else {
@@ -240,7 +238,7 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
 
@@ -258,12 +256,11 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(packageMerge);
 		// Start of user code for custom validation check
 
@@ -279,7 +276,7 @@ public class PackageMergeBasePropertiesEditionComponent extends StandardProperti
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			packageMerge.eAdapters().remove(semanticAdapter);
 	}
 

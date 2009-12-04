@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.activities.ControlOperator} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.ControlOperator} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated
@@ -62,7 +61,7 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_OperationPropertyDescriptor(object);
@@ -78,11 +77,11 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 	 * @generated
 	 */
 	protected void addBase_OperationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ControlOperator_base_Operation_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Operation_feature",
-						"_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_OPERATION, true,
+				"_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Operation_feature",
+				"_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_OPERATION, true,
 				false, true, null, null, null));
 	}
 
@@ -93,10 +92,10 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 	 * @generated
 	 */
 	protected void addBase_BehaviorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ControlOperator_base_Behavior_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Behavior_feature",
-						"_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_BEHAVIOR, true,
+				"_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_BEHAVIOR, true,
 				false, true, null, null, null));
 	}
 
@@ -123,8 +122,7 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

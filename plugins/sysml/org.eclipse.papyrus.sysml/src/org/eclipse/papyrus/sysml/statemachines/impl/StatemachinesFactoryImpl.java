@@ -47,9 +47,9 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	 */
 	public static StatemachinesFactory init() {
 		try {
-			StatemachinesFactory theStatemachinesFactory = (StatemachinesFactory) EPackage.Registry.INSTANCE
+			StatemachinesFactory theStatemachinesFactory = (StatemachinesFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/StateMachines");
-			if (theStatemachinesFactory != null) {
+			if(theStatemachinesFactory != null) {
 				return theStatemachinesFactory;
 			}
 		} catch (Exception exception) {
@@ -83,7 +83,7 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case StatemachinesPackage.DUMMY:
 			return convertDummyToString(eDataType, instanceValue);
 		default:
@@ -98,7 +98,7 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,7 +110,7 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	 * @generated
 	 */
 	public String createDummyFromString(EDataType eDataType, String initialValue) {
-		return (String) super.createFromString(eDataType, initialValue);
+		return (String)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case StatemachinesPackage.DUMMY:
 			return createDummyFromString(eDataType, initialValue);
 		default:
@@ -134,7 +134,7 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	 * @generated
 	 */
 	public StatemachinesPackage getStatemachinesPackage() {
-		return (StatemachinesPackage) getEPackage();
+		return (StatemachinesPackage)getEPackage();
 	}
 
 } // StatemachinesFactoryImpl

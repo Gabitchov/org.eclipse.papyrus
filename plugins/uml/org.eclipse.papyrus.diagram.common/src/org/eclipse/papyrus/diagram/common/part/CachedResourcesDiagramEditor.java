@@ -34,7 +34,7 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * Instantiates a new cached resources diagram editor.
 	 * 
 	 * @param hasFlyoutPalette
-	 *            the has flyout palette
+	 *        the has flyout palette
 	 */
 	// @unused
 	public CachedResourcesDiagramEditor(boolean hasFlyoutPalette) {
@@ -47,8 +47,8 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * @return the cached resources document provider
 	 */
 	protected CachedResourcesDocumentProvider getCachedResourcesDocumentProvider() {
-		if (getDocumentProvider() != null && getDocumentProvider() instanceof CachedResourcesDocumentProvider == true) {
-			return (CachedResourcesDocumentProvider) getDocumentProvider();
+		if(getDocumentProvider() != null && getDocumentProvider() instanceof CachedResourcesDocumentProvider == true) {
+			return (CachedResourcesDocumentProvider)getDocumentProvider();
 		}
 		return null;
 	}
@@ -58,12 +58,12 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * the EditingDomainRegistry as a PartListener.
 	 * 
 	 * @param site
-	 *            the site
+	 *        the site
 	 * @param input
-	 *            the input
+	 *        the input
 	 * 
 	 * @throws PartInitException
-	 *             the part init exception
+	 *         the part init exception
 	 */
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
@@ -81,24 +81,24 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	public void doSetInput(IEditorInput input, boolean releaseEditorContents) throws CoreException {
 		IEditorInput editorInput = getEditorInput();
 
-		if (editorInput == null) {
+		if(editorInput == null) {
 			// check if theres is a previously opened diagram set as a property
 			// and open that diagram instead
 			String filePath = PathsUtil.getRelativeWorkspaceFromEditorInput(input);
 			String diagramFragment = MDTUtil.getLastOpenedDiagramProperty(filePath);
-			if (diagramFragment != null) {
+			if(diagramFragment != null) {
 				URI uri = URI.createURI(filePath).appendFragment(diagramFragment);
 				input = MDTUtil.copyEditorInputButUri(input, uri);
 			}
 		}
 
-		if (checkSameEditorInput(input, editorInput)) {
+		if(checkSameEditorInput(input, editorInput)) {
 			return;
 		}
 		CachedResourcesDocumentProvider documentProvider = getCachedResourcesDocumentProvider();
-		if (documentProvider != null) {
-			if (input instanceof CachedResourcesEditorInput) {
-				if (((CachedResourcesEditorInput) input).isUnload()) {
+		if(documentProvider != null) {
+			if(input instanceof CachedResourcesEditorInput) {
+				if(((CachedResourcesEditorInput)input).isUnload()) {
 					documentProvider.setUnloadOnDispose(true);
 					removeEditingDomainFromRegistry();
 				} else {
@@ -116,27 +116,27 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * Check same editor input.
 	 * 
 	 * @param input1
-	 *            the input1
+	 *        the input1
 	 * @param input2
-	 *            the input2
+	 *        the input2
 	 * 
 	 * @return true, if successful
 	 */
 	protected boolean checkSameEditorInput(IEditorInput input1, IEditorInput input2) {
 		String uri1 = "", uri2 = "";
-		if (input1 instanceof FileEditorInput) {
-			uri1 = ((FileEditorInput) input1).getURI().toString();
+		if(input1 instanceof FileEditorInput) {
+			uri1 = ((FileEditorInput)input1).getURI().toString();
 		}
-		if (input1 instanceof URIEditorInput) {
-			uri1 = ((URIEditorInput) input1).getURI().toString();
+		if(input1 instanceof URIEditorInput) {
+			uri1 = ((URIEditorInput)input1).getURI().toString();
 		}
-		if (input2 instanceof FileEditorInput) {
-			uri2 = ((FileEditorInput) input2).getURI().toString();
+		if(input2 instanceof FileEditorInput) {
+			uri2 = ((FileEditorInput)input2).getURI().toString();
 		}
-		if (input2 instanceof URIEditorInput) {
-			uri2 = ((URIEditorInput) input2).getURI().toString();
+		if(input2 instanceof URIEditorInput) {
+			uri2 = ((URIEditorInput)input2).getURI().toString();
 		}
-		if (uri1.equals(uri2)) {
+		if(uri1.equals(uri2)) {
 			return true;
 		}
 
@@ -148,7 +148,7 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 */
 	protected void removeEditingDomainFromRegistry() {
 		CachedResourcesDocumentProvider documentProvider = getCachedResourcesDocumentProvider();
-		if (documentProvider != null) {
+		if(documentProvider != null) {
 			EditingDomainRegistry.getInstance().remove(documentProvider.getEditingDomainID());
 		}
 	}
@@ -162,7 +162,7 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	@Override
 	public void close(boolean save) {
 		CachedResourcesDocumentProvider documentProvider = getCachedResourcesDocumentProvider();
-		if (documentProvider != null) {
+		if(documentProvider != null) {
 			documentProvider.setUnloadOnDispose(false);
 			// fjcano : the EditingDomainRegistriy takes care of disposing
 			// unused EditingDomains.
@@ -175,12 +175,12 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * Close but unload.
 	 * 
 	 * @param save
-	 *            the save
+	 *        the save
 	 */
 	// @unused
 	public void closeButUnload(boolean save) {
 		CachedResourcesDocumentProvider documentProvider = getCachedResourcesDocumentProvider();
-		if (documentProvider != null) {
+		if(documentProvider != null) {
 			documentProvider.setUnloadOnDispose(false);
 		}
 		super.close(save);
@@ -197,12 +197,12 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	 * Sets the unload on dispose.
 	 * 
 	 * @param unload
-	 *            the new unload on dispose
+	 *        the new unload on dispose
 	 */
 	public void setUnloadOnDispose(boolean unload) {
 		IDocumentProvider documentProvider = getDocumentProvider();
-		if (documentProvider instanceof CachedResourcesDocumentProvider) {
-			((CachedResourcesDocumentProvider) documentProvider).setUnloadOnDispose(unload);
+		if(documentProvider instanceof CachedResourcesDocumentProvider) {
+			((CachedResourcesDocumentProvider)documentProvider).setUnloadOnDispose(unload);
 		}
 	}
 

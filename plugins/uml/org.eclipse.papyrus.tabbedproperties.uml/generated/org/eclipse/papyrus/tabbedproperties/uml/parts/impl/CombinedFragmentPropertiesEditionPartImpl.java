@@ -70,40 +70,68 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class CombinedFragmentPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, CombinedFragmentPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	protected EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<? extends EObject> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil coveredEditUtil;
+
 	protected ReferencesTable<? extends EObject> covered;
+
 	protected List<ViewerFilter> coveredBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> coveredFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil generalOrderingEditUtil;
+
 	protected ReferencesTable<? extends EObject> generalOrdering;
+
 	protected List<ViewerFilter> generalOrderingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> generalOrderingFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFComboViewer interactionOperator;
+
 	protected EMFListEditUtil operandEditUtil;
+
 	protected ReferencesTable<? extends EObject> operand;
+
 	protected List<ViewerFilter> operandBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> operandFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil cfragmentGateEditUtil;
+
 	protected ReferencesTable<? extends EObject> cfragmentGate;
+
 	protected List<ViewerFilter> cfragmentGateBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> cfragmentGateFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public CombinedFragmentPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -111,25 +139,25 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
@@ -157,16 +185,31 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		createOperandAdvancedTableComposition(propertiesGroup);
 		createCfragmentGateAdvancedTableComposition(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.CombinedFragmentPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.CombinedFragmentPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -182,7 +225,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -195,11 +238,11 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -238,10 +281,10 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -253,6 +296,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		// End of user code
 
 	}
+
 	protected void createNameText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.CombinedFragmentPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.CombinedFragment.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
@@ -266,14 +310,15 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.CombinedFragmentPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.CombinedFragment.visibility, UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -283,19 +328,21 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		visibility.getCombo().setLayoutData(visibilityData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyAdvancedReferencesTable(Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.CombinedFragmentPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+						"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						clientDependency.refresh();
 					}
@@ -303,10 +350,21 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.clientDependency, UMLViewsRepository.SWT_KIND));
 		this.clientDependency.createControls(parent);
@@ -352,10 +410,10 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -367,19 +425,21 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		// End of user code
 
 	}
+
 	protected void createCoveredAdvancedReferencesTable(Composite parent) {
 		this.covered = new ReferencesTable<Lifeline>(UMLMessages.CombinedFragmentPropertiesEditionPart_CoveredLabel, new ReferencesTableListener<Lifeline>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Lifeline> dialog = new TabElementTreeSelectionDialog<Lifeline>(resourceSet, coveredFilters, coveredBusinessFilters,
-				"Lifeline", UMLPackage.eINSTANCE.getLifeline(), current.eResource()) {
+						"Lifeline", UMLPackage.eINSTANCE.getLifeline(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!coveredEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!coveredEditUtil.getVirtualList().contains(elem))
 								coveredEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.covered,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						covered.refresh();
 					}
@@ -387,10 +447,21 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 				};
 				dialog.open();
 			}
-			public void handleEdit(Lifeline element) { editCovered(element); }
-			public void handleMove(Lifeline element, int oldIndex, int newIndex) { moveCovered(element, oldIndex, newIndex); }
-			public void handleRemove(Lifeline element) { removeFromCovered(element); }
-			public void navigateTo(Lifeline element) { }
+
+			public void handleEdit(Lifeline element) {
+				editCovered(element);
+			}
+
+			public void handleMove(Lifeline element, int oldIndex, int newIndex) {
+				moveCovered(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Lifeline element) {
+				removeFromCovered(element);
+			}
+
+			public void navigateTo(Lifeline element) {
+			}
 		});
 		this.covered.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.covered, UMLViewsRepository.SWT_KIND));
 		this.covered.createControls(parent);
@@ -436,10 +507,10 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				coveredEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				covered.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -451,16 +522,31 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createGeneralOrderingAdvancedTableComposition(Composite parent) {
-		this.generalOrdering = new ReferencesTable<GeneralOrdering>(UMLMessages.CombinedFragmentPropertiesEditionPart_GeneralOrderingLabel, new ReferencesTableListener<GeneralOrdering>() {			
-			public void handleAdd() { addToGeneralOrdering();}
-			public void handleEdit(GeneralOrdering element) { editGeneralOrdering(element); }
-			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) { moveGeneralOrdering(element, oldIndex, newIndex); }
-			public void handleRemove(GeneralOrdering element) { removeFromGeneralOrdering(element); }
-			public void navigateTo(GeneralOrdering element) { }
+		this.generalOrdering = new ReferencesTable<GeneralOrdering>(UMLMessages.CombinedFragmentPropertiesEditionPart_GeneralOrderingLabel, new ReferencesTableListener<GeneralOrdering>() {
+
+			public void handleAdd() {
+				addToGeneralOrdering();
+			}
+
+			public void handleEdit(GeneralOrdering element) {
+				editGeneralOrdering(element);
+			}
+
+			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) {
+				moveGeneralOrdering(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(GeneralOrdering element) {
+				removeFromGeneralOrdering(element);
+			}
+
+			public void navigateTo(GeneralOrdering element) {
+			}
 		});
 		this.generalOrdering.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.generalOrdering, UMLViewsRepository.SWT_KIND));
 		this.generalOrdering.createControls(parent);
@@ -476,7 +562,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		EObject editedElement = generalOrderingEditUtil.foundCorrespondingEObject(element);
 		generalOrderingEditUtil.moveElement(element, oldIndex, newIndex);
 		generalOrdering.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.generalOrdering, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.generalOrdering, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -489,11 +575,11 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				generalOrderingEditUtil.addElement(propertiesEditionObject);
 				generalOrdering.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -532,10 +618,10 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				generalOrderingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				generalOrdering.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -547,6 +633,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		// End of user code
 
 	}
+
 	protected void createInteractionOperatorEMFComboViewer(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.CombinedFragmentPropertiesEditionPart_InteractionOperatorLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.CombinedFragment.interactionOperator, UMLViewsRepository.SWT_KIND));
 		interactionOperator = new EMFComboViewer(parent);
@@ -556,16 +643,31 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		interactionOperator.getCombo().setLayoutData(interactionOperatorData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.interactionOperator, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOperandAdvancedTableComposition(Composite parent) {
-		this.operand = new ReferencesTable<InteractionOperand>(UMLMessages.CombinedFragmentPropertiesEditionPart_OperandLabel, new ReferencesTableListener<InteractionOperand>() {			
-			public void handleAdd() { addToOperand();}
-			public void handleEdit(InteractionOperand element) { editOperand(element); }
-			public void handleMove(InteractionOperand element, int oldIndex, int newIndex) { moveOperand(element, oldIndex, newIndex); }
-			public void handleRemove(InteractionOperand element) { removeFromOperand(element); }
-			public void navigateTo(InteractionOperand element) { }
+		this.operand = new ReferencesTable<InteractionOperand>(UMLMessages.CombinedFragmentPropertiesEditionPart_OperandLabel, new ReferencesTableListener<InteractionOperand>() {
+
+			public void handleAdd() {
+				addToOperand();
+			}
+
+			public void handleEdit(InteractionOperand element) {
+				editOperand(element);
+			}
+
+			public void handleMove(InteractionOperand element, int oldIndex, int newIndex) {
+				moveOperand(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(InteractionOperand element) {
+				removeFromOperand(element);
+			}
+
+			public void navigateTo(InteractionOperand element) {
+			}
 		});
 		this.operand.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.operand, UMLViewsRepository.SWT_KIND));
 		this.operand.createControls(parent);
@@ -581,7 +683,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		EObject editedElement = operandEditUtil.foundCorrespondingEObject(element);
 		operandEditUtil.moveElement(element, oldIndex, newIndex);
 		operand.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.operand, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.operand, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -594,11 +696,11 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				operandEditUtil.addElement(propertiesEditionObject);
 				operand.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -636,10 +738,10 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				operandEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				operand.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -651,16 +753,31 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createCfragmentGateAdvancedTableComposition(Composite parent) {
-		this.cfragmentGate = new ReferencesTable<Gate>(UMLMessages.CombinedFragmentPropertiesEditionPart_CfragmentGateLabel, new ReferencesTableListener<Gate>() {			
-			public void handleAdd() { addToCfragmentGate();}
-			public void handleEdit(Gate element) { editCfragmentGate(element); }
-			public void handleMove(Gate element, int oldIndex, int newIndex) { moveCfragmentGate(element, oldIndex, newIndex); }
-			public void handleRemove(Gate element) { removeFromCfragmentGate(element); }
-			public void navigateTo(Gate element) { }
+		this.cfragmentGate = new ReferencesTable<Gate>(UMLMessages.CombinedFragmentPropertiesEditionPart_CfragmentGateLabel, new ReferencesTableListener<Gate>() {
+
+			public void handleAdd() {
+				addToCfragmentGate();
+			}
+
+			public void handleEdit(Gate element) {
+				editCfragmentGate(element);
+			}
+
+			public void handleMove(Gate element, int oldIndex, int newIndex) {
+				moveCfragmentGate(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Gate element) {
+				removeFromCfragmentGate(element);
+			}
+
+			public void navigateTo(Gate element) {
+			}
 		});
 		this.cfragmentGate.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.CombinedFragment.cfragmentGate, UMLViewsRepository.SWT_KIND));
 		this.cfragmentGate.createControls(parent);
@@ -676,7 +793,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		EObject editedElement = cfragmentGateEditUtil.foundCorrespondingEObject(element);
 		cfragmentGateEditUtil.moveElement(element, oldIndex, newIndex);
 		cfragmentGate.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.cfragmentGate, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(CombinedFragmentPropertiesEditionPartImpl.this, UMLViewsRepository.CombinedFragment.cfragmentGate, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -689,11 +806,11 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				cfragmentGateEditUtil.addElement(propertiesEditionObject);
 				cfragmentGate.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -732,10 +849,10 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				cfragmentGateEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				cfragmentGate.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -804,12 +921,13 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -822,7 +940,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -878,10 +996,10 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -899,7 +1017,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
@@ -961,12 +1079,13 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initClientDependency(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
@@ -979,7 +1098,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil != null){
+		if(clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -997,7 +1116,8 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
@@ -1051,12 +1171,13 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initCovered(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initCovered(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			coveredEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			coveredEditUtil = new EMFListEditUtil(current, feature);
@@ -1069,7 +1190,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#updateCovered(EObject newValue)
 	 */
 	public void updateCovered(EObject newValue) {
-		if(coveredEditUtil != null){
+		if(coveredEditUtil != null) {
 			coveredEditUtil.reinit(newValue);
 			covered.refresh();
 		}
@@ -1158,12 +1279,13 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initGeneralOrdering(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initGeneralOrdering(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			generalOrderingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			generalOrderingEditUtil = new EMFListEditUtil(current, feature);
@@ -1176,7 +1298,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#updateGeneralOrdering(EObject newValue)
 	 */
 	public void updateGeneralOrdering(EObject newValue) {
-		if(generalOrderingEditUtil != null){
+		if(generalOrderingEditUtil != null) {
 			generalOrderingEditUtil.reinit(newValue);
 			generalOrdering.refresh();
 		}
@@ -1223,14 +1345,15 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#getInteractionOperator()
 	 */
 	public Enumerator getInteractionOperator() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) interactionOperator.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)interactionOperator.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initInteractionOperator(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initInteractionOperator(EEnum eenum, Enumerator
+	 *      current)
 	 */
 	public void initInteractionOperator(EEnum eenum, Enumerator current) {
 		interactionOperator.setInput(eenum.getELiterals());
@@ -1302,12 +1425,13 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initOperand(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initOperand(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOperand(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			operandEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			operandEditUtil = new EMFListEditUtil(current, feature);
@@ -1320,7 +1444,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#updateOperand(EObject newValue)
 	 */
 	public void updateOperand(EObject newValue) {
-		if(operandEditUtil != null){
+		if(operandEditUtil != null) {
 			operandEditUtil.reinit(newValue);
 			operand.refresh();
 		}
@@ -1409,12 +1533,13 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initCfragmentGate(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#initCfragmentGate(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initCfragmentGate(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			cfragmentGateEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			cfragmentGateEditUtil = new EMFListEditUtil(current, feature);
@@ -1427,7 +1552,7 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.CombinedFragmentPropertiesEditionPart#updateCfragmentGate(EObject newValue)
 	 */
 	public void updateCfragmentGate(EObject newValue) {
-		if(cfragmentGateEditUtil != null){
+		if(cfragmentGateEditUtil != null) {
 			cfragmentGateEditUtil.reinit(newValue);
 			cfragmentGate.refresh();
 		}
@@ -1467,9 +1592,6 @@ public class CombinedFragmentPropertiesEditionPartImpl extends CompositeProperti
 	public void unsetMessageForCfragmentGate() {
 
 	}
-
-
-
 
 
 

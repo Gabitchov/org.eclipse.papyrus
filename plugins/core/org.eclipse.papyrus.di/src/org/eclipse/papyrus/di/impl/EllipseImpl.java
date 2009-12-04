@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -31,22 +31,24 @@ import org.eclipse.papyrus.di.Ellipse;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getCenter <em>Center</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getRadiusX <em>Radius X</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getRadiusY <em>Radius Y</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getRotation <em>Rotation</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getStartAngle <em>Start Angle</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getEndAngle <em>End Angle</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getCenter <em>Center</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getRadiusX <em>Radius X</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getRadiusY <em>Radius Y</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getRotation <em>Rotation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getStartAngle <em>Start Angle</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.EllipseImpl#getEndAngle <em>End Angle</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
+
 	/**
 	 * The default value of the '{@link #getCenter() <em>Center</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCenter()
 	 * @generated
 	 * @ordered
@@ -57,6 +59,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The cached value of the '{@link #getCenter() <em>Center</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCenter()
 	 * @generated
 	 * @ordered
@@ -67,6 +70,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The default value of the '{@link #getRadiusX() <em>Radius X</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRadiusX()
 	 * @generated
 	 * @ordered
@@ -77,6 +81,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The cached value of the '{@link #getRadiusX() <em>Radius X</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRadiusX()
 	 * @generated
 	 * @ordered
@@ -87,6 +92,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The default value of the '{@link #getRadiusY() <em>Radius Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRadiusY()
 	 * @generated
 	 * @ordered
@@ -97,6 +103,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The cached value of the '{@link #getRadiusY() <em>Radius Y</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRadiusY()
 	 * @generated
 	 * @ordered
@@ -107,6 +114,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The default value of the '{@link #getRotation() <em>Rotation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRotation()
 	 * @generated
 	 * @ordered
@@ -117,6 +125,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The cached value of the '{@link #getRotation() <em>Rotation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRotation()
 	 * @generated
 	 * @ordered
@@ -127,6 +136,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The default value of the '{@link #getStartAngle() <em>Start Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getStartAngle()
 	 * @generated
 	 * @ordered
@@ -137,6 +147,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The cached value of the '{@link #getStartAngle() <em>Start Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getStartAngle()
 	 * @generated
 	 * @ordered
@@ -147,6 +158,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The default value of the '{@link #getEndAngle() <em>End Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getEndAngle()
 	 * @generated
 	 * @ordered
@@ -157,6 +169,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	 * The cached value of the '{@link #getEndAngle() <em>End Angle</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getEndAngle()
 	 * @generated
 	 * @ordered
@@ -166,6 +179,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EllipseImpl() {
@@ -175,6 +189,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,6 +200,7 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Point getCenter() {
@@ -194,18 +210,20 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCenter(Point newCenter) {
 		Point oldCenter = center;
 		center = newCenter;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ELLIPSE__CENTER, oldCenter, center));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getRadiusX() {
@@ -215,18 +233,20 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRadiusX(double newRadiusX) {
 		double oldRadiusX = radiusX;
 		radiusX = newRadiusX;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ELLIPSE__RADIUS_X, oldRadiusX, radiusX));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getRadiusY() {
@@ -236,18 +256,20 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRadiusY(double newRadiusY) {
 		double oldRadiusY = radiusY;
 		radiusY = newRadiusY;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ELLIPSE__RADIUS_Y, oldRadiusY, radiusY));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getRotation() {
@@ -257,18 +279,20 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRotation(double newRotation) {
 		double oldRotation = rotation;
 		rotation = newRotation;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ELLIPSE__ROTATION, oldRotation, rotation));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getStartAngle() {
@@ -278,18 +302,20 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStartAngle(double newStartAngle) {
 		double oldStartAngle = startAngle;
 		startAngle = newStartAngle;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ELLIPSE__START_ANGLE, oldStartAngle, startAngle));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getEndAngle() {
@@ -299,35 +325,37 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEndAngle(double newEndAngle) {
 		double oldEndAngle = endAngle;
 		endAngle = newEndAngle;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ELLIPSE__END_ANGLE, oldEndAngle, endAngle));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.ELLIPSE__CENTER:
-				return getCenter();
-			case DiPackage.ELLIPSE__RADIUS_X:
-				return new Double(getRadiusX());
-			case DiPackage.ELLIPSE__RADIUS_Y:
-				return new Double(getRadiusY());
-			case DiPackage.ELLIPSE__ROTATION:
-				return new Double(getRotation());
-			case DiPackage.ELLIPSE__START_ANGLE:
-				return new Double(getStartAngle());
-			case DiPackage.ELLIPSE__END_ANGLE:
-				return new Double(getEndAngle());
+		switch(featureID) {
+		case DiPackage.ELLIPSE__CENTER:
+			return getCenter();
+		case DiPackage.ELLIPSE__RADIUS_X:
+			return new Double(getRadiusX());
+		case DiPackage.ELLIPSE__RADIUS_Y:
+			return new Double(getRadiusY());
+		case DiPackage.ELLIPSE__ROTATION:
+			return new Double(getRotation());
+		case DiPackage.ELLIPSE__START_ANGLE:
+			return new Double(getStartAngle());
+		case DiPackage.ELLIPSE__END_ANGLE:
+			return new Double(getEndAngle());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -335,29 +363,30 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.ELLIPSE__CENTER:
-				setCenter((Point)newValue);
-				return;
-			case DiPackage.ELLIPSE__RADIUS_X:
-				setRadiusX(((Double)newValue).doubleValue());
-				return;
-			case DiPackage.ELLIPSE__RADIUS_Y:
-				setRadiusY(((Double)newValue).doubleValue());
-				return;
-			case DiPackage.ELLIPSE__ROTATION:
-				setRotation(((Double)newValue).doubleValue());
-				return;
-			case DiPackage.ELLIPSE__START_ANGLE:
-				setStartAngle(((Double)newValue).doubleValue());
-				return;
-			case DiPackage.ELLIPSE__END_ANGLE:
-				setEndAngle(((Double)newValue).doubleValue());
-				return;
+		switch(featureID) {
+		case DiPackage.ELLIPSE__CENTER:
+			setCenter((Point)newValue);
+			return;
+		case DiPackage.ELLIPSE__RADIUS_X:
+			setRadiusX(((Double)newValue).doubleValue());
+			return;
+		case DiPackage.ELLIPSE__RADIUS_Y:
+			setRadiusY(((Double)newValue).doubleValue());
+			return;
+		case DiPackage.ELLIPSE__ROTATION:
+			setRotation(((Double)newValue).doubleValue());
+			return;
+		case DiPackage.ELLIPSE__START_ANGLE:
+			setStartAngle(((Double)newValue).doubleValue());
+			return;
+		case DiPackage.ELLIPSE__END_ANGLE:
+			setEndAngle(((Double)newValue).doubleValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -365,29 +394,30 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.ELLIPSE__CENTER:
-				setCenter(CENTER_EDEFAULT);
-				return;
-			case DiPackage.ELLIPSE__RADIUS_X:
-				setRadiusX(RADIUS_X_EDEFAULT);
-				return;
-			case DiPackage.ELLIPSE__RADIUS_Y:
-				setRadiusY(RADIUS_Y_EDEFAULT);
-				return;
-			case DiPackage.ELLIPSE__ROTATION:
-				setRotation(ROTATION_EDEFAULT);
-				return;
-			case DiPackage.ELLIPSE__START_ANGLE:
-				setStartAngle(START_ANGLE_EDEFAULT);
-				return;
-			case DiPackage.ELLIPSE__END_ANGLE:
-				setEndAngle(END_ANGLE_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DiPackage.ELLIPSE__CENTER:
+			setCenter(CENTER_EDEFAULT);
+			return;
+		case DiPackage.ELLIPSE__RADIUS_X:
+			setRadiusX(RADIUS_X_EDEFAULT);
+			return;
+		case DiPackage.ELLIPSE__RADIUS_Y:
+			setRadiusY(RADIUS_Y_EDEFAULT);
+			return;
+		case DiPackage.ELLIPSE__ROTATION:
+			setRotation(ROTATION_EDEFAULT);
+			return;
+		case DiPackage.ELLIPSE__START_ANGLE:
+			setStartAngle(START_ANGLE_EDEFAULT);
+			return;
+		case DiPackage.ELLIPSE__END_ANGLE:
+			setEndAngle(END_ANGLE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -395,23 +425,24 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.ELLIPSE__CENTER:
-				return CENTER_EDEFAULT == null ? center != null : !CENTER_EDEFAULT.equals(center);
-			case DiPackage.ELLIPSE__RADIUS_X:
-				return radiusX != RADIUS_X_EDEFAULT;
-			case DiPackage.ELLIPSE__RADIUS_Y:
-				return radiusY != RADIUS_Y_EDEFAULT;
-			case DiPackage.ELLIPSE__ROTATION:
-				return rotation != ROTATION_EDEFAULT;
-			case DiPackage.ELLIPSE__START_ANGLE:
-				return startAngle != START_ANGLE_EDEFAULT;
-			case DiPackage.ELLIPSE__END_ANGLE:
-				return endAngle != END_ANGLE_EDEFAULT;
+		switch(featureID) {
+		case DiPackage.ELLIPSE__CENTER:
+			return CENTER_EDEFAULT == null ? center != null : !CENTER_EDEFAULT.equals(center);
+		case DiPackage.ELLIPSE__RADIUS_X:
+			return radiusX != RADIUS_X_EDEFAULT;
+		case DiPackage.ELLIPSE__RADIUS_Y:
+			return radiusY != RADIUS_Y_EDEFAULT;
+		case DiPackage.ELLIPSE__ROTATION:
+			return rotation != ROTATION_EDEFAULT;
+		case DiPackage.ELLIPSE__START_ANGLE:
+			return startAngle != START_ANGLE_EDEFAULT;
+		case DiPackage.ELLIPSE__END_ANGLE:
+			return endAngle != END_ANGLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -419,11 +450,13 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (center: ");

@@ -42,11 +42,11 @@ public class InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN extends C
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getInstanceSpecificationSlotCompartment_7035SemanticChildren(viewObject)
+		for(Iterator it = UMLDiagramUpdater.getInstanceSpecificationSlotCompartment_7035SemanticChildren(viewObject)
 				.iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -56,9 +56,9 @@ public class InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN extends C
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case SlotEditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -76,7 +76,7 @@ public class InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN extends C
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInstanceSpecification_Slot());
 		}

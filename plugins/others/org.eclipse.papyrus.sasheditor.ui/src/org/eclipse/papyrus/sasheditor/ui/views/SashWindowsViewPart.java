@@ -11,7 +11,7 @@ import org.eclipse.ui.part.ViewPart;
 
 /**
  * An Eclipse View showing data from the SashWindows.
- * This class is an example showing how to have a UI following changes from editors 
+ * This class is an example showing how to have a UI following changes from editors
  * and sash windows.
  */
 
@@ -24,7 +24,7 @@ public class SashWindowsViewPart extends ViewPart {
 
 	/** Class managing selected element rendering */
 	private SashWindowsView figure;
-	
+
 	/** The model to be rendered */
 	private SashWindowsViewModel model;
 
@@ -32,13 +32,13 @@ public class SashWindowsViewPart extends ViewPart {
 	 * Listener on model changed events.
 	 */
 	private IModelChangedListener modelChangedListener = new IModelChangedListener() {
-		
+
 		public void modelChanged(SashWindowsViewModel changedModel) {
 			refreshView();
 		}
 	};
 
-	
+
 
 	/**
 	 * The constructor.
@@ -51,49 +51,40 @@ public class SashWindowsViewPart extends ViewPart {
 	 * Refresh the SWT view with values from the specified element
 	 */
 	private void refreshView() {
-		
+
 		// selected element
 		Object selectedElement = getModel().getSelectedElement();
-		if( selectedElement != null)
-		{
-		    figure.setselectedElement(selectedElement.toString());
+		if(selectedElement != null) {
+			figure.setselectedElement(selectedElement.toString());
+		} else {
+			figure.setselectedElement("");
 		}
-		else
-		{
-		    figure.setselectedElement("");			
-		}
-		
+
 		// selected page
 		IPage page = getModel().getSelectedSashWindowsPage();
-		if( page != null)
-		{
+		if(page != null) {
 			figure.setSelectedPage(page.toString());
 			figure.setSelectedPageName(page.getPageTitle());
-//			figure.setSelectedPageIcon(page.getPageIcon());			
-		}
-		else
-		{
+			//			figure.setSelectedPageIcon(page.getPageIcon());			
+		} else {
 			figure.setSelectedPage("");
 			figure.setSelectedPageName("");
-//			figure.setSelectedPageIcon(null);			
+			//			figure.setSelectedPageIcon(null);			
 		}
-			
+
 		// selected folder
-//		selectedElementViewer.setSelectedFolder(getModel().getSelectedFolder().toString());
+		//		selectedElementViewer.setSelectedFolder(getModel().getSelectedFolder().toString());
 		// selected Editor
 		IEditorPart editor = getModel().getSelectedIEditorPart();
-		if( editor != null)
-		{
+		if(editor != null) {
 			figure.setSelectedIEditor(editor.toString());
-		    figure.setSelectedIEditorName(editor.getTitle());
-		}
-		else
-		{
+			figure.setSelectedIEditorName(editor.getTitle());
+		} else {
 			figure.setSelectedIEditor("");
-		    figure.setSelectedIEditorName("");
+			figure.setSelectedIEditorName("");
 		}
-			
-		
+
+
 	}
 
 	/**
@@ -109,17 +100,18 @@ public class SashWindowsViewPart extends ViewPart {
 	 * to create the viewer and initialize it.
 	 */
 	public void createPartControl(Composite parent) {
-		
+
 		Composite container = parent;
-			
+
 		figure = new SashWindowsView();
 		figure.createPartControl(container);
 	}
 
 	/**
 	 * Initialize the view
+	 * 
 	 * @see org.eclipse.ui.part.ViewPart#init(org.eclipse.ui.IViewSite)
-	 *
+	 * 
 	 * @param site
 	 * @throws PartInitException
 	 */
@@ -127,9 +119,9 @@ public class SashWindowsViewPart extends ViewPart {
 	public void init(IViewSite site) throws PartInitException {
 		super.init(site);
 		model = new SashWindowsViewModel(site.getPage());
-		model.getListenersManager().addModelChangedListener(modelChangedListener );
+		model.getListenersManager().addModelChangedListener(modelChangedListener);
 	}
-	
+
 	@Override
 	public void dispose() {
 		model.getListenersManager().removeModelChangedListener(modelChangedListener);
@@ -137,13 +129,13 @@ public class SashWindowsViewPart extends ViewPart {
 		figure.dispose();
 		super.dispose();
 	}
-	
+
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
 	public void setFocus() {
-//		viewer.getControl().setFocus();
+		//		viewer.getControl().setFocus();
 		figure.setFocus();
 	}
-	
+
 }

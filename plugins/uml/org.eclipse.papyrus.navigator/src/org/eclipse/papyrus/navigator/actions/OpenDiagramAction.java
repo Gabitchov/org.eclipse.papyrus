@@ -27,7 +27,7 @@ public class OpenDiagramAction extends Action {
 		this.pageMngr = pageMngr;
 
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		if (pageMngr.isOpen(diagram)) {
+		if(pageMngr.isOpen(diagram)) {
 			setText("Open in New Tab");
 			setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
 		} else {

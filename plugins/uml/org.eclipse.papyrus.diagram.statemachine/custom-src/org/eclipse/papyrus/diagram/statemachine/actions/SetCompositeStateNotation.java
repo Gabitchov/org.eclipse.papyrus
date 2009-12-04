@@ -39,29 +39,33 @@ import org.eclipse.uml2.uml.State;
  * The Class SetCompositeStateNotation.
  */
 public class SetCompositeStateNotation extends DiagramAction {
-	
+
 	/** The Constant DISABLED_TEXT. */
 	private static final String DISABLED_TEXT = "Switch composite State notation";
-	
+
 	/** The Constant DISABLED_TOOLTIP. */
 	private static final String DISABLED_TOOLTIP = "Compose or decompose composite state";
-	
+
 	/** The new view descriptor. */
 	private ViewDescriptor newViewDescriptor = null;
 
 	/**
 	 * Instantiates a new sets the composite state notation.
 	 * 
-	 * @param workbenchPage the workbench page
-	 * @param actionId the action id
+	 * @param workbenchPage
+	 *        the workbench page
+	 * @param actionId
+	 *        the action id
 	 */
 	public SetCompositeStateNotation(IWorkbenchPage workbenchPage,
 			String actionId) {
 		super(workbenchPage);
 		setId(actionId);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#createTargetRequest()
 	 */
 	@Override
@@ -69,7 +73,9 @@ public class SetCompositeStateNotation extends DiagramAction {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#isSelectionListener()
 	 */
 	@Override
@@ -77,7 +83,9 @@ public class SetCompositeStateNotation extends DiagramAction {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.gmf.runtime.common.ui.action.AbstractActionHandler#init()
 	 */
 	@Override
@@ -87,8 +95,10 @@ public class SetCompositeStateNotation extends DiagramAction {
 		setImageDescriptor(UMLElementTypes.getImageDescriptor(UMLElementTypes
 				.getElement(UMLElementTypes.State_2003)));
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#refresh()
 	 */
 	@Override
@@ -102,12 +112,12 @@ public class SetCompositeStateNotation extends DiagramAction {
 	 */
 	private void updateText() {
 		GraphicalEditPart editPart = getSelectedEditPart();
-		if (editPart instanceof State2EditPart) {
+		if(editPart instanceof State2EditPart) {
 			setText("Compose");
 			setToolTipText("Change Composite State Notation");
 			return;
 		}
-		if (editPart instanceof State4EditPart) {
+		if(editPart instanceof State4EditPart) {
 			setText("Decompose");
 			setToolTipText("Change Composite State Notation");
 			return;
@@ -115,39 +125,41 @@ public class SetCompositeStateNotation extends DiagramAction {
 		setText(DISABLED_TEXT);
 		setToolTipText(DISABLED_TOOLTIP);
 	}
-	
+
 	/**
 	 * Gets the selected edit part.
 	 * 
 	 * @return the selected edit part
 	 */
 	private GraphicalEditPart getSelectedEditPart() {
-		for (Object ob : getSelectedObjects()) {
-			if (ob instanceof GraphicalEditPart) {
-				return (GraphicalEditPart) ob;
+		for(Object ob : getSelectedObjects()) {
+			if(ob instanceof GraphicalEditPart) {
+				return (GraphicalEditPart)ob;
 			}
 		}
 		return null;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#getCommand()
 	 */
 	@Override
 	protected Command getCommand() {
 		final GraphicalEditPart editPart = getSelectedEditPart();
-		if (editPart == null) {
+		if(editPart == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Command deleteCommand = getDeleteViewCommand(editPart);
-		if (deleteCommand == null) {
+		if(deleteCommand == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Command createViewCommand = getCreateViewCommand(editPart);
-		if (createViewCommand == null) {
+		if(createViewCommand == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		ChangeCompositeStateFigureCommand command = new ChangeCompositeStateFigureCommand();
 		command.setCreateCommand(createViewCommand);
 		command.setDeleteCommand(deleteCommand);
@@ -155,68 +167,72 @@ public class SetCompositeStateNotation extends DiagramAction {
 		command.setRootEditPart(editPart.getParent());
 		command.setViewDescriptor(newViewDescriptor);
 		command.setLabel("Change Composite State Notation");
-		
+
 		return command;
 	}
-	
+
 	/**
 	 * Gets the delete view command.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the delete view command
 	 */
 	private Command getDeleteViewCommand(GraphicalEditPart editPart) {
-		View view = (View) editPart.getModel();
+		View view = (View)editPart.getModel();
 		return new ICommandProxy(new DeleteCommand(view));
 	}
 
 	/**
 	 * Gets the creates the view command.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the creates the view command
 	 */
 	private Command getCreateViewCommand(GraphicalEditPart editPart) {
 		CreateViewRequest createViewRequest = getCreateViewRequest(editPart);
-		if (createViewRequest == null) {
+		if(createViewRequest == null) {
 			return null;
 		}
 		return editPart.getParent().getCommand(createViewRequest);
 	}
-	
+
 	/**
 	 * Gets the creates the view request.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the creates the view request
 	 */
 	private CreateViewRequest getCreateViewRequest(GraphicalEditPart editPart) {
-		
-		View view = (View) editPart.getModel();
-		if (view == null || false == view.getElement() instanceof State) {
+
+		View view = (View)editPart.getModel();
+		if(view == null || false == view.getElement() instanceof State) {
 			return null;
 		}
-		
-		State state1 = (State) view.getElement();
+
+		State state1 = (State)view.getElement();
 		String semanticHint = getSemanticHint(editPart);
 		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(
 				state1), Node.class, semanticHint, getPreferencesHint());
-		
+
 		newViewDescriptor = viewDescriptor;
-		
+
 		CreateViewRequest createViewRequest = new CreateViewRequest(
 				viewDescriptor);
 		createViewRequest.setLocation(getLocation(editPart));
 		return createViewRequest;
 	}
-	
+
 	/**
 	 * Gets the semantic hint.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the semantic hint
 	 */
@@ -228,11 +244,12 @@ public class SetCompositeStateNotation extends DiagramAction {
 			semanticHint = String.valueOf(State2EditPart.VISUAL_ID);
 		return semanticHint;
 	}
-	
+
 	/**
 	 * Gets the location.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the location
 	 */

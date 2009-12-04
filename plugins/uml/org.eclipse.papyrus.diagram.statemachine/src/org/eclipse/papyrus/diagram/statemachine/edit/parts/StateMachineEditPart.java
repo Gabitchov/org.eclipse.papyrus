@@ -39,21 +39,21 @@ public class StateMachineEditPart extends DiagramEditPart {
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
 
 		public boolean isEObjectNode(EObject element) {
-			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
+			if(UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
 				return true;
 			}
 			return false;
 		}
 
 		public boolean isEObjectLink(EObject element) {
-			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
+			if(UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
 				return true;
 			}
 			return false;
 		}
 
 		public int getEObjectSemanticHint(EObject element) {
-			if (element != null) {
+			if(element != null) {
 				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(),
 						element);
 			}
@@ -61,10 +61,10 @@ public class StateMachineEditPart extends DiagramEditPart {
 		}
 
 		public EStructuralFeature getEStructuralFeatureForEClass(EClass class1) {
-			if (UMLPackage.eINSTANCE.getStateMachine().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getStateMachine().equals(class1)) {
 				return UMLPackage.eINSTANCE.getPackage_PackagedElement();
 			}
-			if (UMLPackage.eINSTANCE.getComment().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getComment().equals(class1)) {
 				return UMLPackage.eINSTANCE.getElement_OwnedComment();
 			}
 			return null;
@@ -102,11 +102,11 @@ public class StateMachineEditPart extends DiagramEditPart {
 	protected void handleNotificationEvent(Notification event) {
 
 		super.handleNotificationEvent(event);
-		if (event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null
+		if(event.getNotifier() instanceof EAnnotation) {
+			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
+			if(eAnnotation.getSource() != null
 					&& eAnnotation.getSource().equals(
-							MDTUtil.FilterViewAndLabelsSource)) {
+					MDTUtil.FilterViewAndLabelsSource)) {
 				DiagramEditPartsUtil.updateDiagram(this);
 			}
 		}
@@ -117,11 +117,11 @@ public class StateMachineEditPart extends DiagramEditPart {
 	 */
 	@Override
 	public Object getAdapter(Class adapter) {
-		if (adapter != null && adapter.equals(ViewAndFeatureResolver.class)) {
+		if(adapter != null && adapter.equals(ViewAndFeatureResolver.class)) {
 			return this.resolver;
 		}
 
-		if (adapter != null && adapter.equals(ViewInfo.class)) {
+		if(adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);

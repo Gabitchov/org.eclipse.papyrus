@@ -23,13 +23,11 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.uml2.uml.Connector;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding Connector</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding Connector</b></em> '. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl#getBase_Connector <em>Base
- * Connector</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl#getBase_Connector <em>Base Connector</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,9 +70,9 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR:
-			if (resolve)
+			if(resolve)
 				return getBase_Connector();
 			return basicGetBase_Connector();
 		}
@@ -88,7 +86,7 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR:
 			return base_Connector != null;
 		}
@@ -102,9 +100,9 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR:
-			setBase_Connector((Connector) newValue);
+			setBase_Connector((Connector)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +125,9 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR:
-			setBase_Connector((Connector) null);
+			setBase_Connector((Connector)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +139,11 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 	 * @generated
 	 */
 	public Connector getBase_Connector() {
-		if (base_Connector != null && base_Connector.eIsProxy()) {
-			InternalEObject oldBase_Connector = (InternalEObject) base_Connector;
-			base_Connector = (Connector) eResolveProxy(oldBase_Connector);
-			if (base_Connector != oldBase_Connector) {
-				if (eNotificationRequired())
+		if(base_Connector != null && base_Connector.eIsProxy()) {
+			InternalEObject oldBase_Connector = (InternalEObject)base_Connector;
+			base_Connector = (Connector)eResolveProxy(oldBase_Connector);
+			if(base_Connector != oldBase_Connector) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
 			}
@@ -161,7 +159,7 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 	public void setBase_Connector(Connector newBase_Connector) {
 		Connector oldBase_Connector = base_Connector;
 		base_Connector = newBase_Connector;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR,
 					oldBase_Connector, base_Connector));
 	}

@@ -36,7 +36,7 @@ public class GMFToEMFCommand implements Command {
 	 * Instantiates a new gMF to emf command.
 	 * 
 	 * @param gmfCommand
-	 *            the gmf command
+	 *        the gmf command
 	 */
 	public GMFToEMFCommand(ICommand gmfCommand) {
 		GMFCommand = gmfCommand;
@@ -75,7 +75,7 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#dispose()
 	 */
 	public void dispose() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			GMFCommand.dispose();
 		}
 		GMFCommand = null;
@@ -87,7 +87,7 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#execute()
 	 */
 	public void execute() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			try {
 				GMFCommand.execute(new NullProgressMonitor(), null);
 			} catch (ExecutionException ex) {
@@ -102,7 +102,7 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#getAffectedObjects()
 	 */
 	public Collection<?> getAffectedObjects() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			return GMFCommand.getAffectedFiles();
 		}
 		return null;
@@ -114,7 +114,7 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#getDescription()
 	 */
 	public String getDescription() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			return GMFCommand.getLabel();
 		}
 		return null;
@@ -126,7 +126,7 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#getLabel()
 	 */
 	public String getLabel() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			return GMFCommand.getLabel();
 		}
 		return null;
@@ -138,10 +138,10 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#getResult()
 	 */
 	public Collection<?> getResult() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			CommandResult result = GMFCommand.getCommandResult();
 			Object returnValue = result.getReturnValue();
-			if (result.getStatus().equals(IStatus.OK) && returnValue != null) {
+			if(result.getStatus().equals(IStatus.OK) && returnValue != null) {
 				java.util.List results = new ArrayList();
 				results.add(returnValue);
 				return results;
@@ -156,7 +156,7 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#redo()
 	 */
 	public void redo() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			try {
 				GMFCommand.redo(new NullProgressMonitor(), null);
 			} catch (ExecutionException ex) {
@@ -171,7 +171,7 @@ public class GMFToEMFCommand implements Command {
 	 * @see org.eclipse.emf.common.command.Command#undo()
 	 */
 	public void undo() {
-		if (GMFCommand != null) {
+		if(GMFCommand != null) {
 			try {
 				GMFCommand.undo(new NullProgressMonitor(), null);
 			} catch (ExecutionException ex) {

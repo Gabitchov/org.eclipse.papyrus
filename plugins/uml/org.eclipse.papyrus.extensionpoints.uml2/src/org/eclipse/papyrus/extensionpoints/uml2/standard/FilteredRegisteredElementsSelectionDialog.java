@@ -66,11 +66,11 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 * Creates a new instance of the class
 	 * 
 	 * @param shell
-	 *            the parent shell
+	 *        the parent shell
 	 * @param multi
-	 *            the multiple selection flag
+	 *        the multiple selection flag
 	 * @param input
-	 *            the input in which selection is done
+	 *        the input in which selection is done
 	 */
 	public FilteredRegisteredElementsSelectionDialog(Shell shell, boolean multi, Object[] input,
 			Collection<Object> alreadySelected, String title, String extendedAreaTitle) {
@@ -93,7 +93,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 */
 	protected IDialogSettings getDialogSettings() {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
-		if (settings == null) {
+		if(settings == null) {
 			settings = Activator.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
 		}
 		return settings;
@@ -178,8 +178,8 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		Comparator<RegisteredElementExtensionPoint> comp = new Comparator<RegisteredElementExtensionPoint>() {
 
 			public int compare(RegisteredElementExtensionPoint o1, RegisteredElementExtensionPoint o2) {
-				return ((RegisteredElementExtensionPoint) o1).getName().compareTo(
-						((RegisteredElementExtensionPoint) o2).getName());
+				return ((RegisteredElementExtensionPoint)o1).getName().compareTo(
+						((RegisteredElementExtensionPoint)o2).getName());
 			}
 		};
 		return comp;
@@ -190,17 +190,17 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 */
 	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter,
 			IProgressMonitor progressMonitor) throws CoreException {
-		if (progressMonitor != null) {
+		if(progressMonitor != null) {
 			progressMonitor.beginTask("Displaying registered elements", totalInput.length);
 		}
-		for (int i = 0; i < totalInput.length; i++) {
+		for(int i = 0; i < totalInput.length; i++) {
 			Object o = totalInput[i];
-			if (!alreadySelected.contains(o)) {
+			if(!alreadySelected.contains(o)) {
 				contentProvider.add(o, itemsFilter);
 			}
 			progressMonitor.worked(1);
 		}
-		if (progressMonitor != null)
+		if(progressMonitor != null)
 			progressMonitor.done();
 
 	}
@@ -215,7 +215,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		 */
 		@Override
 		public boolean isConsistentItem(Object item) {
-			if (item instanceof RegisteredElementExtensionPoint) {
+			if(item instanceof RegisteredElementExtensionPoint) {
 				return true;
 			}
 			return false;
@@ -226,10 +226,10 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		 */
 		@Override
 		public boolean matchItem(Object item) {
-			if (!(item instanceof RegisteredElementExtensionPoint)) {
+			if(!(item instanceof RegisteredElementExtensionPoint)) {
 				return false;
 			}
-			return matches(registeredElementsLabelProvider.getText((RegisteredElementExtensionPoint) item));
+			return matches(registeredElementsLabelProvider.getText((RegisteredElementExtensionPoint)item));
 		}
 	}
 }

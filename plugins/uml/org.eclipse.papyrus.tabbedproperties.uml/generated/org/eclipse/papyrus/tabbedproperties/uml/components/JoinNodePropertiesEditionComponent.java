@@ -41,29 +41,30 @@ public class JoinNodePropertiesEditionComponent extends ComposedPropertiesEditio
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 
 	 * @param joinNode
-	 *            the EObject to edit
+	 *        the EObject to edit
 	 */
 	public JoinNodePropertiesEditionComponent(EObject joinNode, String editing_mode) {
 		super(editing_mode);
-		if (joinNode instanceof JoinNode) {
-			joinNodeBasePropertiesEditionComponent = new JoinNodeBasePropertiesEditionComponent(joinNode, editing_mode); 
+		if(joinNode instanceof JoinNode) {
+			joinNodeBasePropertiesEditionComponent = new JoinNodeBasePropertiesEditionComponent(joinNode, editing_mode);
 			addSubComponent(joinNodeBasePropertiesEditionComponent);
 			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(joinNode, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent# getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if ("Base".equals(key)) {
+		if("Base".equals(key)) {
 			basePart = (JoinNodePropertiesEditionPart)joinNodeBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
 			return (IPropertiesEditionPart)basePart;
 		}
@@ -72,28 +73,30 @@ public class JoinNodePropertiesEditionComponent extends ComposedPropertiesEditio
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (UMLViewsRepository.JoinNode.class == key) {
+		if(UMLViewsRepository.JoinNode.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
 			basePart = (JoinNodePropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent #initPart(java.lang.Class, int,
+	 *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
-		if (key == UMLViewsRepository.JoinNode.class) {
+		if(key == UMLViewsRepository.JoinNode.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-			if (key == UMLViewsRepository.Comments.class) {
-				super.initPart(key, kind, element, allResource);
-			
-			}
+		if(key == UMLViewsRepository.Comments.class) {
+			super.initPart(key, kind, element, allResource);
+
+		}
 	}
 }

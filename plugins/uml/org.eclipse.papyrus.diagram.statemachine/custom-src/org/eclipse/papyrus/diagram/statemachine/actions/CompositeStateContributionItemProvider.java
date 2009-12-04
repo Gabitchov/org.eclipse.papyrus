@@ -27,18 +27,21 @@ public class CompositeStateContributionItemProvider extends
 
 	/** The Constant COMPOSITE_STATE_NOTATION. */
 	public static final String COMPOSITE_STATE_NOTATION = "change_composite_state_notation"; //$NON-NLS-1$
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.AbstractContributionItemProvider#createAction(java.lang.String, org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.AbstractContributionItemProvider#createAction(java.lang.String,
+	 * org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor)
 	 */
 	@Override
 	protected IAction createAction(String actionId,
 			IWorkbenchPartDescriptor partDescriptor) {
 		IWorkbenchPage workbenchPage = partDescriptor.getPartPage();
-		if (COMPOSITE_STATE_NOTATION.equals(actionId)) {
+		if(COMPOSITE_STATE_NOTATION.equals(actionId)) {
 			return new SetCompositeStateNotation(workbenchPage, actionId);
 		}
 		return super.createAction(actionId, partDescriptor);
 	}
-	
+
 }

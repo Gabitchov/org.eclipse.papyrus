@@ -128,8 +128,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
-		if (labelProvider != null) {
+		IItemLabelProvider labelProvider = (IItemLabelProvider)adapterFactory.adapt(item, IItemLabelProvider.class);
+		if(labelProvider != null) {
 			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
@@ -140,7 +140,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path
+	 *        the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -154,13 +154,13 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path to image, either absolute (with plug-in id as first segment), or relative
-	 *            for bundled images
+	 *        the path to image, either absolute (with plug-in id as first segment), or relative
+	 *        for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
-		if (p.isAbsolute() && p.segmentCount() > 1) {
+		if(p.isAbsolute() && p.segmentCount() > 1) {
 			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
 					.toString());
 		} else {
@@ -174,12 +174,12 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path
+	 *        the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
 		Image image = getImageRegistry().get(path);
-		if (image == null) {
+		if(image == null) {
 			getImageRegistry().put(path, getBundledImageDescriptor(path));
 			image = getImageRegistry().get(path);
 		}
@@ -199,7 +199,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public UMLDocumentProvider getDocumentProvider() {
-		if (documentProvider == null) {
+		if(documentProvider == null) {
 			documentProvider = new UMLDocumentProvider();
 		}
 		return documentProvider;
@@ -216,7 +216,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logError(String error, Throwable throwable) {
-		if (error == null && throwable != null) {
+		if(error == null && throwable != null) {
 			error = throwable.getMessage();
 		}
 		getLog().log(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, IStatus.OK, error, throwable));
@@ -234,7 +234,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logInfo(String message, Throwable throwable) {
-		if (message == null && throwable != null) {
+		if(message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
 		getLog().log(new Status(IStatus.INFO, UMLDiagramEditorPlugin.ID, IStatus.OK, message, throwable));
@@ -245,13 +245,13 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	private void debug(String message, Throwable throwable) {
-		if (!isDebugging()) {
+		if(!isDebugging()) {
 			return;
 		}
-		if (message != null) {
+		if(message != null) {
 			System.err.println(message);
 		}
-		if (throwable != null) {
+		if(throwable != null) {
 			throwable.printStackTrace();
 		}
 	}

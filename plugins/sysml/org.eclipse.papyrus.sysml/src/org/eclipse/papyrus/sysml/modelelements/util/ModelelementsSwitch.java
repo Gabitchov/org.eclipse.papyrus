@@ -49,7 +49,7 @@ public class ModelelementsSwitch<T> {
 	 * @generated
 	 */
 	public ModelelementsSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = ModelelementsPackage.eINSTANCE;
 		}
 	}
@@ -60,7 +60,7 @@ public class ModelelementsSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Conform</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -75,7 +75,7 @@ public class ModelelementsSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Problem</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -90,7 +90,7 @@ public class ModelelementsSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Rationale</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -105,7 +105,7 @@ public class ModelelementsSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>View</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -120,7 +120,7 @@ public class ModelelementsSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>View Point</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -135,7 +135,7 @@ public class ModelelementsSwitch<T> {
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -152,7 +152,7 @@ public class ModelelementsSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if(theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
@@ -179,39 +179,44 @@ public class ModelelementsSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case ModelelementsPackage.CONFORM: {
-			Conform conform = (Conform) theEObject;
+		switch(classifierID) {
+		case ModelelementsPackage.CONFORM:
+		{
+			Conform conform = (Conform)theEObject;
 			T result = caseConform(conform);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelelementsPackage.VIEW: {
-			View view = (View) theEObject;
+		case ModelelementsPackage.VIEW:
+		{
+			View view = (View)theEObject;
 			T result = caseView(view);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelelementsPackage.VIEW_POINT: {
-			ViewPoint viewPoint = (ViewPoint) theEObject;
+		case ModelelementsPackage.VIEW_POINT:
+		{
+			ViewPoint viewPoint = (ViewPoint)theEObject;
 			T result = caseViewPoint(viewPoint);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelelementsPackage.RATIONALE: {
-			Rationale rationale = (Rationale) theEObject;
+		case ModelelementsPackage.RATIONALE:
+		{
+			Rationale rationale = (Rationale)theEObject;
 			T result = caseRationale(rationale);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelelementsPackage.PROBLEM: {
-			Problem problem = (Problem) theEObject;
+		case ModelelementsPackage.PROBLEM:
+		{
+			Problem problem = (Problem)theEObject;
 			T result = caseProblem(problem);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}

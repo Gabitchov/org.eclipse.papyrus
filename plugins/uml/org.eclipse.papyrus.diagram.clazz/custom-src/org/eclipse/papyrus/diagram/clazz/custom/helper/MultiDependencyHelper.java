@@ -70,7 +70,7 @@ public class MultiDependencyHelper extends ElementHelper {
 	 * Instantiates a new multi dependency helper.
 	 * 
 	 * @param editDomain
-	 *            the edit domain
+	 *        the edit domain
 	 */
 	public MultiDependencyHelper(TransactionalEditingDomain editDomain) {
 		super();
@@ -85,7 +85,7 @@ public class MultiDependencyHelper extends ElementHelper {
 		// finally the branch
 		Iterator<NamedElement> iteratorProp = dependencyEnd.iterator();
 		int index = 0;
-		while (iteratorProp.hasNext()) {
+		while(iteratorProp.hasNext()) {
 			index += 1;
 			// source editPart
 			EditPart sourceEditPart = null;
@@ -96,42 +96,42 @@ public class MultiDependencyHelper extends ElementHelper {
 			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
 			Iterator<EditPart> editPartIterator = editPartSet.iterator();
 
-			while (editPartIterator.hasNext() && sourceEditPart == null) {
+			while(editPartIterator.hasNext() && sourceEditPart == null) {
 
 				EditPart currentEditPart = editPartIterator.next();
 
-				if ((!(currentEditPart instanceof CompartmentEditPart)) && currentEditPart instanceof GraphicalEditPart
-						&& currentEnd.equals(((GraphicalEditPart) currentEditPart).resolveSemanticElement())) {
+				if((!(currentEditPart instanceof CompartmentEditPart)) && currentEditPart instanceof GraphicalEditPart
+						&& currentEnd.equals(((GraphicalEditPart)currentEditPart).resolveSemanticElement())) {
 					sourceEditPart = currentEditPart;
 				}
 			}
 			// descriptor for the branch
 			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(
-					UMLElementTypes.Dependency_4018, ((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
+					UMLElementTypes.Dependency_4018, ((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(),
 					diagramPreferencesHint);
 
 			// the editpart exist -> only creation of the branch
-			if (sourceEditPart != null) {
+			if(sourceEditPart != null) {
 
 				CustomDeferredCreateConnectionViewCommand aBranchCommand = null;
-				if (constructSource) {
+				if(constructSource) {
 					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-							((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), new SemanticAdapter(
-									null, sourceEditPart.getModel()), (IAdaptable) nodeCreation.getCommandResult()
-									.getReturnValue(), sourceEditPart.getViewer(),
-							((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor,
+							((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(), new SemanticAdapter(
+							null, sourceEditPart.getModel()), (IAdaptable)nodeCreation.getCommandResult()
+							.getReturnValue(), sourceEditPart.getViewer(),
+							((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor,
 							null);
 				} else {
 					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-							((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
-							(IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
-									sourceEditPart.getModel()), sourceEditPart.getViewer(),
-							((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor,
+							((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(),
+							(IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
+							sourceEditPart.getModel()), sourceEditPart.getViewer(),
+							((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor,
 							null);
 
 				}
 				aBranchCommand.setElement(dependency);
-				((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
+				((CompoundCommand)command).add(new ICommandProxy(aBranchCommand));
 			} else {// the editpart does not exist
 
 				// creation of the node
@@ -141,28 +141,28 @@ public class MultiDependencyHelper extends ElementHelper {
 
 				// get the command and execute it.
 				CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, containerView);
-				((CompoundCommand) command).add(new ICommandProxy(nodeCreationCommand));
+				((CompoundCommand)command).add(new ICommandProxy(nodeCreationCommand));
 				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-						(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), new Point(
-								location.x + 200, location.y + index * 100));
-				((CompoundCommand) command).add(new ICommandProxy(setBoundsCommand));
+						(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(
+						location.x + 200, location.y + index * 100));
+				((CompoundCommand)command).add(new ICommandProxy(setBoundsCommand));
 				// Creation of the branch
 				CustomDeferredCreateConnectionViewCommand aBranchCommand = null;
-				if (constructSource) {
+				if(constructSource) {
 					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-							((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
-							(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(),
-							(IAdaptable) nodeCreation.getCommandResult().getReturnValue(), viewer,
+							((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(),
+							(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(),
+							(IAdaptable)nodeCreation.getCommandResult().getReturnValue(), viewer,
 							diagramPreferencesHint, viewBranchDescriptor, null);
 				} else {
 					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-							((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
-							(IAdaptable) nodeCreation.getCommandResult().getReturnValue(),
-							(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), viewer,
+							((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(),
+							(IAdaptable)nodeCreation.getCommandResult().getReturnValue(),
+							(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), viewer,
 							diagramPreferencesHint, viewBranchDescriptor, null);
 				}
 				aBranchCommand.setElement(dependency);
-				((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
+				((CompoundCommand)command).add(new ICommandProxy(aBranchCommand));
 				// creation of the link
 			}
 
@@ -194,9 +194,9 @@ public class MultiDependencyHelper extends ElementHelper {
 	 * Gets the branch depencency command.
 	 * 
 	 * @param createConnectionViewAndElementRequest
-	 *            the create connection view and element request
+	 *        the create connection view and element request
 	 * @param command
-	 *            the command
+	 *        the command
 	 * 
 	 * @return the branch depencency command
 	 */
@@ -206,38 +206,38 @@ public class MultiDependencyHelper extends ElementHelper {
 		EditPart targetEditPart = createConnectionViewAndElementRequest.getTargetEditPart();
 		// 0. add the branh graphically
 		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4018,
-				((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
-				((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
+				((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(),
+				((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint());
 
 		CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(
-				getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
+				getEditingDomain(), ((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(),
 				new SemanticAdapter(null, sourceEditPart.getModel()), new SemanticAdapter(null, targetEditPart
-						.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart)
-						.getDiagramPreferencesHint(), viewDescriptor, null);
+				.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart)
+				.getDiagramPreferencesHint(), viewDescriptor, null);
 		command = new CompoundCommand();
-		((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
+		((CompoundCommand)command).add(new ICommandProxy(aBranchCommand));
 
 		// 1. add the supplier or client
 		EObject newSemanticElement = null;
 		EStructuralFeature feature = null;
 		Dependency dependency = null;
-		if (((View) sourceEditPart.getModel()).getElement() != null
-				&& ((View) sourceEditPart.getModel()).getElement() instanceof Dependency) {
-			newSemanticElement = (NamedElement) ((View) targetEditPart.getModel()).getElement();
-			dependency = (Dependency) ((View) sourceEditPart.getModel()).getElement();
+		if(((View)sourceEditPart.getModel()).getElement() != null
+				&& ((View)sourceEditPart.getModel()).getElement() instanceof Dependency) {
+			newSemanticElement = (NamedElement)((View)targetEditPart.getModel()).getElement();
+			dependency = (Dependency)((View)sourceEditPart.getModel()).getElement();
 			feature = UMLPackage.eINSTANCE.getDependency_Supplier();
 		}
 
-		if (((View) targetEditPart.getModel()).getElement() != null
-				&& ((View) targetEditPart.getModel()).getElement() instanceof Dependency) {
-			newSemanticElement = (NamedElement) ((View) sourceEditPart.getModel()).getElement();
-			dependency = (Dependency) ((View) targetEditPart.getModel()).getElement();
+		if(((View)targetEditPart.getModel()).getElement() != null
+				&& ((View)targetEditPart.getModel()).getElement() instanceof Dependency) {
+			newSemanticElement = (NamedElement)((View)sourceEditPart.getModel()).getElement();
+			dependency = (Dependency)((View)targetEditPart.getModel()).getElement();
 			feature = UMLPackage.eINSTANCE.getDependency_Client();
 		}
 		// set the new client or the new supplier
 		SetRequest setRequest = new SetRequest(dependency, feature, newSemanticElement);
 		SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-		((CompoundCommand) command).add(new ICommandProxy(setValueCommand));
+		((CompoundCommand)command).add(new ICommandProxy(setValueCommand));
 		return command;
 	}
 
@@ -245,9 +245,9 @@ public class MultiDependencyHelper extends ElementHelper {
 	 * Gets the command.
 	 * 
 	 * @param createConnectionViewAndElementRequest
-	 *            the create connection view and element request
+	 *        the create connection view and element request
 	 * @param command
-	 *            the command
+	 *        the command
 	 * 
 	 * @return the command
 	 */
@@ -260,14 +260,14 @@ public class MultiDependencyHelper extends ElementHelper {
 
 		// if the the source or the target is a node dependency the purpose is
 		// to create only one branch
-		if ((((View) sourceEditPart.getModel()).getType() == "" + Dependency2EditPart.VISUAL_ID)
-				|| (((View) targetEditPart.getModel()).getType() == "" + Dependency2EditPart.VISUAL_ID)) {
+		if((((View)sourceEditPart.getModel()).getType() == "" + Dependency2EditPart.VISUAL_ID)
+				|| (((View)targetEditPart.getModel()).getType() == "" + Dependency2EditPart.VISUAL_ID)) {
 			return getBranchDepencencyCommand(createConnectionViewAndElementRequest, command);
 		}
 
 		// the source or the target has to be different of a dependency branch
-		if ((((View) sourceEditPart.getModel()).getType() == "" + DependencyBranchEditPart.VISUAL_ID)
-				|| (((View) targetEditPart.getModel()).getType() == "" + DependencyBranchEditPart.VISUAL_ID)) {
+		if((((View)sourceEditPart.getModel()).getType() == "" + DependencyBranchEditPart.VISUAL_ID)
+				|| (((View)targetEditPart.getModel()).getType() == "" + DependencyBranchEditPart.VISUAL_ID)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// if not this a transformation of simple dependency to multiDependency
@@ -278,9 +278,9 @@ public class MultiDependencyHelper extends ElementHelper {
 	 * this method is used to create a branch of a dependency.
 	 * 
 	 * @param createConnectionViewAndElementRequest
-	 *            the create connection view and element request
+	 *        the create connection view and element request
 	 * @param command
-	 *            the command that is used to create the link branch of a dependency
+	 *        the command that is used to create the link branch of a dependency
 	 * 
 	 * @return the set of command to create a branch of a dependency
 	 */
@@ -309,42 +309,42 @@ public class MultiDependencyHelper extends ElementHelper {
 		// ---------------------------------------------------------
 
 		// 1. initialization
-		ICommandProxy startcommand = ((ICommandProxy) createConnectionViewAndElementRequest.getStartCommand());
-		Iterator<?> ite = ((CompositeCommand) startcommand.getICommand()).iterator();
+		ICommandProxy startcommand = ((ICommandProxy)createConnectionViewAndElementRequest.getStartCommand());
+		Iterator<?> ite = ((CompositeCommand)startcommand.getICommand()).iterator();
 
-		while (ite.hasNext()) {
-			ICommand currentCommand = (ICommand) ite.next();
-			if (currentCommand instanceof SetConnectionBendpointsCommand) {
-				sourceLocation = ((SetConnectionBendpointsCommand) currentCommand).getSourceRefPoint();
-				targetLocation = ((SetConnectionBendpointsCommand) currentCommand).getTargetRefPoint();
+		while(ite.hasNext()) {
+			ICommand currentCommand = (ICommand)ite.next();
+			if(currentCommand instanceof SetConnectionBendpointsCommand) {
+				sourceLocation = ((SetConnectionBendpointsCommand)currentCommand).getSourceRefPoint();
+				targetLocation = ((SetConnectionBendpointsCommand)currentCommand).getTargetRefPoint();
 			}
 		}
 
-		if (targetEditPart != null) {
+		if(targetEditPart != null) {
 			// the source or the target must be a dependency
 			// look for the redit part that represnet the editpart
-			if (((View) sourceEditPart.getModel()).getElement() != null
-					&& ((View) sourceEditPart.getModel()).getElement() instanceof Dependency) {
-				dependencyView = ((View) sourceEditPart.getModel());
-				dependency = (Dependency) ((View) sourceEditPart.getModel()).getElement();
+			if(((View)sourceEditPart.getModel()).getElement() != null
+					&& ((View)sourceEditPart.getModel()).getElement() instanceof Dependency) {
+				dependencyView = ((View)sourceEditPart.getModel());
+				dependency = (Dependency)((View)sourceEditPart.getModel()).getElement();
 				nodeLocation = sourceLocation;
-				newSemanticElement = (NamedElement) ((View) targetEditPart.getModel()).getElement();
+				newSemanticElement = (NamedElement)((View)targetEditPart.getModel()).getElement();
 				feature = UMLPackage.eINSTANCE.getDependency_Supplier();
 			}
 
-			if (((View) targetEditPart.getModel()).getElement() != null
-					&& ((View) targetEditPart.getModel()).getElement() instanceof Dependency) {
-				dependencyView = ((View) targetEditPart.getModel());
-				dependency = (Dependency) ((View) targetEditPart.getModel()).getElement();
+			if(((View)targetEditPart.getModel()).getElement() != null
+					&& ((View)targetEditPart.getModel()).getElement() instanceof Dependency) {
+				dependencyView = ((View)targetEditPart.getModel());
+				dependency = (Dependency)((View)targetEditPart.getModel()).getElement();
 				nodeLocation = targetLocation;
-				newSemanticElement = (NamedElement) ((View) sourceEditPart.getModel()).getElement();
+				newSemanticElement = (NamedElement)((View)sourceEditPart.getModel()).getElement();
 				feature = UMLPackage.eINSTANCE.getDependency_Client();
 			}
 
-			if (dependencyView == null) {
+			if(dependencyView == null) {
 				return null;
 			}
-			parentView = (View) dependencyView.eContainer();
+			parentView = (View)dependencyView.eContainer();
 			// ---------------------------------------------------------
 			// help to debug
 			// System.err.println("+ 1. initialization");
@@ -359,10 +359,10 @@ public class MultiDependencyHelper extends ElementHelper {
 			// ---------------------------------------------------------
 
 			// 2. Remove the view of the dependency
-			View dependencyViewSource = ((Edge) dependencyView).getSource();
-			View dependencyViewTarget = ((Edge) dependencyView).getTarget();
+			View dependencyViewSource = ((Edge)dependencyView).getSource();
+			View dependencyViewTarget = ((Edge)dependencyView).getTarget();
 
-			((CompoundCommand) command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), dependencyView)));
+			((CompoundCommand)command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), dependencyView)));
 
 			// ---------------------------------------------------------
 			// help to debug
@@ -372,9 +372,9 @@ public class MultiDependencyHelper extends ElementHelper {
 
 			// 3. Node creation at this position
 			DependencyDiamonViewCreateCommand nodeCreation = new DependencyDiamonViewCreateCommand(getEditingDomain(),
-					parentView, (EditPartViewer) sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart)
-							.getDiagramPreferencesHint(), nodeLocation, new SemanticAdapter(dependency, null));
-			((CompoundCommand) command).add(new ICommandProxy(nodeCreation));
+					parentView, (EditPartViewer)sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart)
+					.getDiagramPreferencesHint(), nodeLocation, new SemanticAdapter(dependency, null));
+			((CompoundCommand)command).add(new ICommandProxy(nodeCreation));
 
 			// ---------------------------------------------------------
 			// help to debug
@@ -385,52 +385,52 @@ public class MultiDependencyHelper extends ElementHelper {
 			// 4. reconstruction of the old link by taking in account the old
 			// connection
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4018,
-					((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(),
-					((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
+					((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(),
+					((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint());
 
 			// 5. reconstruction of the first branch between old source to node
 			ICommand firstBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-					((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), new SemanticAdapter(null,
-							dependencyViewSource), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(),
-					sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(),
+					((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(), new SemanticAdapter(null,
+					dependencyViewSource), (IAdaptable)nodeCreation.getCommandResult().getReturnValue(),
+					sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(),
 					viewDescriptor, null);
-			((CustomDeferredCreateConnectionViewCommand) firstBranchCommand).setElement(dependency);
-			((CompoundCommand) command).add(new ICommandProxy(firstBranchCommand));
+			((CustomDeferredCreateConnectionViewCommand)firstBranchCommand).setElement(dependency);
+			((CompoundCommand)command).add(new ICommandProxy(firstBranchCommand));
 
 			// 6. reconstruction of the second branch between node to old target
 			ICommand secondBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-					((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), (IAdaptable) nodeCreation
-							.getCommandResult().getReturnValue(), new SemanticAdapter(null, dependencyViewTarget),
-					sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(),
+					((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(), (IAdaptable)nodeCreation
+					.getCommandResult().getReturnValue(), new SemanticAdapter(null, dependencyViewTarget),
+					sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(),
 					viewDescriptor, null);
-			((CustomDeferredCreateConnectionViewCommand) secondBranchCommand).setElement(dependency);
-			((CompoundCommand) command).add(new ICommandProxy(secondBranchCommand));
+			((CustomDeferredCreateConnectionViewCommand)secondBranchCommand).setElement(dependency);
+			((CompoundCommand)command).add(new ICommandProxy(secondBranchCommand));
 
 			// 7. Create of the third branch between node and target our source.
 			ICommand thirdBranchCommand = null;
 
-			if (dependencyView.equals(((View) sourceEditPart.getModel()))) {
+			if(dependencyView.equals(((View)sourceEditPart.getModel()))) {
 				// third branch node and target
 				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-						((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), (IAdaptable) nodeCreation
-								.getCommandResult().getReturnValue(), new SemanticAdapter(null, targetEditPart
-								.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart)
-								.getDiagramPreferencesHint(), viewDescriptor, null);
+						((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(), (IAdaptable)nodeCreation
+						.getCommandResult().getReturnValue(), new SemanticAdapter(null, targetEditPart
+						.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart)
+						.getDiagramPreferencesHint(), viewDescriptor, null);
 			} else {
 				// // third branch source and node
 				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-						((IHintedType) UMLElementTypes.Dependency_4018).getSemanticHint(), new SemanticAdapter(null,
-								sourceEditPart.getModel()), (IAdaptable) nodeCreation.getCommandResult()
-								.getReturnValue(), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart)
-								.getDiagramPreferencesHint(), viewDescriptor, null);
+						((IHintedType)UMLElementTypes.Dependency_4018).getSemanticHint(), new SemanticAdapter(null,
+						sourceEditPart.getModel()), (IAdaptable)nodeCreation.getCommandResult()
+						.getReturnValue(), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart)
+						.getDiagramPreferencesHint(), viewDescriptor, null);
 			}
-			((CustomDeferredCreateConnectionViewCommand) thirdBranchCommand).setElement(dependency);
-			((CompoundCommand) command).add(new ICommandProxy(thirdBranchCommand));
+			((CustomDeferredCreateConnectionViewCommand)thirdBranchCommand).setElement(dependency);
+			((CompoundCommand)command).add(new ICommandProxy(thirdBranchCommand));
 
 			// 8. set thenew client or the new supplier
 			SetRequest setRequest = new SetRequest(dependency, feature, newSemanticElement);
 			SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-			((CompoundCommand) command).add(new ICommandProxy(setValueCommand));
+			((CompoundCommand)command).add(new ICommandProxy(setValueCommand));
 			return command;
 		}
 		return null;

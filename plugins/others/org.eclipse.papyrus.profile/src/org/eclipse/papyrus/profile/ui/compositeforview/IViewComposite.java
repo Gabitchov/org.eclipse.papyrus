@@ -26,7 +26,7 @@ public interface IViewComposite {
 	 * Sets the diagram element.
 	 * 
 	 * @param diagramElement
-	 *            the diagram element
+	 *        the diagram element
 	 */
 	public void setDiagramElement(EModelElement diagramElement);
 

@@ -38,11 +38,11 @@ public class CreateAssociationSupplement extends SupplementCommand {
 	 * this is the constructor of the supplement command for the association.
 	 * 
 	 * @param container
-	 *            the container of the association (package)
+	 *        the container of the association (package)
 	 * @param source
-	 *            the source of the association (Type)
+	 *        the source of the association (Type)
 	 * @param target
-	 *            the target of the association (Type)
+	 *        the target of the association (Type)
 	 */
 	public CreateAssociationSupplement(EObject container, EObject source, EObject target) {
 		super(container, source, target);
@@ -74,30 +74,30 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		Association association = UMLFactory.eINSTANCE.createAssociation();
 
 		// create source property
-		Property sourceProperty = association.createOwnedEnd(((Type) getSource()).getName().toLowerCase(),
-				(Type) getSource());
+		Property sourceProperty = association.createOwnedEnd(((Type)getSource()).getName().toLowerCase(),
+				(Type)getSource());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 
 		// create target property
-		Property targetProperty = association.createOwnedEnd(((Type) getTarget()).getName().toLowerCase(),
-				(Type) getTarget());
+		Property targetProperty = association.createOwnedEnd(((Type)getTarget()).getName().toLowerCase(),
+				(Type)getTarget());
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 
 		List<Property> memberEnds = association.getMemberEnds();
-		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property) sourceProperty));
+		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, ((Property)sourceProperty));
 		} else {
-			association.getMemberEnds().add(0, ((Property) sourceProperty));
+			association.getMemberEnds().add(0, ((Property)sourceProperty));
 		}
-		if ((memberEnds.indexOf(((Property) targetProperty)) >= 0)) {
-			association.getMemberEnds().move(1, ((Property) targetProperty));
+		if((memberEnds.indexOf(((Property)targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, ((Property)targetProperty));
 		} else {
-			association.getMemberEnds().add(1, ((Property) targetProperty));
+			association.getMemberEnds().add(1, ((Property)targetProperty));
 		}
 
-		((Package) getContainer()).getPackagedElements().add(association);
+		((Package)getContainer()).getPackagedElements().add(association);
 		UMLElementTypes.init_Association_4011(association);
 		return association;
 	}

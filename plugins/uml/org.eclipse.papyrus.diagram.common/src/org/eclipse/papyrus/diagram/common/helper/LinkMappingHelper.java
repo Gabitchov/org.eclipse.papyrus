@@ -31,7 +31,7 @@ public class LinkMappingHelper {
 	 * Gets the source.
 	 * 
 	 * @param link
-	 *            the link
+	 *        the link
 	 * 
 	 * @return the source
 	 */
@@ -44,9 +44,9 @@ public class LinkMappingHelper {
 	 * Gets the source.
 	 * 
 	 * @param link
-	 *            the link
+	 *        the link
 	 * @param umlSwitch
-	 *            the uml switch
+	 *        the uml switch
 	 * 
 	 * @return the source
 	 */
@@ -58,7 +58,7 @@ public class LinkMappingHelper {
 	 * Gets the source.
 	 * 
 	 * @param link
-	 *            the link
+	 *        the link
 	 * 
 	 * @return the source
 	 */
@@ -71,9 +71,9 @@ public class LinkMappingHelper {
 	 * Gets the source.
 	 * 
 	 * @param link
-	 *            the link
+	 *        the link
 	 * @param umlSwitch
-	 *            the uml switch
+	 *        the uml switch
 	 * 
 	 * @return the source
 	 */

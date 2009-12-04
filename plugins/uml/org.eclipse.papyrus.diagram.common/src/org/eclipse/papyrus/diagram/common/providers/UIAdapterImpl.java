@@ -29,7 +29,7 @@ public abstract class UIAdapterImpl extends AdapterImpl {
 	 * @see org.eclipse.emf.common.notify.Adapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 */
 	public final void notifyChanged(Notification msg) {
-		if (Display.getCurrent() != Display.getDefault()) {
+		if(Display.getCurrent() != Display.getDefault()) {
 			syncNotifyChanged(msg);
 		} else {
 			safeNotifyChanged(msg);
@@ -40,7 +40,7 @@ public abstract class UIAdapterImpl extends AdapterImpl {
 	 * Handles the event notification in the UI thread
 	 * 
 	 * @param msg
-	 *            the event notification
+	 *        the event notification
 	 */
 	private void syncNotifyChanged(final Notification msg) {
 		Display.getDefault().syncExec(new Runnable() {
@@ -56,7 +56,7 @@ public abstract class UIAdapterImpl extends AdapterImpl {
 	 * This method is always called in the Ui thread
 	 * 
 	 * @param msg
-	 *            the event notification
+	 *        the event notification
 	 */
 	protected abstract void safeNotifyChanged(Notification msg);
 }

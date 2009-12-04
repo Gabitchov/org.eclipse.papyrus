@@ -67,9 +67,8 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * upon which it depends.
 	 * 
 	 * <p>
-	 * This method is used to initialize {@link ModelelementsPackage#eINSTANCE} when that field is
-	 * accessed. Clients should not invoke it directly. Instead, they should simply access that
-	 * field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link ModelelementsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -77,11 +76,11 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public static ModelelementsPackage init() {
-		if (isInited)
-			return (ModelelementsPackage) EPackage.Registry.INSTANCE.getEPackage(ModelelementsPackage.eNS_URI);
+		if(isInited)
+			return (ModelelementsPackage)EPackage.Registry.INSTANCE.getEPackage(ModelelementsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl) (EPackage.Registry.INSTANCE
+		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl)(EPackage.Registry.INSTANCE
 				.get(eNS_URI) instanceof ModelelementsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
 				: new ModelelementsPackageImpl());
 
@@ -91,38 +90,38 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl) (EPackage.Registry.INSTANCE
+		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
-		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl) (EPackage.Registry.INSTANCE
+		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(BlocksPackage.eNS_URI) instanceof BlocksPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BlocksPackage.eNS_URI) : BlocksPackage.eINSTANCE);
-		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl) (EPackage.Registry.INSTANCE
+		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI) instanceof PortandflowsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI)
 				: PortandflowsPackage.eINSTANCE);
-		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl) (EPackage.Registry.INSTANCE
+		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ConstraintsPackage.eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ConstraintsPackage.eNS_URI) : ConstraintsPackage.eINSTANCE);
-		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl) (EPackage.Registry.INSTANCE
+		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) instanceof ActivitiesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) : ActivitiesPackage.eINSTANCE);
-		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl) (EPackage.Registry.INSTANCE
+		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) instanceof AllocationsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) : AllocationsPackage.eINSTANCE);
-		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl) (EPackage.Registry.INSTANCE
+		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI)
 				: RequirementsPackage.eINSTANCE);
-		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl) (EPackage.Registry.INSTANCE
+		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(InteractionsPackage.eNS_URI) instanceof InteractionsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(InteractionsPackage.eNS_URI)
 				: InteractionsPackage.eINSTANCE);
-		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl) (EPackage.Registry.INSTANCE
+		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI) instanceof StatemachinesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI)
 				: StatemachinesPackage.eINSTANCE);
-		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl) (EPackage.Registry.INSTANCE
+		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) instanceof UsecasesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) : UsecasesPackage.eINSTANCE);
 
@@ -210,13 +209,13 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package package URI
 	 * value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init
-	 * init()}, which also performs initialization of the package, or returns the registered
-	 * package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage#eNS_URI
@@ -234,7 +233,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if(isCreated)
 			return;
 		isCreated = true;
 
@@ -276,7 +275,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EReference getConform_Base_Dependency() {
-		return (EReference) conformEClass.getEStructuralFeatures().get(0);
+		return (EReference)conformEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -285,7 +284,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public ModelelementsFactory getModelelementsFactory() {
-		return (ModelelementsFactory) getEFactoryInstance();
+		return (ModelelementsFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -303,7 +302,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EReference getProblem_Base_Comment() {
-		return (EReference) problemEClass.getEStructuralFeatures().get(0);
+		return (EReference)problemEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -321,7 +320,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EReference getRationale_Base_Comment() {
-		return (EReference) rationaleEClass.getEStructuralFeatures().get(0);
+		return (EReference)rationaleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -339,7 +338,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EReference getView_Base_Package() {
-		return (EReference) viewEClass.getEStructuralFeatures().get(1);
+		return (EReference)viewEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -348,7 +347,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EReference getView_ViewPoint() {
-		return (EReference) viewEClass.getEStructuralFeatures().get(0);
+		return (EReference)viewEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -366,7 +365,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EReference getViewPoint_Base_Class() {
-		return (EReference) viewPointEClass.getEStructuralFeatures().get(0);
+		return (EReference)viewPointEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -375,7 +374,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EAttribute getViewPoint_Concerns() {
-		return (EAttribute) viewPointEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)viewPointEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -384,7 +383,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EAttribute getViewPoint_Languages() {
-		return (EAttribute) viewPointEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)viewPointEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -393,7 +392,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EAttribute getViewPoint_Methods() {
-		return (EAttribute) viewPointEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)viewPointEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -402,7 +401,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EAttribute getViewPoint_Purpose() {
-		return (EAttribute) viewPointEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)viewPointEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -411,7 +410,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public EAttribute getViewPoint_StakeHolders() {
-		return (EAttribute) viewPointEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)viewPointEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -421,7 +420,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if(isInitialized)
 			return;
 		isInitialized = true;
 
@@ -431,7 +430,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
 

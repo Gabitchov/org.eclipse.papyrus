@@ -27,9 +27,9 @@ public class EmbeddedEditorReconcilingStrategy extends SpellingReconcileStrategy
 	 * Creates a new EmbeddedEditorReconcilingStrategy.
 	 * 
 	 * @param viewer
-	 *            the source viewer containing the text to reconcile
+	 *        the source viewer containing the text to reconcile
 	 * @param spellingService
-	 *            the service in charge of the spelling verification
+	 *        the service in charge of the spelling verification
 	 */
 	public EmbeddedEditorReconcilingStrategy(ISourceViewer viewer, SpellingService spellingService) {
 		super(viewer, spellingService);

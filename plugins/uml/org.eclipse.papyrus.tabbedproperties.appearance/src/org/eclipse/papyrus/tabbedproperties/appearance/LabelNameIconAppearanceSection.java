@@ -61,9 +61,9 @@ public class LabelNameIconAppearanceSection extends AbstractModelerPropertySecti
 	 * Creates the controls.
 	 * 
 	 * @param tabbedPropertySheetPage
-	 *            the tabbed property sheet page
+	 *        the tabbed property sheet page
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -87,13 +87,13 @@ public class LabelNameIconAppearanceSection extends AbstractModelerPropertySecti
 
 			public void widgetSelected(SelectionEvent e) {
 				List inputs = getInput();
-				for (Object input : inputs) {
-					if (input instanceof IGraphicalEditPart) {
-						IGraphicalEditPart gep = (IGraphicalEditPart) input;
-						if (gep.getModel() instanceof View) {
+				for(Object input : inputs) {
+					if(input instanceof IGraphicalEditPart) {
+						IGraphicalEditPart gep = (IGraphicalEditPart)input;
+						if(gep.getModel() instanceof View) {
 							getEditingDomain().getCommandStack().execute(
-									new SetNameLabelIconCommand(getEditingDomain(), (View) gep.getModel(), checkBox
-											.getSelection()));
+									new SetNameLabelIconCommand(getEditingDomain(), (View)gep.getModel(), checkBox
+									.getSelection()));
 						}
 					}
 				}
@@ -114,10 +114,10 @@ public class LabelNameIconAppearanceSection extends AbstractModelerPropertySecti
 	 */
 	@Override
 	public void refresh() {
-		if ((!checkBox.isDisposed())) {
-			if (editPart != null) {
-				if ((editPart.getModel()) != null) {
-					checkBox.setSelection(NameLabelIconHelper.showLabelIcon((EModelElement) editPart.getModel()));
+		if((!checkBox.isDisposed())) {
+			if(editPart != null) {
+				if((editPart.getModel()) != null) {
+					checkBox.setSelection(NameLabelIconHelper.showLabelIcon((EModelElement)editPart.getModel()));
 
 				} else {
 					checkBox.setEnabled(false);
@@ -131,10 +131,10 @@ public class LabelNameIconAppearanceSection extends AbstractModelerPropertySecti
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		Object input = ((IStructuredSelection) selection).getFirstElement();
+		Object input = ((IStructuredSelection)selection).getFirstElement();
 		// look for modelManager
-		if (input instanceof GraphicalEditPart) {
-			editPart = ((GraphicalEditPart) input);
+		if(input instanceof GraphicalEditPart) {
+			editPart = ((GraphicalEditPart)input);
 		}
 	}
 

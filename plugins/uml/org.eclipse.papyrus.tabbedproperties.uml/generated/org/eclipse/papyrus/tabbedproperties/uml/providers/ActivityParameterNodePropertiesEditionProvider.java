@@ -40,7 +40,7 @@ public class ActivityParameterNodePropertiesEditionProvider implements IProperti
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ActivityParameterNode) {
+		if(eObject instanceof ActivityParameterNode) {
 			return new ActivityParameterNodePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ActivityParameterNodePropertiesEditionProvider implements IProperti
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ActivityParameterNode) {
-			if (ActivityParameterNodeBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ActivityParameterNode) {
+			if(ActivityParameterNodeBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ActivityParameterNodeBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

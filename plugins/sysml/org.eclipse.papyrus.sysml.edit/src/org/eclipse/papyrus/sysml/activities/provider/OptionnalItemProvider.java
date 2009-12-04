@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Optionnal}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Optionnal} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class OptionnalItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ParameterPropertyDescriptor(object);
@@ -76,10 +76,10 @@ public class OptionnalItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addBase_ParameterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Optionnal_base_Parameter_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Optionnal_base_Parameter_feature",
-						"_UI_Optionnal_type"), ActivitiesPackage.Literals.OPTIONNAL__BASE_PARAMETER, true, false, true,
+				"_UI_Optionnal_type"), ActivitiesPackage.Literals.OPTIONNAL__BASE_PARAMETER, true, false, true,
 				null, null, null));
 	}
 
@@ -106,8 +106,7 @@ public class OptionnalItemProvider extends ItemProviderAdapter implements IEditi
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

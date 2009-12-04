@@ -30,9 +30,9 @@ public class EnumerationValueTreeObject extends ValueTreeObject {
 	 * The Constructor.
 	 * 
 	 * @param value
-	 *            the value
+	 *        the value
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public EnumerationValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
 		super(parent, value, domain);
@@ -44,16 +44,16 @@ public class EnumerationValueTreeObject extends ValueTreeObject {
 	 */
 	@Override
 	public void editMe() {
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
 		Property property = pTO.getProperty();
-		Enumeration enumeration = (Enumeration) property.getType();
+		Enumeration enumeration = (Enumeration)property.getType();
 
 		// Creates a dialog box to enter value
 		InputDialogEnumeration valueDialog = new InputDialogEnumeration(new Shell(), property, getValue());
 		int val = valueDialog.open();
 
 		int literalIdx = -1;
-		if ((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
+		if((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
 			literalIdx = valueDialog.getSelectionIndex();
 			// Treat dialogValue
 			Object selectedLiteral = enumeration.getOwnedLiterals().get(literalIdx);

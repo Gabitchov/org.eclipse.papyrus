@@ -74,11 +74,11 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -88,8 +88,8 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	public boolean canExecute() {
-		TemplateableElement container = (TemplateableElement) getElementToEdit();
-		if (container.getOwnedTemplateSignature() != null) {
+		TemplateableElement container = (TemplateableElement)getElementToEdit();
+		if(container.getOwnedTemplateSignature() != null) {
 			return false;
 		}
 		return true;
@@ -103,12 +103,12 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 
 		RedefinableTemplateSignature newElement = UMLFactory.eINSTANCE.createRedefinableTemplateSignature();
 
-		TemplateableElement owner = (TemplateableElement) getElementToEdit();
+		TemplateableElement owner = (TemplateableElement)getElementToEdit();
 		owner.setOwnedTemplateSignature(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -117,12 +117,12 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	 */
 	protected void doConfigure(RedefinableTemplateSignature newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

@@ -40,11 +40,9 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
  * <p>
  * Clients must implement :
  * <ul>
- * <li><code>getBundleId()</code> method in order to define the preference scope (Project or
- * Instance) of the preference page.</li>
- * <li><code>createPageContents()</code> method to populate the preference page with the different
- *  {@link AbstractGroup}. </br>Each group added has to be declared through the
- * <code>addAbstractGroup(AbstractGroup fe)</code> method</li>
+ * <li><code>getBundleId()</code> method in order to define the preference scope (Project or Instance) of the preference page.</li>
+ * <li><code>createPageContents()</code> method to populate the preference page with the different {@link AbstractGroup}. </br>Each group added has to
+ * be declared through the <code>addAbstractGroup(AbstractGroup fe)</code> method</li>
  * </ul>
  * </p>
  */
@@ -66,7 +64,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#setElement(org.eclipse.core.runtime.IAdaptable)
 	 */
 	public void setElement(IAdaptable element) {
-		project = (IProject) element.getAdapter(IResource.class);
+		project = (IProject)element.getAdapter(IResource.class);
 	}
 
 	/**
@@ -74,7 +72,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 */
 	protected IPreferenceStore doGetPreferenceStore() {
 		IPreferenceStore store;
-		if (project != null) {
+		if(project != null) {
 			store = new ScopedPreferenceStore(new ProjectScope(project), getBundleId());
 		} else {
 			store = new ScopedPreferenceStore(new InstanceScope(), getBundleId());
@@ -86,7 +84,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * Initializes this preference page for the given workbench.
 	 * 
 	 * @param workbench
-	 *            the workbench
+	 *        the workbench
 	 * 
 	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
 	 * 
@@ -119,12 +117,11 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	/**
 	 * Populate the preference page with the different field editor.
 	 * <p>
-	 * Each field added has to be declared through the <code>addEditorFields(FieldEditor fe)</code>
-	 * method
+	 * Each field added has to be declared through the <code>addEditorFields(FieldEditor fe)</code> method
 	 * </p>
 	 * 
 	 * @param parent
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	protected abstract void createPageContents(Composite parent);
 
@@ -132,7 +129,7 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * Add the given field editor to the page.
 	 */
 	protected void addAbstractGroup(AbstractGroup fe) {
-		if (groupSet == null) {
+		if(groupSet == null) {
 			groupSet = new HashSet<AbstractGroup>();
 		}
 		groupSet.add(fe);
@@ -153,8 +150,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
 	private void storePreferences() {
-		if (groupSet != null) {
-			for (AbstractGroup gs : groupSet) {
+		if(groupSet != null) {
+			for(AbstractGroup gs : groupSet) {
 				gs.storePreferences();
 			}
 		}
@@ -174,8 +171,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * Load the default preferences of the fields contained in this page
 	 */
 	private void loadDefaultPreferences() {
-		if (groupSet != null) {
-			for (AbstractGroup gs : groupSet) {
+		if(groupSet != null) {
+			for(AbstractGroup gs : groupSet) {
 				gs.loadDefault();
 			}
 		}
@@ -186,8 +183,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * Init groups contained in this page.
 	 */
 	private void initGroup() {
-		if (groupSet != null) {
-			for (AbstractGroup gs : groupSet) {
+		if(groupSet != null) {
+			for(AbstractGroup gs : groupSet) {
 				gs.setPreferenceStore(getPreferenceStore());
 				gs.load();
 			}
@@ -197,8 +194,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	@Override
 	public void dispose() {
 		super.dispose();
-		if (groupSet != null) {
-			for (AbstractGroup gs : groupSet) {
+		if(groupSet != null) {
+			for(AbstractGroup gs : groupSet) {
 				gs.dispose();
 			}
 		}

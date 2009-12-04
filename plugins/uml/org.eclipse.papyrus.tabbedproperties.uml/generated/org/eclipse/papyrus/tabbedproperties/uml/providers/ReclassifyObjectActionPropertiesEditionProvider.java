@@ -40,7 +40,7 @@ public class ReclassifyObjectActionPropertiesEditionProvider implements IPropert
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ReclassifyObjectAction) {
+		if(eObject instanceof ReclassifyObjectAction) {
 			return new ReclassifyObjectActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ReclassifyObjectActionPropertiesEditionProvider implements IPropert
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ReclassifyObjectAction) {
-			if (ReclassifyObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ReclassifyObjectAction) {
+			if(ReclassifyObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ReclassifyObjectActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

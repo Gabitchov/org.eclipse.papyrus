@@ -38,13 +38,9 @@ public class CallBehaviorActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getCallBehaviorAction_2024SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next())
-					.getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
-					nextValue)) {
+		for (Iterator it = UMLDiagramUpdater.getCallBehaviorAction_2024SemanticChildren(viewObject).iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -61,8 +57,7 @@ public class CallBehaviorActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
-					(View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case OutputPin4EditPart.VISUAL_ID:
 			case InputPin5EditPart.VISUAL_ID:
@@ -88,10 +83,8 @@ public class CallBehaviorActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getCallAction_Result());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getInvocationAction_Argument());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallAction_Result());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInvocationAction_Argument());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -118,5 +111,5 @@ public class CallBehaviorActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	public boolean canCreate(EObject object) {
 		return false;
 	}
-	
+
 }

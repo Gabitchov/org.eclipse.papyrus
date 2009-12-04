@@ -58,20 +58,16 @@ public class UMLCreateShortcutAction implements IObjectActionDelegate {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			if (structuredSelection.size() == 1) {
 				if (structuredSelection.getFirstElement() instanceof PackageEditPart) {
-					mySelectedElement = (PackageEditPart) structuredSelection
-							.getFirstElement();
+					mySelectedElement = (PackageEditPart) structuredSelection.getFirstElement();
 				}
 				if (structuredSelection.getFirstElement() instanceof ActivitySubverticesEditPart) {
-					mySelectedElement = (ActivitySubverticesEditPart) structuredSelection
-							.getFirstElement();
+					mySelectedElement = (ActivitySubverticesEditPart) structuredSelection.getFirstElement();
 				}
 				if (structuredSelection.getFirstElement() instanceof ActivityPartitionActivityPartitionCompartmentEditPart) {
-					mySelectedElement = (ActivityPartitionActivityPartitionCompartmentEditPart) structuredSelection
-							.getFirstElement();
+					mySelectedElement = (ActivityPartitionActivityPartitionCompartmentEditPart) structuredSelection.getFirstElement();
 				}
 				if (structuredSelection.getFirstElement() instanceof ActivityPartitionActivityPartitionCompartment2EditPart) {
-					mySelectedElement = (ActivityPartitionActivityPartitionCompartment2EditPart) structuredSelection
-							.getFirstElement();
+					mySelectedElement = (ActivityPartitionActivityPartitionCompartment2EditPart) structuredSelection.getFirstElement();
 				}
 			}
 		}
@@ -90,43 +86,31 @@ public class UMLCreateShortcutAction implements IObjectActionDelegate {
 	 */
 	public void run(IAction action) {
 		final View view = (View) mySelectedElement.getModel();
-		UMLElementChooserDialog elementChooser = new UMLElementChooserDialog(
-				myShell, view);
+		UMLElementChooserDialog elementChooser = new UMLElementChooserDialog(myShell, view);
 		int result = elementChooser.open();
 		if (result != Window.OK) {
 			return;
 		}
-		URI selectedModelElementURI = elementChooser
-				.getSelectedModelElementURI();
+		URI selectedModelElementURI = elementChooser.getSelectedModelElementURI();
 		final EObject selectedElement;
 		try {
-			selectedElement = mySelectedElement.getEditingDomain()
-					.getResourceSet().getEObject(selectedModelElementURI, true);
+			selectedElement = mySelectedElement.getEditingDomain().getResourceSet().getEObject(selectedModelElementURI, true);
 		} catch (WrappedException e) {
-			UMLDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Exception while loading object: " + selectedModelElementURI.toString(), e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Exception while loading object: " + selectedModelElementURI.toString(), e); //$NON-NLS-1$
 			return;
 		}
 
 		if (selectedElement == null) {
 			return;
 		}
-		CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
-				new EObjectAdapter(selectedElement), Node.class, null,
-				UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		ICommand command = new CreateCommand(mySelectedElement
-				.getEditingDomain(), viewDescriptor, view);
-		command = command.compose(new UMLCreateShortcutDecorationsCommand(
-				mySelectedElement.getEditingDomain(), view, viewDescriptor));
+		CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter(selectedElement), Node.class, null, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		ICommand command = new CreateCommand(mySelectedElement.getEditingDomain(), viewDescriptor, view);
+		command = command.compose(new UMLCreateShortcutDecorationsCommand(mySelectedElement.getEditingDomain(), view, viewDescriptor));
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command,
-					new NullProgressMonitor(), null);
+			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			DiagramEditPartsUtil.updateDiagram(mySelectedElement);
 		} catch (ExecutionException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Unable to create shortcut", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Unable to create shortcut", e); //$NON-NLS-1$
 		}
 	}
 

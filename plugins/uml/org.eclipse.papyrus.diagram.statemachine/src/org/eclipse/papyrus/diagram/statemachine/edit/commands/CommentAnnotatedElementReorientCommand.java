@@ -56,13 +56,13 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Comment) {
+		if(false == referenceOwner instanceof Comment) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -72,24 +72,24 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Comment)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Comment)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistCommentAnnotatedElement_3003(getNewSource(),
-						getOldTarget());
+				getOldTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistCommentAnnotatedElement_3003(getOldSource(),
-						getNewTarget());
+				getNewTarget());
 	}
 
 	/**
@@ -98,14 +98,13 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -120,25 +119,25 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 
 		// modify the parent of the old Comment?
 		// if now it has only one annotated Element
-		if (getOldSource().getAnnotatedElements().size() == 1) {
+		if(getOldSource().getAnnotatedElements().size() == 1) {
 			getOldSource().getAnnotatedElements().get(0).getOwnedComments()
 					.add(getOldSource());
 		}
 		// if now it has no annotated Elements
-		if (getOldSource().getAnnotatedElements().size() == 0) {
-			((Model) getOldSource().eResource().getContents().get(0))
+		if(getOldSource().getAnnotatedElements().size() == 0) {
+			((Model)getOldSource().eResource().getContents().get(0))
 					.getOwnedComments().add(getOldSource());
 		}
 
 		// modify the parent of the new Comment?
 		// if now it has only one annotated Element
-		if (getNewSource().getAnnotatedElements().size() == 1) {
+		if(getNewSource().getAnnotatedElements().size() == 1) {
 			getNewSource().getAnnotatedElements().get(0).getOwnedComments()
 					.add(getNewSource());
 		}
 		// if now it has more than one annotated Element
-		if (getNewSource().getAnnotatedElements().size() > 1) {
-			((Model) getNewSource().eResource().getContents().get(0))
+		if(getNewSource().getAnnotatedElements().size() > 1) {
+			((Model)getNewSource().eResource().getContents().get(0))
 					.getOwnedComments().add(getNewSource());
 		}
 
@@ -154,7 +153,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 
 		// if the number of annotatedElements of the Comment is 1, change the
 		// container of the Comment
-		if (getOldSource().getAnnotatedElements().size() == 1) {
+		if(getOldSource().getAnnotatedElements().size() == 1) {
 			getNewTarget().getOwnedComments().add(getOldSource());
 		}
 
@@ -165,27 +164,27 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Comment getOldSource() {
-		return (Comment) referenceOwner;
+		return (Comment)referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Comment getNewSource() {
-		return (Comment) newEnd;
+		return (Comment)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element) oldEnd;
+		return (Element)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element) newEnd;
+		return (Element)newEnd;
 	}
 }

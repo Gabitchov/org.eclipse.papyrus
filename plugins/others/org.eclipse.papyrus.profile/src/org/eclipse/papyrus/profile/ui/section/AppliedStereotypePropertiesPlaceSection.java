@@ -60,9 +60,9 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 	 * Creates the controls.
 	 * 
 	 * @param tabbedPropertySheetPage
-	 *            the tabbed property sheet page
+	 *        the tabbed property sheet page
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -90,7 +90,7 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 		comboStereotypePropertiesPlaceListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if (diagramElement != null) {
+				if(diagramElement != null) {
 					stereotypePlacePresentation = comboStereotypePropertiesPlace.getText();
 
 					RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, diagramElement, stereotypePlacePresentation);
@@ -110,12 +110,12 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 	 */
 	@Override
 	public void refresh() {
-		if ((!comboStereotypePropertiesPlace.isDisposed())) {
+		if((!comboStereotypePropertiesPlace.isDisposed())) {
 
 			comboStereotypePropertiesPlace.removeSelectionListener(comboStereotypePropertiesPlaceListener);
 
-			if (diagramElement != null) {
-				if (isComboEnabled()) {
+			if(diagramElement != null) {
+				if(isComboEnabled()) {
 					comboStereotypePropertiesPlace.setEnabled(true);
 					stereotypePlacePresentation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(diagramElement);
 					comboStereotypePropertiesPlace.setText(stereotypePlacePresentation);
@@ -136,16 +136,17 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 
 		super.dispose();
 		diagramElement.eAdapters().remove(this);
-		if (comboStereotypePropertiesPlace != null && !comboStereotypePropertiesPlace.isDisposed())
+		if(comboStereotypePropertiesPlace != null && !comboStereotypePropertiesPlace.isDisposed())
 			comboStereotypePropertiesPlace.removeSelectionListener(comboStereotypePropertiesPlaceListener);
 	}
 
 	/**
-	 * Helper method to indicate whether comboStereotypePropertiesPlace is enabled or not. The combo is enabled only within class and requirement diagram
+	 * Helper method to indicate whether comboStereotypePropertiesPlace is enabled or not. The combo is enabled only within class and requirement
+	 * diagram
 	 */
 
 	private boolean isComboEnabled() {
-		if (!AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(diagramElement).equals("")) {
+		if(!AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(diagramElement).equals("")) {
 			return true;
 		}
 		return false;
@@ -158,11 +159,11 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (selection instanceof IStructuredSelection) {
-			Object input = ((IStructuredSelection) selection).getFirstElement();
+		if(selection instanceof IStructuredSelection) {
+			Object input = ((IStructuredSelection)selection).getFirstElement();
 
-			if (input instanceof GraphicalEditPart && ((GraphicalEditPart) input).getModel() instanceof View) {
-				diagramElement = (EModelElement) ((GraphicalEditPart) input).getModel();
+			if(input instanceof GraphicalEditPart && ((GraphicalEditPart)input).getModel() instanceof View) {
+				diagramElement = (EModelElement)((GraphicalEditPart)input).getModel();
 				diagramElement.eAdapters().add(this);
 			} else {
 				// re-init the diagram element. Else, could cause a bug,
@@ -171,14 +172,14 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 				diagramElement = null;
 			}
 			// When the selection is computed from the outline, get the associated editor
-			if (part instanceof ContentOutline) {
-				IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part).getAdapter(IContributedContentsView.class));
-				if (contributedView != null) {
-					part = (IWorkbenchPart) contributedView.getContributingPart();
+			if(part instanceof ContentOutline) {
+				IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part).getAdapter(IContributedContentsView.class));
+				if(contributedView != null) {
+					part = (IWorkbenchPart)contributedView.getContributingPart();
 				}
 			}
-			if (part instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor editor = (IMultiDiagramEditor) part;
+			if(part instanceof IMultiDiagramEditor) {
+				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
 				BackboneContext backbone = editor.getDefaultContext();
 				domain = editor.getDefaultContext().getTransactionalEditingDomain();
 			} else

@@ -15,8 +15,7 @@ import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * Filter that returns <code>true</code> if the element associated to the object is a UML
- * {@link Element}.
+ * Filter that returns <code>true</code> if the element associated to the object is a UML {@link Element}.
  */
 public class UmlElementFilter implements IFilter {
 
@@ -25,11 +24,11 @@ public class UmlElementFilter implements IFilter {
 	 */
 	public boolean select(Object object) {
 		// test element is a node edit part and its controlled element has an associated UML element
-		if (object instanceof IGraphicalEditPart
-				&& ((IGraphicalEditPart) object).getNotationView().getElement() instanceof Element)
+		if(object instanceof IGraphicalEditPart
+				&& ((IGraphicalEditPart)object).getNotationView().getElement() instanceof Element)
 			return true;
 
-		if (object instanceof Element) {
+		if(object instanceof Element) {
 			return true;
 		}
 

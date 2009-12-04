@@ -60,8 +60,8 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotyperGeneralizationEditPart) {
-			((AppliedStereotyperGeneralizationEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof AppliedStereotyperGeneralizationEditPart) {
+			((AppliedStereotyperGeneralizationEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
@@ -72,7 +72,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -82,7 +82,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotyperGeneralizationEditPart) {
+		if(childEditPart instanceof AppliedStereotyperGeneralizationEditPart) {
 			return true;
 		}
 		return false;
@@ -92,7 +92,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -115,7 +115,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public GeneralizationFigure getPrimaryShape() {
-		return (GeneralizationFigure) getFigure();
+		return (GeneralizationFigure)getFigure();
 	}
 
 }

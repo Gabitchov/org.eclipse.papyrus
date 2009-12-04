@@ -35,7 +35,9 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -50,14 +52,19 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -72,7 +79,9 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *        the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
 
@@ -97,15 +106,21 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Init the parameter
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the parameter
-	 * @param newValue the parameter to update
+	 * 
+	 * @param newValue
+	 *        the parameter to update
 	 */
 	public void updateParameter(EObject newValue);
 
@@ -113,7 +128,7 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the parameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToParameter(ViewerFilter filter);
@@ -122,7 +137,7 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the parameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToParameter(ViewerFilter filter);
@@ -163,15 +178,21 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameter
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * @param newValue the ownedParameter to update
+	 * 
+	 * @param newValue
+	 *        the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
 
@@ -179,7 +200,7 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the ownedParameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedParameter(ViewerFilter filter);
@@ -188,7 +209,7 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the ownedParameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
@@ -219,15 +240,21 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Init the extendedSignature
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initExtendedSignature(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the extendedSignature
-	 * @param newValue the extendedSignature to update
+	 * 
+	 * @param newValue
+	 *        the extendedSignature to update
 	 */
 	public void updateExtendedSignature(EObject newValue);
 
@@ -235,7 +262,7 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the extendedSignature edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToExtendedSignature(ViewerFilter filter);
@@ -244,7 +271,7 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the extendedSignature edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToExtendedSignature(ViewerFilter filter);
@@ -253,11 +280,6 @@ public interface RedefinableTemplateSignaturePropertiesEditionPart {
 	 * @return true if the given element is contained inside the extendedSignature table
 	 */
 	public boolean isContainedInExtendedSignatureTable(EObject element);
-
-
-
-
-
 
 
 

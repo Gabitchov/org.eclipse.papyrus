@@ -30,8 +30,7 @@ public class ElementOwnedCommentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ElementOwnedCommentCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public ElementOwnedCommentCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -55,8 +54,7 @@ public class ElementOwnedCommentCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateElementOwnedComment_3005(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateElementOwnedComment_3005(getSource(), getTarget());
 	}
 
 	/**
@@ -65,11 +63,9 @@ public class ElementOwnedCommentCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
 			getSource().getOwnedComments().add(getTarget());

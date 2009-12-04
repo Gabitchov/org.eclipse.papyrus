@@ -25,10 +25,10 @@ public class UMLUriEditorInputTester extends PropertyTester {
 	 * @generated
 	 */
 	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
-		if (false == receiver instanceof URIEditorInput) {
+		if(false == receiver instanceof URIEditorInput) {
 			return false;
 		}
-		URIEditorInput editorInput = (URIEditorInput) receiver;
+		URIEditorInput editorInput = (URIEditorInput)receiver;
 		return "uml_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
 

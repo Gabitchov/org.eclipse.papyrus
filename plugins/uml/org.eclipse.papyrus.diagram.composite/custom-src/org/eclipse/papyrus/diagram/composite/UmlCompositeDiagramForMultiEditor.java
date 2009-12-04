@@ -176,16 +176,16 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 	}
 
 	/**

@@ -40,7 +40,7 @@ public class SignalPropertiesEditionProvider implements IPropertiesEditionProvid
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Signal) {
+		if(eObject instanceof Signal) {
 			return new SignalPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class SignalPropertiesEditionProvider implements IPropertiesEditionProvid
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Signal) {
-			if (SignalBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Signal) {
+			if(SignalBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new SignalBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

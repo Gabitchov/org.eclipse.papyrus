@@ -98,7 +98,7 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 
 		ResourceSet resourceSet = Util.getResourceSet(currentPackage);
 
-		if (selection == null) { // Cancel was selected
+		if(selection == null) { // Cancel was selected
 			return new ArrayList<Profile>();
 		}
 
@@ -109,9 +109,9 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 		// try to parse the qualified names
 
 		List<String> subprofilesList = new ArrayList<String>();
-		for (int i = 0; i < selection.length; i++) {
+		for(int i = 0; i < selection.length; i++) {
 
-			RegisteredProfile currentProfile = (RegisteredProfile) (selection[i]);
+			RegisteredProfile currentProfile = (RegisteredProfile)(selection[i]);
 			URI modelUri = currentProfile.uri;
 			Resource modelResource = resourceSet.getResource(modelUri, true);
 
@@ -122,15 +122,15 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 			String[] profiles = qualifiedNames.split(",");
 
 			// make a collection with String with no space
-			for (int j = 0; j < profiles.length; j++) {
+			for(int j = 0; j < profiles.length; j++) {
 				String string = profiles[j].trim();
 				subprofilesList.add(string);
 			}
 
-			if (modelResource.getContents().get(0) instanceof Profile) {
+			if(modelResource.getContents().get(0) instanceof Profile) {
 				Message processMsg = new Message("Profile application", "Loading profiles...");
 				processMsg.open();
-				Profile profileToApply = (Profile) (modelResource.getContents().get(0));
+				Profile profileToApply = (Profile)(modelResource.getContents().get(0));
 				processMsg.close();
 				// if (PackageUtil.getSubProfiles(profileToApply).isEmpty()) {
 				// No sub-profile -> apply profile directly
@@ -142,14 +142,14 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 			}
 		}
 
-		if (!listOfProfileToApply.isEmpty()) {
+		if(!listOfProfileToApply.isEmpty()) {
 			// Open package/profile selection tree selection
 			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), listOfProfileToApply, subprofilesList);
 			int returnValue = profileDialog.open();
 
 			// Apply selected profile if ok was selected
-			if (Dialog.OK == returnValue) {
-				return (ArrayList<Profile>) profileDialog.getResult();
+			if(Dialog.OK == returnValue) {
+				return (ArrayList<Profile>)profileDialog.getResult();
 			} else {
 				new ArrayList<Profile>();
 			}

@@ -77,28 +77,28 @@ public class PortPositionLocator extends AdvancedBorderItemLocator {
 		int yMax = parentRec.y - borderItem.getBounds().height / 2 + parentRec.height;
 
 		// Modify Port location if MAX X or Y are exceeded
-		if (realLocation.x < xMin) {
+		if(realLocation.x < xMin) {
 			realLocation.x = xMin;
 		}
 
-		if (realLocation.x > xMax) {
+		if(realLocation.x > xMax) {
 			realLocation.x = xMax;
 		}
 
-		if (realLocation.y < yMin) {
+		if(realLocation.y < yMin) {
 			realLocation.y = yMin;
 		}
 
-		if (realLocation.y > yMax) {
+		if(realLocation.y > yMax) {
 			realLocation.y = yMax;
 		}
 
 		// Ensure the port is positioned on its parent borders and not in the middle.
 		// Modify position if needed.
-		if ((realLocation.y != yMin) && (realLocation.y != yMax)) {
-			if ((realLocation.x != xMin) && (realLocation.x != xMax)) {
+		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
+			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
 
-				if (realLocation.x <= (xMin + parentRec.width / 2)) {
+				if(realLocation.x <= (xMin + parentRec.width / 2)) {
 					realLocation.x = xMin;
 				} else {
 					realLocation.x = xMax;

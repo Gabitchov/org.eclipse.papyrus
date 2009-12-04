@@ -113,7 +113,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (eObject != null) {
+		if(eObject != null) {
 			controlledModel = eObject.eResource();
 			final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(
 					DiResourceSet.NOTATION_FILE_EXTENSION).toString());
@@ -129,7 +129,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		// First retrieve the Diagrams that match with the model object to Uncontrol
 		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(controlledNotation, eObject);
 
-		if (!controlledDiagrams.isEmpty()) {
+		if(!controlledDiagrams.isEmpty()) {
 			final Resource notationResource = diResourceSet.getNotationResource();
 			compoundCommand.append(new AddCommand(getEditingDomain(), notationResource.getContents(),
 					controlledDiagrams));
@@ -173,14 +173,14 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 				"Delete controlled resources?", "Delete the original controlled files ?");
 		// if confirmed delete is false, uncontrol is done and old controlled resource is a single
 		// resource
-		if (confirmDelete) {
-			for (IResource file : todelete) {
+		if(confirmDelete) {
+			for(IResource file : todelete) {
 				try {
 					file.delete(true, new NullProgressMonitor());
 				} catch (CoreException exception) {
 					MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 							"Unable to delete", "An error occurred when trying to delete " + file.toString()
-									+ ". See error logs for more details.");
+							+ ". See error logs for more details.");
 					EMFEditUIPlugin.INSTANCE.log(exception);
 				}
 			}
@@ -192,10 +192,10 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 */
 	private void addFileResource(Resource emfRes, Collection<IResource> fileResources) {
 		URI uri = (emfRes != null) ? emfRes.getURI() : null;
-		if (uri != null && uri.isPlatformResource()) {
+		if(uri != null && uri.isPlatformResource()) {
 			IPath path = new Path(uri.toPlatformString(false));
 			IResource r = ResourcesPlugin.getWorkspace().getRoot().findMember(path);
-			if (r != null) {
+			if(r != null) {
 				fileResources.add(r);
 			}
 		}

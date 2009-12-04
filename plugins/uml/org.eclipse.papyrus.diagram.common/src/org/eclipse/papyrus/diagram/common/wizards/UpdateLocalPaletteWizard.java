@@ -39,9 +39,9 @@ public class UpdateLocalPaletteWizard extends Wizard {
 	 * Creates a NewLocalPaletteWizard.
 	 * 
 	 * @param part
-	 *            the editor part where the palette is available
+	 *        the editor part where the palette is available
 	 * @param descriptor
-	 *            the descriptor to edit
+	 *        the descriptor to edit
 	 */
 	public UpdateLocalPaletteWizard(IEditorPart part, PapyrusPaletteService.LocalProviderDescriptor descriptor) {
 		this.editorPart = part;

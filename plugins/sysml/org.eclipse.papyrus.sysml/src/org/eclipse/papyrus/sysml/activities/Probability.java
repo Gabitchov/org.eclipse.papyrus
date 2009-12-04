@@ -25,10 +25,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge <em>Base
- * Activity Edge</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet <em>Base
- * Parameter Set</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet <em>Base Parameter Set</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getProbability <em>Probability</em>}</li>
  * </ul>
  * </p>
@@ -43,8 +41,7 @@ public interface Probability extends EObject {
 	 * Returns the value of the '<em><b>Base Activity Edge</b></em>' reference. <!-- begin-user-doc
 	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Base Activity Edge</em>' reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Base Activity Edge</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -60,8 +57,7 @@ public interface Probability extends EObject {
 	 * Returns the value of the '<em><b>Base Parameter Set</b></em>' reference. <!-- begin-user-doc
 	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Base Parameter Set</em>' reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Base Parameter Set</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -76,8 +72,7 @@ public interface Probability extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Probability</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Probability</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Probability</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -90,36 +85,33 @@ public interface Probability extends EObject {
 	ValueSpecification getProbability();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge
 	 * <em>Base Activity Edge</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Activity Edge</em>' reference.
+	 *        the new value of the '<em>Base Activity Edge</em>' reference.
 	 * @see #getBase_ActivityEdge()
 	 * @generated
 	 */
 	void setBase_ActivityEdge(ActivityEdge value);
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet
 	 * <em>Base Parameter Set</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Parameter Set</em>' reference.
+	 *        the new value of the '<em>Base Parameter Set</em>' reference.
 	 * @see #getBase_ParameterSet()
 	 * @generated
 	 */
 	void setBase_ParameterSet(ParameterSet value);
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.sysml.activities.Probability#getProbability <em>Probability</em>}'
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Probability#getProbability <em>Probability</em>}'
 	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Probability</em>' reference.
+	 *        the new value of the '<em>Probability</em>' reference.
 	 * @see #getProbability()
 	 * @generated
 	 */

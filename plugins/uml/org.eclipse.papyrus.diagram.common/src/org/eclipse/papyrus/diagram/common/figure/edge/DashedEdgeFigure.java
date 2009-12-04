@@ -56,7 +56,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * This is the constructor
 	 * 
 	 * @param arrow
-	 *            true if the arrow of the edge is displayed
+	 *        true if the arrow of the edge is displayed
 	 */
 	public DashedEdgeFigure(Boolean arrow) {
 		super();
@@ -69,7 +69,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * use to display the arrow of the edge
 	 * 
 	 * @param arrow
-	 *            true if the arrow will be displayed
+	 *        true if the arrow will be displayed
 	 */
 	// @unused
 	public void setArrow(Boolean arrow) {
@@ -98,7 +98,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);
-		if (arrow) {
+		if(arrow) {
 			this.setTargetDecoration(dec);
 		} else {
 			this.setTargetDecoration(null);
@@ -106,7 +106,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
 
 		// set dashes
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			dashes[i] = 5;
 		}
 		setLineDash(dashes);
@@ -117,7 +117,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * Sets initial style for this figure. This is the style used for full arrows: ------|>
 	 * 
 	 * @param lineWidth
-	 *            the width of the link
+	 *        the width of the link
 	 */
 	// @unused
 	protected void setStyle(int lineWidth) {
@@ -130,11 +130,11 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * Sets initial style for this figure. This is the style used for full arrows: ------|>
 	 * 
 	 * @param lineWidth
-	 *            the width of the link
+	 *        the width of the link
 	 * @param foregroundColor
-	 *            the foreground color of the link
+	 *        the foreground color of the link
 	 * @param backgroundColor
-	 *            the background color of the link
+	 *        the background color of the link
 	 */
 	// @unused
 	protected void setStyle(Color backgroundColor, Color foregroundColor, int lineWidth) {
@@ -143,7 +143,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 		dec.setScale(15, 5);
 		dec.setBackgroundColor(backgroundColor);
 		dec.setLineWidth(1);
-		if (arrow) {
+		if(arrow) {
 			setTargetDecoration(dec);
 		}
 		// set link appearence
@@ -152,7 +152,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 		setForegroundColor(foregroundColor);
 
 		// set dashes
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			dashes[i] = 5;
 		}
 		setLineDash(dashes);

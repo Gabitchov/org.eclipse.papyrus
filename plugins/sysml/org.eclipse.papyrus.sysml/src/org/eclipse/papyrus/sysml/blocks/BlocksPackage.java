@@ -76,8 +76,7 @@ public interface BlocksPackage extends EPackage {
 		EReference BLOCK__BASE_CLASS = eINSTANCE.getBlock_Base_Class();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl
 		 * <em>Distributed Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl
@@ -95,8 +94,7 @@ public interface BlocksPackage extends EPackage {
 		EReference DISTRIBUTED_PROPERTY__BASE_PROPERTY = eINSTANCE.getDistributedProperty_Base_Property();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl <em>Dimension</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl <em>Dimension</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl
@@ -140,8 +138,7 @@ public interface BlocksPackage extends EPackage {
 		EReference UNIT__DIMENSION = eINSTANCE.getUnit_Dimension();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl <em>Value Type</em>}' class.
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl <em>Value Type</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl
@@ -175,8 +172,7 @@ public interface BlocksPackage extends EPackage {
 		EReference VALUE_TYPE__DIMENSION = eINSTANCE.getValueType_Dimension();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl
 		 * <em>Nested Connector End</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl
@@ -202,8 +198,7 @@ public interface BlocksPackage extends EPackage {
 		EReference NESTED_CONNECTOR_END__BASE_CONNECTOR_END = eINSTANCE.getNestedConnectorEnd_Base_ConnectorEnd();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl
 		 * <em>Participant Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl
@@ -229,8 +224,7 @@ public interface BlocksPackage extends EPackage {
 		EReference PARTICIPANT_PROPERTY__END = eINSTANCE.getParticipantProperty_End();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl
 		 * <em>Connector Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl
@@ -256,8 +250,7 @@ public interface BlocksPackage extends EPackage {
 		EReference CONNECTOR_PROPERTY__CONNECTOR = eINSTANCE.getConnectorProperty_Connector();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl
 		 * <em>Binding Connector</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl
@@ -275,8 +268,7 @@ public interface BlocksPackage extends EPackage {
 		EReference BINDING_CONNECTOR__BASE_CONNECTOR = eINSTANCE.getBindingConnector_Base_Connector();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl
 		 * <em>Property Specific Type</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl
@@ -361,8 +353,7 @@ public interface BlocksPackage extends EPackage {
 	int BLOCK_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl
 	 * <em>Distributed Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl
@@ -501,8 +492,7 @@ public interface BlocksPackage extends EPackage {
 	int VALUE_TYPE_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl
 	 * <em>Nested Connector End</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl
@@ -539,8 +529,7 @@ public interface BlocksPackage extends EPackage {
 	int NESTED_CONNECTOR_END_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl
 	 * <em>Participant Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl
@@ -577,8 +566,7 @@ public interface BlocksPackage extends EPackage {
 	int PARTICIPANT_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl
 	 * <em>Connector Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl
@@ -615,9 +603,8 @@ public interface BlocksPackage extends EPackage {
 	int CONNECTOR_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl <em>Binding Connector</em>}
-	 * ' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl <em>Binding Connector</em>} ' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl
 	 * @see org.eclipse.papyrus.sysml.blocks.impl.BlocksPackageImpl#getBindingConnector()
@@ -644,8 +631,7 @@ public interface BlocksPackage extends EPackage {
 	int BINDING_CONNECTOR_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl
 	 * <em>Property Specific Type</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl
@@ -683,8 +669,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getBindingConnector();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.BindingConnector#getBase_Connector
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.BindingConnector#getBase_Connector
 	 * <em>Base Connector</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Connector</em>'.
@@ -705,8 +690,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getBlock();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class <em>Base Class</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class <em>Base Class</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -717,8 +701,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getBlock_Base_Class();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated <em>Is Encapsulated</em>}'.
+	 * Returns the meta object for the attribute ' {@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated <em>Is Encapsulated</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Is Encapsulated</em>'.
@@ -748,8 +731,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getConnectorProperty();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getBase_Property
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getBase_Property
 	 * <em>Base Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Property</em>'.
@@ -760,8 +742,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getConnectorProperty_Base_Property();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getConnector <em>Connector</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getConnector <em>Connector</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Connector</em>'.
@@ -782,8 +763,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getDimension();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.Dimension#getBase_InstanceSpecification
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.Dimension#getBase_InstanceSpecification
 	 * <em>Base Instance Specification</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Instance Specification</em>'.
@@ -794,8 +774,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getDimension_Base_InstanceSpecification();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty <em>Distributed Property</em>}'.
+	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty <em>Distributed Property</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Distributed Property</em>'.
@@ -805,8 +784,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getDistributedProperty();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty#getBase_Property
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty#getBase_Property
 	 * <em>Base Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Property</em>'.
@@ -817,8 +795,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getDistributedProperty_Base_Property();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd <em>Nested Connector End</em>}'.
+	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd <em>Nested Connector End</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Nested Connector End</em>'.
@@ -828,8 +805,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getNestedConnectorEnd();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd
 	 * <em>Base Connector End</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Connector End</em>'.
@@ -840,8 +816,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getNestedConnectorEnd_Base_ConnectorEnd();
 
 	/**
-	 * Returns the meta object for the reference list '
-	 * {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath
+	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath
 	 * <em>Property Path</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Property Path</em>'.
@@ -852,8 +827,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getNestedConnectorEnd_PropertyPath();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty <em>Participant Property</em>}'.
+	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty <em>Participant Property</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Participant Property</em>'.
@@ -863,8 +837,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getParticipantProperty();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getBase_Property
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getBase_Property
 	 * <em>Base Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Property</em>'.
@@ -875,8 +848,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getParticipantProperty_Base_Property();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getEnd <em>End</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getEnd <em>End</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>End</em>'.
@@ -887,9 +859,8 @@ public interface BlocksPackage extends EPackage {
 	EReference getParticipantProperty_End();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType <em>Property Specific Type</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType <em>Property Specific Type</em>} '. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Property Specific Type</em>'.
 	 * @see org.eclipse.papyrus.sysml.blocks.PropertySpecificType
@@ -898,8 +869,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getPropertySpecificType();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier
 	 * <em>Base Classifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Classifier</em>'.
@@ -920,8 +890,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getUnit();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.Unit#getBase_InstanceSpecification
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.Unit#getBase_InstanceSpecification
 	 * <em>Base Instance Specification</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Instance Specification</em>'.
@@ -932,8 +901,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getUnit_Base_InstanceSpecification();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.Unit#getDimension <em>Dimension</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.Unit#getDimension <em>Dimension</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Dimension</em>'.
@@ -954,8 +922,7 @@ public interface BlocksPackage extends EPackage {
 	EClass getValueType();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ValueType#getBase_DataType <em>Base Data Type</em>}'.
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.ValueType#getBase_DataType <em>Base Data Type</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Data Type</em>'.
@@ -966,8 +933,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getValueType_Base_DataType();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ValueType#getDimension <em>Dimension</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.ValueType#getDimension <em>Dimension</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Dimension</em>'.
@@ -978,8 +944,7 @@ public interface BlocksPackage extends EPackage {
 	EReference getValueType_Dimension();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.sysml.blocks.ValueType#getUnit <em>Unit</em>}'. <!--
+	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.blocks.ValueType#getUnit <em>Unit</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Unit</em>'.

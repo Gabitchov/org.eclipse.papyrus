@@ -32,7 +32,7 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 	 * Instantiates a new custom adapter factory content provider.
 	 * 
 	 * @param adapterFactory
-	 *            the adapter factory
+	 *        the adapter factory
 	 */
 	public CustomAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
@@ -44,7 +44,7 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 	public Object[] getChildren(Object object) {
 		Object[] result = super.getChildren(object);
 		ArrayList diagfound = lookForAttachedDiagram(object);
-		if (diagfound.size() == 0) {
+		if(diagfound.size() == 0) {
 			return result;
 		}
 		diagfound.addAll(Arrays.asList(result));
@@ -56,7 +56,7 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 	 * {@inheritDoc}
 	 */
 	public boolean hasChildren(Object object) {
-		if (object instanceof Diagram) {
+		if(object instanceof Diagram) {
 			return false;
 		}
 		ArrayList diagfound = lookForAttachedDiagram(object);
@@ -68,17 +68,17 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 	 * Look for attached diagram.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the array list
 	 */
 	public ArrayList lookForAttachedDiagram(Object object) {
 		ArrayList result = new ArrayList();
-		IPageMngr iPageMngr = (IPageMngr) EditorUtils.getIPageMngr();
+		IPageMngr iPageMngr = (IPageMngr)EditorUtils.getIPageMngr();
 		Iterator iter = iPageMngr.allPages().iterator();
-		while (iter.hasNext()) {
-			Diagram diag = (Diagram) iter.next();
-			if (diag.getElement().equals(object)) {
+		while(iter.hasNext()) {
+			Diagram diag = (Diagram)iter.next();
+			if(diag.getElement().equals(object)) {
 				result.add(diag);
 			}
 		}

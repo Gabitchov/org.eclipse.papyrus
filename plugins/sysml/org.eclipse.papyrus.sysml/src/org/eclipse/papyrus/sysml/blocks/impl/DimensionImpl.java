@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl#getBase_InstanceSpecification <em>
- * Base Instance Specification</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl#getBase_InstanceSpecification <em> Base Instance Specification</em>}</li>
  * </ul>
  * </p>
  * 
@@ -73,9 +72,9 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION:
-			if (resolve)
+			if(resolve)
 				return getBase_InstanceSpecification();
 			return basicGetBase_InstanceSpecification();
 		}
@@ -89,7 +88,7 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION:
 			return base_InstanceSpecification != null;
 		}
@@ -103,9 +102,9 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION:
-			setBase_InstanceSpecification((InstanceSpecification) newValue);
+			setBase_InstanceSpecification((InstanceSpecification)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -128,9 +127,9 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION:
-			setBase_InstanceSpecification((InstanceSpecification) null);
+			setBase_InstanceSpecification((InstanceSpecification)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -142,11 +141,11 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 	 * @generated
 	 */
 	public InstanceSpecification getBase_InstanceSpecification() {
-		if (base_InstanceSpecification != null && base_InstanceSpecification.eIsProxy()) {
-			InternalEObject oldBase_InstanceSpecification = (InternalEObject) base_InstanceSpecification;
-			base_InstanceSpecification = (InstanceSpecification) eResolveProxy(oldBase_InstanceSpecification);
-			if (base_InstanceSpecification != oldBase_InstanceSpecification) {
-				if (eNotificationRequired())
+		if(base_InstanceSpecification != null && base_InstanceSpecification.eIsProxy()) {
+			InternalEObject oldBase_InstanceSpecification = (InternalEObject)base_InstanceSpecification;
+			base_InstanceSpecification = (InstanceSpecification)eResolveProxy(oldBase_InstanceSpecification);
+			if(base_InstanceSpecification != oldBase_InstanceSpecification) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification,
 							base_InstanceSpecification));
@@ -163,7 +162,7 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 	public void setBase_InstanceSpecification(InstanceSpecification newBase_InstanceSpecification) {
 		InstanceSpecification oldBase_InstanceSpecification = base_InstanceSpecification;
 		base_InstanceSpecification = newBase_InstanceSpecification;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION,
 					oldBase_InstanceSpecification, base_InstanceSpecification));
 	}

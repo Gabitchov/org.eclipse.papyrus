@@ -50,9 +50,9 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 	@Override
 	public void init(ICommonActionExtensionSite aSite) {
 		super.init(aSite);
-		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
+		if(aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
 			myContribute = true;
-			makeActions((ICommonViewerWorkbenchSite) aSite.getViewSite());
+			makeActions((ICommonViewerWorkbenchSite)aSite.getViewSite());
 		} else {
 			myContribute = false;
 		}
@@ -70,13 +70,13 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 	 */
 	@Override
 	public void fillActionBars(IActionBars actionBars) {
-		if (!myContribute) {
+		if(!myContribute) {
 			return;
 		}
-		IStructuredSelection selection = (IStructuredSelection) getContext()
+		IStructuredSelection selection = (IStructuredSelection)getContext()
 				.getSelection();
 		myOpenDiagramAction.selectionChanged(selection);
-		if (myOpenDiagramAction.isEnabled()) {
+		if(myOpenDiagramAction.isEnabled()) {
 			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
 					myOpenDiagramAction);
 		}
@@ -117,18 +117,18 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		 */
 		public final void selectionChanged(IStructuredSelection selection) {
 			myDiagram = null;
-			if (selection.size() == 1) {
+			if(selection.size() == 1) {
 				Object selectedElement = selection.getFirstElement();
-				if (selectedElement instanceof UMLNavigatorItem) {
-					selectedElement = ((UMLNavigatorItem) selectedElement)
+				if(selectedElement instanceof UMLNavigatorItem) {
+					selectedElement = ((UMLNavigatorItem)selectedElement)
 							.getView();
-				} else if (selectedElement instanceof IAdaptable) {
-					selectedElement = ((IAdaptable) selectedElement)
+				} else if(selectedElement instanceof IAdaptable) {
+					selectedElement = ((IAdaptable)selectedElement)
 							.getAdapter(View.class);
 				}
-				if (selectedElement instanceof Diagram) {
-					Diagram diagram = (Diagram) selectedElement;
-					if (StateMachineEditPart.MODEL_ID
+				if(selectedElement instanceof Diagram) {
+					Diagram diagram = (Diagram)selectedElement;
+					if(StateMachineEditPart.MODEL_ID
 							.equals(UMLVisualIDRegistry.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
@@ -142,7 +142,7 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		 */
 		@Override
 		public void run() {
-			if (myDiagram == null || myDiagram.eResource() == null) {
+			if(myDiagram == null || myDiagram.eResource() == null) {
 				return;
 			}
 
@@ -151,8 +151,7 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			try {
 				page.openEditor(editorInput, UMLDiagramEditor.ID);
 			} catch (PartInitException e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Exception while openning diagram", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError("Exception while openning diagram", e); //$NON-NLS-1$
 			}
 		}
 
@@ -160,14 +159,14 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		 * @generated
 		 */
 		private IEditorInput getEditorInput() {
-			for (Iterator it = myDiagram.eResource().getContents().iterator(); it
+			for(Iterator it = myDiagram.eResource().getContents().iterator(); it
 					.hasNext();) {
-				EObject nextEObject = (EObject) it.next();
-				if (nextEObject == myDiagram) {
+				EObject nextEObject = (EObject)it.next();
+				if(nextEObject == myDiagram) {
 					return new FileEditorInput(WorkspaceSynchronizer
 							.getFile(myDiagram.eResource()));
 				}
-				if (nextEObject instanceof Diagram) {
+				if(nextEObject instanceof Diagram) {
 					break;
 				}
 			}

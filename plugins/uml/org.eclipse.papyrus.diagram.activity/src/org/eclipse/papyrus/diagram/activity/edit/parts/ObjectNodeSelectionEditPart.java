@@ -26,8 +26,7 @@ import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 /**
  * @generated
  */
-public class ObjectNodeSelectionEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class ObjectNodeSelectionEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,42 +46,31 @@ public class ObjectNodeSelectionEditPart extends ConnectionNodeEditPart
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ObjectNodeSelectionItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ObjectNodeSelectionItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
 		// ** install new ConnectionEditPolicy
-		installEditPolicy(EditPolicy.CONNECTION_ROLE,
-				new ConnectionEditPolicy() {
-					@Override
-					protected boolean shouldDeleteSemantic() {
-						return false;
-					}
+		installEditPolicy(EditPolicy.CONNECTION_ROLE, new ConnectionEditPolicy() {
 
-					@Override
-					protected Command createDeleteViewCommand(
-							GroupRequest deleteRequest) {
-						Command command = super
-								.createDeleteViewCommand(deleteRequest);
-						command = command
-								.chain(new ICommandProxy(
-										new RemoveEObjectReferencesFromDiagram(
-												getEditingDomain(),
-												ObjectNodeSelectionEditPart.this
-														.getDiagramView(),
-												Collections
-														.singletonList(resolveSemanticElement()))));
-						return command;
-					}
-				});
+			@Override
+			protected boolean shouldDeleteSemantic() {
+				return false;
+			}
+
+			@Override
+			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
+				Command command = super.createDeleteViewCommand(deleteRequest);
+				command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(getEditingDomain(), ObjectNodeSelectionEditPart.this.getDiagramView(), Collections
+						.singletonList(resolveSemanticElement()))));
+				return command;
+			}
+		});
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -122,8 +110,7 @@ public class ObjectNodeSelectionEditPart extends ConnectionNodeEditPart
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 
 		// no target or source features found
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification,
-				features);
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification, features);
 	}
 
 }

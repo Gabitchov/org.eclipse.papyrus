@@ -16,8 +16,7 @@ import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 /**
  * @generated
  */
-public class ActivityPartitionActivityPartitionCompartment2ViewFactory extends
-		BasicNodeViewFactory {
+public class ActivityPartitionActivityPartitionCompartment2ViewFactory extends BasicNodeViewFactory {
 
 	/**
 	 * @generated
@@ -34,16 +33,12 @@ public class ActivityPartitionActivityPartitionCompartment2ViewFactory extends
 	 * @generated
 	 */
 	@Override
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry
-					.getType(ActivityPartitionActivityPartitionCompartment2EditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry.getType(ActivityPartitionActivityPartitionCompartment2EditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
 		setupCompartmentTitle(view);
 		setupCompartmentCollapsed(view);
 	}
@@ -52,8 +47,7 @@ public class ActivityPartitionActivityPartitionCompartment2ViewFactory extends
 	 * @generated
 	 */
 	protected void setupCompartmentTitle(View view) {
-		TitleStyle titleStyle = (TitleStyle) view
-				.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+		TitleStyle titleStyle = (TitleStyle) view.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
 		if (titleStyle != null) {
 			titleStyle.setShowTitle(true);
 		}
@@ -63,8 +57,7 @@ public class ActivityPartitionActivityPartitionCompartment2ViewFactory extends
 	 * @generated
 	 */
 	protected void setupCompartmentCollapsed(View view) {
-		DrawerStyle drawerStyle = (DrawerStyle) view
-				.getStyle(NotationPackage.eINSTANCE.getDrawerStyle());
+		DrawerStyle drawerStyle = (DrawerStyle) view.getStyle(NotationPackage.eINSTANCE.getDrawerStyle());
 		if (drawerStyle != null) {
 			drawerStyle.setCollapsed(false);
 		}

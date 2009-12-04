@@ -12,41 +12,34 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 /**
  * @generated
  */
-public class UMLDomainNavigatorItem extends PlatformObject implements
-		IAdaptableSelection {
+public class UMLDomainNavigatorItem extends PlatformObject implements IAdaptableSelection {
 
 	/**
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class,
-				IPropertySource.class };
-		Platform.getAdapterManager().registerAdapters(
-				new IAdapterFactory() {
+		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
+		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
-					public Object getAdapter(Object adaptableObject,
-							Class adapterType) {
-						if (adaptableObject instanceof org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem) {
-							org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem) adaptableObject;
-							EObject eObject = domainNavigatorItem.getEObject();
-							if (adapterType == EObject.class) {
-								return eObject;
-							}
-							if (adapterType == IPropertySource.class) {
-								return domainNavigatorItem
-										.getPropertySourceProvider()
-										.getPropertySource(eObject);
-							}
-						}
-
-						return null;
+			public Object getAdapter(Object adaptableObject, Class adapterType) {
+				if (adaptableObject instanceof org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem) {
+					org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem) adaptableObject;
+					EObject eObject = domainNavigatorItem.getEObject();
+					if (adapterType == EObject.class) {
+						return eObject;
 					}
-
-					public Class[] getAdapterList() {
-						return supportedTypes;
+					if (adapterType == IPropertySource.class) {
+						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
-				},
-				org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem.class);
+				}
+
+				return null;
+			}
+
+			public Class[] getAdapterList() {
+				return supportedTypes;
+			}
+		}, org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem.class);
 	}
 
 	/**
@@ -67,8 +60,7 @@ public class UMLDomainNavigatorItem extends PlatformObject implements
 	/**
 	 * @generated
 	 */
-	public UMLDomainNavigatorItem(EObject eObject, Object parent,
-			IPropertySourceProvider propertySourceProvider) {
+	public UMLDomainNavigatorItem(EObject eObject, Object parent, IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
 		myEObject = eObject;
 		myPropertySourceProvider = propertySourceProvider;
@@ -101,12 +93,7 @@ public class UMLDomainNavigatorItem extends PlatformObject implements
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil
-					.getURI(getEObject())
-					.equals(
-							EcoreUtil
-									.getURI(((org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem) obj)
-											.getEObject()));
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem) obj).getEObject()));
 		}
 		return super.equals(obj);
 	}

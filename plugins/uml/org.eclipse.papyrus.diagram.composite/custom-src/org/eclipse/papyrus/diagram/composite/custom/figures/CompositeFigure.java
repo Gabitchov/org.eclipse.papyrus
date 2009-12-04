@@ -58,11 +58,11 @@ public class CompositeFigure extends NodeNamedElementFigure {
 
 			// Update Figure children bounds (labels, containers...)
 			List<?> childrenList = container.getChildren();
-			for (int i = 0; i < childrenList.size(); i++) {
+			for(int i = 0; i < childrenList.size(); i++) {
 
 				// Initialize child bounds
-				IFigure currentChild = (IFigure) childrenList.get(i);
-				Rectangle oldBounds = ((IFigure) childrenList.get(i)).getBounds();
+				IFigure currentChild = (IFigure)childrenList.get(i);
+				Rectangle oldBounds = ((IFigure)childrenList.get(i)).getBounds();
 				Rectangle newBounds = new Rectangle(oldBounds);
 
 				// Update child size
@@ -70,9 +70,9 @@ public class CompositeFigure extends NodeNamedElementFigure {
 				newBounds.width = getBounds().width;
 
 				// Update child position
-				if (i > 0) {
+				if(i > 0) {
 					// Calculate position based on the above child
-					IFigure previousChild = (IFigure) childrenList.get(i - 1);
+					IFigure previousChild = (IFigure)childrenList.get(i - 1);
 					int previousChildY = previousChild.getBounds().getBottomLeft().y;
 
 					newBounds.x = getBounds().x;
@@ -93,7 +93,7 @@ public class CompositeFigure extends NodeNamedElementFigure {
 			}
 
 			// Update Composite compartment bounds
-			if (getCompositeCompartmentFigure() != null) {
+			if(getCompositeCompartmentFigure() != null) {
 
 				// Initialize compartment bounds
 				Rectangle oldCompositeBound = getCompositeCompartmentFigure().getBounds();
@@ -115,8 +115,8 @@ public class CompositeFigure extends NodeNamedElementFigure {
 	private RectangleFigure compositeCompartment;
 
 	/**
-	 * Optional Tag Label for the figure. May be used by inherited figures (ex:
-	 * {@link InterfaceCompositeFigure}) to add a stereotype like label describing element type (ex:
+	 * Optional Tag Label for the figure. May be used by inherited figures (ex: {@link InterfaceCompositeFigure}) to add a stereotype like label
+	 * describing element type (ex:
 	 * <<Interface>>).
 	 */
 	private Label tagLabel;
@@ -165,7 +165,7 @@ public class CompositeFigure extends NodeNamedElementFigure {
 	 * Initialize tagLabel with the keyword parameter
 	 * 
 	 * @param keyword
-	 *            the string to show in label
+	 *        the string to show in label
 	 */
 	protected void createTagLabel(String keyword) {
 

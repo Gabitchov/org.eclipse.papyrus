@@ -50,7 +50,7 @@ public class PapyrusPathmapsPreferencePage extends PathmapsPreferencePage implem
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#setElement(org.eclipse.core.runtime.IAdaptable)
 	 */
 	public void setElement(IAdaptable element) {
-		project = (IProject) element.getAdapter(IResource.class);
+		project = (IProject)element.getAdapter(IResource.class);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class PapyrusPathmapsPreferencePage extends PathmapsPreferencePage implem
 	 */
 	protected IPreferenceStore doGetPreferenceStore() {
 		IPreferenceStore store;
-		if (project != null) {
+		if(project != null) {
 			store = new ScopedPreferenceStore(new ProjectScope(project), getBundleId());
 		} else {
 			store = new ScopedPreferenceStore(new InstanceScope(), getBundleId());

@@ -44,13 +44,13 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	 * Constructs a new request to remove the value of a structural feature in a model element.
 	 * 
 	 * @param editingDomain
-	 *            the editing domain in which I am requesting to make model
+	 *        the editing domain in which I am requesting to make model
 	 * @param elementToEdit
-	 *            the owner of the structural feature
+	 *        the owner of the structural feature
 	 * @param feature
-	 *            the structural feature whose value is to be removed
+	 *        the structural feature whose value is to be removed
 	 * @param value
-	 *            the value to remove
+	 *        the value to remove
 	 */
 	public RemoveValueRequest(TransactionalEditingDomain editingDomain, EObject elementToEdit,
 			EStructuralFeature feature, Object value) {
@@ -66,11 +66,11 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	 * editing domain will be derived from the <code>elementToEdit</code>.
 	 * 
 	 * @param elementToEdit
-	 *            the owner of the structural feature
+	 *        the owner of the structural feature
 	 * @param feature
-	 *            the structural feature whose value is to be removed
+	 *        the structural feature whose value is to be removed
 	 * @param value
-	 *            the value to remove
+	 *        the value to remove
 	 */
 	// @unused
 	public RemoveValueRequest(EObject elementToEdit, EStructuralFeature feature, Object value) {
@@ -113,7 +113,7 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	 */
 	@Override
 	public List getElementsToEdit() {
-		if (elementToEdit != null) {
+		if(elementToEdit != null) {
 			return Collections.singletonList(elementToEdit);
 		}
 
@@ -129,7 +129,7 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	public Object getEditHelperContext() {
 		IClientContext context = getClientContext();
 
-		if (context == null) {
+		if(context == null) {
 			return elementToEdit;
 		} else {
 			return new EditHelperContext(elementToEdit, context);

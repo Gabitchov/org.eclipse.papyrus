@@ -29,7 +29,7 @@ public class AppliedStereotypeOperationDisplayEditPolicy extends AbstractApplied
 	 */
 	@Override
 	protected Operation getUMLElement() {
-		return (Operation) super.getUMLElement();
+		return (Operation)super.getUMLElement();
 	};
 
 	/**
@@ -38,7 +38,7 @@ public class AppliedStereotypeOperationDisplayEditPolicy extends AbstractApplied
 	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
-		OperationLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
+		OperationLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)getHost());
 	}
 
 }

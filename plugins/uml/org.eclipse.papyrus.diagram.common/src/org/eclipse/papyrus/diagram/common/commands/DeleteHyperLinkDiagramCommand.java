@@ -35,11 +35,11 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 * Instantiates a new delete hyper link command used to suppress a link in the view
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param diagram
-	 *            the localization of the link
+	 *        the localization of the link
 	 */
 	public DeleteHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, EModelElement diagram) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
@@ -53,16 +53,16 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 		ArrayList<EAnnotation> eAnnotationsToRemove = new ArrayList<EAnnotation>();
 		Iterator<EAnnotation> iter = getObject().getEAnnotations().iterator();
 		// look for interesting eannotations
-		while (iter.hasNext()) {
+		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			if (currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
-				if (currentAnnotation.getReferences().contains(diagram)) {
+			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+				if(currentAnnotation.getReferences().contains(diagram)) {
 					eAnnotationsToRemove.add(currentAnnotation);
 				}
 			}
 		}
 		// remove all eannotations
-		for (int i = 0; i < eAnnotationsToRemove.size(); i++) {
+		for(int i = 0; i < eAnnotationsToRemove.size(); i++) {
 			getObject().getEAnnotations().remove(eAnnotationsToRemove.get(i));
 		}
 

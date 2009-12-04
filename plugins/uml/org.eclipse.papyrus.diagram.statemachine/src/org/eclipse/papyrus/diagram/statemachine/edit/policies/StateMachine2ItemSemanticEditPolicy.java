@@ -46,26 +46,26 @@ public class StateMachine2ItemSemanticEditPolicy extends
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
-		if (UMLElementTypes.Region_2001 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Region_2001 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getStateMachine_Region());
 			}
 			return getGEFWrapper(new RegionCreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2022 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2022 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getStateMachine_ConnectionPoint());
 			}
 			return getGEFWrapper(new Pseudostate13CreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_2023 == req.getElementType()) {
-			if (req.getContainmentFeature() == null) {
+		if(UMLElementTypes.Pseudostate_2023 == req.getElementType()) {
+			if(req.getContainmentFeature() == null) {
 				req.setContainmentFeature(UMLPackage.eINSTANCE
 						.getStateMachine_ConnectionPoint());
 			}
@@ -82,8 +82,8 @@ public class StateMachine2ItemSemanticEditPolicy extends
 		CompoundCommand cc = getDestroyEdgesCommand();
 		addDestroyChildNodesCommand(cc);
 		addDestroyShortcutsCommand(cc);
-		View view = (View) getHost().getModel();
-		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+		View view = (View)getHost().getModel();
+		if(view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 			req.setElementToDestroy(view);
 		}
 		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
@@ -94,21 +94,21 @@ public class StateMachine2ItemSemanticEditPolicy extends
 	 * @generated NOT
 	 */
 	protected void addDestroyChildNodesCommand(CompoundCommand cmd) {
-		View view = (View) getHost().getModel();
+		View view = (View)getHost().getModel();
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation != null) {
+		if(annotation != null) {
 			return;
 		}
-		for (Iterator it = view.getChildren().iterator(); it.hasNext();) {
-			Node node = (Node) it.next();
-			switch (UMLVisualIDRegistry.getVisualID(node)) {
+		for(Iterator it = view.getChildren().iterator(); it.hasNext();) {
+			Node node = (Node)it.next();
+			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case RegionEditPart.VISUAL_ID:
 				// Allow to delete the StateMachine although only exists one
 				// Region
-				if (getSemanticElement() instanceof StateMachine) {
-					StateMachine sm = (StateMachine) getSemanticElement();
+				if(getSemanticElement() instanceof StateMachine) {
+					StateMachine sm = (StateMachine)getSemanticElement();
 
-					if (sm.getRegions().size() <= 1)
+					if(sm.getRegions().size() <= 1)
 						continue;
 
 					cmd.add(getDestroyElementCommand(node));
@@ -140,11 +140,11 @@ public class StateMachine2ItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return null;
 		}
@@ -159,14 +159,14 @@ public class StateMachine2ItemSemanticEditPolicy extends
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
@@ -183,7 +183,7 @@ public class StateMachine2ItemSemanticEditPolicy extends
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case ElementOwnedCommentEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementOwnedCommentReorientCommand(req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

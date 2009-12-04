@@ -154,7 +154,7 @@ public class EditorUtils {
 
 	/**
 	 * Lookup the currently active Diagram from the Papyrus editor. Return the current Diagram or
-	 * null if none is active. 
+	 * null if none is active.
 	 * TODO This method introduce dependency on GMF. It can be moved to a GMF plugin.
 	 * 
 	 * @return the active diagram editor or null if not found.

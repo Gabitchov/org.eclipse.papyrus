@@ -31,7 +31,7 @@ public class GMFtoEMFCommandWrapper extends AbstractCommand {
 	 * Constructor.
 	 * 
 	 * @param gmfCommand
-	 *            the gmf command
+	 *        the gmf command
 	 */
 	public GMFtoEMFCommandWrapper(ICommand gmfCommand) {
 		super(gmfCommand.getLabel());

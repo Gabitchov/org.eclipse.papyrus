@@ -38,8 +38,7 @@ public interface ValueType extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Data Type</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Data Type</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Data Type</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -54,8 +53,7 @@ public interface ValueType extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Dimension</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dimension</em>' reference isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>Dimension</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -70,8 +68,7 @@ public interface ValueType extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Unit</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Unit</em>' reference isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Unit</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -88,7 +85,7 @@ public interface ValueType extends EObject {
 	 * <em>Base Data Type</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Data Type</em>' reference.
+	 *        the new value of the '<em>Base Data Type</em>' reference.
 	 * @see #getBase_DataType()
 	 * @generated
 	 */
@@ -99,7 +96,7 @@ public interface ValueType extends EObject {
 	 * <em>Dimension</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Dimension</em>' reference.
+	 *        the new value of the '<em>Dimension</em>' reference.
 	 * @see #getDimension()
 	 * @generated
 	 */
@@ -110,7 +107,7 @@ public interface ValueType extends EObject {
 	 * <em>Unit</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Unit</em>' reference.
+	 *        the new value of the '<em>Unit</em>' reference.
 	 * @see #getUnit()
 	 * @generated
 	 */

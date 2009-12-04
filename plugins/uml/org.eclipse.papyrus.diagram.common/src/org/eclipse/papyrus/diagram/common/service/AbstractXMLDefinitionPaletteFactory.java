@@ -24,7 +24,7 @@ public abstract class AbstractXMLDefinitionPaletteFactory {
 	 * action when visiting a content node
 	 * 
 	 * @param node
-	 *            the node to visit
+	 *        the node to visit
 	 */
 	public abstract void traverseContentNode(Node node);
 
@@ -32,7 +32,7 @@ public abstract class AbstractXMLDefinitionPaletteFactory {
 	 * action when visiting a drawer node
 	 * 
 	 * @param node
-	 *            the node to visit
+	 *        the node to visit
 	 */
 	public abstract void traverseDrawerNode(Node node);
 
@@ -40,7 +40,7 @@ public abstract class AbstractXMLDefinitionPaletteFactory {
 	 * action when visiting a drawer node
 	 * 
 	 * @param node
-	 *            the node to visit
+	 *        the node to visit
 	 */
 	public abstract void traverseToolEntryNode(Node node);
 
@@ -48,7 +48,7 @@ public abstract class AbstractXMLDefinitionPaletteFactory {
 	 * action when visiting a drawer node
 	 * 
 	 * @param node
-	 *            the node to visit
+	 *        the node to visit
 	 */
 	public abstract void traverseStackNode(Node node);
 
@@ -56,7 +56,7 @@ public abstract class AbstractXMLDefinitionPaletteFactory {
 	 * action when visiting a drawer node
 	 * 
 	 * @param node
-	 *            the node to visit
+	 *        the node to visit
 	 */
 	public abstract void traverseSeparatorNode(Node node);
 
@@ -64,7 +64,7 @@ public abstract class AbstractXMLDefinitionPaletteFactory {
 	 * action when visiting a aspect tool node
 	 * 
 	 * @param node
-	 *            the node to visit
+	 *        the node to visit
 	 */
 	public abstract void traverseAspectToolEntryNode(Node node);
 

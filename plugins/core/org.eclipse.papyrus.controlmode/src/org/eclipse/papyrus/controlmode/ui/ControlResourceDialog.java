@@ -82,12 +82,12 @@ public class ControlResourceDialog extends ResourceDialog {
 		Resource resource = resourceSet.getResource(uri, false);
 		boolean resourceInSet = resource != null;
 
-		if (resource == currentResource) {
+		if(resource == currentResource) {
 			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"),
 					EMFEditUIPlugin.INSTANCE.getString("_WARN_AlreadyInResource"));
 			return false;
 		}
-		if (domain.isReadOnly(resource)) {
+		if(domain.isReadOnly(resource)) {
 			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"),
 					EMFEditUIPlugin.INSTANCE.getString("_WARN_ReadOnlyResource"));
 			return false;
@@ -96,7 +96,7 @@ public class ControlResourceDialog extends ResourceDialog {
 		boolean resourceExists = false;
 		try {
 			InputStream stream = resourceSet.getURIConverter().createInputStream(uri);
-			if (stream != null) {
+			if(stream != null) {
 				resourceExists = true;
 				stream.close();
 			}
@@ -105,15 +105,15 @@ public class ControlResourceDialog extends ResourceDialog {
 		}
 
 		boolean resourceBad = false;
-		if (!resourceInSet) {
+		if(!resourceInSet) {
 			resource = resourceSet.createResource(uri);
-			if (resource == null) {
+			if(resource == null) {
 				MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"),
 						EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 				return false;
 			}
 
-			if (resourceExists) {
+			if(resourceExists) {
 				try {
 					resource = resourceSet.getResource(uri, true);
 				} catch (RuntimeException exception) {
@@ -124,17 +124,17 @@ public class ControlResourceDialog extends ResourceDialog {
 		}
 
 		boolean result = true;
-		if (resourceBad) {
+		if(resourceBad) {
 			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE
 					.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE
 					.getString("_WARN_ReplaceResource"));
-		} else if (resourceExists) {
+		} else if(resourceExists) {
 			result = MessageDialog
 					.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"),
-							EMFEditUIPlugin.INSTANCE.getString("_WARN_AddToResource"));
+					EMFEditUIPlugin.INSTANCE.getString("_WARN_AddToResource"));
 		}
 
-		if (!result && !resourceInSet) {
+		if(!result && !resourceInSet) {
 			resource.unload();
 			resourceSet.getResources().remove(resource);
 		} else {

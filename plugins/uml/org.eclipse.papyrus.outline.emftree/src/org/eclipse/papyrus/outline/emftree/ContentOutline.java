@@ -125,9 +125,9 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 
 		// Get the EditorActionBarContributor requested by this particular EMF editor.
 		// The EditorActionBarContributor should be registered in extensions under the specified name
-//		String EditorActionBarContributorId = "DiActionBarContributor";
-//		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry().getActionBarContributor(EditorActionBarContributorId);
-//		IEditorSite site = new MultiPageAdapterSite(multiEditor.getEditorSite(), actionBarContributor);
+		//		String EditorActionBarContributorId = "DiActionBarContributor";
+		//		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry().getActionBarContributor(EditorActionBarContributorId);
+		//		IEditorSite site = new MultiPageAdapterSite(multiEditor.getEditorSite(), actionBarContributor);
 		this.editorSite = multiEditor.getEditorSite();
 		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
 		initAdapterFactory();
@@ -150,7 +150,7 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		//
 		createContextMenuFor(contentOutlineViewer);
 
-		if (!editingDomain.getResourceSet().getResources().isEmpty()) {
+		if(!editingDomain.getResourceSet().getResources().isEmpty()) {
 			// Select the root object in the view.
 			//
 			contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
@@ -182,7 +182,7 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 
 	private EditingDomainActionBarContributor getActionBarContributor() {
 
-		return (EditingDomainActionBarContributor) editorSite.getActionBarContributor();
+		return (EditingDomainActionBarContributor)editorSite.getActionBarContributor();
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		getEditorSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[]{ LocalTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 
@@ -212,7 +212,7 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 	 * with contributions from the Edit menu. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	public void menuAboutToShow(IMenuManager menuManager) {
-		((IMenuListener) getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
+		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
 	}
 
 	/**

@@ -108,7 +108,7 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Instantiates a new layout tool toolbar.
 	 * 
 	 * @param id
-	 *            the id
+	 *        the id
 	 */
 	public LayoutToolToolbar(String id) {
 		super(id);
@@ -123,7 +123,7 @@ public class LayoutToolToolbar extends ContributionItem {
 	public void fill(final ToolBar toolBar, int index) {
 		this.toolbar = toolBar;
 		itemDropDown = new ToolItem(toolBar, SWT.DROP_DOWN);
-		if (currentAlgorithm == null) {
+		if(currentAlgorithm == null) {
 			itemDropDown.setImage(imageLayout);
 		} else {
 			itemDropDown.setImage(currentAlgorithm.getIcon());
@@ -134,7 +134,7 @@ public class LayoutToolToolbar extends ContributionItem {
 
 			public void handleEvent(Event event) {
 				getMenu(toolbar);
-				if (event.detail == SWT.ARROW) {
+				if(event.detail == SWT.ARROW) {
 					Rectangle bounds = itemDropDown.getBounds();
 					Point point = toolBar.toDisplay(bounds.x, bounds.y + bounds.height);
 					menu.setLocation(point);
@@ -147,22 +147,22 @@ public class LayoutToolToolbar extends ContributionItem {
 
 			public void handleEvent(Event event) {
 				getSelection();
-				if (currentAlgorithm == null && event.y == 0 && itemForMenu.getData() != null
+				if(currentAlgorithm == null && event.y == 0 && itemForMenu.getData() != null
 						&& itemForMenu.getData().equals(itemLayoutText)) {
 					createLayoutArea();
 				}
-				if (hasElementsSelected()) {
-					if (event.y == 0) {
-						if (currentAlgorithm != null) {
+				if(hasElementsSelected()) {
+					if(event.y == 0) {
+						if(currentAlgorithm != null) {
 							callAlgorithm();
 						}
 					}
-					for (MenuItem menuItem : menu.getItems()) {
+					for(MenuItem menuItem : menu.getItems()) {
 						menuItem.setEnabled(true);
 					}
 				} else {
-					for (MenuItem menuItem : menu.getItems()) {
-						if (!menuItem.getText().equals(itemLayoutText)) {
+					for(MenuItem menuItem : menu.getItems()) {
+						if(!menuItem.getText().equals(itemLayoutText)) {
 							menuItem.setEnabled(false);
 						}
 					}
@@ -178,17 +178,17 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Gets the menu.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return Menu
 	 */
 	public Menu getMenu(Control parent) {
 		menu = new Menu(parent);
 		insertIntoMenuAlgorithms();
-		if (menu.getItems().length > 0) {
-			if (parent instanceof ToolBar) {
-				toolbar = (ToolBar) parent;
-				if (toolbar.getItems().length == 1) {
+		if(menu.getItems().length > 0) {
+			if(parent instanceof ToolBar) {
+				toolbar = (ToolBar)parent;
+				if(toolbar.getItems().length == 1) {
 					itemForMenu = toolbar.getItem(0);
 				}
 			}
@@ -201,27 +201,27 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Add algorithms into the menu.
 	 */
 	private void insertIntoMenuAlgorithms() {
-		if (algorithmes == null || algorithmes.isEmpty()) {
+		if(algorithmes == null || algorithmes.isEmpty()) {
 			Activator.getDefault().log("Algorithms not found");
 			return;
 		}
 		Map<String, Menu> mapMenuPath = new HashMap<String, Menu>();
-		for (final LayoutToolAlgorithms a : algorithmes) {
+		for(final LayoutToolAlgorithms a : algorithmes) {
 			Menu submenu = menu;
-			if (a.getPath() != null) {
+			if(a.getPath() != null) {
 				String[] pathSplit = a.getPath().split("\\.");
 				String subString = "";
-				for (int i = 0; i < pathSplit.length; i++) {
+				for(int i = 0; i < pathSplit.length; i++) {
 					subString += pathSplit[i];
-					if (!mapMenuPath.keySet().contains(subString)) {
+					if(!mapMenuPath.keySet().contains(subString)) {
 						MenuItem itemPath = new MenuItem(submenu, SWT.CASCADE);
 						itemPath.setText(pathSplit[i]);
 						submenu = new Menu(submenu);
 						itemPath.setMenu(submenu);
 						mapMenuPath.put(subString, submenu);
 					} else {
-						for (String path : mapMenuPath.keySet()) {
-							if (subString.equals(path)) {
+						for(String path : mapMenuPath.keySet()) {
+							if(subString.equals(path)) {
 								submenu = mapMenuPath.get(path);
 							}
 						}
@@ -233,17 +233,17 @@ public class LayoutToolToolbar extends ContributionItem {
 			item.setText(a.getName());
 			item.setImage(a.getIcon());
 			item.setData(a);
-			if (a.getToolTipText() != null) {
+			if(a.getToolTipText() != null) {
 				final ToolTip toolTip = new ToolTip(menu.getShell(), SWT.NONE);
 				toolTip.setText(item.getText());
-				toolTip.setMessage(((LayoutToolAlgorithms) item.getData()).getToolTipText());
+				toolTip.setMessage(((LayoutToolAlgorithms)item.getData()).getToolTipText());
 				item.addListener(SWT.Arm, new Listener() {
 
 					public void handleEvent(Event event) {
-						if (currentToolTip != null) {
+						if(currentToolTip != null) {
 							currentToolTip.setVisible(false);
 						}
-						if (layoutToolTip != null) {
+						if(layoutToolTip != null) {
 							layoutToolTip.setVisible(false);
 						}
 						currentToolTip = toolTip;
@@ -258,11 +258,11 @@ public class LayoutToolToolbar extends ContributionItem {
 				item.addListener(SWT.Arm, new Listener() {
 
 					public void handleEvent(Event event) {
-						if (currentToolTip != null) {
+						if(currentToolTip != null) {
 							currentToolTip.setVisible(false);
 							currentToolTip = null;
 						}
-						if (layoutToolTip != null) {
+						if(layoutToolTip != null) {
 							layoutToolTip.setVisible(false);
 						}
 					}
@@ -274,8 +274,8 @@ public class LayoutToolToolbar extends ContributionItem {
 				}
 
 				public void widgetSelected(SelectionEvent e) {
-					if (((MenuItem) e.getSource()).getSelection()) {
-						if (currentToolTip != null) {
+					if(((MenuItem)e.getSource()).getSelection()) {
+						if(currentToolTip != null) {
 							currentToolTip.setVisible(false);
 						}
 						handleSelected(e, item);
@@ -289,15 +289,15 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Handle selected.
 	 * 
 	 * @param e
-	 *            the e
+	 *        the e
 	 * @param item
-	 *            the item
+	 *        the item
 	 */
 	private void handleSelected(SelectionEvent e, MenuItem item) {
-		LayoutToolAlgorithms layoutToolAlgorithms = (LayoutToolAlgorithms) item.getData();
-		if (itemForMenu != null) {
+		LayoutToolAlgorithms layoutToolAlgorithms = (LayoutToolAlgorithms)item.getData();
+		if(itemForMenu != null) {
 			itemForMenu.setImage(layoutToolAlgorithms.getIcon());
-			if (layoutToolAlgorithms.getToolTipText() != null) {
+			if(layoutToolAlgorithms.getToolTipText() != null) {
 				itemForMenu.setToolTipText(layoutToolAlgorithms.getToolTipText());
 			} else {
 				itemForMenu.setToolTipText(null);
@@ -319,7 +319,7 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Run.
 	 * 
 	 * @param action
-	 *            the action
+	 *        the action
 	 */
 	public void run(IAction action) {
 		callAlgorithm();
@@ -329,7 +329,7 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Call algorithm.
 	 */
 	private void callAlgorithm() {
-		if (currentAlgorithm == null) {
+		if(currentAlgorithm == null) {
 			MessageDialog.openWarning(Display.getDefault().getActiveShell(), "Warning", "Please choose an algorithm");
 			return;
 		}
@@ -340,9 +340,9 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Selection changed.
 	 * 
 	 * @param action
-	 *            the action
+	 *        the action
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		theSelection = selection;
@@ -366,12 +366,12 @@ public class LayoutToolToolbar extends ContributionItem {
 	 */
 	public List<EditPart> getEditPartSelected() {
 		List<EditPart> editParts = new ArrayList<EditPart>();
-		if (theSelection instanceof IStructuredSelection) {
-			IStructuredSelection selec = (IStructuredSelection) theSelection;
+		if(theSelection instanceof IStructuredSelection) {
+			IStructuredSelection selec = (IStructuredSelection)theSelection;
 			List objects = selec.toList();
-			for (Object iter : objects) {
-				if (iter instanceof EditPart) {
-					EditPart e = (EditPart) iter;
+			for(Object iter : objects) {
+				if(iter instanceof EditPart) {
+					EditPart e = (EditPart)iter;
 					editParts.add(e);
 				}
 			}
@@ -384,7 +384,7 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Sort editParts to have editParts which have less parents in first.
 	 * 
 	 * @param editParts
-	 *            the edit parts
+	 *        the edit parts
 	 */
 	public static void sort(List<EditPart> editParts) {
 		Collections.sort(editParts, new Comparator<EditPart>() {
@@ -399,14 +399,14 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * Gets the nb parents.
 	 * 
 	 * @param part
-	 *            editPart
+	 *        editPart
 	 * 
 	 * @return number parents of the editPart
 	 */
 	private static int getNbParents(EditPart part) {
 		int result = 0;
 		EditPart tmp = part;
-		while (tmp.getParent() != null) {
+		while(tmp.getParent() != null) {
 			result++;
 			tmp = tmp.getParent();
 		}
@@ -434,7 +434,7 @@ public class LayoutToolToolbar extends ContributionItem {
 	 * create layout area icon.
 	 */
 	private void createLayoutAreaIcon() {
-		if (LayoutToolExtensionPointManager.getInstance().getLayoutAreaCreator() != null) {
+		if(LayoutToolExtensionPointManager.getInstance().getLayoutAreaCreator() != null) {
 			new MenuItem(menu, SWT.SEPARATOR);
 
 			final MenuItem itemLayout = new MenuItem(menu, SWT.PUSH);
@@ -449,7 +449,7 @@ public class LayoutToolToolbar extends ContributionItem {
 			itemLayout.addListener(SWT.Arm, new Listener() {
 
 				public void handleEvent(Event event) {
-					if (currentToolTip != null) {
+					if(currentToolTip != null) {
 						currentToolTip.setVisible(false);
 					}
 					layoutToolTip.setText(itemLayout.getText());
@@ -467,7 +467,7 @@ public class LayoutToolToolbar extends ContributionItem {
 				}
 
 				public void widgetSelected(SelectionEvent e) {
-					if (layoutToolTip != null) {
+					if(layoutToolTip != null) {
 						layoutToolTip.setVisible(false);
 					}
 					createLayoutArea();

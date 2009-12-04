@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 
@@ -37,20 +37,23 @@ import org.eclipse.papyrus.di.GraphEdge;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.di.GraphEdge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GraphEdgeItemProvider
-	extends GraphElementItemProvider
-	implements
+		extends GraphElementItemProvider
+		implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphEdgeItemProvider(AdapterFactory adapterFactory) {
@@ -61,11 +64,12 @@ public class GraphEdgeItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addAnchorPropertyDescriptor(object);
@@ -78,50 +82,53 @@ public class GraphEdgeItemProvider
 	 * This adds a property descriptor for the Anchor feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAnchorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphEdge_anchor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphEdge_anchor_feature", "_UI_GraphEdge_type"),
-				 DiPackage.Literals.GRAPH_EDGE__ANCHOR,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_GraphEdge_anchor_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_GraphEdge_anchor_feature", "_UI_GraphEdge_type"),
+				DiPackage.Literals.GRAPH_EDGE__ANCHOR,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Waypoints feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addWaypointsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GraphEdge_waypoints_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GraphEdge_waypoints_feature", "_UI_GraphEdge_type"),
-				 DiPackage.Literals.GRAPH_EDGE__WAYPOINTS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_GraphEdge_waypoints_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_GraphEdge_waypoints_feature", "_UI_GraphEdge_type"),
+				DiPackage.Literals.GRAPH_EDGE__WAYPOINTS,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
 	 * This returns GraphEdge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,6 +140,7 @@ public class GraphEdgeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,16 +154,17 @@ public class GraphEdgeItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GraphEdge.class)) {
-			case DiPackage.GRAPH_EDGE__WAYPOINTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		switch(notification.getFeatureID(GraphEdge.class)) {
+		case DiPackage.GRAPH_EDGE__WAYPOINTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -165,6 +174,7 @@ public class GraphEdgeItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

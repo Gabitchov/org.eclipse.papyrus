@@ -148,10 +148,9 @@ public class PreferenceConstantHelper {
 	 * Get the preference constant used to store the preference of an element.
 	 * 
 	 * @param elementName
-	 *            the name of the element
+	 *        the name of the element
 	 * @param preferenceType
-	 *            the type of preference to store. It must be a value defined in
-	 *            {@link PreferenceConstantHelper}
+	 *        the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
 	 * @return the constant used.
 	 */
 	public static String getElementConstant(String elementName, int preferenceType) {
@@ -159,7 +158,7 @@ public class PreferenceConstantHelper {
 		sb.append(elementName);
 		sb.append("."); //$NON-NLS-1$
 
-		switch (preferenceType) {
+		switch(preferenceType) {
 		case COLOR_FILL:
 			sb.append(COLOR_FILL_CONSTANT);
 			break;

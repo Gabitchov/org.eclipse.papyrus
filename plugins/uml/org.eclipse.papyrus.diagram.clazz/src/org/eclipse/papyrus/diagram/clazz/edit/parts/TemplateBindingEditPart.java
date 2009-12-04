@@ -47,7 +47,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -57,8 +57,8 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabelEditPart) {
-			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof WrappingLabelEditPart) {
+			((WrappingLabelEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -92,14 +92,14 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure) getFigure();
+		return (InterfaceRealizationFigure)getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -109,7 +109,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabelEditPart) {
+		if(childEditPart instanceof WrappingLabelEditPart) {
 			return true;
 		}
 		return false;

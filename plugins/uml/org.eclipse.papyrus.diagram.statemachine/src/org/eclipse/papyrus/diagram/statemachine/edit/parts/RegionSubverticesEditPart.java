@@ -82,21 +82,21 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	private ViewAndFeatureResolver resolver = new ViewAndFeatureResolver() {
 
 		public boolean isEObjectNode(EObject element) {
-			if (UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
+			if(UMLVisualIDRegistry.getNodeVisualID(getNotationView(), element) > -1) {
 				return true;
 			}
 			return false;
 		}
 
 		public boolean isEObjectLink(EObject element) {
-			if (UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
+			if(UMLVisualIDRegistry.getLinkWithClassVisualID(element) > -1) {
 				return true;
 			}
 			return false;
 		}
 
 		public int getEObjectSemanticHint(EObject element) {
-			if (element != null) {
+			if(element != null) {
 				return UMLVisualIDRegistry.getNodeVisualID(getNotationView(),
 						element);
 			}
@@ -104,43 +104,43 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 		}
 
 		public EStructuralFeature getEStructuralFeatureForEClass(EClass class1) {
-			if (UMLPackage.eINSTANCE.getState().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getState().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getState().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getState().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getState().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getState().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getFinalState().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getFinalState().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getPseudostate().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
-			if (UMLPackage.eINSTANCE.getState().equals(class1)) {
+			if(UMLPackage.eINSTANCE.getState().equals(class1)) {
 				return UMLPackage.eINSTANCE.getRegion_Subvertex();
 			}
 			return null;
@@ -167,7 +167,7 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super
 				.createFigure();
 		result.setTitleVisibility(false);
 		return result;
@@ -197,21 +197,21 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 
-		if (notification.getNotifier() instanceof ShapeStyle) {
+		if(notification.getNotifier() instanceof ShapeStyle) {
 			// Propagate style
-			for (Iterator i = getChildren().iterator(); i.hasNext();) {
+			for(Iterator i = getChildren().iterator(); i.hasNext();) {
 				java.lang.Object obj = i.next();
-				if (!(obj instanceof GraphicalEditPart))
+				if(!(obj instanceof GraphicalEditPart))
 					continue;
-				GraphicalEditPart ep = (GraphicalEditPart) obj;
+				GraphicalEditPart ep = (GraphicalEditPart)obj;
 
-				if (ep.resolveSemanticElement() != resolveSemanticElement())
+				if(ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+				ShapeStyle style = (ShapeStyle)((View)ep.getModel())
 						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
-				if (style != null) {
-					style.eSet((EStructuralFeature) notification.getFeature(),
+				if(style != null) {
+					style.eSet((EStructuralFeature)notification.getFeature(),
 							notification.getNewValue());
 					ep.refresh();
 				}
@@ -242,7 +242,7 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	 */
 	@Override
 	protected void setRatio(Double ratio) {
-		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+		if(getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
 		}
 	}
@@ -250,19 +250,19 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	/**
 	 * @generated NOT
 	 * 
-	 * Used to modify <i>transition</i> property in case of drag and drop of a
-	 * vertex and wrap Substatemachine creation.
+	 *            Used to modify <i>transition</i> property in case of drag and drop of a
+	 *            vertex and wrap Substatemachine creation.
 	 */
 	@Override
 	public Command getCommand(Request _request) {
 
 		// if an element is being added
-		if (RequestConstants.REQ_ADD.equals(_request.getType())) {
-			if (_request instanceof ChangeBoundsRequest) {
+		if(RequestConstants.REQ_ADD.equals(_request.getType())) {
+			if(_request instanceof ChangeBoundsRequest) {
 				Command superCommand = super.getCommand(_request);
-				ChangeBoundsRequest request = (ChangeBoundsRequest) _request;
+				ChangeBoundsRequest request = (ChangeBoundsRequest)_request;
 				Command command = getAddTransitionsOnAddChild(request);
-				if (command != null) {
+				if(command != null) {
 					CompoundCommand cc = new CompoundCommand();
 					cc.add(superCommand);
 					cc.add(command);
@@ -275,67 +275,67 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 
 		// lets to create a CommentLink for a StateMachine by clicking in the
 		// Subvertices Compartment
-		if (_request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest cutcr = (CreateUnspecifiedTypeConnectionRequest) _request;
-			String type = (String) cutcr.getType();
-			IHintedType iet = (IHintedType) cutcr.getElementTypes().get(0);
+		if(_request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest cutcr = (CreateUnspecifiedTypeConnectionRequest)_request;
+			String type = (String)cutcr.getType();
+			IHintedType iet = (IHintedType)cutcr.getElementTypes().get(0);
 			String id = iet.getSemanticHint();
 
-			if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_START
+			if(org.eclipse.gef.RequestConstants.REQ_CONNECTION_START
 					.equals(type)
 					&& String.valueOf(ElementOwnedCommentEditPart.VISUAL_ID)
-							.equals(id)) {
-				if (cutcr.getTargetEditPart() instanceof RegionSubverticesEditPart)
+					.equals(id)) {
+				if(cutcr.getTargetEditPart() instanceof RegionSubverticesEditPart)
 					cutcr.setTargetEditPart(getParent().getParent());
 				return getParent().getParent().getCommand(cutcr);
-			} else if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_END
+			} else if(org.eclipse.gef.RequestConstants.REQ_CONNECTION_END
 					.equals(type)
 					&& String.valueOf(ElementOwnedCommentEditPart.VISUAL_ID)
-							.equals(id)) {
-				if (cutcr.getSourceEditPart() instanceof RegionSubverticesEditPart)
+					.equals(id)) {
+				if(cutcr.getSourceEditPart() instanceof RegionSubverticesEditPart)
 					cutcr.setSourceEditPart(getParent().getParent());
 				return getParent().getParent().getCommand(cutcr);
 			}
 		}
 
 		// can create parent elements by clicking into the compartment
-		if (_request instanceof CreateUnspecifiedTypeRequest) {
-			CreateUnspecifiedTypeRequest cutr = (CreateUnspecifiedTypeRequest) _request;
-			String type = (String) cutr.getType();
-			IHintedType iet = (IHintedType) cutr.getElementTypes().get(0);
+		if(_request instanceof CreateUnspecifiedTypeRequest) {
+			CreateUnspecifiedTypeRequest cutr = (CreateUnspecifiedTypeRequest)_request;
+			String type = (String)cutr.getType();
+			IHintedType iet = (IHintedType)cutr.getElementTypes().get(0);
 			String id = iet.getSemanticHint();
 
-			if (org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type)
+			if(org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type)
 					&& (String.valueOf(RegionEditPart.VISUAL_ID).equals(id)
-							|| String.valueOf(
-									ConnectionPointReferenceEditPart.VISUAL_ID)
-									.equals(id) || String.valueOf(
-							ConnectionPointReference2EditPart.VISUAL_ID)
-							.equals(id))) {
+					|| String.valueOf(
+					ConnectionPointReferenceEditPart.VISUAL_ID)
+					.equals(id) || String.valueOf(
+					ConnectionPointReference2EditPart.VISUAL_ID)
+					.equals(id))) {
 				return getParent().getParent().getCommand(_request);
 			}
 		}// end
 
 		// can create comments by clicking into the compartment
-		if (_request instanceof CreateUnspecifiedTypeRequest) {
-			CreateUnspecifiedTypeRequest cutr = (CreateUnspecifiedTypeRequest) _request;
-			String type = (String) cutr.getType();
-			IHintedType iet = (IHintedType) cutr.getElementTypes().get(0);
+		if(_request instanceof CreateUnspecifiedTypeRequest) {
+			CreateUnspecifiedTypeRequest cutr = (CreateUnspecifiedTypeRequest)_request;
+			String type = (String)cutr.getType();
+			IHintedType iet = (IHintedType)cutr.getElementTypes().get(0);
 			String id = iet.getSemanticHint();
 
-			if (org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type)
+			if(org.eclipse.gef.RequestConstants.REQ_CREATE.equals(type)
 					&& (String.valueOf(CommentEditPart.VISUAL_ID).equals(id))) {
 				return DiagramEditPartsUtil
 						.getDiagramEditPart(this).getCommand(_request);
 			}
 		}
 		// don't let to move a comment into a compartment
-		if (_request instanceof EditCommandRequestWrapper) {
-			EditCommandRequestWrapper ecrw = (EditCommandRequestWrapper) _request;
-			if (ecrw.getEditCommandRequest() instanceof MoveRequest) {
-				MoveRequest mr = (MoveRequest) ecrw.getEditCommandRequest();
-				for (Object o : mr.getElementsToMove().keySet()) {
-					if (o instanceof Comment) {
+		if(_request instanceof EditCommandRequestWrapper) {
+			EditCommandRequestWrapper ecrw = (EditCommandRequestWrapper)_request;
+			if(ecrw.getEditCommandRequest() instanceof MoveRequest) {
+				MoveRequest mr = (MoveRequest)ecrw.getEditCommandRequest();
+				for(Object o : mr.getElementsToMove().keySet()) {
+					if(o instanceof Comment) {
 						return UnexecutableCommand.INSTANCE;
 					}
 				}
@@ -350,7 +350,7 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	 */
 	@Override
 	public Object getAdapter(Class adapter) {
-		if (adapter != null && adapter.equals(ViewAndFeatureResolver.class)) {
+		if(adapter != null && adapter.equals(ViewAndFeatureResolver.class)) {
 			return this.resolver;
 		}
 		return super.getAdapter(adapter);
@@ -359,36 +359,36 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	/**
 	 * @generated NOT
 	 * @param request
-	 *            ChangeBoundsRequest with required information
+	 *        ChangeBoundsRequest with required information
 	 * @return Command to add transitions to this region and remove them from
 	 *         source region
 	 */
 	private Command getAddTransitionsOnAddChild(ChangeBoundsRequest request) {
 		List<EditPart> parts = request.getEditParts();
 
-		if (parts == null || parts.size() <= 0) {
+		if(parts == null || parts.size() <= 0) {
 			return null;
 		}
 
 		Command command = null;
 
-		if (parts.size() == 1) {
-			EObject element = ((View) parts.get(0).getModel()).getElement();
-			if (element instanceof Vertex) {
-				command = getAdaptTransition((Vertex) element);
+		if(parts.size() == 1) {
+			EObject element = ((View)parts.get(0).getModel()).getElement();
+			if(element instanceof Vertex) {
+				command = getAdaptTransition((Vertex)element);
 			}
 		} else {
 			command = new CompoundCommand();
-			for (EditPart ep : parts) {
-				EObject element = ((View) ep.getModel()).getElement();
-				if (element instanceof Vertex) {
-					Command c = getAdaptTransition((Vertex) element);
-					if (c != null) {
-						((CompoundCommand) command).add(c);
+			for(EditPart ep : parts) {
+				EObject element = ((View)ep.getModel()).getElement();
+				if(element instanceof Vertex) {
+					Command c = getAdaptTransition((Vertex)element);
+					if(c != null) {
+						((CompoundCommand)command).add(c);
 					}
 				}
 			}
-			if (((CompoundCommand) command).size() <= 0) {
+			if(((CompoundCommand)command).size() <= 0) {
 				command = null;
 			}
 		}
@@ -399,7 +399,7 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 	/**
 	 * @geerated NOT
 	 * @param vertex
-	 *            vertex to analize
+	 *        vertex to analize
 	 * @return command to add transition to this region and remove it from
 	 *         source
 	 */
@@ -413,22 +413,22 @@ public class RegionSubverticesEditPart extends ShapeCompartmentEditPart {
 		RemoveValueCommand removeCommand = new RemoveValueCommand(removeRequest);
 
 		CompoundCommand cc = new CompoundCommand();
-		if (removeCommand != null) {
+		if(removeCommand != null) {
 			cc.add(new ICommandProxy(removeCommand));
 		}
 
 		// add all outgoing transitions to target (this) region
-		Region thisContainer = (Region) ((View) getModel()).getElement();
-		for (Transition t : outgoings) {
+		Region thisContainer = (Region)((View)getModel()).getElement();
+		for(Transition t : outgoings) {
 			SetRequest setRequest = new SetRequest(thisContainer,
 					UMLPackage.eINSTANCE.getRegion_Transition(), t);
 			SetValueCommand setCommand = new SetValueCommand(setRequest);
-			if (setCommand != null) {
+			if(setCommand != null) {
 				cc.add(new ICommandProxy(setCommand));
 			}
 		}
 
-		if (cc.size() <= 0) {
+		if(cc.size() <= 0) {
 			return null;
 		} else {
 			return cc;

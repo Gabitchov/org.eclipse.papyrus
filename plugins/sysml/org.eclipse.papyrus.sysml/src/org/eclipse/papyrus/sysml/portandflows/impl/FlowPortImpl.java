@@ -35,14 +35,10 @@ import org.eclipse.uml2.uml.Type;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getBase_Port <em>Base Port
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsAtomic <em>Is Atomic
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsConjugated <em>Is
- * Conjugated</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getDirection <em>Direction
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getBase_Port <em>Base Port </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsAtomic <em>Is Atomic </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsConjugated <em>Is Conjugated</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getDirection <em>Direction </em>}</li>
  * </ul>
  * </p>
  * 
@@ -135,9 +131,9 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PORT__BASE_PORT:
-			if (resolve)
+			if(resolve)
 				return getBase_Port();
 			return basicGetBase_Port();
 		case PortandflowsPackage.FLOW_PORT__IS_ATOMIC:
@@ -157,7 +153,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PORT__BASE_PORT:
 			return base_Port != null;
 		case PortandflowsPackage.FLOW_PORT__IS_ATOMIC:
@@ -177,15 +173,15 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PORT__BASE_PORT:
-			setBase_Port((Port) newValue);
+			setBase_Port((Port)newValue);
 			return;
 		case PortandflowsPackage.FLOW_PORT__IS_CONJUGATED:
-			setIsConjugated((Boolean) newValue);
+			setIsConjugated((Boolean)newValue);
 			return;
 		case PortandflowsPackage.FLOW_PORT__DIRECTION:
-			setDirection((FlowDirection) newValue);
+			setDirection((FlowDirection)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -208,9 +204,9 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PORT__BASE_PORT:
-			setBase_Port((Port) null);
+			setBase_Port((Port)null);
 			return;
 		case PortandflowsPackage.FLOW_PORT__IS_CONJUGATED:
 			setIsConjugated(IS_CONJUGATED_EDEFAULT);
@@ -228,11 +224,11 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	 * @generated
 	 */
 	public Port getBase_Port() {
-		if (base_Port != null && base_Port.eIsProxy()) {
-			InternalEObject oldBase_Port = (InternalEObject) base_Port;
-			base_Port = (Port) eResolveProxy(oldBase_Port);
-			if (base_Port != oldBase_Port) {
-				if (eNotificationRequired())
+		if(base_Port != null && base_Port.eIsProxy()) {
+			InternalEObject oldBase_Port = (InternalEObject)base_Port;
+			base_Port = (Port)eResolveProxy(oldBase_Port);
+			if(base_Port != oldBase_Port) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PortandflowsPackage.FLOW_PORT__BASE_PORT,
 							oldBase_Port, base_Port));
 			}
@@ -259,16 +255,16 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		String FLOWPORT_ID = "SysML::PortAndFlows::FlowPort";
 		Image ImageNotFound = null;
 
-		if (getBase_Port() != null) {
+		if(getBase_Port() != null) {
 			Stereotype st = getBase_Port().getAppliedStereotype(FLOWPORT_ID);
 
 			Image defaultImage = st.getIcons().get(0);
 			Image image = null;
 
-			if (isIsAtomic()) {
-				if (getDirection() == FlowDirection.OUT) {
+			if(isIsAtomic()) {
+				if(getDirection() == FlowDirection.OUT) {
 					image = st.getIcons().get(1);
-				} else if (getDirection() == FlowDirection.INOUT) {
+				} else if(getDirection() == FlowDirection.INOUT) {
 					image = st.getIcons().get(2);
 				} else {
 					// Default : IN
@@ -276,11 +272,11 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 				}
 
 			} else {
-				if (isConjugated) {
+				if(isConjugated) {
 
-					if (getDirection() == FlowDirection.IN) {
+					if(getDirection() == FlowDirection.IN) {
 						image = st.getIcons().get(3);
-					} else if (getDirection() == FlowDirection.OUT) {
+					} else if(getDirection() == FlowDirection.OUT) {
 						image = st.getIcons().get(4);
 					} else {
 						// INOUT
@@ -288,9 +284,9 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 					}
 				} else {
 
-					if (getDirection() == FlowDirection.IN) {
+					if(getDirection() == FlowDirection.IN) {
 						image = st.getIcons().get(6);
-					} else if (getDirection() == FlowDirection.OUT) {
+					} else if(getDirection() == FlowDirection.OUT) {
 						image = st.getIcons().get(7);
 					} else {
 						// INOUT
@@ -316,15 +312,15 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		Boolean isAtomic = true;
 		FlowSpecification flowSpec = null;
 
-		if (getBase_Port() != null) {
+		if(getBase_Port() != null) {
 			// Find FlowPort type
 			Type type = getBase_Port().getType();
-			if ((type != null) && (type instanceof Interface)) {
-				flowSpec = (FlowSpecification) ElementUtil.hasStereotype(type, PortandflowsPackage.eINSTANCE
+			if((type != null) && (type instanceof Interface)) {
+				flowSpec = (FlowSpecification)ElementUtil.hasStereotype(type, PortandflowsPackage.eINSTANCE
 						.getFlowSpecification());
 			}
 
-			if (flowSpec != null) {
+			if(flowSpec != null) {
 				isAtomic = false;
 			}
 		}
@@ -348,7 +344,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	public void setBase_Port(Port newBase_Port) {
 		Port oldBase_Port = base_Port;
 		base_Port = newBase_Port;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__BASE_PORT,
 					oldBase_Port, base_Port));
 	}
@@ -361,7 +357,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	public void setDirection(FlowDirection newDirection) {
 		FlowDirection oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__DIRECTION,
 					oldDirection, direction));
 	}
@@ -385,7 +381,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	public void setIsConjugated(boolean newIsConjugated) {
 		boolean oldIsConjugated = isConjugated;
 		isConjugated = newIsConjugated;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__IS_CONJUGATED,
 					oldIsConjugated, isConjugated));
 	}
@@ -397,7 +393,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if(eIsProxy())
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

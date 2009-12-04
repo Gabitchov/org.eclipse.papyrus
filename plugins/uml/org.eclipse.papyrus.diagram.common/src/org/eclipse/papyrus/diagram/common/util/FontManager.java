@@ -38,11 +38,11 @@ public class FontManager extends FontRegistry {
 	public Font get(FontData fontData[]) {
 
 		String symbolicName = "";
-		for (int i = 0; i < fontData.length; i++) {
+		for(int i = 0; i < fontData.length; i++) {
 			symbolicName = symbolicName + fontData[i];
 		}
 		Font font = super.get(symbolicName);
-		if (font.equals(this.defaultFont())) {
+		if(font.equals(this.defaultFont())) {
 			super.put(symbolicName, fontData);
 			font = super.get(symbolicName);
 		}

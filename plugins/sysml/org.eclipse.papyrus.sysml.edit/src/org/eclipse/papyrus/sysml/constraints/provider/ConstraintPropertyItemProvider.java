@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
@@ -62,7 +61,7 @@ public class ConstraintPropertyItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_PropertyPropertyDescriptor(object);
@@ -77,11 +76,11 @@ public class ConstraintPropertyItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ConstraintProperty_base_Property_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_ConstraintProperty_base_Property_feature",
-						"_UI_ConstraintProperty_type"), ConstraintsPackage.Literals.CONSTRAINT_PROPERTY__BASE_PROPERTY,
+				"_UI_PropertyDescriptor_description", "_UI_ConstraintProperty_base_Property_feature",
+				"_UI_ConstraintProperty_type"), ConstraintsPackage.Literals.CONSTRAINT_PROPERTY__BASE_PROPERTY,
 				true, false, true, null, null, null));
 	}
 
@@ -108,8 +107,7 @@ public class ConstraintPropertyItemProvider extends ItemProviderAdapter implemen
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

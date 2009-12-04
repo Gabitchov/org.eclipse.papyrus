@@ -239,124 +239,124 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CLAZZ_TOOL_MODEL)) {
+		if(toolId.equals(CLAZZ_TOOL_MODEL)) {
 			return createModel1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PACKAGE)) {
+		if(toolId.equals(CLAZZ_TOOL_PACKAGE)) {
 			return createPackage2CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CONSTRAINT)) {
+		if(toolId.equals(CLAZZ_TOOL_CONSTRAINT)) {
 			return createConstraint3CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CONSTRAINTLINK)) {
+		if(toolId.equals(CLAZZ_TOOL_CONSTRAINTLINK)) {
 			return createConstraintlink4CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_COMMENT)) {
+		if(toolId.equals(CLAZZ_TOOL_COMMENT)) {
 			return createComment5CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_COMMENTLINK)) {
+		if(toolId.equals(CLAZZ_TOOL_COMMENTLINK)) {
 			return createCommentlink6CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CLASS)) {
+		if(toolId.equals(CLAZZ_TOOL_CLASS)) {
 			return createClass1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_COMPONENT)) {
+		if(toolId.equals(CLAZZ_TOOL_COMPONENT)) {
 			return createComponent2CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_DATATYPE)) {
+		if(toolId.equals(CLAZZ_TOOL_DATATYPE)) {
 			return createDataType3CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ENUMERATION)) {
+		if(toolId.equals(CLAZZ_TOOL_ENUMERATION)) {
 			return createEnumeration4CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INTERFACE)) {
+		if(toolId.equals(CLAZZ_TOOL_INTERFACE)) {
 			return createInterface5CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PRIMITIVETYPE)) {
+		if(toolId.equals(CLAZZ_TOOL_PRIMITIVETYPE)) {
 			return createPrimitiveType6CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_SIGNAL)) {
+		if(toolId.equals(CLAZZ_TOOL_SIGNAL)) {
 			return createSignal7CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATION)) {
+		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATION)) {
 			return createInstanceSpecification8CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
+		if(toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
 			return createAbstraction1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
 			return createAssociation2CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
 			return createAssociationBranch3CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
 			return createAssociationClass4CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
+		if(toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
 			return createDependency5CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
+		if(toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
 			return createDependencyBranch6CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
+		if(toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
 			return createElementImport7CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
+		if(toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
 			return createGeneralization8CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
+		if(toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
 			return createInterfaceRealization9CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
+		if(toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
 			return createPackageImport10CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
+		if(toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
 			return createPackageMerge11CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
+		if(toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
 			return createProfileApplication12CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_REALIZATION)) {
+		if(toolId.equals(CLAZZ_TOOL_REALIZATION)) {
 			return createRealization13CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
+		if(toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
 			return createSubstitution14CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_USAGE)) {
+		if(toolId.equals(CLAZZ_TOOL_USAGE)) {
 			return createUsage15CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
+		if(toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
 			return createTemplateBinding16CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
+		if(toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
 			return createGeneralizationSet17CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
+		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
 			return createInstanceSpecification18CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_RECEPTION)) {
+		if(toolId.equals(CLAZZ_TOOL_RECEPTION)) {
 			return createReception1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PROPERTY)) {
+		if(toolId.equals(CLAZZ_TOOL_PROPERTY)) {
 			return createProperty2CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_OPERATION)) {
+		if(toolId.equals(CLAZZ_TOOL_OPERATION)) {
 			return createOperation3CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_SLOT)) {
+		if(toolId.equals(CLAZZ_TOOL_SLOT)) {
 			return createSlot4CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ENUMERATIONLITERAL)) {
+		if(toolId.equals(CLAZZ_TOOL_ENUMERATIONLITERAL)) {
 			return createEnumerationliteral5CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE)) {
+		if(toolId.equals(CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE)) {
 			return createRedefinableTemplateSignature1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_TEMPLATEPARAMETER)) {
+		if(toolId.equals(CLAZZ_TOOL_TEMPLATEPARAMETER)) {
 			return createTemplateParameter2CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER)) {
+		if(toolId.equals(CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER)) {
 			return createClassifierTemplateParameter3CreationTool();
 		}
 

@@ -76,12 +76,12 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * </ul>
 	 * 
 	 * @param shapeEP
-	 *            the ShapeNodeEditPart that is being resized
+	 *        the ShapeNodeEditPart that is being resized
 	 * @param sizeDelta
-	 *            the re-size delta
+	 *        the re-size delta
 	 * @param preserveAxis
-	 *            the axis where the position should be preserved. If the given value is not valid,
-	 *            then PRESERVE_Y will be taken as default
+	 *        the axis where the position should be preserved. If the given value is not valid,
+	 *        then PRESERVE_Y will be taken as default
 	 */
 	public PreserveAnchorsPositionCommand(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis) {
 		super(shapeEP.getEditingDomain(), COMMAND_LABEL, null);
@@ -94,10 +94,10 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * Set the new value of the preserveAxis property
 	 * 
 	 * @param preserveAxis
-	 *            the new preserveAxis value
+	 *        the new preserveAxis value
 	 */
 	public void setPreserveAxis(int preserveAxis) {
-		if (preserveAxis != PRESERVE_Y && preserveAxis != PRESERVE_X && preserveAxis != PRESERVE_XY) {
+		if(preserveAxis != PRESERVE_Y && preserveAxis != PRESERVE_X && preserveAxis != PRESERVE_XY) {
 			this.preserveAxis = PRESERVE_Y;
 		} else {
 			this.preserveAxis = preserveAxis;
@@ -146,14 +146,14 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * @return The View
 	 */
 	public View getView() {
-		return (View) getShapeEP().getModel();
+		return (View)getShapeEP().getModel();
 	}
 
 	/**
 	 * Sets the new size delta property
 	 * 
 	 * @param sizeDelta
-	 *            the new sizeDelta value
+	 *        the new sizeDelta value
 	 */
 	protected void setSizeDelta(Dimension sizeDelta) {
 		this.sizeDelta = sizeDelta;
@@ -184,14 +184,14 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 		// Variable to store the anchor and it's new position
 		HashMap<IdentityAnchor, String> hashMap = new HashMap<IdentityAnchor, String>();
 
-		for (Edge edge : sourceList) {
-			IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
-			if (anchor != null) {
+		for(Edge edge : sourceList) {
+			IdentityAnchor anchor = (IdentityAnchor)edge.getSourceAnchor();
+			if(anchor != null) {
 				String newIdStr = getNewIdStr(anchor);
 				// If the newIdStr is null is because the anchor cannot preserve
 				// it's position as it does not fit in the new bounds of the
 				// figure
-				if (newIdStr != null) {
+				if(newIdStr != null) {
 					hashMap.put(anchor, newIdStr);
 				} else {
 					isOk = false;
@@ -199,16 +199,16 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 				}
 			}
 		}
-		if (isOk) {
-			for (Edge edge : targetList) {
-				IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
-				if (anchor != null) {
+		if(isOk) {
+			for(Edge edge : targetList) {
+				IdentityAnchor anchor = (IdentityAnchor)edge.getTargetAnchor();
+				if(anchor != null) {
 					String newIdStr = getNewIdStr(anchor);
 					// If the newIdStr is null is because the anchor cannot
 					// preserve
 					// it's position as it does not fit in the new bounds of the
 					// figure
-					if (newIdStr != null) {
+					if(newIdStr != null) {
 						hashMap.put(anchor, newIdStr);
 					} else {
 						isOk = false;
@@ -220,8 +220,8 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 		// If everything went OK, then commit the changes. Otherwise, return an
 		// error result
-		if (isOk) {
-			for (Entry<IdentityAnchor, String> entry : hashMap.entrySet()) {
+		if(isOk) {
+			for(Entry<IdentityAnchor, String> entry : hashMap.entrySet()) {
 				entry.getKey().eSet(NotationPackage.eINSTANCE.getIdentityAnchor_Id(), entry.getValue());
 			}
 			return CommandResult.newOKCommandResult();
@@ -243,24 +243,24 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor.getId());
 
-		if (getPreserveAxis() == PRESERVE_Y || getPreserveAxis() == PRESERVE_XY) {
-			int anchorYPos = (int) Math.round(figureBounds.height * pp.preciseY);
+		if(getPreserveAxis() == PRESERVE_Y || getPreserveAxis() == PRESERVE_XY) {
+			int anchorYPos = (int)Math.round(figureBounds.height * pp.preciseY);
 
-			if (anchorYPos > (figureBounds.height + sizeDelta.height)) {
+			if(anchorYPos > (figureBounds.height + sizeDelta.height)) {
 				return null;
 			}
 
-			pp.preciseY = (double) anchorYPos / (figureBounds.height + sizeDelta.height);
+			pp.preciseY = (double)anchorYPos / (figureBounds.height + sizeDelta.height);
 		}
 
-		if (getPreserveAxis() == PRESERVE_X || getPreserveAxis() == PRESERVE_XY) {
-			int anchorXPos = (int) Math.round(figureBounds.width * pp.preciseX);
+		if(getPreserveAxis() == PRESERVE_X || getPreserveAxis() == PRESERVE_XY) {
+			int anchorXPos = (int)Math.round(figureBounds.width * pp.preciseX);
 
-			if (anchorXPos > (figureBounds.width + sizeDelta.width)) {
+			if(anchorXPos > (figureBounds.width + sizeDelta.width)) {
 				return null;
 			}
 
-			pp.preciseX = (double) anchorXPos / (figureBounds.width + sizeDelta.width);
+			pp.preciseX = (double)anchorXPos / (figureBounds.width + sizeDelta.width);
 		}
 
 		String idStr = (new BaseSlidableAnchor(null, pp)).getTerminal();
@@ -272,28 +272,28 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * inside the figure in case their positions are preserved
 	 * 
 	 * @param shapeEP
-	 *            That shape being resized
+	 *        That shape being resized
 	 * @param sizeDelta
-	 *            The SizeDelta for the resize
+	 *        The SizeDelta for the resize
 	 * @param preserveAxis
-	 *            The axisxxx
+	 *        The axisxxx
 	 * @return The new SizeDelta to preserve anchors' positions
 	 */
 	public static Dimension getSizeDeltaToFitAnchors(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis) {
 
 		Dimension newSizeDelta = new Dimension(sizeDelta);
-		View view = (View) shapeEP.getModel();
+		View view = (View)shapeEP.getModel();
 		Rectangle figureBounds = shapeEP.getFigure().getBounds();
 
 		List<Edge> sourceList = ViewUtil.getSourceConnections(view);
 		List<Edge> targetList = ViewUtil.getTargetConnections(view);
 
-		for (Edge edge : sourceList) {
-			IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
+		for(Edge edge : sourceList) {
+			IdentityAnchor anchor = (IdentityAnchor)edge.getSourceAnchor();
 			modifySizeDeltaToFitAnchor(anchor, newSizeDelta, preserveAxis, figureBounds);
 		}
-		for (Edge edge : targetList) {
-			IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
+		for(Edge edge : targetList) {
+			IdentityAnchor anchor = (IdentityAnchor)edge.getTargetAnchor();
 			modifySizeDeltaToFitAnchor(anchor, newSizeDelta, preserveAxis, figureBounds);
 		}
 
@@ -305,7 +305,7 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * order to keep fitting an anchor within the figureBounds
 	 * 
 	 * @param anchor
-	 *            The anchor whose position will be kept
+	 *        The anchor whose position will be kept
 	 * @param sizeDelta
 	 * @param preserveAxis
 	 * @param figureBounds
@@ -316,22 +316,22 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 		int margin = 6;
 
-		if (preserveAxis == PRESERVE_Y || preserveAxis == PRESERVE_XY) {
-			int anchorYPos = (int) Math.round(figureBounds.height * pp.preciseY);
+		if(preserveAxis == PRESERVE_Y || preserveAxis == PRESERVE_XY) {
+			int anchorYPos = (int)Math.round(figureBounds.height * pp.preciseY);
 
 			int newHeight = figureBounds.height + sizeDelta.height;
 
-			if (anchorYPos + margin > newHeight) {
+			if(anchorYPos + margin > newHeight) {
 				sizeDelta.height = (anchorYPos - figureBounds.height) + margin;
 			}
 		}
 
-		if (preserveAxis == PRESERVE_X || preserveAxis == PRESERVE_XY) {
-			int anchorXPos = (int) Math.round(figureBounds.width * pp.preciseX);
+		if(preserveAxis == PRESERVE_X || preserveAxis == PRESERVE_XY) {
+			int anchorXPos = (int)Math.round(figureBounds.width * pp.preciseX);
 
 			int newWidth = figureBounds.width + sizeDelta.width;
 
-			if (anchorXPos + margin > newWidth) {
+			if(anchorXPos + margin > newWidth) {
 				sizeDelta.width = (anchorXPos - figureBounds.width) + margin;
 			}
 		}
@@ -347,8 +347,8 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 */
 	// @unused
 	public static Request getNewSourceFeedbackRequest(Request request, ShapeNodeEditPart editPart) {
-		if (request instanceof ChangeBoundsRequest) {
-			ChangeBoundsRequest currRequest = (ChangeBoundsRequest) request;
+		if(request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest currRequest = (ChangeBoundsRequest)request;
 			Dimension oldDelta = currRequest.getSizeDelta();
 			Dimension newDelta = getSizeDeltaToFitAnchors(editPart, oldDelta, PreserveAnchorsPositionCommand.PRESERVE_Y);
 			// Information for creating a new ChangeBoundsRequest has been taken

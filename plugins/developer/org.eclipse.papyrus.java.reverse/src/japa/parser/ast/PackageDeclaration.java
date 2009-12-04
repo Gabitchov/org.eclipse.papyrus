@@ -29,8 +29,9 @@ import japa.parser.ast.visitor.VoidVisitor;
 import java.util.List;
 
 /**
- * <p>This class represents the package declaration. The package
- * declaration is optional for the {@link CompilationUnit}.</p>
+ * <p>
+ * This class represents the package declaration. The package declaration is optional for the {@link CompilationUnit}.
+ * </p>
  * 
  * The PackageDeclaration is constructed following the syntax:<br>
  * <code>
@@ -49,60 +50,65 @@ import java.util.List;
  */
 public final class PackageDeclaration extends Node {
 
-    private List<AnnotationExpr> annotations;
+	private List<AnnotationExpr> annotations;
 
-    private NameExpr name;
+	private NameExpr name;
 
-    public PackageDeclaration() {
-    }
+	public PackageDeclaration() {
+	}
 
-    public PackageDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, List<AnnotationExpr> annotations, NameExpr name) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.annotations = annotations;
-        this.name = name;
-    }
+	public PackageDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, List<AnnotationExpr> annotations, NameExpr name) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.annotations = annotations;
+		this.name = name;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    /**
-     * Retrieves the list of annotations declared before the package 
-     * declaration. Return <code>null</code> if there are no annotations.
-     * @return list of annotations or <code>null</code>
-     */
-    public List<AnnotationExpr> getAnnotations() {
-        return annotations;
-    }
+	/**
+	 * Retrieves the list of annotations declared before the package
+	 * declaration. Return <code>null</code> if there are no annotations.
+	 * 
+	 * @return list of annotations or <code>null</code>
+	 */
+	public List<AnnotationExpr> getAnnotations() {
+		return annotations;
+	}
 
-    /**
-     * Return the name of the package.
-     * @return the name of the package
-     */
-    public NameExpr getName() {
-        return name;
-    }
+	/**
+	 * Return the name of the package.
+	 * 
+	 * @return the name of the package
+	 */
+	public NameExpr getName() {
+		return name;
+	}
 
-    /**
-     * 
-     * @param annotations the annotations to set
-     */
-    public void setAnnotations(List<AnnotationExpr> annotations) {
-        this.annotations = annotations;
-    }
+	/**
+	 * 
+	 * @param annotations
+	 *        the annotations to set
+	 */
+	public void setAnnotations(List<AnnotationExpr> annotations) {
+		this.annotations = annotations;
+	}
 
-    /**
-     * Sets the name of this package declaration.
-     * @param name the name to set
-     */
-    public void setName(NameExpr name) {
-        this.name = name;
-    }
+	/**
+	 * Sets the name of this package declaration.
+	 * 
+	 * @param name
+	 *        the name to set
+	 */
+	public void setName(NameExpr name) {
+		this.name = name;
+	}
 
 }

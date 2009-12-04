@@ -42,7 +42,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Port_3069 == req.getElementType()) {
+		if(UMLElementTypes.Port_3069 == req.getElementType()) {
 			return getGEFWrapper(new PortCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -58,10 +58,10 @@ public class PropertyPartItemSemanticEditPolicyCN extends
 	 */
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Connector_4013 == req.getElementType()) {
+		if(UMLElementTypes.Connector_4013 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+		if(UMLElementTypes.Dependency_4017 == req.getElementType()) {
 			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);
@@ -77,10 +77,10 @@ public class PropertyPartItemSemanticEditPolicyCN extends
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Connector_4013 == req.getElementType()) {
+		if(UMLElementTypes.Connector_4013 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+		if(UMLElementTypes.Dependency_4017 == req.getElementType()) {
 			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);

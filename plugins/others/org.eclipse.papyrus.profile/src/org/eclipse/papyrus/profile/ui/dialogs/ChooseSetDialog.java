@@ -45,414 +45,443 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
  * @author Patrick Tessier, Remi Schnekenburger
  */
 public class ChooseSetDialog extends Dialog implements IChooseDialog {
-	
+
 	/**
 	 * The combo.
 	 */
 	protected Combo combo;
-	
+
 	/**
 	 * The element list.
 	 */
-	protected String[] elementList= {"test","test1","test2"};
-	
+	protected String[] elementList = { "test", "test1", "test2" };
+
 	/**
 	 * The name field.
 	 */
 	protected Text nameField;
-	
+
 	/**
 	 * The announce.
 	 */
-	protected String announce="Choose your element";
-	
+	protected String announce = "Choose your element";
+
 	/**
 	 * The Constant channel.
 	 */
-	protected static final int channel=19;
-	
+	protected static final int channel = 19;
+
 	/**
 	 * The value.
 	 */
-	protected Object value=null;
-	
+	protected Object value = null;
+
 	/**
 	 * The possible element list.
 	 */
 	protected List possibleElementList;
-	
+
 	/**
 	 * The selected element list.
 	 */
 	protected List selectedElementList;
-	
+
 	/**
 	 * The add button.
 	 */
 	protected Button addButton;
-	
+
 	/**
 	 * The delete button.
 	 */
 	protected Button deleteButton;
-	
+
 	/**
 	 * The possible set text.
 	 */
 	protected Label possibleSetText;
-	
+
 	/**
 	 * The selected element text.
 	 */
 	protected Label selectedElementText;
-	
+
 	/**
 	 * The possible text.
 	 */
-	protected String possibleText="Choose Element";
-	
+	protected String possibleText = "Choose Element";
+
 	/**
 	 * The selected text.
 	 */
-	protected String selectedText="Selected Element";
-	
+	protected String selectedText = "Selected Element";
+
 	/**
 	 * The add button listener.
 	 */
-	protected MouseListener addButtonListener=null;
-	
+	protected MouseListener addButtonListener = null;
+
 	/**
 	 * The delete button listener.
 	 */
-	protected MouseListener deleteButtonListener=null;
-	
+	protected MouseListener deleteButtonListener = null;
+
 	/**
 	 * The up button.
 	 */
 	protected Button upButton;
-	
+
 	/**
 	 * The bottom button.
 	 */
 	protected Button bottomButton;
-	
+
 	/**
 	 * The up button listener.
 	 */
-	protected MouseListener upButtonListener=null;
-	
+	protected MouseListener upButtonListener = null;
+
 	/**
 	 * The bottom button listener.
 	 */
-	protected MouseListener bottomButtonListener=null;
-	
+	protected MouseListener bottomButtonListener = null;
+
 	/**
 	 * The Constant IMG_UP_ARROW.
 	 */
-	private static final Image IMG_UP_ARROW    = ImageManager.IMG_UP;
-	
+	private static final Image IMG_UP_ARROW = ImageManager.IMG_UP;
+
 	/**
 	 * The Constant IMG_DOWN_ARROW.
 	 */
-	private static final Image IMG_DOWN_ARROW  = ImageManager.IMG_DOWN;
-	
+	private static final Image IMG_DOWN_ARROW = ImageManager.IMG_DOWN;
+
 	/**
 	 * The Constant IMG_LEFT_ARROW.
 	 */
-	private static final Image IMG_LEFT_ARROW  = ImageManager.IMG_LEFT;
-	
+	private static final Image IMG_LEFT_ARROW = ImageManager.IMG_LEFT;
+
 	/**
 	 * The Constant IMG_RIGHT_ARROW.
 	 */
 	private static final Image IMG_RIGHT_ARROW = ImageManager.IMG_RIGHT;
-	
+
 	/**
 	 * listener of the button to add an elment form possiblelist into selectedList.
 	 * 
 	 * @author Patrick Tessier
 	 */
-	protected class AddButtonListener implements MouseListener{
-		
+	protected class AddButtonListener implements MouseListener {
+
 		/**
 		 * The Constructor.
 		 */
-		public  AddButtonListener(){}
-		
+		public AddButtonListener() {
+		}
+
 		/**
 		 * Mouse double click.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDoubleClick(MouseEvent e){}
-		
+		public void mouseDoubleClick(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse down.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDown(MouseEvent e){}
-		
+		public void mouseDown(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse up.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseUp(MouseEvent e){
+		public void mouseUp(MouseEvent e) {
 			runActionAdd();
 		}
 	};
-	
+
 	/**
 	 * Listener of the button to add an element form selectedList into selectedList possiblelist.
 	 * 
 	 * @author Patrick Tessier
 	 */
-	protected class DeleteButtonListener implements MouseListener{
-		
+	protected class DeleteButtonListener implements MouseListener {
+
 		/**
 		 * The Constructor.
 		 */
-		public  DeleteButtonListener(){}
-		
+		public DeleteButtonListener() {
+		}
+
 		/**
 		 * Mouse double click.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDoubleClick(MouseEvent e){}
-		
+		public void mouseDoubleClick(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse down.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDown(MouseEvent e){}
-		
+		public void mouseDown(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse up.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseUp(MouseEvent e){
+		public void mouseUp(MouseEvent e) {
 			runActionDelete();
 		}
 	};
-	
+
 	/**
-	 * listener of the button to  move up an element.
+	 * listener of the button to move up an element.
 	 * 
 	 * @author Patrick Tessier
 	 */
-	protected class UpButtonListener implements MouseListener{
-		
+	protected class UpButtonListener implements MouseListener {
+
 		/**
 		 * The Constructor.
 		 */
-		public  UpButtonListener(){}
-		
+		public UpButtonListener() {
+		}
+
 		/**
 		 * Mouse double click.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDoubleClick(MouseEvent e){}
-		
+		public void mouseDoubleClick(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse down.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDown(MouseEvent e){}
-		
+		public void mouseDown(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse up.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseUp(MouseEvent e){
+		public void mouseUp(MouseEvent e) {
 			runActionUp();
 		}
 	};
-	
+
 	/**
-	 * listener of the button to  move bottom an element.
+	 * listener of the button to move bottom an element.
 	 * 
 	 * @author Patrick Tessier
 	 */
-	protected class BottomButtonListener implements MouseListener{
-		
+	protected class BottomButtonListener implements MouseListener {
+
 		/**
 		 * The Constructor.
 		 */
-		public  BottomButtonListener(){}
-		
+		public BottomButtonListener() {
+		}
+
 		/**
 		 * Mouse double click.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDoubleClick(MouseEvent e){}
-		
+		public void mouseDoubleClick(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse down.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseDown(MouseEvent e){}
-		
+		public void mouseDown(MouseEvent e) {
+		}
+
 		/**
 		 * Mouse up.
 		 * 
-		 * @param e the e
+		 * @param e
+		 *        the e
 		 */
-		public void mouseUp(MouseEvent e){
+		public void mouseUp(MouseEvent e) {
 			runActionBottom();
 		}
 	};
-	
-	
+
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param parentShell the parent shell
-	 * @param selectedText the selected text
-	 * @param possibleText the possible text
+	 * @param parentShell
+	 *        the parent shell
+	 * @param selectedText
+	 *        the selected text
+	 * @param possibleText
+	 *        the possible text
 	 */
 	public ChooseSetDialog(Shell parentShell,
-							String possibleText,
-							String selectedText){
+			String possibleText,
+			String selectedText) {
 		super(parentShell);
 		setShellStyle(SWT.RESIZE | super.getShellStyle());
-		if(possibleText!=null) {
-			this.possibleText=possibleText; //set possible Text
+		if(possibleText != null) {
+			this.possibleText = possibleText; //set possible Text
 		}
-		if(selectedText!=null) {
-			this.selectedText=selectedText;//set selected Label
+		if(selectedText != null) {
+			this.selectedText = selectedText;//set selected Label
 		}
 		//Add listener
-		this.addButtonListener=new AddButtonListener();
-		this.deleteButtonListener= new DeleteButtonListener();
-		this.upButtonListener=new UpButtonListener();
-		this.bottomButtonListener=new BottomButtonListener();
+		this.addButtonListener = new AddButtonListener();
+		this.deleteButtonListener = new DeleteButtonListener();
+		this.upButtonListener = new UpButtonListener();
+		this.bottomButtonListener = new BottomButtonListener();
 	}
-	
+
 	/**
 	 * Creates the dialog area.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 * 
 	 * @return the control
 	 */
 	@Override
-	protected Control createDialogArea(Composite parent){
+	protected Control createDialogArea(Composite parent) {
 		//place all buttons
-		Composite comp = (Composite) super.createDialogArea(parent);
+		Composite comp = (Composite)super.createDialogArea(parent);
 		FormLayout layout = new FormLayout();
 		comp.setLayout(layout);
 
 		// initializes data
 		FormData data;
-		
+
 		// create elements
 		createElements(comp);
-		
+
 		// set fonts for elements that require fonts
 		setFonts();
-		
+
 		// set data to the left elements: possible elements
 		// Label: available elements title
 		data = new FormData();
-		data.top=new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
-		data.left=new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
+		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
+		data.left = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
 		possibleSetText.setLayoutData(data);
-		
+
 		// List: available elements list
-		data =new FormData();
-		data.height=200;
-		data.width=300;
-		data.top	= new FormAttachment(possibleSetText,ITabbedPropertyConstants.VSPACE);
-		data.left	= new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
+		data = new FormData();
+		data.height = 200;
+		data.width = 300;
+		data.top = new FormAttachment(possibleSetText, ITabbedPropertyConstants.VSPACE);
+		data.left = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
 		data.bottom = new FormAttachment(100, -ITabbedPropertyConstants.VSPACE);
-		data.right 	= new FormAttachment(addButton, -ITabbedPropertyConstants.HSPACE);
+		data.right = new FormAttachment(addButton, -ITabbedPropertyConstants.HSPACE);
 		possibleElementList.setLayoutData(data);
-		
+
 		// buttons
 		// add button
-		data      	= new FormData();
-		data.top   	= new FormAttachment(40, 0);
-		data.right 	= new FormAttachment(50, -(ITabbedPropertyConstants.HSPACE)/2);
+		data = new FormData();
+		data.top = new FormAttachment(40, 0);
+		data.right = new FormAttachment(50, -(ITabbedPropertyConstants.HSPACE) / 2);
 		addButton.setLayoutData(data);
 
 		// right button
-		data       = new FormData();
-		data.top   = new FormAttachment(addButton, ITabbedPropertyConstants.VSPACE, SWT.BOTTOM);
-		data.right = new FormAttachment(50, -(ITabbedPropertyConstants.HSPACE)/2);
+		data = new FormData();
+		data.top = new FormAttachment(addButton, ITabbedPropertyConstants.VSPACE, SWT.BOTTOM);
+		data.right = new FormAttachment(50, -(ITabbedPropertyConstants.HSPACE) / 2);
 		deleteButton.setLayoutData(data);
-		
+
 		// Right part
 		// Label: selected elements title
-		data 		= new FormData();
-		data.top	= new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
-		data.left	= new FormAttachment(addButton, ITabbedPropertyConstants.HSPACE);
+		data = new FormData();
+		data.top = new FormAttachment(0, ITabbedPropertyConstants.HSPACE);
+		data.left = new FormAttachment(addButton, ITabbedPropertyConstants.HSPACE);
 		selectedElementText.setLayoutData(data);
-		
+
 		// Label: selected elements list
-		data 		= new FormData();
-		data.left	= new FormAttachment(addButton, ITabbedPropertyConstants.HSPACE);
-		data.top 	= new FormAttachment(selectedElementText, ITabbedPropertyConstants.VSPACE);
-		data.right 	= new FormAttachment(upButton, - ITabbedPropertyConstants.HSPACE);
-		data.bottom	= new FormAttachment(100, -ITabbedPropertyConstants.VSPACE);
+		data = new FormData();
+		data.left = new FormAttachment(addButton, ITabbedPropertyConstants.HSPACE);
+		data.top = new FormAttachment(selectedElementText, ITabbedPropertyConstants.VSPACE);
+		data.right = new FormAttachment(upButton, -ITabbedPropertyConstants.HSPACE);
+		data.bottom = new FormAttachment(100, -ITabbedPropertyConstants.VSPACE);
 		selectedElementList.setLayoutData(data);
-		
+
 		// up button
-		data      	= new FormData();
-		data.top   	= new FormAttachment(40, 0);
-		data.right 	= new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
+		data = new FormData();
+		data.top = new FormAttachment(40, 0);
+		data.right = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
 		upButton.setLayoutData(data);
 
 		// down button
-		data       = new FormData();
-		data.top   = new FormAttachment(upButton, ITabbedPropertyConstants.HSPACE, SWT.BOTTOM);
+		data = new FormData();
+		data.top = new FormAttachment(upButton, ITabbedPropertyConstants.HSPACE, SWT.BOTTOM);
 		data.right = new FormAttachment(100, -ITabbedPropertyConstants.HSPACE);
 		bottomButton.setLayoutData(data);
-		
+
 		// refresh both lists
 		fillSelectedElementList();
 		fillPossibleElementList();
-		
+
 		// add listeners to button
 		addButtonListeners();
-		
+
 		// end of the dialog
 		return comp;
 	}
-	
+
 	/**
-	 * Create elements in the  dialog.
+	 * Create elements in the dialog.
 	 * 
-	 * @param comp the parent composite
+	 * @param comp
+	 *        the parent composite
 	 */
 	private void createElements(Composite comp) {
 		// buttons
-		addButton=new Button(comp, SWT.CENTER);
+		addButton = new Button(comp, SWT.CENTER);
 		addButton.setImage(IMG_RIGHT_ARROW);
-		
-		deleteButton=new Button(comp, SWT.CENTER);
+
+		deleteButton = new Button(comp, SWT.CENTER);
 		deleteButton.setImage(IMG_LEFT_ARROW);
-		
-		upButton	= new Button(comp, SWT.CENTER);
+
+		upButton = new Button(comp, SWT.CENTER);
 		upButton.setImage(IMG_UP_ARROW);
-		
+
 		bottomButton = new Button(comp, SWT.CENTER);
 		bottomButton.setImage(IMG_DOWN_ARROW);
-		
+
 		// texts
-		selectedElementText= new Label(comp, SWT.CENTER);
+		selectedElementText = new Label(comp, SWT.CENTER);
 		selectedElementText.setText(selectedText);
-		
-		possibleSetText= new Label(comp, SWT.CENTER);
+
+		possibleSetText = new Label(comp, SWT.CENTER);
 		possibleSetText.setText(possibleText);
-		
+
 		// lists
 		selectedElementList = new List(comp, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
 		possibleElementList = new List(comp, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
@@ -462,7 +491,7 @@ public class ChooseSetDialog extends Dialog implements IChooseDialog {
 	 * Apply Font to elements that display text.
 	 */
 	private void setFonts() {
-		FontData[] fontdata={new FontData("Arial", 9, SWT.NORMAL)};
+		FontData[] fontdata = { new FontData("Arial", 9, SWT.NORMAL) };
 		Font font = new FontManager().get(fontdata);
 		selectedElementText.setFont(font);
 		selectedElementList.setFont(font);
@@ -474,78 +503,89 @@ public class ChooseSetDialog extends Dialog implements IChooseDialog {
 	 * Add listeners to buttons.
 	 */
 	private void addButtonListeners() {
-		addButton.addMouseListener( addButtonListener);
-		deleteButton.addMouseListener( deleteButtonListener);
-		upButton.addMouseListener( upButtonListener);
-		bottomButton.addMouseListener( bottomButtonListener);
+		addButton.addMouseListener(addButtonListener);
+		deleteButton.addMouseListener(deleteButtonListener);
+		upButton.addMouseListener(upButtonListener);
+		bottomButton.addMouseListener(bottomButtonListener);
 	}
-	
+
 	/**
 	 * Creates the composite.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 */
-	protected void createComposite(Composite parent){
-		Composite comp= new Composite(parent, SWT.NONE);
+	protected void createComposite(Composite parent) {
+		Composite comp = new Composite(parent, SWT.NONE);
 		comp.setLayout(new GridLayout());
 	}
-	
+
 	/**
 	 * fill the possible list.
 	 */
-	protected void fillPossibleElementList(){
-		for (int i=0;i<20;i++){
-			possibleElementList.add("item"+i);
+	protected void fillPossibleElementList() {
+		for(int i = 0; i < 20; i++) {
+			possibleElementList.add("item" + i);
 		}
 	}
-	
+
 	/**
 	 * fill the selected list.
 	 */
-	protected void fillSelectedElementList(){
-		for (int i=0;i<20;i++){
-			selectedElementList.add("itemSelected"+i);
+	protected void fillSelectedElementList() {
+		for(int i = 0; i < 20; i++) {
+			selectedElementList.add("itemSelected" + i);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
 	 */
 	/**
 	 * Creates the buttons for button bar.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 */
 	@Override
-	protected void createButtonsForButtonBar(Composite parent){
-		super.createButtonsForButtonBar(parent);	
+	protected void createButtonsForButtonBar(Composite parent) {
+		super.createButtonsForButtonBar(parent);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#buttonPressed(int)
 	 */
 	/**
 	 * Button pressed.
 	 * 
-	 * @param buttonId the button id
+	 * @param buttonId
+	 *        the button id
 	 */
 	@Override
-	protected void buttonPressed(int buttonId){
+	protected void buttonPressed(int buttonId) {
 		super.buttonPressed(buttonId);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 */
 	/**
 	 * Ok pressed.
 	 */
 	@Override
-	protected void okPressed(){
+	protected void okPressed() {
 		super.okPressed();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#cancelPressed()
 	 */
 	/**
@@ -553,12 +593,14 @@ public class ChooseSetDialog extends Dialog implements IChooseDialog {
 	 */
 	@Override
 	protected void cancelPressed() {
-		value=null;
+		value = null;
 		super.cancelPressed();
-		
+
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.papyrus.ui.dialogs.IChooseDialog#getValue()
 	 */
 	/**
@@ -566,31 +608,31 @@ public class ChooseSetDialog extends Dialog implements IChooseDialog {
 	 * 
 	 * @return the value
 	 */
-	public Object getValue(){
+	public Object getValue() {
 		return value;
 	}
 
 	/**
 	 * Behavior for the add button.
 	 */
-	protected void runActionAdd(){
+	protected void runActionAdd() {
 	}
-	
+
 	/**
 	 * Behavior for the delete button.
 	 */
-	protected void runActionDelete(){
+	protected void runActionDelete() {
 	}
-	
+
 	/**
 	 * Behavior for the up button.
 	 */
-	protected void runActionUp(){
+	protected void runActionUp() {
 	}
 
 	/**
 	 * Behavior for the bottom button.
 	 */
-	protected void runActionBottom(){
+	protected void runActionBottom() {
 	}
 }

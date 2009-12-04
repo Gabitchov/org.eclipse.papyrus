@@ -31,10 +31,8 @@ import org.eclipse.uml2.uml.Stereotype;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getBase_Property <em>Base
- * Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getDirection <em>
- * Direction</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getBase_Property <em>Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getDirection <em> Direction</em>}</li>
  * </ul>
  * </p>
  * 
@@ -97,9 +95,9 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY:
-			if (resolve)
+			if(resolve)
 				return getBase_Property();
 			return basicGetBase_Property();
 		case PortandflowsPackage.FLOW_PROPERTY__DIRECTION:
@@ -115,7 +113,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY:
 			return base_Property != null;
 		case PortandflowsPackage.FLOW_PROPERTY__DIRECTION:
@@ -131,12 +129,12 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) newValue);
+			setBase_Property((Property)newValue);
 			return;
 		case PortandflowsPackage.FLOW_PROPERTY__DIRECTION:
-			setDirection((FlowDirection) newValue);
+			setDirection((FlowDirection)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -159,9 +157,9 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) null);
+			setBase_Property((Property)null);
 			return;
 		case PortandflowsPackage.FLOW_PROPERTY__DIRECTION:
 			setDirection(DIRECTION_EDEFAULT);
@@ -176,11 +174,11 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	 * @generated
 	 */
 	public Property getBase_Property() {
-		if (base_Property != null && base_Property.eIsProxy()) {
-			InternalEObject oldBase_Property = (InternalEObject) base_Property;
-			base_Property = (Property) eResolveProxy(oldBase_Property);
-			if (base_Property != oldBase_Property) {
-				if (eNotificationRequired())
+		if(base_Property != null && base_Property.eIsProxy()) {
+			InternalEObject oldBase_Property = (InternalEObject)base_Property;
+			base_Property = (Property)eResolveProxy(oldBase_Property);
+			if(base_Property != oldBase_Property) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 			}
@@ -207,15 +205,15 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 		String FLOWPROPERTY_ID = "SysML::PortAndFlows::FlowProperty";
 		Image ImageNotFound = null;
 
-		if (getBase_Property() != null) {
+		if(getBase_Property() != null) {
 			Stereotype st = getBase_Property().getAppliedStereotype(FLOWPROPERTY_ID);
 
 			Image defaultImage = st.getIcons().get(0);
 			Image image = null;
 
-			if (getDirection() == FlowDirection.OUT) {
+			if(getDirection() == FlowDirection.OUT) {
 				image = st.getIcons().get(1);
-			} else if (getDirection() == FlowDirection.INOUT) {
+			} else if(getDirection() == FlowDirection.INOUT) {
 				image = st.getIcons().get(2);
 			} else {
 				// Default : IN
@@ -237,7 +235,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	public void setBase_Property(Property newBase_Property) {
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY,
 					oldBase_Property, base_Property));
 	}
@@ -250,7 +248,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	public void setDirection(FlowDirection newDirection) {
 		FlowDirection oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PROPERTY__DIRECTION,
 					oldDirection, direction));
 	}
@@ -262,7 +260,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if(eIsProxy())
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

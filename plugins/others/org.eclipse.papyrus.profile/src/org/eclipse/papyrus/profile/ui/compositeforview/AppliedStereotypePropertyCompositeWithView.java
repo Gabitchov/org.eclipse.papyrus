@@ -44,9 +44,9 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	 * The Constructor.
 	 * 
 	 * @param stereotypeComposite
-	 *            the stereotype composite
+	 *        the stereotype composite
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public AppliedStereotypePropertyCompositeWithView(Composite parent, AppliedStereotypeCompositeWithView stereotypeComposite) {
 		super(parent);
@@ -61,7 +61,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	 * 
 	 */
 	protected void touchModel() {
-		final AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) treeViewer.getInput();
+		final AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
 		final Element stereotypedElement = pTO.getParent().getParent().getElement();
 		try {
 			getDomain().runExclusive(new Runnable() {
@@ -140,7 +140,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	 * Sets the stereotype composite.
 	 * 
 	 * @param stereotypeComposite
-	 *            the stereotype composite
+	 *        the stereotype composite
 	 */
 	public void setStereotypeComposite(AppliedStereotypeCompositeWithView stereotypeComposite) {
 		this.stereotypeComposite = stereotypeComposite;

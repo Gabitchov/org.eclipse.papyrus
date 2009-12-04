@@ -48,7 +48,7 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * Constructor
 	 * 
 	 * @param req
-	 *            the creation request
+	 *        the creation request
 	 */
 	public CollaborationRoleCreateCommand(CreateElementRequest req) {
 		super(req);
@@ -58,9 +58,9 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * Constructor
 	 * 
 	 * @param req
-	 *            the creation request
+	 *        the creation request
 	 * @param eObject
-	 *            the element to edit
+	 *        the element to edit
 	 */
 	public CollaborationRoleCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req, eObject);
@@ -70,9 +70,9 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * Creates an new {@link CollaborationRoleCreateCommand}
 	 * 
 	 * @param req
-	 *            the creation request
+	 *        the creation request
 	 * @param eObject
-	 *            the element to edit
+	 *        the element to edit
 	 * @return the new creation command for CollaborationRole
 	 */
 	public static CollaborationRoleCreateCommand create(CreateElementRequest req, EObject eObject) {
@@ -92,7 +92,7 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 			throws ExecutionException {
 
 		// Retrieve the edited Collaboration
-		Collaboration owner = (Collaboration) getElementToEdit();
+		Collaboration owner = (Collaboration)getElementToEdit();
 
 		// Create and open the selection dialog
 		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -115,18 +115,18 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 		// If a ConnectableElement has been selected, complete command execution
 		// using selection as the "newly created" element and make the edited
 		// Collaboration reference it in the CollaborationRoles eReference.
-		if (dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
-			ConnectableElement role = (ConnectableElement) dialog.getFirstResult();
+		if(dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
+			ConnectableElement role = (ConnectableElement)dialog.getFirstResult();
 
-			owner.getCollaborationRoles().add((ConnectableElement) role);
+			owner.getCollaborationRoles().add((ConnectableElement)role);
 
-			UMLElementTypes.init_ConnectableElement_3115((ConnectableElement) role);
+			UMLElementTypes.init_ConnectableElement_3115((ConnectableElement)role);
 			try {
-				doConfigure((ConnectableElement) role, monitor, info);
+				doConfigure((ConnectableElement)role, monitor, info);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
 			}
-			((CreateElementRequest) getRequest()).setNewElement((ConnectableElement) role);
+			((CreateElementRequest)getRequest()).setNewElement((ConnectableElement)role);
 
 			return CommandResult.newOKCommandResult(role);
 		}

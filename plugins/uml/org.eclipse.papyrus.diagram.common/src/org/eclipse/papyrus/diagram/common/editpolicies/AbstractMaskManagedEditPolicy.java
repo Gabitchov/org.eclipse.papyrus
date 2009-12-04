@@ -40,11 +40,11 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
 		Element element = getUMLElement();
-		if (getUMLElement() != null) {
+		if(getUMLElement() != null) {
 
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
@@ -79,15 +79,15 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if (view == null) {
+		if(view == null) {
 			return;
 		}
-		Element element = (Element) getUMLElement();
+		Element element = (Element)getUMLElement();
 
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
 
-		if (element == null) {
+		if(element == null) {
 			return;
 		}
 		getDiagramEventBroker().removeNotificationListener(element, this);
@@ -109,8 +109,8 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (theEditingDomain != null) {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(theEditingDomain != null) {
 			return DiagramEventBroker.getInstance(theEditingDomain);
 		}
 		return null;
@@ -122,7 +122,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * @return
 	 */
 	public Element getUMLElement() {
-		return (Element) getView().getElement();
+		return (Element)getView().getElement();
 	}
 
 	/**
@@ -131,7 +131,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
-		return (View) getHost().getModel();
+		return (View)getHost().getModel();
 	}
 
 	/**
@@ -139,18 +139,18 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * managed label.
 	 * 
 	 * @param object
-	 *            the object to be checked
+	 *        the object to be checked
 	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
 	 *         correct one.
 	 */
 	protected boolean isMaskManagedAnnotation(Object object) {
 		// check the notifier is an annotation
-		if ((object instanceof EAnnotation)) {
+		if((object instanceof EAnnotation)) {
 
 			// notifier is the eannotation. Check this is the annotation in charge of the property
 			// label display
-			if (VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
-					.equals(((EAnnotation) object).getSource())) {
+			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
+					.equals(((EAnnotation)object).getSource())) {
 				return true;
 			}
 		}
@@ -162,25 +162,25 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * removed from the given object which should be a View.
 	 * 
 	 * @param object
-	 *            the object to be checked
+	 *        the object to be checked
 	 * @param notification
-	 *            the notification passed to the policy (which is a listener)
+	 *        the notification passed to the policy (which is a listener)
 	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
 	 *         correct one.
 	 */
 	protected boolean isRemovedMaskManagedLabelAnnotation(Object object, Notification notification) {
 		// object is a model element, that means it has EAnnotations
-		if (object instanceof EModelElement) {
+		if(object instanceof EModelElement) {
 
 			// something was removed.
-			if (notification.getEventType() == Notification.REMOVE) {
+			if(notification.getEventType() == Notification.REMOVE) {
 				Object oldValue = notification.getOldValue();
 
 				// this is an annotation which is returned
-				if (oldValue instanceof EAnnotation) {
+				if(oldValue instanceof EAnnotation) {
 					// returns true if the annotation has the correct source
 					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
-							.equals(((EAnnotation) oldValue).getSource());
+							.equals(((EAnnotation)oldValue).getSource());
 				}
 			}
 		}
@@ -196,11 +196,11 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * {@inheritDoc}
 	 */
 	public void setDefaultDisplayValue() {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (editingDomain != null) {
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(editingDomain != null) {
 			editingDomain.getCommandStack().execute(
-					new RemoveEAnnotationCommand(editingDomain, (EModelElement) getHost().getModel(),
-							VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+					new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(),
+					VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
 		}
 
 	}
@@ -209,12 +209,12 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * {@inheritDoc}
 	 */
 	public void updateDisplayValue(int newValue) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (editingDomain != null) {
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(editingDomain != null) {
 			editingDomain.getCommandStack()
 					.execute(
-							new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement) getHost().getModel(),
-									newValue));
+					new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(),
+					newValue));
 		}
 	}
 

@@ -29,54 +29,54 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class ConditionalExpr extends Expression {
 
-    private Expression condition;
+	private Expression condition;
 
-    private Expression thenExpr;
+	private Expression thenExpr;
 
-    private Expression elseExpr;
+	private Expression elseExpr;
 
-    public ConditionalExpr() {
-    }
+	public ConditionalExpr() {
+	}
 
-    public ConditionalExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression condition, Expression thenExpr, Expression elseExpr) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.condition = condition;
-        this.thenExpr = thenExpr;
-        this.elseExpr = elseExpr;
-    }
+	public ConditionalExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression condition, Expression thenExpr, Expression elseExpr) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.condition = condition;
+		this.thenExpr = thenExpr;
+		this.elseExpr = elseExpr;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Expression getCondition() {
-        return condition;
-    }
+	public Expression getCondition() {
+		return condition;
+	}
 
-    public Expression getElseExpr() {
-        return elseExpr;
-    }
+	public Expression getElseExpr() {
+		return elseExpr;
+	}
 
-    public Expression getThenExpr() {
-        return thenExpr;
-    }
+	public Expression getThenExpr() {
+		return thenExpr;
+	}
 
-    public void setCondition(Expression condition) {
-        this.condition = condition;
-    }
+	public void setCondition(Expression condition) {
+		this.condition = condition;
+	}
 
-    public void setElseExpr(Expression elseExpr) {
-        this.elseExpr = elseExpr;
-    }
+	public void setElseExpr(Expression elseExpr) {
+		this.elseExpr = elseExpr;
+	}
 
-    public void setThenExpr(Expression thenExpr) {
-        this.thenExpr = thenExpr;
-    }
+	public void setThenExpr(Expression thenExpr) {
+		this.thenExpr = thenExpr;
+	}
 
 }

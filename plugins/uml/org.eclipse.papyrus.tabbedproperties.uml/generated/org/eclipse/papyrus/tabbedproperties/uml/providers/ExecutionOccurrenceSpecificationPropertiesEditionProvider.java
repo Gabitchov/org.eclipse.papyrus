@@ -40,7 +40,7 @@ public class ExecutionOccurrenceSpecificationPropertiesEditionProvider implement
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ExecutionOccurrenceSpecification) {
+		if(eObject instanceof ExecutionOccurrenceSpecification) {
 			return new ExecutionOccurrenceSpecificationPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ExecutionOccurrenceSpecificationPropertiesEditionProvider implement
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ExecutionOccurrenceSpecification) {
-			if (ExecutionOccurrenceSpecificationBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ExecutionOccurrenceSpecification) {
+			if(ExecutionOccurrenceSpecificationBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ExecutionOccurrenceSpecificationBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

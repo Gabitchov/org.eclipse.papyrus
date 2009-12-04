@@ -81,10 +81,10 @@ public class UMLNewDiagramFileWizard extends Wizard {
 				StateMachineEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = domainModelURI.trimFileExtension().lastSegment();
-		if (domainModelURI.isPlatformResource()) {
+		if(domainModelURI.isPlatformResource()) {
 			filePath = new Path(domainModelURI.trimSegments(1)
 					.toPlatformString(true));
-		} else if (domainModelURI.isFile()) {
+		} else if(domainModelURI.isFile()) {
 			filePath = new Path(domainModelURI.trimSegments(1).toFileString());
 		} else {
 			// TODO : use some default path
@@ -105,10 +105,10 @@ public class UMLNewDiagramFileWizard extends Wizard {
 
 		IBaseLabelProvider labelProvider = new AdapterFactoryLabelProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
+				.getItemProvidersAdapterFactory());
 		IContentProvider contentProvider = new AdapterFactoryContentProvider(
 				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
+				.getItemProvidersAdapterFactory());
 		diagramElementsSelectionPage = new SelectModelElementsForDiagramDialog(
 				diagramRootElementSelectionPage, contentProvider, labelProvider);
 
@@ -149,8 +149,8 @@ public class UMLNewDiagramFileWizard extends Wizard {
 					throws ExecutionException {
 				int diagramVID = UMLVisualIDRegistry
 						.getDiagramVisualID(diagramRootElementSelectionPage
-								.getModelElement());
-				if (diagramVID != StateMachineEditPart.VISUAL_ID) {
+						.getModelElement());
+				if(diagramVID != StateMachineEditPart.VISUAL_ID) {
 					return CommandResult
 							.newErrorCommandResult(Messages.UMLNewDiagramFileWizard_IncorrectRootError);
 				}
@@ -164,7 +164,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 			}
 
 			private void addReferencedEObjectsToDiagram(Diagram diagram) {
-				for (EObject eObject : diagramElementsSelectionPage
+				for(EObject eObject : diagramElementsSelectionPage
 						.getSelectedEObjects()) {
 					MultiDiagramUtil.AddEAnnotationReferenceToDiagram(
 							diagram, eObject);
@@ -177,14 +177,12 @@ public class UMLNewDiagramFileWizard extends Wizard {
 			diagramResource.save(UMLDiagramEditorUtil.getSaveOptions());
 			UMLDiagramEditorUtil.openDiagram(diagramResource);
 		} catch (ExecutionException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Unable to create model and diagram", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		} catch (IOException ex) {
 			UMLDiagramEditorPlugin.getInstance().logError(
 					"Save operation failed for: " + diagramModelURI, ex); //$NON-NLS-1$
 		} catch (PartInitException ex) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Unable to open editor", ex); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Unable to open editor", ex); //$NON-NLS-1$
 		}
 		return true;
 	}
@@ -215,15 +213,15 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		 */
 		@Override
 		protected boolean validatePage() {
-			if (selectedModelElement == null) {
+			if(selectedModelElement == null) {
 				setErrorMessage(Messages.UMLNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
 			boolean result = ViewService.getInstance().provides(
 					new CreateDiagramViewOperation(new EObjectAdapter(
-							selectedModelElement),
-							StateMachineEditPart.MODEL_ID,
-							UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+					selectedModelElement),
+					StateMachineEditPart.MODEL_ID,
+					UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null
 					: Messages.UMLNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;

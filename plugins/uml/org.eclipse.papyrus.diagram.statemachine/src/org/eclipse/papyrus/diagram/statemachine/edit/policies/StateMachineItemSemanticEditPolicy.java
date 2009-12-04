@@ -36,22 +36,24 @@ public class StateMachineItemSemanticEditPolicy extends
 	 */
 	static class EReferenceDiagramSwitch extends
 			BasicEcoreSwitch<EReference, IElementType> {
+
 		@Override
 		public EReference doSwitch(EObject modelElement) {
 
 			final IElementType type = getInfo();
-			if (type == null) {
+			if(type == null) {
 				return null;
 			}
 			UMLSwitch<EReference> aSwitch = new UMLSwitch<EReference>() {
+
 				@Override
 				public EReference casePackage(Package modelElement) {
 					EReference reference = null;
-					if (type.equals(UMLElementTypes.StateMachine_1001)) {
+					if(type.equals(UMLElementTypes.StateMachine_1001)) {
 						reference = UMLPackage.eINSTANCE
 								.getPackage_PackagedElement();
 					}
-					if (type.equals(UMLElementTypes.Comment_2024)) {
+					if(type.equals(UMLElementTypes.Comment_2024)) {
 						reference = UMLPackage.eINSTANCE
 								.getElement_OwnedComment();
 					}
@@ -62,7 +64,7 @@ public class StateMachineItemSemanticEditPolicy extends
 				@Override
 				public EReference caseStateMachine(StateMachine modelElement) {
 					EReference reference = null;
-					if (type.equals(UMLElementTypes.Comment_2024)) {
+					if(type.equals(UMLElementTypes.Comment_2024)) {
 						reference = UMLPackage.eINSTANCE
 								.getElement_OwnedComment();
 					}
@@ -72,7 +74,7 @@ public class StateMachineItemSemanticEditPolicy extends
 				@Override
 				public EReference caseClass(Class modelElement) {
 					EReference reference = null;
-					if (type.equals(UMLElementTypes.Comment_2024)) {
+					if(type.equals(UMLElementTypes.Comment_2024)) {
 						reference = UMLPackage.eINSTANCE
 								.getElement_OwnedComment();
 					}
@@ -98,21 +100,21 @@ public class StateMachineItemSemanticEditPolicy extends
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
 		EObject canvasElement = DiagramCanvasSwitch.getCanvasElement(this);
-		if (canvasElement == null) {
+		if(canvasElement == null) {
 			return null;
 		}
 		aSwitch.setInfo(req.getElementType());
 		req.setContainmentFeature(aSwitch.doSwitch(canvasElement));
-		if (UMLElementTypes.StateMachine_1001 == req.getElementType()) {
+		if(UMLElementTypes.StateMachine_1001 == req.getElementType()) {
 			return getGEFWrapper(StateMachineCreateCommand.create(req,
 					canvasElement));
 		}
-		if (UMLElementTypes.Comment_2024 == req.getElementType()) {
+		if(UMLElementTypes.Comment_2024 == req.getElementType()) {
 			return getGEFWrapper(CommentCreateCommand
 					.create(req, canvasElement));
 		}
@@ -124,11 +126,11 @@ public class StateMachineItemSemanticEditPolicy extends
 	 */
 	@Override
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost())
 				.getEditingDomain();
 		Diagram currentDiagram = null;
-		if (getHost() instanceof IGraphicalEditPart) {
-			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView()
+		if(getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart)getHost()).getNotationView()
 					.getDiagram();
 		}
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req,

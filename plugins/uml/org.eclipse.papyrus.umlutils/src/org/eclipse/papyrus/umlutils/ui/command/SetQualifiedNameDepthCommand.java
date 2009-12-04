@@ -31,11 +31,11 @@ public class SetQualifiedNameDepthCommand extends CreateEAnnotationCommand {
 	 * Instantiates a new sets the qualified name depth command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param depht
-	 *            the depht
+	 *        the depht
 	 */
 	public SetQualifiedNameDepthCommand(TransactionalEditingDomain domain, EModelElement object, int depht) {
 		super(domain, object, VisualInformationPapyrusConstant.QUALIFIED_NAME);

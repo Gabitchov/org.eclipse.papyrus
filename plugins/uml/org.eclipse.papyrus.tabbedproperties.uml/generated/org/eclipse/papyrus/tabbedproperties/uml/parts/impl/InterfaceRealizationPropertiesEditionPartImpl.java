@@ -64,23 +64,34 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class InterfaceRealizationPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, InterfaceRealizationPropertiesEditionPart {
 
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	protected EMFListEditUtil clientEditUtil;
+
 	protected ReferencesTable<? extends EObject> client;
+
 	protected List<ViewerFilter> clientBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil supplierEditUtil;
+
 	protected ReferencesTable<? extends EObject> supplier;
+
 	protected List<ViewerFilter> supplierBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> supplierFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public InterfaceRealizationPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -88,25 +99,25 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
@@ -128,6 +139,7 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 		createVisibilityEMFComboViewer(generalGroup);
 		createGenerelHBox1HBox(generalGroup);
 	}
+
 	protected void createNameText(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.InterfaceRealizationPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.InterfaceRealization.name, UMLViewsRepository.SWT_KIND));
 		name = new Text(parent, SWT.BORDER);
@@ -141,14 +153,15 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InterfaceRealizationPropertiesEditionPartImpl.this, UMLViewsRepository.InterfaceRealization.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
-			
+
 		});
 
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.InterfaceRealization.name, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(Composite parent) {
 		SWTUtils.createPartLabel(parent, UMLMessages.InterfaceRealizationPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.InterfaceRealization.visibility, UMLViewsRepository.SWT_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -158,32 +171,35 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 		visibility.getCombo().setLayoutData(visibilityData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.InterfaceRealization.visibility, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createGenerelHBox1HBox(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan=2;
+		gridData.horizontalSpan = 2;
 		container.setLayoutData(gridData);
 		HorizontalBox generelHBox1HBox = new HorizontalBox(container);
 		//create sub figures
-				createClientAdvancedReferencesTable(generelHBox1HBox);
-				createSupplierAdvancedReferencesTable(generelHBox1HBox);
+		createClientAdvancedReferencesTable(generelHBox1HBox);
+		createSupplierAdvancedReferencesTable(generelHBox1HBox);
 		parent.pack();
 	}
+
 	protected void createClientAdvancedReferencesTable(Composite parent) {
 		this.client = new ReferencesTable<NamedElement>(UMLMessages.InterfaceRealizationPropertiesEditionPart_ClientLabel, new ReferencesTableListener<NamedElement>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(resourceSet, clientFilters, clientBusinessFilters,
-				"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+						"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!clientEditUtil.getVirtualList().contains(elem))
 								clientEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InterfaceRealizationPropertiesEditionPartImpl.this, UMLViewsRepository.InterfaceRealization.client,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						client.refresh();
 					}
@@ -191,10 +207,21 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 				};
 				dialog.open();
 			}
-			public void handleEdit(NamedElement element) { editClient(element); }
-			public void handleMove(NamedElement element, int oldIndex, int newIndex) { moveClient(element, oldIndex, newIndex); }
-			public void handleRemove(NamedElement element) { removeFromClient(element); }
-			public void navigateTo(NamedElement element) { }
+
+			public void handleEdit(NamedElement element) {
+				editClient(element);
+			}
+
+			public void handleMove(NamedElement element, int oldIndex, int newIndex) {
+				moveClient(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(NamedElement element) {
+				removeFromClient(element);
+			}
+
+			public void navigateTo(NamedElement element) {
+			}
 		});
 		this.client.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InterfaceRealization.client, UMLViewsRepository.SWT_KIND));
 		this.client.createControls(parent);
@@ -236,10 +263,10 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				clientEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				client.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -251,19 +278,21 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 		// End of user code
 
 	}
+
 	protected void createSupplierAdvancedReferencesTable(Composite parent) {
 		this.supplier = new ReferencesTable<NamedElement>(UMLMessages.InterfaceRealizationPropertiesEditionPart_SupplierLabel, new ReferencesTableListener<NamedElement>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(resourceSet, supplierFilters, supplierBusinessFilters,
-				"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+						"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!supplierEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!supplierEditUtil.getVirtualList().contains(elem))
 								supplierEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(InterfaceRealizationPropertiesEditionPartImpl.this, UMLViewsRepository.InterfaceRealization.supplier,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						supplier.refresh();
 					}
@@ -271,10 +300,21 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 				};
 				dialog.open();
 			}
-			public void handleEdit(NamedElement element) { editSupplier(element); }
-			public void handleMove(NamedElement element, int oldIndex, int newIndex) { moveSupplier(element, oldIndex, newIndex); }
-			public void handleRemove(NamedElement element) { removeFromSupplier(element); }
-			public void navigateTo(NamedElement element) { }
+
+			public void handleEdit(NamedElement element) {
+				editSupplier(element);
+			}
+
+			public void handleMove(NamedElement element, int oldIndex, int newIndex) {
+				moveSupplier(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(NamedElement element) {
+				removeFromSupplier(element);
+			}
+
+			public void navigateTo(NamedElement element) {
+			}
 		});
 		this.supplier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.InterfaceRealization.supplier, UMLViewsRepository.SWT_KIND));
 		this.supplier.createControls(parent);
@@ -316,10 +356,10 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				supplierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				supplier.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -355,10 +395,10 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -376,7 +416,7 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
@@ -438,12 +478,13 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#initClient(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#initClient(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initClient(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			clientEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			clientEditUtil = new EMFListEditUtil(current, feature);
@@ -456,7 +497,7 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#updateClient(EObject newValue)
 	 */
 	public void updateClient(EObject newValue) {
-		if(clientEditUtil != null){
+		if(clientEditUtil != null) {
 			clientEditUtil.reinit(newValue);
 			client.refresh();
 		}
@@ -528,12 +569,13 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#initSupplier(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#initSupplier(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initSupplier(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			supplierEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			supplierEditUtil = new EMFListEditUtil(current, feature);
@@ -546,7 +588,7 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.InterfaceRealizationPropertiesEditionPart#updateSupplier(EObject newValue)
 	 */
 	public void updateSupplier(EObject newValue) {
-		if(supplierEditUtil != null){
+		if(supplierEditUtil != null) {
 			supplierEditUtil.reinit(newValue);
 			supplier.refresh();
 		}
@@ -586,9 +628,6 @@ public class InterfaceRealizationPropertiesEditionPartImpl extends CompositeProp
 	public void unsetMessageForSupplier() {
 
 	}
-
-
-
 
 
 

@@ -37,8 +37,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 public class TransitionParser implements ISemanticParser {
-	
-	
+
+
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
 	}
@@ -53,53 +53,53 @@ public class TransitionParser implements ISemanticParser {
 
 	public String getPrintString(IAdaptable element, int flags) {
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
-		if (eObject instanceof Transition) {
-			Transition transition = (Transition) eObject;
+		if(eObject instanceof Transition) {
+			Transition transition = (Transition)eObject;
 			String s = "";
-			
+
 			EList<Trigger> triggers = transition.getTriggers();
-			
-			for (Iterator<Trigger> triggersIterator = triggers.iterator(); triggersIterator.hasNext();) {
+
+			for(Iterator<Trigger> triggersIterator = triggers.iterator(); triggersIterator.hasNext();) {
 				Trigger trigger = triggersIterator.next();
 				Event event = trigger.getEvent();
-				if (event != null) {
+				if(event != null) {
 					s += event.getLabel();
-					if (triggersIterator.hasNext()) {
+					if(triggersIterator.hasNext()) {
 						s += ",";
 					}
 				}
 			}
-			
+
 			Constraint guard = transition.getGuard();
-			if (guard != null) {
+			if(guard != null) {
 				ValueSpecification specification = guard.getSpecification();
-				if (specification != null) {
+				if(specification != null) {
 					s += "[";
 					s += specification.stringValue();
 					s += "]";
 				}
 			}
-			
+
 			Behavior effect = transition.getEffect();
-			if (effect != null) {
+			if(effect != null) {
 				s += "/";
 				s += effect.getLabel();
 			}
-			
+
 			if(s == "")
 				return transition.getName();
-			
+
 			return s;
 		}
 		return ""; //$NON-NLS-1$
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
-		if (event instanceof Notification) {
-			Object feature = ((Notification) event).getFeature();
+		if(event instanceof Notification) {
+			Object feature = ((Notification)event).getFeature();
 			return UMLPackage.eINSTANCE.getTransition_Trigger().equals(feature) ||
-				UMLPackage.eINSTANCE.getTransition_Guard().equals(feature) ||
-				UMLPackage.eINSTANCE.getTransition_Effect().equals(feature);
+					UMLPackage.eINSTANCE.getTransition_Guard().equals(feature) ||
+					UMLPackage.eINSTANCE.getTransition_Effect().equals(feature);
 		}
 		return false;
 	}
@@ -114,37 +114,37 @@ public class TransitionParser implements ISemanticParser {
 	}
 
 	public List getSemanticElementsBeingParsed(EObject element) {
- 		if(element instanceof Transition) {
- 			Transition t = (Transition) element;
- 			List elements = new ArrayList();
- 			
- 			//insert the own transition
- 			elements.add(element);
- 			if(t.getTriggers().size() > 0) {
- 				//insert every trigger
- 				for(Iterator <Trigger> it = t.getTriggers().iterator(); it.hasNext();) {
- 					Trigger tr = it.next();
- 					elements.add(tr);
- 					//insert the trigger's event if it exists
- 					if(tr.getEvent() != null)
- 						elements.add(tr.getEvent());
- 				}
- 			}
- 			//insert the guard if exists
- 			if(t.getGuard() != null) {
+		if(element instanceof Transition) {
+			Transition t = (Transition)element;
+			List elements = new ArrayList();
+
+			//insert the own transition
+			elements.add(element);
+			if(t.getTriggers().size() > 0) {
+				//insert every trigger
+				for(Iterator<Trigger> it = t.getTriggers().iterator(); it.hasNext();) {
+					Trigger tr = it.next();
+					elements.add(tr);
+					//insert the trigger's event if it exists
+					if(tr.getEvent() != null)
+						elements.add(tr.getEvent());
+				}
+			}
+			//insert the guard if exists
+			if(t.getGuard() != null) {
 				elements.add(t.getGuard());
 				//insert the guard's specification if exists
 				if(t.getGuard().getSpecification() != null)
 					elements.add(t.getGuard().getSpecification());
- 			}
- 			//insert the effect if exists
- 			if(t.getEffect() != null) {
- 				elements.add(t.getEffect());
- 			}
- 			
- 			return elements;
- 		}
-		
+			}
+			//insert the effect if exists
+			if(t.getEffect() != null) {
+				elements.add(t.getEffect());
+			}
+
+			return elements;
+		}
+
 		return null;
 	}
 }

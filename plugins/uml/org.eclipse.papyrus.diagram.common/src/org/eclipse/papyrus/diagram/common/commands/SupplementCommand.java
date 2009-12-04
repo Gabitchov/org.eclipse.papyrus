@@ -36,12 +36,12 @@ public abstract class SupplementCommand {
 	 * the supplement command has the same parameter as connection create command of gmf command
 	 * 
 	 * @param container
-	 *            the container of the link
+	 *        the container of the link
 	 * @param source
-	 *            the source of the link
+	 *        the source of the link
 	 * 
 	 * @param target
-	 *            the target of the link
+	 *        the target of the link
 	 */
 	public SupplementCommand(EObject container, EObject source, EObject target) {
 		super();
@@ -71,7 +71,7 @@ public abstract class SupplementCommand {
 	 * this is the method tat realize the execution of the command
 	 * 
 	 * @param newElement
-	 *            the new element ro configure
+	 *        the new element ro configure
 	 * @return the new element
 	 */
 	public abstract EObject doDefaultElementCreation(TransactionalEditingDomain domain, EObject newElement);

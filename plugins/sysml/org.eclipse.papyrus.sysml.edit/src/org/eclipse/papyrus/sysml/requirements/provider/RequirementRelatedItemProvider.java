@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
@@ -62,7 +61,7 @@ public class RequirementRelatedItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_NamedElementPropertyDescriptor(object);
@@ -81,11 +80,11 @@ public class RequirementRelatedItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addBase_NamedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_RequirementRelated_base_NamedElement_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_RequirementRelated_base_NamedElement_feature",
-						"_UI_RequirementRelated_type"),
+				"_UI_PropertyDescriptor_description", "_UI_RequirementRelated_base_NamedElement_feature",
+				"_UI_RequirementRelated_type"),
 				RequirementsPackage.Literals.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, true, false, true, null, null,
 				null));
 	}
@@ -97,10 +96,10 @@ public class RequirementRelatedItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addTracedFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_tracedFrom_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_tracedFrom_feature",
-						"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__TRACED_FROM,
+				"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__TRACED_FROM,
 				false, false, false, null, null, null));
 	}
 
@@ -111,10 +110,10 @@ public class RequirementRelatedItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addSatisfiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_satisfies_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_satisfies_feature",
-						"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__SATISFIES,
+				"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__SATISFIES,
 				false, false, false, null, null, null));
 	}
 
@@ -125,10 +124,10 @@ public class RequirementRelatedItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addRefinesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_refines_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_refines_feature",
-						"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__REFINES,
+				"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__REFINES,
 				false, false, false, null, null, null));
 	}
 
@@ -139,10 +138,10 @@ public class RequirementRelatedItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addVerifiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_verifies_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_verifies_feature",
-						"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__VERIFIES,
+				"_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__VERIFIES,
 				false, false, false, null, null, null));
 	}
 
@@ -169,8 +168,7 @@ public class RequirementRelatedItemProvider extends ItemProviderAdapter implemen
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

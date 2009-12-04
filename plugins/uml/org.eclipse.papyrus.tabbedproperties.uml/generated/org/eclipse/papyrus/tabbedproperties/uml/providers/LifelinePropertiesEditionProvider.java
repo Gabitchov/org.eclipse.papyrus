@@ -40,7 +40,7 @@ public class LifelinePropertiesEditionProvider implements IPropertiesEditionProv
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Lifeline) {
+		if(eObject instanceof Lifeline) {
 			return new LifelinePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class LifelinePropertiesEditionProvider implements IPropertiesEditionProv
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Lifeline) {
-			if (LifelineBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Lifeline) {
+			if(LifelineBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new LifelineBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

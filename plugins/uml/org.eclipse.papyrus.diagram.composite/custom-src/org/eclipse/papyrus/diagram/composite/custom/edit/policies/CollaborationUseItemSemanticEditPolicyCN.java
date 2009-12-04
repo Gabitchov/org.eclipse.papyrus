@@ -37,7 +37,7 @@ public class CollaborationUseItemSemanticEditPolicyCN extends
 	 */
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+		if(UMLElementTypes.Dependency_4017 == req.getElementType()) {
 			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);
@@ -53,7 +53,7 @@ public class CollaborationUseItemSemanticEditPolicyCN extends
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+		if(UMLElementTypes.Dependency_4017 == req.getElementType()) {
 			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);

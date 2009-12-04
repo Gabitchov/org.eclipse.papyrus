@@ -78,7 +78,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID,
 			int linkVISUALID) {
-		switch (linkVISUALID) {
+		switch(linkVISUALID) {
 		case AssociationEditPart.VISUAL_ID:
 			return dropAssociation(dropRequest, semanticLink, linkVISUALID);
 		default:
@@ -90,19 +90,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Specific drop action for association
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the semantic link
+	 *        the semantic link
 	 * @param linkVISUALID
-	 *            the link visual Sid
+	 *        the link visual Sid
 	 * 
 	 * @return the command for association
 	 */
 	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		Collection<?> endtypes = UseCaseLinkMappingHelper.getInstance().getSource(semanticLink);
-		if (endtypes.size() == 2) {
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[1];
+		if(endtypes.size() == 2) {
+			Element source = (Element)endtypes.toArray()[0];
+			Element target = (Element)endtypes.toArray()[1];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target,
 					linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {

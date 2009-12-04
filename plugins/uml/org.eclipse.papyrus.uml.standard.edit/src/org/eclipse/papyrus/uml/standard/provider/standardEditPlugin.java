@@ -49,7 +49,7 @@ public final class standardEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public standardEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
 	}
 
 	/**

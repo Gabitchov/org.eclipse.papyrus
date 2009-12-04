@@ -43,28 +43,28 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	public Command getCommand(Request request) {
 
 		// we have to distinguish the case where this is an association class
-		if (REQ_CONNECTION_END.equals(request.getType())) {
-			if (request instanceof CreateConnectionViewAndElementRequest) {
+		if(REQ_CONNECTION_END.equals(request.getType())) {
+			if(request instanceof CreateConnectionViewAndElementRequest) {
 				// default behavior
-				Command c = getConnectionAndRelationshipCompleteCommand((CreateConnectionViewAndElementRequest) request);
+				Command c = getConnectionAndRelationshipCompleteCommand((CreateConnectionViewAndElementRequest)request);
 
 				// case of associationClass
-				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request)
+				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest)request)
 						.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
-				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
+				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter
 						.getAdapter(CreateRelationshipRequest.class);
-				if (UMLElementTypes.AssociationClass_4017.equals(createElementRequest.getElementType())) {
+				if(UMLElementTypes.AssociationClass_4017.equals(createElementRequest.getElementType())) {
 					AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
 					return associationClassHelper.getAssociationClassElementCommand(
-							((CreateConnectionViewAndElementRequest) request), c);
+							((CreateConnectionViewAndElementRequest)request), c);
 
-				} else if (UMLElementTypes.Dependency_4018.equals(createElementRequest.getElementType())) {
+				} else if(UMLElementTypes.Dependency_4018.equals(createElementRequest.getElementType())) {
 					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(getEditingDomain());
-					return multiDependencyHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
+					return multiDependencyHelper.getCommand(((CreateConnectionViewAndElementRequest)request), c);
 
-				} else if (UMLElementTypes.Association_4019.equals(createElementRequest.getElementType())) {
+				} else if(UMLElementTypes.Association_4019.equals(createElementRequest.getElementType())) {
 					MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(getEditingDomain());
-					return multiAssociationHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
+					return multiAssociationHelper.getCommand(((CreateConnectionViewAndElementRequest)request), c);
 
 				} else {
 					return c;
@@ -80,12 +80,12 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 * @return the current transactional edit domain
 	 */
 	private TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
 
-		if (request.getConnectionEditPart() instanceof GeneralizationSetEditPart) {
+		if(request.getConnectionEditPart() instanceof GeneralizationSetEditPart) {
 			GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
 			return generalizationSetHelper.getReconnectSourceCommand(request, super.getConnectableEditPart());
 		}
@@ -94,7 +94,7 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
 		Command command = super.getReconnectTargetCommand(request);
-		if (request.getConnectionEditPart() instanceof GeneralizationSetEditPart) {
+		if(request.getConnectionEditPart() instanceof GeneralizationSetEditPart) {
 			GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
 			return generalizationSetHelper.getMoveTarget(request, command, super.getConnectableEditPart(), super
 					.getConnectionTargetAnchor(request));

@@ -87,7 +87,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Sets the delete command.
 	 * 
-	 * @param command the new delete command
+	 * @param command
+	 *        the new delete command
 	 */
 	public void setDeleteCommand(Command command) {
 		deleteViewCommand = command;
@@ -96,7 +97,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Sets the creates the command.
 	 * 
-	 * @param command the new creates the command
+	 * @param command
+	 *        the new creates the command
 	 */
 	public void setCreateCommand(Command command) {
 		createViewCommand = command;
@@ -105,7 +107,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Sets the relocate command.
 	 * 
-	 * @param command the new relocate command
+	 * @param command
+	 *        the new relocate command
 	 */
 	public void setRelocateCommand(Command command) {
 		relocateConnectionsCommand = command;
@@ -114,7 +117,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Sets the view descriptor.
 	 * 
-	 * @param request the new view descriptor
+	 * @param request
+	 *        the new view descriptor
 	 */
 	public void setViewDescriptor(ViewDescriptor request) {
 		viewDescriptor = request;
@@ -123,7 +127,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Sets the root edit part.
 	 * 
-	 * @param editPart the new root edit part
+	 * @param editPart
+	 *        the new root edit part
 	 */
 	public void setRootEditPart(EditPart editPart) {
 		rootEditPart = editPart;
@@ -132,7 +137,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Sets the old state edit part.
 	 * 
-	 * @param editPart the new old state edit part
+	 * @param editPart
+	 *        the new old state edit part
 	 */
 	public void setOldStateEditPart(GraphicalEditPart editPart) {
 		oldStateEditPart = editPart;
@@ -148,14 +154,14 @@ public class ChangeCompositeStateFigureCommand extends Command {
 		createViewCommand.execute();
 		compoundCommand.add(createViewCommand);
 
-		View newView = (View) viewDescriptor.getAdapter(View.class);
+		View newView = (View)viewDescriptor.getAdapter(View.class);
 
-		newStateEditPart = SearchEditPartByNode(rootEditPart, (Node) newView);
+		newStateEditPart = SearchEditPartByNode(rootEditPart, (Node)newView);
 
-		if (newStateEditPart instanceof State2EditPart) {
+		if(newStateEditPart instanceof State2EditPart) {
 			allEditParts = DiagramEditPartsUtil.getAllEditParts(rootEditPart);
 			arrangeCommand = getArrangeCommand();
-			if (arrangeCommand != null) {
+			if(arrangeCommand != null) {
 				compoundCommand.add(arrangeCommand);
 				arrangeCommand.execute();
 			}
@@ -163,7 +169,7 @@ public class ChangeCompositeStateFigureCommand extends Command {
 
 		deleteViewCommand.execute();
 		compoundCommand.add(deleteViewCommand);
-		
+
 		/*
 		 * the following command change the new view bounds to set her where the
 		 * old view.
@@ -172,19 +178,16 @@ public class ChangeCompositeStateFigureCommand extends Command {
 				"relocate new figure",
 				DiagramEditPartsUtil.getEditPartFromView(newView, newStateEditPart),
 				oldStateEditPart.getFigure().getBounds().getLocation());
-		try
-		{
+		try {
 			sbc.execute(new NullProgressMonitor(), null);
 			compoundCommand.add(new ICommandProxy(sbc));
-		}
-		catch(ExecutionException e)
-		{
-			
+		} catch (ExecutionException e) {
+
 		}
 		//end
-		
+
 		Command updateCommand = new UMLUpdateDiagramCommand(newStateEditPart);
-		if (updateCommand != null) {
+		if(updateCommand != null) {
 			updateCommand.execute();
 			compoundCommand.add(updateCommand);
 		}
@@ -195,65 +198,68 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Search edit part by node.
 	 * 
-	 * @param editPart the edit part
-	 * @param node the node
+	 * @param editPart
+	 *        the edit part
+	 * @param node
+	 *        the node
 	 * 
 	 * @return the graphical edit part
 	 */
 	private GraphicalEditPart SearchEditPartByNode(EditPart editPart, Node node) {
-		View view = (View) editPart.getModel();
+		View view = (View)editPart.getModel();
 
-		if (view instanceof Node) {
-			Node modelNode = (Node) view;
+		if(view instanceof Node) {
+			Node modelNode = (Node)view;
 
-			if (modelNode.equals(node)) {
-				return (GraphicalEditPart) editPart;
+			if(modelNode.equals(node)) {
+				return (GraphicalEditPart)editPart;
 			}
 		}
 
 		List<EditPart> children = editPart.getChildren();
 
-		if (children.size() <= 0)
+		if(children.size() <= 0)
 			return null;
 
 		EditPart found = null;
-		for (EditPart child : children) {
+		for(EditPart child : children) {
 			found = SearchEditPartByNode(child, node);
-			if (found != null)
+			if(found != null)
 				break;
 		}
 
-		return (GraphicalEditPart) found;
+		return (GraphicalEditPart)found;
 	}
 
 	/**
 	 * Gets the restore connections command.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the restore connections command
 	 */
 	private Command getRestoreConnectionsCommand(GraphicalEditPart editPart) {
-		if (editPart == null)
+		if(editPart == null)
 			return null;
 
 		List<ConnectionNodeEditPart> connections = getEditPartConnections(editPart);
 
-		if (connections == null || connections.size() <= 0) {
+		if(connections == null || connections.size() <= 0) {
 			return null;
 		}
 
 		CompoundCommand compoundCommand = new CompoundCommand(
 				"Rebuild connections");
 		Command command = null;
-		for (ConnectionNodeEditPart edge : connections) {
+		for(ConnectionNodeEditPart edge : connections) {
 			command = getCreateConnectionsViewCommand(edge);
-			if (command != null) {
+			if(command != null) {
 				compoundCommand.add(command);
 			}
 		}
 
-		if (compoundCommand.size() <= 0) {
+		if(compoundCommand.size() <= 0) {
 			return null;
 		}
 
@@ -264,14 +270,15 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the creates the connections view command.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the creates the connections view command
 	 */
 	private Command getCreateConnectionsViewCommand(
 			ConnectionNodeEditPart editPart) {
 		CreateConnectionViewRequest createViewRequest = getCreateConnectionViewRequest(editPart);
-		if (createViewRequest == null) {
+		if(createViewRequest == null) {
 			return null;
 		}
 
@@ -285,14 +292,15 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the creates the connection view request.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the creates the connection view request
 	 */
 	private CreateConnectionViewRequest getCreateConnectionViewRequest(
 			ConnectionNodeEditPart editPart) {
-		View view = (View) editPart.getModel();
-		if (view == null) {
+		View view = (View)editPart.getModel();
+		if(view == null) {
 			return null;
 		}
 
@@ -323,7 +331,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the edits the part connections.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the edits the part connections
 	 */
@@ -339,14 +348,15 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Find source edit part.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the edits the part
 	 */
 	private EditPart findSourceEditPart(ConnectionNodeEditPart editPart) {
 		EditPart source = editPart.getSource();
 
-		if (source.equals(oldStateEditPart)) {
+		if(source.equals(oldStateEditPart)) {
 			return newStateEditPart;
 		} else {
 			return source;
@@ -357,14 +367,15 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Find target edit part.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the edits the part
 	 */
 	private EditPart findTargetEditPart(ConnectionNodeEditPart editPart) {
 		EditPart target = editPart.getTarget();
 
-		if (target.equals(oldStateEditPart)) {
+		if(target.equals(oldStateEditPart)) {
 			return newStateEditPart;
 		} else {
 			return target;
@@ -374,7 +385,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the restore children connections command.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the restore children connections command
 	 */
@@ -385,17 +397,17 @@ public class ChangeCompositeStateFigureCommand extends Command {
 
 		CompoundCommand cc = new CompoundCommand();
 
-		for (int i = 0; i < transitions.size(); i++) {
+		for(int i = 0; i < transitions.size(); i++) {
 			Transition transition = transitions.get(i);
-			if (!isAlreadyRequested(transition, i, transitions)) {
+			if(!isAlreadyRequested(transition, i, transitions)) {
 				Command command = getChildrenTransitionCreateViewCommand(transition);
-				if (command != null) {
+				if(command != null) {
 					cc.add(command);
 				}
 			}
 		}
 
-		if (cc.size() > 0) {
+		if(cc.size() > 0) {
 			return cc;
 		}
 
@@ -405,7 +417,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the children transition create view request.
 	 * 
-	 * @param transition the transition
+	 * @param transition
+	 *        the transition
 	 * 
 	 * @return the children transition create view request
 	 */
@@ -424,7 +437,7 @@ public class ChangeCompositeStateFigureCommand extends Command {
 		source = findEditPartByElement(transition.getSource());
 		target = findEditPartByElement(transition.getTarget());
 
-		if (source == null || target == null) {
+		if(source == null || target == null) {
 			return null;
 		}
 
@@ -442,13 +455,14 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the children transition create view command.
 	 * 
-	 * @param transition the transition
+	 * @param transition
+	 *        the transition
 	 * 
 	 * @return the children transition create view command
 	 */
 	private Command getChildrenTransitionCreateViewCommand(Transition transition) {
 		CreateConnectionViewRequest request = getChildrenTransitionCreateViewRequest(transition);
-		if (request == null) {
+		if(request == null) {
 			return null;
 		}
 
@@ -460,15 +474,18 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Checks if is already requested.
 	 * 
-	 * @param o the o
-	 * @param j the j
-	 * @param l the l
+	 * @param o
+	 *        the o
+	 * @param j
+	 *        the j
+	 * @param l
+	 *        the l
 	 * 
 	 * @return true, if is already requested
 	 */
 	private boolean isAlreadyRequested(Object o, int j, List l) {
-		for (int i = 0; i < l.size() && i < j; i++) {
-			if (l.get(i).equals(o)) {
+		for(int i = 0; i < l.size() && i < j; i++) {
+			if(l.get(i).equals(o)) {
 				return true;
 			}
 		}
@@ -479,7 +496,8 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the all children transitions.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 * 
 	 * @return the all children transitions
 	 */
@@ -490,17 +508,17 @@ public class ChangeCompositeStateFigureCommand extends Command {
 
 		List<EditPart> children = editPart.getChildren();
 
-		for (EditPart ep : children) {
-			if (ep instanceof GraphicalEditPart) {
+		for(EditPart ep : children) {
+			if(ep instanceof GraphicalEditPart) {
 				transitions
-						.addAll(getAllChildrenTransitions(((GraphicalEditPart) ep)));
+						.addAll(getAllChildrenTransitions(((GraphicalEditPart)ep)));
 				Object model = ep.getModel();
-				View view = model != null && model instanceof View ? (View) model
+				View view = model != null && model instanceof View ? (View)model
 						: null;
 				Vertex vertex = view != null
-						&& view.getElement() instanceof Vertex ? (Vertex) view
+						&& view.getElement() instanceof Vertex ? (Vertex)view
 						.getElement() : null;
-				if (vertex != null) {
+				if(vertex != null) {
 					transitions.addAll(vertex.getIncomings());
 					transitions.addAll(vertex.getOutgoings());
 				}
@@ -513,17 +531,18 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Find edit part by element.
 	 * 
-	 * @param element the element
+	 * @param element
+	 *        the element
 	 * 
 	 * @return the edits the part
 	 */
 	private EditPart findEditPartByElement(EObject element) {
 
-		for (IGraphicalEditPart ep : allEditParts) {
+		for(IGraphicalEditPart ep : allEditParts) {
 			Object view = ep.getModel();
-			if (view != null && view instanceof View) {
-				EObject eo = ((View) view).getElement();
-				if (eo.equals(element)) {
+			if(view != null && view instanceof View) {
+				EObject eo = ((View)view).getElement();
+				if(eo.equals(element)) {
 					return ep;
 				}
 			}
@@ -543,21 +562,21 @@ public class ChangeCompositeStateFigureCommand extends Command {
 
 		getAllRegionsToArrange(newStateEditPart, regions);
 
-		if (regions.size() <= 0) {
+		if(regions.size() <= 0) {
 			return null;
 		}
 
 		CompoundCommand cc = new CompoundCommand();
 		cc.setLabel("Arrange Regions");
 
-		for (RegionSubvertices2EditPart r : regions) {
+		for(RegionSubvertices2EditPart r : regions) {
 			Command command = getArrangeRegionCommand(r);
-			if (command != null) {
+			if(command != null) {
 				cc.add(command);
 			}
 		}
 
-		if (cc.size() > 0) {
+		if(cc.size() > 0) {
 			return cc;
 		}
 
@@ -567,18 +586,19 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the arrange region command.
 	 * 
-	 * @param region the region
+	 * @param region
+	 *        the region
 	 * 
 	 * @return the arrange region command
 	 */
 	private Command getArrangeRegionCommand(RegionSubvertices2EditPart region) {
 
-		if (region == null) {
+		if(region == null) {
 			return null;
 		}
 
 		List<EditPart> children = region.getChildren();
-		if (children.size() <= 0) {
+		if(children.size() <= 0) {
 			return null;
 		}
 
@@ -592,24 +612,26 @@ public class ChangeCompositeStateFigureCommand extends Command {
 	/**
 	 * Gets the all regions to arrange.
 	 * 
-	 * @param editPart the edit part
-	 * @param list the list
+	 * @param editPart
+	 *        the edit part
+	 * @param list
+	 *        the list
 	 * 
 	 * @return the all regions to arrange
 	 */
 	private void getAllRegionsToArrange(EditPart editPart,
 			List<RegionSubvertices2EditPart> list) {
 
-		if (editPart == null) {
+		if(editPart == null) {
 			return;
 		}
 
 		List<EditPart> children = editPart.getChildren();
 
-		for (EditPart ep : children) {
+		for(EditPart ep : children) {
 			getAllRegionsToArrange(ep, list);
-			if (ep instanceof RegionSubvertices2EditPart) {
-				list.add((RegionSubvertices2EditPart) ep);
+			if(ep instanceof RegionSubvertices2EditPart) {
+				list.add((RegionSubvertices2EditPart)ep);
 			}
 		}
 

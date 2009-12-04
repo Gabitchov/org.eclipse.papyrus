@@ -92,8 +92,8 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 		final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell(), getEditedObject(), configuration
 				.getTextToEdit(getEditedObject()), configuration);
-		if (Window.OK == dialog.open()) {
-			TransactionalEditingDomain domain = ((DiagramEditor) part).getEditingDomain();
+		if(Window.OK == dialog.open()) {
+			TransactionalEditingDomain domain = ((DiagramEditor)part).getEditingDomain();
 			RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 				@Override
@@ -110,7 +110,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * Sets the configuration for the editor
 	 * 
 	 * @param configuration
-	 *            the configuration for the specified editor
+	 *        the configuration for the specified editor
 	 */
 	public void setExtensionPointConfiguration(DirectEditorExtensionPoint directEditorExtensionPoint) {
 		this.directEditorExtensionPoint = directEditorExtensionPoint;
@@ -128,13 +128,13 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * Creates the editor in the given shell
 	 * 
 	 * @param shell
-	 *            the shell parent of the editor composite
+	 *        the shell parent of the editor composite
 	 * @return the created EmbeddedTextEditor
 	 */
 	// @unused
 	protected EmbeddedTextEditor createEditor(Composite composite) {
 		// retrieves the source viewer configuration
-		final CoreMultiDiagramEditor multiDiagramEditor = (CoreMultiDiagramEditor) part.getSite().getPage()
+		final CoreMultiDiagramEditor multiDiagramEditor = (CoreMultiDiagramEditor)part.getSite().getPage()
 				.getActiveEditor();
 		TransactionalEditingDomain domain = multiDiagramEditor.getDefaultContext().getTransactionalEditingDomain();
 		DiagramCommandStack diagramCommandStack = multiDiagramEditor.getDiagramEditDomain().getDiagramCommandStack();
@@ -146,7 +146,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * Returns whether the widget is <code>null</code> or disposed or active.
 	 * 
 	 * @param widget
-	 *            the widget to check
+	 *        the widget to check
 	 * @return <code>true</code> if the widget can be used
 	 */
 	// @unused

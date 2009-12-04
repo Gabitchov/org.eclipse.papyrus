@@ -32,7 +32,7 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 	private static ExtensionPointLabelHelper labelHelper;
 
 	public static ExtensionPointLabelHelper getInstance() {
-		if (labelHelper == null) {
+		if(labelHelper == null) {
 			labelHelper = new ExtensionPointLabelHelper();
 		}
 		return labelHelper;
@@ -42,7 +42,7 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 	 * Refreshes the label of the figure associated to the specified edit part
 	 * 
 	 * @param editPart
-	 *            the edit part managing the refreshed figure
+	 *        the edit part managing the refreshed figure
 	 */
 	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
 		IFigure figure = editPart.getFigure();
@@ -56,16 +56,16 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 		// TODO (RS - CEA LIST): how many icons were displayed => should fix a max number
 		// solution: set all images to null, and then add the correct icons
 		int i = 0;
-		while (((WrappingLabel) figure).getIcon(i) != null) {
-			((WrappingLabel) figure).setIcon(null, i);
+		while(((WrappingLabel)figure).getIcon(i) != null) {
+			((WrappingLabel)figure).setIcon(null, i);
 			i++;
 		}
 		i = 0;
-		for (Image image : imageToDisplay) {
-			((WrappingLabel) figure).setIcon(image, i);
+		for(Image image : imageToDisplay) {
+			((WrappingLabel)figure).setIcon(image, i);
 			i++;
 		}
-		((WrappingLabel) figure).setText(labelToDisplay(editPart));
+		((WrappingLabel)figure).setText(labelToDisplay(editPart));
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 		buffer.append(stereotypesToDisplay(editPart));
 
 		// computes the string label to be displayed
-		buffer.append(((NamedElement) getUMLElement(editPart)).getName());
+		buffer.append(((NamedElement)getUMLElement(editPart)).getName());
 
 		return buffer.toString();
 	}

@@ -94,8 +94,8 @@ public class RegisteredMetamodelSelectionDialog extends ElementListSelectionDial
 		List<String> Metamodels = new ArrayList<String>();
 		Iterator importedIt = importedMetamodels.iterator();
 
-		while (importedIt.hasNext()) {
-			org.eclipse.uml2.uml.PackageImport currentImport = (org.eclipse.uml2.uml.PackageImport) importedIt.next();
+		while(importedIt.hasNext()) {
+			org.eclipse.uml2.uml.PackageImport currentImport = (org.eclipse.uml2.uml.PackageImport)importedIt.next();
 			String currentName = currentImport.getImportedPackage().getName();
 			Metamodels.add(currentName);
 		}
@@ -112,10 +112,10 @@ public class RegisteredMetamodelSelectionDialog extends ElementListSelectionDial
 
 		List<RegisteredMetamodel> Metamodels = new ArrayList<RegisteredMetamodel>();
 
-		for (int i = 0; i < regMetamodels.length; i++) {
+		for(int i = 0; i < regMetamodels.length; i++) {
 
 			String currentName = regMetamodels[i].name;
-			if (!importedMetamodelsNames.contains(currentName)) {
+			if(!importedMetamodelsNames.contains(currentName)) {
 				Metamodels.add(regMetamodels[i]);
 			}
 		}
@@ -134,12 +134,12 @@ public class RegisteredMetamodelSelectionDialog extends ElementListSelectionDial
 		// User selection
 		Object[] selection = this.getResult();
 
-		if (selection == null) { // Cancel was selected
+		if(selection == null) { // Cancel was selected
 			return;
 		}
 
-		for (int i = 0; i < selection.length; i++) {
-			RegisteredMetamodel currentLibrary = (RegisteredMetamodel) (selection[i]);
+		for(int i = 0; i < selection.length; i++) {
+			RegisteredMetamodel currentLibrary = (RegisteredMetamodel)(selection[i]);
 			URI modelUri = currentLibrary.uri;
 			addModelImportFromURI(currentModel, modelUri);
 
@@ -149,18 +149,18 @@ public class RegisteredMetamodelSelectionDialog extends ElementListSelectionDial
 	protected boolean addModelImportFromURI(Package currentModel, URI modelUri) {
 		Resource modelResource = Util.getResourceSet(currentModel).getResource(modelUri, true);
 
-		if (modelResource.getContents().size() <= 0) {
+		if(modelResource.getContents().size() <= 0) {
 			Activator.log("The selected uri (" + modelUri.toString() + ") does not contain any model library !");
 			return false;
 		}
 
 		// Try to reach model
-		Element root = (Element) modelResource.getContents().get(0);
+		Element root = (Element)modelResource.getContents().get(0);
 
-		if (root instanceof Package) {
+		if(root instanceof Package) {
 
 			// Import model library
-			Package modelToImport = (Package) (modelResource.getContents().get(0));
+			Package modelToImport = (Package)(modelResource.getContents().get(0));
 			// create import package
 			PackageImport modelImport = UMLFactory.eINSTANCE.createPackageImport();
 			modelImport.setImportedPackage(modelToImport);

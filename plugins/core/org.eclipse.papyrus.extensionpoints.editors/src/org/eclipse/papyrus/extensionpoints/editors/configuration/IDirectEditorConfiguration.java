@@ -66,7 +66,7 @@ public interface IDirectEditorConfiguration {
 	 * Action executed before closing editor dialog window
 	 * 
 	 * @param newText
-	 *            the text to save
+	 *        the text to save
 	 * @return the result of this action
 	 */
 	public Object postEditAction(Object editedObject, String newText);
@@ -75,7 +75,7 @@ public interface IDirectEditorConfiguration {
 	 * Returns the extended Area for the dialog window
 	 * 
 	 * @param parent
-	 *            the parent of the returned composite
+	 *        the parent of the returned composite
 	 * @return the extended Area for the dialog window or <code>null</code> if no extension is
 	 *         required
 	 */
@@ -92,7 +92,7 @@ public interface IDirectEditorConfiguration {
 	 * Sets the language of the edited body
 	 * 
 	 * @param language
-	 *            the language of the edited body
+	 *        the language of the edited body
 	 */
 	public void setLanguage(String language);
 

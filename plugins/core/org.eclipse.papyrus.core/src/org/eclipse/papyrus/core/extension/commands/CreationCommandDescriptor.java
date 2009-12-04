@@ -59,7 +59,7 @@ public class CreationCommandDescriptor {
 	 * @throws BackboneException
 	 */
 	protected ICreationCommand getCommand() throws BackboneException {
-		if (instance == null)
+		if(instance == null)
 			instance = createCommand();
 
 		return instance;

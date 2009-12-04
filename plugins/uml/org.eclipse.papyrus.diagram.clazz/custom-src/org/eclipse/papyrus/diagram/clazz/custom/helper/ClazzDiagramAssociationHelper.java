@@ -47,7 +47,7 @@ public class ClazzDiagramAssociationHelper {
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
+		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
 		targetProperty.setType(target);
 		targetProperty.setName(target.getName().toLowerCase());
 		targetProperty.setLower(1);
@@ -60,22 +60,22 @@ public class ClazzDiagramAssociationHelper {
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
+		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
 		sourceProperty.setType(source);
 		sourceProperty.setName(source.getName().toLowerCase());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
 
-		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property) sourceProperty));
+		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, ((Property)sourceProperty));
 		} else {
-			association.getMemberEnds().add(0, ((Property) sourceProperty));
+			association.getMemberEnds().add(0, ((Property)sourceProperty));
 		}
-		if ((memberEnds.indexOf(((Property) targetProperty)) >= 0)) {
-			association.getMemberEnds().move(1, ((Property) targetProperty));
+		if((memberEnds.indexOf(((Property)targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, ((Property)targetProperty));
 		} else {
-			association.getMemberEnds().add(1, ((Property) targetProperty));
+			association.getMemberEnds().add(1, ((Property)targetProperty));
 		}
 
 		container.getPackagedElements().add(association);

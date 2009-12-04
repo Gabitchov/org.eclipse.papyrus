@@ -44,7 +44,7 @@ public class ParameterModifierProposal implements ICompletionProposalComputer {
 	 * 
 	 * 
 	 * @param modifiersUsed
-	 *            the modifiersUsed to set
+	 *        the modifiersUsed to set
 	 */
 	public void setModifiersUsed(Map<String, Boolean> modifiersUsed) {
 		this.modifiersUsed = modifiersUsed;
@@ -89,10 +89,10 @@ public class ParameterModifierProposal implements ICompletionProposalComputer {
 		ICompletionProposal proposal = null;
 
 		// adds all standard multiplicities (static strings...)
-		for (int i = 0; i < modifiersStrings.length; i++) {
+		for(int i = 0; i < modifiersStrings.length; i++) {
 			// test if this modifier is valid (already used or othe contrary has alreday been used.
-			if (!modifiersUsed.get(modifiersStrings[i])) {
-				if (modifiersStrings[i].startsWith(prefix)) {
+			if(!modifiersUsed.get(modifiersStrings[i])) {
+				if(modifiersStrings[i].startsWith(prefix)) {
 					proposal = new CompletionProposal(modifiersStrings[i], documentOffset - prefix.length(), prefix
 							.length()
 							+ selectionRange, modifiersStrings[i].length(), null, modifiersStringsName[i], null,

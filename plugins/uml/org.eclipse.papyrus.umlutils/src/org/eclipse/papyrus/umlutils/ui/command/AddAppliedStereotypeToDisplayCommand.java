@@ -37,11 +37,11 @@ public class AddAppliedStereotypeToDisplayCommand extends CreateEAnnotationComma
 	 * Instantiates a new sets the applied stereotype to display command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param stereotypeList
-	 *            the stereotype list
+	 *        the stereotype list
 	 */
 	public AddAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, EModelElement object,
 			String stereotypeList, String appliedStereotypepresentationKind) {
@@ -56,12 +56,12 @@ public class AddAppliedStereotypeToDisplayCommand extends CreateEAnnotationComma
 	@Override
 	protected void doExecute() {
 		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(this.getObject());
-		if (!"".equals(stereoList)) {
+		if(!"".equals(stereoList)) {
 			stereoList = stereoList + ",";
 		}
 		stereoList = stereoList + stereotypeList;
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (oldAnnotation == null) {
+		if(oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}

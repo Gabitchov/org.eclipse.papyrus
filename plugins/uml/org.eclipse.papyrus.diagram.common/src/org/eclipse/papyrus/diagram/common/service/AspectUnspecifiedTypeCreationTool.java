@@ -50,8 +50,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 * Creates an AspectUnspecifiedTypeCreationTool
 	 * 
 	 * @param elementTypes
-	 *            List of element types of which one will be created (of type
-	 *            <code>IElementType</code>).
+	 *        List of element types of which one will be created (of type <code>IElementType</code>).
 	 */
 	public AspectUnspecifiedTypeCreationTool(List elementTypes) {
 		super(elementTypes);
@@ -67,10 +66,10 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		antiScroll = true;
 		boolean requiresPostAction = requiresPostAction();
 		// EObject to listen
-		View eObject = (View) getTargetEditPart().getAdapter(View.class);
+		View eObject = (View)getTargetEditPart().getAdapter(View.class);
 		DiagramEventBroker eventBroker = null;
 		NotificationListener listener = null;
-		if (requiresPostAction) {
+		if(requiresPostAction) {
 			// register a listener to have information about element creation
 			// retrieves editing domain
 			TransactionalEditingDomain domain;
@@ -78,14 +77,14 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 				domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
 				eventBroker = DiagramEventBroker.getInstance(domain);
 
-				if (eventBroker == null) {
+				if(eventBroker == null) {
 					return;
 				}
 				listener = new NotificationListener() {
 
 					public void notifyChanged(Notification notification) {
-						Shape newValue = (Shape) notification.getNewValue();
-						EditPart editPart = (EditPart) getCurrentViewer().getEditPartRegistry().get(newValue);
+						Shape newValue = (Shape)notification.getNewValue();
+						EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
 						ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
 						request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
 						editPart.performRequest(request);
@@ -102,8 +101,8 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		Command c = getCurrentCommand();
 		executeCurrentCommand();
 
-		if (requiresPostAction) {
-			if (eventBroker != null) {
+		if(requiresPostAction) {
+			if(eventBroker != null) {
 				eventBroker.removeNotificationListener(eObject, listener);
 			}
 		}
@@ -126,29 +125,29 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 * Action realized after the stereotype application
 	 * 
 	 * @param viewer
-	 *            the edit part viewer that manages the created edit parts
+	 *        the edit part viewer that manages the created edit parts
 	 * @param returnValues
-	 *            the collection of objects created by the creation action
+	 *        the collection of objects created by the creation action
 	 */
 	protected void postAction(EditPartViewer viewer, Collection returnValues) {
 		// retrieves the list of created edit parts
 		final List editparts = new ArrayList();
-		for (Iterator i = returnValues.iterator(); i.hasNext();) {
+		for(Iterator i = returnValues.iterator(); i.hasNext();) {
 			Object object = i.next();
-			if (object instanceof IAdaptable) {
-				Object editPart = viewer.getEditPartRegistry().get(((IAdaptable) object).getAdapter(View.class));
-				if (editPart != null)
+			if(object instanceof IAdaptable) {
+				Object editPart = viewer.getEditPartRegistry().get(((IAdaptable)object).getAdapter(View.class));
+				if(editPart != null)
 					editparts.add(editPart);
 			}
 		}
 
 		// if edit part were created, apply the stereotypes on these edit parts
-		if (!editparts.isEmpty()) {
+		if(!editparts.isEmpty()) {
 			// apply the stereotype on the first edit part.
 			List<String> list = new ArrayList<String>();
 			ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
 			request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
-			((EditPart) editparts.get(0)).performRequest(request);
+			((EditPart)editparts.get(0)).performRequest(request);
 		}
 	}
 
@@ -157,9 +156,9 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 */
 	@Override
 	protected void applyProperty(Object key, Object value) {
-		if (IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY.equals(key)) {
-			if (value instanceof List<?>)
-				stereotypesToApply = (List<String>) value;
+		if(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY.equals(key)) {
+			if(value instanceof List<?>)
+				stereotypesToApply = (List<String>)value;
 			return;
 		}
 		super.applyProperty(key, value);

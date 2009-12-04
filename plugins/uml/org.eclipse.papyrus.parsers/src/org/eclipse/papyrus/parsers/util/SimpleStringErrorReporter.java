@@ -32,7 +32,7 @@ public class SimpleStringErrorReporter implements IErrorReporter {
 	 * Sets the error message
 	 * 
 	 * @param message
-	 *            the message to set
+	 *        the message to set
 	 */
 	public void setMessage(String message) {
 		this.message = message;

@@ -53,15 +53,21 @@ public interface TemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -109,15 +115,21 @@ public interface TemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Init the parameter
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the parameter
-	 * @param newValue the parameter to update
+	 * 
+	 * @param newValue
+	 *        the parameter to update
 	 */
 	public void updateParameter(EObject newValue);
 
@@ -125,7 +137,7 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the parameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToParameter(ViewerFilter filter);
@@ -134,7 +146,7 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the parameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToParameter(ViewerFilter filter);
@@ -175,15 +187,21 @@ public interface TemplateSignaturePropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameter
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * @param newValue the ownedParameter to update
+	 * 
+	 * @param newValue
+	 *        the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
 
@@ -191,7 +209,7 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the ownedParameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedParameter(ViewerFilter filter);
@@ -200,7 +218,7 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * Adds the given filter to the ownedParameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
@@ -209,11 +227,6 @@ public interface TemplateSignaturePropertiesEditionPart {
 	 * @return true if the given element is contained inside the ownedParameter table
 	 */
 	public boolean isContainedInOwnedParameterTable(EObject element);
-
-
-
-
-
 
 
 

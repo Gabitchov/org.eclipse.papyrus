@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Overwrite}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Overwrite} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class OverwriteItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ObjectNodePropertyDescriptor(object);
@@ -76,10 +76,10 @@ public class OverwriteItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addBase_ObjectNodePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Overwrite_base_ObjectNode_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature",
-						"_UI_Overwrite_type"), ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false,
+				"_UI_Overwrite_type"), ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false,
 				true, null, null, null));
 	}
 
@@ -106,8 +106,7 @@ public class OverwriteItemProvider extends ItemProviderAdapter implements IEditi
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

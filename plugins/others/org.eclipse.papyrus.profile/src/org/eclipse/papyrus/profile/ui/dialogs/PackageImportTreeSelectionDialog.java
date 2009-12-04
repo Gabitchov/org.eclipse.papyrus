@@ -27,32 +27,34 @@ import org.eclipse.uml2.uml.Package;
  */
 public class PackageImportTreeSelectionDialog extends ElementImportTreeSelectionDialog {
 
-	
+
 	/**
 	 * 
 	 * 
-	 * @param model 
-	 * @param parent 
+	 * @param model
+	 * @param parent
 	 */
-	public PackageImportTreeSelectionDialog(Shell parent, Package model){
+	public PackageImportTreeSelectionDialog(Shell parent, Package model) {
 		super(parent, model);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.cea.papyrus.ui.dialogs.ElementImportTreeSelectionDialog#buildImportTreeList(org.eclipse.swt.widgets.TreeItem, org.eclipse.uml2.uml.Package)
+	 * 
+	 * @see com.cea.papyrus.ui.dialogs.ElementImportTreeSelectionDialog#buildImportTreeList(org.eclipse.swt.widgets.TreeItem,
+	 * org.eclipse.uml2.uml.Package)
 	 */
 	/**
 	 * 
 	 * 
-	 * @param _package 
-	 * @param elemTree 
+	 * @param _package
+	 * @param elemTree
 	 */
-	protected void buildImportTreeList(TreeItem elemTree, Package _package){
+	protected void buildImportTreeList(TreeItem elemTree, Package _package) {
 		Iterator elemIter = _package.getPackagedElements().iterator();
 		while(elemIter.hasNext()) {
-			Element elem = (Element) elemIter.next();
-			if(elem instanceof Package){
+			Element elem = (Element)elemIter.next();
+			if(elem instanceof Package) {
 				TreeItem item = new TreeItem(elemTree, SWT.NONE);
 				item.setText(((Package)elem).getName());
 				item.setData(elem);

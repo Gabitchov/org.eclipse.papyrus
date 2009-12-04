@@ -29,10 +29,10 @@ public class PropertyHasTypeConstraint extends AbstractModelConstraint {
 
 	public IStatus validate(IValidationContext ctx) {
 
-		if (ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
-			Property property = (Property) ctx.getTarget();
+		if(ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
+			Property property = (Property)ctx.getTarget();
 
-			if (!ProfileConstraintUtils.hasType(property)) {
+			if(!ProfileConstraintUtils.hasType(property)) {
 				return ctx.createFailureStatus(ctx.getTarget());
 			}
 		}

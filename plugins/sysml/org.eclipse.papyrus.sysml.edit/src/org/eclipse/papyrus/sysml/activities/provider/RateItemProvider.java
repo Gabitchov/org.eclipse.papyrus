@@ -61,7 +61,7 @@ public class RateItemProvider extends ItemProviderAdapter implements IEditingDom
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ParameterPropertyDescriptor(object);
@@ -78,7 +78,7 @@ public class RateItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * @generated
 	 */
 	protected void addBase_ParameterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_Parameter_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_Parameter_feature", "_UI_Rate_type"),
 				ActivitiesPackage.Literals.RATE__BASE_PARAMETER, true, false, true, null, null, null));
@@ -91,7 +91,7 @@ public class RateItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * @generated
 	 */
 	protected void addBase_ActivityEdgePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_ActivityEdge_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_ActivityEdge_feature", "_UI_Rate_type"),
 				ActivitiesPackage.Literals.RATE__BASE_ACTIVITY_EDGE, true, false, true, null, null, null));
@@ -104,7 +104,7 @@ public class RateItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * @generated
 	 */
 	protected void addRatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_rate_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_Rate_rate_feature", "_UI_Rate_type"),
 				ActivitiesPackage.Literals.RATE__RATE, true, false, true, null, null, null));
@@ -133,8 +133,7 @@ public class RateItemProvider extends ItemProviderAdapter implements IEditingDom
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

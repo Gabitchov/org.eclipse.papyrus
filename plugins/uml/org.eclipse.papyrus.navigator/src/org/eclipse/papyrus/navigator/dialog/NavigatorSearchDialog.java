@@ -69,12 +69,12 @@ public class NavigatorSearchDialog extends TrayDialog {
 	public NavigatorSearchDialog(Shell shell, CommonNavigator modelNavigator) {
 		super(shell);
 		IContentProvider cprovider = modelNavigator.getCommonViewer().getContentProvider();
-		if (cprovider instanceof ITreeContentProvider) {
-			contentProvider = (ITreeContentProvider) cprovider;
+		if(cprovider instanceof ITreeContentProvider) {
+			contentProvider = (ITreeContentProvider)cprovider;
 		}
 		root = modelNavigator.getCommonViewer().getInput();
 		viewer = modelNavigator.getCommonViewer();
-		labelProvider = (ILabelProvider) modelNavigator.getCommonViewer().getLabelProvider();
+		labelProvider = (ILabelProvider)modelNavigator.getCommonViewer().getLabelProvider();
 
 	}
 
@@ -120,13 +120,13 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 			public void widgetSelected(SelectionEvent e) {
 				ISelection sel = viewer.getSelection();
-				if (!(sel instanceof StructuredSelection)) {
+				if(!(sel instanceof StructuredSelection)) {
 					return;
 				}
-				StructuredSelection ssel = (StructuredSelection) sel;
+				StructuredSelection ssel = (StructuredSelection)sel;
 
 				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if (index == matchedObjects.size() - 1) {
+				if(index == matchedObjects.size() - 1) {
 					index = -1;
 				}
 				index++;
@@ -142,13 +142,13 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 			public void widgetSelected(SelectionEvent e) {
 				ISelection sel = viewer.getSelection();
-				if (!(sel instanceof StructuredSelection)) {
+				if(!(sel instanceof StructuredSelection)) {
 					return;
 				}
-				StructuredSelection ssel = (StructuredSelection) sel;
+				StructuredSelection ssel = (StructuredSelection)sel;
 
 				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if (index == 0) {
+				if(index == 0) {
 					index = matchedObjects.size() - 1;
 				}
 				index--;
@@ -196,12 +196,12 @@ public class NavigatorSearchDialog extends TrayDialog {
 	}
 
 	private void updateMatches() {
-		if (contentProvider == null && labelProvider == null) {
+		if(contentProvider == null && labelProvider == null) {
 			return;
 		}
 
 		String pattern = searchText.getText();
-		if (pattern.length() == 0) {
+		if(pattern.length() == 0) {
 			matchedObjects = Collections.emptyList();
 			backButton.setEnabled(false);
 			nextButton.setEnabled(false);
@@ -209,7 +209,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 			return;
 		}
 
-		if (!caseButton.getSelection()) {
+		if(!caseButton.getSelection()) {
 			pattern = pattern.toUpperCase();
 		}
 
@@ -219,7 +219,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 		matchesLabel.setText(matchedObjects.size() + " matches found");
 
 		// Select first match and update buttons
-		if (!matchedObjects.isEmpty()) {
+		if(!matchedObjects.isEmpty()) {
 			viewer.setSelection(new StructuredSelection(matchedObjects.get(0)), true);
 			nextButton.setEnabled(true);
 			backButton.setEnabled(true);
@@ -236,11 +236,11 @@ public class NavigatorSearchDialog extends TrayDialog {
 		List<Object> childs = new ArrayList<Object>();
 		String objectLabel;
 		boolean caseSensitive = caseButton.getSelection();
-		for (Object o : objects) {
+		for(Object o : objects) {
 			// Search matches in this level
 			objectLabel = caseSensitive ? labelProvider.getText(o) : labelProvider.getText(o).toUpperCase();
 
-			if (objectLabel.contains(pattern)) {
+			if(objectLabel.contains(pattern)) {
 				matches.add(o);
 			}
 
@@ -248,7 +248,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 			childs.addAll(Arrays.asList(contentProvider.getChildren(o)));
 		}
 
-		if (!childs.isEmpty()) {
+		if(!childs.isEmpty()) {
 			matches.addAll(searchPattern(pattern, childs));
 		}
 

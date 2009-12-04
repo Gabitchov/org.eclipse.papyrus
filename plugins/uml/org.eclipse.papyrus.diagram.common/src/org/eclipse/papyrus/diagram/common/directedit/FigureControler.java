@@ -34,9 +34,9 @@ public class FigureControler implements ILabelControler {
 	 * Creates a new FigureControler.
 	 * 
 	 * @param figure
-	 *            the figure to be associated
+	 *        the figure to be associated
 	 * @param propertyAccessor
-	 *            the accessor for the properties associated to the figure.
+	 *        the accessor for the properties associated to the figure.
 	 */
 	public FigureControler(IFigure figure, PropertyAccessor propertyAccessor) {
 		this.figure = figure;

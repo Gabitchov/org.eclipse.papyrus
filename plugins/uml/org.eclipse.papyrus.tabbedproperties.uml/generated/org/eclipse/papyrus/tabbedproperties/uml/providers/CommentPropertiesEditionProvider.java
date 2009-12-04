@@ -38,7 +38,7 @@ public class CommentPropertiesEditionProvider implements IPropertiesEditionProvi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Comment) {
+		if(eObject instanceof Comment) {
 			return new CommentPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -51,8 +51,8 @@ public class CommentPropertiesEditionProvider implements IPropertiesEditionProvi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Comment) {
-			if (CommentPropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Comment) {
+			if(CommentPropertiesEditionComponent.BASE_PART.equals(part))
 				return new CommentPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

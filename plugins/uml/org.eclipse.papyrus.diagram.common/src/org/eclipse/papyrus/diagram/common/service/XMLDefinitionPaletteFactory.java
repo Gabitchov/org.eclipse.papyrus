@@ -49,9 +49,9 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	 * Creates a new XMLDefinitionPaletteFactory
 	 * 
 	 * @param root
-	 *            the palette root to fill
+	 *        the palette root to fill
 	 * @param predefinedEntries
-	 *            existing predefined entries
+	 *        existing predefined entries
 	 */
 	public XMLDefinitionPaletteFactory(PaletteRoot root, Map<String, PaletteEntry> predefinedEntries) {
 		this.root = root;
@@ -73,13 +73,13 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	public void traverseDrawerNode(Node node) {
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
-		if (entry == null) {
+		if(entry == null) {
 			String name = node.getAttributes().getNamedItem(NAME).getNodeValue();
 			String iconPath = node.getAttributes().getNamedItem(ICON_PATH).getNodeValue();
 			entry = new PaletteDrawer(name);
 			entry.setId(id);
 			entry.setDescription("Drawer " + name);
-			if (iconPath != null && !iconPath.equals("")) {
+			if(iconPath != null && !iconPath.equals("")) {
 				entry.setSmallIcon(Activator.getImageDescriptor(iconPath));
 				entry.setLargeIcon(Activator.getImageDescriptor(iconPath));
 			}
@@ -92,13 +92,13 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	 * returns the path for the given
 	 * 
 	 * @param node
-	 *            the node for which the path is computed
+	 *        the node for which the path is computed
 	 * @return the path to this element
 	 */
 	protected String computePath(Node node) {
 		String path = "/";
 		Node parentNode = node;
-		while (parentNode.getParentNode() != null && !parentNode.getParentNode().getNodeName().equals(CONTENT)) {
+		while(parentNode.getParentNode() != null && !parentNode.getParentNode().getNodeName().equals(CONTENT)) {
 			parentNode = parentNode.getParentNode();
 			path = "/" + parentNode.getAttributes().getNamedItem(ID).getNodeValue() + path;
 		}
@@ -112,7 +112,7 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	public void traverseSeparatorNode(Node node) {
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
-		if (entry == null) {
+		if(entry == null) {
 			entry = new PaletteSeparator(id);
 			predefinedEntries.put(id, entry);
 		}
@@ -127,7 +127,7 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	public void traverseStackNode(Node node) {
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
-		if (entry == null) {
+		if(entry == null) {
 			// everything can be null for the constructor
 			entry = new PaletteStack(null, null, null);
 			entry.setId(id);
@@ -156,7 +156,7 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 		final String desc = node.getAttributes().getNamedItem(DESCRIPTION).getNodeValue();
 		Node iconPathNode = node.getAttributes().getNamedItem(ICON_PATH);
 		ImageDescriptor descriptor = null;
-		if (iconPathNode != null) {
+		if(iconPathNode != null) {
 			final String iconPath = iconPathNode.getNodeValue();
 			descriptor = Activator.getImageDescriptor(iconPath);
 		}
@@ -167,30 +167,30 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 		String stereotypesToApplyQN = null;
 
 		// retrieve pre and post actions
-		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
+		for(int i = 0; i < node.getChildNodes().getLength(); i++) {
 			Node childNode = node.getChildNodes().item(i);
 			String childName = childNode.getNodeName();
-			if (POST_ACTION.equals(childName)) {
+			if(POST_ACTION.equals(childName)) {
 				// node is a post action => retrieve what to do
 				stereotypesToApplyQN = childNode.getAttributes().getNamedItem(STEREOTYPES_TO_APPLY).getNodeValue();
-			} else if (PRE_ACTION.equals(childName)) {
+			} else if(PRE_ACTION.equals(childName)) {
 				// no implementation yet
 			}
 		}
 
-		final PaletteToolEntry entry = (PaletteToolEntry) predefinedEntries.get(refToolID);
-		if (entry == null) {
+		final PaletteToolEntry entry = (PaletteToolEntry)predefinedEntries.get(refToolID);
+		if(entry == null) {
 			PapyrusTrace.log(IStatus.WARNING, "could not find entry " + refToolID);
 			return;
 		}
 		final Map properties = new HashMap();
 
-		if (stereotypesToApplyQN != null && !"".equals(stereotypesToApplyQN)) {
+		if(stereotypesToApplyQN != null && !"".equals(stereotypesToApplyQN)) {
 			List<String> stereotypesList = PaletteUtil.getStereotypeListFromString(stereotypesToApplyQN);
 			properties.put(STEREOTYPES_TO_APPLY_KEY, stereotypesList);
 		}
 
-		if (descriptor == null && entry != null) {
+		if(descriptor == null && entry != null) {
 			descriptor = entry.getSmallIcon();
 		}
 		CombinedTemplateCreationEntry realEntry = new AspectCreationEntry(name, desc, id, descriptor, entry, properties);
@@ -204,26 +204,26 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	 * 
 	 * @param root
 	 * @param predefinedEntries
-	 *            map of predefined palette entries where the key is the palette entry id and the
-	 *            value is the palette entry
+	 *        map of predefined palette entries where the key is the palette entry id and the
+	 *        value is the palette entry
 	 * @param path
 	 * @param paletteEntry
 	 */
 	private static void appendPaletteEntry(PaletteRoot root, Map predefinedEntries, String path,
 			PaletteEntry paletteEntry) {
 		PaletteEntry fEntry = findPaletteEntry(root, path);
-		if (fEntry == null) {
+		if(fEntry == null) {
 			fEntry = findPredefinedEntry(predefinedEntries, path);
 		}
-		if (fEntry == null)
+		if(fEntry == null)
 			PapyrusTrace.log(IStatus.ERROR, "Invalid palette entry path: " + path); //$NON-NLS-1$                
-		else if (fEntry instanceof PaletteContainer) {
+		else if(fEntry instanceof PaletteContainer) {
 			// remove if it already exists
-			if (!((PaletteContainer) fEntry).getChildren().contains(paletteEntry)) {
-				((PaletteContainer) fEntry).add(paletteEntry);
+			if(!((PaletteContainer)fEntry).getChildren().contains(paletteEntry)) {
+				((PaletteContainer)fEntry).add(paletteEntry);
 			}
-		} else if (fEntry instanceof PaletteSeparator)
-			appendTo((PaletteSeparator) fEntry, paletteEntry);
+		} else if(fEntry instanceof PaletteSeparator)
+			appendTo((PaletteSeparator)fEntry, paletteEntry);
 		else
 			fEntry.getParent().add(fEntry.getParent().getChildren().indexOf(fEntry) + 1, paletteEntry);
 	}
@@ -237,9 +237,9 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	 */
 	private static PaletteEntry findPaletteEntry(PaletteEntry root, String aPath) {
 		StringTokenizer tokens = new StringTokenizer(aPath, "/"); //$NON-NLS-1$
-		while (tokens.hasMoreElements()) {
-			if (root instanceof PaletteContainer)
-				root = findChildPaletteEntry((PaletteContainer) root, tokens.nextToken());
+		while(tokens.hasMoreElements()) {
+			if(root instanceof PaletteContainer)
+				root = findChildPaletteEntry((PaletteContainer)root, tokens.nextToken());
 			else
 				return null;
 		}
@@ -255,9 +255,9 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	 */
 	private static PaletteEntry findChildPaletteEntry(PaletteContainer container, String childId) {
 		Iterator entries = container.getChildren().iterator();
-		while (entries.hasNext()) {
-			PaletteEntry entry = (PaletteEntry) entries.next();
-			if (entry.getId().equals(childId))
+		while(entries.hasNext()) {
+			PaletteEntry entry = (PaletteEntry)entries.next();
+			if(entry.getId().equals(childId))
 				return entry;
 		}
 		return null;
@@ -267,20 +267,20 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	 * Searches the predefined entries for a palette entry given the full path as it was predefined.
 	 * 
 	 * @param predefinedEntries
-	 *            map of predefined palette entries where the key is the palette entry id and the
-	 *            value is the palette entry
+	 *        map of predefined palette entries where the key is the palette entry id and the
+	 *        value is the palette entry
 	 * @param path
-	 *            the path to the palette entry starting as it was predefined
+	 *        the path to the palette entry starting as it was predefined
 	 * @return the palette entry if one exists; null otherwise.
 	 */
 	private static PaletteEntry findPredefinedEntry(Map predefinedEntries, String path) {
 		StringTokenizer tokens = new StringTokenizer(path, "/"); //$NON-NLS-1$
 
-		PaletteEntry root = (PaletteEntry) predefinedEntries.get(tokens.nextToken());
+		PaletteEntry root = (PaletteEntry)predefinedEntries.get(tokens.nextToken());
 
-		while (tokens.hasMoreElements()) {
-			if (root instanceof PaletteContainer)
-				root = findChildPaletteEntry((PaletteContainer) root, tokens.nextToken());
+		while(tokens.hasMoreElements()) {
+			if(root instanceof PaletteContainer)
+				root = findChildPaletteEntry((PaletteContainer)root, tokens.nextToken());
 			else
 				return null;
 		}
@@ -296,8 +296,8 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	private static void appendTo(PaletteSeparator separator, PaletteEntry entry) {
 		List children = separator.getParent().getChildren();
 		int index = children.indexOf(separator);
-		for (index++; index < children.size(); index++) {
-			if (children.get(index) instanceof PaletteSeparator)
+		for(index++; index < children.size(); index++) {
+			if(children.get(index) instanceof PaletteSeparator)
 				break;
 		}
 		separator.getParent().add(index, entry);

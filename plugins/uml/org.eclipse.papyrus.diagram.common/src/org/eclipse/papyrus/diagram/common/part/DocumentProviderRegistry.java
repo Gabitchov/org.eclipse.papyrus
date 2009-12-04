@@ -45,7 +45,7 @@ public class DocumentProviderRegistry extends HashMap<String, CachedResourcesDoc
 	// @unused
 	public CachedResourcesDocumentProvider get(String domainID, IEditorInput input) {
 		String key = calculateKey(domainID, input);
-		if (containsKey(key)) {
+		if(containsKey(key)) {
 			return super.get(key);
 		} else {
 			CachedResourcesDocumentProvider documentProvider = new CachedResourcesDocumentProvider(domainID);
@@ -56,7 +56,7 @@ public class DocumentProviderRegistry extends HashMap<String, CachedResourcesDoc
 
 	private String calculateKey(String domainID, IEditorInput input) {
 		String key = domainID;
-		if (input instanceof FileEditorInput || input instanceof CachedResourcesEditorInput) {
+		if(input instanceof FileEditorInput || input instanceof CachedResourcesEditorInput) {
 			key += PathsUtil.getRelativeWorkspaceFromEditorInput(input);
 		}
 		return key;

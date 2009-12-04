@@ -38,7 +38,7 @@ public class ReferenceElementChooserDialog extends UMLElementChooserDialog {
 	@Override
 	protected void setSelection(TreeViewer treeViewer) {
 		Object featureValue = mySourceObject.eGet(myFeature);
-		if (featureValue != null) {
+		if(featureValue != null) {
 			treeViewer.expandToLevel(3);
 			treeViewer.setSelection(new StructuredSelection(featureValue), true);
 		}

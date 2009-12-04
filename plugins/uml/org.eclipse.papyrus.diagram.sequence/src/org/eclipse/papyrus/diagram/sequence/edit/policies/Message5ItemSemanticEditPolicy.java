@@ -68,11 +68,11 @@ public class Message5ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		cmd.setTransactionNestingEnabled(false);
 
 		Object model = getHost().getModel();
-		if (model instanceof Edge) {
-			EObject obj = ((Edge) model).getElement();
+		if(model instanceof Edge) {
+			EObject obj = ((Edge)model).getElement();
 
-			if (obj instanceof Message) {
-				Message message = (Message) obj;
+			if(obj instanceof Message) {
+				Message message = (Message)obj;
 
 				MessageEnd messageStart = message.getSendEvent();
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageStart, false)));
@@ -100,25 +100,25 @@ public class Message5ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if(UMLElementTypes.Message_4003 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if(UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if(UMLElementTypes.Message_4005 == req.getElementType()) {
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_4006 == req.getElementType()) {
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if(UMLElementTypes.Message_4007 == req.getElementType()) {
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if(UMLElementTypes.Message_4008 == req.getElementType()) {
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -128,25 +128,25 @@ public class Message5ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if(UMLElementTypes.Message_4003 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if(UMLElementTypes.Message_4004 == req.getElementType()) {
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if(UMLElementTypes.Message_4005 == req.getElementType()) {
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_4006 == req.getElementType()) {
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if(UMLElementTypes.Message_4007 == req.getElementType()) {
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if(UMLElementTypes.Message_4008 == req.getElementType()) {
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -159,7 +159,7 @@ public class Message5ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case MessageEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageReorientCommand(req));
 		case Message2EditPart.VISUAL_ID:

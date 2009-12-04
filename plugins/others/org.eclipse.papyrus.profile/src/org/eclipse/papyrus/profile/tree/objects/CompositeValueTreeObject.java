@@ -26,9 +26,9 @@ public class CompositeValueTreeObject extends ValueTreeObject {
 	 * The Constructor.
 	 * 
 	 * @param value
-	 *            the value
+	 *        the value
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public CompositeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
 		super(parent, value, domain);

@@ -37,7 +37,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * The Constructor.
 	 * 
 	 * @param feature
-	 *            the feature
+	 *        the feature
 	 * 
 	 * @generated
 	 */
@@ -75,7 +75,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * Gets the domain element.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * 
 	 * @return the domain element
 	 * 
@@ -89,13 +89,13 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * Gets the string by pattern.
 	 * 
 	 * @param adapter
-	 *            the adapter
+	 *        the adapter
 	 * @param flags
-	 *            the flags
+	 *        the flags
 	 * @param pattern
-	 *            the pattern
+	 *        the pattern
 	 * @param processor
-	 *            the processor
+	 *        the processor
 	 * 
 	 * @return the string by pattern
 	 * 
@@ -103,7 +103,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 */
 	@Override
 	protected String getStringByPattern(IAdaptable adapter, int flags, String pattern, MessageFormat processor) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
 		element = getDomainElement(element);
 		return getStringByPattern(element, feature, processor);
 	}
@@ -112,11 +112,11 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * Gets the string by pattern.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * @param feature
-	 *            the feature
+	 *        the feature
 	 * @param processor
-	 *            the processor
+	 *        the processor
 	 * 
 	 * @return the string by pattern
 	 * 
@@ -125,14 +125,14 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	protected String getStringByPattern(EObject element, EStructuralFeature feature, MessageFormat processor) {
 		Object value = element == null ? null : element.eGet(feature);
 		value = getValidValue(feature, value);
-		return processor.format(new Object[] { value }, new StringBuffer(), new FieldPosition(0)).toString();
+		return processor.format(new Object[]{ value }, new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
 	 * Validate values.
 	 * 
 	 * @param values
-	 *            the values
+	 *        the values
 	 * 
 	 * @return the i parser edit status
 	 * 
@@ -140,12 +140,12 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 */
 	// @unused
 	protected IParserEditStatus validateValues(Object[] values) {
-		if (values.length > 1) {
+		if(values.length > 1) {
 			return ParserEditStatus.UNEDITABLE_STATUS;
 		}
 		Object value = values.length == 1 ? values[0] : null;
 		value = getValidNewValue(feature, value);
-		if (value instanceof InvalidValue) {
+		if(value instanceof InvalidValue) {
 			return new ParserEditStatus(UMLAbstractParser.ID, IParserEditStatus.UNEDITABLE, value.toString());
 		}
 		return ParserEditStatus.EDITABLE_STATUS;
@@ -155,9 +155,9 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * Gets the parse command.
 	 * 
 	 * @param adapter
-	 *            the adapter
+	 *        the adapter
 	 * @param values
-	 *            the values
+	 *        the values
 	 * 
 	 * @return the parses the command
 	 * 
@@ -165,13 +165,13 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable adapter, Object[] values) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
 		element = getDomainElement(element);
-		if (element == null) {
+		if(element == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Object value = values.length == 1 ? values[0] : null;
@@ -183,17 +183,17 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * Checks if is affecting event.
 	 * 
 	 * @param event
-	 *            the event
+	 *        the event
 	 * @param flags
-	 *            the flags
+	 *        the flags
 	 * 
 	 * @return true, if checks if is affecting event
 	 * 
 	 * @generated
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
-		if (event instanceof Notification) {
-			return isAffectingFeature(((Notification) event).getFeature());
+		if(event instanceof Notification) {
+			return isAffectingFeature(((Notification)event).getFeature());
 		}
 		return false;
 	}
@@ -202,7 +202,7 @@ public class UMLStructuralFeatureParser extends UMLAbstractParser {
 	 * Checks if is affecting feature.
 	 * 
 	 * @param eventFeature
-	 *            the event feature
+	 *        the event feature
 	 * 
 	 * @return true, if checks if is affecting feature
 	 * 

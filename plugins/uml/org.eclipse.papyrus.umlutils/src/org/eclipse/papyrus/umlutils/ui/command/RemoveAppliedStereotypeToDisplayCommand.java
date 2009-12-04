@@ -39,11 +39,11 @@ public class RemoveAppliedStereotypeToDisplayCommand extends CreateEAnnotationCo
 	 * Instantiates a new sets the applied stereotype to display command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param stereotypeList
-	 *            the stereotype list
+	 *        the stereotype list
 	 */
 	public RemoveAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, EModelElement object,
 			String stereotypeList, String appliedStereotypepresentationKind) {
@@ -60,7 +60,7 @@ public class RemoveAppliedStereotypeToDisplayCommand extends CreateEAnnotationCo
 		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(this.getObject());
 
 		StringTokenizer appliedStereotypeToken = new StringTokenizer(stereotypeList, ",");
-		while (appliedStereotypeToken.hasMoreElements()) {
+		while(appliedStereotypeToken.hasMoreElements()) {
 			String token = appliedStereotypeToken.nextToken();
 			stereoList = stereoList.replaceAll("," + token.trim(), "");
 			stereoList = stereoList.replaceAll(token.trim(), "");
@@ -68,14 +68,14 @@ public class RemoveAppliedStereotypeToDisplayCommand extends CreateEAnnotationCo
 
 		String stereoListQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(this.getObject());
 		appliedStereotypeToken = new StringTokenizer(stereotypeList, ",");
-		while (appliedStereotypeToken.hasMoreElements()) {
+		while(appliedStereotypeToken.hasMoreElements()) {
 			String token = appliedStereotypeToken.nextToken();
 			stereoListQN = stereoListQN.replaceAll("," + token.trim(), "");
 			stereoListQN = stereoListQN.replaceAll(token.trim(), "");
 		}
 
 		EAnnotation oldAnnotation = getObject().getEAnnotation(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
-		if (oldAnnotation == null) {
+		if(oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}

@@ -26,9 +26,9 @@ public class UnlimitedNaturalValueTreeObject extends PrimitiveTypeValueTreeObjec
 	 * The Constructor.
 	 * 
 	 * @param value
-	 *            the value
+	 *        the value
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public UnlimitedNaturalValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
 		super(parent, value, domain);

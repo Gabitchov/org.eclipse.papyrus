@@ -20,8 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 
 /**
  * this is a border item locator that can be used to place childreen where you want I order to
- * constraint movement and localization, specialize
- * {@link ItemBorderLocagetValidLocation.getValidLocation}
+ * constraint movement and localization, specialize {@link ItemBorderLocagetValidLocation.getValidLocation}
  * 
  * @author Patrick Tessier
  */

@@ -299,7 +299,7 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	public boolean visitChildren(IPartVisitor visitor) {
 		if(child != null)
 			return child.visit(visitor);
-		
+
 		// Return the default value
 		return true;
 	}

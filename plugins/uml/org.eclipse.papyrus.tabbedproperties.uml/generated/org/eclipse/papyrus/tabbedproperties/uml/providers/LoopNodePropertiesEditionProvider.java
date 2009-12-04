@@ -40,7 +40,7 @@ public class LoopNodePropertiesEditionProvider implements IPropertiesEditionProv
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof LoopNode) {
+		if(eObject instanceof LoopNode) {
 			return new LoopNodePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class LoopNodePropertiesEditionProvider implements IPropertiesEditionProv
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof LoopNode) {
-			if (LoopNodeBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof LoopNode) {
+			if(LoopNodeBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new LoopNodeBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

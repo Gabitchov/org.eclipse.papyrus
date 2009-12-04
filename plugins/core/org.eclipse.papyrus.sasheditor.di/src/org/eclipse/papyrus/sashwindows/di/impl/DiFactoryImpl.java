@@ -29,23 +29,25 @@ import org.eclipse.papyrus.sashwindows.di.Window;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DiFactory init() {
 		try {
-			DiFactory theDiFactory = (DiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/sashdi"); 
-			if (theDiFactory != null) {
+			DiFactory theDiFactory = (DiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/sashdi");
+			if(theDiFactory != null) {
 				return theDiFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new DiFactoryImpl();
@@ -55,6 +57,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiFactoryImpl() {
@@ -64,71 +67,85 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case DiPackage.SASH_MODEL: return createSashModel();
-			case DiPackage.WINDOW: return createWindow();
-			case DiPackage.POSITION: return createPosition();
-			case DiPackage.SIZE: return createSize();
-			case DiPackage.TAB_FOLDER: return createTabFolder();
-			case DiPackage.PAGE_REF: return createPageRef();
-			case DiPackage.SASH_PANEL: return createSashPanel();
-			case DiPackage.ABSTRACT_PAGE: return createAbstractPage();
-			case DiPackage.PAGE_LIST: return createPageList();
-			case DiPackage.SASH_WINDOWS_MNGR: return createSashWindowsMngr();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case DiPackage.SASH_MODEL:
+			return createSashModel();
+		case DiPackage.WINDOW:
+			return createWindow();
+		case DiPackage.POSITION:
+			return createPosition();
+		case DiPackage.SIZE:
+			return createSize();
+		case DiPackage.TAB_FOLDER:
+			return createTabFolder();
+		case DiPackage.PAGE_REF:
+			return createPageRef();
+		case DiPackage.SASH_PANEL:
+			return createSashPanel();
+		case DiPackage.ABSTRACT_PAGE:
+			return createAbstractPage();
+		case DiPackage.PAGE_LIST:
+			return createPageList();
+		case DiPackage.SASH_WINDOWS_MNGR:
+			return createSashWindowsMngr();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case DiPackage.INT:
-				return createintFromString(eDataType, initialValue);
-			case DiPackage.JAVA_OBJECT:
-				return createJavaObjectFromString(eDataType, initialValue);
-			case DiPackage.FLOAT:
-				return createFloatFromString(eDataType, initialValue);
-			case DiPackage.BOOLEAN:
-				return createbooleanFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case DiPackage.INT:
+			return createintFromString(eDataType, initialValue);
+		case DiPackage.JAVA_OBJECT:
+			return createJavaObjectFromString(eDataType, initialValue);
+		case DiPackage.FLOAT:
+			return createFloatFromString(eDataType, initialValue);
+		case DiPackage.BOOLEAN:
+			return createbooleanFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case DiPackage.INT:
-				return convertintToString(eDataType, instanceValue);
-			case DiPackage.JAVA_OBJECT:
-				return convertJavaObjectToString(eDataType, instanceValue);
-			case DiPackage.FLOAT:
-				return convertFloatToString(eDataType, instanceValue);
-			case DiPackage.BOOLEAN:
-				return convertbooleanToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case DiPackage.INT:
+			return convertintToString(eDataType, instanceValue);
+		case DiPackage.JAVA_OBJECT:
+			return convertJavaObjectToString(eDataType, instanceValue);
+		case DiPackage.FLOAT:
+			return convertFloatToString(eDataType, instanceValue);
+		case DiPackage.BOOLEAN:
+			return convertbooleanToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SashModel createSashModel() {
@@ -139,6 +156,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Window createWindow() {
@@ -149,6 +167,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Position createPosition() {
@@ -159,6 +178,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Size createSize() {
@@ -169,6 +189,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TabFolder createTabFolder() {
@@ -179,6 +200,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PageRef createPageRef() {
@@ -189,6 +211,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SashPanel createSashPanel() {
@@ -199,6 +222,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AbstractPage createAbstractPage() {
@@ -209,6 +233,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PageList createPageList() {
@@ -219,6 +244,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SashWindowsMngr createSashWindowsMngr() {
@@ -229,6 +255,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Integer createintFromString(EDataType eDataType, String initialValue) {
@@ -238,6 +265,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertintToString(EDataType eDataType, Object instanceValue) {
@@ -247,6 +275,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Object createJavaObjectFromString(EDataType eDataType, String initialValue) {
@@ -256,6 +285,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertJavaObjectToString(EDataType eDataType, Object instanceValue) {
@@ -265,6 +295,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Float createFloatFromString(EDataType eDataType, String initialValue) {
@@ -274,6 +305,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertFloatToString(EDataType eDataType, Object instanceValue) {
@@ -283,6 +315,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Boolean createbooleanFromString(EDataType eDataType, String initialValue) {
@@ -292,6 +325,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertbooleanToString(EDataType eDataType, Object instanceValue) {
@@ -301,6 +335,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiPackage getDiPackage() {
@@ -310,6 +345,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

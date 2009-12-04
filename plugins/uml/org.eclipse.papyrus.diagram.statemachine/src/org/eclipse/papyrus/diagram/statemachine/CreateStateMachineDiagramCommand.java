@@ -54,8 +54,8 @@ public class CreateStateMachineDiagramCommand extends
 	 */
 	@Override
 	protected void initializeModel(Element umlOwner) {
-		if (umlOwner instanceof Package) {
-			((org.eclipse.uml2.uml.Package) umlOwner).createPackagedElement(
+		if(umlOwner instanceof Package) {
+			((org.eclipse.uml2.uml.Package)umlOwner).createPackagedElement(
 					"StateMachine", UMLPackage.eINSTANCE.getStateMachine());
 		}
 	}

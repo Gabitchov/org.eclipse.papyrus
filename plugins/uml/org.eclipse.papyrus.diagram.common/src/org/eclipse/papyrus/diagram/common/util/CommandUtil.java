@@ -42,7 +42,7 @@ public class CommandUtil {
 	 * Taken from the CanonicalEditPolicy class
 	 * 
 	 * @param cmd
-	 *            command that can be executed (i.e., cmd.canExecute() == true)
+	 *        command that can be executed (i.e., cmd.canExecute() == true)
 	 * @param part
 	 */
 	public static void executeCommand(final Command cmd, IGraphicalEditPart part) {
@@ -52,11 +52,11 @@ public class CommandUtil {
 		// do not use the DiagramEditPart.isActivating since
 		// ConnectionEditPart's parent will not be a diagram edit part
 		EditPartViewer viewer = part.getViewer();
-		if (viewer instanceof DiagramGraphicalViewer) {
-			isActivating = ((DiagramGraphicalViewer) viewer).isInitializing();
+		if(viewer instanceof DiagramGraphicalViewer) {
+			isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
 		}
 
-		if (isActivating || !EditPartUtil.isWriteTransactionInProgress(part, false, false))
+		if(isActivating || !EditPartUtil.isWriteTransactionInProgress(part, false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
 		AbstractEMFOperation operation = new AbstractEMFOperation((part).getEditingDomain(), StringStatics.BLANK,

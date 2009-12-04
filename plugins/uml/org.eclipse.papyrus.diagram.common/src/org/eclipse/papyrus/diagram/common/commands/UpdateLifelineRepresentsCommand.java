@@ -70,11 +70,11 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	 * Create a command for updating InstanceSpecification values
 	 * 
 	 * @param lifeline
-	 *            the current lifeline object
+	 *        the current lifeline object
 	 * @param classifier
-	 *            the new classifier that represents the lifeline
+	 *        the new classifier that represents the lifeline
 	 * @param domain
-	 *            the edit domain
+	 *        the edit domain
 	 */
 	// @unused
 	public UpdateLifelineRepresentsCommand(Lifeline lifeline, Classifier classifier, EditingDomain domain) {
@@ -92,16 +92,16 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	 * interaction
 	 * 
 	 * @param interaction
-	 *            the owning interaction
+	 *        the owning interaction
 	 * @param prop
-	 *            the property
+	 *        the property
 	 * 
 	 * @return the ConnectorEnd
 	 */
 	protected ConnectorEnd getConnectorEnd(Interaction interaction, ConnectableElement prop) {
 		EList connectors = interaction.getOwnedConnectors();
 		Connector connector;
-		if (connectors.isEmpty()) {
+		if(connectors.isEmpty()) {
 			connector = interaction.createOwnedConnector(null);
 			// LabelHelper.INSTANCE.initName(editDomain, interaction,
 			// connector);
@@ -110,11 +110,11 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 
 		Iterator itconnectors = connectors.iterator();
 		ConnectorEnd end = null;
-		while (end == null && itconnectors.hasNext()) {
-			Iterator itends = ((Connector) itconnectors.next()).getEnds().iterator();
-			while (end == null && itends.hasNext()) {
-				ConnectorEnd e = (ConnectorEnd) itends.next();
-				if (e.getRole() == prop) {
+		while(end == null && itconnectors.hasNext()) {
+			Iterator itends = ((Connector)itconnectors.next()).getEnds().iterator();
+			while(end == null && itends.hasNext()) {
+				ConnectorEnd e = (ConnectorEnd)itends.next();
+				if(e.getRole() == prop) {
 					end = e;
 				}
 			}
@@ -140,7 +140,7 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	 * @see org.eclipse.gef.commands.Command#redo()
 	 */
 	public void redo() {
-		if (classifier == null) {
+		if(classifier == null) {
 			deleteAuxElements();
 
 			createProperty = false;
@@ -148,7 +148,7 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 			return;
 		}
 
-		if (lifeline.getRepresents() != null) { // Clean and begin from scratch
+		if(lifeline.getRepresents() != null) { // Clean and begin from scratch
 			deleteAuxElements();
 		}
 
@@ -160,7 +160,7 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 		createProperty = newProperty == null;
 
 		// If a such property doesn't exist, create it
-		if (createProperty) {
+		if(createProperty) {
 			newProperty = interaction.createOwnedAttribute(null, classifier);
 			// LabelHelper.INSTANCE.initName(editDomain, interaction,
 			// newProperty);
@@ -172,7 +172,7 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 		createConnectorEnd = connectorend == null;
 
 		// if a such property doesn't exist, create it
-		if (createConnectorEnd) {
+		if(createConnectorEnd) {
 			connectorend = (interaction.getOwnedConnectors().get(0)).createEnd();
 			connectorend.setRole(newProperty);
 		}
@@ -191,11 +191,11 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 		// Retrieve the interaction from the Lifeline
 		Interaction interaction = lifeline.getInteraction();
 
-		if (interaction.getOwnedConnectors().size() > 0) {
+		if(interaction.getOwnedConnectors().size() > 0) {
 			Connector connector = interaction.getOwnedConnectors().get(0);
-			if (connector != null) {
-				for (ConnectorEnd cEnd : connector.getEnds()) {
-					if (cEnd.getRole().equals(connectElem)) {
+			if(connector != null) {
+				for(ConnectorEnd cEnd : connector.getEnds()) {
+					if(cEnd.getRole().equals(connectElem)) {
 
 						connectElem.destroy();
 
@@ -216,13 +216,13 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	 */
 	@Override
 	public void undo() {
-		if (createConnectorEnd) {
+		if(createConnectorEnd) {
 			connectorend.setRole(null);
-			((Connector) connectorend.getOwner()).getEnds().remove(connectorend);
+			((Connector)connectorend.getOwner()).getEnds().remove(connectorend);
 		}
 
-		if (createProperty) {
-			((StructuredClassifier) newProperty.getOwner()).getOwnedAttributes().remove(newProperty);
+		if(createProperty) {
+			((StructuredClassifier)newProperty.getOwner()).getOwnedAttributes().remove(newProperty);
 		}
 
 		lifeline.setRepresents(oldProperty);

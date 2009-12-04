@@ -85,32 +85,32 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 
 		// Parse selected GenLink(s) and add the desired CustomBehavior
 		Iterator<EObject> it = getSelectedEObject().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof GenLink) {
+			if(eObject instanceof GenLink) {
 
 				// Create the behavior required by stereotype management (if not already created)
-				if (!hasCustomBehavior(((GenLink) eObject), STEREOTYPE_LABEL_POLICY_KEY)) {
-					addCustomBehavior((GenLink) eObject, STEREOTYPE_LABEL_POLICY_KEY, STEREOTYPE_LABEL_POLICY_CLASS);
+				if(!hasCustomBehavior(((GenLink)eObject), STEREOTYPE_LABEL_POLICY_KEY)) {
+					addCustomBehavior((GenLink)eObject, STEREOTYPE_LABEL_POLICY_KEY, STEREOTYPE_LABEL_POLICY_CLASS);
 				}
 
 				// Create the GenLinkLabel used for stereotypes (if not already created)
-				if (!hasCustomLabel((GenLink) eObject)) {
-					addCustomLabel((GenLink) eObject);
+				if(!hasCustomLabel((GenLink)eObject)) {
+					addCustomLabel((GenLink)eObject);
 				}
 			}
 		}
 	}
 
 
-	
+
 
 	/**
 	 * Add the CustomBehavior for Applied Stereotype label display to the GenLink node given as
 	 * parameter
 	 * 
 	 * @param genlink
-	 *            where the CustomBehavior is added
+	 *        where the CustomBehavior is added
 	 */
 	private void addCustomLabel(GenLink genlink) {
 
@@ -162,7 +162,7 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 	 * Check if the CustomBehavior for Applied Stereotype label display is already added
 	 * 
 	 * @param genlink
-	 *            the GenLink to test
+	 *        the GenLink to test
 	 * @return true if the behavior with correct key already exists
 	 */
 	private boolean hasCustomLabel(GenLink genlink) {
@@ -171,10 +171,10 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 		String expectedName = genlink.getClassNamePrefix() + DEFAULT_EDITPART_NAME_SUFFIX;
 
 		Iterator<GenLinkLabel> it = genlink.getLabels().iterator();
-		while (it.hasNext() && !(hasCustomLabel)) {
+		while(it.hasNext() && !(hasCustomLabel)) {
 			GenLinkLabel genLinkLabel = it.next();
 
-			if (expectedName.equals(genLinkLabel.getEditPartClassName())) {
+			if(expectedName.equals(genLinkLabel.getEditPartClassName())) {
 				hasCustomLabel = true;
 			}
 		}
@@ -188,9 +188,9 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 	 * 
 	 * 
 	 * @param gmfgen
-	 *            the model owning the parser
+	 *        the model owning the parser
 	 * @param name
-	 *            the parser qualified name
+	 *        the parser qualified name
 	 * @return the parser node
 	 */
 	private CustomParser findCustomParser(GenEditorGenerator genEditor, String name) {
@@ -198,18 +198,18 @@ public class AddGenLinkStereotypeDisplayBehavior extends Action {
 		CustomParser customParser = null;
 
 		Iterator<GenParserImplementation> it = genEditor.getLabelParsers().getImplementations().iterator();
-		while (it.hasNext() && (customParser == null)) {
+		while(it.hasNext() && (customParser == null)) {
 			GenParserImplementation parserImpl = it.next();
 
-			if (parserImpl instanceof CustomParser) {
-				CustomParser current = (CustomParser) parserImpl;
-				if (name.equals(current.getQualifiedName())) {
+			if(parserImpl instanceof CustomParser) {
+				CustomParser current = (CustomParser)parserImpl;
+				if(name.equals(current.getQualifiedName())) {
 					customParser = current;
 				}
 			}
 		}
 
-		if (customParser == null) {
+		if(customParser == null) {
 			customParser = GMFGenFactory.eINSTANCE.createCustomParser();
 			customParser.setQualifiedName(APPLIED_STEREOTYPE_CUSTOM_PARSER_CLASS);
 			customParser.setGenerateBoilerplate(false);

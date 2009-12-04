@@ -105,7 +105,7 @@ ShapeNodeEditPart {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -134,15 +134,15 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public CornerBentDescriptor getPrimaryShape() {
-		return (CornerBentDescriptor) primaryShape;
+		return (CornerBentDescriptor)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommentBody2EditPart) {
-			((CommentBody2EditPart) childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
+		if(childEditPart instanceof CommentBody2EditPart) {
+			((CommentBody2EditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
 			return true;
 		}
 
@@ -153,7 +153,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommentBody2EditPart) {
+		if(childEditPart instanceof CommentBody2EditPart) {
 			return true;
 		}
 		return false;
@@ -163,7 +163,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -173,7 +173,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -216,11 +216,11 @@ ShapeNodeEditPart {
 	 * for generated figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -232,7 +232,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -242,7 +242,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -251,8 +251,8 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -260,8 +260,8 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -307,88 +307,88 @@ ShapeNodeEditPart {
 																							 * IElementType
 																							 * >
 																							 */();
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof CommentEditPart) {
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Comment2EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
 		return types;
@@ -410,88 +410,88 @@ ShapeNodeEditPart {
 																							 * IElementType
 																							 * >
 																							 */();
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_3028);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
 		return types;
@@ -534,76 +534,76 @@ ShapeNodeEditPart {
 																							 * IElementType
 																							 * >
 																							 */();
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_3028);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
 		return types;
@@ -686,36 +686,36 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
 				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
 				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore,
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
 					prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
 				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("Comment",
 					PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
 					.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

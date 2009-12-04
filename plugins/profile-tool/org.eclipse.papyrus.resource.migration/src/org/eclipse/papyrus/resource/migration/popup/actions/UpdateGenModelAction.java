@@ -10,7 +10,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.resource.migration.popup.actions;
 
 import java.io.IOException;
@@ -59,15 +59,15 @@ public class UpdateGenModelAction implements IObjectActionDelegate {
 	 * @see IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		if (PlatformUI.getWorkbench() != null) {
+		if(PlatformUI.getWorkbench() != null) {
 			IWorkbench workbench = PlatformUI.getWorkbench();
-			if (workbench.getActiveWorkbenchWindow() != null) {
+			if(workbench.getActiveWorkbenchWindow() != null) {
 				IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
-				if (window.getSelectionService() != null) {
+				if(window.getSelectionService() != null) {
 					ISelectionService service = window.getSelectionService();
 					ISelection selection = service.getSelection();
-					if (selection instanceof IStructuredSelection) {
-						final IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+					if(selection instanceof IStructuredSelection) {
+						final IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 						BusyIndicator.showWhile(shell.getDisplay(), new Runnable() {
 
 							public void run() {
@@ -89,10 +89,10 @@ public class UpdateGenModelAction implements IObjectActionDelegate {
 		try {
 			Iterator<?> iterator = structuredSelection.iterator();
 			GenModelUpdater updater = new GenModelUpdater();
-			while (iterator.hasNext()) {
+			while(iterator.hasNext()) {
 				Object next = iterator.next();
-				if (next instanceof IFile) {
-					IFile ifile = (IFile) next;
+				if(next instanceof IFile) {
+					IFile ifile = (IFile)next;
 					updater.transform(URI.createURI(ifile.getLocationURI().toString()));
 					ifile.getParent().refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 				}

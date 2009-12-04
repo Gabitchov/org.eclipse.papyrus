@@ -28,6 +28,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Command to create a new TextEditor.
  * The command create a new IEditorModel and add it to the Sashwindow repository model.
+ * 
  * @author dumoulin
  */
 public class CreateTextEditorCommandHandler extends AbstractHandler implements IHandler {
@@ -41,8 +42,7 @@ public class CreateTextEditorCommandHandler extends AbstractHandler implements I
 		IEditorModel model = new TextEditorPartModel();
 		// Get the Sashwindow model
 		ISashWindowsContentProvider contentProvider = getSashWindowsContentProvider();
-		if(contentProvider==null)
-		{
+		if(contentProvider == null) {
 			showErrorDialog("Can't create Editor. Reason: Can't get current editor ContentProvider.");
 		}
 		// Add it to the current folder
@@ -53,10 +53,11 @@ public class CreateTextEditorCommandHandler extends AbstractHandler implements I
 
 	/**
 	 * Show an ErrorDialog.
+	 * 
 	 * @param string
 	 */
 	private void showErrorDialog(String text) {
-		MessageBox dialog = new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.ICON_WARNING |SWT.OK | SWT.APPLICATION_MODAL  );
+		MessageBox dialog = new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.ICON_WARNING | SWT.OK | SWT.APPLICATION_MODAL);
 		dialog.setText(text);
 		dialog.open();
 		return;
@@ -81,9 +82,9 @@ public class CreateTextEditorCommandHandler extends AbstractHandler implements I
 	 */
 	protected ISashWindowsContentProvider getSashWindowsContentProvider() {
 		IEditorPart editor = getMultiDiagramEditor();
-		
+
 		ISashWindowsContentProvider contentProvider = (ISashWindowsContentProvider)editor.getAdapter(ISashWindowsContentProvider.class);
-		return contentProvider; 
+		return contentProvider;
 	}
 
 }

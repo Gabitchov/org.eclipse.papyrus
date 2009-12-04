@@ -54,16 +54,15 @@ public class UMLCreateShortcutDecorationsCommand extends
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		for (Iterator it = myDescriptors.iterator(); it.hasNext();) {
-			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it
+		for(Iterator it = myDescriptors.iterator(); it.hasNext();) {
+			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor)it
 					.next();
-			View view = (View) nextDescriptor.getAdapter(View.class);
-			if (view != null && view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+			View view = (View)nextDescriptor.getAdapter(View.class);
+			if(view != null && view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
 						.createEAnnotation();
 				shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-				shortcutAnnotation.getDetails().put(
-						"modelID", StateMachineEditPart.MODEL_ID); //$NON-NLS-1$
+				shortcutAnnotation.getDetails().put("modelID", StateMachineEditPart.MODEL_ID); //$NON-NLS-1$
 				view.getEAnnotations().add(shortcutAnnotation);
 			}
 		}

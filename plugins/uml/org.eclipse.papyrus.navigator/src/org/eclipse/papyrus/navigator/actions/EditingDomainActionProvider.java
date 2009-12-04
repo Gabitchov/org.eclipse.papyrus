@@ -63,14 +63,14 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 
 		IConfigurationElement[] registry = Platform.getExtensionRegistry().getConfigurationElementsFor(
 				ACTION_HANDLER_EXTENSION_POINT_ID);
-		for (IConfigurationElement elt : registry) {
+		for(IConfigurationElement elt : registry) {
 			try {
 				final String actionId = elt.getAttribute("actionId");
 				final String afterAction = elt.getAttribute("afterAction");
 				boolean needSeparator = Boolean.valueOf(elt.getAttribute("needSeparator"));
 				ActionProperties properties = new ActionProperties(actionId, afterAction, needSeparator);
 
-				IActionHandlerFactory factory = (IActionHandlerFactory) elt.createExecutableExtension("actionHandler");
+				IActionHandlerFactory factory = (IActionHandlerFactory)elt.createExecutableExtension("actionHandler");
 				// create registered actions
 				factory.createActions(editingDomain);
 
@@ -87,7 +87,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	@Override
 	public void fillActionBars(IActionBars actionBars) {
 		super.fillActionBars(actionBars);
-		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+		for(IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
 			factory.fillActionBars(actionBars);
 		}
 	}
@@ -102,12 +102,12 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		List<IActionHandlerFactory> sortedFactories = sortFactories(actionsFactoriesMap);
 
 		// Add the edit menu actions
-		for (IActionHandlerFactory factory : sortedFactories) {
+		for(IActionHandlerFactory factory : sortedFactories) {
 			ActionProperties actionProperties = actionsFactoriesMap.get(factory);
-			if (actionProperties != null && actionProperties.isNeedSeparator()) {
+			if(actionProperties != null && actionProperties.isNeedSeparator()) {
 				menu.add(new Separator());
 			}
-			for (Action action : factory.getActions()) {
+			for(Action action : factory.getActions()) {
 				menu.add(new ActionContributionItem(action));
 			}
 		}
@@ -120,11 +120,11 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	public void update() {
 		ISelection selection = getCommonNavigator().getCommonViewer().getSelection();
 		IStructuredSelection structuredSelection = StructuredSelection.EMPTY;
-		if (selection instanceof IStructuredSelection) {
-			structuredSelection = (IStructuredSelection) selection;
+		if(selection instanceof IStructuredSelection) {
+			structuredSelection = (IStructuredSelection)selection;
 		}
 
-		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+		for(IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
 			factory.update(structuredSelection);
 		}
 	}
@@ -133,7 +133,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	 * Activate actions
 	 */
 	public void activate() {
-		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+		for(IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
 			factory.activate(activeViewPart);
 		}
 		update();
@@ -144,7 +144,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	 */
 	// @unused
 	public void deactivate() {
-		for (IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
+		for(IActionHandlerFactory factory : actionsFactoriesMap.keySet()) {
 			factory.deactivate(activeViewPart);
 		}
 	}
@@ -163,7 +163,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	 * Sort factories.
 	 * 
 	 * @param actionsFactoriesMap
-	 *            the actions factories map
+	 *        the actions factories map
 	 * 
 	 * @return the sorted list of factories
 	 */
@@ -181,22 +181,22 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 				String after1 = properties1.getAfterAction();
 				String after2 = properties2.getAfterAction();
 
-				if (properties1.getActionId().equals(properties2.getActionId())) {
+				if(properties1.getActionId().equals(properties2.getActionId())) {
 					return 0;
-				} else if (properties1.getActionId().equals(after2)) {
+				} else if(properties1.getActionId().equals(after2)) {
 					return -1;
-				} else if (properties2.getActionId().equals(after1)) {
+				} else if(properties2.getActionId().equals(after1)) {
 					return 1;
-				} else if (after1 == null) {
+				} else if(after1 == null) {
 					return -1;
-				} else if (after2 == null) {
+				} else if(after2 == null) {
 					return 1;
 				}
 				return 0;
 			}
 
 			private ActionProperties getDefaultForNull(ActionProperties actionProperties) {
-				if (actionProperties == null) {
+				if(actionProperties == null) {
 					actionProperties = new ActionProperties("", "", false);
 				}
 				return actionProperties;

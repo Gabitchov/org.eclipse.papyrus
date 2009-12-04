@@ -71,7 +71,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	private static ImageRegistry getImageRegistry() {
-		if (imageRegistry == null) {
+		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
 		}
 		return imageRegistry;
@@ -89,24 +89,24 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	private static ImageDescriptor getProvidedImageDescriptor(
 			ENamedElement element) {
-		if (element instanceof EStructuralFeature) {
-			EStructuralFeature feature = ((EStructuralFeature) element);
+		if(element instanceof EStructuralFeature) {
+			EStructuralFeature feature = ((EStructuralFeature)element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
-			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+			if(eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if(eType instanceof EClass
+					&& !((EClass)eType).isAbstract()) {
 				element = eType;
 			}
 		}
-		if (element instanceof EClass) {
-			EClass eClass = (EClass) element;
-			if (!eClass.isAbstract()) {
+		if(element instanceof EClass) {
+			EClass eClass = (EClass)element;
+			if(!eClass.isAbstract()) {
 				return UMLDiagramEditorPlugin.getInstance()
 						.getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+						eClass.getEPackage().getEFactoryInstance()
+						.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -119,9 +119,9 @@ public class UMLElementTypes extends ElementInitializers {
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		ImageDescriptor imageDescriptor = getImageRegistry().getDescriptor(key);
-		if (imageDescriptor == null) {
+		if(imageDescriptor == null) {
 			imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -135,9 +135,9 @@ public class UMLElementTypes extends ElementInitializers {
 	public static Image getImage(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		Image image = getImageRegistry().get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -150,10 +150,10 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated NOT
 	 */
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
-		IElementType type = (IElementType) hint.getAdapter(IElementType.class);
-		if (type != null) {
+		IElementType type = (IElementType)hint.getAdapter(IElementType.class);
+		if(type != null) {
 			ImageDescriptor imageDescriptor = getPseudostateImageDescriptor(type);
-			if (imageDescriptor != null) {
+			if(imageDescriptor != null) {
 				return imageDescriptor;
 			}
 		}
@@ -165,7 +165,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	public static ImageDescriptor getImageDescriptorGen(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImageDescriptor(element);
@@ -175,14 +175,14 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated NOT
 	 */
 	public static Image getImage(IAdaptable hint) {
-		IElementType type = (IElementType) hint.getAdapter(IElementType.class);
+		IElementType type = (IElementType)hint.getAdapter(IElementType.class);
 		//if (type != null && getPseudostateImageDescriptors().containsKey(type)) {
-		if (type != null && getPseudostateImageDescriptors().containsKey(type)) {
+		if(type != null && getPseudostateImageDescriptors().containsKey(type)) {
 			String key = type.getId();
 			Image image = getImageRegistry().get(key);
-			if (image == null) {
+			if(image == null) {
 				ImageDescriptor imageDescriptor = getPseudostateImageDescriptor(type);
-				if (imageDescriptor != null) {
+				if(imageDescriptor != null) {
 					getImageRegistry().put(key, imageDescriptor);
 					image = getImageRegistry().get(key);
 				}
@@ -197,7 +197,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	public static Image getImageGen(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImage(element);
@@ -210,7 +210,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if (elements == null) {
+		if(elements == null) {
 			elements = new IdentityHashMap();
 
 			elements.put(Package_79, UMLPackage.eINSTANCE.getPackage());
@@ -290,90 +290,90 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(CommentAnnotatedElement_3003, UMLPackage.eINSTANCE
 					.getComment_AnnotatedElement());
 		}
-		return (ENamedElement) elements.get(type);
+		return (ENamedElement)elements.get(type);
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	private static Map<IElementType, ImageDescriptor> getPseudostateImageDescriptors() {
-		if (pseudostateDescriptors == null) {
+		if(pseudostateDescriptors == null) {
 			pseudostateDescriptors = new HashMap<IElementType, ImageDescriptor>();
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2009,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif")); //$NON-NLS-1$
+					Pseudostate_2009,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2010,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif")); //$NON-NLS-1$
+					Pseudostate_2010,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2011,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif")); //$NON-NLS-1$
+					Pseudostate_2011,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2012,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif")); //$NON-NLS-1$
+					Pseudostate_2012,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2013,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif")); //$NON-NLS-1$
+					Pseudostate_2013,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2014,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif")); //$NON-NLS-1$
+					Pseudostate_2014,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2015,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif")); //$NON-NLS-1$
+					Pseudostate_2015,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2016,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif")); //$NON-NLS-1$
+					Pseudostate_2016,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif")); //$NON-NLS-1$
 
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2018,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
+					Pseudostate_2018,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2019,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
+					Pseudostate_2019,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
 
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2020,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
+					Pseudostate_2020,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
 
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2021,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
+					Pseudostate_2021,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
 
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2022,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
+					Pseudostate_2022,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif")); //$NON-NLS-1$
 
 			pseudostateDescriptors
 					.put(
-							Pseudostate_2023,
-							UMLDiagramEditorPlugin
-									.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
+					Pseudostate_2023,
+					UMLDiagramEditorPlugin
+					.findImageDescriptor("/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif")); //$NON-NLS-1$
 		}
 		return pseudostateDescriptors;
 	}
@@ -401,153 +401,153 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Package_79 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Package_79"); //$NON-NLS-1$
+	public static final IHintedType Package_79 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Package_79"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType StateMachine_1001 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.StateMachine_1001"); //$NON-NLS-1$
+	public static final IHintedType StateMachine_1001 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.StateMachine_1001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Comment_2024 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Comment_2024"); //$NON-NLS-1$
+	public static final IHintedType Comment_2024 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Comment_2024"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Region_2001 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Region_2001"); //$NON-NLS-1$
+	public static final IHintedType Region_2001 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Region_2001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType State_2002 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.State_2002"); //$NON-NLS-1$
+	public static final IHintedType State_2002 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.State_2002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType State_2003 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.State_2003"); //$NON-NLS-1$
+	public static final IHintedType State_2003 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.State_2003"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Region_2004 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Region_2004"); //$NON-NLS-1$
+	public static final IHintedType Region_2004 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Region_2004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType State_2005 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.State_2005"); //$NON-NLS-1$
+	public static final IHintedType State_2005 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.State_2005"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType ConnectionPointReference_2006 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_2006"); //$NON-NLS-1$
+	public static final IHintedType ConnectionPointReference_2006 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_2006"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType ConnectionPointReference_2007 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_2007"); //$NON-NLS-1$
+	public static final IHintedType ConnectionPointReference_2007 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_2007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType FinalState_2008 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.FinalState_2008"); //$NON-NLS-1$
+	public static final IHintedType FinalState_2008 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.FinalState_2008"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2009 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2009"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2009 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2009"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2010 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2010"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2010 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2010"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2011 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2011"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2011 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2011"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2012 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2012"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2012 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2012"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2013 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2013"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2013 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2013"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2014 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2014"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2014 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2014"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2015 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2015"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2015 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2015"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2016 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2016"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2016 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType State_2017 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.State_2017"); //$NON-NLS-1$
+	public static final IHintedType State_2017 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.State_2017"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2018 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2018"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2018 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2018"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2019 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2019"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2019 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2019"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2020 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2020"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2020 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2020"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2021 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2021"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2021 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2021"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2022 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2022"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2022 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2022"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Pseudostate_2023 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2023"); //$NON-NLS-1$
+	public static final IHintedType Pseudostate_2023 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_2023"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType Transition_3001 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.Transition_3001"); //$NON-NLS-1$
+	public static final IHintedType Transition_3001 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.Transition_3001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType ElementOwnedComment_3002 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.ElementOwnedComment_3002"); //$NON-NLS-1$
+	public static final IHintedType ElementOwnedComment_3002 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.ElementOwnedComment_3002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IHintedType CommentAnnotatedElement_3003 = (IHintedType) getElementType("org.eclipse.papyrus.diagram.statemachine.CommentAnnotatedElement_3003"); //$NON-NLS-1$
+	public static final IHintedType CommentAnnotatedElement_3003 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.statemachine.CommentAnnotatedElement_3003"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
+		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(Package_79);
 			KNOWN_ELEMENT_TYPES.add(StateMachine_1001);
@@ -586,7 +586,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static void refreshImageRegistry() {
-		if (imageRegistry != null) {
+		if(imageRegistry != null) {
 			imageRegistry.dispose();
 			imageRegistry = null;
 		}
@@ -599,10 +599,11 @@ public class UMLElementTypes extends ElementInitializers {
 	static {
 		ModelTypesProviderFactory.registerModelTypesProvider(
 				UMLDiagramEditor.ID, new BaseModelTypeProvider() {
-					@Override
-					public Image getImageHelper(IAdaptable hint) {
-						return getImage(hint);
-					}
-				});
+
+			@Override
+			public Image getImageHelper(IAdaptable hint) {
+				return getImage(hint);
+			}
+		});
 	}
 }

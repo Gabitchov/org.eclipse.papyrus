@@ -87,69 +87,118 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ReplyActionPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<? extends EObject> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	protected Button isLeaf;
+
 	private EMFListEditUtil outgoingEditUtil;
+
 	protected ReferencesTable<? extends EObject> outgoing;
+
 	protected List<ViewerFilter> outgoingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> outgoingFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil incomingEditUtil;
+
 	protected ReferencesTable<? extends EObject> incoming;
+
 	protected List<ViewerFilter> incomingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> incomingFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil inPartitionEditUtil;
+
 	protected ReferencesTable<? extends EObject> inPartition;
+
 	protected List<ViewerFilter> inPartitionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inPartitionFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil inInterruptibleRegionEditUtil;
+
 	protected ReferencesTable<? extends EObject> inInterruptibleRegion;
+
 	protected List<ViewerFilter> inInterruptibleRegionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> inInterruptibleRegionFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil redefinedNodeEditUtil;
+
 	protected ReferencesTable<? extends EObject> redefinedNode;
+
 	protected List<ViewerFilter> redefinedNodeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> redefinedNodeFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil handlerEditUtil;
+
 	protected ReferencesTable<? extends EObject> handler;
+
 	protected List<ViewerFilter> handlerBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> handlerFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil localPreconditionEditUtil;
+
 	protected ReferencesTable<? extends EObject> localPrecondition;
+
 	protected List<ViewerFilter> localPreconditionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> localPreconditionFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil localPostconditionEditUtil;
+
 	protected ReferencesTable<? extends EObject> localPostcondition;
+
 	protected List<ViewerFilter> localPostconditionBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> localPostconditionFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil replyValueEditUtil;
+
 	protected ReferencesTable<? extends EObject> replyValue;
+
 	protected List<ViewerFilter> replyValueBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> replyValueFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public ReplyActionPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite,
+	 *      org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -161,11 +210,12 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createControls(org.eclipse.ui.forms.widgets.FormToolkit,
+	 *      org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
@@ -173,7 +223,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// Start of user code for additional ui definition
 
 		// End of user code
-		
+
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -202,16 +252,31 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		createReplyValueTableComposition(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ReplyActionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ReplyActionPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -227,7 +292,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -239,11 +304,11 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -279,10 +344,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -294,6 +359,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ReplyActionPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ReplyAction.name, UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
@@ -309,7 +375,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -322,7 +388,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -335,8 +401,8 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 */
 			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
+				if(e.character == SWT.CR) {
+					if(propertiesEditionComponent != null)
 						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
@@ -344,6 +410,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.ReplyActionPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.ReplyAction.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -359,36 +426,50 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
 
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.ReplyActionPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+						"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						clientDependency.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.clientDependency, UMLViewsRepository.FORM_KIND));
 		this.clientDependency.createControls(parent, widgetFactory);
@@ -433,10 +514,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -448,17 +529,18 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	protected void createIsLeafCheckbox(FormToolkit widgetFactory, Composite parent) {
 		isLeaf = widgetFactory.createButton(parent, UMLMessages.ReplyActionPropertiesEditionPart_IsLeafLabel, SWT.CHECK);
 		isLeaf.addSelectionListener(new SelectionAdapter() {
 
 			/**
 			 * {@inheritDoc}
-			 *
+			 * 
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 			 */
 			public void widgetSelected(SelectionEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.isLeaf, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new Boolean(isLeaf.getSelection())));
 			}
 
@@ -468,29 +550,43 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		isLeaf.setLayoutData(isLeafData);
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.isLeaf, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createOutgoingReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.outgoing = new ReferencesTable<ActivityEdge>(UMLMessages.ReplyActionPropertiesEditionPart_OutgoingLabel, new ReferencesTableListener<ActivityEdge>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, outgoingFilters, outgoingBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+						"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!outgoingEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!outgoingEditUtil.getVirtualList().contains(elem))
 								outgoingEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.outgoing,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						outgoing.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityEdge element) { editOutgoing(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveOutgoing(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromOutgoing(element); }
-			public void navigateTo(ActivityEdge element) { }
+
+			public void handleEdit(ActivityEdge element) {
+				editOutgoing(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveOutgoing(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromOutgoing(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.outgoing.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.outgoing, UMLViewsRepository.FORM_KIND));
 		this.outgoing.createControls(parent, widgetFactory);
@@ -531,10 +627,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				outgoingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				outgoing.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -546,29 +642,43 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	protected void createIncomingReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.incoming = new ReferencesTable<ActivityEdge>(UMLMessages.ReplyActionPropertiesEditionPart_IncomingLabel, new ReferencesTableListener<ActivityEdge>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityEdge> dialog = new TabElementTreeSelectionDialog<ActivityEdge>(resourceSet, incomingFilters, incomingBusinessFilters,
-				"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+						"ActivityEdge", UMLPackage.eINSTANCE.getActivityEdge(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!incomingEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!incomingEditUtil.getVirtualList().contains(elem))
 								incomingEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.incoming,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						incoming.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityEdge element) { editIncoming(element); }
-			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) { moveIncoming(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityEdge element) { removeFromIncoming(element); }
-			public void navigateTo(ActivityEdge element) { }
+
+			public void handleEdit(ActivityEdge element) {
+				editIncoming(element);
+			}
+
+			public void handleMove(ActivityEdge element, int oldIndex, int newIndex) {
+				moveIncoming(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityEdge element) {
+				removeFromIncoming(element);
+			}
+
+			public void navigateTo(ActivityEdge element) {
+			}
 		});
 		this.incoming.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.incoming, UMLViewsRepository.FORM_KIND));
 		this.incoming.createControls(parent, widgetFactory);
@@ -609,10 +719,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				incomingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				incoming.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -624,29 +734,43 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	protected void createInPartitionReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.inPartition = new ReferencesTable<ActivityPartition>(UMLMessages.ReplyActionPropertiesEditionPart_InPartitionLabel, new ReferencesTableListener<ActivityPartition>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityPartition> dialog = new TabElementTreeSelectionDialog<ActivityPartition>(resourceSet, inPartitionFilters, inPartitionBusinessFilters,
-				"ActivityPartition", UMLPackage.eINSTANCE.getActivityPartition(), current.eResource()) {
+						"ActivityPartition", UMLPackage.eINSTANCE.getActivityPartition(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inPartitionEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!inPartitionEditUtil.getVirtualList().contains(elem))
 								inPartitionEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.inPartition,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						inPartition.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityPartition element) { editInPartition(element); }
-			public void handleMove(ActivityPartition element, int oldIndex, int newIndex) { moveInPartition(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityPartition element) { removeFromInPartition(element); }
-			public void navigateTo(ActivityPartition element) { }
+
+			public void handleEdit(ActivityPartition element) {
+				editInPartition(element);
+			}
+
+			public void handleMove(ActivityPartition element, int oldIndex, int newIndex) {
+				moveInPartition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityPartition element) {
+				removeFromInPartition(element);
+			}
+
+			public void navigateTo(ActivityPartition element) {
+			}
 		});
 		this.inPartition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.inPartition, UMLViewsRepository.FORM_KIND));
 		this.inPartition.createControls(parent, widgetFactory);
@@ -691,10 +815,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				inPartitionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inPartition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -706,29 +830,43 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	protected void createInInterruptibleRegionReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.inInterruptibleRegion = new ReferencesTable<InterruptibleActivityRegion>(UMLMessages.ReplyActionPropertiesEditionPart_InInterruptibleRegionLabel, new ReferencesTableListener<InterruptibleActivityRegion>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<InterruptibleActivityRegion> dialog = new TabElementTreeSelectionDialog<InterruptibleActivityRegion>(resourceSet, inInterruptibleRegionFilters, inInterruptibleRegionBusinessFilters,
-				"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion(), current.eResource()) {
+						"InterruptibleActivityRegion", UMLPackage.eINSTANCE.getInterruptibleActivityRegion(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!inInterruptibleRegionEditUtil.getVirtualList().contains(elem))
 								inInterruptibleRegionEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.inInterruptibleRegion,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						inInterruptibleRegion.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(InterruptibleActivityRegion element) { editInInterruptibleRegion(element); }
-			public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) { moveInInterruptibleRegion(element, oldIndex, newIndex); }
-			public void handleRemove(InterruptibleActivityRegion element) { removeFromInInterruptibleRegion(element); }
-			public void navigateTo(InterruptibleActivityRegion element) { }
+
+			public void handleEdit(InterruptibleActivityRegion element) {
+				editInInterruptibleRegion(element);
+			}
+
+			public void handleMove(InterruptibleActivityRegion element, int oldIndex, int newIndex) {
+				moveInInterruptibleRegion(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(InterruptibleActivityRegion element) {
+				removeFromInInterruptibleRegion(element);
+			}
+
+			public void navigateTo(InterruptibleActivityRegion element) {
+			}
 		});
 		this.inInterruptibleRegion.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.inInterruptibleRegion, UMLViewsRepository.FORM_KIND));
 		this.inInterruptibleRegion.createControls(parent, widgetFactory);
@@ -773,10 +911,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				inInterruptibleRegionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				inInterruptibleRegion.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -788,29 +926,43 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	protected void createRedefinedNodeReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.redefinedNode = new ReferencesTable<ActivityNode>(UMLMessages.ReplyActionPropertiesEditionPart_RedefinedNodeLabel, new ReferencesTableListener<ActivityNode>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<ActivityNode> dialog = new TabElementTreeSelectionDialog<ActivityNode>(resourceSet, redefinedNodeFilters, redefinedNodeBusinessFilters,
-				"ActivityNode", UMLPackage.eINSTANCE.getActivityNode(), current.eResource()) {
+						"ActivityNode", UMLPackage.eINSTANCE.getActivityNode(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!redefinedNodeEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!redefinedNodeEditUtil.getVirtualList().contains(elem))
 								redefinedNodeEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.redefinedNode,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						redefinedNode.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(ActivityNode element) { editRedefinedNode(element); }
-			public void handleMove(ActivityNode element, int oldIndex, int newIndex) { moveRedefinedNode(element, oldIndex, newIndex); }
-			public void handleRemove(ActivityNode element) { removeFromRedefinedNode(element); }
-			public void navigateTo(ActivityNode element) { }
+
+			public void handleEdit(ActivityNode element) {
+				editRedefinedNode(element);
+			}
+
+			public void handleMove(ActivityNode element, int oldIndex, int newIndex) {
+				moveRedefinedNode(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ActivityNode element) {
+				removeFromRedefinedNode(element);
+			}
+
+			public void navigateTo(ActivityNode element) {
+			}
 		});
 		this.redefinedNode.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.redefinedNode, UMLViewsRepository.FORM_KIND));
 		this.redefinedNode.createControls(parent, widgetFactory);
@@ -851,10 +1003,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				redefinedNodeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				redefinedNode.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -866,16 +1018,31 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createHandlerTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.handler = new ReferencesTable<ExceptionHandler>(UMLMessages.ReplyActionPropertiesEditionPart_HandlerLabel, new ReferencesTableListener<ExceptionHandler>() {			
-			public void handleAdd() { addToHandler();}
-			public void handleEdit(ExceptionHandler element) { editHandler(element); }
-			public void handleMove(ExceptionHandler element, int oldIndex, int newIndex) { moveHandler(element, oldIndex, newIndex); }
-			public void handleRemove(ExceptionHandler element) { removeFromHandler(element); }
-			public void navigateTo(ExceptionHandler element) { }
+		this.handler = new ReferencesTable<ExceptionHandler>(UMLMessages.ReplyActionPropertiesEditionPart_HandlerLabel, new ReferencesTableListener<ExceptionHandler>() {
+
+			public void handleAdd() {
+				addToHandler();
+			}
+
+			public void handleEdit(ExceptionHandler element) {
+				editHandler(element);
+			}
+
+			public void handleMove(ExceptionHandler element, int oldIndex, int newIndex) {
+				moveHandler(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(ExceptionHandler element) {
+				removeFromHandler(element);
+			}
+
+			public void navigateTo(ExceptionHandler element) {
+			}
 		});
 		this.handler.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.handler, UMLViewsRepository.FORM_KIND));
 		this.handler.createControls(parent, widgetFactory);
@@ -891,7 +1058,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		EObject editedElement = handlerEditUtil.foundCorrespondingEObject(element);
 		handlerEditUtil.moveElement(element, oldIndex, newIndex);
 		handler.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.handler, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.handler, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -903,11 +1070,11 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				handlerEditUtil.addElement(propertiesEditionObject);
 				handler.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -943,10 +1110,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				handlerEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				handler.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -958,16 +1125,31 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createLocalPreconditionTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.localPrecondition = new ReferencesTable<Constraint>(UMLMessages.ReplyActionPropertiesEditionPart_LocalPreconditionLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToLocalPrecondition();}
-			public void handleEdit(Constraint element) { editLocalPrecondition(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveLocalPrecondition(element, oldIndex, newIndex); }
-			public void handleRemove(Constraint element) { removeFromLocalPrecondition(element); }
-			public void navigateTo(Constraint element) { }
+		this.localPrecondition = new ReferencesTable<Constraint>(UMLMessages.ReplyActionPropertiesEditionPart_LocalPreconditionLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToLocalPrecondition();
+			}
+
+			public void handleEdit(Constraint element) {
+				editLocalPrecondition(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveLocalPrecondition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromLocalPrecondition(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.localPrecondition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.localPrecondition, UMLViewsRepository.FORM_KIND));
 		this.localPrecondition.createControls(parent, widgetFactory);
@@ -983,7 +1165,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		EObject editedElement = localPreconditionEditUtil.foundCorrespondingEObject(element);
 		localPreconditionEditUtil.moveElement(element, oldIndex, newIndex);
 		localPrecondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.localPrecondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.localPrecondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -995,11 +1177,11 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				localPreconditionEditUtil.addElement(propertiesEditionObject);
 				localPrecondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1035,10 +1217,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				localPreconditionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				localPrecondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1050,16 +1232,31 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createLocalPostconditionTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.localPostcondition = new ReferencesTable<Constraint>(UMLMessages.ReplyActionPropertiesEditionPart_LocalPostconditionLabel, new ReferencesTableListener<Constraint>() {			
-			public void handleAdd() { addToLocalPostcondition();}
-			public void handleEdit(Constraint element) { editLocalPostcondition(element); }
-			public void handleMove(Constraint element, int oldIndex, int newIndex) { moveLocalPostcondition(element, oldIndex, newIndex); }
-			public void handleRemove(Constraint element) { removeFromLocalPostcondition(element); }
-			public void navigateTo(Constraint element) { }
+		this.localPostcondition = new ReferencesTable<Constraint>(UMLMessages.ReplyActionPropertiesEditionPart_LocalPostconditionLabel, new ReferencesTableListener<Constraint>() {
+
+			public void handleAdd() {
+				addToLocalPostcondition();
+			}
+
+			public void handleEdit(Constraint element) {
+				editLocalPostcondition(element);
+			}
+
+			public void handleMove(Constraint element, int oldIndex, int newIndex) {
+				moveLocalPostcondition(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Constraint element) {
+				removeFromLocalPostcondition(element);
+			}
+
+			public void navigateTo(Constraint element) {
+			}
 		});
 		this.localPostcondition.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.localPostcondition, UMLViewsRepository.FORM_KIND));
 		this.localPostcondition.createControls(parent, widgetFactory);
@@ -1075,7 +1272,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		EObject editedElement = localPostconditionEditUtil.foundCorrespondingEObject(element);
 		localPostconditionEditUtil.moveElement(element, oldIndex, newIndex);
 		localPostcondition.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.localPostcondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.localPostcondition, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -1087,11 +1284,11 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				localPostconditionEditUtil.addElement(propertiesEditionObject);
 				localPostcondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1127,10 +1324,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				localPostconditionEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				localPostcondition.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1142,16 +1339,31 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createReplyValueTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.replyValue = new ReferencesTable<InputPin>(UMLMessages.ReplyActionPropertiesEditionPart_ReplyValueLabel, new ReferencesTableListener<InputPin>() {			
-			public void handleAdd() { addToReplyValue();}
-			public void handleEdit(InputPin element) { editReplyValue(element); }
-			public void handleMove(InputPin element, int oldIndex, int newIndex) { moveReplyValue(element, oldIndex, newIndex); }
-			public void handleRemove(InputPin element) { removeFromReplyValue(element); }
-			public void navigateTo(InputPin element) { }
+		this.replyValue = new ReferencesTable<InputPin>(UMLMessages.ReplyActionPropertiesEditionPart_ReplyValueLabel, new ReferencesTableListener<InputPin>() {
+
+			public void handleAdd() {
+				addToReplyValue();
+			}
+
+			public void handleEdit(InputPin element) {
+				editReplyValue(element);
+			}
+
+			public void handleMove(InputPin element, int oldIndex, int newIndex) {
+				moveReplyValue(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(InputPin element) {
+				removeFromReplyValue(element);
+			}
+
+			public void navigateTo(InputPin element) {
+			}
 		});
 		this.replyValue.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ReplyAction.replyValue, UMLViewsRepository.FORM_KIND));
 		this.replyValue.createControls(parent, widgetFactory);
@@ -1167,7 +1379,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		EObject editedElement = replyValueEditUtil.foundCorrespondingEObject(element);
 		replyValueEditUtil.moveElement(element, oldIndex, newIndex);
 		replyValue.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.replyValue, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ReplyActionPropertiesEditionPartForm.this, UMLViewsRepository.ReplyAction.replyValue, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -1179,11 +1391,11 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				replyValueEditUtil.addElement(propertiesEditionObject);
 				replyValue.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1219,10 +1431,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				replyValueEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				replyValue.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -1235,12 +1447,12 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 
 	}
 
-	
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
 
 		// End of user code
-		
+
 	}
 
 	/**
@@ -1291,12 +1503,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -1309,7 +1522,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -1361,10 +1574,10 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -1382,7 +1595,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
@@ -1440,12 +1653,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initClientDependency(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
@@ -1458,7 +1672,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateClientDependency(EObject newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil != null){
+		if(clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -1510,7 +1724,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#setIsLeaf(Boolean newValue)
 	 */
 	public void setIsLeaf(Boolean newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			isLeaf.setSelection(newValue.booleanValue());
 		} else {
 			isLeaf.setSelection(false);
@@ -1552,12 +1766,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initOutgoing(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initOutgoing(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOutgoing(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			outgoingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			outgoingEditUtil = new EMFListEditUtil(current, feature);
@@ -1570,7 +1785,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateOutgoing(EObject newValue)
 	 */
 	public void updateOutgoing(EObject newValue) {
-		if(outgoingEditUtil != null){
+		if(outgoingEditUtil != null) {
 			outgoingEditUtil.reinit(newValue);
 			outgoing.refresh();
 		}
@@ -1638,12 +1853,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initIncoming(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initIncoming(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initIncoming(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			incomingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			incomingEditUtil = new EMFListEditUtil(current, feature);
@@ -1656,7 +1872,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateIncoming(EObject newValue)
 	 */
 	public void updateIncoming(EObject newValue) {
-		if(incomingEditUtil != null){
+		if(incomingEditUtil != null) {
 			incomingEditUtil.reinit(newValue);
 			incoming.refresh();
 		}
@@ -1724,12 +1940,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initInPartition(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initInPartition(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initInPartition(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			inPartitionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			inPartitionEditUtil = new EMFListEditUtil(current, feature);
@@ -1742,7 +1959,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateInPartition(EObject newValue)
 	 */
 	public void updateInPartition(EObject newValue) {
-		if(inPartitionEditUtil != null){
+		if(inPartitionEditUtil != null) {
 			inPartitionEditUtil.reinit(newValue);
 			inPartition.refresh();
 		}
@@ -1810,12 +2027,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initInInterruptibleRegion(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initInInterruptibleRegion(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			inInterruptibleRegionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			inInterruptibleRegionEditUtil = new EMFListEditUtil(current, feature);
@@ -1828,7 +2046,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateInInterruptibleRegion(EObject newValue)
 	 */
 	public void updateInInterruptibleRegion(EObject newValue) {
-		if(inInterruptibleRegionEditUtil != null){
+		if(inInterruptibleRegionEditUtil != null) {
 			inInterruptibleRegionEditUtil.reinit(newValue);
 			inInterruptibleRegion.refresh();
 		}
@@ -1846,7 +2064,8 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#addBusinessFilterInInterruptibleRegion(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#addBusinessFilterInInterruptibleRegion(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToInInterruptibleRegion(ViewerFilter filter) {
 		inInterruptibleRegionBusinessFilters.add(filter);
@@ -1896,12 +2115,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initRedefinedNode(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initRedefinedNode(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initRedefinedNode(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			redefinedNodeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			redefinedNodeEditUtil = new EMFListEditUtil(current, feature);
@@ -1914,7 +2134,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateRedefinedNode(EObject newValue)
 	 */
 	public void updateRedefinedNode(EObject newValue) {
-		if(redefinedNodeEditUtil != null){
+		if(redefinedNodeEditUtil != null) {
 			redefinedNodeEditUtil.reinit(newValue);
 			redefinedNode.refresh();
 		}
@@ -1999,12 +2219,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initHandler(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initHandler(EObject current, EReference containingFeature,
+	 *      EReference feature)
 	 */
 	public void initHandler(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			handlerEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			handlerEditUtil = new EMFListEditUtil(current, feature);
@@ -2017,7 +2238,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateHandler(EObject newValue)
 	 */
 	public void updateHandler(EObject newValue) {
-		if(handlerEditUtil != null){
+		if(handlerEditUtil != null) {
 			handlerEditUtil.reinit(newValue);
 			handler.refresh();
 		}
@@ -2102,12 +2323,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initLocalPrecondition(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initLocalPrecondition(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initLocalPrecondition(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			localPreconditionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			localPreconditionEditUtil = new EMFListEditUtil(current, feature);
@@ -2120,7 +2342,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateLocalPrecondition(EObject newValue)
 	 */
 	public void updateLocalPrecondition(EObject newValue) {
-		if(localPreconditionEditUtil != null){
+		if(localPreconditionEditUtil != null) {
 			localPreconditionEditUtil.reinit(newValue);
 			localPrecondition.refresh();
 		}
@@ -2205,12 +2427,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initLocalPostcondition(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initLocalPostcondition(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initLocalPostcondition(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			localPostconditionEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			localPostconditionEditUtil = new EMFListEditUtil(current, feature);
@@ -2223,7 +2446,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateLocalPostcondition(EObject newValue)
 	 */
 	public void updateLocalPostcondition(EObject newValue) {
-		if(localPostconditionEditUtil != null){
+		if(localPostconditionEditUtil != null) {
 			localPostconditionEditUtil.reinit(newValue);
 			localPostcondition.refresh();
 		}
@@ -2308,12 +2531,13 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initReplyValue(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#initReplyValue(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initReplyValue(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			replyValueEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			replyValueEditUtil = new EMFListEditUtil(current, feature);
@@ -2326,7 +2550,7 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ReplyActionPropertiesEditionPart#updateReplyValue(EObject newValue)
 	 */
 	public void updateReplyValue(EObject newValue) {
-		if(replyValueEditUtil != null){
+		if(replyValueEditUtil != null) {
 			replyValueEditUtil.reinit(newValue);
 			replyValue.refresh();
 		}
@@ -2363,15 +2587,8 @@ public class ReplyActionPropertiesEditionPartForm extends CompositePropertiesEdi
 
 
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
 
 	// End of user code
 
-}	
+}

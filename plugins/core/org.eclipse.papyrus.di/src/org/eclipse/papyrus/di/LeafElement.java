@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di;
 
 
@@ -18,8 +18,8 @@ package org.eclipse.papyrus.di;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Leaf Element</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.di.DiPackage#getLeafElement()
  * @model
  * @generated

@@ -46,15 +46,15 @@ public class PapyrusDefinitionAnnotation {
 	 * Creates a new PapyrusDefinitionAnnotation.
 	 * 
 	 * @param version
-	 *            the version of the definition
+	 *        the version of the definition
 	 * @param comment
-	 *            the comment associated to this definition
+	 *        the comment associated to this definition
 	 * @param copyright
-	 *            the copyright of this definition
+	 *        the copyright of this definition
 	 * @param date
-	 *            the date this definition was generated
+	 *        the date this definition was generated
 	 * @param the
-	 *            author responsible of this definition
+	 *        author responsible of this definition
 	 */
 	public PapyrusDefinitionAnnotation(Version version, String comment, String copyright, String date, String author) {
 		this.version = version;
@@ -86,7 +86,7 @@ public class PapyrusDefinitionAnnotation {
 	 * EAnnotation
 	 * 
 	 * @param annotation
-	 *            the annotation to parse
+	 *        the annotation to parse
 	 * @return a image of the given annotation, with default values if needed.
 	 */
 	public static PapyrusDefinitionAnnotation parseEAnnotation(EAnnotation annotation) {

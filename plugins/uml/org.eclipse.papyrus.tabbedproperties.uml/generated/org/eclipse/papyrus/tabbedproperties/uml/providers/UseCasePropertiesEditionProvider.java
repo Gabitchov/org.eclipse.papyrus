@@ -40,7 +40,7 @@ public class UseCasePropertiesEditionProvider implements IPropertiesEditionProvi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof UseCase) {
+		if(eObject instanceof UseCase) {
 			return new UseCasePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class UseCasePropertiesEditionProvider implements IPropertiesEditionProvi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof UseCase) {
-			if (UseCaseBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof UseCase) {
+			if(UseCaseBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new UseCaseBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

@@ -43,9 +43,9 @@ public class GroupChildrenAction extends Action implements IPropertyListener {
 	}
 
 	public void propertyChanged(Object source, int propId) {
-		switch (propId) {
+		switch(propId) {
 		case ModelNavigator.IS_GROUPINGCHILDS_ENABLED_PROPERTY:
-			updateGroupingChildsProperty(((ModelNavigator) source).isGroupingChildsEnabled());
+			updateGroupingChildsProperty(((ModelNavigator)source).isGroupingChildsEnabled());
 		}
 
 	}

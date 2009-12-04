@@ -11,7 +11,7 @@ package org.eclipse.papyrus.sasheditor.editor;
  * in the SashContainer Visitor.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public interface IComponentPage extends IPage {
 

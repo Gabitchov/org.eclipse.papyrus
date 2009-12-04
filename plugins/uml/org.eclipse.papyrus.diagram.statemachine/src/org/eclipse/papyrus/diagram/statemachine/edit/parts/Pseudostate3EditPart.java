@@ -103,7 +103,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child
 						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -132,7 +132,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 * @generated
 	 */
 	public DeepHistoryFigure getPrimaryShape() {
-		return (DeepHistoryFigure) primaryShape;
+		return (DeepHistoryFigure)primaryShape;
 	}
 
 	/**
@@ -150,8 +150,8 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
-		if (result instanceof ResizableEditPolicy) {
-			ResizableEditPolicy ep = (ResizableEditPolicy) result;
+		if(result instanceof ResizableEditPolicy) {
+			ResizableEditPolicy ep = (ResizableEditPolicy)result;
 			ep.setResizeDirections(PositionConstants.NONE);
 		}
 		return result;
@@ -178,7 +178,9 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -190,7 +192,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -200,23 +202,23 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
-		if (event.getNotifier() instanceof ShapeStyle) {
+		if(event.getNotifier() instanceof ShapeStyle) {
 			super.handleNotificationEvent(event);
 
 			// Propagate style
-			for (Iterator i = getChildren().iterator(); i.hasNext();) {
+			for(Iterator i = getChildren().iterator(); i.hasNext();) {
 				java.lang.Object obj = i.next();
-				if (!(obj instanceof GraphicalEditPart))
+				if(!(obj instanceof GraphicalEditPart))
 					continue;
-				GraphicalEditPart ep = (GraphicalEditPart) obj;
+				GraphicalEditPart ep = (GraphicalEditPart)obj;
 
-				if (ep.resolveSemanticElement() != resolveSemanticElement())
+				if(ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+				ShapeStyle style = (ShapeStyle)((View)ep.getModel())
 						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
-				if (style != null) {
-					style.eSet((EStructuralFeature) event.getFeature(), event
+				if(style != null) {
+					style.eSet((EStructuralFeature)event.getFeature(), event
 							.getNewValue());
 					ep.refresh();
 				}
@@ -270,10 +272,12 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 		private void createContents() {
 
 			class DeepHistoryFigure_Letter0Class extends Shape {
+
 				/**
 				 * @generated
 				 */
 				private final PointList myTemplate = new PointList();
+
 				/**
 				 * @generated
 				 */
@@ -313,14 +317,14 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 				 * @generated
 				 */
 				private Rectangle getTemplateBounds() {
-					if (myTemplateBounds == null) {
+					if(myTemplateBounds == null) {
 						myTemplateBounds = myTemplate.getBounds().getCopy()
 								.union(0, 0);
 						//just safety -- we are going to use this as divider 
-						if (myTemplateBounds.width < 1) {
+						if(myTemplateBounds.width < 1) {
 							myTemplateBounds.width = 1;
 						}
-						if (myTemplateBounds.height < 1) {
+						if(myTemplateBounds.height < 1) {
 							myTemplateBounds.height = 1;
 						}
 					}
@@ -334,24 +338,23 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 					Rectangle pointsBounds = getTemplateBounds();
 					Rectangle actualBounds = getBounds();
 
-					float xScale = ((float) actualBounds.width)
+					float xScale = ((float)actualBounds.width)
 							/ pointsBounds.width;
-					float yScale = ((float) actualBounds.height)
+					float yScale = ((float)actualBounds.height)
 							/ pointsBounds.height;
 
-					if (xScale == 1 && yScale == 1) {
+					if(xScale == 1 && yScale == 1) {
 						return myTemplate.toIntArray();
 					}
-					int[] scaled = (int[]) myTemplate.toIntArray().clone();
-					for (int i = 0; i < scaled.length; i += 2) {
-						scaled[i] = (int) Math.floor(scaled[i] * xScale);
-						scaled[i + 1] = (int) Math
+					int[] scaled = (int[])myTemplate.toIntArray().clone();
+					for(int i = 0; i < scaled.length; i += 2) {
+						scaled[i] = (int)Math.floor(scaled[i] * xScale);
+						scaled[i + 1] = (int)Math
 								.floor(scaled[i + 1] * yScale);
 					}
 					return scaled;
 				}
-			}
-			;
+			};
 			DeepHistoryFigure_Letter0Class deepHistoryFigure_Letter0 = new DeepHistoryFigure_Letter0Class();
 
 			deepHistoryFigure_Letter0.addPoint(new Point(
@@ -392,7 +395,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 			deepHistoryFigure_AsteriskContainer0.setOutline(false);
 			deepHistoryFigure_AsteriskContainer0
 					.setPreferredSize(new Dimension(getMapMode().DPtoLP(15),
-							getMapMode().DPtoLP(15)));
+					getMapMode().DPtoLP(15)));
 			deepHistoryFigure_AsteriskContainer0.setMinimumSize(new Dimension(
 					getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
 			deepHistoryFigure_AsteriskContainer0.setBorder(new MarginBorder(
@@ -414,10 +417,12 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 					.setLayoutManager(new StackLayout());
 
 			class DeepHistoryFigure_Asterisk1Class extends Shape {
+
 				/**
 				 * @generated
 				 */
 				private final PointList myTemplate = new PointList();
+
 				/**
 				 * @generated
 				 */
@@ -457,14 +462,14 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 				 * @generated
 				 */
 				private Rectangle getTemplateBounds() {
-					if (myTemplateBounds == null) {
+					if(myTemplateBounds == null) {
 						myTemplateBounds = myTemplate.getBounds().getCopy()
 								.union(0, 0);
 						//just safety -- we are going to use this as divider 
-						if (myTemplateBounds.width < 1) {
+						if(myTemplateBounds.width < 1) {
 							myTemplateBounds.width = 1;
 						}
-						if (myTemplateBounds.height < 1) {
+						if(myTemplateBounds.height < 1) {
 							myTemplateBounds.height = 1;
 						}
 					}
@@ -478,24 +483,23 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 					Rectangle pointsBounds = getTemplateBounds();
 					Rectangle actualBounds = getBounds();
 
-					float xScale = ((float) actualBounds.width)
+					float xScale = ((float)actualBounds.width)
 							/ pointsBounds.width;
-					float yScale = ((float) actualBounds.height)
+					float yScale = ((float)actualBounds.height)
 							/ pointsBounds.height;
 
-					if (xScale == 1 && yScale == 1) {
+					if(xScale == 1 && yScale == 1) {
 						return myTemplate.toIntArray();
 					}
-					int[] scaled = (int[]) myTemplate.toIntArray().clone();
-					for (int i = 0; i < scaled.length; i += 2) {
-						scaled[i] = (int) Math.floor(scaled[i] * xScale);
-						scaled[i + 1] = (int) Math
+					int[] scaled = (int[])myTemplate.toIntArray().clone();
+					for(int i = 0; i < scaled.length; i += 2) {
+						scaled[i] = (int)Math.floor(scaled[i] * xScale);
+						scaled[i + 1] = (int)Math
 								.floor(scaled[i + 1] * yScale);
 					}
 					return scaled;
 				}
-			}
-			;
+			};
 			DeepHistoryFigure_Asterisk1Class deepHistoryFigure_Asterisk1 = new DeepHistoryFigure_Asterisk1Class();
 
 			deepHistoryFigure_Asterisk1.addPoint(new Point(getMapMode().DPtoLP(
@@ -559,7 +563,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 */
 	private List<EObject> changesFromDefaultStyle() {
 		EAnnotation eAnn = getAppearenceEAnnotation();
-		if (eAnn == null)
+		if(eAnn == null)
 			return new ArrayList<EObject>();
 		else
 			return eAnn.getReferences();
@@ -569,10 +573,10 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 * @generated
 	 */
 	public static boolean isLabel(IFigure figure) {
-		if (figure instanceof Label) {
+		if(figure instanceof Label) {
 			return true;
 		}
-		if (figure instanceof WrappingLabel) {
+		if(figure instanceof WrappingLabel) {
 			return true;
 		}
 		return false;
@@ -582,25 +586,25 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean isFigureFromChildEditPart(IFigure figure) {
-		for (Iterator i = getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof AbstractGraphicalEditPart) {
-				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
-				if (gEP.getFigure() == figure) {
+			if(obj instanceof AbstractGraphicalEditPart) {
+				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart)obj;
+				if(gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart
-							&& ((GraphicalEditPart) gEP)
-									.resolveSemanticElement() == resolveSemanticElement()) {
+					if(gEP instanceof GraphicalEditPart
+							&& ((GraphicalEditPart)gEP)
+							.resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
 				} else {
 					// Check if it is a child figure of the editpart
-					for (java.lang.Object child : gEP.getChildren()) {
-						if (child instanceof GraphicalEditPart) {
-							GraphicalEditPart childEP = (GraphicalEditPart) child;
-							if (childEP.getFigure() == figure) {
-								if (childEP.resolveSemanticElement() != resolveSemanticElement())
+					for(java.lang.Object child : gEP.getChildren()) {
+						if(child instanceof GraphicalEditPart) {
+							GraphicalEditPart childEP = (GraphicalEditPart)child;
+							if(childEP.getFigure() == figure) {
+								if(childEP.resolveSemanticElement() != resolveSemanticElement())
 									return true;
 								else
 									return false;
@@ -619,7 +623,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
+		if(changesFromDefaultStyle().contains(
 				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
@@ -632,11 +636,11 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 */
 	public void setOwnedFiguresBackgroundColor(IFigure parent, Color color) {
 		parent.setBackgroundColor(color);
-		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
-				setOwnedFiguresBackgroundColor((IFigure) obj, color);
+			if(obj instanceof IFigure
+					&& !isFigureFromChildEditPart((IFigure)obj)) {
+				setOwnedFiguresBackgroundColor((IFigure)obj, color);
 			}
 		}
 	}
@@ -647,7 +651,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
+		if(changesFromDefaultStyle().contains(
 				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
@@ -659,13 +663,13 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 * @generated
 	 */
 	public void setOwnedFiguresForegroundColor(IFigure parent, Color color) {
-		if (!isLabel(parent))
+		if(!isLabel(parent))
 			parent.setForegroundColor(color);
-		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
-				setOwnedFiguresForegroundColor((IFigure) obj, color);
+			if(obj instanceof IFigure && !isLabel((IFigure)obj)
+					&& !isFigureFromChildEditPart((IFigure)obj)) {
+				setOwnedFiguresForegroundColor((IFigure)obj, color);
 			}
 		}
 	}
@@ -677,7 +681,7 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
+		if(changesFromDefaultStyle().contains(
 				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
@@ -689,13 +693,13 @@ public class Pseudostate3EditPart extends ShapeNodeEditPart implements
 	 * @generated
 	 */
 	public void setOwnedFiguresFontColor(IFigure parent, Color color) {
-		if (isLabel(parent))
+		if(isLabel(parent))
 			parent.setForegroundColor(color);
-		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
-				setOwnedFiguresFontColor((IFigure) obj, color);
+			if(obj instanceof IFigure && isLabel((IFigure)obj)
+					&& !isFigureFromChildEditPart((IFigure)obj)) {
+				setOwnedFiguresFontColor((IFigure)obj, color);
 			}
 		}
 	}

@@ -42,9 +42,9 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	 * The Constructor.
 	 * 
 	 * @param property
-	 *            the property
+	 *        the property
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public AppliedStereotypePropertyTreeObject(AppliedStereotypeTreeObject parent, Property property, TransactionalEditingDomain domain) {
 		super(parent, property, domain);
@@ -52,7 +52,7 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	}
 
 	public Stereotype getParentStereotype() {
-		return ((AppliedStereotypeTreeObject) getParent()).getStereotype();
+		return ((AppliedStereotypeTreeObject)getParent()).getStereotype();
 	}
 
 	/**
@@ -71,14 +71,14 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	protected void createChildren() {
 		// Retrieve value
 		Object value = getValue();
-		if (value == null) {
+		if(value == null) {
 			return;
 		}
 
-		if (property.isMultivalued()) {
-			List values = (List) value;
+		if(property.isMultivalued()) {
+			List values = (List)value;
 			Iterator it = values.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				final Object currentValue = it.next();
 				ValueTreeObject vTO = createValueTreeObject(currentValue, domain);
 				addChild(vTO);
@@ -95,8 +95,8 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	 * @return the value
 	 */
 	public Object getValue() {
-		AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) getParent();
-		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) sTO.getParent();
+		AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject)getParent();
+		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject)sTO.getParent();
 
 		Stereotype st = sTO.getStereotype();
 		Element elt = rTO.getElement();
@@ -107,7 +107,7 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	 * Creates the value tree object.
 	 * 
 	 * @param value
-	 *            the value
+	 *        the value
 	 * 
 	 * @return the value tree object
 	 */
@@ -117,27 +117,27 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 		ValueTreeObject vTO = null;
 
 		/** Property type is a PrimitiveType */
-		if (type instanceof PrimitiveType) {
+		if(type instanceof PrimitiveType) {
 			vTO = PrimitiveTypeValueTreeObject.createInstance(this, value, domain);
 
 			/** Property type is a metaclass */
-		} else if (Util.isMetaclass(type)) {
+		} else if(Util.isMetaclass(type)) {
 			vTO = new MetaclassValueTreeObject(this, value, domain);
 
 			/** Property type is an Enumeration */
-		} else if (type instanceof Enumeration) {
+		} else if(type instanceof Enumeration) {
 			vTO = new EnumerationValueTreeObject(this, value, domain);
 
 			/** Property is a dataType */
-		} else if (type instanceof DataType) {
+		} else if(type instanceof DataType) {
 			vTO = new DataTypeValueTreeObject(this, value, domain);
 
 			/** Property is a stereotype */
-		} else if (type instanceof Stereotype) {
+		} else if(type instanceof Stereotype) {
 			vTO = new StereotypeValueTreeObject(this, value, domain);
 
 			/** property is a composite class */
-		} else if ((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
+		} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
 			vTO = new CompositeValueTreeObject(this, value, domain);
 		}
 

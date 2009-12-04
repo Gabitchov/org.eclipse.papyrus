@@ -40,7 +40,7 @@ public class StringExpressionPropertiesEditionProvider implements IPropertiesEdi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof StringExpression) {
+		if(eObject instanceof StringExpression) {
 			return new StringExpressionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class StringExpressionPropertiesEditionProvider implements IPropertiesEdi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof StringExpression) {
-			if (StringExpressionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof StringExpression) {
+			if(StringExpressionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new StringExpressionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

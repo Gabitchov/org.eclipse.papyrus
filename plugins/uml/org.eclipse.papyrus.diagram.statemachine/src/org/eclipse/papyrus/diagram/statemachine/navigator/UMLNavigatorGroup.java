@@ -79,9 +79,9 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorGroup) {
-			org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorGroup) obj;
-			if (getGroupName().equals(anotherGroup.getGroupName())) {
+		if(obj instanceof org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorGroup) {
+			org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorGroup)obj;
+			if(getGroupName().equals(anotherGroup.getGroupName())) {
 				return getParent().equals(anotherGroup.getParent());
 			}
 		}

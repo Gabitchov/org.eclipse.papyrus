@@ -34,7 +34,7 @@ public class ClassAttributeCompartmentItemSemanticEditPolicy extends UMLBaseItem
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Property_3012 == req.getElementType()) {
+		if(UMLElementTypes.Property_3012 == req.getElementType()) {
 			return getGEFWrapper(new Property4CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

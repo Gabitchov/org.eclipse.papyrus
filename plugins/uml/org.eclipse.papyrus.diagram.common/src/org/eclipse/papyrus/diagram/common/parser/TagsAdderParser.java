@@ -40,28 +40,28 @@ public class TagsAdderParser implements ISemanticParser {
 	}
 
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		if (realParser != null) {
+		if(realParser != null) {
 			return realParser.getCompletionProcessor(element);
 		}
 		return null;
 	}
 
 	public String getEditString(IAdaptable element, int flags) {
-		if (realParser != null) {
+		if(realParser != null) {
 			return realParser.getEditString(element, flags);
 		}
 		return null;
 	}
 
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		if (realParser != null) {
+		if(realParser != null) {
 			return realParser.getParseCommand(element, newString, flags);
 		}
 		return null;
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		if (realParser != null) {
+		if(realParser != null) {
 			String printString = realParser.getPrintString(element, flags);
 
 			return AddTagsToString(printString, element);
@@ -70,14 +70,14 @@ public class TagsAdderParser implements ISemanticParser {
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
-		if (realParser != null) {
+		if(realParser != null) {
 			return realParser.isAffectingEvent(event, flags);
 		}
 		return false;
 	}
 
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		if (realParser != null) {
+		if(realParser != null) {
 			return realParser.isValidEditString(element, editString);
 		}
 		return null;
@@ -88,7 +88,7 @@ public class TagsAdderParser implements ISemanticParser {
 
 		String str = null;
 
-		Element element = (Element) adapter.getAdapter(Element.class);
+		Element element = (Element)adapter.getAdapter(Element.class);
 
 		List<String> stereotypesNames = getStereotypesNames(element);
 
@@ -105,9 +105,9 @@ public class TagsAdderParser implements ISemanticParser {
 
 		List<Stereotype> stereotypes = element.getAppliedStereotypes();
 
-		for (Stereotype st : stereotypes) {
+		for(Stereotype st : stereotypes) {
 			String name = st.getName();
-			if (name != null) {
+			if(name != null) {
 				stereotypesNames.add(name);
 			} else {
 				stereotypesNames.add("");
@@ -123,16 +123,16 @@ public class TagsAdderParser implements ISemanticParser {
 	protected String StereotypesNamesListToString(List<String> names) {
 		String str = "";
 
-		if (names != null) {
-			if (names.size() > 0) {
-				str += ((char) 171);
-				for (Iterator<String> it = names.iterator(); it.hasNext();) {
+		if(names != null) {
+			if(names.size() > 0) {
+				str += ((char)171);
+				for(Iterator<String> it = names.iterator(); it.hasNext();) {
 					str += it.next();
-					if (it.hasNext()) {
+					if(it.hasNext()) {
 						str += ", ";
 					}
 				}
-				str += ((char) 187);
+				str += ((char)187);
 			}
 		}
 
@@ -140,17 +140,17 @@ public class TagsAdderParser implements ISemanticParser {
 	}
 
 	public boolean areSemanticElementsAffected(EObject arg0, Object arg1) {
-		if (this.realParser instanceof ISemanticParser) {
-			return ((ISemanticParser) this.realParser).areSemanticElementsAffected(arg0, arg1);
+		if(this.realParser instanceof ISemanticParser) {
+			return ((ISemanticParser)this.realParser).areSemanticElementsAffected(arg0, arg1);
 		} else {
 			return false;
 		}
 	}
 
 	public List getSemanticElementsBeingParsed(EObject arg0) {
-		if (this.realParser instanceof ISemanticParser) {
+		if(this.realParser instanceof ISemanticParser) {
 
-			return ((ISemanticParser) this.realParser).getSemanticElementsBeingParsed(arg0);
+			return ((ISemanticParser)this.realParser).getSemanticElementsBeingParsed(arg0);
 		} else {
 
 			List<EObject> semanticElements = new ArrayList<EObject>();

@@ -25,29 +25,31 @@ import japa.parser.ast.visitor.GenericVisitor;
 import japa.parser.ast.visitor.VoidVisitor;
 
 /**
- * <p>AST node that represent block comments.</p>
+ * <p>
+ * AST node that represent block comments.
+ * </p>
  * 
- * Block comments can has multi lines and are delimited 
+ * Block comments can has multi lines and are delimited
  * by "/&#42;" and "&#42;/".
  * 
  * @author Julio Vilmar Gesser
  */
 public final class BlockComment extends Comment {
 
-    public BlockComment() {
-    }
+	public BlockComment() {
+	}
 
-    public BlockComment(int beginLine, int beginColumn, int endLine, int endColumn, String content) {
-        super(beginLine, beginColumn, endLine, endColumn, content);
-    }
+	public BlockComment(int beginLine, int beginColumn, int endLine, int endColumn, String content) {
+		super(beginLine, beginColumn, endLine, endColumn, content);
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 }

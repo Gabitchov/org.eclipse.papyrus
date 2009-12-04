@@ -43,7 +43,7 @@ public class PapyrusControlAction extends ControlAction {
 	 * Instantiates a new papyrus control action.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 */
 	public PapyrusControlAction(EditingDomain domain) {
 		super(domain);
@@ -68,12 +68,12 @@ public class PapyrusControlAction extends ControlAction {
 		boolean result = false;
 		this.selection = selection;
 
-		if (selection.size() == 1) {
+		if(selection.size() == 1) {
 			Object object = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
 			// Check whether the selected object is controllable
 			result = domain.isControllable(object);
-			if (result) {
-				eObject = (EObject) object;
+			if(result) {
+				eObject = (EObject)object;
 				// active control if selection has children
 				result = !eObject.eContents().isEmpty();
 			} else {
@@ -89,7 +89,7 @@ public class PapyrusControlAction extends ControlAction {
 	@Override
 	public void run() {
 		Resource controlledModel = getControlledResource();
-		if (controlledModel == null) {
+		if(controlledModel == null) {
 			return;
 		}
 		try {
@@ -113,13 +113,13 @@ public class PapyrusControlAction extends ControlAction {
 		int returnCode = dialog.open();
 		Resource resource = null;
 
-		if (returnCode == Window.OK) {
+		if(returnCode == Window.OK) {
 			resource = dialog.getControlResource();
 
-			if (resource == null || !resource.getURI().isPlatformResource()) {
+			if(resource == null || !resource.getURI().isPlatformResource()) {
 				MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 						EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE
-								.getString("_WARN_CannotCreateResource"));
+						.getString("_WARN_CannotCreateResource"));
 				resource = null;
 			}
 		}
@@ -134,9 +134,9 @@ public class PapyrusControlAction extends ControlAction {
 	 */
 	private String getElementName(EObject eObject) {
 		EStructuralFeature nameFeature = getLabelFeature(eObject.eClass());
-		if (nameFeature != null) {
+		if(nameFeature != null) {
 			Object value = eObject.eGet(nameFeature);
-			if (value != null) {
+			if(value != null) {
 				return value.toString();
 			}
 		}
@@ -154,12 +154,12 @@ public class PapyrusControlAction extends ControlAction {
 	 */
 	protected EStructuralFeature getLabelFeature(EClass eClass) {
 		EAttribute result = null;
-		for (EAttribute eAttribute : eClass.getEAllAttributes()) {
-			if (!eAttribute.isMany() && eAttribute.getEType().getInstanceClass() != FeatureMap.Entry.class) {
-				if ("name".equalsIgnoreCase(eAttribute.getName())) {
+		for(EAttribute eAttribute : eClass.getEAllAttributes()) {
+			if(!eAttribute.isMany() && eAttribute.getEType().getInstanceClass() != FeatureMap.Entry.class) {
+				if("name".equalsIgnoreCase(eAttribute.getName())) {
 					result = eAttribute;
 					break;
-				} else if (eAttribute.getEAttributeType().getInstanceClass() == String.class && result != null
+				} else if(eAttribute.getEAttributeType().getInstanceClass() == String.class && result != null
 						&& result.getEAttributeType().getInstanceClass() != String.class) {
 					result = eAttribute;
 				}

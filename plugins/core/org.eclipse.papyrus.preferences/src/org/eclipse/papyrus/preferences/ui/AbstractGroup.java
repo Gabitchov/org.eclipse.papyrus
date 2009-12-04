@@ -64,7 +64,7 @@ public abstract class AbstractGroup extends Composite {
 	 * Sets the title.
 	 * 
 	 * @param title
-	 *            the title to set
+	 *        the title to set
 	 */
 	protected void setTitle(String title) {
 		this.title = title;
@@ -74,11 +74,11 @@ public abstract class AbstractGroup extends Composite {
 	 * Instantiates a new abstract group.
 	 * 
 	 * @param parent
-	 *            the parent of the composite
+	 *        the parent of the composite
 	 * @param String
-	 *            the title of the page
+	 *        the title of the page
 	 * @param dialogPage
-	 *            to set the page in field editor
+	 *        to set the page in field editor
 	 */
 	public AbstractGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, SWT.None);
@@ -92,8 +92,7 @@ public abstract class AbstractGroup extends Composite {
 	 * Get the specified preference type associated with this preference page.
 	 * 
 	 * @param preferenceType
-	 *            an int representing the preference type to retrieve. It must be a value defined in
-	 *            {@link PreferenceConstantHelper}
+	 *        an int representing the preference type to retrieve. It must be a value defined in {@link PreferenceConstantHelper}
 	 * 
 	 * @return the preference constant used to store the given preference type.
 	 */
@@ -106,7 +105,7 @@ public abstract class AbstractGroup extends Composite {
 	 * developers to work with a FieldEditor like Composite element.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return the encapsulated compo
 	 */
@@ -121,7 +120,7 @@ public abstract class AbstractGroup extends Composite {
 	 * store/load/loadDefault/set the PreferenceStore of contained fieldEditor
 	 * 
 	 * @param fieldEditor
-	 *            the fieldEditor to add.
+	 *        the fieldEditor to add.
 	 */
 	protected void addFieldEditor(FieldEditor fieldEditor) {
 		fieldsEditor.add(fieldEditor);
@@ -133,7 +132,7 @@ public abstract class AbstractGroup extends Composite {
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
 	public final void load() {
-		for (FieldEditor fe : fieldsEditor) {
+		for(FieldEditor fe : fieldsEditor) {
 			fe.load();
 		}
 	}
@@ -144,7 +143,7 @@ public abstract class AbstractGroup extends Composite {
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
 	public final void setPreferenceStore(IPreferenceStore store) {
-		for (FieldEditor fe : fieldsEditor) {
+		for(FieldEditor fe : fieldsEditor) {
 			fe.setPreferenceStore(store);
 		}
 	}
@@ -155,7 +154,7 @@ public abstract class AbstractGroup extends Composite {
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
 	public final void loadDefault() {
-		for (FieldEditor fe : fieldsEditor) {
+		for(FieldEditor fe : fieldsEditor) {
 			fe.loadDefault();
 		}
 	}
@@ -166,7 +165,7 @@ public abstract class AbstractGroup extends Composite {
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
 	public final void storePreferences() {
-		for (FieldEditor fe : fieldsEditor) {
+		for(FieldEditor fe : fieldsEditor) {
 			fe.store();
 		}
 	}

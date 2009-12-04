@@ -42,6 +42,7 @@ import org.eclipse.ui.IViewPart;
  * this class is used to add a label to display applied stereotypes for external node
  */
 public class AddNodeQualifiedNameBehavior extends Action {
+
 	public static final String STEREOTYPE_LABEL_POLICY_KEY = "org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"; //$NON-NLS-1$
 
 	public static final String STEREOTYPE_LABEL_POLICY_CLASS = "org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"; //$NON-NLS-1$
@@ -65,12 +66,12 @@ public class AddNodeQualifiedNameBehavior extends Action {
 
 		// Parse selected GenLink(s) and add the desired CustomBehavior
 		Iterator<EObject> it = getSelectedEObject().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof GenNode) {
+			if(eObject instanceof GenNode) {
 				//test if it has got a external node to display applied stereotype
-				if(!hasCustomBehavior(( (GenNode) eObject),STEREOTYPE_LABEL_POLICY_KEY)){
-					addCustomBehavior( (GenNode) eObject, STEREOTYPE_LABEL_POLICY_KEY,STEREOTYPE_LABEL_POLICY_CLASS);
+				if(!hasCustomBehavior(((GenNode)eObject), STEREOTYPE_LABEL_POLICY_KEY)) {
+					addCustomBehavior((GenNode)eObject, STEREOTYPE_LABEL_POLICY_KEY, STEREOTYPE_LABEL_POLICY_CLASS);
 				}
 			}
 		}
@@ -78,7 +79,6 @@ public class AddNodeQualifiedNameBehavior extends Action {
 
 
 
-	
 
-	
+
 }

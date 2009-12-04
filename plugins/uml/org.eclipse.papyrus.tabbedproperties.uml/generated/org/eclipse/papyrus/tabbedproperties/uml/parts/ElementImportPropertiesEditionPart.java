@@ -29,14 +29,19 @@ public interface ElementImportPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -51,14 +56,15 @@ public interface ElementImportPropertiesEditionPart {
 
 	/**
 	 * Defines a new alias
-	 * @param newValue the new alias to set
+	 * 
+	 * @param newValue
+	 *        the new alias to set
 	 */
 	public void setAlias(String newValue);
 
 	public void setMessageForAlias(String msg, int msgLevel);
 
 	public void unsetMessageForAlias();
-
 
 
 

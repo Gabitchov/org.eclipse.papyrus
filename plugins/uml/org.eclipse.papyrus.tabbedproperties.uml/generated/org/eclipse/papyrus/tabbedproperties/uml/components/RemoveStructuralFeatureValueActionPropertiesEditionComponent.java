@@ -41,29 +41,30 @@ public class RemoveStructuralFeatureValueActionPropertiesEditionComponent extend
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 
 	 * @param removeStructuralFeatureValueAction
-	 *            the EObject to edit
+	 *        the EObject to edit
 	 */
 	public RemoveStructuralFeatureValueActionPropertiesEditionComponent(EObject removeStructuralFeatureValueAction, String editing_mode) {
 		super(editing_mode);
-		if (removeStructuralFeatureValueAction instanceof RemoveStructuralFeatureValueAction) {
-			removeStructuralFeatureValueActionBasePropertiesEditionComponent = new RemoveStructuralFeatureValueActionBasePropertiesEditionComponent(removeStructuralFeatureValueAction, editing_mode); 
+		if(removeStructuralFeatureValueAction instanceof RemoveStructuralFeatureValueAction) {
+			removeStructuralFeatureValueActionBasePropertiesEditionComponent = new RemoveStructuralFeatureValueActionBasePropertiesEditionComponent(removeStructuralFeatureValueAction, editing_mode);
 			addSubComponent(removeStructuralFeatureValueActionBasePropertiesEditionComponent);
 			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(removeStructuralFeatureValueAction, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent# getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if ("Base".equals(key)) {
+		if("Base".equals(key)) {
 			basePart = (RemoveStructuralFeatureValueActionPropertiesEditionPart)removeStructuralFeatureValueActionBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
 			return (IPropertiesEditionPart)basePart;
 		}
@@ -72,28 +73,30 @@ public class RemoveStructuralFeatureValueActionPropertiesEditionComponent extend
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (UMLViewsRepository.RemoveStructuralFeatureValueAction.class == key) {
+		if(UMLViewsRepository.RemoveStructuralFeatureValueAction.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
 			basePart = (RemoveStructuralFeatureValueActionPropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent #initPart(java.lang.Class, int,
+	 *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
-		if (key == UMLViewsRepository.RemoveStructuralFeatureValueAction.class) {
+		if(key == UMLViewsRepository.RemoveStructuralFeatureValueAction.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-			if (key == UMLViewsRepository.Comments.class) {
-				super.initPart(key, kind, element, allResource);
-			
-			}
+		if(key == UMLViewsRepository.Comments.class) {
+			super.initPart(key, kind, element, allResource);
+
+		}
 	}
 }

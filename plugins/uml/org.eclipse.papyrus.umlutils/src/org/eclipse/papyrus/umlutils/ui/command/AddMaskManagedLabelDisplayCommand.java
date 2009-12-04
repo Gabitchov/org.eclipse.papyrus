@@ -31,11 +31,11 @@ public class AddMaskManagedLabelDisplayCommand extends CreateEAnnotationCommand 
 	 * Instantiates a new sets the applied stereotype to display command.
 	 * 
 	 * @param domain
-	 *            the editing domain that manages the command
+	 *        the editing domain that manages the command
 	 * @param object
-	 *            the object to be modified
+	 *        the object to be modified
 	 * @param maskValue
-	 *            the mask value to be stored
+	 *        the mask value to be stored
 	 */
 	public AddMaskManagedLabelDisplayCommand(TransactionalEditingDomain domain, EModelElement object, int maskValue) {
 		super(domain, object, VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
@@ -50,7 +50,7 @@ public class AddMaskManagedLabelDisplayCommand extends CreateEAnnotationCommand 
 
 		EAnnotation oldAnnotation = getObject().getEAnnotation(
 				VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
-		if (oldAnnotation == null) {
+		if(oldAnnotation == null) {
 			oldAnnotation = createEAnnotation();
 			attachEannotation(oldAnnotation, getObject());
 		}

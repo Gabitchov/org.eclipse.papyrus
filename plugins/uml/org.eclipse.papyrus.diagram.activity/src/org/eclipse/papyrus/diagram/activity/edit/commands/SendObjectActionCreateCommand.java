@@ -43,6 +43,7 @@ public class SendObjectActionCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -51,8 +52,7 @@ public class SendObjectActionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public SendObjectActionCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public SendObjectActionCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -61,8 +61,7 @@ public class SendObjectActionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static SendObjectActionCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static SendObjectActionCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new SendObjectActionCreateCommand(req, eObject);
 	}
 
@@ -80,15 +79,13 @@ public class SendObjectActionCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
 		// fjcano : we have to return the nearest activity
 		if (container instanceof ActivityPartition) {
-			return ActivityPartitionActivity
-					.getActivityPartitionActivity((ActivityPartition) container);
+			return ActivityPartitionActivity.getActivityPartitionActivity((ActivityPartition) container);
 		}
 
 		return container;
@@ -115,10 +112,8 @@ public class SendObjectActionCreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
-				MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(
-					MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -127,52 +122,42 @@ public class SendObjectActionCreateCommand extends CreateElementCommand {
 	}
 
 	/**
-	 * Modified to initialize the <SendObjectAction> with request and target
-	 * pins.
+	 * Modified to initialize the <SendObjectAction> with request and target pins.
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		SendObjectAction newElement = (SendObjectAction) super
-				.doDefaultElementCreation();
+		SendObjectAction newElement = (SendObjectAction) super.doDefaultElementCreation();
 		if (newElement != null) {
 			ElementInitializers.init_SendObjectAction_2001(newElement);
-			
+
 			addActionToActivityPartition(newElement);
-			
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-						newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-						UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		// fjcano : initializing the SendObjectAction with request and target
 		// pins.
 		Diagram diagram = getDiagramFromRequest();
 		if (diagram != null) {
-			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-					newElement.createRequest("Request", null));
+			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement.createRequest("Request", null));
 		} else {
-			MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-					UMLDiagramEditorPlugin.getInstance(), newElement
-							.createRequest("Request", null));
+			MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement.createRequest("Request", null));
 		}
 		if (diagram != null) {
-			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-					newElement.createTarget("Target", null));
+			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement.createTarget("Target", null));
 		} else {
-			MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-					UMLDiagramEditorPlugin.getInstance(), newElement
-							.createTarget("Target", null));
+			MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement.createTarget("Target", null));
 		}
 
 		return newElement;
 	}
-	
+
 	/**
 	 * Add the actions'a inPartition if it was created inside an ActivityPartition.
 	 * 

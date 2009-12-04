@@ -40,7 +40,7 @@ public class GatePropertiesEditionProvider implements IPropertiesEditionProvider
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof Gate) {
+		if(eObject instanceof Gate) {
 			return new GatePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class GatePropertiesEditionProvider implements IPropertiesEditionProvider
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof Gate) {
-			if (GateBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof Gate) {
+			if(GateBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new GateBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

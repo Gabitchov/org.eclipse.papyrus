@@ -70,7 +70,7 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

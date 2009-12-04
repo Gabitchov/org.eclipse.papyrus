@@ -134,7 +134,7 @@ public class OpaqueActionCreateCommand extends CreateElementCommand {
 			UMLElementTypes.init_OpaqueAction_2014(newElement);
 
 			addActionToActivityPartition(newElement);
-			
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
 				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);

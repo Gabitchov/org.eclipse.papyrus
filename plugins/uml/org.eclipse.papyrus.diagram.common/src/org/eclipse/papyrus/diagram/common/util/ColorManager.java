@@ -34,7 +34,7 @@ public class ColorManager extends ColorRegistry {
 	 * get Color from a RGB.
 	 * 
 	 * @param rgb
-	 *            the rGB thath wen want
+	 *        the rGB thath wen want
 	 * 
 	 * @return the color obtaine from the RGB
 	 */
@@ -43,7 +43,7 @@ public class ColorManager extends ColorRegistry {
 	public Color get(RGB rgb) {
 		String symbolicName = "" + rgb.red + separator + rgb.green + separator + rgb.blue;
 		Color resultColor = super.get(symbolicName);
-		if (resultColor == null) {
+		if(resultColor == null) {
 			super.put(symbolicName, rgb);
 			resultColor = super.get(symbolicName);
 		}

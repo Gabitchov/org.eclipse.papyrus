@@ -22,13 +22,11 @@ import org.eclipse.papyrus.uml.standard.ImplementationClass;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Implementation Class</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Implementation Class</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl#getBase_Class <em>Base
- * Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.ImplementationClassImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
  * 
@@ -71,11 +69,11 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject) base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class) eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+		if(base_Class != null && base_Class.eIsProxy()) {
+			InternalEObject oldBase_Class = (InternalEObject)base_Class;
+			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS, oldBase_Class, base_Class));
 			}
@@ -100,7 +98,7 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS,
 					oldBase_Class, base_Class));
 	}
@@ -112,9 +110,9 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS:
-			if (resolve)
+			if(resolve)
 				return getBase_Class();
 			return basicGetBase_Class();
 		}
@@ -128,9 +126,9 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) newValue);
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,9 +141,9 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) null);
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -158,7 +156,7 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS:
 			return base_Class != null;
 		}

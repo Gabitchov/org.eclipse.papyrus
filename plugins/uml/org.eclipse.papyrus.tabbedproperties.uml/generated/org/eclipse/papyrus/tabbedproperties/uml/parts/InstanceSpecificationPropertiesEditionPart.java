@@ -35,7 +35,9 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -50,14 +52,19 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -92,15 +99,21 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the slot
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initSlot(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the slot
-	 * @param newValue the slot to update
+	 * 
+	 * @param newValue
+	 *        the slot to update
 	 */
 	public void updateSlot(EObject newValue);
 
@@ -108,7 +121,7 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * Adds the given filter to the slot edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToSlot(ViewerFilter filter);
@@ -117,7 +130,7 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * Adds the given filter to the slot edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSlot(ViewerFilter filter);
@@ -148,15 +161,21 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the classifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClassifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the classifier
-	 * @param newValue the classifier to update
+	 * 
+	 * @param newValue
+	 *        the classifier to update
 	 */
 	public void updateClassifier(EObject newValue);
 
@@ -164,7 +183,7 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * Adds the given filter to the classifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClassifier(ViewerFilter filter);
@@ -173,7 +192,7 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * Adds the given filter to the classifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClassifier(ViewerFilter filter);
@@ -214,15 +233,21 @@ public interface InstanceSpecificationPropertiesEditionPart {
 
 	/**
 	 * Init the deployment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initDeployment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the deployment
-	 * @param newValue the deployment to update
+	 * 
+	 * @param newValue
+	 *        the deployment to update
 	 */
 	public void updateDeployment(EObject newValue);
 
@@ -230,7 +255,7 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * Adds the given filter to the deployment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToDeployment(ViewerFilter filter);
@@ -239,7 +264,7 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * Adds the given filter to the deployment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToDeployment(ViewerFilter filter);
@@ -248,11 +273,6 @@ public interface InstanceSpecificationPropertiesEditionPart {
 	 * @return true if the given element is contained inside the deployment table
 	 */
 	public boolean isContainedInDeploymentTable(EObject element);
-
-
-
-
-
 
 
 

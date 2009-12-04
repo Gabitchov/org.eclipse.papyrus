@@ -27,7 +27,7 @@ public class NameException extends RecognitionException {
 	 * Creates a new MultiplicityException.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 */
 	public NameException() {
 		super();

@@ -21,9 +21,9 @@ public class RemoveElementListener implements MouseListener {
 	}
 
 	public void mouseUp(MouseEvent e) {
-		if (tableviewer.getTable().getSelection().length != 0) {
-			Iterator iterator = ((IStructuredSelection) tableviewer.getSelection()).iterator();
-			while (iterator.hasNext()) {
+		if(tableviewer.getTable().getSelection().length != 0) {
+			Iterator iterator = ((IStructuredSelection)tableviewer.getSelection()).iterator();
+			while(iterator.hasNext()) {
 				Object object = iterator.next();
 				elementList.remove(object);
 				tableviewer.setInput(elementList);

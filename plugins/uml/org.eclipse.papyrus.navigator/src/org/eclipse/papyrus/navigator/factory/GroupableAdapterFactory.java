@@ -50,7 +50,7 @@ public class GroupableAdapterFactory extends AdapterFactoryImpl {
 
 	@Override
 	public Object adapt(Object target, Object type) {
-		if ((target instanceof EObject) || (target instanceof PackagingNode)) {
+		if((target instanceof EObject) || (target instanceof PackagingNode)) {
 			return new GroupableTreeArrayContentProvider(this, wrappedAdapterFactory);
 		} else {
 			return this.wrappedAdapterFactory.adapt(target, type);
@@ -60,7 +60,7 @@ public class GroupableAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter adapt(Notifier target, Object type) {
 
-		return (Adapter) adapt((Object) target, type);
+		return (Adapter)adapt((Object)target, type);
 	}
 
 	@Override

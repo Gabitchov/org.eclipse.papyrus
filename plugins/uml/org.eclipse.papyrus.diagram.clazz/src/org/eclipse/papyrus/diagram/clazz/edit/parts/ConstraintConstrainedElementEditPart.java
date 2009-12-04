@@ -67,7 +67,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor) getFigure();
+		return (CommentLinkDescriptor)getFigure();
 	}
 
 	/**

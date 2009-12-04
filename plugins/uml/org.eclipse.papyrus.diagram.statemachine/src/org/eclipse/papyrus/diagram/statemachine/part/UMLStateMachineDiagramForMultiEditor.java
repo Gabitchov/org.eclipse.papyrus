@@ -38,7 +38,7 @@ import org.osgi.framework.ServiceException;
  * UML StateMachine diagram editor for Papyrus MultiEditor.
  * 
  * @author fjcano
- *
+ * 
  */
 public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 
@@ -76,10 +76,10 @@ public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 		IEditorContextRegistry contextRegistry;
 		try {
-			contextRegistry = (IEditorContextRegistry) servicesRegistry
+			contextRegistry = (IEditorContextRegistry)servicesRegistry
 					.getService(IEditorContextRegistry.class);
 			// Get the context by its ID
-			this.context = (GmfEditorContext) contextRegistry
+			this.context = (GmfEditorContext)contextRegistry
 					.getContext(GmfEditorContext.GMF_CONTEXT_ID);
 		} catch (org.eclipse.papyrus.core.services.ServiceException e) {
 			// TODO Auto-generated catch block
@@ -94,22 +94,22 @@ public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 * Instantiates a new uML activity diagram for multi editor.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param context
-	 *            the context
+	 *        the context
 	 */
 	public UMLStateMachineDiagramForMultiEditor(Object diagram,
 			IEditorContext context) {
-		this((Diagram) diagram, (GmfEditorContext) context);
+		this((Diagram)diagram, (GmfEditorContext)context);
 	}
 
 	/**
 	 * Instantiates a new uML activity diagram for multi editor.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param context
-	 *            the context
+	 *        the context
 	 */
 	public UMLStateMachineDiagramForMultiEditor(Diagram diagram,
 			GmfEditorContext context) {
@@ -125,9 +125,9 @@ public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	@Override
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
-		DiagramEditDomain editDomain = (DiagramEditDomain) getDiagramEditDomain();
+		DiagramEditDomain editDomain = (DiagramEditDomain)getDiagramEditDomain();
 
-		if (editDomain != null) {
+		if(editDomain != null) {
 			editDomain.setCommandStack(context.getDiagramEditDomain()
 					.getDiagramCommandStack());
 			editDomain.setActionManager(context.getDiagramEditDomain()
@@ -147,7 +147,7 @@ public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 * Sets the diagram.
 	 * 
 	 * @param diagram
-	 *            the new diagram
+	 *        the new diagram
 	 */
 	public void setDiagram(Diagram diagram) {
 		this.diagram = diagram;
@@ -166,7 +166,7 @@ public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	@Override
 	final protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
+		if(input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
 			return context.getDocumentProvider();
 		}
@@ -178,7 +178,7 @@ public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	@Override
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
+		if(input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
 			setDocumentProvider(context.getDocumentProvider());
 		} else {
@@ -235,7 +235,7 @@ public class UMLStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 * Sets the shared object.
 	 * 
 	 * @param parentEditor
-	 *            the new shared object
+	 *        the new shared object
 	 */
 	public void setSharedObject(GmfEditorContext parentEditor) {
 		this.context = parentEditor;

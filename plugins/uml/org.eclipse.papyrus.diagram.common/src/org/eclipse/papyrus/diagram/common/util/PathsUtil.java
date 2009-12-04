@@ -35,7 +35,7 @@ public class PathsUtil {
 	 * From absolute file system to absolute workspace.
 	 * 
 	 * @param filesystemPath
-	 *            the filesystem path
+	 *        the filesystem path
 	 * 
 	 * @return the string
 	 */
@@ -50,13 +50,13 @@ public class PathsUtil {
 	// @unused
 	public static String fromEditorInputToURIString(IEditorInput editorInput) {
 		String uri = null;
-		if (editorInput instanceof FileEditorInput) {
-			uri = ((FileEditorInput) editorInput).getPath().toString();
+		if(editorInput instanceof FileEditorInput) {
+			uri = ((FileEditorInput)editorInput).getPath().toString();
 			uri = MDTUtil.fullFilePathToResourceURI(uri).toString();
-		} else if (editorInput instanceof URIEditorInput) {
-			uri = ((URIEditorInput) editorInput).getURI().trimFragment().toString();
+		} else if(editorInput instanceof URIEditorInput) {
+			uri = ((URIEditorInput)editorInput).getURI().trimFragment().toString();
 		}
-		if (uri != null) {
+		if(uri != null) {
 			uri = fromAbsoluteFileSystemToAbsoluteWorkspace(uri);
 		}
 		return uri;
@@ -86,14 +86,14 @@ public class PathsUtil {
 		Set<String> set = new HashSet<String>();
 		String propertyValue = System.getProperty("org.eclipse.emf.common.util.URI.archiveSchemes");
 
-		if (propertyValue == null) {
+		if(propertyValue == null) {
 			set.add(SCHEME_JAR);
 			set.add(SCHEME_ZIP);
 			set.add(SCHEME_ARCHIVE);
 			set.add(SCHEME_FILE);
 			set.add(SCHEME_PLATFORM);
 		} else {
-			for (StringTokenizer t = new StringTokenizer(propertyValue); t.hasMoreTokens();) {
+			for(StringTokenizer t = new StringTokenizer(propertyValue); t.hasMoreTokens();) {
 				set.add(t.nextToken().toLowerCase());
 			}
 		}
@@ -102,7 +102,7 @@ public class PathsUtil {
 	}
 
 	/** The Constant PROTOCOLS. */
-	private static final String[] PROTOCOLS = new String[] { "resource", "plugin" };
+	private static final String[] PROTOCOLS = new String[]{ "resource", "plugin" };
 
 	/** The Constant SCHEME_SEPARATOR. */
 	private static final String SCHEME_SEPARATOR = ":";
@@ -117,23 +117,23 @@ public class PathsUtil {
 	 * Removes the schemas.
 	 * 
 	 * @param path
-	 *            the path
+	 *        the path
 	 * 
 	 * @return the string
 	 */
 	public static String removeSchemas(String path) {
-		if (path == null) {
+		if(path == null) {
 			return path;
 		}
 		String newPath = path;
-		for (String archiveSchema : archiveSchemes) {
-			if (newPath.startsWith(archiveSchema)) {
+		for(String archiveSchema : archiveSchemes) {
+			if(newPath.startsWith(archiveSchema)) {
 				newPath = newPath.replaceFirst(archiveSchema, replacement);
 			}
 		}
-		if (newPath.startsWith(SCHEME_SEPARATOR)) {
+		if(newPath.startsWith(SCHEME_SEPARATOR)) {
 			newPath = newPath.replaceFirst(SCHEME_SEPARATOR, replacement);
-			if (newPath.startsWith(AUTHORITY_SEPARATOR)) {
+			if(newPath.startsWith(AUTHORITY_SEPARATOR)) {
 				newPath = newPath.replaceFirst(AUTHORITY_SEPARATOR, replacement);
 			}
 		}
@@ -144,16 +144,16 @@ public class PathsUtil {
 	 * Removes the workspace.
 	 * 
 	 * @param path
-	 *            the path
+	 *        the path
 	 * 
 	 * @return the string
 	 */
 	public static String removeWorkspace(String path) {
-		if (path == null) {
+		if(path == null) {
 			return path;
 		}
 		String newPath = path;
-		if (newPath.startsWith(MDTUtil.getWorkspaceLocation().toString())
+		if(newPath.startsWith(MDTUtil.getWorkspaceLocation().toString())
 				|| newPath.startsWith("/" + MDTUtil.getWorkspaceLocation().toString())) {
 			newPath = newPath.replaceFirst(MDTUtil.getWorkspaceLocation().toString(), replacement);
 		}
@@ -164,16 +164,16 @@ public class PathsUtil {
 	 * Removes the protocols.
 	 * 
 	 * @param path
-	 *            the path
+	 *        the path
 	 * 
 	 * @return the string
 	 */
 	public static String removeProtocols(String path) {
-		if (path == null) {
+		if(path == null) {
 			return null;
 		}
-		for (String protocol : PROTOCOLS) {
-			if (path.startsWith(protocol) || path.startsWith("/" + protocol)) {
+		for(String protocol : PROTOCOLS) {
+			if(path.startsWith(protocol) || path.startsWith("/" + protocol)) {
 				path = path.replaceFirst(protocol, replacement);
 			}
 		}
@@ -184,20 +184,20 @@ public class PathsUtil {
 	 * Adds the root.
 	 * 
 	 * @param path
-	 *            the path
+	 *        the path
 	 * 
 	 * @return the string
 	 */
 	public static String addRoot(String path) {
-		if (path == null) {
+		if(path == null) {
 			return path;
 		}
 		String newPath = path;
 		String rootPath = Path.ROOT.toString();
-		while (newPath.startsWith(rootPath)) {
+		while(newPath.startsWith(rootPath)) {
 			newPath = newPath.replaceFirst(rootPath, replacement);
 		}
-		if (newPath.startsWith(Path.ROOT.toString()) == false) {
+		if(newPath.startsWith(Path.ROOT.toString()) == false) {
 			newPath = Path.ROOT.toString() + newPath;
 		}
 		return newPath;
@@ -207,22 +207,22 @@ public class PathsUtil {
 	 * Gets the relative workspace from editor input. Removes <URI>'s fragments.
 	 * 
 	 * @param input
-	 *            the input
+	 *        the input
 	 * 
 	 * @return the relative workspace from editor input
 	 */
 	public static String getRelativeWorkspaceFromEditorInput(IEditorInput input) {
-		if (input == null) {
+		if(input == null) {
 			return null;
 		}
 		String uriString = null;
-		if (input instanceof FileEditorInput) {
-			uriString = ((FileEditorInput) input).getFile().getFullPath().toString();
+		if(input instanceof FileEditorInput) {
+			uriString = ((FileEditorInput)input).getFile().getFullPath().toString();
 		}
-		if (input instanceof URIEditorInput) {
-			uriString = ((URIEditorInput) input).getURI().trimFragment().toString();
+		if(input instanceof URIEditorInput) {
+			uriString = ((URIEditorInput)input).getURI().trimFragment().toString();
 		}
-		if (uriString != null) {
+		if(uriString != null) {
 			uriString = fromAbsoluteFileSystemToAbsoluteWorkspace(uriString);
 		}
 		return uriString;
@@ -232,22 +232,22 @@ public class PathsUtil {
 	 * Gets the relative workspace from editor input. Does not remove <URI>'s fragments.
 	 * 
 	 * @param input
-	 *            the input
+	 *        the input
 	 * 
 	 * @return the relative workspace from editor input
 	 */
 	public static String getRelativeWorkspaceFromEditorInputWithFragment(IEditorInput input) {
-		if (input == null) {
+		if(input == null) {
 			return null;
 		}
 		String uriString = null;
-		if (input instanceof FileEditorInput) {
-			uriString = ((FileEditorInput) input).getURI().toString();
+		if(input instanceof FileEditorInput) {
+			uriString = ((FileEditorInput)input).getURI().toString();
 		}
-		if (input instanceof URIEditorInput) {
-			uriString = ((URIEditorInput) input).getURI().toString();
+		if(input instanceof URIEditorInput) {
+			uriString = ((URIEditorInput)input).getURI().toString();
 		}
-		if (uriString != null) {
+		if(uriString != null) {
 			uriString = fromAbsoluteFileSystemToAbsoluteWorkspace(uriString);
 		}
 		return uriString;

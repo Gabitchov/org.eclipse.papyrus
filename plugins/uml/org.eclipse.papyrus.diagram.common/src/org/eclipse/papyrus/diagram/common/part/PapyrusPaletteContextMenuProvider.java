@@ -27,7 +27,7 @@ public class PapyrusPaletteContextMenuProvider extends PaletteContextMenuProvide
 	 * Creates a new PaletteContextMenuProvider
 	 * 
 	 * @param palette
-	 *            the palette for which the context menu has to be buuild
+	 *        the palette for which the context menu has to be buuild
 	 */
 	public PapyrusPaletteContextMenuProvider(PaletteViewer palette) {
 		super(palette);

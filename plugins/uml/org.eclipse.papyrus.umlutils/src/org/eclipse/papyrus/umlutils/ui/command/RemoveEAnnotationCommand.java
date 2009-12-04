@@ -53,11 +53,11 @@ public class RemoveEAnnotationCommand extends org.eclipse.emf.transaction.Record
 	 * Instantiates a new creates the e annotation command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param eannotationName
-	 *            the eannotation name
+	 *        the eannotation name
 	 */
 	public RemoveEAnnotationCommand(TransactionalEditingDomain domain, EModelElement object, String eannotationName) {
 		super(domain);

@@ -35,9 +35,9 @@ public class CAssociationCreateCommand extends org.eclipse.papyrus.diagram.clazz
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof Package) {
-				return (Package) element;
+		for(EObject element = source; element != null; element = element.eContainer()) {
+			if(element instanceof Package) {
+				return (Package)element;
 			}
 		}
 		return null;
@@ -61,14 +61,14 @@ public class CAssociationCreateCommand extends org.eclipse.papyrus.diagram.clazz
 	 * {@inheritDoc}
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		if (source instanceof Type && target instanceof Type && container instanceof Package) {
+		if(source instanceof Type && target instanceof Type && container instanceof Package) {
 
-			Association newElement = (Association) ClazzDiagramAssociationHelper.createAssociation(getEditingDomain(),
-					(Type) source, (Type) target, (Package) container);
-			((CreateElementRequest) getRequest()).setNewElement(newElement);
+			Association newElement = (Association)ClazzDiagramAssociationHelper.createAssociation(getEditingDomain(),
+					(Type)source, (Type)target, (Package)container);
+			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}
 		return null;

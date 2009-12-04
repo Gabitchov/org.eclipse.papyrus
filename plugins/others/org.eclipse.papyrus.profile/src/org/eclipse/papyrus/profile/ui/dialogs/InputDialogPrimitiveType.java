@@ -32,76 +32,83 @@ public class InputDialogPrimitiveType {
 	 * The i dialog.
 	 */
 	private InputDialog iDialog;
-	
+
 	/**
 	 * The TITLE.
 	 */
 	private final String TITLE = "Property value editing";
-	
+
 	/**
 	 * The LABEL.
 	 */
 	private final String LABEL = "Value:";
-	
+
 	/**
 	 * The Constant OK.
 	 */
-	public static final int OK     = InputDialog.OK;
-	
+	public static final int OK = InputDialog.OK;
+
 	/**
 	 * The Constant CANCEL.
 	 */
 	public static final int CANCEL = InputDialog.CANCEL;
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param index the index
-	 * @param property the property
-	 * @param shell the shell
-	 * @param initialValue the initial value
+	 * @param index
+	 *        the index
+	 * @param property
+	 *        the property
+	 * @param shell
+	 *        the shell
+	 * @param initialValue
+	 *        the initial value
 	 */
 	public InputDialogPrimitiveType(Shell shell, Property property, Object initialValue, int index) {
 
-		if (initialValue != null) {
+		if(initialValue != null) {
 			Object value = initialValue;
-			
+
 			// Multivalue case
-			if (initialValue instanceof List) {
-				List values = (List) initialValue;
-				value = values.get(index);		
+			if(initialValue instanceof List) {
+				List values = (List)initialValue;
+				value = values.get(index);
 			}
 			// Call dialog constructor
 			iDialog = new InputDialog(shell, TITLE, LABEL, value.toString(), null);
-			
+
 		} else if(property.isSetDefault()) {
 			iDialog = new InputDialog(shell, TITLE, LABEL, property.getDefault(), null);
-			
-		} else if (property.getType().getName().equals("Boolean")) {
+
+		} else if(property.getType().getName().equals("Boolean")) {
 			iDialog = new InputDialog(shell, TITLE, LABEL, "true", null);
-			
+
 		} else {
 			iDialog = new InputDialog(shell, TITLE, LABEL, null, null);
 		}
 	}
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param property the property
-	 * @param shell the shell
-	 * @param initialValue the initial value
+	 * @param property
+	 *        the property
+	 * @param shell
+	 *        the shell
+	 * @param initialValue
+	 *        the initial value
 	 */
 	public InputDialogPrimitiveType(Shell shell, Property property, Object initialValue) {
 
-		if (initialValue == null) {
+		if(initialValue == null) {
 			Message.error("Method used for edition only, should have a non null initialValue");
 			return;
 		}
-		
+
 		iDialog = new InputDialog(shell, TITLE, LABEL, initialValue.toString(), null);
 	}
-	
+
 	/**
 	 * Open.
 	 * 
@@ -110,14 +117,14 @@ public class InputDialogPrimitiveType {
 	public int open() {
 		return iDialog.open();
 	}
-	
+
 	/**
 	 * Close.
 	 */
 	public void close() {
 		iDialog.close();
 	}
-	
+
 	/**
 	 * Gets the value.
 	 * 

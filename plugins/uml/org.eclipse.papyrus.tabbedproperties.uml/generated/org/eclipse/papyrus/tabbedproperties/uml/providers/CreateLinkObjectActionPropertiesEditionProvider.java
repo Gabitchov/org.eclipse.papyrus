@@ -40,7 +40,7 @@ public class CreateLinkObjectActionPropertiesEditionProvider implements IPropert
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof CreateLinkObjectAction) {
+		if(eObject instanceof CreateLinkObjectAction) {
 			return new CreateLinkObjectActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class CreateLinkObjectActionPropertiesEditionProvider implements IPropert
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof CreateLinkObjectAction) {
-			if (CreateLinkObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof CreateLinkObjectAction) {
+			if(CreateLinkObjectActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new CreateLinkObjectActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

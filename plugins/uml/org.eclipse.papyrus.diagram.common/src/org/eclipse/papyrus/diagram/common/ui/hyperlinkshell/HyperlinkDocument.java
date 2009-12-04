@@ -26,14 +26,14 @@ public class HyperlinkDocument extends HyperlinkObject {
 	 */
 	public String getHyperlinkDocument() {
 		// TODO Auto-generated method stub
-		return (String) super.getObject();
+		return (String)super.getObject();
 	}
 
 	/**
 	 * Sets the hyperlink document.
 	 * 
 	 * @param object
-	 *            the new hyperlink document
+	 *        the new hyperlink document
 	 */
 	public void setHyperlinkDocument(String object) {
 		// TODO Auto-generated method stub

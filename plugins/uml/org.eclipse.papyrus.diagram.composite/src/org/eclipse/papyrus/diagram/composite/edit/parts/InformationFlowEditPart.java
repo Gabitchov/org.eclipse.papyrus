@@ -66,7 +66,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public DirectedRelationshipDescriptor getPrimaryShape() {
-		return (DirectedRelationshipDescriptor) getFigure();
+		return (DirectedRelationshipDescriptor)getFigure();
 	}
 
 	/**

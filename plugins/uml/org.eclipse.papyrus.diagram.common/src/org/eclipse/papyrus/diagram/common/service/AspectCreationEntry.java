@@ -57,7 +57,7 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry {
 	 */
 	@Override
 	public Tool createTool() {
-		if (tool == null) {
+		if(tool == null) {
 			tool = entry.createTool();
 			tool.setProperties(properties);
 		}
@@ -80,6 +80,6 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getStereotypeList() {
-		return (List<String>) properties.get(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY);
+		return (List<String>)properties.get(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY);
 	}
 }

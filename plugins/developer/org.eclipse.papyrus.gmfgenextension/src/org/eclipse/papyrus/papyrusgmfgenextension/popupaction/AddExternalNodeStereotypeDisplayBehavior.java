@@ -42,6 +42,7 @@ import org.eclipse.ui.IViewPart;
  * this class is used to add a label to display applied stereotypes for external node
  */
 public class AddExternalNodeStereotypeDisplayBehavior extends Action {
+
 	public static final String FIGURE_VIEWMAP_PATH = "org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"; //$NON-NLS-1$
 
 	public static final String STEREOTYPE_LABEL_POLICY_KEY = "org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"; //$NON-NLS-1$
@@ -92,28 +93,30 @@ public class AddExternalNodeStereotypeDisplayBehavior extends Action {
 
 		// Parse selected GenLink(s) and add the desired CustomBehavior
 		Iterator<EObject> it = getSelectedEObject().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof GenNode) {
+			if(eObject instanceof GenNode) {
 				//test if it has got a external node to display applied stereotype
-				if(!hasAnAppliedStereotypExternalNode( (GenNode) eObject)){
-					createAnAppliedStereotypExternalNode( (GenNode) eObject);
+				if(!hasAnAppliedStereotypExternalNode((GenNode)eObject)) {
+					createAnAppliedStereotypExternalNode((GenNode)eObject);
 				}
 			}
 		}
 	}
 
-	
+
 	/**
 	 * creation an external node stereotype
-	 * @param eObject the parent genNode
+	 * 
+	 * @param eObject
+	 *        the parent genNode
 	 */
 	private void createAnAppliedStereotypExternalNode(GenNode eObject) {
-		GenExternalNodeLabel label=GMFGenFactory.eINSTANCE.createGenExternalNodeLabel();
+		GenExternalNodeLabel label = GMFGenFactory.eINSTANCE.createGenExternalNodeLabel();
 		label.setEditPartClassName(eObject.getClassNamePrefix() + DEFAULT_EDITPART_NAME_SUFFIX);
 		label.setItemSemanticEditPolicyClassName(eObject.getClassNamePrefix() + DEFAULT_EDITPOLICY_NAME_SUFFIX);
 		label.setReadOnly(true);
-		
+
 		// Set GenLinkLabel VisualID with new unique ID
 		int visualID = SetVisualIDWithUnusedValue.getNewVisualID(eObject.eResource(), GenLinkLabel.class);
 		label.setVisualID(visualID);
@@ -124,7 +127,7 @@ public class AddExternalNodeStereotypeDisplayBehavior extends Action {
 		label.setDiagramRunTimeClass(findGenClass(notation, GEN_CLASS_RT_CLASS));
 
 		// Create Viewmap
-		FigureViewmap  viewmap = GMFGenFactory.eINSTANCE.createFigureViewmap();
+		FigureViewmap viewmap = GMFGenFactory.eINSTANCE.createFigureViewmap();
 		viewmap.setFigureQualifiedClassName(FIGURE_VIEWMAP_PATH);
 
 
@@ -142,30 +145,30 @@ public class AddExternalNodeStereotypeDisplayBehavior extends Action {
 		label.setViewmap(viewmap);
 		label.setModelFacet(facet);
 
-		addCustomBehavior(label,STEREOTYPE_LABEL_POLICY_KEY,STEREOTYPE_LABEL_POLICY_CLASS);
+		addCustomBehavior(label, STEREOTYPE_LABEL_POLICY_KEY, STEREOTYPE_LABEL_POLICY_CLASS);
 		eObject.getLabels().add(label);
-		
-		
-	}
-	
 
-	public boolean hasAnAppliedStereotypExternalNode(GenNode node){
-		Iterator<GenNodeLabel>iterator= node.getLabels().iterator();
-		while( iterator.hasNext()){
-			GenNodeLabel currentGenNodeLabel= iterator.next();
-			if( currentGenNodeLabel instanceof GenExternalNodeLabel){
-				if( isAnAppliedStereotypExternalNode((GenExternalNodeLabel)currentGenNodeLabel)){
+
+	}
+
+
+	public boolean hasAnAppliedStereotypExternalNode(GenNode node) {
+		Iterator<GenNodeLabel> iterator = node.getLabels().iterator();
+		while(iterator.hasNext()) {
+			GenNodeLabel currentGenNodeLabel = iterator.next();
+			if(currentGenNodeLabel instanceof GenExternalNodeLabel) {
+				if(isAnAppliedStereotypExternalNode((GenExternalNodeLabel)currentGenNodeLabel)) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-	
-	public boolean isAnAppliedStereotypExternalNode(GenExternalNodeLabel node){
+
+	public boolean isAnAppliedStereotypExternalNode(GenExternalNodeLabel node) {
 		return hasCustomBehavior(node, STEREOTYPE_LABEL_POLICY_KEY);
 	}
-	
-	
-	
+
+
+
 }

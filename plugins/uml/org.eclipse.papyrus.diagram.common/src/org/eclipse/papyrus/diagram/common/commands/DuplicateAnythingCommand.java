@@ -40,10 +40,10 @@ public class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 
 		CommandResult result = super.doExecuteWithResult(progressMonitor, info);
 
-		for (Object duplicatedObject : this.getAllDuplicatedObjectsMap().keySet()) {
-			if (duplicatedObject instanceof EObject) {
-				if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(diagram, (EObject) duplicatedObject)) {
-					MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, (EObject) this
+		for(Object duplicatedObject : this.getAllDuplicatedObjectsMap().keySet()) {
+			if(duplicatedObject instanceof EObject) {
+				if(MultiDiagramUtil.findEObjectReferencedInEAnnotation(diagram, (EObject)duplicatedObject)) {
+					MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, (EObject)this
 							.getAllDuplicatedObjectsMap().get(duplicatedObject));
 				}
 			}

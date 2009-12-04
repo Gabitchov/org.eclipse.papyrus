@@ -143,10 +143,11 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 	 */
 	@Override
 	public Object getAdapter(Class type) {
-		if (type == IShowInTargetList.class) {
+		if(type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
+
 				public String[] getShowInTargetIds() {
-					return new String[] { ProjectExplorer.VIEW_ID };
+					return new String[]{ ProjectExplorer.VIEW_ID };
 				}
 			};
 		}
@@ -158,7 +159,7 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 	 */
 	@Override
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
+		if(input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
 
 			return UMLDiagramEditorPlugin.getInstance().getDocumentProvider(
@@ -174,8 +175,8 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 	public TransactionalEditingDomain getEditingDomain() {
 		IDocument document = getEditorInput() != null ? getDocumentProvider()
 				.getDocument(getEditorInput()) : null;
-		if (document instanceof IDiagramDocument) {
-			return ((IDiagramDocument) document).getEditingDomain();
+		if(document instanceof IDiagramDocument) {
+			return ((IDiagramDocument)document).getEditingDomain();
 		}
 		return super.getEditingDomain();
 	}
@@ -185,7 +186,7 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 	 */
 	@Override
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
+		if(input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
 
 			setDocumentProvider(UMLDiagramEditorPlugin.getInstance()
@@ -226,12 +227,12 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
-		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput) input)
+		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput)input)
 				.getFile()
 				: null;
 		// Store the editor ID that opens this diagram file.
 		String editorID = null;
-		if (original != null) {
+		if(original != null) {
 			dialog.setOriginalFile(original);
 			// Get the editor ID that opens the diagram file.
 			try {
@@ -243,26 +244,26 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 		}
 		dialog.create();
 		IDocumentProvider provider = getDocumentProvider();
-		if (provider == null) {
+		if(provider == null) {
 			// editor has been programmatically closed while the dialog was open
 			return;
 		}
-		if (provider.isDeleted(input) && original != null) {
+		if(provider.isDeleted(input) && original != null) {
 			String message = NLS.bind(
 					Messages.UMLDiagramEditor_SavingDeletedFile, original
-							.getName());
+					.getName());
 			dialog.setErrorMessage(null);
 			dialog.setMessage(message, IMessageProvider.WARNING);
 		}
-		if (dialog.open() == Window.CANCEL) {
-			if (progressMonitor != null) {
+		if(dialog.open() == Window.CANCEL) {
+			if(progressMonitor != null) {
 				progressMonitor.setCanceled(true);
 			}
 			return;
 		}
 		IPath filePath = dialog.getResult();
-		if (filePath == null) {
-			if (progressMonitor != null) {
+		if(filePath == null) {
+			if(progressMonitor != null) {
 				progressMonitor.setCanceled(true);
 			}
 			return;
@@ -276,8 +277,8 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 		IEditorReference[] editorRefs = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getActivePage()
 				.getEditorReferences();
-		for (int i = 0; i < editorRefs.length; i++) {
-			if (matchingStrategy.matches(editorRefs[i], newInput)) {
+		for(int i = 0; i < editorRefs.length; i++) {
+			if(matchingStrategy.matches(editorRefs[i], newInput)) {
 				MessageDialog.openWarning(shell,
 						Messages.UMLDiagramEditor_SaveAsErrorTitle,
 						Messages.UMLDiagramEditor_SaveAsErrorMessage);
@@ -293,19 +294,19 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 			success = true;
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
-			if (status == null || status.getSeverity() != IStatus.CANCEL) {
+			if(status == null || status.getSeverity() != IStatus.CANCEL) {
 				ErrorDialog.openError(shell,
 						Messages.UMLDiagramEditor_SaveErrorTitle,
 						Messages.UMLDiagramEditor_SaveErrorMessage, x
-								.getStatus());
+						.getStatus());
 			}
 		} finally {
 			provider.changed(newInput);
-			if (success) {
+			if(success) {
 				setInput(newInput);
 				// everything went OK, set the editorID that opens the diagram
 				// file
-				if (editorID != null) {
+				if(editorID != null) {
 					URI uri = URI.createURI(filePath.toString());
 					try {
 						MultiDiagramUtil.setEditorForDiagram(uri, editorID);
@@ -318,7 +319,7 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 				}
 			}
 		}
-		if (progressMonitor != null) {
+		if(progressMonitor != null) {
 			progressMonitor.setCanceled(!success);
 		}
 	}
@@ -336,12 +337,12 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 	 */
 	private ISelection getNavigatorSelection() {
 		IDiagramDocument document = getDiagramDocument();
-		if (document == null) {
+		if(document == null) {
 			return StructuredSelection.EMPTY;
 		}
 		Diagram diagram = document.getDiagram();
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
-		if (file != null) {
+		if(file != null) {
 			UMLNavigatorItem item = new UMLNavigatorItem(diagram, file, false);
 			return new StructuredSelection(item);
 		}
@@ -356,23 +357,23 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalSelectionTransfer.getTransfer()) {
+				LocalSelectionTransfer.getTransfer()) {
 
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer()
-								.nativeToJava(data);
-					}
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer()
+						.nativeToJava(data);
+			}
 
-				});
+		});
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalTransfer.getInstance()) {
+				LocalTransfer.getInstance()) {
 
-					protected Object getJavaObject(TransferData data) {
-						return LocalTransfer.getInstance().nativeToJava(data);
-					}
+			protected Object getJavaObject(TransferData data) {
+				return LocalTransfer.getInstance().nativeToJava(data);
+			}
 
-				});
+		});
 	}
 
 	/**
@@ -396,34 +397,34 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 			Collection uris = new HashSet();
 
 			Object transferedObject = getJavaObject(data);
-			if (transferedObject instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) transferedObject;
-				for (Iterator it = selection.iterator(); it.hasNext();) {
+			if(transferedObject instanceof IStructuredSelection) {
+				IStructuredSelection selection = (IStructuredSelection)transferedObject;
+				for(Iterator it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
-					if (nextSelectedObject instanceof UMLNavigatorItem) {
-						View view = ((UMLNavigatorItem) nextSelectedObject)
+					if(nextSelectedObject instanceof UMLNavigatorItem) {
+						View view = ((UMLNavigatorItem)nextSelectedObject)
 								.getView();
 						nextSelectedObject = view.getElement();
-					} else if (nextSelectedObject instanceof IAdaptable) {
-						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
+					} else if(nextSelectedObject instanceof IAdaptable) {
+						IAdaptable adaptable = (IAdaptable)nextSelectedObject;
 						nextSelectedObject = adaptable
 								.getAdapter(EObject.class);
 					}
 
-					if (nextSelectedObject instanceof EObject) {
-						EObject modelElement = (EObject) nextSelectedObject;
+					if(nextSelectedObject instanceof EObject) {
+						EObject modelElement = (EObject)nextSelectedObject;
 						Resource modelElementResource = modelElement
 								.eResource();
 						uris.add(modelElementResource.getURI().appendFragment(
 								modelElementResource
-										.getURIFragment(modelElement)));
+								.getURIFragment(modelElement)));
 					}
 				}
 			}
 
 			List result = new ArrayList();
-			for (Iterator it = uris.iterator(); it.hasNext();) {
-				URI nextURI = (URI) it.next();
+			for(Iterator it = uris.iterator(); it.hasNext();) {
+				URI nextURI = (URI)it.next();
 				EObject modelObject = getEditingDomain().getResourceSet()
 						.getEObject(nextURI, true);
 				result.add(modelObject);
@@ -469,10 +470,10 @@ public class UMLDiagramEditor extends CachedResourcesDiagramEditor implements
 	private void cleanPaletteRoot(PaletteRoot paletteRoot) {
 		List<Object> entries = new ArrayList<Object>();
 		entries.addAll(paletteRoot.getChildren());
-		for (Object entry : entries) {
-			PaletteEntry paletteEntry = (PaletteEntry) entry;
+		for(Object entry : entries) {
+			PaletteEntry paletteEntry = (PaletteEntry)entry;
 			// we don't repaint standard palette group
-			if (PaletteService.GROUP_STANDARD.equals(paletteEntry.getId())) {
+			if(PaletteService.GROUP_STANDARD.equals(paletteEntry.getId())) {
 				continue;
 			}
 			paletteRoot.remove(paletteEntry);

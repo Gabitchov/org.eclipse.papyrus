@@ -32,16 +32,16 @@ public class MoveCompartmentPopupContributionPolicy implements
 
 	public boolean appliesTo(ISelection selection,
 			IConfigurationElement configuration) {
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection ss = ((IStructuredSelection) selection);
-			if (ss.size() <= 0 || ss.size() > 1) {
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection ss = ((IStructuredSelection)selection);
+			if(ss.size() <= 0 || ss.size() > 1) {
 				return false;
 			}
 			Object first = ss.getFirstElement();
-			if (first instanceof CompartmentEditPart) {
-				CompartmentEditPart compEP = (CompartmentEditPart) first;
+			if(first instanceof CompartmentEditPart) {
+				CompartmentEditPart compEP = (CompartmentEditPart)first;
 				// Check if he is really a children
-				if (compEP.getParent() instanceof ListCompartmentEditPart)
+				if(compEP.getParent() instanceof ListCompartmentEditPart)
 					return true;
 				else
 					return false;

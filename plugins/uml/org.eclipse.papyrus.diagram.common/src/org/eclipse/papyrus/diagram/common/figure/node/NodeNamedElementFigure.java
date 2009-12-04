@@ -87,7 +87,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 
 		// Set stereotype text on figure
-		if (!"".equals(stereotypes)) {
+		if(!"".equals(stereotypes)) {
 			setStereotypes(stereotypes);
 		} else {
 			setStereotypes(null);
@@ -95,6 +95,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 		setAppliedStereotypeIcon(image);
 	}
+
 	public NodeNamedElementFigure(String taggedLabelValue) {
 		super();
 
@@ -112,13 +113,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Copy context to.
 	 * 
 	 * @param fig
-	 *            the fig
+	 *        the fig
 	 */
 	// @unused
 	public void copyContextTo(IFigure fig) {
 		Iterator it = this.getListeners(FigureListener.class);
-		while (it.hasNext()) {
-			fig.addFigureListener((FigureListener) it.next());
+		while(it.hasNext()) {
+			fig.addFigureListener((FigureListener)it.next());
 		}
 
 	}
@@ -181,7 +182,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 		stereotypePropertiesContent.getChildren().clear();
 		StringTokenizer stringTokenizer = new StringTokenizer(stereotypeProperties, ";");
-		while (stringTokenizer.hasMoreElements()) {
+		while(stringTokenizer.hasMoreElements()) {
 			String tokenStereotype = stringTokenizer.nextToken();
 			tokenStereotype = tokenStereotype.replace("#", "\n  ");
 			tokenStereotype = tokenStereotype.replace("|", "\n  ");
@@ -225,10 +226,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Create the tag label in the figure. The tag label is created if value is not null.
 	 * 
 	 * @param value
-	 *            the value to use
+	 *        the value to use
 	 */
 	protected void initTagLabel(String value) {
-		if (value != null && value.length() > 0) {
+		if(value != null && value.length() > 0) {
 			taggedLabel = new Label();
 			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
 			taggedLabel.setText(textToDisplay);
@@ -252,17 +253,17 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		int width = getNameLabel().getTextBounds().width + 10;
 		int height = getNameLabel().getTextBounds().height + 10;
 		int temporysize = 0;
-		if (getStereotypesLabel() != null) {
+		if(getStereotypesLabel() != null) {
 			temporysize = getStereotypesLabel().getTextBounds().width + 10;
 			height = height + getStereotypesLabel().getTextBounds().height;
-			if (width < temporysize) {
+			if(width < temporysize) {
 				width = temporysize;
 			}
 		}
-		if (getQualifiedNameLabel() != null) {
+		if(getQualifiedNameLabel() != null) {
 			temporysize = getQualifiedNameLabel().getTextBounds().width + 10;
 			height = height + getQualifiedNameLabel().getTextBounds().height;
-			if (width < temporysize) {
+			if(width < temporysize) {
 				width = temporysize;
 			}
 		}
@@ -275,13 +276,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	protected int getNameHeight() {
 		int nameHeight = this.getNameLabel().getPreferredSize().height;
 
-		if (this.getIconLabel() != null) {
+		if(this.getIconLabel() != null) {
 			nameHeight += this.getIconLabel().getPreferredSize().height;
 		}
-		if (this.getStereotypesLabel() != null) {
+		if(this.getStereotypesLabel() != null) {
 			nameHeight += this.getStereotypesLabel().getPreferredSize().height;
 		}
-		if (this.getQualifiedNameLabel() != null) {
+		if(this.getQualifiedNameLabel() != null) {
 			nameHeight += this.getQualifiedNameLabel().getPreferredSize().height;
 		}
 		nameHeight += 5;
@@ -312,7 +313,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	// @unused
 	protected int getNameLabelPosition() {
 		int position = getQualifiedNameLabelPosition();
-		if (this.qualifiedLabel != null) {
+		if(this.qualifiedLabel != null) {
 			position++;
 		}
 		return position;
@@ -322,25 +323,25 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Calculate the partial qualified name with a specified depth.
 	 * 
 	 * @param qualifiedName
-	 *            the qualified name
+	 *        the qualified name
 	 */
 	public String getQualifiedName(String qualifiedName, int depth) {
 		int n = -1;
 
 		int i = 0;
-		if (depth <= 0) {
+		if(depth <= 0) {
 			return qualifiedName;
 		}
 
-		while (i < depth) {
-			if ((n = qualifiedName.indexOf("::", n + 1)) != -1) {
+		while(i < depth) {
+			if((n = qualifiedName.indexOf("::", n + 1)) != -1) {
 				i++;
 			} else {
 				return null;
 			}
 		}
 
-		if (n == -1) {
+		if(n == -1) {
 			return qualifiedName;
 		} else {
 			return qualifiedName.substring(n + 2);
@@ -364,7 +365,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	protected int getQualifiedNameLabelPosition() {
 		int position = getStereotypePropertiesLabelPosition();
-		if (this.stereotypePropertiesInBraceContent != null) {
+		if(this.stereotypePropertiesInBraceContent != null) {
 			position++;
 		}
 		return position;
@@ -377,7 +378,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	protected int getStereotypeLabelPosition() {
 		int position = getIconLabelPosition();
-		if ((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
+		if((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
 			position++;
 		}
 		return position;
@@ -391,7 +392,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	protected int getStereotypePropertiesLabelPosition() {
 		int position = getStereotypeLabelPosition();
-		if (this.stereotypesLabel != null) {
+		if(this.stereotypesLabel != null) {
 			position++;
 		}
 		return position;
@@ -424,9 +425,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * return true inf the label in localized at the point pt.
 	 * 
 	 * @param label
-	 *            the label that we look for
+	 *        the label that we look for
 	 * @param pt
-	 *            the point that we test
+	 *        the point that we test
 	 * 
 	 * @return true if the point is on the label
 	 */
@@ -436,7 +437,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 		rc = new PrecisionRectangle(label.getBounds());
 		label.translateToAbsolute(rc);
-		if (rc.contains(pt)) {
+		if(rc.contains(pt)) {
 			return true;
 		}
 		return false;
@@ -446,25 +447,25 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Refresh stereotypes.
 	 * 
 	 * @param presentation
-	 *            the presentation
+	 *        the presentation
 	 * @param hasIcon
-	 *            the has icon
+	 *        the has icon
 	 * @param hasShape
-	 *            the has shape
+	 *        the has shape
 	 * @param stereotypes
-	 *            the stereotypes
+	 *        the stereotypes
 	 */
 	public void refreshStereotypes(String stereotypes, String presentation, boolean hasIcon, boolean hasShape) {
 
-		if (stereotypes.equals("")) {
+		if(stereotypes.equals("")) {
 			this.setStereotypes(null);
 			return;
 		}
 
-		if (presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcon) {
+		if(presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcon) {
 			this.setStereotypes(null);
 			return;
-		} else if (presentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShape) {
+		} else if(presentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShape) {
 			this.setStereotypes(null);
 			return;
 		}
@@ -477,7 +478,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Sets the depth.
 	 * 
 	 * @param depth
-	 *            the new depth
+	 *        the new depth
 	 */
 	public void setDepth(int depth) {
 		this.depth = depth;
@@ -487,7 +488,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Sets the name.
 	 * 
 	 * @param name
-	 *            the name
+	 *        the name
 	 */
 	// @unused
 	public void setName(String name) {
@@ -495,10 +496,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
-		if (getNameLabel().getIcon() != null) {
+		if(getNameLabel().getIcon() != null) {
 			nameLabelIcon = getNameLabel().getIcon();
 		}
-		if (displayNameLabelIcon) {
+		if(displayNameLabelIcon) {
 			getNameLabel().setIcon(nameLabelIcon);
 		} else {
 			getNameLabel().setIcon(null);
@@ -514,7 +515,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Sets the qualified name.
 	 * 
 	 * @param qualifiedName
-	 *            the qualified name
+	 *        the qualified name
 	 */
 	public void setQualifiedName(String qualifiedName) {
 		String tmpQualifiedName = getQualifiedName(qualifiedName, depth);
@@ -522,11 +523,11 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		// two raisons to remove label!
 		// null
 		// or the qualified name is equal to 1
-		if (qualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove
+		if(qualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove
 			// label
 			// if
 			// any
-			if (this.qualifiedLabel != null) {
+			if(this.qualifiedLabel != null) {
 				this.remove(this.qualifiedLabel);
 				this.qualifiedLabel = null;
 			}
@@ -534,13 +535,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 
 		// Set the stereotype label
-		if (this.qualifiedLabel == null) {
+		if(this.qualifiedLabel == null) {
 			this.createQualifiedNameLabel();
 		}
 		// we have to not display name.
 
 		int i = tmpQualifiedName.lastIndexOf("::");
-		if (i != -1) {
+		if(i != -1) {
 			tmpQualifiedName = tmpQualifiedName.substring(0, i);
 		}
 		this.qualifiedLabel.setText("(" + tmpQualifiedName.trim() + ")");
@@ -552,20 +553,18 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * <p>
 	 * This implementation checks if the specified string is null or not.
 	 * <ul>
-	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes
-	 * properties with brace.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype properties label if needed
-	 * and displays the specified string.</li>
+	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes properties with brace.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype properties label if needed and displays the specified string.</li>
 	 * </ul>
 	 * </p>
 	 * 
 	 * @param stereotypeProperties
-	 *            the string representing the stereotype properties to be displayed
+	 *        the string representing the stereotype properties to be displayed
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-		if (stereotypeProperties == null) {
+		if(stereotypeProperties == null) {
 			// Remove label if any
-			if (this.stereotypePropertiesInBraceContent != null) {
+			if(this.stereotypePropertiesInBraceContent != null) {
 				this.remove(this.stereotypePropertiesInBraceContent);
 				this.stereotypePropertiesInBraceContent = null;
 			}
@@ -573,12 +572,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 
 		// Set the stereotype label if it does not already exist
-		if (this.stereotypePropertiesInBraceContent == null) {
+		if(this.stereotypePropertiesInBraceContent == null) {
 			this.createStereotypePropertiesInBraceLabel();
 		}
 
 		// Set stereotype text on figure
-		if (!"".equals(stereotypeProperties)) {
+		if(!"".equals(stereotypeProperties)) {
 			this.stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
 		} else {
 			this.stereotypePropertiesInBraceContent.setText("");
@@ -592,12 +591,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
-	 *            the string to be displayed.
+	 *        the string to be displayed.
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		if (stereotypeProperties == null) {
+		if(stereotypeProperties == null) {
 			// remove figure of stereotype properties compartment
-			if (this.stereotypePropertiesContent != null) {
+			if(this.stereotypePropertiesContent != null) {
 				this.remove(this.stereotypePropertiesContent);
 				this.stereotypePropertiesContent = null;
 			}
@@ -605,7 +604,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 
 		// set stereotype properties content
-		if (stereotypePropertiesContent == null) {
+		if(stereotypePropertiesContent == null) {
 			this.createStereotypePropertiesContent();
 		}
 
@@ -618,18 +617,17 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * This implementation checks if the specified string is null or not.
 	 * <ul>
 	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes.</li>
-	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays
-	 * the specified string.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays the specified string.</li>
 	 * </ul>
 	 * </p>
 	 * 
 	 * @param stereotypes
-	 *            the string representing the stereotypes to be displayed
+	 *        the string representing the stereotypes to be displayed
 	 */
 	public void setStereotypes(String stereotypes) {
-		if (stereotypes == null) {
+		if(stereotypes == null) {
 			// Remove label if any
-			if (this.stereotypesLabel != null) {
+			if(this.stereotypesLabel != null) {
 				this.remove(this.stereotypesLabel);
 				this.stereotypesLabel = null;
 			}
@@ -637,13 +635,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 
 		// Set the stereotype label if it does not already exist
-		if (this.stereotypesLabel == null) {
+		if(this.stereotypesLabel == null) {
 			this.createStereotypeLabel();
 		}
 
 		// Set stereotype text on figure
-		if (!"".equals(stereotypes)) {
-			this.stereotypesLabel.setText( stereotypes);
+		if(!"".equals(stereotypes)) {
+			this.stereotypesLabel.setText(stereotypes);
 		} else {
 			this.stereotypesLabel.setText("");
 		}
@@ -653,12 +651,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Sets the stereotype icon for this figure.
 	 * 
 	 * @param stereotypes
-	 *            the image representing the stereotype
+	 *        the image representing the stereotype
 	 */
 	public void setAppliedStereotypeIcon(Image image) {
-		if (image == null) {
+		if(image == null) {
 			// Remove label if any
-			if (this.iconLabel != null) {
+			if(this.iconLabel != null) {
 				this.remove(this.iconLabel);
 				this.iconLabel = null;
 			}
@@ -666,7 +664,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 
 		// Set the stereotype label if it does not already exist
-		if (this.iconLabel == null) {
+		if(this.iconLabel == null) {
 			this.createIconLabel();
 		}
 
@@ -686,8 +684,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 			int minimumWith = 0;
 			int minimumHeight = 0;
 			// display name
-			for (int i = 0; i < container.getChildren().size(); i++) {
-				minimumHeight = minimumHeight + ((IFigure) container.getChildren().get(i)).getPreferredSize().height;
+			for(int i = 0; i < container.getChildren().size(); i++) {
+				minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height;
 			}
 
 			return new Dimension(minimumWith, minimumHeight);
@@ -699,11 +697,11 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		 */
 		public void layout(IFigure container) {
 			List childrenList = container.getChildren();
-			for (int i = 0; i < container.getChildren().size(); i++) {
-				Rectangle bound = new Rectangle(((IFigure) childrenList.get(i)).getBounds());
-				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
-				if (i > 0) {
-					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
+			for(int i = 0; i < container.getChildren().size(); i++) {
+				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
+				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
+				if(i > 0) {
+					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
 					bound.x = getBounds().x;
 					bound.width = container.getBounds().width;
 
@@ -713,7 +711,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 					bound.width = container.getBounds().width;
 
 				}
-				((IFigure) childrenList.get(i)).setBounds(bound);
+				((IFigure)childrenList.get(i)).setBounds(bound);
 			}
 
 		}

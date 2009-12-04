@@ -54,25 +54,38 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, TemplateSignaturePropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil parameterEditUtil;
+
 	protected ReferencesTable<? extends EObject> parameter;
+
 	protected List<ViewerFilter> parameterBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> parameterFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil ownedParameterEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedParameter;
+
 	protected List<ViewerFilter> ownedParameterBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedParameterFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public TemplateSignaturePropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -80,25 +93,25 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
@@ -120,16 +133,31 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		createParameterAdvancedReferencesTable(propertiesGroup);
 		createOwnedParameterAdvancedTableComposition(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.TemplateSignaturePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.TemplateSignaturePropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateSignature.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -145,7 +173,7 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.TemplateSignature.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.TemplateSignature.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -158,11 +186,11 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -201,10 +229,10 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -216,19 +244,21 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		// End of user code
 
 	}
+
 	protected void createParameterAdvancedReferencesTable(Composite parent) {
 		this.parameter = new ReferencesTable<TemplateParameter>(UMLMessages.TemplateSignaturePropertiesEditionPart_ParameterLabel, new ReferencesTableListener<TemplateParameter>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<TemplateParameter> dialog = new TabElementTreeSelectionDialog<TemplateParameter>(resourceSet, parameterFilters, parameterBusinessFilters,
-				"TemplateParameter", UMLPackage.eINSTANCE.getTemplateParameter(), current.eResource()) {
+						"TemplateParameter", UMLPackage.eINSTANCE.getTemplateParameter(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!parameterEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!parameterEditUtil.getVirtualList().contains(elem))
 								parameterEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.TemplateSignature.parameter,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						parameter.refresh();
 					}
@@ -236,10 +266,21 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 				};
 				dialog.open();
 			}
-			public void handleEdit(TemplateParameter element) { editParameter(element); }
-			public void handleMove(TemplateParameter element, int oldIndex, int newIndex) { moveParameter(element, oldIndex, newIndex); }
-			public void handleRemove(TemplateParameter element) { removeFromParameter(element); }
-			public void navigateTo(TemplateParameter element) { }
+
+			public void handleEdit(TemplateParameter element) {
+				editParameter(element);
+			}
+
+			public void handleMove(TemplateParameter element, int oldIndex, int newIndex) {
+				moveParameter(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(TemplateParameter element) {
+				removeFromParameter(element);
+			}
+
+			public void navigateTo(TemplateParameter element) {
+			}
 		});
 		this.parameter.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateSignature.parameter, UMLViewsRepository.SWT_KIND));
 		this.parameter.createControls(parent);
@@ -285,10 +326,10 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				parameterEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				parameter.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -300,16 +341,31 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedParameterAdvancedTableComposition(Composite parent) {
-		this.ownedParameter = new ReferencesTable<TemplateParameter>(UMLMessages.TemplateSignaturePropertiesEditionPart_OwnedParameterLabel, new ReferencesTableListener<TemplateParameter>() {			
-			public void handleAdd() { addToOwnedParameter();}
-			public void handleEdit(TemplateParameter element) { editOwnedParameter(element); }
-			public void handleMove(TemplateParameter element, int oldIndex, int newIndex) { moveOwnedParameter(element, oldIndex, newIndex); }
-			public void handleRemove(TemplateParameter element) { removeFromOwnedParameter(element); }
-			public void navigateTo(TemplateParameter element) { }
+		this.ownedParameter = new ReferencesTable<TemplateParameter>(UMLMessages.TemplateSignaturePropertiesEditionPart_OwnedParameterLabel, new ReferencesTableListener<TemplateParameter>() {
+
+			public void handleAdd() {
+				addToOwnedParameter();
+			}
+
+			public void handleEdit(TemplateParameter element) {
+				editOwnedParameter(element);
+			}
+
+			public void handleMove(TemplateParameter element, int oldIndex, int newIndex) {
+				moveOwnedParameter(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(TemplateParameter element) {
+				removeFromOwnedParameter(element);
+			}
+
+			public void navigateTo(TemplateParameter element) {
+			}
 		});
 		this.ownedParameter.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.TemplateSignature.ownedParameter, UMLViewsRepository.SWT_KIND));
 		this.ownedParameter.createControls(parent);
@@ -325,7 +381,7 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		EObject editedElement = ownedParameterEditUtil.foundCorrespondingEObject(element);
 		ownedParameterEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedParameter.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.TemplateSignature.ownedParameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TemplateSignaturePropertiesEditionPartImpl.this, UMLViewsRepository.TemplateSignature.ownedParameter, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -338,11 +394,11 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedParameterEditUtil.addElement(propertiesEditionObject);
 				ownedParameter.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -381,10 +437,10 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedParameterEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedParameter.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -453,12 +509,13 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -471,7 +528,7 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -543,12 +600,13 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#initParameter(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#initParameter(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initParameter(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			parameterEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			parameterEditUtil = new EMFListEditUtil(current, feature);
@@ -561,7 +619,7 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#updateParameter(EObject newValue)
 	 */
 	public void updateParameter(EObject newValue) {
-		if(parameterEditUtil != null){
+		if(parameterEditUtil != null) {
 			parameterEditUtil.reinit(newValue);
 			parameter.refresh();
 		}
@@ -650,12 +708,13 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#initOwnedParameter(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#initOwnedParameter(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedParameterEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedParameterEditUtil = new EMFListEditUtil(current, feature);
@@ -668,7 +727,7 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.TemplateSignaturePropertiesEditionPart#updateOwnedParameter(EObject newValue)
 	 */
 	public void updateOwnedParameter(EObject newValue) {
-		if(ownedParameterEditUtil != null){
+		if(ownedParameterEditUtil != null) {
 			ownedParameterEditUtil.reinit(newValue);
 			ownedParameter.refresh();
 		}
@@ -708,9 +767,6 @@ public class TemplateSignaturePropertiesEditionPartImpl extends CompositePropert
 	public void unsetMessageForOwnedParameter() {
 
 	}
-
-
-
 
 
 

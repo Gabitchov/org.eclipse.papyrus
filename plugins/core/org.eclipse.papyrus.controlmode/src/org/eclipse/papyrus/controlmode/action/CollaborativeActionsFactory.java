@@ -66,7 +66,7 @@ public class CollaborativeActionsFactory implements IActionHandlerFactory {
 		controlAction.setActiveWorkbenchPart(activeViewPart);
 
 		ISelectionProvider selectionProvider = null;
-		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
+		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
 			selectionProvider.addSelectionChangedListener(controlAction);
 			selectionProvider.addSelectionChangedListener(uncontrolAction);
@@ -80,7 +80,7 @@ public class CollaborativeActionsFactory implements IActionHandlerFactory {
 		controlAction.setActiveWorkbenchPart(null);
 
 		ISelectionProvider selectionProvider = null;
-		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
+		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
 			selectionProvider.removeSelectionChangedListener(controlAction);
 			selectionProvider.removeSelectionChangedListener(uncontrolAction);

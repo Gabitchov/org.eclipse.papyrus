@@ -46,15 +46,15 @@ public class PaletteEntryProxy {
 	 * @return the entry type for this proxy
 	 */
 	protected EntryType initType() {
-		if (entry instanceof PaletteDrawer) {
+		if(entry instanceof PaletteDrawer) {
 			return EntryType.DRAWER;
-		} else if (entry instanceof PaletteSeparator) {
+		} else if(entry instanceof PaletteSeparator) {
 			return EntryType.SEPARATOR;
-		} else if (entry instanceof PaletteStack) {
+		} else if(entry instanceof PaletteStack) {
 			return EntryType.STACK;
-		} else if (entry instanceof AspectCreationEntry) {
+		} else if(entry instanceof AspectCreationEntry) {
 			return EntryType.ASPECT_TOOL;
-		} else if (entry instanceof ToolEntry) {
+		} else if(entry instanceof ToolEntry) {
 			return EntryType.TOOL;
 		}
 		return EntryType.TOOL;
@@ -91,7 +91,7 @@ public class PaletteEntryProxy {
 	 * Sets the parent for this proxy
 	 * 
 	 * @param parent
-	 *            the parent proxy
+	 *        the parent proxy
 	 */
 	public void setParent(PaletteContainerProxy parent) {
 		this.parent = parent;
@@ -119,7 +119,7 @@ public class PaletteEntryProxy {
 	 * Sets the king of tool it is.
 	 * 
 	 * @param type
-	 *            the type to set
+	 *        the type to set
 	 */
 	public void setType(EntryType type) {
 		this.type = type;

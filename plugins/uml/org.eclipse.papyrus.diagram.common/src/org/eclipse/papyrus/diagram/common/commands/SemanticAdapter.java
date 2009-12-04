@@ -32,9 +32,9 @@ public class SemanticAdapter implements IAdaptable {
 	 * Instantiates a new semantic adapter.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * @param view
-	 *            the view
+	 *        the view
 	 */
 	public SemanticAdapter(EObject element, Object view) {
 		this.element = element;
@@ -46,10 +46,10 @@ public class SemanticAdapter implements IAdaptable {
 	 * {@inheritDoc}
 	 */
 	public Object getAdapter(Class adapter) {
-		if (adapter.equals(EObject.class)) {
+		if(adapter.equals(EObject.class)) {
 			return element;
 		}
-		if (adapter.equals(View.class)) {
+		if(adapter.equals(View.class)) {
 			return view;
 		}
 		return null;
@@ -59,7 +59,7 @@ public class SemanticAdapter implements IAdaptable {
 	 * Sets the element.
 	 * 
 	 * @param element
-	 *            the new element
+	 *        the new element
 	 */
 	// @unused
 	public void setElement(Object element) {
@@ -70,7 +70,7 @@ public class SemanticAdapter implements IAdaptable {
 	 * Sets the view.
 	 * 
 	 * @param view
-	 *            the new view
+	 *        the new view
 	 */
 	public void setView(Object view) {
 		this.view = view;

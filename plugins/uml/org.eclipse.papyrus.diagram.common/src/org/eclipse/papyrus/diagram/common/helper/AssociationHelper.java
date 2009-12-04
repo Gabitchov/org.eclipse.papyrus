@@ -34,16 +34,16 @@ public class AssociationHelper {
 	 * use to change the type of the end with the new type
 	 * 
 	 * @param end
-	 *            source or target?
+	 *        source or target?
 	 * @param association
-	 *            the association that is reconnected
+	 *        the association that is reconnected
 	 * @param newType
-	 *            the new source or the new target
+	 *        the new source or the new target
 	 * @return the CommandResult
 	 */
 	public static CommandResult reconnect(int end, Association association, Type newType) {
 
-		((Property) association.getMemberEnds().get(end)).setType(newType);
+		((Property)association.getMemberEnds().get(end)).setType(newType);
 
 		return CommandResult.newOKCommandResult(association);
 	}

@@ -84,17 +84,17 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				// check this is a check event
-				if (e.detail != SWT.CHECK) {
+				if(e.detail != SWT.CHECK) {
 					return;
 				}
 
 				Object source = e.getSource();
 				Widget item = e.item;
-				if (source instanceof Table && item instanceof TableItem) { // instanceof check also
+				if(source instanceof Table && item instanceof TableItem) { // instanceof check also
 					// that table and item
 					// are not null
-					int maskValue = (Integer) ((TableItem) item).getData();
-					applyMask(maskValue, ((TableItem) item).getChecked());
+					int maskValue = (Integer)((TableItem)item).getData();
+					applyMask(maskValue, ((TableItem)item).getChecked());
 				}
 				refresh();
 			}
@@ -159,15 +159,15 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 	 * Applies the mask to the edited element label
 	 * 
 	 * @param maskValue
-	 *            the value of the mask
+	 *        the value of the mask
 	 * @param checked
-	 *            {@link Boolean} set to <code>true</code> if the mask must be applied
+	 *        {@link Boolean} set to <code>true</code> if the mask must be applied
 	 */
 	protected void applyMask(int maskValue, boolean checked) {
 		// computes the new value to set to the annotation (retrieve old value)
 		int newValue = getMaskManagedLabelEditPolicy(editPart).getCurrentDisplayValue();
 		// if checked, must add the mask to old one
-		if (checked) {
+		if(checked) {
 			newValue = newValue | maskValue; // add the mask to the display value
 		} else {
 			newValue = newValue & ~maskValue; // remove the mask to the display value
@@ -200,8 +200,8 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 		// annotation
 		int displayValue = editPolicy.getCurrentDisplayValue();
 		// refreshes the different buttons
-		for (TableItem item : table.getItems()) {
-			int maskValue = (Integer) item.getData();
+		for(TableItem item : table.getItems()) {
+			int maskValue = (Integer)item.getData();
 			item.setChecked((displayValue & maskValue) == maskValue);
 		}
 	}
@@ -216,14 +216,14 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 
 			public void run() {
 				editPart = getSingleInput();
-				if (editPart != null) {
+				if(editPart != null) {
 					// get the correct policy
 					editPolicy = getMaskManagedLabelEditPolicy(editPart);
-					if (editPolicy == null) {
+					if(editPolicy == null) {
 						Activator.getDefault().getLog().log(
 								new Status(IStatus.WARNING, Activator.PLUGIN_ID,
-										"Trying to display the mask managed Section with an element that does not have the correct edit policy: "
-												+ editPart));
+								"Trying to display the mask managed Section with an element that does not have the correct edit policy: "
+								+ editPart));
 					} else {
 						// dispose previous table items if necessary and create new ones
 						manageTableItems();
@@ -240,7 +240,7 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 	 */
 	protected void manageTableItems() {
 		// unload previous items
-		for (TableItem item : table.getItems()) {
+		for(TableItem item : table.getItems()) {
 			item.dispose();
 		}
 
@@ -253,7 +253,7 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 	 */
 	protected void createItems() {
 		Map<Integer, String> masks = editPolicy.getMasks();
-		for (int maskValue : masks.keySet()) {
+		for(int maskValue : masks.keySet()) {
 			TableItem item = new TableItem(table, SWT.NONE);
 			item.setText("" + masks.get(maskValue)); // returns a default string: ""
 			item.setData(maskValue);
@@ -264,10 +264,10 @@ public class MaskManagedLabelSection extends AbstractNotationPropertiesSection {
 	 * Retrieves the edit policy that manages the mask for the specified edit part
 	 * 
 	 * @param ep
-	 *            the edit part currently selected for which we are displaying the section
+	 *        the edit part currently selected for which we are displaying the section
 	 */
 	private IMaskManagedLabelEditPolicy getMaskManagedLabelEditPolicy(IGraphicalEditPart ep) {
-		return (IMaskManagedLabelEditPolicy) ep
+		return (IMaskManagedLabelEditPolicy)ep
 				.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 	}
 }

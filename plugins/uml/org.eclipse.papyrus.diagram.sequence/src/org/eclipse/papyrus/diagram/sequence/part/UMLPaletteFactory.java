@@ -104,43 +104,43 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATELIFELINE1CREATIONTOOL)) {
+		if(toolId.equals(CREATELIFELINE1CREATIONTOOL)) {
 			return createLifeline1CreationTool();
 		}
-		if (toolId.equals(CREATEEXECUTIONACTION2CREATIONTOOL)) {
+		if(toolId.equals(CREATEEXECUTIONACTION2CREATIONTOOL)) {
 			return createExecutionAction2CreationTool();
 		}
-		if (toolId.equals(CREATEEXECUTIONBEHAVIOUR3CREATIONTOOL)) {
+		if(toolId.equals(CREATEEXECUTIONBEHAVIOUR3CREATIONTOOL)) {
 			return createExecutionBehaviour3CreationTool();
 		}
-		if (toolId.equals(CREATEINTERACTIONUSE4CREATIONTOOL)) {
+		if(toolId.equals(CREATEINTERACTIONUSE4CREATIONTOOL)) {
 			return createInteractionUse4CreationTool();
 		}
-		if (toolId.equals(CREATECOMBINEDFRAGMENT5CREATIONTOOL)) {
+		if(toolId.equals(CREATECOMBINEDFRAGMENT5CREATIONTOOL)) {
 			return createCombinedFragment5CreationTool();
 		}
-		if (toolId.equals(CREATEINTERACTIONOPERAND6CREATIONTOOL)) {
+		if(toolId.equals(CREATEINTERACTIONOPERAND6CREATIONTOOL)) {
 			return createInteractionOperand6CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGESYNC1CREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGESYNC1CREATIONTOOL)) {
 			return createMessageSync1CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGEASYNC2CREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGEASYNC2CREATIONTOOL)) {
 			return createMessageAsync2CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGEREPLY3CREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGEREPLY3CREATIONTOOL)) {
 			return createMessageReply3CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGECREATE4CREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGECREATE4CREATIONTOOL)) {
 			return createMessageCreate4CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGEDELETE5CREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGEDELETE5CREATIONTOOL)) {
 			return createMessageDelete5CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGELOST6CREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGELOST6CREATIONTOOL)) {
 			return createMessageLost6CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGEFOUND7CREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGEFOUND7CREATIONTOOL)) {
 			return createMessageFound7CreationTool();
 		}
 

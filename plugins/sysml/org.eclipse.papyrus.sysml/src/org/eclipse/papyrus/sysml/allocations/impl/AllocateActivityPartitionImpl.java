@@ -23,8 +23,7 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.uml2.uml.ActivityPartition;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Allocate Activity Partition</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Allocate Activity Partition</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -73,9 +72,9 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION:
-			if (resolve)
+			if(resolve)
 				return getBase_ActivityPartition();
 			return basicGetBase_ActivityPartition();
 		}
@@ -89,7 +88,7 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION:
 			return base_ActivityPartition != null;
 		}
@@ -103,9 +102,9 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION:
-			setBase_ActivityPartition((ActivityPartition) newValue);
+			setBase_ActivityPartition((ActivityPartition)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -128,9 +127,9 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION:
-			setBase_ActivityPartition((ActivityPartition) null);
+			setBase_ActivityPartition((ActivityPartition)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -142,11 +141,11 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 	 * @generated
 	 */
 	public ActivityPartition getBase_ActivityPartition() {
-		if (base_ActivityPartition != null && base_ActivityPartition.eIsProxy()) {
-			InternalEObject oldBase_ActivityPartition = (InternalEObject) base_ActivityPartition;
-			base_ActivityPartition = (ActivityPartition) eResolveProxy(oldBase_ActivityPartition);
-			if (base_ActivityPartition != oldBase_ActivityPartition) {
-				if (eNotificationRequired())
+		if(base_ActivityPartition != null && base_ActivityPartition.eIsProxy()) {
+			InternalEObject oldBase_ActivityPartition = (InternalEObject)base_ActivityPartition;
+			base_ActivityPartition = (ActivityPartition)eResolveProxy(oldBase_ActivityPartition);
+			if(base_ActivityPartition != oldBase_ActivityPartition) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION,
 							oldBase_ActivityPartition, base_ActivityPartition));
@@ -163,7 +162,7 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 	public void setBase_ActivityPartition(ActivityPartition newBase_ActivityPartition) {
 		ActivityPartition oldBase_ActivityPartition = base_ActivityPartition;
 		base_ActivityPartition = newBase_ActivityPartition;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, oldBase_ActivityPartition,
 					base_ActivityPartition));

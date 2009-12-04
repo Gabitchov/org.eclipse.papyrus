@@ -73,18 +73,18 @@ public class ActionExecutionSpecificationCreateCommand extends CreateElementComm
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
 
 		// AES : Added to contain the ActionExecutionSpecification inside the
 		// Interaction, not in the Lifeline (where it is shown)
-		if (container instanceof Lifeline) {
-			return ((Lifeline) container).getInteraction();
+		if(container instanceof Lifeline) {
+			return ((Lifeline)container).getInteraction();
 		}
 
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -104,16 +104,16 @@ public class ActionExecutionSpecificationCreateCommand extends CreateElementComm
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		ActionExecutionSpecification newElement = (ActionExecutionSpecification) super.doDefaultElementCreation();
-		if (newElement != null) {
-			Interaction owner = (Interaction) getElementToEdit();
+		ActionExecutionSpecification newElement = (ActionExecutionSpecification)super.doDefaultElementCreation();
+		if(newElement != null) {
+			Interaction owner = (Interaction)getElementToEdit();
 			owner.getFragments().add(newElement);
 
 			UMLElementTypes.init_ActionExecutionSpecification_3006(newElement);
 
 			MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
 
-			if (newElement.getAction() == null) {
+			if(newElement.getAction() == null) {
 				Action action = owner.createAction("Action", UMLPackage.eINSTANCE.getOpaqueAction());
 				newElement.setAction(action);
 			}

@@ -35,22 +35,22 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	 * Organizes the given <Collection> of <IActions>.
 	 * 
 	 * @param createActions
-	 *            <Collection> of <IActions> to organize
+	 *        <Collection> of <IActions> to organize
 	 * @param token
-	 *            <String> that the <StringTokenizer> will use to trim each <IAction>'s text.
+	 *        <String> that the <StringTokenizer> will use to trim each <IAction>'s text.
 	 * 
 	 * @return a <Map> associating <String>s to <Collection>s of <IAction>s.
 	 */
 	protected Map<String, Collection<IAction>> extractSubmenuActions(Collection<IAction> createActions, String token) {
 		Map<String, Collection<IAction>> createSubmenuActions = new LinkedHashMap<String, Collection<IAction>>();
-		if (createActions != null) {
-			for (Iterator<IAction> actions = createActions.iterator(); actions.hasNext();) {
+		if(createActions != null) {
+			for(Iterator<IAction> actions = createActions.iterator(); actions.hasNext();) {
 				IAction action = actions.next();
 				StringTokenizer st = new StringTokenizer(action.getText(), token);
-				if (st.countTokens() == 2) {
+				if(st.countTokens() == 2) {
 					String text = st.nextToken().trim();
 					Collection<IAction> submenuActions = createSubmenuActions.get(text);
-					if (submenuActions == null) {
+					if(submenuActions == null) {
 						createSubmenuActions.put(text, submenuActions = new ArrayList<IAction>());
 					}
 					action.setText(st.nextToken().trim());
@@ -66,17 +66,17 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	 * Fills a <IContributionManager> with the given <Collection> of <IActions>.
 	 * 
 	 * @param manager
-	 *            the manager
+	 *        the manager
 	 * @param actions
-	 *            the actions
+	 *        the actions
 	 * @param contributionID
-	 *            the contribution id
+	 *        the contribution id
 	 */
 	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
 			String contributionID) {
-		if (actions != null) {
-			for (IAction action : actions) {
-				if (contributionID != null) {
+		if(actions != null) {
+			for(IAction action : actions) {
+				if(contributionID != null) {
 					manager.insertBefore(contributionID, action);
 				} else {
 					manager.add(action);
@@ -90,18 +90,18 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	 * <String>s to <Collection>s of <IAction>s.
 	 * 
 	 * @param manager
-	 *            the manager
+	 *        the manager
 	 * @param submenuActions
-	 *            the submenu actions
+	 *        the submenu actions
 	 * @param contributionID
-	 *            the contribution id
+	 *        the contribution id
 	 */
 	protected void populateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions,
 			String contributionID) {
-		if (submenuActions != null) {
-			for (Map.Entry<String, Collection<IAction>> entry : submenuActions.entrySet()) {
+		if(submenuActions != null) {
+			for(Map.Entry<String, Collection<IAction>> entry : submenuActions.entrySet()) {
 				MenuManager submenuManager = new MenuManager(entry.getKey());
-				if (contributionID != null) {
+				if(contributionID != null) {
 					manager.insertBefore(contributionID, submenuManager);
 				} else {
 					manager.add(submenuManager);

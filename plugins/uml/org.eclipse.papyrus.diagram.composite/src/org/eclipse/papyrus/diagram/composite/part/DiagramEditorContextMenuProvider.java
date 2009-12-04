@@ -51,7 +51,7 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	 * @generated
 	 */
 	public void dispose() {
-		if (deleteAction != null) {
+		if(deleteAction != null) {
 			deleteAction.dispose();
 			deleteAction = null;
 		}
@@ -64,16 +64,16 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {
-			TransactionUtil.getEditingDomain((EObject) getViewer().getContents().getModel()).runExclusive(
+			TransactionUtil.getEditingDomain((EObject)getViewer().getContents().getModel()).runExclusive(
 					new Runnable() {
 
-						public void run() {
-							ContributionItemService.getInstance().contributeToPopupMenu(
-									DiagramEditorContextMenuProvider.this, part);
-							menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
-							menu.appendToGroup("editGroup", deleteAction);
-						}
-					});
+				public void run() {
+					ContributionItemService.getInstance().contributeToPopupMenu(
+							DiagramEditorContextMenuProvider.this, part);
+					menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
+					menu.appendToGroup("editGroup", deleteAction);
+				}
+			});
 		} catch (Exception e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Error building context menu", e);
 		}

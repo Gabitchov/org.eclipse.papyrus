@@ -32,65 +32,65 @@ import java.util.List;
  */
 public final class MethodCallExpr extends Expression {
 
-    private Expression scope;
+	private Expression scope;
 
-    private List<Type> typeArgs;
+	private List<Type> typeArgs;
 
-    private String name;
+	private String name;
 
-    private List<Expression> args;
+	private List<Expression> args;
 
-    public MethodCallExpr() {
-    }
+	public MethodCallExpr() {
+	}
 
-    public MethodCallExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression scope, List<Type> typeArgs, String name, List<Expression> args) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.scope = scope;
-        this.typeArgs = typeArgs;
-        this.name = name;
-        this.args = args;
-    }
+	public MethodCallExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression scope, List<Type> typeArgs, String name, List<Expression> args) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.scope = scope;
+		this.typeArgs = typeArgs;
+		this.name = name;
+		this.args = args;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public List<Expression> getArgs() {
-        return args;
-    }
+	public List<Expression> getArgs() {
+		return args;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Expression getScope() {
-        return scope;
-    }
+	public Expression getScope() {
+		return scope;
+	}
 
-    public List<Type> getTypeArgs() {
-        return typeArgs;
-    }
+	public List<Type> getTypeArgs() {
+		return typeArgs;
+	}
 
-    public void setArgs(List<Expression> args) {
-        this.args = args;
-    }
+	public void setArgs(List<Expression> args) {
+		this.args = args;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setScope(Expression scope) {
-        this.scope = scope;
-    }
+	public void setScope(Expression scope) {
+		this.scope = scope;
+	}
 
-    public void setTypeArgs(List<Type> typeArgs) {
-        this.typeArgs = typeArgs;
-    }
+	public void setTypeArgs(List<Type> typeArgs) {
+		this.typeArgs = typeArgs;
+	}
 
 }

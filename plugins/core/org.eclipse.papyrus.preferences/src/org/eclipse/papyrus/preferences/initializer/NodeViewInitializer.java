@@ -38,9 +38,9 @@ public class NodeViewInitializer extends AbstractViewInitializer {
 	 * Default Constructor
 	 * 
 	 * @param view
-	 *            the node view to initialize
+	 *        the node view to initialize
 	 * @param store
-	 *            the preference store to use
+	 *        the preference store to use
 	 */
 	// @unused
 	public NodeViewInitializer(View view, IPreferenceStore store) {
@@ -51,12 +51,12 @@ public class NodeViewInitializer extends AbstractViewInitializer {
 	 * Initialize the fill color.
 	 * 
 	 * @param preferenceFillColorName
-	 *            the name of the preference where is stored the value of the color.
+	 *        the name of the preference where is stored the value of the color.
 	 */
 	// @unused
 	public void initFillColor(String preferenceFillColorName) {
-		FillStyle fillStyle = (FillStyle) getView().getStyle(NotationPackage.Literals.FILL_STYLE);
-		if (fillStyle != null) {
+		FillStyle fillStyle = (FillStyle)getView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(fillStyle != null) {
 			// fill color
 			RGB fillRGB = PreferenceConverter.getColor(getStore(), preferenceFillColorName);
 			fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());

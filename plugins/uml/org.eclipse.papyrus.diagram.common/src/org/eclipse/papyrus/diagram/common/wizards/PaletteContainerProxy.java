@@ -18,7 +18,7 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	 * Creates a new PaletteContainer
 	 * 
 	 * @param drawer
-	 *            the drawer to cache
+	 *        the drawer to cache
 	 */
 	public PaletteContainerProxy(PaletteContainer drawer) {
 		super(drawer);
@@ -29,14 +29,14 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	 */
 	@Override
 	public PaletteContainer getEntry() {
-		return (PaletteContainer) super.getEntry();
+		return (PaletteContainer)super.getEntry();
 	}
 
 	/**
 	 * Method to add a child proxy to this proxy
 	 * 
 	 * @param entry
-	 *            the entry to add
+	 *        the entry to add
 	 */
 	public void addChild(PaletteEntryProxy entry) {
 		children.add(entry);
@@ -47,9 +47,9 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	 * Method to add a child proxy to this proxy, before the given element
 	 * 
 	 * @param entry
-	 *            the entry to add
+	 *        the entry to add
 	 * @param nextElement
-	 *            the element that should be just after the entry
+	 *        the element that should be just after the entry
 	 */
 	public void addChild(PaletteEntryProxy entry, PaletteEntryProxy nextElement) {
 		children.add(children.indexOf(nextElement), entry);
@@ -60,7 +60,7 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	 * Remove the specified children from its parent
 	 * 
 	 * @param proxy
-	 *            the proxy to remove
+	 *        the proxy to remove
 	 */
 	public void removeChild(PaletteEntryProxy proxy) {
 		children.remove(proxy);

@@ -51,10 +51,10 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 * Is this editor for the provided object ?
 	 */
 	public boolean isEditorFor(Object root) {
-		if (root instanceof Diagram) {
-			Diagram diagram = (Diagram) root;
+		if(root instanceof Diagram) {
+			Diagram diagram = (Diagram)root;
 
-			if (EMF_DIAGRAM_TYPE.equals(diagram.getType())) {
+			if(EMF_DIAGRAM_TYPE.equals(diagram.getType())) {
 				return true;
 			}
 		}
@@ -67,7 +67,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 */
 	public IEditorPart createEditorFor(IEditorContext context, Object root) {
 		assert (context instanceof BackboneContext);
-		return createEditorFor((BackboneContext) context, root);
+		return createEditorFor((BackboneContext)context, root);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 * 
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry serviceRegistry) {
-		return new EmfTreeEditorModel((Diagram) pageIdentifier, serviceRegistry);
+		return new EmfTreeEditorModel((Diagram)pageIdentifier, serviceRegistry);
 	}
 
 	/**
@@ -97,10 +97,10 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	 * 
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
-		if (pageIdentifier instanceof Diagram) {
-			Diagram diagram = (Diagram) pageIdentifier;
+		if(pageIdentifier instanceof Diagram) {
+			Diagram diagram = (Diagram)pageIdentifier;
 
-			if (EMF_DIAGRAM_TYPE.equals(diagram.getType())) {
+			if(EMF_DIAGRAM_TYPE.equals(diagram.getType())) {
 				return true;
 			}
 		}
@@ -168,7 +168,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 			String actionBarId = editorDescriptor.getActionBarContributorId();
 
 			// Do nothing if no EditorActionBarContributor is specify.
-			if (actionBarId == null || actionBarId.length() == 0) {
+			if(actionBarId == null || actionBarId.length() == 0) {
 				return null;
 			}
 
@@ -177,7 +177,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 			// Get ServiceRegistry
 			ActionBarContributorRegistry registry;
 			try {
-				registry = (ActionBarContributorRegistry) servicesRegistry
+				registry = (ActionBarContributorRegistry)servicesRegistry
 						.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
@@ -213,7 +213,7 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 		 */
 		public Image getTabIcon() {
 			ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
-			if (imageDescriptor == null)
+			if(imageDescriptor == null)
 				return null;
 
 			return imageDescriptor.createImage();

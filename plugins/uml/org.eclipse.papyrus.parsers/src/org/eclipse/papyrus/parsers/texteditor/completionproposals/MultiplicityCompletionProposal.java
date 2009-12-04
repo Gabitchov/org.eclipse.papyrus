@@ -68,15 +68,15 @@ public class MultiplicityCompletionProposal implements ICompletionProposalComput
 		ICompletionProposal proposal = null;
 
 		// first, add [] ans set the cursor after left curly
-		if (EMPTY_MULTIPLICITY.startsWith(prefix)) {
+		if(EMPTY_MULTIPLICITY.startsWith(prefix)) {
 			proposal = new CompletionProposal(EMPTY_MULTIPLICITY, documentOffset - prefix.length(), prefix.length()
 					+ selectionRange, 1, null, "[m..n]", null, "Multiplicity");
 			v.add(proposal);
 		}
 
 		// adds all standard multiplicities (static strings...)
-		for (int i = 0; i < multiplicityStrings.length; i++) {
-			if (multiplicityStrings[i].startsWith(prefix)) {
+		for(int i = 0; i < multiplicityStrings.length; i++) {
+			if(multiplicityStrings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(multiplicityStrings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, multiplicityStrings[i].length(), null, multiplicityStringName[i], null,

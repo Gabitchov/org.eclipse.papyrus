@@ -51,9 +51,9 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 */
 	public boolean provides(IOperation operation) {
 		// install editpolicy in the case of classifer
-		if (operation instanceof CreateEditPoliciesOperation) {
-			EditPart editPart = ((CreateEditPoliciesOperation) operation).getEditPart();
-			if (editPart instanceof INodeEditPart)
+		if(operation instanceof CreateEditPoliciesOperation) {
+			EditPart editPart = ((CreateEditPoliciesOperation)operation).getEditPart();
+			if(editPart instanceof INodeEditPart)
 				return true;
 		}
 		return false;

@@ -29,16 +29,16 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 		boolean openInNewEditor = false;
 
 		CachedResourcesEditorInput newCachedEditorInput = null;
-		if (newInput instanceof CachedResourcesEditorInput) {
-			newCachedEditorInput = (CachedResourcesEditorInput) newInput;
+		if(newInput instanceof CachedResourcesEditorInput) {
+			newCachedEditorInput = (CachedResourcesEditorInput)newInput;
 			openInNewEditor = newCachedEditorInput.isOpenInNewEditor();
 		}
 
-		if (openInNewEditor) {
+		if(openInNewEditor) {
 			// we want to open in a new editor, alas if the IEditorInput is
 			// exactly the same (the same resource AND diagram) we can reuse
 			// this editor
-			if (CachedResourcesEditorInput.checkSameEditorInputWithFragment(
+			if(CachedResourcesEditorInput.checkSameEditorInputWithFragment(
 					oldInput, newCachedEditorInput)) {
 				return true;
 			}
@@ -52,7 +52,7 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 		URI oldUri = URIUtil.getUri(oldInput, editorID);
 		URI newUri = URIUtil.getUri(newInput, editorID);
 
-		if (oldUri != null && newUri != null) {
+		if(oldUri != null && newUri != null) {
 			return oldUri.equals(newUri);
 		}
 

@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Problem}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Problem} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class ProblemItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_CommentPropertyDescriptor(object);
@@ -77,11 +77,11 @@ public class ProblemItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	protected void addBase_CommentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Problem_base_Comment_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_Problem_base_Comment_feature",
-								"_UI_Problem_type"), ModelelementsPackage.Literals.PROBLEM__BASE_COMMENT, true, false,
-						true, null, null, null));
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Problem_base_Comment_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Problem_base_Comment_feature",
+				"_UI_Problem_type"), ModelelementsPackage.Literals.PROBLEM__BASE_COMMENT, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -107,8 +107,7 @@ public class ProblemItemProvider extends ItemProviderAdapter implements IEditing
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -40,8 +40,8 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 */
 	public String getText(Object element) {
-		if (element instanceof ViewInfo) {
-			ViewInfo viewInfo = (ViewInfo) element;
+		if(element instanceof ViewInfo) {
+			ViewInfo viewInfo = (ViewInfo)element;
 			return getLabelType(viewInfo) + " : " + viewInfo.getLabel() + " - " + viewInfo.getVisualID();
 		}
 		return null;
@@ -91,12 +91,12 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	 * Gets the label type.
 	 * 
 	 * @param info
-	 *            the info
+	 *        the info
 	 * 
 	 * @return the label type
 	 */
 	protected String getLabelType(ViewInfo info) {
-		switch (info.getType()) {
+		switch(info.getType()) {
 		case ViewInfo.None:
 			return "Unknown";
 		case ViewInfo.Head:

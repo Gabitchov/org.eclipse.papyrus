@@ -53,18 +53,24 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class GeneralizationPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, GeneralizationPropertiesEditionPart {
 
 	protected Button isSubstitutable;
+
 	protected EMFListEditUtil generalizationSetEditUtil;
+
 	protected ReferencesTable<? extends EObject> generalizationSet;
+
 	protected List<ViewerFilter> generalizationSetBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> generalizationSetFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public GeneralizationPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -72,25 +78,25 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createGeneralGroup(view);
 
 		// Start of user code for additional ui definition
@@ -111,6 +117,7 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 		createIsSubstitutableCheckbox(generalGroup);
 		createGeneralizationSetAdvancedReferencesTable(generalGroup);
 	}
+
 	protected void createIsSubstitutableCheckbox(Composite parent) {
 		isSubstitutable = new Button(parent, SWT.CHECK);
 		isSubstitutable.setText(UMLMessages.GeneralizationPropertiesEditionPart_IsSubstitutableLabel);
@@ -119,19 +126,21 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 		isSubstitutable.setLayoutData(isSubstitutableData);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Generalization.isSubstitutable, UMLViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createGeneralizationSetAdvancedReferencesTable(Composite parent) {
 		this.generalizationSet = new ReferencesTable<GeneralizationSet>(UMLMessages.GeneralizationPropertiesEditionPart_GeneralizationSetLabel, new ReferencesTableListener<GeneralizationSet>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<GeneralizationSet> dialog = new TabElementTreeSelectionDialog<GeneralizationSet>(resourceSet, generalizationSetFilters, generalizationSetBusinessFilters,
-				"GeneralizationSet", UMLPackage.eINSTANCE.getGeneralizationSet(), current.eResource()) {
+						"GeneralizationSet", UMLPackage.eINSTANCE.getGeneralizationSet(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!generalizationSetEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!generalizationSetEditUtil.getVirtualList().contains(elem))
 								generalizationSetEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(GeneralizationPropertiesEditionPartImpl.this, UMLViewsRepository.Generalization.generalizationSet,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						generalizationSet.refresh();
 					}
@@ -139,10 +148,21 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 				};
 				dialog.open();
 			}
-			public void handleEdit(GeneralizationSet element) { editGeneralizationSet(element); }
-			public void handleMove(GeneralizationSet element, int oldIndex, int newIndex) { moveGeneralizationSet(element, oldIndex, newIndex); }
-			public void handleRemove(GeneralizationSet element) { removeFromGeneralizationSet(element); }
-			public void navigateTo(GeneralizationSet element) { }
+
+			public void handleEdit(GeneralizationSet element) {
+				editGeneralizationSet(element);
+			}
+
+			public void handleMove(GeneralizationSet element, int oldIndex, int newIndex) {
+				moveGeneralizationSet(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(GeneralizationSet element) {
+				removeFromGeneralizationSet(element);
+			}
+
+			public void navigateTo(GeneralizationSet element) {
+			}
 		});
 		this.generalizationSet.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Generalization.generalizationSet, UMLViewsRepository.SWT_KIND));
 		this.generalizationSet.createControls(parent);
@@ -188,10 +208,10 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				generalizationSetEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				generalizationSet.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -227,7 +247,7 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#setIsSubstitutable(Boolean newValue)
 	 */
 	public void setIsSubstitutable(Boolean newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			isSubstitutable.setSelection(newValue.booleanValue());
 		} else {
 			isSubstitutable.setSelection(false);
@@ -273,12 +293,13 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#initGeneralizationSet(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#initGeneralizationSet(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initGeneralizationSet(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			generalizationSetEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			generalizationSetEditUtil = new EMFListEditUtil(current, feature);
@@ -291,7 +312,7 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.GeneralizationPropertiesEditionPart#updateGeneralizationSet(EObject newValue)
 	 */
 	public void updateGeneralizationSet(EObject newValue) {
-		if(generalizationSetEditUtil != null){
+		if(generalizationSetEditUtil != null) {
 			generalizationSetEditUtil.reinit(newValue);
 			generalizationSet.refresh();
 		}
@@ -331,9 +352,6 @@ public class GeneralizationPropertiesEditionPartImpl extends CompositeProperties
 	public void unsetMessageForGeneralizationSet() {
 
 	}
-
-
-
 
 
 

@@ -33,7 +33,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 * Constructor.
 	 * 
 	 * @param emfCommand
-	 *            the emf command
+	 *        the emf command
 	 */
 	public EMFtoGMFCommandWrapper(Command emfCommand) {
 		super(emfCommand.getLabel());
@@ -61,7 +61,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
 			throws ExecutionException {
 
-		if (canExecute()) {
+		if(canExecute()) {
 			emfCommand.execute();
 		}
 
@@ -93,7 +93,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info)
 			throws ExecutionException {
 
-		if (canUndo()) {
+		if(canUndo()) {
 			emfCommand.undo();
 		}
 

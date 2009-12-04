@@ -21,18 +21,18 @@ import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.papyrus.diagram.common.parser.lookup.OCLLookup;
 
 /**
- * @generated 
+ * @generated
  */
 public class UMLOCLFactory {
 
 	/**
-	 * @generated 
+	 * @generated
 	 */
 	private UMLOCLFactory() {
 	}
 
 	/**
-	 * @generated 
+	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body,
 			EClassifier context, Map environment) {
@@ -40,7 +40,7 @@ public class UMLOCLFactory {
 	}
 
 	/**
-	 * @generated 
+	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body,
 			EClassifier context) {
@@ -48,22 +48,22 @@ public class UMLOCLFactory {
 	}
 
 	/**
-	 * @generated 
+	 * @generated
 	 */
 	private static class Expression extends UMLAbstractExpression {
 
 		/**
-		 * @generated 
+		 * @generated
 		 */
 		private WeakReference queryRef;
 
 		/**
-		 * @generated 
+		 * @generated
 		 */
 		private final org.eclipse.ocl.ecore.OCL oclInstance;
 
 		/**
-		 * @generated 
+		 * @generated
 		 */
 		public Expression(String body, EClassifier context, Map environment) {
 			super(body, context);
@@ -72,14 +72,14 @@ public class UMLOCLFactory {
 		}
 
 		/**
-		 * @generated 
+		 * @generated
 		 */
 		protected Query getQuery() {
 			Query oclQuery = null;
-			if (this.queryRef != null) {
-				oclQuery = (Query) this.queryRef.get();
+			if(this.queryRef != null) {
+				oclQuery = (Query)this.queryRef.get();
 			}
-			if (oclQuery == null) {
+			if(oclQuery == null) {
 				OCLHelper oclHelper = oclInstance.createOCLHelper();
 				oclHelper.setContext(context());
 				try {
@@ -95,19 +95,19 @@ public class UMLOCLFactory {
 		}
 
 		/**
-		 * @generated 
+		 * @generated
 		 */
 		@Override
 		protected Object doEvaluate(Object context, Map env) {
 			Query oclQuery = getQuery();
-			if (oclQuery == null) {
+			if(oclQuery == null) {
 				return null;
 			}
 			EvaluationEnvironment evalEnv = oclQuery.getEvaluationEnvironment();
 			// init environment
-			for (Iterator it = env.entrySet().iterator(); it.hasNext();) {
-				Map.Entry nextEntry = (Map.Entry) it.next();
-				evalEnv.replace((String) nextEntry.getKey(), nextEntry
+			for(Iterator it = env.entrySet().iterator(); it.hasNext();) {
+				Map.Entry nextEntry = (Map.Entry)it.next();
+				evalEnv.replace((String)nextEntry.getKey(), nextEntry
 						.getValue());
 			}
 			try {
@@ -126,31 +126,31 @@ public class UMLOCLFactory {
 		 * @generated
 		 */
 		private void initExtentMap(Object context) {
-			if (!getStatus().isOK() || context == null) {
+			if(!getStatus().isOK() || context == null) {
 				return;
 			}
 			final Query queryToInit = getQuery();
 			final Object extentContext = context;
 			queryToInit.getExtentMap().clear();
-			if (queryToInit.queryText() != null
+			if(queryToInit.queryText() != null
 					&& queryToInit.queryText().indexOf(
-							PredefinedType.ALL_INSTANCES_NAME) >= 0) {
+					PredefinedType.ALL_INSTANCES_NAME) >= 0) {
 				AbstractVisitor visitior = new AbstractVisitor() {
 
 					private boolean usesAllInstances = false;
 
 					public Object visitOperationCallExp(OperationCallExp oc) {
-						if (!usesAllInstances) {
+						if(!usesAllInstances) {
 							usesAllInstances = PredefinedType.ALL_INSTANCES == oc
 									.getOperationCode();
-							if (usesAllInstances) {
+							if(usesAllInstances) {
 								queryToInit
 										.getExtentMap()
 										.putAll(
-												oclInstance
-														.getEvaluationEnvironment()
-														.createExtentMap(
-																extentContext));
+										oclInstance
+										.getEvaluationEnvironment()
+										.createExtentMap(
+										extentContext));
 							}
 						}
 						return super.visitOperationCallExp(oc);
@@ -161,19 +161,19 @@ public class UMLOCLFactory {
 		}
 
 		/**
-		 * @generated 
+		 * @generated
 		 */
 		private static void initCustomEnv(Environment ecoreEnv, Map environment) {
-			for (Iterator it = environment.keySet().iterator(); it.hasNext();) {
-				String varName = (String) it.next();
-				EClassifier varType = (EClassifier) environment.get(varName);
+			for(Iterator it = environment.keySet().iterator(); it.hasNext();) {
+				String varName = (String)it.next();
+				EClassifier varType = (EClassifier)environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName,
 						varType), false);
 			}
 		}
 
 		/**
-		 * @generated 
+		 * @generated
 		 */
 		private static Variable createVar(Environment ecoreEnv, String name,
 				EClassifier type) {
@@ -190,10 +190,11 @@ public class UMLOCLFactory {
 	public static OCLLookup.Expression getOCLLookupExpression(String body,
 			EClassifier context) {
 		final UMLAbstractExpression expression = getExpression(body, context);
-		if (!expression.getStatus().isOK()) {
+		if(!expression.getStatus().isOK()) {
 			throw new IllegalArgumentException("Bad OCL:" + body);
 		}
 		return new OCLLookup.Expression() {
+
 			public Object evaluate(Object context) {
 				return expression.evaluate(context);
 			}

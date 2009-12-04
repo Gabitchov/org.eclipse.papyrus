@@ -40,13 +40,13 @@ public class TemplateParameterParser implements IParser {
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final TemplateParameter templateParam = ((TemplateParameter) ((EObjectAdapter) element).getRealObject());
-			if (templateParam.getOwnedParameteredElement() == null) {
+		if(element instanceof EObjectAdapter) {
+			final TemplateParameter templateParam = ((TemplateParameter)((EObjectAdapter)element).getRealObject());
+			if(templateParam.getOwnedParameteredElement() == null) {
 				return "<UNDEFINED>";
 			}
-			if (templateParam.getOwnedParameteredElement() instanceof NamedElement) {
-				NamedElement namedElement = (NamedElement) templateParam.getOwnedParameteredElement();
+			if(templateParam.getOwnedParameteredElement() instanceof NamedElement) {
+				NamedElement namedElement = (NamedElement)templateParam.getOwnedParameteredElement();
 				return namedElement.getName() + ": " + namedElement.eClass().getName();
 			}
 

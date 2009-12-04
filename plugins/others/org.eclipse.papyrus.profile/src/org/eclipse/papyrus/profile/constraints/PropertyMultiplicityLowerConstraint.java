@@ -29,10 +29,10 @@ public class PropertyMultiplicityLowerConstraint extends AbstractModelConstraint
 
 	public IStatus validate(IValidationContext ctx) {
 
-		if (ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
-			Property property = (Property) ctx.getTarget();
+		if(ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
+			Property property = (Property)ctx.getTarget();
 
-			if (!ProfileConstraintUtils.hasLowerMultiplicityRequired(property)) {
+			if(!ProfileConstraintUtils.hasLowerMultiplicityRequired(property)) {
 				return ctx.createFailureStatus(ctx.getTarget());
 			}
 		}

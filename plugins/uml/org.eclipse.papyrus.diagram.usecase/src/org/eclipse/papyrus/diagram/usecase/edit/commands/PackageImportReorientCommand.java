@@ -46,13 +46,13 @@ public class PackageImportReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof PackageImport) {
+		if(false == getElementToEdit() instanceof PackageImport) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -62,7 +62,7 @@ public class PackageImportReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Namespace && newEnd instanceof Namespace)) {
+		if(!(oldEnd instanceof Namespace && newEnd instanceof Namespace)) {
 			return false;
 		}
 		Package target = getLink().getImportedPackage();
@@ -73,13 +73,13 @@ public class PackageImportReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Package && newEnd instanceof Package)) {
+		if(!(oldEnd instanceof Package && newEnd instanceof Package)) {
 			return false;
 		}
-		if (!(getLink().eContainer() instanceof Namespace)) {
+		if(!(getLink().eContainer() instanceof Namespace)) {
 			return false;
 		}
-		Namespace source = (Namespace) getLink().eContainer();
+		Namespace source = (Namespace)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistPackageImport_4019(source, getNewTarget());
 	}
 
@@ -87,13 +87,13 @@ public class PackageImportReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -120,34 +120,34 @@ public class PackageImportReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected PackageImport getLink() {
-		return (PackageImport) getElementToEdit();
+		return (PackageImport)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Namespace getOldSource() {
-		return (Namespace) oldEnd;
+		return (Namespace)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Namespace getNewSource() {
-		return (Namespace) newEnd;
+		return (Namespace)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Package getOldTarget() {
-		return (Package) oldEnd;
+		return (Package)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Package getNewTarget() {
-		return (Package) newEnd;
+		return (Package)newEnd;
 	}
 }

@@ -54,7 +54,7 @@ public class BlocksSwitch<T> {
 	 * @generated
 	 */
 	public BlocksSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = BlocksPackage.eINSTANCE;
 		}
 	}
@@ -65,7 +65,7 @@ public class BlocksSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Binding Connector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -80,7 +80,7 @@ public class BlocksSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Block</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -90,14 +90,13 @@ public class BlocksSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Connector Property</em>
-	 * '. <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * Returns the result of interpreting the object as an instance of '<em>Connector Property</em> '. <!-- begin-user-doc --> This implementation
+	 * returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Connector Property</em>
-	 *         '.
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Connector Property</em> '.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -111,7 +110,7 @@ public class BlocksSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Dimension</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -121,14 +120,13 @@ public class BlocksSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Distributed Property</em>'. <!-- begin-user-doc --> This implementation returns null;
+	 * Returns the result of interpreting the object as an instance of ' <em>Distributed Property</em>'. <!-- begin-user-doc --> This implementation
+	 * returns null;
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Distributed Property</em>'.
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of ' <em>Distributed Property</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -137,14 +135,13 @@ public class BlocksSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Nested Connector End</em>'. <!-- begin-user-doc --> This implementation returns null;
+	 * Returns the result of interpreting the object as an instance of ' <em>Nested Connector End</em>'. <!-- begin-user-doc --> This implementation
+	 * returns null;
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Nested Connector End</em>'.
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of ' <em>Nested Connector End</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -153,14 +150,13 @@ public class BlocksSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Participant Property</em>'. <!-- begin-user-doc --> This implementation returns null;
+	 * Returns the result of interpreting the object as an instance of ' <em>Participant Property</em>'. <!-- begin-user-doc --> This implementation
+	 * returns null;
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Participant Property</em>'.
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of ' <em>Participant Property</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -169,14 +165,13 @@ public class BlocksSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Property Specific Type</em>'. <!-- begin-user-doc --> This implementation returns null;
+	 * Returns the result of interpreting the object as an instance of ' <em>Property Specific Type</em>'. <!-- begin-user-doc --> This implementation
+	 * returns null;
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Property Specific Type</em>'.
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of ' <em>Property Specific Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -190,7 +185,7 @@ public class BlocksSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -205,7 +200,7 @@ public class BlocksSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Value Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -220,7 +215,7 @@ public class BlocksSwitch<T> {
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -237,7 +232,7 @@ public class BlocksSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if(theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
@@ -264,74 +259,84 @@ public class BlocksSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case BlocksPackage.BLOCK: {
-			Block block = (Block) theEObject;
+		switch(classifierID) {
+		case BlocksPackage.BLOCK:
+		{
+			Block block = (Block)theEObject;
 			T result = caseBlock(block);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.DISTRIBUTED_PROPERTY: {
-			DistributedProperty distributedProperty = (DistributedProperty) theEObject;
+		case BlocksPackage.DISTRIBUTED_PROPERTY:
+		{
+			DistributedProperty distributedProperty = (DistributedProperty)theEObject;
 			T result = caseDistributedProperty(distributedProperty);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.DIMENSION: {
-			Dimension dimension = (Dimension) theEObject;
+		case BlocksPackage.DIMENSION:
+		{
+			Dimension dimension = (Dimension)theEObject;
 			T result = caseDimension(dimension);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.UNIT: {
-			Unit unit = (Unit) theEObject;
+		case BlocksPackage.UNIT:
+		{
+			Unit unit = (Unit)theEObject;
 			T result = caseUnit(unit);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.VALUE_TYPE: {
-			ValueType valueType = (ValueType) theEObject;
+		case BlocksPackage.VALUE_TYPE:
+		{
+			ValueType valueType = (ValueType)theEObject;
 			T result = caseValueType(valueType);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.NESTED_CONNECTOR_END: {
-			NestedConnectorEnd nestedConnectorEnd = (NestedConnectorEnd) theEObject;
+		case BlocksPackage.NESTED_CONNECTOR_END:
+		{
+			NestedConnectorEnd nestedConnectorEnd = (NestedConnectorEnd)theEObject;
 			T result = caseNestedConnectorEnd(nestedConnectorEnd);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.PARTICIPANT_PROPERTY: {
-			ParticipantProperty participantProperty = (ParticipantProperty) theEObject;
+		case BlocksPackage.PARTICIPANT_PROPERTY:
+		{
+			ParticipantProperty participantProperty = (ParticipantProperty)theEObject;
 			T result = caseParticipantProperty(participantProperty);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.CONNECTOR_PROPERTY: {
-			ConnectorProperty connectorProperty = (ConnectorProperty) theEObject;
+		case BlocksPackage.CONNECTOR_PROPERTY:
+		{
+			ConnectorProperty connectorProperty = (ConnectorProperty)theEObject;
 			T result = caseConnectorProperty(connectorProperty);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.BINDING_CONNECTOR: {
-			BindingConnector bindingConnector = (BindingConnector) theEObject;
+		case BlocksPackage.BINDING_CONNECTOR:
+		{
+			BindingConnector bindingConnector = (BindingConnector)theEObject;
 			T result = caseBindingConnector(bindingConnector);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case BlocksPackage.PROPERTY_SPECIFIC_TYPE: {
-			PropertySpecificType propertySpecificType = (PropertySpecificType) theEObject;
+		case BlocksPackage.PROPERTY_SPECIFIC_TYPE:
+		{
+			PropertySpecificType propertySpecificType = (PropertySpecificType)theEObject;
 			T result = casePropertySpecificType(propertySpecificType);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}

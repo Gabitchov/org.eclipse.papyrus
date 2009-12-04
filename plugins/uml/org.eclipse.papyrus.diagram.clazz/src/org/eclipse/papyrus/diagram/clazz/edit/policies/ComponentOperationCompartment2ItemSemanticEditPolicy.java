@@ -34,7 +34,7 @@ public class ComponentOperationCompartment2ItemSemanticEditPolicy extends UMLBas
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Operation_3003 == req.getElementType()) {
+		if(UMLElementTypes.Operation_3003 == req.getElementType()) {
 			return getGEFWrapper(new OperationCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

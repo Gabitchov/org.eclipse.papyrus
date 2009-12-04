@@ -34,9 +34,9 @@ public class RegisteredLibrary extends RegisteredElementExtensionPoint {
 	 * Main constructor.
 	 * 
 	 * @param configElt
-	 *            the configuration element that defines the given library
+	 *        the configuration element that defines the given library
 	 * @param ordinal
-	 *            the place in the list of registered libraries
+	 *        the place in the list of registered libraries
 	 */
 	public RegisteredLibrary(IConfigurationElement configElt, int ordinal) {
 		super(configElt, ordinal);
@@ -50,7 +50,7 @@ public class RegisteredLibrary extends RegisteredElementExtensionPoint {
 	public static RegisteredLibrary[] getRegisteredLibraries() {
 
 		// if the list was already computed, returns it (like a cache)
-		if (RegisteredLibraries != null) {
+		if(RegisteredLibraries != null) {
 			return RegisteredLibraries;
 		}
 
@@ -80,10 +80,10 @@ public class RegisteredLibrary extends RegisteredElementExtensionPoint {
 				ExtensionIds.LIBRARY_EXTENSION_ID);
 
 		// Read configuration elements for the current extension
-		for (int j = 0; j < configElements.length; j++) {
+		for(int j = 0; j < configElements.length; j++) {
 			RegisteredLibrary proxy = parseLibraryExtension(configElements[j], libraries.size());
 
-			if (proxy != null) {
+			if(proxy != null) {
 				libraries.add(proxy);
 			}
 		} // end of configElements loop
@@ -100,7 +100,7 @@ public class RegisteredLibrary extends RegisteredElementExtensionPoint {
 	 * @return
 	 */
 	private static RegisteredLibrary parseLibraryExtension(IConfigurationElement configElt, int ordinal) {
-		if (!TAG_LIBRARY.equals(configElt.getName())) {
+		if(!TAG_LIBRARY.equals(configElt.getName())) {
 			return null;
 		}
 		try {
@@ -108,7 +108,7 @@ public class RegisteredLibrary extends RegisteredElementExtensionPoint {
 		} catch (Exception e) {
 
 			String name = configElt.getAttribute(ExtensionIds.ATT_NAME);
-			if (name == null) {
+			if(name == null) {
 				name = "[missing name attribute]";
 			}
 			String msg = "Failed to load library named " + name + " in "

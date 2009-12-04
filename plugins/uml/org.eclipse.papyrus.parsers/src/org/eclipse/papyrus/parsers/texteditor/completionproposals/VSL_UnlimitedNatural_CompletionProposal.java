@@ -51,8 +51,8 @@ public class VSL_UnlimitedNatural_CompletionProposal implements ICompletionPropo
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < TVL_UnlimitedNatural_Strings.length; i++) {
-			if (TVL_UnlimitedNatural_Strings[i].startsWith(prefix)) {
+		for(int i = 0; i < TVL_UnlimitedNatural_Strings.length; i++) {
+			if(TVL_UnlimitedNatural_Strings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(TVL_UnlimitedNatural_Strings[i], documentOffset - prefix.length(),
 						prefix.length() + selectionRange, TVL_UnlimitedNatural_Strings[i].length(), null,
 						TVL_UnlimitedNatural_StringName[i], null, TVL_UnlimitedNatural_StringsInfo[i]);

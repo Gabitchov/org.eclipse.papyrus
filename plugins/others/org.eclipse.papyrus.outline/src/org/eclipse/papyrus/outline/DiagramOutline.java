@@ -111,20 +111,20 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 		refreshSelection();
 
 		// Create Overview
-		if (root != null) {
+		if(root != null) {
 			overview = createOverview(sashComp, root);
 			overview.setLayoutData(new GridData(GridData.FILL_BOTH));
 		}
 
 		// Create Navigator
 		navigator = createNavigator(sashComp, getSite());
-		if (diagram != null) {
+		if(diagram != null) {
 			navigator.getTreeViewer().setInput(diagram);
 		}
 
 		// Slip SashForm in two sections
-		if (overview != null) {
-			sashComp.setWeights(new int[] { 30, 70 });
+		if(overview != null) {
+			sashComp.setWeights(new int[]{ 30, 70 });
 		}
 
 		createActions();
@@ -134,9 +134,9 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	 * Create the composite that shows an overview of the model
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * @param rootEditPart
-	 *            the root edit part
+	 *        the root edit part
 	 * @return the overview composite
 	 */
 	protected Composite createOverview(Composite parent, ScalableFreeformRootEditPart rootEditPart) {
@@ -156,7 +156,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	 * Create the show outline actions in the given tool bar manager.
 	 * 
 	 * @param tbm
-	 *            the outline tool bar manager
+	 *        the outline tool bar manager
 	 */
 	private void createShowOutlineActions(IToolBarManager tbm) {
 
@@ -165,14 +165,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 
 			@Override
 			public void run() {
-				if (navigator != null && !navigator.isDisposed()) {
+				if(navigator != null && !navigator.isDisposed()) {
 					performShowAction();
 				}
 			}
 		};
 		showTreeAction.setToolTipText(showTreeAction.getText());
-		showTreeAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-				"icons/elcl16/tree_co.gif")); //$NON-NLS-1$
+		showTreeAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/tree_co.gif")); //$NON-NLS-1$
 		tbm.add(showTreeAction);
 
 		// Show overview action
@@ -180,14 +179,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 
 			@Override
 			public void run() {
-				if (overview != null && !overview.isDisposed()) {
+				if(overview != null && !overview.isDisposed()) {
 					performShowAction();
 				}
 			}
 		};
 		showOverviewAction.setToolTipText(showOverviewAction.getText());
-		showOverviewAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-				"icons/elcl16/overview_co.gif")); //$NON-NLS-1$
+		showOverviewAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/overview_co.gif")); //$NON-NLS-1$
 		tbm.add(showOverviewAction);
 
 		// Show All (Tree and Overview) action
@@ -195,14 +193,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 
 			@Override
 			public void run() {
-				if (sashComp != null && !sashComp.isDisposed()) {
+				if(sashComp != null && !sashComp.isDisposed()) {
 					performShowAction();
 				}
 			}
 		};
 		showAllAction.setToolTipText(showAllAction.getText());
-		showAllAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-				"icons/elcl16/all_co.gif")); //$NON-NLS-1$
+		showAllAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/all_co.gif")); //$NON-NLS-1$
 		tbm.add(showAllAction);
 
 		// Set overview as default choice
@@ -225,7 +222,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	}
 
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
-		if (navigator != null && !navigator.isDisposed()) {
+		if(navigator != null && !navigator.isDisposed()) {
 			navigator.getTreeViewer().addSelectionChangedListener(listener);
 		}
 	}
@@ -235,7 +232,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	}
 
 	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
-		if (navigator != null && !navigator.isDisposed()) {
+		if(navigator != null && !navigator.isDisposed()) {
 			navigator.getTreeViewer().removeSelectionChangedListener(listener);
 		}
 	}
@@ -248,14 +245,14 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	public void dispose() {
 		super.dispose();
 		// Navigator, overview... can be null
-		if (navigator != null) {
+		if(navigator != null) {
 			navigator.dispose();
 		}
-		if (overview != null) {
+		if(overview != null) {
 			overview.dispose();
 		}
 
-		if (multiEditor != null) {
+		if(multiEditor != null) {
 			// Remove selection change listener
 			multiEditor.getSite().getPage().removePostSelectionListener(this);
 		}
@@ -278,14 +275,14 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	 */
 	private void refreshSelection() {
 
-		if (multiEditor.getActiveEditor() != null) {
-			GraphicalViewer viewer = (GraphicalViewer) multiEditor.getActiveEditor().getAdapter(GraphicalViewer.class);
+		if(multiEditor.getActiveEditor() != null) {
+			GraphicalViewer viewer = (GraphicalViewer)multiEditor.getActiveEditor().getAdapter(GraphicalViewer.class);
 			RootEditPart rootEditPart = viewer.getRootEditPart();
 
-			if (rootEditPart instanceof RenderedDiagramRootEditPart) {
-				root = (RenderedDiagramRootEditPart) rootEditPart;
-				if (rootEditPart.getContents() != null) {
-					diagram = (Diagram) rootEditPart.getContents().getModel();
+			if(rootEditPart instanceof RenderedDiagramRootEditPart) {
+				root = (RenderedDiagramRootEditPart)rootEditPart;
+				if(rootEditPart.getContents() != null) {
+					diagram = (Diagram)rootEditPart.getContents().getModel();
 				} else {
 					diagram = null;
 				}
@@ -307,23 +304,23 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	private void refresh() {
 
 		// Trash and re-Create Overview
-		if ((overview != null) && !(overview.isDisposed())) {
+		if((overview != null) && !(overview.isDisposed())) {
 			overview.dispose();
 		}
 
-		if (root != null) {
+		if(root != null) {
 			overview = createOverview(sashComp, root);
 			overview.setLayoutData(new GridData(GridData.FILL_BOTH));
 		}
 
 		// Update navigator content
-		if (diagram != null) {
+		if(diagram != null) {
 			navigator.getTreeViewer().setInput(diagram);
 		}
 
 		// Slip SashForm in two sections
-		if ((overview != null) && !(overview.isDisposed())) {
-			sashComp.setWeights(new int[] { 30, 70 });
+		if((overview != null) && !(overview.isDisposed())) {
+			sashComp.setWeights(new int[]{ 30, 70 });
 		}
 
 		// Refresh outline without changing mode
@@ -338,7 +335,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 		// Select the kind of outline to show content
 		Control control = null;
 		control = null;
-		switch (getShowActionMode()) {
+		switch(getShowActionMode()) {
 		case SHOW_TREE:
 			control = navigator;
 			break;
@@ -364,13 +361,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	private int getShowActionMode() {
 		int showActionMode = -1;
 
-		if (showTreeAction.isChecked()) {
+		if(showTreeAction.isChecked()) {
 			showActionMode = SHOW_TREE;
 		}
-		if (showOverviewAction.isChecked()) {
+		if(showOverviewAction.isChecked()) {
 			showActionMode = SHOW_OVERVIEW;
 		}
-		if (showAllAction.isChecked()) {
+		if(showAllAction.isChecked()) {
 			showActionMode = SHOW_BOTH;
 		}
 

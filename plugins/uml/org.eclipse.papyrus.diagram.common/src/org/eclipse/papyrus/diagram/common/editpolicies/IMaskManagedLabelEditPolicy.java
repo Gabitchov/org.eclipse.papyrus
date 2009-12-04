@@ -30,7 +30,7 @@ public interface IMaskManagedLabelEditPolicy {
 	 * Retrieve the mask name for the given mask value.
 	 * 
 	 * @param value
-	 *            the value of the given mask
+	 *        the value of the given mask
 	 * @return the mask name
 	 */
 	// @unused

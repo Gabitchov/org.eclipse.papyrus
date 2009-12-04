@@ -21,8 +21,10 @@ import org.eclipse.uml2.uml.Stereotype;
  * It returns the qualified name of the Stereotype instead of the simple name.
  */
 public class StereotypeQualifiedLabelProvider extends StereotypeLabelProvider {
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.papyrus.ui.dialogs.ChooseSetStereotypeDialog.StereotypeLabelProvider#getText(java.lang.Object)
 	 */
 	@Override

@@ -42,23 +42,23 @@ public class DiagramValidationMarkerNavigationProvider extends
 	protected void doGotoMarker(IMarker marker) {
 		String elementId = marker
 				.getAttribute(
-						org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID,
-						null);
-		if (elementId == null || !(getEditor() instanceof DiagramEditor)) {
+				org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID,
+				null);
+		if(elementId == null || !(getEditor() instanceof DiagramEditor)) {
 			return;
 		}
-		DiagramEditor editor = (DiagramEditor) getEditor();
+		DiagramEditor editor = (DiagramEditor)getEditor();
 		Map<?, ?> editPartRegistry = editor.getDiagramGraphicalViewer()
 				.getEditPartRegistry();
 		EObject targetView = editor.getDiagram().eResource().getEObject(
 				elementId);
-		if (targetView == null) {
+		if(targetView == null) {
 			return;
 		}
-		EditPart targetEditPart = (EditPart) editPartRegistry.get(targetView);
-		if (targetEditPart != null) {
+		EditPart targetEditPart = (EditPart)editPartRegistry.get(targetView);
+		if(targetEditPart != null) {
 			selectElementsInDiagram(editor, Arrays
-					.asList(new EditPart[] { targetEditPart }));
+					.asList(new EditPart[]{ targetEditPart }));
 		}
 	}
 
@@ -67,18 +67,18 @@ public class DiagramValidationMarkerNavigationProvider extends
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;
-		for (Iterator<?> it = editParts.iterator(); it.hasNext();) {
-			EditPart nextPart = (EditPart) it.next();
+		for(Iterator<?> it = editParts.iterator(); it.hasNext();) {
+			EditPart nextPart = (EditPart)it.next();
 			diagramPart.getDiagramGraphicalViewer().appendSelection(nextPart);
-			if (firstPrimary == null && nextPart instanceof IPrimaryEditPart) {
+			if(firstPrimary == null && nextPart instanceof IPrimaryEditPart) {
 				firstPrimary = nextPart;
 			}
 		}
 
-		if (!editParts.isEmpty()) {
+		if(!editParts.isEmpty()) {
 			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart) editParts
-							.get(0));
+					firstPrimary != null ? firstPrimary : (EditPart)editParts
+					.get(0));
 		}
 	}
 
@@ -91,8 +91,7 @@ public class DiagramValidationMarkerNavigationProvider extends
 		try {
 			resource.deleteMarkers(MARKER_TYPE, true, IResource.DEPTH_ZERO);
 		} catch (CoreException e) {
-			Activator.getDefault().logError(
-					"Failed to delete validation markers", e); //$NON-NLS-1$
+			Activator.getDefault().logError("Failed to delete validation markers", e); //$NON-NLS-1$
 		}
 	}
 
@@ -116,19 +115,18 @@ public class DiagramValidationMarkerNavigationProvider extends
 
 			marker
 					.setAttribute(
-							org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID,
-							elementId);
+					org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID,
+					elementId);
 			int markerSeverity = IMarker.SEVERITY_INFO;
-			if (statusSeverity == IStatus.WARNING) {
+			if(statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if (statusSeverity == IStatus.ERROR
+			} else if(statusSeverity == IStatus.ERROR
 					|| statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);
 		} catch (CoreException e) {
-			Activator.getDefault().logError(
-					"Failed to create validation marker", e); //$NON-NLS-1$
+			Activator.getDefault().logError("Failed to create validation marker", e); //$NON-NLS-1$
 		}
 		return marker;
 	}

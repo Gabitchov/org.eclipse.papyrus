@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.BindingConnector}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.BindingConnector} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class BindingConnectorItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ConnectorPropertyDescriptor(object);
@@ -76,11 +76,11 @@ public class BindingConnectorItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addBase_ConnectorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_BindingConnector_base_Connector_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_BindingConnector_base_Connector_feature",
-						"_UI_BindingConnector_type"), BlocksPackage.Literals.BINDING_CONNECTOR__BASE_CONNECTOR, true,
+				"_UI_PropertyDescriptor_description", "_UI_BindingConnector_base_Connector_feature",
+				"_UI_BindingConnector_type"), BlocksPackage.Literals.BINDING_CONNECTOR__BASE_CONNECTOR, true,
 				false, true, null, null, null));
 	}
 
@@ -107,8 +107,7 @@ public class BindingConnectorItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -74,18 +74,18 @@ public class BehaviorExecutionSpecificationCreateCommand extends CreateElementCo
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
 
 		// BES : Added to contain the BehaviourExecutionSpecification inside the
 		// Interaction, not in the Lifeline (where it is shown)
-		if (container instanceof Lifeline) {
-			return ((Lifeline) container).getInteraction();
+		if(container instanceof Lifeline) {
+			return ((Lifeline)container).getInteraction();
 		}
 
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -98,10 +98,10 @@ public class BehaviorExecutionSpecificationCreateCommand extends CreateElementCo
 	protected EClass getEClassToEdit() {
 
 		EObject eObject = getElementToEdit();
-		if (eObject != null) {
+		if(eObject != null) {
 			return eObject.eClass();
 		}
-		if (eClass != null) {
+		if(eClass != null) {
 			return eClass;
 		}
 		return UMLPackage.eINSTANCE.getInteraction();
@@ -112,9 +112,9 @@ public class BehaviorExecutionSpecificationCreateCommand extends CreateElementCo
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		BehaviorExecutionSpecification newElement = (BehaviorExecutionSpecification) super.doDefaultElementCreation();
-		if (newElement != null) {
-			Interaction owner = (Interaction) getElementToEdit();
+		BehaviorExecutionSpecification newElement = (BehaviorExecutionSpecification)super.doDefaultElementCreation();
+		if(newElement != null) {
+			Interaction owner = (Interaction)getElementToEdit();
 			owner.getFragments().add(newElement);
 
 			UMLElementTypes.init_BehaviorExecutionSpecification_3003(newElement);

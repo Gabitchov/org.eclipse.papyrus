@@ -60,7 +60,7 @@ public class ConnectionPointReferenceEditHelper extends UMLBaseEditHelper {
 	}
 
 	/**
-	 * @NOT generated 
+	 * @NOT generated
 	 */
 	public static class ConnectionPointReferencesWrapper {
 

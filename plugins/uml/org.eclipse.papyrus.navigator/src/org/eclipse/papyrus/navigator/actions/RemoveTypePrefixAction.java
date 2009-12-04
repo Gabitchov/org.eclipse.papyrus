@@ -63,9 +63,9 @@ public class RemoveTypePrefixAction extends Action implements IPropertyListener 
 	 * model explorer.
 	 */
 	public void propertyChanged(Object source, int propId) {
-		switch (propId) {
+		switch(propId) {
 		case ModelNavigator.IS_REMOVEPREFIXTYPE_ENABLED_PROPERTY:
-			updateRemovePrefixTypesProperty(((ModelNavigator) source).isRemovePrefixTypeEnabled());
+			updateRemovePrefixTypesProperty(((ModelNavigator)source).isRemovePrefixTypeEnabled());
 		}
 	}
 

@@ -29,7 +29,7 @@ public class CustomGeneralizationItemSemanticEditPolicy extends GeneralizationIt
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
+		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
 			return getGEFWrapper(new CGeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
@@ -40,7 +40,7 @@ public class CustomGeneralizationItemSemanticEditPolicy extends GeneralizationIt
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
+		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
 			return getGEFWrapper(new CGeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);

@@ -50,7 +50,7 @@ public class ReconnectToIntersectionPoints extends Command {
 	 * Instantiates a new reconnect to intersection points.
 	 * 
 	 * @param request
-	 *            the request
+	 *        the request
 	 */
 	// @unused
 	public ReconnectToIntersectionPoints(CreateConnectionViewAndElementRequest request) {
@@ -84,8 +84,8 @@ public class ReconnectToIntersectionPoints extends Command {
 		ViewDescriptor viewDescriptor = createRequest.getConnectionViewDescriptor();
 
 		// Get the View
-		View view = (View) viewDescriptor.getAdapter(View.class);
-		if (view == null) {
+		View view = (View)viewDescriptor.getAdapter(View.class);
+		if(view == null) {
 			return;
 		}
 
@@ -93,7 +93,7 @@ public class ReconnectToIntersectionPoints extends Command {
 		EditPartViewer viewer = createRequest.getSourceEditPart().getViewer();
 
 		// Obtain the EditPart
-		ConnectionEditPart connEP = (ConnectionEditPart) viewer.getEditPartRegistry().get(view);
+		ConnectionEditPart connEP = (ConnectionEditPart)viewer.getEditPartRegistry().get(view);
 
 		connEP.getFigure().getUpdateManager().performUpdate();
 
@@ -104,11 +104,11 @@ public class ReconnectToIntersectionPoints extends Command {
 		ReconnectRequest targetRequest = buildReconnectRequest(connEP, false);
 
 		// Obtain the commands
-		compoundCmd.add(getCommand(sourceRequest, (GraphicalEditPart) connEP.getSource()));
-		compoundCmd.add(getCommand(targetRequest, (GraphicalEditPart) connEP.getTarget()));
+		compoundCmd.add(getCommand(sourceRequest, (GraphicalEditPart)connEP.getSource()));
+		compoundCmd.add(getCommand(targetRequest, (GraphicalEditPart)connEP.getTarget()));
 
 		// Execute the commands
-		if (compoundCmd.size() > 0) {
+		if(compoundCmd.size() > 0) {
 			compoundCmd.execute();
 		}
 	}
@@ -121,7 +121,7 @@ public class ReconnectToIntersectionPoints extends Command {
 	@Override
 	public void undo() {
 		super.undo();
-		if (compoundCmd.size() > 0) {
+		if(compoundCmd.size() > 0) {
 			compoundCmd.undo();
 		}
 	}
@@ -134,7 +134,7 @@ public class ReconnectToIntersectionPoints extends Command {
 	@Override
 	public void redo() {
 		super.redo();
-		if (compoundCmd.size() > 0) {
+		if(compoundCmd.size() > 0) {
 			compoundCmd.redo();
 		}
 	}
@@ -143,9 +143,9 @@ public class ReconnectToIntersectionPoints extends Command {
 	 * Builds the reconnect request.
 	 * 
 	 * @param connEP
-	 *            the conn ep
+	 *        the conn ep
 	 * @param isSource
-	 *            the is source
+	 *        the is source
 	 * 
 	 * @return the reconnect request
 	 */
@@ -157,7 +157,7 @@ public class ReconnectToIntersectionPoints extends Command {
 		// Obtain the target edit part
 		EditPart targetEP;
 		String type;
-		if (isSource) {
+		if(isSource) {
 			type = RequestConstants.REQ_RECONNECT_SOURCE;
 			targetEP = connEP.getSource();
 		} else {
@@ -180,9 +180,9 @@ public class ReconnectToIntersectionPoints extends Command {
 	 * Gets the intersection point.
 	 * 
 	 * @param connEP
-	 *            the conn ep
+	 *        the conn ep
 	 * @param source
-	 *            the source
+	 *        the source
 	 * 
 	 * @return the intersection point
 	 */
@@ -191,15 +191,15 @@ public class ReconnectToIntersectionPoints extends Command {
 		ConnectionAnchor sourceAnchor;
 		ConnectionAnchor targetAnchor;
 
-		NodeEditPart sourceEP = (NodeEditPart) connEP.getSource();
-		NodeEditPart targetEP = (NodeEditPart) connEP.getTarget();
+		NodeEditPart sourceEP = (NodeEditPart)connEP.getSource();
+		NodeEditPart targetEP = (NodeEditPart)connEP.getTarget();
 
 		Point endLocation;
 
 		sourceAnchor = sourceEP.getSourceConnectionAnchor(connEP);
 		targetAnchor = targetEP.getTargetConnectionAnchor(connEP);
 
-		if (source) {
+		if(source) {
 			endLocation = sourceAnchor.getLocation(targetAnchor.getReferencePoint()).getCopy();
 		} else {
 			endLocation = targetAnchor.getLocation(sourceAnchor.getReferencePoint()).getCopy();
@@ -212,9 +212,9 @@ public class ReconnectToIntersectionPoints extends Command {
 	 * Gets the command.
 	 * 
 	 * @param request
-	 *            the request
+	 *        the request
 	 * @param graphicalEP
-	 *            the graphical ep
+	 *        the graphical ep
 	 * 
 	 * @return the command
 	 */
@@ -226,7 +226,7 @@ public class ReconnectToIntersectionPoints extends Command {
 	 * Modify location.
 	 * 
 	 * @param reconnectRequest
-	 *            the reconnect request
+	 *        the reconnect request
 	 */
 	// @unused
 	public static void modifyLocation(ReconnectRequest reconnectRequest) {
@@ -238,19 +238,19 @@ public class ReconnectToIntersectionPoints extends Command {
 
 		Point endLocation;
 
-		sourceEP = (ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getSource();
-		targetEP = (ShapeNodeEditPart) reconnectRequest.getConnectionEditPart().getTarget();
+		sourceEP = (ShapeNodeEditPart)reconnectRequest.getConnectionEditPart().getSource();
+		targetEP = (ShapeNodeEditPart)reconnectRequest.getConnectionEditPart().getTarget();
 
-		if (reconnectRequest.isMovingStartAnchor()) {
+		if(reconnectRequest.isMovingStartAnchor()) {
 			// Update the corresponding EditPart
-			sourceEP = (ShapeNodeEditPart) reconnectRequest.getTarget();
+			sourceEP = (ShapeNodeEditPart)reconnectRequest.getTarget();
 
 			sourceAnchor = sourceEP.getSourceConnectionAnchor(reconnectRequest);
 			targetAnchor = targetEP.getTargetConnectionAnchor(reconnectRequest.getConnectionEditPart());
 			endLocation = sourceAnchor.getLocation(targetAnchor.getReferencePoint()).getCopy();
 		} else {
 			// Update the corresponding EditPart
-			targetEP = (ShapeNodeEditPart) reconnectRequest.getTarget();
+			targetEP = (ShapeNodeEditPart)reconnectRequest.getTarget();
 
 			sourceAnchor = sourceEP.getSourceConnectionAnchor(reconnectRequest.getConnectionEditPart());
 			targetAnchor = targetEP.getTargetConnectionAnchor(reconnectRequest);

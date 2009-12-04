@@ -34,10 +34,8 @@ import org.eclipse.uml2.uml.Element;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getViewPoint <em>View Point
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getBase_Package <em>Base Package
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getViewPoint <em>View Point </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getBase_Package <em>Base Package </em>}</li>
  * </ul>
  * </p>
  * 
@@ -83,21 +81,21 @@ public class ViewImpl extends EObjectImpl implements View {
 		ViewPoint viewPoint = null;
 		Conform conform = null;
 
-		if (getBase_Package() != null) {
+		if(getBase_Package() != null) {
 			// Find Conform link
 			Iterator<Dependency> itDep = getBase_Package().getClientDependencies().iterator();
-			while (itDep.hasNext() && (conform == null)) {
+			while(itDep.hasNext() && (conform == null)) {
 				Dependency currentDependency = itDep.next();
-				conform = (Conform) ElementUtil.hasStereotype(currentDependency, ModelelementsPackage.eINSTANCE
+				conform = (Conform)ElementUtil.hasStereotype(currentDependency, ModelelementsPackage.eINSTANCE
 						.getConform());
 			}
 
 			// Find ViewPoint
-			if (conform != null) {
+			if(conform != null) {
 				Iterator<Element> itElt = conform.getBase_Dependency().getTargets().iterator();
-				while (itElt.hasNext()) {
+				while(itElt.hasNext()) {
 					Element currentElt = itElt.next();
-					viewPoint = (ViewPoint) ElementUtil.hasStereotype(currentElt, ModelelementsPackage.eINSTANCE
+					viewPoint = (ViewPoint)ElementUtil.hasStereotype(currentElt, ModelelementsPackage.eINSTANCE
 							.getViewPoint());
 				}
 			}
@@ -112,13 +110,13 @@ public class ViewImpl extends EObjectImpl implements View {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW__VIEW_POINT:
-			if (resolve)
+			if(resolve)
 				return getViewPoint();
 			return basicGetViewPoint();
 		case ModelelementsPackage.VIEW__BASE_PACKAGE:
-			if (resolve)
+			if(resolve)
 				return getBase_Package();
 			return basicGetBase_Package();
 		}
@@ -132,7 +130,7 @@ public class ViewImpl extends EObjectImpl implements View {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW__VIEW_POINT:
 			return basicGetViewPoint() != null;
 		case ModelelementsPackage.VIEW__BASE_PACKAGE:
@@ -148,9 +146,9 @@ public class ViewImpl extends EObjectImpl implements View {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW__BASE_PACKAGE:
-			setBase_Package((org.eclipse.uml2.uml.Package) newValue);
+			setBase_Package((org.eclipse.uml2.uml.Package)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,9 +171,9 @@ public class ViewImpl extends EObjectImpl implements View {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW__BASE_PACKAGE:
-			setBase_Package((org.eclipse.uml2.uml.Package) null);
+			setBase_Package((org.eclipse.uml2.uml.Package)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -187,11 +185,11 @@ public class ViewImpl extends EObjectImpl implements View {
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Package getBase_Package() {
-		if (base_Package != null && base_Package.eIsProxy()) {
-			InternalEObject oldBase_Package = (InternalEObject) base_Package;
-			base_Package = (org.eclipse.uml2.uml.Package) eResolveProxy(oldBase_Package);
-			if (base_Package != oldBase_Package) {
-				if (eNotificationRequired())
+		if(base_Package != null && base_Package.eIsProxy()) {
+			InternalEObject oldBase_Package = (InternalEObject)base_Package;
+			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
+			if(base_Package != oldBase_Package) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelelementsPackage.VIEW__BASE_PACKAGE,
 							oldBase_Package, base_Package));
 			}
@@ -206,7 +204,7 @@ public class ViewImpl extends EObjectImpl implements View {
 	 */
 	public ViewPoint getViewPoint() {
 		ViewPoint viewPoint = basicGetViewPoint();
-		return viewPoint != null && viewPoint.eIsProxy() ? (ViewPoint) eResolveProxy((InternalEObject) viewPoint)
+		return viewPoint != null && viewPoint.eIsProxy() ? (ViewPoint)eResolveProxy((InternalEObject)viewPoint)
 				: viewPoint;
 	}
 
@@ -218,7 +216,7 @@ public class ViewImpl extends EObjectImpl implements View {
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW__BASE_PACKAGE,
 					oldBase_Package, base_Package));
 	}

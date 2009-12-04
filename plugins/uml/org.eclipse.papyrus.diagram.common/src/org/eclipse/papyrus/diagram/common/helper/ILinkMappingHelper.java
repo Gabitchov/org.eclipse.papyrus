@@ -26,7 +26,7 @@ public interface ILinkMappingHelper {
 	 * Gets the source.
 	 * 
 	 * @param link
-	 *            the link
+	 *        the link
 	 * 
 	 * @return the source
 	 */
@@ -36,7 +36,7 @@ public interface ILinkMappingHelper {
 	 * Gets the target.
 	 * 
 	 * @param link
-	 *            the link
+	 *        the link
 	 * 
 	 * @return the target
 	 */

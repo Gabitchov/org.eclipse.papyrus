@@ -65,10 +65,10 @@ public class InitializeDiagramAction extends AbstractAction {
 	 */
 	@Override
 	public void run() {
-		if (false == getHost() instanceof DiagramEditPart) {
+		if(false == getHost() instanceof DiagramEditPart) {
 			return;
 		}
-		DiagramEditPart diagramEditPart = (DiagramEditPart) getHost();
+		DiagramEditPart diagramEditPart = (DiagramEditPart)getHost();
 		final DiagramCommandStack commandStack = getHost().getDiagramEditDomain().getDiagramCommandStack();
 
 		// Run initialize at first (do not use compoundCommand)

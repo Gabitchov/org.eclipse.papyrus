@@ -53,7 +53,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 * Create a new Palette description using a preference memento
 	 * 
 	 * @param memento
-	 *            the memento from which to read the description
+	 *        the memento from which to read the description
 	 * @return the content of the palette
 	 */
 	public static IPaletteDescription create(IMemento memento) {
@@ -67,9 +67,9 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 		// retrieve the map of properties
 		IMemento propertiesMemento = memento.getChild(IPapyrusPaletteConstant.PALETTE_DESCRIPTION_PROPERTIES);
 		Map<String, String> properties = new HashMap<String, String>();
-		if (propertiesMemento != null) {
+		if(propertiesMemento != null) {
 			// retrieve the child name/value tuple for each children
-			for (String key : propertiesMemento.getAttributeKeys()) {
+			for(String key : propertiesMemento.getAttributeKeys()) {
 				properties.put(key, propertiesMemento.getString(key));
 			}
 		}
@@ -103,7 +103,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 * Sets the name of the palette description
 	 * 
 	 * @param name
-	 *            the name to set
+	 *        the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -113,7 +113,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 * Sets the id of the editor to contribute
 	 * 
 	 * @param contributionEditorID
-	 *            the contributionEditorID to set
+	 *        the contributionEditorID to set
 	 */
 	public void setContributionEditorID(String contributionEditorID) {
 		this.contributionEditorID = contributionEditorID;
@@ -123,7 +123,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 * Sets the contributions of this palette
 	 * 
 	 * @param contributions
-	 *            the contributions to set
+	 *        the contributions to set
 	 */
 	public void setContributions(Object contributions) {
 		this.contributions = contributions;
@@ -133,7 +133,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 * Sets the id of this palette
 	 * 
 	 * @param paletteID
-	 *            the paletteID to set
+	 *        the paletteID to set
 	 */
 	public void setPaletteID(String paletteID) {
 		this.paletteID = paletteID;
@@ -157,7 +157,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 * Sets the priority for this palette
 	 * 
 	 * @param priority
-	 *            the priority to set
+	 *        the priority to set
 	 */
 	public void setPriority(ProviderPriority priority) {
 		this.priority = priority;
@@ -174,7 +174,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 	 * Sets the properties for this palette description
 	 * 
 	 * @param properties
-	 *            the properties to set
+	 *        the properties to set
 	 */
 	public void setProperties(Map<String, String> properties) {
 		this.properties = properties;

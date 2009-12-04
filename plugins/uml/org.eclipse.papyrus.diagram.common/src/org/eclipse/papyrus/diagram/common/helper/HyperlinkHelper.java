@@ -43,13 +43,13 @@ public class HyperlinkHelper {
 	 * Gets the adds the hyper link command.
 	 * 
 	 * @param domain
-	 *            the domain to execute command
+	 *        the domain to execute command
 	 * @param object
-	 *            the object where it is attached the information
+	 *        the object where it is attached the information
 	 * @param localization
-	 *            the localization of the document
+	 *        the localization of the document
 	 * @param tooltipText
-	 *            the tooltip text
+	 *        the tooltip text
 	 * 
 	 * @return the adds the hyper link command
 	 */
@@ -62,13 +62,13 @@ public class HyperlinkHelper {
 	 * Gets the adds the document command.
 	 * 
 	 * @param domain
-	 *            the domain to execute the command
+	 *        the domain to execute the command
 	 * @param object
-	 *            the object where it is attached the information
+	 *        the object where it is attached the information
 	 * @param link
-	 *            the web link
+	 *        the web link
 	 * @param tooltiptext
-	 *            the tooltip text
+	 *        the tooltip text
 	 * 
 	 * @return the adds the document command
 	 */
@@ -81,15 +81,15 @@ public class HyperlinkHelper {
 	 * Gets the adds the hyper link diagam command.
 	 * 
 	 * @param domain
-	 *            the domain to execute the command
+	 *        the domain to execute the command
 	 * @param object
-	 *            the object where it is attached the information
+	 *        the object where it is attached the information
 	 * @param tooltiptext
-	 *            the tooltip text
+	 *        the tooltip text
 	 * @param diagramName
-	 *            the diagram name
+	 *        the diagram name
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * 
 	 * @return the adds the hyper link diagram command
 	 */
@@ -102,11 +102,11 @@ public class HyperlinkHelper {
 	 * use to remove a hyperlink web or document
 	 * 
 	 * @param domain
-	 *            the domain to execute the command
+	 *        the domain to execute the command
 	 * @param object
-	 *            the object where was attached the information
+	 *        the object where was attached the information
 	 * @param localization
-	 *            the localization or link
+	 *        the localization or link
 	 * 
 	 * @return the removes the element command
 	 */
@@ -120,11 +120,11 @@ public class HyperlinkHelper {
 	 * Gets the removes the hyperlink diagram command.
 	 * 
 	 * @param domain
-	 *            the domain to execute the commmand
+	 *        the domain to execute the commmand
 	 * @param object
-	 *            the object where the information is attached
+	 *        the object where the information is attached
 	 * @param diagram
-	 *            the diagram to remove
+	 *        the diagram to remove
 	 * 
 	 * @return the removes the hyperlink diagram command
 	 */
@@ -139,32 +139,32 @@ public class HyperlinkHelper {
 	 * Gets the allreferenced element.
 	 * 
 	 * @param object
-	 *            the object where we look for information
+	 *        the object where we look for information
 	 * @param hyperlinkKind
-	 *            the hyperlink kind see {@link VisualInformationPapyrusConstant}
+	 *        the hyperlink kind see {@link VisualInformationPapyrusConstant}
 	 * 
 	 * @return the allreferenced
 	 */
 	public static ArrayList<?> getAllreferenced(EModelElement object, String hyperlinkKind) {
 		ArrayList<HyperlinkObject> result = new ArrayList<HyperlinkObject>();
 		Iterator<EAnnotation> iter = object.getEAnnotations().iterator();
-		while (iter.hasNext()) {
+		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			if (currentAnnotation.getSource().equals(hyperlinkKind)) {
-				if (hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+			if(currentAnnotation.getSource().equals(hyperlinkKind)) {
+				if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
 					HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
-					hyperLinkDiagram.setDiagram((Diagram) currentAnnotation.getReferences().get(0));
+					hyperLinkDiagram.setDiagram((Diagram)currentAnnotation.getReferences().get(0));
 					hyperLinkDiagram.setTooltipText(currentAnnotation.getDetails().get(
 							VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 					result.add(hyperLinkDiagram);
-				} else if (hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT)) {
+				} else if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT)) {
 					HyperlinkDocument hyperLinkDocument = new HyperlinkDocument();
 					hyperLinkDocument.setHyperlinkDocument(currentAnnotation.getDetails().get(
 							VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION));
 					hyperLinkDocument.setTooltipText(currentAnnotation.getDetails().get(
 							VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 					result.add(hyperLinkDocument);
-				} else if (hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)) {
+				} else if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)) {
 					HyperLinkWeb hyperLinkWeb = new HyperLinkWeb();
 					hyperLinkWeb.setHyperLinkWeb(currentAnnotation.getDetails().get(
 							VisualInformationPapyrusConstant.HYPERLINK_WEB_LINK));
@@ -183,9 +183,9 @@ public class HyperlinkHelper {
 	 * Gets the empty all hyper link command. to clean all hyperlinks
 	 * 
 	 * @param domain
-	 *            the domain to execute the command
+	 *        the domain to execute the command
 	 * @param object
-	 *            the object where is attached information
+	 *        the object where is attached information
 	 * 
 	 * @return the empty all hyper link command
 	 */

@@ -66,17 +66,17 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 	 * constructor
 	 * 
 	 * @param createConnectionViewAndElementRequest
-	 *            the request that is used to obtained the associationclass
+	 *        the request that is used to obtained the associationclass
 	 * @param domain
-	 *            the current edit domain
+	 *        the current edit domain
 	 * @param container
-	 *            the container view
+	 *        the container view
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * @param preferencesHint
-	 *            the preference hint of the diagram
+	 *        the preference hint of the diagram
 	 * @param point
-	 *            the location of the future association node
+	 *        the location of the future association node
 	 */
 	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer,
 			PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
@@ -102,14 +102,14 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createDependency_2014(((EObject) semanticApdater.getAdapter(EObject.class)),
+		this.node = viewProvider.createDependency_2014(((EObject)semanticApdater.getAdapter(EObject.class)),
 				this.containerView, -1, true, preferenceHint);
 
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
 		notationLocation.setY(location.y);
-		((Node) this.node).setLayoutConstraint(notationLocation);
+		((Node)this.node).setLayoutConstraint(notationLocation);
 		semanticApdater.setView(this.node);
 		return CommandResult.newOKCommandResult(semanticApdater);
 	}
@@ -119,11 +119,11 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 	 * {@inheritDoc}
 	 */
 	public List getAffectedFiles() {
-		if (viewer != null) {
+		if(viewer != null) {
 			EditPart editpart = viewer.getRootEditPart().getContents();
-			if (editpart instanceof IGraphicalEditPart) {
-				View view = (View) ((IGraphicalEditPart) editpart).getModel();
-				if (view != null) {
+			if(editpart instanceof IGraphicalEditPart) {
+				View view = (View)((IGraphicalEditPart)editpart).getModel();
+				if(view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
 					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
 				}

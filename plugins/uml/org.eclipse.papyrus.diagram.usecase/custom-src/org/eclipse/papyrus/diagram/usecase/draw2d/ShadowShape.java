@@ -44,11 +44,11 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 * Instantiates a new shadow shape.
 	 * 
 	 * @param is3D
-	 *            the is3 d
+	 *        the is3 d
 	 * @param backgroundColor
-	 *            the background color
+	 *        the background color
 	 * @param foregroundColor
-	 *            the foreground color
+	 *        the foreground color
 	 */
 	public ShadowShape(boolean is3D, Color backgroundColor, Color foregroundColor) {
 		setForegroundColor(foregroundColor);
@@ -71,10 +71,10 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 * Sets the 3 d.
 	 * 
 	 * @param is3D
-	 *            the new 3 d
+	 *        the new 3 d
 	 */
 	public void set3D(boolean is3D) {
-		if (my3D == is3D) {
+		if(my3D == is3D) {
 			return;
 		}
 		my3D = is3D;
@@ -86,7 +86,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 */
 	public Dimension getPreferredSize(int wHint, int hHint) {
 		Dimension original = super.getPreferredSize(wHint, hHint);
-		if (is3D()) {
+		if(is3D()) {
 			original.expand(SHADOW_SIZE, SHADOW_SIZE);
 		}
 		return original;
@@ -96,15 +96,15 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 * Paints this figure, including its border and children. Border is painted first.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 */
 	public void paint(Graphics graphics) {
 		paintBorder(graphics);
-		if (getBackgroundColor() != null)
+		if(getBackgroundColor() != null)
 			graphics.setBackgroundColor(getBackgroundColor());
-		if (getForegroundColor() != null)
+		if(getForegroundColor() != null)
 			graphics.setForegroundColor(getForegroundColor());
-		if (getFont() != null)
+		if(getFont() != null)
 			graphics.setFont(getFont());
 		paintFigure(graphics);
 		paintClientArea(graphics);
@@ -121,9 +121,9 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 * Fill shape.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * @param bounds
-	 *            the bounds
+	 *        the bounds
 	 */
 	protected abstract void fillShape(Graphics graphics, Rectangle bounds);
 
@@ -138,9 +138,9 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 * Outline shape.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * @param bounds
-	 *            the bounds
+	 *        the bounds
 	 */
 	protected abstract void outlineShape(Graphics graphics, Rectangle bounds);
 
@@ -167,7 +167,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 		 * {@inheritDoc}
 		 */
 		public void paint(IFigure figure, Graphics graphics, Insets insets) {
-			if (!is3D()) {
+			if(!is3D()) {
 				return;
 			}
 			graphics.setBackgroundColor(SHADOW_COLOR);

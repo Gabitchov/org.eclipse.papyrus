@@ -31,11 +31,11 @@ public class TemplateSignatureUtil {
 	public static Set<org.eclipse.uml2.uml.Type> getAccessibleTypes(TemplateSignature signature) {
 		Set<org.eclipse.uml2.uml.Type> list = new HashSet<org.eclipse.uml2.uml.Type>();
 
-		for (Iterator<org.eclipse.uml2.uml.TemplateParameter> i = signature.getParameters().iterator(); i.hasNext();) {
+		for(Iterator<org.eclipse.uml2.uml.TemplateParameter> i = signature.getParameters().iterator(); i.hasNext();) {
 			TemplateParameter current = i.next();
 			ParameterableElement exposedElement = current.getOwnedParameteredElement();
-			if (exposedElement instanceof org.eclipse.uml2.uml.Type) {
-				list.add((org.eclipse.uml2.uml.Type) exposedElement);
+			if(exposedElement instanceof org.eclipse.uml2.uml.Type) {
+				list.add((org.eclipse.uml2.uml.Type)exposedElement);
 			}
 		}
 		return list;
@@ -45,21 +45,21 @@ public class TemplateSignatureUtil {
 	 * Retrieve a type accessible in this Signature, given its name.
 	 * 
 	 * @param name
-	 *            the name of the type to find
+	 *        the name of the type to find
 	 * 
 	 * @return the type found or <code>null</code> if not found.
 	 */
 	public static org.eclipse.uml2.uml.Type findTypeByName(TemplateSignature signature, String name) {
 		org.eclipse.uml2.uml.Type type = null;
 		boolean isFound = false;
-		if ("".equals(name)) {
+		if("".equals(name)) {
 			Activator.getDefault().getLog().log(
 					new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Name parameter should not be an empty string."));
 		} else {
 			Iterator<org.eclipse.uml2.uml.Type> it = TemplateSignatureUtil.getAccessibleTypes(signature).iterator();
-			while (!isFound && it.hasNext()) {
+			while(!isFound && it.hasNext()) {
 				org.eclipse.uml2.uml.Type t = it.next();
-				if (t.getName().equals(name)) {
+				if(t.getName().equals(name)) {
 					isFound = true;
 					type = t;
 				}

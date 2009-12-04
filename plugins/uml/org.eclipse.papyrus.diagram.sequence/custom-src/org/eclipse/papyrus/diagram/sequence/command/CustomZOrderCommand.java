@@ -35,7 +35,7 @@ public class CustomZOrderCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * @param editingDomain
-	 *            the editing domain through which model changes are made
+	 *        the editing domain through which model changes are made
 	 * @param label
 	 * @param view
 	 */

@@ -21,13 +21,13 @@ public class UpElementListener implements MouseListener {
 	}
 
 	public void mouseUp(MouseEvent e) {
-		if (tableviewer.getTable().getSelection().length != 0) {
-			Object elt = ((IStructuredSelection) tableviewer.getSelection()).getFirstElement();
-			if (elementList.indexOf(elt) == 0) {
+		if(tableviewer.getTable().getSelection().length != 0) {
+			Object elt = ((IStructuredSelection)tableviewer.getSelection()).getFirstElement();
+			if(elementList.indexOf(elt) == 0) {
 				return;
 			}
-			Iterator iterator = ((IStructuredSelection) tableviewer.getSelection()).iterator();
-			while (iterator.hasNext()) {
+			Iterator iterator = ((IStructuredSelection)tableviewer.getSelection()).iterator();
+			while(iterator.hasNext()) {
 				Object currentHyperLinkDoc = iterator.next();
 				int index = elementList.indexOf(currentHyperLinkDoc);
 				elementList.remove(currentHyperLinkDoc);

@@ -25,25 +25,26 @@ import org.w3c.dom.ls.LSInput;
 
 /**
  * @author dumoulin
- *
+ * 
  */
 public class InputListDialog {
 
 	/** Message to be show */
 	private String message;
-	
+
 	/** List of fields to show */
 	private List<String> fieldList;
-	
-    /**
-     * Input text widget.
-     */
-    private Text addToListText;
-    
-    private org.eclipse.swt.widgets.List listWidget;
+
+	/**
+	 * Input text widget.
+	 */
+	private Text addToListText;
+
+	private org.eclipse.swt.widgets.List listWidget;
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param msg
 	 * @param list
 	 */
@@ -51,55 +52,54 @@ public class InputListDialog {
 		this.message = msg;
 		this.fieldList = list;
 	}
-	
+
 	/**
 	 * Return the selected list.
+	 * 
 	 * @return
 	 */
-	public String[] getList() 
-	{
+	public String[] getList() {
 		return listWidget.getItems();
 	}
-	
+
 	/**
 	 * 
 	 * @param parent
 	 * @return
 	 */
-	   public Control createDialogArea(Composite parent) {
-	        // create composite
-	        Composite composite = parent;
-	        // create message
-	        if (message != null) {
-	            Label label = new Label(composite, SWT.WRAP);
-	            label.setText(message);
-	            GridData data = new GridData(GridData.GRAB_HORIZONTAL
-	                   /* | GridData.GRAB_VERTICAL */ | GridData.HORIZONTAL_ALIGN_FILL
-	                    | GridData.VERTICAL_ALIGN_CENTER);
-//	            data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
-	            label.setLayoutData(data);
-	            label.setFont(parent.getFont());
-	        }
+	public Control createDialogArea(Composite parent) {
+		// create composite
+		Composite composite = parent;
+		// create message
+		if(message != null) {
+			Label label = new Label(composite, SWT.WRAP);
+			label.setText(message);
+			GridData data = new GridData(GridData.GRAB_HORIZONTAL
+								/* | GridData.GRAB_VERTICAL */| GridData.HORIZONTAL_ALIGN_FILL
+					| GridData.VERTICAL_ALIGN_CENTER);
+			//	            data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
+			label.setLayoutData(data);
+			label.setFont(parent.getFont());
+		}
 
-	        // button
-	        createButtonBar(composite);
-	        
-	        // list
-	        listWidget = new org.eclipse.swt.widgets.List(composite, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.RESIZE);
+		// button
+		createButtonBar(composite);
 
-	        GridData listData = new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_VERTICAL | GridData.VERTICAL_ALIGN_FILL);
+		// list
+		listWidget = new org.eclipse.swt.widgets.List(composite, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.RESIZE);
 
-	        listData.heightHint = 100;
-	        listWidget.setLayoutData(listData);
-	        if(fieldList != null)
-	        for(String item : fieldList)
-	        {
-	        	listWidget.add(item);
-	        }
-	        
-//	        applyDialogFont(composite);
-	        return composite;
-	    }
+		GridData listData = new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_VERTICAL | GridData.VERTICAL_ALIGN_FILL);
+
+		listData.heightHint = 100;
+		listWidget.setLayoutData(listData);
+		if(fieldList != null)
+			for(String item : fieldList) {
+				listWidget.add(item);
+			}
+
+		//	        applyDialogFont(composite);
+		return composite;
+	}
 
 
 	/**
@@ -118,17 +118,15 @@ public class InputListDialog {
 	/**
 	 * Creates and returns the contents of this dialog's button bar.
 	 * <p>
-	 * The <code>Dialog</code> implementation of this framework method lays
-	 * out a button bar and calls the <code>createButtonsForButtonBar</code>
+	 * The <code>Dialog</code> implementation of this framework method lays out a button bar and calls the <code>createButtonsForButtonBar</code>
 	 * framework method to populate it. Subclasses may override.
 	 * </p>
 	 * <p>
-	 * The returned control's layout data must be an instance of
-	 * <code>GridData</code>.
+	 * The returned control's layout data must be an instance of <code>GridData</code>.
 	 * </p>
 	 * 
 	 * @param parent
-	 *            the parent composite to contain the button bar
+	 *        the parent composite to contain the button bar
 	 * @return the button bar control
 	 */
 	protected Control createButtonBar(Composite parent) {
@@ -138,16 +136,16 @@ public class InputListDialog {
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 0; // this is incremented by createButton
 		layout.makeColumnsEqualWidth = false;
-//		layout.marginWidth = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
-//		layout.marginHeight = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
-//		layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
-//		layout.verticalSpacing = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
+		//		layout.marginWidth = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
+		//		layout.marginHeight = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
+		//		layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
+		//		layout.verticalSpacing = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
 		composite.setLayout(layout);
 		GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL
 				| GridData.VERTICAL_ALIGN_CENTER);
 		composite.setLayoutData(data);
 		composite.setFont(parent.getFont());
-		
+
 		// Add the buttons to the button bar.
 		createButtonsForButtonBar(composite);
 		return composite;
@@ -156,75 +154,77 @@ public class InputListDialog {
 	/**
 	 * Adds buttons to this dialog's button bar.
 	 * <p>
-	 * The <code>Dialog</code> implementation of this framework method adds
-	 * standard ok and cancel buttons using the <code>createButton</code>
-	 * framework method. These standard buttons will be accessible from
-	 * <code>getCancelButton</code>, and <code>getOKButton</code>.
-	 * Subclasses may override.
+	 * The <code>Dialog</code> implementation of this framework method adds standard ok and cancel buttons using the <code>createButton</code>
+	 * framework method. These standard buttons will be accessible from <code>getCancelButton</code>, and <code>getOKButton</code>. Subclasses may
+	 * override.
 	 * </p>
 	 * 
 	 * @param parent
-	 *            the button bar composite
+	 *        the button bar composite
 	 */
 	protected void createButtonsForButtonBar(Composite parent) {
 		// create OK and Cancel buttons by default
 		// Create input text
-        // input text
-		((GridLayout) parent.getLayout()).numColumns++;
-        addToListText = new Text(parent, getInputTextStyle());
-        setButtonLayoutData(addToListText);
-        addToListText.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING 
-                | GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL ));
+		// input text
+		((GridLayout)parent.getLayout()).numColumns++;
+		addToListText = new Text(parent, getInputTextStyle());
+		setButtonLayoutData(addToListText);
+		addToListText.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING
+				| GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL));
 
-        // Create a Button
-		((GridLayout) parent.getLayout()).numColumns++;
+		// Create a Button
+		((GridLayout)parent.getLayout()).numColumns++;
 		Button button = new Button(parent, SWT.PUSH);
 		button.setText("add");
 		button.setFont(JFaceResources.getDialogFont());
 		button.addSelectionListener(new SelectionAdapter() {
+
 			public void widgetSelected(SelectionEvent event) {
 				addPressed();
 			}
 		});
-        setButtonLayoutData(button);
-		
-        // remove
-		((GridLayout) parent.getLayout()).numColumns++;
+		setButtonLayoutData(button);
+
+		// remove
+		((GridLayout)parent.getLayout()).numColumns++;
 		button = new Button(parent, SWT.PUSH);
 		button.setText("-");
 		button.setFont(JFaceResources.getDialogFont());
 		button.addSelectionListener(new SelectionAdapter() {
+
 			public void widgetSelected(SelectionEvent event) {
 				removedPressed();
 			}
 		});
-        setButtonLayoutData(button);
-        
-        // up
-		((GridLayout) parent.getLayout()).numColumns++;
+		setButtonLayoutData(button);
+
+		// up
+		((GridLayout)parent.getLayout()).numColumns++;
 		button = new Button(parent, SWT.PUSH);
 		button.setText("^");
 		button.setFont(JFaceResources.getDialogFont());
 		button.addSelectionListener(new SelectionAdapter() {
+
 			public void widgetSelected(SelectionEvent event) {
 				upPressed();
 			}
 		});
-        setButtonLayoutData(button);
-        
-        // down
-		((GridLayout) parent.getLayout()).numColumns++;
+		setButtonLayoutData(button);
+
+		// down
+		((GridLayout)parent.getLayout()).numColumns++;
 		button = new Button(parent, SWT.PUSH);
 		button.setText("v");
 		button.setFont(JFaceResources.getDialogFont());
 		button.addSelectionListener(new SelectionAdapter() {
+
 			public void widgetSelected(SelectionEvent event) {
 				downPressed();
 			}
 		});
-        setButtonLayoutData(button);
+		setButtonLayoutData(button);
 
-		
+
 	}
 
 	/**
@@ -235,43 +235,41 @@ public class InputListDialog {
 		String msg = addToListText.getText();
 		if(msg.length() == 0)
 			return;
-		
+
 		msg.trim();
 		listWidget.add(msg);
-//		listWidget.pack(true);
+		//		listWidget.pack(true);
 	}
 
 	protected void upPressed() {
 		System.out.println("up pressed");
 		int selectionIndex = listWidget.getSelectionIndex();
-		
-		if(selectionIndex > 0 )
-		{
-			swapItems(selectionIndex-1, selectionIndex);
-			listWidget.setSelection(selectionIndex-1);
+
+		if(selectionIndex > 0) {
+			swapItems(selectionIndex - 1, selectionIndex);
+			listWidget.setSelection(selectionIndex - 1);
 		}
 	}
 
 	/**
 	 * Swap items in the list
+	 * 
 	 * @param down
 	 * @param up
 	 */
-	private void swapItems(int down, int up)
-	{
+	private void swapItems(int down, int up) {
 		String tmp = listWidget.getItem(down);
-		listWidget.setItem(down, listWidget.getItem(up) );
-		listWidget.setItem(up, tmp );		
+		listWidget.setItem(down, listWidget.getItem(up));
+		listWidget.setItem(up, tmp);
 	}
 
 	protected void downPressed() {
 		System.out.println("down pressed");
 		int selectionIndex = listWidget.getSelectionIndex();
-		
-		if(selectionIndex < listWidget.getItemCount()-1 )
-		{
-			swapItems(selectionIndex, selectionIndex+1);
-			listWidget.setSelection(selectionIndex+1);
+
+		if(selectionIndex < listWidget.getItemCount() - 1) {
+			swapItems(selectionIndex, selectionIndex + 1);
+			listWidget.setSelection(selectionIndex + 1);
 		}
 	}
 
@@ -279,7 +277,7 @@ public class InputListDialog {
 	protected void removedPressed() {
 		System.out.println("removed pressed");
 		int selectionIndex = listWidget.getSelectionIndex();
-		
+
 		String old = listWidget.getItem(selectionIndex);
 		listWidget.remove(selectionIndex);
 		addToListText.setText(old);
@@ -294,9 +292,9 @@ public class InputListDialog {
 	 */
 	protected void setButtonLayoutData(Control button) {
 		GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-//		int widthHint = convertHorizontalDLUsToPixels(IDialogConstants.BUTTON_WIDTH);
+		//		int widthHint = convertHorizontalDLUsToPixels(IDialogConstants.BUTTON_WIDTH);
 		Point minSize = button.computeSize(SWT.DEFAULT, SWT.DEFAULT, true);
-//		data.widthHint = Math.max(widthHint, minSize.x);
+		//		data.widthHint = Math.max(widthHint, minSize.x);
 		data.widthHint = minSize.x;
 		button.setLayoutData(data);
 	}

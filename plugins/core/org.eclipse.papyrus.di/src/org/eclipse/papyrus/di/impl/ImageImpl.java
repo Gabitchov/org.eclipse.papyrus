@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,18 +29,20 @@ import org.eclipse.papyrus.di.Image;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.ImageImpl#getUri <em>Uri</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.ImageImpl#getMimeType <em>Mime Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.ImageImpl#getUri <em>Uri</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.ImageImpl#getMimeType <em>Mime Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ImageImpl extends LeafElementImpl implements Image {
+
 	/**
 	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUri()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUri()
 	 * @generated
 	 * @ordered
@@ -61,6 +64,7 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	 * The default value of the '{@link #getMimeType() <em>Mime Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMimeType()
 	 * @generated
 	 * @ordered
@@ -71,6 +75,7 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	 * The cached value of the '{@link #getMimeType() <em>Mime Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMimeType()
 	 * @generated
 	 * @ordered
@@ -80,6 +85,7 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ImageImpl() {
@@ -89,6 +95,7 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,6 +106,7 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getUri() {
@@ -108,18 +116,20 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUri(String newUri) {
 		String oldUri = uri;
 		uri = newUri;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.IMAGE__URI, oldUri, uri));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getMimeType() {
@@ -129,27 +139,29 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMimeType(String newMimeType) {
 		String oldMimeType = mimeType;
 		mimeType = newMimeType;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.IMAGE__MIME_TYPE, oldMimeType, mimeType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.IMAGE__URI:
-				return getUri();
-			case DiPackage.IMAGE__MIME_TYPE:
-				return getMimeType();
+		switch(featureID) {
+		case DiPackage.IMAGE__URI:
+			return getUri();
+		case DiPackage.IMAGE__MIME_TYPE:
+			return getMimeType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,17 +169,18 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.IMAGE__URI:
-				setUri((String)newValue);
-				return;
-			case DiPackage.IMAGE__MIME_TYPE:
-				setMimeType((String)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.IMAGE__URI:
+			setUri((String)newValue);
+			return;
+		case DiPackage.IMAGE__MIME_TYPE:
+			setMimeType((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -175,17 +188,18 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.IMAGE__URI:
-				setUri(URI_EDEFAULT);
-				return;
-			case DiPackage.IMAGE__MIME_TYPE:
-				setMimeType(MIME_TYPE_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DiPackage.IMAGE__URI:
+			setUri(URI_EDEFAULT);
+			return;
+		case DiPackage.IMAGE__MIME_TYPE:
+			setMimeType(MIME_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -193,15 +207,16 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.IMAGE__URI:
-				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
-			case DiPackage.IMAGE__MIME_TYPE:
-				return MIME_TYPE_EDEFAULT == null ? mimeType != null : !MIME_TYPE_EDEFAULT.equals(mimeType);
+		switch(featureID) {
+		case DiPackage.IMAGE__URI:
+			return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+		case DiPackage.IMAGE__MIME_TYPE:
+			return MIME_TYPE_EDEFAULT == null ? mimeType != null : !MIME_TYPE_EDEFAULT.equals(mimeType);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -209,11 +224,13 @@ public class ImageImpl extends LeafElementImpl implements Image {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (uri: ");

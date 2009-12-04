@@ -10,7 +10,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.resource.migration.controller;
 
 import java.io.IOException;
@@ -74,18 +74,18 @@ public class GenModelUpdater {
 	 * @throws IOException
 	 */
 	public void transform(URI uri) throws URINotValidException, IOException {
-		if (uri == null) {
+		if(uri == null) {
 			throw new URINotValidException("uri is null");
 		}
 		ResourceSet set = new ResourceSetImpl();
 		try {
 			Resource resource = set.getResource(uri, true);
-			if (resource != null) {
+			if(resource != null) {
 				EObject e = resource.getContents().get(0);
-				if (e instanceof GenModel) {
-					GenModel genmodel = (GenModel) e;
+				if(e instanceof GenModel) {
+					GenModel genmodel = (GenModel)e;
 					Resource toSave = update(genmodel);
-					if (toSave != null) {
+					if(toSave != null) {
 						resource.save(Collections.EMPTY_MAP);
 						toSave.save(Collections.EMPTY_MAP);
 					}
@@ -94,8 +94,8 @@ public class GenModelUpdater {
 				}
 			}
 			// we have to unload the resource to free the memory
-			for (Resource r : set.getResources()) {
-				if (r.isLoaded()) {
+			for(Resource r : set.getResources()) {
+				if(r.isLoaded()) {
 					try {
 						r.unload();
 					} catch (Exception e) {
@@ -118,28 +118,28 @@ public class GenModelUpdater {
 		// does the genmodel already contain the resource ?
 		Resource result = null;
 		boolean found = false;
-		for (GenPackage p : genmodel.getUsedGenPackages()) {
+		for(GenPackage p : genmodel.getUsedGenPackages()) {
 			found |= resourcePackage.equals(p.getEcorePackage());
 		}
-		if (!found) {
+		if(!found) {
 			// we load the Resource GenModel
 			Resource resourceForResourceGenmodel = genmodel.eResource().getResourceSet().getResource(
 					uriForResourceGenModel, true);
-			if (resourceForResourceGenmodel != null) {
+			if(resourceForResourceGenmodel != null) {
 				EObject root = resourceForResourceGenmodel.getContents().get(0);
-				if (root instanceof GenModel) {
-					GenModel model = (GenModel) root;
+				if(root instanceof GenModel) {
+					GenModel model = (GenModel)root;
 					// Resource Genmodel is a used gen package for the current genmodel
 					genmodel.getUsedGenPackages().add(model.getGenPackages().get(0));
 					// load the eclass resource eobject
 					Resource resourceResource = genmodel.eResource().getResourceSet().getResource(
 							uriForEclassResourceEObject.trimFragment(), true);
-					if (resourceResource != null) {
+					if(resourceResource != null) {
 						// we get the ResourceEObject EClass
 						EObject resourceEObjectEobject = resourceResource.getEObject(uriForEclassResourceEObject
 								.fragment());
-						if (resourceEObjectEobject instanceof EClass) {
-							resourceEObjectEClass = (EClass) resourceEObjectEobject;
+						if(resourceEObjectEobject instanceof EClass) {
+							resourceEObjectEClass = (EClass)resourceEObjectEobject;
 							result = addResourceEobjectInheritance(genmodel);
 						}
 					}
@@ -160,7 +160,7 @@ public class GenModelUpdater {
 		EcoreUtil.resolveAll(genmodel.eResource().getResourceSet());
 		Resource result = null;
 		List<GenPackage> packages = genmodel.getGenPackages();
-		if (packages.size() > 0) {
+		if(packages.size() > 0) {
 			GenPackage genPackage = packages.get(0);
 			currentEPackage = genPackage.getEcorePackage();
 			result = currentEPackage.eResource();
@@ -175,13 +175,13 @@ public class GenModelUpdater {
 	 * @param currentEPackage2
 	 */
 	private void manageEPackage(EPackage currentEPackage2) {
-		for (EClassifier eclassifier : currentEPackage2.getEClassifiers()) {
-			if (eclassifier instanceof EClass) {
-				EClass eClass = (EClass) eclassifier;
+		for(EClassifier eclassifier : currentEPackage2.getEClassifiers()) {
+			if(eclassifier instanceof EClass) {
+				EClass eClass = (EClass)eclassifier;
 				manageEClass(eClass);
 			}
 		}
-		for (EPackage ePackage : currentEPackage2.getESubpackages()) {
+		for(EPackage ePackage : currentEPackage2.getESubpackages()) {
 			manageEPackage(ePackage);
 		}
 
@@ -193,18 +193,18 @@ public class GenModelUpdater {
 	 * @param eClass
 	 */
 	private void manageEClass(EClass eClass) {
-		if (eClass != resourceEObjectEClass) {
-			if (eClass.getESuperTypes().size() == 0) {
-				if (isACorrectEPackage(eClass.getEPackage())) {
+		if(eClass != resourceEObjectEClass) {
+			if(eClass.getESuperTypes().size() == 0) {
+				if(isACorrectEPackage(eClass.getEPackage())) {
 					eClass.getESuperTypes().add(resourceEObjectEClass);
 				}
 			} else {
 				boolean toAdd = true;
-				for (EClass eClass2 : eClass.getESuperTypes()) {
+				for(EClass eClass2 : eClass.getESuperTypes()) {
 					toAdd &= !isACorrectEPackage(eClass2.getEPackage());
 					manageEClass(eClass2);
 				}
-				if (toAdd) {
+				if(toAdd) {
 					eClass.getESuperTypes().add(resourceEObjectEClass);
 				}
 			}
@@ -219,7 +219,7 @@ public class GenModelUpdater {
 	 */
 	private boolean isACorrectEPackage(EPackage ePackage) {
 		EPackage current = ePackage;
-		while (current != null && current != currentEPackage) {
+		while(current != null && current != currentEPackage) {
 			current = current.getESuperPackage();
 		}
 		return current == currentEPackage;

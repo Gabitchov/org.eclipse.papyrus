@@ -41,29 +41,30 @@ public class MergeNodePropertiesEditionComponent extends ComposedPropertiesEditi
 	 * The ElementPropertiesEditionComponent sub component
 	 */
 	protected ElementPropertiesEditionComponent elementPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 
 	 * @param mergeNode
-	 *            the EObject to edit
+	 *        the EObject to edit
 	 */
 	public MergeNodePropertiesEditionComponent(EObject mergeNode, String editing_mode) {
 		super(editing_mode);
-		if (mergeNode instanceof MergeNode) {
-			mergeNodeBasePropertiesEditionComponent = new MergeNodeBasePropertiesEditionComponent(mergeNode, editing_mode); 
+		if(mergeNode instanceof MergeNode) {
+			mergeNodeBasePropertiesEditionComponent = new MergeNodeBasePropertiesEditionComponent(mergeNode, editing_mode);
 			addSubComponent(mergeNodeBasePropertiesEditionComponent);
 			elementPropertiesEditionComponent = new ElementPropertiesEditionComponent(mergeNode, editing_mode);
 			addSubComponent(elementPropertiesEditionComponent);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * 		getPropertiesEditionPart(int, java.lang.String)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent# getPropertiesEditionPart(int, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if ("Base".equals(key)) {
+		if("Base".equals(key)) {
 			basePart = (MergeNodePropertiesEditionPart)mergeNodeBasePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
 			return (IPropertiesEditionPart)basePart;
 		}
@@ -72,28 +73,30 @@ public class MergeNodePropertiesEditionComponent extends ComposedPropertiesEditi
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
-	 * setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (UMLViewsRepository.MergeNode.class == key) {
+		if(UMLViewsRepository.MergeNode.class == key) {
 			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
 			basePart = (MergeNodePropertiesEditionPart)propertiesEditionPart;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent
-	 *	#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent #initPart(java.lang.Class, int,
+	 *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject element, ResourceSet allResource) {
-		if (key == UMLViewsRepository.MergeNode.class) {
+		if(key == UMLViewsRepository.MergeNode.class) {
 			super.initPart(key, kind, element, allResource);
 		}
-			if (key == UMLViewsRepository.Comments.class) {
-				super.initPart(key, kind, element, allResource);
-			
-			}
+		if(key == UMLViewsRepository.Comments.class) {
+			super.initPart(key, kind, element, allResource);
+
+		}
 	}
 }

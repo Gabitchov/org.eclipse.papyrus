@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,17 +29,19 @@ import org.eclipse.papyrus.di.SimpleSemanticModelElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.SimpleSemanticModelElementImpl#getTypeinfo <em>Typeinfo</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.SimpleSemanticModelElementImpl#getTypeinfo <em>Typeinfo</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl implements SimpleSemanticModelElement {
+
 	/**
 	 * The default value of the '{@link #getTypeinfo() <em>Typeinfo</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTypeinfo()
 	 * @generated
 	 * @ordered
@@ -50,6 +52,7 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	 * The cached value of the '{@link #getTypeinfo() <em>Typeinfo</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTypeinfo()
 	 * @generated
 	 * @ordered
@@ -59,6 +62,7 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SimpleSemanticModelElementImpl() {
@@ -68,6 +72,7 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,6 +83,7 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTypeinfo() {
@@ -87,25 +93,27 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTypeinfo(String newTypeinfo) {
 		String oldTypeinfo = typeinfo;
 		typeinfo = newTypeinfo;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO, oldTypeinfo, typeinfo));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
-				return getTypeinfo();
+		switch(featureID) {
+		case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
+			return getTypeinfo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,14 +121,15 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
-				setTypeinfo((String)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
+			setTypeinfo((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -128,14 +137,15 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
-				setTypeinfo(TYPEINFO_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
+			setTypeinfo(TYPEINFO_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,13 +153,14 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
-				return TYPEINFO_EDEFAULT == null ? typeinfo != null : !TYPEINFO_EDEFAULT.equals(typeinfo);
+		switch(featureID) {
+		case DiPackage.SIMPLE_SEMANTIC_MODEL_ELEMENT__TYPEINFO:
+			return TYPEINFO_EDEFAULT == null ? typeinfo != null : !TYPEINFO_EDEFAULT.equals(typeinfo);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -157,11 +168,13 @@ public class SimpleSemanticModelElementImpl extends SemanticModelBridgeImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (typeinfo: ");

@@ -77,9 +77,9 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	 * Creates the controls.
 	 * 
 	 * @param tabbedPropertySheetPage
-	 *            the tabbed property sheet page
+	 *        the tabbed property sheet page
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -105,17 +105,17 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 		comboQualifiedNameAppearanceListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if (namedElementEditPart != null) {
-					if (((View) namedElementEditPart.getModel()).getElement() != null
-							&& ((View) namedElementEditPart.getModel()).getElement() instanceof NamedElement) {
+				if(namedElementEditPart != null) {
+					if(((View)namedElementEditPart.getModel()).getElement() != null
+							&& ((View)namedElementEditPart.getModel()).getElement() instanceof NamedElement) {
 
 						String currentQualifiedNameDepth = comboQualifiedNameAppearance.getText();
 						String currentQualifiedNameSpec;
 
-						if ("Full".equals(currentQualifiedNameDepth)) {
+						if("Full".equals(currentQualifiedNameDepth)) {
 							currentQualifiedNameSpec = "0";
-						} else if ("None".equals(currentQualifiedNameDepth)) {
-							NamedElement ne = (NamedElement) ((View) namedElementEditPart.getModel()).getElement();
+						} else if("None".equals(currentQualifiedNameDepth)) {
+							NamedElement ne = (NamedElement)((View)namedElementEditPart.getModel()).getElement();
 							currentQualifiedNameSpec = "" + NamedElementUtil.getQualifiedNameMaxDepth(ne);
 						} else {
 							currentQualifiedNameSpec = currentQualifiedNameDepth.substring(1);
@@ -124,11 +124,11 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						// createProperty value
 						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
 						// command creation
-						if (editingDomain != null) {
+						if(editingDomain != null) {
 							editingDomain.getCommandStack().execute(
 									new SetQualifiedNameDepthCommand(editingDomain,
-											((EModelElement) namedElementEditPart.getModel()), Integer
-													.parseInt(currentQualifiedNameSpec)));
+									((EModelElement)namedElementEditPart.getModel()), Integer
+									.parseInt(currentQualifiedNameSpec)));
 						}
 
 						refresh();
@@ -146,12 +146,12 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	// @unused
 	public int getQualifiedNamedepth(View view) {
 		EAnnotation stereotypeDisplayKind = (view).getEAnnotation(VisualInformationPapyrusConstant.QUALIFIED_NAME);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
-			if (entries != null) {
+			if(entries != null) {
 				String depthString = entries.get(VisualInformationPapyrusConstant.QUALIFIED_NAME_DEPTH);
-				if (depthString != null) {
+				if(depthString != null) {
 					Integer i = new Integer(depthString);
 					return i.intValue();
 				}
@@ -168,31 +168,31 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	 */
 	@Override
 	public void refresh() {
-		if ((!comboQualifiedNameAppearance.isDisposed())) {
+		if((!comboQualifiedNameAppearance.isDisposed())) {
 
 			comboQualifiedNameAppearance.removeSelectionListener(comboQualifiedNameAppearanceListener);
 
-			if (namedElementEditPart != null) {
+			if(namedElementEditPart != null) {
 
-				if ((namedElementEditPart.getModel()) != null
-						&& ((View) (namedElementEditPart.getModel())).getElement() != null) {
+				if((namedElementEditPart.getModel()) != null
+						&& ((View)(namedElementEditPart.getModel())).getElement() != null) {
 
-					org.eclipse.uml2.uml.Element element = (Element) ((View) (namedElementEditPart.getModel()))
+					org.eclipse.uml2.uml.Element element = (Element)((View)(namedElementEditPart.getModel()))
 							.getElement();
 
-					if (element instanceof NamedElement) {
+					if(element instanceof NamedElement) {
 
 						comboQualifiedNameAppearance.setEnabled(true);
 						// delete all old items
 						comboQualifiedNameAppearance.removeAll();
 
 						// calculate the max depth of qualified name
-						int depth = NamedElementUtil.getQualifiedNameMaxDepth((NamedElement) element);
+						int depth = NamedElementUtil.getQualifiedNameMaxDepth((NamedElement)element);
 
 						// build new items
-						if (depth != 0) {
+						if(depth != 0) {
 							comboQualifiedNameAppearance.add("Full");
-							for (int i = 1; i < depth; i++) {
+							for(int i = 1; i < depth; i++) {
 								comboQualifiedNameAppearance.add("-" + i);
 							}
 							comboQualifiedNameAppearance.add("None");
@@ -201,12 +201,12 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 						}
 
 						int qualifiedNameDepth = QualifiedNameHelper
-								.getQualifiedNameDepth((EModelElement) (namedElementEditPart.getModel()));
+								.getQualifiedNameDepth((EModelElement)(namedElementEditPart.getModel()));
 
-						if (depth != 0) {
-							if (qualifiedNameDepth == 0) {
+						if(depth != 0) {
+							if(qualifiedNameDepth == 0) {
 								comboQualifiedNameAppearance.setText("Full");
-							} else if (qualifiedNameDepth >= depth) {
+							} else if(qualifiedNameDepth >= depth) {
 								comboQualifiedNameAppearance.setText("None");
 							} else {
 								comboQualifiedNameAppearance.setText("-" + qualifiedNameDepth);
@@ -231,7 +231,7 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	@Override
 	public void dispose() {
 		super.dispose();
-		if (comboQualifiedNameAppearance != null && !comboQualifiedNameAppearance.isDisposed()) {
+		if(comboQualifiedNameAppearance != null && !comboQualifiedNameAppearance.isDisposed()) {
 			comboQualifiedNameAppearance.removeSelectionListener(comboQualifiedNameAppearanceListener);
 		}
 	}
@@ -242,23 +242,23 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		Object input = ((IStructuredSelection) selection).getFirstElement();
+		Object input = ((IStructuredSelection)selection).getFirstElement();
 		// look for modelManager
-		if (input instanceof GraphicalEditPart) {
-			namedElementEditPart = ((GraphicalEditPart) input);
+		if(input instanceof GraphicalEditPart) {
+			namedElementEditPart = ((GraphicalEditPart)input);
 			// selectionChanged(selection);
 		}
 		// When the selection is computed from the outline, get the associated
 		// editor
-		if (part instanceof ContentOutline) {
-			IContributedContentsView contributedView = ((IContributedContentsView) ((ContentOutline) part)
+		if(part instanceof ContentOutline) {
+			IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part)
 					.getAdapter(IContributedContentsView.class));
-			if (contributedView != null) {
+			if(contributedView != null) {
 				part = contributedView.getContributingPart();
 			}
 		}
-		if (part instanceof IMultiDiagramEditor) {
-			editor = (IMultiDiagramEditor) part;
+		if(part instanceof IMultiDiagramEditor) {
+			editor = (IMultiDiagramEditor)part;
 			backbone = editor.getDefaultContext();
 			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
 		} else {

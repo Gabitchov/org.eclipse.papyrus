@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 import java.util.Collection;
@@ -55,7 +55,7 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -73,7 +73,7 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_name_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_name_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Diagram_name_feature", "_UI_Diagram_type"), DiPackage.Literals.DIAGRAM__NAME, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -84,7 +84,7 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addZoomPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_zoom_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_zoom_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Diagram_zoom_feature", "_UI_Diagram_type"), DiPackage.Literals.DIAGRAM__ZOOM, true, false, false,
 				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
@@ -95,7 +95,7 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addViewportPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_viewport_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_viewport_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Diagram_viewport_feature", "_UI_Diagram_type"), DiPackage.Literals.DIAGRAM__VIEWPORT, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
@@ -106,7 +106,7 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addDiagramLinkPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Diagram_diagramLink_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Diagram_diagramLink_feature", "_UI_Diagram_type"),
 				DiPackage.Literals.DIAGRAM__DIAGRAM_LINK, true, false, true, null, null, null));
 	}
@@ -117,20 +117,21 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_type_feature"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Diagram_type_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Diagram_type_feature", "_UI_Diagram_type"), DiPackage.Literals.DIAGRAM__TYPE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiPackage.Literals.DIAGRAM__OWNER);
 		}
@@ -157,26 +158,26 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 */
 	@Override
 	public Object getImage(Object object) {
-		String typeDiagram = ((Diagram) object).getType();
-		if (typeDiagram == null) {
+		String typeDiagram = ((Diagram)object).getType();
+		if(typeDiagram == null) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/Diagram"));
 		}
-		if (typeDiagram.equals("ActivityDiagram")) {
+		if(typeDiagram.equals("ActivityDiagram")) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/Diagram_ActivityDiagram"));
 		}
-		if (typeDiagram.equals("ClassDiagram")) {
+		if(typeDiagram.equals("ClassDiagram")) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/Diagram_ClassDiagram"));
 		}
-		if (typeDiagram.equals("CompositeStructureDiagram")) {
+		if(typeDiagram.equals("CompositeStructureDiagram")) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/Diagram_CompositeStructureDiagram"));
 		}
-		if (typeDiagram.equals("DeploymentDiagram")) {
+		if(typeDiagram.equals("DeploymentDiagram")) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/Diagram_DeploymentDiagram"));
 		}
-		if (typeDiagram.equals("StateMachineDiagram")) {
+		if(typeDiagram.equals("StateMachineDiagram")) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/Diagram_StateMachineDiagram"));
 		}
-		if (typeDiagram.equals("UseCaseDiagram")) {
+		if(typeDiagram.equals("UseCaseDiagram")) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/Diagram_UseCaseDiagram"));
 		}
 
@@ -191,12 +192,13 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Diagram) object).getName();
+		String label = ((Diagram)object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_Diagram_type") : getString("_UI_Diagram_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}. <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -205,7 +207,7 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Diagram.class)) {
+		switch(notification.getFeatureID(Diagram.class)) {
 		case DiPackage.DIAGRAM__NAME:
 		case DiPackage.DIAGRAM__ZOOM:
 		case DiPackage.DIAGRAM__VIEWPORT:
@@ -220,7 +222,8 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -249,8 +252,8 @@ public class DiagramItemProvider extends GraphNodeItemProvider implements IEditi
 
 		boolean qualify = childFeature == DiPackage.Literals.GRAPH_ELEMENT__SEMANTIC_MODEL || childFeature == DiPackage.Literals.DIAGRAM__OWNER;
 
-		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		if(qualify) {
+			return getString("_UI_CreateChild_text2", new Object[]{ getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

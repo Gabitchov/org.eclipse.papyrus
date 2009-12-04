@@ -55,9 +55,9 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	@SuppressWarnings("unchecked")
 	public void contributeToPalette(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
 		parser = new XMLDefinitionPaletteParser(new XMLDefinitionPaletteFactory(root, predefinedEntries));
-		for (int i = 0; i < contributions.getLength(); i++) {
+		for(int i = 0; i < contributions.getLength(); i++) {
 			Node node = contributions.item(i);
-			if (PALETTE_DEFINITION.equals(node.getNodeName())) {
+			if(PALETTE_DEFINITION.equals(node.getNodeName())) {
 				parser.parsePaletteDefinition(node);
 			}
 		}
@@ -67,7 +67,7 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 * Adds the configuration elements to the list of palette provider XML contributions
 	 * 
 	 * @param configElement
-	 *            the configuration element from which information are retrieved
+	 *        the configuration element from which information are retrieved
 	 */
 	public void setContributions(IConfigurationElement configElement) {
 		// tries to read the XML configuration file
@@ -78,7 +78,7 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 * locally defines palette
 	 * 
 	 * @param description
-	 *            the description of the palette to build
+	 *        the description of the palette to build
 	 */
 	public void setContributions(IPaletteDescription description) {
 		readXMLDocument(description.getContributions());
@@ -88,11 +88,11 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 * Reads the XML configuration for the specified element
 	 * 
 	 * @param contribution
-	 *            the path for the xml file
+	 *        the path for the xml file
 	 */
 	protected void readXMLDocument(Object contribution) {
-		if (contribution instanceof String) {
-			readXMLDocument((String) contribution);
+		if(contribution instanceof String) {
+			readXMLDocument((String)contribution);
 		}
 	}
 
@@ -100,7 +100,7 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 * Reads the XML configuration for the specified element
 	 * 
 	 * @param iConfigurationElement
-	 *            the path for the xml file
+	 *        the path for the xml file
 	 */
 	protected void readXMLDocument(String path) {
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -112,7 +112,7 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 			// URL url = bundle.getEntry(path);
 
 			File file = Activator.getDefault().getStateLocation().append(path).toFile();
-			if (!file.exists()) {
+			if(!file.exists()) {
 				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + file);
 				contributions = new EmptyNodeList();
 			} else {

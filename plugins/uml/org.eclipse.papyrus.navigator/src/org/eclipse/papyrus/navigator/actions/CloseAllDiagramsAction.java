@@ -30,7 +30,7 @@ public class CloseAllDiagramsAction extends Action {
 	}
 
 	public CloseAllDiagramsAction(IPageMngr pageMngr) {
-		if (pageMngr == null) {
+		if(pageMngr == null) {
 			throw new IllegalArgumentException("An IPageMngr must be specified");
 		}
 		this.pageMngr = pageMngr;
@@ -39,8 +39,8 @@ public class CloseAllDiagramsAction extends Action {
 		setText("Close all diagrams");
 		// this action is enabled when there is at least one diagram open.
 		boolean aDiagramIsOpen = false;
-		for (Object identifier : pageMngr.allPages()) {
-			if (pageMngr.isOpen(identifier)) {
+		for(Object identifier : pageMngr.allPages()) {
+			if(pageMngr.isOpen(identifier)) {
 				aDiagramIsOpen = true;
 			}
 		}
@@ -55,8 +55,8 @@ public class CloseAllDiagramsAction extends Action {
 	@Override
 	public void run() {
 		// close all open diagrams
-		for (Object identifier : pageMngr.allPages()) {
-			if (getPageMngr().isOpen(identifier)) {
+		for(Object identifier : pageMngr.allPages()) {
+			if(getPageMngr().isOpen(identifier)) {
 				getPageMngr().closePage(identifier);
 			}
 		}

@@ -34,14 +34,14 @@ public class RotateAction implements IObjectActionDelegate {
 	private ShapeNodeEditPart selectedElement;
 
 	public void run(IAction action) {
-		if (selectedElement == null) {
+		if(selectedElement == null) {
 			return;
 		}
 
 		Dimension size = selectedElement.getSize();
 
-		int x = (Integer) selectedElement.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X());
-		int y = (Integer) selectedElement.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y());
+		int x = (Integer)selectedElement.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X());
+		int y = (Integer)selectedElement.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y());
 
 		Rectangle rectangle = new Rectangle(x + size.width / 2 - size.height / 2, y - size.width / 2 + size.height / 2,
 				size.height, size.width);
@@ -52,10 +52,10 @@ public class RotateAction implements IObjectActionDelegate {
 
 	public void selectionChanged(IAction action, ISelection selection) {
 		selectedElement = null;
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.getFirstElement() instanceof ShapeNodeEditPart) {
-				selectedElement = (ShapeNodeEditPart) structuredSelection.getFirstElement();
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			if(structuredSelection.getFirstElement() instanceof ShapeNodeEditPart) {
+				selectedElement = (ShapeNodeEditPart)structuredSelection.getFirstElement();
 			}
 		}
 		action.setEnabled(selectedElement != null);

@@ -450,10 +450,10 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	 */
 	public boolean visitChildren(IPartVisitor visitor) {
 		for(AbstractPanelPart child : currentChildParts) {
-			if( !child.visit(visitor) )
+			if(!child.visit(visitor))
 				return false;
 		}
-		
+
 		// All children have accepter the visit, continue visiting.
 		return true;
 

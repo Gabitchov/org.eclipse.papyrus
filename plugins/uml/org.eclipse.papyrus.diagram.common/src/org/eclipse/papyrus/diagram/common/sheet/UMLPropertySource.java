@@ -30,7 +30,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
 
 /**
- * A specific property source for Papyrus. 
+ * A specific property source for Papyrus.
  * It replaces the combo used to choose a single reference by a {@link ElementListSelectionDialog}
  * 
  */
@@ -44,8 +44,10 @@ public class UMLPropertySource extends PropertySource {
 		super(object, ips);
 	}
 
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.emf.edit.ui.provider.PropertySource#createPropertyDescriptor(org.eclipse.emf.edit.provider.IItemPropertyDescriptor)
 	 */
 	@Override
@@ -54,9 +56,9 @@ public class UMLPropertySource extends PropertySource {
 	}
 
 	/**
-     * A custom property descriptor.
-     * It replaces the Combo by the {@link ElementListSelectionDialog}
-     */
+	 * A custom property descriptor.
+	 * It replaces the Combo by the {@link ElementListSelectionDialog}
+	 */
 	private class CustomPropertyDescriptor extends PropertyDescriptor {
 
 		public CustomPropertyDescriptor(Object object, IItemPropertyDescriptor itemPropertyDescriptor) {
@@ -65,15 +67,15 @@ public class UMLPropertySource extends PropertySource {
 
 		@Override
 		public CellEditor createPropertyEditor(Composite composite) {
-			if (!itemPropertyDescriptor.canSetProperty(object)) {
+			if(!itemPropertyDescriptor.canSetProperty(object)) {
 				return null;
 			}
-			
+
 			CellEditor result = null;
 			Object genericFeature = itemPropertyDescriptor.getFeature(object);
 
 			// If it is a single reference
-			if (genericFeature instanceof EReference && !((EReference) genericFeature).isMany()) {
+			if(genericFeature instanceof EReference && !((EReference)genericFeature).isMany()) {
 				final ILabelProvider editLabelProvider = getEditLabelProvider();
 				result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
 
@@ -93,9 +95,9 @@ public class UMLPropertySource extends PropertySource {
 						dialog.setElements(result.toArray());
 
 						Object toReturn = null;
-						if (dialog.open() == Dialog.OK) {
+						if(dialog.open() == Dialog.OK) {
 							toReturn = dialog.getFirstResult();
-							if ("".equals(toReturn)) {
+							if("".equals(toReturn)) {
 								toReturn = itemPropertyDescriptor.getPropertyValue(null);
 							}
 						} else {

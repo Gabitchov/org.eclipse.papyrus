@@ -33,7 +33,7 @@ public class PseudostateViewFactory extends AbstractShapeViewFactory {
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
-		if (semanticHint == null) {
+		if(semanticHint == null) {
 			semanticHint = UMLVisualIDRegistry
 					.getType(PseudostateEditPart.VISUAL_ID);
 			view.setType(semanticHint);

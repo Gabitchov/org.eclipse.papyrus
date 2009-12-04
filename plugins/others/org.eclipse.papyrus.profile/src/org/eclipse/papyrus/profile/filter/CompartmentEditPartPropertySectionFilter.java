@@ -23,7 +23,7 @@ public class CompartmentEditPartPropertySectionFilter implements IFilter {
 	 * {@inheritDoc}
 	 */
 	public boolean select(Object object) {
-		if (object instanceof CompartmentEditPart)
+		if(object instanceof CompartmentEditPart)
 			return true;
 
 		return false;

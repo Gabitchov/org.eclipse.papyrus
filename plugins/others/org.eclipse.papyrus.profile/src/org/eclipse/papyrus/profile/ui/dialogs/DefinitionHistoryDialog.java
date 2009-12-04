@@ -50,8 +50,8 @@ import org.eclipse.uml2.uml.Profile;
 
 public class DefinitionHistoryDialog extends TitleAreaDialog {
 
-	/** path to the banner image */  
-	public final static String PROFILE_ANNOTATION_IMG = ImageManager.IMAGE_PATH+"wizban/Annotation.gif";
+	/** path to the banner image */
+	public final static String PROFILE_ANNOTATION_IMG = ImageManager.IMAGE_PATH + "wizban/Annotation.gif";
 
 	/** Profile for which definitions are displayed */
 	protected Profile profile;
@@ -61,8 +61,11 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 
 	/**
 	 * Creates a new ProfileDefinitionDialog
-	 * @param parentShell the parent shell for this dialog
-	 * @param profile the profile for which definition history is displayed
+	 * 
+	 * @param parentShell
+	 *        the parent shell for this dialog
+	 * @param profile
+	 *        the profile for which definition history is displayed
 	 */
 	public DefinitionHistoryDialog(Shell parentShell, Profile profile) {
 		super(parentShell);
@@ -86,9 +89,9 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		// top level composite
-		Composite parentComposite = (Composite) super.createDialogArea(parent);
+		Composite parentComposite = (Composite)super.createDialogArea(parent);
 
-		setTitle("Profile definition history"); 
+		setTitle("Profile definition history");
 		setTitleImage(ImageManager.getImage(PROFILE_ANNOTATION_IMG));
 
 		// create a composite with standard margins and spacing
@@ -114,11 +117,13 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * Creates and returns the content of the advanced area. 
-	 * @param composite The parent composite to contain the advanced area
+	 * Creates and returns the content of the advanced area.
+	 * 
+	 * @param composite
+	 *        The parent composite to contain the advanced area
 	 */
 	private Composite createTableArea(Composite composite) {
-		Composite parent= new Composite(composite, SWT.FILL);
+		Composite parent = new Composite(composite, SWT.FILL);
 		GridLayout layout = new GridLayout();
 		parent.setLayout(layout);
 		Font font = composite.getFont();
@@ -142,21 +147,21 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 		createTableColumn(table, 30, "comment", true, SWT.LEFT);
 		createTableColumn(table, 50, "copyright", true, SWT.LEFT);
 
-//		// display is a table with all history versions
-//		final Table table = new Table(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
-//		final TableColumn versionColumn = new TableColumn(table, SWT.CENTER);
-//		versionColumn.setText("version");
-//		final TableColumn dateColumn = new TableColumn(table, SWT.CENTER);
-//		dateColumn.setText("date");
-//		final TableColumn authorColumn = new TableColumn(table, SWT.CENTER);
-//		authorColumn.setText("author");
-//		final TableColumn commentColumn = new TableColumn(table, SWT.CENTER);
-//		commentColumn.setText("comment");
+		//		// display is a table with all history versions
+		//		final Table table = new Table(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+		//		final TableColumn versionColumn = new TableColumn(table, SWT.CENTER);
+		//		versionColumn.setText("version");
+		//		final TableColumn dateColumn = new TableColumn(table, SWT.CENTER);
+		//		dateColumn.setText("date");
+		//		final TableColumn authorColumn = new TableColumn(table, SWT.CENTER);
+		//		authorColumn.setText("author");
+		//		final TableColumn commentColumn = new TableColumn(table, SWT.CENTER);
+		//		commentColumn.setText("comment");
 
-//		GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-//		table.setLayoutData(gd);
+		//		GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+		//		table.setLayoutData(gd);
 
-//		TableViewer viewer = new TableViewer(table);
+		//		TableViewer viewer = new TableViewer(table);
 		// configure viewer
 		viewer.setContentProvider(new DefinitionHistoryContentProvider());
 		viewer.setLabelProvider(new DefinitionHistoryTableLabelProvider());
@@ -167,10 +172,15 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 
 	/**
 	 * Creates table columns for the viewer
-	 * @param table the modified table
-	 * @param weight weight of the column (size)
-	 * @param title title of the column
-	 * @param resizable is the column resizable
+	 * 
+	 * @param table
+	 *        the modified table
+	 * @param weight
+	 *        weight of the column (size)
+	 * @param title
+	 *        title of the column
+	 * @param resizable
+	 *        is the column resizable
 	 * @return the create column
 	 */
 	protected TableColumn createTableColumn(Table table, int weight, String title, boolean resizable, int style) {
@@ -203,13 +213,13 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 			if(inputElement instanceof Profile) {
 				// retrieve all definitions
 				EAnnotation eAnnotation = ((Profile)inputElement).getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
-				if (eAnnotation != null) {
+				if(eAnnotation != null) {
 					EList<EObject> definitions = eAnnotation.getContents();
 					List<Object> elements = new ArrayList<Object>();
 					// convert Papyrus Upgraded Annotation if possible (annotation with PapyrusVersion source added to the definition)
 					Iterator<EObject> it = definitions.listIterator();
-					while (it.hasNext()) {
-						EPackage object = (EPackage) it.next();
+					while(it.hasNext()) {
+						EPackage object = (EPackage)it.next();
 						EAnnotation annotation = object.getEAnnotation(IPapyrusVersionConstants.PAPYRUS_EANNOTATION_SOURCE);
 						if(annotation == null) {
 							elements.add(0, PapyrusDefinitionAnnotation.UNDEFINED_ANNOTATION);
@@ -219,9 +229,9 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 					}
 					return elements.toArray();
 				}
-				return new Object[] {};
+				return new Object[]{};
 			}
-			return new Object[] {};
+			return new Object[]{};
 		}
 
 		/**
@@ -261,13 +271,16 @@ public class DefinitionHistoryDialog extends TitleAreaDialog {
 		}
 
 		/**
-		 * Returns the label text for the given column index 
-		 * @param annotation the annotation representing the entire row (should never be <code>null</code>)
-		 * @param columnIndex the zero-based index of the column in which the label appears
+		 * Returns the label text for the given column index
+		 * 
+		 * @param annotation
+		 *        the annotation representing the entire row (should never be <code>null</code>)
+		 * @param columnIndex
+		 *        the zero-based index of the column in which the label appears
 		 * @return
 		 */
 		public String getColumnText(PapyrusDefinitionAnnotation annotation, int columnIndex) {
-			switch (columnIndex) {
+			switch(columnIndex) {
 			case 0:
 				return annotation.getVersion().toString();
 			case 1:

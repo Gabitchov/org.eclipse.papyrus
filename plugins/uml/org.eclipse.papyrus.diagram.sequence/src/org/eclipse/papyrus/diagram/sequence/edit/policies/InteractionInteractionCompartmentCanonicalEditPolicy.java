@@ -45,11 +45,11 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getInteractionInteractionCompartment_7001SemanticChildren(viewObject)
+		for(Iterator it = UMLDiagramUpdater.getInteractionInteractionCompartment_7001SemanticChildren(viewObject)
 				.iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -59,12 +59,12 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case LifelineEditPart.VISUAL_ID:
 		case InteractionUseEditPart.VISUAL_ID:
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 		case CombinedFragmentEditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -82,7 +82,7 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Lifeline());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Fragment());

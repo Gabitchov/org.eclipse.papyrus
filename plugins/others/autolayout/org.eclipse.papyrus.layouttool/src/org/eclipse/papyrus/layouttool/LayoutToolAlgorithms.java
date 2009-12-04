@@ -50,7 +50,7 @@ public class LayoutToolAlgorithms {
 	 * Sets the path.
 	 * 
 	 * @param path
-	 *            the path
+	 *        the path
 	 */
 	public void setPath(String path) {
 		this.path = path;
@@ -69,7 +69,7 @@ public class LayoutToolAlgorithms {
 	 * Sets the tool tip text.
 	 * 
 	 * @param toolTipText
-	 *            the toolTip text
+	 *        the toolTip text
 	 */
 	public void setToolTipText(String toolTipText) {
 		this.toolTipText = toolTipText;
@@ -79,7 +79,7 @@ public class LayoutToolAlgorithms {
 	 * Sets the algorithm.
 	 * 
 	 * @param algorithm
-	 *            the algorithm to apply
+	 *        the algorithm to apply
 	 */
 	public void setAlgorithm(AbstractLayoutAlgorithm algorithm) {
 		this.algorithm = algorithm;
@@ -98,7 +98,7 @@ public class LayoutToolAlgorithms {
 	 * Sets the name.
 	 * 
 	 * @param name
-	 *            the name of the algorithm
+	 *        the name of the algorithm
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -117,7 +117,7 @@ public class LayoutToolAlgorithms {
 	 * Sets the icon.
 	 * 
 	 * @param icon
-	 *            display on the toolbar
+	 *        display on the toolbar
 	 */
 	public void setIcon(Image icon) {
 		this.icon = icon;

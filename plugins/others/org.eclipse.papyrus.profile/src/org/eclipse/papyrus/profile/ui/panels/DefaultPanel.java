@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Label;
  * @author Remi SCHNEKENBURGER
  */
 public class DefaultPanel extends AbstractPanel {
+
 	// the label used to display text
 	/**
 	 * The label.
@@ -40,15 +41,19 @@ public class DefaultPanel extends AbstractPanel {
 	 * Constructs a new instance of this class given its parent and a style
 	 * value describing its behavior and appearance.
 	 * 
-	 * @param style the style for this style
-	 * @param parent the composite parent of this element
+	 * @param style
+	 *        the style for this style
+	 * @param parent
+	 *        the composite parent of this element
 	 */
 	public DefaultPanel(Composite parent, int style) {
 		super(parent, style);
 	}
 
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cea.actionlanguage.texteditor.ui.panels.AccordUMLAbstractPanel#createContent()
 	 */
 	/**

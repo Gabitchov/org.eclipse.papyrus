@@ -40,7 +40,7 @@ public class DurationConstraintPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof DurationConstraint) {
+		if(eObject instanceof DurationConstraint) {
 			return new DurationConstraintPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class DurationConstraintPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof DurationConstraint) {
-			if (DurationConstraintBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof DurationConstraint) {
+			if(DurationConstraintBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new DurationConstraintBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

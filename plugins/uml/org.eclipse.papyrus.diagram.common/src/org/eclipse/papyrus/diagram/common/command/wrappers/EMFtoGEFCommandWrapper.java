@@ -16,8 +16,7 @@ import org.eclipse.gef.commands.Command;
 // TODO: Auto-generated Javadoc
 /**
  * A GEF Command that wraps an EMF command. Each method is redirected to the EMF one. <br>
- * Adapts an {@link org.eclipse.emf.common.command.Command EMF Command} to be a
- * {@link org.eclipse.gef.commands.Command GEF Command}.
+ * Adapts an {@link org.eclipse.emf.common.command.Command EMF Command} to be a {@link org.eclipse.gef.commands.Command GEF Command}.
  * 
  * Creation : 21 fev. 2006
  * 
@@ -35,7 +34,7 @@ public final class EMFtoGEFCommandWrapper extends Command {
 	 * Constructor.
 	 * 
 	 * @param command
-	 *            the wrapped EMF command
+	 *        the wrapped EMF command
 	 */
 	// @unused
 	public EMFtoGEFCommandWrapper(final org.eclipse.emf.common.command.Command command) {

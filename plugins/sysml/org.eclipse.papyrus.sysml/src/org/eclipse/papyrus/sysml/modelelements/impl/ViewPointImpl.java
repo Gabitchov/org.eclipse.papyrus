@@ -31,18 +31,12 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getBase_Class <em>Base
- * Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getStakeHolders <em>Stake
- * Holders</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getPurpose <em>Purpose
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getConcerns <em>Concerns
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getLanguages <em>Languages
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getMethods <em>Methods
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getStakeHolders <em>Stake Holders</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getPurpose <em>Purpose </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getConcerns <em>Concerns </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getLanguages <em>Languages </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getMethods <em>Methods </em>}</li>
  * </ul>
  * </p>
  * 
@@ -145,9 +139,9 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW_POINT__BASE_CLASS:
-			if (resolve)
+			if(resolve)
 				return getBase_Class();
 			return basicGetBase_Class();
 		case ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS:
@@ -171,7 +165,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW_POINT__BASE_CLASS:
 			return base_Class != null;
 		case ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS:
@@ -196,28 +190,28 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW_POINT__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) newValue);
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
 			return;
 		case ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS:
 			getStakeHolders().clear();
-			getStakeHolders().addAll((Collection<? extends String>) newValue);
+			getStakeHolders().addAll((Collection<? extends String>)newValue);
 			return;
 		case ModelelementsPackage.VIEW_POINT__PURPOSE:
-			setPurpose((String) newValue);
+			setPurpose((String)newValue);
 			return;
 		case ModelelementsPackage.VIEW_POINT__CONCERNS:
 			getConcerns().clear();
-			getConcerns().addAll((Collection<? extends String>) newValue);
+			getConcerns().addAll((Collection<? extends String>)newValue);
 			return;
 		case ModelelementsPackage.VIEW_POINT__LANGUAGES:
 			getLanguages().clear();
-			getLanguages().addAll((Collection<? extends String>) newValue);
+			getLanguages().addAll((Collection<? extends String>)newValue);
 			return;
 		case ModelelementsPackage.VIEW_POINT__METHODS:
 			getMethods().clear();
-			getMethods().addAll((Collection<? extends String>) newValue);
+			getMethods().addAll((Collection<? extends String>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -240,9 +234,9 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ModelelementsPackage.VIEW_POINT__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) null);
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
 			return;
 		case ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS:
 			getStakeHolders().clear();
@@ -269,11 +263,11 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject) base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class) eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+		if(base_Class != null && base_Class.eIsProxy()) {
+			InternalEObject oldBase_Class = (InternalEObject)base_Class;
+			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							ModelelementsPackage.VIEW_POINT__BASE_CLASS, oldBase_Class, base_Class));
 			}
@@ -287,7 +281,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 * @generated
 	 */
 	public EList<String> getConcerns() {
-		if (concerns == null) {
+		if(concerns == null) {
 			concerns = new EDataTypeEList<String>(String.class, this, ModelelementsPackage.VIEW_POINT__CONCERNS);
 		}
 		return concerns;
@@ -299,7 +293,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 * @generated
 	 */
 	public EList<String> getLanguages() {
-		if (languages == null) {
+		if(languages == null) {
 			languages = new EDataTypeEList<String>(String.class, this, ModelelementsPackage.VIEW_POINT__LANGUAGES);
 		}
 		return languages;
@@ -311,7 +305,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 * @generated
 	 */
 	public EList<String> getMethods() {
-		if (methods == null) {
+		if(methods == null) {
 			methods = new EDataTypeEList<String>(String.class, this, ModelelementsPackage.VIEW_POINT__METHODS);
 		}
 		return methods;
@@ -332,7 +326,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 * @generated
 	 */
 	public EList<String> getStakeHolders() {
-		if (stakeHolders == null) {
+		if(stakeHolders == null) {
 			stakeHolders = new EDataTypeEList<String>(String.class, this,
 					ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS);
 		}
@@ -347,7 +341,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW_POINT__BASE_CLASS,
 					oldBase_Class, base_Class));
 	}
@@ -360,7 +354,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	public void setPurpose(String newPurpose) {
 		String oldPurpose = purpose;
 		purpose = newPurpose;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW_POINT__PURPOSE, oldPurpose,
 					purpose));
 	}
@@ -372,7 +366,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if(eIsProxy())
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

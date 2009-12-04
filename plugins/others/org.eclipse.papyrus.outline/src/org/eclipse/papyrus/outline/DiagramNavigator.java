@@ -72,7 +72,7 @@ public class DiagramNavigator extends Composite {
 		 * Constructor
 		 * 
 		 * @param adapterFactory
-		 *            the factory
+		 *        the factory
 		 */
 		public NavigatorAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
 			super(adapterFactory);
@@ -83,12 +83,12 @@ public class DiagramNavigator extends Composite {
 		 */
 		@Override
 		public void notifyChanged(Notification notification) {
-			if (notification instanceof IViewerNotification) {
-				Object element = ((IViewerNotification) notification).getElement();
-				if (!(element instanceof View)) {
+			if(notification instanceof IViewerNotification) {
+				Object element = ((IViewerNotification)notification).getElement();
+				if(!(element instanceof View)) {
 					// Filter only non-graphical object events
 					super.notifyChanged(notification);
-				} else if ((element instanceof Diagram) && ((IViewerNotification) notification).isLabelUpdate()) {
+				} else if((element instanceof Diagram) && ((IViewerNotification)notification).isLabelUpdate()) {
 					// A diagram or a Diagrams is added or removed : refresh the
 					// whole tree
 					refreshViewer(true);
@@ -103,11 +103,11 @@ public class DiagramNavigator extends Composite {
 	 * Constructor
 	 * 
 	 * @param parent
-	 *            the parent composite
+	 *        the parent composite
 	 * @param diagEditor
-	 *            the viewer to edit as tree
+	 *        the viewer to edit as tree
 	 * @param pageSite
-	 *            the site
+	 *        the site
 	 */
 	public DiagramNavigator(Composite parent, IPageSite pageSite) {
 		super(parent, SWT.BORDER);
@@ -135,7 +135,7 @@ public class DiagramNavigator extends Composite {
 	 * Create the contents of the widget
 	 * 
 	 * @param parent
-	 *            the current widget
+	 *        the current widget
 	 */
 	protected void createContents(Composite parent) {
 		this.viewer = new TreeViewer(parent, SWT.MULTI);
@@ -171,11 +171,11 @@ public class DiagramNavigator extends Composite {
 	 * Refresh the tree viewer in the UI thread if we are in a different thread
 	 * 
 	 * @param updateLabel
-	 *            <code>true</code> if the label must be refreshed
+	 *        <code>true</code> if the label must be refreshed
 	 */
 	protected final void refreshViewer(final boolean updateLabel) {
-		if ((viewer != null) && !viewer.getTree().isDisposed()) {
-			if (Display.getCurrent() != Display.getDefault()) {
+		if((viewer != null) && !viewer.getTree().isDisposed()) {
+			if(Display.getCurrent() != Display.getDefault()) {
 				syncRefreshViewer(updateLabel);
 			} else {
 				viewer.refresh(updateLabel);
@@ -187,7 +187,7 @@ public class DiagramNavigator extends Composite {
 	 * Refresh the tree viewer in the UI thread
 	 * 
 	 * @param updateLabel
-	 *            <code>true</code> if the label must be refreshed
+	 *        <code>true</code> if the label must be refreshed
 	 */
 	private void syncRefreshViewer(final boolean updateLabel) {
 		viewer.getControl().getDisplay().syncExec(new Runnable() {

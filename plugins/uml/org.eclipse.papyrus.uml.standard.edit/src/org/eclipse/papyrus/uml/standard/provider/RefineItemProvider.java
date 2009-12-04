@@ -59,7 +59,7 @@ public class RefineItemProvider extends ItemProviderAdapter implements IEditingD
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_AbstractionPropertyDescriptor(object);
@@ -74,10 +74,10 @@ public class RefineItemProvider extends ItemProviderAdapter implements IEditingD
 	 * @generated
 	 */
 	protected void addBase_AbstractionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Refine_base_Abstraction_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Refine_base_Abstraction_feature",
-						"_UI_Refine_type"), StandardPackage.Literals.REFINE__BASE_ABSTRACTION, true, false, true, null,
+				"_UI_Refine_type"), StandardPackage.Literals.REFINE__BASE_ABSTRACTION, true, false, true, null,
 				null, null));
 	}
 
@@ -104,8 +104,7 @@ public class RefineItemProvider extends ItemProviderAdapter implements IEditingD
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

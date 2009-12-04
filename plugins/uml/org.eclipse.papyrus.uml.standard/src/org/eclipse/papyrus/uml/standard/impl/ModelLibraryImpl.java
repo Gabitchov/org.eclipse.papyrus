@@ -27,8 +27,7 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.ModelLibraryImpl#getBase_Package <em>Base
- * Package</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.ModelLibraryImpl#getBase_Package <em>Base Package</em>}</li>
  * </ul>
  * </p>
  * 
@@ -71,11 +70,11 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Package getBase_Package() {
-		if (base_Package != null && base_Package.eIsProxy()) {
-			InternalEObject oldBase_Package = (InternalEObject) base_Package;
-			base_Package = (org.eclipse.uml2.uml.Package) eResolveProxy(oldBase_Package);
-			if (base_Package != oldBase_Package) {
-				if (eNotificationRequired())
+		if(base_Package != null && base_Package.eIsProxy()) {
+			InternalEObject oldBase_Package = (InternalEObject)base_Package;
+			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
+			if(base_Package != oldBase_Package) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							StandardPackage.MODEL_LIBRARY__BASE_PACKAGE, oldBase_Package, base_Package));
 			}
@@ -100,7 +99,7 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.MODEL_LIBRARY__BASE_PACKAGE,
 					oldBase_Package, base_Package));
 	}
@@ -112,9 +111,9 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.MODEL_LIBRARY__BASE_PACKAGE:
-			if (resolve)
+			if(resolve)
 				return getBase_Package();
 			return basicGetBase_Package();
 		}
@@ -128,9 +127,9 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.MODEL_LIBRARY__BASE_PACKAGE:
-			setBase_Package((org.eclipse.uml2.uml.Package) newValue);
+			setBase_Package((org.eclipse.uml2.uml.Package)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,9 +142,9 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.MODEL_LIBRARY__BASE_PACKAGE:
-			setBase_Package((org.eclipse.uml2.uml.Package) null);
+			setBase_Package((org.eclipse.uml2.uml.Package)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -158,7 +157,7 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.MODEL_LIBRARY__BASE_PACKAGE:
 			return base_Package != null;
 		}

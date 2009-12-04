@@ -57,7 +57,7 @@ public class RenameActionFactory implements IActionHandlerFactory {
 		this.renameNamedElementAction.setActiveWorkbenchPart(activeViewPart);
 
 		ISelectionProvider selectionProvider = null;
-		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
+		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
 			selectionProvider.addSelectionChangedListener(renameNamedElementAction);
 		}
@@ -70,7 +70,7 @@ public class RenameActionFactory implements IActionHandlerFactory {
 		this.renameNamedElementAction.setActiveWorkbenchPart(null);
 
 		ISelectionProvider selectionProvider = null;
-		if (activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
+		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
 			selectionProvider.removeSelectionChangedListener(renameNamedElementAction);
 		}

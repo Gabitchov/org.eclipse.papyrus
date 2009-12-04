@@ -37,8 +37,8 @@ public class CollaborationRoleValidator implements ISelectionStatusValidator {
 
 		IStatus status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, "No selection found.");
 
-		if (selection.length == 1) {
-			if (selection[0] instanceof ConnectableElement) {
+		if(selection.length == 1) {
+			if(selection[0] instanceof ConnectableElement) {
 				status = new Status(IStatus.OK, UMLDiagramEditorPlugin.ID, "Selection validated.");
 			} else {
 				status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,

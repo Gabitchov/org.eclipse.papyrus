@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * Wrapper interface for generated model switches.
  * 
  * @param <T>
- *            *
+ *        *
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
 public interface EcoreSwitch<T, I> {
@@ -33,7 +33,7 @@ public interface EcoreSwitch<T, I> {
 	 * Sets the info in this switch.
 	 * 
 	 * @param info
-	 *            the info
+	 *        the info
 	 */
 	void setInfo(I info);
 
@@ -41,7 +41,7 @@ public interface EcoreSwitch<T, I> {
 	 * Performs the switch action. Extra necessary info is available via the getInfo() method.
 	 * 
 	 * @param eObject
-	 *            the e object
+	 *        the e object
 	 * 
 	 * @return the T
 	 */

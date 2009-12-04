@@ -40,7 +40,7 @@ public class StructuredActivityNodePropertiesEditionProvider implements IPropert
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof StructuredActivityNode) {
+		if(eObject instanceof StructuredActivityNode) {
 			return new StructuredActivityNodePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class StructuredActivityNodePropertiesEditionProvider implements IPropert
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof StructuredActivityNode) {
-			if (StructuredActivityNodeBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof StructuredActivityNode) {
+			if(StructuredActivityNodeBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new StructuredActivityNodeBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

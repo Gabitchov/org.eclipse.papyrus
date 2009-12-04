@@ -34,9 +34,9 @@ public abstract class ParentTreeObject extends TreeObject {
 	 * The Constructor.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public ParentTreeObject(ParentTreeObject parent, Element element, TransactionalEditingDomain domain) {
 		super(parent, element, domain);
@@ -46,7 +46,7 @@ public abstract class ParentTreeObject extends TreeObject {
 	 * Adds the child.
 	 * 
 	 * @param child
-	 *            the child
+	 *        the child
 	 */
 	public void addChild(TreeObject child) {
 		children.add(child);
@@ -56,7 +56,7 @@ public abstract class ParentTreeObject extends TreeObject {
 	 * Removes the child.
 	 * 
 	 * @param child
-	 *            the child
+	 *        the child
 	 */
 	public void removeChild(TreeObject child) {
 		children.remove(child);
@@ -66,20 +66,20 @@ public abstract class ParentTreeObject extends TreeObject {
 	 * Move child up.
 	 * 
 	 * @param child
-	 *            the child
+	 *        the child
 	 */
 	public void moveChildUp(TreeObject child) {
-		if (children == null) {
+		if(children == null) {
 			return;
 		}
 
 		int index = children.indexOf(child);
-		if (index < 1) {
+		if(index < 1) {
 			// do nothing
 			return;
 		}
 
-		TreeObject tmp = (TreeObject) children.get(index - 1);
+		TreeObject tmp = (TreeObject)children.get(index - 1);
 		children.set(index - 1, child);
 		children.set(index, tmp);
 	}
@@ -88,20 +88,20 @@ public abstract class ParentTreeObject extends TreeObject {
 	 * Move child down.
 	 * 
 	 * @param child
-	 *            the child
+	 *        the child
 	 */
 	public void moveChildDown(TreeObject child) {
-		if (children == null) {
+		if(children == null) {
 			return;
 		}
 
 		int index = children.indexOf(child);
-		if ((index == -1) || (index >= children.size() - 1)) {
+		if((index == -1) || (index >= children.size() - 1)) {
 			// do nothing
 			return;
 		}
 
-		TreeObject tmp = (TreeObject) children.get(index + 1);
+		TreeObject tmp = (TreeObject)children.get(index + 1);
 		children.set(index + 1, child);
 		children.set(index, tmp);
 	}
@@ -116,7 +116,7 @@ public abstract class ParentTreeObject extends TreeObject {
 		children = new ArrayList();
 		createChildren();
 		// }
-		return (TreeObject[]) children.toArray(new TreeObject[children.size()]);
+		return (TreeObject[])children.toArray(new TreeObject[children.size()]);
 	}
 
 	/* subclasses should override this method and add the child nodes */

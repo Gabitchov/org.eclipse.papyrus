@@ -52,9 +52,9 @@ public class TreeObject implements IAdaptable {
 	 * The Constructor.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public TreeObject(ParentTreeObject parent, Element element, TransactionalEditingDomain domain) {
 		this.parent = parent;
@@ -75,12 +75,12 @@ public class TreeObject implements IAdaptable {
 	 * Gets the adapter.
 	 * 
 	 * @param key
-	 *            the key
+	 *        the key
 	 * 
 	 * @return the adapter
 	 */
 	public Object getAdapter(Class key) {
-		if (key == Element.class) {
+		if(key == Element.class) {
 			return getElement();
 		}
 

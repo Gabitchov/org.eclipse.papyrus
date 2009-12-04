@@ -31,12 +31,12 @@ import org.eclipse.uml2.uml.Property;
  * The Class InputDialogEnumeration.
  */
 public class InputDialogEnumeration {
-	
+
 	/**
 	 * The Constant OK.
 	 */
-	public static final int OK     = ComboSelectionDialog.OK;
-	
+	public static final int OK = ComboSelectionDialog.OK;
+
 	/**
 	 * The Constant CANCEL.
 	 */
@@ -46,109 +46,117 @@ public class InputDialogEnumeration {
 	 * The i dialog.
 	 */
 	private ComboSelectionDialog iDialog;
+
 	//private final String TITLE = "Property value editing";
 	/**
 	 * The LABEL.
 	 */
 	private final String LABEL = "Value:";
-	
+
 	/**
 	 * The literals.
 	 */
 	private String[] literals;
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param index the index
-	 * @param value the value
-	 * @param property the property
-	 * @param shell the shell
+	 * @param index
+	 *        the index
+	 * @param value
+	 *        the value
+	 * @param property
+	 *        the property
+	 * @param shell
+	 *        the shell
 	 */
-	public InputDialogEnumeration(Shell shell, Property property, Object value, int index) {		
+	public InputDialogEnumeration(Shell shell, Property property, Object value, int index) {
 		// Create literals list
 		createLiterals(property);
 
 		// Create Combo
-		if (literals != null) {
-			if (value == null) {
+		if(literals != null) {
+			if(value == null) {
 				iDialog = new ComboSelectionDialog(shell, LABEL, literals, literals[0]);
-				
+
 			} else {
 				String initialValue = literals[0];
 				EnumerationLiteral eLiteral = null;
-				
+
 				// Search current value or default
-				if (value instanceof List) {
-					value  = ((List) value).get(index);
+				if(value instanceof List) {
+					value = ((List)value).get(index);
 				}
-				
+
 				// Prepare Item data
-				if (value instanceof EnumerationLiteral) {
-					eLiteral = (EnumerationLiteral) value;
-				
-				} else if (value instanceof EEnumLiteral) {
-					EEnumLiteral eEnumLiteral = (EEnumLiteral) value;
+				if(value instanceof EnumerationLiteral) {
+					eLiteral = (EnumerationLiteral)value;
+
+				} else if(value instanceof EEnumLiteral) {
+					EEnumLiteral eEnumLiteral = (EEnumLiteral)value;
 					Object tmp = Util.getValueObjectFromString(eEnumLiteral.getName(), property.getType());
-					eLiteral = ((EnumerationLiteral) tmp);
-					
-				} else if (value instanceof String) {
-					String literalString = (String) value;
+					eLiteral = ((EnumerationLiteral)tmp);
+
+				} else if(value instanceof String) {
+					String literalString = (String)value;
 					Object tmp = Util.getValueObjectFromString(literalString, property.getType());
-					eLiteral = ((EnumerationLiteral) tmp);
-					
+					eLiteral = ((EnumerationLiteral)tmp);
+
 				} else { // Error
-					String err = "Value "+value.toString()+" of Property "+property.getName()+" is not an EnumerationLiteral.";
+					String err = "Value " + value.toString() + " of Property " + property.getName() + " is not an EnumerationLiteral.";
 					Message.error(err);
 				}
-				
-				if ((eLiteral != null) && (eLiteral.isSetName())) {
+
+				if((eLiteral != null) && (eLiteral.isSetName())) {
 					initialValue = eLiteral.getQualifiedName();
 				}
-				
+
 				// Create Combo
 				iDialog = new ComboSelectionDialog(shell, LABEL, literals, initialValue);
 			}
 		}
 	}
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param value the value
-	 * @param property the property
-	 * @param shell the shell
+	 * @param value
+	 *        the value
+	 * @param property
+	 *        the property
+	 * @param shell
+	 *        the shell
 	 */
-	public InputDialogEnumeration(Shell shell, Property property, Object value) {		
+	public InputDialogEnumeration(Shell shell, Property property, Object value) {
 		// Create literals list
 		createLiterals(property);
 
 		// Create Combo
-		if (literals != null) {
+		if(literals != null) {
 
 			String initialValue = literals[0];
 			EnumerationLiteral eLiteral = null;
 
 			// Prepare Item data
-			if (value instanceof EnumerationLiteral) {
-				eLiteral = (EnumerationLiteral) value;
+			if(value instanceof EnumerationLiteral) {
+				eLiteral = (EnumerationLiteral)value;
 
-			} else if (value instanceof EEnumLiteral) {
-				EEnumLiteral eEnumLiteral = (EEnumLiteral) value;
+			} else if(value instanceof EEnumLiteral) {
+				EEnumLiteral eEnumLiteral = (EEnumLiteral)value;
 				Object tmp = Util.getValueObjectFromString(eEnumLiteral.getName(), property.getType());
-				eLiteral = ((EnumerationLiteral) tmp);
+				eLiteral = ((EnumerationLiteral)tmp);
 
-			} else if (value instanceof Enumerator) { // Enumeration in static profile
-				String literalString = ((Enumerator) value).getLiteral();
+			} else if(value instanceof Enumerator) { // Enumeration in static profile
+				String literalString = ((Enumerator)value).getLiteral();
 				Object tmp = Util.getValueObjectFromString(literalString, property.getType());
-				eLiteral = ((EnumerationLiteral) tmp);
-				
+				eLiteral = ((EnumerationLiteral)tmp);
+
 			} else { // Error
-				String err = "Value "+value.toString()+" of Property "+property.getName()+" is not an EnumerationLiteral.";
+				String err = "Value " + value.toString() + " of Property " + property.getName() + " is not an EnumerationLiteral.";
 				Message.error(err);
 			}
 
-			if ((eLiteral != null) && (eLiteral.isSetName())) {
+			if((eLiteral != null) && (eLiteral.isSetName())) {
 				initialValue = eLiteral.getQualifiedName();
 			}
 
@@ -157,65 +165,66 @@ public class InputDialogEnumeration {
 
 		}
 	}
-	
+
 	/**
 	 * Open.
 	 * 
 	 * @return the int
 	 */
 	public int open() {
-		if (iDialog != null) {
+		if(iDialog != null) {
 			return iDialog.open();
 		}
-		
+
 		return (ComboSelectionDialog.CANCEL);
 	}
-	
+
 	/**
 	 * Close.
 	 */
 	public void close() {
-		if (iDialog != null) {
+		if(iDialog != null) {
 			iDialog.close();
 		}
 	}
-	
+
 	/**
 	 * Gets the value.
 	 * 
 	 * @return the value
 	 */
-	public Object getValue() {		
-		if (iDialog != null) {
+	public Object getValue() {
+		if(iDialog != null) {
 			return iDialog.getValue();
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Gets the selection index.
 	 * 
 	 * @return the selection index
 	 */
 	public int getSelectionIndex() {
-		if (iDialog != null) {
+		if(iDialog != null) {
 			return iDialog.indexOfSelection;
 		} else {
 			return -1;
 		}
 	}
-	
+
 	/**
 	 * Creates the literals.
 	 * 
-	 * @param property the property
+	 * @param property
+	 *        the property
 	 */
 	private void createLiterals(Property property) {
 		// combo dialog construction
-		List tmp = ((Enumeration) property.getType()).getOwnedLiterals();
+		List tmp = ((Enumeration)property.getType()).getOwnedLiterals();
 		String[] enumLiteralNames = Util.getStringArrayFromList(tmp);
 		// if no possible selection : abort
-		if (enumLiteralNames == null) {
+		if(enumLiteralNames == null) {
 			Message.warning("No literal was found for Enumeration in the model.");
 			return;
 		}

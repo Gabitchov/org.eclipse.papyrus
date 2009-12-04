@@ -27,14 +27,14 @@ public class HyperLinkDiagram extends HyperlinkObject {
 	 */
 	public Diagram getDiagram() {
 		// TODO Auto-generated method stub
-		return (Diagram) super.getObject();
+		return (Diagram)super.getObject();
 	}
 
 	/**
 	 * Sets the diagram.
 	 * 
 	 * @param object
-	 *            the new diagram
+	 *        the new diagram
 	 */
 	public void setDiagram(Diagram object) {
 		// TODO Auto-generated method stub

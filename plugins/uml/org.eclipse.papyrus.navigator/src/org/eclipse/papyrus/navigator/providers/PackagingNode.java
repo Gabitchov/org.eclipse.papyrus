@@ -45,7 +45,7 @@ public class PackagingNode {
 	}
 
 	public Collection<Object> getContainedNodes() {
-		if (containedNodes == null) {
+		if(containedNodes == null) {
 			containedNodes = new ArrayList<Object>();
 		}
 		return containedNodes;

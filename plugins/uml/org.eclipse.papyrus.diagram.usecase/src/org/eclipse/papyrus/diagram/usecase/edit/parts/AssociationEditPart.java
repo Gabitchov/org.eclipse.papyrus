@@ -64,8 +64,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated NOT
 	 */
 	protected void addAssociationEndListeners() {
-		EObject sourceEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(0);
-		EObject targetEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(1);
+		EObject sourceEnd = ((Association)resolveSemanticElement()).getMemberEnds().get(0);
+		EObject targetEnd = ((Association)resolveSemanticElement()).getMemberEnds().get(1);
 		addListenerFilter("AssociationEndListenersSource", this, sourceEnd);
 		addListenerFilter("AssociationEndListenersTarget", this, targetEnd);
 	}
@@ -86,7 +86,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 		super.handleNotificationEvent(notification);
 
 		// set the good ends for the association figure
-		if (resolveSemanticElement() != null) {
+		if(resolveSemanticElement() != null) {
 			refreshVisuals();
 		}
 	}
@@ -103,8 +103,8 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AssociationNameEditPart) {
-			((AssociationNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+		if(childEditPart instanceof AssociationNameEditPart) {
+			((AssociationNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 			return true;
 		}
 		return false;
@@ -114,7 +114,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -124,7 +124,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AssociationNameEditPart) {
+		if(childEditPart instanceof AssociationNameEditPart) {
 			return true;
 		}
 		return false;
@@ -134,7 +134,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -156,23 +156,23 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure) getFigure();
+		return (AssociationFigure)getFigure();
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	protected void refreshVisuals() {
-		Property source = (Property) ((Association) resolveSemanticElement()).getMembers().get(0);
-		Property target = (Property) ((Association) resolveSemanticElement()).getMembers().get(1);
+		Property source = (Property)((Association)resolveSemanticElement()).getMembers().get(0);
+		Property target = (Property)((Association)resolveSemanticElement()).getMembers().get(1);
 		int sourceType = 0;
 		int targetType = 0;
 
 		// navigable?
-		if (source.isNavigable()) {
+		if(source.isNavigable()) {
 			sourceType += AssociationFigure.navigable;
 		}
-		if (target.isNavigable()) {
+		if(target.isNavigable()) {
 			targetType += AssociationFigure.navigable;
 		}
 		getPrimaryShape().setEnd(sourceType, targetType);

@@ -37,22 +37,17 @@ import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Requirement Related</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Requirement Related</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>
  * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getBase_NamedElement
  * <em>Base Named Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom <em>
- * Traced From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies <em>
- * Satisfies</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines <em>
- * Refines</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies <em>
- * Verifies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom <em> Traced From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies <em> Satisfies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines <em> Refines</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies <em> Verifies</em>}</li>
  * </ul>
  * </p>
  * 
@@ -95,9 +90,9 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT:
-			if (resolve)
+			if(resolve)
 				return getBase_NamedElement();
 			return basicGetBase_NamedElement();
 		case RequirementsPackage.REQUIREMENT_RELATED__TRACED_FROM:
@@ -119,7 +114,7 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT:
 			return base_NamedElement != null;
 		case RequirementsPackage.REQUIREMENT_RELATED__TRACED_FROM:
@@ -142,9 +137,9 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT:
-			setBase_NamedElement((NamedElement) newValue);
+			setBase_NamedElement((NamedElement)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -167,9 +162,9 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT:
-			setBase_NamedElement((NamedElement) null);
+			setBase_NamedElement((NamedElement)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -181,11 +176,11 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	 * @generated
 	 */
 	public NamedElement getBase_NamedElement() {
-		if (base_NamedElement != null && base_NamedElement.eIsProxy()) {
-			InternalEObject oldBase_NamedElement = (InternalEObject) base_NamedElement;
-			base_NamedElement = (NamedElement) eResolveProxy(oldBase_NamedElement);
-			if (base_NamedElement != oldBase_NamedElement) {
-				if (eNotificationRequired())
+		if(base_NamedElement != null && base_NamedElement.eIsProxy()) {
+			InternalEObject oldBase_NamedElement = (InternalEObject)base_NamedElement;
+			base_NamedElement = (NamedElement)eResolveProxy(oldBase_NamedElement);
+			if(base_NamedElement != oldBase_NamedElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, oldBase_NamedElement,
 							base_NamedElement));
@@ -204,22 +199,22 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 		EList<Requirement> refines = new BasicEList<Requirement>();
 		Refine currentRefine = null;
 
-		if (getBase_NamedElement() != null) {
+		if(getBase_NamedElement() != null) {
 			// Find Refine link
 			Iterator<Dependency> itDep = getBase_NamedElement().getClientDependencies().iterator();
 
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentRefine = (Refine) ElementUtil.hasStereotype(currentDependency, StandardPackage.eINSTANCE
+				currentRefine = (Refine)ElementUtil.hasStereotype(currentDependency, StandardPackage.eINSTANCE
 						.getRefine());
 
-				if (currentRefine != null) {
+				if(currentRefine != null) {
 					EList<NamedElement> suppliers = currentRefine.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
-					while (it.hasNext()) {
-						Requirement currentRequirement = (Requirement) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext()) {
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getRequirement());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							refines.add(currentRequirement);
 						}
 					}
@@ -240,22 +235,22 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 		EList<Requirement> satisfies = new BasicEList<Requirement>();
 		Satisfy currentSatisfy = null;
 
-		if (getBase_NamedElement() != null) {
+		if(getBase_NamedElement() != null) {
 			// Find Satisfy link
 			Iterator<Dependency> itDep = getBase_NamedElement().getClientDependencies().iterator();
 
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentSatisfy = (Satisfy) ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE
+				currentSatisfy = (Satisfy)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE
 						.getSatisfy());
 
-				if (currentSatisfy != null) {
+				if(currentSatisfy != null) {
 					EList<NamedElement> suppliers = currentSatisfy.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
-					while (it.hasNext()) {
-						Requirement currentRequirement = (Requirement) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext()) {
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getRequirement());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							satisfies.add(currentRequirement);
 						}
 					}
@@ -277,23 +272,23 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 		EList<Requirement> tracedFrom = new BasicEList<Requirement>();
 		Trace currentTrace = null;
 
-		if (getBase_NamedElement() != null) {
+		if(getBase_NamedElement() != null) {
 			// Find Trace link
 			EList<DirectedRelationship> relationships = getBase_NamedElement().getTargetDirectedRelationships();
 			Iterator<DirectedRelationship> itDep = relationships.iterator();
 
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentTrace = (Trace) ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE
+				currentTrace = (Trace)ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE
 						.getTrace());
 
-				if (currentTrace != null) {
+				if(currentTrace != null) {
 					EList<NamedElement> clients = currentTrace.getBase_Abstraction().getClients();
 					Iterator<NamedElement> it = clients.iterator();
-					while (it.hasNext()) {
-						Requirement currentRequirement = (Requirement) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext()) {
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getRequirement());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							tracedFrom.add(currentRequirement);
 						}
 					}
@@ -314,22 +309,22 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 		EList<Requirement> verifies = new BasicEList<Requirement>();
 		Verify currentVerify = null;
 
-		if (getBase_NamedElement() != null) {
+		if(getBase_NamedElement() != null) {
 			// Find Satisfy link
 			Iterator<Dependency> itDep = getBase_NamedElement().getClientDependencies().iterator();
 
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentVerify = (Verify) ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE
+				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE
 						.getVerify());
 
-				if (currentVerify != null) {
+				if(currentVerify != null) {
 					EList<NamedElement> suppliers = currentVerify.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
-					while (it.hasNext()) {
-						Requirement currentRequirement = (Requirement) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext()) {
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getRequirement());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							verifies.add(currentRequirement);
 						}
 					}
@@ -348,7 +343,7 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	public void setBase_NamedElement(NamedElement newBase_NamedElement) {
 		NamedElement oldBase_NamedElement = base_NamedElement;
 		base_NamedElement = newBase_NamedElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, oldBase_NamedElement,
 					base_NamedElement));

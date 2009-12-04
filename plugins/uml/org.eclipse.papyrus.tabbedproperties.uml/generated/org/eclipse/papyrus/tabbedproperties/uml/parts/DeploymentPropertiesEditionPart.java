@@ -55,15 +55,21 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -71,7 +77,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -80,7 +86,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -101,7 +107,9 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -116,14 +124,19 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -148,15 +161,21 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *        the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -164,7 +183,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter);
@@ -173,7 +192,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
@@ -204,15 +223,21 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the supplier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initSupplier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the supplier
-	 * @param newValue the supplier to update
+	 * 
+	 * @param newValue
+	 *        the supplier to update
 	 */
 	public void updateSupplier(EObject newValue);
 
@@ -220,7 +245,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the supplier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToSupplier(ViewerFilter filter);
@@ -229,7 +254,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the supplier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSupplier(ViewerFilter filter);
@@ -260,15 +285,21 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the client
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClient(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the client
-	 * @param newValue the client to update
+	 * 
+	 * @param newValue
+	 *        the client to update
 	 */
 	public void updateClient(EObject newValue);
 
@@ -276,7 +307,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the client edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClient(ViewerFilter filter);
@@ -285,7 +316,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the client edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClient(ViewerFilter filter);
@@ -316,15 +347,21 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the deployedArtifact
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initDeployedArtifact(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the deployedArtifact
-	 * @param newValue the deployedArtifact to update
+	 * 
+	 * @param newValue
+	 *        the deployedArtifact to update
 	 */
 	public void updateDeployedArtifact(EObject newValue);
 
@@ -332,7 +369,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the deployedArtifact edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToDeployedArtifact(ViewerFilter filter);
@@ -341,7 +378,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the deployedArtifact edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToDeployedArtifact(ViewerFilter filter);
@@ -382,15 +419,21 @@ public interface DeploymentPropertiesEditionPart {
 
 	/**
 	 * Init the configuration
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initConfiguration(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the configuration
-	 * @param newValue the configuration to update
+	 * 
+	 * @param newValue
+	 *        the configuration to update
 	 */
 	public void updateConfiguration(EObject newValue);
 
@@ -398,7 +441,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the configuration edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToConfiguration(ViewerFilter filter);
@@ -407,7 +450,7 @@ public interface DeploymentPropertiesEditionPart {
 	 * Adds the given filter to the configuration edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToConfiguration(ViewerFilter filter);
@@ -416,11 +459,6 @@ public interface DeploymentPropertiesEditionPart {
 	 * @return true if the given element is contained inside the configuration table
 	 */
 	public boolean isContainedInConfigurationTable(EObject element);
-
-
-
-
-
 
 
 

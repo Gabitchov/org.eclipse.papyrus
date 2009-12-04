@@ -57,17 +57,17 @@ public class LayoutToolExtensionPointManager {
 	 */
 	public LayoutToolAreaInterface getLayoutAreaCreator() {
 		try {
-			for (IConfigurationElement e : configurationElementsLayoutTools) {
+			for(IConfigurationElement e : configurationElementsLayoutTools) {
 
 				Class<?> o;
-				LayouttoolInterface interfaceL = (LayouttoolInterface) Platform.getBundle(e.getContributor().getName())
+				LayouttoolInterface interfaceL = (LayouttoolInterface)Platform.getBundle(e.getContributor().getName())
 						.loadClass(e.getAttribute(Constants.EXTENSION_INTERFACE)).newInstance();
 				o = interfaceL.getEditorClass();
 				IWorkbenchPart activeEditor = getActiveEditor();
-				if (activeEditor != null) {
-					if (o.isAssignableFrom(activeEditor.getClass())) {
-						if (e.getAttribute(Constants.EXTENSION_INTERFACE_LAYOUT_AREA) != null) {
-							return (LayoutToolAreaInterface) e
+				if(activeEditor != null) {
+					if(o.isAssignableFrom(activeEditor.getClass())) {
+						if(e.getAttribute(Constants.EXTENSION_INTERFACE_LAYOUT_AREA) != null) {
+							return (LayoutToolAreaInterface)e
 									.createExecutableExtension(Constants.EXTENSION_INTERFACE_LAYOUT_AREA);
 						}
 					}
@@ -91,26 +91,26 @@ public class LayoutToolExtensionPointManager {
 	 * Gets the sub editor.
 	 * 
 	 * @param part
-	 *            the part
+	 *        the part
 	 * 
 	 * @return subEditor class
 	 */
 	public LayouttoolInterface getSubEditor(IWorkbenchPart part) {
 		try {
-			for (IConfigurationElement e : configurationElementsLayoutTools) {
+			for(IConfigurationElement e : configurationElementsLayoutTools) {
 				Class<?> o;
-				LayouttoolInterface interfaceL = (LayouttoolInterface) Platform.getBundle(e.getContributor().getName())
+				LayouttoolInterface interfaceL = (LayouttoolInterface)Platform.getBundle(e.getContributor().getName())
 						.loadClass(e.getAttribute(Constants.EXTENSION_INTERFACE)).newInstance();
 				o = interfaceL.getEditorClass();
 				IWorkbenchPart activeEditor = null;
-				if (part != null) {
+				if(part != null) {
 					activeEditor = part;
 				} else {
 					activeEditor = getActiveEditor();
 				}
-				if (activeEditor != null) {
-					if (o.isAssignableFrom(activeEditor.getClass())) {
-						return (LayouttoolInterface) e.createExecutableExtension(Constants.EXTENSION_INTERFACE);
+				if(activeEditor != null) {
+					if(o.isAssignableFrom(activeEditor.getClass())) {
+						return (LayouttoolInterface)e.createExecutableExtension(Constants.EXTENSION_INTERFACE);
 					}
 				}
 			}
@@ -144,10 +144,10 @@ public class LayoutToolExtensionPointManager {
 	 */
 	public IEditorPart getActiveEditor() {
 		IEditorPart editor = null;
-		if (PlatformUI.getWorkbench() != null) {
-			if (PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
-				if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
-					if (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor() != null) {
+		if(PlatformUI.getWorkbench() != null) {
+			if(PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
+				if(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null) {
+					if(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor() != null) {
 						editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 					}
 				}

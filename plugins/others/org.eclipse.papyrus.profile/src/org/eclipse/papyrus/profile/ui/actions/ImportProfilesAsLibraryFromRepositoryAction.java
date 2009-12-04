@@ -50,42 +50,42 @@ public class ImportProfilesAsLibraryFromRepositoryAction extends AbstractPackage
 	 * returns the command that is executed by this action.
 	 * 
 	 * @param domain
-	 *            EMF editing domain used by the command
+	 *        EMF editing domain used by the command
 	 * @return the command that is executed by this action
 	 */
 	public ImportProfilesAsLibraryFromRepositoryCommand getCommand(EditingDomain domain) {
-		if (command == null) {
+		if(command == null) {
 			command = new ImportProfilesAsLibraryFromRepositoryCommand(domain);
 		}
-		return (ImportProfilesAsLibraryFromRepositoryCommand) command;
+		return (ImportProfilesAsLibraryFromRepositoryCommand)command;
 	}
 
 	/**
 	 * Apply the result of the dialog, i.e. it adds package imports to libraries
 	 * 
 	 * @param librariesToImport
-	 *            the array of Libraries to import
+	 *        the array of Libraries to import
 	 */
 	protected void importProfiles(RegisteredProfile[] profilesToImport) {
 		// retrieve the current resource set
 		ResourceSet resourceSet = Util.getResourceSet(selectedElement);
 
-		for (int i = 0; i < profilesToImport.length; i++) {
-			RegisteredProfile currentProfile = (RegisteredProfile) (profilesToImport[i]);
+		for(int i = 0; i < profilesToImport.length; i++) {
+			RegisteredProfile currentProfile = (RegisteredProfile)(profilesToImport[i]);
 			URI modelUri = currentProfile.uri;
 
 			Resource modelResource = resourceSet.getResource(modelUri, true);
 			PackageImportTreeSelectionDialog eisd = new PackageImportTreeSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-					((Package) modelResource.getContents().get(0)));
+					((Package)modelResource.getContents().get(0)));
 			int ret = eisd.open();
 
-			if (ret == Window.OK) {
+			if(ret == Window.OK) {
 				ArrayList result = eisd.getResult();
 				Iterator resultIter = result.iterator();
-				while (resultIter.hasNext()) {
-					Element element = (Element) resultIter.next();
+				while(resultIter.hasNext()) {
+					Element element = (Element)resultIter.next();
 					PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
-					ei.setImportedPackage((Package) element);
+					ei.setImportedPackage((Package)element);
 					getSelectedElement().getPackageImports().add(ei);
 				}
 			}
@@ -103,14 +103,14 @@ public class ImportProfilesAsLibraryFromRepositoryAction extends AbstractPackage
 	protected RegisteredProfile[] getAvailableProfiles() {
 		List<RegisteredProfile> profiles = new ArrayList<RegisteredProfile>();
 		RegisteredProfile[] allprofiles = RegisteredProfile.getRegisteredProfiles();
-		for (int i = 0; i < allprofiles.length; i++) {
+		for(int i = 0; i < allprofiles.length; i++) {
 			RegisteredProfile registeredProfile = allprofiles[i];
 			List<String> importedPackageNames = PackageUtil.getImportedPackagesNames(getSelectedElement());
-			if (!(importedPackageNames.contains(registeredProfile.getName()))) {
+			if(!(importedPackageNames.contains(registeredProfile.getName()))) {
 				profiles.add(registeredProfile);
 			}
 		}
-		return (RegisteredProfile[]) profiles.toArray(new RegisteredProfile[profiles.size()]);
+		return (RegisteredProfile[])profiles.toArray(new RegisteredProfile[profiles.size()]);
 	}
 
 	/**
@@ -124,10 +124,10 @@ public class ImportProfilesAsLibraryFromRepositoryAction extends AbstractPackage
 	protected Collection<RegisteredProfile> getImportedProfiles() {
 		List<RegisteredProfile> profiles = new ArrayList<RegisteredProfile>();
 		RegisteredProfile[] allProfiles = RegisteredProfile.getRegisteredProfiles();
-		for (int i = 0; i < allProfiles.length; i++) {
+		for(int i = 0; i < allProfiles.length; i++) {
 			RegisteredProfile registeredProfile = allProfiles[i];
 			List<String> importedPackageNames = PackageUtil.getImportedPackagesNames(getSelectedElement());
-			if (importedPackageNames.contains(registeredProfile.getName())) {
+			if(importedPackageNames.contains(registeredProfile.getName())) {
 				profiles.add(registeredProfile);
 			}
 		}
@@ -143,13 +143,13 @@ public class ImportProfilesAsLibraryFromRepositoryAction extends AbstractPackage
 		 * Creates a new ImportProfilesAsLibraryFromRepositoryCommand
 		 * 
 		 * @param editingDomain
-		 *            editing domain that manages the changed objects
+		 *        editing domain that manages the changed objects
 		 * @param runnable
-		 *            process that executes the modifications
+		 *        process that executes the modifications
 		 * @param label
-		 *            the label of the command
+		 *        the label of the command
 		 * @param description
-		 *            description of the command
+		 *        description of the command
 		 */
 		public ImportProfilesAsLibraryFromRepositoryCommand(EditingDomain editingDomain) {
 			super(editingDomain, new Runnable() {
@@ -164,10 +164,10 @@ public class ImportProfilesAsLibraryFromRepositoryAction extends AbstractPackage
 					// Open Registered ModelLibrary selection dialog
 					FilteredRegisteredProfilesAsLibrarySelectionDialog dialog = new FilteredRegisteredProfilesAsLibrarySelectionDialog(shell, true, allProfiles, getImportedProfiles());
 					dialog.open();
-					if (Dialog.OK == dialog.getReturnCode()) {
+					if(Dialog.OK == dialog.getReturnCode()) {
 						// get the result, which is the set of libraries to import
 						List<Object> profilesToImport = Arrays.asList(dialog.getResult());
-						importProfiles(((RegisteredProfile[]) profilesToImport.toArray(new RegisteredProfile[profilesToImport.size()])));
+						importProfiles(((RegisteredProfile[])profilesToImport.toArray(new RegisteredProfile[profilesToImport.size()])));
 					}
 				}
 			}, "Import Profiles as libraries", "Import Profiles as libraries from Repository");

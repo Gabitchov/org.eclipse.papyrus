@@ -50,19 +50,19 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * Constructor
 	 * 
 	 * @param editingDomain
-	 *            the editing domain
+	 *        the editing domain
 	 * @param element
-	 *            the semantic element (may be null)
+	 *        the semantic element (may be null)
 	 * @param sourceViewAdapter
-	 *            the source of the link
+	 *        the source of the link
 	 * @param targetViewAdapter
-	 *            the target of the link (may be null if the command is filled)
+	 *        the target of the link (may be null if the command is filled)
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * @param preferencesHint
-	 *            the preferencehint of the diagram
+	 *        the preferencehint of the diagram
 	 * @param command
-	 *            the command in which we look for the result for the target (may be null)
+	 *        the command in which we look for the result for the target (may be null)
 	 */
 	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element,
 			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
@@ -76,21 +76,21 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * Constructor
 	 * 
 	 * @param editingDomain
-	 *            the editing domain
+	 *        the editing domain
 	 *@param semanticHint
-	 *            the semantic of the graphical element
+	 *        the semantic of the graphical element
 	 * @param sourceViewAdapter
-	 *            the source of the link
+	 *        the source of the link
 	 * @param targetViewAdapter
-	 *            the target of the link (may be null if the command is filled)
+	 *        the target of the link (may be null if the command is filled)
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * @param preferencesHint
-	 *            the preferencehint of the diagram
+	 *        the preferencehint of the diagram
 	 * @param viewDescriptor
-	 *            the view descriptor
+	 *        the view descriptor
 	 * @param command
-	 *            the command in which we look for the result for the target (may be null)
+	 *        the command in which we look for the result for the target (may be null)
 	 */
 	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint,
 			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
@@ -108,8 +108,8 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
 			throws ExecutionException {
 		Map epRegistry = viewer.getEditPartRegistry();
-		IGraphicalEditPart sourceEP = (IGraphicalEditPart) epRegistry.get(sourceViewAdapter.getAdapter(View.class));
-		IGraphicalEditPart targetEP = (IGraphicalEditPart) epRegistry.get(targetViewAdapter.getAdapter(View.class));
+		IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
+		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetViewAdapter.getAdapter(View.class));
 
 		return doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);
 	}
@@ -133,11 +133,11 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 		createConnectionCmd = CreateConnectionViewRequest.getCreateCommand(createRequest, sourceEditPart,
 				targetEditPart);
 
-		if (createConnectionCmd.canExecute()) {
+		if(createConnectionCmd.canExecute()) {
 			createConnectionCmd.execute();
 		}
-		if (element != null) {
-			((View) (createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(element);
+		if(element != null) {
+			((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(element);
 		}
 		viewer = null;// for garbage collection
 		return CommandResult.newOKCommandResult();

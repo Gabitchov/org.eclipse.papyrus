@@ -55,7 +55,7 @@ public class PropertyRedefineProposal implements ICompletionProposalComputer {
 	 * 
 	 * 
 	 * @param property
-	 *            the property to set
+	 *        the property to set
 	 */
 	public void setProperty(Property property) {
 		this.property = property;
@@ -80,15 +80,15 @@ public class PropertyRedefineProposal implements ICompletionProposalComputer {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
 
 		Iterator<Property> it = PropertyUtil.getRedefinableProperties(property).iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			Property prop = it.next();
 			String name = prop.getName();
 
-			if (name.startsWith(prefix)) {
+			if(name.startsWith(prefix)) {
 				v
 						.add(new CompletionProposal(prop.getName(), documentOffset - prefix.length(), prefix.length()
-								+ selectionRange, prop.getName().length(), null, prop.getName(), null, prop
-								.getQualifiedName()));
+						+ selectionRange, prop.getName().length(), null, prop.getName(), null, prop
+						.getQualifiedName()));
 			}
 		}
 		return v;

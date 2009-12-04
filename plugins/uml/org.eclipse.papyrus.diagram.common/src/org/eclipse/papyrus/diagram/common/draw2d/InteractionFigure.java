@@ -30,7 +30,7 @@ public class InteractionFigure extends Shape {
 	 * Fill shape.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * 
 	 * @see Shape#fillShape(Graphics)
 	 */
@@ -42,7 +42,7 @@ public class InteractionFigure extends Shape {
 	 * Outline shape.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * 
 	 * @see Shape#outlineShape(Graphics)
 	 */
@@ -53,15 +53,15 @@ public class InteractionFigure extends Shape {
 
 		int labelWidth = -1;
 
-		for (Object obj : getChildren()) {
-			if (obj instanceof WrappingLabel || obj instanceof WrapLabel) {
-				WrappingLabel wLabel = (WrappingLabel) obj;
+		for(Object obj : getChildren()) {
+			if(obj instanceof WrappingLabel || obj instanceof WrapLabel) {
+				WrappingLabel wLabel = (WrappingLabel)obj;
 				labelWidth = wLabel.getPreferredSize().width;
 			}
 		}
 
 		// case the size of the label is 0 or -1 (no label)
-		if (labelWidth <= 0)
+		if(labelWidth <= 0)
 			labelWidth = r.width / 4;
 
 		PointList points = new PointList();

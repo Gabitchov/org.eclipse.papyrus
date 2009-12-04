@@ -24,14 +24,14 @@ public class ParameterUtil {
 		StringBuffer buffer = new StringBuffer();
 
 		// default : unique and not ordered
-		if (parameter.isUnique()) {
-			if (parameter.isOrdered()) {
+		if(parameter.isUnique()) {
+			if(parameter.isOrdered()) {
 				buffer.append("ordered");
 			} else {
 				buffer.append("");
 			}
 		} else {
-			if (parameter.isOrdered()) {
+			if(parameter.isOrdered()) {
 				buffer.append("ordered, nonunique");
 			} else {
 				buffer.append("nonunique");
@@ -44,7 +44,7 @@ public class ParameterUtil {
 	 * Returns the label for this parameter, customized by the given style
 	 * 
 	 * @param style
-	 *            the style of the label
+	 *        the style of the label
 	 * @return the customized label for this parameter
 	 * @see ICustomAppearence
 	 */
@@ -52,36 +52,36 @@ public class ParameterUtil {
 		final StringBuffer label = new StringBuffer();
 
 		// direction
-		if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_DIRECTION)) {
+		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_DIRECTION)) {
 			label.append(parameter.getDirection().getLiteral());
 			label.append(" ");
 		}
 
 		// name
-		if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_NAME)) {
+		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_NAME)) {
 			label.append(parameter.getName());
 		}
 
 		// type
-		if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_TYPE)) {
-			if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_NAME)) {
+		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_TYPE)) {
+			if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_NAME)) {
 				label.append(": ");
 			}
 			label.append(TypedElementUtil.getTypeAsString(parameter));
 		}
 
 		// multiplicity
-		if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_MULTIPLICITY)) {
+		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_MULTIPLICITY)) {
 			label.append(MultiplicityElementUtil.getMultiplicityAsString(parameter));
 		}
 
 		// default
-		if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_DEFAULT)) {
+		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_DEFAULT)) {
 			label.append(ParameterUtil.getDefaultAsString(parameter, true));
 		}
 
 		// modifier
-		if (hasStyle(style, ICustomAppearence.DISP_PARAMETER_MODIFIERS)) {
+		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_MODIFIERS)) {
 			label.append(ParameterUtil.getPropertiesAsString(parameter));
 		}
 
@@ -92,15 +92,15 @@ public class ParameterUtil {
 	 * Returns the default value as a String
 	 * 
 	 * @param equalSign
-	 *            boolean set to <code>true</code> if the label must have the <code>=</code> sign
-	 *            before the default value
+	 *        boolean set to <code>true</code> if the label must have the <code>=</code> sign
+	 *        before the default value
 	 * @return the default value as a String
 	 */
 	private static String getDefaultAsString(Parameter parameter, boolean equalSign) {
 		String defaultString = "";
 		// default value
-		if ((parameter.getDefault() != null) && !parameter.getDefault().equals("")) {
-			if (equalSign) {
+		if((parameter.getDefault() != null) && !parameter.getDefault().equals("")) {
+			if(equalSign) {
 				defaultString += "= ";
 			}
 			defaultString += parameter.getDefault();
@@ -112,9 +112,9 @@ public class ParameterUtil {
 	 * Returns <code>true</code> if the given style has the given mask
 	 * 
 	 * @param style
-	 *            the style to check
+	 *        the style to check
 	 * @param mask
-	 *            the mask to check
+	 *        the mask to check
 	 * @return <code>true</code> if the style has the bit mask
 	 */
 	static boolean hasStyle(int style, int mask) {

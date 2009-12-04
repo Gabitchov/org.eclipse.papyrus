@@ -63,7 +63,7 @@ public class IncludeEditPart extends ConnectionNodeEditPart implements ITreeBran
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,7 +80,7 @@ public class IncludeEditPart extends ConnectionNodeEditPart implements ITreeBran
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -103,7 +103,7 @@ public class IncludeEditPart extends ConnectionNodeEditPart implements ITreeBran
 	 * @generated
 	 */
 	public UseCases_WithArrow_Polyline getPrimaryShape() {
-		return (UseCases_WithArrow_Polyline) getFigure();
+		return (UseCases_WithArrow_Polyline)getFigure();
 	}
 
 	/**

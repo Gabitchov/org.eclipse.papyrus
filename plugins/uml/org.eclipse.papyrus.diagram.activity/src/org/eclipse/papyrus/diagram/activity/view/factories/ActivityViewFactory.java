@@ -37,23 +37,16 @@ public class ActivityViewFactory extends AbstractShapeViewFactory {
 	 * @generated
 	 */
 	@Override
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry
-					.getType(ActivityEditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry.getType(ActivityEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
-		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
-				.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-					.createEAnnotation();
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
+		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put(
-					"modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
 		IAdaptable eObjectAdapter = null;
@@ -61,14 +54,7 @@ public class ActivityViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService().createNode(eObjectAdapter, view,
-				UMLVisualIDRegistry.getType(ActivityNameEditPart.VISUAL_ID),
-				ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService().createNode(
-				eObjectAdapter,
-				view,
-				UMLVisualIDRegistry
-						.getType(ActivitySubverticesEditPart.VISUAL_ID),
-				ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ActivityNameEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view, UMLVisualIDRegistry.getType(ActivitySubverticesEditPart.VISUAL_ID), ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

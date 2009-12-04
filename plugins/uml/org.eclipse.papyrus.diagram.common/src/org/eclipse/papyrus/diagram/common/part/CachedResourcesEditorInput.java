@@ -38,7 +38,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * Instantiates a new cached resources editor input.
 	 * 
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 */
 	// @unused
 	public CachedResourcesEditorInput(URI uri) {
@@ -49,9 +49,9 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * Instantiates a new cached resources editor input.
 	 * 
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * @param name
-	 *            the name
+	 *        the name
 	 */
 	public CachedResourcesEditorInput(URI uri, String name) {
 		super(uri, name);
@@ -61,11 +61,11 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * Instantiates a new cached resources editor input.
 	 * 
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * @param name
-	 *            the name
+	 *        the name
 	 * @param unload
-	 *            the unload
+	 *        the unload
 	 */
 	// @unused
 	public CachedResourcesEditorInput(URI uri, String name, boolean unload) {
@@ -76,9 +76,9 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * Instantiates a new cached resources editor input.
 	 * 
 	 * @param uri
-	 *            the uri
+	 *        the uri
 	 * @param unload
-	 *            the unload
+	 *        the unload
 	 */
 	public CachedResourcesEditorInput(URI uri, boolean unload) {
 		this(uri, null, unload, false);
@@ -94,7 +94,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * Sets the unload.
 	 * 
 	 * @param unload
-	 *            the new unload
+	 *        the new unload
 	 */
 	public void setUnload(boolean unload) {
 		this.unload = unload;
@@ -122,9 +122,9 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * Check same editor input.
 	 * 
 	 * @param input1
-	 *            the input1
+	 *        the input1
 	 * @param input2
-	 *            the input2
+	 *        the input2
 	 * 
 	 * @return true, if successful
 	 */
@@ -132,7 +132,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 		String uri1 = "", uri2 = "";
 		uri1 = PathsUtil.getRelativeWorkspaceFromEditorInput(input1);
 		uri2 = PathsUtil.getRelativeWorkspaceFromEditorInput(input2);
-		if (uri1.equals(uri2)) {
+		if(uri1.equals(uri2)) {
 			return true;
 		}
 		return false;
@@ -143,7 +143,7 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 		String uri1 = "", uri2 = "";
 		uri1 = PathsUtil.getRelativeWorkspaceFromEditorInputWithFragment(input1);
 		uri2 = PathsUtil.getRelativeWorkspaceFromEditorInputWithFragment(input2);
-		if (uri1.equals(uri2)) {
+		if(uri1.equals(uri2)) {
 			return true;
 		}
 		return false;
@@ -153,28 +153,28 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * To platform resource. Removes <URI>'s fragments.
 	 * 
 	 * @param input
-	 *            the input
+	 *        the input
 	 * 
 	 * @return the string
 	 */
 	// @unused
 	public static String toPlatformResource(IEditorInput input) {
 		String uri = "";
-		if (input instanceof FileEditorInput) {
-			uri = ((FileEditorInput) input).getURI().toString();
+		if(input instanceof FileEditorInput) {
+			uri = ((FileEditorInput)input).getURI().toString();
 		}
-		if (input instanceof URIEditorInput) {
-			uri = ((URIEditorInput) input).getURI().trimFragment().toString();
+		if(input instanceof URIEditorInput) {
+			uri = ((URIEditorInput)input).getURI().trimFragment().toString();
 		}
 
-		if (uri.startsWith("platform:/resource")) {
+		if(uri.startsWith("platform:/resource")) {
 			return uri;
 		}
 
-		if (uri.startsWith("file:")) {
+		if(uri.startsWith("file:")) {
 			uri = uri.replaceFirst("file:", "");
 		}
-		if (uri.startsWith(MDTUtil.getWorkspaceLocation().toString())) {
+		if(uri.startsWith(MDTUtil.getWorkspaceLocation().toString())) {
 			uri = uri.replaceFirst(MDTUtil.getWorkspaceLocation().toString(), "");
 			return "platform:/resource" + uri;
 		}
@@ -186,28 +186,28 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 * To platform resource. Does not remove <URI>'s fragments.
 	 * 
 	 * @param input
-	 *            the input
+	 *        the input
 	 * 
 	 * @return the string
 	 */
 	// @unused
 	public static String toPlatformResourceWithFragment(IEditorInput input) {
 		String uri = "";
-		if (input instanceof FileEditorInput) {
-			uri = ((FileEditorInput) input).getURI().toString();
+		if(input instanceof FileEditorInput) {
+			uri = ((FileEditorInput)input).getURI().toString();
 		}
-		if (input instanceof URIEditorInput) {
-			uri = ((URIEditorInput) input).getURI().toString();
+		if(input instanceof URIEditorInput) {
+			uri = ((URIEditorInput)input).getURI().toString();
 		}
 
-		if (uri.startsWith("platform:/resource")) {
+		if(uri.startsWith("platform:/resource")) {
 			return uri;
 		}
 
-		if (uri.startsWith("file:")) {
+		if(uri.startsWith("file:")) {
 			uri = uri.replaceFirst("file:", "");
 		}
-		if (uri.startsWith(MDTUtil.getWorkspaceLocation().toString())) {
+		if(uri.startsWith(MDTUtil.getWorkspaceLocation().toString())) {
 			uri = uri.replaceFirst(MDTUtil.getWorkspaceLocation().toString(), "");
 			return "platform:/resource" + uri;
 		}
@@ -222,8 +222,8 @@ public class CachedResourcesEditorInput extends URIEditorInput {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof IEditorInput) {
-			return checkSameEditorInput(this, (IEditorInput) o);
+		if(o instanceof IEditorInput) {
+			return checkSameEditorInput(this, (IEditorInput)o);
 		}
 		return false;
 	}

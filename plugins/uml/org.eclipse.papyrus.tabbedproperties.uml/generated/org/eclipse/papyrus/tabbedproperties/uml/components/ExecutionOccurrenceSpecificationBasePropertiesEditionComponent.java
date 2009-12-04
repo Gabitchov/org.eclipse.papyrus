@@ -68,7 +68,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -84,9 +84,9 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	 * Default constructor
 	 */
 	public ExecutionOccurrenceSpecificationBasePropertiesEditionComponent(EObject executionOccurrenceSpecification, String editing_mode) {
-		if (executionOccurrenceSpecification instanceof ExecutionOccurrenceSpecification) {
+		if(executionOccurrenceSpecification instanceof ExecutionOccurrenceSpecification) {
 			this.executionOccurrenceSpecification = (ExecutionOccurrenceSpecification)executionOccurrenceSpecification;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.executionOccurrenceSpecification.eAdapters().add(semanticAdapter);
 			}
@@ -108,34 +108,36 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					ExecutionOccurrenceSpecificationBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getElement_OwnedComment()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getElement_OwnedComment())) {
 						basePart.updateOwnedComment(executionOccurrenceSpecification);
 					}
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setName((String)msg.getNewValue());
-}
-						else{basePart.setName("");}}
-					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setName((String)msg.getNewValue());
+						} else {
+							basePart.setName("");
+						}
+					}
+					if(UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
 						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getNamedElement_ClientDependency().equals(msg.getFeature()))
 						basePart.updateClientDependency(executionOccurrenceSpecification);
-					if (UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(msg.getFeature()))
 						basePart.updateCovered(executionOccurrenceSpecification);
-					if (msg.getFeature() != null && 
+					if(msg.getFeature() != null &&
 							(((EStructuralFeature)msg.getFeature()) == UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering()
 							|| ((EStructuralFeature)msg.getFeature()).getEContainingClass() == UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering())) {
 						basePart.updateGeneralOrdering(executionOccurrenceSpecification);
 					}
-					if (UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore().equals(msg.getFeature()))
 						basePart.updateToBefore(executionOccurrenceSpecification);
-					if (UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter().equals(msg.getFeature()))
 						basePart.updateToAfter(executionOccurrenceSpecification);
 
 
@@ -151,7 +153,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.ExecutionOccurrenceSpecification.class;
 		return super.translatePart(key);
 	}
@@ -168,14 +170,13 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (executionOccurrenceSpecification != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(executionOccurrenceSpecification != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (ExecutionOccurrenceSpecificationPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.ExecutionOccurrenceSpecification.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -188,46 +189,46 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.ExecutionOccurrenceSpecification.class)
-			this.basePart = (ExecutionOccurrenceSpecificationPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.ExecutionOccurrenceSpecification.class)
+			this.basePart = (ExecutionOccurrenceSpecificationPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.ExecutionOccurrenceSpecification.class) {
+		if(basePart != null && key == UMLViewsRepository.ExecutionOccurrenceSpecification.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final ExecutionOccurrenceSpecification executionOccurrenceSpecification = (ExecutionOccurrenceSpecification)elt;
 			// init values
 			basePart.initOwnedComment(executionOccurrenceSpecification, null, UMLPackage.eINSTANCE.getElement_OwnedComment());
-			if (executionOccurrenceSpecification.getName() != null)
+			if(executionOccurrenceSpecification.getName() != null)
 				basePart.setName(executionOccurrenceSpecification.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), executionOccurrenceSpecification.getVisibility());
+			basePart.initVisibility((EEnum)UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), executionOccurrenceSpecification.getVisibility());
 			basePart.initClientDependency(executionOccurrenceSpecification, null, UMLPackage.eINSTANCE.getNamedElement_ClientDependency());
 			basePart.initCovered(executionOccurrenceSpecification, null, UMLPackage.eINSTANCE.getInteractionFragment_Covered());
 			basePart.initGeneralOrdering(executionOccurrenceSpecification, null, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering());
 			basePart.initToBefore(executionOccurrenceSpecification, null, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore());
 			basePart.initToAfter(executionOccurrenceSpecification, null, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter());
-			
+
 			// init filters
 			basePart.addFilterToOwnedComment(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof Comment); //$NON-NLS-1$ 
 
 				}
 
@@ -245,7 +246,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientDependencyTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -263,7 +264,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInCoveredTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -275,13 +276,13 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 			// End of user code
 			basePart.addFilterToGeneralOrdering(new ViewerFilter() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof GeneralOrdering); //$NON-NLS-1$ 
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+				 */
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					return (element instanceof String && element.equals("")) || (element instanceof GeneralOrdering); //$NON-NLS-1$ 
 
 				}
 
@@ -297,7 +298,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInToBeforeTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -315,7 +316,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInToAfterTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -336,47 +337,40 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 
 
 
-
-
-
-
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (executionOccurrenceSpecification != null) {
+		if(executionOccurrenceSpecification != null) {
 			List ownedCommentToAddFromOwnedComment = basePart.getOwnedCommentToAdd();
-			for (Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToAddFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getElement_OwnedComment(), iter.next()));
 			Map ownedCommentToRefreshFromOwnedComment = basePart.getOwnedCommentToEdit();
-			for (Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				Comment nextElement = (Comment) iter.next();
-				Comment ownedComment = (Comment) ownedCommentToRefreshFromOwnedComment.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = ownedCommentToRefreshFromOwnedComment.keySet().iterator(); iter.hasNext();) {
+
+
+
+				Comment nextElement = (Comment)iter.next();
+				Comment ownedComment = (Comment)ownedCommentToRefreshFromOwnedComment.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, ownedComment.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List ownedCommentToRemoveFromOwnedComment = basePart.getOwnedCommentToRemove();
-			for (Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
+			for(Iterator iter = ownedCommentToRemoveFromOwnedComment.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List ownedCommentToMoveFromOwnedComment = basePart.getOwnedCommentToMove();
-			for (Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();){
+			for(Iterator iter = ownedCommentToMoveFromOwnedComment.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getComment(), moveElement.getElement(), moveElement.getIndex()));
 			}
@@ -385,10 +379,10 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 			cc.append(SetCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List clientDependencyToAddFromClientDependency = basePart.getClientDependencyToAdd();
-			for (Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToAddFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			List clientDependencyToRemoveFromClientDependency = basePart.getClientDependencyToRemove();
-			for (Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
+			for(Iterator iter = clientDependencyToRemoveFromClientDependency.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), iter.next()));
 			//List clientDependencyToMoveFromClientDependency = basePart.getClientDependencyToMove();
 			//for (Iterator iter = clientDependencyToMoveFromClientDependency.iterator(); iter.hasNext();){
@@ -396,10 +390,10 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 			//	cc.append(MoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getDependency(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List coveredToAddFromCovered = basePart.getCoveredToAdd();
-			for (Iterator iter = coveredToAddFromCovered.iterator(); iter.hasNext();)
+			for(Iterator iter = coveredToAddFromCovered.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), iter.next()));
 			List coveredToRemoveFromCovered = basePart.getCoveredToRemove();
-			for (Iterator iter = coveredToRemoveFromCovered.iterator(); iter.hasNext();)
+			for(Iterator iter = coveredToRemoveFromCovered.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), iter.next()));
 			//List coveredToMoveFromCovered = basePart.getCoveredToMove();
 			//for (Iterator iter = coveredToMoveFromCovered.iterator(); iter.hasNext();){
@@ -407,38 +401,38 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 			//	cc.append(MoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getLifeline(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List generalOrderingToAddFromGeneralOrdering = basePart.getGeneralOrderingToAdd();
-			for (Iterator iter = generalOrderingToAddFromGeneralOrdering.iterator(); iter.hasNext();)
+			for(Iterator iter = generalOrderingToAddFromGeneralOrdering.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering(), iter.next()));
 			Map generalOrderingToRefreshFromGeneralOrdering = basePart.getGeneralOrderingToEdit();
-			for (Iterator iter = generalOrderingToRefreshFromGeneralOrdering.keySet().iterator(); iter.hasNext();) {
-				
-				
-				
-				GeneralOrdering nextElement = (GeneralOrdering) iter.next();
-				GeneralOrdering generalOrdering = (GeneralOrdering) generalOrderingToRefreshFromGeneralOrdering.get(nextElement);
-				
-				for (EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
-					if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+			for(Iterator iter = generalOrderingToRefreshFromGeneralOrdering.keySet().iterator(); iter.hasNext();) {
+
+
+
+				GeneralOrdering nextElement = (GeneralOrdering)iter.next();
+				GeneralOrdering generalOrdering = (GeneralOrdering)generalOrderingToRefreshFromGeneralOrdering.get(nextElement);
+
+				for(EStructuralFeature feature : nextElement.eClass().getEAllStructuralFeatures()) {
+					if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 						cc.append(SetCommand.create(editingDomain, nextElement, feature, generalOrdering.eGet(feature)));
 					}
 				}
-				
-				
-				
+
+
+
 			}
 			List generalOrderingToRemoveFromGeneralOrdering = basePart.getGeneralOrderingToRemove();
-			for (Iterator iter = generalOrderingToRemoveFromGeneralOrdering.iterator(); iter.hasNext();)
+			for(Iterator iter = generalOrderingToRemoveFromGeneralOrdering.iterator(); iter.hasNext();)
 				cc.append(DeleteCommand.create(editingDomain, iter.next()));
 			List generalOrderingToMoveFromGeneralOrdering = basePart.getGeneralOrderingToMove();
-			for (Iterator iter = generalOrderingToMoveFromGeneralOrdering.iterator(); iter.hasNext();){
+			for(Iterator iter = generalOrderingToMoveFromGeneralOrdering.iterator(); iter.hasNext();) {
 				org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement moveElement = (org.eclipse.emf.eef.runtime.impl.utils.EMFListEditUtil.MoveElement)iter.next();
 				cc.append(MoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getGeneralOrdering(), moveElement.getElement(), moveElement.getIndex()));
 			}
 			List toBeforeToAddFromToBefore = basePart.getToBeforeToAdd();
-			for (Iterator iter = toBeforeToAddFromToBefore.iterator(); iter.hasNext();)
+			for(Iterator iter = toBeforeToAddFromToBefore.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore(), iter.next()));
 			List toBeforeToRemoveFromToBefore = basePart.getToBeforeToRemove();
-			for (Iterator iter = toBeforeToRemoveFromToBefore.iterator(); iter.hasNext();)
+			for(Iterator iter = toBeforeToRemoveFromToBefore.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore(), iter.next()));
 			//List toBeforeToMoveFromToBefore = basePart.getToBeforeToMove();
 			//for (Iterator iter = toBeforeToMoveFromToBefore.iterator(); iter.hasNext();){
@@ -446,10 +440,10 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 			//	cc.append(MoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getGeneralOrdering(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List toAfterToAddFromToAfter = basePart.getToAfterToAdd();
-			for (Iterator iter = toAfterToAddFromToAfter.iterator(); iter.hasNext();)
+			for(Iterator iter = toAfterToAddFromToAfter.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter(), iter.next()));
 			List toAfterToRemoveFromToAfter = basePart.getToAfterToRemove();
-			for (Iterator iter = toAfterToRemoveFromToAfter.iterator(); iter.hasNext();)
+			for(Iterator iter = toAfterToRemoveFromToAfter.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter(), iter.next()));
 			//List toAfterToMoveFromToAfter = basePart.getToAfterToMove();
 			//for (Iterator iter = toAfterToMoveFromToAfter.iterator(); iter.hasNext();){
@@ -459,7 +453,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -471,7 +465,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof ExecutionOccurrenceSpecification) {
+		if(source instanceof ExecutionOccurrenceSpecification) {
 			ExecutionOccurrenceSpecification executionOccurrenceSpecificationToUpdate = (ExecutionOccurrenceSpecification)source;
 			executionOccurrenceSpecificationToUpdate.getOwnedComments().addAll(basePart.getOwnedCommentToAdd());
 			executionOccurrenceSpecificationToUpdate.setName(basePart.getName());
@@ -486,8 +480,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 
 
 			return executionOccurrenceSpecificationToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -498,118 +491,110 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.ownedComment == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.ownedComment == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					Comment oldValue = (Comment)event.getOldValue();
 					Comment newValue = (Comment)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the executionOccurrenceSpecification update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getElement_OwnedComment(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getComment(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor())
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.visibility == event.getAffectedEditor())
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.clientDependency == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.clientDependency == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getNamedElement_ClientDependency(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.covered == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.covered == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.generalOrdering == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.SET == event.getKind()) {
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.generalOrdering == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.SET == event.getKind()) {
 					GeneralOrdering oldValue = (GeneralOrdering)event.getOldValue();
 					GeneralOrdering newValue = (GeneralOrdering)event.getNewValue();
-					
-					
+
+
 					// TODO: Complete the executionOccurrenceSpecification update command
-					for (EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
-						if (feature.isChangeable() && !(feature instanceof EReference && ((EReference) feature).isContainer())) {
+					for(EStructuralFeature feature : newValue.eClass().getEAllStructuralFeatures()) {
+						if(feature.isChangeable() && !(feature instanceof EReference && ((EReference)feature).isContainer())) {
 							command.append(SetCommand.create(liveEditingDomain, oldValue, feature, newValue.eGet(feature)));
 						}
 					}
-					
-					
-				}
-				else if (PropertiesEditionEvent.ADD == event.getKind())
+
+
+				} else if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getInteractionFragment_GeneralOrdering(), event.getNewValue()));
-				else if (PropertiesEditionEvent.REMOVE == event.getKind())
+				else if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(DeleteCommand.create(liveEditingDomain, event.getNewValue()));
-				else if (PropertiesEditionEvent.MOVE == event.getKind())
+				else if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getGeneralOrdering(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.toBefore == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.toBefore == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToBefore(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.ExecutionOccurrenceSpecification.toAfter == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.ExecutionOccurrenceSpecification.toAfter == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, executionOccurrenceSpecification, UMLPackage.eINSTANCE.getOccurrenceSpecification_ToAfter(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
 
-				if (UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor())
+				if(UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
 
 
 
 
-
-
-
 			} else {
 
-				if (UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor())
+				if(UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
-
-
-
 
 
 
@@ -626,14 +611,14 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor()) {
+				if(UMLViewsRepository.ExecutionOccurrenceSpecification.name == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.ExecutionOccurrenceSpecification.visibility == event.getAffectedEditor()) {
+				if(UMLViewsRepository.ExecutionOccurrenceSpecification.visibility == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
 				}
@@ -652,12 +637,11 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(executionOccurrenceSpecification);
 		// Start of user code for custom validation check
 
@@ -673,7 +657,7 @@ public class ExecutionOccurrenceSpecificationBasePropertiesEditionComponent exte
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			executionOccurrenceSpecification.eAdapters().remove(semanticAdapter);
 	}
 

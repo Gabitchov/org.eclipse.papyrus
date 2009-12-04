@@ -44,8 +44,8 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePackageImportEditPart) {
-			((AppliedStereotypePackageImportEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof AppliedStereotypePackageImportEditPart) {
+			((AppliedStereotypePackageImportEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
@@ -56,7 +56,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -66,7 +66,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePackageImportEditPart) {
+		if(childEditPart instanceof AppliedStereotypePackageImportEditPart) {
 			return true;
 		}
 		return false;
@@ -76,7 +76,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -98,7 +98,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

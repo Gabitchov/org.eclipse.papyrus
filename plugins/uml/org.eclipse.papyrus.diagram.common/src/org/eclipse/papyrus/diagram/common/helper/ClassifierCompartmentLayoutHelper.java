@@ -47,11 +47,11 @@ public abstract class ClassifierCompartmentLayoutHelper implements ICompartmentL
 	 */
 	public void applyLayout(AbstractGraphicalEditPart compartmentEditPart) {
 		EditPart containerEditPart = compartmentEditPart.getParent();
-		IFigure fig = (IFigure) (((IGraphicalEditPart) containerEditPart).getFigure().getChildren().get(0));
-		IFigure primaryfig = (IFigure) (fig.getChildren().get(0));
-		String layoutKind = getLayoutKindFromView(((EModelElement) containerEditPart.getModel()));
+		IFigure fig = (IFigure)(((IGraphicalEditPart)containerEditPart).getFigure().getChildren().get(0));
+		IFigure primaryfig = (IFigure)(fig.getChildren().get(0));
+		String layoutKind = getLayoutKindFromView(((EModelElement)containerEditPart.getModel()));
 		ILayoutToolBox currentLayoutToolBox = layoutToolBoxList.get(layoutKind);
-		if (currentLayoutToolBox != null) {
+		if(currentLayoutToolBox != null) {
 			compartmentEditPart.installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, currentLayoutToolBox.getEditPolicy());
 			primaryfig.setLayoutManager(currentLayoutToolBox.getFigureLayout());
 		}
@@ -63,10 +63,10 @@ public abstract class ClassifierCompartmentLayoutHelper implements ICompartmentL
 	 */
 	public String getLayoutKindFromView(EModelElement modelElement) {
 		EAnnotation layoutAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstant.LAYOUTFIGURE);
-		if (layoutAnnotation != null) {
+		if(layoutAnnotation != null) {
 			EMap<String, String> entries = layoutAnnotation.getDetails();
 
-			if (entries != null) {
+			if(entries != null) {
 				String gradientvalueString = entries.get(VisualInformationPapyrusConstant.LAYOUTFIGURE_VALUE);
 				return gradientvalueString;
 			}

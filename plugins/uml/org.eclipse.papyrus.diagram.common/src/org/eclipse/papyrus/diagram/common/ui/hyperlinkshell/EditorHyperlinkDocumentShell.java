@@ -43,7 +43,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 	 * Sets the hyperlink document.
 	 * 
 	 * @param hyperlinkDocument
-	 *            the hyperlinkDocument to set
+	 *        the hyperlinkDocument to set
 	 */
 	protected void setHyperlinkDocument(HyperlinkDocument hyperlinkDocument) {
 		this.hyperlinkDocument = hyperlinkDocument;
@@ -61,8 +61,8 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 		getEditHyperlinkShell().pack();
 		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
 		getEditHyperlinkShell().open();
-		while (!getEditHyperlinkShell().isDisposed()) {
-			if (!display.readAndDispatch())
+		while(!getEditHyperlinkShell().isDisposed()) {
+			if(!display.readAndDispatch())
 				display.sleep();
 		}
 	}
@@ -77,7 +77,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
 		getObjectLabeltext().setEditable(false);
-		if (usedefaultTooltip) {
+		if(usedefaultTooltip) {
 			getTooltipInputText().setEditable(false);
 			getTooltipInputText().setText(getObjectLabeltext().getText());
 		}
@@ -86,7 +86,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 
 			public void mouseUp(MouseEvent e) {
 				usedefaultTooltip = getUseDefaultCheckBox().getSelection();
-				if (usedefaultTooltip) {
+				if(usedefaultTooltip) {
 					getTooltipInputText().setEditable(false);
 					getTooltipInputText().setText(getObjectLabeltext().getText());
 				} else {
@@ -113,7 +113,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
 				getObjectLabeltext().setText(selected);
-				if (usedefaultTooltip) {
+				if(usedefaultTooltip) {
 					getTooltipInputText().setText(selected);
 				}
 			}
@@ -143,7 +143,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 			}
 
 			public void mouseDown(MouseEvent e) {
-				if (hyperlinkDocument == null) {
+				if(hyperlinkDocument == null) {
 					hyperlinkDocument = new HyperlinkDocument();
 				}
 				hyperlinkDocument.setHyperlinkDocument(getObjectLabeltext().getText().trim());

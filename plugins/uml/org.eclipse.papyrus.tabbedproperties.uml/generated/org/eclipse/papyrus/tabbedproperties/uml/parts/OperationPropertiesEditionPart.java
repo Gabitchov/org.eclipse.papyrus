@@ -35,7 +35,9 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -50,14 +52,19 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -72,14 +79,19 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the concurrency
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initConcurrency(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new concurrency
-	 * @param newValue the new concurrency to set
+	 * 
+	 * @param newValue
+	 *        the new concurrency to set
 	 */
 	public void setConcurrency(Enumerator newValue);
 
@@ -94,7 +106,9 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isAbstract
-	 * @param newValue the new isAbstract to set
+	 * 
+	 * @param newValue
+	 *        the new isAbstract to set
 	 */
 	public void setIsAbstract(Boolean newValue);
 
@@ -109,7 +123,9 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isStatic
-	 * @param newValue the new isStatic to set
+	 * 
+	 * @param newValue
+	 *        the new isStatic to set
 	 */
 	public void setIsStatic(Boolean newValue);
 
@@ -124,7 +140,9 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *        the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
 
@@ -139,7 +157,9 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Defines a new isQuery
-	 * @param newValue the new isQuery to set
+	 * 
+	 * @param newValue
+	 *        the new isQuery to set
 	 */
 	public void setIsQuery(Boolean newValue);
 
@@ -174,15 +194,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameter
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedParameter(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameter
-	 * @param newValue the ownedParameter to update
+	 * 
+	 * @param newValue
+	 *        the ownedParameter to update
 	 */
 	public void updateOwnedParameter(EObject newValue);
 
@@ -190,7 +216,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the ownedParameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedParameter(ViewerFilter filter);
@@ -199,7 +225,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the ownedParameter edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedParameter(ViewerFilter filter);
@@ -230,15 +256,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the raisedException
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initRaisedException(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the raisedException
-	 * @param newValue the raisedException to update
+	 * 
+	 * @param newValue
+	 *        the raisedException to update
 	 */
 	public void updateRaisedException(EObject newValue);
 
@@ -246,7 +278,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the raisedException edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToRaisedException(ViewerFilter filter);
@@ -255,7 +287,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the raisedException edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRaisedException(ViewerFilter filter);
@@ -286,15 +318,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the method
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initMethod(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the method
-	 * @param newValue the method to update
+	 * 
+	 * @param newValue
+	 *        the method to update
 	 */
 	public void updateMethod(EObject newValue);
 
@@ -302,7 +340,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the method edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToMethod(ViewerFilter filter);
@@ -311,7 +349,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the method edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToMethod(ViewerFilter filter);
@@ -352,15 +390,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the templateBinding
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initTemplateBinding(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the templateBinding
-	 * @param newValue the templateBinding to update
+	 * 
+	 * @param newValue
+	 *        the templateBinding to update
 	 */
 	public void updateTemplateBinding(EObject newValue);
 
@@ -368,7 +412,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the templateBinding edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToTemplateBinding(ViewerFilter filter);
@@ -377,7 +421,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the templateBinding edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTemplateBinding(ViewerFilter filter);
@@ -418,15 +462,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedParameterSet
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedParameterSet(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedParameterSet
-	 * @param newValue the ownedParameterSet to update
+	 * 
+	 * @param newValue
+	 *        the ownedParameterSet to update
 	 */
 	public void updateOwnedParameterSet(EObject newValue);
 
@@ -434,7 +484,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the ownedParameterSet edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedParameterSet(ViewerFilter filter);
@@ -443,7 +493,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the ownedParameterSet edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedParameterSet(ViewerFilter filter);
@@ -474,15 +524,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the precondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPrecondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the precondition
-	 * @param newValue the precondition to update
+	 * 
+	 * @param newValue
+	 *        the precondition to update
 	 */
 	public void updatePrecondition(EObject newValue);
 
@@ -490,7 +546,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the precondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPrecondition(ViewerFilter filter);
@@ -499,7 +555,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the precondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPrecondition(ViewerFilter filter);
@@ -530,15 +586,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the postcondition
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPostcondition(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the postcondition
-	 * @param newValue the postcondition to update
+	 * 
+	 * @param newValue
+	 *        the postcondition to update
 	 */
 	public void updatePostcondition(EObject newValue);
 
@@ -546,7 +608,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the postcondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPostcondition(ViewerFilter filter);
@@ -555,7 +617,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the postcondition edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPostcondition(ViewerFilter filter);
@@ -586,15 +648,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedOperation
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initRedefinedOperation(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedOperation
-	 * @param newValue the redefinedOperation to update
+	 * 
+	 * @param newValue
+	 *        the redefinedOperation to update
 	 */
 	public void updateRedefinedOperation(EObject newValue);
 
@@ -602,7 +670,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the redefinedOperation edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToRedefinedOperation(ViewerFilter filter);
@@ -611,7 +679,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the redefinedOperation edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedOperation(ViewerFilter filter);
@@ -652,15 +720,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *        the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -668,7 +742,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedRule(ViewerFilter filter);
@@ -677,7 +751,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
@@ -718,15 +792,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *        the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -734,7 +814,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPackageImport(ViewerFilter filter);
@@ -743,7 +823,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
@@ -784,15 +864,21 @@ public interface OperationPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *        the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -800,7 +886,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToElementImport(ViewerFilter filter);
@@ -809,7 +895,7 @@ public interface OperationPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
@@ -818,11 +904,6 @@ public interface OperationPropertiesEditionPart {
 	 * @return true if the given element is contained inside the elementImport table
 	 */
 	public boolean isContainedInElementImportTable(EObject element);
-
-
-
-
-
 
 
 

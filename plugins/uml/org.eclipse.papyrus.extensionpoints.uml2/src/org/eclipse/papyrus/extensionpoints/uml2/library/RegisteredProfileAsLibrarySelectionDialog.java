@@ -100,8 +100,8 @@ public class RegisteredProfileAsLibrarySelectionDialog extends ElementListSelect
 		List<String> Libraries = new ArrayList<String>();
 		Iterator importedIt = importedProfiles.iterator();
 
-		while (importedIt.hasNext()) {
-			org.eclipse.uml2.uml.PackageImport currentImport = (org.eclipse.uml2.uml.PackageImport) importedIt.next();
+		while(importedIt.hasNext()) {
+			org.eclipse.uml2.uml.PackageImport currentImport = (org.eclipse.uml2.uml.PackageImport)importedIt.next();
 			String currentName = currentImport.getImportedPackage().getName();
 			Libraries.add(currentName);
 		}
@@ -118,10 +118,10 @@ public class RegisteredProfileAsLibrarySelectionDialog extends ElementListSelect
 
 		List<RegisteredProfile> profiles = new ArrayList<RegisteredProfile>();
 
-		for (int i = 0; i < regProfiles.length; i++) {
+		for(int i = 0; i < regProfiles.length; i++) {
 
 			String currentName = regProfiles[i].name;
-			if (!importedProfilesNames.contains(currentName)) {
+			if(!importedProfilesNames.contains(currentName)) {
 				profiles.add(regProfiles[i]);
 			}
 		}
@@ -143,18 +143,18 @@ public class RegisteredProfileAsLibrarySelectionDialog extends ElementListSelect
 		Object[] selection = this.getResult();
 		boolean hasChanged = false;
 
-		if (selection == null) { // Cancel was selected
+		if(selection == null) { // Cancel was selected
 			return hasChanged;
 		}
 
-		for (int i = 0; i < selection.length; i++) {
+		for(int i = 0; i < selection.length; i++) {
 
-			RegisteredProfile currentProfile = (RegisteredProfile) (selection[i]);
+			RegisteredProfile currentProfile = (RegisteredProfile)(selection[i]);
 			URI modelUri = currentProfile.uri;
 
 			PackageImport pi = getModelLibraryImportFromURI(modelUri);
 
-			if (pi != null) {
+			if(pi != null) {
 				currentPackage.getPackageImports().add(pi);
 			}
 		}
@@ -173,20 +173,20 @@ public class RegisteredProfileAsLibrarySelectionDialog extends ElementListSelect
 		ResourceSet resourceSet = Util.getResourceSet(currentPackage);
 		Resource modelResource = resourceSet.getResource(uri, true);
 
-		if (modelResource.getContents().size() <= 0) {
+		if(modelResource.getContents().size() <= 0) {
 			Activator.getDefault().getLog().log(
 					new Status(IStatus.ERROR, Activator.PLUGIN_ID, "No element found in model from URI "
-							+ uri.toString()));
+					+ uri.toString()));
 			return null;
 		}
 
 		// Try to reach model
-		Element root = (Element) modelResource.getContents().get(0);
+		Element root = (Element)modelResource.getContents().get(0);
 
-		if (root instanceof Package) {
+		if(root instanceof Package) {
 
 			// Import model library
-			Package libToImport = (Package) (modelResource.getContents().get(0));
+			Package libToImport = (Package)(modelResource.getContents().get(0));
 			// create import package
 			PackageImport modelLibImport = UMLFactory.eINSTANCE.createPackageImport();
 			modelLibImport.setImportedPackage(libToImport);
@@ -195,7 +195,7 @@ public class RegisteredProfileAsLibrarySelectionDialog extends ElementListSelect
 		}
 		Activator.getDefault().getLog().log(
 				new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The selected uri (" + uri.toString()
-						+ ") does not contain any model library !"));
+				+ ") does not contain any model library !"));
 		return null;
 	}
 }

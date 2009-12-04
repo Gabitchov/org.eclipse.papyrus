@@ -63,8 +63,8 @@ public class VisibilityCompletionProposal implements ICompletionProposalComputer
 		ICompletionProposal proposal = null;
 
 		// adds all standard multiplicities (static strings...)
-		for (int i = 0; i < visibilityStrings.length; i++) {
-			if (visibilityStrings[i].startsWith(prefix)) {
+		for(int i = 0; i < visibilityStrings.length; i++) {
+			if(visibilityStrings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(visibilityStrings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, visibilityStrings[i].length(), null, visibilityStringsName[i], null,

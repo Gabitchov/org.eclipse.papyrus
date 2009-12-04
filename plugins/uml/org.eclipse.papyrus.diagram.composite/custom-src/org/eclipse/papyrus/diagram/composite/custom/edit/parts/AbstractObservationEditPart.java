@@ -43,17 +43,17 @@ public abstract class AbstractObservationEditPart extends NamedElementEditPart i
 		int width = 20;
 		int height = 20;
 		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 
 	}
 
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 		// set the figure active when the feature of the of a class is true
-		if (resolveSemanticElement() != null) {
+		if(resolveSemanticElement() != null) {
 			refreshFontColor();
 
 			// To adapt the display of the container to the icon!

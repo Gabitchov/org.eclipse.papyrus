@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -68,11 +68,11 @@ public class CoreSemanticModelBridgeImpl extends SemanticModelBridgeImpl impleme
 	 * @generated
 	 */
 	public EObject getElement() {
-		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject) element;
+		if(element != null && element.eIsProxy()) {
+			InternalEObject oldElement = (InternalEObject)element;
 			element = eResolveProxy(oldElement);
-			if (element != oldElement) {
-				if (eNotificationRequired())
+			if(element != oldElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT, oldElement, element));
 			}
 		}
@@ -96,7 +96,7 @@ public class CoreSemanticModelBridgeImpl extends SemanticModelBridgeImpl impleme
 	public void setElement(EObject newElement) {
 		EObject oldElement = element;
 		element = newElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT, oldElement, element));
 	}
 
@@ -107,9 +107,9 @@ public class CoreSemanticModelBridgeImpl extends SemanticModelBridgeImpl impleme
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT:
-			if (resolve)
+			if(resolve)
 				return getElement();
 			return basicGetElement();
 		}
@@ -123,9 +123,9 @@ public class CoreSemanticModelBridgeImpl extends SemanticModelBridgeImpl impleme
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT:
-			setElement((EObject) newValue);
+			setElement((EObject)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,9 +138,9 @@ public class CoreSemanticModelBridgeImpl extends SemanticModelBridgeImpl impleme
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT:
-			setElement((EObject) null);
+			setElement((EObject)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -153,7 +153,7 @@ public class CoreSemanticModelBridgeImpl extends SemanticModelBridgeImpl impleme
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case DiPackage.CORE_SEMANTIC_MODEL_BRIDGE__ELEMENT:
 			return element != null;
 		}

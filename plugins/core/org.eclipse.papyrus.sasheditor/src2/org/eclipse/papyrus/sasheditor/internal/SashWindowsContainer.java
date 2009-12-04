@@ -97,15 +97,16 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Build a container with EditorPart management. The container will allow to add EditorPart
 	 * (and thus IEditorModel to the ContentProvider).
 	 * 
-	 * @param multiEditorManager The manager allowing to use {@link IEditorModel} in the model.
-	 *  If null, the sash will not render IEditorModel.
-	 *  
+	 * @param multiEditorManager
+	 *        The manager allowing to use {@link IEditorModel} in the model.
+	 *        If null, the sash will not render IEditorModel.
+	 * 
 	 */
 	public SashWindowsContainer(IMultiEditorManager multiEditorManager) {
 		this.multiEditorManager = multiEditorManager;
 		activePageTracker = new ActivePageTracker();
 
-		if (multiEditorManager != null) {
+		if(multiEditorManager != null) {
 			// Add listener on activePageChange.
 			// This listener will take in charge editor services switching.
 			activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager.getEditorSite()));
@@ -152,7 +153,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		refreshTabs();
 		// Set selection
 		selectPage(lookupFirstValidPage());
-		
+
 		// postCreatePartControl();
 		// TODO reactivate next
 		initDrag(container);
@@ -191,13 +192,13 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param childPart
 	 */
 	protected void pageChangedEvent(PagePart childPart) {
-		
+
 		// Check if it is really a change before changing the model (which can throw change event)
 		// The folder model change is done before the tracker fires the listeners, like this
 		// listeners can check the model.
 		if(getActivePage() == childPart)
 			return;
-		
+
 		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
 		pageChanged(childPart);
 	}
@@ -335,8 +336,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * 
 	 */
 	private void refreshTabsInternal() {
-//		System.out.println("start synchronize2() ------------------------");
-//		showTilesStatus();
+		//		System.out.println("start synchronize2() ------------------------");
+		//		showTilesStatus();
 
 		// Get the currently selected folder
 		PagePart oldActivePage = getActivePage();
@@ -361,8 +362,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// Reenable SWT and force layout
 		container.setRedraw(true);
 		container.layout(true, true);
-//		System.out.println("end synchronize2() ------------------------");
-//		showTilesStatus();
+		//		System.out.println("end synchronize2() ------------------------");
+		//		showTilesStatus();
 	}
 
 	/**
@@ -371,50 +372,53 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * This is the programatic counterpart of selecting a page in the UI.
 	 * If the provided page is null, do nothing.
 	 * 
-	 * @param page The page to select or null.
+	 * @param page
+	 *        The page to select or null.
 	 */
-	protected void selectPage( PagePart page ) {
+	protected void selectPage(PagePart page) {
 		if(page == null)
 			return;
 		TabFolderPart folder = page.getParent();
 		folder.setActiveEditor(page);
 	}
-	
+
 	/**
 	 * Select the specified page in the Parts. The specified page will becomes the active one.
 	 * Appropriate events are fired.
 	 * This is the programatic counterpart of selecting a page in the UI.
 	 * If the provided page is null, do nothing.
 	 * 
-	 * @param page The page to select or null. The IPage should 
-	 * be an instance previously returned by the SashContainer.
+	 * @param page
+	 *        The page to select or null. The IPage should
+	 *        be an instance previously returned by the SashContainer.
 	 */
-	public void selectPage( IPage page ) {
+	public void selectPage(IPage page) {
 		if(page == null)
 			return;
 
 		// check if we are a correct instance.
-		if(! (page instanceof PagePart) )
+		if(!(page instanceof PagePart))
 			return;
-		
+
 		selectPage((PagePart)page);
 	}
 
 	/**
 	 * Lookup the {@link IPage} used to render the specified rawModel.
-	 * @param rawModel The model for which the IPage is requested.
-	 * If the model is not rendered, return null;
+	 * 
+	 * @param rawModel
+	 *        The model for which the IPage is requested.
+	 *        If the model is not rendered, return null;
 	 * 
 	 * @return The corresponding IPage or null if not found.
 	 */
-	public IPage lookupModelPage(Object rawModel)
-	{
+	public IPage lookupModelPage(Object rawModel) {
 		// Use a visitor to lookup the first IPage
 		LookupModelPageVisitor visitor = new LookupModelPageVisitor(rawModel);
 		rootPart.visit(visitor);
 		return visitor.result();
 	}
-	
+
 	/**
 	 * Check if the oldActivePage still alive, and set it if needed.
 	 * If the oldActivePage is null, set an active page if one exist.
@@ -467,7 +471,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/**
 	 * Visit all the Pages (IEditorPage and IComponentPage), allowing to access to the public interface.
 	 */
-	public void visit( IPageVisitor pageVisitor ) {
+	public void visit(IPageVisitor pageVisitor) {
 		PageVisitorWrapper visitor = new PageVisitorWrapper(pageVisitor);
 		rootPart.visit(visitor);
 	}
@@ -516,7 +520,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				if(targetPart != null) {
 					final Control targetControl = targetPart.getControl();
 
-					@SuppressWarnings( "restriction" )
+					@SuppressWarnings("restriction")
 					final Rectangle targetBounds = DragUtil.getDisplayBounds(targetControl);
 
 					int side = Geometry.getClosestSide(targetBounds, position);
@@ -576,7 +580,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				return createDropTarget(sourcePart, srcTabIndex, side, cursor, null);
 			}
 			return null;
-		} 
+		}
 
 	};
 

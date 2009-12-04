@@ -46,13 +46,13 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		View view = (View) viewAdapter.getAdapter(View.class);
-		if (view != null && view.eContainer() != null) {
-			View parent = (View) view.eContainer();
+		View view = (View)viewAdapter.getAdapter(View.class);
+		if(view != null && view.eContainer() != null) {
+			View parent = (View)view.eContainer();
 			InstanceSpecification instanceSpecification = org.eclipse.uml2.uml.UMLFactory.eINSTANCE
 					.createInstanceSpecification();
-			if (parent.getElement() instanceof Package) {
-				((Package) parent.getElement()).getPackagedElements().add(instanceSpecification);
+			if(parent.getElement() instanceof Package) {
+				((Package)parent.getElement()).getPackagedElements().add(instanceSpecification);
 			}
 			view.setElement(instanceSpecification);
 		}
@@ -65,11 +65,11 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 	 * {@inheritDoc}
 	 */
 	public List getAffectedFiles() {
-		if (viewer != null) {
+		if(viewer != null) {
 			EditPart editpart = viewer.getRootEditPart().getContents();
-			if (editpart instanceof IGraphicalEditPart) {
-				View view = (View) ((IGraphicalEditPart) editpart).getModel();
-				if (view != null) {
+			if(editpart instanceof IGraphicalEditPart) {
+				View view = (View)((IGraphicalEditPart)editpart).getModel();
+				if(view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
 					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
 				}

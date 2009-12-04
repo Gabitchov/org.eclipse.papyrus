@@ -54,227 +54,170 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ActivityPartitionActivityPartitionCompartmentItemSemanticEditPolicy
-		extends UMLBaseItemSemanticEditPolicy {
+public class ActivityPartitionActivityPartitionCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
-	 * Modified to return a <Commend> that creates the element and initializes
-	 * the InPartition feature.
+	 * Modified to return a <Commend> that creates the element and initializes the InPartition feature.
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		Diagram diagram = DiagramEditPartsUtil
-				.findDiagramFromEditPart(getHost());
+		Diagram diagram = DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
-			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
-					diagram);
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
 		}
 		EReference feature = UMLPackage.eINSTANCE.getActivityNode_InPartition();
 		EObject value = req.getContainer();
 
-		if (UMLElementTypes.ActivityPartition_2030 == req.getElementType()
-				|| UMLElementTypes.ActivityPartition_2031 == req
-						.getElementType()) {
+		if (UMLElementTypes.ActivityPartition_2030 == req.getElementType() || UMLElementTypes.ActivityPartition_2031 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivityPartition_Subpartition());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivityPartition_Subpartition());
 			}
 			return getGEFWrapper(new ActivityPartition2CreateCommand(req));
 		}
 		if (UMLElementTypes.OpaqueAction_2014 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new OpaqueActionCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new OpaqueActionCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new OpaqueActionCreateCommand(req));
 		}
 		if (UMLElementTypes.OpaqueAction_2032 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new OpaqueAction2CreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new OpaqueAction2CreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new OpaqueAction2CreateCommand(req));
 		}
 		if (UMLElementTypes.SendObjectAction_2001 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new SendObjectActionCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new SendObjectActionCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new SendObjectActionCreateCommand(req));
 		}
 		if (UMLElementTypes.SendSignalAction_2005 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new SendSignalActionCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new SendSignalActionCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new SendSignalActionCreateCommand(req));
 		}
 		if (UMLElementTypes.AcceptEventAction_2007 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new AcceptEventActionCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new AcceptEventActionCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new AcceptEventActionCreateCommand(req));
 		}
 		if (UMLElementTypes.AcceptEventAction_2033 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new AcceptEventAction2CreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new AcceptEventAction2CreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new AcceptEventAction2CreateCommand(req));
 		}
 		if (UMLElementTypes.ActivityFinalNode_2009 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new ActivityFinalNodeCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new ActivityFinalNodeCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new ActivityFinalNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.DecisionNode_2010 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new DecisionNodeCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new DecisionNodeCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new DecisionNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.MergeNode_2011 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
 			CreateElementCommand createCommand = new MergeNodeCreateCommand(req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new MergeNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.InitialNode_2012 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new InitialNodeCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new InitialNodeCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new InitialNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.DataStoreNode_2013 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new DataStoreNodeCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new DataStoreNodeCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new DataStoreNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.FlowFinalNode_2018 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new FlowFinalNodeCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new FlowFinalNodeCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new FlowFinalNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.ForkNode_2019 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
 			CreateElementCommand createCommand = new ForkNodeCreateCommand(req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new ForkNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.JoinNode_2020 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
 			CreateElementCommand createCommand = new JoinNodeCreateCommand(req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new JoinNodeCreateCommand(req));
 		}
 		if (UMLElementTypes.Pin_2021 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
 			CreateElementCommand createCommand = new PinCreateCommand(req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new PinCreateCommand(req));
 		}
 		if (UMLElementTypes.CreateObjectAction_2022 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new CreateObjectActionCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new CreateObjectActionCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new CreateObjectActionCreateCommand(req));
 		}
 		if (UMLElementTypes.CallBehaviorAction_2024 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new CallBehaviorActionCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new CallBehaviorActionCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new CallBehaviorActionCreateCommand(req));
 		}
 		if (UMLElementTypes.CallOperationAction_2027 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE
-						.getActivity_Node());
+				req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_Node());
 			}
-			CreateElementCommand createCommand = new CallOperationActionCreateCommand(
-					req);
-			return new CreateElementAndInitializeFeatureCommand(createCommand,
-					feature, value);
+			CreateElementCommand createCommand = new CallOperationActionCreateCommand(req);
+			return new CreateElementAndInitializeFeatureCommand(createCommand, feature, value);
 			// return getGEFWrapper(new CallOperationActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -285,7 +228,6 @@ public class ActivityPartitionActivityPartitionCompartmentItemSemanticEditPolicy
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return getHost().getParent().getCommand(
-				new EditCommandRequestWrapper(req));
+		return getHost().getParent().getCommand(new EditCommandRequestWrapper(req));
 	}
 }

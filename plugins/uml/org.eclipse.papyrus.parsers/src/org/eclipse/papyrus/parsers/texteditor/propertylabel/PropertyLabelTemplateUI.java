@@ -62,7 +62,7 @@ public class PropertyLabelTemplateUI {
 	 * @return the shared instance
 	 */
 	public static PropertyLabelTemplateUI getDefault() {
-		if (fInstance == null) {
+		if(fInstance == null) {
 			fInstance = new PropertyLabelTemplateUI();
 		}
 		return fInstance;
@@ -74,7 +74,7 @@ public class PropertyLabelTemplateUI {
 	 * @return the template store of this plug-in instance
 	 */
 	public TemplateStore getTemplateStore() {
-		if (fStore == null) {
+		if(fStore == null) {
 			fStore = new ContributionTemplateStore(getContextTypeRegistry(), PapyrusParsersPlugin.getDefault()
 					.getPreferenceStore(), CUSTOM_TEMPLATES_KEY);
 			try {
@@ -92,7 +92,7 @@ public class PropertyLabelTemplateUI {
 	 * @return the context type registry for this plug-in instance
 	 */
 	public ContextTypeRegistry getContextTypeRegistry() {
-		if (fRegistry == null) {
+		if(fRegistry == null) {
 			// create an configure the contexts available in the template editor
 			fRegistry = new ContributionContextTypeRegistry();
 			fRegistry.addContextType(PropertyLabelContextType.PROPERTYLABEL_CONTEXT_TYPE);
@@ -114,9 +114,9 @@ public class PropertyLabelTemplateUI {
 	 * Creates and returns the <code>ImageDescriptor</code> for an image from a plugin.
 	 * 
 	 * @param imageFilePath
-	 *            relative path to the file that stores the image
+	 *        relative path to the file that stores the image
 	 * @param pluginId
-	 *            the identifier of the plugin
+	 *        the identifier of the plugin
 	 * 
 	 * @return the image descriptor
 	 * 

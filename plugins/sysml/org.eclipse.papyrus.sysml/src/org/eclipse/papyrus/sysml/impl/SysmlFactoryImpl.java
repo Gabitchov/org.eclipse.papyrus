@@ -47,9 +47,9 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	 */
 	public static SysmlFactory init() {
 		try {
-			SysmlFactory theSysmlFactory = (SysmlFactory) EPackage.Registry.INSTANCE
+			SysmlFactory theSysmlFactory = (SysmlFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML");
-			if (theSysmlFactory != null) {
+			if(theSysmlFactory != null) {
 				return theSysmlFactory;
 			}
 		} catch (Exception exception) {
@@ -83,7 +83,7 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case SysmlPackage.DUMMY:
 			return convertDummyToString(eDataType, instanceValue);
 		default:
@@ -98,7 +98,7 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,7 +110,7 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	 * @generated
 	 */
 	public String createDummyFromString(EDataType eDataType, String initialValue) {
-		return (String) super.createFromString(eDataType, initialValue);
+		return (String)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case SysmlPackage.DUMMY:
 			return createDummyFromString(eDataType, initialValue);
 		default:
@@ -134,7 +134,7 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	 * @generated
 	 */
 	public SysmlPackage getSysmlPackage() {
-		return (SysmlPackage) getEPackage();
+		return (SysmlPackage)getEPackage();
 	}
 
 } // SysmlFactoryImpl

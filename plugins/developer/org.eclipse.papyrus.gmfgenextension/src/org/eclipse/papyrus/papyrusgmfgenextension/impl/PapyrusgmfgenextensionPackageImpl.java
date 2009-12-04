@@ -31,72 +31,84 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements PapyrusgmfgenextensionPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass extendedGenViewEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass commentedElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass propertyRefreshHookEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass externalHookEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass specificLocatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass papyrusExtensionRootNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass alternateCanvasEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass alternateGenTopLevelNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass alternateGenLinkEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass mutatingCanvasEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass ownedEditpartEClass = null;
@@ -104,19 +116,19 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass specificDiagramUpdaterEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#eNS_URI
 	 * @see #init()
@@ -128,6 +140,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -135,16 +148,18 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link PapyrusgmfgenextensionPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link PapyrusgmfgenextensionPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static PapyrusgmfgenextensionPackage init() {
-		if (isInited) return (PapyrusgmfgenextensionPackage)EPackage.Registry.INSTANCE.getEPackage(PapyrusgmfgenextensionPackage.eNS_URI);
+		if(isInited)
+			return (PapyrusgmfgenextensionPackage)EPackage.Registry.INSTANCE.getEPackage(PapyrusgmfgenextensionPackage.eNS_URI);
 
 		// Obtain or create and register package
 		PapyrusgmfgenextensionPackageImpl thePapyrusgmfgenextensionPackage = (PapyrusgmfgenextensionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PapyrusgmfgenextensionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PapyrusgmfgenextensionPackageImpl());
@@ -163,7 +178,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		// Mark meta-data to indicate it can't be changed
 		thePapyrusgmfgenextensionPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(PapyrusgmfgenextensionPackage.eNS_URI, thePapyrusgmfgenextensionPackage);
 		return thePapyrusgmfgenextensionPackage;
@@ -171,6 +186,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getExtendedGenView() {
@@ -179,6 +195,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExtendedGenView_GenView() {
@@ -187,6 +204,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExtendedGenView_IsAbstract() {
@@ -195,6 +213,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExtendedGenView_SuperGenViews() {
@@ -203,6 +222,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExtendedGenView_PropRefreshHook() {
@@ -211,6 +231,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExtendedGenView_Name() {
@@ -219,6 +240,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExtendedGenView_SuperOwnedEditPart() {
@@ -227,6 +249,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCommentedElement() {
@@ -235,6 +258,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCommentedElement_Comment() {
@@ -243,6 +267,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPropertyRefreshHook() {
@@ -251,6 +276,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPropertyRefreshHook_TriggeringCondition() {
@@ -259,6 +285,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPropertyRefreshHook_Action() {
@@ -267,6 +294,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getExternalHook() {
@@ -275,6 +303,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExternalHook_Classpath() {
@@ -283,6 +312,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSpecificLocator() {
@@ -291,6 +321,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSpecificLocator_GenChildSideAffixedNode() {
@@ -299,6 +330,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPapyrusExtensionRootNode() {
@@ -307,6 +339,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPapyrusExtensionRootNode_ExtensionNodes() {
@@ -315,6 +348,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAlternateCanvas() {
@@ -323,6 +357,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateCanvas_DomainDiagramElement() {
@@ -331,6 +366,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateCanvas_AlternateTopLevelNodes() {
@@ -339,6 +375,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateCanvas_AlternateLinkNodes() {
@@ -347,6 +384,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateCanvas_Diagram() {
@@ -355,6 +393,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAlternateGenTopLevelNode() {
@@ -363,6 +402,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateGenTopLevelNode_GenTopLevelNode() {
@@ -371,6 +411,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateGenTopLevelNode_TypeModelFacet() {
@@ -379,6 +420,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAlternateGenLink() {
@@ -387,6 +429,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateGenLink_GenLinkNode() {
@@ -395,6 +438,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAlternateGenLink_TypeModelFacet() {
@@ -403,6 +447,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMutatingCanvas() {
@@ -411,6 +456,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMutatingCanvas_AlternateCanvases() {
@@ -419,6 +465,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getOwnedEditpart() {
@@ -427,6 +474,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getOwnedEditpart_Name() {
@@ -436,6 +484,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSpecificDiagramUpdater() {
@@ -445,6 +494,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSpecificDiagramUpdater_GenNode() {
@@ -453,6 +503,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PapyrusgmfgenextensionFactory getPapyrusgmfgenextensionFactory() {
@@ -461,18 +512,21 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -526,18 +580,21 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

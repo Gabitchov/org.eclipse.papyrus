@@ -60,13 +60,13 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Association) {
+		if(false == getElementToEdit() instanceof Association) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -76,17 +76,17 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
-		if (getLink().getEndTypes().size() == 1) {
+		if(getLink().getEndTypes().size() == 1) {
 			return false;
 		}
-		Type target = (Type) getLink().getEndTypes().get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Type target = (Type)getLink().getEndTypes().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistAssociation_4011(container, getNewSource(), target);
 	}
@@ -95,17 +95,17 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Type && newEnd instanceof Type)) {
+		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
 		}
-		if (getLink().getEndTypes().size() == 1) {
+		if(getLink().getEndTypes().size() == 1) {
 			return false;
 		}
-		Type source = (Type) getLink().getEndTypes().get(0);
-		if (!(getLink().eContainer() instanceof Package)) {
+		Type source = (Type)getLink().getEndTypes().get(0);
+		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package) getLink().eContainer();
+		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canExistAssociation_4011(container, source, getNewTarget());
 	}
@@ -114,13 +114,13 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -145,34 +145,34 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Association getLink() {
-		return (Association) getElementToEdit();
+		return (Association)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getOldSource() {
-		return (Type) oldEnd;
+		return (Type)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getNewSource() {
-		return (Type) newEnd;
+		return (Type)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getOldTarget() {
-		return (Type) oldEnd;
+		return (Type)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getNewTarget() {
-		return (Type) newEnd;
+		return (Type)newEnd;
 	}
 }

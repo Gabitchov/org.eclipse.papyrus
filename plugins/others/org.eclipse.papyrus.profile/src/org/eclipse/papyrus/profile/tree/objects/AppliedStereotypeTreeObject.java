@@ -35,9 +35,9 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	 * The Constructor.
 	 * 
 	 * @param stereotype
-	 *            the stereotype
+	 *        the stereotype
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public AppliedStereotypeTreeObject(StereotypedElementTreeObject parent, Element stereotype, TransactionalEditingDomain domain) {
 		super(parent, stereotype, domain);
@@ -49,12 +49,12 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	@Override
 	protected void createChildren() {
 		Iterator<Property> propIt = getStereotype().getAllAttributes().iterator();
-		while (propIt.hasNext()) {
+		while(propIt.hasNext()) {
 			final Property currentProp = propIt.next();
 			// Select authorized properties
 			// if(currentProp.isComposite() || (currentProp.getAssociation() == null)) {
-			if (currentProp.getAssociation() != null) {
-				if (!currentProp.getName().startsWith("base_"))
+			if(currentProp.getAssociation() != null) {
+				if(!currentProp.getName().startsWith("base_"))
 					addChild(new AppliedStereotypePropertyTreeObject(this, currentProp, domain));
 			} else {
 				addChild(new AppliedStereotypePropertyTreeObject(this, currentProp, domain));
@@ -69,7 +69,7 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	 * @return the stereotype
 	 */
 	public Stereotype getStereotype() {
-		return (Stereotype) element;
+		return (Stereotype)element;
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeUp() {
 
-		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) getParent();
+		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject)getParent();
 		Stereotype stereotype = getStereotype();
 		Element root = rTO.getElement();
 
@@ -102,7 +102,7 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 		stereotypes.addAll(root.getAppliedStereotypes());
 
 		int index = stereotypes.indexOf(stereotype);
-		if (index < 1) {
+		if(index < 1) {
 			// Not found of already on top...
 			return;
 		}
@@ -118,7 +118,7 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	 */
 	public void moveMeDown() {
 
-		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) getParent();
+		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject)getParent();
 		Stereotype stereotype = getStereotype();
 		Element root = rTO.getElement();
 
@@ -126,7 +126,7 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 		stereotypes.addAll(root.getAppliedStereotypes());
 
 		int index = stereotypes.indexOf(stereotype);
-		if ((index == -1) || (index >= stereotypes.size() - 1)) {
+		if((index == -1) || (index >= stereotypes.size() - 1)) {
 			// Not found of already on top...
 			return;
 		}

@@ -40,7 +40,7 @@ public class PrimitiveTypePropertiesEditionProvider implements IPropertiesEditio
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof PrimitiveType) {
+		if(eObject instanceof PrimitiveType) {
 			return new PrimitiveTypePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class PrimitiveTypePropertiesEditionProvider implements IPropertiesEditio
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof PrimitiveType) {
-			if (PrimitiveTypeBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof PrimitiveType) {
+			if(PrimitiveTypeBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new PrimitiveTypeBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

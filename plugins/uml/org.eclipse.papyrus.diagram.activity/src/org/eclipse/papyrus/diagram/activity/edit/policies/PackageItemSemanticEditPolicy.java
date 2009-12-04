@@ -25,16 +25,14 @@ import org.eclipse.uml2.uml.util.UMLSwitch;
 /**
  * @generated
  */
-public class PackageItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated NOT
 	 * 
 	 *            modified to handle an Activity as a canvas element.
 	 */
-	static class EReferenceDiagramSwitch extends
-			BasicEcoreSwitch<EReference, IElementType> {
+	static class EReferenceDiagramSwitch extends BasicEcoreSwitch<EReference, IElementType> {
 
 		@Override
 		public EReference doSwitch(EObject modelElement) {
@@ -43,16 +41,15 @@ public class PackageItemSemanticEditPolicy extends
 				return null;
 			}
 			UMLSwitch<EReference> aSwitch = new UMLSwitch<EReference>() {
+
 				@Override
 				public EReference casePackage(Package modelElement) {
 					EReference reference = null;
 					if (type.equals(UMLElementTypes.Activity_1001)) {
-						reference = UMLPackage.eINSTANCE
-								.getPackage_PackagedElement();
+						reference = UMLPackage.eINSTANCE.getPackage_PackagedElement();
 					}
 					if (type.equals(UMLElementTypes.Comment_2034)) {
-						reference = UMLPackage.eINSTANCE
-								.getElement_OwnedComment();
+						reference = UMLPackage.eINSTANCE.getElement_OwnedComment();
 					}
 					return reference;
 				}
@@ -61,8 +58,7 @@ public class PackageItemSemanticEditPolicy extends
 				public EReference caseActivity(Activity modelElement) {
 					EReference reference = null;
 					if (type.equals(UMLElementTypes.Comment_2034)) {
-						reference = UMLPackage.eINSTANCE
-								.getElement_OwnedComment();
+						reference = UMLPackage.eINSTANCE.getElement_OwnedComment();
 					}
 					return reference;
 				}
@@ -82,11 +78,9 @@ public class PackageItemSemanticEditPolicy extends
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
-		Diagram diagram = DiagramEditPartsUtil
-				.findDiagramFromEditPart(getHost());
+		Diagram diagram = DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
-			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
-					diagram);
+			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
 		}
 		EObject canvasElement = DiagramCanvasSwitch.getCanvasElement(this);
 		if (canvasElement == null) {
@@ -95,12 +89,10 @@ public class PackageItemSemanticEditPolicy extends
 		aSwitch.setInfo(req.getElementType());
 		req.setContainmentFeature(aSwitch.doSwitch(canvasElement));
 		if (UMLElementTypes.Activity_1001 == req.getElementType()) {
-			return getGEFWrapper(ActivityCreateCommand.create(req,
-					canvasElement));
+			return getGEFWrapper(ActivityCreateCommand.create(req, canvasElement));
 		}
 		if (UMLElementTypes.Comment_2034 == req.getElementType()) {
-			return getGEFWrapper(CommentCreateCommand
-					.create(req, canvasElement));
+			return getGEFWrapper(CommentCreateCommand.create(req, canvasElement));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -110,15 +102,12 @@ public class PackageItemSemanticEditPolicy extends
 	 */
 	@Override
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-				.getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		Diagram currentDiagram = null;
 		if (getHost() instanceof IGraphicalEditPart) {
-			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView()
-					.getDiagram();
+			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView().getDiagram();
 		}
-		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req,
-				currentDiagram));
+		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
 	}
 
 }

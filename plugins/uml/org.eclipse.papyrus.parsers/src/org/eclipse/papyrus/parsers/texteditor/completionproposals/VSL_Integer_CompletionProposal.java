@@ -50,8 +50,8 @@ public class VSL_Integer_CompletionProposal implements ICompletionProposalComput
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < TVL_Integer_Strings.length; i++) {
-			if (TVL_Integer_Strings[i].startsWith(prefix)) {
+		for(int i = 0; i < TVL_Integer_Strings.length; i++) {
+			if(TVL_Integer_Strings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(TVL_Integer_Strings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, TVL_Integer_Strings[i].length(), null, TVL_Integer_StringName[i], null,

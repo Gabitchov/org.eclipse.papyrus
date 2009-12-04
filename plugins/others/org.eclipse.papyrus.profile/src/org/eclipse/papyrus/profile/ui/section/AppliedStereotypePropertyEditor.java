@@ -31,11 +31,11 @@ public class AppliedStereotypePropertyEditor {
 	 * the method is used to be able to edit a property typed by a primitive type
 	 * 
 	 * @param shell
-	 *            the shell used to lanche an editor
+	 *        the shell used to lanche an editor
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 * @param type
-	 *            the type of the property
+	 *        the type of the property
 	 * @return the new value of the property or null
 	 */
 	public static Object getNewValueForPropertyTypedByPrimitiveType(Shell shell, Property property, Type type) {
@@ -45,7 +45,7 @@ public class AppliedStereotypePropertyEditor {
 		int val = valueDialog.open();
 
 		// Treat Cancel case first
-		if (val == InputDialogPrimitiveType.CANCEL) {
+		if(val == InputDialogPrimitiveType.CANCEL) {
 			// Close dialog box
 			valueDialog.close();
 			// And quit
@@ -64,11 +64,11 @@ public class AppliedStereotypePropertyEditor {
 	 * Pb this method returns always null. TO change. The method is used to be able to edit a property typed by a DataType
 	 * 
 	 * @param shell
-	 *            the shell used to lanch an editor
+	 *        the shell used to lanch an editor
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 * @param type
-	 *            the type of the property
+	 *        the type of the property
 	 * @return the new value of the property or null
 	 */
 	public static Object getNewValueForPropertyTypedByDataType(Shell shell, Property property, Type type) {
@@ -94,11 +94,11 @@ public class AppliedStereotypePropertyEditor {
 	 * The method is used to be able to edit a property typed by an Enumeration
 	 * 
 	 * @param shell
-	 *            the shell used to launch an editor
+	 *        the shell used to launch an editor
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 * @param type
-	 *            the type of the property
+	 *        the type of the property
 	 * @return the new value of the property or null
 	 */
 	public static Object getNewValueForPropertyTypedByEnumeration(Shell shell, Property property, Type type) {
@@ -107,9 +107,9 @@ public class AppliedStereotypePropertyEditor {
 		InputDialogEnumeration valueDialog = new InputDialogEnumeration(shell, property, null, -1);
 		int val = valueDialog.open();
 
-		if ((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
+		if((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
 			int index = valueDialog.getSelectionIndex();
-			newValue = ((Enumeration) type).getOwnedLiterals().get(index);
+			newValue = ((Enumeration)type).getOwnedLiterals().get(index);
 		}
 		valueDialog.close();
 		return newValue;
@@ -119,45 +119,45 @@ public class AppliedStereotypePropertyEditor {
 	 * The method is used to be able to edit a property typed by a stereotype
 	 * 
 	 * @param shell
-	 *            the shell used to launch an editor
+	 *        the shell used to launch an editor
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 * @param stereotypedElement
-	 *            the stereotyped element
+	 *        the stereotyped element
 	 * @param type
-	 *            the type of the property
+	 *        the type of the property
 	 * @return the new value of the property or null
 	 */
 	public static Object getNewValueForPropertyTypedByStereotype(Shell shell, Property property, Element stereotypedElement, Type type) {
 		Object newValue = null;
 
-		final ArrayList filteredElements = Util.getInstancesFilteredByType(stereotypedElement, null, (Stereotype) type);
+		final ArrayList filteredElements = Util.getInstancesFilteredByType(stereotypedElement, null, (Stereotype)type);
 
 		// Prepare possible selection for dialog box
 		String[] elementsNames = Util.getStringArrayFromList(filteredElements);
 		// if no possible selection : abort
-		if (elementsNames == null) {
+		if(elementsNames == null) {
 			Message.warning("No element stereotyped <<" + type.getName() + ">> was found in the model.");
 			return newValue;
 		}
 
 		// Retrieve initial value...
 		String initialValue = "";
-		if (elementsNames.length > 0) {
+		if(elementsNames.length > 0) {
 			initialValue = elementsNames[0];
 		}
 
 		// Creates and open selection dialog
 		ComboSelectionDialog valueDialog = new ComboSelectionDialog(shell, "New value:", elementsNames, initialValue);
 		int val = valueDialog.open();
-		if (val == ComboSelectionDialog.OK) {
+		if(val == ComboSelectionDialog.OK) {
 			int index = valueDialog.indexOfSelection;
-			Element dialogSelectedElt = (Element) filteredElements.get(index);
-			newValue = dialogSelectedElt.getStereotypeApplication((Stereotype) type);
-			if (newValue == null) {
-				EList subStereotypes = dialogSelectedElt.getAppliedSubstereotypes((Stereotype) type);
-				if (!subStereotypes.isEmpty()) {
-					newValue = dialogSelectedElt.getStereotypeApplication((Stereotype) subStereotypes.get(0));
+			Element dialogSelectedElt = (Element)filteredElements.get(index);
+			newValue = dialogSelectedElt.getStereotypeApplication((Stereotype)type);
+			if(newValue == null) {
+				EList subStereotypes = dialogSelectedElt.getAppliedSubstereotypes((Stereotype)type);
+				if(!subStereotypes.isEmpty()) {
+					newValue = dialogSelectedElt.getStereotypeApplication((Stereotype)subStereotypes.get(0));
 				}
 			}
 		}
@@ -170,16 +170,16 @@ public class AppliedStereotypePropertyEditor {
 	 * The method is used to be able to edit a property typed by a metaclass
 	 * 
 	 * @param shell
-	 *            the shell used to launch an editor
+	 *        the shell used to launch an editor
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 * @param stereotypedElement
-	 *            the stereotyped element
+	 *        the stereotyped element
 	 * @param type
-	 *            the type of the property
+	 *        the type of the property
 	 * 
 	 * @param currentPropertyValues
-	 *            current values for the property
+	 *        current values for the property
 	 *@return the new value of the property or null
 	 */
 	public static Object getNewValueForPropertyTypedByMetaclass(Shell shell, Property property, Element stereotypedElement, Type type, List currentPropertyValues) {
@@ -199,28 +199,28 @@ public class AppliedStereotypePropertyEditor {
 		final ArrayList filteredElements = Util.getInstancesFilteredByType(stereotypedElement, metaType, null);
 		// If multivalued remove already applied elements from list
 		// Removed already added elements from selection list
-		if (currentPropertyValues != null) {
+		if(currentPropertyValues != null) {
 			filteredElements.removeAll(currentPropertyValues);
 		}
 
 		// Prepare possible selection for dialog box
 		String[] elementsNames = Util.getStringArrayFromList(filteredElements);
 		// if no possible selection : abort
-		if (elementsNames == null) {
+		if(elementsNames == null) {
 			Message.warning("No element typed <<" + type.getName() + ">> was found in the model.");
 			return newValue;
 		}
 
 		// Retrieve initial value...
 		String initialValue = "";
-		if (elementsNames.length > 0) {
+		if(elementsNames.length > 0) {
 			initialValue = elementsNames[0];
 		}
 
 		// Create and open combo
 		ComboSelectionDialog valueDialog = new ComboSelectionDialog(shell, "New value:", elementsNames, initialValue);
 		int val = valueDialog.open();
-		if (val == ComboSelectionDialog.OK) {
+		if(val == ComboSelectionDialog.OK) {
 			newValue = filteredElements.get(valueDialog.indexOfSelection);
 			valueDialog.close();
 		}
@@ -231,38 +231,38 @@ public class AppliedStereotypePropertyEditor {
 	 * The method is used to be able to edit a property
 	 * 
 	 * @param shell
-	 *            the shell used to launch an editor
+	 *        the shell used to launch an editor
 	 * @param property
-	 *            the property to edit
+	 *        the property to edit
 	 * @param stereotypedElement
-	 *            the stereotyped element
+	 *        the stereotyped element
 	 * @param type
-	 *            the type of the property
+	 *        the type of the property
 	 * 
 	 * @param currentPropertyValues
-	 *            current values for the property
+	 *        current values for the property
 	 *@return the new value of the property or null
 	 */
 	public static Object getNewValueForProperty(Shell shell, Property property, Element stereotypedElement, Type type, List currentPropertyValues) {
 		Object newValue = null;
 		/** primitive type **/
-		if (type instanceof PrimitiveType) {
+		if(type instanceof PrimitiveType) {
 			newValue = AppliedStereotypePropertyEditor.getNewValueForPropertyTypedByPrimitiveType(shell, property, type);
 		}
 		/** DataType **/
-		else if ((type instanceof DataType && !(type instanceof Enumeration))) {
+		else if((type instanceof DataType && !(type instanceof Enumeration))) {
 			newValue = AppliedStereotypePropertyEditor.getNewValueForPropertyTypedByDataType(shell, property, type);
 		}
 		/** Enumeration **/
-		else if (type instanceof Enumeration) {
+		else if(type instanceof Enumeration) {
 			newValue = AppliedStereotypePropertyEditor.getNewValueForPropertyTypedByEnumeration(shell, property, type);
 		}
 		/** Stereotype **/
-		else if (type instanceof Stereotype) {
+		else if(type instanceof Stereotype) {
 			newValue = AppliedStereotypePropertyEditor.getNewValueForPropertyTypedByStereotype(shell, property, stereotypedElement, type);
 		}
 		/** Metaclass **/
-		else if (Util.isMetaclass(type)) {
+		else if(Util.isMetaclass(type)) {
 			newValue = AppliedStereotypePropertyEditor.getNewValueForPropertyTypedByMetaclass(shell, property, stereotypedElement, type, currentPropertyValues);
 		}
 		return newValue;

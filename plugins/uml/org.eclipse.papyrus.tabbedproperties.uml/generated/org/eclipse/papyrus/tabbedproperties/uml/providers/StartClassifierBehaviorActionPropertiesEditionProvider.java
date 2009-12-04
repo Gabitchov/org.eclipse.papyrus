@@ -40,7 +40,7 @@ public class StartClassifierBehaviorActionPropertiesEditionProvider implements I
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof StartClassifierBehaviorAction) {
+		if(eObject instanceof StartClassifierBehaviorAction) {
 			return new StartClassifierBehaviorActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class StartClassifierBehaviorActionPropertiesEditionProvider implements I
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof StartClassifierBehaviorAction) {
-			if (StartClassifierBehaviorActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof StartClassifierBehaviorAction) {
+			if(StartClassifierBehaviorActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new StartClassifierBehaviorActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

@@ -31,7 +31,7 @@ public abstract class AbstractProportionalShape extends Shape {
 	 * Sets the w2 h ratio.
 	 * 
 	 * @param w2hRatio
-	 *            the new w2 h ratio
+	 *        the new w2 h ratio
 	 */
 	protected void setW2HRatio(float w2hRatio) {
 		w2HRatio = w2hRatio;
@@ -42,7 +42,7 @@ public abstract class AbstractProportionalShape extends Shape {
 	 * Sets the keeping proportions.
 	 * 
 	 * @param newValue
-	 *            the new keeping proportions
+	 *        the new keeping proportions
 	 */
 	protected void setKeepingProportions(boolean newValue) {
 		keepingProportions = newValue;
@@ -63,7 +63,7 @@ public abstract class AbstractProportionalShape extends Shape {
 	 */
 	public Rectangle getProportionalBounds() {
 		Rectangle area = getClientArea();
-		if (!keepingProportions || w2HRatio == 0.0f || area.height == 0) {
+		if(!keepingProportions || w2HRatio == 0.0f || area.height == 0) {
 			return new Rectangle(area);
 		}
 
@@ -72,10 +72,10 @@ public abstract class AbstractProportionalShape extends Shape {
 		int newW = area.width;
 		int newH = area.height;
 
-		float currentRatio = ((float) newW) / ((float) newH);
+		float currentRatio = ((float)newW) / ((float)newH);
 		float discrepancy = currentRatio / w2HRatio;
 
-		if (discrepancy < 1) {
+		if(discrepancy < 1) {
 			// we are too high.
 			newH = Math.round(newH * discrepancy);
 			newY += (area.height - newH) / 2;
@@ -93,17 +93,17 @@ public abstract class AbstractProportionalShape extends Shape {
 	 */
 	public Dimension adjustDimension(Dimension d) {
 		Rectangle area = getClientArea();
-		if (!keepingProportions || w2HRatio == 0.0f || area.height == 0) {
+		if(!keepingProportions || w2HRatio == 0.0f || area.height == 0) {
 			return new Dimension(d);
 		}
 
-		float currentRatio = ((float) area.width) / ((float) area.height);
+		float currentRatio = ((float)area.width) / ((float)area.height);
 		float discrepancy = currentRatio / w2HRatio;
 
-		if (discrepancy < 1) {
-			return new Dimension(d.width, (int) (d.height * discrepancy));
+		if(discrepancy < 1) {
+			return new Dimension(d.width, (int)(d.height * discrepancy));
 		} else {
-			return new Dimension((int) (d.width / discrepancy), d.height);
+			return new Dimension((int)(d.width / discrepancy), d.height);
 		}
 	}
 }

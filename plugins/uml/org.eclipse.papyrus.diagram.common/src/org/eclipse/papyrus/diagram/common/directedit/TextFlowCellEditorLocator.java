@@ -34,7 +34,7 @@ final public class TextFlowCellEditorLocator implements CellEditorLocator {
 	 * Creates a new TextFlowCellEditorLocator.
 	 * 
 	 * @param figureToEdit
-	 *            The textflow to be edited.
+	 *        The textflow to be edited.
 	 */
 	// @unused
 	public TextFlowCellEditorLocator(TextFlow figureToEdit) {
@@ -52,7 +52,7 @@ final public class TextFlowCellEditorLocator implements CellEditorLocator {
 	 * @param celleditor
 	 */
 	public void relocate(CellEditor celleditor) {
-		Text text = (Text) celleditor.getControl();
+		Text text = (Text)celleditor.getControl();
 		Point pref = text.computeSize(-1, -1);
 		Rectangle rect = figureToEdit.getClientArea();
 		figureToEdit.translateToAbsolute(rect);

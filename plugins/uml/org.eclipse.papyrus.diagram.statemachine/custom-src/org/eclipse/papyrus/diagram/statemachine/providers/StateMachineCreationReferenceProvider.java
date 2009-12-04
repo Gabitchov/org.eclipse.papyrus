@@ -33,7 +33,8 @@ public class StateMachineCreationReferenceProvider {
 	/**
 	 * Dialog select state machine.
 	 * 
-	 * @param domain the domain
+	 * @param domain
+	 *        the domain
 	 * 
 	 * @return the state machine
 	 */
@@ -44,11 +45,11 @@ public class StateMachineCreationReferenceProvider {
 		SelectedStateMachine = null;
 		SelectStateMachineDialog selectDialog = new SelectStateMachineDialog(
 				Display.getCurrent().getActiveShell(), domain);
-		if (selectDialog.open() == Window.OK
+		if(selectDialog.open() == Window.OK
 				&& selectDialog.getSelectedModelElementURI() != null) {
 			URI selectedModelElementURI = selectDialog
 					.getSelectedModelElementURI();
-			subMachine = (StateMachine) domain.getResourceSet().getEObject(
+			subMachine = (StateMachine)domain.getResourceSet().getEObject(
 					selectedModelElementURI, true);
 		}
 		SelectedStateMachine = subMachine;

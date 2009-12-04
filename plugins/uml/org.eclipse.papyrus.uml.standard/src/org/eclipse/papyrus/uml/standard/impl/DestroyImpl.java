@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.BehavioralFeature;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.DestroyImpl#getBase_BehavioralFeature <em>Base
- * Behavioral Feature</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.DestroyImpl#getBase_BehavioralFeature <em>Base Behavioral Feature</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,11 +71,11 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 	 * @generated
 	 */
 	public BehavioralFeature getBase_BehavioralFeature() {
-		if (base_BehavioralFeature != null && base_BehavioralFeature.eIsProxy()) {
-			InternalEObject oldBase_BehavioralFeature = (InternalEObject) base_BehavioralFeature;
-			base_BehavioralFeature = (BehavioralFeature) eResolveProxy(oldBase_BehavioralFeature);
-			if (base_BehavioralFeature != oldBase_BehavioralFeature) {
-				if (eNotificationRequired())
+		if(base_BehavioralFeature != null && base_BehavioralFeature.eIsProxy()) {
+			InternalEObject oldBase_BehavioralFeature = (InternalEObject)base_BehavioralFeature;
+			base_BehavioralFeature = (BehavioralFeature)eResolveProxy(oldBase_BehavioralFeature);
+			if(base_BehavioralFeature != oldBase_BehavioralFeature) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE, oldBase_BehavioralFeature,
 							base_BehavioralFeature));
@@ -102,7 +101,7 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 	public void setBase_BehavioralFeature(BehavioralFeature newBase_BehavioralFeature) {
 		BehavioralFeature oldBase_BehavioralFeature = base_BehavioralFeature;
 		base_BehavioralFeature = newBase_BehavioralFeature;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE,
 					oldBase_BehavioralFeature, base_BehavioralFeature));
 	}
@@ -114,9 +113,9 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE:
-			if (resolve)
+			if(resolve)
 				return getBase_BehavioralFeature();
 			return basicGetBase_BehavioralFeature();
 		}
@@ -130,9 +129,9 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE:
-			setBase_BehavioralFeature((BehavioralFeature) newValue);
+			setBase_BehavioralFeature((BehavioralFeature)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,9 +144,9 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE:
-			setBase_BehavioralFeature((BehavioralFeature) null);
+			setBase_BehavioralFeature((BehavioralFeature)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -160,7 +159,7 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE:
 			return base_BehavioralFeature != null;
 		}

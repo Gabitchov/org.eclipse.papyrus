@@ -88,7 +88,7 @@ public class UseCaseFigure extends Ellipse {
 	 * Sets the use local coordinates.
 	 * 
 	 * @param useLocalCoordinates
-	 *            the new use local coordinates
+	 *        the new use local coordinates
 	 */
 	protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 		myUseLocalCoordinates = useLocalCoordinates;

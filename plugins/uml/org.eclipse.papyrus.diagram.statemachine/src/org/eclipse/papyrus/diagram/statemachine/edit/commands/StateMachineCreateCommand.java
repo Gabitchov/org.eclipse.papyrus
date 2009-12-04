@@ -39,6 +39,7 @@ public class StateMachineCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -74,12 +75,12 @@ public class StateMachineCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
+		EObject container = ((CreateElementRequest)getRequest())
 				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -92,10 +93,10 @@ public class StateMachineCreateCommand extends CreateElementCommand {
 	protected EClass getEClassToEdit() {
 
 		EObject eObject = getElementToEdit();
-		if (eObject != null) {
+		if(eObject != null) {
 			return eObject.eClass();
 		}
-		if (eClass != null) {
+		if(eClass != null) {
 			return eClass;
 		}
 		return UMLPackage.eINSTANCE.getPackage();
@@ -106,12 +107,12 @@ public class StateMachineCreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
+		if(getRequest().getParameters().get(
 				MultiDiagramUtil.BelongToDiagramSource) != null) {
 			Object parameter = getRequest().getParameters().get(
 					MultiDiagramUtil.BelongToDiagramSource);
-			if (parameter instanceof Diagram) {
-				return (Diagram) parameter;
+			if(parameter instanceof Diagram) {
+				return (Diagram)parameter;
 			}
 		}
 		return null;
@@ -124,12 +125,12 @@ public class StateMachineCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		StateMachine newElement = (StateMachine) super
+		StateMachine newElement = (StateMachine)super
 				.doDefaultElementCreation();
-		if (newElement != null) {
+		if(newElement != null) {
 			ElementInitializers.init_StateMachine_1001(newElement);
 			Diagram diagram = getDiagramFromRequest();
-			if (diagram != null) {
+			if(diagram != null) {
 				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
 						newElement);
 			} else {
@@ -138,9 +139,9 @@ public class StateMachineCreateCommand extends CreateElementCommand {
 			}
 			// fjcano: add all initialized regions to the diagram list of
 			// references
-			if (newElement.getRegions().size() > 0) {
-				for (EObject eObject : newElement.getRegions()) {
-					if (diagram != null) {
+			if(newElement.getRegions().size() > 0) {
+				for(EObject eObject : newElement.getRegions()) {
+					if(diagram != null) {
 						MultiDiagramUtil.AddEAnnotationReferenceToDiagram(
 								diagram, eObject);
 					} else {

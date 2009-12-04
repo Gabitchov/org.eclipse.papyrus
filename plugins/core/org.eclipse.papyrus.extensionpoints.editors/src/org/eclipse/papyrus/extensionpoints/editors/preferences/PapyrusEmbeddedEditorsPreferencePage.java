@@ -168,7 +168,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 		setButtonLayoutData(defaultEditorButton);
 
 		fillResourceTypeTable();
-		if (elementTypeTable.getItemCount() > 0) {
+		if(elementTypeTable.getItemCount() > 0) {
 			elementTypeTable.setSelection(0);
 		}
 		fillEditorTable();
@@ -187,14 +187,14 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 	@Override
 	public void dispose() {
 		super.dispose();
-		if (imagesToDispose != null) {
-			for (Image image2 : imagesToDispose) {
+		if(imagesToDispose != null) {
+			for(Image image2 : imagesToDispose) {
 				image2.dispose();
 			}
 			imagesToDispose = null;
 		}
-		if (editorsToImages != null) {
-			for (Image image2 : editorsToImages.values()) {
+		if(editorsToImages != null) {
+			for(Image image2 : editorsToImages.values()) {
 				image2.dispose();
 			}
 			editorsToImages = null;
@@ -218,12 +218,12 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 		boolean simpleEditorPrefered = IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(preferedLanguage);
 
 		List<DirectEditorExtensionPoint> editors = getAssociatedEditors();
-		for (DirectEditorExtensionPoint extensionPoint : editors) {
+		for(DirectEditorExtensionPoint extensionPoint : editors) {
 			TableItem item = new TableItem(editorTable, SWT.NULL);
 			item.setData(DATA_EDITOR, extensionPoint);
 			// retrieves if this editor is the default one or not.
 			String label = getEditorItemName(extensionPoint);
-			if (preferedLanguage.equals(extensionPoint.getLanguage())) {
+			if(preferedLanguage.equals(extensionPoint.getLanguage())) {
 				label += DEFAULT_EDITOR_LABEL;
 			}
 			item.setText(label);
@@ -239,11 +239,11 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 	 * Retrieves the {@link TableItem} name
 	 * 
 	 * @param extensionPoint
-	 *            the extension point associated to this item
+	 *        the extension point associated to this item
 	 * @return the name of the item
 	 */
 	public String getEditorItemName(DirectEditorExtensionPoint extensionPoint) {
-		if (extensionPoint == null) {
+		if(extensionPoint == null) {
 			return IDirectEditorsIds.SIMPLE_DIRECT_EDITOR;
 		} else {
 			return extensionPoint.getLanguage();
@@ -259,8 +259,8 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 		// Populate the table with the items
 		DirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getDirectEditorConfigurations();
 		List<DirectEditorExtensionPoint> configurations;
-		for (DirectEditorExtensionPoint extensionPoint : extensionPoints) {
-			if (!elements.containsKey(extensionPoint.getObjectToEdit())) {
+		for(DirectEditorExtensionPoint extensionPoint : extensionPoints) {
+			if(!elements.containsKey(extensionPoint.getObjectToEdit())) {
 				// no configuration yet for this element.
 				configurations = new ArrayList<DirectEditorExtensionPoint>();
 			} else {
@@ -273,7 +273,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 
 		Set<String> keys = elements.keySet();
 		int i = 0;
-		for (String key : keys) {
+		for(String key : keys) {
 			newElementTypeTableItem(elements.get(key), i, false);
 			i++;
 		}
@@ -293,7 +293,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 	// @unused
 	protected Image getImage(IEditorDescriptor editor) {
 		Image image = editorsToImages.get(editor);
-		if (image == null) {
+		if(image == null) {
 			image = editor.getImageDescriptor().createImage();
 			editorsToImages.put(editor, image);
 		}
@@ -302,7 +302,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 
 	protected String getSelectedElementType() {
 		TableItem[] items = elementTypeTable.getSelection();
-		if (items.length > 0) {
+		if(items.length > 0) {
 			return items[0].getText(); // Table is single select
 		}
 		return null;
@@ -311,17 +311,16 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 	/**
 	 * Returns all {@link DirectEditorExtensionPoint} for the current selected element type
 	 * 
-	 * @return all {@link DirectEditorExtensionPoint} for the current selected element type or
-	 *         <code>null</code.
+	 * @return all {@link DirectEditorExtensionPoint} for the current selected element type or <code>null</code.
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<DirectEditorExtensionPoint> getAssociatedEditors() {
-		if (getSelectedElementType() == null) {
+		if(getSelectedElementType() == null) {
 			return null;
 		}
 		TableItem[] items = elementTypeTable.getSelection();
-		if (items.length > 0) {
-			return (List<DirectEditorExtensionPoint>) items[0].getData();
+		if(items.length > 0) {
+			return (List<DirectEditorExtensionPoint>)items[0].getData();
 		}
 		return null;
 	}
@@ -330,9 +329,9 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 		/*
 		 * if (event.widget == upEditorButton) { promptForEditor(); } else if (event.widget ==
 		 * downEditorButton) { removeSelectedEditor(); } else
-		 */if (event.widget == defaultEditorButton) {
+		 */if(event.widget == defaultEditorButton) {
 			setSelectedEditorAsDefault();
-		} else if (event.widget == elementTypeTable) {
+		} else if(event.widget == elementTypeTable) {
 			fillEditorTable();
 		}
 
@@ -356,7 +355,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 		TableItem item = new TableItem(elementTypeTable, SWT.NULL, index);
 		item.setText(configurations.get(0).getObjectToEdit());
 		item.setData(configurations);
-		if (selected) {
+		if(selected) {
 			elementTypeTable.setSelection(index);
 		}
 		return item;
@@ -390,19 +389,19 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 	 */
 	public void setSelectedEditorAsDefault() {
 		TableItem[] items = editorTable.getItems();
-		for (TableItem item : items) {
-			if (item.getText().endsWith(DEFAULT_EDITOR_LABEL)) {
-				DirectEditorExtensionPoint oldExtensionPoint = (DirectEditorExtensionPoint) item.getData(DATA_EDITOR);
+		for(TableItem item : items) {
+			if(item.getText().endsWith(DEFAULT_EDITOR_LABEL)) {
+				DirectEditorExtensionPoint oldExtensionPoint = (DirectEditorExtensionPoint)item.getData(DATA_EDITOR);
 				// no configuration associated => standard editor
 				item.setText((oldExtensionPoint != null) ? oldExtensionPoint.getLanguage()
 						: IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
 			}
 		}
 		TableItem[] selectedItems = editorTable.getSelection();
-		if (selectedItems.length > 0) {
+		if(selectedItems.length > 0) {
 			// First change the label of the old default
 			// Now set the new default
-			DirectEditorExtensionPoint extensionPoint = (DirectEditorExtensionPoint) selectedItems[0]
+			DirectEditorExtensionPoint extensionPoint = (DirectEditorExtensionPoint)selectedItems[0]
 					.getData(DATA_EDITOR);
 			selectedItems[0].setText(selectedItems[0].getText() + DEFAULT_EDITOR_LABEL);
 

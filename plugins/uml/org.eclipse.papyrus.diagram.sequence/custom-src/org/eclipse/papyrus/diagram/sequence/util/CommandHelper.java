@@ -54,14 +54,14 @@ public class CommandHelper {
 	 * Retrieve the event container. A recursive method that test if a given element is a Package.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 * @return the first package found in the hierarchy or null if nothing has been found
 	 */
 	public static Package getEventContainer(Element element) {
 		Package container = null;
-		if (element instanceof Package) {
-			container = (Package) element;
-		} else if (element != null) {
+		if(element instanceof Package) {
+			container = (Package)element;
+		} else if(element != null) {
 			container = getEventContainer(element.getOwner());
 		}
 		return container;
@@ -84,12 +84,12 @@ public class CommandHelper {
 	 * Attach an Interaction on a Lifeline
 	 * 
 	 * @param lifeline
-	 *            The lifeline
+	 *        The lifeline
 	 * @param fragment
-	 *            The interaction fragment
+	 *        The interaction fragment
 	 */
 	public static void setSingleCovered(Lifeline lifeline, InteractionFragment fragment) {
-		if (!fragment.getCovereds().contains(lifeline)) {
+		if(!fragment.getCovereds().contains(lifeline)) {
 			fragment.getCovereds().add(lifeline);
 		}
 	}
@@ -98,11 +98,11 @@ public class CommandHelper {
 	 * Create a call event
 	 * 
 	 * @param eventContainer
-	 *            the container
+	 *        the container
 	 * @return the call event
 	 */
 	public static CallEvent createCallEvent(Package eventContainer) {
-		CallEvent callevent = (CallEvent) eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getCallEvent()); //$NON-NLS-1$
+		CallEvent callevent = (CallEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getCallEvent()); //$NON-NLS-1$
 		ElementInitializers.init_NamedElement(callevent);
 		return callevent;
 	}
@@ -111,16 +111,15 @@ public class CommandHelper {
 	 * Create a SendOperation event and initializes its name
 	 * 
 	 * @param eventContainer
-	 *            the container
+	 *        the container
 	 * @param operation
-	 *            the operation of the event
+	 *        the operation of the event
 	 * @return the sendOperation event
 	 */
 	public static SendOperationEvent createSendOperationEvent(Package eventContainer, Operation operation) {
-		SendOperationEvent sendOperationEvent = (SendOperationEvent) eventContainer.createPackagedElement(
-				"", UMLPackage.eINSTANCE.getSendOperationEvent()); //$NON-NLS-1$
+		SendOperationEvent sendOperationEvent = (SendOperationEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getSendOperationEvent()); //$NON-NLS-1$
 		ElementInitializers.init_NamedElement(sendOperationEvent);
-		if (operation != null) {
+		if(operation != null) {
 			sendOperationEvent.setOperation(operation);
 		}
 		return sendOperationEvent;
@@ -130,14 +129,13 @@ public class CommandHelper {
 	 * Create a ReceiveOperation event and initializes its name
 	 * 
 	 * @param eventContainer
-	 *            the container
+	 *        the container
 	 * @return the receiveOperation event
 	 */
 	public static ReceiveOperationEvent createReceiveOperationEvent(Package eventContainer, Operation operation) {
-		ReceiveOperationEvent receiveOperationEvent = (ReceiveOperationEvent) eventContainer.createPackagedElement(
-				"", UMLPackage.eINSTANCE.getReceiveOperationEvent()); //$NON-NLS-1$
+		ReceiveOperationEvent receiveOperationEvent = (ReceiveOperationEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getReceiveOperationEvent()); //$NON-NLS-1$
 		ElementInitializers.init_NamedElement(receiveOperationEvent);
-		if (operation != null) {
+		if(operation != null) {
 			receiveOperationEvent.setOperation(operation);
 		}
 		return receiveOperationEvent;
@@ -147,14 +145,13 @@ public class CommandHelper {
 	 * Create a send signal event and initializes its name
 	 * 
 	 * @param eventContainer
-	 *            the container
+	 *        the container
 	 * @return the send signal event
 	 */
 	public static SendSignalEvent createSendSignalEvent(Package eventContainer, Signal signal) {
-		SendSignalEvent sendSignalEvent = (SendSignalEvent) eventContainer.createPackagedElement(
-				"", UMLPackage.eINSTANCE.getSendSignalEvent()); //$NON-NLS-1$
+		SendSignalEvent sendSignalEvent = (SendSignalEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getSendSignalEvent()); //$NON-NLS-1$
 		ElementInitializers.init_NamedElement(sendSignalEvent);
-		if(signal != null){
+		if(signal != null) {
 			sendSignalEvent.setSignal(signal);
 		}
 		return sendSignalEvent;
@@ -164,14 +161,13 @@ public class CommandHelper {
 	 * Create a ReceiveSignal event and initializes its name
 	 * 
 	 * @param eventContainer
-	 *            the container
+	 *        the container
 	 * @return the ReceiveSignal event
 	 */
 	public static ReceiveSignalEvent createReceiveSignalEvent(Package eventContainer, Signal signal) {
-		ReceiveSignalEvent receiveSignalEvent = (ReceiveSignalEvent) eventContainer.createPackagedElement(
-				"", UMLPackage.eINSTANCE.getReceiveSignalEvent()); //$NON-NLS-1$
+		ReceiveSignalEvent receiveSignalEvent = (ReceiveSignalEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getReceiveSignalEvent()); //$NON-NLS-1$
 		ElementInitializers.init_NamedElement(receiveSignalEvent);
-		if(signal != null){
+		if(signal != null) {
 			receiveSignalEvent.setSignal(signal);
 		}
 		return receiveSignalEvent;
@@ -181,12 +177,12 @@ public class CommandHelper {
 	 * Create a receive signal event
 	 * 
 	 * @param eventContainer
-	 *            the container
+	 *        the container
 	 * @return the receive signal event
 	 */
 	public static CreationEvent createCreationEvent(Package eventContainer) {
 		CreationEvent creationEvent = UMLFactory.eINSTANCE.createCreationEvent();
-		creationEvent = (CreationEvent) eventContainer.createPackagedElement("", creationEvent.eClass()); //$NON-NLS-1$
+		creationEvent = (CreationEvent)eventContainer.createPackagedElement("", creationEvent.eClass()); //$NON-NLS-1$
 		ElementInitializers.init_NamedElement(creationEvent);
 		return creationEvent;
 	}
@@ -195,17 +191,17 @@ public class CommandHelper {
 	 * Create a destruction event
 	 * 
 	 * @param eventContainer
-	 *            the container
+	 *        the container
 	 * @return the destruction event
 	 */
 	public static DestructionEvent createDestructionEvent(Package eventContainer) {
 		DestructionEvent destructionEvent = UMLFactory.eINSTANCE.createDestructionEvent();
-		destructionEvent = (DestructionEvent) eventContainer.createPackagedElement("", destructionEvent.eClass()); //$NON-NLS-1$
+		destructionEvent = (DestructionEvent)eventContainer.createPackagedElement("", destructionEvent.eClass()); //$NON-NLS-1$
 		ElementInitializers.init_NamedElement(destructionEvent);
 		return destructionEvent;
 	}
-	
-	public static Element getSignature(Message message){
+
+	public static Element getSignature(Message message) {
 		return getSignature(message, true);
 	}
 
@@ -216,7 +212,7 @@ public class CommandHelper {
 	 */
 	public static Element getSignature(Message message, boolean hasMessageSort) {
 
-		if (message == null) {
+		if(message == null) {
 			return null;
 		}
 
@@ -231,17 +227,16 @@ public class CommandHelper {
 
 		result.add("");
 
-		if(!hasMessageSort){
+		if(!hasMessageSort) {
 			result.addAll(ItemPropertyDescriptor
 					.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
 			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getSignal()));
-		}
-		else if (MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())
+		} else if(MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())
 				|| MessageSort.ASYNCH_CALL_LITERAL.equals(message.getMessageSort())
 				|| MessageSort.REPLY_LITERAL.equals(message.getMessageSort())) {
 			result.addAll(ItemPropertyDescriptor
 					.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
-		} else if (MessageSort.ASYNCH_SIGNAL_LITERAL.equals(message.getMessageSort())) {
+		} else if(MessageSort.ASYNCH_SIGNAL_LITERAL.equals(message.getMessageSort())) {
 			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getSignal()));
 		}
 
@@ -249,9 +244,9 @@ public class CommandHelper {
 		dialog.setElements(result.toArray());
 
 		Element signature = null;
-		if (dialog.open() == Dialog.OK) {
-			if (!"".equals(dialog.getFirstResult())) {
-				signature = (Element) dialog.getFirstResult();
+		if(dialog.open() == Dialog.OK) {
+			if(!"".equals(dialog.getFirstResult())) {
+				signature = (Element)dialog.getFirstResult();
 			}
 		}
 		return signature;

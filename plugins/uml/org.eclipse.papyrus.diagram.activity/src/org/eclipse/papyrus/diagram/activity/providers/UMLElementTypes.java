@@ -278,26 +278,21 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(
-			ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance()
-						.getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -375,8 +370,7 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Comment_2034, UMLPackage.eINSTANCE.getComment());
 
-			elements.put(SendObjectAction_2001, UMLPackage.eINSTANCE
-					.getSendObjectAction());
+			elements.put(SendObjectAction_2001, UMLPackage.eINSTANCE.getSendObjectAction());
 
 			elements.put(InputPin_2002, UMLPackage.eINSTANCE.getInputPin());
 
@@ -384,32 +378,25 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(ValuePin_2004, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(SendSignalAction_2005, UMLPackage.eINSTANCE
-					.getSendSignalAction());
+			elements.put(SendSignalAction_2005, UMLPackage.eINSTANCE.getSendSignalAction());
 
 			elements.put(InputPin_2006, UMLPackage.eINSTANCE.getInputPin());
 
-			elements.put(AcceptEventAction_2007, UMLPackage.eINSTANCE
-					.getAcceptEventAction());
+			elements.put(AcceptEventAction_2007, UMLPackage.eINSTANCE.getAcceptEventAction());
 
 			elements.put(OutputPin_2008, UMLPackage.eINSTANCE.getOutputPin());
 
-			elements.put(ActivityFinalNode_2009, UMLPackage.eINSTANCE
-					.getActivityFinalNode());
+			elements.put(ActivityFinalNode_2009, UMLPackage.eINSTANCE.getActivityFinalNode());
 
-			elements.put(DecisionNode_2010, UMLPackage.eINSTANCE
-					.getDecisionNode());
+			elements.put(DecisionNode_2010, UMLPackage.eINSTANCE.getDecisionNode());
 
 			elements.put(MergeNode_2011, UMLPackage.eINSTANCE.getMergeNode());
 
-			elements.put(InitialNode_2012, UMLPackage.eINSTANCE
-					.getInitialNode());
+			elements.put(InitialNode_2012, UMLPackage.eINSTANCE.getInitialNode());
 
-			elements.put(DataStoreNode_2013, UMLPackage.eINSTANCE
-					.getDataStoreNode());
+			elements.put(DataStoreNode_2013, UMLPackage.eINSTANCE.getDataStoreNode());
 
-			elements.put(OpaqueAction_2014, UMLPackage.eINSTANCE
-					.getOpaqueAction());
+			elements.put(OpaqueAction_2014, UMLPackage.eINSTANCE.getOpaqueAction());
 
 			elements.put(OutputPin_2015, UMLPackage.eINSTANCE.getOutputPin());
 
@@ -417,8 +404,7 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(ValuePin_2017, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(FlowFinalNode_2018, UMLPackage.eINSTANCE
-					.getFlowFinalNode());
+			elements.put(FlowFinalNode_2018, UMLPackage.eINSTANCE.getFlowFinalNode());
 
 			elements.put(ForkNode_2019, UMLPackage.eINSTANCE.getForkNode());
 
@@ -426,54 +412,41 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Pin_2021, UMLPackage.eINSTANCE.getPin());
 
-			elements.put(CreateObjectAction_2022, UMLPackage.eINSTANCE
-					.getCreateObjectAction());
+			elements.put(CreateObjectAction_2022, UMLPackage.eINSTANCE.getCreateObjectAction());
 
 			elements.put(OutputPin_2023, UMLPackage.eINSTANCE.getOutputPin());
 
-			elements.put(CallBehaviorAction_2024, UMLPackage.eINSTANCE
-					.getCallBehaviorAction());
+			elements.put(CallBehaviorAction_2024, UMLPackage.eINSTANCE.getCallBehaviorAction());
 
 			elements.put(OutputPin_2025, UMLPackage.eINSTANCE.getOutputPin());
 
 			elements.put(InputPin_2026, UMLPackage.eINSTANCE.getInputPin());
 
-			elements.put(CallOperationAction_2027, UMLPackage.eINSTANCE
-					.getCallOperationAction());
+			elements.put(CallOperationAction_2027, UMLPackage.eINSTANCE.getCallOperationAction());
 
 			elements.put(InputPin_2028, UMLPackage.eINSTANCE.getInputPin());
 
-			elements.put(ActivityParameterNode_2029, UMLPackage.eINSTANCE
-					.getActivityParameterNode());
+			elements.put(ActivityParameterNode_2029, UMLPackage.eINSTANCE.getActivityParameterNode());
 
-			elements.put(ActivityPartition_2030, UMLPackage.eINSTANCE
-					.getActivityPartition());
+			elements.put(ActivityPartition_2030, UMLPackage.eINSTANCE.getActivityPartition());
 
-			elements.put(ActivityPartition_2031, UMLPackage.eINSTANCE
-					.getActivityPartition());
+			elements.put(ActivityPartition_2031, UMLPackage.eINSTANCE.getActivityPartition());
 
-			elements.put(OpaqueAction_2032, UMLPackage.eINSTANCE
-					.getOpaqueAction());
+			elements.put(OpaqueAction_2032, UMLPackage.eINSTANCE.getOpaqueAction());
 
-			elements.put(AcceptEventAction_2033, UMLPackage.eINSTANCE
-					.getAcceptEventAction());
+			elements.put(AcceptEventAction_2033, UMLPackage.eINSTANCE.getAcceptEventAction());
 
-			elements.put(ControlFlow_3001, UMLPackage.eINSTANCE
-					.getControlFlow());
+			elements.put(ControlFlow_3001, UMLPackage.eINSTANCE.getControlFlow());
 
 			elements.put(ObjectFlow_3002, UMLPackage.eINSTANCE.getObjectFlow());
 
-			elements.put(ObjectNodeSelection_3003, UMLPackage.eINSTANCE
-					.getObjectNode_Selection());
+			elements.put(ObjectNodeSelection_3003, UMLPackage.eINSTANCE.getObjectNode_Selection());
 
-			elements.put(ExceptionHandler_3004, UMLPackage.eINSTANCE
-					.getExceptionHandler());
+			elements.put(ExceptionHandler_3004, UMLPackage.eINSTANCE.getExceptionHandler());
 
-			elements.put(ElementOwnedComment_3005, UMLPackage.eINSTANCE
-					.getElement_OwnedComment());
+			elements.put(ElementOwnedComment_3005, UMLPackage.eINSTANCE.getElement_OwnedComment());
 
-			elements.put(CommentAnnotatedElement_3006, UMLPackage.eINSTANCE
-					.getComment_AnnotatedElement());
+			elements.put(CommentAnnotatedElement_3006, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -552,13 +525,13 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	static {
-		ModelTypesProviderFactory.registerModelTypesProvider(
-				UMLDiagramEditor.ID, new BaseModelTypeProvider() {
-					@Override
-					public Image getImageHelper(IAdaptable hint) {
-						return getImage(hint);
-					}
-				});
+		ModelTypesProviderFactory.registerModelTypesProvider(UMLDiagramEditor.ID, new BaseModelTypeProvider() {
+
+			@Override
+			public Image getImageHelper(IAdaptable hint) {
+				return getImage(hint);
+			}
+		});
 	}
 
 }

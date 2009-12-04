@@ -34,7 +34,7 @@ public class EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicy exte
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.EnumerationLiteral_3017 == req.getElementType()) {
+		if(UMLElementTypes.EnumerationLiteral_3017 == req.getElementType()) {
 			return getGEFWrapper(new EnumerationLiteralCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

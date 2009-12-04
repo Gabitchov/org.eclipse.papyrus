@@ -10,11 +10,11 @@ public class RegisteredElementsDetailsLabelProvider extends RegisteredElementsLa
 	 */
 	@Override
 	public String getText(Object element) {
-		if (!(element instanceof RegisteredElementExtensionPoint)) {
+		if(!(element instanceof RegisteredElementExtensionPoint)) {
 			return super.getText(element);
 		}
 
-		RegisteredElementExtensionPoint point = (RegisteredElementExtensionPoint) element;
+		RegisteredElementExtensionPoint point = (RegisteredElementExtensionPoint)element;
 		String text = "";
 		text += point.getDescription();
 		text += " - ";

@@ -29,7 +29,7 @@ public class GEFtoEMFCommandWrapper extends AbstractCommand {
 	 * Constructor.
 	 * 
 	 * @param gefCommand
-	 *            the gef command
+	 *        the gef command
 	 */
 	public GEFtoEMFCommandWrapper(Command gefCommand) {
 		super(gefCommand.getLabel());

@@ -30,15 +30,11 @@ public class ObjectNodeSelectionViewFactory extends ConnectionViewFactory {
 	 * @generated
 	 */
 	@Override
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint, int index, boolean persisted) {
 		if (semanticHint == null) {
-			semanticHint = UMLVisualIDRegistry
-					.getType(ObjectNodeSelectionEditPart.VISUAL_ID);
+			semanticHint = UMLVisualIDRegistry.getType(ObjectNodeSelectionEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
 	}
 }

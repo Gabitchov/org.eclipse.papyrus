@@ -43,18 +43,18 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 	 */
 	protected void doGotoMarker(IMarker marker) {
 		String elementId = marker.getAttribute(org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID, null);
-		if (elementId == null || !(getEditor() instanceof DiagramEditor)) {
+		if(elementId == null || !(getEditor() instanceof DiagramEditor)) {
 			return;
 		}
-		DiagramEditor editor = (DiagramEditor) getEditor();
+		DiagramEditor editor = (DiagramEditor)getEditor();
 		Map editPartRegistry = editor.getDiagramGraphicalViewer().getEditPartRegistry();
 		EObject targetView = editor.getDiagram().eResource().getEObject(elementId);
-		if (targetView == null) {
+		if(targetView == null) {
 			return;
 		}
-		EditPart targetEditPart = (EditPart) editPartRegistry.get(targetView);
-		if (targetEditPart != null) {
-			UMLDiagramEditorUtil.selectElementsInDiagram(editor, Arrays.asList(new EditPart[] { targetEditPart }));
+		EditPart targetEditPart = (EditPart)editPartRegistry.get(targetView);
+		if(targetEditPart != null) {
+			UMLDiagramEditorUtil.selectElementsInDiagram(editor, Arrays.asList(new EditPart[]{ targetEditPart }));
 		}
 	}
 
@@ -80,9 +80,9 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 			marker.setAttribute(IMarker.LOCATION, location);
 			marker.setAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, elementId);
 			int markerSeverity = IMarker.SEVERITY_INFO;
-			if (statusSeverity == IStatus.WARNING) {
+			if(statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if (statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
+			} else if(statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);

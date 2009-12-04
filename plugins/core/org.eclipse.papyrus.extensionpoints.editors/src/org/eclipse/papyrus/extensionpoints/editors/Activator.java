@@ -66,17 +66,16 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its key.<BR>
-	 * By default, it returns a default image. This image is the image placed in the directory
-	 * <em>resources/icons/default.gif</em>
+	 * By default, it returns a default image. This image is the image placed in the directory <em>resources/icons/default.gif</em>
 	 * 
 	 * @param key
-	 *            the key of the image
+	 *        the key of the image
 	 * @return the Image
 	 */
 	public static Image getImage(String key) {
 		ImageRegistry registry = getDefault().getImageRegistry();
 		Image image = registry.get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, key);
 			registry.put(key, desc);
 			image = registry.get(key);
@@ -89,15 +88,15 @@ public class Activator extends AbstractUIPlugin {
 	 * plugin.<BR>
 	 * 
 	 * @param pluginID
-	 *            the plugin id where to retrieve the image
+	 *        the plugin id where to retrieve the image
 	 * @param key
-	 *            the key of the image
+	 *        the key of the image
 	 * @return the Image
 	 */
 	public static Image getImage(String pluginID, String key) {
 		ImageRegistry registry = getDefault().getImageRegistry();
 		Image image = registry.get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(pluginID, key);
 			registry.put(key, desc);
 			image = registry.get(key);
@@ -109,9 +108,9 @@ public class Activator extends AbstractUIPlugin {
 	 * Log a message and an exception in the plugin's log.
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 * @param e
-	 *            the exception to log
+	 *        the exception to log
 	 */
 	public static void log(String message, Exception e) {
 		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, message, e));
@@ -121,7 +120,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Log a message in the plugin's log.
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public static void log(String message) {
 		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, message, null));
@@ -131,7 +130,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Log a message in the plugin's log.
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public static void log(Exception e) {
 		getDefault().getLog().log(
@@ -142,7 +141,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Log a message in the plugin's log.
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public static void debug(String message) {
 		getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, IStatus.OK, message, null));

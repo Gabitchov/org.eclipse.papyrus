@@ -58,8 +58,8 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePackageMergeEditPart) {
-			((AppliedStereotypePackageMergeEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof AppliedStereotypePackageMergeEditPart) {
+			((AppliedStereotypePackageMergeEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
@@ -70,7 +70,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,7 +80,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypePackageMergeEditPart) {
+		if(childEditPart instanceof AppliedStereotypePackageMergeEditPart) {
 			return true;
 		}
 		return false;
@@ -90,7 +90,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -113,7 +113,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

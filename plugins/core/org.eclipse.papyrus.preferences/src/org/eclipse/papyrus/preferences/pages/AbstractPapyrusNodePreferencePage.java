@@ -19,8 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * An abstract implementation of a basic node preference page.
  * <p>
- * This Preference page adds the preference for
- * {@link org.eclipse.gmf.runtime.notation.FillStyle#getFillColor() <em>FillColor</em>}
+ * This Preference page adds the preference for {@link org.eclipse.gmf.runtime.notation.FillStyle#getFillColor() <em>FillColor</em>}
  * </p>
  * 
  * @author tlandre

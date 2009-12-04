@@ -46,24 +46,23 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 	private static final String DELETE_FROM_DIAGRAM_DLG_MESSAGE = "Are you sure you want to delete all messages on the combined fragment ?";
 
 	/**
-	 * Delete Combined fragment and child from the view. Also delete message if user wants.
-	 * {@inheritDoc}
+	 * Delete Combined fragment and child from the view. Also delete message if user wants. {@inheritDoc}
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
 		CompositeCommand cmd = new DeleteCommandWithPopup("Delete combined fragment view");
 		cmd.add(new CommandProxy(super.createDeleteViewCommand(deleteRequest)));
 
-		Rectangle combinedFragmentBounds = ((GraphicalEditPart) getHost()).getFigure().getBounds();
-		for (Object child : getHost().getParent().getChildren()) {
-			if (child instanceof LifelineEditPart) {
-				for (Object littlechild : ((LifelineEditPart) child).getChildren()) {
-					if (littlechild instanceof ActionExecutionSpecificationEditPart
+		Rectangle combinedFragmentBounds = ((GraphicalEditPart)getHost()).getFigure().getBounds();
+		for(Object child : getHost().getParent().getChildren()) {
+			if(child instanceof LifelineEditPart) {
+				for(Object littlechild : ((LifelineEditPart)child).getChildren()) {
+					if(littlechild instanceof ActionExecutionSpecificationEditPart
 							|| littlechild instanceof BehaviorExecutionSpecificationEditPart) {
-						ShapeNodeEditPart editPart = (ShapeNodeEditPart) littlechild;
+						ShapeNodeEditPart editPart = (ShapeNodeEditPart)littlechild;
 						Rectangle executionSpecificationBounds = editPart.getFigure().getBounds();
-						if (combinedFragmentBounds.intersects(executionSpecificationBounds)) {
-							cmd.add(new DeleteCommand(editPart.getEditingDomain(), (View) editPart.getModel()));
+						if(combinedFragmentBounds.intersects(executionSpecificationBounds)) {
+							cmd.add(new DeleteCommand(editPart.getEditingDomain(), (View)editPart.getModel()));
 						}
 					}
 				}
@@ -85,7 +84,7 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
 				throws ExecutionException {
-			if (showMessageDialog(DELETE_FROM_DIAGRAM_DLG_TITLE, DELETE_FROM_DIAGRAM_DLG_MESSAGE)) {
+			if(showMessageDialog(DELETE_FROM_DIAGRAM_DLG_TITLE, DELETE_FROM_DIAGRAM_DLG_MESSAGE)) {
 				return super.doExecuteWithResult(progressMonitor, info);
 			}
 			return null;
@@ -96,18 +95,18 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 		 * 
 		 * @generated NOT
 		 * @param title
-		 *            The title
+		 *        The title
 		 * @param message
-		 *            The message
+		 *        The message
 		 * @return True if user click on OK
 		 */
 		private boolean showMessageDialog(String title, String message) {
 			MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(Display.getCurrent()
-					.getActiveShell(), title, message, null, false, (IPreferenceStore) ((IGraphicalEditPart) getHost())
+					.getActiveShell(), title, message, null, false, (IPreferenceStore)((IGraphicalEditPart)getHost())
 					.getDiagramPreferencesHint().getPreferenceStore(),
 					IPreferenceConstants.PREF_PROMPT_ON_DEL_FROM_MODEL);
 
-			if (dialog.getReturnCode() == IDialogConstants.YES_ID)
+			if(dialog.getReturnCode() == IDialogConstants.YES_ID)
 				return true;
 			else
 				return false;

@@ -43,11 +43,11 @@ public abstract class AbstractAction extends Action {
 	 */
 	protected Diagram getCurrentDiagram() {
 		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if (editorPart instanceof IMultiDiagramEditor) {
-			editorPart = ((IMultiDiagramEditor) editorPart).getActiveEditor();
-			if (editorPart instanceof DiagramEditor) {
-				host = ((DiagramEditor) editorPart).getDiagramEditPart();
-				View view = (View) host.getModel();
+		if(editorPart instanceof IMultiDiagramEditor) {
+			editorPart = ((IMultiDiagramEditor)editorPart).getActiveEditor();
+			if(editorPart instanceof DiagramEditor) {
+				host = ((DiagramEditor)editorPart).getDiagramEditPart();
+				View view = (View)host.getModel();
 				Diagram diagram = view.getDiagram();
 				return diagram;
 			}
@@ -69,18 +69,18 @@ public abstract class AbstractAction extends Action {
 		List<View> viewSelected = new ArrayList<View>();
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
 				.getSelection();
-		if (false == selection instanceof IStructuredSelection) {
+		if(false == selection instanceof IStructuredSelection) {
 			return Collections.emptyList();
 		}
-		for (Object object : ((IStructuredSelection) selection).toList()) {
-			if (false == object instanceof IGraphicalEditPart) {
+		for(Object object : ((IStructuredSelection)selection).toList()) {
+			if(false == object instanceof IGraphicalEditPart) {
 				continue;
 			}
-			if (object instanceof DiagramEditPart) {
+			if(object instanceof DiagramEditPart) {
 				continue;
 			}
-			View view = ((IGraphicalEditPart) object).getNotationView();
-			if (view.getEAnnotation("Shortcut") != null) {
+			View view = ((IGraphicalEditPart)object).getNotationView();
+			if(view.getEAnnotation("Shortcut") != null) {
 				continue;
 			}
 			viewSelected.add(view);

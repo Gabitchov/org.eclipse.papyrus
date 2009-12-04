@@ -93,169 +93,169 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Activity_2060 == req.getElementType()) {
+		if(UMLElementTypes.Activity_2060 == req.getElementType()) {
 			return getGEFWrapper(new ActivityCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.Interaction_2061 == req.getElementType()) {
+		if(UMLElementTypes.Interaction_2061 == req.getElementType()) {
 			return getGEFWrapper(new InteractionCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.ProtocolStateMachine_2062 == req.getElementType()) {
+		if(UMLElementTypes.ProtocolStateMachine_2062 == req.getElementType()) {
 			return getGEFWrapper(new ProtocolStateMachineCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.StateMachine_2063 == req.getElementType()) {
+		if(UMLElementTypes.StateMachine_2063 == req.getElementType()) {
 			return getGEFWrapper(new StateMachineCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.FunctionBehavior_2064 == req.getElementType()) {
+		if(UMLElementTypes.FunctionBehavior_2064 == req.getElementType()) {
 			return getGEFWrapper(new FunctionBehaviorCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.OpaqueBehavior_2065 == req.getElementType()) {
+		if(UMLElementTypes.OpaqueBehavior_2065 == req.getElementType()) {
 			return getGEFWrapper(new OpaqueBehaviorCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.Component_2069 == req.getElementType()) {
+		if(UMLElementTypes.Component_2069 == req.getElementType()) {
 			return getGEFWrapper(new ComponentCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.Device_2070 == req.getElementType()) {
+		if(UMLElementTypes.Device_2070 == req.getElementType()) {
 			return getGEFWrapper(new DeviceCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.ExecutionEnvironment_2071 == req.getElementType()) {
+		if(UMLElementTypes.ExecutionEnvironment_2071 == req.getElementType()) {
 			return getGEFWrapper(new ExecutionEnvironmentCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.Node_2072 == req.getElementType()) {
+		if(UMLElementTypes.Node_2072 == req.getElementType()) {
 			return getGEFWrapper(new NodeCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.Class_2073 == req.getElementType()) {
+		if(UMLElementTypes.Class_2073 == req.getElementType()) {
 			return getGEFWrapper(new ClassCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.Class_2074 == req.getElementType()) {
+		if(UMLElementTypes.Class_2074 == req.getElementType()) {
 			return getGEFWrapper(new ClassClassifierCreateCommand(req));
 		}
-		if (UMLElementTypes.Collaboration_2075 == req.getElementType()) {
+		if(UMLElementTypes.Collaboration_2075 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationCompositeCreateCommand(req));
 		}
-		if (UMLElementTypes.Interface_2076 == req.getElementType()) {
+		if(UMLElementTypes.Interface_2076 == req.getElementType()) {
 			return getGEFWrapper(new InterfaceCreateCommand(req));
 		}
-		if (UMLElementTypes.PrimitiveType_2066 == req.getElementType()) {
+		if(UMLElementTypes.PrimitiveType_2066 == req.getElementType()) {
 			return getGEFWrapper(new PrimitiveTypeCreateCommand(req));
 		}
-		if (UMLElementTypes.Enumeration_2067 == req.getElementType()) {
+		if(UMLElementTypes.Enumeration_2067 == req.getElementType()) {
 			return getGEFWrapper(new EnumerationCreateCommand(req));
 		}
-		if (UMLElementTypes.DataType_2068 == req.getElementType()) {
+		if(UMLElementTypes.DataType_2068 == req.getElementType()) {
 			return getGEFWrapper(new DataTypeCreateCommand(req));
 		}
-		if (UMLElementTypes.Actor_2077 == req.getElementType()) {
+		if(UMLElementTypes.Actor_2077 == req.getElementType()) {
 			return getGEFWrapper(new ActorCreateCommand(req));
 		}
-		if (UMLElementTypes.DeploymentSpecification_2078 == req.getElementType()) {
+		if(UMLElementTypes.DeploymentSpecification_2078 == req.getElementType()) {
 			return getGEFWrapper(new DeploymentSpecificationCreateCommand(req));
 		}
-		if (UMLElementTypes.Artifact_2079 == req.getElementType()) {
+		if(UMLElementTypes.Artifact_2079 == req.getElementType()) {
 			return getGEFWrapper(new ArtifactCreateCommand(req));
 		}
-		if (UMLElementTypes.InformationItem_2080 == req.getElementType()) {
+		if(UMLElementTypes.InformationItem_2080 == req.getElementType()) {
 			return getGEFWrapper(new InformationItemCreateCommand(req));
 		}
-		if (UMLElementTypes.Signal_2081 == req.getElementType()) {
+		if(UMLElementTypes.Signal_2081 == req.getElementType()) {
 			return getGEFWrapper(new SignalCreateCommand(req));
 		}
-		if (UMLElementTypes.UseCase_2082 == req.getElementType()) {
+		if(UMLElementTypes.UseCase_2082 == req.getElementType()) {
 			return getGEFWrapper(new UseCaseCreateCommand(req));
 		}
-		if (UMLElementTypes.SignalEvent_2083 == req.getElementType()) {
+		if(UMLElementTypes.SignalEvent_2083 == req.getElementType()) {
 			return getGEFWrapper(new SignalEventCreateCommand(req));
 		}
-		if (UMLElementTypes.CallEvent_2084 == req.getElementType()) {
+		if(UMLElementTypes.CallEvent_2084 == req.getElementType()) {
 			return getGEFWrapper(new CallEventCreateCommand(req));
 		}
-		if (UMLElementTypes.AnyReceiveEvent_2085 == req.getElementType()) {
+		if(UMLElementTypes.AnyReceiveEvent_2085 == req.getElementType()) {
 			return getGEFWrapper(new AnyReceiveEventCreateCommand(req));
 		}
-		if (UMLElementTypes.SendSignalEvent_2086 == req.getElementType()) {
+		if(UMLElementTypes.SendSignalEvent_2086 == req.getElementType()) {
 			return getGEFWrapper(new SendSignalEventCreateCommand(req));
 		}
-		if (UMLElementTypes.SendOperationEvent_2087 == req.getElementType()) {
+		if(UMLElementTypes.SendOperationEvent_2087 == req.getElementType()) {
 			return getGEFWrapper(new SendOperationEventCreateCommand(req));
 		}
-		if (UMLElementTypes.ChangeEvent_2088 == req.getElementType()) {
+		if(UMLElementTypes.ChangeEvent_2088 == req.getElementType()) {
 			return getGEFWrapper(new ChangeEventCreateCommand(req));
 		}
-		if (UMLElementTypes.TimeEvent_2089 == req.getElementType()) {
+		if(UMLElementTypes.TimeEvent_2089 == req.getElementType()) {
 			return getGEFWrapper(new TimeEventCreateCommand(req));
 		}
-		if (UMLElementTypes.CreationEvent_2090 == req.getElementType()) {
+		if(UMLElementTypes.CreationEvent_2090 == req.getElementType()) {
 			return getGEFWrapper(new CreationEventCreateCommand(req));
 		}
-		if (UMLElementTypes.DestructionEvent_2091 == req.getElementType()) {
+		if(UMLElementTypes.DestructionEvent_2091 == req.getElementType()) {
 			return getGEFWrapper(new DestructionEventCreateCommand(req));
 		}
-		if (UMLElementTypes.ExecutionEvent_2092 == req.getElementType()) {
+		if(UMLElementTypes.ExecutionEvent_2092 == req.getElementType()) {
 			return getGEFWrapper(new ExecutionEventCreateCommand(req));
 		}
-		if (UMLElementTypes.DurationObservation_2093 == req.getElementType()) {
+		if(UMLElementTypes.DurationObservation_2093 == req.getElementType()) {
 			return getGEFWrapper(new DurationObservationCreateCommand(req));
 		}
-		if (UMLElementTypes.TimeObservation_2094 == req.getElementType()) {
+		if(UMLElementTypes.TimeObservation_2094 == req.getElementType()) {
 			return getGEFWrapper(new TimeObservationCreateCommand(req));
 		}
-		if (UMLElementTypes.LiteralBoolean_2095 == req.getElementType()) {
+		if(UMLElementTypes.LiteralBoolean_2095 == req.getElementType()) {
 			return getGEFWrapper(new LiteralBooleanCreateCommand(req));
 		}
-		if (UMLElementTypes.LiteralInteger_2096 == req.getElementType()) {
+		if(UMLElementTypes.LiteralInteger_2096 == req.getElementType()) {
 			return getGEFWrapper(new LiteralIntegerCreateCommand(req));
 		}
-		if (UMLElementTypes.LiteralNull_2097 == req.getElementType()) {
+		if(UMLElementTypes.LiteralNull_2097 == req.getElementType()) {
 			return getGEFWrapper(new LiteralNullCreateCommand(req));
 		}
-		if (UMLElementTypes.LiteralString_2098 == req.getElementType()) {
+		if(UMLElementTypes.LiteralString_2098 == req.getElementType()) {
 			return getGEFWrapper(new LiteralStringCreateCommand(req));
 		}
-		if (UMLElementTypes.LiteralUnlimitedNatural_2099 == req.getElementType()) {
+		if(UMLElementTypes.LiteralUnlimitedNatural_2099 == req.getElementType()) {
 			return getGEFWrapper(new LiteralUnlimitedNaturalCreateCommand(req));
 		}
-		if (UMLElementTypes.StringExpression_2100 == req.getElementType()) {
+		if(UMLElementTypes.StringExpression_2100 == req.getElementType()) {
 			return getGEFWrapper(new StringExpressionCreateCommand(req));
 		}
-		if (UMLElementTypes.OpaqueExpression_2101 == req.getElementType()) {
+		if(UMLElementTypes.OpaqueExpression_2101 == req.getElementType()) {
 			return getGEFWrapper(new OpaqueExpressionCreateCommand(req));
 		}
-		if (UMLElementTypes.TimeExpression_2102 == req.getElementType()) {
+		if(UMLElementTypes.TimeExpression_2102 == req.getElementType()) {
 			return getGEFWrapper(new TimeExpressionCreateCommand(req));
 		}
-		if (UMLElementTypes.Expression_2103 == req.getElementType()) {
+		if(UMLElementTypes.Expression_2103 == req.getElementType()) {
 			return getGEFWrapper(new ExpressionCreateCommand(req));
 		}
-		if (UMLElementTypes.Duration_2104 == req.getElementType()) {
+		if(UMLElementTypes.Duration_2104 == req.getElementType()) {
 			return getGEFWrapper(new DurationCreateCommand(req));
 		}
-		if (UMLElementTypes.TimeInterval_2105 == req.getElementType()) {
+		if(UMLElementTypes.TimeInterval_2105 == req.getElementType()) {
 			return getGEFWrapper(new TimeIntervalCreateCommand(req));
 		}
-		if (UMLElementTypes.DurationInterval_2106 == req.getElementType()) {
+		if(UMLElementTypes.DurationInterval_2106 == req.getElementType()) {
 			return getGEFWrapper(new DurationIntervalCreateCommand(req));
 		}
-		if (UMLElementTypes.Interval_2107 == req.getElementType()) {
+		if(UMLElementTypes.Interval_2107 == req.getElementType()) {
 			return getGEFWrapper(new IntervalCreateCommand(req));
 		}
-		if (UMLElementTypes.InstanceValue_2108 == req.getElementType()) {
+		if(UMLElementTypes.InstanceValue_2108 == req.getElementType()) {
 			return getGEFWrapper(new InstanceValueCreateCommand(req));
 		}
-		if (UMLElementTypes.Comment_2109 == req.getElementType()) {
+		if(UMLElementTypes.Comment_2109 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommand(req));
 		}
-		if (UMLElementTypes.DurationConstraint_2110 == req.getElementType()) {
+		if(UMLElementTypes.DurationConstraint_2110 == req.getElementType()) {
 			return getGEFWrapper(new DurationConstraintCreateCommand(req));
 		}
-		if (UMLElementTypes.TimeConstraint_2111 == req.getElementType()) {
+		if(UMLElementTypes.TimeConstraint_2111 == req.getElementType()) {
 			return getGEFWrapper(new TimeConstraintCreateCommand(req));
 		}
-		if (UMLElementTypes.IntervalConstraint_2112 == req.getElementType()) {
+		if(UMLElementTypes.IntervalConstraint_2112 == req.getElementType()) {
 			return getGEFWrapper(new IntervalConstraintCreateCommand(req));
 		}
-		if (UMLElementTypes.InteractionConstraint_2113 == req.getElementType()) {
+		if(UMLElementTypes.InteractionConstraint_2113 == req.getElementType()) {
 			return getGEFWrapper(new InteractionConstraintCreateCommand(req));
 		}
-		if (UMLElementTypes.Constraint_2114 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_2114 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -265,10 +265,10 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		Diagram currentDiagram = null;
-		if (getHost() instanceof IGraphicalEditPart) {
-			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView().getDiagram();
+		if(getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart)getHost()).getNotationView().getDiagram();
 		}
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
 	}

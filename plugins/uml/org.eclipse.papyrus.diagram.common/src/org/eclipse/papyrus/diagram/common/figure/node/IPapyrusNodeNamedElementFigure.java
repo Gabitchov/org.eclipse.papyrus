@@ -22,7 +22,7 @@ public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFi
 	 * Sets the qualified name.
 	 * 
 	 * @param qualifiedName
-	 *            the qualified name
+	 *        the qualified name
 	 */
 	public void setQualifiedName(String qualifiedName);
 
@@ -44,7 +44,7 @@ public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFi
 	 * Sets the depth.
 	 * 
 	 * @param depth
-	 *            the new depth
+	 *        the new depth
 	 */
 	public void setDepth(int depth);
 

@@ -53,15 +53,21 @@ public interface LinkEndDataPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface LinkEndDataPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface LinkEndDataPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -119,15 +125,21 @@ public interface LinkEndDataPropertiesEditionPart {
 
 	/**
 	 * Init the qualifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initQualifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the qualifier
-	 * @param newValue the qualifier to update
+	 * 
+	 * @param newValue
+	 *        the qualifier to update
 	 */
 	public void updateQualifier(EObject newValue);
 
@@ -135,7 +147,7 @@ public interface LinkEndDataPropertiesEditionPart {
 	 * Adds the given filter to the qualifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToQualifier(ViewerFilter filter);
@@ -144,7 +156,7 @@ public interface LinkEndDataPropertiesEditionPart {
 	 * Adds the given filter to the qualifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToQualifier(ViewerFilter filter);
@@ -153,11 +165,6 @@ public interface LinkEndDataPropertiesEditionPart {
 	 * @return true if the given element is contained inside the qualifier table
 	 */
 	public boolean isContainedInQualifierTable(EObject element);
-
-
-
-
-
 
 
 

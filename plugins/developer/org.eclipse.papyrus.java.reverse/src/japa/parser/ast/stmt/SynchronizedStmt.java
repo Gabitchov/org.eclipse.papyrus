@@ -30,43 +30,43 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class SynchronizedStmt extends Statement {
 
-    private Expression expr;
+	private Expression expr;
 
-    private BlockStmt block;
+	private BlockStmt block;
 
-    public SynchronizedStmt() {
-    }
+	public SynchronizedStmt() {
+	}
 
-    public SynchronizedStmt(int beginLine, int beginColumn, int endLine, int endColumn, Expression expr, BlockStmt block) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.expr = expr;
-        this.block = block;
-    }
+	public SynchronizedStmt(int beginLine, int beginColumn, int endLine, int endColumn, Expression expr, BlockStmt block) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.expr = expr;
+		this.block = block;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public BlockStmt getBlock() {
-        return block;
-    }
+	public BlockStmt getBlock() {
+		return block;
+	}
 
-    public Expression getExpr() {
-        return expr;
-    }
+	public Expression getExpr() {
+		return expr;
+	}
 
-    public void setBlock(BlockStmt block) {
-        this.block = block;
-    }
+	public void setBlock(BlockStmt block) {
+		this.block = block;
+	}
 
-    public void setExpr(Expression expr) {
-        this.expr = expr;
-    }
+	public void setExpr(Expression expr) {
+		this.expr = expr;
+	}
 
 }

@@ -266,7 +266,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	private static ImageRegistry getImageRegistry() {
-		if (imageRegistry == null) {
+		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
 		}
 		return imageRegistry;
@@ -283,19 +283,19 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
-		if (element instanceof EStructuralFeature) {
-			EStructuralFeature feature = ((EStructuralFeature) element);
+		if(element instanceof EStructuralFeature) {
+			EStructuralFeature feature = ((EStructuralFeature)element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
-			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+			if(eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if(eType instanceof EClass && !((EClass)eType).isAbstract()) {
 				element = eType;
 			}
 		}
-		if (element instanceof EClass) {
-			EClass eClass = (EClass) element;
-			if (!eClass.isAbstract()) {
+		if(element instanceof EClass) {
+			EClass eClass = (EClass)element;
+			if(!eClass.isAbstract()) {
 				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(
 						eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
@@ -310,9 +310,9 @@ public class UMLElementTypes extends ElementInitializers {
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		ImageDescriptor imageDescriptor = getImageRegistry().getDescriptor(key);
-		if (imageDescriptor == null) {
+		if(imageDescriptor == null) {
 			imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -326,9 +326,9 @@ public class UMLElementTypes extends ElementInitializers {
 	public static Image getImage(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		Image image = getImageRegistry().get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -342,7 +342,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImageDescriptor(element);
@@ -353,7 +353,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	public static Image getImage(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImage(element);
@@ -366,7 +366,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if (elements == null) {
+		if(elements == null) {
 			elements = new IdentityHashMap();
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
@@ -437,7 +437,7 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(PackageImport_4019, UMLPackage.eINSTANCE.getPackageImport());
 		}
-		return (ENamedElement) elements.get(type);
+		return (ENamedElement)elements.get(type);
 	}
 
 	/**
@@ -451,7 +451,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
+		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Actor_2011);
@@ -495,7 +495,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static IElementType getElementType(int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case UseCaseDiagramEditPart.VISUAL_ID:
 			return Package_1000;
 		case ActorEditPart.VISUAL_ID:

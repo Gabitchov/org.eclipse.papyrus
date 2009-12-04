@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -31,17 +31,19 @@ import org.eclipse.papyrus.di.GraphNode;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.GraphNodeImpl#getSize <em>Size</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.GraphNodeImpl#getSize <em>Size</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
+
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSize()
 	 * @generated
 	 * @ordered
@@ -52,6 +54,7 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSize()
 	 * @generated
 	 * @ordered
@@ -61,6 +64,7 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GraphNodeImpl() {
@@ -70,6 +74,7 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,6 +85,7 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dimension getSize() {
@@ -89,25 +95,27 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSize(Dimension newSize) {
 		Dimension oldSize = size;
 		size = newSize;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.GRAPH_NODE__SIZE, oldSize, size));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.GRAPH_NODE__SIZE:
-				return getSize();
+		switch(featureID) {
+		case DiPackage.GRAPH_NODE__SIZE:
+			return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,14 +123,15 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.GRAPH_NODE__SIZE:
-				setSize((Dimension)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.GRAPH_NODE__SIZE:
+			setSize((Dimension)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -130,14 +139,15 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.GRAPH_NODE__SIZE:
-				setSize(SIZE_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DiPackage.GRAPH_NODE__SIZE:
+			setSize(SIZE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -145,13 +155,14 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.GRAPH_NODE__SIZE:
-				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
+		switch(featureID) {
+		case DiPackage.GRAPH_NODE__SIZE:
+			return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -159,11 +170,13 @@ public class GraphNodeImpl extends GraphElementImpl implements GraphNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (size: ");

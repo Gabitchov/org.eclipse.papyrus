@@ -10,7 +10,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.resource.impl;
 
 import java.util.Collection;
@@ -80,9 +80,9 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
-			return ((InternalEList<?>) getEobjects()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getEobjects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -94,7 +94,7 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			return getEobjects();
 		}
@@ -109,10 +109,10 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			getEobjects().clear();
-			getEobjects().addAll((Collection<? extends EObject>) newValue);
+			getEobjects().addAll((Collection<? extends EObject>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -125,7 +125,7 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			getEobjects().clear();
 			return;
@@ -140,7 +140,7 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			return !getEobjects().isEmpty();
 		}

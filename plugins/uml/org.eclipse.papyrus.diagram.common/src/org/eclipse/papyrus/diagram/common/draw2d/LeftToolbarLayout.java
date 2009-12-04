@@ -59,8 +59,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Constructs a vertically oriented ToolbarLayout with child spacing of 0 pixels, matchWidth
-	 * <code>true</code>, and {@link #ALIGN_TOPLEFT} alignment.
+	 * Constructs a vertically oriented ToolbarLayout with child spacing of 0 pixels, matchWidth <code>true</code>, and {@link #ALIGN_TOPLEFT}
+	 * alignment.
 	 * 
 	 * @since 2.0
 	 */
@@ -76,7 +76,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * pixels, matchWidth <code>false</code>, and {@link #ALIGN_TOPLEFT} alignment.
 	 * 
 	 * @param isHorizontal
-	 *            whether the children are oriented horizontally
+	 *        whether the children are oriented horizontally
 	 * 
 	 * @since 2.0
 	 */
@@ -93,13 +93,13 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * Calculate children size.
 	 * 
 	 * @param children
-	 *            the children
+	 *        the children
 	 * @param wHint
-	 *            the w hint
+	 *        the w hint
 	 * @param hHint
-	 *            the h hint
+	 *        the h hint
 	 * @param preferred
-	 *            the preferred
+	 *        the preferred
 	 * 
 	 * @return the dimension
 	 */
@@ -107,8 +107,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		Dimension childSize;
 		IFigure child;
 		int height = 0, width = 0;
-		for (int i = 0; i < children.size(); i++) {
-			child = (IFigure) children.get(i);
+		for(int i = 0; i < children.size(); i++) {
+			child = (IFigure)children.get(i);
 			childSize = transposer.t(preferred ? child.getPreferredSize(wHint, hHint) : child.getMinimumSize(wHint,
 					hHint));
 			height += childSize.height;
@@ -126,11 +126,11 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * for.
 	 * 
 	 * @param container
-	 *            the figure whose minimum size has to be calculated
+	 *        the figure whose minimum size has to be calculated
 	 * @param wHint
-	 *            the width hint (the desired width of the container)
+	 *        the width hint (the desired width of the container)
 	 * @param hHint
-	 *            the height hint (the desired height of the container)
+	 *        the height hint (the desired height of the container)
 	 * 
 	 * @return the minimum size of the container
 	 * 
@@ -140,14 +140,14 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	@Override
 	protected Dimension calculateMinimumSize(IFigure container, int wHint, int hHint) {
 		Insets insets = container.getInsets();
-		if (isHorizontal()) {
+		if(isHorizontal()) {
 			wHint = -1;
-			if (hHint >= 0) {
+			if(hHint >= 0) {
 				hHint = Math.max(0, hHint - insets.getHeight());
 			}
 		} else {
 			hHint = -1;
-			if (wHint >= 0) {
+			if(wHint >= 0) {
 				wHint = Math.max(0, wHint - insets.getWidth());
 			}
 		}
@@ -155,9 +155,9 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		List children = container.getChildren();
 		Dimension minSize = calculateChildrenSize(children, wHint, hHint, false);
 		// Do a second pass, if necessary
-		if (wHint >= 0 && minSize.width > wHint) {
+		if(wHint >= 0 && minSize.width > wHint) {
 			minSize = calculateChildrenSize(children, minSize.width, hHint, false);
-		} else if (hHint >= 0 && minSize.width > hHint) {
+		} else if(hHint >= 0 && minSize.width > hHint) {
 			minSize = calculateChildrenSize(children, wHint, minSize.width, false);
 		}
 
@@ -175,11 +175,11 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * accounted for.
 	 * 
 	 * @param container
-	 *            the figure whose preferred size has to be calculated
+	 *        the figure whose preferred size has to be calculated
 	 * @param wHint
-	 *            the width hint (the desired width of the container)
+	 *        the width hint (the desired width of the container)
 	 * @param hHint
-	 *            the height hint (the desired height of the container)
+	 *        the height hint (the desired height of the container)
 	 * 
 	 * @return the preferred size of the container
 	 * 
@@ -189,14 +189,14 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	@Override
 	protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
 		Insets insets = container.getInsets();
-		if (isHorizontal()) {
+		if(isHorizontal()) {
 			wHint = -1;
-			if (hHint >= 0) {
+			if(hHint >= 0) {
 				hHint = Math.max(0, hHint - insets.getHeight());
 			}
 		} else {
 			hHint = -1;
-			if (wHint >= 0) {
+			if(wHint >= 0) {
 				wHint = Math.max(0, wHint - insets.getWidth());
 			}
 		}
@@ -204,9 +204,9 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		List children = container.getChildren();
 		Dimension prefSize = calculateChildrenSize(children, wHint, hHint, true);
 		// Do a second pass, if necessary
-		if (wHint >= 0 && prefSize.width > wHint) {
+		if(wHint >= 0 && prefSize.width > wHint) {
 			prefSize = calculateChildrenSize(children, prefSize.width, hHint, true);
-		} else if (hHint >= 0 && prefSize.width > hHint) {
+		} else if(hHint >= 0 && prefSize.width > hHint) {
 			prefSize = calculateChildrenSize(children, wHint, prefSize.width, true);
 		}
 
@@ -261,7 +261,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * Checks if is sensitive horizontally.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return true, if checks if is sensitive horizontally
 	 * 
@@ -276,7 +276,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * Checks if is sensitive vertically.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return true, if checks if is sensitive vertically
 	 * 
@@ -291,7 +291,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * Layout.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @see org.eclipse.draw2d.LayoutManager#layout(IFigure)
 	 */
@@ -315,7 +315,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		// figure when getting their preferred size.
 		int wHint = -1;
 		int hHint = -1;
-		if (isHorizontal()) {
+		if(isHorizontal()) {
 			hHint = parent.getClientArea(Rectangle.SINGLETON).height;
 		} else {
 			wHint = parent.getClientArea(Rectangle.SINGLETON).width;
@@ -336,8 +336,8 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		int totalMinHeight = 0;
 		int prefMinSumHeight = 0;
 
-		for (int i = 0; i < numChildren; i++) {
-			child = (IFigure) children.get(i);
+		for(int i = 0; i < numChildren; i++) {
+			child = (IFigure)children.get(i);
 
 			prefSizes[i] = transposer.t(child.getPreferredSize(wHint, hHint));
 			minSizes[i] = transposer.t(child.getMinimumSize(wHint, hHint));
@@ -358,11 +358,11 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		 */
 		int amntShrinkHeight = totalHeight - Math.max(availableHeight, totalMinHeight);
 
-		if (amntShrinkHeight < 0) {
+		if(amntShrinkHeight < 0) {
 			amntShrinkHeight = 0;
 		}
 
-		for (int i = 0; i < numChildren; i++) {
+		for(int i = 0; i < numChildren; i++) {
 			int amntShrinkCurrentHeight = 0;
 			int prefHeight = prefSizes[i].height;
 			int minHeight = minSizes[i].height;
@@ -370,20 +370,20 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 			int minWidth = minSizes[i].width;
 			Rectangle newBounds = new Rectangle(x, y, prefWidth, prefHeight);
 
-			child = (IFigure) children.get(i);
-			if (prefMinSumHeight != 0) {
+			child = (IFigure)children.get(i);
+			if(prefMinSumHeight != 0) {
 				amntShrinkCurrentHeight = (prefHeight - minHeight) * amntShrinkHeight / (prefMinSumHeight);
 			}
 
 			int width = Math.min(prefWidth, transposer.t(child.getMaximumSize()).width);
-			if (matchWidth) {
+			if(matchWidth) {
 				width = transposer.t(child.getMaximumSize()).width;
 			}
 			width = Math.max(minWidth, Math.min(clientArea.width, width));
 			newBounds.width = width;
 
 			int adjust = clientArea.width - width;
-			switch (minorAlignment) {
+			switch(minorAlignment) {
 			case ALIGN_TOPLEFT:
 				adjust = 0;
 				break;
@@ -404,11 +404,11 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Sets the alignment of the children contained in the layout. Possible values are
-	 * {@link #ALIGN_CENTER}, {@link #ALIGN_BOTTOMRIGHT} and {@link #ALIGN_TOPLEFT}.
+	 * Sets the alignment of the children contained in the layout. Possible values are {@link #ALIGN_CENTER}, {@link #ALIGN_BOTTOMRIGHT} and
+	 * {@link #ALIGN_TOPLEFT}.
 	 * 
 	 * @param align
-	 *            the minor alignment
+	 *        the minor alignment
 	 * 
 	 * @since 2.0
 	 */
@@ -421,7 +421,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * Sets the amount of space between children.
 	 * 
 	 * @param space
-	 *            the amount of space between children
+	 *        the amount of space between children
 	 * 
 	 * @since 2.0
 	 */
@@ -435,7 +435,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * stretch with their container.
 	 * 
 	 * @param match
-	 *            whether to stretch children
+	 *        whether to stretch children
 	 * 
 	 * @deprecated use {@link #setStretchMinorAxis(boolean)}
 	 * @since 2.0
@@ -450,7 +450,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * the minor axis. The minor axis is the opposite of the orientation.
 	 * 
 	 * @param stretch
-	 *            whether to stretch children
+	 *        whether to stretch children
 	 * 
 	 * @since 2.0
 	 */
@@ -462,13 +462,13 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * Sets the orientation of the children in the ToolbarLayout.
 	 * 
 	 * @param flag
-	 *            whether the orientation should be vertical
+	 *        whether the orientation should be vertical
 	 * 
 	 * @since 2.0
 	 */
 	// @unused
 	public void setVertical(boolean flag) {
-		if (horizontal != flag) {
+		if(horizontal != flag) {
 			return;
 		}
 		invalidate();
@@ -480,9 +480,9 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 	 * Sets the constraint for the given figure.
 	 * 
 	 * @param child
-	 *            the child
+	 *        the child
 	 * @param constraint
-	 *            the child's new constraint
+	 *        the child's new constraint
 	 */
 	@Override
 	public void setConstraint(IFigure child, Object constraint) {

@@ -40,7 +40,7 @@ public class OpaqueBehaviorPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof OpaqueBehavior) {
+		if(eObject instanceof OpaqueBehavior) {
 			return new OpaqueBehaviorPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class OpaqueBehaviorPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof OpaqueBehavior) {
-			if (OpaqueBehaviorBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof OpaqueBehavior) {
+			if(OpaqueBehaviorBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new OpaqueBehaviorBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

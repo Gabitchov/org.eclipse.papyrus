@@ -57,16 +57,16 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Classifier) {
+		if(source != null && false == source instanceof Classifier) {
 			return false;
 		}
-		if (target != null && false == target instanceof Classifier) {
+		if(target != null && false == target instanceof Classifier) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -77,7 +77,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
@@ -85,7 +85,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		getSource().getGeneralizations().add(newElement);
 		newElement.setGeneral(getTarget());
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
@@ -95,14 +95,14 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	 */
 	protected void doConfigure(Generalization newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -118,14 +118,14 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Classifier getSource() {
-		return (Classifier) source;
+		return (Classifier)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getTarget() {
-		return (Classifier) target;
+		return (Classifier)target;
 	}
 
 }

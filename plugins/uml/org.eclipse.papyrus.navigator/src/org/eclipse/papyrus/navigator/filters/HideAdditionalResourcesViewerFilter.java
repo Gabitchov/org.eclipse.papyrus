@@ -22,12 +22,11 @@ import org.eclipse.papyrus.navigator.internal.AdditionalResources;
 public class HideAdditionalResourcesViewerFilter extends ViewerFilter {
 
 	/**
-	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
-	 *      java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		if (element instanceof AdditionalResources) {
+		if(element instanceof AdditionalResources) {
 			return false;
 		}
 		return true;

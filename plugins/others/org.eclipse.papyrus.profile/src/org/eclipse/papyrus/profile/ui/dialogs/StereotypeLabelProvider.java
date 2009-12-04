@@ -26,15 +26,19 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class StereotypeLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.viewers.LabelProvider#getImage(java.lang.Object)
 	 */
 	@Override
 	public Image getImage(Object element) {
-		return ImageManager.IMG_STEREOTYPE ;
+		return ImageManager.IMG_STEREOTYPE;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
 	 */
 	@Override
@@ -46,7 +50,9 @@ public class StereotypeLabelProvider extends LabelProvider implements ITableLabe
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object, int)
 	 */
 	public Image getColumnImage(Object element, int columnIndex) {
@@ -56,7 +62,9 @@ public class StereotypeLabelProvider extends LabelProvider implements ITableLabe
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
 	 */
 	public String getColumnText(Object element, int columnIndex) {

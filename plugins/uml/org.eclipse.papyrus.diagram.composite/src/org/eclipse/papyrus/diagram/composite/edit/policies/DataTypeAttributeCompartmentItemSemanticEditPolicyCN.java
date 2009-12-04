@@ -34,7 +34,7 @@ public class DataTypeAttributeCompartmentItemSemanticEditPolicyCN extends UMLBas
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Property_3101 == req.getElementType()) {
+		if(UMLElementTypes.Property_3101 == req.getElementType()) {
 			return getGEFWrapper(new PropertyCreateCommandCLN(req));
 		}
 		return super.getCreateCommand(req);

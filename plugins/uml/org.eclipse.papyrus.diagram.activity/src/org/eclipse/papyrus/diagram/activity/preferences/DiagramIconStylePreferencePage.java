@@ -13,6 +13,7 @@ import org.eclipse.ui.IWorkbench;
  */
 
 public class DiagramIconStylePreferencePage extends IconStylePreferencePage {
+
 	/**
 	 * @generated
 	 */
@@ -22,8 +23,7 @@ public class DiagramIconStylePreferencePage extends IconStylePreferencePage {
 	 * @generated
 	 */
 	public DiagramIconStylePreferencePage() {
-		setPreferenceStore(UMLDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 
 	/**
@@ -50,8 +50,7 @@ public class DiagramIconStylePreferencePage extends IconStylePreferencePage {
 	 * @generated
 	 */
 	private void refreshDiagramEditors() {
-		IEditorReference[] editors = myWorkbench.getActiveWorkbenchWindow()
-				.getActivePage().getEditorReferences();
+		IEditorReference[] editors = myWorkbench.getActiveWorkbenchWindow().getActivePage().getEditorReferences();
 		for (int i = 0; i < editors.length; i++) {
 			IEditorPart editor = editors[i].getEditor(false);
 			if (editor != null && editor instanceof UMLDiagramEditor) {

@@ -33,7 +33,7 @@ public class PapyrusPaletteEntryState extends PaletteEntryState {
 	 * Creates a new PapyrusPaletteEntryState.
 	 * 
 	 * @param entry
-	 *            the palette entry to manage
+	 *        the palette entry to manage
 	 */
 	public PapyrusPaletteEntryState(PaletteEntry entry) {
 		super(entry);
@@ -44,8 +44,8 @@ public class PapyrusPaletteEntryState extends PaletteEntryState {
 		PaletteEntry entry = getPaletteEntry();
 
 		String sValue = entryMemento.getString(PARENT_ID_KEY);
-		if (sValue != null) {
-			if (!entry.getParent().getId().equals(sValue)) {
+		if(sValue != null) {
+			if(!entry.getParent().getId().equals(sValue)) {
 				// adds to the new container, but does nto remove from old one, because of
 				// iterator...
 				PaletteContainer container = PaletteUtil.getContainerByID(entry, sValue);
@@ -73,7 +73,7 @@ public class PapyrusPaletteEntryState extends PaletteEntryState {
 		PaletteEntry entry = getPaletteEntry();
 
 		// stores the parent id name
-		if (parentID != null && !parentID.equals(entry.getParent().getId())
+		if(parentID != null && !parentID.equals(entry.getParent().getId())
 				|| (parentID == null && entry.getParent() != null)) {
 			memento.putString(PARENT_ID_KEY, entry.getParent().getId());
 		}

@@ -42,11 +42,11 @@ public class EnumerationEnumerationLiteralCompartment2CanonicalEditPolicy extend
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater.getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(
+		for(Iterator it = UMLDiagramUpdater.getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(
 				viewObject).iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -56,9 +56,9 @@ public class EnumerationEnumerationLiteralCompartment2CanonicalEditPolicy extend
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case EnumerationLiteralEditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -76,7 +76,7 @@ public class EnumerationEnumerationLiteralCompartment2CanonicalEditPolicy extend
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getEnumeration_OwnedLiteral());
 		}

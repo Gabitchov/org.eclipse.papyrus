@@ -40,15 +40,15 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	 * Get the EStructuralFeature of the given notification
 	 * 
 	 * @param notification
-	 *            the notification
+	 *        the notification
 	 * @return the EStructuralFeature
 	 */
 	protected EStructuralFeature getEStructuralFeature(Object notification) {
 		EStructuralFeature featureImpl = null;
-		if (notification instanceof Notification) {
-			Object feature = ((Notification) notification).getFeature();
-			if (feature instanceof EStructuralFeature) {
-				featureImpl = (EStructuralFeature) feature;
+		if(notification instanceof Notification) {
+			Object feature = ((Notification)notification).getFeature();
+			if(feature instanceof EStructuralFeature) {
+				featureImpl = (EStructuralFeature)feature;
 			}
 		}
 		return featureImpl;
@@ -90,15 +90,15 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	 * Get the property associated with the given IAdaptable and the memberEndIndex .
 	 * 
 	 * @param element
-	 *            the given IAdaptable
+	 *        the given IAdaptable
 	 * @return the property associated or null if it can't be found.
 	 */
 	protected Property doAdapt(IAdaptable element) {
 		Object obj = element.getAdapter(EObject.class);
 		Property property = null;
-		if (obj instanceof Association) {
-			Association association = (Association) obj;
-			if (association.getMemberEnds() != null && association.getMemberEnds().size() > memberEndIndex)
+		if(obj instanceof Association) {
+			Association association = (Association)obj;
+			if(association.getMemberEnds() != null && association.getMemberEnds().size() > memberEndIndex)
 				property = association.getMemberEnds().get(memberEndIndex);
 		}
 		return property;

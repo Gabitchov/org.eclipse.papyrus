@@ -113,7 +113,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 * Sets the unload on dispose.
 	 * 
 	 * @param unloadOnDispose
-	 *            the new unload on dispose
+	 *        the new unload on dispose
 	 */
 	public void setUnloadOnDispose(boolean unloadOnDispose) {
 		this.unloadOnDispose = unloadOnDispose;
@@ -136,8 +136,8 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 */
 	@Override
 	protected void disposeElementInfo(Object element, ElementInfo info) {
-		if (info instanceof CachedResourceSetInfo) {
-			CachedResourceSetInfo resourceSetInfo = (CachedResourceSetInfo) info;
+		if(info instanceof CachedResourceSetInfo) {
+			CachedResourceSetInfo resourceSetInfo = (CachedResourceSetInfo)info;
 			resourceSetInfo.disposeButUnload();
 		}
 		super.disposeElementInfo(element, info);
@@ -147,7 +147,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 * Creates the editing domain.
 	 * 
 	 * @param editorInput
-	 *            the editor input
+	 *        the editor input
 	 * 
 	 * @return the transactional editing domain
 	 */
@@ -155,11 +155,11 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		String id = getEditingDomainID();
 		String uri = null;
 
-		if (editorInput instanceof FileEditorInput) {
-			uri = ((FileEditorInput) editorInput).getPath().toString();
+		if(editorInput instanceof FileEditorInput) {
+			uri = ((FileEditorInput)editorInput).getPath().toString();
 			uri = MDTUtil.fullFilePathToResourceURI(uri).toString();
-		} else if (editorInput instanceof URIEditorInput) {
-			uri = ((URIEditorInput) editorInput).getURI().trimFragment().toString();
+		} else if(editorInput instanceof URIEditorInput) {
+			uri = ((URIEditorInput)editorInput).getURI().trimFragment().toString();
 		}
 		TransactionalEditingDomain editingDomain = EditingDomainRegistry.getInstance().get(id, uri);
 		return editingDomain;
@@ -169,17 +169,17 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 * Compute modification stamp.
 	 * 
 	 * @param info
-	 *            the info
+	 *        the info
 	 * 
 	 * @return the long
 	 */
 	protected long computeModificationStamp(CachedResourceSetInfo info) {
 		int result = 0;
-		for (Object element : info.getResourceSet().getResources()) {
-			Resource nextResource = (Resource) element;
+		for(Object element : info.getResourceSet().getResources()) {
+			Resource nextResource = (Resource)element;
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
-			if (file != null) {
-				if (file.getLocation() != null) {
+			if(file != null) {
+				if(file.getLocation() != null) {
 					result += file.getLocation().toFile().lastModified();
 				} else {
 					result += file.getModificationStamp();
@@ -206,7 +206,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 * Creates the empty document.
 	 * 
 	 * @param editorInput
-	 *            the editor input
+	 *        the editor input
 	 * 
 	 * @return the i document
 	 */
@@ -254,9 +254,9 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Instantiates a new cached resource set info.
 		 * 
 		 * @param document
-		 *            the document
+		 *        the document
 		 * @param editorInput
-		 *            the editor input
+		 *        the editor input
 		 */
 		public CachedResourceSetInfo(IDiagramDocument document, IEditorInput editorInput) {
 			super(document);
@@ -281,7 +281,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Sets the modification stamp.
 		 * 
 		 * @param modificationStamp
-		 *            the modification stamp
+		 *        the modification stamp
 		 */
 		public void setModificationStamp(long modificationStamp) {
 			myModificationStamp = modificationStamp;
@@ -329,8 +329,8 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Object element : getResourceSet().getResources()) {
-				Resource resource = (Resource) element;
+			for(Object element : getResourceSet().getResources()) {
+				Resource resource = (Resource)element;
 				resource.unload();
 			}
 		}
@@ -348,7 +348,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Sets the un synchronized.
 		 * 
 		 * @param resource
-		 *            the resource
+		 *        the resource
 		 */
 		public void setUnSynchronized(Resource resource) {
 			myUnSynchronizedResources.add(resource);
@@ -358,7 +358,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Sets the synchronized.
 		 * 
 		 * @param resource
-		 *            the resource
+		 *        the resource
 		 */
 		public void setSynchronized(Resource resource) {
 			myUnSynchronizedResources.remove(resource);
@@ -392,7 +392,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Sets the update cache.
 		 * 
 		 * @param update
-		 *            the update
+		 *        the update
 		 */
 		public void setUpdateCache(boolean update) {
 			myUpdateCache = update;
@@ -411,7 +411,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Sets the modifiable.
 		 * 
 		 * @param modifiable
-		 *            the modifiable
+		 *        the modifiable
 		 */
 		public void setModifiable(boolean modifiable) {
 			myModifiable = modifiable;
@@ -430,7 +430,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Sets the read only.
 		 * 
 		 * @param readOnly
-		 *            the read only
+		 *        the read only
 		 */
 		public void setReadOnly(boolean readOnly) {
 			myReadOnly = readOnly;
@@ -460,21 +460,21 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 			 * Handle resource changed.
 			 * 
 			 * @param resource
-			 *            the resource
+			 *        the resource
 			 * 
 			 * @return true, if handle resource changed
 			 */
 			public boolean handleResourceChanged(final Resource resource) {
-				synchronized (CachedResourceSetInfo.this) {
+				synchronized(CachedResourceSetInfo.this) {
 					// fjcano : if we are changing the resource in an internal
 					// save, we need not mark it as unsynchronized or reload the
 					// resource.
-					if (CachedResourcesDocumentProvider.this.isChangingResourceBySave()) {
+					if(CachedResourcesDocumentProvider.this.isChangingResourceBySave()) {
 						return true;
 					}
 					// fjcano : if we get here the resource was modified
 					// externally.
-					if (CachedResourceSetInfo.this.fCanBeSaved) {
+					if(CachedResourceSetInfo.this.fCanBeSaved) {
 						CachedResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
@@ -492,13 +492,13 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 			 * Handle resource deleted.
 			 * 
 			 * @param resource
-			 *            the resource
+			 *        the resource
 			 * 
 			 * @return true, if handle resource deleted
 			 */
 			public boolean handleResourceDeleted(Resource resource) {
-				synchronized (CachedResourceSetInfo.this) {
-					if (CachedResourceSetInfo.this.fCanBeSaved) {
+				synchronized(CachedResourceSetInfo.this) {
+					if(CachedResourceSetInfo.this.fCanBeSaved) {
 						CachedResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
@@ -516,20 +516,20 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 			 * Handle resource moved.
 			 * 
 			 * @param resource
-			 *            the resource
+			 *        the resource
 			 * @param newURI
-			 *            the new uri
+			 *        the new uri
 			 * 
 			 * @return true, if handle resource moved
 			 */
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				synchronized (CachedResourceSetInfo.this) {
-					if (CachedResourceSetInfo.this.fCanBeSaved) {
+				synchronized(CachedResourceSetInfo.this) {
+					if(CachedResourceSetInfo.this.fCanBeSaved) {
 						CachedResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
 				}
-				if (myDocument.getDiagram().eResource() == resource) {
+				if(myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 
 						public void run() {
@@ -549,8 +549,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	/**
 	 * The listener interface for receiving resourceSetModification events. The class that is
 	 * interested in processing a resourceSetModification event implements this interface, and the
-	 * object created with that class is registered with a component using the component's
-	 * <code>addResourceSetModificationListener<code> method. When
+	 * object created with that class is registered with a component using the component's <code>addResourceSetModificationListener<code> method. When
 	 * the resourceSetModification event occurs, that object's appropriate
 	 * method is invoked.
 	 * 
@@ -568,7 +567,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * The Constructor.
 		 * 
 		 * @param info
-		 *            the info
+		 *        the info
 		 */
 		public ResourceSetModificationListener(CachedResourceSetInfo info) {
 			myInfo = info;
@@ -581,38 +580,38 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 * Notify changed.
 		 * 
 		 * @param notification
-		 *            the notification
+		 *        the notification
 		 */
 		@Override
 		public void notifyChanged(Notification notification) {
-			if (notification.getNotifier() instanceof ResourceSet) {
+			if(notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch() && myModifiedFilter.matches(notification)) {
-				if (notification.getNotifier() instanceof Resource) {
-					Resource resource = (Resource) notification.getNotifier();
-					if (resource.isLoaded()) {
+			if(!notification.isTouch() && myModifiedFilter.matches(notification)) {
+				if(notification.getNotifier() instanceof Resource) {
+					Resource resource = (Resource)notification.getNotifier();
+					if(resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator it = myInfo.getResourceSet().getResources().iterator(); it.hasNext() && !modified;) {
-							Resource nextResource = (Resource) it.next();
-							if (nextResource.isLoaded()) {
+						for(Iterator it = myInfo.getResourceSet().getResources().iterator(); it.hasNext() && !modified;) {
+							Resource nextResource = (Resource)it.next();
+							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();
 							}
 						}
 						boolean dirtyStateChanged = false;
-						synchronized (myInfo) {
-							if (modified != myInfo.fCanBeSaved) {
+						synchronized(myInfo) {
+							if(modified != myInfo.fCanBeSaved) {
 								myInfo.fCanBeSaved = modified;
 								dirtyStateChanged = true;
 							}
-							if (!resource.isModified()) {
+							if(!resource.isModified()) {
 								myInfo.setSynchronized(resource);
 							}
 						}
-						if (dirtyStateChanged) {
+						if(dirtyStateChanged) {
 							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
 
-							if (!modified) {
+							if(!modified) {
 								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
@@ -627,14 +626,12 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 
 	@Override
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(
-					"Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
-		IEditorInput editorInput = (IEditorInput) element;
-		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
+		IEditorInput editorInput = (IEditorInput)element;
+		IDiagramDocument document = (IDiagramDocument)createDocument(editorInput);
 
 		CachedResourceSetInfo info = new CachedResourceSetInfo(document, editorInput);
 		info.setModificationStamp(computeModificationStamp(info));
@@ -644,14 +641,12 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 
 	@Override
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(
-					"Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
-		IDocument document = createEmptyDocument((IEditorInput) element);
-		setDocumentContent(document, (IEditorInput) element);
+		IDocument document = createEmptyDocument((IEditorInput)element);
+		setDocumentContent(document, (IEditorInput)element);
 		setupDocument(element, document);
 		return document;
 	}
@@ -665,21 +660,21 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
-		IDiagramDocument diagramDocument = (IDiagramDocument) document;
+		IDiagramDocument diagramDocument = (IDiagramDocument)document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
+		if(element instanceof FileEditorInput) {
+			IStorage storage = ((FileEditorInput)element).getStorage();
 			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
-			URI uri = ((URIEditorInput) element).getURI();
+		} else if(element instanceof URIEditorInput) {
+			URI uri = ((URIEditorInput)element).getURI();
 			Resource resource = null;
 			try {
 				resource = domain.getResourceSet().getResource(uri.trimFragment(), false);
-				if (resource == null) {
+				if(resource == null) {
 					resource = domain.getResourceSet().createResource(uri.trimFragment());
 				}
-				if (!resource.isLoaded()) {
+				if(!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
 						resource.load(options);
@@ -688,15 +683,15 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 						throw e;
 					}
 				}
-				if (uri.fragment() != null) {
+				if(uri.fragment() != null) {
 					EObject rootElement = resource.getEObject(uri.fragment());
-					if (rootElement instanceof Diagram) {
+					if(rootElement instanceof Diagram) {
 						document.setContent(rootElement);
 						return;
 					}
 				} else {
-					for (Object rootElement : resource.getContents()) {
-						if (rootElement instanceof Diagram) {
+					for(Object rootElement : resource.getContents()) {
+						if(rootElement instanceof Diagram) {
 							document.setContent(rootElement);
 							return;
 						}
@@ -705,8 +700,8 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 				throw new RuntimeException("Messages.SqlmodelDocumentProvider_NoDiagramInResourceError");
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
-				if (e instanceof CoreException) {
-					thrownExcp = (CoreException) e;
+				if(e instanceof CoreException) {
+					thrownExcp = (CoreException)e;
 				} else {
 					String msg = e.getLocalizedMessage();
 					thrownExcp = new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, msg != null ? msg
@@ -715,17 +710,15 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 				throw thrownExcp;
 			}
 		} else {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind(
-					"Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+			throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 	}
 
 	@Override
 	public long getModificationStamp(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return computeModificationStamp(info);
 		}
 		return super.getModificationStamp(element);
@@ -734,9 +727,9 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	public boolean isDeleted(Object element) {
 		IDiagramDocument document = getDiagramDocument(element);
-		if (document != null) {
+		if(document != null) {
 			Resource diagramResource = document.getDiagram().eResource();
-			if (diagramResource != null) {
+			if(diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
 				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
 			}
@@ -745,23 +738,23 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	public CachedResourceSetInfo getResourceSetInfo(Object editorInput) {
-		return (CachedResourceSetInfo) super.getElementInfo(editorInput);
+		return (CachedResourceSetInfo)super.getElementInfo(editorInput);
 	}
 
 	@Override
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection files2Validate = new ArrayList();
-			for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					files2Validate.add(file);
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
+					(IFile[])files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -770,8 +763,8 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	public boolean isReadOnly(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
@@ -785,14 +778,14 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 
 	@Override
 	public boolean isModifiable(Object element) {
-		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
+		if(!isStateValidated(element)) {
+			if(element instanceof FileEditorInput || element instanceof URIEditorInput) {
 				return true;
 			}
 		}
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
@@ -806,11 +799,11 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 
 	protected void updateCache(Object element) throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					info.setReadOnly(true);
 					info.setModifiable(false);
 					return;
@@ -825,7 +818,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected void doUpdateStateCache(Object element) throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			info.setUpdateCache(true);
 		}
 		super.doUpdateStateCache(element);
@@ -834,7 +827,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	public boolean isSynchronized(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return info.isSynchronized();
 		}
 		return super.isSynchronized(element);
@@ -843,16 +836,16 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected ISchedulingRule getResetRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -860,16 +853,16 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected ISchedulingRule getSaveRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -877,16 +870,16 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection rules = new ArrayList();
-			for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -894,23 +887,23 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			Collection files = new ArrayList();
-			for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					files.add(file);
 				}
 			}
 			return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule(
-					(IFile[]) files.toArray(new IFile[files.size()]));
+					(IFile[])files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
 
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
-		if (toCreateOrModify.exists()) {
+		if(toCreateOrModify.exists()) {
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
 		}
 
@@ -918,7 +911,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		do {
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
-		} while (parent != null && !parent.exists());
+		} while(parent != null && !parent.exists());
 
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
@@ -926,9 +919,9 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	@Override
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		CachedResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = (Resource)it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
 			return;
@@ -943,8 +936,8 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 			// fjcano : we are modifying the resource by an internal save.
 			setChangingResourceBySave(true);
 			CachedResourceSetInfo info = getResourceSetInfo(element);
-			if (info != null) {
-				if (!overwrite && !info.isSynchronized()) {
+			if(info != null) {
+				if(!overwrite && !info.isSynchronized()) {
 					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, IResourceStatus.OUT_OF_SYNC_LOCAL,
 							"Messages.SqlmodelDocumentProvider_UnsynchronizedFileSaveError", null));
 				}
@@ -953,11 +946,11 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 				try {
 					monitor.beginTask("Messages.SqlmodelDocumentProvider_SaveDiagramTask", info.getResourceSet()
 							.getResources().size() + 1); // "Saving diagram"
-					for (Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
-						Resource nextResource = (Resource) it.next();
+					for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
+						Resource nextResource = (Resource)it.next();
 						monitor.setTaskName(NLS.bind("Messages.SqlmodelDocumentProvider_SaveNextResourceTask",
 								nextResource.getURI()));
-						if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
+						if(nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 							try {
 								nextResource.save(MDTUtil.getSaveOptions());
 							} catch (IOException e) {
@@ -979,40 +972,39 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 			} else {
 				URI newResoruceURI;
 				List affectedFiles = null;
-				if (element instanceof FileEditorInput) {
-					IFile newFile = ((FileEditorInput) element).getFile();
+				if(element instanceof FileEditorInput) {
+					IFile newFile = ((FileEditorInput)element).getFile();
 					affectedFiles = Collections.singletonList(newFile);
 					newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
-				} else if (element instanceof URIEditorInput) {
-					newResoruceURI = ((URIEditorInput) element).getURI();
+				} else if(element instanceof URIEditorInput) {
+					newResoruceURI = ((URIEditorInput)element).getURI();
 				} else {
 					fireElementStateChangeFailed(element);
 					throw new CoreException(
 							new Status(
-									IStatus.ERROR,
-									Activator.ID,
-									0,
-									NLS
-											.bind(
-													"Messages.SqlmodelDocumentProvider_IncorrectInputError",
-													new Object[] {
-															element,
-															"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-									null));
+							IStatus.ERROR,
+							Activator.ID,
+							0,
+							NLS
+							.bind(
+							"Messages.SqlmodelDocumentProvider_IncorrectInputError",
+							new Object[]{
+							element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+					null));
 				}
-				if (false == document instanceof IDiagramDocument) {
+				if(false == document instanceof IDiagramDocument) {
 					fireElementStateChangeFailed(element);
 					throw new CoreException(
 							new Status(
-									IStatus.ERROR,
-									Activator.ID,
-									0,
-									"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+							IStatus.ERROR,
+							Activator.ID,
+							0,
+							"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 				}
-				IDiagramDocument diagramDocument = (IDiagramDocument) document;
+				IDiagramDocument diagramDocument = (IDiagramDocument)document;
 				final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(
 						newResoruceURI);
-				final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
+				final Diagram diagramCopy = (Diagram)EcoreUtil.copy(diagramDocument.getDiagram());
 				try {
 					new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
 							"Messages.SqlmodelDocumentProvider_SaveAsOperation", diagramCopy.getName()), affectedFiles) {
@@ -1041,9 +1033,9 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	protected void handleElementChanged(CachedResourceSetInfo info, Resource changedResource, IProgressMonitor monitor) {
-		if (isChangingResourceBySave() == false) {
+		if(isChangingResourceBySave() == false) {
 			IFile file = WorkspaceSynchronizer.getFile(changedResource);
-			if (file != null) {
+			if(file != null) {
 				try {
 					file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 				} catch (CoreException ex) {
@@ -1061,7 +1053,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 			} catch (CoreException e) {
 				info.fStatus = e.getStatus();
 			}
-			if (!info.fCanBeSaved) {
+			if(!info.fCanBeSaved) {
 				info.setModificationStamp(computeModificationStamp(info));
 			}
 			addUnchangedElementListeners(info.getEditorInput(), info);
@@ -1070,7 +1062,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	protected void handleElementMoved(IEditorInput input, URI uri) {
-		if (input instanceof FileEditorInput) {
+		if(input instanceof FileEditorInput) {
 			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
 					new Path(URI.decode(uri.path())).removeFirstSegments(1));
 			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
@@ -1086,8 +1078,8 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 
 	public IDiagramDocument getDiagramDocument(Object element) {
 		IDocument doc = getDocument(element);
-		if (doc instanceof IDiagramDocument) {
-			return (IDiagramDocument) doc;
+		if(doc instanceof IDiagramDocument) {
+			return (IDiagramDocument)doc;
 		}
 		return null;
 	}

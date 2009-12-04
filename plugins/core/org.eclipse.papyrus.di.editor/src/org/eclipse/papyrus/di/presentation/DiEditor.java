@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.presentation;
 
 import java.io.IOException;
@@ -181,7 +181,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	protected PropertySheetPage propertySheetPage;
 
 	/**
-	 * This is the viewer that shadows the selection in the content outline. The parent relation must be correctly defined for this to work. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This is the viewer that shadows the selection in the content outline. The parent relation must be correctly defined for this to work. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -230,7 +231,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	protected ViewerPane currentViewerPane;
 
 	/**
-	 * This keeps track of the active content viewer, which may be either one of the viewers in the pages or the content outline viewer. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the active content viewer, which may be either one of the viewers in the pages or the content outline viewer. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -244,7 +246,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	protected ISelectionChangedListener selectionChangedListener;
 
 	/**
-	 * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are listening to this editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are listening to this editor. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -258,7 +261,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	protected ISelection editorSelection = StructuredSelection.EMPTY;
 
 	/**
-	 * The MarkerHelper is responsible for creating workspace resource markers presented in Eclipse's Problems View. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The MarkerHelper is responsible for creating workspace resource markers presented in Eclipse's Problems View. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -272,18 +276,18 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	protected IPartListener partListener = new IPartListener() {
 
 		public void partActivated(IWorkbenchPart p) {
-			if (p instanceof ContentOutline) {
-				if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
+			if(p instanceof ContentOutline) {
+				if(((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
 					getActionBarContributor().setActiveEditor(DiEditor.this);
 
 					setCurrentViewer(contentOutlineViewer);
 				}
-			} else if (p instanceof PropertySheet) {
-				if (((PropertySheet) p).getCurrentPage() == propertySheetPage) {
+			} else if(p instanceof PropertySheet) {
+				if(((PropertySheet)p).getCurrentPage() == propertySheetPage) {
 					getActionBarContributor().setActiveEditor(DiEditor.this);
 					handleActivate();
 				}
-			} else if (p == DiEditor.this) {
+			} else if(p == DiEditor.this) {
 				handleActivate();
 			}
 		}
@@ -349,20 +353,21 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
 		@Override
 		public void notifyChanged(Notification notification) {
-			if (notification.getNotifier() instanceof Resource) {
-				switch (notification.getFeatureID(Resource.class)) {
+			if(notification.getNotifier() instanceof Resource) {
+				switch(notification.getFeatureID(Resource.class)) {
 				case Resource.RESOURCE__IS_LOADED:
-				case Resource.RESOURCE__ERRORS:
-				case Resource.RESOURCE__WARNINGS: {
-					Resource resource = (Resource) notification.getNotifier();
+							case Resource.RESOURCE__ERRORS:
+							case Resource.RESOURCE__WARNINGS:
+							{
+					Resource resource = (Resource)notification.getNotifier();
 					Diagnostic diagnostic = analyzeResourceProblems(resource, null);
-					if (diagnostic.getSeverity() != Diagnostic.OK) {
+					if(diagnostic.getSeverity() != Diagnostic.OK) {
 						resourceToDiagnosticMap.put(resource, diagnostic);
 					} else {
 						resourceToDiagnosticMap.remove(resource);
 					}
 
-					if (updateProblemIndication) {
+					if(updateProblemIndication) {
 						getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
 							public void run() {
@@ -408,13 +413,13 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 					protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
 					public boolean visit(IResourceDelta delta) {
-						if (delta.getResource().getType() == IResource.FILE) {
-							if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
+						if(delta.getResource().getType() == IResource.FILE) {
+							if(delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
 								Resource resource = resourceSet.getResource(URI.createURI(delta.getFullPath().toString()), false);
-								if (resource != null) {
-									if (delta.getKind() == IResourceDelta.REMOVED) {
+								if(resource != null) {
+									if(delta.getKind() == IResourceDelta.REMOVED) {
 										removedResources.add(resource);
-									} else if (!savedResources.remove(resource)) {
+									} else if(!savedResources.remove(resource)) {
 										changedResources.add(resource);
 									}
 								}
@@ -436,9 +441,9 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
 				delta.accept(visitor);
 
-				if (!visitor.getRemovedResources().isEmpty()) {
+				if(!visitor.getRemovedResources().isEmpty()) {
 					removedResources.addAll(visitor.getRemovedResources());
-					if (!isDirty()) {
+					if(!isDirty()) {
 						getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
 							public void run() {
@@ -448,9 +453,9 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 					}
 				}
 
-				if (!visitor.getChangedResources().isEmpty()) {
+				if(!visitor.getChangedResources().isEmpty()) {
 					changedResources.addAll(visitor.getChangedResources());
-					if (getSite().getPage().getActiveEditor() == DiEditor.this) {
+					if(getSite().getPage().getActiveEditor() == DiEditor.this) {
 						getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
 							public void run() {
@@ -473,7 +478,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	protected void handleActivate() {
 		// Recompute the read only state.
 		//
-		if (editingDomain.getResourceToReadOnlyMap() != null) {
+		if(editingDomain.getResourceToReadOnlyMap() != null) {
 			editingDomain.getResourceToReadOnlyMap().clear();
 
 			// Refresh any actions that may become enabled or disabled.
@@ -481,15 +486,15 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 			setSelection(getSelection());
 		}
 
-		if (!removedResources.isEmpty()) {
-			if (handleDirtyConflict()) {
+		if(!removedResources.isEmpty()) {
+			if(handleDirtyConflict()) {
 				getSite().getPage().closeEditor(DiEditor.this, false);
 			} else {
 				removedResources.clear();
 				changedResources.clear();
 				savedResources.clear();
 			}
-		} else if (!changedResources.isEmpty()) {
+		} else if(!changedResources.isEmpty()) {
 			changedResources.removeAll(savedResources);
 			handleChangedResources();
 			changedResources.clear();
@@ -503,27 +508,27 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	protected void handleChangedResources() {
-		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
-			if (isDirty()) {
+		if(!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+			if(isDirty()) {
 				changedResources.addAll(editingDomain.getResourceSet().getResources());
 			}
 			editingDomain.getCommandStack().flush();
 
 			updateProblemIndication = false;
-			for (Resource resource : changedResources) {
-				if (resource.isLoaded()) {
+			for(Resource resource : changedResources) {
+				if(resource.isLoaded()) {
 					resource.unload();
 					try {
 						resource.load(Collections.EMPTY_MAP);
 					} catch (IOException exception) {
-						if (!resourceToDiagnosticMap.containsKey(resource)) {
+						if(!resourceToDiagnosticMap.containsKey(resource)) {
 							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 						}
 					}
 				}
 			}
 
-			if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+			if(AdapterFactoryEditingDomain.isStale(editorSelection)) {
 				setSelection(StructuredSelection.EMPTY);
 			}
 
@@ -538,21 +543,21 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	protected void updateProblemIndication() {
-		if (updateProblemIndication) {
-			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "org.eclipse.papyrus.di.editor", 0, null, new Object[] { editingDomain.getResourceSet() });
-			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
-				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
+		if(updateProblemIndication) {
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "org.eclipse.papyrus.di.editor", 0, null, new Object[]{ editingDomain.getResourceSet() });
+			for(Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
+				if(childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
 				}
 			}
 
 			int lastEditorPage = getPageCount() - 1;
-			if (lastEditorPage >= 0 && getEditor(lastEditorPage) instanceof ProblemEditorPart) {
-				((ProblemEditorPart) getEditor(lastEditorPage)).setDiagnostic(diagnostic);
-				if (diagnostic.getSeverity() != Diagnostic.OK) {
+			if(lastEditorPage >= 0 && getEditor(lastEditorPage) instanceof ProblemEditorPart) {
+				((ProblemEditorPart)getEditor(lastEditorPage)).setDiagnostic(diagnostic);
+				if(diagnostic.getSeverity() != Diagnostic.OK) {
 					setActivePage(lastEditorPage);
 				}
-			} else if (diagnostic.getSeverity() != Diagnostic.OK) {
+			} else if(diagnostic.getSeverity() != Diagnostic.OK) {
 				ProblemEditorPart problemEditorPart = new ProblemEditorPart();
 				problemEditorPart.setDiagnostic(diagnostic);
 				problemEditorPart.setMarkerHelper(markerHelper);
@@ -566,9 +571,9 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				}
 			}
 
-			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
+			if(markerHelper.hasMarkers(editingDomain.getResourceSet())) {
 				markerHelper.deleteMarkers(editingDomain.getResourceSet());
-				if (diagnostic.getSeverity() != Diagnostic.OK) {
+				if(diagnostic.getSeverity() != Diagnostic.OK) {
 					try {
 						markerHelper.createMarkers(diagnostic);
 					} catch (CoreException exception) {
@@ -630,11 +635,11 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
 						// Try to select the affected objects.
 						//
-						Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
-						if (mostRecentCommand != null) {
+						Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+						if(mostRecentCommand != null) {
 							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
-						if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
+						if(propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
 							propertySheetPage.refresh();
 						}
 					}
@@ -666,7 +671,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 		final Collection<?> theSelection = collection;
 		// Make sure it's okay.
 		//
-		if (theSelection != null && !theSelection.isEmpty()) {
+		if(theSelection != null && !theSelection.isEmpty()) {
 			// I don't know if this should be run this deferred
 			// because we might have to give the editor a chance to process the viewer update events
 			// and hence to update the views first.
@@ -677,7 +682,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				public void run() {
 					// Try to select the items in the current content viewer of the editor.
 					//
-					if (currentViewer != null) {
+					if(currentViewer != null) {
 						currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
 					}
 				}
@@ -687,7 +692,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	}
 
 	/**
-	 * This returns the editing domain as required by the {@link IEditingDomainProvider} interface. This is important for implementing the static methods of {@link AdapterFactoryEditingDomain} and for
+	 * This returns the editing domain as required by the {@link IEditingDomainProvider} interface. This is important for implementing the static
+	 * methods of {@link AdapterFactoryEditingDomain} and for
 	 * supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -762,8 +768,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	public void setCurrentViewerPane(ViewerPane viewerPane) {
-		if (currentViewerPane != viewerPane) {
-			if (currentViewerPane != null) {
+		if(currentViewerPane != viewerPane) {
+			if(currentViewerPane != null) {
 				currentViewerPane.showFocus(false);
 			}
 			currentViewerPane = viewerPane;
@@ -772,15 +778,16 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	}
 
 	/**
-	 * This makes sure that one content viewer, either for the current page or the outline view, if it has focus, is the current one. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This makes sure that one content viewer, either for the current page or the outline view, if it has focus, is the current one. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public void setCurrentViewer(Viewer viewer) {
 		// If it is changing...
 		//
-		if (currentViewer != viewer) {
-			if (selectionChangedListener == null) {
+		if(currentViewer != viewer) {
+			if(selectionChangedListener == null) {
 				// Create the listener on demand.
 				//
 				selectionChangedListener = new ISelectionChangedListener() {
@@ -795,13 +802,13 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
 			// Stop listening to the old one.
 			//
-			if (currentViewer != null) {
+			if(currentViewer != null) {
 				currentViewer.removeSelectionChangedListener(selectionChangedListener);
 			}
 
 			// Start listening to the new one.
 			//
-			if (viewer != null) {
+			if(viewer != null) {
 				viewer.addSelectionChangedListener(selectionChangedListener);
 			}
 
@@ -825,7 +832,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	}
 
 	/**
-	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -839,13 +847,14 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[]{ LocalTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
 
 	/**
-	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -863,25 +872,26 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 		}
 
 		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
-		if (diagnostic.getSeverity() != Diagnostic.OK) {
+		if(diagnostic.getSeverity() != Diagnostic.OK) {
 			resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 		}
 		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
 	}
 
 	/**
-	 * Returns a diagnostic describing the errors and warnings listed in the resource and the specified exception (if any). <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a diagnostic describing the errors and warnings listed in the resource and the specified exception (if any). <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
+		if(!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.papyrus.di.editor", 0, getString("_UI_CreateModelError_message", resource.getURI()),
-					new Object[] { exception == null ? (Object) resource : exception });
+					new Object[]{ exception == null ? (Object)resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
-		} else if (exception != null) {
-			return new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.papyrus.di.editor", 0, getString("_UI_CreateModelError_message", resource.getURI()), new Object[] { exception });
+		} else if(exception != null) {
+			return new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.papyrus.di.editor", 0, getString("_UI_CreateModelError_message", resource.getURI()), new Object[]{ exception });
 		} else {
 			return Diagnostic.OK_INSTANCE;
 		}
@@ -900,7 +910,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
 		// Only creates the other pages if there is something that can be edited
 		//
-		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
+		if(!getEditingDomain().getResourceSet().getResources().isEmpty()) {
 			// Create a page for the selection tree view.
 			//
 			{
@@ -921,7 +931,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				};
 				viewerPane.createControl(getContainer());
 
-				selectionViewer = (TreeViewer) viewerPane.getViewer();
+				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -956,7 +966,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				};
 				viewerPane.createControl(getContainer());
 
-				parentViewer = (TreeViewer) viewerPane.getViewer();
+				parentViewer = (TreeViewer)viewerPane.getViewer();
 				parentViewer.setAutoExpandLevel(30);
 				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
 				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -983,7 +993,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 					}
 				};
 				viewerPane.createControl(getContainer());
-				listViewer = (ListViewer) viewerPane.getViewer();
+				listViewer = (ListViewer)viewerPane.getViewer();
 				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1009,7 +1019,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 					}
 				};
 				viewerPane.createControl(getContainer());
-				treeViewer = (TreeViewer) viewerPane.getViewer();
+				treeViewer = (TreeViewer)viewerPane.getViewer();
 				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1037,7 +1047,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 					}
 				};
 				viewerPane.createControl(getContainer());
-				tableViewer = (TableViewer) viewerPane.getViewer();
+				tableViewer = (TableViewer)viewerPane.getViewer();
 
 				Table table = tableViewer.getTable();
 				TableLayout layout = new TableLayout();
@@ -1055,7 +1065,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				selfColumn.setText(getString("_UI_SelfColumn_label"));
 				selfColumn.setResizable(true);
 
-				tableViewer.setColumnProperties(new String[] { "a", "b" });
+				tableViewer.setColumnProperties(new String[]{ "a", "b" });
 				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1082,7 +1092,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				};
 				viewerPane.createControl(getContainer());
 
-				treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
+				treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
 
 				Tree tree = treeViewerWithColumns.getTree();
 				tree.setLayoutData(new FillLayout());
@@ -1099,7 +1109,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				selfColumn.setResizable(true);
 				selfColumn.setWidth(200);
 
-				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
+				treeViewerWithColumns.setColumnProperties(new String[]{ "a", "b" });
 				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1125,7 +1135,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
 			@Override
 			public void controlResized(ControlEvent event) {
-				if (!guard) {
+				if(!guard) {
 					guard = true;
 					hideTabs();
 					guard = false;
@@ -1147,10 +1157,10 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	protected void hideTabs() {
-		if (getPageCount() <= 1) {
+		if(getPageCount() <= 1) {
 			setPageText(0, "");
-			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder) getContainer()).setTabHeight(1);
+			if(getContainer() instanceof CTabFolder) {
+				((CTabFolder)getContainer()).setTabHeight(1);
 				Point point = getContainer().getSize();
 				getContainer().setSize(point.x, point.y + 6);
 			}
@@ -1163,10 +1173,10 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	protected void showTabs() {
-		if (getPageCount() > 1) {
+		if(getPageCount() > 1) {
 			setPageText(0, getString("_UI_SelectionPage_label"));
-			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder) getContainer()).setTabHeight(SWT.DEFAULT);
+			if(getContainer() instanceof CTabFolder) {
+				((CTabFolder)getContainer()).setTabHeight(SWT.DEFAULT);
 				Point point = getContainer().getSize();
 				getContainer().setSize(point.x, point.y - 6);
 			}
@@ -1182,7 +1192,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	protected void pageChange(int pageIndex) {
 		super.pageChange(pageIndex);
 
-		if (contentOutlinePage != null) {
+		if(contentOutlinePage != null) {
 			handleContentOutlineSelection(contentOutlinePage.getSelection());
 		}
 	}
@@ -1195,11 +1205,11 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object getAdapter(Class key) {
-		if (key.equals(IContentOutlinePage.class)) {
+		if(key.equals(IContentOutlinePage.class)) {
 			return showOutlineView() ? getContentOutlinePage() : null;
-		} else if (key.equals(IPropertySheetPage.class)) {
+		} else if(key.equals(IPropertySheetPage.class)) {
 			return getPropertySheetPage();
-		} else if (key.equals(IGotoMarker.class)) {
+		} else if(key.equals(IGotoMarker.class)) {
 			return this;
 		} else {
 			return super.getAdapter(key);
@@ -1212,7 +1222,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	public IContentOutlinePage getContentOutlinePage() {
-		if (contentOutlinePage == null) {
+		if(contentOutlinePage == null) {
 			// The content outline is just a tree.
 			//
 			class MyContentOutlinePage extends ContentOutlinePage {
@@ -1233,7 +1243,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 					//
 					createContextMenuFor(contentOutlineViewer);
 
-					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
+					if(!editingDomain.getResourceSet().getResources().isEmpty()) {
 						// Select the root object in the view.
 						//
 						contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
@@ -1276,7 +1286,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		if (propertySheetPage == null) {
+		if(propertySheetPage == null) {
 			propertySheetPage = new ExtendedPropertySheetPage(editingDomain) {
 
 				@Override
@@ -1303,19 +1313,19 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
-		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
-			Iterator<?> selectedElements = ((IStructuredSelection) selection).iterator();
-			if (selectedElements.hasNext()) {
+		if(currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
+			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
+			if(selectedElements.hasNext()) {
 				// Get the first selected element.
 				//
 				Object selectedElement = selectedElements.next();
 
 				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
-				if (currentViewerPane.getViewer() == selectionViewer) {
+				if(currentViewerPane.getViewer() == selectionViewer) {
 					ArrayList<Object> selectionList = new ArrayList<Object>();
 					selectionList.add(selectedElement);
-					while (selectedElements.hasNext()) {
+					while(selectedElements.hasNext()) {
 						selectionList.add(selectedElements.next());
 					}
 
@@ -1325,7 +1335,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				} else {
 					// Set the input to the widget.
 					//
-					if (currentViewerPane.getViewer().getInput() != selectedElement) {
+					if(currentViewerPane.getViewer().getInput() != selectedElement) {
 						currentViewerPane.getViewer().setInput(selectedElement);
 						currentViewerPane.setTitle(selectedElement);
 					}
@@ -1341,7 +1351,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 */
 	@Override
 	public boolean isDirty() {
-		return ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
+		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
 	/**
@@ -1367,12 +1377,12 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 				// Save the resources to the file system.
 				//
 				boolean first = true;
-				for (Resource resource : editingDomain.getResourceSet().getResources()) {
-					if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+				for(Resource resource : editingDomain.getResourceSet().getResources()) {
+					if((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 						try {
 							long timeStamp = resource.getTimeStamp();
 							resource.save(saveOptions);
-							if (resource.getTimeStamp() != timeStamp) {
+							if(resource.getTimeStamp() != timeStamp) {
 								savedResources.add(resource);
 							}
 						} catch (Exception exception) {
@@ -1392,7 +1402,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
 			// Refresh the necessary state.
 			//
-			((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
+			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		} catch (Exception exception) {
 			// Something went wrong that shouldn't.
@@ -1404,7 +1414,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	}
 
 	/**
-	 * This returns whether something has been persisted to the URI of the specified resource. The implementation uses the URI converter from the editor's resource set to try to open an input stream.
+	 * This returns whether something has been persisted to the URI of the specified resource. The implementation uses the URI converter from the
+	 * editor's resource set to try to open an input stream.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -1413,7 +1424,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 		boolean result = false;
 		try {
 			InputStream stream = editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
-			if (stream != null) {
+			if(stream != null) {
 				result = true;
 				stream.close();
 			}
@@ -1443,9 +1454,9 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 		SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
 		saveAsDialog.open();
 		IPath path = saveAsDialog.getResult();
-		if (path != null) {
+		if(path != null) {
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-			if (file != null) {
+			if(file != null) {
 				doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString(), true), new FileEditorInput(file));
 			}
 		}
@@ -1471,12 +1482,12 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 */
 	public void gotoMarker(IMarker marker) {
 		try {
-			if (marker.getType().equals(EValidator.MARKER)) {
+			if(marker.getType().equals(EValidator.MARKER)) {
 				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
-				if (uriAttribute != null) {
+				if(uriAttribute != null) {
 					URI uri = URI.createURI(uriAttribute);
 					EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
-					if (eObject != null) {
+					if(eObject != null) {
 						setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
 					}
 				}
@@ -1508,7 +1519,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 */
 	@Override
 	public void setFocus() {
-		if (currentViewerPane != null) {
+		if(currentViewerPane != null) {
 			currentViewerPane.setFocus();
 		} else {
 			getControl(getActivePage()).setFocus();
@@ -1534,7 +1545,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's overall selection. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's overall selection. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -1543,7 +1555,8 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection. Calling this result will notify the listeners. <!-- begin-user-doc --> <!--
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection. Calling this result will notify
+	 * the listeners. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -1551,7 +1564,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	public void setSelection(ISelection selection) {
 		editorSelection = selection;
 
-		for (ISelectionChangedListener listener : selectionChangedListeners) {
+		for(ISelectionChangedListener listener : selectionChangedListeners) {
 			listener.selectionChanged(new SelectionChangedEvent(this, selection));
 		}
 		setStatusLineManager(selection);
@@ -1565,20 +1578,23 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	public void setStatusLineManager(ISelection selection) {
 		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
-		if (statusLineManager != null) {
-			if (selection instanceof IStructuredSelection) {
-				Collection<?> collection = ((IStructuredSelection) selection).toList();
-				switch (collection.size()) {
-				case 0: {
+		if(statusLineManager != null) {
+			if(selection instanceof IStructuredSelection) {
+				Collection<?> collection = ((IStructuredSelection)selection).toList();
+				switch(collection.size()) {
+				case 0:
+				{
 					statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
 					break;
 				}
-				case 1: {
+				case 1:
+				{
 					String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
 					statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
 					break;
 				}
-				default: {
+				default:
+				{
 					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
 					break;
 				}
@@ -1604,16 +1620,17 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return DiEditorPlugin.INSTANCE.getString(key, new Object[] { s1 });
+		return DiEditorPlugin.INSTANCE.getString(key, new Object[]{ s1 });
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus with contributions from the Edit menu. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus with contributions from the Edit menu. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public void menuAboutToShow(IMenuManager menuManager) {
-		((IMenuListener) getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
+		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
 	}
 
 	/**
@@ -1622,7 +1639,7 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 	 * @generated
 	 */
 	public EditingDomainActionBarContributor getActionBarContributor() {
-		return (EditingDomainActionBarContributor) getEditorSite().getActionBarContributor();
+		return (EditingDomainActionBarContributor)getEditorSite().getActionBarContributor();
 	}
 
 	/**
@@ -1658,15 +1675,15 @@ public class DiEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
 		adapterFactory.dispose();
 
-		if (getActionBarContributor().getActiveEditor() == this) {
+		if(getActionBarContributor().getActiveEditor() == this) {
 			getActionBarContributor().setActiveEditor(null);
 		}
 
-		if (propertySheetPage != null) {
+		if(propertySheetPage != null) {
 			propertySheetPage.dispose();
 		}
 
-		if (contentOutlinePage != null) {
+		if(contentOutlinePage != null) {
 			contentOutlinePage.dispose();
 		}
 

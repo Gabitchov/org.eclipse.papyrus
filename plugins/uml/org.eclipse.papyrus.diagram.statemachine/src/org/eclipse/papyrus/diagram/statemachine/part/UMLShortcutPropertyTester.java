@@ -21,13 +21,13 @@ public class UMLShortcutPropertyTester extends PropertyTester {
 	 */
 	public boolean test(Object receiver, String method, Object[] args,
 			Object expectedValue) {
-		if (false == receiver instanceof View) {
+		if(false == receiver instanceof View) {
 			return false;
 		}
-		View view = (View) receiver;
-		if (SHORTCUT_PROPERTY.equals(method)) {
+		View view = (View)receiver;
+		if(SHORTCUT_PROPERTY.equals(method)) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-			if (annotation != null) {
+			if(annotation != null) {
 				return StateMachineEditPart.MODEL_ID.equals(annotation
 						.getDetails().get("modelID")); //$NON-NLS-1$
 			}

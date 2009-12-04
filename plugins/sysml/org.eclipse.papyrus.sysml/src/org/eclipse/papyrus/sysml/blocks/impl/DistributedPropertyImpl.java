@@ -23,13 +23,11 @@ import org.eclipse.papyrus.sysml.blocks.DistributedProperty;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Distributed Property</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Distributed Property</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl#getBase_Property <em>
- * Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl#getBase_Property <em> Base Property</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,9 +70,9 @@ public class DistributedPropertyImpl extends EObjectImpl implements DistributedP
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DISTRIBUTED_PROPERTY__BASE_PROPERTY:
-			if (resolve)
+			if(resolve)
 				return getBase_Property();
 			return basicGetBase_Property();
 		}
@@ -88,7 +86,7 @@ public class DistributedPropertyImpl extends EObjectImpl implements DistributedP
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DISTRIBUTED_PROPERTY__BASE_PROPERTY:
 			return base_Property != null;
 		}
@@ -102,9 +100,9 @@ public class DistributedPropertyImpl extends EObjectImpl implements DistributedP
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DISTRIBUTED_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) newValue);
+			setBase_Property((Property)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +125,9 @@ public class DistributedPropertyImpl extends EObjectImpl implements DistributedP
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.DISTRIBUTED_PROPERTY__BASE_PROPERTY:
-			setBase_Property((Property) null);
+			setBase_Property((Property)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +139,11 @@ public class DistributedPropertyImpl extends EObjectImpl implements DistributedP
 	 * @generated
 	 */
 	public Property getBase_Property() {
-		if (base_Property != null && base_Property.eIsProxy()) {
-			InternalEObject oldBase_Property = (InternalEObject) base_Property;
-			base_Property = (Property) eResolveProxy(oldBase_Property);
-			if (base_Property != oldBase_Property) {
-				if (eNotificationRequired())
+		if(base_Property != null && base_Property.eIsProxy()) {
+			InternalEObject oldBase_Property = (InternalEObject)base_Property;
+			base_Property = (Property)eResolveProxy(oldBase_Property);
+			if(base_Property != oldBase_Property) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.DISTRIBUTED_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 			}
@@ -161,7 +159,7 @@ public class DistributedPropertyImpl extends EObjectImpl implements DistributedP
 	public void setBase_Property(Property newBase_Property) {
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.DISTRIBUTED_PROPERTY__BASE_PROPERTY,
 					oldBase_Property, base_Property));
 	}

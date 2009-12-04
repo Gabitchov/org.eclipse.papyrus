@@ -42,9 +42,9 @@ public class AppliedProfilePanel extends AppliedStereotypePanel {
 	 * The default constructor.
 	 * 
 	 * @param style
-	 *            the style of this panel
+	 *        the style of this panel
 	 * @param parent
-	 *            the parent Composite for this panel
+	 *        the parent Composite for this panel
 	 */
 	public AppliedProfilePanel(Composite parent, int style) {
 		super(parent, style);
@@ -78,13 +78,13 @@ public class AppliedProfilePanel extends AppliedStereotypePanel {
 	 * Sets the selected.
 	 * 
 	 * @param selected
-	 *            The selected to set.
+	 *        The selected to set.
 	 * @param pkg
-	 *            the pkg
+	 *        the pkg
 	 */
 	public void setSelected(Package pkg) {
 		super.setSelected(pkg);
-		if (profileComposite != null) {
+		if(profileComposite != null) {
 			selected = pkg;
 			profileComposite.refresh();
 		}

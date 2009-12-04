@@ -47,7 +47,7 @@ public class PropertyGenerator {
 	 * Default Constructor.
 	 * 
 	 * @param property
-	 *            the property to modify
+	 *        the property to modify
 	 */
 	public PropertyGenerator(Property property) {
 		this.property = property;
@@ -58,7 +58,7 @@ public class PropertyGenerator {
 	 * Parse the label of the property and modify property attributes.
 	 * 
 	 * @param label
-	 *            the label that defines the property
+	 *        the label that defines the property
 	 */
 	public void parseAndModifyProperty(String label) {
 		try {
@@ -69,11 +69,11 @@ public class PropertyGenerator {
 		} catch (RecognitionException e) {
 			PapyrusParsersPlugin.getDefault().getLog().log(
 					new Status(IStatus.ERROR, PapyrusParsersPlugin.PLUGIN_ID, IStatus.OK,
-							"could not parse the property label: " + label, e));
+					"could not parse the property label: " + label, e));
 		} catch (RuntimeException e) {
 			PapyrusParsersPlugin.getDefault().getLog().log(
 					new Status(IStatus.ERROR, PapyrusParsersPlugin.PLUGIN_ID, IStatus.OK,
-							"could not parse the property label: " + label, e));
+					"could not parse the property label: " + label, e));
 		}
 	}
 
@@ -81,7 +81,7 @@ public class PropertyGenerator {
 	 * Parse the label of the property and validate it.
 	 * 
 	 * @param label
-	 *            the label that defines the property
+	 *        the label that defines the property
 	 * 
 	 * @return null if label is valid, else return the message that describes the error.
 	 */
@@ -108,7 +108,7 @@ public class PropertyGenerator {
 	 * Parse the label of the property, and generates an exception if does not validate.
 	 * 
 	 * @param label
-	 *            the label that defines the property
+	 *        the label that defines the property
 	 * 
 	 * @return null if label is valid, else return the message that describes the error.
 	 */
@@ -125,8 +125,8 @@ public class PropertyGenerator {
 		} catch (RecognitionException re) {
 
 		} catch (RuntimeException tse) {
-			if (tse instanceof TypeRecognitionException)
-				return ((TypeRecognitionException) tse).getTypeName();
+			if(tse instanceof TypeRecognitionException)
+				return ((TypeRecognitionException)tse).getTypeName();
 		}
 		return null;
 	}
@@ -135,7 +135,7 @@ public class PropertyGenerator {
 	 * Parse the label of the property, and generates an exception if does not validate.
 	 * 
 	 * @param label
-	 *            the label that defines the property
+	 *        the label that defines the property
 	 * 
 	 * @return null if label is valid, else return the message that describes the error.
 	 */
@@ -152,8 +152,8 @@ public class PropertyGenerator {
 		} catch (RecognitionException re) {
 
 		} catch (RuntimeException re) {
-			if (re instanceof UnboundTemplateRecognitionException)
-				return ((UnboundTemplateRecognitionException) re).getTemplate();
+			if(re instanceof UnboundTemplateRecognitionException)
+				return ((UnboundTemplateRecognitionException)re).getTemplate();
 		}
 		return null;
 	}

@@ -28,11 +28,11 @@ import japa.parser.ast.Node;
  */
 public abstract class Type extends Node {
 
-    public Type() {
-    }
+	public Type() {
+	}
 
-    public Type(int beginLine, int beginColumn, int endLine, int endColumn) {
-        super(beginLine, beginColumn, endLine, endColumn);
-    }
+	public Type(int beginLine, int beginColumn, int endLine, int endColumn) {
+		super(beginLine, beginColumn, endLine, endColumn);
+	}
 
 }

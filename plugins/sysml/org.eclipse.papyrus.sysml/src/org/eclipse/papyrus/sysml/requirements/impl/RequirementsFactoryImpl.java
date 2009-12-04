@@ -53,9 +53,9 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	 */
 	public static RequirementsFactory init() {
 		try {
-			RequirementsFactory theRequirementsFactory = (RequirementsFactory) EPackage.Registry.INSTANCE
+			RequirementsFactory theRequirementsFactory = (RequirementsFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements");
-			if (theRequirementsFactory != null) {
+			if(theRequirementsFactory != null) {
 				return theRequirementsFactory;
 			}
 		} catch (Exception exception) {
@@ -80,7 +80,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case RequirementsPackage.DERIVE_REQT:
 			return createDeriveReqt();
 		case RequirementsPackage.VERIFY:
@@ -176,7 +176,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	 * @generated
 	 */
 	public RequirementsPackage getRequirementsPackage() {
-		return (RequirementsPackage) getEPackage();
+		return (RequirementsPackage)getEPackage();
 	}
 
 } // RequirementsFactoryImpl

@@ -55,15 +55,21 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -71,7 +77,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -80,7 +86,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -101,7 +107,9 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -116,14 +124,19 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -148,15 +161,21 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *        the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -164,7 +183,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter);
@@ -173,7 +192,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
@@ -214,15 +233,21 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the elementImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initElementImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the elementImport
-	 * @param newValue the elementImport to update
+	 * 
+	 * @param newValue
+	 *        the elementImport to update
 	 */
 	public void updateElementImport(EObject newValue);
 
@@ -230,7 +255,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToElementImport(ViewerFilter filter);
@@ -239,7 +264,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the elementImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToElementImport(ViewerFilter filter);
@@ -280,15 +305,21 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the packageImport
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPackageImport(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the packageImport
-	 * @param newValue the packageImport to update
+	 * 
+	 * @param newValue
+	 *        the packageImport to update
 	 */
 	public void updatePackageImport(EObject newValue);
 
@@ -296,7 +327,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPackageImport(ViewerFilter filter);
@@ -305,7 +336,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the packageImport edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPackageImport(ViewerFilter filter);
@@ -346,15 +377,21 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the ownedRule
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedRule(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedRule
-	 * @param newValue the ownedRule to update
+	 * 
+	 * @param newValue
+	 *        the ownedRule to update
 	 */
 	public void updateOwnedRule(EObject newValue);
 
@@ -362,7 +399,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedRule(ViewerFilter filter);
@@ -371,7 +408,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the ownedRule edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedRule(ViewerFilter filter);
@@ -392,7 +429,9 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *        the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
 
@@ -407,14 +446,19 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the kind
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initKind(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new kind
-	 * @param newValue the new kind to set
+	 * 
+	 * @param newValue
+	 *        the new kind to set
 	 */
 	public void setKind(Enumerator newValue);
 
@@ -449,15 +493,21 @@ public interface ProtocolTransitionPropertiesEditionPart {
 
 	/**
 	 * Init the trigger
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initTrigger(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the trigger
-	 * @param newValue the trigger to update
+	 * 
+	 * @param newValue
+	 *        the trigger to update
 	 */
 	public void updateTrigger(EObject newValue);
 
@@ -465,7 +515,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the trigger edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToTrigger(ViewerFilter filter);
@@ -474,7 +524,7 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * Adds the given filter to the trigger edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTrigger(ViewerFilter filter);
@@ -483,11 +533,6 @@ public interface ProtocolTransitionPropertiesEditionPart {
 	 * @return true if the given element is contained inside the trigger table
 	 */
 	public boolean isContainedInTriggerTable(EObject element);
-
-
-
-
-
 
 
 

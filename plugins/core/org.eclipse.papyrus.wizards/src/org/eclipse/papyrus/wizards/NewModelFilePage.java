@@ -33,9 +33,9 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 * Create a new wizard page instance.
 	 * 
 	 * @param workbench
-	 *            the current workbench
+	 *        the current workbench
 	 * @param selection
-	 *            the current object selection
+	 *        the current object selection
 	 * @see PapyrusCreationWizard#init(IWorkbench, IStructuredSelection)
 	 */
 	public NewModelFilePage(String title, String description, IStructuredSelection selection,
@@ -52,7 +52,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		if (getFileName() == null || getFileName().length() == 0) {
+		if(getFileName() == null || getFileName().length() == 0) {
 			setFileName(DEFAULT_NAME + fileCount + ".di");
 		}
 		setPageComplete(validatePage());

@@ -32,7 +32,7 @@ public class ExtensionPointUtil {
 		String explanation = "";
 		final String name = ((extensionPoint.getName() != null) ? extensionPoint.getName() : "");
 		int startIndexOfExplanation = name.lastIndexOf(":");
-		if ((startIndexOfExplanation > 0) && (startIndexOfExplanation != name.length())) {
+		if((startIndexOfExplanation > 0) && (startIndexOfExplanation != name.length())) {
 			explanation = name.substring(startIndexOfExplanation + 1).trim();
 		}
 		return explanation;

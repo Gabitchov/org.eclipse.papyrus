@@ -48,7 +48,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 		super();
 
 		// Initialize dash property for dashed border representation.
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			dash[i] = 5;
 		}
 
@@ -62,7 +62,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 
 	public void setShadow(boolean shadow) {
 		this.shadow = shadow;
-		if (shadow == true) {
+		if(shadow == true) {
 			this.setBorder(shadowborder);
 		} else {
 			this.setBorder(new LineBorder());
@@ -73,7 +73,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 * Sets the border color.
 	 * 
 	 * @param borderColor
-	 *            the border color
+	 *        the border color
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
@@ -93,7 +93,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 * Paint figure.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 */
 	@Override
 	public void paintFigure(Graphics graphics) {
@@ -110,12 +110,12 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 * background with the gradient informations. Otherwise it will use the background color.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * @param rectangle
-	 *            the rectangle where the background needs to be fill.
+	 *        the rectangle where the background needs to be fill.
 	 */
 	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
-		if (isUsingGradient()) {
+		if(isUsingGradient()) {
 			applyTransparency(graphics);
 			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
 			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
@@ -140,7 +140,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 */
 	@Override
 	protected void paintBorder(Graphics graphics) {
-		if (getLineStyle() == Graphics.LINE_DASH) {
+		if(getLineStyle() == Graphics.LINE_DASH) {
 			graphics.setLineDash(dash);
 		}
 		super.paintBorder(graphics);

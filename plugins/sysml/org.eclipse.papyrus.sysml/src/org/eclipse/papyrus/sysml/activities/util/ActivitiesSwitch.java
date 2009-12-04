@@ -52,7 +52,7 @@ public class ActivitiesSwitch<T> {
 	 * @generated
 	 */
 	public ActivitiesSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = ActivitiesPackage.eINSTANCE;
 		}
 	}
@@ -63,7 +63,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Continuous</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -78,7 +78,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Control Operator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -93,7 +93,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Discrete</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -108,7 +108,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>No Buffer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -123,7 +123,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Optionnal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -138,7 +138,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Overwrite</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -153,7 +153,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Probability</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -168,7 +168,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Rate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -183,7 +183,7 @@ public class ActivitiesSwitch<T> {
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -200,7 +200,7 @@ public class ActivitiesSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if(theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
@@ -227,64 +227,72 @@ public class ActivitiesSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case ActivitiesPackage.OPTIONNAL: {
-			Optionnal optionnal = (Optionnal) theEObject;
+		switch(classifierID) {
+		case ActivitiesPackage.OPTIONNAL:
+		{
+			Optionnal optionnal = (Optionnal)theEObject;
 			T result = caseOptionnal(optionnal);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ActivitiesPackage.RATE: {
-			Rate rate = (Rate) theEObject;
+		case ActivitiesPackage.RATE:
+		{
+			Rate rate = (Rate)theEObject;
 			T result = caseRate(rate);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ActivitiesPackage.PROBABILITY: {
-			Probability probability = (Probability) theEObject;
+		case ActivitiesPackage.PROBABILITY:
+		{
+			Probability probability = (Probability)theEObject;
 			T result = caseProbability(probability);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ActivitiesPackage.CONTINUOUS: {
-			Continuous continuous = (Continuous) theEObject;
+		case ActivitiesPackage.CONTINUOUS:
+		{
+			Continuous continuous = (Continuous)theEObject;
 			T result = caseContinuous(continuous);
-			if (result == null)
+			if(result == null)
 				result = caseRate(continuous);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ActivitiesPackage.DISCRETE: {
-			Discrete discrete = (Discrete) theEObject;
+		case ActivitiesPackage.DISCRETE:
+		{
+			Discrete discrete = (Discrete)theEObject;
 			T result = caseDiscrete(discrete);
-			if (result == null)
+			if(result == null)
 				result = caseRate(discrete);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ActivitiesPackage.CONTROL_OPERATOR: {
-			ControlOperator controlOperator = (ControlOperator) theEObject;
+		case ActivitiesPackage.CONTROL_OPERATOR:
+		{
+			ControlOperator controlOperator = (ControlOperator)theEObject;
 			T result = caseControlOperator(controlOperator);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ActivitiesPackage.NO_BUFFER: {
-			NoBuffer noBuffer = (NoBuffer) theEObject;
+		case ActivitiesPackage.NO_BUFFER:
+		{
+			NoBuffer noBuffer = (NoBuffer)theEObject;
 			T result = caseNoBuffer(noBuffer);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ActivitiesPackage.OVERWRITE: {
-			Overwrite overwrite = (Overwrite) theEObject;
+		case ActivitiesPackage.OVERWRITE:
+		{
+			Overwrite overwrite = (Overwrite)theEObject;
 			T result = caseOverwrite(overwrite);
-			if (result == null)
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}

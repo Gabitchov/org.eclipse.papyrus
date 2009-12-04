@@ -274,5 +274,5 @@ public class ActivityPartitionActivityPartitionCompartment2CanonicalEditPolicy e
 	public boolean canCreate(EObject object) {
 		return false;
 	}
-	
+
 }

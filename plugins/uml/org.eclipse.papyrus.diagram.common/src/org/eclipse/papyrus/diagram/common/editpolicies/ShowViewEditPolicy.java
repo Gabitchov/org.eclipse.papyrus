@@ -33,7 +33,7 @@ public class ShowViewEditPolicy {
 	 * @return the open edit policy
 	 */
 	private static OpenEditPolicy getOpenEditPolicy() {
-		if (policy == null) {
+		if(policy == null) {
 			policy = new OpenEditPolicy() {
 
 				@Override

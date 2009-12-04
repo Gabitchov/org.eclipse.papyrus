@@ -47,11 +47,11 @@ public class RoleBindingCreateCommand extends
 	 * Constructor
 	 * 
 	 * @param request
-	 *            the relationship creation request
+	 *        the relationship creation request
 	 * @param source
-	 *            element used as source of the new relationship
+	 *        element used as source of the new relationship
 	 * @param target
-	 *            element used as target of the new relationship
+	 *        element used as target of the new relationship
 	 */
 	public RoleBindingCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request, source, target);
@@ -70,14 +70,14 @@ public class RoleBindingCreateCommand extends
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info)
 			throws ExecutionException {
 
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException(Messages.RoleBindingCreateCommand_INVALID_ARGS_MSG);
 		}
 
 		// Retrieve the graphical source of the binding.
 		// This differs from the semantic source of the binding which is a role of the
 		// CollaborationUse type.
-		CollaborationUse graphicalSource = (CollaborationUse) getSource();
+		CollaborationUse graphicalSource = (CollaborationUse)getSource();
 
 		// Create and open the selection dialog
 		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -100,9 +100,9 @@ public class RoleBindingCreateCommand extends
 		// If a ConnectableElement has been selected, complete command execution
 		// using selection as the "newly created" element and make the edited
 		// Collaboration reference it in the CollaborationRoles eReference.
-		if (dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
+		if(dialog.getReturnCode() == ElementTreeSelectionDialog.OK) {
 
-			ConnectableElement roleToBind = (ConnectableElement) dialog.getFirstResult();
+			ConnectableElement roleToBind = (ConnectableElement)dialog.getFirstResult();
 			// Create a Dependency (the binding) between selected role and a ConnectableElement
 			// (the target)
 			Dependency newBinding = UMLFactory.eINSTANCE.createDependency();
@@ -114,7 +114,7 @@ public class RoleBindingCreateCommand extends
 
 			doConfigure(newBinding, monitor, info);
 
-			((CreateElementRequest) getRequest()).setNewElement(newBinding);
+			((CreateElementRequest)getRequest()).setNewElement(newBinding);
 
 			return CommandResult.newOKCommandResult(newBinding);
 		}

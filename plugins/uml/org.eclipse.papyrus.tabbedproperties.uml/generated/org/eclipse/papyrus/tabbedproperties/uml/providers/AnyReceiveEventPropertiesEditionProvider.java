@@ -40,7 +40,7 @@ public class AnyReceiveEventPropertiesEditionProvider implements IPropertiesEdit
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof AnyReceiveEvent) {
+		if(eObject instanceof AnyReceiveEvent) {
 			return new AnyReceiveEventPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class AnyReceiveEventPropertiesEditionProvider implements IPropertiesEdit
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof AnyReceiveEvent) {
-			if (AnyReceiveEventBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof AnyReceiveEvent) {
+			if(AnyReceiveEventBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new AnyReceiveEventBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

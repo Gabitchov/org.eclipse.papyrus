@@ -44,8 +44,8 @@ public class UMLReorientConnectionViewCommand extends AbstractTransactionalComma
 	 * @generated
 	 */
 	public List getAffectedFiles() {
-		View view = (View) edgeAdaptor.getAdapter(View.class);
-		if (view != null) {
+		View view = (View)edgeAdaptor.getAdapter(View.class);
+		if(view != null) {
 			return getWorkspaceFiles(view);
 		}
 		return super.getAffectedFiles();
@@ -70,7 +70,7 @@ public class UMLReorientConnectionViewCommand extends AbstractTransactionalComma
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) {
 		assert null != edgeAdaptor : "Null child in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
-		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
+		Edge edge = (Edge)getEdgeAdaptor().getAdapter(Edge.class);
 		assert null != edge : "Null edge in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
 		View tempView = edge.getSource();
 		edge.setSource(edge.getTarget());

@@ -27,8 +27,8 @@ import org.eclipse.swt.graphics.FontData;
  * @author Patrick Tessier
  * @since 21 sept. 06
  * 
- * this class is a singletion to manage font in the papyrus Application.
- * It is forbidden to create a  new font without use this class.
+ *        this class is a singletion to manage font in the papyrus Application.
+ *        It is forbidden to create a new font without use this class.
  */
 public class FontManager extends FontRegistry {
 
@@ -36,19 +36,21 @@ public class FontManager extends FontRegistry {
 	/**
 	 * this class create a font from a fontdata.
 	 * 
-	 * @param fontData the font data
+	 * @param fontData
+	 *        the font data
 	 * 
 	 * @return the associated font
 	 */
 	public Font get(FontData fontData[]) {
 
-		String symbolicName="";
-		for (int i=0; i< fontData.length;i++){
-			symbolicName=symbolicName+fontData[i];}
-		Font font=super.get(symbolicName);
-		if (font.equals(this.defaultFont())){
-			super.put(symbolicName,fontData);
-			font=super.get(symbolicName);
+		String symbolicName = "";
+		for(int i = 0; i < fontData.length; i++) {
+			symbolicName = symbolicName + fontData[i];
+		}
+		Font font = super.get(symbolicName);
+		if(font.equals(this.defaultFont())) {
+			super.put(symbolicName, fontData);
+			font = super.get(symbolicName);
 		}
 		return font;
 	}

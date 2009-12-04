@@ -55,15 +55,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -71,7 +77,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -80,7 +86,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -101,7 +107,9 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -116,14 +124,19 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -148,15 +161,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the clientDependency
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the clientDependency
-	 * @param newValue the clientDependency to update
+	 * 
+	 * @param newValue
+	 *        the clientDependency to update
 	 */
 	public void updateClientDependency(EObject newValue);
 
@@ -164,7 +183,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter);
@@ -173,7 +192,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the clientDependency edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter);
@@ -204,15 +223,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the covered
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the covered
-	 * @param newValue the covered to update
+	 * 
+	 * @param newValue
+	 *        the covered to update
 	 */
 	public void updateCovered(EObject newValue);
 
@@ -220,7 +245,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the covered edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToCovered(ViewerFilter filter);
@@ -229,7 +254,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the covered edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCovered(ViewerFilter filter);
@@ -270,15 +295,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the generalOrdering
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the generalOrdering
-	 * @param newValue the generalOrdering to update
+	 * 
+	 * @param newValue
+	 *        the generalOrdering to update
 	 */
 	public void updateGeneralOrdering(EObject newValue);
 
@@ -286,7 +317,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the generalOrdering edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToGeneralOrdering(ViewerFilter filter);
@@ -295,7 +326,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the generalOrdering edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToGeneralOrdering(ViewerFilter filter);
@@ -316,14 +347,19 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the interactionOperator
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initInteractionOperator(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new interactionOperator
-	 * @param newValue the new interactionOperator to set
+	 * 
+	 * @param newValue
+	 *        the new interactionOperator to set
 	 */
 	public void setInteractionOperator(Enumerator newValue);
 
@@ -358,15 +394,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the operand
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOperand(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the operand
-	 * @param newValue the operand to update
+	 * 
+	 * @param newValue
+	 *        the operand to update
 	 */
 	public void updateOperand(EObject newValue);
 
@@ -374,7 +416,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the operand edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOperand(ViewerFilter filter);
@@ -383,7 +425,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the operand edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOperand(ViewerFilter filter);
@@ -424,15 +466,21 @@ public interface CombinedFragmentPropertiesEditionPart {
 
 	/**
 	 * Init the cfragmentGate
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initCfragmentGate(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the cfragmentGate
-	 * @param newValue the cfragmentGate to update
+	 * 
+	 * @param newValue
+	 *        the cfragmentGate to update
 	 */
 	public void updateCfragmentGate(EObject newValue);
 
@@ -440,7 +488,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the cfragmentGate edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToCfragmentGate(ViewerFilter filter);
@@ -449,7 +497,7 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * Adds the given filter to the cfragmentGate edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToCfragmentGate(ViewerFilter filter);
@@ -458,11 +506,6 @@ public interface CombinedFragmentPropertiesEditionPart {
 	 * @return true if the given element is contained inside the cfragmentGate table
 	 */
 	public boolean isContainedInCfragmentGateTable(EObject element);
-
-
-
-
-
 
 
 

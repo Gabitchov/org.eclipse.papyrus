@@ -25,7 +25,7 @@ public interface IDiagramInitializer {
 	 * Inits the <Diagram>.
 	 * 
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 */
 	void init(Diagram diagram);
 }

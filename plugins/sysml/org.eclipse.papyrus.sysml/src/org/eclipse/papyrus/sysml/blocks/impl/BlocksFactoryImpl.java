@@ -56,9 +56,9 @@ public class BlocksFactoryImpl extends EFactoryImpl implements BlocksFactory {
 	 */
 	public static BlocksFactory init() {
 		try {
-			BlocksFactory theBlocksFactory = (BlocksFactory) EPackage.Registry.INSTANCE
+			BlocksFactory theBlocksFactory = (BlocksFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks");
-			if (theBlocksFactory != null) {
+			if(theBlocksFactory != null) {
 				return theBlocksFactory;
 			}
 		} catch (Exception exception) {
@@ -83,7 +83,7 @@ public class BlocksFactoryImpl extends EFactoryImpl implements BlocksFactory {
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case BlocksPackage.BLOCK:
 			return createBlock();
 		case BlocksPackage.DISTRIBUTED_PROPERTY:
@@ -215,7 +215,7 @@ public class BlocksFactoryImpl extends EFactoryImpl implements BlocksFactory {
 	 * @generated
 	 */
 	public BlocksPackage getBlocksPackage() {
-		return (BlocksPackage) getEPackage();
+		return (BlocksPackage)getEPackage();
 	}
 
 } // BlocksFactoryImpl

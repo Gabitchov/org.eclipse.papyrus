@@ -59,7 +59,7 @@ public class EntityItemProvider extends ItemProviderAdapter implements IEditingD
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_ComponentPropertyDescriptor(object);
@@ -75,11 +75,11 @@ public class EntityItemProvider extends ItemProviderAdapter implements IEditingD
 	 */
 	protected void addBase_ComponentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Entity_base_Component_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_Entity_base_Component_feature",
-								"_UI_Entity_type"), StandardPackage.Literals.ENTITY__BASE_COMPONENT, true, false, true,
-						null, null, null));
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Entity_base_Component_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Entity_base_Component_feature",
+				"_UI_Entity_type"), StandardPackage.Literals.ENTITY__BASE_COMPONENT, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -105,8 +105,7 @@ public class EntityItemProvider extends ItemProviderAdapter implements IEditingD
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

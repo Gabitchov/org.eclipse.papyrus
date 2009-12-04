@@ -84,7 +84,7 @@ public class RegisteredProfile extends RegisteredElementExtensionPoint {
 	 * is returned
 	 * 
 	 * @param name
-	 *            the name of the profile to find
+	 *        the name of the profile to find
 	 * @return the RegistredProfile with given name or <code>null</code> if no profile was found.
 	 */
 	public static RegisteredProfile getRegisteredProfile(String name) {
@@ -96,23 +96,23 @@ public class RegisteredProfile extends RegisteredElementExtensionPoint {
 	 * the first found is returned.
 	 * 
 	 * @param name
-	 *            the name of the profile to find
+	 *        the name of the profile to find
 	 * @param path
-	 *            the path of the profile file
+	 *        the path of the profile file
 	 * @return the RegistredProfile with given name or <code>null</code> if no profile was found.
 	 */
 	public static RegisteredProfile getRegisteredProfile(String name, String path) {
 		Assert.isNotNull(name);
 		RegisteredProfile[] profiles = getRegisteredProfiles();
-		for (int i = 0; i < profiles.length; i++) {
+		for(int i = 0; i < profiles.length; i++) {
 			RegisteredProfile profile = profiles[i];
 
 			// name corresponds. is path equal?
-			if (name.equals(profile.name)) {
+			if(name.equals(profile.name)) {
 				// no path indicated => first name that corresponds => profile returned
-				if (path == null) {
+				if(path == null) {
 					return profile;
-				} else if (path.equals(profile.path)) {
+				} else if(path.equals(profile.path)) {
 					return profile;
 				}
 			}
@@ -128,7 +128,7 @@ public class RegisteredProfile extends RegisteredElementExtensionPoint {
 	public static RegisteredProfile[] getRegisteredProfiles() {
 
 		// if the list is already known, returns it (cache)
-		if (registeredProfiles != null) {
+		if(registeredProfiles != null) {
 			return registeredProfiles;
 		}
 
@@ -150,10 +150,10 @@ public class RegisteredProfile extends RegisteredElementExtensionPoint {
 				ExtensionIds.PROFILE_EXTENSION_ID);
 
 		// Read configuration elements for the current extension
-		for (int j = 0; j < configElements.length; j++) {
+		for(int j = 0; j < configElements.length; j++) {
 			RegisteredProfile proxy = parseProfileExtension(configElements[j], profiles.size());
 
-			if (proxy != null) {
+			if(proxy != null) {
 				profiles.add(proxy);
 			}
 		} // end of configElements loop
@@ -166,20 +166,20 @@ public class RegisteredProfile extends RegisteredElementExtensionPoint {
 	 * Retrieve all information from the configuration element
 	 * 
 	 * @param ordinal
-	 *            index in the set of registered profiles
+	 *        index in the set of registered profiles
 	 * @param configElt
-	 *            the configuration element from which to retrieve the registered profile
+	 *        the configuration element from which to retrieve the registered profile
 	 * @return the registered profile
 	 */
 	private static RegisteredProfile parseProfileExtension(IConfigurationElement configElt, int ordinal) {
-		if (!TAG_PROFILE.equals(configElt.getName())) {
+		if(!TAG_PROFILE.equals(configElt.getName())) {
 			return null;
 		}
 		try {
 			return new RegisteredProfile(configElt, ordinal);
 		} catch (Exception e) {
 			String name = configElt.getAttribute(ExtensionIds.ATT_NAME);
-			if (name == null) {
+			if(name == null) {
 				name = "[missing name attribute]";
 			}
 			String msg = "Failed to load profile named " + name + " in "

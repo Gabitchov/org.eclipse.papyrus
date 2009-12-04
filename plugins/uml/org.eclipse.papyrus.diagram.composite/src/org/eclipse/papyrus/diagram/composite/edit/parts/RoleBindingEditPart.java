@@ -56,16 +56,16 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof RoleBindingNameEditPart) {
-			((RoleBindingNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof RoleBindingNameEditPart) {
+			((RoleBindingNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof RoleBindingRoleNameEditPart) {
-			((RoleBindingRoleNameEditPart) childEditPart).setLabel(getPrimaryShape().getRoleLabel());
+		if(childEditPart instanceof RoleBindingRoleNameEditPart) {
+			((RoleBindingRoleNameEditPart)childEditPart).setLabel(getPrimaryShape().getRoleLabel());
 			return true;
 		}
-		if (childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
-			((RoleBindingAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
+			((RoleBindingAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
@@ -76,7 +76,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -86,13 +86,13 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof RoleBindingNameEditPart) {
+		if(childEditPart instanceof RoleBindingNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof RoleBindingRoleNameEditPart) {
+		if(childEditPart instanceof RoleBindingRoleNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
+		if(childEditPart instanceof RoleBindingAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -102,7 +102,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -124,7 +124,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public RoleBindingFigure getPrimaryShape() {
-		return (RoleBindingFigure) getFigure();
+		return (RoleBindingFigure)getFigure();
 	}
 
 }

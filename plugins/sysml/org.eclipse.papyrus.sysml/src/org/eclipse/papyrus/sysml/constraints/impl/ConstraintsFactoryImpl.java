@@ -48,9 +48,9 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 */
 	public static ConstraintsFactory init() {
 		try {
-			ConstraintsFactory theConstraintsFactory = (ConstraintsFactory) EPackage.Registry.INSTANCE
+			ConstraintsFactory theConstraintsFactory = (ConstraintsFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints");
-			if (theConstraintsFactory != null) {
+			if(theConstraintsFactory != null) {
 				return theConstraintsFactory;
 			}
 		} catch (Exception exception) {
@@ -75,7 +75,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case ConstraintsPackage.CONSTRAINT_BLOCK:
 			return createConstraintBlock();
 		case ConstraintsPackage.CONSTRAINT_PROPERTY:
@@ -111,7 +111,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 * @generated
 	 */
 	public ConstraintsPackage getConstraintsPackage() {
-		return (ConstraintsPackage) getEPackage();
+		return (ConstraintsPackage)getEPackage();
 	}
 
 } // ConstraintsFactoryImpl

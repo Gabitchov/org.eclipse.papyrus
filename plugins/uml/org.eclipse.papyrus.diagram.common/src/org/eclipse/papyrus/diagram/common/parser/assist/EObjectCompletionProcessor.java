@@ -50,7 +50,7 @@ public abstract class EObjectCompletionProcessor implements IContentAssistProces
 	}
 
 	public ICompletionProposal[] computeCompletionProposals(IContentAssistSubjectControl subjectControl, int offset) {
-		if (myContext == null) {
+		if(myContext == null) {
 			return NO_PROPOSALS;
 		}
 		Point selection = subjectControl.getSelectedRange();
@@ -60,8 +60,8 @@ public abstract class EObjectCompletionProcessor implements IContentAssistProces
 		int prefixLength = prefix.length();
 
 		List<ICompletionProposal> result = new LinkedList<ICompletionProposal>();
-		for (String next : computeContextProposals(myContext)) {
-			if (next == null || !next.startsWith(prefix)) {
+		for(String next : computeContextProposals(myContext)) {
+			if(next == null || !next.startsWith(prefix)) {
 				continue;
 			}
 			ICompletionProposal proposal = new CompletionProposal(next, selectionStart - prefixLength, selectionLength
@@ -102,7 +102,7 @@ public abstract class EObjectCompletionProcessor implements IContentAssistProces
 
 	private String getPrefix(IContentAssistSubjectControl subjectControl, int offset) {
 		IDocument doc = subjectControl.getDocument();
-		if (doc == null || offset > doc.getLength()) {
+		if(doc == null || offset > doc.getLength()) {
 			throw new IllegalStateException("Bad content assist subject control: " + doc);
 		}
 		try {

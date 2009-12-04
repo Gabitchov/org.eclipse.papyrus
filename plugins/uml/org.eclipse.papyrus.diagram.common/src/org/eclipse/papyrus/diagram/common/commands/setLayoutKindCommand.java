@@ -24,7 +24,7 @@ import org.eclipse.papyrus.umlutils.ui.command.CreateEAnnotationCommand;
  */
 public class setLayoutKindCommand extends CreateEAnnotationCommand {
 
-	
+
 	/** The shadowFigure. */
 	private String layoutKind;
 
@@ -32,11 +32,11 @@ public class setLayoutKindCommand extends CreateEAnnotationCommand {
 	 * Instantiates a new sets the qualified name depth command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param shadow
-	 *            the shadow
+	 *        the shadow
 	 */
 	public setLayoutKindCommand(TransactionalEditingDomain domain, EModelElement object, String layoutKind) {
 		super(domain, object, VisualInformationPapyrusConstant.LAYOUTFIGURE);

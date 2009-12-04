@@ -84,13 +84,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 		UMLDiagramEditorPlugin
 				.getInstance()
 				.getImageRegistry()
-				.put(
-						"Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+				.put("Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 		UMLDiagramEditorPlugin
 				.getInstance()
 				.getImageRegistry()
-				.put(
-						"Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+				.put("Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 	}
 
 	/**
@@ -98,8 +96,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public void updateLabel(ViewerLabel label, TreePath elementPath) {
 		Object element = elementPath.getLastSegment();
-		if (element instanceof UMLNavigatorItem
-				&& !isOwnView(((UMLNavigatorItem) element).getView())) {
+		if(element instanceof UMLNavigatorItem
+				&& !isOwnView(((UMLNavigatorItem)element).getView())) {
 			return;
 		}
 		label.setText(getText(element));
@@ -111,24 +109,24 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof UMLNavigatorGroup) {
-			UMLNavigatorGroup group = (UMLNavigatorGroup) element;
+		if(element instanceof UMLNavigatorGroup) {
+			UMLNavigatorGroup group = (UMLNavigatorGroup)element;
 			return UMLDiagramEditorPlugin.getInstance().getBundledImage(
 					group.getIcon());
 		}
 
-		if (element instanceof UMLNavigatorItem) {
-			UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
-			if (!isOwnView(navigatorItem.getView())) {
+		if(element instanceof UMLNavigatorItem) {
+			UMLNavigatorItem navigatorItem = (UMLNavigatorItem)element;
+			if(!isOwnView(navigatorItem.getView())) {
 				return super.getImage(element);
 			}
 			return getImage(navigatorItem.getView());
 		}
 
 		// Due to plugin.xml content will be called only for "own" views
-		if (element instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) element).getAdapter(View.class);
-			if (view != null && isOwnView(view)) {
+		if(element instanceof IAdaptable) {
+			View view = (View)((IAdaptable)element).getAdapter(View.class);
+			if(view != null && isOwnView(view)) {
 				return getImage(view);
 			}
 		}
@@ -140,94 +138,65 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	public Image getImage(View view) {
-		switch (UMLVisualIDRegistry.getVisualID(view)) {
+		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case StateMachineEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http://www.eclipse.org/uml2/2.1.0/UML?Package", UMLElementTypes.Package_79); //$NON-NLS-1$
+			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/2.1.0/UML?Package", UMLElementTypes.Package_79); //$NON-NLS-1$
 		case StateMachine2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?StateMachine", UMLElementTypes.StateMachine_1001); //$NON-NLS-1$
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?StateMachine", UMLElementTypes.StateMachine_1001); //$NON-NLS-1$
 		case CommentEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?Comment", UMLElementTypes.Comment_2024); //$NON-NLS-1$
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/2.1.0/UML?Comment", UMLElementTypes.Comment_2024); //$NON-NLS-1$
 		case RegionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Region", UMLElementTypes.Region_2001); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Region", UMLElementTypes.Region_2001); //$NON-NLS-1$
 		case StateEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2002); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2002); //$NON-NLS-1$
 		case State2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2003); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2003); //$NON-NLS-1$
 		case Region2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Region", UMLElementTypes.Region_2004); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Region", UMLElementTypes.Region_2004); //$NON-NLS-1$
 		case State3EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2005); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2005); //$NON-NLS-1$
 		case ConnectionPointReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?ConnectionPointReference", UMLElementTypes.ConnectionPointReference_2006); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?ConnectionPointReference", UMLElementTypes.ConnectionPointReference_2006); //$NON-NLS-1$
 		case ConnectionPointReference2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?ConnectionPointReference", UMLElementTypes.ConnectionPointReference_2007); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?ConnectionPointReference", UMLElementTypes.ConnectionPointReference_2007); //$NON-NLS-1$
 		case FinalStateEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?FinalState", UMLElementTypes.FinalState_2008); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?FinalState", UMLElementTypes.FinalState_2008); //$NON-NLS-1$
 		case PseudostateEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2009); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2009); //$NON-NLS-1$
 		case Pseudostate2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2010); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2010); //$NON-NLS-1$
 		case Pseudostate3EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2011); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2011); //$NON-NLS-1$
 		case Pseudostate4EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2012); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2012); //$NON-NLS-1$
 		case Pseudostate5EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2013); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2013); //$NON-NLS-1$
 		case Pseudostate6EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2014); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2014); //$NON-NLS-1$
 		case Pseudostate7EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2015); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2015); //$NON-NLS-1$
 		case Pseudostate8EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2016); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2016); //$NON-NLS-1$
 		case State4EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2017); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?State", UMLElementTypes.State_2017); //$NON-NLS-1$
 		case Pseudostate9EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2018); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2018); //$NON-NLS-1$
 		case Pseudostate10EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2019); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2019); //$NON-NLS-1$
 		case Pseudostate11EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2020); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2020); //$NON-NLS-1$
 		case Pseudostate12EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2021); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2021); //$NON-NLS-1$
 		case Pseudostate13EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2022); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2022); //$NON-NLS-1$
 		case Pseudostate14EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2023); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/2.1.0/UML?Pseudostate", UMLElementTypes.Pseudostate_2023); //$NON-NLS-1$
 		case TransitionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Transition", UMLElementTypes.Transition_3001); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Transition", UMLElementTypes.Transition_3001); //$NON-NLS-1$
 		case ElementOwnedCommentEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Element?ownedComment", UMLElementTypes.ElementOwnedComment_3002); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Element?ownedComment", UMLElementTypes.ElementOwnedComment_3002); //$NON-NLS-1$
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Comment?annotatedElement", UMLElementTypes.CommentAnnotatedElement_3003); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/2.1.0/UML?Comment?annotatedElement", UMLElementTypes.CommentAnnotatedElement_3003); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -239,13 +208,13 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 		ImageRegistry imageRegistry = UMLDiagramEditorPlugin.getInstance()
 				.getImageRegistry();
 		Image image = imageRegistry.get(key);
-		if (image == null && elementType != null
+		if(image == null && elementType != null
 				&& UMLElementTypes.isKnownElementType(elementType)) {
 			image = UMLElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
 
-		if (image == null) {
+		if(image == null) {
 			image = imageRegistry.get("Navigator?ImageNotFound"); //$NON-NLS-1$
 			imageRegistry.put(key, image);
 		}
@@ -257,23 +226,23 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 */
 	@Override
 	public String getText(Object element) {
-		if (element instanceof UMLNavigatorGroup) {
-			UMLNavigatorGroup group = (UMLNavigatorGroup) element;
+		if(element instanceof UMLNavigatorGroup) {
+			UMLNavigatorGroup group = (UMLNavigatorGroup)element;
 			return group.getGroupName();
 		}
 
-		if (element instanceof UMLNavigatorItem) {
-			UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
-			if (!isOwnView(navigatorItem.getView())) {
+		if(element instanceof UMLNavigatorItem) {
+			UMLNavigatorItem navigatorItem = (UMLNavigatorItem)element;
+			if(!isOwnView(navigatorItem.getView())) {
 				return null;
 			}
 			return getText(navigatorItem.getView());
 		}
 
 		// Due to plugin.xml content will be called only for "own" views
-		if (element instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) element).getAdapter(View.class);
-			if (view != null && isOwnView(view)) {
+		if(element instanceof IAdaptable) {
+			View view = (View)((IAdaptable)element).getAdapter(View.class);
+			if(view != null && isOwnView(view)) {
 				return getText(view);
 			}
 		}
@@ -285,10 +254,10 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	public String getText(View view) {
-		if (view.getElement() != null && view.getElement().eIsProxy()) {
+		if(view.getElement() != null && view.getElement().eIsProxy()) {
 			return getUnresolvedDomainElementProxyText(view);
 		}
-		switch (UMLVisualIDRegistry.getVisualID(view)) {
+		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case StateMachineEditPart.VISUAL_ID:
 			return getPackage_79Text(view);
 		case StateMachine2EditPart.VISUAL_ID:
@@ -355,12 +324,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPackage_79Text(View view) {
-		Package domainModelElement = (Package) view.getElement();
-		if (domainModelElement != null) {
+		Package domainModelElement = (Package)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 79); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 79); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -375,12 +343,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(StateMachineNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4017); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4017); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -392,16 +359,15 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	private String getComment_2024Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
 				UMLElementTypes.Comment_2024, (view.getElement() != null ? view
-						.getElement() : view), UMLVisualIDRegistry
-						.getType(CommentBodyEditPart.VISUAL_ID));
+				.getElement() : view), UMLVisualIDRegistry
+				.getType(CommentBodyEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5003); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5003); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -411,12 +377,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getRegion_2001Text(View view) {
-		Region domainModelElement = (Region) view.getElement();
-		if (domainModelElement != null) {
+		Region domainModelElement = (Region)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2001); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -427,16 +392,15 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	private String getState_2002Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
 				UMLElementTypes.State_2002, (view.getElement() != null ? view
-						.getElement() : view), UMLVisualIDRegistry
-						.getType(StateNameEditPart.VISUAL_ID));
+				.getElement() : view), UMLVisualIDRegistry
+				.getType(StateNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4001); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -448,16 +412,15 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	private String getState_2003Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
 				UMLElementTypes.State_2003, (view.getElement() != null ? view
-						.getElement() : view), UMLVisualIDRegistry
-						.getType(StateName3EditPart.VISUAL_ID));
+				.getElement() : view), UMLVisualIDRegistry
+				.getType(StateName3EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4013); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4013); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -467,12 +430,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getRegion_2004Text(View view) {
-		Region domainModelElement = (Region) view.getElement();
-		if (domainModelElement != null) {
+		Region domainModelElement = (Region)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2004); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2004); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -483,16 +445,15 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	private String getState_2005Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
 				UMLElementTypes.State_2005, (view.getElement() != null ? view
-						.getElement() : view), UMLVisualIDRegistry
-						.getType(StateName5EditPart.VISUAL_ID));
+				.getElement() : view), UMLVisualIDRegistry
+				.getType(StateName5EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4005); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4005); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -506,15 +467,14 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLElementTypes.ConnectionPointReference_2006,
 				(view.getElement() != null ? view.getElement() : view),
 				UMLVisualIDRegistry
-						.getType(ConnectionPointReferenceNameEditPart.VISUAL_ID));
+				.getType(ConnectionPointReferenceNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4003); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4003); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -528,15 +488,14 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLElementTypes.ConnectionPointReference_2007,
 				(view.getElement() != null ? view.getElement() : view),
 				UMLVisualIDRegistry
-						.getType(ConnectionPointReferenceName2EditPart.VISUAL_ID));
+				.getType(ConnectionPointReferenceName2EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4004); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4004); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -546,12 +505,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getFinalState_2008Text(View view) {
-		FinalState domainModelElement = (FinalState) view.getElement();
-		if (domainModelElement != null) {
+		FinalState domainModelElement = (FinalState)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2008); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2008); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -560,12 +518,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPseudostate_2009Text(View view) {
-		Pseudostate domainModelElement = (Pseudostate) view.getElement();
-		if (domainModelElement != null) {
+		Pseudostate domainModelElement = (Pseudostate)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2009); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2009); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -574,12 +531,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPseudostate_2010Text(View view) {
-		Pseudostate domainModelElement = (Pseudostate) view.getElement();
-		if (domainModelElement != null) {
+		Pseudostate domainModelElement = (Pseudostate)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2010); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2010); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -588,12 +544,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPseudostate_2011Text(View view) {
-		Pseudostate domainModelElement = (Pseudostate) view.getElement();
-		if (domainModelElement != null) {
+		Pseudostate domainModelElement = (Pseudostate)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2011); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2011); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -602,12 +557,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPseudostate_2012Text(View view) {
-		Pseudostate domainModelElement = (Pseudostate) view.getElement();
-		if (domainModelElement != null) {
+		Pseudostate domainModelElement = (Pseudostate)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2012); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2012); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -616,12 +570,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPseudostate_2013Text(View view) {
-		Pseudostate domainModelElement = (Pseudostate) view.getElement();
-		if (domainModelElement != null) {
+		Pseudostate domainModelElement = (Pseudostate)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2013); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2013); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -630,12 +583,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPseudostate_2014Text(View view) {
-		Pseudostate domainModelElement = (Pseudostate) view.getElement();
-		if (domainModelElement != null) {
+		Pseudostate domainModelElement = (Pseudostate)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2014); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2014); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -650,12 +602,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(PseudostateName7EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4021); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4021); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -665,12 +616,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getPseudostate_2016Text(View view) {
-		Pseudostate domainModelElement = (Pseudostate) view.getElement();
-		if (domainModelElement != null) {
+		Pseudostate domainModelElement = (Pseudostate)view.getElement();
+		if(domainModelElement != null) {
 			return String.valueOf(domainModelElement.getName());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2016); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 2016); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -681,16 +631,15 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 	private String getState_2017Text(View view) {
 		IAdaptable hintAdapter = new UMLParserProvider.HintAdapter(
 				UMLElementTypes.State_2017, (view.getElement() != null ? view
-						.getElement() : view), UMLVisualIDRegistry
-						.getType(StateName7EditPart.VISUAL_ID));
+				.getElement() : view), UMLVisualIDRegistry
+				.getType(StateName7EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4009); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4009); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -706,12 +655,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(PseudostateNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4007); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4007); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -727,12 +675,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(PseudostateName2EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4008); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4008); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -748,12 +695,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(PseudostateName3EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4011); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4011); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -769,12 +715,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(PseudostateName4EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4012); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4012); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -790,12 +735,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(PseudostateName5EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4015); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4015); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -811,12 +755,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(PseudostateName6EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4016); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4016); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -832,12 +775,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements
 				UMLVisualIDRegistry.getType(TransitionNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
-		if (parser != null) {
+		if(parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE
 					.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 4019); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 4019); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 

@@ -29,7 +29,7 @@ public class OperationUtil {
 	 * return the custom label of the operation, given UML2 specification and a custom style.
 	 * 
 	 * @param style
-	 *            the integer representing the style of the label
+	 *        the integer representing the style of the label
 	 * 
 	 * @return the string corresponding to the label of the operation
 	 */
@@ -38,12 +38,12 @@ public class OperationUtil {
 		buffer.append(" "); // adds " " first for correct display considerations
 
 		// visibility
-		if ((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(operation));
 		}
 
 		// name
-		if ((style & ICustomAppearence.DISP_NAME) != 0) {
+		if((style & ICustomAppearence.DISP_NAME) != 0) {
 			buffer.append(" ");
 			buffer.append(operation.getName());
 		}
@@ -58,9 +58,9 @@ public class OperationUtil {
 		buffer.append(OperationUtil.getReturnTypeAsString(operation, style));
 
 		// modifiers
-		if ((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
+		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
 			String modifiers = OperationUtil.getModifiersAsString(operation);
-			if (!modifiers.equals("")) {
+			if(!modifiers.equals("")) {
 				buffer.append("{");
 				buffer.append(modifiers);
 				buffer.append("}");
@@ -73,7 +73,7 @@ public class OperationUtil {
 	 * Returns return parameter label as a string, string parametrized with a style mask.
 	 * 
 	 * @param style
-	 *            the mask that indicates which element to display
+	 *        the mask that indicates which element to display
 	 * @return a string containing the return parameter type
 	 */
 	private static String getReturnTypeAsString(Operation operation, int style) {
@@ -84,19 +84,19 @@ public class OperationUtil {
 		// Retrieve the return parameter (assume to be unique if defined)
 		Parameter returnParameter = OperationUtil.getReturnParameter(operation);
 		// Create the string for the return type
-		if (returnParameter == null) {
+		if(returnParameter == null) {
 			// no-operation: label = ""
 
-		} else if (!displayType && !displayMultiplicity) {
+		} else if(!displayType && !displayMultiplicity) {
 			// no-operation: label = ""
 
 		} else {
 			label.append(": ");
-			if (displayType) {
+			if(displayType) {
 				label.append(TypedElementUtil.getTypeAsString(returnParameter));
 			}
 
-			if (displayMultiplicity) {
+			if(displayMultiplicity) {
 				label.append(MultiplicityElementUtil.getMultiplicityAsString(returnParameter));
 			}
 		}
@@ -111,15 +111,15 @@ public class OperationUtil {
 	private static String getParametersAsString(Operation operation, int style) {
 		StringBuffer paramString = new StringBuffer();
 		Iterator<Parameter> paramIterator = operation.getOwnedParameters().iterator();
-		while (paramIterator.hasNext()) {
+		while(paramIterator.hasNext()) {
 			Parameter parameter = paramIterator.next();
 			// Do not include return parameters
-			if (!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
+			if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 
 				// get the label for this parameter
 				paramString.append(ParameterUtil.getCustomLabel(parameter, style));
 
-				if (paramIterator.hasNext()) {
+				if(paramIterator.hasNext()) {
 					paramString.append(", ");
 				}
 			}
@@ -138,16 +138,16 @@ public class OperationUtil {
 
 		// Return parameter modifiers
 		Parameter returnParameter = OperationUtil.getReturnParameter(operation);
-		if (returnParameter != null) {
+		if(returnParameter != null) {
 			// non unique parameter
-			if (!returnParameter.isUnique()) {
+			if(!returnParameter.isUnique()) {
 				buffer.append("nonunique");
 				needsComma = true;
 			}
 
 			// return parameter has ordered values
-			if (returnParameter.isOrdered()) {
-				if (needsComma) {
+			if(returnParameter.isOrdered()) {
+				if(needsComma) {
 					buffer.append(", ");
 				}
 				buffer.append("ordered");
@@ -156,8 +156,8 @@ public class OperationUtil {
 		}
 
 		// is the operation a query ?
-		if (operation.isQuery()) {
-			if (needsComma) {
+		if(operation.isQuery()) {
+			if(needsComma) {
 				buffer.append(", ");
 			}
 			buffer.append("query");
@@ -166,9 +166,9 @@ public class OperationUtil {
 
 		// is the operation redefining another operation ?
 		Iterator<Operation> it = operation.getRedefinedOperations().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			Operation currentOperation = it.next();
-			if (needsComma) {
+			if(needsComma) {
 				buffer.append(", ");
 			}
 			buffer.append("redefines ");
@@ -178,12 +178,12 @@ public class OperationUtil {
 
 		// has the operation a constraint ?
 		Iterator<Constraint> it2 = operation.getOwnedRules().iterator();
-		while (it2.hasNext()) {
+		while(it2.hasNext()) {
 			Constraint constraint = it2.next();
-			if (needsComma) {
+			if(needsComma) {
 				buffer.append(", ");
 			}
-			if (constraint.getSpecification() != null) {
+			if(constraint.getSpecification() != null) {
 				buffer.append(constraint.getSpecification().stringValue());
 			}
 			needsComma = true;
@@ -202,9 +202,9 @@ public class OperationUtil {
 		Parameter returnParameter = null;
 
 		Iterator<Parameter> it = operation.getOwnedParameters().iterator();
-		while ((returnParameter == null) && (it.hasNext())) {
+		while((returnParameter == null) && (it.hasNext())) {
 			Parameter parameter = it.next();
-			if (parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
+			if(parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 				returnParameter = parameter;
 			}
 		}

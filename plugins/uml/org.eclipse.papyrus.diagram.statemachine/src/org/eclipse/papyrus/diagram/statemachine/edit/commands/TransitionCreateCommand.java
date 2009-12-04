@@ -66,25 +66,25 @@ public class TransitionCreateCommand extends CreateElementCommand {
 		this.source = source;
 		this.target = target;
 
-		if (request.getContainmentFeature() == null) {
+		if(request.getContainmentFeature() == null) {
 			setContainmentFeature(UMLPackage.eINSTANCE.getRegion_Transition());
 		}
 
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
+		for(EObject element = source; element != null; element = element
 				.eContainer()) {
-			if (element instanceof Region) {
-				container = (Region) element;
+			if(element instanceof Region) {
+				container = (Region)element;
 				super.setElementToEdit(container);
 				break;
 			}
 		}
 
 		//add container if it's a Region
-		if (request.getContainer() instanceof Region)
-			this.container = (Region) request.getContainer();
+		if(request.getContainer() instanceof Region)
+			this.container = (Region)request.getContainer();
 		//end
 	}
 
@@ -93,25 +93,25 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Vertex) {
+		if(source != null && false == source instanceof Vertex) {
 			return false;
 		}
-		if (target != null && false == target instanceof Vertex) {
+		if(target != null && false == target instanceof Vertex) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
+		if(getContainer() == null) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints
 				.canCreateTransition_3001(getContainer(), getSource(),
-						getTarget());
+				getTarget());
 	}
 
 	/**
@@ -119,12 +119,12 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
+		if(getRequest().getParameters().get(
 				MultiDiagramUtil.BelongToDiagramSource) != null) {
 			Object parameter = getRequest().getParameters().get(
 					MultiDiagramUtil.BelongToDiagramSource);
-			if (parameter instanceof Diagram) {
-				return (Diagram) parameter;
+			if(parameter instanceof Diagram) {
+				return (Diagram)parameter;
 			}
 		}
 		return null;
@@ -141,7 +141,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 		newElement.setTarget(getTarget());
 
 		Diagram diagram = getDiagramFromRequest();
-		if (diagram != null) {
+		if(diagram != null) {
 			MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
 					newElement);
 		} else {
@@ -165,9 +165,8 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}
@@ -195,14 +194,14 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	protected Vertex getSource() {
-		return (Vertex) source;
+		return (Vertex)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Vertex getTarget() {
-		return (Vertex) target;
+		return (Vertex)target;
 	}
 
 	/**

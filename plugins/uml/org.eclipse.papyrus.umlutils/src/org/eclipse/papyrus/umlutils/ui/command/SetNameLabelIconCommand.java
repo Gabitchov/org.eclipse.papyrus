@@ -31,11 +31,11 @@ public class SetNameLabelIconCommand extends CreateEAnnotationCommand {
 	 * Instantiates a new sets the qualified name depth command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object
+	 *        the object
 	 * @param shadow
-	 *            the shadow
+	 *        the shadow
 	 */
 	public SetNameLabelIconCommand(TransactionalEditingDomain domain, EModelElement object, boolean displayIcon) {
 		super(domain, object, VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON);

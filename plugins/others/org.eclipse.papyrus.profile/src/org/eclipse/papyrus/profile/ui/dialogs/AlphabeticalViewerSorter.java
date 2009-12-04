@@ -36,22 +36,27 @@ public class AlphabeticalViewerSorter extends ViewerSorter {
 	/**
 	 * Creates a resource sorter that will use the given sort criteria.
 	 * 
-	 * @param columnIndex the index of the column used to sort elements
+	 * @param columnIndex
+	 *        the index of the column used to sort elements
 	 */
 	public AlphabeticalViewerSorter(int columnIndex) {
 		super();
 		this.columnIndex = columnIndex;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * Method declared on ViewerSorter.
 	 */
 	/**
 	 * Compare.
 	 * 
-	 * @param viewer the viewer
-	 * @param o2 the o2
-	 * @param o1 the o1
+	 * @param viewer
+	 *        the viewer
+	 * @param o2
+	 *        the o2
+	 * @param o1
+	 *        the o1
 	 * 
 	 * @return the int
 	 */
@@ -60,7 +65,7 @@ public class AlphabeticalViewerSorter extends ViewerSorter {
 		Assert.isTrue(viewer instanceof TableViewer);
 		IBaseLabelProvider provider = ((TableViewer)viewer).getLabelProvider();
 		Assert.isTrue(provider instanceof ITableLabelProvider);
-		
+
 		String s1 = ((ITableLabelProvider)provider).getColumnText(o1, columnIndex);
 		String s2 = ((ITableLabelProvider)provider).getColumnText(o2, columnIndex);
 		return collator.compare(s1, s2);

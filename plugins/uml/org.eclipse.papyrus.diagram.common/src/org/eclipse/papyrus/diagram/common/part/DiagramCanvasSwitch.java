@@ -29,7 +29,7 @@ public class DiagramCanvasSwitch {
 	 * Gets the <Diagram>'s <EObject> given an <EditPolicy>.
 	 * 
 	 * @param policy
-	 *            the policy
+	 *        the policy
 	 * 
 	 * @return the canvas element
 	 */
@@ -43,7 +43,7 @@ public class DiagramCanvasSwitch {
 	 * <EObject>.
 	 * 
 	 * @param editPolicy
-	 *            the edit policy
+	 *        the edit policy
 	 * 
 	 * @return the element to edit for create command
 	 */
@@ -56,7 +56,7 @@ public class DiagramCanvasSwitch {
 	 * Gets the <EClass> to edit. It's the EClass of the canvas <EObject>
 	 * 
 	 * @param editPolicy
-	 *            the edit policy
+	 *        the edit policy
 	 * 
 	 * @return the e class to edit for create command
 	 */

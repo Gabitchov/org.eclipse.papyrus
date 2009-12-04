@@ -51,8 +51,8 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DependencyNameEditPart) {
-			((DependencyNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof DependencyNameEditPart) {
+			((DependencyNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -62,7 +62,7 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -72,7 +72,7 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DependencyNameEditPart) {
+		if(childEditPart instanceof DependencyNameEditPart) {
 			return true;
 		}
 		return false;
@@ -82,7 +82,7 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -105,7 +105,7 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

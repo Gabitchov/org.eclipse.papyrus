@@ -26,7 +26,7 @@ public class DurationObservationNodeFigure extends AbstractObservationNodeFigure
 	public static final String IMAGE_DURATION = "DurationObservation.gif"; //$NON-NLS-1$
 
 	public void setAppliedStereotypeIcon(Image image) {
-		if (image == null)
+		if(image == null)
 			setIcon(Activator.getPluginIconImage(ID, PATH + IMAGE_DURATION));
 		else
 			setIcon(image);

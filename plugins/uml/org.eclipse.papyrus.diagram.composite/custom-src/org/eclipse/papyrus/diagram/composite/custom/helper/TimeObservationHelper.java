@@ -55,7 +55,7 @@ public class TimeObservationHelper extends ElementHelper {
 	 * Instantiates a new TimeObservation helper.
 	 * 
 	 * @param editDomain
-	 *            the edit domain
+	 *        the edit domain
 	 */
 	public TimeObservationHelper(TransactionalEditingDomain editDomain) {
 		this.editDomain = editDomain;
@@ -65,15 +65,15 @@ public class TimeObservationHelper extends ElementHelper {
 	 * Drop TimeObservation.
 	 * 
 	 * @param durationobservation
-	 *            the association class the semantic element
+	 *        the association class the semantic element
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * @param diagramPreferencesHint
-	 *            the diagram preferences hint
+	 *        the diagram preferences hint
 	 * @param location
-	 *            the location of the drop
+	 *        the location of the drop
 	 * @param containerView
-	 *            the container view that will contain the associationClass views
+	 *        the container view that will contain the associationClass views
 	 * 
 	 * @return the command
 	 */
@@ -86,23 +86,23 @@ public class TimeObservationHelper extends ElementHelper {
 		GraphicalEditPart endEditPart = null;
 
 		// we have an event
-		if (endToConnect != null) {
+		if(endToConnect != null) {
 			// look for if an editpart exist for this element
 			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
 			Iterator<EditPart> editPartIterator = editPartSet.iterator();
 
-			while (editPartIterator.hasNext() && endEditPart == null) {
+			while(editPartIterator.hasNext() && endEditPart == null) {
 
 				EditPart currentEditPart = editPartIterator.next();
-				if (currentEditPart instanceof GraphicalEditPart
-						&& endToConnect.equals(((GraphicalEditPart) currentEditPart).resolveSemanticElement())) {
+				if(currentEditPart instanceof GraphicalEditPart
+						&& endToConnect.equals(((GraphicalEditPart)currentEditPart).resolveSemanticElement())) {
 					/**
 					 * Warning : TimeObservationEditPart, TimeObservationStereotypeLabelEditPart and
 					 * TimeObservationNameEditPart are equal : This is the object of this 2nd IF!!!
 					 */
-					if (!(currentEditPart instanceof CompartmentEditPart)
+					if(!(currentEditPart instanceof CompartmentEditPart)
 							&& !(currentEditPart instanceof LabelEditPart))
-						endEditPart = (GraphicalEditPart) currentEditPart;
+						endEditPart = (GraphicalEditPart)currentEditPart;
 				}
 			}
 		}
@@ -110,33 +110,33 @@ public class TimeObservationHelper extends ElementHelper {
 		// 2. creation of the node TimeObservation
 		IAdaptable elementAdapter = new EObjectAdapter(timeObservation);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class,
-				((IHintedType) UMLElementTypes.TimeObservation_2094).getSemanticHint(), ViewUtil.APPEND, false,
+				((IHintedType)UMLElementTypes.TimeObservation_2094).getSemanticHint(), ViewUtil.APPEND, false,
 				diagramPreferencesHint);
-		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, ((View) containerView));
+		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)containerView));
 		cc.compose(nodeCreationCommand);
 
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-				(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), location);
+				(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location);
 		cc.compose(setBoundsCommand);
 
-		if (endEditPart != null) {
+		if(endEditPart != null) {
 			IAdaptable sourceEventAdapter = null;
 			IAdaptable targetEventAdapter = null;
 
 			// obtain the node figure
-			sourceEventAdapter = (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue();
+			sourceEventAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 
 			// used in the creation command of the event
 			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(
 					UMLElementTypes.TimeObservationEvent_4018,
-					((IHintedType) UMLElementTypes.TimeObservationEvent_4018).getSemanticHint(), diagramPreferencesHint);
+					((IHintedType)UMLElementTypes.TimeObservationEvent_4018).getSemanticHint(), diagramPreferencesHint);
 
 			// 3. creation of the dashed line between the associationClass link
 
 			targetEventAdapter = new SemanticAdapter(null, endEditPart.getModel());
 			CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(
-					getEditingDomain(), ((IHintedType) UMLElementTypes.TimeObservationEvent_4018).getSemanticHint(),
-					((IAdaptable) sourceEventAdapter), ((IAdaptable) targetEventAdapter), viewer,
+					getEditingDomain(), ((IHintedType)UMLElementTypes.TimeObservationEvent_4018).getSemanticHint(),
+					((IAdaptable)sourceEventAdapter), ((IAdaptable)targetEventAdapter), viewer,
 					diagramPreferencesHint, dashedLineViewDescriptor, null);
 			dashedLineCmd.setElement(timeObservation);
 			cc.compose(dashedLineCmd);

@@ -35,8 +35,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ControlFlowEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class ControlFlowEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -56,35 +55,25 @@ public class ControlFlowEditPart extends ConnectionNodeEditPart implements
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ControlFlowItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ControlFlowItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
 		// ** install new ConnectionEditPolicy
-		installEditPolicy(EditPolicy.CONNECTION_ROLE,
-				new ConnectionEditPolicy() {
-					@Override
-					protected boolean shouldDeleteSemantic() {
-						return false;
-					}
+		installEditPolicy(EditPolicy.CONNECTION_ROLE, new ConnectionEditPolicy() {
 
-					@Override
-					protected Command createDeleteViewCommand(
-							GroupRequest deleteRequest) {
-						Command command = super
-								.createDeleteViewCommand(deleteRequest);
-						command = command
-								.chain(new ICommandProxy(
-										new RemoveEObjectReferencesFromDiagram(
-												getEditingDomain(),
-												ControlFlowEditPart.this
-														.getDiagramView(),
-												Collections
-														.singletonList(resolveSemanticElement()))));
-						return command;
-					}
-				});
+			@Override
+			protected boolean shouldDeleteSemantic() {
+				return false;
+			}
+
+			@Override
+			protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
+				Command command = super.createDeleteViewCommand(deleteRequest);
+				command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(getEditingDomain(), ControlFlowEditPart.this.getDiagramView(), Collections
+						.singletonList(resolveSemanticElement()))));
+				return command;
+			}
+		});
 	}
 
 	/**
@@ -92,9 +81,7 @@ public class ControlFlowEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ControlFlowNameEditPart) {
-			((ControlFlowNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureActivityEdgeFigure_name());
+			((ControlFlowNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureActivityEdgeFigure_name());
 			return true;
 		}
 		return false;
@@ -114,8 +101,7 @@ public class ControlFlowEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -160,8 +146,7 @@ public class ControlFlowEditPart extends ConnectionNodeEditPart implements
 			fFigureActivityEdgeFigure_name = new WrappingLabel();
 			fFigureActivityEdgeFigure_name.setText("");
 
-			fFigureActivityEdgeFigure_name
-					.setFont(FFIGUREACTIVITYEDGEFIGURE_NAME_FONT);
+			fFigureActivityEdgeFigure_name.setFont(FFIGUREACTIVITYEDGEFIGURE_NAME_FONT);
 
 			this.add(fFigureActivityEdgeFigure_name);
 
@@ -196,8 +181,7 @@ public class ControlFlowEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREACTIVITYEDGEFIGURE_NAME_FONT = new Font(Display
-			.getCurrent(), "SANS", 9, SWT.NORMAL);
+	static final Font FFIGUREACTIVITYEDGEFIGURE_NAME_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
 
 	/**
 	 * @generated
@@ -208,8 +192,7 @@ public class ControlFlowEditPart extends ConnectionNodeEditPart implements
 
 		features.add(UMLPackage.eINSTANCE.getActivityEdge_Source());
 		features.add(UMLPackage.eINSTANCE.getActivityEdge_Target());
-		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification,
-				features);
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, notification, features);
 	}
 
 }

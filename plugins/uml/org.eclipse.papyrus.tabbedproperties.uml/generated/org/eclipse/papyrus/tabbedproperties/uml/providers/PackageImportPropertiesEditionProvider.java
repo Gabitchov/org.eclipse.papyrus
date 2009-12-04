@@ -40,7 +40,7 @@ public class PackageImportPropertiesEditionProvider implements IPropertiesEditio
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof PackageImport) {
+		if(eObject instanceof PackageImport) {
 			return new PackageImportPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class PackageImportPropertiesEditionProvider implements IPropertiesEditio
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof PackageImport) {
-			if (PackageImportBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof PackageImport) {
+			if(PackageImportBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new PackageImportBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

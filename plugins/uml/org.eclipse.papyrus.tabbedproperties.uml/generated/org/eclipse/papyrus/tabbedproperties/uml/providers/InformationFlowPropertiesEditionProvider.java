@@ -40,7 +40,7 @@ public class InformationFlowPropertiesEditionProvider implements IPropertiesEdit
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof InformationFlow) {
+		if(eObject instanceof InformationFlow) {
 			return new InformationFlowPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class InformationFlowPropertiesEditionProvider implements IPropertiesEdit
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof InformationFlow) {
-			if (InformationFlowBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof InformationFlow) {
+			if(InformationFlowBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new InformationFlowBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

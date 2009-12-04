@@ -68,7 +68,7 @@ public class CommentLinkDescriptorEditPart extends ConnectionNodeEditPart implem
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor) getFigure();
+		return (CommentLinkDescriptor)getFigure();
 	}
 
 	/**

@@ -25,24 +25,24 @@ import org.eclipse.uml2.uml.Element;
 public class AppliedStereotypeSectionFilter extends ShapeEditPartPropertySectionFilter {
 
 	public boolean select(Object object) {
-		if (object instanceof ShapeEditPart) {
-			if (((ShapeEditPart) object).resolveSemanticElement() != null && ((ShapeEditPart) object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Element) {
+		if(object instanceof ShapeEditPart) {
+			if(((ShapeEditPart)object).resolveSemanticElement() != null && ((ShapeEditPart)object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Element) {
 				return true;
 			}
-		} else if (object instanceof ConnectionNodeEditPart) {
-			if (((ConnectionNodeEditPart) object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Element) {
+		} else if(object instanceof ConnectionNodeEditPart) {
+			if(((ConnectionNodeEditPart)object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Element) {
 				return true;
 			}
-		} else if (object instanceof CompartmentEditPart) {
-			if (((CompartmentEditPart) object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Element) {
+		} else if(object instanceof CompartmentEditPart) {
+			if(((CompartmentEditPart)object).resolveSemanticElement() instanceof org.eclipse.uml2.uml.Element) {
 				return true;
 			}
-		} else if (object instanceof DiagramEditPart) {
-			DiagramEditPart diagramEditPart = (DiagramEditPart) object;
-			if (diagramEditPart.resolveSemanticElement() != null && diagramEditPart.resolveSemanticElement() instanceof Element) {
+		} else if(object instanceof DiagramEditPart) {
+			DiagramEditPart diagramEditPart = (DiagramEditPart)object;
+			if(diagramEditPart.resolveSemanticElement() != null && diagramEditPart.resolveSemanticElement() instanceof Element) {
 				return true;
 			}
-		} else if (object instanceof Element) {
+		} else if(object instanceof Element) {
 			return true;
 		}
 		return false;

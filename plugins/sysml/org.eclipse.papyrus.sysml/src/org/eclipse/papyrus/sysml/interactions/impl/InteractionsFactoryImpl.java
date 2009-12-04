@@ -47,9 +47,9 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	 */
 	public static InteractionsFactory init() {
 		try {
-			InteractionsFactory theInteractionsFactory = (InteractionsFactory) EPackage.Registry.INSTANCE
+			InteractionsFactory theInteractionsFactory = (InteractionsFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Interactions");
-			if (theInteractionsFactory != null) {
+			if(theInteractionsFactory != null) {
 				return theInteractionsFactory;
 			}
 		} catch (Exception exception) {
@@ -83,7 +83,7 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case InteractionsPackage.DUMMY:
 			return convertDummyToString(eDataType, instanceValue);
 		default:
@@ -98,7 +98,7 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,7 +110,7 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	 * @generated
 	 */
 	public String createDummyFromString(EDataType eDataType, String initialValue) {
-		return (String) super.createFromString(eDataType, initialValue);
+		return (String)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case InteractionsPackage.DUMMY:
 			return createDummyFromString(eDataType, initialValue);
 		default:
@@ -134,7 +134,7 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	 * @generated
 	 */
 	public InteractionsPackage getInteractionsPackage() {
-		return (InteractionsPackage) getEPackage();
+		return (InteractionsPackage)getEPackage();
 	}
 
 } // InteractionsFactoryImpl

@@ -92,7 +92,7 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 		int height = tagLabel.getTextBounds().height + 10;
 		Dimension dim = super.getMinimumDimension();
 		dim.height += height;
-		if (dim.width < width) {
+		if(dim.width < width) {
 			dim.width = width;
 		}
 		return dim;
@@ -109,7 +109,7 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 		graphics.setForegroundColor(getBorderColor());
 		graphics.setBackgroundColor(getBorderColor());
 
-		if (this.getStereotypePropertiesContent() != null) {
+		if(this.getStereotypePropertiesContent() != null) {
 			int x = getBounds().x, w = getBounds().width;
 
 			// draw a line below name label

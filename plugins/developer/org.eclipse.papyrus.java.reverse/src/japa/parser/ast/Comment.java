@@ -33,29 +33,32 @@ import japa.parser.ast.body.JavadocComment;
  */
 public abstract class Comment extends Node {
 
-    private String content;
+	private String content;
 
-    public Comment() {
-    }
+	public Comment() {
+	}
 
-    public Comment(int beginLine, int beginColumn, int endLine, int endColumn, String content) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.content = content;
-    }
+	public Comment(int beginLine, int beginColumn, int endLine, int endColumn, String content) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.content = content;
+	}
 
-    /**
-     * Return the text of the comment. 
-     * @return text of the comment
-     */
-    public final String getContent() {
-        return content;
-    }
+	/**
+	 * Return the text of the comment.
+	 * 
+	 * @return text of the comment
+	 */
+	public final String getContent() {
+		return content;
+	}
 
-    /**
-     * Sets the text of the comment.
-     * @param content the text of the comment to set
-     */
-    public void setContent(String content) {
-        this.content = content;
-    }
+	/**
+	 * Sets the text of the comment.
+	 * 
+	 * @param content
+	 *        the text of the comment to set
+	 */
+	public void setContent(String content) {
+		this.content = content;
+	}
 }

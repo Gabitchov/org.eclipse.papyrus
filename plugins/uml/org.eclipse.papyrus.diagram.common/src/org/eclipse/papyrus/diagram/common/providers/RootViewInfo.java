@@ -51,17 +51,16 @@ public class RootViewInfo {
 	public ViewInfo headViewInfo;
 
 	/**
-	 * Gets an {@link IModelTypesProvider} via the specified {@link IModelTypesProviderFactory}
-	 * using the defined editorID.
+	 * Gets an {@link IModelTypesProvider} via the specified {@link IModelTypesProviderFactory} using the defined editorID.
 	 * 
 	 * @return
 	 */
 	// @unused
 	public IModelTypesProvider getModelTypesProvider() {
-		if (editorID != null && modelTypes != null) {
-			IModelTypesProviderFactory factory = (IModelTypesProviderFactory) Platform.getAdapterManager().getAdapter(
+		if(editorID != null && modelTypes != null) {
+			IModelTypesProviderFactory factory = (IModelTypesProviderFactory)Platform.getAdapterManager().getAdapter(
 					modelTypes, IModelTypesProviderFactory.class);
-			if (factory != null) {
+			if(factory != null) {
 				return factory.getProviderForEditor(editorID);
 			}
 		}

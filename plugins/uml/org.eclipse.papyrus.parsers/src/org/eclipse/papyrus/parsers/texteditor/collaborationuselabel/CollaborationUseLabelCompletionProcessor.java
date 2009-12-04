@@ -50,7 +50,7 @@ public class CollaborationUseLabelCompletionProcessor extends LabelCompletionPro
 	 * Constructor
 	 * 
 	 * @param collaborationUse
-	 *            the parsed {@link CollaborationUse}
+	 *        the parsed {@link CollaborationUse}
 	 */
 	public CollaborationUseLabelCompletionProcessor(CollaborationUse collaborationUse) {
 		this.collaborationUse = collaborationUse;
@@ -98,7 +98,7 @@ public class CollaborationUseLabelCompletionProcessor extends LabelCompletionPro
 			result = computeCompletions(viewer, parser.getContext(), documentOffset, selectionRange);
 		}
 
-		return result.toArray(new ICompletionProposal[] {});
+		return result.toArray(new ICompletionProposal[]{});
 	}
 
 	/*
@@ -124,7 +124,7 @@ public class CollaborationUseLabelCompletionProcessor extends LabelCompletionPro
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
 
 		String prefix = getPrefix(viewer, documentOffset);
-		switch (context) {
+		switch(context) {
 
 		// DEFAULT : visibility or name
 		case IContext.DEFAULT:
@@ -140,8 +140,8 @@ public class CollaborationUseLabelCompletionProcessor extends LabelCompletionPro
 
 		// NAME: either ':' or ":undefined"
 		case IContext.NAME:
-			v.addAll(createCompletionProposalsWithDifferentName(new String[] { ": ", ": <Undefined>" }, new String[] {
-					"CollaborationUse type", "Undefined CollaborationUse type" }, new String[] {
+			v.addAll(createCompletionProposalsWithDifferentName(new String[]{ ": ", ": <Undefined>" }, new String[]{
+					"CollaborationUse type", "Undefined CollaborationUse type" }, new String[]{
 					": <Collaboration Name>", ": <Undefined>" }, "", documentOffset));
 			break;
 

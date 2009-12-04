@@ -33,8 +33,8 @@ import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.uml.standard.provider.TraceItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.DeriveReqt}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.DeriveReqt} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -59,7 +59,7 @@ public class DeriveReqtItemProvider extends TraceItemProvider implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -89,8 +89,7 @@ public class DeriveReqtItemProvider extends TraceItemProvider implements IEditin
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

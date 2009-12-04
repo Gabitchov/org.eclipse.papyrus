@@ -24,8 +24,8 @@ import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter
- * <code>createXXX</code> method for each class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage
  * @generated
@@ -79,7 +79,7 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public PortandflowsAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = PortandflowsPackage.eINSTANCE;
 		}
 	}
@@ -88,13 +88,13 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param target
-	 *            the object to adapt.
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**
@@ -109,8 +109,7 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.portandflows.FlowPort <em>Flow Port</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort <em>Flow Port</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -124,8 +123,7 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty <em>Flow Property</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty <em>Flow Property</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -139,9 +137,8 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification <em>Flow Specification</em>}
-	 * '. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification <em>Flow Specification</em>} '.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * 
@@ -154,8 +151,7 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow <em>Item Flow</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow <em>Item Flow</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -178,11 +174,11 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if(object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}

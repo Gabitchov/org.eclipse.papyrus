@@ -26,7 +26,7 @@ public interface ViewAndFeatureResolver extends ViewResolver {
 	 * Gets the e structural feature for e class.
 	 * 
 	 * @param eClass
-	 *            the e class
+	 *        the e class
 	 * 
 	 * @return the e structural feature for e class
 	 */

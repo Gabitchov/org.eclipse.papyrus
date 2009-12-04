@@ -35,7 +35,7 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		EditPolicy result = super.createChildEditPolicy(child);
-		if (result == null) {
+		if(result == null) {
 			return new ResizableShapeEditPolicy();
 		}
 		return result;
@@ -49,23 +49,23 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		EditPart combinedFragmentCompartment = getHost().getParent();
 		EditPart combinedFragment = combinedFragmentCompartment.getParent();
 		EditPart interactionCompartment = combinedFragment.getParent();
-		if (REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
-			if (UMLElementTypes.InteractionOperand_3005.equals(((CreateUnspecifiedTypeRequest) request)
+		if(REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
+			if(UMLElementTypes.InteractionOperand_3005.equals(((CreateUnspecifiedTypeRequest)request)
 					.getElementTypes().get(0))) {
 				return combinedFragmentCompartment.getCommand(request);
-			} else if (UMLElementTypes.CombinedFragment_3004.equals(((CreateUnspecifiedTypeRequest) request)
+			} else if(UMLElementTypes.CombinedFragment_3004.equals(((CreateUnspecifiedTypeRequest)request)
 					.getElementTypes().get(0))) {
 				return interactionCompartment.getCommand(request);
-			} else if (UMLElementTypes.Lifeline_3001.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes()
+			} else if(UMLElementTypes.Lifeline_3001.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes()
 					.get(0))) {
 				return interactionCompartment.getCommand(request);
 			}
-		} else if (request instanceof CreateConnectionViewAndElementRequest) {
-			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest) request;
-			if (getHost().equals(createConnectionRequest.getSourceEditPart())) {
+		} else if(request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest)request;
+			if(getHost().equals(createConnectionRequest.getSourceEditPart())) {
 				createConnectionRequest.setSourceEditPart(combinedFragment);
 			}
-			if (getHost().equals(createConnectionRequest.getTargetEditPart())) {
+			if(getHost().equals(createConnectionRequest.getTargetEditPart())) {
 				createConnectionRequest.setTargetEditPart(combinedFragment);
 			}
 			return combinedFragment.getCommand(request);

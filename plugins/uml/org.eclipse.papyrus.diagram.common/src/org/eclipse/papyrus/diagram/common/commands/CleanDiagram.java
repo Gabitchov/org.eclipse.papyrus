@@ -60,7 +60,7 @@ import org.eclipse.ui.IWorkbenchPart;
 public class CleanDiagram implements IObjectActionDelegate {
 
 	/** The view to remove. */
-	protected ArrayList<View> viewToRemove= new ArrayList<View>();
+	protected ArrayList<View> viewToRemove = new ArrayList<View>();
 
 
 	/** The selected element. */
@@ -85,8 +85,8 @@ public class CleanDiagram implements IObjectActionDelegate {
 	 * {@inheritDoc}
 	 */
 	public void run(IAction action) {
-		OrphanViewPolicy removeOrphanViewPolicy= (OrphanViewPolicy)selectedElement.getEditPolicy("RemoveOrphanView");
-		if(removeOrphanViewPolicy!=null){
+		OrphanViewPolicy removeOrphanViewPolicy = (OrphanViewPolicy)selectedElement.getEditPolicy("RemoveOrphanView");
+		if(removeOrphanViewPolicy != null) {
 			removeOrphanViewPolicy.forceRefresh();
 		}
 		scan(selectedElement);
@@ -98,35 +98,36 @@ public class CleanDiagram implements IObjectActionDelegate {
 	 * Delete unknown views.
 	 */
 	protected void deleteUnknownViews() {
-		for(int i=0; i< viewToRemove.size();i++){
-			PapyrusTrace.log(IStatus.INFO, "Remove "+viewToRemove.get(i));
+		for(int i = 0; i < viewToRemove.size(); i++) {
+			PapyrusTrace.log(IStatus.INFO, "Remove " + viewToRemove.get(i));
 			executeCommand(getDeleteViewCommand(viewToRemove.get(i)));
 		}
 	}
 
-	
+
 	/**
-	 * comes from  {@link OrphanViewPolicy}.
+	 * comes from {@link OrphanViewPolicy}.
 	 * 
-	 * @param cmd the cmd
+	 * @param cmd
+	 *        the cmd
 	 */
 	protected void executeCommand(final Command cmd) {
 		Map options = null;
-		
+
 		EditPart ep = selectedElement;
 		boolean isActivating = true;
 		// use the viewer to determine if we are still initializing the diagram
 		// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
 		// parent will not be a diagram edit part
 		EditPartViewer viewer = ep.getViewer();
-		if (viewer instanceof DiagramGraphicalViewer) {
-			isActivating = ((DiagramGraphicalViewer) viewer).isInitializing();
+		if(viewer instanceof DiagramGraphicalViewer) {
+			isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
 		}
 
-		if (isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart) selectedElement, false, false))
+		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)selectedElement, false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
-		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart) selectedElement).getEditingDomain(),
+		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)selectedElement).getEditingDomain(),
 				StringStatics.BLANK, options) {
 
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -139,77 +140,78 @@ public class CleanDiagram implements IObjectActionDelegate {
 		try {
 			operation.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-					"executeCommand", e); //$NON-NLS-1$
-			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"executeCommand", e); //$NON-NLS-1$
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "executeCommand", e); //$NON-NLS-1$
+			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "executeCommand", e); //$NON-NLS-1$
 		}
 	}
-	
+
 	/**
 	 * Try to construct.
 	 * 
-	 * @param parent the parent
-	 * @param child the child
+	 * @param parent
+	 *        the parent
+	 * @param child
+	 *        the child
 	 * 
 	 * @return the edits the part
 	 */
 	@SuppressWarnings("restriction")
-	protected EditPart tryToConstruct(EditPart parent, View child){
-		
-		if( selectedElement.getViewer().getEditPartFactory().createEditPart(parent, child) instanceof DefaultNodeEditPart){
+	protected EditPart tryToConstruct(EditPart parent, View child) {
+
+		if(selectedElement.getViewer().getEditPartFactory().createEditPart(parent, child) instanceof DefaultNodeEditPart) {
 			viewToRemove.add(child);
-		}
-		else{
-			Object object=selectedElement.getViewer().getEditPartRegistry().get(child);
-			if (object instanceof EditPart){
+		} else {
+			Object object = selectedElement.getViewer().getEditPartRegistry().get(child);
+			if(object instanceof EditPart) {
 				return ((EditPart)object);
 			}
 		}
 		return null;
 	}
 
-	
+
 	/**
 	 * gets a {@link Command} to delete the supplied {@link View}.
 	 * 
-	 * @param view view to use
+	 * @param view
+	 *        view to use
 	 * 
 	 * @return command
 	 */
 	protected Command getDeleteViewCommand(View view) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) selectedElement).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)selectedElement).getEditingDomain();
 		return new ICommandProxy(new DeleteCommand(editingDomain, view));
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Scan.
 	 * 
-	 * @param editPart the edit part
+	 * @param editPart
+	 *        the edit part
 	 */
-	public void scan(EditPart editPart){
-		View parentView= (View)editPart.getModel();
-		Iterator<EObject> iterator=parentView.eAllContents();
-		while(iterator.hasNext()){
-			EObject currentObject= iterator.next();
-			if (currentObject instanceof View){
-				EditPart currentEditPart=tryToConstruct(editPart, (View)currentObject);
+	public void scan(EditPart editPart) {
+		View parentView = (View)editPart.getModel();
+		Iterator<EObject> iterator = parentView.eAllContents();
+		while(iterator.hasNext()) {
+			EObject currentObject = iterator.next();
+			if(currentObject instanceof View) {
+				EditPart currentEditPart = tryToConstruct(editPart, (View)currentObject);
 
 			}
 		}
 
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
-			if (selectedobject instanceof DiagramEditPart) {
-				selectedElement = (DiagramEditPart) selectedobject;
+		if(selection instanceof IStructuredSelection) {
+			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
+			if(selectedobject instanceof DiagramEditPart) {
+				selectedElement = (DiagramEditPart)selectedobject;
 			}
 		}
 

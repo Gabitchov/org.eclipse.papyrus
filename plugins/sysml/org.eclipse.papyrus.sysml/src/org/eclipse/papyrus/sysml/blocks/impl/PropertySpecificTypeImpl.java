@@ -23,13 +23,11 @@ import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Property Specific Type</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Property Specific Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl#getBase_Classifier <em>
- * Base Classifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl#getBase_Classifier <em> Base Classifier</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,9 +70,9 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER:
-			if (resolve)
+			if(resolve)
 				return getBase_Classifier();
 			return basicGetBase_Classifier();
 		}
@@ -88,7 +86,7 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER:
 			return base_Classifier != null;
 		}
@@ -102,9 +100,9 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER:
-			setBase_Classifier((Classifier) newValue);
+			setBase_Classifier((Classifier)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,9 +125,9 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER:
-			setBase_Classifier((Classifier) null);
+			setBase_Classifier((Classifier)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,11 +139,11 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 	 * @generated
 	 */
 	public Classifier getBase_Classifier() {
-		if (base_Classifier != null && base_Classifier.eIsProxy()) {
-			InternalEObject oldBase_Classifier = (InternalEObject) base_Classifier;
-			base_Classifier = (Classifier) eResolveProxy(oldBase_Classifier);
-			if (base_Classifier != oldBase_Classifier) {
-				if (eNotificationRequired())
+		if(base_Classifier != null && base_Classifier.eIsProxy()) {
+			InternalEObject oldBase_Classifier = (InternalEObject)base_Classifier;
+			base_Classifier = (Classifier)eResolveProxy(oldBase_Classifier);
+			if(base_Classifier != oldBase_Classifier) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 			}
@@ -161,7 +159,7 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 	public void setBase_Classifier(Classifier newBase_Classifier) {
 		Classifier oldBase_Classifier = base_Classifier;
 		base_Classifier = newBase_Classifier;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 	}

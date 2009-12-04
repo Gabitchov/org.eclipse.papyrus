@@ -52,8 +52,8 @@ import org.eclipse.papyrus.uml.standard.Type;
 import org.eclipse.papyrus.uml.standard.Utility;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter
- * <code>createXXX</code> method for each class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.uml.standard.StandardPackage
  * @generated
@@ -73,7 +73,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public StandardAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = StandardPackage.eINSTANCE;
 		}
 	}
@@ -88,11 +88,11 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if(object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -280,18 +280,17 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param target
-	 *            the object to adapt.
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Auxiliary <em>Auxiliary</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Auxiliary <em>Auxiliary</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -304,8 +303,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.BuildComponent <em>Build Component</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.BuildComponent <em>Build Component</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -361,8 +359,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Destroy <em>Destroy</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Destroy <em>Destroy</em>}'. <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -389,8 +386,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Framework <em>Framework</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Framework <em>Framework</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -403,8 +399,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Implement <em>Implement</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Implement <em>Implement</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -417,8 +412,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.ImplementationClass <em>Implementation Class</em>}'.
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.ImplementationClass <em>Implementation Class</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -432,8 +426,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Instantiate <em>Instantiate</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Instantiate <em>Instantiate</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -447,8 +440,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Metaclass <em>Metaclass</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Metaclass <em>Metaclass</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -461,8 +453,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.ModelLibrary <em>Model Library</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.ModelLibrary <em>Model Library</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -490,8 +481,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Responsibility <em>Responsibility</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Responsibility <em>Responsibility</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -561,8 +551,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Utility <em>Utility</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Utility <em>Utility</em>}'. <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -575,8 +564,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Document <em>Document</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Document <em>Document</em>}'. <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -603,8 +591,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Executable <em>Executable</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Executable <em>Executable</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -631,8 +618,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Library <em>Library</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Library <em>Library</em>}'. <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -645,8 +631,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Process <em>Process</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Process <em>Process</em>}'. <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -659,8 +644,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Realization <em>Realization</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Realization <em>Realization</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -674,8 +658,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Service <em>Service</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Service <em>Service</em>}'. <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -702,8 +685,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Specification <em>Specification</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Specification <em>Specification</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
@@ -717,8 +699,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Subsystem <em>Subsystem</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Subsystem <em>Subsystem</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -731,8 +712,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.Metamodel <em>Metamodel</em>}'. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.Metamodel <em>Metamodel</em>}'. <!-- begin-user-doc
 	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -745,8 +725,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.papyrus.uml.standard.SystemModel <em>System Model</em>}'. <!--
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.uml.standard.SystemModel <em>System Model</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->

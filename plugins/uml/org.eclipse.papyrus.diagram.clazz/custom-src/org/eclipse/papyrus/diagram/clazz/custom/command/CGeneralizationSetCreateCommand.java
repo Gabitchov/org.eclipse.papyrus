@@ -35,9 +35,9 @@ public class CGeneralizationSetCreateCommand extends
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof Package) {
-				return (Package) element;
+		for(EObject element = source; element != null; element = element.eContainer()) {
+			if(element instanceof Package) {
+				return (Package)element;
 			}
 		}
 		return null;
@@ -61,14 +61,14 @@ public class CGeneralizationSetCreateCommand extends
 	 * {@inheritDoc}
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
 		GeneralizationSet newElement = generalizationSetHelper.createGeneralizationSet(getSource(), getTarget(),
 				container);
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 }

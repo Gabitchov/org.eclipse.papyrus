@@ -79,48 +79,76 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, MessageOccurrenceSpecificationPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	private EMFListEditUtil clientDependencyEditUtil;
+
 	protected ReferencesTable<? extends EObject> clientDependency;
+
 	protected List<ViewerFilter> clientDependencyBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientDependencyFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil coveredEditUtil;
+
 	protected ReferencesTable<? extends EObject> covered;
+
 	protected List<ViewerFilter> coveredBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> coveredFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil generalOrderingEditUtil;
+
 	protected ReferencesTable<? extends EObject> generalOrdering;
+
 	protected List<ViewerFilter> generalOrderingBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> generalOrderingFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil toBeforeEditUtil;
+
 	protected ReferencesTable<? extends EObject> toBefore;
+
 	protected List<ViewerFilter> toBeforeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> toBeforeFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil toAfterEditUtil;
+
 	protected ReferencesTable<? extends EObject> toAfter;
+
 	protected List<ViewerFilter> toAfterBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> toAfterFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public MessageOccurrenceSpecificationPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite,
+	 *      org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -132,11 +160,12 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createControls(org.eclipse.ui.forms.widgets.FormToolkit,
+	 *      org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
@@ -144,7 +173,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		// Start of user code for additional ui definition
 
 		// End of user code
-		
+
 	}
 
 	protected void createPropertiesGroup(FormToolkit widgetFactory, final Composite view) {
@@ -167,16 +196,31 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		createToAfterReferencesTable(widgetFactory, propertiesGroup);
 		propertiesSection.setClient(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.ownedComment, UMLViewsRepository.FORM_KIND));
 		this.ownedComment.createControls(parent, widgetFactory);
@@ -192,7 +236,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -204,11 +248,11 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -246,10 +290,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -261,6 +305,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		// End of user code
 
 	}
+
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.MessageOccurrenceSpecification.name, UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
@@ -276,7 +321,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -289,7 +334,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -302,8 +347,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 */
 			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
+				if(e.character == SWT.CR) {
+					if(propertiesEditionComponent != null)
 						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
@@ -311,6 +356,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.MessageOccurrenceSpecification.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -326,36 +372,50 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
 
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createClientDependencyReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.clientDependency = new ReferencesTable<Dependency>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_ClientDependencyLabel, new ReferencesTableListener<Dependency>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Dependency> dialog = new TabElementTreeSelectionDialog<Dependency>(resourceSet, clientDependencyFilters, clientDependencyBusinessFilters,
-				"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+						"Dependency", UMLPackage.eINSTANCE.getDependency(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientDependencyEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!clientDependencyEditUtil.getVirtualList().contains(elem))
 								clientDependencyEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.clientDependency,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						clientDependency.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Dependency element) { editClientDependency(element); }
-			public void handleMove(Dependency element, int oldIndex, int newIndex) { moveClientDependency(element, oldIndex, newIndex); }
-			public void handleRemove(Dependency element) { removeFromClientDependency(element); }
-			public void navigateTo(Dependency element) { }
+
+			public void handleEdit(Dependency element) {
+				editClientDependency(element);
+			}
+
+			public void handleMove(Dependency element, int oldIndex, int newIndex) {
+				moveClientDependency(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Dependency element) {
+				removeFromClientDependency(element);
+			}
+
+			public void navigateTo(Dependency element) {
+			}
 		});
 		this.clientDependency.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.clientDependency, UMLViewsRepository.FORM_KIND));
 		this.clientDependency.createControls(parent, widgetFactory);
@@ -401,10 +461,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				clientDependencyEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				clientDependency.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -417,29 +477,43 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		// End of user code
 
 	}
+
 	protected void createCoveredReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.covered = new ReferencesTable<Lifeline>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_CoveredLabel, new ReferencesTableListener<Lifeline>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Lifeline> dialog = new TabElementTreeSelectionDialog<Lifeline>(resourceSet, coveredFilters, coveredBusinessFilters,
-				"Lifeline", UMLPackage.eINSTANCE.getLifeline(), current.eResource()) {
+						"Lifeline", UMLPackage.eINSTANCE.getLifeline(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!coveredEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!coveredEditUtil.getVirtualList().contains(elem))
 								coveredEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.covered,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						covered.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(Lifeline element) { editCovered(element); }
-			public void handleMove(Lifeline element, int oldIndex, int newIndex) { moveCovered(element, oldIndex, newIndex); }
-			public void handleRemove(Lifeline element) { removeFromCovered(element); }
-			public void navigateTo(Lifeline element) { }
+
+			public void handleEdit(Lifeline element) {
+				editCovered(element);
+			}
+
+			public void handleMove(Lifeline element, int oldIndex, int newIndex) {
+				moveCovered(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Lifeline element) {
+				removeFromCovered(element);
+			}
+
+			public void navigateTo(Lifeline element) {
+			}
 		});
 		this.covered.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.covered, UMLViewsRepository.FORM_KIND));
 		this.covered.createControls(parent, widgetFactory);
@@ -485,10 +559,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				coveredEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				covered.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -500,16 +574,31 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		// End of user code
 
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createGeneralOrderingTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.generalOrdering = new ReferencesTable<GeneralOrdering>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_GeneralOrderingLabel, new ReferencesTableListener<GeneralOrdering>() {			
-			public void handleAdd() { addToGeneralOrdering();}
-			public void handleEdit(GeneralOrdering element) { editGeneralOrdering(element); }
-			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) { moveGeneralOrdering(element, oldIndex, newIndex); }
-			public void handleRemove(GeneralOrdering element) { removeFromGeneralOrdering(element); }
-			public void navigateTo(GeneralOrdering element) { }
+		this.generalOrdering = new ReferencesTable<GeneralOrdering>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_GeneralOrderingLabel, new ReferencesTableListener<GeneralOrdering>() {
+
+			public void handleAdd() {
+				addToGeneralOrdering();
+			}
+
+			public void handleEdit(GeneralOrdering element) {
+				editGeneralOrdering(element);
+			}
+
+			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) {
+				moveGeneralOrdering(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(GeneralOrdering element) {
+				removeFromGeneralOrdering(element);
+			}
+
+			public void navigateTo(GeneralOrdering element) {
+			}
 		});
 		this.generalOrdering.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.generalOrdering, UMLViewsRepository.FORM_KIND));
 		this.generalOrdering.createControls(parent, widgetFactory);
@@ -525,7 +614,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		EObject editedElement = generalOrderingEditUtil.foundCorrespondingEObject(element);
 		generalOrderingEditUtil.moveElement(element, oldIndex, newIndex);
 		generalOrdering.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.generalOrdering, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.generalOrdering, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -537,11 +626,11 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				generalOrderingEditUtil.addElement(propertiesEditionObject);
 				generalOrdering.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -579,10 +668,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				generalOrderingEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				generalOrdering.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -595,29 +684,43 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		// End of user code
 
 	}
+
 	protected void createToBeforeReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.toBefore = new ReferencesTable<GeneralOrdering>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_ToBeforeLabel, new ReferencesTableListener<GeneralOrdering>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<GeneralOrdering> dialog = new TabElementTreeSelectionDialog<GeneralOrdering>(resourceSet, toBeforeFilters, toBeforeBusinessFilters,
-				"GeneralOrdering", UMLPackage.eINSTANCE.getGeneralOrdering(), current.eResource()) {
+						"GeneralOrdering", UMLPackage.eINSTANCE.getGeneralOrdering(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!toBeforeEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!toBeforeEditUtil.getVirtualList().contains(elem))
 								toBeforeEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.toBefore,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						toBefore.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(GeneralOrdering element) { editToBefore(element); }
-			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) { moveToBefore(element, oldIndex, newIndex); }
-			public void handleRemove(GeneralOrdering element) { removeFromToBefore(element); }
-			public void navigateTo(GeneralOrdering element) { }
+
+			public void handleEdit(GeneralOrdering element) {
+				editToBefore(element);
+			}
+
+			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) {
+				moveToBefore(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(GeneralOrdering element) {
+				removeFromToBefore(element);
+			}
+
+			public void navigateTo(GeneralOrdering element) {
+			}
 		});
 		this.toBefore.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.toBefore, UMLViewsRepository.FORM_KIND));
 		this.toBefore.createControls(parent, widgetFactory);
@@ -663,10 +766,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				toBeforeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				toBefore.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -678,29 +781,43 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		// End of user code
 
 	}
+
 	protected void createToAfterReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.toAfter = new ReferencesTable<GeneralOrdering>(UMLMessages.MessageOccurrenceSpecificationPropertiesEditionPart_ToAfterLabel, new ReferencesTableListener<GeneralOrdering>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<GeneralOrdering> dialog = new TabElementTreeSelectionDialog<GeneralOrdering>(resourceSet, toAfterFilters, toAfterBusinessFilters,
-				"GeneralOrdering", UMLPackage.eINSTANCE.getGeneralOrdering(), current.eResource()) {
+						"GeneralOrdering", UMLPackage.eINSTANCE.getGeneralOrdering(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!toAfterEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!toAfterEditUtil.getVirtualList().contains(elem))
 								toAfterEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(MessageOccurrenceSpecificationPropertiesEditionPartForm.this, UMLViewsRepository.MessageOccurrenceSpecification.toAfter,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						toAfter.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(GeneralOrdering element) { editToAfter(element); }
-			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) { moveToAfter(element, oldIndex, newIndex); }
-			public void handleRemove(GeneralOrdering element) { removeFromToAfter(element); }
-			public void navigateTo(GeneralOrdering element) { }
+
+			public void handleEdit(GeneralOrdering element) {
+				editToAfter(element);
+			}
+
+			public void handleMove(GeneralOrdering element, int oldIndex, int newIndex) {
+				moveToAfter(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(GeneralOrdering element) {
+				removeFromToAfter(element);
+			}
+
+			public void navigateTo(GeneralOrdering element) {
+			}
 		});
 		this.toAfter.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.MessageOccurrenceSpecification.toAfter, UMLViewsRepository.FORM_KIND));
 		this.toAfter.createControls(parent, widgetFactory);
@@ -746,10 +863,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				toAfterEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				toAfter.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -762,12 +879,12 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 
 	}
 
-	
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
 
 		// End of user code
-		
+
 	}
 
 	/**
@@ -818,12 +935,13 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initOwnedComment(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -836,7 +954,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -845,7 +963,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentFilters.add(filter);
@@ -854,7 +973,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterOwnedComment(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter) {
 		ownedCommentBusinessFilters.add(filter);
@@ -863,7 +983,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInOwnedCommentTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInOwnedCommentTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInOwnedCommentTable(EObject element) {
 		return ownedCommentEditUtil.contains(element);
@@ -888,10 +1009,10 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -909,14 +1030,15 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator current)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initVisibility(EEnum eenum, Enumerator
+	 *      current)
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current) {
 		visibility.setInput(eenum.getELiterals());
@@ -967,12 +1089,13 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initClientDependency(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initClientDependency(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initClientDependency(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			clientDependencyEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			clientDependencyEditUtil = new EMFListEditUtil(current, feature);
@@ -982,10 +1105,11 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#updateClientDependency(EObject newValue)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#updateClientDependency(EObject
+	 *      newValue)
 	 */
 	public void updateClientDependency(EObject newValue) {
-		if(clientDependencyEditUtil != null){
+		if(clientDependencyEditUtil != null) {
 			clientDependencyEditUtil.reinit(newValue);
 			clientDependency.refresh();
 		}
@@ -994,7 +1118,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyFilters.add(filter);
@@ -1003,7 +1128,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterClientDependency(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToClientDependency(ViewerFilter filter) {
 		clientDependencyBusinessFilters.add(filter);
@@ -1012,7 +1138,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInClientDependencyTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInClientDependencyTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInClientDependencyTable(EObject element) {
 		return clientDependencyEditUtil.contains(element);
@@ -1053,12 +1180,13 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initCovered(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initCovered(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initCovered(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			coveredEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			coveredEditUtil = new EMFListEditUtil(current, feature);
@@ -1071,7 +1199,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#updateCovered(EObject newValue)
 	 */
 	public void updateCovered(EObject newValue) {
-		if(coveredEditUtil != null){
+		if(coveredEditUtil != null) {
 			coveredEditUtil.reinit(newValue);
 			covered.refresh();
 		}
@@ -1089,7 +1217,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterCovered(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterCovered(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToCovered(ViewerFilter filter) {
 		coveredBusinessFilters.add(filter);
@@ -1098,7 +1227,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInCoveredTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInCoveredTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInCoveredTable(EObject element) {
 		return coveredEditUtil.contains(element);
@@ -1156,12 +1286,13 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initGeneralOrdering(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initGeneralOrdering(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initGeneralOrdering(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			generalOrderingEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			generalOrderingEditUtil = new EMFListEditUtil(current, feature);
@@ -1174,7 +1305,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#updateGeneralOrdering(EObject newValue)
 	 */
 	public void updateGeneralOrdering(EObject newValue) {
-		if(generalOrderingEditUtil != null){
+		if(generalOrderingEditUtil != null) {
 			generalOrderingEditUtil.reinit(newValue);
 			generalOrdering.refresh();
 		}
@@ -1183,7 +1314,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addFilterGeneralOrdering(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addFilterGeneralOrdering(ViewerFilter
+	 *      filter)
 	 */
 	public void addFilterToGeneralOrdering(ViewerFilter filter) {
 		generalOrderingFilters.add(filter);
@@ -1192,7 +1324,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterGeneralOrdering(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterGeneralOrdering(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToGeneralOrdering(ViewerFilter filter) {
 		generalOrderingBusinessFilters.add(filter);
@@ -1201,7 +1334,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInGeneralOrderingTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInGeneralOrderingTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInGeneralOrderingTable(EObject element) {
 		return generalOrderingEditUtil.contains(element);
@@ -1242,12 +1376,13 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initToBefore(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initToBefore(EObject current,
+	 *      EReference containingFeature, EReference feature)
 	 */
 	public void initToBefore(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			toBeforeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			toBeforeEditUtil = new EMFListEditUtil(current, feature);
@@ -1260,7 +1395,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#updateToBefore(EObject newValue)
 	 */
 	public void updateToBefore(EObject newValue) {
-		if(toBeforeEditUtil != null){
+		if(toBeforeEditUtil != null) {
 			toBeforeEditUtil.reinit(newValue);
 			toBefore.refresh();
 		}
@@ -1278,7 +1413,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterToBefore(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterToBefore(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToToBefore(ViewerFilter filter) {
 		toBeforeBusinessFilters.add(filter);
@@ -1287,7 +1423,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInToBeforeTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInToBeforeTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInToBeforeTable(EObject element) {
 		return toBeforeEditUtil.contains(element);
@@ -1328,12 +1465,13 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initToAfter(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#initToAfter(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initToAfter(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			toAfterEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			toAfterEditUtil = new EMFListEditUtil(current, feature);
@@ -1346,7 +1484,7 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#updateToAfter(EObject newValue)
 	 */
 	public void updateToAfter(EObject newValue) {
-		if(toAfterEditUtil != null){
+		if(toAfterEditUtil != null) {
 			toAfterEditUtil.reinit(newValue);
 			toAfter.refresh();
 		}
@@ -1364,7 +1502,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterToAfter(ViewerFilter filter)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#addBusinessFilterToAfter(ViewerFilter
+	 *      filter)
 	 */
 	public void addBusinessFilterToToAfter(ViewerFilter filter) {
 		toAfterBusinessFilters.add(filter);
@@ -1373,7 +1512,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInToAfterTable(EObject element)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.MessageOccurrenceSpecificationPropertiesEditionPart#isContainedInToAfterTable(EObject
+	 *      element)
 	 */
 	public boolean isContainedInToAfterTable(EObject element) {
 		return toAfterEditUtil.contains(element);
@@ -1383,15 +1523,8 @@ public class MessageOccurrenceSpecificationPropertiesEditionPartForm extends Com
 
 
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
 
 	// End of user code
 
-}	
+}

@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.ValueType}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.ValueType} object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -61,7 +60,7 @@ public class ValueTypeItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_DataTypePropertyDescriptor(object);
@@ -78,10 +77,10 @@ public class ValueTypeItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addBase_DataTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_base_DataType_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ValueType_base_DataType_feature",
-						"_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__BASE_DATA_TYPE, true, false, true,
+				"_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__BASE_DATA_TYPE, true, false, true,
 				null, null, null));
 	}
 
@@ -92,7 +91,7 @@ public class ValueTypeItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addUnitPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_unit_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_ValueType_unit_feature", "_UI_ValueType_type"),
 				BlocksPackage.Literals.VALUE_TYPE__UNIT, true, false, true, null, null, null));
@@ -106,11 +105,11 @@ public class ValueTypeItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	protected void addDimensionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ValueType_dimension_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_ValueType_dimension_feature",
-								"_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__DIMENSION, true, false, true,
-						null, null, null));
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ValueType_dimension_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ValueType_dimension_feature",
+				"_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__DIMENSION, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -136,8 +135,7 @@ public class ValueTypeItemProvider extends ItemProviderAdapter implements IEditi
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

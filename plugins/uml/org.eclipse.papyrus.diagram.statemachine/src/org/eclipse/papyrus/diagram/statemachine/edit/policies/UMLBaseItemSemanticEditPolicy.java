@@ -93,12 +93,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart()
+		if(request instanceof ReconnectRequest) {
+			Object view = ((ReconnectRequest)request).getConnectionEditPart()
 					.getModel();
-			if (view instanceof View) {
+			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry
-						.getVisualID((View) view));
+						.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 			}
 		}
@@ -112,7 +112,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
 		Object id = request.getParameter(VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+		return id instanceof Integer ? ((Integer)id).intValue() : -1;
 	}
 
 	/**
@@ -122,35 +122,34 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Object editHelperContext = completedRequest.getEditHelperContext();
-		if (editHelperContext instanceof View
-				|| (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext) editHelperContext)
-						.getEObject() instanceof View)) {
+		if(editHelperContext instanceof View
+				|| (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext)editHelperContext)
+				.getEObject() instanceof View)) {
 			// no semantic commands are provided for pure design elements
 			return null;
 		}
-		if (editHelperContext == null) {
+		if(editHelperContext == null) {
 			editHelperContext = ViewUtil
-					.resolveSemanticElement((View) getHost().getModel());
+					.resolveSemanticElement((View)getHost().getModel());
 		}
 		IElementType elementType = ElementTypeRegistry.getInstance()
 				.getElementType(editHelperContext);
-		if (elementType == ElementTypeRegistry.getInstance().getType(
-				"org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
+		if(elementType == ElementTypeRegistry.getInstance().getType("org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
 			elementType = null;
 		}
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
-		if (semanticCommand != null) {
-			ICommand command = semanticCommand instanceof ICommandProxy ? ((ICommandProxy) semanticCommand)
+		if(semanticCommand != null) {
+			ICommand command = semanticCommand instanceof ICommandProxy ? ((ICommandProxy)semanticCommand)
 					.getICommand()
 					: new CommandProxy(semanticCommand);
 			completedRequest.setParameter(
 					UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
-		if (elementType != null) {
+		if(elementType != null) {
 			ICommand command = elementType.getEditCommand(completedRequest);
-			if (command != null) {
-				if (!(command instanceof CompositeTransactionalCommand)) {
-					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+			if(command != null) {
+				if(!(command instanceof CompositeTransactionalCommand)) {
+					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost())
 							.getEditingDomain();
 					command = new CompositeTransactionalCommand(editingDomain,
 							command.getLabel()).compose(command);
@@ -159,16 +158,16 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 		}
 		boolean shouldProceed = true;
-		if (completedRequest instanceof DestroyRequest) {
-			shouldProceed = shouldProceed((DestroyRequest) completedRequest);
+		if(completedRequest instanceof DestroyRequest) {
+			shouldProceed = shouldProceed((DestroyRequest)completedRequest);
 		}
-		if (shouldProceed) {
-			if (completedRequest instanceof DestroyRequest) {
-				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+		if(shouldProceed) {
+			if(completedRequest instanceof DestroyRequest) {
+				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost())
 						.getEditingDomain();
 				Command deleteViewCommand = new ICommandProxy(
-						new DeleteCommand(editingDomain, (View) getHost()
-								.getModel()));
+						new DeleteCommand(editingDomain, (View)getHost()
+						.getModel()));
 				semanticCommand = semanticCommand == null ? deleteViewCommand
 						: semanticCommand.chain(deleteViewCommand);
 			}
@@ -181,28 +180,28 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
-		if (req instanceof CreateRelationshipRequest) {
-			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
-		} else if (req instanceof CreateElementRequest) {
-			return getCreateCommand((CreateElementRequest) req);
-		} else if (req instanceof ConfigureRequest) {
-			return getConfigureCommand((ConfigureRequest) req);
-		} else if (req instanceof DestroyElementRequest) {
-			return getDestroyElementCommand((DestroyElementRequest) req);
-		} else if (req instanceof DestroyReferenceRequest) {
-			return getDestroyReferenceCommand((DestroyReferenceRequest) req);
-		} else if (req instanceof DuplicateElementsRequest) {
-			return getDuplicateCommand((DuplicateElementsRequest) req);
-		} else if (req instanceof GetEditContextRequest) {
-			return getEditContextCommand((GetEditContextRequest) req);
-		} else if (req instanceof MoveRequest) {
-			return getMoveCommand((MoveRequest) req);
-		} else if (req instanceof ReorientReferenceRelationshipRequest) {
-			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest) req);
-		} else if (req instanceof ReorientRelationshipRequest) {
-			return getReorientRelationshipCommand((ReorientRelationshipRequest) req);
-		} else if (req instanceof SetRequest) {
-			return getSetCommand((SetRequest) req);
+		if(req instanceof CreateRelationshipRequest) {
+			return getCreateRelationshipCommand((CreateRelationshipRequest)req);
+		} else if(req instanceof CreateElementRequest) {
+			return getCreateCommand((CreateElementRequest)req);
+		} else if(req instanceof ConfigureRequest) {
+			return getConfigureCommand((ConfigureRequest)req);
+		} else if(req instanceof DestroyElementRequest) {
+			return getDestroyElementCommand((DestroyElementRequest)req);
+		} else if(req instanceof DestroyReferenceRequest) {
+			return getDestroyReferenceCommand((DestroyReferenceRequest)req);
+		} else if(req instanceof DuplicateElementsRequest) {
+			return getDuplicateCommand((DuplicateElementsRequest)req);
+		} else if(req instanceof GetEditContextRequest) {
+			return getEditContextCommand((GetEditContextRequest)req);
+		} else if(req instanceof MoveRequest) {
+			return getMoveCommand((MoveRequest)req);
+		} else if(req instanceof ReorientReferenceRelationshipRequest) {
+			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest)req);
+		} else if(req instanceof ReorientRelationshipRequest) {
+			return getReorientRelationshipCommand((ReorientRelationshipRequest)req);
+		} else if(req instanceof SetRequest) {
+			return getSetCommand((SetRequest)req);
 		}
 		return null;
 	}
@@ -307,7 +306,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected EObject getSemanticElement() {
-		return ViewUtil.resolveSemanticElement((View) getHost().getModel());
+		return ViewUtil.resolveSemanticElement((View)getHost().getModel());
 	}
 
 	/**
@@ -316,7 +315,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
 	/**
@@ -325,7 +324,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(View view) {
-		EditPart editPart = (EditPart) getHost().getViewer()
+		EditPart editPart = (EditPart)getHost().getViewer()
 				.getEditPartRegistry().get(view);
 		DestroyElementRequest request = new DestroyElementRequest(
 				getEditingDomain(), false);
@@ -340,12 +339,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected CompoundCommand getDestroyEdgesCommand() {
 		CompoundCommand cmd = new CompoundCommand();
-		View view = (View) getHost().getModel();
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
-			cmd.add(getDestroyElementCommand((Edge) it.next()));
+		View view = (View)getHost().getModel();
+		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+			cmd.add(getDestroyElementCommand((Edge)it.next()));
 		}
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
-			cmd.add(getDestroyElementCommand((Edge) it.next()));
+		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+			cmd.add(getDestroyElementCommand((Edge)it.next()));
 		}
 		return cmd;
 	}
@@ -354,14 +353,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(CompoundCommand command) {
-		View view = (View) getHost().getModel();
-		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+		View view = (View)getHost().getModel();
+		if(view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 			return;
 		}
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it
+		for(Iterator it = view.getDiagram().getChildren().iterator(); it
 				.hasNext();) {
-			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+			View nextView = (View)it.next();
+			if(nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
 			command.add(getDestroyElementCommand(nextView));
@@ -373,10 +372,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected EObject getRelationshipContainer(Object uelement,
 			EClass containerClass, IElementType relationshipType) {
-		if (uelement instanceof EObject) {
-			EObject element = (EObject) uelement;
-			for (; element != null; element = element.eContainer()) {
-				if (containerClass.isSuperTypeOf(element.eClass())) {
+		if(uelement instanceof EObject) {
+			EObject element = (EObject)uelement;
+			for(; element != null; element = element.eContainer()) {
+				if(containerClass.isSuperTypeOf(element.eClass())) {
 					return element;
 				}
 			}
@@ -427,11 +426,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canCreateElementOwnedComment_3002(Element source,
 				Comment target) {
-			if (source != null) {
-				if (source.getOwnedComments().contains(target)) {
+			if(source != null) {
+				if(source.getOwnedComments().contains(target)) {
 					return false;
 				}
-				if (source == target) {
+				if(source == target) {
 					return false;
 				}
 			}
@@ -443,8 +442,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canCreateCommentAnnotatedElement_3003(
 				Comment source, Element target) {
-			if (source != null) {
-				if (source.getAnnotatedElements().contains(target)) {
+			if(source != null) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
@@ -457,44 +456,41 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public static boolean canExistTransition_3001(Region container,
 				Vertex source, Vertex target) {
 			try {
-				if (source == null) {
+				if(source == null) {
 					return true;
 				}
-				if (Transition_3001_SourceExpression == null) {
+				if(Transition_3001_SourceExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
 							UMLPackage.eINSTANCE.getVertex());
 					Transition_3001_SourceExpression = UMLOCLFactory
-							.getExpression(
-									"if(self.oclIsKindOf(uml::FinalState))\r\nthen false\r\nelse true\r\nendif", UMLPackage.eINSTANCE.getVertex(), env); //$NON-NLS-1$
+							.getExpression("if(self.oclIsKindOf(uml::FinalState))\r\nthen false\r\nelse true\r\nendif", UMLPackage.eINSTANCE.getVertex(), env); //$NON-NLS-1$
 				}
 				Object sourceVal = Transition_3001_SourceExpression.evaluate(
 						source, Collections.singletonMap(OPPOSITE_END_VAR,
-								target));
-				if (false == sourceVal instanceof Boolean
-						|| !((Boolean) sourceVal).booleanValue()) {
+						target));
+				if(false == sourceVal instanceof Boolean
+						|| !((Boolean)sourceVal).booleanValue()) {
 					return false;
 				} // else fall-through
-				if (target == null) {
+				if(target == null) {
 					return true;
 				}
-				if (Transition_3001_TargetExpression == null) {
+				if(Transition_3001_TargetExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
 							UMLPackage.eINSTANCE.getVertex());
 					Transition_3001_TargetExpression = UMLOCLFactory
-							.getExpression(
-									"if(self.oclIsKindOf(uml::Pseudostate) and self.oclAsType(uml::Pseudostate).kind = PseudostateKind::initial)\r\nthen false\r\nelse true\r\nendif", UMLPackage.eINSTANCE.getVertex(), env); //$NON-NLS-1$
+							.getExpression("if(self.oclIsKindOf(uml::Pseudostate) and self.oclAsType(uml::Pseudostate).kind = PseudostateKind::initial)\r\nthen false\r\nelse true\r\nendif", UMLPackage.eINSTANCE.getVertex(), env); //$NON-NLS-1$
 				}
 				Object targetVal = Transition_3001_TargetExpression.evaluate(
 						target, Collections.singletonMap(OPPOSITE_END_VAR,
-								source));
-				if (false == targetVal instanceof Boolean
-						|| !((Boolean) targetVal).booleanValue()) {
+						source));
+				if(false == targetVal instanceof Boolean
+						|| !((Boolean)targetVal).booleanValue()) {
 					return false;
 				} // else fall-through
 				return true;
 			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Link constraint evaluation error", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
 		}
@@ -505,27 +501,25 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public static boolean canExistElementOwnedComment_3002(Element source,
 				Comment target) {
 			try {
-				if (target == null) {
+				if(target == null) {
 					return true;
 				}
-				if (ElementOwnedComment_3002_TargetExpression == null) {
+				if(ElementOwnedComment_3002_TargetExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
 							UMLPackage.eINSTANCE.getElement());
 					ElementOwnedComment_3002_TargetExpression = UMLOCLFactory
-							.getExpression(
-									"not(self.annotatedElement->includes(oppositeEnd))", UMLPackage.eINSTANCE.getComment(), env); //$NON-NLS-1$
+							.getExpression("not(self.annotatedElement->includes(oppositeEnd))", UMLPackage.eINSTANCE.getComment(), env); //$NON-NLS-1$
 				}
 				Object targetVal = ElementOwnedComment_3002_TargetExpression
 						.evaluate(target, Collections.singletonMap(
-								OPPOSITE_END_VAR, source));
-				if (false == targetVal instanceof Boolean
-						|| !((Boolean) targetVal).booleanValue()) {
+						OPPOSITE_END_VAR, source));
+				if(false == targetVal instanceof Boolean
+						|| !((Boolean)targetVal).booleanValue()) {
 					return false;
 				} // else fall-through
 				return true;
 			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Link constraint evaluation error", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
 		}
@@ -536,27 +530,25 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public static boolean canExistCommentAnnotatedElement_3003(
 				Comment source, Element target) {
 			try {
-				if (source == null) {
+				if(source == null) {
 					return true;
 				}
-				if (CommentAnnotatedElement_3003_SourceExpression == null) {
+				if(CommentAnnotatedElement_3003_SourceExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
 							UMLPackage.eINSTANCE.getElement());
 					CommentAnnotatedElement_3003_SourceExpression = UMLOCLFactory
-							.getExpression(
-									"not(self.annotatedElement->includes(oppositeEnd))", UMLPackage.eINSTANCE.getComment(), env); //$NON-NLS-1$
+							.getExpression("not(self.annotatedElement->includes(oppositeEnd))", UMLPackage.eINSTANCE.getComment(), env); //$NON-NLS-1$
 				}
 				Object sourceVal = CommentAnnotatedElement_3003_SourceExpression
 						.evaluate(source, Collections.singletonMap(
-								OPPOSITE_END_VAR, target));
-				if (false == sourceVal instanceof Boolean
-						|| !((Boolean) sourceVal).booleanValue()) {
+						OPPOSITE_END_VAR, target));
+				if(false == sourceVal instanceof Boolean
+						|| !((Boolean)sourceVal).booleanValue()) {
 					return false;
 				} // else fall-through
 				return true;
 			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Link constraint evaluation error", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
 		}

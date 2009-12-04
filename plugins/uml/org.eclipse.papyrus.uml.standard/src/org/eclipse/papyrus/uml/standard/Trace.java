@@ -37,8 +37,7 @@ public interface Trace extends EObject {
 	 * Returns the value of the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc
 	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Base Abstraction</em>' reference isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Base Abstraction</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -55,7 +54,7 @@ public interface Trace extends EObject {
 	 * <em>Base Abstraction</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Abstraction</em>' reference.
+	 *        the new value of the '<em>Base Abstraction</em>' reference.
 	 * @see #getBase_Abstraction()
 	 * @generated
 	 */

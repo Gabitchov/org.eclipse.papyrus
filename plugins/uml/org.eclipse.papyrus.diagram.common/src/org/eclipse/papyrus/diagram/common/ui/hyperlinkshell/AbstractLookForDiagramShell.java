@@ -195,7 +195,7 @@ public class AbstractLookForDiagramShell {
 	 * Sets the new diagrambutton.
 	 * 
 	 * @param newDiagrambutton
-	 *            the newDiagrambutton to set
+	 *        the newDiagrambutton to set
 	 */
 	// @unused
 	protected void setNewDiagrambutton(Button newDiagrambutton) {
@@ -215,7 +215,7 @@ public class AbstractLookForDiagramShell {
 	 * Sets the remove diagrambutton.
 	 * 
 	 * @param removeDiagrambutton
-	 *            the removeDiagrambutton to set
+	 *        the removeDiagrambutton to set
 	 */
 	// @unused
 	protected void setRemoveDiagrambutton(Button removeDiagrambutton) {
@@ -235,7 +235,7 @@ public class AbstractLookForDiagramShell {
 	 * Sets the o kbutton.
 	 * 
 	 * @param oKbutton
-	 *            the oKbutton to set
+	 *        the oKbutton to set
 	 */
 	// @unused
 	protected void setOKbutton(Button oKbutton) {
@@ -255,7 +255,7 @@ public class AbstractLookForDiagramShell {
 	 * Sets the cancelbutton.
 	 * 
 	 * @param cancelbutton
-	 *            the cancelbutton to set
+	 *        the cancelbutton to set
 	 */
 	// @unused
 	protected void setCancelbutton(Button cancelbutton) {
@@ -285,7 +285,7 @@ public class AbstractLookForDiagramShell {
 	 * Sets the lookfor shell.
 	 * 
 	 * @param lookforShell
-	 *            the lookforShell to set
+	 *        the lookforShell to set
 	 */
 	// @unused
 	protected void setLookforShell(Shell lookforShell) {

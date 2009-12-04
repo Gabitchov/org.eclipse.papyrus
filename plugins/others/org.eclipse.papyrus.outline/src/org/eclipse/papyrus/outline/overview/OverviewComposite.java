@@ -47,9 +47,9 @@ public class OverviewComposite extends Composite {
 	 * Creates a new OverviewOutlinePage instance.
 	 * 
 	 * @param parent
-	 *            the parent composite
+	 *        the parent composite
 	 * @param rootEditPart
-	 *            the root edit part
+	 *        the root edit part
 	 */
 	public OverviewComposite(Composite parent, ScalableFreeformRootEditPart rootEditPart) {
 		super(parent, SWT.BORDER);
@@ -69,7 +69,7 @@ public class OverviewComposite extends Composite {
 	 * Creates the inner controls
 	 * 
 	 * @param parent
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	public void createControl(Composite parent) {
 		// An swt canvas and lws drawing the figure.
@@ -79,7 +79,7 @@ public class OverviewComposite extends Composite {
 		LightweightSystem lightweightSystem = new LightweightSystem(overview);
 
 		// create the thumbnail
-		thumbnail = new ScrollableThumbnail((Viewport) rootEditPart.getFigure());
+		thumbnail = new ScrollableThumbnail((Viewport)rootEditPart.getFigure());
 		thumbnail.setBorder(new MarginBorder(3));
 		thumbnail.setSource(rootEditPart.getLayer(LayerConstants.PRINTABLE_LAYERS/* SCALABLE_LAYERS */));
 		lightweightSystem.setContents(thumbnail);
@@ -90,7 +90,7 @@ public class OverviewComposite extends Composite {
 	 * {@inheritDoc}
 	 */
 	public void dispose() {
-		if (null != thumbnail) {
+		if(null != thumbnail) {
 			thumbnail.deactivate();
 			thumbnail = null;
 		}
@@ -121,7 +121,7 @@ public class OverviewComposite extends Composite {
 	 * @return <code>true</code> if the focus succeed
 	 */
 	public boolean setFocus() {
-		if (getControl() != null) {
+		if(getControl() != null) {
 			return getControl().setFocus();
 		}
 		return false;

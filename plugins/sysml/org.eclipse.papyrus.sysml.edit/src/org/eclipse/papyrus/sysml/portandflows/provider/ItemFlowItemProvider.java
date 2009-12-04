@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class ItemFlowItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_InformationFlowPropertyDescriptor(object);
@@ -77,10 +77,10 @@ public class ItemFlowItemProvider extends ItemProviderAdapter implements IEditin
 	 * @generated
 	 */
 	protected void addBase_InformationFlowPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ItemFlow_base_InformationFlow_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_base_InformationFlow_feature",
-						"_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__BASE_INFORMATION_FLOW, true,
+				"_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__BASE_INFORMATION_FLOW, true,
 				false, true, null, null, null));
 	}
 
@@ -91,10 +91,10 @@ public class ItemFlowItemProvider extends ItemProviderAdapter implements IEditin
 	 * @generated
 	 */
 	protected void addItemPropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ItemFlow_itemProperty_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_itemProperty_feature",
-						"_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__ITEM_PROPERTY, true, false, true,
+				"_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__ITEM_PROPERTY, true, false, true,
 				null, null, null));
 	}
 
@@ -121,8 +121,7 @@ public class ItemFlowItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

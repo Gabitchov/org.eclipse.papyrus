@@ -46,11 +46,11 @@ public class UMLLoadResourceAction implements IObjectActionDelegate {
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		mySelectedElement = null;
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.size() == 1
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			if(structuredSelection.size() == 1
 					&& structuredSelection.getFirstElement() instanceof StateMachineEditPart) {
-				mySelectedElement = (StateMachineEditPart) structuredSelection
+				mySelectedElement = (StateMachineEditPart)structuredSelection
 						.getFirstElement();
 			}
 		}

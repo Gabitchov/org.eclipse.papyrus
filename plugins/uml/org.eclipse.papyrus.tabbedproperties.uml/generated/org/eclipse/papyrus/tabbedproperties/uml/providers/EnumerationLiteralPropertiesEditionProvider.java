@@ -40,7 +40,7 @@ public class EnumerationLiteralPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof EnumerationLiteral) {
+		if(eObject instanceof EnumerationLiteral) {
 			return new EnumerationLiteralPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class EnumerationLiteralPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof EnumerationLiteral) {
-			if (EnumerationLiteralBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof EnumerationLiteral) {
+			if(EnumerationLiteralBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new EnumerationLiteralBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

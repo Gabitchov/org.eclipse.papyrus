@@ -31,7 +31,7 @@ public class StereotypedElementTreeObject extends ParentTreeObject {
 	 * The Constructor.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public StereotypedElementTreeObject(Element parent, TransactionalEditingDomain domain) {
 		super(null, parent, domain);
@@ -45,7 +45,7 @@ public class StereotypedElementTreeObject extends ParentTreeObject {
 		Iterator<Stereotype> stIt = element.getAppliedStereotypes().iterator();
 		EList stereolist = element.getAppliedStereotypes();
 
-		while (stIt.hasNext()) {
+		while(stIt.hasNext()) {
 			final Stereotype currentSt = stIt.next();
 			addChild(new AppliedStereotypeTreeObject(this, currentSt, domain));
 		}

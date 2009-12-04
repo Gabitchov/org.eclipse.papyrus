@@ -40,7 +40,7 @@ public class ClassifierTemplateParameterPropertiesEditionProvider implements IPr
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ClassifierTemplateParameter) {
+		if(eObject instanceof ClassifierTemplateParameter) {
 			return new ClassifierTemplateParameterPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ClassifierTemplateParameterPropertiesEditionProvider implements IPr
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ClassifierTemplateParameter) {
-			if (ClassifierTemplateParameterBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ClassifierTemplateParameter) {
+			if(ClassifierTemplateParameterBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ClassifierTemplateParameterBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

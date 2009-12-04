@@ -27,7 +27,7 @@ public class UMLComposedAdapterFactory {
 	private static ComposedAdapterFactory umlCompAdapterFactory;
 
 	public final static ComposedAdapterFactory getAdapterFactory() {
-		if (umlCompAdapterFactory == null)
+		if(umlCompAdapterFactory == null)
 			umlCompAdapterFactory = new ComposedAdapterFactory(createFactoryList());
 		return umlCompAdapterFactory;
 	}

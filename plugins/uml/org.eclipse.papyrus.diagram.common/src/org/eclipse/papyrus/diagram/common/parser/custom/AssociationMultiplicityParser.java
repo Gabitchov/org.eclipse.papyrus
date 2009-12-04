@@ -28,7 +28,7 @@ public class AssociationMultiplicityParser extends AbstractAssociationEndParser 
 	 * Constructor
 	 * 
 	 * @param memberEndIndex
-	 *            the position of the attribute end.
+	 *        the position of the attribute end.
 	 */
 	public AssociationMultiplicityParser(int memberEndIndex) {
 		super(memberEndIndex);
@@ -41,8 +41,8 @@ public class AssociationMultiplicityParser extends AbstractAssociationEndParser 
 	public String getPrintString(IAdaptable element, int flags) {
 		Property property = doAdapt(element);
 		StringBuffer displayedString = new StringBuffer();
-		if (property != null) {
-			if (property.getLower() == property.getUpper()) {
+		if(property != null) {
+			if(property.getLower() == property.getUpper()) {
 				displayedString.append(property.getLower());
 			} else {
 				displayedString.append(validValue(property.getLower()));
@@ -57,7 +57,7 @@ public class AssociationMultiplicityParser extends AbstractAssociationEndParser 
 	 * Convert the int to a valid String to display. If the value is -1, then it is converted to *
 	 * 
 	 * @param val
-	 *            the int to convert to String
+	 *        the int to convert to String
 	 * @return the valid string
 	 */
 	private String validValue(int val) {
@@ -74,7 +74,7 @@ public class AssociationMultiplicityParser extends AbstractAssociationEndParser 
 
 		EStructuralFeature feature = getEStructuralFeature(event);
 
-		if (UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(feature)
+		if(UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(feature)
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature)
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(feature)
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature)

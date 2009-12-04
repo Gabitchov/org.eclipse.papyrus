@@ -16,27 +16,35 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 /**
  * An View (from MVC) used to render data from the SashWindows.
  * This view is implemented with SWT.
+ * 
  * @author cedric dumoulin
  */
 public class SashWindowsView {
 
 	private FormToolkit toolkit;
+
 	private ScrolledForm form;
-	
+
 	private Text selectedElement;
+
 	private Text selectedPage;
+
 	private Text selectedPageName;
+
 	private Text selectedFolder;
+
 	private Text selectedIEditor;
+
 	private Text selectedIEditorName;
 
 	private final String TITLE = "SashWindows";
+
 	/**
 	 * Create associated part control.
+	 * 
 	 * @param parent
 	 */
-	public void createPartControl( Composite parent )
-	{
+	public void createPartControl(Composite parent) {
 		toolkit = new FormToolkit(parent.getDisplay());
 		form = toolkit.createScrolledForm(parent);
 		form.setText(TITLE);
@@ -44,7 +52,7 @@ public class SashWindowsView {
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		form.getBody().setLayout(layout);
-		
+
 		//
 		selectedElement = createInputText("Selected Element:", "");
 		selectedPage = createInputText("selected Page:", "");
@@ -52,12 +60,13 @@ public class SashWindowsView {
 		selectedFolder = createInputText("selected Folder:", "");
 		selectedIEditor = createInputText("selected IEditor:", "");
 		selectedIEditorName = createInputText("  editor name:", "");
-		
+
 	}
 
 	/**
 	 * Create a Text with a label and an initial value.
-	 * @param labelValue 
+	 * 
+	 * @param labelValue
 	 * @param textValue
 	 * @return
 	 */
@@ -68,55 +77,47 @@ public class SashWindowsView {
 		label.setLayoutData(gd);
 		text = toolkit.createText(form.getBody(), textValue, SWT.BORDER);
 		text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		
+
 		return text;
 	}
 
-	public void setselectedElement( String newText )
-	{
+	public void setselectedElement(String newText) {
 		selectedElement.setText(newText);
 	}
-	
-	public void setSelectedPage( String newText )
-	{
+
+	public void setSelectedPage(String newText) {
 		selectedPage.setText(newText);
 	}
-	
-	public void setSelectedPageName( String newText )
-	{
+
+	public void setSelectedPageName(String newText) {
 		selectedPageName.setText(newText);
 	}
-	
-	public void setSelectedFolder( String newText )
-	{
+
+	public void setSelectedFolder(String newText) {
 		selectedFolder.setText(newText);
 	}
-	
-	public void setSelectedIEditor( String newText )
-	{
+
+	public void setSelectedIEditor(String newText) {
 		selectedIEditor.setText(newText);
 	}
-	
-	public void setSelectedIEditorName( String newText )
-	{
+
+	public void setSelectedIEditorName(String newText) {
 		selectedIEditorName.setText(newText);
 	}
-	
+
 
 	/**
 	 * Dispose all resources
 	 */
-	public void dispose()
-	{
+	public void dispose() {
 		toolkit.dispose();
 	}
-	
+
 	/**
 	 * Set focus to this element.
 	 */
-	public void setFocus()
-	{
+	public void setFocus() {
 		form.setFocus();
 	}
-	
+
 }

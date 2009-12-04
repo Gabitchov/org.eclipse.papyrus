@@ -27,6 +27,7 @@ import org.eclipse.ui.dialogs.ContainerSelectionDialog;
  */
 
 public class MultiTextNewWizardPage extends WizardPage {
+
 	private Text containerText;
 
 	private Text fileText;
@@ -61,6 +62,7 @@ public class MultiTextNewWizardPage extends WizardPage {
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		containerText.setLayoutData(gd);
 		containerText.addModifyListener(new ModifyListener() {
+
 			public void modifyText(ModifyEvent e) {
 				dialogChanged();
 			}
@@ -69,6 +71,7 @@ public class MultiTextNewWizardPage extends WizardPage {
 		Button button = new Button(container, SWT.PUSH);
 		button.setText("Browse...");
 		button.addSelectionListener(new SelectionAdapter() {
+
 			public void widgetSelected(SelectionEvent e) {
 				handleBrowse();
 			}
@@ -80,6 +83,7 @@ public class MultiTextNewWizardPage extends WizardPage {
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		fileText.setLayoutData(gd);
 		fileText.addModifyListener(new ModifyListener() {
+
 			public void modifyText(ModifyEvent e) {
 				dialogChanged();
 			}
@@ -94,18 +98,18 @@ public class MultiTextNewWizardPage extends WizardPage {
 	 */
 
 	private void initialize() {
-		if (selection != null && selection.isEmpty() == false
+		if(selection != null && selection.isEmpty() == false
 				&& selection instanceof IStructuredSelection) {
-			IStructuredSelection ssel = (IStructuredSelection) selection;
-			if (ssel.size() > 1)
+			IStructuredSelection ssel = (IStructuredSelection)selection;
+			if(ssel.size() > 1)
 				return;
 			Object obj = ssel.getFirstElement();
-			if (obj instanceof IResource) {
+			if(obj instanceof IResource) {
 				IContainer container;
-				if (obj instanceof IContainer)
-					container = (IContainer) obj;
+				if(obj instanceof IContainer)
+					container = (IContainer)obj;
 				else
-					container = ((IResource) obj).getParent();
+					container = ((IResource)obj).getParent();
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
@@ -121,10 +125,10 @@ public class MultiTextNewWizardPage extends WizardPage {
 		ContainerSelectionDialog dialog = new ContainerSelectionDialog(
 				getShell(), ResourcesPlugin.getWorkspace().getRoot(), false,
 				"Select new file container");
-		if (dialog.open() == ContainerSelectionDialog.OK) {
+		if(dialog.open() == ContainerSelectionDialog.OK) {
 			Object[] result = dialog.getResult();
-			if (result.length == 1) {
-				containerText.setText(((Path) result[0]).toString());
+			if(result.length == 1) {
+				containerText.setText(((Path)result[0]).toString());
 			}
 		}
 	}
@@ -138,31 +142,31 @@ public class MultiTextNewWizardPage extends WizardPage {
 				.findMember(new Path(getContainerName()));
 		String fileName = getFileName();
 
-		if (getContainerName().length() == 0) {
+		if(getContainerName().length() == 0) {
 			updateStatus("File container must be specified");
 			return;
 		}
-		if (container == null
+		if(container == null
 				|| (container.getType() & (IResource.PROJECT | IResource.FOLDER)) == 0) {
 			updateStatus("File container must exist");
 			return;
 		}
-		if (!container.isAccessible()) {
+		if(!container.isAccessible()) {
 			updateStatus("Project must be writable");
 			return;
 		}
-		if (fileName.length() == 0) {
+		if(fileName.length() == 0) {
 			updateStatus("File name must be specified");
 			return;
 		}
-		if (fileName.replace('\\', '/').indexOf('/', 1) > 0) {
+		if(fileName.replace('\\', '/').indexOf('/', 1) > 0) {
 			updateStatus("File name must be valid");
 			return;
 		}
 		int dotLoc = fileName.lastIndexOf('.');
-		if (dotLoc != -1) {
+		if(dotLoc != -1) {
 			String ext = fileName.substring(dotLoc + 1);
-			if (ext.equalsIgnoreCase("fullEditor") == false) {
+			if(ext.equalsIgnoreCase("fullEditor") == false) {
 				updateStatus("File extension must be \"fullEditor\"");
 				return;
 			}

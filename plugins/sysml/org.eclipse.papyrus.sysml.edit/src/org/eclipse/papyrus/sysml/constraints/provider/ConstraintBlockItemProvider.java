@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
@@ -62,7 +61,7 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -87,14 +86,13 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 */
 	@Override
 	public String getText(Object object) {
-		ConstraintBlock constraintBlock = (ConstraintBlock) object;
+		ConstraintBlock constraintBlock = (ConstraintBlock)object;
 		return getString("_UI_ConstraintBlock_type") + " " + constraintBlock.isIsEncapsulated();
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

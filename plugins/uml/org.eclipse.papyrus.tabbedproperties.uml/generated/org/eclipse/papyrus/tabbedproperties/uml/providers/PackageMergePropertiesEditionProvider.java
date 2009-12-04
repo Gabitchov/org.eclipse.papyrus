@@ -40,7 +40,7 @@ public class PackageMergePropertiesEditionProvider implements IPropertiesEdition
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof PackageMerge) {
+		if(eObject instanceof PackageMerge) {
 			return new PackageMergePropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class PackageMergePropertiesEditionProvider implements IPropertiesEdition
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof PackageMerge) {
-			if (PackageMergeBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof PackageMerge) {
+			if(PackageMergeBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new PackageMergeBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

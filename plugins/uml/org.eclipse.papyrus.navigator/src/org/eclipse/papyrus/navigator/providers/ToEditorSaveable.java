@@ -40,7 +40,7 @@ public class ToEditorSaveable extends Saveable {
 
 	@Override
 	public void doSave(IProgressMonitor monitor) throws CoreException {
-		if (editor != null) {
+		if(editor != null) {
 			editor.doSave(monitor);
 		}
 	}
@@ -58,7 +58,7 @@ public class ToEditorSaveable extends Saveable {
 	}
 
 	protected IEditorInput getEditorInput() {
-		if (getEditor() != null && getEditor().getEditorInput() != null) {
+		if(getEditor() != null && getEditor().getEditorInput() != null) {
 			return getEditor().getEditorInput();
 		}
 		return null;
@@ -66,11 +66,11 @@ public class ToEditorSaveable extends Saveable {
 
 	@Override
 	public boolean equals(Object object) {
-		if (this == object) {
+		if(this == object) {
 			return true;
 		}
-		if (getPart() != null && object instanceof ToEditorSaveable) {
-			return getPart().equals(((ToEditorSaveable) object).getPart());
+		if(getPart() != null && object instanceof ToEditorSaveable) {
+			return getPart().equals(((ToEditorSaveable)object).getPart());
 		}
 		return false;
 	}
@@ -83,7 +83,7 @@ public class ToEditorSaveable extends Saveable {
 
 	@Override
 	public String getName() {
-		if (getEditor() != null) {
+		if(getEditor() != null) {
 			return getEditor().getEditorInput().getName();
 		}
 		return null;
@@ -91,7 +91,7 @@ public class ToEditorSaveable extends Saveable {
 
 	@Override
 	public String getToolTipText() {
-		if (getEditor() != null) {
+		if(getEditor() != null) {
 			return "Save " + getName() + " contents";
 		}
 		return null;
@@ -99,7 +99,7 @@ public class ToEditorSaveable extends Saveable {
 
 	@Override
 	public int hashCode() {
-		if (getPart() != null) {
+		if(getPart() != null) {
 			return part.hashCode();
 		}
 		return 0x0;
@@ -107,7 +107,7 @@ public class ToEditorSaveable extends Saveable {
 
 	@Override
 	public boolean isDirty() {
-		if (getEditor() != null) {
+		if(getEditor() != null) {
 			return getEditor().isDirty();
 		}
 		return false;

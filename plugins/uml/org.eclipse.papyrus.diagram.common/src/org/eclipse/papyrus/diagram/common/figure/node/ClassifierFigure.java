@@ -58,7 +58,7 @@ public class ClassifierFigure extends CompartmentFigure {
 	 * Create a new Classifier figure with the given tag
 	 * 
 	 * @param tagLabel
-	 *            a String that will be displayed at the top of the figure
+	 *        a String that will be displayed at the top of the figure
 	 */
 	public ClassifierFigure(String tagLabel) {
 		super(COMPARTMENT, tagLabel);

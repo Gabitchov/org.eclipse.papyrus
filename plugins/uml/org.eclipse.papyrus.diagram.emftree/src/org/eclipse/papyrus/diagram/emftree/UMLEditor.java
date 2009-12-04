@@ -60,10 +60,10 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 	 */
 	public UMLEditor(ServicesRegistry servicesRegistry) throws ServiceException, BackboneException {
 		IEditorContextRegistry contextRegistry;
-		contextRegistry = (IEditorContextRegistry) servicesRegistry.getService(IEditorContextRegistry.class);
+		contextRegistry = (IEditorContextRegistry)servicesRegistry.getService(IEditorContextRegistry.class);
 
 		// Get the context by its ID
-		BackboneContext editorContext = (BackboneContext) contextRegistry
+		BackboneContext editorContext = (BackboneContext)contextRegistry
 				.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
 
 		initEditor(editorContext);
@@ -102,11 +102,11 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 
 						// Try to select the affected objects.
 						//
-						Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
-						if (mostRecentCommand != null) {
+						Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+						if(mostRecentCommand != null) {
 							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
-						if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
+						if(propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
 							propertySheetPage.refresh();
 						}
 					}

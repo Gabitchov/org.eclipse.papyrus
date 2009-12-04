@@ -42,14 +42,14 @@ public class VSL_Tuple_CompletionProposal implements ICompletionProposalComputer
 		String tupleString = "(";
 		tupleTypeString = "(";
 		// if datatype is defined
-		if (dataType != null) {
-			if (dataType.getOwnedAttributes().size() > 0) {
+		if(dataType != null) {
+			if(dataType.getOwnedAttributes().size() > 0) {
 				Iterator<Property> propIter = dataType.getAllAttributes().iterator();
-				while (propIter.hasNext()) {
+				while(propIter.hasNext()) {
 					Property prop = propIter.next();
-					DataType propType = (DataType) prop.getType();
+					DataType propType = (DataType)prop.getType();
 					tupleString += prop.getName() + "=";
-					if (prop.getDefault() != null)
+					if(prop.getDefault() != null)
 						tupleString += prop.getDefault();
 					tupleString += " , ";
 					tupleTypeString += prop.getName() + ": " + propType.getName() + ", ";
@@ -90,7 +90,7 @@ public class VSL_Tuple_CompletionProposal implements ICompletionProposalComputer
 		// adds each Completion proposal
 		ICompletionProposal proposal = null;
 		String tupleString = computeTVL_Tuple_String();
-		if (tupleString.startsWith(prefix)) {
+		if(tupleString.startsWith(prefix)) {
 			proposal = new CompletionProposal(tupleString, documentOffset - prefix.length(), prefix.length()
 					+ selectionRange, tupleString.length() - 1, null, tupleTypeString, null, TVL_Tuple_StringsInfo[0]);
 			v.add(proposal);

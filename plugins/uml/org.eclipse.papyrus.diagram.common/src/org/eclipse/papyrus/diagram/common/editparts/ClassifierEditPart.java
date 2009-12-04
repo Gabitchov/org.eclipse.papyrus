@@ -51,7 +51,7 @@ public abstract class ClassifierEditPart extends NamedElementEditPart {
 		Object feature = notification.getFeature();
 
 		// Manage isAbstract
-		if (UMLPackage.eINSTANCE.getClassifier_IsAbstract().equals(feature)) {
+		if(UMLPackage.eINSTANCE.getClassifier_IsAbstract().equals(feature)) {
 			isAbstract = notification.getNewBooleanValue();
 			refreshFont();
 		}

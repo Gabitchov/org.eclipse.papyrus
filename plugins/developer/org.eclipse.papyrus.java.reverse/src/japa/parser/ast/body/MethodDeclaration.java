@@ -36,108 +36,108 @@ import java.util.List;
  */
 public final class MethodDeclaration extends BodyDeclaration {
 
-    private int modifiers;
+	private int modifiers;
 
-    private List<TypeParameter> typeParameters;
+	private List<TypeParameter> typeParameters;
 
-    private Type type;
+	private Type type;
 
-    private String name;
+	private String name;
 
-    private List<Parameter> parameters;
+	private List<Parameter> parameters;
 
-    private int arrayCount;
+	private int arrayCount;
 
-    private List<NameExpr> throws_;
+	private List<NameExpr> throws_;
 
-    private BlockStmt body;
+	private BlockStmt body;
 
-    public MethodDeclaration() {
-    }
+	public MethodDeclaration() {
+	}
 
-    public MethodDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, int modifiers, List<AnnotationExpr> annotations, List<TypeParameter> typeParameters, Type type, String name, List<Parameter> parameters, int arrayCount, List<NameExpr> throws_, BlockStmt block) {
-        super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc);
-        this.modifiers = modifiers;
-        this.typeParameters = typeParameters;
-        this.type = type;
-        this.name = name;
-        this.parameters = parameters;
-        this.arrayCount = arrayCount;
-        this.throws_ = throws_;
-        this.body = block;
-    }
+	public MethodDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, int modifiers, List<AnnotationExpr> annotations, List<TypeParameter> typeParameters, Type type, String name, List<Parameter> parameters, int arrayCount, List<NameExpr> throws_, BlockStmt block) {
+		super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc);
+		this.modifiers = modifiers;
+		this.typeParameters = typeParameters;
+		this.type = type;
+		this.name = name;
+		this.parameters = parameters;
+		this.arrayCount = arrayCount;
+		this.throws_ = throws_;
+		this.body = block;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public int getArrayCount() {
-        return arrayCount;
-    }
+	public int getArrayCount() {
+		return arrayCount;
+	}
 
-    public BlockStmt getBody() {
-        return body;
-    }
+	public BlockStmt getBody() {
+		return body;
+	}
 
-    public int getModifiers() {
-        return modifiers;
-    }
+	public int getModifiers() {
+		return modifiers;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public List<Parameter> getParameters() {
-        return parameters;
-    }
+	public List<Parameter> getParameters() {
+		return parameters;
+	}
 
-    public List<NameExpr> getThrows() {
-        return throws_;
-    }
+	public List<NameExpr> getThrows() {
+		return throws_;
+	}
 
-    public Type getType() {
-        return type;
-    }
+	public Type getType() {
+		return type;
+	}
 
-    public List<TypeParameter> getTypeParameters() {
-        return typeParameters;
-    }
+	public List<TypeParameter> getTypeParameters() {
+		return typeParameters;
+	}
 
-    public void setArrayCount(int arrayCount) {
-        this.arrayCount = arrayCount;
-    }
+	public void setArrayCount(int arrayCount) {
+		this.arrayCount = arrayCount;
+	}
 
-    public void setBody(BlockStmt body) {
-        this.body = body;
-    }
+	public void setBody(BlockStmt body) {
+		this.body = body;
+	}
 
-    public void setModifiers(int modifiers) {
-        this.modifiers = modifiers;
-    }
+	public void setModifiers(int modifiers) {
+		this.modifiers = modifiers;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setParameters(List<Parameter> parameters) {
-        this.parameters = parameters;
-    }
+	public void setParameters(List<Parameter> parameters) {
+		this.parameters = parameters;
+	}
 
-    public void setThrows(List<NameExpr> throws_) {
-        this.throws_ = throws_;
-    }
+	public void setThrows(List<NameExpr> throws_) {
+		this.throws_ = throws_;
+	}
 
-    public void setType(Type type) {
-        this.type = type;
-    }
+	public void setType(Type type) {
+		this.type = type;
+	}
 
-    public void setTypeParameters(List<TypeParameter> typeParameters) {
-        this.typeParameters = typeParameters;
-    }
+	public void setTypeParameters(List<TypeParameter> typeParameters) {
+		this.typeParameters = typeParameters;
+	}
 }

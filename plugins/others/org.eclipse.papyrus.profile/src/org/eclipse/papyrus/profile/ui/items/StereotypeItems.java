@@ -32,67 +32,73 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * The Class StereotypeItems.
  */
 public class StereotypeItems {
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param table the table
-	 * @param value the value
-	 * @param property the property
+	 * @param table
+	 *        the table
+	 * @param value
+	 *        the value
+	 * @param property
+	 *        the property
 	 */
-	public StereotypeItems (Table table, Property property, Object value) {
-		
-		// Checking rule
-		if (property.getLower() > 0) {
-			Message.error(
-					"Property of type Stereotype and multiplicity lower value != 0.\n" 
-					+" The profile is ill formed !");
-		}
-		
-		if (property.isMultivalued()) {
-			// property is multivalued
-			final List propValues = (List) value;
+	public StereotypeItems(Table table, Property property, Object value) {
 
-			for(int i=0; i<propValues.size(); i++) {
+		// Checking rule
+		if(property.getLower() > 0) {
+			Message.error(
+					"Property of type Stereotype and multiplicity lower value != 0.\n"
+					+ " The profile is ill formed !");
+		}
+
+		if(property.isMultivalued()) {
+			// property is multivalued
+			final List propValues = (List)value;
+
+			for(int i = 0; i < propValues.size(); i++) {
 				createItem(table, property, propValues.get(i));
 			}
 
 		} else { // property is not multivalued
 
 			// if the property has a value
-			if (value != null) {
+			if(value != null) {
 				createItem(table, property, value);
 			}
 		}
 	}
-	
+
 	/**
 	 * Creates a new item for current objet int the table.
 	 * 
-	 * @param table the table
-	 * @param object the object
-	 * @param property the property
+	 * @param table
+	 *        the table
+	 * @param object
+	 *        the object
+	 * @param property
+	 *        the property
 	 */
 	private void createItem(Table table, Property property, Object object) {
-		
+
 		Element baseElement = null;
 		// Prepare Item data
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			// retrieve the base element from the stereotype application
-			baseElement = (Element) UMLUtil.getBaseElement((EObject) object);
-			
+			baseElement = (Element)UMLUtil.getBaseElement((EObject)object);
+
 		} else { // Error
-			String err = "Type "+object.toString()+" of Property "+property.getName()+" is not an EObject.";
+			String err = "Type " + object.toString() + " of Property " + property.getName() + " is not an EObject.";
 			Message.error(err);
 		}
-		
-		if (baseElement != null) {
+
+		if(baseElement != null) {
 			// Prepare Item label
 			TableItem propValueItem = new TableItem(table, SWT.NONE);
 			String label = baseElement.toString();
-			if (baseElement instanceof NamedElement) {
-				NamedElement baseNamedElement = (NamedElement) baseElement;
-				if (baseNamedElement.isSetName()) {
+			if(baseElement instanceof NamedElement) {
+				NamedElement baseNamedElement = (NamedElement)baseElement;
+				if(baseNamedElement.isSetName()) {
 					label = baseNamedElement.getQualifiedName();
 				}
 			}

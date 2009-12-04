@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Component;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.BuildComponentImpl#getBase_Component <em>Base
- * Component</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.BuildComponentImpl#getBase_Component <em>Base Component</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,11 +71,11 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 	 * @generated
 	 */
 	public Component getBase_Component() {
-		if (base_Component != null && base_Component.eIsProxy()) {
-			InternalEObject oldBase_Component = (InternalEObject) base_Component;
-			base_Component = (Component) eResolveProxy(oldBase_Component);
-			if (base_Component != oldBase_Component) {
-				if (eNotificationRequired())
+		if(base_Component != null && base_Component.eIsProxy()) {
+			InternalEObject oldBase_Component = (InternalEObject)base_Component;
+			base_Component = (Component)eResolveProxy(oldBase_Component);
+			if(base_Component != oldBase_Component) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							StandardPackage.BUILD_COMPONENT__BASE_COMPONENT, oldBase_Component, base_Component));
 			}
@@ -101,7 +100,7 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 	public void setBase_Component(Component newBase_Component) {
 		Component oldBase_Component = base_Component;
 		base_Component = newBase_Component;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.BUILD_COMPONENT__BASE_COMPONENT,
 					oldBase_Component, base_Component));
 	}
@@ -113,9 +112,9 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.BUILD_COMPONENT__BASE_COMPONENT:
-			if (resolve)
+			if(resolve)
 				return getBase_Component();
 			return basicGetBase_Component();
 		}
@@ -129,9 +128,9 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.BUILD_COMPONENT__BASE_COMPONENT:
-			setBase_Component((Component) newValue);
+			setBase_Component((Component)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,9 +143,9 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.BUILD_COMPONENT__BASE_COMPONENT:
-			setBase_Component((Component) null);
+			setBase_Component((Component)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -159,7 +158,7 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case StandardPackage.BUILD_COMPONENT__BASE_COMPONENT:
 			return base_Component != null;
 		}

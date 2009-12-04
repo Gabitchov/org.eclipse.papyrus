@@ -62,12 +62,12 @@ public class DiagramOrientedContentProvider implements ITreeContentProvider {
 	 * {@inheritDoc}
 	 */
 	public Object[] getElements(Object inputElement) {
-		if (inputElement instanceof Diagram) {
-			this.diagram = (Diagram) inputElement;
+		if(inputElement instanceof Diagram) {
+			this.diagram = (Diagram)inputElement;
 			List<Object> children = new ArrayList<Object>();
-			for (Object object : diagram.getChildren()) {
-				if (object instanceof View) {
-					View view = (View) object;
+			for(Object object : diagram.getChildren()) {
+				if(object instanceof View) {
+					View view = (View)object;
 					EObject modelElement = ViewUtil.resolveSemanticElement(view);
 					children.add(modelElement);
 				}
@@ -89,8 +89,8 @@ public class DiagramOrientedContentProvider implements ITreeContentProvider {
 	 */
 	public Object getParent(Object element) {
 		// The parent of a diagram is the model object that contains it.
-		if (element instanceof Diagram) {
-			return ((Diagram) element).getElement();
+		if(element instanceof Diagram) {
+			return ((Diagram)element).getElement();
 		}
 		return null;
 	}

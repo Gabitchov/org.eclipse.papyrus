@@ -75,32 +75,44 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class RealizationPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, RealizationPropertiesEditionPart {
 
 	protected Text name;
+
 	protected EMFComboViewer visibility;
+
 	private EMFListEditUtil clientEditUtil;
+
 	protected ReferencesTable<? extends EObject> client;
+
 	protected List<ViewerFilter> clientBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> clientFilters = new ArrayList<ViewerFilter>();
+
 	private EMFListEditUtil supplierEditUtil;
+
 	protected ReferencesTable<? extends EObject> supplier;
+
 	protected List<ViewerFilter> supplierBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> supplierFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public RealizationPropertiesEditionPartForm(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.widgets.FormToolkit)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite,
+	 *      org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
 	public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
 		ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
@@ -112,11 +124,12 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 		createControls(widgetFactory, view, new EEFMessageManager(scrolledForm, widgetFactory));
 		return scrolledForm;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart#
-	 * 			createControls(org.eclipse.ui.forms.widgets.FormToolkit, org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart# createControls(org.eclipse.ui.forms.widgets.FormToolkit,
+	 *      org.eclipse.swt.widgets.Composite, org.eclipse.ui.forms.IMessageManager)
 	 */
 	public void createControls(final FormToolkit widgetFactory, Composite view, IMessageManager messageManager) {
 		this.messageManager = messageManager;
@@ -124,7 +137,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 		// Start of user code for additional ui definition
 
 		// End of user code
-		
+
 	}
 
 	protected void createGeneralGroup(FormToolkit widgetFactory, final Composite view) {
@@ -142,6 +155,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 		createGeneralHBox1HBox(widgetFactory, generalGroup);
 		generalSection.setClient(generalGroup);
 	}
+
 	protected void createNameText(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.RealizationPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Realization.name, UMLViewsRepository.FORM_KIND));
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
@@ -157,7 +171,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RealizationPropertiesEditionPartForm.this, UMLViewsRepository.Realization.name, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -170,7 +184,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RealizationPropertiesEditionPartForm.this, UMLViewsRepository.Realization.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 			}
 
@@ -183,8 +197,8 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
 			 */
 			public void keyPressed(KeyEvent e) {
-				if (e.character == SWT.CR) {
-					if (propertiesEditionComponent != null)
+				if(e.character == SWT.CR) {
+					if(propertiesEditionComponent != null)
 						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RealizationPropertiesEditionPartForm.this, UMLViewsRepository.Realization.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
 				}
 			}
@@ -192,6 +206,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Realization.name, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createVisibilityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
 		FormUtils.createPartLabel(widgetFactory, parent, UMLMessages.RealizationPropertiesEditionPart_VisibilityLabel, propertiesEditionComponent.isRequired(UMLViewsRepository.Realization.visibility, UMLViewsRepository.FORM_KIND));
 		visibility = new EMFComboViewer(parent);
@@ -207,49 +222,64 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
+				if(propertiesEditionComponent != null)
 					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RealizationPropertiesEditionPartForm.this, UMLViewsRepository.Realization.visibility, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getVisibility()));
 			}
 
 		});
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(UMLViewsRepository.Realization.visibility, UMLViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 	}
+
 	protected void createGeneralHBox1HBox(FormToolkit widgetFactory, Composite parent) {
 		Composite container = widgetFactory.createComposite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData.horizontalSpan=3;
+		gridData.horizontalSpan = 3;
 		container.setLayoutData(gridData);
 		HorizontalBox generalHBox1HBox = new HorizontalBox(container);
 		//create sub figures
-				createClientReferencesTable(widgetFactory, generalHBox1HBox);
-				createSupplierReferencesTable(widgetFactory, generalHBox1HBox);
+		createClientReferencesTable(widgetFactory, generalHBox1HBox);
+		createSupplierReferencesTable(widgetFactory, generalHBox1HBox);
 		container.pack();
 	}
+
 	protected void createClientReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.client = new ReferencesTable<NamedElement>(UMLMessages.RealizationPropertiesEditionPart_ClientLabel, new ReferencesTableListener<NamedElement>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(resourceSet, clientFilters, clientBusinessFilters,
-				"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+						"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!clientEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!clientEditUtil.getVirtualList().contains(elem))
 								clientEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RealizationPropertiesEditionPartForm.this, UMLViewsRepository.Realization.client,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						client.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(NamedElement element) { editClient(element); }
-			public void handleMove(NamedElement element, int oldIndex, int newIndex) { moveClient(element, oldIndex, newIndex); }
-			public void handleRemove(NamedElement element) { removeFromClient(element); }
-			public void navigateTo(NamedElement element) { }
+
+			public void handleEdit(NamedElement element) {
+				editClient(element);
+			}
+
+			public void handleMove(NamedElement element, int oldIndex, int newIndex) {
+				moveClient(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(NamedElement element) {
+				removeFromClient(element);
+			}
+
+			public void navigateTo(NamedElement element) {
+			}
 		});
 		this.client.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Realization.client, UMLViewsRepository.FORM_KIND));
 		this.client.createControls(parent, widgetFactory);
@@ -290,10 +320,10 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				clientEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				client.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -305,29 +335,43 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 		// End of user code
 
 	}
+
 	protected void createSupplierReferencesTable(FormToolkit widgetFactory, Composite parent) {
 		this.supplier = new ReferencesTable<NamedElement>(UMLMessages.RealizationPropertiesEditionPart_SupplierLabel, new ReferencesTableListener<NamedElement>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<NamedElement> dialog = new TabElementTreeSelectionDialog<NamedElement>(resourceSet, supplierFilters, supplierBusinessFilters,
-				"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+						"NamedElement", UMLPackage.eINSTANCE.getNamedElement(), current.eResource()) {
+
 					@Override
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!supplierEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!supplierEditUtil.getVirtualList().contains(elem))
 								supplierEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RealizationPropertiesEditionPartForm.this, UMLViewsRepository.Realization.supplier,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						supplier.refresh();
 					}
 				};
 				dialog.open();
 			}
-			public void handleEdit(NamedElement element) { editSupplier(element); }
-			public void handleMove(NamedElement element, int oldIndex, int newIndex) { moveSupplier(element, oldIndex, newIndex); }
-			public void handleRemove(NamedElement element) { removeFromSupplier(element); }
-			public void navigateTo(NamedElement element) { }
+
+			public void handleEdit(NamedElement element) {
+				editSupplier(element);
+			}
+
+			public void handleMove(NamedElement element, int oldIndex, int newIndex) {
+				moveSupplier(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(NamedElement element) {
+				removeFromSupplier(element);
+			}
+
+			public void navigateTo(NamedElement element) {
+			}
 		});
 		this.supplier.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.Realization.supplier, UMLViewsRepository.FORM_KIND));
 		this.supplier.createControls(parent, widgetFactory);
@@ -368,10 +412,10 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				supplierEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				supplier.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -384,12 +428,12 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 
 	}
 
-	
+
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
 
 		// End of user code
-		
+
 	}
 
 	/**
@@ -407,10 +451,10 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#setName(String newValue)
 	 */
 	public void setName(String newValue) {
-		if (newValue != null) {
+		if(newValue != null) {
 			name.setText(newValue);
 		} else {
-			name.setText("");  //$NON-NLS-1$
+			name.setText(""); //$NON-NLS-1$
 		}
 	}
 
@@ -428,7 +472,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#getVisibility()
 	 */
 	public Enumerator getVisibility() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) visibility.getSelection()).getFirstElement();
+		EEnumLiteral selection = (EEnumLiteral)((StructuredSelection)visibility.getSelection()).getFirstElement();
 		return selection.getInstance();
 	}
 
@@ -486,12 +530,13 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#initClient(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#initClient(EObject current, EReference containingFeature,
+	 *      EReference feature)
 	 */
 	public void initClient(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			clientEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			clientEditUtil = new EMFListEditUtil(current, feature);
@@ -504,7 +549,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#updateClient(EObject newValue)
 	 */
 	public void updateClient(EObject newValue) {
-		if(clientEditUtil != null){
+		if(clientEditUtil != null) {
 			clientEditUtil.reinit(newValue);
 			client.refresh();
 		}
@@ -572,12 +617,13 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#initSupplier(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#initSupplier(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initSupplier(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			supplierEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			supplierEditUtil = new EMFListEditUtil(current, feature);
@@ -590,7 +636,7 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.RealizationPropertiesEditionPart#updateSupplier(EObject newValue)
 	 */
 	public void updateSupplier(EObject newValue) {
-		if(supplierEditUtil != null){
+		if(supplierEditUtil != null) {
 			supplierEditUtil.reinit(newValue);
 			supplier.refresh();
 		}
@@ -627,15 +673,8 @@ public class RealizationPropertiesEditionPartForm extends CompositePropertiesEdi
 
 
 
-
-
-
-
-
-
-	
 	// Start of user code additional methods
 
 	// End of user code
 
-}	
+}

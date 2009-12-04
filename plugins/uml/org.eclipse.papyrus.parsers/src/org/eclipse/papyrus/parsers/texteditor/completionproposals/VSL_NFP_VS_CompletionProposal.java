@@ -48,8 +48,8 @@ public class VSL_NFP_VS_CompletionProposal implements ICompletionProposalCompute
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < TVL_NFP_VS_Strings.length; i++) {
-			if (TVL_NFP_VS_Strings[i].startsWith(prefix)) {
+		for(int i = 0; i < TVL_NFP_VS_Strings.length; i++) {
+			if(TVL_NFP_VS_Strings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(TVL_NFP_VS_Strings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, TVL_NFP_VS_Strings[i].length(), null, TVL_NFP_VS_StringName[i], null,

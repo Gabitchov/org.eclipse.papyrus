@@ -22,6 +22,7 @@ public class OutputPin4CreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -39,8 +40,7 @@ public class OutputPin4CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	public static OutputPin4CreateCommand create(CreateElementRequest req,
-			EObject eObject) {
+	public static OutputPin4CreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new OutputPin4CreateCommand(req, eObject);
 	}
 
@@ -57,8 +57,7 @@ public class OutputPin4CreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
+		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -89,10 +88,8 @@ public class OutputPin4CreateCommand extends CreateElementCommand {
 	 */
 	protected Diagram getDiagramFromRequest() {
 
-		if (getRequest().getParameters().get(
-				MultiDiagramUtil.BelongToDiagramSource) != null) {
-			Object parameter = getRequest().getParameters().get(
-					MultiDiagramUtil.BelongToDiagramSource);
+		if (getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource) != null) {
+			Object parameter = getRequest().getParameters().get(MultiDiagramUtil.BelongToDiagramSource);
 			if (parameter instanceof Diagram) {
 				return (Diagram) parameter;
 			}
@@ -114,11 +111,9 @@ public class OutputPin4CreateCommand extends CreateElementCommand {
 
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
-				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram,
-						newElement);
+				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
 			} else {
-				MultiDiagramUtil.addEAnnotationReferenceToDiagram(
-						UMLDiagramEditorPlugin.getInstance(), newElement);
+				MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
 			}
 		}
 		return newElement;

@@ -35,17 +35,23 @@ import org.eclipse.uml2.uml.Type;
  * The Class CompositeListener.
  */
 public class CompositeListener extends PropertyListener {
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param table the table
-	 * @param element the element
-	 * @param stereotype the stereotype
-	 * @param property the property
-	 * @param parent the parent
+	 * @param table
+	 *        the table
+	 * @param element
+	 *        the element
+	 * @param stereotype
+	 *        the stereotype
+	 * @param property
+	 *        the property
+	 * @param parent
+	 *        the parent
 	 * 
-	 * @throws Exception the exception
+	 * @throws Exception
+	 *         the exception
 	 */
 	public CompositeListener(AbstractPanel parent, Table table, Property property, Stereotype stereotype, Element element) throws Exception {
 		super(parent, table, property, stereotype, element);
@@ -53,89 +59,101 @@ public class CompositeListener extends PropertyListener {
 			init();
 		} catch (NoValueException e) {
 			throw e;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Handle event.
 	 * 
-	 * @param event the event
+	 * @param event
+	 *        the event
 	 */
 	@Override
 	public void handleEvent(Event event) {
-		final ArrayList filteredElements = Util.getInstancesFilteredByType(element, null, (Stereotype) property.getType());
+		final ArrayList filteredElements = Util.getInstancesFilteredByType(element, null, (Stereotype)property.getType());
 		// No element : error !!!
-		if (filteredElements.size() <= 0) {
+		if(filteredElements.size() <= 0) {
 			Message.warning(
 					"No element stereotyped "
-					+((Stereotype) property.getType()).getName()
-					+" found in the model.");
+					+ ((Stereotype)property.getType()).getName()
+					+ " found in the model.");
 			return;
 		}
-		
-		if (isMultivalued) {
+
+		if(isMultivalued) {
 			itemDClicked(filteredElements);
 		} else {
 			itemDClicked(filteredElements);
 		}
 	}
-	
+
 	/**
 	 * When doubleclicked : opens a dialog to allow edition of a new Stereotype typed property.
 	 * 
-	 * @param selectedElt the element that owns the stereotype
-	 * @param value an Object or List of Object if isMultivalued
-	 * @param isMultivalued is the property multivalued or not
-	 * @param selectedProp the selected property
-	 * @param currentStereotype the stereotype associated to selectedProp
-	 * @param filteredElts list of instances in the model that are possible values for this property
+	 * @param selectedElt
+	 *        the element that owns the stereotype
+	 * @param value
+	 *        an Object or List of Object if isMultivalued
+	 * @param isMultivalued
+	 *        is the property multivalued or not
+	 * @param selectedProp
+	 *        the selected property
+	 * @param currentStereotype
+	 *        the stereotype associated to selectedProp
+	 * @param filteredElts
+	 *        list of instances in the model that are possible values for this property
 	 */
 	private void itemDClicked(ArrayList filteredElts) {
 		Type type = property.getType();
-		
+
 		// Selected value index
 		int index = table.getSelectionIndex();
-		
+
 		// Prepare possible selection for dialog box
 		String[] elementsNames = Util.getStringArrayFromList(filteredElts);
 		// if no possible selection : abort
-		if (elementsNames == null) {
+		if(elementsNames == null) {
 			Message.warning("No element stereotyped <<" + type.getName() + ">> was found in the model.");
 			return;
 		}
-		
+
 		// Create and open combo box
 		ComboSelectionDialog valueDialog = new ComboSelectionDialog(parent.getShell(), "New value:", elementsNames, "");
 		int val = valueDialog.open();
 
-		if ((val == InputDialog.OK) && (valueDialog.indexOfSelection != -1)) {
-			if (isMultivalued) {
-				List values = (List) value;
-				Element dialogSelectedElement = (Element) filteredElts.get(valueDialog.indexOfSelection);
-				values.set(index, dialogSelectedElement.getStereotypeApplication((Stereotype) type));
+		if((val == InputDialog.OK) && (valueDialog.indexOfSelection != -1)) {
+			if(isMultivalued) {
+				List values = (List)value;
+				Element dialogSelectedElement = (Element)filteredElts.get(valueDialog.indexOfSelection);
+				values.set(index, dialogSelectedElement.getStereotypeApplication((Stereotype)type));
 				element.setValue(stereotype, property.getName(), values);
 			} else {
-				Element dialogSelectedElement = (Element) filteredElts.get(valueDialog.indexOfSelection);
-				element.setValue(stereotype, property.getName(), dialogSelectedElement.getStereotypeApplication((Stereotype) type));
+				Element dialogSelectedElement = (Element)filteredElts.get(valueDialog.indexOfSelection);
+				element.setValue(stereotype, property.getName(), dialogSelectedElement.getStereotypeApplication((Stereotype)type));
 			}
 			// Force model change
 			Util.touchModel(element);
 		}
-		
+
 		// Close dialog box and refresh table
 		valueDialog.close();
 		parent.refresh();
-	}	
-	
+	}
+
 
 	/**
 	 * Item D clicked composite.
 	 * 
-	 * @param selectedElt the selected elt
-	 * @param value the value
-	 * @param isMultivalued the is multivalued
-	 * @param selectedProp the selected prop
-	 * @param currentStereotype the current stereotype
+	 * @param selectedElt
+	 *        the selected elt
+	 * @param value
+	 *        the value
+	 * @param isMultivalued
+	 *        the is multivalued
+	 * @param selectedProp
+	 *        the selected prop
+	 * @param currentStereotype
+	 *        the current stereotype
 	 */
 	private void itemDClickedComposite(boolean isMultivalued, Property selectedProp, Stereotype currentStereotype, Element selectedElt, Object value) {
 		parent.refresh();

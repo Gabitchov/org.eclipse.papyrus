@@ -56,17 +56,17 @@ public class GeneralizationSetConstraintParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			if (((EObjectAdapter) element).getRealObject() instanceof GeneralizationSet) {
-				GeneralizationSet generalizationSet = ((GeneralizationSet) ((EObjectAdapter) element).getRealObject());
+		if(element instanceof EObjectAdapter) {
+			if(((EObjectAdapter)element).getRealObject() instanceof GeneralizationSet) {
+				GeneralizationSet generalizationSet = ((GeneralizationSet)((EObjectAdapter)element).getRealObject());
 				String out = "{";
-				if (generalizationSet.isCovering()) {
+				if(generalizationSet.isCovering()) {
 					out = out + "complete, ";
 				} else {
 					out = out + "incomplete, ";
 				}
 
-				if (generalizationSet.isDisjoint()) {
+				if(generalizationSet.isDisjoint()) {
 					out = out + "disjoint}";
 				} else {
 					out = out + "overlapping}";
@@ -81,10 +81,10 @@ public class GeneralizationSetConstraintParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
-		if (event instanceof org.eclipse.emf.common.notify.Notification) {
-			Object source = ((org.eclipse.emf.common.notify.Notification) event).getFeature();
-			if (source instanceof EAttribute) {
-				if (source.equals(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering())
+		if(event instanceof org.eclipse.emf.common.notify.Notification) {
+			Object source = ((org.eclipse.emf.common.notify.Notification)event).getFeature();
+			if(source instanceof EAttribute) {
+				if(source.equals(UMLPackage.eINSTANCE.getGeneralizationSet_IsCovering())
 						|| (source.equals(UMLPackage.eINSTANCE.getGeneralizationSet_IsDisjoint()))) {
 					return true;
 				}

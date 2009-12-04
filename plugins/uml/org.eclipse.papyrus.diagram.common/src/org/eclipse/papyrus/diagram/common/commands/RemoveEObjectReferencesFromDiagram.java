@@ -42,11 +42,11 @@ public class RemoveEObjectReferencesFromDiagram extends AbstractTransactionalCom
 	 * Instantiates a new removes the e object references from diagram.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param diagram
-	 *            the diagram
+	 *        the diagram
 	 * @param eObjects
-	 *            the e objects
+	 *        the e objects
 	 */
 	public RemoveEObjectReferencesFromDiagram(TransactionalEditingDomain domain, Diagram diagram, List<EObject> eObjects) {
 		super(domain, "Add EObject references to Diagram", null);
@@ -73,7 +73,7 @@ public class RemoveEObjectReferencesFromDiagram extends AbstractTransactionalCom
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		for (EObject eObject : eObjects) {
+		for(EObject eObject : eObjects) {
 			MultiDiagramUtil.RemoveEAnnotationReferenceFromDiagram(diagram, eObject);
 		}
 		return CommandResult.newOKCommandResult();

@@ -42,11 +42,11 @@ public class ProfileApplicationPreferencePage extends FieldEditorPreferencePage 
 	public void createFieldEditors() {
 
 		addField(new RadioGroupFieldEditor(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE,
-				"Stereotype Name Display Preferences :", 1, new String[][] {
-						{ "UML Compatibility (force lower case for first letter - default)",
-								VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM },
-						{ "User Controlled (let name as entered by user)",
-								VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED } },
+				"Stereotype Name Display Preferences :", 1, new String[][]{
+				{ "UML Compatibility (force lower case for first letter - default)",
+				VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM },
+				{ "User Controlled (let name as entered by user)",
+				VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED } },
 				getFieldEditorParent()));
 	}
 
@@ -54,7 +54,7 @@ public class ProfileApplicationPreferencePage extends FieldEditorPreferencePage 
 	 * Init.
 	 * 
 	 * @param workbench
-	 *            the workbench
+	 *        the workbench
 	 */
 	public void init(IWorkbench workbench) {
 	}

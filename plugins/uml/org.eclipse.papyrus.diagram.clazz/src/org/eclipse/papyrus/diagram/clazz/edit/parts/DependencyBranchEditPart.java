@@ -54,12 +54,12 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements 
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DependencyName3EditPart) {
-			((DependencyName3EditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof DependencyName3EditPart) {
+			((DependencyName3EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof AppliedStereotypeDependency3EditPart) {
-			((AppliedStereotypeDependency3EditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof AppliedStereotypeDependency3EditPart) {
+			((AppliedStereotypeDependency3EditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
@@ -70,7 +70,7 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements 
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,10 +80,10 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements 
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DependencyName3EditPart) {
+		if(childEditPart instanceof DependencyName3EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AppliedStereotypeDependency3EditPart) {
+		if(childEditPart instanceof AppliedStereotypeDependency3EditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +93,7 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements 
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -115,7 +115,7 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements 
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

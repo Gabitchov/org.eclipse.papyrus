@@ -32,18 +32,18 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 	 * {@inheritDoc}
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Association_4001 == req.getElementType()) {
+		if(UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
+		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		}
@@ -55,11 +55,11 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 	 * {@inheritDoc}
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Association_4001 == req.getElementType()) {
+		if(UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
+		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);

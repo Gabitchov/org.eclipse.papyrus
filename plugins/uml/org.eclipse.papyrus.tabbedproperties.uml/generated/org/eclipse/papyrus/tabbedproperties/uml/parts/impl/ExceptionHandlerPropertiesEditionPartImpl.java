@@ -54,21 +54,30 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ExceptionHandlerPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ExceptionHandlerPropertiesEditionPart {
 
 	protected EMFListEditUtil ownedCommentEditUtil;
+
 	protected ReferencesTable<? extends EObject> ownedComment;
+
 	protected List<ViewerFilter> ownedCommentBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> ownedCommentFilters = new ArrayList<ViewerFilter>();
+
 	protected EMFListEditUtil exceptionTypeEditUtil;
+
 	protected ReferencesTable<? extends EObject> exceptionType;
+
 	protected List<ViewerFilter> exceptionTypeBusinessFilters = new ArrayList<ViewerFilter>();
+
 	protected List<ViewerFilter> exceptionTypeFilters = new ArrayList<ViewerFilter>();
 
 
 
 
-	
+
 	/**
 	 * Default constructor
-	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
+	 * 
+	 * @param editionComponent
+	 *        the {@link IPropertiesEditionComponent} that manage this part
 	 */
 	public ExceptionHandlerPropertiesEditionPartImpl(IPropertiesEditionComponent editionComponent) {
 		super(editionComponent);
@@ -76,25 +85,25 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createFigure(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createFigure(org.eclipse.swt.widgets.Composite)
 	 */
 	public Composite createFigure(final Composite parent) {
 		view = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		view.setLayout(layout);
-		
+
 		createControls(view);
 		return view;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart#
-	 * 			createControls(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart# createControls(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createControls(Composite view) { 
+	public void createControls(Composite view) {
 		createPropertiesGroup(view);
 
 		// Start of user code for additional ui definition
@@ -115,16 +124,31 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 		createOwnedCommentAdvancedTableComposition(propertiesGroup);
 		createExceptionTypeAdvancedReferencesTable(propertiesGroup);
 	}
+
 	/**
 	 * @param container
 	 */
 	protected void createOwnedCommentAdvancedTableComposition(Composite parent) {
-		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ExceptionHandlerPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {			
-			public void handleAdd() { addToOwnedComment();}
-			public void handleEdit(Comment element) { editOwnedComment(element); }
-			public void handleMove(Comment element, int oldIndex, int newIndex) { moveOwnedComment(element, oldIndex, newIndex); }
-			public void handleRemove(Comment element) { removeFromOwnedComment(element); }
-			public void navigateTo(Comment element) { }
+		this.ownedComment = new ReferencesTable<Comment>(UMLMessages.ExceptionHandlerPropertiesEditionPart_OwnedCommentLabel, new ReferencesTableListener<Comment>() {
+
+			public void handleAdd() {
+				addToOwnedComment();
+			}
+
+			public void handleEdit(Comment element) {
+				editOwnedComment(element);
+			}
+
+			public void handleMove(Comment element, int oldIndex, int newIndex) {
+				moveOwnedComment(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Comment element) {
+				removeFromOwnedComment(element);
+			}
+
+			public void navigateTo(Comment element) {
+			}
 		});
 		this.ownedComment.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ExceptionHandler.ownedComment, UMLViewsRepository.SWT_KIND));
 		this.ownedComment.createControls(parent);
@@ -140,7 +164,7 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 		EObject editedElement = ownedCommentEditUtil.foundCorrespondingEObject(element);
 		ownedCommentEditUtil.moveElement(element, oldIndex, newIndex);
 		ownedComment.refresh();
-		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ExceptionHandlerPropertiesEditionPartImpl.this, UMLViewsRepository.ExceptionHandler.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));	
+		propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ExceptionHandlerPropertiesEditionPartImpl.this, UMLViewsRepository.ExceptionHandler.ownedComment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, editedElement, newIndex));
 	}
 
 	/**
@@ -153,11 +177,11 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(eObject);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(eObject);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(propertiesEditionComponent,
-							eObject, resourceSet));
-			if (propertiesEditionObject != null) {
+					eObject, resourceSet));
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.addElement(propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -196,10 +220,10 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				ownedCommentEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				ownedComment.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -211,19 +235,21 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 		// End of user code
 
 	}
+
 	protected void createExceptionTypeAdvancedReferencesTable(Composite parent) {
 		this.exceptionType = new ReferencesTable<Classifier>(UMLMessages.ExceptionHandlerPropertiesEditionPart_ExceptionTypeLabel, new ReferencesTableListener<Classifier>() {
+
 			public void handleAdd() {
 				TabElementTreeSelectionDialog<Classifier> dialog = new TabElementTreeSelectionDialog<Classifier>(resourceSet, exceptionTypeFilters, exceptionTypeBusinessFilters,
-				"Classifier", UMLPackage.eINSTANCE.getClassifier(), current.eResource()) {
+						"Classifier", UMLPackage.eINSTANCE.getClassifier(), current.eResource()) {
 
 					public void process(IStructuredSelection selection) {
-						for (Iterator<?> iter = selection.iterator(); iter.hasNext();) {
-							EObject elem = (EObject) iter.next();
-							if (!exceptionTypeEditUtil.getVirtualList().contains(elem))
+						for(Iterator<?> iter = selection.iterator(); iter.hasNext();) {
+							EObject elem = (EObject)iter.next();
+							if(!exceptionTypeEditUtil.getVirtualList().contains(elem))
 								exceptionTypeEditUtil.addElement(elem);
 							propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ExceptionHandlerPropertiesEditionPartImpl.this, UMLViewsRepository.ExceptionHandler.exceptionType,
-								PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
+									PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, elem));
 						}
 						exceptionType.refresh();
 					}
@@ -231,10 +257,21 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 				};
 				dialog.open();
 			}
-			public void handleEdit(Classifier element) { editExceptionType(element); }
-			public void handleMove(Classifier element, int oldIndex, int newIndex) { moveExceptionType(element, oldIndex, newIndex); }
-			public void handleRemove(Classifier element) { removeFromExceptionType(element); }
-			public void navigateTo(Classifier element) { }
+
+			public void handleEdit(Classifier element) {
+				editExceptionType(element);
+			}
+
+			public void handleMove(Classifier element, int oldIndex, int newIndex) {
+				moveExceptionType(element, oldIndex, newIndex);
+			}
+
+			public void handleRemove(Classifier element) {
+				removeFromExceptionType(element);
+			}
+
+			public void navigateTo(Classifier element) {
+			}
 		});
 		this.exceptionType.setHelpText(propertiesEditionComponent.getHelpContent(UMLViewsRepository.ExceptionHandler.exceptionType, UMLViewsRepository.SWT_KIND));
 		this.exceptionType.createControls(parent);
@@ -276,10 +313,10 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 		IPropertiesEditionPolicyProvider policyProvider = PropertiesEditionPolicyProviderService.getInstance()
 				.getProvider(element);
 		IPropertiesEditionPolicy editionPolicy = policyProvider.getEditionPolicy(editedElement);
-		if (editionPolicy != null) {
+		if(editionPolicy != null) {
 			EObject propertiesEditionObject = editionPolicy
 					.getPropertiesEditionObject(new EObjectPropertiesEditionContext(null, element, resourceSet));
-			if (propertiesEditionObject != null) {
+			if(propertiesEditionObject != null) {
 				exceptionTypeEditUtil.putElementToRefresh(editedElement, propertiesEditionObject);
 				exceptionType.refresh();
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
@@ -348,12 +385,13 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ExceptionHandlerPropertiesEditionPart#initOwnedComment(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ExceptionHandlerPropertiesEditionPart#initOwnedComment(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			ownedCommentEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			ownedCommentEditUtil = new EMFListEditUtil(current, feature);
@@ -366,7 +404,7 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ExceptionHandlerPropertiesEditionPart#updateOwnedComment(EObject newValue)
 	 */
 	public void updateOwnedComment(EObject newValue) {
-		if(ownedCommentEditUtil != null){
+		if(ownedCommentEditUtil != null) {
 			ownedCommentEditUtil.reinit(newValue);
 			ownedComment.refresh();
 		}
@@ -438,12 +476,13 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ExceptionHandlerPropertiesEditionPart#initExceptionType(EObject current, EReference containingFeature, EReference feature)
+	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ExceptionHandlerPropertiesEditionPart#initExceptionType(EObject current, EReference
+	 *      containingFeature, EReference feature)
 	 */
 	public void initExceptionType(EObject current, EReference containingFeature, EReference feature) {
-		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+		if(current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		if (containingFeature != null)
+		if(containingFeature != null)
 			exceptionTypeEditUtil = new EMFListEditUtil(current, containingFeature, feature);
 		else
 			exceptionTypeEditUtil = new EMFListEditUtil(current, feature);
@@ -456,7 +495,7 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 	 * @see org.eclipse.papyrus.tabbedproperties.uml.parts.ExceptionHandlerPropertiesEditionPart#updateExceptionType(EObject newValue)
 	 */
 	public void updateExceptionType(EObject newValue) {
-		if(exceptionTypeEditUtil != null){
+		if(exceptionTypeEditUtil != null) {
 			exceptionTypeEditUtil.reinit(newValue);
 			exceptionType.refresh();
 		}
@@ -496,9 +535,6 @@ public class ExceptionHandlerPropertiesEditionPartImpl extends CompositeProperti
 	public void unsetMessageForExceptionType() {
 
 	}
-
-
-
 
 
 

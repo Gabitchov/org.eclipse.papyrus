@@ -54,9 +54,9 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	 */
 	public static ActivitiesFactory init() {
 		try {
-			ActivitiesFactory theActivitiesFactory = (ActivitiesFactory) EPackage.Registry.INSTANCE
+			ActivitiesFactory theActivitiesFactory = (ActivitiesFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Activities");
-			if (theActivitiesFactory != null) {
+			if(theActivitiesFactory != null) {
 				return theActivitiesFactory;
 			}
 		} catch (Exception exception) {
@@ -81,7 +81,7 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case ActivitiesPackage.OPTIONNAL:
 			return createOptionnal();
 		case ActivitiesPackage.RATE:
@@ -189,7 +189,7 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	 * @generated
 	 */
 	public ActivitiesPackage getActivitiesPackage() {
-		return (ActivitiesPackage) getEPackage();
+		return (ActivitiesPackage)getEPackage();
 	}
 
 } // ActivitiesFactoryImpl

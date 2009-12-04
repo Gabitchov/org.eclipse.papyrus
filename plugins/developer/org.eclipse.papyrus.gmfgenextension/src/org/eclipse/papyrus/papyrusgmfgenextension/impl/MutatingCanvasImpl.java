@@ -29,17 +29,19 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.MutatingCanvasImpl#getAlternateCanvases <em>Alternate Canvases</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.MutatingCanvasImpl#getAlternateCanvases <em>Alternate Canvases</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MutatingCanvasImpl extends CommentedElementImpl implements MutatingCanvas {
+
 	/**
 	 * The cached value of the '{@link #getAlternateCanvases() <em>Alternate Canvases</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAlternateCanvases()
 	 * @generated
 	 * @ordered
@@ -49,6 +51,7 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MutatingCanvasImpl() {
@@ -58,6 +61,7 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,10 +72,11 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AlternateCanvas> getAlternateCanvases() {
-		if (alternateCanvases == null) {
+		if(alternateCanvases == null) {
 			alternateCanvases = new EObjectContainmentEList<AlternateCanvas>(AlternateCanvas.class, this, PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES);
 		}
 		return alternateCanvases;
@@ -80,13 +85,14 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
-				return ((InternalEList<?>)getAlternateCanvases()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
+			return ((InternalEList<?>)getAlternateCanvases()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -94,13 +100,14 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
-				return getAlternateCanvases();
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
+			return getAlternateCanvases();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -108,16 +115,17 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
-				getAlternateCanvases().clear();
-				getAlternateCanvases().addAll((Collection<? extends AlternateCanvas>)newValue);
-				return;
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
+			getAlternateCanvases().clear();
+			getAlternateCanvases().addAll((Collection<? extends AlternateCanvas>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -125,14 +133,15 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
-				getAlternateCanvases().clear();
-				return;
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
+			getAlternateCanvases().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,13 +149,14 @@ public class MutatingCanvasImpl extends CommentedElementImpl implements Mutating
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
-				return alternateCanvases != null && !alternateCanvases.isEmpty();
+		switch(featureID) {
+		case PapyrusgmfgenextensionPackage.MUTATING_CANVAS__ALTERNATE_CANVASES:
+			return alternateCanvases != null && !alternateCanvases.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

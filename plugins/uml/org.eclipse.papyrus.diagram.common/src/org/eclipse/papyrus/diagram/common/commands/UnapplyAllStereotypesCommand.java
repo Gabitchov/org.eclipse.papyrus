@@ -36,7 +36,7 @@ public class UnapplyAllStereotypesCommand extends Command {
 	 * Instantiates a new unapply all stereotypes command.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 */
 	// @unused
 	public UnapplyAllStereotypesCommand(Element element) {
@@ -67,7 +67,7 @@ public class UnapplyAllStereotypesCommand extends Command {
 	 * Sets the element to edit.
 	 * 
 	 * @param elementToEdit
-	 *            the new element to edit
+	 *        the new element to edit
 	 */
 	// @unused
 	public void setElementToEdit(Element elementToEdit) {
@@ -93,7 +93,7 @@ public class UnapplyAllStereotypesCommand extends Command {
 
 		List<Stereotype> stereotypeApplications = elementToEdit.getAppliedStereotypes();
 
-		for (Stereotype stereotype : stereotypeApplications) {
+		for(Stereotype stereotype : stereotypeApplications) {
 			elementToEdit.unapplyStereotype(stereotype);
 		}
 

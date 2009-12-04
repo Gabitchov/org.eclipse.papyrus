@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocate}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocate} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class AllocateItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_AbstractionPropertyDescriptor(object);
@@ -76,10 +76,10 @@ public class AllocateItemProvider extends ItemProviderAdapter implements IEditin
 	 * @generated
 	 */
 	protected void addBase_AbstractionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocate_base_Abstraction_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Allocate_base_Abstraction_feature",
-						"_UI_Allocate_type"), AllocationsPackage.Literals.ALLOCATE__BASE_ABSTRACTION, true, false,
+				"_UI_Allocate_type"), AllocationsPackage.Literals.ALLOCATE__BASE_ABSTRACTION, true, false,
 				true, null, null, null));
 	}
 
@@ -106,8 +106,7 @@ public class AllocateItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -28,11 +28,11 @@ import japa.parser.ast.Node;
  */
 public abstract class Statement extends Node {
 
-    public Statement() {
-    }
+	public Statement() {
+	}
 
-    public Statement(int beginLine, int beginColumn, int endLine, int endColumn) {
-        super(beginLine, beginColumn, endLine, endColumn);
-    }
+	public Statement(int beginLine, int beginColumn, int endLine, int endColumn) {
+		super(beginLine, beginColumn, endLine, endColumn);
+	}
 
 }

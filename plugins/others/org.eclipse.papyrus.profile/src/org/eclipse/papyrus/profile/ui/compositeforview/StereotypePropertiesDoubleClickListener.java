@@ -44,13 +44,13 @@ public class StereotypePropertiesDoubleClickListener extends DoubleClickListener
 	 * The Constructor.
 	 * 
 	 * @param propertyComposite
-	 *            the property composite
+	 *        the property composite
 	 * @param stereotypeComposite
-	 *            the stereotype composite
+	 *        the stereotype composite
 	 * @param treeViewer
-	 *            the tree viewer
+	 *        the tree viewer
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 */
 	public StereotypePropertiesDoubleClickListener(Composite parent, TreeViewer treeViewer, AppliedStereotypeCompositeWithView stereotypeComposite,
 			AppliedStereotypePropertyCompositeWithView propertyComposite) {
@@ -65,9 +65,9 @@ public class StereotypePropertiesDoubleClickListener extends DoubleClickListener
 	 * Item D clicked.
 	 * 
 	 * @param item
-	 *            the item
+	 *        the item
 	 * @param index
-	 *            the index
+	 *        the index
 	 */
 	@Override
 	protected void itemDClicked(TreeItem item, int index) {

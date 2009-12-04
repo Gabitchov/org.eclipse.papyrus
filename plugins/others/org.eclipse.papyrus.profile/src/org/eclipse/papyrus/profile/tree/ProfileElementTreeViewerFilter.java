@@ -29,16 +29,19 @@ public class ProfileElementTreeViewerFilter extends ViewerFilter {
 	/**
 	 * Select.
 	 * 
-	 * @param viewer the viewer
-	 * @param element the element
-	 * @param parentElement the parent element
+	 * @param viewer
+	 *        the viewer
+	 * @param element
+	 *        the element
+	 * @param parentElement
+	 *        the parent element
 	 * 
 	 * @return true, if select
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		// TODO Auto-generated method stub
-		if ((element instanceof AppliedStereotypeTreeObject)
+		if((element instanceof AppliedStereotypeTreeObject)
 				|| (element instanceof AppliedStereotypePropertyTreeObject)) {
 			return true;
 		}

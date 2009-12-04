@@ -27,16 +27,16 @@ public class ShadowFigureHelper {
 	 * get the shadow figure indication true or false
 	 * 
 	 * @param modelElement
-	 *            the view where is attach the element
+	 *        the view where is attach the element
 	 */
 	public static boolean getShadowFigureValue(EModelElement modelElement) {
 		EAnnotation stereotypeDisplayKind = modelElement.getEAnnotation(VisualInformationPapyrusConstant.SHADOWFIGURE);
-		if (stereotypeDisplayKind != null) {
+		if(stereotypeDisplayKind != null) {
 			EMap<String, String> entries = stereotypeDisplayKind.getDetails();
 
-			if (entries != null) {
+			if(entries != null) {
 				String gradientvalueString = entries.get(VisualInformationPapyrusConstant.SHADOWFIGURE_VALUE);
-				if (gradientvalueString != null) {
+				if(gradientvalueString != null) {
 					Boolean b = new Boolean(gradientvalueString);
 					return b;
 				}
@@ -49,11 +49,11 @@ public class ShadowFigureHelper {
 	 * Gets the command to set the shadow figure to true are false.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param view
-	 *            the view
+	 *        the view
 	 * @param shadowFigureValue
-	 *            true to display the shadow on the figure
+	 *        true to display the shadow on the figure
 	 * 
 	 * @return the command to set the gradient to true are false.
 	 */

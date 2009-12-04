@@ -23,7 +23,7 @@ public interface IErrorReporter {
 	 * Reports an error
 	 * 
 	 * @param error
-	 *            the error to report
+	 *        the error to report
 	 */
 	void reportError(String error);
 }

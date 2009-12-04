@@ -63,9 +63,9 @@ public class CAssociationFigure extends PolylineConnectionEx {
 	 * create an association figure.
 	 * 
 	 * @param targetType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 * @param sourceType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	// @unused
 	public CAssociationFigure(int sourceType, int targetType) {
@@ -90,9 +90,9 @@ public class CAssociationFigure extends PolylineConnectionEx {
 	 * used to display end of the association.
 	 * 
 	 * @param targetType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 * @param sourceType
-	 *            the type of end of the association {@link AssociationFigure#navigable}
+	 *        the type of end of the association {@link AssociationFigure#navigable}
 	 */
 	public void setEnd(int sourceType, int targetType) {
 		PolylineDecoration dec;
@@ -100,7 +100,7 @@ public class CAssociationFigure extends PolylineConnectionEx {
 		PointList decorationPointList;
 
 		// display end link near of the source
-		switch (sourceType) {
+		switch(sourceType) {
 		case navigable: // its only navigable
 			dec = new PolylineDecoration();
 			dec.setScale(15, 5);
@@ -137,7 +137,7 @@ public class CAssociationFigure extends PolylineConnectionEx {
 			break;
 
 		}
-		switch (targetType) {
+		switch(targetType) {
 		case navigable:// navigation
 			dec = new PolylineDecoration();
 			dec.setScale(15, 5);

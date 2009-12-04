@@ -53,15 +53,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the ownedComment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initOwnedComment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the ownedComment
-	 * @param newValue the ownedComment to update
+	 * 
+	 * @param newValue
+	 *        the ownedComment to update
 	 */
 	public void updateOwnedComment(EObject newValue);
 
@@ -69,7 +75,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToOwnedComment(ViewerFilter filter);
@@ -78,7 +84,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the ownedComment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToOwnedComment(ViewerFilter filter);
@@ -109,15 +115,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the test
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initTest(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the test
-	 * @param newValue the test to update
+	 * 
+	 * @param newValue
+	 *        the test to update
 	 */
 	public void updateTest(EObject newValue);
 
@@ -125,7 +137,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the test edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToTest(ViewerFilter filter);
@@ -134,7 +146,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the test edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToTest(ViewerFilter filter);
@@ -165,15 +177,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the body
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initBody(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the body
-	 * @param newValue the body to update
+	 * 
+	 * @param newValue
+	 *        the body to update
 	 */
 	public void updateBody(EObject newValue);
 
@@ -181,7 +199,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the body edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToBody(ViewerFilter filter);
@@ -190,7 +208,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the body edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToBody(ViewerFilter filter);
@@ -221,15 +239,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the predecessorClause
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initPredecessorClause(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the predecessorClause
-	 * @param newValue the predecessorClause to update
+	 * 
+	 * @param newValue
+	 *        the predecessorClause to update
 	 */
 	public void updatePredecessorClause(EObject newValue);
 
@@ -237,7 +261,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the predecessorClause edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToPredecessorClause(ViewerFilter filter);
@@ -246,7 +270,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the predecessorClause edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToPredecessorClause(ViewerFilter filter);
@@ -277,15 +301,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the successorClause
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initSuccessorClause(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the successorClause
-	 * @param newValue the successorClause to update
+	 * 
+	 * @param newValue
+	 *        the successorClause to update
 	 */
 	public void updateSuccessorClause(EObject newValue);
 
@@ -293,7 +323,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the successorClause edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToSuccessorClause(ViewerFilter filter);
@@ -302,7 +332,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the successorClause edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSuccessorClause(ViewerFilter filter);
@@ -333,15 +363,21 @@ public interface ClausePropertiesEditionPart {
 
 	/**
 	 * Init the bodyOutput
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initBodyOutput(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the bodyOutput
-	 * @param newValue the bodyOutput to update
+	 * 
+	 * @param newValue
+	 *        the bodyOutput to update
 	 */
 	public void updateBodyOutput(EObject newValue);
 
@@ -349,7 +385,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the bodyOutput edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToBodyOutput(ViewerFilter filter);
@@ -358,7 +394,7 @@ public interface ClausePropertiesEditionPart {
 	 * Adds the given filter to the bodyOutput edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToBodyOutput(ViewerFilter filter);
@@ -367,11 +403,6 @@ public interface ClausePropertiesEditionPart {
 	 * @return true if the given element is contained inside the bodyOutput table
 	 */
 	public boolean isContainedInBodyOutputTable(EObject element);
-
-
-
-
-
 
 
 

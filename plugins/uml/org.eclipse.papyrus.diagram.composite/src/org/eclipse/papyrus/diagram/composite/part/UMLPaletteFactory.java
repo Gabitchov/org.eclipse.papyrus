@@ -134,61 +134,61 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATECLASS1CREATIONTOOL)) {
+		if(toolId.equals(CREATECLASS1CREATIONTOOL)) {
 			return createClass1CreationTool();
 		}
-		if (toolId.equals(CREATEPROPERTY2CREATIONTOOL)) {
+		if(toolId.equals(CREATEPROPERTY2CREATIONTOOL)) {
 			return createProperty2CreationTool();
 		}
-		if (toolId.equals(CREATEPORT3CREATIONTOOL)) {
+		if(toolId.equals(CREATEPORT3CREATIONTOOL)) {
 			return createPort3CreationTool();
 		}
-		if (toolId.equals(CREATECOLLABORATION4CREATIONTOOL)) {
+		if(toolId.equals(CREATECOLLABORATION4CREATIONTOOL)) {
 			return createCollaboration4CreationTool();
 		}
-		if (toolId.equals(CREATECOLLABORATIONROLE5CREATIONTOOL)) {
+		if(toolId.equals(CREATECOLLABORATIONROLE5CREATIONTOOL)) {
 			return createCollaborationRole5CreationTool();
 		}
-		if (toolId.equals(CREATECOLLABORATIONUSE6CREATIONTOOL)) {
+		if(toolId.equals(CREATECOLLABORATIONUSE6CREATIONTOOL)) {
 			return createCollaborationUse6CreationTool();
 		}
-		if (toolId.equals(CREATECOMMENT7CREATIONTOOL)) {
+		if(toolId.equals(CREATECOMMENT7CREATIONTOOL)) {
 			return createComment7CreationTool();
 		}
-		if (toolId.equals(CREATECONSTRAINT8CREATIONTOOL)) {
+		if(toolId.equals(CREATECONSTRAINT8CREATIONTOOL)) {
 			return createConstraint8CreationTool();
 		}
-		if (toolId.equals(CREATETIMEOBSERVATION9CREATIONTOOL)) {
+		if(toolId.equals(CREATETIMEOBSERVATION9CREATIONTOOL)) {
 			return createTimeObservation9CreationTool();
 		}
-		if (toolId.equals(CREATEDURATIONOBSERVATION10CREATIONTOOL)) {
+		if(toolId.equals(CREATEDURATIONOBSERVATION10CREATIONTOOL)) {
 			return createDurationObservation10CreationTool();
 		}
-		if (toolId.equals(CREATELINK1CREATIONTOOL)) {
+		if(toolId.equals(CREATELINK1CREATIONTOOL)) {
 			return createLink1CreationTool();
 		}
-		if (toolId.equals(CREATECONNECTOR2CREATIONTOOL)) {
+		if(toolId.equals(CREATECONNECTOR2CREATIONTOOL)) {
 			return createConnector2CreationTool();
 		}
-		if (toolId.equals(CREATEROLEBINDING3CREATIONTOOL)) {
+		if(toolId.equals(CREATEROLEBINDING3CREATIONTOOL)) {
 			return createRoleBinding3CreationTool();
 		}
-		if (toolId.equals(CREATEGENERALIZATION4CREATIONTOOL)) {
+		if(toolId.equals(CREATEGENERALIZATION4CREATIONTOOL)) {
 			return createGeneralization4CreationTool();
 		}
-		if (toolId.equals(CREATEREALIZATION5CREATIONTOOL)) {
+		if(toolId.equals(CREATEREALIZATION5CREATIONTOOL)) {
 			return createRealization5CreationTool();
 		}
-		if (toolId.equals(CREATESUBSTITUTION6CREATIONTOOL)) {
+		if(toolId.equals(CREATESUBSTITUTION6CREATIONTOOL)) {
 			return createSubstitution6CreationTool();
 		}
-		if (toolId.equals(CREATEABSTRACTION7CREATIONTOOL)) {
+		if(toolId.equals(CREATEABSTRACTION7CREATIONTOOL)) {
 			return createAbstraction7CreationTool();
 		}
-		if (toolId.equals(CREATEUSAGE8CREATIONTOOL)) {
+		if(toolId.equals(CREATEUSAGE8CREATIONTOOL)) {
 			return createUsage8CreationTool();
 		}
-		if (toolId.equals(CREATEDEPENDENCY9CREATIONTOOL)) {
+		if(toolId.equals(CREATEDEPENDENCY9CREATIONTOOL)) {
 			return createDependency9CreationTool();
 		}
 

@@ -134,7 +134,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableLabelEditPolicy() {
 
 			protected List createSelectionHandles() {
-				MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+				MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 				mh.setBorder(null);
 				return Collections.singletonList(mh);
 			}
@@ -152,10 +152,10 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getText();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getText();
 		} else {
-			return ((Label) figure).getText();
+			return ((Label)figure).getText();
 		}
 	}
 
@@ -163,10 +163,10 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setText(text);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setText(text);
 		} else {
-			((Label) figure).setText(text);
+			((Label)figure).setText(text);
 		}
 	}
 
@@ -174,10 +174,10 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getIcon();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getIcon();
 		} else {
-			return ((Label) figure).getIcon();
+			return ((Label)figure).getIcon();
 		}
 	}
 
@@ -185,10 +185,10 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setIcon(icon);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setIcon(icon);
 		} else {
-			((Label) figure).setIcon(icon);
+			((Label)figure).setIcon(icon);
 		}
 	}
 
@@ -237,10 +237,10 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	protected String getLabelText() {
 		String text = null;
 		EObject parserElement = getParserElement();
-		if (parserElement != null && getParser() != null) {
+		if(parserElement != null && getParser() != null) {
 			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
-		if (text == null || text.length() == 0) {
+		if(text == null || text.length() == 0) {
 			text = defaultText;
 		}
 		return text;
@@ -252,12 +252,12 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
 		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
 	}
 
@@ -265,7 +265,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	public String getEditText() {
-		if (getParserElement() == null || getParser() == null) {
+		if(getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
@@ -285,17 +285,17 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 		return new ICellEditorValidator() {
 
 			public String isValid(final Object value) {
-				if (value instanceof String) {
+				if(value instanceof String) {
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(
 								new RunnableWithResult.Impl() {
 
-									public void run() {
-										setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-									}
-								});
+							public void run() {
+								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
+							}
+						});
 						return valid.getCode() == ParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
@@ -312,7 +312,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	public IContentAssistProcessor getCompletionProcessor() {
-		if (getParserElement() == null || getParser() == null) {
+		if(getParserElement() == null || getParser() == null) {
 			return null;
 		}
 		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
@@ -329,10 +329,10 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	public IParser getParser() {
-		if (parser == null) {
+		if(parser == null) {
 			parser = UMLParserProvider.getParser(UMLElementTypes.Substitution_4004, getParserElement(),
 					UMLVisualIDRegistry
-							.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart.VISUAL_ID));
+					.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -341,7 +341,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected DirectEditManager getManager() {
-		if (manager == null) {
+		if(manager == null) {
 			setManager(new TextDirectEditManager(this, TextDirectEditManager.getTextCellEditorClass(this),
 					UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
@@ -366,8 +366,8 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if (getManager().getClass() == TextDirectEditManager.class) {
-			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
+		if(getManager().getClass() == TextDirectEditManager.class) {
+			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
@@ -375,8 +375,8 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	private void performDirectEdit(char initialCharacter) {
-		if (getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager) getManager()).show(initialCharacter);
+		if(getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager)getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
 		}
@@ -389,23 +389,23 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 
 		final Request theRequest = request;
 
-		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
+		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
-		switch (directEditionMode) {
+		switch(directEditionMode) {
 		case IDirectEdition.NO_DIRECT_EDITION:
 			// no direct edition mode => does nothing
 			return;
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
-			if (configuration == null || configuration.getLanguage() == null) {
+			if(configuration == null || configuration.getLanguage() == null) {
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
 						.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
 						.getTextToEdit(resolveSemanticElement()), configuration);
-				if (Window.OK == dialog.open()) {
+				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
@@ -426,15 +426,15 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 				getEditingDomain().runExclusive(new Runnable() {
 
 					public void run() {
-						if (isActive() && isEditable()) {
-							if (theRequest.getExtendedData().get(
+						if(isActive() && isEditable()) {
+							if(theRequest.getExtendedData().get(
 									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character) theRequest.getExtendedData().get(
+								Character initialChar = (Character)theRequest.getExtendedData().get(
 										RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 								performDirectEdit(initialChar.charValue());
-							} else if ((theRequest instanceof DirectEditRequest)
+							} else if((theRequest instanceof DirectEditRequest)
 									&& (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+								DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 								performDirectEdit(editRequest.getLocation());
 							} else {
 								performDirectEdit();
@@ -468,17 +468,17 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 */
 	protected void refreshLabel() {
 		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if (maskLabelPolicy == null) {
+		if(maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
 		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
 	}
 
@@ -486,9 +486,9 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
+		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 	}
 
@@ -496,9 +496,9 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
@@ -506,8 +506,8 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null) {
+		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if(style != null) {
 			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD
 					: SWT.NORMAL)
 					| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
@@ -526,11 +526,11 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void addSemanticListeners() {
-		if (getParser() instanceof ISemanticParser) {
+		if(getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
-			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
-			for (int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter("SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
+			parserElements = ((ISemanticParser)getParser()).getSemanticElementsBeingParsed(element);
+			for(int i = 0; i < parserElements.size(); i++) {
+				addListenerFilter("SemanticModel" + i, this, (EObject)parserElements.get(i)); //$NON-NLS-1$
 			}
 		} else {
 			super.addSemanticListeners();
@@ -541,8 +541,8 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void removeSemanticListeners() {
-		if (parserElements != null) {
-			for (int i = 0; i < parserElements.size(); i++) {
+		if(parserElements != null) {
+			for(int i = 0; i < parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
 			}
 		} else {
@@ -554,7 +554,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected AccessibleEditPart getAccessibleEditPart() {
-		if (accessibleEP == null) {
+		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
 				public void getName(AccessibleEvent e) {
@@ -580,11 +580,11 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if (checkExtendedEditor()) {
+		if(checkExtendedEditor()) {
 			initExtendedEditorConfiguration();
 			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
 		}
-		if (checkDefaultEdition()) {
+		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
 
@@ -599,7 +599,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected boolean checkExtendedEditor() {
-		if (resolveSemanticElement() != null) {
+		if(resolveSemanticElement() != null) {
 			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass()
 					.getInstanceClassName());
 		}
@@ -622,10 +622,10 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
-		if (configuration == null) {
+		if(configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+			if(languagePreferred != null && !languagePreferred.equals("")) {
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 						.eClass().getInstanceClassName());
 			} else {
@@ -641,7 +641,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("")
+		if(languagePreferred != null && !languagePreferred.equals("")
 				&& languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 					.eClass().getInstanceClassName());
@@ -652,7 +652,7 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 * Performs the direct edit usually used by GMF editors.
 	 * 
 	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
+	 *        the direct edit request that starts the direct edit system
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -660,13 +660,13 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 			getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
+					if(isActive() && isEditable()) {
+						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character)theRequest.getExtendedData().get(
 									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
 							performDirectEdit();
@@ -684,27 +684,27 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
-		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
-			Integer c = (Integer) event.getNewValue();
+		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+			Integer c = (Integer)event.getNewValue();
 			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
 			refreshUnderline();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
+		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
 				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
 				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
 				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
-			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
+			if(getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}
-			if (getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser = (ISemanticParser) getParser();
-				if (modelParser.areSemanticElementsAffected(null, event)) {
+			if(getParser() instanceof ISemanticParser) {
+				ISemanticParser modelParser = (ISemanticParser)getParser();
+				if(modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
-					if (resolveSemanticElement() != null) {
+					if(resolveSemanticElement() != null) {
 						addSemanticListeners();
 					}
 					refreshLabel();

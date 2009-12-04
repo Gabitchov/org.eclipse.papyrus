@@ -38,7 +38,7 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	public void init(IViewPart view) {
 		super.init(view);
 		// try to retrieve editing domain
-		editingDomain = (EditingDomain) view.getAdapter(EditingDomain.class);
+		editingDomain = (EditingDomain)view.getAdapter(EditingDomain.class);
 	}
 
 	/**
@@ -53,7 +53,7 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	 * Returns <code>true</code> if the element is a Package
 	 * 
 	 * @param element
-	 *            the element to test
+	 *        the element to test
 	 * @return <code>true</code> if the element is a Package
 	 */
 	@Override
@@ -66,8 +66,8 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	 */
 	@Override
 	public void setSelectedElement(Object selectedElement) {
-		if (selectedElement instanceof Package) {
-			this.selectedElement = (Package) selectedElement;
+		if(selectedElement instanceof Package) {
+			this.selectedElement = (Package)selectedElement;
 		}
 	}
 
@@ -92,7 +92,7 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	 * returns the command that is executed by this action.
 	 * 
 	 * @param domain
-	 *            EMF editing domain used by the command
+	 *        EMF editing domain used by the command
 	 * @return the command that is executed by this action
 	 */
 	public abstract ChangeCommand getCommand(EditingDomain domain);

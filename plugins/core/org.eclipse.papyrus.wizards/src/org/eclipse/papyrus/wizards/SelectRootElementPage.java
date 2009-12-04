@@ -55,9 +55,9 @@ public class SelectRootElementPage extends WizardPage {
 	 * Constructor
 	 * 
 	 * @param pageName
-	 *            the page name
+	 *        the page name
 	 * @param diagramRoot
-	 *            the root model element use to initialize the TreeViewer
+	 *        the root model element use to initialize the TreeViewer
 	 */
 	protected SelectRootElementPage(String pageName, EObject diagramRoot) {
 		super(pageName);
@@ -80,8 +80,8 @@ public class SelectRootElementPage extends WizardPage {
 	 */
 	public void setModelElement(EObject modelElement) {
 		selectedModelElement = modelElement;
-		if (modelViewer != null) {
-			if (selectedModelElement != null) {
+		if(modelViewer != null) {
+			if(selectedModelElement != null) {
 				modelViewer.setInput(selectedModelElement.eResource());
 				modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 			} else {
@@ -114,7 +114,7 @@ public class SelectRootElementPage extends WizardPage {
 		AdapterFactory adapterFactory = createAdapterFactory();
 		modelViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		if (selectedModelElement != null) {
+		if(selectedModelElement != null) {
 			modelViewer.setInput(selectedModelElement.eResource());
 			modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 		}
@@ -122,7 +122,7 @@ public class SelectRootElementPage extends WizardPage {
 		modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				updateSelection((IStructuredSelection) event.getSelection());
+				updateSelection((IStructuredSelection)event.getSelection());
 			}
 		});
 
@@ -131,16 +131,16 @@ public class SelectRootElementPage extends WizardPage {
 
 	protected void updateSelection(IStructuredSelection selection) {
 		selectedModelElement = null;
-		if (selection.size() == 1) {
+		if(selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
-			if (selectedElement instanceof IWrapperItemProvider) {
-				selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
+			if(selectedElement instanceof IWrapperItemProvider) {
+				selectedElement = ((IWrapperItemProvider)selectedElement).getValue();
 			}
-			if (selectedElement instanceof FeatureMap.Entry) {
-				selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
+			if(selectedElement instanceof FeatureMap.Entry) {
+				selectedElement = ((FeatureMap.Entry)selectedElement).getValue();
 			}
-			if (selectedElement instanceof EObject) {
-				selectedModelElement = (EObject) selectedElement;
+			if(selectedElement instanceof EObject) {
+				selectedModelElement = (EObject)selectedElement;
 			}
 		}
 		setPageComplete(validatePage());

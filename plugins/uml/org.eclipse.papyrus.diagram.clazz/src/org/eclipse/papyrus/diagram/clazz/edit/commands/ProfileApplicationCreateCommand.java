@@ -58,16 +58,16 @@ public class ProfileApplicationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Package) {
+		if(source != null && false == source instanceof Package) {
 			return false;
 		}
-		if (target != null && false == target instanceof Profile) {
+		if(target != null && false == target instanceof Profile) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
@@ -78,7 +78,7 @@ public class ProfileApplicationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
@@ -86,7 +86,7 @@ public class ProfileApplicationCreateCommand extends EditElementCommand {
 		getSource().getProfileApplications().add(newElement);
 		newElement.setAppliedProfile(getTarget());
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
@@ -96,14 +96,14 @@ public class ProfileApplicationCreateCommand extends EditElementCommand {
 	 */
 	protected void doConfigure(ProfileApplication newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -119,14 +119,14 @@ public class ProfileApplicationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Package getSource() {
-		return (Package) source;
+		return (Package)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Profile getTarget() {
-		return (Profile) target;
+		return (Profile)target;
 	}
 
 }

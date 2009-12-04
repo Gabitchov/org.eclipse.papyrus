@@ -33,7 +33,7 @@ public class UpdateLocalDrawerWizard extends Wizard {
 	 * Creates a NewDrawerWizard.
 	 * 
 	 * @param paletteContainerProxy
-	 *            the element where to add the new drawer
+	 *        the element where to add the new drawer
 	 */
 	public UpdateLocalDrawerWizard(PaletteContainerProxy paletteContainerProxy, PaletteLocalDrawerProxy drawerProxy) {
 		this.paletteContainerProxy = paletteContainerProxy;

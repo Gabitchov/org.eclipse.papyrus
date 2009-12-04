@@ -50,7 +50,7 @@ public class ModelingAssistantRegistry {
 
 	private static final String modelingAssistantExtensionPointID = "org.eclipse.papyrus.diagram.common.editorAssistantProvider";
 
-	private static final Class<Object>[] classes = new Class[] { Assistant.class, AssistedEditPart.class,
+	private static final Class<Object>[] classes = new Class[]{ Assistant.class, AssistedEditPart.class,
 			Include.class, Exclude.class, ElementType.class };
 
 	private static final Map<String, List<Assistant>> mapEditorID2Assistant = new HashMap<String, List<Assistant>>();
@@ -62,7 +62,7 @@ public class ModelingAssistantRegistry {
 	 * @return
 	 */
 	public List<Assistant> getAssistantForEditor(String editorID) {
-		if (getMapEditorID2Assistant().containsKey(editorID)) {
+		if(getMapEditorID2Assistant().containsKey(editorID)) {
 			return getMapEditorID2Assistant().get(editorID);
 		}
 		return Collections.emptyList();
@@ -78,10 +78,10 @@ public class ModelingAssistantRegistry {
 
 		ExtensionPointParser parser = new ExtensionPointParser(modelingAssistantExtensionPointID, classes);
 		List<Object> extensions = parser.parseExtensionPoint();
-		for (Object object : extensions) {
-			Assistant assistant = (Assistant) Platform.getAdapterManager().getAdapter(object, Assistant.class);
-			if (assistant != null && assistant.editorID != null) {
-				if (!mapEditorID2Assistant.containsKey(assistant.editorID)) {
+		for(Object object : extensions) {
+			Assistant assistant = (Assistant)Platform.getAdapterManager().getAdapter(object, Assistant.class);
+			if(assistant != null && assistant.editorID != null) {
+				if(!mapEditorID2Assistant.containsKey(assistant.editorID)) {
 					mapEditorID2Assistant.put(assistant.editorID, new ArrayList<Assistant>());
 				}
 				mapEditorID2Assistant.get(assistant.editorID).add(assistant);
@@ -103,8 +103,8 @@ public class ModelingAssistantRegistry {
 	 */
 	// @unused
 	public List customizeTypesForEditPart(String editorID, EditPart editPart, List types) {
-		for (Assistant assistant : getAssistantForEditor(editorID)) {
-			if (assistant != null) {
+		for(Assistant assistant : getAssistantForEditor(editorID)) {
+			if(assistant != null) {
 				types = assistant.customizeTypesForEditPart(editPart, types);
 			}
 		}

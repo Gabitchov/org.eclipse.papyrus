@@ -24,8 +24,8 @@ public class UMLViewerSorter extends ViewerSorter {
 	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
 		// Add diagram at first position
-		if (e1 instanceof Diagram || e2 instanceof Diagram) {
-			if (e1 instanceof Diagram && e2 instanceof Diagram) {
+		if(e1 instanceof Diagram || e2 instanceof Diagram) {
+			if(e1 instanceof Diagram && e2 instanceof Diagram) {
 				return super.compare(viewer, e1, e2);
 			} else {
 				return 1;

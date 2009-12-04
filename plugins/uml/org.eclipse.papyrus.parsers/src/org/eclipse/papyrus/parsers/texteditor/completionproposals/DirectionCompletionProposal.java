@@ -63,8 +63,8 @@ public class DirectionCompletionProposal implements ICompletionProposalComputer 
 		ICompletionProposal proposal = null;
 
 		// adds all standard multiplicities (static strings...)
-		for (int i = 0; i < directionStrings.length; i++) {
-			if (directionStrings[i].startsWith(prefix)) {
+		for(int i = 0; i < directionStrings.length; i++) {
+			if(directionStrings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(directionStrings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, directionStrings[i].length(), null, directionStringsName[i], null,

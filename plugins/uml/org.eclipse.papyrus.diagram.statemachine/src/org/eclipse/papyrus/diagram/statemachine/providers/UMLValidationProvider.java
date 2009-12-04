@@ -45,6 +45,7 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 			TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
+
 			public void run() {
 				try {
 					constraintsActive = true;
@@ -54,12 +55,11 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 				}
 			}
 		};
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Validation failed", e); //$NON-NLS-1$
+				UMLDiagramEditorPlugin.getInstance().logError("Validation failed", e); //$NON-NLS-1$
 			}
 		} else {
 			task.run();
@@ -71,7 +71,7 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 	 */
 	protected IAction createAction(String actionId,
 			IWorkbenchPartDescriptor partDescriptor) {
-		if (ValidateAction.VALIDATE_ACTION_KEY.equals(actionId)) {
+		if(ValidateAction.VALIDATE_ACTION_KEY.equals(actionId)) {
 			return new ValidateAction(partDescriptor);
 		}
 		return super.createAction(actionId, partDescriptor);
@@ -81,13 +81,13 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 	 * @generated
 	 */
 	static boolean isInDefaultEditorContext(Object object) {
-		if (shouldConstraintsBePrivate() && !constraintsActive) {
+		if(shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
-		if (object instanceof View) {
+		if(object instanceof View) {
 			return constraintsActive
 					&& StateMachineEditPart.MODEL_ID.equals(UMLVisualIDRegistry
-							.getModelID((View) object));
+					.getModelID((View)object));
 		}
 		return true;
 	}
@@ -116,12 +116,12 @@ public class UMLValidationProvider extends AbstractContributionItemProvider {
 		 * @generated NOT
 		 */
 		public IStatus validate(IValidationContext ctx) {
-			NamedElement context = (NamedElement) ctx.getTarget();
+			NamedElement context = (NamedElement)ctx.getTarget();
 			IStatus status = ValidationProvider.validateUniqueName(context);
-			if (status.getSeverity() != IStatus.OK) {
+			if(status.getSeverity() != IStatus.OK) {
 				// UMLDiagramEditorPlugin.getInstance().getLog().log(status);
 				IStatusLineManager statusLine = MDTUtil.getStatusLineManager();
-				if (statusLine != null) {
+				if(statusLine != null) {
 					statusLine.setMessage(status.getMessage());
 				}
 				return ctx.createFailureStatus(null);

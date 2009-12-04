@@ -35,8 +35,8 @@ import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Conform}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Conform} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -61,7 +61,7 @@ public class ConformItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_DependencyPropertyDescriptor(object);
@@ -76,10 +76,10 @@ public class ConformItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	protected void addBase_DependencyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature",
-						"_UI_Conform_type"), ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true,
+				"_UI_Conform_type"), ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true,
 				null, null, null));
 	}
 
@@ -106,8 +106,7 @@ public class ConformItemProvider extends ItemProviderAdapter implements IEditing
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -36,10 +36,13 @@ public class NodeColorGroup extends LinkColorGroup {
 	/**
 	 * create a composite to display the group color for a node.
 	 * 
-	 * @param parent the parent of the composite
-	 * @param dialogPage to set the page in field editor
-	 * @param title the title
-	 */    
+	 * @param parent
+	 *        the parent of the composite
+	 * @param dialogPage
+	 *        to set the page in field editor
+	 * @param title
+	 *        the title
+	 */
 
 
 	public NodeColorGroup(Composite parent, String title, DialogPage dialogPage) {
@@ -49,7 +52,8 @@ public class NodeColorGroup extends LinkColorGroup {
 	/**
 	 * create the content.
 	 * 
-	 * @param parent : the parent composite
+	 * @param parent
+	 *        : the parent composite
 	 */
 	protected void createContent(Composite parent) {
 		super.createContent(parent);
@@ -58,8 +62,8 @@ public class NodeColorGroup extends LinkColorGroup {
 		fillColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FILL),
 				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FILL_COLOR), fillColorEditorCompo);
 		fillColorEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(fillColorEditor);
 	}
-	
+
 }

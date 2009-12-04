@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.EObject;
  * Basic implementation of an <EcoreSwitch>, with info available for the Switch.
  * 
  * @param <T>
- *            the type returned by the doSwitch() method
+ *        the type returned by the doSwitch() method
  * @param <I>
- *            the type of the info
+ *        the type of the info
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
@@ -39,7 +39,7 @@ public abstract class BasicEcoreSwitch<T, I> implements EcoreSwitch<T, I> {
 	 * Constructor with info.
 	 * 
 	 * @param info
-	 *            the info
+	 *        the info
 	 */
 	public BasicEcoreSwitch(I info) {
 		this.info = info;
@@ -65,7 +65,7 @@ public abstract class BasicEcoreSwitch<T, I> implements EcoreSwitch<T, I> {
 	 * TODO: to be implemented by specializers.
 	 * 
 	 * @param object
-	 *            the object
+	 *        the object
 	 * 
 	 * @return the T
 	 */

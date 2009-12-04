@@ -91,8 +91,8 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MessageName4EditPart) {
-			((MessageName4EditPart) childEditPart).setLabel(getPrimaryShape().getFigureMessageCreateLabelFigure());
+		if(childEditPart instanceof MessageName4EditPart) {
+			((MessageName4EditPart)childEditPart).setLabel(getPrimaryShape().getFigureMessageCreateLabelFigure());
 			return true;
 		}
 		return false;
@@ -102,7 +102,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -112,7 +112,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MessageName4EditPart) {
+		if(childEditPart instanceof MessageName4EditPart) {
 			return true;
 		}
 		return false;
@@ -122,7 +122,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -145,7 +145,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public MessageCreate getPrimaryShape() {
-		return (MessageCreate) getFigure();
+		return (MessageCreate)getFigure();
 	}
 
 	/**
@@ -231,7 +231,7 @@ implements ITreeBranchEditPart {
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (request.getType().equals(REQ_CREATE_BENDPOINT) || request.getType().equals(REQ_MOVE_BENDPOINT)) {
+		if(request.getType().equals(REQ_CREATE_BENDPOINT) || request.getType().equals(REQ_MOVE_BENDPOINT)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getCommand(request);
@@ -246,16 +246,16 @@ implements ITreeBranchEditPart {
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 
-		if (UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature)
+		if(UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature)
 				&& (messageSort == null || !messageSort.equals(notification.getNewValue()))) {
 			Object oldValue = notification.getOldValue();
-			if (oldValue instanceof MessageSort) {
-				Message message = (Message) resolveSemanticElement();
+			if(oldValue instanceof MessageSort) {
+				Message message = (Message)resolveSemanticElement();
 				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE,
 						BLOCK_SORT_MODIFICATION_MSG);
 				// TODO Improve cancelation method
-				message.setMessageSort((MessageSort) oldValue);
-				messageSort = (MessageSort) oldValue;
+				message.setMessageSort((MessageSort)oldValue);
+				messageSort = (MessageSort)oldValue;
 				return;
 			}
 		}

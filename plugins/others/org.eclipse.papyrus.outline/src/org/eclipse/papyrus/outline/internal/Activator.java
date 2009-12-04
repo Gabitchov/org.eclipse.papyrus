@@ -71,14 +71,14 @@ public class Activator extends AbstractUIPlugin {
 	 * get the image desciptor from a string path
 	 * 
 	 * @param pathString
-	 *            path of the image
+	 *        path of the image
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String pathString) {
 
 		IPath path = new Path(pathString);
 		URL uri = FileLocator.find(Activator.plugin.getBundle(), path, null);
-		if (uri == null)
+		if(uri == null)
 			return null;
 		return ImageDescriptor.createFromURL(uri);
 	}

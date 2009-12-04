@@ -58,13 +58,13 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
-			((AppliedStereotypeSubstitutionEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
+			((AppliedStereotypeSubstitutionEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
-		if (childEditPart instanceof SubstitutionName2EditPart) {
-			((SubstitutionName2EditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof SubstitutionName2EditPart) {
+			((SubstitutionName2EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -74,7 +74,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -84,10 +84,10 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
+		if(childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof SubstitutionName2EditPart) {
+		if(childEditPart instanceof SubstitutionName2EditPart) {
 			return true;
 		}
 		return false;
@@ -97,7 +97,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -120,7 +120,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

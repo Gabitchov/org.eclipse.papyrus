@@ -26,6 +26,7 @@ import org.eclipse.ui.IViewPart;
 public class AddHyperLinkPopupBarBehavior extends Action {
 
 	public static final String POPUP_POLICY_KEY = "org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"; //$NON-NLS-1$
+
 	public static final String HYPERLINK_POPUPBAR_POLICY_CLASS = "org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"; //$NON-NLS-1$
 
 
@@ -51,22 +52,18 @@ public class AddHyperLinkPopupBarBehavior extends Action {
 
 		// Parse selected GenLink(s) and add the desired CustomBehavior
 		Iterator<EObject> it = getSelectedEObject().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			EObject eObject = it.next();
-			if (eObject instanceof GenNode) {
+			if(eObject instanceof GenNode) {
 
 				// Create the behavior required by stereotype management (if not already created)
-				if (!hasCustomBehavior((GenNode) eObject, POPUP_POLICY_KEY)) {
-					addCustomBehavior((GenNode) eObject,POPUP_POLICY_KEY,HYPERLINK_POPUPBAR_POLICY_CLASS);
+				if(!hasCustomBehavior((GenNode)eObject, POPUP_POLICY_KEY)) {
+					addCustomBehavior((GenNode)eObject, POPUP_POLICY_KEY, HYPERLINK_POPUPBAR_POLICY_CLASS);
 				}
 
 			}
 		}
 	}
-
-
-
-	
 
 
 

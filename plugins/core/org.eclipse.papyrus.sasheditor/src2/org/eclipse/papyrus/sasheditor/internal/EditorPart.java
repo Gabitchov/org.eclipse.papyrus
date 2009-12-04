@@ -93,8 +93,8 @@ public class EditorPart extends PagePart implements IEditorPage {
 		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 		 */
 		public void handleEvent(Event event) {
-//			Point globalPos = new Point(event.x, event.y);
-//			System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
+			//			Point globalPos = new Point(event.x, event.y);
+			//			System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
 		}
 	};
 

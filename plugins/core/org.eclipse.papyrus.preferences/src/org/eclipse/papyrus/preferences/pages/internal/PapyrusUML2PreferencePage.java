@@ -44,7 +44,7 @@ public class PapyrusUML2PreferencePage extends AbstractPapyrusPreferencePage {
 	 * initialization of the preference page.
 	 * 
 	 * @param store
-	 *            the preference store used
+	 *        the preference store used
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 		// TODO Auto-generated method stub

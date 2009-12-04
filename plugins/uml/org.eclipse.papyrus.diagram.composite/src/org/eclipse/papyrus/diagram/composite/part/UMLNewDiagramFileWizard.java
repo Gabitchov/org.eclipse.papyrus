@@ -78,9 +78,9 @@ public class UMLNewDiagramFileWizard extends Wizard {
 				PackageEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = URI.decode(domainModelURI.trimFileExtension().lastSegment());
-		if (domainModelURI.isPlatformResource()) {
+		if(domainModelURI.isPlatformResource()) {
 			filePath = new Path(domainModelURI.trimSegments(1).toPlatformString(true));
-		} else if (domainModelURI.isFile()) {
+		} else if(domainModelURI.isFile()) {
 			filePath = new Path(domainModelURI.trimSegments(1).toFileString());
 		} else {
 			// TODO : use some default path
@@ -124,7 +124,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 					throws ExecutionException {
 				int diagramVID = UMLVisualIDRegistry.getDiagramVisualID(diagramRootElementSelectionPage
 						.getModelElement());
-				if (diagramVID != PackageEditPart.VISUAL_ID) {
+				if(diagramVID != PackageEditPart.VISUAL_ID) {
 					return CommandResult.newErrorCommandResult(Messages.UMLNewDiagramFileWizard_IncorrectRootError);
 				}
 				Diagram diagram = ViewService.createDiagram(diagramRootElementSelectionPage.getModelElement(),
@@ -171,13 +171,13 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			if (selectedModelElement == null) {
+			if(selectedModelElement == null) {
 				setErrorMessage(Messages.UMLNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
 			boolean result = ViewService.getInstance().provides(
 					new CreateDiagramViewOperation(new EObjectAdapter(selectedModelElement), PackageEditPart.MODEL_ID,
-							UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+					UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null : Messages.UMLNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;
 		}

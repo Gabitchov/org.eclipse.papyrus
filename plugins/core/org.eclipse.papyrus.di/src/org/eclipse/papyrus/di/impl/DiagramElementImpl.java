@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import java.util.Collection;
@@ -47,31 +47,33 @@ import org.eclipse.swt.graphics.RGB;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#isIsVisible <em>Is Visible</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getReference <em>Reference</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getFontFamily <em>Font Family</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getFontSize <em>Font Size</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getLineStyle <em>Line Style</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getLineThickness <em>Line Thickness</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getFontColor <em>Font Color</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getForegroundColor <em>Foreground Color</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getBackgroundColor <em>Background Color</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getBorderColor <em>Border Color</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#isTranslucent <em>Translucent</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getSemanticParent <em>Semantic Parent</em>}</li>
- *   <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getSemanticChild <em>Semantic Child</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getProperty <em>Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#isIsVisible <em>Is Visible</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getReference <em>Reference</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getContainer <em>Container</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getFontFamily <em>Font Family</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getFontSize <em>Font Size</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getLineStyle <em>Line Style</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getLineThickness <em>Line Thickness</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getFontColor <em>Font Color</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getForegroundColor <em>Foreground Color</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getBackgroundColor <em>Background Color</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getBorderColor <em>Border Color</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#isTranslucent <em>Translucent</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getSemanticParent <em>Semantic Parent</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.DiagramElementImpl#getSemanticChild <em>Semantic Child</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
+
 	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProperty()
 	 * @generated
 	 * @ordered
@@ -82,6 +84,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #isIsVisible() <em>Is Visible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsVisible()
 	 * @generated
 	 * @ordered
@@ -92,6 +95,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #isIsVisible() <em>Is Visible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsVisible()
 	 * @generated
 	 * @ordered
@@ -102,6 +106,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getReference()
 	 * @generated
 	 * @ordered
@@ -112,6 +117,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFontFamily()
 	 * @generated
 	 * @ordered
@@ -122,6 +128,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFontFamily()
 	 * @generated
 	 * @ordered
@@ -132,6 +139,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getFontSize() <em>Font Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFontSize()
 	 * @generated
 	 * @ordered
@@ -142,6 +150,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getFontSize() <em>Font Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFontSize()
 	 * @generated
 	 * @ordered
@@ -152,6 +161,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getLineStyle() <em>Line Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLineStyle()
 	 * @generated
 	 * @ordered
@@ -162,6 +172,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getLineStyle() <em>Line Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLineStyle()
 	 * @generated
 	 * @ordered
@@ -172,6 +183,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getLineThickness() <em>Line Thickness</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLineThickness()
 	 * @generated
 	 * @ordered
@@ -182,6 +194,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getLineThickness() <em>Line Thickness</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLineThickness()
 	 * @generated
 	 * @ordered
@@ -192,6 +205,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFontColor()
 	 * @generated
 	 * @ordered
@@ -202,6 +216,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFontColor()
 	 * @generated
 	 * @ordered
@@ -212,6 +227,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getForegroundColor()
 	 * @generated
 	 * @ordered
@@ -222,6 +238,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getForegroundColor() <em>Foreground Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getForegroundColor()
 	 * @generated
 	 * @ordered
@@ -232,6 +249,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBackgroundColor()
 	 * @generated
 	 * @ordered
@@ -242,6 +260,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBackgroundColor()
 	 * @generated
 	 * @ordered
@@ -252,6 +271,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #getBorderColor() <em>Border Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBorderColor()
 	 * @generated
 	 * @ordered
@@ -262,6 +282,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getBorderColor() <em>Border Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBorderColor()
 	 * @generated
 	 * @ordered
@@ -272,6 +293,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The default value of the '{@link #isTranslucent() <em>Translucent</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isTranslucent()
 	 * @generated
 	 * @ordered
@@ -282,6 +304,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #isTranslucent() <em>Translucent</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isTranslucent()
 	 * @generated
 	 * @ordered
@@ -292,6 +315,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getSemanticParent() <em>Semantic Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSemanticParent()
 	 * @generated
 	 * @ordered
@@ -302,6 +326,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * The cached value of the '{@link #getSemanticChild() <em>Semantic Child</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSemanticChild()
 	 * @generated
 	 * @ordered
@@ -311,6 +336,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramElementImpl() {
@@ -320,6 +346,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -330,10 +357,11 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Property> getProperty() {
-		if (property == null) {
+		if(property == null) {
 			property = new EObjectContainmentEList<Property>(Property.class, this, DiPackage.DIAGRAM_ELEMENT__PROPERTY);
 		}
 		return property;
@@ -342,6 +370,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsVisible() {
@@ -351,22 +380,24 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsVisible(boolean newIsVisible) {
 		boolean oldIsVisible = isVisible;
 		isVisible = newIsVisible;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE, oldIsVisible, isVisible));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Reference> getReference() {
-		if (reference == null) {
+		if(reference == null) {
 			reference = new EObjectResolvingEList<Reference>(Reference.class, this, DiPackage.DIAGRAM_ELEMENT__REFERENCE);
 		}
 		return reference;
@@ -375,16 +406,19 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphElement getContainer() {
-		if (eContainerFeatureID != DiPackage.DIAGRAM_ELEMENT__CONTAINER) return null;
+		if(eContainerFeatureID != DiPackage.DIAGRAM_ELEMENT__CONTAINER)
+			return null;
 		return (GraphElement)eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContainer(GraphElement newContainer, NotificationChain msgs) {
@@ -395,27 +429,29 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setContainer(GraphElement newContainer) {
-		if (newContainer != eInternalContainer() || (eContainerFeatureID != DiPackage.DIAGRAM_ELEMENT__CONTAINER && newContainer != null)) {
-			if (EcoreUtil.isAncestor(this, newContainer))
+		if(newContainer != eInternalContainer() || (eContainerFeatureID != DiPackage.DIAGRAM_ELEMENT__CONTAINER && newContainer != null)) {
+			if(EcoreUtil.isAncestor(this, newContainer))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if(eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainer != null)
+			if(newContainer != null)
 				msgs = ((InternalEObject)newContainer).eInverseAdd(this, DiPackage.GRAPH_ELEMENT__CONTAINED, GraphElement.class, msgs);
 			msgs = basicSetContainer(newContainer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__CONTAINER, newContainer, newContainer));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getFontFamily() {
@@ -425,18 +461,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFontFamily(String newFontFamily) {
 		String oldFontFamily = fontFamily;
 		fontFamily = newFontFamily;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY, oldFontFamily, fontFamily));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getFontSize() {
@@ -446,18 +484,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFontSize(int newFontSize) {
 		int oldFontSize = fontSize;
 		fontSize = newFontSize;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__FONT_SIZE, oldFontSize, fontSize));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLineStyle() {
@@ -467,18 +507,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLineStyle(String newLineStyle) {
 		String oldLineStyle = lineStyle;
 		lineStyle = newLineStyle;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__LINE_STYLE, oldLineStyle, lineStyle));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getLineThickness() {
@@ -488,18 +530,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLineThickness(int newLineThickness) {
 		int oldLineThickness = lineThickness;
 		lineThickness = newLineThickness;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS, oldLineThickness, lineThickness));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RGB getFontColor() {
@@ -509,18 +553,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFontColor(RGB newFontColor) {
 		RGB oldFontColor = fontColor;
 		fontColor = newFontColor;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__FONT_COLOR, oldFontColor, fontColor));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RGB getForegroundColor() {
@@ -530,18 +576,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setForegroundColor(RGB newForegroundColor) {
 		RGB oldForegroundColor = foregroundColor;
 		foregroundColor = newForegroundColor;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR, oldForegroundColor, foregroundColor));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RGB getBackgroundColor() {
@@ -551,18 +599,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBackgroundColor(RGB newBackgroundColor) {
 		RGB oldBackgroundColor = backgroundColor;
 		backgroundColor = newBackgroundColor;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RGB getBorderColor() {
@@ -572,18 +622,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorderColor(RGB newBorderColor) {
 		RGB oldBorderColor = borderColor;
 		borderColor = newBorderColor;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR, oldBorderColor, borderColor));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isTranslucent() {
@@ -593,26 +645,28 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTranslucent(boolean newTranslucent) {
 		boolean oldTranslucent = translucent;
 		translucent = newTranslucent;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT, oldTranslucent, translucent));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramElement getSemanticParent() {
-		if (semanticParent != null && semanticParent.eIsProxy()) {
+		if(semanticParent != null && semanticParent.eIsProxy()) {
 			InternalEObject oldSemanticParent = (InternalEObject)semanticParent;
 			semanticParent = (DiagramElement)eResolveProxy(oldSemanticParent);
-			if (semanticParent != oldSemanticParent) {
-				if (eNotificationRequired())
+			if(semanticParent != oldSemanticParent) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT, oldSemanticParent, semanticParent));
 			}
 		}
@@ -622,6 +676,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramElement basicGetSemanticParent() {
@@ -631,14 +686,18 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSemanticParent(DiagramElement newSemanticParent, NotificationChain msgs) {
 		DiagramElement oldSemanticParent = semanticParent;
 		semanticParent = newSemanticParent;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT, oldSemanticParent, newSemanticParent);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -646,29 +705,31 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSemanticParent(DiagramElement newSemanticParent) {
-		if (newSemanticParent != semanticParent) {
+		if(newSemanticParent != semanticParent) {
 			NotificationChain msgs = null;
-			if (semanticParent != null)
+			if(semanticParent != null)
 				msgs = ((InternalEObject)semanticParent).eInverseRemove(this, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD, DiagramElement.class, msgs);
-			if (newSemanticParent != null)
+			if(newSemanticParent != null)
 				msgs = ((InternalEObject)newSemanticParent).eInverseAdd(this, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD, DiagramElement.class, msgs);
 			msgs = basicSetSemanticParent(newSemanticParent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT, newSemanticParent, newSemanticParent));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<DiagramElement> getSemanticChild() {
-		if (semanticChild == null) {
+		if(semanticChild == null) {
 			semanticChild = new EObjectWithInverseResolvingEList<DiagramElement>(DiagramElement.class, this, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT);
 		}
 		return semanticChild;
@@ -677,12 +738,13 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Property getProperty(String key) {
 		java.util.Iterator it = getProperty().iterator();
-		while (it.hasNext()) {
-			Property element = (Property) it.next();
+		while(it.hasNext()) {
+			Property element = (Property)it.next();
 			if(key.equals(element.getKey())) {
 				return element;
 			}
@@ -693,18 +755,21 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPropertyValue(String key) {
-		 if(this.getProperty(key)!=null){
-			return this.getProperty(key).getValue();}
+		if(this.getProperty(key) != null) {
+			return this.getProperty(key).getValue();
+		}
 		return null;
-			
+
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getEditpartName() {
@@ -714,22 +779,23 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainer((GraphElement)otherEnd, msgs);
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
-				if (semanticParent != null)
-					msgs = ((InternalEObject)semanticParent).eInverseRemove(this, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD, DiagramElement.class, msgs);
-				return basicSetSemanticParent((DiagramElement)otherEnd, msgs);
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSemanticChild()).basicAdd(otherEnd, msgs);
+		switch(featureID) {
+		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainer((GraphElement)otherEnd, msgs);
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
+			if(semanticParent != null)
+				msgs = ((InternalEObject)semanticParent).eInverseRemove(this, DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD, DiagramElement.class, msgs);
+			return basicSetSemanticParent((DiagramElement)otherEnd, msgs);
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getSemanticChild()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -737,19 +803,20 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
-				return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-			case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
-				return basicSetContainer(null, msgs);
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
-				return basicSetSemanticParent(null, msgs);
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
-				return ((InternalEList<?>)getSemanticChild()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
+			return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
+		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
+			return basicSetContainer(null, msgs);
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
+			return basicSetSemanticParent(null, msgs);
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
+			return ((InternalEList<?>)getSemanticChild()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -757,13 +824,14 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, DiPackage.GRAPH_ELEMENT__CONTAINED, GraphElement.class, msgs);
+		switch(eContainerFeatureID) {
+		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
+			return eInternalContainer().eInverseRemove(this, DiPackage.GRAPH_ELEMENT__CONTAINED, GraphElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -771,42 +839,44 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
-				return getProperty();
-			case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
-				return isIsVisible() ? Boolean.TRUE : Boolean.FALSE;
-			case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
-				return getReference();
-			case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
-				return getContainer();
-			case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
-				return getFontFamily();
-			case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
-				return new Integer(getFontSize());
-			case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
-				return getLineStyle();
-			case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
-				return new Integer(getLineThickness());
-			case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
-				return getFontColor();
-			case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
-				return getForegroundColor();
-			case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
-				return getBackgroundColor();
-			case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
-				return getBorderColor();
-			case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
-				return isTranslucent() ? Boolean.TRUE : Boolean.FALSE;
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
-				if (resolve) return getSemanticParent();
-				return basicGetSemanticParent();
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
-				return getSemanticChild();
+		switch(featureID) {
+		case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
+			return getProperty();
+		case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
+			return isIsVisible() ? Boolean.TRUE : Boolean.FALSE;
+		case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
+			return getReference();
+		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
+			return getContainer();
+		case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
+			return getFontFamily();
+		case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
+			return new Integer(getFontSize());
+		case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
+			return getLineStyle();
+		case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
+			return new Integer(getLineThickness());
+		case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
+			return getFontColor();
+		case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
+			return getForegroundColor();
+		case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
+			return getBackgroundColor();
+		case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
+			return getBorderColor();
+		case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
+			return isTranslucent() ? Boolean.TRUE : Boolean.FALSE;
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
+			if(resolve)
+				return getSemanticParent();
+			return basicGetSemanticParent();
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
+			return getSemanticChild();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -814,60 +884,61 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends Property>)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
-				setIsVisible(((Boolean)newValue).booleanValue());
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
-				getReference().clear();
-				getReference().addAll((Collection<? extends Reference>)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
-				setContainer((GraphElement)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
-				setFontFamily((String)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
-				setFontSize(((Integer)newValue).intValue());
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
-				setLineStyle((String)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
-				setLineThickness(((Integer)newValue).intValue());
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
-				setFontColor((RGB)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
-				setForegroundColor((RGB)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
-				setBackgroundColor((RGB)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
-				setBorderColor((RGB)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
-				setTranslucent(((Boolean)newValue).booleanValue());
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
-				setSemanticParent((DiagramElement)newValue);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
-				getSemanticChild().clear();
-				getSemanticChild().addAll((Collection<? extends DiagramElement>)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
+			getProperty().clear();
+			getProperty().addAll((Collection<? extends Property>)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
+			setIsVisible(((Boolean)newValue).booleanValue());
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
+			getReference().clear();
+			getReference().addAll((Collection<? extends Reference>)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
+			setContainer((GraphElement)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
+			setFontFamily((String)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
+			setFontSize(((Integer)newValue).intValue());
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
+			setLineStyle((String)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
+			setLineThickness(((Integer)newValue).intValue());
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
+			setFontColor((RGB)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
+			setForegroundColor((RGB)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
+			setBackgroundColor((RGB)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
+			setBorderColor((RGB)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
+			setTranslucent(((Boolean)newValue).booleanValue());
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
+			setSemanticParent((DiagramElement)newValue);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
+			getSemanticChild().clear();
+			getSemanticChild().addAll((Collection<? extends DiagramElement>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -875,56 +946,57 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
-				getProperty().clear();
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
-				setIsVisible(IS_VISIBLE_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
-				getReference().clear();
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
-				setContainer((GraphElement)null);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
-				setFontFamily(FONT_FAMILY_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
-				setFontSize(FONT_SIZE_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
-				setLineStyle(LINE_STYLE_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
-				setLineThickness(LINE_THICKNESS_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
-				setFontColor(FONT_COLOR_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
-				setForegroundColor(FOREGROUND_COLOR_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
-				setBackgroundColor(BACKGROUND_COLOR_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
-				setBorderColor(BORDER_COLOR_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
-				setTranslucent(TRANSLUCENT_EDEFAULT);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
-				setSemanticParent((DiagramElement)null);
-				return;
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
-				getSemanticChild().clear();
-				return;
+		switch(featureID) {
+		case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
+			getProperty().clear();
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
+			setIsVisible(IS_VISIBLE_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
+			getReference().clear();
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
+			setContainer((GraphElement)null);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
+			setFontFamily(FONT_FAMILY_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
+			setFontSize(FONT_SIZE_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
+			setLineStyle(LINE_STYLE_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
+			setLineThickness(LINE_THICKNESS_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
+			setFontColor(FONT_COLOR_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
+			setForegroundColor(FOREGROUND_COLOR_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
+			setBackgroundColor(BACKGROUND_COLOR_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
+			setBorderColor(BORDER_COLOR_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
+			setTranslucent(TRANSLUCENT_EDEFAULT);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
+			setSemanticParent((DiagramElement)null);
+			return;
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
+			getSemanticChild().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -932,41 +1004,42 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
-				return property != null && !property.isEmpty();
-			case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
-				return isVisible != IS_VISIBLE_EDEFAULT;
-			case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
-				return reference != null && !reference.isEmpty();
-			case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
-				return getContainer() != null;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
-				return FONT_FAMILY_EDEFAULT == null ? fontFamily != null : !FONT_FAMILY_EDEFAULT.equals(fontFamily);
-			case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
-				return fontSize != FONT_SIZE_EDEFAULT;
-			case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
-				return LINE_STYLE_EDEFAULT == null ? lineStyle != null : !LINE_STYLE_EDEFAULT.equals(lineStyle);
-			case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
-				return lineThickness != LINE_THICKNESS_EDEFAULT;
-			case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
-				return FONT_COLOR_EDEFAULT == null ? fontColor != null : !FONT_COLOR_EDEFAULT.equals(fontColor);
-			case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
-				return FOREGROUND_COLOR_EDEFAULT == null ? foregroundColor != null : !FOREGROUND_COLOR_EDEFAULT.equals(foregroundColor);
-			case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
-				return BACKGROUND_COLOR_EDEFAULT == null ? backgroundColor != null : !BACKGROUND_COLOR_EDEFAULT.equals(backgroundColor);
-			case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
-				return BORDER_COLOR_EDEFAULT == null ? borderColor != null : !BORDER_COLOR_EDEFAULT.equals(borderColor);
-			case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
-				return translucent != TRANSLUCENT_EDEFAULT;
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
-				return semanticParent != null;
-			case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
-				return semanticChild != null && !semanticChild.isEmpty();
+		switch(featureID) {
+		case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
+			return property != null && !property.isEmpty();
+		case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
+			return isVisible != IS_VISIBLE_EDEFAULT;
+		case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
+			return reference != null && !reference.isEmpty();
+		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
+			return getContainer() != null;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
+			return FONT_FAMILY_EDEFAULT == null ? fontFamily != null : !FONT_FAMILY_EDEFAULT.equals(fontFamily);
+		case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
+			return fontSize != FONT_SIZE_EDEFAULT;
+		case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
+			return LINE_STYLE_EDEFAULT == null ? lineStyle != null : !LINE_STYLE_EDEFAULT.equals(lineStyle);
+		case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
+			return lineThickness != LINE_THICKNESS_EDEFAULT;
+		case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
+			return FONT_COLOR_EDEFAULT == null ? fontColor != null : !FONT_COLOR_EDEFAULT.equals(fontColor);
+		case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
+			return FOREGROUND_COLOR_EDEFAULT == null ? foregroundColor != null : !FOREGROUND_COLOR_EDEFAULT.equals(foregroundColor);
+		case DiPackage.DIAGRAM_ELEMENT__BACKGROUND_COLOR:
+			return BACKGROUND_COLOR_EDEFAULT == null ? backgroundColor != null : !BACKGROUND_COLOR_EDEFAULT.equals(backgroundColor);
+		case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
+			return BORDER_COLOR_EDEFAULT == null ? borderColor != null : !BORDER_COLOR_EDEFAULT.equals(borderColor);
+		case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
+			return translucent != TRANSLUCENT_EDEFAULT;
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
+			return semanticParent != null;
+		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_CHILD:
+			return semanticChild != null && !semanticChild.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -974,11 +1047,13 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isVisible: ");

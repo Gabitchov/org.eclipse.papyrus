@@ -34,7 +34,7 @@ public class UseCaseExtensionpointsItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.ExtensionPoint_3008 == req.getElementType()) {
+		if(UMLElementTypes.ExtensionPoint_3008 == req.getElementType()) {
 			return getGEFWrapper(new ExtensionPoint2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

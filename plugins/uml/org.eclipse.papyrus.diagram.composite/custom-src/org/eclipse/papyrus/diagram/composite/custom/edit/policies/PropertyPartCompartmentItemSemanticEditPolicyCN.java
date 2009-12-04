@@ -38,7 +38,7 @@ public class PropertyPartCompartmentItemSemanticEditPolicyCN extends
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Property_3070 == req.getElementType()) {
+		if(UMLElementTypes.Property_3070 == req.getElementType()) {
 			return getGEFWrapper(new PropertyPartCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

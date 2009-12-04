@@ -25,10 +25,10 @@ public class CommentsSection extends ElementCommentsPropertySection {
 	@Override
 	public boolean select(Object toTest) {
 		EObject eObjectToTest = null;
-		if (toTest instanceof EObject)
-			eObjectToTest = (EObject) toTest;
-		else if (toTest instanceof IAdaptable && ((IAdaptable) toTest).getAdapter(EObject.class) != null)
-			eObjectToTest = (EObject) ((IAdaptable) toTest).getAdapter(EObject.class);
+		if(toTest instanceof EObject)
+			eObjectToTest = (EObject)toTest;
+		else if(toTest instanceof IAdaptable && ((IAdaptable)toTest).getAdapter(EObject.class) != null)
+			eObjectToTest = (EObject)((IAdaptable)toTest).getAdapter(EObject.class);
 		// is an instance of uml::Element
 		return eObjectToTest != null && EcoreTool.isInstanceOfEClass(eObjectToTest, UMLPackage.eINSTANCE.getElement());
 	}

@@ -41,7 +41,7 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 
 	/** Single instance getter */
 	public static CollaborationUseLabelHelper getInstance() {
-		if (labelHelper == null) {
+		if(labelHelper == null) {
 			labelHelper = new CollaborationUseLabelHelper();
 		}
 		return labelHelper;
@@ -102,13 +102,13 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	protected String elementLabel(GraphicalEditPart editPart) {
 		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 
-		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart
+		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart
 				.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if (policy != null) {
+		if(policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}
 		CollaborationUse elem = getUMLElement(editPart);
-		if (elem != null) {
+		if(elem != null) {
 			return CollaborationUseUtil.getCustomLabel(elem, displayValue);
 		}
 		return "";
@@ -134,14 +134,14 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public CollaborationUse getUMLElement(GraphicalEditPart editPart) {
-		return (CollaborationUse) ((View) editPart.getModel()).getElement();
+		return (CollaborationUse)((View)editPart.getModel()).getElement();
 	}
 
 	/**
 	 * Refreshes the label of the figure associated to the specified edit part
 	 * 
 	 * @param editPart
-	 *            the edit part managing the refreshed figure
+	 *        the edit part managing the refreshed figure
 	 */
 	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
 		IFigure figure = editPart.getFigure();
@@ -156,15 +156,15 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 		// a max number ?!
 		// solution: set all images to null, and then add the correct icons
 		int i = 0;
-		while (((WrappingLabel) figure).getIcon(i) != null) {
-			((WrappingLabel) figure).setIcon(null, i);
+		while(((WrappingLabel)figure).getIcon(i) != null) {
+			((WrappingLabel)figure).setIcon(null, i);
 			i++;
 		}
 		i = 0;
-		for (Image image : imageToDisplay) {
-			((WrappingLabel) figure).setIcon(image, i);
+		for(Image image : imageToDisplay) {
+			((WrappingLabel)figure).setIcon(image, i);
 			i++;
 		}
-		((WrappingLabel) figure).setText(labelToDisplay(editPart));
+		((WrappingLabel)figure).setText(labelToDisplay(editPart));
 	}
 }

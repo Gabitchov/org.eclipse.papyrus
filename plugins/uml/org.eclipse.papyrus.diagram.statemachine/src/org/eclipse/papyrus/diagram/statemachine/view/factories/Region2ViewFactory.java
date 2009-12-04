@@ -37,7 +37,7 @@ public class Region2ViewFactory extends AbstractShapeViewFactory {
 	protected void decorateView(View containerView, View view,
 			IAdaptable semanticAdapter, String semanticHint, int index,
 			boolean persisted) {
-		if (semanticHint == null) {
+		if(semanticHint == null) {
 			semanticHint = UMLVisualIDRegistry
 					.getType(Region2EditPart.VISUAL_ID);
 			view.setType(semanticHint);
@@ -45,15 +45,15 @@ public class Region2ViewFactory extends AbstractShapeViewFactory {
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
 				index, persisted);
 		IAdaptable eObjectAdapter = null;
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-		if (eObject != null) {
+		EObject eObject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
 		getViewService().createNode(
 				eObjectAdapter,
 				view,
 				UMLVisualIDRegistry
-						.getType(RegionSubvertices2EditPart.VISUAL_ID),
+				.getType(RegionSubvertices2EditPart.VISUAL_ID),
 				ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

@@ -67,7 +67,7 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor) getFigure();
+		return (CommentLinkDescriptor)getFigure();
 	}
 
 	/**

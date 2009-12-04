@@ -19,14 +19,14 @@ package org.eclipse.papyrus.profile.ui.dialogs;
  * The Interface IChooseDialog.
  */
 public interface IChooseDialog {
-	
+
 	/**
 	 * Gets the value.
 	 * 
 	 * @return the value
 	 */
 	public Object getValue();
-	
+
 	/**
 	 * Open.
 	 * 

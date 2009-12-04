@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,17 +29,19 @@ import org.eclipse.papyrus.di.TextElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.di.impl.TextElementImpl#getText <em>Text</em>}</li>
+ * <li>{@link org.eclipse.papyrus.di.impl.TextElementImpl#getText <em>Text</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TextElementImpl extends LeafElementImpl implements TextElement {
+
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getText()
 	 * @generated
 	 * @ordered
@@ -50,6 +52,7 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getText()
 	 * @generated
 	 * @ordered
@@ -59,6 +62,7 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TextElementImpl() {
@@ -68,6 +72,7 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,6 +83,7 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getText() {
@@ -87,25 +93,27 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setText(String newText) {
 		String oldText = text;
 		text = newText;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.TEXT_ELEMENT__TEXT, oldText, text));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.TEXT_ELEMENT__TEXT:
-				return getText();
+		switch(featureID) {
+		case DiPackage.TEXT_ELEMENT__TEXT:
+			return getText();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,14 +121,15 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.TEXT_ELEMENT__TEXT:
-				setText((String)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.TEXT_ELEMENT__TEXT:
+			setText((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -128,14 +137,15 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.TEXT_ELEMENT__TEXT:
-				setText(TEXT_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DiPackage.TEXT_ELEMENT__TEXT:
+			setText(TEXT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,13 +153,14 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.TEXT_ELEMENT__TEXT:
-				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+		switch(featureID) {
+		case DiPackage.TEXT_ELEMENT__TEXT:
+			return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -157,11 +168,13 @@ public class TextElementImpl extends LeafElementImpl implements TextElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (text: ");

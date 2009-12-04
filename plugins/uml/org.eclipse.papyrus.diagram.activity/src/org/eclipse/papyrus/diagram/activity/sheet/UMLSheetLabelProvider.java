@@ -19,8 +19,7 @@ public class UMLSheetLabelProvider extends DecoratingLabelProvider {
 	 * @generated
 	 */
 	public UMLSheetLabelProvider() {
-		super(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin
-				.getInstance().getItemProvidersAdapterFactory()), null);
+		super(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), null);
 	}
 
 	/**

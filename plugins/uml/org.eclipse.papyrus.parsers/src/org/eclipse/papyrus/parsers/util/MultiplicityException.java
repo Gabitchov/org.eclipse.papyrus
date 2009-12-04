@@ -25,7 +25,7 @@ public class MultiplicityException extends RuntimeException {
 	 * Creates a new MultiplicityException.
 	 * 
 	 * @param message
-	 *            the message of the exception
+	 *        the message of the exception
 	 */
 	public MultiplicityException(String message) {
 		super(message);

@@ -292,13 +292,13 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	private EClass systemModelEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package package URI
 	 * value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init
-	 * init()}, which also performs initialization of the package, or returns the registered
-	 * package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.standard.StandardPackage#eNS_URI
@@ -321,9 +321,8 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * upon which it depends.
 	 * 
 	 * <p>
-	 * This method is used to initialize {@link StandardPackage#eINSTANCE} when that field is
-	 * accessed. Clients should not invoke it directly. Instead, they should simply access that
-	 * field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link StandardPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -331,11 +330,11 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public static StandardPackage init() {
-		if (isInited)
-			return (StandardPackage) EPackage.Registry.INSTANCE.getEPackage(StandardPackage.eNS_URI);
+		if(isInited)
+			return (StandardPackage)EPackage.Registry.INSTANCE.getEPackage(StandardPackage.eNS_URI);
 
 		// Obtain or create and register package
-		StandardPackageImpl theStandardPackage = (StandardPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StandardPackageImpl ? EPackage.Registry.INSTANCE
+		StandardPackageImpl theStandardPackage = (StandardPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StandardPackageImpl ? EPackage.Registry.INSTANCE
 				.get(eNS_URI)
 				: new StandardPackageImpl());
 
@@ -373,7 +372,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getAuxiliary_Base_Class() {
-		return (EReference) auxiliaryEClass.getEStructuralFeatures().get(0);
+		return (EReference)auxiliaryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -391,7 +390,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getBuildComponent_Base_Component() {
-		return (EReference) buildComponentEClass.getEStructuralFeatures().get(0);
+		return (EReference)buildComponentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -409,7 +408,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getCreate_Base_BehavioralFeature() {
-		return (EReference) createEClass.getEStructuralFeatures().get(0);
+		return (EReference)createEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -418,7 +417,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getCreate_Base_Usage() {
-		return (EReference) createEClass.getEStructuralFeatures().get(1);
+		return (EReference)createEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -436,7 +435,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getCall_Base_Usage() {
-		return (EReference) callEClass.getEStructuralFeatures().get(0);
+		return (EReference)callEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -454,7 +453,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getDerive_Base_Abstraction() {
-		return (EReference) deriveEClass.getEStructuralFeatures().get(0);
+		return (EReference)deriveEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -472,7 +471,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getDestroy_Base_BehavioralFeature() {
-		return (EReference) destroyEClass.getEStructuralFeatures().get(0);
+		return (EReference)destroyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -490,7 +489,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getFocus_Base_Class() {
-		return (EReference) focusEClass.getEStructuralFeatures().get(0);
+		return (EReference)focusEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -508,7 +507,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getFramework_Base_Package() {
-		return (EReference) frameworkEClass.getEStructuralFeatures().get(0);
+		return (EReference)frameworkEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -526,7 +525,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getImplement_Base_Component() {
-		return (EReference) implementEClass.getEStructuralFeatures().get(0);
+		return (EReference)implementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -544,7 +543,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getImplementationClass_Base_Class() {
-		return (EReference) implementationClassEClass.getEStructuralFeatures().get(0);
+		return (EReference)implementationClassEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -562,7 +561,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getInstantiate_Base_Usage() {
-		return (EReference) instantiateEClass.getEStructuralFeatures().get(0);
+		return (EReference)instantiateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -580,7 +579,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getMetaclass_Base_Class() {
-		return (EReference) metaclassEClass.getEStructuralFeatures().get(0);
+		return (EReference)metaclassEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -598,7 +597,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getModelLibrary_Base_Package() {
-		return (EReference) modelLibraryEClass.getEStructuralFeatures().get(0);
+		return (EReference)modelLibraryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -616,7 +615,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getRefine_Base_Abstraction() {
-		return (EReference) refineEClass.getEStructuralFeatures().get(0);
+		return (EReference)refineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -634,7 +633,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getResponsibility_Base_Usage() {
-		return (EReference) responsibilityEClass.getEStructuralFeatures().get(0);
+		return (EReference)responsibilityEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -652,7 +651,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getScript_Base_Artifact() {
-		return (EReference) scriptEClass.getEStructuralFeatures().get(0);
+		return (EReference)scriptEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -670,7 +669,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getSend_Base_Usage() {
-		return (EReference) sendEClass.getEStructuralFeatures().get(0);
+		return (EReference)sendEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -688,7 +687,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getTrace_Base_Abstraction() {
-		return (EReference) traceEClass.getEStructuralFeatures().get(0);
+		return (EReference)traceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -706,7 +705,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getType_Base_Class() {
-		return (EReference) typeEClass.getEStructuralFeatures().get(0);
+		return (EReference)typeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -724,7 +723,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getUtility_Base_Class() {
-		return (EReference) utilityEClass.getEStructuralFeatures().get(0);
+		return (EReference)utilityEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -742,7 +741,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getDocument_Base_Artifact() {
-		return (EReference) documentEClass.getEStructuralFeatures().get(0);
+		return (EReference)documentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -760,7 +759,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getEntity_Base_Component() {
-		return (EReference) entityEClass.getEStructuralFeatures().get(0);
+		return (EReference)entityEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -778,7 +777,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getExecutable_Base_Artifact() {
-		return (EReference) executableEClass.getEStructuralFeatures().get(0);
+		return (EReference)executableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -796,7 +795,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getFile_Base_Artifact() {
-		return (EReference) fileEClass.getEStructuralFeatures().get(0);
+		return (EReference)fileEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -814,7 +813,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getLibrary_Base_Artifact() {
-		return (EReference) libraryEClass.getEStructuralFeatures().get(0);
+		return (EReference)libraryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -832,7 +831,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getProcess_Base_Component() {
-		return (EReference) processEClass.getEStructuralFeatures().get(0);
+		return (EReference)processEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -850,7 +849,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getRealization_Base_Classifier() {
-		return (EReference) realizationEClass.getEStructuralFeatures().get(0);
+		return (EReference)realizationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -868,7 +867,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getService_Base_Component() {
-		return (EReference) serviceEClass.getEStructuralFeatures().get(0);
+		return (EReference)serviceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -886,7 +885,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getSource_Base_Artifact() {
-		return (EReference) sourceEClass.getEStructuralFeatures().get(0);
+		return (EReference)sourceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -904,7 +903,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getSpecification_Base_Classifier() {
-		return (EReference) specificationEClass.getEStructuralFeatures().get(0);
+		return (EReference)specificationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -922,7 +921,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getSubsystem_Base_Component() {
-		return (EReference) subsystemEClass.getEStructuralFeatures().get(0);
+		return (EReference)subsystemEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -940,7 +939,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getMetamodel_Base_Model() {
-		return (EReference) metamodelEClass.getEStructuralFeatures().get(0);
+		return (EReference)metamodelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -958,7 +957,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public EReference getSystemModel_Base_Model() {
-		return (EReference) systemModelEClass.getEStructuralFeatures().get(0);
+		return (EReference)systemModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -967,7 +966,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public StandardFactory getStandardFactory() {
-		return (StandardFactory) getEFactoryInstance();
+		return (StandardFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -984,7 +983,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if(isCreated)
 			return;
 		isCreated = true;
 
@@ -1104,7 +1103,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if(isInitialized)
 			return;
 		isInitialized = true;
 
@@ -1114,7 +1113,7 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
 

@@ -29,10 +29,10 @@ public class ClassDiagramContributionItemProvider extends AbstractContributionIt
 	 */
 	@Override
 	protected IAction createAction(String actionId, IWorkbenchPartDescriptor partDescriptor) {
-		if (actionId.equals(RestoreRelatedLinksAction.ID)) {
+		if(actionId.equals(RestoreRelatedLinksAction.ID)) {
 			return new RestoreRelatedLinksAction();
 		}
-		if (actionId.equals(InitializeDiagramAction.ID)) {
+		if(actionId.equals(InitializeDiagramAction.ID)) {
 			return new InitializeDiagramAction();
 		}
 		return super.createAction(actionId, partDescriptor);

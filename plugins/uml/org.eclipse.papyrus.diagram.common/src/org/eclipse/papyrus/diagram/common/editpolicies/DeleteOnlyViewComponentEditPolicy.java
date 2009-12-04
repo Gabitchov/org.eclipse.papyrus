@@ -38,8 +38,8 @@ public class DeleteOnlyViewComponentEditPolicy extends ComponentEditPolicy {
 	 * @return the graphical host
 	 */
 	protected IGraphicalEditPart getGraphicalHost() {
-		if (getHost() instanceof IGraphicalEditPart) {
-			return (IGraphicalEditPart) getHost();
+		if(getHost() instanceof IGraphicalEditPart) {
+			return (IGraphicalEditPart)getHost();
 		}
 		return null;
 	}
@@ -59,7 +59,7 @@ public class DeleteOnlyViewComponentEditPolicy extends ComponentEditPolicy {
 	 * to show.
 	 * 
 	 * @param request
-	 *            the request
+	 *        the request
 	 * 
 	 * @return the delete command
 	 */
@@ -71,7 +71,7 @@ public class DeleteOnlyViewComponentEditPolicy extends ComponentEditPolicy {
 		Diagram diagram = view != null ? view.getDiagram() : null;
 		EObject element = editPart != null ? editPart.resolveSemanticElement() : null;
 		Command command = super.getDeleteCommand(request);
-		if (domain != null && diagram != null && element != null) {
+		if(domain != null && diagram != null && element != null) {
 			command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(domain, diagram,
 					Collections.singletonList(element))));
 		}

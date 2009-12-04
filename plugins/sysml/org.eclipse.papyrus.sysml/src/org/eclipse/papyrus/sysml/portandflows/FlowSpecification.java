@@ -17,14 +17,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Interface;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Flow Specification</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Flow Specification</b></em> '. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface <em>Base
- * Interface</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface <em>Base Interface</em>}</li>
  * </ul>
  * </p>
  * 
@@ -37,8 +35,7 @@ public interface FlowSpecification extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Interface</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Interface</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Interface</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -51,12 +48,11 @@ public interface FlowSpecification extends EObject {
 	Interface getBase_Interface();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface
 	 * <em>Base Interface</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Interface</em>' reference.
+	 *        the new value of the '<em>Base Interface</em>' reference.
 	 * @see #getBase_Interface()
 	 * @generated
 	 */

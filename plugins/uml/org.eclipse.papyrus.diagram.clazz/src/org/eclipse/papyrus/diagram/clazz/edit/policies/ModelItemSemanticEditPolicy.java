@@ -54,52 +54,52 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Dependency_2014 == req.getElementType()) {
+		if(UMLElementTypes.Dependency_2014 == req.getElementType()) {
 			return getGEFWrapper(new Dependency2CreateCommand(req));
 		}
-		if (UMLElementTypes.AssociationClass_2013 == req.getElementType()) {
+		if(UMLElementTypes.AssociationClass_2013 == req.getElementType()) {
 			return getGEFWrapper(new AssociationClassCreateCommand(req));
 		}
-		if (UMLElementTypes.Association_2015 == req.getElementType()) {
+		if(UMLElementTypes.Association_2015 == req.getElementType()) {
 			return getGEFWrapper(new AssociationNodeCreateCommand(req));
 		}
-		if (UMLElementTypes.InstanceSpecification_2001 == req.getElementType()) {
+		if(UMLElementTypes.InstanceSpecification_2001 == req.getElementType()) {
 			return getGEFWrapper(new InstanceSpecificationCreateCommand(req));
 		}
-		if (UMLElementTypes.Component_2002 == req.getElementType()) {
+		if(UMLElementTypes.Component_2002 == req.getElementType()) {
 			return getGEFWrapper(new ComponentCreateCommand(req));
 		}
-		if (UMLElementTypes.Signal_2003 == req.getElementType()) {
+		if(UMLElementTypes.Signal_2003 == req.getElementType()) {
 			return getGEFWrapper(new SignalCreateCommand(req));
 		}
-		if (UMLElementTypes.Interface_2004 == req.getElementType()) {
+		if(UMLElementTypes.Interface_2004 == req.getElementType()) {
 			return getGEFWrapper(new InterfaceCreateCommand(req));
 		}
-		if (UMLElementTypes.Model_2005 == req.getElementType()) {
+		if(UMLElementTypes.Model_2005 == req.getElementType()) {
 			return getGEFWrapper(new ModelCreateCommandTN(req));
 		}
-		if (UMLElementTypes.Enumeration_2006 == req.getElementType()) {
+		if(UMLElementTypes.Enumeration_2006 == req.getElementType()) {
 			return getGEFWrapper(new EnumerationCreateCommand(req));
 		}
-		if (UMLElementTypes.Package_2007 == req.getElementType()) {
+		if(UMLElementTypes.Package_2007 == req.getElementType()) {
 			return getGEFWrapper(new PackageCreateCommand(req));
 		}
-		if (UMLElementTypes.Class_2008 == req.getElementType()) {
+		if(UMLElementTypes.Class_2008 == req.getElementType()) {
 			return getGEFWrapper(new ClassCreateCommand(req));
 		}
-		if (UMLElementTypes.PrimitiveType_2009 == req.getElementType()) {
+		if(UMLElementTypes.PrimitiveType_2009 == req.getElementType()) {
 			return getGEFWrapper(new PrimitiveTypeCreateCommand(req));
 		}
-		if (UMLElementTypes.DataType_2010 == req.getElementType()) {
+		if(UMLElementTypes.DataType_2010 == req.getElementType()) {
 			return getGEFWrapper(new DataTypeCreateCommand(req));
 		}
-		if (UMLElementTypes.Constraint_2011 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_2011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintCreateCommand(req));
 		}
-		if (UMLElementTypes.Comment_2012 == req.getElementType()) {
+		if(UMLElementTypes.Comment_2012 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommand(req));
 		}
-		if (UMLElementTypes.Diagram_2016 == req.getElementType()) {
+		if(UMLElementTypes.Diagram_2016 == req.getElementType()) {
 			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -109,10 +109,10 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		Diagram currentDiagram = null;
-		if (getHost() instanceof IGraphicalEditPart) {
-			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView().getDiagram();
+		if(getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart)getHost()).getNotationView().getDiagram();
 		}
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
 	}

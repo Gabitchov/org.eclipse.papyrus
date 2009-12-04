@@ -29,57 +29,63 @@ import org.eclipse.uml2.uml.Property;
  * The Class MetaclassItems.
  */
 public class MetaclassItems {
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param table the table
-	 * @param value the value
-	 * @param property the property
+	 * @param table
+	 *        the table
+	 * @param value
+	 *        the value
+	 * @param property
+	 *        the property
 	 */
-	public MetaclassItems (Table table, Property property, Object value) {
-		
+	public MetaclassItems(Table table, Property property, Object value) {
+
 		// Checking rule
-		if (property.getLower() > 0) {
+		if(property.getLower() > 0) {
 			// Lower must be != 0 because the value of the property is an element in the model
 			// no default value may be entered in the profile
 			Message.warning(
 					"Property of type Metaclass and multiplicity lower value != 0.\n" +
 					"The profile is ill formed !");
 		}
-		
-		if (property.isMultivalued()) {
+
+		if(property.isMultivalued()) {
 			// property is multivalued
-			final List propValues = (List) value;
-			for(int i=0; i<propValues.size(); i++) {
+			final List propValues = (List)value;
+			for(int i = 0; i < propValues.size(); i++) {
 				createItem(table, property, propValues.get(i));
 			}
 
 		} else { // property is not multivalued
 
 			// if the property has a value
-			if (value != null) {
+			if(value != null) {
 				createItem(table, property, value);
 			}
 		}
 	}
-	
+
 	/**
 	 * Creates a new item for current objet int the table.
 	 * 
-	 * @param table the table
-	 * @param object the object
-	 * @param property the property
+	 * @param table
+	 *        the table
+	 * @param object
+	 *        the object
+	 * @param property
+	 *        the property
 	 */
 	private void createItem(Table table, Property property, Object object) {
-		
-		if (object != null) {
+
+		if(object != null) {
 			// Prepare Item label
 			TableItem propValueItem = new TableItem(table, SWT.NONE);
 			String label = object.toString();
-			if (object instanceof NamedElement) {
-				NamedElement baseNamedElement = (NamedElement) object;
-				if (baseNamedElement.isSetName()) {
+			if(object instanceof NamedElement) {
+				NamedElement baseNamedElement = (NamedElement)object;
+				if(baseNamedElement.isSetName()) {
 					label = baseNamedElement.getQualifiedName();
 				}
 			}

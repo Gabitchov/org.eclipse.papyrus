@@ -37,9 +37,9 @@ public class TypeUtil {
 		buffer.append(" - ");
 		String tmp = "";
 		Iterator<Namespace> it = type.allNamespaces().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			Namespace namespace = it.next();
-			if (it.hasNext()) {
+			if(it.hasNext()) {
 				tmp = NamedElement.SEPARATOR + namespace.getName() + tmp;
 			} else {
 				tmp = namespace.getName() + tmp;

@@ -42,8 +42,8 @@ public class AbstractTemplateParameterEditPart extends CompartmentEditPart {
 	 * to listen parameters
 	 */
 	protected void addOwnedParamListeners() {
-		EObject ownedParam = ((TemplateParameter) resolveSemanticElement()).getOwnedParameteredElement();
-		if (ownedParam != null) {
+		EObject ownedParam = ((TemplateParameter)resolveSemanticElement()).getOwnedParameteredElement();
+		if(ownedParam != null) {
 			addListenerFilter(LISTEN_OWNED_PARAM, this, ownedParam);
 		}
 	}

@@ -40,7 +40,7 @@ public class ActionInputPinPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ActionInputPin) {
+		if(eObject instanceof ActionInputPin) {
 			return new ActionInputPinPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ActionInputPinPropertiesEditionProvider implements IPropertiesEditi
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ActionInputPin) {
-			if (ActionInputPinBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ActionInputPin) {
+			if(ActionInputPinBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ActionInputPinBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

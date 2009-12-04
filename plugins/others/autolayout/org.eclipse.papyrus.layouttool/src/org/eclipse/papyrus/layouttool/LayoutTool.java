@@ -50,14 +50,14 @@ public class LayoutTool {
 	 * Apply layout.
 	 * 
 	 * @param algoName
-	 *            the algo name
+	 *        the algo name
 	 * @param parts
-	 *            the parts
+	 *        the parts
 	 */
 	public void applyLayout(String algoName, List<EditPart> parts) {
 		Collection<LayoutToolAlgorithms> algorithmes = ZestAlgortihms.getRegisteredAlgorithmes();
-		for (LayoutToolAlgorithms algorithme : algorithmes) {
-			if (algorithme.getName().equals(algoName)) {
+		for(LayoutToolAlgorithms algorithme : algorithmes) {
+			if(algorithme.getName().equals(algoName)) {
 				LayouttoolController controller = new LayouttoolController(parts, algorithme.getAlgorithm());
 				controller.execute();
 				break;

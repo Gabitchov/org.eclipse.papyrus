@@ -53,11 +53,11 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 	 * Creates a new ExtendedDirectEditionDialog
 	 * 
 	 * @param parentShell
-	 *            the parent shell
+	 *        the parent shell
 	 * @param parameter
-	 *            the editedObject
+	 *        the editedObject
 	 * @param initialValue
-	 *            the initial text value
+	 *        the initial text value
 	 */
 	public ExtendedDirectEditionDialog(Shell parentShell, Object object, String initialValue,
 			IDirectEditorConfiguration configuration) {
@@ -105,7 +105,7 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 		viewer.setSelectedRange(0, value.length());
 
 		Composite extendedArea = configuration.createExtendedDialogArea(viewerGroup);
-		if (extendedArea != null) {
+		if(extendedArea != null) {
 			extendedArea.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
 		}
 
@@ -151,12 +151,12 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 		 * @param event
 		 */
 		public void verifyKey(VerifyEvent event) {
-			if ((event.stateMask == SWT.CTRL) && (event.character == ' ')) {
-				if (viewer.canDoOperation(ISourceViewer.CONTENTASSIST_PROPOSALS)) {
+			if((event.stateMask == SWT.CTRL) && (event.character == ' ')) {
+				if(viewer.canDoOperation(ISourceViewer.CONTENTASSIST_PROPOSALS)) {
 					viewer.doOperation(ISourceViewer.CONTENTASSIST_PROPOSALS);
 				}
 				event.doit = false;
-			} else if (event.character == SWT.CR) {
+			} else if(event.character == SWT.CR) {
 				event.doit = false;
 			}
 		}

@@ -40,7 +40,7 @@ public class ReduceActionPropertiesEditionProvider implements IPropertiesEdition
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof ReduceAction) {
+		if(eObject instanceof ReduceAction) {
 			return new ReduceActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class ReduceActionPropertiesEditionProvider implements IPropertiesEdition
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof ReduceAction) {
-			if (ReduceActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof ReduceAction) {
+			if(ReduceActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new ReduceActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

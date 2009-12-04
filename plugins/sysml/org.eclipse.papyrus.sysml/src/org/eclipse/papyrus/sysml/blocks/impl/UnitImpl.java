@@ -29,8 +29,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl#getBase_InstanceSpecification <em>Base
- * Instance Specification</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl#getDimension <em>Dimension</em>}</li>
  * </ul>
  * </p>
@@ -94,13 +93,13 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION:
-			if (resolve)
+			if(resolve)
 				return getBase_InstanceSpecification();
 			return basicGetBase_InstanceSpecification();
 		case BlocksPackage.UNIT__DIMENSION:
-			if (resolve)
+			if(resolve)
 				return getDimension();
 			return basicGetDimension();
 		}
@@ -114,7 +113,7 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION:
 			return base_InstanceSpecification != null;
 		case BlocksPackage.UNIT__DIMENSION:
@@ -130,12 +129,12 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION:
-			setBase_InstanceSpecification((InstanceSpecification) newValue);
+			setBase_InstanceSpecification((InstanceSpecification)newValue);
 			return;
 		case BlocksPackage.UNIT__DIMENSION:
-			setDimension((Dimension) newValue);
+			setDimension((Dimension)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,12 +157,12 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION:
-			setBase_InstanceSpecification((InstanceSpecification) null);
+			setBase_InstanceSpecification((InstanceSpecification)null);
 			return;
 		case BlocksPackage.UNIT__DIMENSION:
-			setDimension((Dimension) null);
+			setDimension((Dimension)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -175,11 +174,11 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	 * @generated
 	 */
 	public InstanceSpecification getBase_InstanceSpecification() {
-		if (base_InstanceSpecification != null && base_InstanceSpecification.eIsProxy()) {
-			InternalEObject oldBase_InstanceSpecification = (InternalEObject) base_InstanceSpecification;
-			base_InstanceSpecification = (InstanceSpecification) eResolveProxy(oldBase_InstanceSpecification);
-			if (base_InstanceSpecification != oldBase_InstanceSpecification) {
-				if (eNotificationRequired())
+		if(base_InstanceSpecification != null && base_InstanceSpecification.eIsProxy()) {
+			InternalEObject oldBase_InstanceSpecification = (InternalEObject)base_InstanceSpecification;
+			base_InstanceSpecification = (InstanceSpecification)eResolveProxy(oldBase_InstanceSpecification);
+			if(base_InstanceSpecification != oldBase_InstanceSpecification) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification,
 							base_InstanceSpecification));
@@ -194,11 +193,11 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	 * @generated
 	 */
 	public Dimension getDimension() {
-		if (dimension != null && dimension.eIsProxy()) {
-			InternalEObject oldDimension = (InternalEObject) dimension;
-			dimension = (Dimension) eResolveProxy(oldDimension);
-			if (dimension != oldDimension) {
-				if (eNotificationRequired())
+		if(dimension != null && dimension.eIsProxy()) {
+			InternalEObject oldDimension = (InternalEObject)dimension;
+			dimension = (Dimension)eResolveProxy(oldDimension);
+			if(dimension != oldDimension) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.UNIT__DIMENSION,
 							oldDimension, dimension));
 			}
@@ -214,7 +213,7 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	public void setBase_InstanceSpecification(InstanceSpecification newBase_InstanceSpecification) {
 		InstanceSpecification oldBase_InstanceSpecification = base_InstanceSpecification;
 		base_InstanceSpecification = newBase_InstanceSpecification;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION,
 					oldBase_InstanceSpecification, base_InstanceSpecification));
 	}
@@ -227,7 +226,7 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	public void setDimension(Dimension newDimension) {
 		Dimension oldDimension = dimension;
 		dimension = newDimension;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.UNIT__DIMENSION, oldDimension,
 					dimension));
 	}

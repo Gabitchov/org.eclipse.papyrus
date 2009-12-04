@@ -51,8 +51,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
-		PrimaryShapeEditPart {
+public class OutputPin2EditPart extends BorderedBorderItemEditPart implements PrimaryShapeEditPart {
 
 	/**
 	 * @generated
@@ -82,13 +81,10 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				getPrimaryDragEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new OutputPin2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OutputPin2ItemSemanticEditPolicy());
 		// ** install new ComponentEditPolicy
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new DeleteOnlyViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteOnlyViewComponentEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -103,10 +99,9 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				// Commented to show the "virtual" link that links the two nodes
 				// if (child instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart) {
-				// 	return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
+				// return new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy();
 				// }
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -143,38 +138,30 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	 * @generated
 	 */
 	@Override
-	protected void addBorderItem(IFigure borderItemContainer,
-			IBorderItemEditPart borderItemEditPart) {
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		// Modify the BorderItemLocator to remove the snap of the labels
 		if (borderItemEditPart instanceof LabelEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
-					PositionConstants.NSEW) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NSEW) {
 
 				@Override
 				public void relocate(IFigure borderItem) {
 					Dimension size = getSize(borderItem);
-					Rectangle rectSuggested = new Rectangle(
-							getPreferredLocation(borderItem), size);
-					int closestSide = findClosestSideOfParent(rectSuggested,
-							getParentBorder());
+					Rectangle rectSuggested = new Rectangle(getPreferredLocation(borderItem), size);
+					int closestSide = findClosestSideOfParent(rectSuggested, getParentBorder());
 					setPreferredSideOfParent(closestSide);
 
 					borderItem.setBounds(rectSuggested);
 
-					setCurrentSideOfParent(findClosestSideOfParent(
-							rectSuggested, getParentBorder()));
+					setCurrentSideOfParent(findClosestSideOfParent(rectSuggested, getParentBorder()));
 				}
 
 				@Override
-				protected Point getPreferredLocation(int side,
-						IFigure borderItem) {
+				protected Point getPreferredLocation(int side, IFigure borderItem) {
 					Point p = super.getPreferredLocation(side, borderItem);
-					if (side == PositionConstants.NORTH
-							|| side == PositionConstants.SOUTH) {
+					if (side == PositionConstants.NORTH || side == PositionConstants.SOUTH) {
 						Dimension borderItemSize = getSize(borderItem);
 						p.x = p.x - borderItemSize.width / 2;
-					} else if (side == PositionConstants.EAST
-							|| side == PositionConstants.WEST) {
+					} else if (side == PositionConstants.EAST || side == PositionConstants.WEST) {
 						Dimension borderItemSize = getSize(borderItem);
 						p.y = p.y - borderItemSize.height / 2;
 					}
@@ -188,8 +175,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else if (borderItemEditPart instanceof OutputPinName2EditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
-					PositionConstants.SOUTH);
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -209,10 +195,9 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(15), getMapMode().DPtoLP(15));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15));
 
-		//FIXME: workaround for #154536
+		// FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
@@ -233,8 +218,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -249,8 +233,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects
-	 * layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *            instance of generated figure class
@@ -276,8 +259,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(OutputPinName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(OutputPinName2EditPart.VISUAL_ID));
 	}
 
 	/**
@@ -298,11 +280,9 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 				if (ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
-						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
+				ShapeStyle style = (ShapeStyle) ((View) ep.getModel()).getStyle(NotationPackage.eINSTANCE.getShapeStyle());
 				if (style != null) {
-					style.eSet((EStructuralFeature) event.getFeature(), event
-							.getNewValue());
+					style.eSet((EStructuralFeature) event.getFeature(), event.getNewValue());
 					ep.refresh();
 				}
 			}
@@ -314,8 +294,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.add(UMLPackage.eINSTANCE.getObjectNode_Selection());
 		features.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		DiagramEditPartsUtil
-				.handleNotificationForDiagram(this, event, features);
+		DiagramEditPartsUtil.handleNotificationForDiagram(this, event, features);
 	}
 
 	/**
@@ -330,12 +309,9 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 			this.setLayoutManager(new StackLayout());
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
 			createContents();
 		}
 
@@ -352,12 +328,9 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 			this.setLayoutManager(new StackLayout());
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
 			createContents();
 		}
 
@@ -402,8 +375,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	 * @generated
 	 */
 	protected EAnnotation getAppearenceEAnnotation() {
-		EAnnotation eAnn = getPrimaryView().getEAnnotation(
-				AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
+		EAnnotation eAnn = getPrimaryView().getEAnnotation(AnnotateNodeStyleCommand.APPEARANCE_EANNOTATION_NAME);
 		return eAnn;
 	}
 
@@ -441,9 +413,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
 				if (gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart
-							&& ((GraphicalEditPart) gEP)
-									.resolveSemanticElement() == resolveSemanticElement()) {
+					if (gEP instanceof GraphicalEditPart && ((GraphicalEditPart) gEP).resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
@@ -472,8 +442,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
-				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
+		if (changesFromDefaultStyle().contains(NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
 			super.setBackgroundColor(color);
@@ -487,8 +456,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 		parent.setBackgroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresBackgroundColor((IFigure) obj, color);
 			}
 		}
@@ -500,8 +468,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
-				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
 			super.setForegroundColor(color);
@@ -516,8 +483,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && !isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresForegroundColor((IFigure) obj, color);
 			}
 		}
@@ -530,8 +496,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
-				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
+		if (changesFromDefaultStyle().contains(NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
 			super.setFontColor(color);
@@ -546,8 +511,7 @@ public class OutputPin2EditPart extends BorderedBorderItemEditPart implements
 			parent.setForegroundColor(color);
 		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
+			if (obj instanceof IFigure && isLabel((IFigure) obj) && !isFigureFromChildEditPart((IFigure) obj)) {
 				setOwnedFiguresFontColor((IFigure) obj, color);
 			}
 		}

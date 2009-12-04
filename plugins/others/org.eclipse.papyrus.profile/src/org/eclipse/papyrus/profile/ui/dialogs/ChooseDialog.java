@@ -29,101 +29,105 @@ import org.eclipse.swt.widgets.Text;
  * The Class ChooseDialog.
  */
 public class ChooseDialog extends Dialog {
-	
+
 	/**
 	 * The combo.
 	 */
 	protected Combo combo;
-	
+
 	/**
 	 * The element list.
 	 */
-	protected String[] elementList= {	"test","test1","test2"};
-	
+	protected String[] elementList = { "test", "test1", "test2" };
+
 	/**
 	 * The name field.
 	 */
 	protected Text nameField;
-	
+
 	/**
 	 * The announce.
 	 */
-	protected String announce="Choose your element";
-	
+	protected String announce = "Choose your element";
+
 	/**
 	 * The channel.
 	 */
-	protected int channel=19;
-	
+	protected int channel = 19;
+
 	/**
 	 * The value.
 	 */
-	protected Object value=null;
-	
+	protected Object value = null;
+
 	/**
 	 * The initial value.
 	 */
 	protected String initialValue = "";
-	
+
 	/**
 	 * The Constructor.
 	 * 
-	 * @param parentShell the parent shell
+	 * @param parentShell
+	 *        the parent shell
 	 */
-	public ChooseDialog(Shell parentShell){
+	public ChooseDialog(Shell parentShell) {
 		super(parentShell);
 	}
-	
+
 	/**
 	 * Creates the dialog area.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 * 
 	 * @return the control
 	 */
 	@Override
-	protected Control createDialogArea(Composite parent){
-		Composite comp=(Composite)super.createDialogArea(parent);
-		
-		GridLayout layout=(GridLayout)comp.getLayout();
-		layout.numColumns=2;
-		Label elementlabel =new Label(comp, SWT.RIGHT|SWT.SINGLE);
+	protected Control createDialogArea(Composite parent) {
+		Composite comp = (Composite)super.createDialogArea(parent);
+
+		GridLayout layout = (GridLayout)comp.getLayout();
+		layout.numColumns = 2;
+		Label elementlabel = new Label(comp, SWT.RIGHT | SWT.SINGLE);
 		elementlabel.setText(announce);
-		
-		combo = new Combo (comp, SWT.READ_ONLY);
-		combo.setItems (elementList);
+
+		combo = new Combo(comp, SWT.READ_ONLY);
+		combo.setItems(elementList);
 		combo.setText(initialValue);
-		combo.setSize (400, 400);
+		combo.setSize(400, 400);
 		return comp;
 	}
-	
+
 	/**
 	 * Creates the buttons for button bar.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 */
 	@Override
-	protected void createButtonsForButtonBar(Composite parent){
+	protected void createButtonsForButtonBar(Composite parent) {
 		super.createButtonsForButtonBar(parent);
-		
+
 	}
-	
+
 	/**
 	 * Button pressed.
 	 * 
-	 * @param buttonId the button id
+	 * @param buttonId
+	 *        the button id
 	 */
 	@Override
-	protected void buttonPressed(int buttonId){
+	protected void buttonPressed(int buttonId) {
 		super.buttonPressed(buttonId);
 	}
-	
+
 	/**
 	 * Ok pressed.
 	 */
 	@Override
-	protected void okPressed(){
-		
+	protected void okPressed() {
+
 		super.okPressed();
 	}
 
@@ -132,7 +136,7 @@ public class ChooseDialog extends Dialog {
 	 * 
 	 * @return the value
 	 */
-	public Object getValue(){
+	public Object getValue() {
 		return value;
 	}
 }

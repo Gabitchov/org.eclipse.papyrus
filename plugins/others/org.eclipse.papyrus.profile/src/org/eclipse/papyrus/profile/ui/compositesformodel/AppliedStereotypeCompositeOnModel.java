@@ -66,7 +66,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Sets the domain.
 	 * 
 	 * @param domain
-	 *            the new domain
+	 *        the new domain
 	 */
 	public void setDomain(TransactionalEditingDomain domain) {
 		this.domain = domain;
@@ -85,7 +85,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * The default constructor.
 	 * 
 	 * @param parent
-	 *            the parent Composite for this panel
+	 *        the parent Composite for this panel
 	 */
 	public AppliedStereotypeCompositeOnModel(AppliedStereotypePanel parent) {
 		super(parent, SWT.NONE, "Applied stereotypes", true);
@@ -97,7 +97,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * create a composite applied stereotype on model.
 	 * 
 	 * @param parent
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	public AppliedStereotypeCompositeOnModel(Composite parent) {
 		super(parent, SWT.NONE, "Applied stereotypes", true);
@@ -112,7 +112,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		ChooseSetStereotypeDialog dialog = new ChooseSetStereotypeDialog(this.getShell(), getElement());
 		int result = dialog.open();
 
-		if (result == ChooseSetStereotypeDialog.OK) {
+		if(result == ChooseSetStereotypeDialog.OK) {
 			// Retrieve selected element
 			Element element = getElement();
 
@@ -125,16 +125,16 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			newOrderList.addAll(newStereotypeList);
 
 			// If the 2 lists differ, apply the new list of stereotypes
-			if (!(newStereotypeList.equals(oldStereotypeList))) {
+			if(!(newStereotypeList.equals(oldStereotypeList))) {
 
 				// Parse old list :
 				// if stereotype is in the new list : it is already applied
 				// --> don't unapply it
 				// --> remove it from new list
 				Iterator<Stereotype> it = oldStereotypeList.iterator();
-				while (it.hasNext()) {
-					Stereotype currentStOld = (Stereotype) it.next();
-					if (newStereotypeList.contains(currentStOld)) {
+				while(it.hasNext()) {
+					Stereotype currentStOld = (Stereotype)it.next();
+					if(newStereotypeList.contains(currentStOld)) {
 						newStereotypeList.remove(currentStOld);
 					} else {
 						unapplyStereotype(element, currentStOld);
@@ -144,8 +144,8 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				// Already applied stereotype should have been removed
 				// apply others
 				Iterator<Stereotype> newApplyStereotypes = newStereotypeList.iterator();
-				while (newApplyStereotypes.hasNext()) {
-					Stereotype currentStereotype = (Stereotype) newApplyStereotypes.next();
+				while(newApplyStereotypes.hasNext()) {
+					Stereotype currentStereotype = (Stereotype)newApplyStereotypes.next();
 					applyStereotype(element, currentStereotype);
 				}
 
@@ -155,7 +155,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				// checkSelection(null);
 				selectionChanged(null);
 
-				if (appliedStereotypePanel != null) {
+				if(appliedStereotypePanel != null) {
 					appliedStereotypePanel.refresh();
 				}
 			}
@@ -202,26 +202,26 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	@Override
 	public void downButtonPressed() {
 		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection < 1) {
+		if(nbrOfSelection < 1) {
 			return;
 		}
 
 		TreeItem[] items = getTree().getSelection();
 		int indexLast = getTree().indexOf(items[items.length - 1]);
-		if (indexLast + 1 >= getElement().getAppliedStereotypes().size()) {
+		if(indexLast + 1 >= getElement().getAppliedStereotypes().size()) {
 			// do nothing
 			return;
 		}
 
-		for (int i = 0; i < nbrOfSelection; i++) {
+		for(int i = 0; i < nbrOfSelection; i++) {
 			TreeItem item = items[nbrOfSelection - 1 - i];
-			if (item.getData() instanceof AppliedStereotypeTreeObject) {
-				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
+			if(item.getData() instanceof AppliedStereotypeTreeObject) {
+				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject)item.getData();
 				EList stereotypes = new BasicEList();
 				stereotypes.addAll(element.getAppliedStereotypes());
 
 				int index = stereotypes.indexOf(sTO.getStereotype());
-				if ((index == -1) || (index >= stereotypes.size() - 1)) {
+				if((index == -1) || (index >= stereotypes.size() - 1)) {
 					// Not found of already on top...
 					return;
 				}
@@ -236,7 +236,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Edits the item.
 	 * 
 	 * @param item
-	 *            the item
+	 *        the item
 	 */
 	@Override
 	public void editItem(TreeItem item) {
@@ -265,7 +265,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Checks if is in stereotype display.
 	 * 
 	 * @param st
-	 *            the sterotype
+	 *        the sterotype
 	 * 
 	 * @return true, if checks if is in stereotype display
 	 */
@@ -278,19 +278,19 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	@Override
 	public void refresh() {
-		if (treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
+		if(treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
 			treeViewer.setInput(null);
 			treeViewer.refresh();
-			if (element != null) {
+			if(element != null) {
 				treeViewer.setInput(new StereotypedElementTreeObject(element, getDomain()));
 			}
-			StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) treeViewer.getInput();
-			if (rTO == null) {
+			StereotypedElementTreeObject rTO = (StereotypedElementTreeObject)treeViewer.getInput();
+			if(rTO == null) {
 				return;
 			}
 
 			// If the property is Multivalued show Up - Down
-			if ((rTO.getChildren() != null) && (rTO.getChildren().length > 1)) {
+			if((rTO.getChildren() != null) && (rTO.getChildren().length > 1)) {
 				upButton.setEnabled(true);
 				downButton.setEnabled(true);
 			} else {
@@ -298,7 +298,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				downButton.setEnabled(false);
 			}
 
-			if ((rTO.getChildren() != null) && (rTO.getChildren().length == 0)) {
+			if((rTO.getChildren() != null) && (rTO.getChildren().length == 0)) {
 				removeButton.setEnabled(false);
 			} else {
 				removeButton.setEnabled(true);
@@ -318,19 +318,19 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Selection changed.
 	 * 
 	 * @param event
-	 *            the event
+	 *        the event
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
-		if (appliedStereotypePanel != null) {
-			if (event == null) {
+		if(appliedStereotypePanel != null) {
+			if(event == null) {
 				appliedStereotypePanel.setSelectedProperty(null);
 				return;
 			}
 
-			IStructuredSelection structSelection = (IStructuredSelection) event.getSelection();
+			IStructuredSelection structSelection = (IStructuredSelection)event.getSelection();
 			Object selection = structSelection.getFirstElement();
-			if (selection instanceof AppliedStereotypePropertyTreeObject) {
-				appliedStereotypePanel.setSelectedProperty((AppliedStereotypePropertyTreeObject) selection);
+			if(selection instanceof AppliedStereotypePropertyTreeObject) {
+				appliedStereotypePanel.setSelectedProperty((AppliedStereotypePropertyTreeObject)selection);
 			} else {
 				appliedStereotypePanel.setSelectedProperty(null);
 			}
@@ -342,11 +342,11 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Sets the input.
 	 * 
 	 * @param element
-	 *            the element
+	 *        the element
 	 */
 	public void setInput(StereotypedElementTreeObject element) {
 		treeViewer.setInput(element);
-		if (Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STEREOTYPES_TREE)) {
+		if(Activator.getDefault().getPreferenceStore().getBoolean(ProfilePreferenceConstants.EXPAND_STEREOTYPES_TREE)) {
 			treeViewer.expandAll();
 		}
 	}
@@ -356,19 +356,19 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	protected void unapplyStereotype() {
 		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection == 0) {
+		if(nbrOfSelection == 0) {
 			return;
 		}
 
-		for (int i = 0; i < nbrOfSelection; i++) {
+		for(int i = 0; i < nbrOfSelection; i++) {
 			TreeItem item = getTree().getSelection()[i];
-			if (item.getData() instanceof AppliedStereotypeTreeObject) {
-				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
+			if(item.getData() instanceof AppliedStereotypeTreeObject) {
+				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject)item.getData();
 				unapplyStereotype(element, sTO.getStereotype());
 				sTO.removeMe();
 			}
 		}
-		if (appliedStereotypePanel != null)
+		if(appliedStereotypePanel != null)
 			appliedStereotypePanel.refresh();
 		else
 			refresh();
@@ -380,26 +380,26 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	@Override
 	public void upButtonPressed() {
 		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection < 1) {
+		if(nbrOfSelection < 1) {
 			return;
 		}
 
 		TreeItem[] items = getTree().getSelection();
 		int indexFirst = getTree().indexOf(items[0]);
-		if (indexFirst == 0) {
+		if(indexFirst == 0) {
 			// do nothing
 			return;
 		}
 
-		for (int i = 0; i < nbrOfSelection; i++) {
+		for(int i = 0; i < nbrOfSelection; i++) {
 			TreeItem item = items[i];
-			if (item.getData() instanceof AppliedStereotypeTreeObject) {
-				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
+			if(item.getData() instanceof AppliedStereotypeTreeObject) {
+				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject)item.getData();
 				EList stereotypes = new BasicEList();
 				stereotypes.addAll(element.getAppliedStereotypes());
 
 				int index = stereotypes.indexOf(sTO.getStereotype());
-				if (index < 1) {
+				if(index < 1) {
 					return;
 				}
 
@@ -407,7 +407,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				this.reorderStereotypeApplications(element, stereotypes);
 			}
 		}
-		if (appliedStereotypePanel != null)
+		if(appliedStereotypePanel != null)
 			appliedStereotypePanel.refresh();
 		else
 			refresh();
@@ -417,9 +417,9 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Apply stereotype.
 	 * 
 	 * @param elt
-	 *            the elt
+	 *        the elt
 	 * @param st
-	 *            the st
+	 *        the st
 	 */
 	public void applyStereotype(final Element elt, final Stereotype st) {
 		try {
@@ -453,9 +453,9 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Unapply stereotype.
 	 * 
 	 * @param elt
-	 *            the uml element
+	 *        the uml element
 	 * @param st
-	 *            the stereotype to unapply
+	 *        the stereotype to unapply
 	 */
 	protected void unapplyStereotype(final Element elt, final Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
@@ -491,9 +491,9 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * change the order of applied stereotype
 	 * 
 	 * @param element
-	 *            the UML element where stereotypes are applied
+	 *        the UML element where stereotypes are applied
 	 * @param stereotypes
-	 *            the lis of applied stereotypes with the wanted order
+	 *        the lis of applied stereotypes with the wanted order
 	 */
 	public void reorderStereotypeApplications(final Element element, final EList stereotypes) {
 		try {

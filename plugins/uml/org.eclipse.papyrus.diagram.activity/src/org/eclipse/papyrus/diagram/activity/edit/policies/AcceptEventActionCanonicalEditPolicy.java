@@ -37,13 +37,9 @@ public class AcceptEventActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getAcceptEventAction_2007SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
-			EObject nextValue = ((UMLNodeDescriptor) it.next())
-					.getModelElement();
-			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(),
-					nextValue)) {
+		for (Iterator it = UMLDiagramUpdater.getAcceptEventAction_2007SemanticChildren(viewObject).iterator(); it.hasNext();) {
+			EObject nextValue = ((UMLNodeDescriptor) it.next()).getModelElement();
+			if (MultiDiagramUtil.findEObjectReferencedInEAnnotation(getHost(), nextValue)) {
 				result.add(nextValue);
 			}
 		}
@@ -60,8 +56,7 @@ public class AcceptEventActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		if (view.getElement() != null) {
 			int actualID = UMLVisualIDRegistry.getVisualID(view);
-			int suggestedID = UMLVisualIDRegistry.getNodeVisualID(
-					(View) getHost().getModel(), view.getElement());
+			int suggestedID = UMLVisualIDRegistry.getNodeVisualID((View) getHost().getModel(), view.getElement());
 			switch (actualID) {
 			case OutputPinEditPart.VISUAL_ID:
 				return actualID != suggestedID;
@@ -86,8 +81,7 @@ public class AcceptEventActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getAcceptEventAction_Result());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAcceptEventAction_Result());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -104,7 +98,6 @@ public class AcceptEventActionCanonicalEditPolicy extends CanonicalEditPolicy {
 			MDTUtil.filterDiagramViews(diagram);
 		}
 	}
-
 
 	/**
 	 * To make the DeleteFromDiagram action work while preserving the CanonicalEditPolicy for the EditPart.

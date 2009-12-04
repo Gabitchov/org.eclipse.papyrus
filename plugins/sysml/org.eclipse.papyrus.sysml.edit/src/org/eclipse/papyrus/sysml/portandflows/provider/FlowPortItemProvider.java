@@ -38,8 +38,8 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowPort}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowPort} object. <!-- begin-user-doc --> <!-- end-user-doc
+ * -->
  * 
  * @generated
  */
@@ -64,7 +64,7 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_PortPropertyDescriptor(object);
@@ -82,7 +82,7 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	 * @generated
 	 */
 	protected void addBase_PortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_base_Port_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_FlowPort_base_Port_feature", "_UI_FlowPort_type"),
 				PortandflowsPackage.Literals.FLOW_PORT__BASE_PORT, true, false, true, null, null, null));
@@ -95,7 +95,7 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	 * @generated
 	 */
 	protected void addIsAtomicPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_isAtomic_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_FlowPort_isAtomic_feature", "_UI_FlowPort_type"),
 				PortandflowsPackage.Literals.FLOW_PORT__IS_ATOMIC, false, false, false,
@@ -109,10 +109,10 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	 * @generated
 	 */
 	protected void addIsConjugatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_isConjugated_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_isConjugated_feature",
-						"_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__IS_CONJUGATED, true, false,
+				"_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__IS_CONJUGATED, true, false,
 				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
@@ -123,7 +123,7 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_direction_feature"), getString(
 				"_UI_PropertyDescriptor_description", "_UI_FlowPort_direction_feature", "_UI_FlowPort_type"),
 				PortandflowsPackage.Literals.FLOW_PORT__DIRECTION, true, false, false,
@@ -148,14 +148,13 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public String getText(Object object) {
-		FlowPort flowPort = (FlowPort) object;
+		FlowPort flowPort = (FlowPort)object;
 		return getString("_UI_FlowPort_type") + " " + flowPort.isIsAtomic();
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -163,7 +162,7 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FlowPort.class)) {
+		switch(notification.getFeatureID(FlowPort.class)) {
 		case PortandflowsPackage.FLOW_PORT__IS_ATOMIC:
 		case PortandflowsPackage.FLOW_PORT__IS_CONJUGATED:
 		case PortandflowsPackage.FLOW_PORT__DIRECTION:

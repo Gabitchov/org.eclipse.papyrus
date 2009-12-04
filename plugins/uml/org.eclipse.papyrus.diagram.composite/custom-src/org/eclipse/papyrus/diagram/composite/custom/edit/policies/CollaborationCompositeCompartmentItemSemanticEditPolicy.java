@@ -37,7 +37,7 @@ public class CollaborationCompositeCompartmentItemSemanticEditPolicy extends
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.ConnectableElement_3115 == req.getElementType()) {
+		if(UMLElementTypes.ConnectableElement_3115 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationRoleCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

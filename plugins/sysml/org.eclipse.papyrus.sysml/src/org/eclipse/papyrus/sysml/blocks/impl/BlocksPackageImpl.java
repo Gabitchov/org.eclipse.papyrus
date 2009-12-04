@@ -72,9 +72,8 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * upon which it depends.
 	 * 
 	 * <p>
-	 * This method is used to initialize {@link BlocksPackage#eINSTANCE} when that field is
-	 * accessed. Clients should not invoke it directly. Instead, they should simply access that
-	 * field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link BlocksPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead,
+	 * they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -82,11 +81,11 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public static BlocksPackage init() {
-		if (isInited)
-			return (BlocksPackage) EPackage.Registry.INSTANCE.getEPackage(BlocksPackage.eNS_URI);
+		if(isInited)
+			return (BlocksPackage)EPackage.Registry.INSTANCE.getEPackage(BlocksPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BlocksPackageImpl ? EPackage.Registry.INSTANCE
+		BlocksPackageImpl theBlocksPackage = (BlocksPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BlocksPackageImpl ? EPackage.Registry.INSTANCE
 				.get(eNS_URI)
 				: new BlocksPackageImpl());
 
@@ -96,39 +95,39 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl) (EPackage.Registry.INSTANCE
+		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
-		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl) (EPackage.Registry.INSTANCE
+		ModelelementsPackageImpl theModelelementsPackage = (ModelelementsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ModelelementsPackage.eNS_URI) instanceof ModelelementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ModelelementsPackage.eNS_URI)
 				: ModelelementsPackage.eINSTANCE);
-		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl) (EPackage.Registry.INSTANCE
+		PortandflowsPackageImpl thePortandflowsPackage = (PortandflowsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI) instanceof PortandflowsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(PortandflowsPackage.eNS_URI)
 				: PortandflowsPackage.eINSTANCE);
-		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl) (EPackage.Registry.INSTANCE
+		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ConstraintsPackage.eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ConstraintsPackage.eNS_URI) : ConstraintsPackage.eINSTANCE);
-		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl) (EPackage.Registry.INSTANCE
+		ActivitiesPackageImpl theActivitiesPackage = (ActivitiesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) instanceof ActivitiesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ActivitiesPackage.eNS_URI) : ActivitiesPackage.eINSTANCE);
-		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl) (EPackage.Registry.INSTANCE
+		AllocationsPackageImpl theAllocationsPackage = (AllocationsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) instanceof AllocationsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AllocationsPackage.eNS_URI) : AllocationsPackage.eINSTANCE);
-		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl) (EPackage.Registry.INSTANCE
+		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI)
 				: RequirementsPackage.eINSTANCE);
-		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl) (EPackage.Registry.INSTANCE
+		InteractionsPackageImpl theInteractionsPackage = (InteractionsPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(InteractionsPackage.eNS_URI) instanceof InteractionsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(InteractionsPackage.eNS_URI)
 				: InteractionsPackage.eINSTANCE);
-		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl) (EPackage.Registry.INSTANCE
+		StatemachinesPackageImpl theStatemachinesPackage = (StatemachinesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI) instanceof StatemachinesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(StatemachinesPackage.eNS_URI)
 				: StatemachinesPackage.eINSTANCE);
-		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl) (EPackage.Registry.INSTANCE
+		UsecasesPackageImpl theUsecasesPackage = (UsecasesPackageImpl)(EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) instanceof UsecasesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(UsecasesPackage.eNS_URI) : UsecasesPackage.eINSTANCE);
 
@@ -251,13 +250,13 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package package URI
 	 * value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init
-	 * init()}, which also performs initialization of the package, or returns the registered
-	 * package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.sysml.blocks.BlocksPackage#eNS_URI
@@ -275,7 +274,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if(isCreated)
 			return;
 		isCreated = true;
 
@@ -333,7 +332,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getBindingConnector_Base_Connector() {
-		return (EReference) bindingConnectorEClass.getEStructuralFeatures().get(0);
+		return (EReference)bindingConnectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -351,7 +350,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getBlock_Base_Class() {
-		return (EReference) blockEClass.getEStructuralFeatures().get(1);
+		return (EReference)blockEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -360,7 +359,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EAttribute getBlock_IsEncapsulated() {
-		return (EAttribute) blockEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)blockEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -369,7 +368,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public BlocksFactory getBlocksFactory() {
-		return (BlocksFactory) getEFactoryInstance();
+		return (BlocksFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -387,7 +386,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getConnectorProperty_Base_Property() {
-		return (EReference) connectorPropertyEClass.getEStructuralFeatures().get(0);
+		return (EReference)connectorPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -396,7 +395,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getConnectorProperty_Connector() {
-		return (EReference) connectorPropertyEClass.getEStructuralFeatures().get(1);
+		return (EReference)connectorPropertyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -414,7 +413,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getDimension_Base_InstanceSpecification() {
-		return (EReference) dimensionEClass.getEStructuralFeatures().get(0);
+		return (EReference)dimensionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -432,7 +431,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getDistributedProperty_Base_Property() {
-		return (EReference) distributedPropertyEClass.getEStructuralFeatures().get(0);
+		return (EReference)distributedPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -450,7 +449,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getNestedConnectorEnd_Base_ConnectorEnd() {
-		return (EReference) nestedConnectorEndEClass.getEStructuralFeatures().get(1);
+		return (EReference)nestedConnectorEndEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -459,7 +458,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getNestedConnectorEnd_PropertyPath() {
-		return (EReference) nestedConnectorEndEClass.getEStructuralFeatures().get(0);
+		return (EReference)nestedConnectorEndEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -477,7 +476,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getParticipantProperty_Base_Property() {
-		return (EReference) participantPropertyEClass.getEStructuralFeatures().get(0);
+		return (EReference)participantPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -486,7 +485,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getParticipantProperty_End() {
-		return (EReference) participantPropertyEClass.getEStructuralFeatures().get(1);
+		return (EReference)participantPropertyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -504,7 +503,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getPropertySpecificType_Base_Classifier() {
-		return (EReference) propertySpecificTypeEClass.getEStructuralFeatures().get(0);
+		return (EReference)propertySpecificTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -522,7 +521,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getUnit_Base_InstanceSpecification() {
-		return (EReference) unitEClass.getEStructuralFeatures().get(0);
+		return (EReference)unitEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -531,7 +530,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getUnit_Dimension() {
-		return (EReference) unitEClass.getEStructuralFeatures().get(1);
+		return (EReference)unitEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -549,7 +548,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getValueType_Base_DataType() {
-		return (EReference) valueTypeEClass.getEStructuralFeatures().get(0);
+		return (EReference)valueTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -558,7 +557,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getValueType_Dimension() {
-		return (EReference) valueTypeEClass.getEStructuralFeatures().get(2);
+		return (EReference)valueTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -567,7 +566,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public EReference getValueType_Unit() {
-		return (EReference) valueTypeEClass.getEStructuralFeatures().get(1);
+		return (EReference)valueTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -577,7 +576,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if(isInitialized)
 			return;
 		isInitialized = true;
 
@@ -587,7 +586,7 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
 

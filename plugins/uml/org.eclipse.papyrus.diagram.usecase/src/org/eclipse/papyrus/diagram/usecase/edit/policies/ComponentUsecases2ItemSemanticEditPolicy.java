@@ -25,19 +25,19 @@ public class ComponentUsecases2ItemSemanticEditPolicy extends UMLBaseItemSemanti
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.UseCase_3009 == req.getElementType()) {
+		if(UMLElementTypes.UseCase_3009 == req.getElementType()) {
 			return getGEFWrapper(new UseCase3CreateCommand(req));
 		}
-		if (UMLElementTypes.Component_3016 == req.getElementType()) {
+		if(UMLElementTypes.Component_3016 == req.getElementType()) {
 			return getGEFWrapper(new Component2CreateCommand(req));
 		}
-		if (UMLElementTypes.Comment_3015 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3015 == req.getElementType()) {
 			return getGEFWrapper(new Comment2CreateCommand(req));
 		}
-		if (UMLElementTypes.Constraint_3017 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_3017 == req.getElementType()) {
 			return getGEFWrapper(new Constraint2CreateCommand(req));
 		}
-		if (UMLElementTypes.Actor_3018 == req.getElementType()) {
+		if(UMLElementTypes.Actor_3018 == req.getElementType()) {
 			return getGEFWrapper(new Actor4CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

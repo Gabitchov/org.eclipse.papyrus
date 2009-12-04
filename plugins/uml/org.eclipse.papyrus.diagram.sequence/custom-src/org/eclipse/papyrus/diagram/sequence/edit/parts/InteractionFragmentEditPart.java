@@ -41,47 +41,47 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 	 */
 	public void resizeInteractionFragmentFigure() {
 		Object obj = getModel();
-		if (obj instanceof Shape) {
+		if(obj instanceof Shape) {
 			// we get the element linked to this editpart
-			EObject element = ((Shape) obj).getElement();
+			EObject element = ((Shape)obj).getElement();
 
-			if (element instanceof InteractionFragment) {
+			if(element instanceof InteractionFragment) {
 				// we get the list of the covered lifelinnes by the InteractionUse
-				List<Lifeline> lifelineCoveredList = ((InteractionFragment) element).getCovereds();
+				List<Lifeline> lifelineCoveredList = ((InteractionFragment)element).getCovereds();
 
-				if (lifelineCoveredList != null && getParent() != null) {
+				if(lifelineCoveredList != null && getParent() != null) {
 					// we get the interactionCompartimentEditPart to have access to all lifelines
 					// EditParts
 					List<EditPart> childrenEditPart = getParent().getChildren();
-					if (childrenEditPart != null) {
+					if(childrenEditPart != null) {
 						// The max value guarantee that the first figure will set the minX value
 						int minX = Integer.MAX_VALUE;
 						int maxX = -Integer.MAX_VALUE;
 						int maxR = -Integer.MAX_VALUE;
 
-						for (EditPart childEditPart : childrenEditPart) {
+						for(EditPart childEditPart : childrenEditPart) {
 							// we check all the EditParts to select only the lifelineEditParts
-							if (childEditPart instanceof LifelineEditPart) {
+							if(childEditPart instanceof LifelineEditPart) {
 								Object childModel = childEditPart.getModel();
-								if (childModel instanceof Shape) {
+								if(childModel instanceof Shape) {
 									// we get the object Lifeline linked the selected
 									// lifelineEditPart
-									EObject childElement = ((Shape) childModel).getElement();
-									if (childElement instanceof Lifeline) {
-										Lifeline lifeline = (Lifeline) childElement;
-										for (Lifeline lfn : lifelineCoveredList) {
+									EObject childElement = ((Shape)childModel).getElement();
+									if(childElement instanceof Lifeline) {
+										Lifeline lifeline = (Lifeline)childElement;
+										for(Lifeline lfn : lifelineCoveredList) {
 											// we check if the lifeLine in the intreactionUse's
 											// parent Interaction is a covered Lifeline
-											if (lifeline.equals(lfn)) {
-												LifelineEditPart liflelineEditPart = (LifelineEditPart) childEditPart;
-												if (liflelineEditPart.getFigure().getBounds().x > maxX) {
+											if(lifeline.equals(lfn)) {
+												LifelineEditPart liflelineEditPart = (LifelineEditPart)childEditPart;
+												if(liflelineEditPart.getFigure().getBounds().x > maxX) {
 													maxX = liflelineEditPart.getFigure().getBounds().x;
 													// the maxR will represent the futur value of
 													// the rectangle right value.
 													maxR = liflelineEditPart.getFigure().getBounds().right();
 
 												}
-												if (liflelineEditPart.getFigure().getBounds().x < minX) {
+												if(liflelineEditPart.getFigure().getBounds().x < minX) {
 													// the min value will represent the rectangle x
 													// value.
 													minX = liflelineEditPart.getFigure().getBounds().x;
@@ -93,7 +93,7 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 							}
 						}
 
-						if (minX != Integer.MAX_VALUE || maxR != -Integer.MAX_VALUE) {
+						if(minX != Integer.MAX_VALUE || maxR != -Integer.MAX_VALUE) {
 							// after this loop we have the coordinate of two lifeline figure ,
 							// even if we have more than two covered Lifelne we choose the
 							// extremities.
@@ -109,9 +109,9 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 	 * resize the interactinUse figure
 	 * 
 	 * @param min
-	 *            the min x position of a covered lifline
+	 *        the min x position of a covered lifline
 	 * @param max
-	 *            the max x position of a coverd lifeline
+	 *        the max x position of a coverd lifeline
 	 * 
 	 */
 	private void getNewSize(int min, int max) {
@@ -122,7 +122,7 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 
 		Point loc = new Point(min, y);
 
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**
@@ -133,14 +133,14 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 	public void updateCoveredLifelines(Bounds newBounds) {
 		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds
 				.getHeight());
-		InteractionFragment combinedFragment = (InteractionFragment) resolveSemanticElement();
+		InteractionFragment combinedFragment = (InteractionFragment)resolveSemanticElement();
 		EList<Lifeline> coveredLifelines = combinedFragment.getCovereds();
-		for (Object child : getParent().getChildren()) {
-			if (child instanceof LifelineEditPart) {
-				LifelineEditPart lifelineEditPart = (LifelineEditPart) child;
-				Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
-				if (newBound.intersects(lifelineEditPart.getFigure().getBounds())) {
-					if (!coveredLifelines.contains(lifeline)) {
+		for(Object child : getParent().getChildren()) {
+			if(child instanceof LifelineEditPart) {
+				LifelineEditPart lifelineEditPart = (LifelineEditPart)child;
+				Lifeline lifeline = (Lifeline)lifelineEditPart.resolveSemanticElement();
+				if(newBound.intersects(lifelineEditPart.getFigure().getBounds())) {
+					if(!coveredLifelines.contains(lifeline)) {
 						coveredLifelines.add(lifeline);
 					}
 				} else {

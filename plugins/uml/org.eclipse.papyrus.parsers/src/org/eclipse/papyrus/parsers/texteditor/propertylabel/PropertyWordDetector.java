@@ -38,17 +38,17 @@ public class PropertyWordDetector implements IWordDetector {
 	public boolean isWordPart(char character) {
 		Character ch = Character.valueOf(character);
 
-		if (ch.compareTo('+') == 0) {
+		if(ch.compareTo('+') == 0) {
 			return true;
-		} else if (ch.compareTo('-') == 0) {
+		} else if(ch.compareTo('-') == 0) {
 			return true;
-		} else if (ch.compareTo('#') == 0) {
+		} else if(ch.compareTo('#') == 0) {
 			return true;
-		} else if (ch.compareTo('~') == 0) {
+		} else if(ch.compareTo('~') == 0) {
 			return true;
-		} else if (ch.compareTo('/') == 0) {
+		} else if(ch.compareTo('/') == 0) {
 			return true;
-		} else if (ch.compareTo(':') == 0) {
+		} else if(ch.compareTo(':') == 0) {
 			return true;
 		}
 
@@ -70,17 +70,17 @@ public class PropertyWordDetector implements IWordDetector {
 	public boolean isWordStart(char character) {
 		Character ch = Character.valueOf(character);
 
-		if (ch.compareTo('+') == 0) {
+		if(ch.compareTo('+') == 0) {
 			return true;
-		} else if (ch.compareTo('-') == 0) {
+		} else if(ch.compareTo('-') == 0) {
 			return true;
-		} else if (ch.compareTo('#') == 0) {
+		} else if(ch.compareTo('#') == 0) {
 			return true;
-		} else if (ch.compareTo('~') == 0) {
+		} else if(ch.compareTo('~') == 0) {
 			return true;
-		} else if (ch.compareTo('/') == 0) {
+		} else if(ch.compareTo('/') == 0) {
 			return true;
-		} else if (ch.compareTo(':') == 0) {
+		} else if(ch.compareTo(':') == 0) {
 			return true;
 		}
 		return Character.isLetter(character);

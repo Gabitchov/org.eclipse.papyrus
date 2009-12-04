@@ -58,10 +58,10 @@ public class InitDiagramAction implements IObjectActionDelegate {
 		this.domainModelURI = null;
 		this.selection = null;
 		action.setEnabled(false);
-		if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
-			IFile file = (IFile) ((IStructuredSelection) selection).getFirstElement();
+		if((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
+			IFile file = (IFile)((IStructuredSelection)selection).getFirstElement();
 			this.domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-			this.selection = (StructuredSelection) selection;
+			this.selection = (StructuredSelection)selection;
 			action.setEnabled(true);
 		}
 	}
@@ -77,7 +77,7 @@ public class InitDiagramAction implements IObjectActionDelegate {
 	 * {@inheritDoc}
 	 */
 	public void run(IAction action) {
-		if (domainModelURI != null) {
+		if(domainModelURI != null) {
 			CreateModelWizard wizard = new CreateModelWizard(domainModelURI);
 			wizard.init(targetPart.getSite().getWorkbenchWindow().getWorkbench(), selection);
 			WizardDialog dialog = new WizardDialog(getShell(), wizard);

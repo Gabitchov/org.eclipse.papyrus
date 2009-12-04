@@ -27,8 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 public class InteractionOperandComponentEditPolicy extends ComponentEditPolicy {
 
 	/**
-	 * Delete Combined fragment and child from the view. Also delete message if user wants.
-	 * {@inheritDoc}
+	 * Delete Combined fragment and child from the view. Also delete message if user wants. {@inheritDoc}
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
@@ -37,9 +36,9 @@ public class InteractionOperandComponentEditPolicy extends ComponentEditPolicy {
 
 		// Delete parent CombinedFragment if no InteractionOperand left after this delete
 		EditPart compartmentEditPart = getHost().getParent();
-		if (compartmentEditPart.getChildren().size() == 1) {
-			GraphicalEditPart combinedFragmentEditPart = (GraphicalEditPart) compartmentEditPart.getParent();
-			View model = (View) combinedFragmentEditPart.getModel();
+		if(compartmentEditPart.getChildren().size() == 1) {
+			GraphicalEditPart combinedFragmentEditPart = (GraphicalEditPart)compartmentEditPart.getParent();
+			View model = (View)combinedFragmentEditPart.getModel();
 			cmd.add(new DeleteCommand(combinedFragmentEditPart.getEditingDomain(), model));
 		}
 

@@ -36,8 +36,7 @@ public interface SystemModel extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Model</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Model</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Model</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -54,7 +53,7 @@ public interface SystemModel extends EObject {
 	 * <em>Base Model</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Model</em>' reference.
+	 *        the new value of the '<em>Base Model</em>' reference.
 	 * @see #getBase_Model()
 	 * @generated
 	 */

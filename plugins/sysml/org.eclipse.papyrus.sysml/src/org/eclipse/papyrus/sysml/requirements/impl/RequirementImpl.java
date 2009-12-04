@@ -46,22 +46,14 @@ import org.eclipse.uml2.uml.NamedElement;
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getText <em>Text</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getId <em>Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived <em>Derived
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerivedFrom <em>Derived
- * From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy <em>
- * Satisfied By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getRefinedBy <em>Refined
- * By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo <em>Traced To
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getVerifiedBy <em>Verified
- * By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getMaster <em>Master</em>}
- * </li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getBase_Class <em>Base
- * Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived <em>Derived </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerivedFrom <em>Derived From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy <em> Satisfied By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getRefinedBy <em>Refined By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo <em>Traced To </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getVerifiedBy <em>Verified By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getMaster <em>Master</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
  * 
@@ -149,21 +141,21 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		Requirement master = null;
 		Copy currentCopy = null;
 
-		if (getBase_Class() != null) {
+		if(getBase_Class() != null) {
 			Iterator<Dependency> itDep = getBase_Class().getClientDependencies().iterator();
 
 			// Find Copy link
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				Dependency currentDep = itDep.next();
-				currentCopy = (Copy) ElementUtil.hasStereotype(currentDep, RequirementsPackage.eINSTANCE.getCopy());
+				currentCopy = (Copy)ElementUtil.hasStereotype(currentDep, RequirementsPackage.eINSTANCE.getCopy());
 
-				if (currentCopy != null) {
+				if(currentCopy != null) {
 					EList<NamedElement> suppliers = currentCopy.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
-					while (it.hasNext() && (master == null)) {
-						Requirement currentRequirement = (Requirement) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext() && (master == null)) {
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getRequirement());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							master = currentRequirement;
 						}
 					}
@@ -180,7 +172,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT__TEXT:
 			return getText();
 		case RequirementsPackage.REQUIREMENT__ID:
@@ -198,11 +190,11 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		case RequirementsPackage.REQUIREMENT__VERIFIED_BY:
 			return getVerifiedBy();
 		case RequirementsPackage.REQUIREMENT__MASTER:
-			if (resolve)
+			if(resolve)
 				return getMaster();
 			return basicGetMaster();
 		case RequirementsPackage.REQUIREMENT__BASE_CLASS:
-			if (resolve)
+			if(resolve)
 				return getBase_Class();
 			return basicGetBase_Class();
 		}
@@ -216,7 +208,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT__TEXT:
 			return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 		case RequirementsPackage.REQUIREMENT__ID:
@@ -249,15 +241,15 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT__TEXT:
-			setText((String) newValue);
+			setText((String)newValue);
 			return;
 		case RequirementsPackage.REQUIREMENT__ID:
-			setId((String) newValue);
+			setId((String)newValue);
 			return;
 		case RequirementsPackage.REQUIREMENT__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) newValue);
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -280,7 +272,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case RequirementsPackage.REQUIREMENT__TEXT:
 			setText(TEXT_EDEFAULT);
 			return;
@@ -288,7 +280,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			setId(ID_EDEFAULT);
 			return;
 		case RequirementsPackage.REQUIREMENT__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) null);
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -300,11 +292,11 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject) base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class) eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+		if(base_Class != null && base_Class.eIsProxy()) {
+			InternalEObject oldBase_Class = (InternalEObject)base_Class;
+			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							RequirementsPackage.REQUIREMENT__BASE_CLASS, oldBase_Class, base_Class));
 			}
@@ -322,22 +314,22 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		EList<Requirement> derived = new BasicEList<Requirement>();
 		DeriveReqt currentDeriveReqt = null;
 
-		if (getBase_Class() != null) {
+		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
 
 			// Find DeriveReqt link
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDirectedRelationship = itDep.next();
-				currentDeriveReqt = (DeriveReqt) ElementUtil.hasStereotype(currentDirectedRelationship,
+				currentDeriveReqt = (DeriveReqt)ElementUtil.hasStereotype(currentDirectedRelationship,
 						RequirementsPackage.eINSTANCE.getDeriveReqt());
 
-				if (currentDeriveReqt != null) {
+				if(currentDeriveReqt != null) {
 					EList<NamedElement> clients = currentDeriveReqt.getBase_Abstraction().getClients();
 					Iterator<NamedElement> it = clients.iterator();
-					while (it.hasNext()) {
-						Requirement currentRequirement = (Requirement) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext()) {
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getRequirement());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							derived.add(currentRequirement);
 						}
 					}
@@ -357,22 +349,22 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		// This should return the Requirement(s) this Requirement is derived from
 		EList<Requirement> derivedFrom = new BasicEList<Requirement>();
 		DeriveReqt currentDeriveReqt = null;
-		if (getBase_Class() != null) {
+		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getSourceDirectedRelationships().iterator();
 
 			// Find DeriveReqt link
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentDeriveReqt = (DeriveReqt) ElementUtil.hasStereotype(currentDRelationship,
+				currentDeriveReqt = (DeriveReqt)ElementUtil.hasStereotype(currentDRelationship,
 						RequirementsPackage.eINSTANCE.getDeriveReqt());
 
-				if (currentDeriveReqt != null) {
+				if(currentDeriveReqt != null) {
 					EList<NamedElement> suppliers = currentDeriveReqt.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
-					while (it.hasNext()) {
-						Requirement currentRequirement = (Requirement) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext()) {
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getRequirement());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							derivedFrom.add(currentRequirement);
 						}
 					}
@@ -399,7 +391,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 */
 	public Requirement getMaster() {
 		Requirement master = basicGetMaster();
-		return master != null && master.eIsProxy() ? (Requirement) eResolveProxy((InternalEObject) master) : master;
+		return master != null && master.eIsProxy() ? (Requirement)eResolveProxy((InternalEObject)master) : master;
 	}
 
 	/**
@@ -412,16 +404,16 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		EList<NamedElement> refinedBy = new BasicEList<NamedElement>();
 		Refine currentRefine = null;
 
-		if (getBase_Class() != null) {
+		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
 
 			// Find Refine link
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentRefine = (Refine) ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE
+				currentRefine = (Refine)ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE
 						.getRefine());
 
-				if (currentRefine != null) {
+				if(currentRefine != null) {
 					refinedBy.addAll(currentRefine.getBase_Abstraction().getClients());
 				}
 			}
@@ -440,16 +432,16 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		EList<NamedElement> satisfyBy = new BasicEList<NamedElement>();
 		Satisfy currentSatisfy = null;
 
-		if (getBase_Class() != null) {
+		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
 
 			// Find Satisfy link
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentSatisfy = (Satisfy) ElementUtil.hasStereotype(currentDRelationship,
+				currentSatisfy = (Satisfy)ElementUtil.hasStereotype(currentDRelationship,
 						RequirementsPackage.eINSTANCE.getSatisfy());
 
-				if (currentSatisfy != null) {
+				if(currentSatisfy != null) {
 					satisfyBy.addAll(currentSatisfy.getBase_Abstraction().getClients());
 				}
 			}
@@ -479,15 +471,15 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		EList<NamedElement> tracedTo = new BasicEList<NamedElement>();
 		Trace currentTrace = null;
 
-		if (getBase_Class() != null) {
+		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
 
 			// Find Trace link
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDR = itDep.next();
-				currentTrace = (Trace) ElementUtil.hasStereotype(currentDR, StandardPackage.eINSTANCE.getTrace());
+				currentTrace = (Trace)ElementUtil.hasStereotype(currentDR, StandardPackage.eINSTANCE.getTrace());
 
-				if (currentTrace != null) {
+				if(currentTrace != null) {
 					EList<NamedElement> suppliers = currentTrace.getBase_Abstraction().getClients();
 					tracedTo.addAll(suppliers);
 				}
@@ -507,22 +499,22 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		EList<TestCase> verifiedBy = new BasicEList<TestCase>();
 		Verify currentVerify = null;
 
-		if (getBase_Class() != null) {
+		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
 
 			// Find Verify link
-			while (itDep.hasNext()) {
+			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentVerify = (Verify) ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE
+				currentVerify = (Verify)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE
 						.getVerify());
 
-				if (currentVerify != null) {
+				if(currentVerify != null) {
 					EList<NamedElement> clients = currentVerify.getBase_Abstraction().getClients();
 					Iterator<NamedElement> it = clients.iterator();
-					while (it.hasNext()) {
-						TestCase currentRequirement = (TestCase) ElementUtil.hasStereotype(it.next(),
+					while(it.hasNext()) {
+						TestCase currentRequirement = (TestCase)ElementUtil.hasStereotype(it.next(),
 								RequirementsPackage.eINSTANCE.getTestCase());
-						if (currentRequirement != null) {
+						if(currentRequirement != null) {
 							verifiedBy.add(currentRequirement);
 						}
 					}
@@ -541,7 +533,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__BASE_CLASS,
 					oldBase_Class, base_Class));
 	}
@@ -554,7 +546,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__ID, oldId, id));
 	}
 
@@ -575,7 +567,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	public void setText(String newText) {
 		String oldText = text;
 		text = newText;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__TEXT, oldText, text));
 	}
 
@@ -586,7 +578,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if(eIsProxy())
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

@@ -32,13 +32,13 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (request instanceof GroupRequest
+		if(request instanceof GroupRequest
 				&& RequestConstants.REQ_DELETE.equals(request.getType())) {
-			CommentAnnotatedElementEditPart ep = (CommentAnnotatedElementEditPart) getHost();
+			CommentAnnotatedElementEditPart ep = (CommentAnnotatedElementEditPart)getHost();
 			DestroyReferenceRequest drr = new DestroyReferenceRequest(
-					((View) ep.getSource().getModel()).getElement(),
+					((View)ep.getSource().getModel()).getElement(),
 					UMLPackage.eINSTANCE.getComment_AnnotatedElement(),
-					((View) ep.getTarget().getModel()).getElement(), false);
+					((View)ep.getTarget().getModel()).getElement(), false);
 			return getDestroyReferenceCommand(drr);
 		}
 		return super.getCommand(request);
@@ -50,18 +50,18 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends
 	@Override
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		CompoundCommand cc = new CompoundCommand();
-		Comment c = (Comment) req.getContainer();
+		Comment c = (Comment)req.getContainer();
 
 		cc.add(getGEFWrapper(new DestroyReferenceCommand(req)));
 
-		if (c.getAnnotatedElements().size() < 2
+		if(c.getAnnotatedElements().size() < 2
 				|| c.getAnnotatedElements().size() > 2) {
-			Model m = (Model) c.eResource().getContents().get(0);
+			Model m = (Model)c.eResource().getContents().get(0);
 			SetRequest sr = new SetRequest(m, UMLPackage.eINSTANCE
 					.getElement_OwnedComment(), c);
 			cc.add(new ICommandProxy(new SetValueCommand(sr)));
 		} else {
-			Element e = findNewParent((Element) req.getReferencedObject(), c
+			Element e = findNewParent((Element)req.getReferencedObject(), c
 					.getAnnotatedElements());
 			SetRequest sr = new SetRequest(e, UMLPackage.eINSTANCE
 					.getElement_OwnedComment(), c);
@@ -75,9 +75,9 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends
 	 * @not generated
 	 */
 	private Element findNewParent(Element oldValue, EList<Element> elements) {
-		for (Iterator<Element> it = elements.iterator(); it.hasNext();) {
+		for(Iterator<Element> it = elements.iterator(); it.hasNext();) {
 			Element e = it.next();
-			if (e != oldValue)
+			if(e != oldValue)
 				return e;
 		}
 

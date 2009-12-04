@@ -27,7 +27,7 @@ public class VerticalSymmetryLayoutAlgorithm extends AbstractLayoutAlgorithm {
 	 * Instantiates a new vertical symmetry layout algorithm.
 	 * 
 	 * @param styles
-	 *            the styles
+	 *        the styles
 	 */
 	public VerticalSymmetryLayoutAlgorithm(int styles) {
 		super(styles);
@@ -85,13 +85,13 @@ public class VerticalSymmetryLayoutAlgorithm extends AbstractLayoutAlgorithm {
 	 */
 	@Override
 	protected boolean isValidConfiguration(boolean asynchronous, boolean continuous) {
-		if (asynchronous && continuous) {
+		if(asynchronous && continuous) {
 			return false;
-		} else if (asynchronous && !continuous) {
+		} else if(asynchronous && !continuous) {
 			return true;
-		} else if (!asynchronous && continuous) {
+		} else if(!asynchronous && continuous) {
 			return false;
-		} else if (!asynchronous && !continuous) {
+		} else if(!asynchronous && !continuous) {
 			return true;
 		}
 		return false;
@@ -123,7 +123,7 @@ public class VerticalSymmetryLayoutAlgorithm extends AbstractLayoutAlgorithm {
 	protected void preLayoutAlgorithm(InternalNode[] entitiesToLayout, InternalRelationship[] relationshipsToConsider,
 			double x, double y, double width, double height) {
 		double middle = calculateMiddleArea(x, width);
-		for (InternalNode node : entitiesToLayout) {
+		for(InternalNode node : entitiesToLayout) {
 			node.setLocation((middle + (middle - node.getInternalX())) - node.getWidthInLayout(), node.getInternalY());
 		}
 	}
@@ -132,9 +132,9 @@ public class VerticalSymmetryLayoutAlgorithm extends AbstractLayoutAlgorithm {
 	 * Calculate middle area.
 	 * 
 	 * @param x
-	 *            the x
+	 *        the x
 	 * @param width
-	 *            the width
+	 *        the width
 	 * 
 	 * @return the double
 	 */

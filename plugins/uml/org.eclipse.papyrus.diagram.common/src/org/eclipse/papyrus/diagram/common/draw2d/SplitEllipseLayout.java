@@ -31,9 +31,9 @@ public class SplitEllipseLayout extends BorderLayout {
 		double cos45 = sin45;
 		double diagx = a * sin45;
 		double diagy = b * cos45;
-		int newxmargin = (int) (a - diagx);
-		int newymargin = (int) (b - diagy);
-		if (newxmargin != myXMargin || newymargin != myYMargin) {
+		int newxmargin = (int)(a - diagx);
+		int newymargin = (int)(b - diagy);
+		if(newxmargin != myXMargin || newymargin != myYMargin) {
 			myXMargin = newxmargin;
 			myYMargin = newymargin;
 			container.setBorder(new MarginBorder(myYMargin, myXMargin, myYMargin, myXMargin));

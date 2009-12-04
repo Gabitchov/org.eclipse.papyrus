@@ -126,9 +126,9 @@ public class OpaqueAction2CreateCommand extends CreateElementCommand {
 			Activity owner = (Activity) getElementToEdit();
 			owner.getNodes().add(newElement);
 			UMLElementTypes.init_OpaqueAction_2032(newElement);
-			
+
 			addActionToActivityPartition(newElement);
-			
+
 			Diagram diagram = getDiagramFromRequest();
 			if (diagram != null) {
 				MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, newElement);
@@ -138,7 +138,7 @@ public class OpaqueAction2CreateCommand extends CreateElementCommand {
 		}
 		return newElement;
 	}
-	
+
 	/**
 	 * Add the actions'a inPartition if it was created inside an ActivityPartition.
 	 * 

@@ -45,10 +45,10 @@ public class PackageMergeItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -58,10 +58,10 @@ public class PackageMergeItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -74,7 +74,7 @@ public class PackageMergeItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

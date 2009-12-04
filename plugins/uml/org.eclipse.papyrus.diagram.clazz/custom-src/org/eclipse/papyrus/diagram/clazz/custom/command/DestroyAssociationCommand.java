@@ -34,7 +34,7 @@ public class DestroyAssociationCommand extends DestroyElementCommand {
 	 * constructor of theis command
 	 * 
 	 * @param request
-	 *            see {@link DestroyElementRequest}
+	 *        see {@link DestroyElementRequest}
 	 */
 	public DestroyAssociationCommand(DestroyElementRequest request) {
 		super(request);
@@ -46,7 +46,7 @@ public class DestroyAssociationCommand extends DestroyElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Association association = (Association) getElementToDestroy();
+		Association association = (Association)getElementToDestroy();
 		DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), association.getMemberEnds()
 				.get(1), true);
 		DestroyElementCommand c = new DestroyElementCommand(request);

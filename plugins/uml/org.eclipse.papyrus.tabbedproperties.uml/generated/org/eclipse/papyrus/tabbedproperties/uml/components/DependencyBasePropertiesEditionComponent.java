@@ -62,7 +62,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 
 	public static String BASE_PART = "Base"; //$NON-NLS-1$
 
-	private String[] parts = {BASE_PART};
+	private String[] parts = { BASE_PART };
 
 	/**
 	 * The EObject to edit
@@ -78,9 +78,9 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	 * Default constructor
 	 */
 	public DependencyBasePropertiesEditionComponent(EObject dependency, String editing_mode) {
-		if (dependency instanceof Dependency) {
+		if(dependency instanceof Dependency) {
 			this.dependency = (Dependency)dependency;
-			if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+			if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 				semanticAdapter = initializeSemanticAdapter();
 				this.dependency.eAdapters().add(semanticAdapter);
 			}
@@ -102,20 +102,22 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 			 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 			 */
 			public void notifyChanged(Notification msg) {
-				if (basePart == null)
+				if(basePart == null)
 					DependencyBasePropertiesEditionComponent.this.dispose();
 				else {
-					if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null){
-					if(msg.getNewValue()!=null){
-						basePart.setName((String)msg.getNewValue());
-}
-						else{basePart.setName("");}}
-					if (UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
+					if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null) {
+						if(msg.getNewValue() != null) {
+							basePart.setName((String)msg.getNewValue());
+						} else {
+							basePart.setName("");
+						}
+					}
+					if(UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(msg.getFeature()) && basePart != null)
 						basePart.setVisibility((Enumerator)msg.getNewValue());
 
-					if (UMLPackage.eINSTANCE.getDependency_Supplier().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getDependency_Supplier().equals(msg.getFeature()))
 						basePart.updateSupplier(dependency);
-					if (UMLPackage.eINSTANCE.getDependency_Client().equals(msg.getFeature()))
+					if(UMLPackage.eINSTANCE.getDependency_Client().equals(msg.getFeature()))
 						basePart.updateClient(dependency);
 
 
@@ -131,7 +133,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#translatePart(java.lang.String)
 	 */
 	public java.lang.Class translatePart(String key) {
-		if (BASE_PART.equals(key))
+		if(BASE_PART.equals(key))
 			return UMLViewsRepository.Dependency.class;
 		return super.translatePart(key);
 	}
@@ -148,14 +150,13 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart
-	 * (java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionPart (java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
-		if (dependency != null && BASE_PART.equals(key)) {
-			if (basePart == null) {
+		if(dependency != null && BASE_PART.equals(key)) {
+			if(basePart == null) {
 				IPropertiesEditionPartProvider provider = PropertiesEditionPartProviderService.getInstance().getProvider(UMLViewsRepository.class);
-				if (provider != null) {
+				if(provider != null) {
 					basePart = (DependencyPropertiesEditionPart)provider.getPropertiesEditionPart(UMLViewsRepository.Dependency.class, kind, this);
 					addListener((IPropertiesEditionListener)basePart);
 				}
@@ -168,32 +169,32 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#
-	 *      setPropertiesEditionPart(java.lang.Class, int, org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent# setPropertiesEditionPart(java.lang.Class, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
 	 */
 	public void setPropertiesEditionPart(java.lang.Class key, int kind, IPropertiesEditionPart propertiesEditionPart) {
-		if (key == UMLViewsRepository.Dependency.class)
-			this.basePart = (DependencyPropertiesEditionPart) propertiesEditionPart;
+		if(key == UMLViewsRepository.Dependency.class)
+			this.basePart = (DependencyPropertiesEditionPart)propertiesEditionPart;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Class, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void initPart(java.lang.Class key, int kind, EObject elt, ResourceSet allResource) {
-		if (basePart != null && key == UMLViewsRepository.Dependency.class) {
+		if(basePart != null && key == UMLViewsRepository.Dependency.class) {
 			((IPropertiesEditionPart)basePart).setContext(elt, allResource);
 			final Dependency dependency = (Dependency)elt;
 			// init values
-			if (dependency.getName() != null)
+			if(dependency.getName() != null)
 				basePart.setName(dependency.getName());
 
-			basePart.initVisibility((EEnum) UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), dependency.getVisibility());
+			basePart.initVisibility((EEnum)UMLPackage.eINSTANCE.getNamedElement_Visibility().getEType(), dependency.getVisibility());
 			basePart.initSupplier(dependency, null, UMLPackage.eINSTANCE.getDependency_Supplier());
 			basePart.initClient(dependency, null, UMLPackage.eINSTANCE.getDependency_Client());
-			
+
 			// init filters
 
 
@@ -205,7 +206,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInSupplierTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -223,7 +224,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
+					if(element instanceof EObject)
 						return (!basePart.isContainedInClientTable((EObject)element));
 					return element instanceof Resource;
 				}
@@ -244,27 +245,24 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 
 
 
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionCommand
-	 *     (org.eclipse.emf.edit.domain.EditingDomain)
+	 *      (org.eclipse.emf.edit.domain.EditingDomain)
 	 */
 	public CompoundCommand getPropertiesEditionCommand(EditingDomain editingDomain) {
 		CompoundCommand cc = new CompoundCommand();
-		if (dependency != null) {
+		if(dependency != null) {
 			cc.append(SetCommand.create(editingDomain, dependency, UMLPackage.eINSTANCE.getNamedElement_Name(), basePart.getName()));
 
 			cc.append(SetCommand.create(editingDomain, dependency, UMLPackage.eINSTANCE.getNamedElement_Visibility(), basePart.getVisibility()));
 
 			List supplierToAddFromSupplier = basePart.getSupplierToAdd();
-			for (Iterator iter = supplierToAddFromSupplier.iterator(); iter.hasNext();)
+			for(Iterator iter = supplierToAddFromSupplier.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
 			List supplierToRemoveFromSupplier = basePart.getSupplierToRemove();
-			for (Iterator iter = supplierToRemoveFromSupplier.iterator(); iter.hasNext();)
+			for(Iterator iter = supplierToRemoveFromSupplier.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Supplier(), iter.next()));
 			//List supplierToMoveFromSupplier = basePart.getSupplierToMove();
 			//for (Iterator iter = supplierToMoveFromSupplier.iterator(); iter.hasNext();){
@@ -272,10 +270,10 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 			//	cc.append(MoveCommand.create(editingDomain, dependency, UMLPackage.eINSTANCE.getNamedElement(), moveElement.getElement(), moveElement.getIndex()));
 			//}
 			List clientToAddFromClient = basePart.getClientToAdd();
-			for (Iterator iter = clientToAddFromClient.iterator(); iter.hasNext();)
+			for(Iterator iter = clientToAddFromClient.iterator(); iter.hasNext();)
 				cc.append(AddCommand.create(editingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
 			List clientToRemoveFromClient = basePart.getClientToRemove();
-			for (Iterator iter = clientToRemoveFromClient.iterator(); iter.hasNext();)
+			for(Iterator iter = clientToRemoveFromClient.iterator(); iter.hasNext();)
 				cc.append(RemoveCommand.create(editingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Client(), iter.next()));
 			//List clientToMoveFromClient = basePart.getClientToMove();
 			//for (Iterator iter = clientToMoveFromClient.iterator(); iter.hasNext();){
@@ -285,7 +283,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 
 
 		}
-		if (!cc.isEmpty())
+		if(!cc.isEmpty())
 			return cc;
 		cc.append(IdentityCommand.INSTANCE);
 		return cc;
@@ -297,7 +295,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#getPropertiesEditionObject()
 	 */
 	public EObject getPropertiesEditionObject(EObject source) {
-		if (source instanceof Dependency) {
+		if(source instanceof Dependency) {
 			Dependency dependencyToUpdate = (Dependency)source;
 			dependencyToUpdate.setName(basePart.getName());
 
@@ -308,8 +306,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 
 
 			return dependencyToUpdate;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -320,41 +317,41 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	 */
 	public void firePropertiesChanged(PropertiesEditionEvent event) {
 		super.firePropertiesChanged(event);
-		if (PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
+		if(PropertiesEditionEvent.COMMIT == event.getState() && IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode)) {
 			CompoundCommand command = new CompoundCommand();
-			if (UMLViewsRepository.Dependency.name == event.getAffectedEditor())
+			if(UMLViewsRepository.Dependency.name == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getNamedElement_Name(), event.getNewValue()));
 
-			if (UMLViewsRepository.Dependency.visibility == event.getAffectedEditor())
+			if(UMLViewsRepository.Dependency.visibility == event.getAffectedEditor())
 				command.append(SetCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getNamedElement_Visibility(), event.getNewValue()));
 
-			if (UMLViewsRepository.Dependency.supplier == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Dependency.supplier == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Supplier(), event.getNewValue(), event.getNewIndex()));
 			}
-			if (UMLViewsRepository.Dependency.client == event.getAffectedEditor()) {
-				if (PropertiesEditionEvent.ADD == event.getKind())
+			if(UMLViewsRepository.Dependency.client == event.getAffectedEditor()) {
+				if(PropertiesEditionEvent.ADD == event.getKind())
 					command.append(AddCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
-				if (PropertiesEditionEvent.REMOVE == event.getKind())
+				if(PropertiesEditionEvent.REMOVE == event.getKind())
 					command.append(RemoveCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue()));
-				if (PropertiesEditionEvent.MOVE == event.getKind())
+				if(PropertiesEditionEvent.MOVE == event.getKind())
 					command.append(MoveCommand.create(liveEditingDomain, dependency, UMLPackage.eINSTANCE.getDependency_Client(), event.getNewValue(), event.getNewIndex()));
 			}
 
 
-			if (!command.isEmpty() && !command.canExecute()) {
+			if(!command.isEmpty() && !command.canExecute()) {
 				EMFPropertiesRuntime.getDefault().logError("Cannot perform model change command.", null);
 			} else {
 				liveEditingDomain.getCommandStack().execute(command);
 			}
-		} else if (PropertiesEditionEvent.CHANGE == event.getState()) {
+		} else if(PropertiesEditionEvent.CHANGE == event.getState()) {
 			Diagnostic diag = this.validateValue(event);
-			if (diag != null && diag.getSeverity() != Diagnostic.OK) {
-				if (UMLViewsRepository.Dependency.name == event.getAffectedEditor())
+			if(diag != null && diag.getSeverity() != Diagnostic.OK) {
+				if(UMLViewsRepository.Dependency.name == event.getAffectedEditor())
 					basePart.setMessageForName(diag.getMessage(), IMessageProvider.ERROR);
 
 
@@ -362,7 +359,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 
 
 			} else {
-				if (UMLViewsRepository.Dependency.name == event.getAffectedEditor())
+				if(UMLViewsRepository.Dependency.name == event.getAffectedEditor())
 					basePart.unsetMessageForName();
 
 
@@ -389,14 +386,14 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	 */
 	public Diagnostic validateValue(PropertiesEditionEvent event) {
 		Diagnostic ret = null;
-		if (event.getNewValue() != null) {
+		if(event.getNewValue() != null) {
 			String newStringValue = event.getNewValue().toString();
 			try {
-				if (UMLViewsRepository.Dependency.name == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Dependency.name == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (UMLViewsRepository.Dependency.visibility == event.getAffectedEditor()) {
+				if(UMLViewsRepository.Dependency.visibility == event.getAffectedEditor()) {
 					Object newValue = EcoreUtil.createFromString(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newStringValue);
 					ret = Diagnostician.INSTANCE.validate(UMLPackage.eINSTANCE.getNamedElement_Visibility().getEAttributeType(), newValue);
 				}
@@ -415,12 +412,11 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	 */
 	public Diagnostic validate() {
 		Diagnostic validate = null;
-		if (IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
+		if(IPropertiesEditionComponent.BATCH_MODE.equals(editing_mode)) {
 			EObject copy = EcoreUtil.copy(PropertiesContextService.getInstance().entryPointElement());
 			copy = PropertiesContextService.getInstance().entryPointComponent().getPropertiesEditionObject(copy);
-			validate =  Diagnostician.INSTANCE.validate(copy);
-		}
-		else if (IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
+			validate = Diagnostician.INSTANCE.validate(copy);
+		} else if(IPropertiesEditionComponent.LIVE_MODE.equals(editing_mode))
 			validate = Diagnostician.INSTANCE.validate(dependency);
 		// Start of user code for custom validation check
 
@@ -436,7 +432,7 @@ public class DependencyBasePropertiesEditionComponent extends StandardProperties
 	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#dispose()
 	 */
 	public void dispose() {
-		if (semanticAdapter != null)
+		if(semanticAdapter != null)
 			dependency.eAdapters().remove(semanticAdapter);
 	}
 

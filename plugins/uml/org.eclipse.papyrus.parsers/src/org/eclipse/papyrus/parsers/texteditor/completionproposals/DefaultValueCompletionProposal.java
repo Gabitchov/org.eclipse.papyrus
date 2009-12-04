@@ -62,8 +62,8 @@ public class DefaultValueCompletionProposal implements ICompletionProposalComput
 		ICompletionProposal proposal = null;
 
 		// adds all name (static strings...)
-		for (int i = 0; i < defaultValueStrings.length; i++) {
-			if (defaultValueStrings[i].startsWith(prefix)) {
+		for(int i = 0; i < defaultValueStrings.length; i++) {
+			if(defaultValueStrings[i].startsWith(prefix)) {
 				proposal = new CompletionProposal(defaultValueStrings[i], documentOffset - prefix.length(), prefix
 						.length()
 						+ selectionRange, defaultValueStrings[i].length(), null, defaultValueStringsName[i], null,

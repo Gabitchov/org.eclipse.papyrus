@@ -70,7 +70,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Returns an image descriptor for the image file at the given plug-in relative path.
 	 * 
 	 * @param path
-	 *            the path
+	 *        the path
 	 * 
 	 * @return the image descriptor
 	 */
@@ -82,9 +82,9 @@ public class Activator extends AbstractUIPlugin {
 	 * Log.
 	 * 
 	 * @param string
-	 *            the string
+	 *        the string
 	 * @param e
-	 *            the e
+	 *        the e
 	 */
 	public void log(String string, Exception e) {
 		getLog().log(new Status(Status.ERROR, PLUGIN_ID, string, e));
@@ -94,9 +94,9 @@ public class Activator extends AbstractUIPlugin {
 	 * Log.
 	 * 
 	 * @param string
-	 *            the string
+	 *        the string
 	 * @param severity
-	 *            the severity
+	 *        the severity
 	 */
 	public void log(String string, int severity) {
 		getLog().log(new Status(severity, PLUGIN_ID, string));
@@ -106,7 +106,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Log.
 	 * 
 	 * @param string
-	 *            the string
+	 *        the string
 	 */
 	public void log(String string) {
 		log(string, Status.WARNING);

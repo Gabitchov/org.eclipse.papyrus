@@ -58,15 +58,15 @@ public class FinalStateItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Transition_3001 == req.getElementType()) {
+		if(UMLElementTypes.Transition_3001 == req.getElementType()) {
 			return getGEFWrapper(new TransitionCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return getGEFWrapper(new ElementOwnedCommentCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return null;
 		}
@@ -81,18 +81,18 @@ public class FinalStateItemSemanticEditPolicy extends
 
 		Diagram diagram = DiagramEditPartsUtil
 				.findDiagramFromEditPart(getHost());
-		if (diagram != null) {
+		if(diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource,
 					diagram);
 		}
-		if (UMLElementTypes.Transition_3001 == req.getElementType()) {
+		if(UMLElementTypes.Transition_3001 == req.getElementType()) {
 			return getGEFWrapper(new TransitionCreateCommand(req, req
 					.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
+		if(UMLElementTypes.ElementOwnedComment_3002 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_3003 == req
+		if(UMLElementTypes.CommentAnnotatedElement_3003 == req
 				.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
@@ -112,14 +112,14 @@ public class FinalStateItemSemanticEditPolicy extends
 
 		// add the view element
 		req.setParameter(ReorientLinkIDs.nodeEditPart,
-				((IGraphicalEditPart) this.getHost()).getNotationView());
+				((IGraphicalEditPart)this.getHost()).getNotationView());
 		// add the view link
 		List list = DiagramEditPartsUtil.getEObjectViews(req.getRelationship());
-		if (list.size() > 0) {
+		if(list.size() > 0) {
 			req.setParameter(ReorientLinkIDs.linkEditPart, list.get(0));
 		}
 
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case TransitionEditPart.VISUAL_ID:
 			return getGEFWrapper(new TransitionReorientCommand(req));
 		}
@@ -135,7 +135,7 @@ public class FinalStateItemSemanticEditPolicy extends
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case ElementOwnedCommentEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementOwnedCommentReorientCommand(req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:

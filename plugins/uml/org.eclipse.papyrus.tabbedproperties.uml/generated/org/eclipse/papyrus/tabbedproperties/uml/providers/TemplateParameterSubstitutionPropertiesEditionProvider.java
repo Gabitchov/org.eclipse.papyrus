@@ -40,7 +40,7 @@ public class TemplateParameterSubstitutionPropertiesEditionProvider implements I
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof TemplateParameterSubstitution) {
+		if(eObject instanceof TemplateParameterSubstitution) {
 			return new TemplateParameterSubstitutionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class TemplateParameterSubstitutionPropertiesEditionProvider implements I
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof TemplateParameterSubstitution) {
-			if (TemplateParameterSubstitutionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof TemplateParameterSubstitution) {
+			if(TemplateParameterSubstitutionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new TemplateParameterSubstitutionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

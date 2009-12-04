@@ -32,7 +32,7 @@ public class UpdateDiagramCommand extends Command {
 	 * Instantiates a new uML update diagram command.
 	 * 
 	 * @param editPart
-	 *            the edit part
+	 *        the edit part
 	 */
 	public UpdateDiagramCommand(IGraphicalEditPart editPart) {
 		this.editPart = editPart;

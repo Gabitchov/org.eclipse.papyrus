@@ -16,8 +16,7 @@ package org.eclipse.papyrus.parsers.util;
 import org.eclipse.uml2.uml.TemplateableElement;
 
 /**
- * <code>AssertionFailedException</code> is a runtime exception thrown by some of the methods in
- * <code>Assert</code>.
+ * <code>AssertionFailedException</code> is a runtime exception thrown by some of the methods in <code>Assert</code>.
  * 
  * @see Assert
  */
@@ -36,7 +35,7 @@ public class UnboundTemplateRecognitionException extends RuntimeException {
 	 * Constructs a new exception with the given message.
 	 * 
 	 * @param detail
-	 *            the message
+	 *        the message
 	 */
 	public UnboundTemplateRecognitionException(String message, TemplateableElement template) {
 		super(message);

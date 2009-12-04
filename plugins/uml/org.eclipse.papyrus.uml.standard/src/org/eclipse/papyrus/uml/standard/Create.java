@@ -24,8 +24,7 @@ import org.eclipse.uml2.uml.Usage;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature <em>Base Behavioral
- * Feature</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature <em>Base Behavioral Feature</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.standard.Create#getBase_Usage <em>Base Usage</em>}</li>
  * </ul>
  * </p>
@@ -40,8 +39,7 @@ public interface Create extends EObject {
 	 * Returns the value of the '<em><b>Base Behavioral Feature</b></em>' reference. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Behavioral Feature</em>' reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Base Behavioral Feature</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -54,12 +52,11 @@ public interface Create extends EObject {
 	BehavioralFeature getBase_BehavioralFeature();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature
+	 * Sets the value of the ' {@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature
 	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Behavioral Feature</em>' reference.
+	 *        the new value of the '<em>Base Behavioral Feature</em>' reference.
 	 * @see #getBase_BehavioralFeature()
 	 * @generated
 	 */
@@ -68,8 +65,7 @@ public interface Create extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Usage</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Usage</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Usage</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -86,7 +82,7 @@ public interface Create extends EObject {
 	 * <em>Base Usage</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Usage</em>' reference.
+	 *        the new value of the '<em>Base Usage</em>' reference.
 	 * @see #getBase_Usage()
 	 * @generated
 	 */

@@ -51,10 +51,10 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected String getDefaultPattern() {
-		if (defaultPattern == null) {
+		if(defaultPattern == null) {
 			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < features.length; i++) {
-				if (i > 0) {
+			for(int i = 0; i < features.length; i++) {
+				if(i > 0) {
 					sb.append(' ');
 				}
 				sb.append('{');
@@ -95,7 +95,7 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected MessageFormat getViewProcessor() {
-		if (viewProcessor == null) {
+		if(viewProcessor == null) {
 			viewProcessor = createViewProcessor(getViewPattern());
 		}
 		return viewProcessor;
@@ -130,7 +130,7 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected MessageFormat getEditorProcessor() {
-		if (editorProcessor == null) {
+		if(editorProcessor == null) {
 			editorProcessor = createEditorProcessor(getEditorPattern());
 		}
 		return editorProcessor;
@@ -165,7 +165,7 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected MessageFormat getEditProcessor() {
-		if (editProcessor == null) {
+		if(editProcessor == null) {
 			editProcessor = createEditProcessor(getEditPattern());
 		}
 		return editProcessor;
@@ -175,7 +175,7 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element),
 				new StringBuffer(), new FieldPosition(0)).toString();
 	}
@@ -184,7 +184,7 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
 		return getEditorProcessor().format(getValues(element),
 				new StringBuffer(), new FieldPosition(0)).toString();
 	}
@@ -196,11 +196,11 @@ public class MessageFormatParser extends AbstractParser {
 			String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
-		if (values == null) {
+		if(values == null) {
 			return new ParserEditStatus(UMLDiagramEditorPlugin.ID,
 					IParserEditStatus.UNEDITABLE, NLS.bind(
-							Messages.MessageFormatParser_InvalidInputError,
-							new Integer(pos.getErrorIndex())));
+					Messages.MessageFormatParser_InvalidInputError,
+					new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}

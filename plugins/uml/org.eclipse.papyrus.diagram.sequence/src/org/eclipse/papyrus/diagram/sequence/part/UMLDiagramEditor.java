@@ -128,7 +128,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 */
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
-		if (existingPaletteRoot == null) {
+		if(existingPaletteRoot == null) {
 			paletteRoot = PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
 		} else {
 			PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
@@ -156,11 +156,11 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	public Object getAdapter(Class type) {
-		if (type == IShowInTargetList.class) {
+		if(type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
 
 				public String[] getShowInTargetIds() {
-					return new String[] { ProjectExplorer.VIEW_ID };
+					return new String[]{ ProjectExplorer.VIEW_ID };
 				}
 			};
 		}
@@ -171,7 +171,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if(input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return UMLDiagramEditorPlugin.getInstance().getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
@@ -189,7 +189,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if(input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(UMLDiagramEditorPlugin.getInstance().getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
@@ -236,12 +236,12 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 */
 	private ISelection getNavigatorSelection() {
 		IDiagramDocument document = getDiagramDocument();
-		if (document == null) {
+		if(document == null) {
 			return StructuredSelection.EMPTY;
 		}
 		Diagram diagram = document.getDiagram();
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
-		if (file != null) {
+		if(file != null) {
 			UMLNavigatorItem item = new UMLNavigatorItem(diagram, file, false);
 			return new StructuredSelection(item);
 		}
@@ -321,7 +321,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 */
 	public void providerChanged(ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
-		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
+		if(PapyrusPaletteService.getInstance().equals(event.getSource())) {
 			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
 					getDefaultPaletteContent());
 		}
@@ -396,7 +396,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 			 */
 			private KeyHandler getPaletteKeyHandler() {
 
-				if (paletteKeyHandler == null) {
+				if(paletteKeyHandler == null) {
 
 					paletteKeyHandler = new KeyHandler() {
 
@@ -407,16 +407,16 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 						 * (between two selected shapes)
 						 * 
 						 * @param event
-						 *            the KeyEvent
+						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
 						public boolean keyReleased(KeyEvent event) {
 
-							if (event.keyCode == SWT.Selection) {
+							if(event.keyCode == SWT.Selection) {
 
 								Tool tool = getPaletteViewer().getActiveTool().createTool();
 
-								if (toolSupportsAccessibility(tool)) {
+								if(toolSupportsAccessibility(tool)) {
 
 									tool.keyUp(event, getDiagramGraphicalViewer());
 
@@ -441,7 +441,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 			 */
 			private MouseListener getPaletteMouseListener() {
 
-				if (paletteMouseListener == null) {
+				if(paletteMouseListener == null) {
 
 					paletteMouseListener = new MouseListener() {
 
@@ -460,7 +460,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 						public void mouseDoubleClick(MouseEvent e) {
 							Tool tool = getPaletteViewer().getActiveTool().createTool();
 
-							if (toolSupportsAccessibility(tool)) {
+							if(toolSupportsAccessibility(tool)) {
 
 								tool.setViewer(getDiagramGraphicalViewer());
 								tool.setEditDomain(getDiagramGraphicalViewer().getEditDomain());
@@ -481,7 +481,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 						public void mouseUp(MouseEvent e) {
 							// Deactivate current active tool here if a
 							// double-click was handled.
-							if (clearActiveTool) {
+							if(clearActiveTool) {
 								getPaletteViewer().setActiveTool(null);
 								clearActiveTool = false;
 							}

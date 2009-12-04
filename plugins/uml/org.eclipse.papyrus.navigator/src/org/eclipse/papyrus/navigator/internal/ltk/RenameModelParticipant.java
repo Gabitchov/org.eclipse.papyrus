@@ -67,7 +67,7 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
 		Change[] changes = new Change[filesToRename.size()];
 		int i = 0;
-		for (IPath path : filesToRename) {
+		for(IPath path : filesToRename) {
 			changes[i++] = new RenameResourceChange(path, newName + '.' + path.getFileExtension());
 		}
 		return new CompositeChange(getName(), changes);
@@ -94,29 +94,29 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 	 */
 	@Override
 	protected boolean initialize(Object element) {
-		if (!(element instanceof IFile)) {
+		if(!(element instanceof IFile)) {
 			return false;
 		}
-		IFile file = (IFile) element;
+		IFile file = (IFile)element;
 		String ext = file.getFileExtension();
-		if (DiResourceSet.DI_FILE_EXTENSION.equals(ext) || DiResourceSet.MODEL_FILE_EXTENSION.equals(ext)
+		if(DiResourceSet.DI_FILE_EXTENSION.equals(ext) || DiResourceSet.MODEL_FILE_EXTENSION.equals(ext)
 				|| DiResourceSet.NOTATION_FILE_EXTENSION.equals(ext)) {
 			IContainer parent = file.getParent();
 			IPath resourcePath = file.getFullPath().removeFileExtension();
 			newName = getArguments().getNewName();
 			int idx = newName.lastIndexOf('.');
-			if (idx > 0) {
+			if(idx > 0) {
 				newName = newName.substring(0, idx);
 			} else {
 				newName = newName + '.' + ext; // Always append the extension
 			}
 
 			IPath path;
-			for (String pathExt : MODEL_EXTENSIONS) {
+			for(String pathExt : MODEL_EXTENSIONS) {
 				path = resourcePath.addFileExtension(pathExt);
 				// Only add the change if the resource exists
 				// Note: the current file is already marked as deleted... so do not add it here!
-				if (!path.equals(file.getFullPath()) && parent.exists(path.makeRelativeTo(parent.getFullPath()))) {
+				if(!path.equals(file.getFullPath()) && parent.exists(path.makeRelativeTo(parent.getFullPath()))) {
 					filesToRename.add(path);
 				}
 			}

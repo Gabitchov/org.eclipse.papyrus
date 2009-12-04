@@ -34,7 +34,7 @@ public class AssociationClassAttributeCompartmentItemSemanticEditPolicy extends 
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Property_3002 == req.getElementType()) {
+		if(UMLElementTypes.Property_3002 == req.getElementType()) {
 			return getGEFWrapper(new PropertyCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

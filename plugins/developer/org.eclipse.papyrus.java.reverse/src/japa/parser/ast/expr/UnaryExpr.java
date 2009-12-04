@@ -29,54 +29,54 @@ import japa.parser.ast.visitor.VoidVisitor;
  */
 public final class UnaryExpr extends Expression {
 
-    public static enum Operator {
-        positive, // +
-        negative, // -
-        preIncrement, // ++
-        preDecrement, // --
-        not, // !
-        inverse, // ~
-        posIncrement, // ++
-        posDecrement, // --
-    }
+	public static enum Operator {
+		positive, // +
+		negative, // -
+		preIncrement, // ++
+		preDecrement, // --
+		not, // !
+		inverse, // ~
+		posIncrement, // ++
+		posDecrement, // --
+	}
 
-    private Expression expr;
+	private Expression expr;
 
-    private Operator op;
+	private Operator op;
 
-    public UnaryExpr() {
-    }
+	public UnaryExpr() {
+	}
 
-    public UnaryExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression expr, Operator op) {
-        super(beginLine, beginColumn, endLine, endColumn);
-        this.expr = expr;
-        this.op = op;
-    }
+	public UnaryExpr(int beginLine, int beginColumn, int endLine, int endColumn, Expression expr, Operator op) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.expr = expr;
+		this.op = op;
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
-    public Expression getExpr() {
-        return expr;
-    }
+	public Expression getExpr() {
+		return expr;
+	}
 
-    public Operator getOperator() {
-        return op;
-    }
+	public Operator getOperator() {
+		return op;
+	}
 
-    public void setExpr(Expression expr) {
-        this.expr = expr;
-    }
+	public void setExpr(Expression expr) {
+		this.expr = expr;
+	}
 
-    public void setOperator(Operator op) {
-        this.op = op;
-    }
+	public void setOperator(Operator op) {
+		this.op = op;
+	}
 
 }

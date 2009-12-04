@@ -42,14 +42,15 @@ import org.eclipse.swt.widgets.Group;
  * extension point.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=293135">Bug
- *      #293135</a>
+ * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=293135">Bug #293135</a>
  * 
  */
 public class SelectTemplateWizardPage extends WizardPage {
 
 	private Button newModelButton;
+
 	private Button useTemplateButton;
+
 	private TableViewer templateTableViewer;
 
 	private String editorId;
@@ -69,12 +70,12 @@ public class SelectTemplateWizardPage extends WizardPage {
 	}
 
 	public String getTemplatePath() {
-		if (this.useTemplateButton.getSelection()) {
-			if (this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
-				Object first = ((IStructuredSelection) this.templateTableViewer
+		if(this.useTemplateButton.getSelection()) {
+			if(this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
+				Object first = ((IStructuredSelection)this.templateTableViewer
 						.getSelection()).getFirstElement();
-				if (first instanceof ModelTemplateDescription) {
-					return ((ModelTemplateDescription) first).getPath();
+				if(first instanceof ModelTemplateDescription) {
+					return ((ModelTemplateDescription)first).getPath();
 				}
 			}
 		}
@@ -83,12 +84,12 @@ public class SelectTemplateWizardPage extends WizardPage {
 	}
 
 	public String getTemplatePluginId() {
-		if (this.useTemplateButton.getSelection()) {
-			if (this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
-				Object first = ((IStructuredSelection) this.templateTableViewer
+		if(this.useTemplateButton.getSelection()) {
+			if(this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
+				Object first = ((IStructuredSelection)this.templateTableViewer
 						.getSelection()).getFirstElement();
-				if (first instanceof ModelTemplateDescription) {
-					return ((ModelTemplateDescription) first).getPluginId();
+				if(first instanceof ModelTemplateDescription) {
+					return ((ModelTemplateDescription)first).getPluginId();
 				}
 			}
 		}
@@ -128,7 +129,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 				.setContentProvider(new ModelTemplatesContentProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
 		templateTableViewer.setInput(0);
-		if (templateTableViewer.getTable().getItemCount() > 0) {
+		if(templateTableViewer.getTable().getItemCount() > 0) {
 			IStructuredSelection ss = new StructuredSelection(
 					templateTableViewer.getElementAt(0));
 			templateTableViewer.setSelection(ss);
@@ -159,7 +160,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				if (useTemplateButton.getSelection()) {
+				if(useTemplateButton.getSelection()) {
 					templateTableViewer.getControl().setEnabled(true);
 				} else {
 					templateTableViewer.getControl().setEnabled(false);
@@ -174,7 +175,9 @@ public class SelectTemplateWizardPage extends WizardPage {
 			IStructuredContentProvider {
 
 		private static final String extensionPointId = "org.eclipse.papyrus.wizards.templates";
+
 		private static final String ATTRIBUTE_NAME = "name";
+
 		private static final String ATTRIBUTE_FILE = "file";
 
 		public void dispose() {
@@ -189,7 +192,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 			IExtension[] extensions = registry.getExtensionPoint(
 					extensionPointId).getExtensions();
 
-			for (IExtension extension : extensions) {
+			for(IExtension extension : extensions) {
 				templates.addAll(processExtension(extension));
 			}
 
@@ -199,7 +202,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 		private Collection<ModelTemplateDescription> processExtension(
 				IExtension extension) {
 			List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
-			for (IConfigurationElement configElement : extension
+			for(IConfigurationElement configElement : extension
 					.getConfigurationElements()) {
 				templates.add(new ModelTemplateDescription(configElement
 						.getAttribute(ATTRIBUTE_NAME), extension
@@ -214,17 +217,20 @@ public class SelectTemplateWizardPage extends WizardPage {
 		}
 
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			if (viewer instanceof TableViewer) {
-				((TableViewer) viewer).add(getElements(null));
+			if(viewer instanceof TableViewer) {
+				((TableViewer)viewer).add(getElements(null));
 			}
 		}
 
 	}
 
 	private class ModelTemplateDescription {
+
 		private String name;
+
 		// private String metamodelURI;
 		private String path;
+
 		private String pluginId;
 
 		public ModelTemplateDescription(String name, String pluginId,
@@ -275,8 +281,8 @@ public class SelectTemplateWizardPage extends WizardPage {
 		}
 
 		public String getColumnText(Object element, int columnIndex) {
-			if (element instanceof ModelTemplateDescription) {
-				ModelTemplateDescription modelTemplate = (ModelTemplateDescription) element;
+			if(element instanceof ModelTemplateDescription) {
+				ModelTemplateDescription modelTemplate = (ModelTemplateDescription)element;
 				return modelTemplate.getName() + " ("
 						+ modelTemplate.getFileName() + ")";
 			}

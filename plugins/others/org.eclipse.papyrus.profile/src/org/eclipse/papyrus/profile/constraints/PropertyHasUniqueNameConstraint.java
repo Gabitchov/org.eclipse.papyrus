@@ -29,10 +29,10 @@ public class PropertyHasUniqueNameConstraint extends AbstractModelConstraint {
 
 	public IStatus validate(IValidationContext ctx) {
 
-		if (ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
-			Property property = (Property) ctx.getTarget();
+		if(ProfileConstraintUtils.isStereotypeProperty(ctx.getTarget())) {
+			Property property = (Property)ctx.getTarget();
 
-			if (!ProfileConstraintUtils.hasUniqueName(property)) {
+			if(!ProfileConstraintUtils.hasUniqueName(property)) {
 				return ctx.createFailureStatus(ctx.getTarget());
 			}
 		}

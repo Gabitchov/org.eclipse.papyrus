@@ -37,7 +37,7 @@ public class FilterViewsLabelItemProvider extends AbstractContributionItemProvid
 	@Override
 	protected IAction createAction(String actionId, IWorkbenchPartDescriptor partDescriptor) {
 		IWorkbenchPage page = partDescriptor.getPartPage();
-		if (FILTER_VIEWS_AND_LABELS.equals(actionId)) {
+		if(FILTER_VIEWS_AND_LABELS.equals(actionId)) {
 			return new FilterViewsLabelsAction(page);
 		}
 		return super.createAction(actionId, partDescriptor);

@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
@@ -45,7 +45,7 @@ public final class DiEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public DiEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
 	}
 
 	/**

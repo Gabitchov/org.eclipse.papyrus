@@ -102,7 +102,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	@Override
 	protected final IDocumentProvider getDocumentProvider(IEditorInput input) {
 		// System.out.println("getDocumentProvider(IEditorInput input)");
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if(input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
@@ -157,16 +157,16 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 
 	}
 
@@ -180,10 +180,10 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 */
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+		if(getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor editor = (IMultiDiagramEditor)getSite().getPage().getActiveEditor();
 			// If not the active editor, ignore selection changed.
-			if (this.equals(editor.getActiveEditor())) {
+			if(this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());
 				super.selectionChanged(part, selection);
 			} else {
@@ -195,14 +195,14 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		// from
 		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
 		// ISelection)
-		if (part == this) {
+		if(part == this) {
 			rebuildStatusLine();
 		}
 	}
 
 	/**
 	 * @param diagram
-	 *            the diagram to set
+	 *        the diagram to set
 	 */
 	public void setDiagram(Diagram diagram) {
 		this.diagram = diagram;
@@ -213,7 +213,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 */
 	@Override
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+		if(input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
@@ -245,7 +245,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 
 	/**
 	 * @param parentEditor
-	 *            the parentEditor to set
+	 *        the parentEditor to set
 	 */
 	// @unused
 	// public void setSharedObject(GmfEditorContext parentEditor) {

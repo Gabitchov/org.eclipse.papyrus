@@ -42,18 +42,18 @@ public class GradientTransparencySelectionDialog extends GradientSelectionDialog
 	 * Default Constructor
 	 * 
 	 * @param parent
-	 *            the shell used
+	 *        the shell used
 	 * @param style
-	 *            the style of the shell.
+	 *        the style of the shell.
 	 * @param initColor1
-	 *            the first color used for the gradient
+	 *        the first color used for the gradient
 	 * @param initColor2
-	 *            the seconde color used for the gradient
+	 *        the seconde color used for the gradient
 	 * @param defaultGradientStyle
-	 *            initial Gradient style. The allowed values are GradientStyle.HORIZONTAL or
-	 *            GradientStyle.VERTICAL
+	 *        initial Gradient style. The allowed values are GradientStyle.HORIZONTAL or
+	 *        GradientStyle.VERTICAL
 	 * @param transparency
-	 *            the transparency of the gradient. It is ignored if not within [0, 100] range
+	 *        the transparency of the gradient. It is ignored if not within [0, 100] range
 	 */
 	// @unused
 	public GradientTransparencySelectionDialog(Shell parent, int style, RGB initColor1, RGB initColor2,
@@ -70,7 +70,7 @@ public class GradientTransparencySelectionDialog extends GradientSelectionDialog
 	 * Creates the controls of the dialog.
 	 * 
 	 * @param parent
-	 *            Parent shell
+	 *        Parent shell
 	 */
 	@Override
 	protected void createDialogControls(Shell parent) {
@@ -94,9 +94,9 @@ public class GradientTransparencySelectionDialog extends GradientSelectionDialog
 	 * Create the transparency group
 	 * 
 	 * @param parent
-	 *            the shell used
+	 *        the shell used
 	 * @param topComposite
-	 *            the parent composite
+	 *        the parent composite
 	 */
 	protected void createTransparencyGroup(Shell parent, Composite topComposite) {
 		Group transparencyGroup = new Group(topComposite, SWT.NONE);

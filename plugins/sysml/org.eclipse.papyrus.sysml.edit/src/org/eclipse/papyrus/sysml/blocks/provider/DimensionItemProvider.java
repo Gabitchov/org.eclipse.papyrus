@@ -35,8 +35,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.Dimension}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.Dimension} object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -61,7 +60,7 @@ public class DimensionItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBase_InstanceSpecificationPropertyDescriptor(object);
@@ -76,11 +75,11 @@ public class DimensionItemProvider extends ItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 	protected void addBase_InstanceSpecificationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
 				.getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_Dimension_base_InstanceSpecification_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_Dimension_base_InstanceSpecification_feature",
-						"_UI_Dimension_type"), BlocksPackage.Literals.DIMENSION__BASE_INSTANCE_SPECIFICATION, true,
+				"_UI_PropertyDescriptor_description", "_UI_Dimension_base_InstanceSpecification_feature",
+				"_UI_Dimension_type"), BlocksPackage.Literals.DIMENSION__BASE_INSTANCE_SPECIFICATION, true,
 				false, true, null, null, null));
 	}
 
@@ -107,8 +106,7 @@ public class DimensionItemProvider extends ItemProviderAdapter implements IEditi
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

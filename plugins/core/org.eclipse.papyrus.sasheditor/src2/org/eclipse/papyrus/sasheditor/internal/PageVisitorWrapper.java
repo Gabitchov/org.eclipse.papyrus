@@ -10,9 +10,9 @@ import org.eclipse.papyrus.sasheditor.editor.IPageVisitor;
 /**
  * A wrapper used to let the provided public visitor use the internal visitor to
  * visit {@link ComponentPart} and {@link EditorPart}.
- *  
+ * 
  * @author Cedric dumoulin
- *
+ * 
  */
 public class PageVisitorWrapper extends PartVisitor {
 
@@ -20,7 +20,7 @@ public class PageVisitorWrapper extends PartVisitor {
 	 * The public visitor.
 	 */
 	private IPageVisitor pageVisitor;
-	
+
 	/**
 	 * @param pageVisitor
 	 */
@@ -37,7 +37,7 @@ public class PageVisitorWrapper extends PartVisitor {
 		pageVisitor.accept(part);
 		return true;
 	}
-	
+
 	/**
 	 * We visit an {@link EditorPart}.
 	 */

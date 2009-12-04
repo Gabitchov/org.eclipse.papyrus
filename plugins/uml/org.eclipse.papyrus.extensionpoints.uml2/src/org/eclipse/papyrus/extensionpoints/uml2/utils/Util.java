@@ -29,21 +29,21 @@ public class Util {
 	 * Check if the StereotypedElement has the given stereotype.
 	 * 
 	 * @param stereotypeName
-	 *            name of the stereotype
+	 *        name of the stereotype
 	 * @param elt
-	 *            element to check
+	 *        element to check
 	 * 
 	 * @return true if a stereotype whith the same name was found
 	 */
 	public static boolean hasStereotype(Element elt, String stereotypeName) {
 		boolean has = false;
 
-		if (elt != null) {
+		if(elt != null) {
 			Iterator i = elt.getAppliedStereotypes().iterator();
 			Stereotype currentStereotype;
-			while (i.hasNext() && !has) {
-				currentStereotype = (Stereotype) i.next();
-				if (currentStereotype.getName().equals(stereotypeName)) {
+			while(i.hasNext() && !has) {
+				currentStereotype = (Stereotype)i.next();
+				if(currentStereotype.getName().equals(stereotypeName)) {
 					has = true;
 				}
 			}
@@ -56,12 +56,12 @@ public class Util {
 	 * the EObject, creates a new ResourceSet, using {@link ResourceSetImpl}.
 	 * 
 	 * @param eObject
-	 *            the object from which the ResourceSet is retrieved
+	 *        the object from which the ResourceSet is retrieved
 	 * @return the ResourceSet in which the eObject is managed, or a new one if no resource is
 	 *         associated to the eObject
 	 */
 	public static ResourceSet getResourceSet(EObject eObject) {
-		if (eObject != null && eObject.eResource() != null) {
+		if(eObject != null && eObject.eResource() != null) {
 			return eObject.eResource().getResourceSet();
 		} else {
 			// standalone registrations

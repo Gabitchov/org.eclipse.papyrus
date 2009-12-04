@@ -10,7 +10,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.resource.provider;
 
 import java.util.Collection;
@@ -59,7 +59,7 @@ public class ResourceItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -68,8 +68,7 @@ public class ResourceItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-	 * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -77,7 +76,7 @@ public class ResourceItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ResourcePackage.Literals.RESOURCE__EOBJECTS);
 		}
@@ -120,8 +119,7 @@ public class ResourceItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged} . <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -129,7 +127,7 @@ public class ResourceItemProvider extends ItemProviderAdapter implements IEditin
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Resource.class)) {
+		switch(notification.getFeatureID(Resource.class)) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;

@@ -26,8 +26,7 @@ import org.eclipse.uml2.uml.Parameter;
  * The following features are supported:
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_Parameter <em>Base Parameter</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_ActivityEdge <em>Base Activity Edge
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_ActivityEdge <em>Base Activity Edge </em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getRate <em>Rate</em>}</li>
  * </ul>
  * </p>
@@ -42,8 +41,7 @@ public interface Rate extends EObject {
 	 * Returns the value of the '<em><b>Base Activity Edge</b></em>' reference. <!-- begin-user-doc
 	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Base Activity Edge</em>' reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Base Activity Edge</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -58,8 +56,7 @@ public interface Rate extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Parameter</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Parameter</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Parameter</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -74,8 +71,7 @@ public interface Rate extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Rate</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Rate</em>' reference isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Rate</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -92,7 +88,7 @@ public interface Rate extends EObject {
 	 * <em>Base Activity Edge</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Activity Edge</em>' reference.
+	 *        the new value of the '<em>Base Activity Edge</em>' reference.
 	 * @see #getBase_ActivityEdge()
 	 * @generated
 	 */
@@ -103,7 +99,7 @@ public interface Rate extends EObject {
 	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Parameter</em>' reference.
+	 *        the new value of the '<em>Base Parameter</em>' reference.
 	 * @see #getBase_Parameter()
 	 * @generated
 	 */
@@ -114,7 +110,7 @@ public interface Rate extends EObject {
 	 * <em>Rate</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Rate</em>' reference.
+	 *        the new value of the '<em>Rate</em>' reference.
 	 * @see #getRate()
 	 * @generated
 	 */

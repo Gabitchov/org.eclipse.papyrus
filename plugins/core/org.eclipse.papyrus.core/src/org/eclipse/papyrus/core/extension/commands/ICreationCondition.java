@@ -20,7 +20,7 @@ public interface ICreationCondition {
 	 * This method returns true if the diagram creation is allowed
 	 * 
 	 * @param selectedElement
-	 *            the element where the diagram is provided
+	 *        the element where the diagram is provided
 	 * @return true if the diagram can be created
 	 */
 	boolean create(EObject selectedElement);

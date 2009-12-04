@@ -23,11 +23,12 @@ import org.eclipse.swt.widgets.Composite;
  * The Class ProfileElementTreeViewer.
  */
 public class ProfileElementTreeViewer extends TreeViewer {
-	
+
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *        the parent
 	 */
 	public ProfileElementTreeViewer(Composite parent) {
 		super(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);

@@ -36,7 +36,7 @@ public class LogHelper {
 	 * Constructor.
 	 * 
 	 * @param activator
-	 *            The activator.
+	 *        The activator.
 	 */
 	public LogHelper(Plugin activator) {
 		this.pluginId = activator.getBundle().getSymbolicName();
@@ -47,7 +47,7 @@ public class LogHelper {
 	 * Log an informative message into the Eclipse log file
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public void info(String message) {
 		log(message, IStatus.INFO);
@@ -57,10 +57,10 @@ public class LogHelper {
 	 * Log a debug message into the Eclipse log file
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 */
 	public void debug(String message) {
-		if (isDebugEnabled()) {
+		if(isDebugEnabled()) {
 			log("[DEBUG] " + message, IStatus.INFO);
 		}
 	}
@@ -78,9 +78,9 @@ public class LogHelper {
 	 * Log a message with given level into the Eclipse log file
 	 * 
 	 * @param message
-	 *            the message to log
+	 *        the message to log
 	 * @param level
-	 *            the message priority
+	 *        the message priority
 	 */
 	private void log(String message, int level) {
 		activator.getLog().log(new Status(level, pluginId, message));
@@ -90,7 +90,7 @@ public class LogHelper {
 	 * Log an exception into the Eclipse log file
 	 * 
 	 * @param e
-	 *            the exception to log
+	 *        the exception to log
 	 */
 	public void error(Throwable e) {
 		error("Unexpected Error", e);
@@ -100,20 +100,20 @@ public class LogHelper {
 	 * Log an exception into the Eclipse log file
 	 * 
 	 * @param message
-	 *            the message
+	 *        the message
 	 * @param e
-	 *            the exception to log
+	 *        the exception to log
 	 */
 	public void error(String message, Throwable e) {
 
 		Throwable t = e;
-		if (e instanceof InvocationTargetException) {
-			t = ((InvocationTargetException) e).getTargetException();
+		if(e instanceof InvocationTargetException) {
+			t = ((InvocationTargetException)e).getTargetException();
 		}
 
 		IStatus status;
-		if (t instanceof CoreException) {
-			status = ((CoreException) t).getStatus();
+		if(t instanceof CoreException) {
+			status = ((CoreException)t).getStatus();
 		} else {
 			status = new Status(IStatus.ERROR, pluginId, message, e);
 		}

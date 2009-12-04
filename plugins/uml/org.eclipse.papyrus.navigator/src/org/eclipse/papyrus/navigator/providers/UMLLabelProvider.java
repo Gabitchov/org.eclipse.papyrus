@@ -49,7 +49,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	protected ILabelDecorator removePrefixLabelDecorator = null;
 
 	protected ILabelDecorator getRemovePrefixLabelDecorator() {
-		if (removePrefixLabelDecorator == null) {
+		if(removePrefixLabelDecorator == null) {
 			removePrefixLabelDecorator = new NoTypePrefixLabelDecorator();
 		}
 		return removePrefixLabelDecorator;
@@ -84,11 +84,11 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof Diagram) {
+		if(element instanceof Diagram) {
 			return getEditorRegistry().getEditorIcon(element);
 		}
 		// fjcano #290422 :: grouping of children by type
-		if (element instanceof PackagingNode) {
+		if(element instanceof PackagingNode) {
 			return new GroupableLabelProvider().getImage(element);
 		}
 		return super.getImage(element);
@@ -100,15 +100,15 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	@Override
 	public String getText(Object element) {
 		String text = null;
-		if (element instanceof AdditionalResources) {
+		if(element instanceof AdditionalResources) {
 			text = "Additional Resources";
 		}
 
 		// if (object instanceof IFile)
 		// return ((IFile) object).getName();
 
-		else if (element instanceof Diagram) {
-			Diagram diagram = (Diagram) element;
+		else if(element instanceof Diagram) {
+			Diagram diagram = (Diagram)element;
 			text = super.getText(diagram);
 
 			// if (diagram.getSemanticModel() instanceof
@@ -121,7 +121,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 		}
 
 		// fjcano #290422 :: grouping of children by type
-		else if (element instanceof PackagingNode) {
+		else if(element instanceof PackagingNode) {
 			text = new GroupableLabelProvider().getText(element);
 		}
 
@@ -129,7 +129,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 			text = super.getText(element);
 		}
 
-		if (getModelNavigator() != null && getModelNavigator().isRemovePrefixTypeEnabled()) {
+		if(getModelNavigator() != null && getModelNavigator().isRemovePrefixTypeEnabled()) {
 			text = getRemovePrefixLabelDecorator().decorateText(text, element);
 		}
 
@@ -143,7 +143,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	 * @return the singleton eINSTANCE of editor registry
 	 */
 	protected IEditorFactoryRegistry getEditorRegistry() {
-		if (editorRegistry == null) {
+		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
 		return editorRegistry;
@@ -200,15 +200,15 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	 */
 	protected CommonNavigator getCommonNavigator() {
 		IViewPart part = NavigatorUtils.findViewPart(getViewerID());
-		if (part instanceof CommonNavigator) {
-			return ((CommonNavigator) part);
+		if(part instanceof CommonNavigator) {
+			return ((CommonNavigator)part);
 		}
 		return null;
 	}
 
 	protected ModelNavigator getModelNavigator() {
 		CommonNavigator nav = getCommonNavigator();
-		return nav instanceof ModelNavigator ? (ModelNavigator) nav : null;
+		return nav instanceof ModelNavigator ? (ModelNavigator)nav : null;
 	}
 
 	protected String getViewerID() {

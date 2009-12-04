@@ -40,7 +40,7 @@ public class RemoveVariableValueActionPropertiesEditionProvider implements IProp
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof RemoveVariableValueAction) {
+		if(eObject instanceof RemoveVariableValueAction) {
 			return new RemoveVariableValueActionPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class RemoveVariableValueActionPropertiesEditionProvider implements IProp
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof RemoveVariableValueAction) {
-			if (RemoveVariableValueActionBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof RemoveVariableValueAction) {
+			if(RemoveVariableValueActionBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new RemoveVariableValueActionBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

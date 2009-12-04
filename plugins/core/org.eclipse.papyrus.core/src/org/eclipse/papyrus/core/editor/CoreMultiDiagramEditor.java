@@ -599,8 +599,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public boolean isDirty() {
 		// First, look if the model part (EMF) is dirty, else look at the Graphical part (GEF/GMF)
-		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded() 
-		    || super.isDirty();
+		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded()
+				|| super.isDirty();
 	}
 
 	/**

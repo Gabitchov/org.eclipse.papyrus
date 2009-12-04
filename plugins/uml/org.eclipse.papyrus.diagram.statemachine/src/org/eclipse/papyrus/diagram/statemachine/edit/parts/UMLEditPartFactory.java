@@ -26,10 +26,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public EditPart createEditPart(EditPart context, Object model) {
-		if (model instanceof View) {
-			View view = (View) model;
+		if(model instanceof View) {
+			View view = (View)model;
 			EditPart ep = null;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
+			switch(UMLVisualIDRegistry.getVisualID(view)) {
 
 			case StateMachineEditPart.VISUAL_ID:
 				ep = new StateMachineEditPart(view);
@@ -243,7 +243,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				ep = new CommentAnnotatedElementEditPart(view);
 				break;
 			}
-			if (ep != null) {
+			if(ep != null) {
 				ep.installEditPolicy(EditPolicyRoles.OPEN_ROLE,
 						ShowViewEditPolicy.createOpenEditPolicy());
 				return ep;
@@ -265,10 +265,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(
 			ITextAwareEditPart source) {
-		if (source.getFigure() instanceof WrappingLabel)
-			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
+		if(source.getFigure() instanceof WrappingLabel)
+			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
 		else {
-			return new LabelCellEditorLocator((Label) source.getFigure());
+			return new LabelCellEditorLocator((Label)source.getFigure());
 		}
 	}
 
@@ -300,10 +300,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
+			if(getWrapLabel().isTextWrapOn()
 					&& getWrapLabel().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width,
 						SWT.DEFAULT)));
@@ -313,7 +313,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
 						SWT.DEFAULT)).expand(avr * 2, 0));
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
@@ -348,14 +348,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
 			int avr = FigureUtilities.getFontMetrics(text.getFont())
 					.getAverageCharWidth();
 			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
 					SWT.DEFAULT)).expand(avr * 2, 0));
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}

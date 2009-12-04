@@ -32,7 +32,9 @@ public interface CommentPropertiesEditionPart {
 
 	/**
 	 * Defines a new body
-	 * @param newValue the new body to set
+	 * 
+	 * @param newValue
+	 *        the new body to set
 	 */
 	public void setBody(String newValue);
 
@@ -57,15 +59,21 @@ public interface CommentPropertiesEditionPart {
 
 	/**
 	 * Init the annotatedElement
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initAnnotatedElement(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the annotatedElement
-	 * @param newValue the annotatedElement to update
+	 * 
+	 * @param newValue
+	 *        the annotatedElement to update
 	 */
 	public void updateAnnotatedElement(EObject newValue);
 
@@ -73,7 +81,7 @@ public interface CommentPropertiesEditionPart {
 	 * Adds the given filter to the annotatedElement edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToAnnotatedElement(ViewerFilter filter);
@@ -82,7 +90,7 @@ public interface CommentPropertiesEditionPart {
 	 * Adds the given filter to the annotatedElement edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToAnnotatedElement(ViewerFilter filter);
@@ -91,11 +99,6 @@ public interface CommentPropertiesEditionPart {
 	 * @return true if the given element is contained inside the annotatedElement table
 	 */
 	public boolean isContainedInAnnotatedElementTable(EObject element);
-
-
-
-
-
 
 
 

@@ -59,11 +59,11 @@ public class CreateChildActionProvider extends AbstractSubmenuActionProvider {
 		ISelection selection = getContext().getSelection();
 		Collection<?> newChildDescriptors = null;
 		Object selectedElement = null;
-		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
-			selectedElement = ((IStructuredSelection) selection).getFirstElement();
+		if(selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
+			selectedElement = ((IStructuredSelection)selection).getFirstElement();
 
 			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
-			if (domain == null) {
+			if(domain == null) {
 				return;
 			}
 			newChildDescriptors = domain.getNewChildDescriptors(selectedElement, null);
@@ -81,14 +81,14 @@ public class CreateChildActionProvider extends AbstractSubmenuActionProvider {
 	 * Generate create child actions.
 	 * 
 	 * @param descriptors
-	 *            the descriptors
+	 *        the descriptors
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * 
 	 * @return the collection< i action>
 	 */
 	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
-		List<IAction> createChildActions = (List<IAction>) generateCreateChildActionsGen(descriptors, selection);
+		List<IAction> createChildActions = (List<IAction>)generateCreateChildActionsGen(descriptors, selection);
 
 		Collections.<IAction> sort(createChildActions, new Comparator<IAction>() {
 
@@ -104,17 +104,17 @@ public class CreateChildActionProvider extends AbstractSubmenuActionProvider {
 	 * Generate create child actions gen.
 	 * 
 	 * @param descriptors
-	 *            the descriptors
+	 *        the descriptors
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * 
 	 * @return the collection< i action>
 	 */
 	protected Collection<IAction> generateCreateChildActionsGen(Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
-		if (descriptors != null) {
-			for (Object descriptor : descriptors) {
-				if (descriptor instanceof CommandParameter) {
+		if(descriptors != null) {
+			for(Object descriptor : descriptors) {
+				if(descriptor instanceof CommandParameter) {
 					actions.add(new CreateChildAction(EditorUtils.getTransactionalEditingDomain(), selection,
 							descriptor));
 				}

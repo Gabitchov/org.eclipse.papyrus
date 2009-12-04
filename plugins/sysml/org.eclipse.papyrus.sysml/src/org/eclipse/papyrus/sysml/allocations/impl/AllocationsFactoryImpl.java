@@ -49,9 +49,9 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	 */
 	public static AllocationsFactory init() {
 		try {
-			AllocationsFactory theAllocationsFactory = (AllocationsFactory) EPackage.Registry.INSTANCE
+			AllocationsFactory theAllocationsFactory = (AllocationsFactory)EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations");
-			if (theAllocationsFactory != null) {
+			if(theAllocationsFactory != null) {
 				return theAllocationsFactory;
 			}
 		} catch (Exception exception) {
@@ -76,7 +76,7 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case AllocationsPackage.ALLOCATE:
 			return createAllocate();
 		case AllocationsPackage.ALLOCATED:
@@ -124,7 +124,7 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	 * @generated
 	 */
 	public AllocationsPackage getAllocationsPackage() {
-		return (AllocationsPackage) getEPackage();
+		return (AllocationsPackage)getEPackage();
 	}
 
 } // AllocationsFactoryImpl

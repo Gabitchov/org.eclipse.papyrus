@@ -70,7 +70,7 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		CreateElementRequestAdapter requestAdapter = request.getConnectionViewAndElementDescriptor()
 				.getCreateElementRequestAdapter();
 		// get the semantic request
-		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter
 				.getAdapter(CreateRelationshipRequest.class);
 
 		createElementRequest.setPrompt(!request.isUISupressed());
@@ -78,19 +78,19 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		// complete the semantic request by filling in the source and
 		// destination
 		INodeEditPart targetEP = getConnectionCompleteEditPart(request);
-		View sourceView = (View) request.getSourceEditPart().getModel();
-		View targetView = (View) targetEP.getModel();
+		View sourceView = (View)request.getSourceEditPart().getModel();
+		View targetView = (View)targetEP.getModel();
 
 		// resolve the source
 		EObject source = ViewUtil.resolveSemanticElement(sourceView);
-		if (source == null) {
+		if(source == null) {
 			source = sourceView;
 		}
 
 		// resolve the source parent (meaning graphical parent here)
-		View sourceParentView = (View) request.getSourceEditPart().getParent().getModel();
+		View sourceParentView = (View)request.getSourceEditPart().getParent().getModel();
 		EObject sourceParent = ViewUtil.resolveSemanticElement(sourceParentView);
-		if (sourceParent == null) {
+		if(sourceParent == null) {
 			sourceParent = sourceParentView;
 		}
 
@@ -99,14 +99,14 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 
 		// resolve the target
 		EObject target = ViewUtil.resolveSemanticElement(targetView);
-		if (target == null) {
+		if(target == null) {
 			target = targetView;
 		}
 
 		// resolve the source parent (meaning graphical parent here)
-		View targetParentView = (View) request.getTargetEditPart().getParent().getModel();
+		View targetParentView = (View)request.getTargetEditPart().getParent().getModel();
 		EObject targetParent = ViewUtil.resolveSemanticElement(targetParentView);
-		if (targetParent == null) {
+		if(targetParent == null) {
 			targetParent = targetParentView;
 		}
 
@@ -116,17 +116,17 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		// get the create element request based on the elementdescriptor's
 		// request
 		Command createElementCommand = targetEP.getCommand(new EditCommandRequestWrapper(
-				(CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class), request
-						.getExtendedData()));
+				(CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class), request
+				.getExtendedData()));
 
 		// create the create semantic element wrapper command
-		if (null == createElementCommand)
+		if(null == createElementCommand)
 			return null;
 
 		SemanticCreateCommand semanticCommand = new SemanticCreateCommand(requestAdapter, createElementCommand);
 		// get the view command
 		Command viewCommand = getConnectionCompleteCommand(request);
-		if (null == viewCommand)
+		if(null == viewCommand)
 			return null;
 		// form the compound command and return
 		CompositeCommand cc = new CompositeCommand(semanticCommand.getLabel());

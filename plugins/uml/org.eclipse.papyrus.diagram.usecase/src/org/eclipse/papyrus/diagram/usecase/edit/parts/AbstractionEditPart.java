@@ -44,12 +44,12 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AbstractionNameEditPart) {
-			((AbstractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof AbstractionNameEditPart) {
+			((AbstractionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if (childEditPart instanceof AppliedStereotypeAbstractionEditPart) {
-			((AppliedStereotypeAbstractionEditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof AppliedStereotypeAbstractionEditPart) {
+			((AppliedStereotypeAbstractionEditPart)childEditPart).setLabel(getPrimaryShape()
 					.getAppliedStereotypeLabel());
 			return true;
 		}
@@ -60,7 +60,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -70,10 +70,10 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AbstractionNameEditPart) {
+		if(childEditPart instanceof AbstractionNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AppliedStereotypeAbstractionEditPart) {
+		if(childEditPart instanceof AppliedStereotypeAbstractionEditPart) {
 			return true;
 		}
 		return false;
@@ -83,7 +83,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -105,7 +105,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

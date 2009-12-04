@@ -46,11 +46,11 @@ public class CreateElementAndInitializeFeatureCommand extends Command {
 	 * Instantiates a new creates the element and initialize feature command.
 	 * 
 	 * @param createCommand
-	 *            the create command
+	 *        the create command
 	 * @param feature
-	 *            the feature
+	 *        the feature
 	 * @param value
-	 *            the value
+	 *        the value
 	 */
 	public CreateElementAndInitializeFeatureCommand(CreateElementCommand createCommand, EReference feature, Object value) {
 		createElementCommand = createCommand;

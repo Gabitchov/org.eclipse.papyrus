@@ -44,7 +44,7 @@ public class OutlineDragAdapter implements DragSourceListener {
 	 * Constructs a new drag adapter.
 	 * 
 	 * @param provider
-	 *            the object that provide the selected object
+	 *        the object that provide the selected object
 	 */
 	public OutlineDragAdapter(ISelectionProvider provider) {
 		selectionProvider = provider;
@@ -76,7 +76,7 @@ public class OutlineDragAdapter implements DragSourceListener {
 	 */
 	public void dragSetData(DragSourceEvent event) {
 		ISelection selection = LocalSelectionTransfer.getTransfer().getSelection();
-		if (LocalSelectionTransfer.getTransfer().isSupportedType(event.dataType)) {
+		if(LocalSelectionTransfer.getTransfer().isSupportedType(event.dataType)) {
 			event.data = selection;
 		} else {
 			event.doit = false;
@@ -91,7 +91,7 @@ public class OutlineDragAdapter implements DragSourceListener {
 	public void dragStart(DragSourceEvent event) {
 		try {
 			ISelection selection = getSelection();
-			if (!selection.isEmpty()) {
+			if(!selection.isEmpty()) {
 				LocalSelectionTransfer.getTransfer().setSelection(selection);
 				event.doit = true;
 				event.data = getSelection();
@@ -111,13 +111,13 @@ public class OutlineDragAdapter implements DragSourceListener {
 	 * @return the list of selected model elements
 	 */
 	protected IStructuredSelection getSelection() {
-		IStructuredSelection selection = (IStructuredSelection) selectionProvider.getSelection();
+		IStructuredSelection selection = (IStructuredSelection)selectionProvider.getSelection();
 		List<Object> transferData = new ArrayList<Object>();
 		Iterator<?> it = selection.iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			Object sel = it.next();
 			// Ignore diagram objects
-			if ((sel instanceof IWrapperItemProvider || sel instanceof FeatureMap.Entry || sel instanceof EObject) /* && !(sel instanceof View) */) {
+			if((sel instanceof IWrapperItemProvider || sel instanceof FeatureMap.Entry || sel instanceof EObject) /* && !(sel instanceof View) */) {
 				transferData.add(AdapterFactoryEditingDomain.unwrap(sel));
 			}
 		}

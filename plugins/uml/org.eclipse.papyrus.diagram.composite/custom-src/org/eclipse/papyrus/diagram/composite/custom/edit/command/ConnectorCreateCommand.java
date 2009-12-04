@@ -64,11 +64,11 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	 * Constructor of Connector custom creation command
 	 * 
 	 * @param req
-	 *            the creation request
+	 *        the creation request
 	 * @param source
-	 *            the connector source element
+	 *        the connector source element
 	 * @param target
-	 *            the connector target element
+	 *        the connector target element
 	 */
 	public ConnectorCreateCommand(CreateRelationshipRequest req, EObject source, EObject target) {
 
@@ -78,12 +78,12 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 
 		// Resolve graphical parents of source and target store in request as Parameters
 		// These parameters are added in request by (custom) GraphicalNodeEditPolicy
-		if (req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT) instanceof Property) {
-			sourcePartWithPort = (Property) req
+		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT) instanceof Property) {
+			sourcePartWithPort = (Property)req
 					.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT);
 		}
-		if (req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT) instanceof Property) {
-			targetPartWithPort = (Property) req
+		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT) instanceof Property) {
+			targetPartWithPort = (Property)req
 					.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT);
 		}
 	}
@@ -94,7 +94,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	 * @return the element that is graphically connected to Connector as source
 	 */
 	protected ConnectableElement _getSource() {
-		return (ConnectableElement) source;
+		return (ConnectableElement)source;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	 * @return the element that is graphically connected to Connector as target
 	 */
 	protected ConnectableElement _getTarget() {
-		return (ConnectableElement) target;
+		return (ConnectableElement)target;
 	}
 
 	/**
@@ -115,20 +115,20 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	 */
 	@Override
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof ConnectableElement) {
+		if(source != null && false == source instanceof ConnectableElement) {
 			return false;
 		}
-		if (target != null && false == target instanceof ConnectableElement) {
+		if(target != null && false == target instanceof ConnectableElement) {
 			return false;
 		}
-		if (_getSource() == null) {
+		if(_getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
+		if(getContainer() == null) {
 			return false;
 		}
 		// return
@@ -148,31 +148,31 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException(Messages.ConnectorCreateCommand_INVALID_ARGS_MSG);
 		}
 		Connector newElement = UMLFactory.eINSTANCE.createConnector();
 		getContainer().getOwnedConnectors().add(newElement);
 
 		ConnectorEnd end0 = UMLFactory.eINSTANCE.createConnectorEnd();
-		if (_getSource() instanceof Port) {
-			end0.setRole((Port) _getSource());
+		if(_getSource() instanceof Port) {
+			end0.setRole((Port)_getSource());
 			end0.setPartWithPort(sourcePartWithPort);
 
-		} else if (_getSource() instanceof ConnectableElement) {
-			end0.setRole((ConnectableElement) _getSource());
+		} else if(_getSource() instanceof ConnectableElement) {
+			end0.setRole((ConnectableElement)_getSource());
 
 		} else {
 			throw new ExecutionException(Messages.ConnectorCreateCommand_INVALID_SOURCE_MSG);
 		}
 
 		ConnectorEnd end1 = UMLFactory.eINSTANCE.createConnectorEnd();
-		if (_getTarget() instanceof Port) {
-			end1.setRole((Port) _getTarget());
+		if(_getTarget() instanceof Port) {
+			end1.setRole((Port)_getTarget());
 			end1.setPartWithPort(targetPartWithPort);
 
-		} else if (_getTarget() instanceof ConnectableElement) {
-			end1.setRole((ConnectableElement) _getTarget());
+		} else if(_getTarget() instanceof ConnectableElement) {
+			end1.setRole((ConnectableElement)_getTarget());
 
 		} else {
 			throw new ExecutionException(Messages.ConnectorCreateCommand_INVALID_TARGET_MSG);
@@ -184,7 +184,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 		UMLElementTypes.init_Connector_4013(newElement);
 
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -200,14 +200,14 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	@Override
 	protected void doConfigure(Connector newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, _getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, _getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

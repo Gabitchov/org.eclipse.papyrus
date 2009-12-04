@@ -27,9 +27,9 @@ public class EmbeddedEditorInput extends URIEditorInput {
 	 * Creates a new EmbeddedEditorInput.
 	 * 
 	 * @param uri
-	 *            the uri of the file edited by the parent editor of the embedded editor
+	 *        the uri of the file edited by the parent editor of the embedded editor
 	 * @param editedObject
-	 *            the current edited object
+	 *        the current edited object
 	 */
 	public EmbeddedEditorInput(URI uri, EObject editedObject) {
 		super(uri);

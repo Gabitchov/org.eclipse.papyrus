@@ -32,21 +32,21 @@ import java.util.List;
  */
 public final class AnnotationDeclaration extends TypeDeclaration {
 
-    public AnnotationDeclaration() {
-    }
+	public AnnotationDeclaration() {
+	}
 
-    public AnnotationDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, int modifiers, List<AnnotationExpr> annotations, String name, List<BodyDeclaration> members) {
-        super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc, name, modifiers, members);
-    }
+	public AnnotationDeclaration(int beginLine, int beginColumn, int endLine, int endColumn, JavadocComment javaDoc, int modifiers, List<AnnotationExpr> annotations, String name, List<BodyDeclaration> members) {
+		super(beginLine, beginColumn, endLine, endColumn, annotations, javaDoc, name, modifiers, members);
+	}
 
-    @Override
-    public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
-        return v.visit(this, arg);
-    }
+	@Override
+	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
+		return v.visit(this, arg);
+	}
 
-    @Override
-    public <A> void accept(VoidVisitor<A> v, A arg) {
-        v.visit(this, arg);
-    }
+	@Override
+	public <A> void accept(VoidVisitor<A> v, A arg) {
+		v.visit(this, arg);
+	}
 
 }

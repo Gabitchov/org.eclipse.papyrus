@@ -59,10 +59,10 @@ public class RoleBindingRoleNameParser implements ISemanticParser {
 	 * </pre>
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject eObject) {
-		Dependency binding = (Dependency) eObject;
+		Dependency binding = (Dependency)eObject;
 		List<EObject> result = new LinkedList<EObject>();
 
-		if (!binding.getClients().isEmpty()) {
+		if(!binding.getClients().isEmpty()) {
 			NamedElement role = binding.getClients().get(0);
 			result.add(role);
 		}
@@ -106,7 +106,7 @@ public class RoleBindingRoleNameParser implements ISemanticParser {
 	public String getPrintString(IAdaptable element, int flags) {
 		Dependency binding = doAdapt(element);
 
-		if (!binding.getClients().isEmpty()) {
+		if(!binding.getClients().isEmpty()) {
 			NamedElement role = binding.getClients().get(0);
 			return role.getName();
 		} // else
@@ -135,11 +135,11 @@ public class RoleBindingRoleNameParser implements ISemanticParser {
 	 * Adapt object to {@link Dependency}
 	 * 
 	 * @param adaptable
-	 *            the object to adapt
+	 *        the object to adapt
 	 * @return the {@link Dependency} adapted from the adaptable
 	 */
 	private Dependency doAdapt(IAdaptable adaptable) {
-		Dependency element = (Dependency) adaptable.getAdapter(EObject.class);
+		Dependency element = (Dependency)adaptable.getAdapter(EObject.class);
 		return element;
 	}
 

@@ -81,12 +81,12 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	@Override
 	public boolean updateSelection(IStructuredSelection selection) {
 		ISelection unwrappedselection = NavigatorUtils.unwrapSelection(selection);
-		if (unwrappedselection instanceof StructuredSelection) {
-			StructuredSelection structuredSelection = (StructuredSelection) unwrappedselection;
-			if (structuredSelection.size() == 1) {
+		if(unwrappedselection instanceof StructuredSelection) {
+			StructuredSelection structuredSelection = (StructuredSelection)unwrappedselection;
+			if(structuredSelection.size() == 1) {
 				Object selectedObject = structuredSelection.getFirstElement();
-				if (selectedObject instanceof NamedElement) {
-					setSelectedNamedElement((NamedElement) selectedObject);
+				if(selectedObject instanceof NamedElement) {
+					setSelectedNamedElement((NamedElement)selectedObject);
 					return super.updateSelection(selection);
 				}
 			}
@@ -101,7 +101,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	@Override
 	public Command createCommand(Collection<?> selection) {
 		TransactionalEditingDomain domain = getTransactionalEditingDomain();
-		if (domain == null) {
+		if(domain == null) {
 			return null;
 		}
 		return new RecordingCommand(domain) {
@@ -110,7 +110,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 			protected void doExecute() {
 				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(),
 						"Rename an existing diagram", "New name:", getSelectedNamedElement().getName(), null);
-				if (dialog.open() == Window.OK) {
+				if(dialog.open() == Window.OK) {
 					final String name = dialog.getValue();
 					getSelectedNamedElement().setName(name);
 				}
@@ -124,8 +124,8 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	 * @return
 	 */
 	protected TransactionalEditingDomain getTransactionalEditingDomain() {
-		if (getEditingDomain() instanceof TransactionalEditingDomain) {
-			return (TransactionalEditingDomain) getEditingDomain();
+		if(getEditingDomain() instanceof TransactionalEditingDomain) {
+			return (TransactionalEditingDomain)getEditingDomain();
 		}
 		return null;
 	}
@@ -136,8 +136,8 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	 * @param workbenchPart
 	 */
 	public void setActiveWorkbenchPart(IWorkbenchPart workbenchPart) {
-		if (workbenchPart instanceof IEditingDomainProvider) {
-			domain = ((IEditingDomainProvider) workbenchPart).getEditingDomain();
+		if(workbenchPart instanceof IEditingDomainProvider) {
+			domain = ((IEditingDomainProvider)workbenchPart).getEditingDomain();
 		}
 	}
 }

@@ -40,7 +40,7 @@ public class IntervalConstraintPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode) {
-		if (eObject instanceof IntervalConstraint) {
+		if(eObject instanceof IntervalConstraint) {
 			return new IntervalConstraintPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;
@@ -53,10 +53,10 @@ public class IntervalConstraintPropertiesEditionProvider implements IPropertiesE
 	 *      java.lang.String, java.lang.String)
 	 */
 	public IPropertiesEditionComponent getPropertiesEditionComponent(EObject eObject, String editing_mode, String part) {
-		if (eObject instanceof IntervalConstraint) {
-			if (IntervalConstraintBasePropertiesEditionComponent.BASE_PART.equals(part))
+		if(eObject instanceof IntervalConstraint) {
+			if(IntervalConstraintBasePropertiesEditionComponent.BASE_PART.equals(part))
 				return new IntervalConstraintBasePropertiesEditionComponent(eObject, editing_mode);
-			if (ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
+			if(ElementPropertiesEditionComponent.COMMENTS_PART.equals(part))
 				return new ElementPropertiesEditionComponent(eObject, editing_mode);
 		}
 		return null;

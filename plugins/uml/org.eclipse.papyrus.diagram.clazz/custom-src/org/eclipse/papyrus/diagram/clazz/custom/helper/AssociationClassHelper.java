@@ -78,7 +78,7 @@ public class AssociationClassHelper extends ElementHelper {
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
+		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
 		targetProperty.setType(target);
 		targetProperty.setName(target.getName().toLowerCase());
 		targetProperty.setLower(1);
@@ -91,21 +91,21 @@ public class AssociationClassHelper extends ElementHelper {
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
+		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
 		sourceProperty.setType(source);
 		sourceProperty.setName(source.getName().toLowerCase());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
-		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property) sourceProperty));
+		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, ((Property)sourceProperty));
 		} else {
-			association.getMemberEnds().add(0, ((Property) sourceProperty));
+			association.getMemberEnds().add(0, ((Property)sourceProperty));
 		}
-		if ((memberEnds.indexOf(((Property) targetProperty)) >= 0)) {
-			association.getMemberEnds().move(1, ((Property) targetProperty));
+		if((memberEnds.indexOf(((Property)targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, ((Property)targetProperty));
 		} else {
-			association.getMemberEnds().add(1, ((Property) targetProperty));
+			association.getMemberEnds().add(1, ((Property)targetProperty));
 		}
 
 		container.getPackagedElements().add(association);
@@ -118,7 +118,7 @@ public class AssociationClassHelper extends ElementHelper {
 	 * Instantiates a new association class helper.
 	 * 
 	 * @param editDomain
-	 *            the edit domain
+	 *        the edit domain
 	 */
 	public AssociationClassHelper(TransactionalEditingDomain editDomain) {
 		this.editDomain = editDomain;
@@ -128,15 +128,15 @@ public class AssociationClassHelper extends ElementHelper {
 	 * Drop association class.
 	 * 
 	 * @param associationClass
-	 *            the association class the semantic element
+	 *        the association class the semantic element
 	 * @param viewer
-	 *            the viewer
+	 *        the viewer
 	 * @param diagramPreferencesHint
-	 *            the diagram preferences hint
+	 *        the diagram preferences hint
 	 * @param location
-	 *            the location of the drop
+	 *        the location of the drop
 	 * @param containerView
-	 *            the container view that will contain the associationClass views
+	 *        the container view that will contain the associationClass views
 	 * 
 	 * @return the command
 	 */
@@ -151,7 +151,7 @@ public class AssociationClassHelper extends ElementHelper {
 		// finally the branch
 		Iterator<Property> iteratorProp = endToDisplay.iterator();
 		int index = 0;
-		while (iteratorProp.hasNext()) {
+		while(iteratorProp.hasNext()) {
 
 			// source editPart
 			EditPart sourceEditPart = null;
@@ -162,13 +162,13 @@ public class AssociationClassHelper extends ElementHelper {
 			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
 			Iterator<EditPart> editPartIterator = editPartSet.iterator();
 
-			while (editPartIterator.hasNext() && sourceEditPart == null) {
+			while(editPartIterator.hasNext() && sourceEditPart == null) {
 
 				EditPart currentEditPart = editPartIterator.next();
 
-				if ((!(currentEditPart instanceof CompartmentEditPart)) && currentEditPart instanceof GraphicalEditPart
-						&& currentEnd.getType().equals(((GraphicalEditPart) currentEditPart).resolveSemanticElement())) {
-					endEditPart[index] = (GraphicalEditPart) currentEditPart;
+				if((!(currentEditPart instanceof CompartmentEditPart)) && currentEditPart instanceof GraphicalEditPart
+						&& currentEnd.getType().equals(((GraphicalEditPart)currentEditPart).resolveSemanticElement())) {
+					endEditPart[index] = (GraphicalEditPart)currentEditPart;
 				}
 
 			}
@@ -176,7 +176,7 @@ public class AssociationClassHelper extends ElementHelper {
 		}
 		// descriptor for the branch
 		ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4019,
-				((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), diagramPreferencesHint);
+				((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), diagramPreferencesHint);
 
 		// 2. creation of the associationClass Node without semantic element
 		// creation of the node
@@ -188,8 +188,8 @@ public class AssociationClassHelper extends ElementHelper {
 				containerView);
 		cc.compose(associationClassNodeCreationCommand);
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-				(IAdaptable) associationClassNodeCreationCommand.getCommandResult().getReturnValue(), new Point(
-						location.x, location.y - 100));
+				(IAdaptable)associationClassNodeCreationCommand.getCommandResult().getReturnValue(), new Point(
+				location.x, location.y - 100));
 		cc.compose(setBoundsCommand);
 
 		IAdaptable sourceAdapter = null;
@@ -197,7 +197,7 @@ public class AssociationClassHelper extends ElementHelper {
 		// 3. creation of the dashed line between the associationClass link
 		// and associationClass Node
 		// target
-		if (endEditPart[0] == null) {
+		if(endEditPart[0] == null) {
 			// creation of the node
 			ViewDescriptor _descriptor = new ViewDescriptor(new EObjectAdapter(endToDisplay.get(0)), Node.class, null,
 					ViewUtil.APPEND, false, diagramPreferencesHint);
@@ -205,16 +205,16 @@ public class AssociationClassHelper extends ElementHelper {
 			// get the command and execute it.
 			CreateCommand endNodeCreationCommand = new CreateCommand(getEditingDomain(), _descriptor, containerView);
 			cc.compose(endNodeCreationCommand);
-			setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable) endNodeCreationCommand
+			setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)endNodeCreationCommand
 					.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100));
 			cc.compose(setBoundsCommand);
 
-			sourceAdapter = (IAdaptable) endNodeCreationCommand.getCommandResult().getReturnValue();
+			sourceAdapter = (IAdaptable)endNodeCreationCommand.getCommandResult().getReturnValue();
 		} else {
 			sourceAdapter = new SemanticAdapter(null, endEditPart[0].getModel());
 		}
 
-		if (endEditPart[1] == null) {
+		if(endEditPart[1] == null) {
 			// creation of the node
 			ViewDescriptor _descriptor = new ViewDescriptor(new EObjectAdapter(endToDisplay.get(2)), Node.class, null,
 					ViewUtil.APPEND, false, diagramPreferencesHint);
@@ -222,10 +222,10 @@ public class AssociationClassHelper extends ElementHelper {
 			// get the command and execute it.
 			CreateCommand endNodeCreationCommand = new CreateCommand(getEditingDomain(), _descriptor, containerView);
 			cc.compose(endNodeCreationCommand);
-			setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable) endNodeCreationCommand
+			setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)endNodeCreationCommand
 					.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
 			cc.compose(setBoundsCommand);
-			targetAdapter = (IAdaptable) endNodeCreationCommand.getCommandResult().getReturnValue();
+			targetAdapter = (IAdaptable)endNodeCreationCommand.getCommandResult().getReturnValue();
 
 		} else {
 			targetAdapter = new SemanticAdapter(null, endEditPart[1].getModel());
@@ -233,10 +233,10 @@ public class AssociationClassHelper extends ElementHelper {
 
 		// create association link
 		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.AssociationClass_4017,
-				((IHintedType) UMLElementTypes.AssociationClass_4017).getSemanticHint(), diagramPreferencesHint);
+				((IHintedType)UMLElementTypes.AssociationClass_4017).getSemanticHint(), diagramPreferencesHint);
 		// Creation of the associationLink
 		CustomDeferredCreateConnectionViewCommand associationcClassLinkCommand = new CustomDeferredCreateConnectionViewCommand(
-				getEditingDomain(), ((IHintedType) UMLElementTypes.AssociationClass_4017).getSemanticHint(),
+				getEditingDomain(), ((IHintedType)UMLElementTypes.AssociationClass_4017).getSemanticHint(),
 				sourceAdapter, targetAdapter, viewer, diagramPreferencesHint, viewDescriptor, null);
 		associationcClassLinkCommand.setElement(associationClass);
 		cc.compose(associationcClassLinkCommand);
@@ -244,11 +244,11 @@ public class AssociationClassHelper extends ElementHelper {
 		// creation of the dashedLine
 
 		ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Link_4016,
-				((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(), diagramPreferencesHint);
+				((IHintedType)UMLElementTypes.Link_4016).getSemanticHint(), diagramPreferencesHint);
 		CustomDeferredCreateConnectionViewCommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(
-				getEditingDomain(), ((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(),
-				((IAdaptable) associationcClassLinkCommand.getCommandResult().getReturnValue()),
-				((IAdaptable) associationClassNodeCreationCommand.getCommandResult().getReturnValue()), viewer,
+				getEditingDomain(), ((IHintedType)UMLElementTypes.Link_4016).getSemanticHint(),
+				((IAdaptable)associationcClassLinkCommand.getCommandResult().getReturnValue()),
+				((IAdaptable)associationClassNodeCreationCommand.getCommandResult().getReturnValue()), viewer,
 				diagramPreferencesHint, dashedLineViewDescriptor, null);
 		dashedLineCmd.setElement(associationClass);
 		cc.compose(dashedLineCmd);
@@ -261,16 +261,16 @@ public class AssociationClassHelper extends ElementHelper {
 	 * AssociationClass.
 	 * 
 	 * @param createConnectionViewAndElementRequest
-	 *            the create connection view and element request
+	 *        the create connection view and element request
 	 * @param command
-	 *            the command that is used to create the link associationClass
+	 *        the command that is used to create the link associationClass
 	 * 
 	 * @return the set of command to create an association Class
 	 */
 	public Command getAssociationClassElementCommand(
 			CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, Command command) {
-		if (command instanceof ICommandProxy) {
-			GraphicalEditPart sourceEditPart = (GraphicalEditPart) createConnectionViewAndElementRequest
+		if(command instanceof ICommandProxy) {
+			GraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewAndElementRequest
 					.getSourceEditPart();
 
 			// 1. calculus of the position of the associationClass node
@@ -281,23 +281,23 @@ public class AssociationClassHelper extends ElementHelper {
 			p = p.translate(100, offset);
 
 			// 2. creation of the associationClass Node without semantic element
-			GraphicalEditPart parent = (GraphicalEditPart) sourceEditPart.getParent();
+			GraphicalEditPart parent = (GraphicalEditPart)sourceEditPart.getParent();
 			AssociationClassViewCreateCommand assCommand = new AssociationClassViewCreateCommand(
-					createConnectionViewAndElementRequest, getEditingDomain(), (View) parent.getModel(),
-					(EditPartViewer) sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), p);
+					createConnectionViewAndElementRequest, getEditingDomain(), (View)parent.getModel(),
+					(EditPartViewer)sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), p);
 			command = command.chain(new ICommandProxy(assCommand));
 
 			// 3. creation of the dashed line between the associationClass link
 			// and associationClass Node
 			// target
-			IAdaptable associationClassLinkViewAdapter = (IAdaptable) (createConnectionViewAndElementRequest
+			IAdaptable associationClassLinkViewAdapter = (IAdaptable)(createConnectionViewAndElementRequest
 					.getNewObject());
 
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Link_4016,
-					((INotationType) UMLElementTypes.Link_4016).getSemanticHint(), sourceEditPart
-							.getDiagramPreferencesHint());
+					((INotationType)UMLElementTypes.Link_4016).getSemanticHint(), sourceEditPart
+					.getDiagramPreferencesHint());
 			ICommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(),
-					((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(), associationClassLinkViewAdapter, null,
+					((IHintedType)UMLElementTypes.Link_4016).getSemanticHint(), associationClassLinkViewAdapter, null,
 					sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), viewDescriptor, assCommand);
 
 			command = command.chain(new ICommandProxy(dashedLineCmd));

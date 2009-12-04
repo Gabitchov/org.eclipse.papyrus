@@ -70,20 +70,20 @@ public class Message4CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Element) {
+		if(source != null && false == source instanceof Element) {
 			return false;
 		}
-		if (target != null && false == target instanceof Element) {
+		if(target != null && false == target instanceof Element) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
+		if(getContainer() == null) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4006(getContainer(), getSource(),
@@ -96,13 +96,13 @@ public class Message4CreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
 		// Retrieve container of call event which is an instance of Package
 		Package eventContainer = CommandHelper.getEventContainer(container.getOwner());
-		if (eventContainer != null) {
+		if(eventContainer != null) {
 			Message newElement = container.createMessage("");
 			newElement.setMessageSort(MessageSort.CREATE_MESSAGE_LITERAL);
 			ElementInitializers.init_Message_4006(newElement);
@@ -115,14 +115,14 @@ public class Message4CreateCommand extends EditElementCommand {
 			msgOccurenceInvocationStart.setMessage(newElement);
 			newElement.setSendEvent(msgOccurenceInvocationStart);
 
-			Element diagramSource = (Element) getSource();
+			Element diagramSource = (Element)getSource();
 			Lifeline sourceLifeline = null;
-			if (diagramSource instanceof ExecutionSpecification) {
-				ExecutionSpecification es = (ExecutionSpecification) diagramSource;
+			if(diagramSource instanceof ExecutionSpecification) {
+				ExecutionSpecification es = (ExecutionSpecification)diagramSource;
 				sourceLifeline = es.getCovereds().get(0);
 				es.setStart(msgOccurenceInvocationStart);
-			} else if (diagramSource instanceof Lifeline) {
-				sourceLifeline = (Lifeline) diagramSource;
+			} else if(diagramSource instanceof Lifeline) {
+				sourceLifeline = (Lifeline)diagramSource;
 			}
 			CommandHelper.setSingleCovered(sourceLifeline, msgOccurenceInvocationStart);
 
@@ -130,10 +130,10 @@ public class Message4CreateCommand extends EditElementCommand {
 					container, CommandHelper.createCreationEvent(eventContainer));
 			msgOccurenceInvocationEnd.setMessage(newElement);
 			newElement.setReceiveEvent(msgOccurenceInvocationEnd);
-			CommandHelper.setSingleCovered((Lifeline) getTarget(), msgOccurenceInvocationEnd);
+			CommandHelper.setSingleCovered((Lifeline)getTarget(), msgOccurenceInvocationEnd);
 
 			doConfigure(newElement, monitor, info);
-			((CreateElementRequest) getRequest()).setNewElement(newElement);
+			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}
 
@@ -144,14 +144,14 @@ public class Message4CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(Message newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -167,14 +167,14 @@ public class Message4CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Element getSource() {
-		return (Element) source;
+		return (Element)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getTarget() {
-		return (Element) target;
+		return (Element)target;
 	}
 
 	/**
@@ -194,9 +194,9 @@ public class Message4CreateCommand extends EditElementCommand {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof Interaction) {
-				return (Interaction) element;
+		for(EObject element = source; element != null; element = element.eContainer()) {
+			if(element instanceof Interaction) {
+				return (Interaction)element;
 			}
 		}
 		return null;

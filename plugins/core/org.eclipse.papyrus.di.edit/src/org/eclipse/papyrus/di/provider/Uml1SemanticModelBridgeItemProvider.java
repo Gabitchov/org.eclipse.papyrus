@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.di.provider;
 
 
@@ -35,20 +35,23 @@ import org.eclipse.papyrus.di.Uml1SemanticModelBridge;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.di.Uml1SemanticModelBridge} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class Uml1SemanticModelBridgeItemProvider
-	extends SemanticModelBridgeItemProvider
-	implements
+		extends SemanticModelBridgeItemProvider
+		implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Uml1SemanticModelBridgeItemProvider(AdapterFactory adapterFactory) {
@@ -59,11 +62,12 @@ public class Uml1SemanticModelBridgeItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addElementPropertyDescriptor(object);
@@ -75,28 +79,30 @@ public class Uml1SemanticModelBridgeItemProvider
 	 * This adds a property descriptor for the Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+				(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Uml1SemanticModelBridge_element_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Uml1SemanticModelBridge_element_feature", "_UI_Uml1SemanticModelBridge_type"),
-				 DiPackage.Literals.UML1_SEMANTIC_MODEL_BRIDGE__ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+				getResourceLocator(),
+				getString("_UI_Uml1SemanticModelBridge_element_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Uml1SemanticModelBridge_element_feature", "_UI_Uml1SemanticModelBridge_type"),
+				DiPackage.Literals.UML1_SEMANTIC_MODEL_BRIDGE__ELEMENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
 	 * This returns Uml1SemanticModelBridge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,14 +114,15 @@ public class Uml1SemanticModelBridgeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Uml1SemanticModelBridge)object).getPresentation();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Uml1SemanticModelBridge_type") :
-			getString("_UI_Uml1SemanticModelBridge_type") + " " + label;
+				getString("_UI_Uml1SemanticModelBridge_type") :
+				getString("_UI_Uml1SemanticModelBridge_type") + " " + label;
 	}
 
 	/**
@@ -123,6 +130,7 @@ public class Uml1SemanticModelBridgeItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,6 +144,7 @@ public class Uml1SemanticModelBridgeItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

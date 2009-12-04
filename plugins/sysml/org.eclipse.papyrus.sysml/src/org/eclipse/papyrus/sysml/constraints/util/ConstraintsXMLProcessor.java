@@ -46,7 +46,7 @@ public class ConstraintsXMLProcessor extends XMLProcessor {
 	 */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
+		if(registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new ConstraintsResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new ConstraintsResourceFactoryImpl());

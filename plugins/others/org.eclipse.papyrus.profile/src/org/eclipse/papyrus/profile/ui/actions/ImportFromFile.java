@@ -44,7 +44,7 @@ public class ImportFromFile extends AbstractViewActionDelegate {
 	 * Run.
 	 * 
 	 * @param action
-	 *            the action
+	 *        the action
 	 */
 	@Override
 	public void run(IAction action) {
@@ -61,40 +61,41 @@ public class ImportFromFile extends AbstractViewActionDelegate {
 		// User selection
 		Object[] selection = chooseLib.getResult();
 
-		if (selection == null) { // Cancel was selected
+		if(selection == null) { // Cancel was selected
 			return;
 		}
 
 		ResourceSet resourceSet = Util.getResourceSet(selectedElement);
 		// Parse selection and add ModelLibrary files
-		for (int i = 0; i < selection.length; i++) {
+		for(int i = 0; i < selection.length; i++) {
 
-			if (selection[i] instanceof IFile) {
+			if(selection[i] instanceof IFile) {
 
-				IFile currentFile = (IFile) selection[i];
+				IFile currentFile = (IFile)selection[i];
 
 				URI modelUri = URI.createURI("platform:/resource" + currentFile.getFullPath());
 				Resource modelResource = resourceSet.getResource(modelUri, true);
 
-				PackageImportTreeSelectionDialog eisd = new PackageImportTreeSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package) modelResource.getContents()
+				PackageImportTreeSelectionDialog eisd = new PackageImportTreeSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package)modelResource.getContents()
 						.get(0)));
 				int ret = eisd.open();
 
-				if (ret == Window.OK) {
+				if(ret == Window.OK) {
 					ArrayList result = eisd.getResult();
 					Iterator resultIter = result.iterator();
-					while (resultIter.hasNext()) {
-						Element element = (Element) resultIter.next();
+					while(resultIter.hasNext()) {
+						Element element = (Element)resultIter.next();
 						PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
-						ei.setImportedPackage((Package) element);
-						((Package) selectedElement).getPackageImports().add(ei);
+						ei.setImportedPackage((Package)element);
+						((Package)selectedElement).getPackageImports().add(ei);
 					}
 				}
 
 				/*
 				 * Element root = (Element) modelResource.getContents().get(0);
 				 * 
-				 * // Import model library Package libToImport = (Package) root; // create import package PackageImport pi = UMLFactory.eINSTANCE.createPackageImport();
+				 * // Import model library Package libToImport = (Package) root; // create import package PackageImport pi =
+				 * UMLFactory.eINSTANCE.createPackageImport();
 				 * pi.setImportedPackage(libToImport); ((Package) selectedElement).getPackageImports().add(pi);
 				 */
 			}

@@ -34,7 +34,7 @@ public class InstanceSpecificationSlotCompartmentItemSemanticEditPolicy extends 
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Slot_3030 == req.getElementType()) {
+		if(UMLElementTypes.Slot_3030 == req.getElementType()) {
 			return getGEFWrapper(new SlotCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

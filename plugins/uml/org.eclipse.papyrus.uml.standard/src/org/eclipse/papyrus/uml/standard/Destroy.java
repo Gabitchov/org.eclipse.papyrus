@@ -23,8 +23,7 @@ import org.eclipse.uml2.uml.BehavioralFeature;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature <em>Base Behavioral
- * Feature</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature <em>Base Behavioral Feature</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +37,7 @@ public interface Destroy extends EObject {
 	 * Returns the value of the '<em><b>Base Behavioral Feature</b></em>' reference. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Behavioral Feature</em>' reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Base Behavioral Feature</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -52,12 +50,11 @@ public interface Destroy extends EObject {
 	BehavioralFeature getBase_BehavioralFeature();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature
+	 * Sets the value of the ' {@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature
 	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Base Behavioral Feature</em>' reference.
+	 *        the new value of the '<em>Base Behavioral Feature</em>' reference.
 	 * @see #getBase_BehavioralFeature()
 	 * @generated
 	 */

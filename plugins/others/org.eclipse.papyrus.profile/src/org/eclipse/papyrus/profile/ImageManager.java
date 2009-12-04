@@ -173,19 +173,19 @@ public class ImageManager {
 	 * By default, it returns a default image. This image is the image placed in the directory <em>resources/icons/default.gif</em>
 	 * 
 	 * @param key
-	 *            the key of the image
+	 *        the key of the image
 	 * 
 	 * @return the Image
 	 */
 	public static Image getImage(String key) {
 		ImageRegistry registry = Activator.getDefault().getImageRegistry();
 		Image image = registry.get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(org.eclipse.papyrus.profile.Activator.PLUGIN_ID, key);
 			registry.put(key, desc);
 			image = registry.get(key);
 		}
-		if ((image == null) && !key.equals(DEFAULT_IMAGE)) {
+		if((image == null) && !key.equals(DEFAULT_IMAGE)) {
 			image = getImage(DEFAULT_IMAGE);
 		}
 

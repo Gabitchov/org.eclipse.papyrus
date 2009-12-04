@@ -138,7 +138,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 				// }
 				EditPolicy result = child
 						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -167,37 +167,37 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 * @generated
 	 */
 	public SubmachineStateFigure getPrimaryShape() {
-		return (SubmachineStateFigure) primaryShape;
+		return (SubmachineStateFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof StateName5EditPart) {
-			((StateName5EditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof StateName5EditPart) {
+			((StateName5EditPart)childEditPart).setLabel(getPrimaryShape()
 					.getFigureSubmachineState_machineName());
 			return true;
 		}
-		if (childEditPart instanceof StateName6EditPart) {
-			((StateName6EditPart) childEditPart).setLabel(getPrimaryShape()
+		if(childEditPart instanceof StateName6EditPart) {
+			((StateName6EditPart)childEditPart).setLabel(getPrimaryShape()
 					.getFigureSubmachineStereotypesLabal());
 			return true;
 		}
-		if (childEditPart instanceof ConnectionPointReferenceEditPart) {
+		if(childEditPart instanceof ConnectionPointReferenceEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
 					PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(
-					((ConnectionPointReferenceEditPart) childEditPart)
-							.getFigure(), locator);
+					((ConnectionPointReferenceEditPart)childEditPart)
+					.getFigure(), locator);
 			return true;
 		}
-		if (childEditPart instanceof ConnectionPointReference2EditPart) {
+		if(childEditPart instanceof ConnectionPointReference2EditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
 					PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(
-					((ConnectionPointReference2EditPart) childEditPart)
-							.getFigure(), locator);
+					((ConnectionPointReference2EditPart)childEditPart)
+					.getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -208,16 +208,16 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
-		if (childEditPart instanceof ConnectionPointReferenceEditPart) {
+		if(childEditPart instanceof ConnectionPointReferenceEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(
-					((ConnectionPointReferenceEditPart) childEditPart)
-							.getFigure());
+					((ConnectionPointReferenceEditPart)childEditPart)
+					.getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ConnectionPointReference2EditPart) {
+		if(childEditPart instanceof ConnectionPointReference2EditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(
-					((ConnectionPointReference2EditPart) childEditPart)
-							.getFigure());
+					((ConnectionPointReference2EditPart)childEditPart)
+					.getFigure());
 			return true;
 		}
 		return false;
@@ -228,7 +228,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -239,7 +239,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -251,10 +251,10 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
-		if (editPart instanceof ConnectionPointReferenceEditPart) {
+		if(editPart instanceof ConnectionPointReferenceEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
-		if (editPart instanceof ConnectionPointReference2EditPart) {
+		if(editPart instanceof ConnectionPointReference2EditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return super.getContentPaneFor(editPart);
@@ -292,11 +292,11 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(getMapMode().DPtoLP(5));
 			nodeShape.setLayoutManager(layout);
@@ -309,7 +309,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -329,27 +329,27 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
-		if (notification.getNotifier() == getModel()
+		if(notification.getNotifier() == getModel()
 				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
-						.equals(notification.getFeature())) {
+				.equals(notification.getFeature())) {
 			handleMajorSemanticChange();
-		} else if (notification.getNotifier() instanceof ShapeStyle) {
+		} else if(notification.getNotifier() instanceof ShapeStyle) {
 			super.handleNotificationEvent(notification);
 
 			// Propagate style
-			for (Iterator i = getChildren().iterator(); i.hasNext();) {
+			for(Iterator i = getChildren().iterator(); i.hasNext();) {
 				java.lang.Object obj = i.next();
-				if (!(obj instanceof GraphicalEditPart))
+				if(!(obj instanceof GraphicalEditPart))
 					continue;
-				GraphicalEditPart ep = (GraphicalEditPart) obj;
+				GraphicalEditPart ep = (GraphicalEditPart)obj;
 
-				if (ep.resolveSemanticElement() != resolveSemanticElement())
+				if(ep.resolveSemanticElement() != resolveSemanticElement())
 					continue;
 
-				ShapeStyle style = (ShapeStyle) ((View) ep.getModel())
+				ShapeStyle style = (ShapeStyle)((View)ep.getModel())
 						.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
-				if (style != null) {
-					style.eSet((EStructuralFeature) notification.getFeature(),
+				if(style != null) {
+					style.eSet((EStructuralFeature)notification.getFeature(),
 							notification.getNewValue());
 					ep.refresh();
 				}
@@ -366,10 +366,10 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 		DiagramEditPartsUtil
 				.handleNotificationForDiagram(this, notification, features);
 
-		if (notification.getEventType() == Notification.SET
+		if(notification.getEventType() == Notification.SET
 				&& UMLPackage.eINSTANCE.getState_Submachine() == notification
-						.getFeature()) {
-			DiagramEditPartsUtil.updateEditPart((IGraphicalEditPart) this
+				.getFeature()) {
+			DiagramEditPartsUtil.updateEditPart((IGraphicalEditPart)this
 					.getParent());
 		}
 	}
@@ -383,6 +383,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 		 * @generated
 		 */
 		private WrappingLabel fFigureSubmachineStereotypesLabal;
+
 		/**
 		 * @generated
 		 */
@@ -541,6 +542,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 * @generated
 	 */
 	public class SubmachineStateFigureAux extends SubmachineStateFigure {
+
 		/**
 		 * @generated
 		 */
@@ -565,28 +567,29 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 		 * @generated
 		 */
 		private void createContents() {
-			if (stereotypeParent.getChildren().contains(
+			if(stereotypeParent.getChildren().contains(
 					super.getFigureSubmachineStereotypesLabal())) {
 				stereotypeParent.getChildren().remove(
 						super.getFigureSubmachineStereotypesLabal());
 			}
 
 			figureStereotypeLabel = new WrappingLabel() {
+
 				@Override
 				public void setText(String text) {
-					if (stereotypeParent == null || text == null) {
+					if(stereotypeParent == null || text == null) {
 						super.setText(text);
 						return;
 					}
 
-					if (text.equals("")) {
+					if(text.equals("")) {
 						super.setText(text);
-						if (stereotypeParent.getChildren().contains(this)) {
+						if(stereotypeParent.getChildren().contains(this)) {
 							stereotypeParent.remove(this);
 						}
 					} else {
 						super.setText(text);
-						if (!stereotypeParent.getChildren().contains(this)) {
+						if(!stereotypeParent.getChildren().contains(this)) {
 							stereotypeParent.add(this, 0);
 						}
 					}
@@ -629,13 +632,13 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	protected void reorderChild(EditPart child, int index) {
 		// Save the constraint of the child so that it does not
 		// get lost during the remove and re-add.
-		IFigure childFigure = ((GraphicalEditPart) child).getFigure();
+		IFigure childFigure = ((GraphicalEditPart)child).getFigure();
 		// the only change is here! getContentPaneFor() is used instead of
 		// getContentPane()
-		LayoutManager layout = getContentPaneFor((IGraphicalEditPart) child)
+		LayoutManager layout = getContentPaneFor((IGraphicalEditPart)child)
 				.getLayoutManager();
 		Object constraint = null;
-		if (layout != null)
+		if(layout != null)
 			constraint = layout.getConstraint(childFigure);
 
 		super.reorderChild(child, index);
@@ -656,7 +659,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 */
 	private List<EObject> changesFromDefaultStyle() {
 		EAnnotation eAnn = getAppearenceEAnnotation();
-		if (eAnn == null)
+		if(eAnn == null)
 			return new ArrayList<EObject>();
 		else
 			return eAnn.getReferences();
@@ -666,10 +669,10 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 * @generated
 	 */
 	public static boolean isLabel(IFigure figure) {
-		if (figure instanceof Label) {
+		if(figure instanceof Label) {
 			return true;
 		}
-		if (figure instanceof WrappingLabel) {
+		if(figure instanceof WrappingLabel) {
 			return true;
 		}
 		return false;
@@ -679,25 +682,25 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 * @generated
 	 */
 	protected boolean isFigureFromChildEditPart(IFigure figure) {
-		for (Iterator i = getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof AbstractGraphicalEditPart) {
-				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart) obj;
-				if (gEP.getFigure() == figure) {
+			if(obj instanceof AbstractGraphicalEditPart) {
+				AbstractGraphicalEditPart gEP = (AbstractGraphicalEditPart)obj;
+				if(gEP.getFigure() == figure) {
 					// Check if semantic elements are different
-					if (gEP instanceof GraphicalEditPart
-							&& ((GraphicalEditPart) gEP)
-									.resolveSemanticElement() == resolveSemanticElement()) {
+					if(gEP instanceof GraphicalEditPart
+							&& ((GraphicalEditPart)gEP)
+							.resolveSemanticElement() == resolveSemanticElement()) {
 						return false;
 					}
 					return true;
 				} else {
 					// Check if it is a child figure of the editpart
-					for (java.lang.Object child : gEP.getChildren()) {
-						if (child instanceof GraphicalEditPart) {
-							GraphicalEditPart childEP = (GraphicalEditPart) child;
-							if (childEP.getFigure() == figure) {
-								if (childEP.resolveSemanticElement() != resolveSemanticElement())
+					for(java.lang.Object child : gEP.getChildren()) {
+						if(child instanceof GraphicalEditPart) {
+							GraphicalEditPart childEP = (GraphicalEditPart)child;
+							if(childEP.getFigure() == figure) {
+								if(childEP.resolveSemanticElement() != resolveSemanticElement())
 									return true;
 								else
 									return false;
@@ -716,7 +719,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	@Override
 	protected void setBackgroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
+		if(changesFromDefaultStyle().contains(
 				NotationPackage.Literals.FILL_STYLE__FILL_COLOR)) {
 			setOwnedFiguresBackgroundColor(getFigure(), color);
 		} else
@@ -729,11 +732,11 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 */
 	public void setOwnedFiguresBackgroundColor(IFigure parent, Color color) {
 		parent.setBackgroundColor(color);
-		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
-				setOwnedFiguresBackgroundColor((IFigure) obj, color);
+			if(obj instanceof IFigure
+					&& !isFigureFromChildEditPart((IFigure)obj)) {
+				setOwnedFiguresBackgroundColor((IFigure)obj, color);
 			}
 		}
 	}
@@ -744,7 +747,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	@Override
 	protected void setForegroundColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
+		if(changesFromDefaultStyle().contains(
 				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresForegroundColor(getFigure(), color);
 		} else
@@ -756,13 +759,13 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 * @generated
 	 */
 	public void setOwnedFiguresForegroundColor(IFigure parent, Color color) {
-		if (!isLabel(parent))
+		if(!isLabel(parent))
 			parent.setForegroundColor(color);
-		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			java.lang.Object obj = i.next();
-			if (obj instanceof IFigure && !isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
-				setOwnedFiguresForegroundColor((IFigure) obj, color);
+			if(obj instanceof IFigure && !isLabel((IFigure)obj)
+					&& !isFigureFromChildEditPart((IFigure)obj)) {
+				setOwnedFiguresForegroundColor((IFigure)obj, color);
 			}
 		}
 	}
@@ -774,7 +777,7 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	@Override
 	protected void setFontColor(Color color) {
 		// Only update if the Node doesn't have the default style
-		if (changesFromDefaultStyle().contains(
+		if(changesFromDefaultStyle().contains(
 				NotationPackage.Literals.LINE_STYLE__LINE_COLOR)) {
 			setOwnedFiguresFontColor(getFigure(), color);
 		} else
@@ -786,13 +789,13 @@ public class State3EditPart extends AbstractBorderedShapeEditPart implements
 	 * @generated
 	 */
 	public void setOwnedFiguresFontColor(IFigure parent, Color color) {
-		if (isLabel(parent))
+		if(isLabel(parent))
 			parent.setForegroundColor(color);
-		for (Iterator i = parent.getChildren().iterator(); i.hasNext();) {
+		for(Iterator i = parent.getChildren().iterator(); i.hasNext();) {
 			Object obj = i.next();
-			if (obj instanceof IFigure && isLabel((IFigure) obj)
-					&& !isFigureFromChildEditPart((IFigure) obj)) {
-				setOwnedFiguresFontColor((IFigure) obj, color);
+			if(obj instanceof IFigure && isLabel((IFigure)obj)
+					&& !isFigureFromChildEditPart((IFigure)obj)) {
+				setOwnedFiguresFontColor((IFigure)obj, color);
 			}
 		}
 	}

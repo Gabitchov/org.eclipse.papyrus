@@ -48,8 +48,8 @@ public class CollaborationUseConfigurationForUML extends DefaultDirectEditorConf
 	 * {@inheritDoc}
 	 */
 	public String getTextToEdit(Object editedObject) {
-		if (editedObject instanceof CollaborationUse) {
-			return CollaborationUseUtil.getLabel((CollaborationUse) editedObject);
+		if(editedObject instanceof CollaborationUse) {
+			return CollaborationUseUtil.getLabel((CollaborationUse)editedObject);
 		}
 		return "not a CollaborationUse";
 	}
@@ -59,8 +59,8 @@ public class CollaborationUseConfigurationForUML extends DefaultDirectEditorConf
 	 */
 	@Override
 	public Object preEditAction(Object objectToEdit) {
-		if (objectToEdit instanceof CollaborationUse) {
-			configuration.setCollaborationUse((CollaborationUse) objectToEdit);
+		if(objectToEdit instanceof CollaborationUse) {
+			configuration.setCollaborationUse((CollaborationUse)objectToEdit);
 		}
 		return super.preEditAction(objectToEdit);
 	}
@@ -71,8 +71,8 @@ public class CollaborationUseConfigurationForUML extends DefaultDirectEditorConf
 	public Object postEditAction(Object editedObject, String text) {
 		// Should undo the various creations done in the property edition
 		// (template binding, etc...)
-		if (editedObject instanceof CollaborationUse) {
-			CollaborationUseGenerator generator = new CollaborationUseGenerator(((CollaborationUse) editedObject));
+		if(editedObject instanceof CollaborationUse) {
+			CollaborationUseGenerator generator = new CollaborationUseGenerator(((CollaborationUse)editedObject));
 			generator.parseAndModifyCollaborationUse(text);
 		}
 		return null;
@@ -86,9 +86,9 @@ public class CollaborationUseConfigurationForUML extends DefaultDirectEditorConf
 		return new IInputValidator() {
 
 			public String isValid(String newText) {
-				if (getObjectToEdit() instanceof CollaborationUse) {
+				if(getObjectToEdit() instanceof CollaborationUse) {
 					CollaborationUseGenerator generator = new CollaborationUseGenerator(
-							((CollaborationUse) getObjectToEdit()));
+							((CollaborationUse)getObjectToEdit()));
 					return generator.parseAndValidateCollaborationUse(newText);
 				}
 				return null;

@@ -117,7 +117,7 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 			result = computeCompletions(viewer, parser.getContext(), documentOffset, selectionRange);
 		}
 
-		return result.toArray(new ICompletionProposal[] {});
+		return result.toArray(new ICompletionProposal[]{});
 	}
 
 	/*
@@ -140,12 +140,11 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 	public Collection<ICompletionProposal> computeCompletions(ITextViewer viewer, int context, int documentOffset,
 			int selectionRange) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-		PropertyModifierProposal modifierProposalComputer = new PropertyModifierProposal();
-		;
+		PropertyModifierProposal modifierProposalComputer = new PropertyModifierProposal();;
 		modifierProposalComputer.setModifiersUsed(modifiersUsed);
 
 		String prefix = getPrefix(viewer, documentOffset);
-		switch (context) {
+		switch(context) {
 
 		// DEFAULT : visibility, isDerived or name
 		case IContext.DEFAULT:
@@ -170,8 +169,8 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 
 		// NAME: either ':' or ":undefined"
 		case IContext.NAME:
-			v.addAll(createCompletionProposalsWithDifferentName(new String[] { ": ", ": <Undefined>" }, new String[] {
-					"Property type", "Undefined property type" }, new String[] { ": <Type Name>", ": <Undefined>" },
+			v.addAll(createCompletionProposalsWithDifferentName(new String[]{ ": ", ": <Undefined>" }, new String[]{
+					"Property type", "Undefined property type" }, new String[]{ ": <Type Name>", ": <Undefined>" },
 					"", documentOffset));
 			break;
 

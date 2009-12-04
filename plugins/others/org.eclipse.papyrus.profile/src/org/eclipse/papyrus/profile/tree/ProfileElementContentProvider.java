@@ -37,11 +37,11 @@ public class ProfileElementContentProvider implements IStructuredContentProvider
 	 * Input changed.
 	 * 
 	 * @param newInput
-	 *            the new input
+	 *        the new input
 	 * @param oldInput
-	 *            the old input
+	 *        the old input
 	 * @param v
-	 *            the v
+	 *        the v
 	 */
 	public void inputChanged(Viewer v, Object oldInput, Object newInput) {
 	}
@@ -56,13 +56,13 @@ public class ProfileElementContentProvider implements IStructuredContentProvider
 	 * Gets the elements.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return the elements
 	 */
 	public TreeObject[] getElements(Object parent) {
-		if ((root == null) && (parent instanceof StereotypedElementTreeObject)) {
-			root = (StereotypedElementTreeObject) parent;
+		if((root == null) && (parent instanceof StereotypedElementTreeObject)) {
+			root = (StereotypedElementTreeObject)parent;
 			return getChildren(root);
 		}
 		return getChildren(parent);
@@ -72,13 +72,13 @@ public class ProfileElementContentProvider implements IStructuredContentProvider
 	 * Gets the parent.
 	 * 
 	 * @param child
-	 *            the child
+	 *        the child
 	 * 
 	 * @return the parent
 	 */
 	public TreeObject getParent(Object child) {
-		if (child instanceof TreeObject) {
-			return ((TreeObject) child).getParent();
+		if(child instanceof TreeObject) {
+			return ((TreeObject)child).getParent();
 		}
 		return null;
 	}
@@ -96,13 +96,13 @@ public class ProfileElementContentProvider implements IStructuredContentProvider
 	 * Gets the children.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return the children
 	 */
 	public TreeObject[] getChildren(Object parent) {
-		if (parent instanceof ParentTreeObject) {
-			return ((ParentTreeObject) parent).getChildren();
+		if(parent instanceof ParentTreeObject) {
+			return ((ParentTreeObject)parent).getChildren();
 		}
 		return new TreeObject[0];
 	}
@@ -111,13 +111,13 @@ public class ProfileElementContentProvider implements IStructuredContentProvider
 	 * Checks for children.
 	 * 
 	 * @param parent
-	 *            the parent
+	 *        the parent
 	 * 
 	 * @return true, if has children
 	 */
 	public boolean hasChildren(Object parent) {
-		if (parent instanceof ParentTreeObject) {
-			return ((ParentTreeObject) parent).getChildren().length > 0;
+		if(parent instanceof ParentTreeObject) {
+			return ((ParentTreeObject)parent).getChildren().length > 0;
 		}
 
 		return false;

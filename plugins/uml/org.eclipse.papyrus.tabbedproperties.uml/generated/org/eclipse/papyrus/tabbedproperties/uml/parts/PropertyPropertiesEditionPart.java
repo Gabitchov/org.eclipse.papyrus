@@ -37,7 +37,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new name
-	 * @param newValue the new name to set
+	 * 
+	 * @param newValue
+	 *        the new name to set
 	 */
 	public void setName(String newValue);
 
@@ -52,14 +54,19 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Init the visibility
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initVisibility(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new visibility
-	 * @param newValue the new visibility to set
+	 * 
+	 * @param newValue
+	 *        the new visibility to set
 	 */
 	public void setVisibility(Enumerator newValue);
 
@@ -74,14 +81,19 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Init the aggregation
-	 * @param eenum the enum to manage
-	 * @param current the current value
+	 * 
+	 * @param eenum
+	 *        the enum to manage
+	 * @param current
+	 *        the current value
 	 */
 	public void initAggregation(EEnum eenum, Enumerator current);
 
 	/**
 	 * Defines a new aggregation
-	 * @param newValue the new aggregation to set
+	 * 
+	 * @param newValue
+	 *        the new aggregation to set
 	 */
 	public void setAggregation(Enumerator newValue);
 
@@ -96,20 +108,27 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Init the type
-	 * @param allResources the ResourceSet where the widget have to process
-	 * @param current the current value
+	 * 
+	 * @param allResources
+	 *        the ResourceSet where the widget have to process
+	 * @param current
+	 *        the current value
 	 */
 	public void initType(ResourceSet allResources, EObject current);
 
 	/**
 	 * Defines a new type
-	 * @param newValue the new type to set
+	 * 
+	 * @param newValue
+	 *        the new type to set
 	 */
 	public void setType(EObject newValue);
 
 	/**
 	 * Defines the button mode
-	 * @param newValue the new mode to set
+	 * 
+	 * @param newValue
+	 *        the new mode to set
 	 */
 	public void setTypeButtonMode(ButtonsModeEnum newValue);
 
@@ -117,7 +136,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the type edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToType(ViewerFilter filter);
@@ -126,7 +145,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the type edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToType(ViewerFilter filter);
@@ -142,7 +161,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new isOrdered
-	 * @param newValue the new isOrdered to set
+	 * 
+	 * @param newValue
+	 *        the new isOrdered to set
 	 */
 	public void setIsOrdered(Boolean newValue);
 
@@ -157,7 +178,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new isUnique
-	 * @param newValue the new isUnique to set
+	 * 
+	 * @param newValue
+	 *        the new isUnique to set
 	 */
 	public void setIsUnique(Boolean newValue);
 
@@ -172,7 +195,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new isStatic
-	 * @param newValue the new isStatic to set
+	 * 
+	 * @param newValue
+	 *        the new isStatic to set
 	 */
 	public void setIsStatic(Boolean newValue);
 
@@ -187,7 +212,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new isReadOnly
-	 * @param newValue the new isReadOnly to set
+	 * 
+	 * @param newValue
+	 *        the new isReadOnly to set
 	 */
 	public void setIsReadOnly(Boolean newValue);
 
@@ -202,7 +229,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new isLeaf
-	 * @param newValue the new isLeaf to set
+	 * 
+	 * @param newValue
+	 *        the new isLeaf to set
 	 */
 	public void setIsLeaf(Boolean newValue);
 
@@ -217,7 +246,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new isDerived
-	 * @param newValue the new isDerived to set
+	 * 
+	 * @param newValue
+	 *        the new isDerived to set
 	 */
 	public void setIsDerived(Boolean newValue);
 
@@ -232,7 +263,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new isDerivedUnion
-	 * @param newValue the new isDerivedUnion to set
+	 * 
+	 * @param newValue
+	 *        the new isDerivedUnion to set
 	 */
 	public void setIsDerivedUnion(Boolean newValue);
 
@@ -247,7 +280,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new lower
-	 * @param newValue the new lower to set
+	 * 
+	 * @param newValue
+	 *        the new lower to set
 	 */
 	public void setLower(String newValue);
 
@@ -262,7 +297,9 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Defines a new upper
-	 * @param newValue the new upper to set
+	 * 
+	 * @param newValue
+	 *        the new upper to set
 	 */
 	public void setUpper(String newValue);
 
@@ -297,15 +334,21 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Init the qualifier
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initQualifier(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the qualifier
-	 * @param newValue the qualifier to update
+	 * 
+	 * @param newValue
+	 *        the qualifier to update
 	 */
 	public void updateQualifier(EObject newValue);
 
@@ -313,7 +356,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the qualifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToQualifier(ViewerFilter filter);
@@ -322,7 +365,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the qualifier edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToQualifier(ViewerFilter filter);
@@ -363,15 +406,21 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Init the deployment
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initDeployment(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the deployment
-	 * @param newValue the deployment to update
+	 * 
+	 * @param newValue
+	 *        the deployment to update
 	 */
 	public void updateDeployment(EObject newValue);
 
@@ -379,7 +428,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the deployment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToDeployment(ViewerFilter filter);
@@ -388,7 +437,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the deployment edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToDeployment(ViewerFilter filter);
@@ -419,15 +468,21 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Init the redefinedProperty
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initRedefinedProperty(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the redefinedProperty
-	 * @param newValue the redefinedProperty to update
+	 * 
+	 * @param newValue
+	 *        the redefinedProperty to update
 	 */
 	public void updateRedefinedProperty(EObject newValue);
 
@@ -435,7 +490,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the redefinedProperty edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToRedefinedProperty(ViewerFilter filter);
@@ -444,7 +499,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the redefinedProperty edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToRedefinedProperty(ViewerFilter filter);
@@ -475,15 +530,21 @@ public interface PropertyPropertiesEditionPart {
 
 	/**
 	 * Init the subsettedProperty
-	 * @param current the current value
-	 * @param containgFeature the feature where to navigate if necessary
-	 * @param feature the feature to manage
+	 * 
+	 * @param current
+	 *        the current value
+	 * @param containgFeature
+	 *        the feature where to navigate if necessary
+	 * @param feature
+	 *        the feature to manage
 	 */
 	public void initSubsettedProperty(EObject current, EReference containingFeature, EReference feature);
 
 	/**
 	 * Update the subsettedProperty
-	 * @param newValue the subsettedProperty to update
+	 * 
+	 * @param newValue
+	 *        the subsettedProperty to update
 	 */
 	public void updateSubsettedProperty(EObject newValue);
 
@@ -491,7 +552,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the subsettedProperty edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addFilterToSubsettedProperty(ViewerFilter filter);
@@ -500,7 +561,7 @@ public interface PropertyPropertiesEditionPart {
 	 * Adds the given filter to the subsettedProperty edition editor.
 	 * 
 	 * @param filter
-	 *            a viewer filter
+	 *        a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 */
 	public void addBusinessFilterToSubsettedProperty(ViewerFilter filter);
@@ -509,11 +570,6 @@ public interface PropertyPropertiesEditionPart {
 	 * @return true if the given element is contained inside the subsettedProperty table
 	 */
 	public boolean isContainedInSubsettedPropertyTable(EObject element);
-
-
-
-
-
 
 
 

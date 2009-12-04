@@ -61,9 +61,9 @@ public class AppliedStereotypePanel extends AbstractPanel {
 	 * The default constructor.
 	 * 
 	 * @param style
-	 *            the style of this panel
+	 *        the style of this panel
 	 * @param parent
-	 *            the parent Composite for this panel
+	 *        the parent Composite for this panel
 	 */
 	public AppliedStereotypePanel(Composite parent, int style) {
 		super(parent, style);
@@ -160,13 +160,13 @@ public class AppliedStereotypePanel extends AbstractPanel {
 	 * Sets the selected.
 	 * 
 	 * @param selected
-	 *            The selected to set.
+	 *        The selected to set.
 	 * @param elt
-	 *            the elt
+	 *        the elt
 	 */
 	public void setSelected(Element elt) {
 
-		if (stereotypeComposite != null) {
+		if(stereotypeComposite != null) {
 			selected = elt;
 			stereotypeComposite.setInput(new StereotypedElementTreeObject(elt, null));
 			refresh();
@@ -177,9 +177,9 @@ public class AppliedStereotypePanel extends AbstractPanel {
 	 * Sets the selected property.
 	 * 
 	 * @param selected
-	 *            The selected to set.
+	 *        The selected to set.
 	 * @param elt
-	 *            the elt
+	 *        the elt
 	 */
 	public void setSelectedProperty(AppliedStereotypePropertyTreeObject elt) {
 		propertyComposite.setInput(elt);

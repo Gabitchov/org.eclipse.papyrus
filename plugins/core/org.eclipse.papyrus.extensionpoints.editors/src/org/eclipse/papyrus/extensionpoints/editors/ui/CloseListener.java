@@ -52,7 +52,7 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 	 * Creates a new CloseListener.
 	 * 
 	 * @param editor
-	 *            the editor to close
+	 *        the editor to close
 	 */
 	public CloseListener(Control control, EmbeddedTextEditor editor, Composite composite) {
 		this.control = control;
@@ -62,7 +62,7 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 	}
 
 	private void install() {
-		if (isControlValid()) {
+		if(isControlValid()) {
 			Display display = control.getShell().getDisplay();
 			display.addListener(SWT.KeyDown, this);
 			display.addListener(SWT.Traverse, this);
@@ -88,7 +88,7 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 	}
 
 	private void uninstall() {
-		if (isControlValid()) {
+		if(isControlValid()) {
 			Display display = control.getShell().getDisplay();
 			display.removeListener(SWT.KeyDown, this);
 			display.removeListener(SWT.Traverse, this);
@@ -135,7 +135,7 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 
 	public void close() {
 		uninstall();
-		if (composite != null && !composite.isDisposed()) {
+		if(composite != null && !composite.isDisposed()) {
 			composite.setVisible(false);
 			composite.dispose();
 		}
@@ -148,7 +148,7 @@ public class CloseListener implements ControlListener, MouseListener, DisposeLis
 	}
 
 	public void keyTraversed(TraverseEvent e) {
-		if (SWT.ESC == e.keyCode) {
+		if(SWT.ESC == e.keyCode) {
 			editor.close(false);
 			e.doit = false;
 		}

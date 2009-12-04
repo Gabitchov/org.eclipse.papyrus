@@ -58,7 +58,7 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 	 * Create a CreationCommand instance corresponding to the ConfigurationElement.
 	 * 
 	 * @param element
-	 *            an {@link IConfigurationElement} see eclipse extension point
+	 *        an {@link IConfigurationElement} see eclipse extension point
 	 * @return a CreationCommandDescriptor structure that contains information to the creation
 	 *         diagram command
 	 * @throws BadNameExtensionException
@@ -67,19 +67,19 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 		CreationCommandDescriptor res;
 		checkTagName(element, CREATION_COMMAND_EXTENSIONPOINT);
 		res = new CreationCommandDescriptor();
-		res.creationCommandClass = (Class<ICreationCommand>) parseClass(element, CREATION_COMMAND_CLASS_ATTR,
+		res.creationCommandClass = (Class<ICreationCommand>)parseClass(element, CREATION_COMMAND_CLASS_ATTR,
 				CREATION_COMMAND_EXTENSIONPOINT);
 		res.commandId = element.getAttribute(ID_ATTRIBUTE);
 		res.label = element.getAttribute(LABEL_ATTR);
 		String iconPath = element.getAttribute(ICON_ATTR);
-		if (iconPath != null) {
+		if(iconPath != null) {
 			res.icon = AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);
 		}
 		String attributeForCreationCondition = element.getAttribute(CONDITION_COMMAND_CLASS_ATTR);
-		if (attributeForCreationCondition != null && attributeForCreationCondition.length() > 0) {
-			Class<ICreationCondition> classCondition = (Class<ICreationCondition>) parseClass(element,
+		if(attributeForCreationCondition != null && attributeForCreationCondition.length() > 0) {
+			Class<ICreationCondition> classCondition = (Class<ICreationCondition>)parseClass(element,
 					CONDITION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
-			if (classCondition != null) {
+			if(classCondition != null) {
 				try {
 					res.condition = classCondition.newInstance();
 				} catch (InstantiationException e) {

@@ -35,13 +35,13 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	 * Instantiates a new creates the hyper link command.
 	 * 
 	 * @param domain
-	 *            the domain
+	 *        the domain
 	 * @param object
-	 *            the object for example the view
+	 *        the object for example the view
 	 * @param tooltiptext
-	 *            the hyperlink kind see {@link VisualInformationPapyrusConstant}
+	 *        the hyperlink kind see {@link VisualInformationPapyrusConstant}
 	 * @param localization
-	 *            the localization
+	 *        the localization
 	 */
 	public CreateHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext,
 			String localization) {

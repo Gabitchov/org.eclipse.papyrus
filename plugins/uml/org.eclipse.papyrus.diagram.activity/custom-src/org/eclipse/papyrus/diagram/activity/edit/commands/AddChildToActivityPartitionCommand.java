@@ -64,12 +64,10 @@ public class AddChildToActivityPartitionCommand extends Command {
 	 * @param parent
 	 *            the parent
 	 */
-	public AddChildToActivityPartitionCommand(ChangeBoundsRequest request,
-			IAdaptable parent) {
+	public AddChildToActivityPartitionCommand(ChangeBoundsRequest request, IAdaptable parent) {
 		setLabel("Move child");
 		List<EditPart> editParts = request.getEditParts();
-		GraphicalEditPart parentEditPart = (GraphicalEditPart) parent
-				.getAdapter(GraphicalEditPart.class);
+		GraphicalEditPart parentEditPart = (GraphicalEditPart) parent.getAdapter(GraphicalEditPart.class);
 
 		Command command = null;
 		for (EditPart ep : editParts) {
@@ -82,9 +80,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 				command = getDeleteViewCommand((GraphicalEditPart) ep);
 				if (command != null) {
 					cc.add(command);
-					command = getSetValueCommand(((GraphicalEditPart) ep)
-							.resolveSemanticElement(), parentEditPart
-							.resolveSemanticElement());
+					command = getSetValueCommand(((GraphicalEditPart) ep).resolveSemanticElement(), parentEditPart.resolveSemanticElement());
 					if (command != null) {
 						cc.add(command);
 					}
@@ -97,8 +93,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 				continue;
 			cc.add(command);
 
-			command = getSetValueCommand(((View) ep.getModel()).getElement(),
-					((View) parentEditPart.getModel()).getElement());
+			command = getSetValueCommand(((View) ep.getModel()).getElement(), ((View) parentEditPart.getModel()).getElement());
 			if (command != null) {
 				cc.add(command);
 			}
@@ -108,8 +103,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 				cc.add(command);
 			}
 
-			command = getSetBoundsCommand(request, (GraphicalEditPart) ep,
-					parentEditPart);
+			command = getSetBoundsCommand(request, (GraphicalEditPart) ep, parentEditPart);
 			if (command != null) {
 				cc.add(command);
 			}
@@ -129,19 +123,13 @@ public class AddChildToActivityPartitionCommand extends Command {
 	private Command getAddCommand(EditPart editPart, GraphicalEditPart parent) {
 		EObject element = ((View) editPart.getModel()).getElement();
 
-		if (element instanceof ActivityPartition
-				|| element instanceof ActivityNode
-				|| element instanceof OpaqueBehavior) {
+		if (element instanceof ActivityPartition || element instanceof ActivityNode || element instanceof OpaqueBehavior) {
 			TransactionalEditingDomain domain = parent.getEditingDomain();
-			IAdaptable parentAdaptable = (IAdaptable) parent
-					.getAdapter(IAdaptable.class);
-			IAdaptable childAdaptable = (IAdaptable) editPart
-					.getAdapter(IAdaptable.class);
+			IAdaptable parentAdaptable = (IAdaptable) parent.getAdapter(IAdaptable.class);
+			IAdaptable childAdaptable = (IAdaptable) editPart.getAdapter(IAdaptable.class);
 
-			if (parentAdaptable != null && childAdaptable != null
-					&& domain != null) {
-				return new ICommandProxy(new AddCommand(domain,
-						parentAdaptable, childAdaptable));
+			if (parentAdaptable != null && childAdaptable != null && domain != null) {
+				return new ICommandProxy(new AddCommand(domain, parentAdaptable, childAdaptable));
 			}
 		}
 
@@ -174,8 +162,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 		Command activityPartitionChildrenCommand = null;
 		if (element instanceof ActivityNode) {
 			activityReference = UMLPackage.eINSTANCE.getActivityNode_Activity();
-			partitionReference = UMLPackage.eINSTANCE
-					.getActivityNode_InPartition();
+			partitionReference = UMLPackage.eINSTANCE.getActivityNode_InPartition();
 
 			parentList = new BasicEList();
 			if (parent instanceof Activity) {
@@ -188,35 +175,31 @@ public class AddChildToActivityPartitionCommand extends Command {
 			} else {
 				return null;
 			}
-			partitionRequest = new SetRequest(element, partitionReference,
-					parentList);
+			partitionRequest = new SetRequest(element, partitionReference, parentList);
 		} else if (element instanceof OpaqueBehavior) {
 			return null;
 		} else if (element instanceof ActivityPartition) {
 			SetRequest setRequest1 = null;
-			//SetRequest setRequest2 = null;
-			activityReference = UMLPackage.eINSTANCE
-					.getActivityGroup_InActivity();
-			partitionReference = UMLPackage.eINSTANCE
-					.getActivityPartition_SuperPartition();
+			// SetRequest setRequest2 = null;
+			activityReference = UMLPackage.eINSTANCE.getActivityGroup_InActivity();
+			partitionReference = UMLPackage.eINSTANCE.getActivityPartition_SuperPartition();
 			if (parent instanceof Activity) {
 				setRequest1 = new SetRequest(element, activityReference, parent);
-				//setRequest2 = new SetRequest(element, partitionReference, SetCommand.UNSET_VALUE);
+				// setRequest2 = new SetRequest(element, partitionReference, SetCommand.UNSET_VALUE);
 			} else if (parent instanceof ActivityPartition) {
-				//setRequest1 = new SetRequest(element, activityReference, SetCommand.UNSET_VALUE);
+				// setRequest1 = new SetRequest(element, activityReference, SetCommand.UNSET_VALUE);
 				setRequest1 = new SetRequest(element, partitionReference, parent);
 			} else {
 				return null;
 			}
 			Command setCommand = new ICommandProxy(new SetValueCommand(setRequest1));
-//			if (setCommand != null) {
-//				setCommand = setCommand.chain(new ICommandProxy(new SetValueCommand(setRequest2)));
-//			}
+			// if (setCommand != null) {
+			// setCommand = setCommand.chain(new ICommandProxy(new SetValueCommand(setRequest2)));
+			// }
 			return setCommand;
 		}
 
-		activityRequest = new SetRequest(element, activityReference,
-				activityValue);
+		activityRequest = new SetRequest(element, activityReference, activityValue);
 
 		if (partitionRequest != null && activityRequest != null) {
 			CompoundCommand cc = new CompoundCommand();
@@ -243,8 +226,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 	 * 
 	 * @return the activity partition activity
 	 */
-	private Activity getActivityPartitionActivity(
-			ActivityPartition activityPartition) {
+	private Activity getActivityPartitionActivity(ActivityPartition activityPartition) {
 		if (activityPartition.getInActivity() != null) {
 			return activityPartition.getInActivity();
 		}
@@ -273,17 +255,13 @@ public class AddChildToActivityPartitionCommand extends Command {
 	 * 
 	 * @return the sets the bounds command
 	 */
-	private Command getSetBoundsCommand(ChangeBoundsRequest request,
-			GraphicalEditPart child, GraphicalEditPart parent) {
+	private Command getSetBoundsCommand(ChangeBoundsRequest request, GraphicalEditPart child, GraphicalEditPart parent) {
 
 		if (((View) child.getModel()).getElement() instanceof ActivityPartition) {
 			Rectangle bounds = getActivityPartitionBounds(parent);
 			if (bounds != null) {
-				IAdaptable viewAdaptable = (IAdaptable) child
-						.getAdapter(IAdaptable.class);
-				return new ICommandProxy(new SetBoundsCommand(parent
-						.getEditingDomain(), "Relocate ActivityPartition",
-						viewAdaptable, bounds));
+				IAdaptable viewAdaptable = (IAdaptable) child.getAdapter(IAdaptable.class);
+				return new ICommandProxy(new SetBoundsCommand(parent.getEditingDomain(), "Relocate ActivityPartition", viewAdaptable, bounds));
 			}
 		}
 
@@ -291,11 +269,9 @@ public class AddChildToActivityPartitionCommand extends Command {
 		Point localPoint = translateToLocal(parent, point);
 
 		TransactionalEditingDomain domain = parent.getEditingDomain();
-		IAdaptable childAdaptable = (IAdaptable) child
-				.getAdapter(IAdaptable.class);
+		IAdaptable childAdaptable = (IAdaptable) child.getAdapter(IAdaptable.class);
 
-		SetBoundsCommand command = new SetBoundsCommand(domain,
-				"Relocate childEditPart", childAdaptable, localPoint);
+		SetBoundsCommand command = new SetBoundsCommand(domain, "Relocate childEditPart", childAdaptable, localPoint);
 		return new ICommandProxy(command);
 	}
 
@@ -313,8 +289,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 		if (sortedPartitions.size() <= 0)
 			return null;
 
-		GraphicalEditPart last = sortedPartitions
-				.get(sortedPartitions.size() - 1);
+		GraphicalEditPart last = sortedPartitions.get(sortedPartitions.size() - 1);
 		Rectangle lastBounds = last.getFigure().getBounds();
 		Rectangle bounds = new Rectangle();
 		bounds.x = lastBounds.x + lastBounds.width;
@@ -333,12 +308,10 @@ public class AddChildToActivityPartitionCommand extends Command {
 	 * 
 	 * @return the all activity partitions
 	 */
-	private List<GraphicalEditPart> getAllActivityPartitions(
-			GraphicalEditPart apep) {
+	private List<GraphicalEditPart> getAllActivityPartitions(GraphicalEditPart apep) {
 
 		List<GraphicalEditPart> activities = new LinkedList<GraphicalEditPart>();
-		for (Iterator<EditPart> it = apep.getChildren().iterator(); it
-				.hasNext();) {
+		for (Iterator<EditPart> it = apep.getChildren().iterator(); it.hasNext();) {
 			EditPart ep = it.next();
 			if (((View) ep.getModel()).getElement() instanceof ActivityPartition) {
 				activities.add((GraphicalEditPart) ep);
@@ -356,8 +329,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 	 * 
 	 * @return the list< graphical edit part>
 	 */
-	private List<GraphicalEditPart> SortActivitiesPartitionsByX(
-			List<GraphicalEditPart> activities) {
+	private List<GraphicalEditPart> SortActivitiesPartitionsByX(List<GraphicalEditPart> activities) {
 		// Compare two ActivityPartitionEditParts by their x coordinate
 		Comparator<GraphicalEditPart> comp = new Comparator<GraphicalEditPart>() {
 
@@ -378,8 +350,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 
 		};
 
-		GraphicalEditPart[] activitiesArray = new GraphicalEditPart[activities
-				.size()];
+		GraphicalEditPart[] activitiesArray = new GraphicalEditPart[activities.size()];
 		activities.toArray(activitiesArray);
 
 		Arrays.sort(activitiesArray, comp);
@@ -433,8 +404,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 
 		if (parent != null) {
 			Point parentPoint = getAbsoluteLocation(parent);
-			Point myPoint = new Point(point.x + parentPoint.x, point.y
-					+ parentPoint.y);
+			Point myPoint = new Point(point.x + parentPoint.x, point.y + parentPoint.y);
 			return myPoint;
 		}
 
@@ -482,8 +452,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 
 		// remove al edges related to this node from source container
 		if (source instanceof ActivityPartition) {
-			Command command = removeEdgesFromSource(edges,
-					(ActivityPartition) source);
+			Command command = removeEdgesFromSource(edges, (ActivityPartition) source);
 			if (command != null) {
 				ccommand.add(command);
 			}
@@ -491,8 +460,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 
 		// remove all edges related to this node from target container
 		if (target instanceof ActivityPartition) {
-			Command command = removeEdgesFromSource(edges,
-					(ActivityPartition) target);
+			Command command = removeEdgesFromSource(edges, (ActivityPartition) target);
 			if (command != null) {
 				ccommand.add(command);
 			}
@@ -514,14 +482,12 @@ public class AddChildToActivityPartitionCommand extends Command {
 
 			if (parent != target) {
 				if (parent != null && parent instanceof ActivityPartition) {
-					SetRequest request = new SetRequest(parent,
-							UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
+					SetRequest request = new SetRequest(parent, UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
 					SetValueCommand command = new SetValueCommand(request);
 					ccommand.add(new ICommandProxy(command));
 				}
 				if (target != null && target instanceof ActivityPartition) {
-					SetRequest request = new SetRequest(target,
-							UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
+					SetRequest request = new SetRequest(target, UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
 					SetValueCommand command = new SetValueCommand(request);
 					ccommand.add(new ICommandProxy(command));
 				}
@@ -541,14 +507,12 @@ public class AddChildToActivityPartitionCommand extends Command {
 
 			if (parent != target) {
 				if (parent != null && parent instanceof ActivityPartition) {
-					SetRequest request = new SetRequest(parent,
-							UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
+					SetRequest request = new SetRequest(parent, UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
 					SetValueCommand command = new SetValueCommand(request);
 					ccommand.add(new ICommandProxy(command));
 				}
 				if (target != null && target instanceof ActivityPartition) {
-					SetRequest request = new SetRequest(target,
-							UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
+					SetRequest request = new SetRequest(target, UMLPackage.eINSTANCE.getActivityPartition_Edge(), e);
 					SetValueCommand command = new SetValueCommand(request);
 					ccommand.add(new ICommandProxy(command));
 				}
@@ -568,8 +532,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 	 * 
 	 * @return the command
 	 */
-	private Command removeEdgesFromSource(EList<ActivityEdge> edges,
-			ActivityPartition source) {
+	private Command removeEdgesFromSource(EList<ActivityEdge> edges, ActivityPartition source) {
 
 		if (edges.size() <= 0) {
 			return null;
@@ -578,8 +541,7 @@ public class AddChildToActivityPartitionCommand extends Command {
 		EList<ActivityEdge> sourceEdges = source.getEdges();
 		EReference reference = UMLPackage.eINSTANCE.getActivityPartition_Edge();
 
-		RemoveValueRequest request = new RemoveValueRequest(source, reference,
-				edges);
+		RemoveValueRequest request = new RemoveValueRequest(source, reference, edges);
 		RemoveValueCommand command = new RemoveValueCommand(request);
 
 		return new ICommandProxy(command);

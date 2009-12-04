@@ -38,9 +38,9 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	 * Constructor with a tagged value.
 	 * 
 	 * @param compartmentFigure
-	 *            a list of id for the compartment figure
+	 *        a list of id for the compartment figure
 	 * @param taggedLabelValue
-	 *            the value to display as tagged value
+	 *        the value to display as tagged value
 	 */
 	public CompartmentFigure(List<String> compartmentFigure, String taggedLabelValue) {
 		super(taggedLabelValue);
@@ -58,7 +58,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	protected void createContentPane(List<String> compartmentFigure) {
 		containerFigures = new HashMap<String, RectangleFigure>();
 
-		for (String id : compartmentFigure) {
+		for(String id : compartmentFigure) {
 			RectangleFigure newFigure = new RectangleFigure();
 			newFigure.setLayoutManager(new SubCompartmentLayoutManager());
 			// to debug graphically: newFigure.setFill(true);
@@ -75,7 +75,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	 * Get the RectangleFigure containing the wanted compartment.
 	 * 
 	 * @param id
-	 *            the id to find the right compartment
+	 *        the id to find the right compartment
 	 * @return the RectangleFigure
 	 */
 	public RectangleFigure getCompartment(String id) {
