@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Migration
+Bundle-SymbolicName: org.eclipse.papyrus.resource.migration;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.resource.migration.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.emf.ecore,
+ org.eclipse.papyrus.resource,
+ org.eclipse.emf.codegen.ecore
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
