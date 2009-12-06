@@ -19,7 +19,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.View;
@@ -34,14 +34,14 @@ import org.eclipse.uml2.uml.Element;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getViewPoint <em>View Point </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getBase_Package <em>Base Package </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getViewPoint <em>View Point</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getBase_Package <em>Base Package</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ViewImpl extends EObjectImpl implements View {
+public class ViewImpl extends ResourceEObjectImpl implements View {
 
 	/**
 	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference. <!--
@@ -190,8 +190,7 @@ public class ViewImpl extends EObjectImpl implements View {
 			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
 			if(base_Package != oldBase_Package) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelelementsPackage.VIEW__BASE_PACKAGE,
-							oldBase_Package, base_Package));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelelementsPackage.VIEW__BASE_PACKAGE, oldBase_Package, base_Package));
 			}
 		}
 		return base_Package;
@@ -204,8 +203,7 @@ public class ViewImpl extends EObjectImpl implements View {
 	 */
 	public ViewPoint getViewPoint() {
 		ViewPoint viewPoint = basicGetViewPoint();
-		return viewPoint != null && viewPoint.eIsProxy() ? (ViewPoint)eResolveProxy((InternalEObject)viewPoint)
-				: viewPoint;
+		return viewPoint != null && viewPoint.eIsProxy() ? (ViewPoint)eResolveProxy((InternalEObject)viewPoint) : viewPoint;
 	}
 
 	/**
@@ -217,8 +215,7 @@ public class ViewImpl extends EObjectImpl implements View {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW__BASE_PACKAGE,
-					oldBase_Package, base_Package));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW__BASE_PACKAGE, oldBase_Package, base_Package));
 	}
 
 	/**

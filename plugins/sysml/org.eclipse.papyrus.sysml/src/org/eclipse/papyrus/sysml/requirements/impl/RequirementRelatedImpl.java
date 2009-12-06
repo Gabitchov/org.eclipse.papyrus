@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
@@ -41,23 +41,21 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getBase_NamedElement
- * <em>Base Named Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom <em> Traced From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies <em> Satisfies</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines <em> Refines</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies <em> Verifies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom <em>Traced From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies <em>Satisfies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines <em>Refines</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies <em>Verifies</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class RequirementRelatedImpl extends EObjectImpl implements RequirementRelated {
+public class RequirementRelatedImpl extends ResourceEObjectImpl implements RequirementRelated {
 
 	/**
-	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_NamedElement()
 	 * @generated
@@ -181,9 +179,7 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 			base_NamedElement = (NamedElement)eResolveProxy(oldBase_NamedElement);
 			if(base_NamedElement != oldBase_NamedElement) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, oldBase_NamedElement,
-							base_NamedElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 			}
 		}
 		return base_NamedElement;
@@ -344,9 +340,7 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 		NamedElement oldBase_NamedElement = base_NamedElement;
 		base_NamedElement = newBase_NamedElement;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, oldBase_NamedElement,
-					base_NamedElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 	}
 
 } // RequirementRelatedImpl

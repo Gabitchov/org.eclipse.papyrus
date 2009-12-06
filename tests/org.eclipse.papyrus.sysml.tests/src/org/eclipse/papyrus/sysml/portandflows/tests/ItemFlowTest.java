@@ -37,14 +37,16 @@ public class ItemFlowTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Item Flow test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Item Flow test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ItemFlow fixture = null;
 
 	/**
-	 * Constructs a new Item Flow test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Item Flow test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -64,7 +66,8 @@ public class ItemFlowTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Item Flow test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Item Flow test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

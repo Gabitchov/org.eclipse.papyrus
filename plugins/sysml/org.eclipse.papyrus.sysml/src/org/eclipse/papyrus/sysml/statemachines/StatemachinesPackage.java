@@ -48,7 +48,8 @@ public interface StatemachinesPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '<em>Dummy</em>' data type. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em>Dummy</em>' data type.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @see java.lang.String
@@ -60,35 +61,40 @@ public interface StatemachinesPackage extends EPackage {
 	}
 
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNAME = "statemachines";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/0.7.0/SysML/StateMachines";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "StateMachines";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	StatemachinesPackage eINSTANCE = org.eclipse.papyrus.sysml.statemachines.impl.StatemachinesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '<em>Dummy</em>' data type. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '<em>Dummy</em>' data type.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see java.lang.String
@@ -109,7 +115,8 @@ public interface StatemachinesPackage extends EPackage {
 	EDataType getDummy();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!--
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.

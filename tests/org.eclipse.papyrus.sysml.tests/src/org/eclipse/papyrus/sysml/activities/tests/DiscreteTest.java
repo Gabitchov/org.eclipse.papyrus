@@ -36,7 +36,8 @@ public class DiscreteTest extends RateTest {
 	}
 
 	/**
-	 * Constructs a new Discrete test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Discrete test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -53,7 +54,7 @@ public class DiscreteTest extends RateTest {
 	 */
 	@Override
 	protected Discrete getFixture() {
-		return (Discrete) fixture;
+		return (Discrete)fixture;
 	}
 
 	/**

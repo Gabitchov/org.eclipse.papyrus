@@ -37,14 +37,16 @@ public class ProbabilityTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Probability test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Probability test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected Probability fixture = null;
 
 	/**
-	 * Constructs a new Probability test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Probability test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

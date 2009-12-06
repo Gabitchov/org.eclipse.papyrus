@@ -37,14 +37,16 @@ public class AllocateTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Allocate test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Allocate test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected Allocate fixture = null;
 
 	/**
-	 * Constructs a new Allocate test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Allocate test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -64,7 +66,8 @@ public class AllocateTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Allocate test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Allocate test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

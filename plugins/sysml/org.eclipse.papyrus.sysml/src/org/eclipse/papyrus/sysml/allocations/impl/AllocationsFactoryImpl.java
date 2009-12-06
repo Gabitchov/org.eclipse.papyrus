@@ -43,14 +43,14 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static AllocationsFactory init() {
 		try {
-			AllocationsFactory theAllocationsFactory = (AllocationsFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations");
+			AllocationsFactory theAllocationsFactory = (AllocationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations");
 			if(theAllocationsFactory != null) {
 				return theAllocationsFactory;
 			}
@@ -61,7 +61,8 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

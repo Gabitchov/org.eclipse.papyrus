@@ -7,7 +7,7 @@
     editorPluginClass="org.eclipse.papyrus.sysml.presentation.SysmlEditorPlugin" codeFormatting="true"
     testSuiteClass="org.eclipse.papyrus.sysml.tests.SysmlAllTests" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.sysml.edit"
-    editorPluginID="org.eclipse.papyrus.sysml.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.uml.standard/model/standard.genmodel#//standard platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    editorPluginID="org.eclipse.papyrus.sysml.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.uml.standard/model/standard.genmodel#//standard platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource">
   <foreignModel>sysml.ecore</foreignModel>
   <genPackages prefix="Sysml" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="sysml.ecore#/">

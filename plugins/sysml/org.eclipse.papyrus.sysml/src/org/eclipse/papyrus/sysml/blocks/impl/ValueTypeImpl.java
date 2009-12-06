@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.Dimension;
 import org.eclipse.papyrus.sysml.blocks.Unit;
@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.DataType;
  * 
  * @generated
  */
-public class ValueTypeImpl extends EObjectImpl implements ValueType {
+public class ValueTypeImpl extends ResourceEObjectImpl implements ValueType {
 
 	/**
 	 * The cached value of the '{@link #getBase_DataType() <em>Base Data Type</em>}' reference. <!--
@@ -51,7 +51,8 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 	protected DataType base_DataType;
 
 	/**
-	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getUnit()
@@ -211,8 +212,7 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 			base_DataType = (DataType)eResolveProxy(oldBase_DataType);
 			if(base_DataType != oldBase_DataType) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.VALUE_TYPE__BASE_DATA_TYPE,
-							oldBase_DataType, base_DataType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.VALUE_TYPE__BASE_DATA_TYPE, oldBase_DataType, base_DataType));
 			}
 		}
 		return base_DataType;
@@ -229,8 +229,7 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 			dimension = (Dimension)eResolveProxy(oldDimension);
 			if(dimension != oldDimension) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.VALUE_TYPE__DIMENSION,
-							oldDimension, dimension));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.VALUE_TYPE__DIMENSION, oldDimension, dimension));
 			}
 		}
 		return dimension;
@@ -247,8 +246,7 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 			unit = (Unit)eResolveProxy(oldUnit);
 			if(unit != oldUnit) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.VALUE_TYPE__UNIT, oldUnit,
-							unit));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.VALUE_TYPE__UNIT, oldUnit, unit));
 			}
 		}
 		return unit;
@@ -263,8 +261,7 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 		DataType oldBase_DataType = base_DataType;
 		base_DataType = newBase_DataType;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.VALUE_TYPE__BASE_DATA_TYPE,
-					oldBase_DataType, base_DataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.VALUE_TYPE__BASE_DATA_TYPE, oldBase_DataType, base_DataType));
 	}
 
 	/**
@@ -276,8 +273,7 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 		Dimension oldDimension = dimension;
 		dimension = newDimension;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.VALUE_TYPE__DIMENSION, oldDimension,
-					dimension));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.VALUE_TYPE__DIMENSION, oldDimension, dimension));
 	}
 
 	/**

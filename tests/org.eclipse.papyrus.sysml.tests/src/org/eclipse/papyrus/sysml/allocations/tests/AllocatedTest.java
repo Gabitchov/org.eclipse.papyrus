@@ -31,10 +31,8 @@ import org.eclipse.uml2.uml.UMLFactory;
  * <p>
  * The following features are tested:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedFrom() <em>Allocated From
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedTo() <em>Allocated To
- * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedFrom() <em>Allocated From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedTo() <em>Allocated To</em>}</li>
  * </ul>
  * </p>
  * 
@@ -85,7 +83,8 @@ public class AllocatedTest extends TestCase {
 	protected Model model = null;
 
 	/**
-	 * Constructs a new Allocated test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Allocated test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -105,7 +104,8 @@ public class AllocatedTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Allocated test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Allocated test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -125,11 +125,11 @@ public class AllocatedTest extends TestCase {
 
 		// Prepare test
 		model = SysMLTestResources.createSysMLModel();
-		if (model == null) {
+		if(model == null) {
 			fail();
 		}
 
-		if (model.getAppliedProfiles().isEmpty()) {
+		if(model.getAppliedProfiles().isEmpty()) {
 			fail();
 		}
 
@@ -141,11 +141,11 @@ public class AllocatedTest extends TestCase {
 		c4 = model.createOwnedClass("C4", false);
 
 		// Add Allocated stereotype
-		ac0 = (Allocated) c0.applyStereotype(c0.getApplicableStereotype(ALLOCATED_ID));
-		ac1 = (Allocated) c1.applyStereotype(c1.getApplicableStereotype(ALLOCATED_ID));
-		ac2 = (Allocated) c2.applyStereotype(c2.getApplicableStereotype(ALLOCATED_ID));
-		ac3 = (Allocated) c3.applyStereotype(c3.getApplicableStereotype(ALLOCATED_ID));
-		ac4 = (Allocated) c4.applyStereotype(c4.getApplicableStereotype(ALLOCATED_ID));
+		ac0 = (Allocated)c0.applyStereotype(c0.getApplicableStereotype(ALLOCATED_ID));
+		ac1 = (Allocated)c1.applyStereotype(c1.getApplicableStereotype(ALLOCATED_ID));
+		ac2 = (Allocated)c2.applyStereotype(c2.getApplicableStereotype(ALLOCATED_ID));
+		ac3 = (Allocated)c3.applyStereotype(c3.getApplicableStereotype(ALLOCATED_ID));
+		ac4 = (Allocated)c4.applyStereotype(c4.getApplicableStereotype(ALLOCATED_ID));
 
 		// Add Abstractions with allocate stereotype
 		// c1 -> c2, c3
@@ -155,21 +155,21 @@ public class AllocatedTest extends TestCase {
 		c1_c2.getSuppliers().add(c2);
 		model.getPackagedElements().add(c1_c2);
 		@SuppressWarnings("unused")
-		Allocate a_c1_c2 = (Allocate) c1_c2.applyStereotype(c1_c2.getApplicableStereotype(ALLOCATE_ID));
+		Allocate a_c1_c2 = (Allocate)c1_c2.applyStereotype(c1_c2.getApplicableStereotype(ALLOCATE_ID));
 
 		Abstraction c1_c3 = UMLFactory.eINSTANCE.createAbstraction();
 		model.getPackagedElements().add(c1_c3);
 		c1_c3.getClients().add(c1);
 		c1_c3.getSuppliers().add(c3);
 		@SuppressWarnings("unused")
-		Allocate a_c1_c3 = (Allocate) c1_c3.applyStereotype(c1_c3.getApplicableStereotype(ALLOCATE_ID));
+		Allocate a_c1_c3 = (Allocate)c1_c3.applyStereotype(c1_c3.getApplicableStereotype(ALLOCATE_ID));
 
 		Abstraction c4_c3 = UMLFactory.eINSTANCE.createAbstraction();
 		model.getPackagedElements().add(c4_c3);
 		c4_c3.getClients().add(c4);
 		c4_c3.getSuppliers().add(c3);
 		@SuppressWarnings("unused")
-		Allocate a_c4_c3 = (Allocate) c4_c3.applyStereotype(c4_c3.getApplicableStereotype(ALLOCATE_ID));
+		Allocate a_c4_c3 = (Allocate)c4_c3.applyStereotype(c4_c3.getApplicableStereotype(ALLOCATE_ID));
 
 	}
 
@@ -194,17 +194,17 @@ public class AllocatedTest extends TestCase {
 	public void testGetAllocatedFrom() {
 
 		// Verifies : ac0.getAllocatedFrom = []
-		if (!ac0.getAllocatedFrom().isEmpty()) {
+		if(!ac0.getAllocatedFrom().isEmpty()) {
 			fail();
 		}
 
 		// Verifies : ac2.getAllocatedFrom = [c1]
-		if (!ac2.getAllocatedFrom().contains(c1)) {
+		if(!ac2.getAllocatedFrom().contains(c1)) {
 			fail();
 		}
 
 		// Verifies : ac3.getAllocatedFrom = [c1, c4]
-		if (!(ac3.getAllocatedFrom().contains(c1) && ac3.getAllocatedFrom().contains(c4))) {
+		if(!(ac3.getAllocatedFrom().contains(c1) && ac3.getAllocatedFrom().contains(c4))) {
 			fail();
 		}
 	}
@@ -219,17 +219,17 @@ public class AllocatedTest extends TestCase {
 	public void testGetAllocatedTo() {
 
 		// Verifies : ac0.getAllocatedTo = []
-		if (!ac0.getAllocatedTo().isEmpty()) {
+		if(!ac0.getAllocatedTo().isEmpty()) {
 			fail();
 		}
 
 		// Verifies : ac0.getAllocatedTo = [c2, c3]
-		if (!(ac1.getAllocatedTo().contains(c2) && ac1.getAllocatedTo().contains(c3))) {
+		if(!(ac1.getAllocatedTo().contains(c2) && ac1.getAllocatedTo().contains(c3))) {
 			fail();
 		}
 
 		// Verifies : ac4.getAllocatedTo = [c3]
-		if (!ac4.getAllocatedTo().contains(c3)) {
+		if(!ac4.getAllocatedTo().contains(c3)) {
 			fail();
 		}
 	}

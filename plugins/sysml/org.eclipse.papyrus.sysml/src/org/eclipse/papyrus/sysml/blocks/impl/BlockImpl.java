@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 
@@ -27,14 +27,14 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#isIsEncapsulated <em>Is Encapsulated </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#isIsEncapsulated <em>Is Encapsulated</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class BlockImpl extends EObjectImpl implements Block {
+public class BlockImpl extends ResourceEObjectImpl implements Block {
 
 	/**
 	 * The default value of the '{@link #isIsEncapsulated() <em>Is Encapsulated</em>}' attribute.
@@ -175,8 +175,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
 			if(base_Class != oldBase_Class) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.BLOCK__BASE_CLASS,
-							oldBase_Class, base_Class));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.BLOCK__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
 		return base_Class;
@@ -200,8 +199,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BLOCK__BASE_CLASS, oldBase_Class,
-					base_Class));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BLOCK__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
@@ -213,8 +211,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 		boolean oldIsEncapsulated = isEncapsulated;
 		isEncapsulated = newIsEncapsulated;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BLOCK__IS_ENCAPSULATED,
-					oldIsEncapsulated, isEncapsulated));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BLOCK__IS_ENCAPSULATED, oldIsEncapsulated, isEncapsulated));
 	}
 
 	/**

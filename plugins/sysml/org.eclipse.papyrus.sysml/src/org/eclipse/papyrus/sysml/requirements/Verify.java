@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements;
 
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.uml.standard.Trace;
 
 /**
@@ -24,5 +25,5 @@ import org.eclipse.papyrus.uml.standard.Trace;
  * @model
  * @generated
  */
-public interface Verify extends Trace {
+public interface Verify extends Trace, ResourceEObject {
 } // Verify

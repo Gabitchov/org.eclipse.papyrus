@@ -28,7 +28,8 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 public class PortandflowsResourceFactoryImpl extends ResourceFactoryImpl {
 
 	/**
-	 * Creates an instance of the resource factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the resource factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -37,7 +38,8 @@ public class PortandflowsResourceFactoryImpl extends ResourceFactoryImpl {
 	}
 
 	/**
-	 * Creates an instance of the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

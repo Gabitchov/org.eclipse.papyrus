@@ -61,20 +61,20 @@ public class SysMLTestResources {
 
 		// Apply UML Standard profile
 		// Retrieve standard profile
-		Profile umlStdProfile = (Profile) load(URI.createURI(UMLResource.STANDARD_PROFILE_URI));
+		Profile umlStdProfile = (Profile)load(URI.createURI(UMLResource.STANDARD_PROFILE_URI));
 		// Apply to new model
 		model.applyProfile(umlStdProfile);
 
 		// Retrieve SysML profile
-		Profile sysml = (Profile) load(URI.createURI(SYSML_PROFILE_URI));
+		Profile sysml = (Profile)load(URI.createURI(SYSML_PROFILE_URI));
 
 		// Apply SysML profile and its nested profiles to new model
-		if (sysml != null) {
+		if(sysml != null) {
 
 			model.applyProfile(sysml);
 
 			Iterator<Profile> profiles = PackageUtil.getSubProfiles(sysml).iterator();
-			while (profiles.hasNext()) {
+			while(profiles.hasNext()) {
 				Profile current = profiles.next();
 				model.applyProfile(current);
 			}
@@ -93,7 +93,7 @@ public class SysMLTestResources {
 
 			Resource resource = RESOURCE_SET.getResource(uri, true);
 
-			package_ = (org.eclipse.uml2.uml.Package) EcoreUtil.getObjectByType(resource.getContents(),
+			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(),
 					UMLPackage.Literals.PACKAGE);
 
 		} catch (WrappedException we) {
@@ -126,12 +126,12 @@ public class SysMLTestResources {
 
 		contents.add(package_);
 
-		for (Iterator<?> allContents = UMLUtil.getAllContents(package_, true, false); allContents.hasNext();) {
+		for(Iterator<?> allContents = UMLUtil.getAllContents(package_, true, false); allContents.hasNext();) {
 
-			EObject eObject = (EObject) allContents.next();
+			EObject eObject = (EObject)allContents.next();
 
-			if (eObject instanceof Element) {
-				contents.addAll(((Element) eObject).getStereotypeApplications());
+			if(eObject instanceof Element) {
+				contents.addAll(((Element)eObject).getStereotypeApplications());
 			}
 		}
 

@@ -25,14 +25,16 @@ import org.eclipse.emf.ecore.EFactory;
 public interface ActivitiesFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	ActivitiesFactory eINSTANCE = org.eclipse.papyrus.sysml.activities.impl.ActivitiesFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Continuous</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Continuous</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Continuous</em>'.
@@ -41,7 +43,8 @@ public interface ActivitiesFactory extends EFactory {
 	Continuous createContinuous();
 
 	/**
-	 * Returns a new object of class '<em>Control Operator</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Control Operator</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Control Operator</em>'.
@@ -86,7 +89,8 @@ public interface ActivitiesFactory extends EFactory {
 	Overwrite createOverwrite();
 
 	/**
-	 * Returns a new object of class '<em>Probability</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Probability</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Probability</em>'.
@@ -95,7 +99,8 @@ public interface ActivitiesFactory extends EFactory {
 	Probability createProbability();
 
 	/**
-	 * Returns a new object of class '<em>Rate</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Rate</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Rate</em>'.
 	 * @generated
@@ -103,7 +108,8 @@ public interface ActivitiesFactory extends EFactory {
 	Rate createRate();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

@@ -69,7 +69,8 @@ public class FlowPropertyTest extends TestCase {
 	protected Model model = null;
 
 	/**
-	 * Constructs a new Flow Property test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Flow Property test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -79,7 +80,8 @@ public class FlowPropertyTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Flow Property test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Flow Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -110,11 +112,11 @@ public class FlowPropertyTest extends TestCase {
 
 		// Prepare test
 		model = SysMLTestResources.createSysMLModel();
-		if (model == null) {
+		if(model == null) {
 			fail();
 		}
 
-		if (model.getAppliedProfiles().isEmpty()) {
+		if(model.getAppliedProfiles().isEmpty()) {
 			fail();
 		}
 
@@ -127,13 +129,13 @@ public class FlowPropertyTest extends TestCase {
 		Property p2 = i.createOwnedAttribute("p2", null);
 
 		// Add FlowPort stereotypes
-		fp0 = (FlowProperty) p0.applyStereotype(p0.getApplicableStereotype(FLOWPROPERTY_ID));
+		fp0 = (FlowProperty)p0.applyStereotype(p0.getApplicableStereotype(FLOWPROPERTY_ID));
 		fp0.setDirection(FlowDirection.IN);
 
-		fp1 = (FlowProperty) p1.applyStereotype(p1.getApplicableStereotype(FLOWPROPERTY_ID));
+		fp1 = (FlowProperty)p1.applyStereotype(p1.getApplicableStereotype(FLOWPROPERTY_ID));
 		fp1.setDirection(FlowDirection.OUT);
 
-		fp2 = (FlowProperty) p2.applyStereotype(p2.getApplicableStereotype(FLOWPROPERTY_ID));
+		fp2 = (FlowProperty)p2.applyStereotype(p2.getApplicableStereotype(FLOWPROPERTY_ID));
 		fp2.setDirection(FlowDirection.INOUT);
 
 	}
@@ -166,15 +168,15 @@ public class FlowPropertyTest extends TestCase {
 		Image i1 = s.getIcons().get(1); // OUT
 		Image i2 = s.getIcons().get(2); // INOUT
 
-		if (!fp0.getIcon().equals(i0)) {
+		if(!fp0.getIcon().equals(i0)) {
 			fail();
 		}
 
-		if (!fp1.getIcon().equals(i1)) {
+		if(!fp1.getIcon().equals(i1)) {
 			fail();
 		}
 
-		if (!fp2.getIcon().equals(i2)) {
+		if(!fp2.getIcon().equals(i2)) {
 			fail();
 		}
 	}

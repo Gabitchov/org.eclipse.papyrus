@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements;
 
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.uml.standard.Trace;
 
 /**
@@ -24,6 +25,6 @@ import org.eclipse.papyrus.uml.standard.Trace;
  * @model
  * @generated
  */
-public interface Satisfy extends Trace {
+public interface Satisfy extends Trace, ResourceEObject {
 
 } // Satisfy

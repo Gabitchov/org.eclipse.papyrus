@@ -37,14 +37,16 @@ public class ProblemTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Problem test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Problem test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected Problem fixture = null;
 
 	/**
-	 * Constructs a new Problem test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Problem test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -54,7 +56,8 @@ public class ProblemTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Problem test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the fixture for this Problem test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -63,7 +66,8 @@ public class ProblemTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Problem test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Problem test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

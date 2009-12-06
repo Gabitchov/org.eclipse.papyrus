@@ -25,14 +25,16 @@ import org.eclipse.emf.ecore.EFactory;
 public interface RequirementsFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	RequirementsFactory eINSTANCE = org.eclipse.papyrus.sysml.requirements.impl.RequirementsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Copy</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Copy</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Copy</em>'.
 	 * @generated
@@ -40,7 +42,8 @@ public interface RequirementsFactory extends EFactory {
 	Copy createCopy();
 
 	/**
-	 * Returns a new object of class '<em>Derive Reqt</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Derive Reqt</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Derive Reqt</em>'.
@@ -49,7 +52,8 @@ public interface RequirementsFactory extends EFactory {
 	DeriveReqt createDeriveReqt();
 
 	/**
-	 * Returns a new object of class '<em>Requirement</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Requirement</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Requirement</em>'.
@@ -58,7 +62,8 @@ public interface RequirementsFactory extends EFactory {
 	Requirement createRequirement();
 
 	/**
-	 * Returns a new object of class '<em>Requirement Related</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Requirement Related</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Requirement Related</em>'.
@@ -94,7 +99,8 @@ public interface RequirementsFactory extends EFactory {
 	Verify createVerify();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

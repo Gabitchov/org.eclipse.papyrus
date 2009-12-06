@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Rationale;
 import org.eclipse.uml2.uml.Comment;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Comment;
  * 
  * @generated
  */
-public class RationaleImpl extends EObjectImpl implements Rationale {
+public class RationaleImpl extends ResourceEObjectImpl implements Rationale {
 
 	/**
 	 * The cached value of the '{@link #getBase_Comment() <em>Base Comment</em>}' reference. <!--
@@ -145,8 +145,7 @@ public class RationaleImpl extends EObjectImpl implements Rationale {
 			base_Comment = (Comment)eResolveProxy(oldBase_Comment);
 			if(base_Comment != oldBase_Comment) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ModelelementsPackage.RATIONALE__BASE_COMMENT, oldBase_Comment, base_Comment));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelelementsPackage.RATIONALE__BASE_COMMENT, oldBase_Comment, base_Comment));
 			}
 		}
 		return base_Comment;
@@ -161,8 +160,7 @@ public class RationaleImpl extends EObjectImpl implements Rationale {
 		Comment oldBase_Comment = base_Comment;
 		base_Comment = newBase_Comment;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.RATIONALE__BASE_COMMENT,
-					oldBase_Comment, base_Comment));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.RATIONALE__BASE_COMMENT, oldBase_Comment, base_Comment));
 	}
 
 } // RationaleImpl

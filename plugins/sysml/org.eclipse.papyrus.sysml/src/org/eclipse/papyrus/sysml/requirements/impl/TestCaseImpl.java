@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
@@ -41,13 +41,13 @@ import org.eclipse.uml2.uml.Operation;
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl#getBase_Behavior <em>Base Behavior</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl#getBase_Operation <em>Base Operation</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl#getVerifies <em>Verifies </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl#getVerifies <em>Verifies</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class TestCaseImpl extends EObjectImpl implements TestCase {
+public class TestCaseImpl extends ResourceEObjectImpl implements TestCase {
 
 	/**
 	 * The cached value of the '{@link #getBase_Behavior() <em>Base Behavior</em>}' reference. <!--
@@ -194,8 +194,7 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 			base_Behavior = (Behavior)eResolveProxy(oldBase_Behavior);
 			if(base_Behavior != oldBase_Behavior) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementsPackage.TEST_CASE__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.TEST_CASE__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
 			}
 		}
 		return base_Behavior;
@@ -212,8 +211,7 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 			base_Operation = (Operation)eResolveProxy(oldBase_Operation);
 			if(base_Operation != oldBase_Operation) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementsPackage.TEST_CASE__BASE_OPERATION, oldBase_Operation, base_Operation));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.TEST_CASE__BASE_OPERATION, oldBase_Operation, base_Operation));
 			}
 		}
 		return base_Operation;
@@ -269,8 +267,7 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 		Behavior oldBase_Behavior = base_Behavior;
 		base_Behavior = newBase_Behavior;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.TEST_CASE__BASE_BEHAVIOR,
-					oldBase_Behavior, base_Behavior));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.TEST_CASE__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
 	}
 
 	/**
@@ -282,8 +279,7 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 		Operation oldBase_Operation = base_Operation;
 		base_Operation = newBase_Operation;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.TEST_CASE__BASE_OPERATION,
-					oldBase_Operation, base_Operation));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.TEST_CASE__BASE_OPERATION, oldBase_Operation, base_Operation));
 	}
 
 } // TestCaseImpl

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.ImplementationClass;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
  * 
  * @generated
  */
-public class ImplementationClassImpl extends EObjectImpl implements ImplementationClass {
+public class ImplementationClassImpl extends ResourceEObjectImpl implements ImplementationClass {
 
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference. <!--
@@ -74,8 +74,7 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
 			if(base_Class != oldBase_Class) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS, oldBase_Class, base_Class));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
 		return base_Class;
@@ -99,8 +98,7 @@ public class ImplementationClassImpl extends EObjectImpl implements Implementati
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS,
-					oldBase_Class, base_Class));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.IMPLEMENTATION_CLASS__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**

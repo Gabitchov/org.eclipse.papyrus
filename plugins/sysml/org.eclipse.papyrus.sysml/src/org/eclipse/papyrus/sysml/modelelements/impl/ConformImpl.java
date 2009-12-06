@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.uml2.uml.Dependency;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Dependency;
  * 
  * @generated
  */
-public class ConformImpl extends EObjectImpl implements Conform {
+public class ConformImpl extends ResourceEObjectImpl implements Conform {
 
 	/**
 	 * The cached value of the '{@link #getBase_Dependency() <em>Base Dependency</em>}' reference.
@@ -145,8 +145,7 @@ public class ConformImpl extends EObjectImpl implements Conform {
 			base_Dependency = (Dependency)eResolveProxy(oldBase_Dependency);
 			if(base_Dependency != oldBase_Dependency) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ModelelementsPackage.CONFORM__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelelementsPackage.CONFORM__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 			}
 		}
 		return base_Dependency;
@@ -161,8 +160,7 @@ public class ConformImpl extends EObjectImpl implements Conform {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.CONFORM__BASE_DEPENDENCY,
-					oldBase_Dependency, base_Dependency));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.CONFORM__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 	}
 
 } // ConformImpl

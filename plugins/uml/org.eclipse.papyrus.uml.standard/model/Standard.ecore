@@ -3,137 +3,137 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="standard"
     nsURI="http://www.eclipse.org/uml2/schemas/Standard/1" nsPrefix="Standard">
-  <eClassifiers xsi:type="ecore:EClass" name="Auxiliary">
+  <eClassifiers xsi:type="ecore:EClass" name="Auxiliary" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BuildComponent">
+  <eClassifiers xsi:type="ecore:EClass" name="BuildComponent" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Component" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Create">
+  <eClassifiers xsi:type="ecore:EClass" name="Create" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_BehavioralFeature"
         ordered="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Usage" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Call">
+  <eClassifiers xsi:type="ecore:EClass" name="Call" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Usage" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Derive">
+  <eClassifiers xsi:type="ecore:EClass" name="Derive" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Abstraction" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Destroy">
+  <eClassifiers xsi:type="ecore:EClass" name="Destroy" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_BehavioralFeature"
         ordered="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Focus">
+  <eClassifiers xsi:type="ecore:EClass" name="Focus" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Framework">
+  <eClassifiers xsi:type="ecore:EClass" name="Framework" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Implement">
+  <eClassifiers xsi:type="ecore:EClass" name="Implement" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Component" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImplementationClass">
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementationClass" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Instantiate">
+  <eClassifiers xsi:type="ecore:EClass" name="Instantiate" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Usage" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Metaclass">
+  <eClassifiers xsi:type="ecore:EClass" name="Metaclass" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelLibrary">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelLibrary" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Refine">
+  <eClassifiers xsi:type="ecore:EClass" name="Refine" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Abstraction" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Responsibility">
+  <eClassifiers xsi:type="ecore:EClass" name="Responsibility" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Usage" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Script">
+  <eClassifiers xsi:type="ecore:EClass" name="Script" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Send">
+  <eClassifiers xsi:type="ecore:EClass" name="Send" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Usage" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Trace">
+  <eClassifiers xsi:type="ecore:EClass" name="Trace" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Abstraction" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type">
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Utility">
+  <eClassifiers xsi:type="ecore:EClass" name="Utility" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Document">
+  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+  <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Component" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Executable">
+  <eClassifiers xsi:type="ecore:EClass" name="Executable" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="File">
+  <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Library">
+  <eClassifiers xsi:type="ecore:EClass" name="Library" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Process">
+  <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Component" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Realization">
+  <eClassifiers xsi:type="ecore:EClass" name="Realization" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Classifier" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Service">
+  <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Component" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Source">
+  <eClassifiers xsi:type="ecore:EClass" name="Source" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Specification">
+  <eClassifiers xsi:type="ecore:EClass" name="Specification" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Classifier" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Subsystem">
+  <eClassifiers xsi:type="ecore:EClass" name="Subsystem" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Component" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Metamodel">
+  <eClassifiers xsi:type="ecore:EClass" name="Metamodel" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Model" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SystemModel">
+  <eClassifiers xsi:type="ecore:EClass" name="SystemModel" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Model" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
   </eClassifiers>

@@ -47,14 +47,14 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static RequirementsFactory init() {
 		try {
-			RequirementsFactory theRequirementsFactory = (RequirementsFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements");
+			RequirementsFactory theRequirementsFactory = (RequirementsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements");
 			if(theRequirementsFactory != null) {
 				return theRequirementsFactory;
 			}
@@ -65,7 +65,8 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

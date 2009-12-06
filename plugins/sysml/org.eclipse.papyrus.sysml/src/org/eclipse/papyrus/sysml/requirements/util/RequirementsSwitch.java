@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -40,14 +41,16 @@ import org.eclipse.papyrus.uml.standard.Trace;
 public class RequirementsSwitch<T> {
 
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static RequirementsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -103,17 +106,35 @@ public class RequirementsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Requirement Related</em> '. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement Related</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Requirement Related</em> '.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement Related</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseRequirementRelated(RequirementRelated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResourceEObject(ResourceEObject object) {
 		return null;
 	}
 
@@ -193,8 +214,8 @@ public class RequirementsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -204,13 +225,15 @@ public class RequirementsSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -220,8 +243,8 @@ public class RequirementsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -235,6 +258,8 @@ public class RequirementsSwitch<T> {
 			if(result == null)
 				result = caseTrace(deriveReqt);
 			if(result == null)
+				result = caseResourceEObject(deriveReqt);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -244,6 +269,8 @@ public class RequirementsSwitch<T> {
 			T result = caseVerify(verify);
 			if(result == null)
 				result = caseTrace(verify);
+			if(result == null)
+				result = caseResourceEObject(verify);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -255,6 +282,8 @@ public class RequirementsSwitch<T> {
 			if(result == null)
 				result = caseTrace(copy);
 			if(result == null)
+				result = caseResourceEObject(copy);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -265,6 +294,8 @@ public class RequirementsSwitch<T> {
 			if(result == null)
 				result = caseTrace(satisfy);
 			if(result == null)
+				result = caseResourceEObject(satisfy);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -272,6 +303,8 @@ public class RequirementsSwitch<T> {
 		{
 			TestCase testCase = (TestCase)theEObject;
 			T result = caseTestCase(testCase);
+			if(result == null)
+				result = caseResourceEObject(testCase);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -281,6 +314,8 @@ public class RequirementsSwitch<T> {
 			Requirement requirement = (Requirement)theEObject;
 			T result = caseRequirement(requirement);
 			if(result == null)
+				result = caseResourceEObject(requirement);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -288,6 +323,8 @@ public class RequirementsSwitch<T> {
 		{
 			RequirementRelated requirementRelated = (RequirementRelated)theEObject;
 			T result = caseRequirementRelated(requirementRelated);
+			if(result == null)
+				result = caseResourceEObject(requirementRelated);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

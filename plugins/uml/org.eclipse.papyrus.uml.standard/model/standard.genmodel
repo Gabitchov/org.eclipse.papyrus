@@ -8,7 +8,7 @@
     codeFormatting="true" testSuiteClass="org.eclipse.papyrus.uml.standard.tests.standardAllTests"
     booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.standard.edit" editorPluginID="org.eclipse.papyrus.uml.standard.editor"
-    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource"
     classNamePattern="">
   <foreignModel>Standard.ecore</foreignModel>
   <genPackages prefix="Standard" basePackage="org.eclipse.papyrus.uml" resource="XML"

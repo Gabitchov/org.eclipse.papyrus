@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -30,10 +30,11 @@ import org.eclipse.uml2.uml.Classifier;
  * @model
  * @generated
  */
-public interface PropertySpecificType extends EObject {
+public interface PropertySpecificType extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Classifier</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Classifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Classifier</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -48,8 +49,8 @@ public interface PropertySpecificType extends EObject {
 	Classifier getBase_Classifier();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier
-	 * <em>Base Classifier</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier <em>Base Classifier</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Classifier</em>' reference.

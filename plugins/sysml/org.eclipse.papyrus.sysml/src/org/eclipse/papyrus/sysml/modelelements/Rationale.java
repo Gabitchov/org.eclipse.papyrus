@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelelements;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Comment;
 
 /**
@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Comment;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.Rationale#getBase_Comment <em>Base Comment </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.Rationale#getBase_Comment <em>Base Comment</em>}</li>
  * </ul>
  * </p>
  * 
@@ -31,10 +31,11 @@ import org.eclipse.uml2.uml.Comment;
  * @model
  * @generated
  */
-public interface Rationale extends EObject {
+public interface Rationale extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Comment</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Comment</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Comment</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,8 +50,8 @@ public interface Rationale extends EObject {
 	Comment getBase_Comment();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.Rationale#getBase_Comment
-	 * <em>Base Comment</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.Rationale#getBase_Comment <em>Base Comment</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Comment</em>' reference.

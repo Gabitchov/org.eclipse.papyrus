@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
 import org.eclipse.uml2.uml.Behavior;
@@ -29,14 +29,14 @@ import org.eclipse.uml2.uml.Operation;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl#getBase_Operation <em> Base Operation</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl#getBase_Behavior <em> Base Behavior</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl#getBase_Operation <em>Base Operation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl#getBase_Behavior <em>Base Behavior</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ControlOperatorImpl extends EObjectImpl implements ControlOperator {
+public class ControlOperatorImpl extends ResourceEObjectImpl implements ControlOperator {
 
 	/**
 	 * The cached value of the '{@link #getBase_Operation() <em>Base Operation</em>}' reference.
@@ -178,8 +178,7 @@ public class ControlOperatorImpl extends EObjectImpl implements ControlOperator 
 			base_Behavior = (Behavior)eResolveProxy(oldBase_Behavior);
 			if(base_Behavior != oldBase_Behavior) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.CONTROL_OPERATOR__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.CONTROL_OPERATOR__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
 			}
 		}
 		return base_Behavior;
@@ -196,8 +195,7 @@ public class ControlOperatorImpl extends EObjectImpl implements ControlOperator 
 			base_Operation = (Operation)eResolveProxy(oldBase_Operation);
 			if(base_Operation != oldBase_Operation) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.CONTROL_OPERATOR__BASE_OPERATION, oldBase_Operation, base_Operation));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.CONTROL_OPERATOR__BASE_OPERATION, oldBase_Operation, base_Operation));
 			}
 		}
 		return base_Operation;
@@ -212,8 +210,7 @@ public class ControlOperatorImpl extends EObjectImpl implements ControlOperator 
 		Behavior oldBase_Behavior = base_Behavior;
 		base_Behavior = newBase_Behavior;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.CONTROL_OPERATOR__BASE_BEHAVIOR,
-					oldBase_Behavior, base_Behavior));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.CONTROL_OPERATOR__BASE_BEHAVIOR, oldBase_Behavior, base_Behavior));
 	}
 
 	/**
@@ -225,8 +222,7 @@ public class ControlOperatorImpl extends EObjectImpl implements ControlOperator 
 		Operation oldBase_Operation = base_Operation;
 		base_Operation = newBase_Operation;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.CONTROL_OPERATOR__BASE_OPERATION,
-					oldBase_Operation, base_Operation));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.CONTROL_OPERATOR__BASE_OPERATION, oldBase_Operation, base_Operation));
 	}
 
 } // ControlOperatorImpl

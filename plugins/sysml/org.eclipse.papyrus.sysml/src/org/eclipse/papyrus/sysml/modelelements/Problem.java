@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelelements;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Comment;
 
 /**
@@ -31,10 +31,11 @@ import org.eclipse.uml2.uml.Comment;
  * @model
  * @generated
  */
-public interface Problem extends EObject {
+public interface Problem extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Comment</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Comment</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Comment</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>

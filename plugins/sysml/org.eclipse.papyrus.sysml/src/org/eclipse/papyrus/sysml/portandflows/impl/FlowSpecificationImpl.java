@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.uml2.uml.Interface;
@@ -27,14 +27,13 @@ import org.eclipse.uml2.uml.Interface;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl#getBase_Interface
- * <em>Base Interface</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl#getBase_Interface <em>Base Interface</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecification {
+public class FlowSpecificationImpl extends ResourceEObjectImpl implements FlowSpecification {
 
 	/**
 	 * The cached value of the '{@link #getBase_Interface() <em>Base Interface</em>}' reference.
@@ -145,8 +144,7 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 			base_Interface = (Interface)eResolveProxy(oldBase_Interface);
 			if(base_Interface != oldBase_Interface) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE, oldBase_Interface, base_Interface));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE, oldBase_Interface, base_Interface));
 			}
 		}
 		return base_Interface;
@@ -161,8 +159,7 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 		Interface oldBase_Interface = base_Interface;
 		base_Interface = newBase_Interface;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE, oldBase_Interface, base_Interface));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE, oldBase_Interface, base_Interface));
 	}
 
 } // FlowSpecificationImpl

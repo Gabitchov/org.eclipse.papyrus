@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -31,10 +31,11 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface ParticipantProperty extends EObject {
+public interface ParticipantProperty extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Property</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,7 +50,8 @@ public interface ParticipantProperty extends EObject {
 	Property getBase_Property();
 
 	/**
-	 * Returns the value of the '<em><b>End</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>End</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>End</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -64,8 +66,8 @@ public interface ParticipantProperty extends EObject {
 	Property getEnd();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getBase_Property
-	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getBase_Property <em>Base Property</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Property</em>' reference.
@@ -75,8 +77,8 @@ public interface ParticipantProperty extends EObject {
 	void setBase_Property(Property value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getEnd
-	 * <em>End</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty#getEnd <em>End</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>End</em>' reference.

@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
@@ -35,14 +36,16 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 public class AllocationsSwitch<T> {
 
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static AllocationsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -68,17 +71,35 @@ public class AllocationsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Allocate Activity Partition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Allocate Activity Partition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns
 	 * null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Allocate Activity Partition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Allocate Activity Partition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseAllocateActivityPartition(AllocateActivityPartition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResourceEObject(ResourceEObject object) {
 		return null;
 	}
 
@@ -113,8 +134,8 @@ public class AllocationsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -124,13 +145,15 @@ public class AllocationsSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -140,8 +163,8 @@ public class AllocationsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -153,6 +176,8 @@ public class AllocationsSwitch<T> {
 			Allocate allocate = (Allocate)theEObject;
 			T result = caseAllocate(allocate);
 			if(result == null)
+				result = caseResourceEObject(allocate);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -161,6 +186,8 @@ public class AllocationsSwitch<T> {
 			Allocated allocated = (Allocated)theEObject;
 			T result = caseAllocated(allocated);
 			if(result == null)
+				result = caseResourceEObject(allocated);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -168,6 +195,8 @@ public class AllocationsSwitch<T> {
 		{
 			AllocateActivityPartition allocateActivityPartition = (AllocateActivityPartition)theEObject;
 			T result = caseAllocateActivityPartition(allocateActivityPartition);
+			if(result == null)
+				result = caseResourceEObject(allocateActivityPartition);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

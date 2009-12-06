@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BindingConnector;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.uml2.uml.Connector;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Connector;
  * 
  * @generated
  */
-public class BindingConnectorImpl extends EObjectImpl implements BindingConnector {
+public class BindingConnectorImpl extends ResourceEObjectImpl implements BindingConnector {
 
 	/**
 	 * The cached value of the '{@link #getBase_Connector() <em>Base Connector</em>}' reference.
@@ -144,8 +144,7 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 			base_Connector = (Connector)eResolveProxy(oldBase_Connector);
 			if(base_Connector != oldBase_Connector) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
 			}
 		}
 		return base_Connector;
@@ -160,8 +159,7 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 		Connector oldBase_Connector = base_Connector;
 		base_Connector = newBase_Connector;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR,
-					oldBase_Connector, base_Connector));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
 	}
 
 } // BindingConnectorImpl

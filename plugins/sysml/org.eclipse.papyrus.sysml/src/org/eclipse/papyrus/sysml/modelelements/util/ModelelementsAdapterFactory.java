@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Problem;
@@ -34,19 +35,22 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
 public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static ModelelementsPackage modelPackage;
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods. <!-- begin-user-doc --> <!--
+	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected ModelelementsSwitch<Adapter> modelSwitch = new ModelelementsSwitch<Adapter>() {
+	protected ModelelementsSwitch<Adapter> modelSwitch = new ModelelementsSwitch<Adapter>()
+			{
 
 		@Override
 		public Adapter caseConform(Conform object) {
@@ -74,13 +78,19 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseResourceEObject(ResourceEObject object) {
+			return createResourceEObjectAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
 	};
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -91,7 +101,8 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param target
 	 *        the object to adapt.
@@ -118,7 +129,8 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -143,6 +155,21 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.resource.ResourceEObject <em>EObject</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.resource.ResourceEObject
+	 * @generated
+	 */
+	public Adapter createResourceEObjectAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.modelelements.Rationale <em>Rationale</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -157,7 +184,8 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.modelelements.View <em>View</em>}'. <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.modelelements.View <em>View</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -184,7 +212,8 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object. <!-- begin-user-doc
+	 * Returns whether this factory is applicable for the type of the object.
+	 * <!-- begin-user-doc
 	 * --> This implementation returns <code>true</code> if the object is either the model's package
 	 * or is an instance object of the model. <!-- end-user-doc -->
 	 * 

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.Metamodel;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Model;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Model;
  * 
  * @generated
  */
-public class MetamodelImpl extends EObjectImpl implements Metamodel {
+public class MetamodelImpl extends ResourceEObjectImpl implements Metamodel {
 
 	/**
 	 * The cached value of the '{@link #getBase_Model() <em>Base Model</em>}' reference. <!--
@@ -76,8 +76,7 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 			base_Model = (Model)eResolveProxy(oldBase_Model);
 			if(base_Model != oldBase_Model) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.METAMODEL__BASE_MODEL,
-							oldBase_Model, base_Model));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.METAMODEL__BASE_MODEL, oldBase_Model, base_Model));
 			}
 		}
 		return base_Model;
@@ -101,8 +100,7 @@ public class MetamodelImpl extends EObjectImpl implements Metamodel {
 		Model oldBase_Model = base_Model;
 		base_Model = newBase_Model;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.METAMODEL__BASE_MODEL, oldBase_Model,
-					base_Model));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.METAMODEL__BASE_MODEL, oldBase_Model, base_Model));
 	}
 
 	/**

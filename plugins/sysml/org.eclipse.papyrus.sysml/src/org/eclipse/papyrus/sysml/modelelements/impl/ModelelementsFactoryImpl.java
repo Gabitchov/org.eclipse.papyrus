@@ -45,14 +45,14 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static ModelelementsFactory init() {
 		try {
-			ModelelementsFactory theModelelementsFactory = (ModelelementsFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements");
+			ModelelementsFactory theModelelementsFactory = (ModelelementsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements");
 			if(theModelelementsFactory != null) {
 				return theModelelementsFactory;
 			}
@@ -63,7 +63,8 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -61,14 +61,14 @@ import org.eclipse.papyrus.uml.standard.Utility;
 public class StandardFactoryImpl extends EFactoryImpl implements StandardFactory {
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static StandardFactory init() {
 		try {
-			StandardFactory theStandardFactory = (StandardFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/uml2/schemas/Standard/1");
+			StandardFactory theStandardFactory = (StandardFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/uml2/schemas/Standard/1");
 			if(theStandardFactory != null) {
 				return theStandardFactory;
 			}
@@ -79,7 +79,8 @@ public class StandardFactoryImpl extends EFactoryImpl implements StandardFactory
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

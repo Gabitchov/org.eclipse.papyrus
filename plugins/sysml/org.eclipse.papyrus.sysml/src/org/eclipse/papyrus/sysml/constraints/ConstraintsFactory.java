@@ -25,14 +25,16 @@ import org.eclipse.emf.ecore.EFactory;
 public interface ConstraintsFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	ConstraintsFactory eINSTANCE = org.eclipse.papyrus.sysml.constraints.impl.ConstraintsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Constraint Block</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Constraint Block</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Constraint Block</em>'.
@@ -41,7 +43,8 @@ public interface ConstraintsFactory extends EFactory {
 	ConstraintBlock createConstraintBlock();
 
 	/**
-	 * Returns a new object of class '<em>Constraint Property</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Constraint Property</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Constraint Property</em>'.
@@ -50,7 +53,8 @@ public interface ConstraintsFactory extends EFactory {
 	ConstraintProperty createConstraintProperty();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

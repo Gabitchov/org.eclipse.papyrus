@@ -41,6 +41,14 @@ public class ActivitiesTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new ActivitiesTests("activities Tests");
+		suite.addTestSuite(OptionnalTest.class);
+		suite.addTestSuite(RateTest.class);
+		suite.addTestSuite(ProbabilityTest.class);
+		suite.addTestSuite(ContinuousTest.class);
+		suite.addTestSuite(DiscreteTest.class);
+		suite.addTestSuite(ControlOperatorTest.class);
+		suite.addTestSuite(NoBufferTest.class);
+		suite.addTestSuite(OverwriteTest.class);
 		return suite;
 	}
 

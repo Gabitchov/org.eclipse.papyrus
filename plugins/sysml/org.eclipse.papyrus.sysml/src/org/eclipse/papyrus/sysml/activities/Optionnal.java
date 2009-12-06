@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Parameter;
 
 /**
@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Parameter;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter <em>Base Parameter </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter <em>Base Parameter</em>}</li>
  * </ul>
  * </p>
  * 
@@ -31,10 +31,11 @@ import org.eclipse.uml2.uml.Parameter;
  * @model
  * @generated
  */
-public interface Optionnal extends EObject {
+public interface Optionnal extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Parameter</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Parameter</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,8 +50,8 @@ public interface Optionnal extends EObject {
 	Parameter getBase_Parameter();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter
-	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter <em>Base Parameter</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Parameter</em>' reference.

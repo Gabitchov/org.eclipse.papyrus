@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Block</b></em>'. <!--
@@ -31,10 +31,11 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Block extends EObject {
+public interface Block extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Class</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,7 +50,8 @@ public interface Block extends EObject {
 	org.eclipse.uml2.uml.Class getBase_Class();
 
 	/**
-	 * Returns the value of the '<em><b>Is Encapsulated</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Is Encapsulated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Encapsulated</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -64,8 +66,8 @@ public interface Block extends EObject {
 	boolean isIsEncapsulated();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class
-	 * <em>Base Class</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class <em>Base Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Class</em>' reference.
@@ -75,8 +77,8 @@ public interface Block extends EObject {
 	void setBase_Class(org.eclipse.uml2.uml.Class value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated
-	 * <em>Is Encapsulated</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated <em>Is Encapsulated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Is Encapsulated</em>' attribute.

@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
 public interface ModelelementsFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -59,7 +60,8 @@ public interface ModelelementsFactory extends EFactory {
 	Rationale createRationale();
 
 	/**
-	 * Returns a new object of class '<em>View</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>View</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>View</em>'.
 	 * @generated
@@ -67,7 +69,8 @@ public interface ModelelementsFactory extends EFactory {
 	View createView();
 
 	/**
-	 * Returns a new object of class '<em>View Point</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>View Point</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>View Point</em>'.
@@ -76,7 +79,8 @@ public interface ModelelementsFactory extends EFactory {
 	ViewPoint createViewPoint();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

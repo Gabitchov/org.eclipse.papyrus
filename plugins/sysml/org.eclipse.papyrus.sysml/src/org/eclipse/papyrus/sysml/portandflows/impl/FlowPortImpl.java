@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
@@ -35,16 +35,16 @@ import org.eclipse.uml2.uml.Type;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getBase_Port <em>Base Port </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsAtomic <em>Is Atomic </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getBase_Port <em>Base Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsAtomic <em>Is Atomic</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsConjugated <em>Is Conjugated</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getDirection <em>Direction </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class FlowPortImpl extends EObjectImpl implements FlowPort {
+public class FlowPortImpl extends ResourceEObjectImpl implements FlowPort {
 
 	/**
 	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}' reference. <!--
@@ -229,8 +229,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 			base_Port = (Port)eResolveProxy(oldBase_Port);
 			if(base_Port != oldBase_Port) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PortandflowsPackage.FLOW_PORT__BASE_PORT,
-							oldBase_Port, base_Port));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PortandflowsPackage.FLOW_PORT__BASE_PORT, oldBase_Port, base_Port));
 			}
 		}
 		return base_Port;
@@ -345,8 +344,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		Port oldBase_Port = base_Port;
 		base_Port = newBase_Port;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__BASE_PORT,
-					oldBase_Port, base_Port));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__BASE_PORT, oldBase_Port, base_Port));
 	}
 
 	/**
@@ -358,8 +356,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		FlowDirection oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__DIRECTION,
-					oldDirection, direction));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__DIRECTION, oldDirection, direction));
 	}
 
 	/**
@@ -382,8 +379,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		boolean oldIsConjugated = isConjugated;
 		isConjugated = newIsConjugated;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__IS_CONJUGATED,
-					oldIsConjugated, isConjugated));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__IS_CONJUGATED, oldIsConjugated, isConjugated));
 	}
 
 	/**

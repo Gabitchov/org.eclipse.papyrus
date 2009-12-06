@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.ModelLibrary;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
  * 
  * @generated
  */
-public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
+public class ModelLibraryImpl extends ResourceEObjectImpl implements ModelLibrary {
 
 	/**
 	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference. <!--
@@ -75,8 +75,7 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
 			if(base_Package != oldBase_Package) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.MODEL_LIBRARY__BASE_PACKAGE, oldBase_Package, base_Package));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.MODEL_LIBRARY__BASE_PACKAGE, oldBase_Package, base_Package));
 			}
 		}
 		return base_Package;
@@ -100,8 +99,7 @@ public class ModelLibraryImpl extends EObjectImpl implements ModelLibrary {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.MODEL_LIBRARY__BASE_PACKAGE,
-					oldBase_Package, base_Package));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.MODEL_LIBRARY__BASE_PACKAGE, oldBase_Package, base_Package));
 	}
 
 	/**

@@ -21,7 +21,8 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 
 /**
- * This class contains helper methods to serialize and deserialize XML documents <!-- begin-user-doc
+ * This class contains helper methods to serialize and deserialize XML documents
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * 
  * @generated
@@ -29,7 +30,8 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 public class BlocksXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

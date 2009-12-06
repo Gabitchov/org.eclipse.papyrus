@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.uml2.uml.ObjectNode;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.ObjectNode;
  * 
  * @generated
  */
-public class OverwriteImpl extends EObjectImpl implements Overwrite {
+public class OverwriteImpl extends ResourceEObjectImpl implements Overwrite {
 
 	/**
 	 * The cached value of the '{@link #getBase_ObjectNode() <em>Base Object Node</em>}' reference.
@@ -145,8 +145,7 @@ public class OverwriteImpl extends EObjectImpl implements Overwrite {
 			base_ObjectNode = (ObjectNode)eResolveProxy(oldBase_ObjectNode);
 			if(base_ObjectNode != oldBase_ObjectNode) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.OVERWRITE__BASE_OBJECT_NODE, oldBase_ObjectNode, base_ObjectNode));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.OVERWRITE__BASE_OBJECT_NODE, oldBase_ObjectNode, base_ObjectNode));
 			}
 		}
 		return base_ObjectNode;
@@ -161,8 +160,7 @@ public class OverwriteImpl extends EObjectImpl implements Overwrite {
 		ObjectNode oldBase_ObjectNode = base_ObjectNode;
 		base_ObjectNode = newBase_ObjectNode;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.OVERWRITE__BASE_OBJECT_NODE,
-					oldBase_ObjectNode, base_ObjectNode));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.OVERWRITE__BASE_OBJECT_NODE, oldBase_ObjectNode, base_ObjectNode));
 	}
 
 } // OverwriteImpl

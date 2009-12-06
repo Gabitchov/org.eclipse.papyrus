@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.BuildComponent;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Component;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Component;
  * 
  * @generated
  */
-public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
+public class BuildComponentImpl extends ResourceEObjectImpl implements BuildComponent {
 
 	/**
 	 * The cached value of the '{@link #getBase_Component() <em>Base Component</em>}' reference.
@@ -76,8 +76,7 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 			base_Component = (Component)eResolveProxy(oldBase_Component);
 			if(base_Component != oldBase_Component) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.BUILD_COMPONENT__BASE_COMPONENT, oldBase_Component, base_Component));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.BUILD_COMPONENT__BASE_COMPONENT, oldBase_Component, base_Component));
 			}
 		}
 		return base_Component;
@@ -101,8 +100,7 @@ public class BuildComponentImpl extends EObjectImpl implements BuildComponent {
 		Component oldBase_Component = base_Component;
 		base_Component = newBase_Component;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.BUILD_COMPONENT__BASE_COMPONENT,
-					oldBase_Component, base_Component));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.BUILD_COMPONENT__BASE_COMPONENT, oldBase_Component, base_Component));
 	}
 
 	/**

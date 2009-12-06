@@ -41,14 +41,14 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static UsecasesFactory init() {
 		try {
-			UsecasesFactory theUsecasesFactory = (UsecasesFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases");
+			UsecasesFactory theUsecasesFactory = (UsecasesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases");
 			if(theUsecasesFactory != null) {
 				return theUsecasesFactory;
 			}
@@ -59,7 +59,8 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

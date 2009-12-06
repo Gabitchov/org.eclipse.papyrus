@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.uml2.uml.ActivityEdge;
@@ -30,19 +30,19 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ActivityEdge <em> Base Activity Edge</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ParameterSet <em> Base Parameter Set</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getProbability <em> Probability</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ParameterSet <em>Base Parameter Set</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getProbability <em>Probability</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ProbabilityImpl extends EObjectImpl implements Probability {
+public class ProbabilityImpl extends ResourceEObjectImpl implements Probability {
 
 	/**
-	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_ActivityEdge()
 	 * @generated
@@ -51,8 +51,8 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 	protected ActivityEdge base_ActivityEdge;
 
 	/**
-	 * The cached value of the '{@link #getBase_ParameterSet() <em>Base Parameter Set</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_ParameterSet() <em>Base Parameter Set</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_ParameterSet()
 	 * @generated
@@ -211,8 +211,7 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 			base_ActivityEdge = (ActivityEdge)eResolveProxy(oldBase_ActivityEdge);
 			if(base_ActivityEdge != oldBase_ActivityEdge) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.PROBABILITY__BASE_ACTIVITY_EDGE, oldBase_ActivityEdge, base_ActivityEdge));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.PROBABILITY__BASE_ACTIVITY_EDGE, oldBase_ActivityEdge, base_ActivityEdge));
 			}
 		}
 		return base_ActivityEdge;
@@ -229,8 +228,7 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 			base_ParameterSet = (ParameterSet)eResolveProxy(oldBase_ParameterSet);
 			if(base_ParameterSet != oldBase_ParameterSet) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.PROBABILITY__BASE_PARAMETER_SET, oldBase_ParameterSet, base_ParameterSet));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.PROBABILITY__BASE_PARAMETER_SET, oldBase_ParameterSet, base_ParameterSet));
 			}
 		}
 		return base_ParameterSet;
@@ -247,8 +245,7 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 			probability = (ValueSpecification)eResolveProxy(oldProbability);
 			if(probability != oldProbability) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.PROBABILITY__PROBABILITY, oldProbability, probability));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.PROBABILITY__PROBABILITY, oldProbability, probability));
 			}
 		}
 		return probability;
@@ -263,8 +260,7 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 		ActivityEdge oldBase_ActivityEdge = base_ActivityEdge;
 		base_ActivityEdge = newBase_ActivityEdge;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.PROBABILITY__BASE_ACTIVITY_EDGE,
-					oldBase_ActivityEdge, base_ActivityEdge));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.PROBABILITY__BASE_ACTIVITY_EDGE, oldBase_ActivityEdge, base_ActivityEdge));
 	}
 
 	/**
@@ -276,8 +272,7 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 		ParameterSet oldBase_ParameterSet = base_ParameterSet;
 		base_ParameterSet = newBase_ParameterSet;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.PROBABILITY__BASE_PARAMETER_SET,
-					oldBase_ParameterSet, base_ParameterSet));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.PROBABILITY__BASE_PARAMETER_SET, oldBase_ParameterSet, base_ParameterSet));
 	}
 
 	/**
@@ -289,8 +284,7 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 		ValueSpecification oldProbability = probability;
 		probability = newProbability;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.PROBABILITY__PROBABILITY,
-					oldProbability, probability));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.PROBABILITY__PROBABILITY, oldProbability, probability));
 	}
 
 } // ProbabilityImpl

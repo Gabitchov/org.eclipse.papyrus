@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.blocks;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Property;
 
@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath <em>Property Path </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath <em>Property Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd <em>Base Connector End</em>}</li>
  * </ul>
  * </p>
@@ -33,10 +33,11 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface NestedConnectorEnd extends EObject {
+public interface NestedConnectorEnd extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Connector End</b></em>' reference. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Base Connector End</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Base Connector End</em>' reference isn't clear, there really should be more of a description here...
@@ -52,8 +53,9 @@ public interface NestedConnectorEnd extends EObject {
 	ConnectorEnd getBase_ConnectorEnd();
 
 	/**
-	 * Returns the value of the '<em><b>Property Path</b></em>' reference list. The list contents
-	 * are of type {@link org.eclipse.uml2.uml.Property}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property Path</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.uml2.uml.Property}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property Path</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -67,8 +69,8 @@ public interface NestedConnectorEnd extends EObject {
 	EList<Property> getPropertyPath();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd
-	 * <em>Base Connector End</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd <em>Base Connector End</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Connector End</em>' reference.

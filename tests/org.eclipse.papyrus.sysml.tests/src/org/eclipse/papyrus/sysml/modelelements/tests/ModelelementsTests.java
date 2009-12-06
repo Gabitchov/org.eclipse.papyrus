@@ -37,7 +37,7 @@ public class ModelelementsTests extends TestSuite {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public static Test suite() {
 		TestSuite suite = new ModelelementsTests("modelelements Tests");

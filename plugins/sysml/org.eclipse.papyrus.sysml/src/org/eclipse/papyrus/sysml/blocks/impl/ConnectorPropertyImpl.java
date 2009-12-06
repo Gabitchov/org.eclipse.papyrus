@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.ConnectorProperty;
 import org.eclipse.uml2.uml.Connector;
@@ -29,13 +29,13 @@ import org.eclipse.uml2.uml.Property;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getBase_Property <em>Base Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getConnector <em>Connector </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getConnector <em>Connector</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorProperty {
+public class ConnectorPropertyImpl extends ResourceEObjectImpl implements ConnectorProperty {
 
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference. <!--
@@ -177,8 +177,7 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 			base_Property = (Property)eResolveProxy(oldBase_Property);
 			if(base_Property != oldBase_Property) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 			}
 		}
 		return base_Property;
@@ -195,8 +194,7 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 			connector = (Connector)eResolveProxy(oldConnector);
 			if(connector != oldConnector) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR, oldConnector, connector));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR, oldConnector, connector));
 			}
 		}
 		return connector;
@@ -211,8 +209,7 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY,
-					oldBase_Property, base_Property));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.CONNECTOR_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 	}
 
 	/**
@@ -224,8 +221,7 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 		Connector oldConnector = connector;
 		connector = newConnector;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR,
-					oldConnector, connector));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR, oldConnector, connector));
 	}
 
 } // ConnectorPropertyImpl

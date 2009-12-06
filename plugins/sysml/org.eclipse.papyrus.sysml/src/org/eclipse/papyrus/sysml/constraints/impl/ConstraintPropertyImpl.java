@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.uml2.uml.Property;
@@ -27,14 +27,13 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.constraints.impl.ConstraintPropertyImpl#getBase_Property
- * <em>Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.constraints.impl.ConstraintPropertyImpl#getBase_Property <em>Base Property</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ConstraintPropertyImpl extends EObjectImpl implements ConstraintProperty {
+public class ConstraintPropertyImpl extends ResourceEObjectImpl implements ConstraintProperty {
 
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference. <!--
@@ -145,8 +144,7 @@ public class ConstraintPropertyImpl extends EObjectImpl implements ConstraintPro
 			base_Property = (Property)eResolveProxy(oldBase_Property);
 			if(base_Property != oldBase_Property) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ConstraintsPackage.CONSTRAINT_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConstraintsPackage.CONSTRAINT_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 			}
 		}
 		return base_Property;
@@ -161,8 +159,7 @@ public class ConstraintPropertyImpl extends EObjectImpl implements ConstraintPro
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ConstraintsPackage.CONSTRAINT_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintsPackage.CONSTRAINT_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 	}
 
 } // ConstraintPropertyImpl

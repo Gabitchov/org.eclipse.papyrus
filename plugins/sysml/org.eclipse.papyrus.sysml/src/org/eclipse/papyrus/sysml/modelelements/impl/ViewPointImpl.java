@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
 
@@ -33,16 +33,16 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getBase_Class <em>Base Class</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getStakeHolders <em>Stake Holders</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getPurpose <em>Purpose </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getConcerns <em>Concerns </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getLanguages <em>Languages </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getMethods <em>Methods </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getPurpose <em>Purpose</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getConcerns <em>Concerns</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getLanguages <em>Languages</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ViewPointImpl extends EObjectImpl implements ViewPoint {
+public class ViewPointImpl extends ResourceEObjectImpl implements ViewPoint {
 
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference. <!--
@@ -268,8 +268,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
 			if(base_Class != oldBase_Class) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ModelelementsPackage.VIEW_POINT__BASE_CLASS, oldBase_Class, base_Class));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelelementsPackage.VIEW_POINT__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
 		return base_Class;
@@ -327,8 +326,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	 */
 	public EList<String> getStakeHolders() {
 		if(stakeHolders == null) {
-			stakeHolders = new EDataTypeEList<String>(String.class, this,
-					ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS);
+			stakeHolders = new EDataTypeEList<String>(String.class, this, ModelelementsPackage.VIEW_POINT__STAKE_HOLDERS);
 		}
 		return stakeHolders;
 	}
@@ -342,8 +340,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW_POINT__BASE_CLASS,
-					oldBase_Class, base_Class));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW_POINT__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
@@ -355,8 +352,7 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 		String oldPurpose = purpose;
 		purpose = newPurpose;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW_POINT__PURPOSE, oldPurpose,
-					purpose));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.VIEW_POINT__PURPOSE, oldPurpose, purpose));
 	}
 
 	/**

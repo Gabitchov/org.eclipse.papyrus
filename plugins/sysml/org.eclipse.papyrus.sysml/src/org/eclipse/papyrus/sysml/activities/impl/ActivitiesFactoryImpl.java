@@ -48,14 +48,14 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static ActivitiesFactory init() {
 		try {
-			ActivitiesFactory theActivitiesFactory = (ActivitiesFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Activities");
+			ActivitiesFactory theActivitiesFactory = (ActivitiesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Activities");
 			if(theActivitiesFactory != null) {
 				return theActivitiesFactory;
 			}
@@ -66,7 +66,8 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

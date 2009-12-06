@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.requirements;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -23,11 +23,11 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement <em> Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement <em>Base Named Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom <em>Traced From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies <em>Satisfies </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies <em>Satisfies</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines <em>Refines</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies <em>Verifies </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies <em>Verifies</em>}</li>
  * </ul>
  * </p>
  * 
@@ -35,10 +35,11 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model
  * @generated
  */
-public interface RequirementRelated extends EObject {
+public interface RequirementRelated extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Named Element</b></em>' reference. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Base Named Element</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Base Named Element</em>' reference isn't clear, there really should be more of a description here...
@@ -54,8 +55,9 @@ public interface RequirementRelated extends EObject {
 	NamedElement getBase_NamedElement();
 
 	/**
-	 * Returns the value of the '<em><b>Refines</b></em>' reference list. The list contents are of
-	 * type {@link org.eclipse.papyrus.sysml.requirements.Requirement}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Refines</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.sysml.requirements.Requirement}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Refines</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -69,8 +71,9 @@ public interface RequirementRelated extends EObject {
 	EList<Requirement> getRefines();
 
 	/**
-	 * Returns the value of the '<em><b>Satisfies</b></em>' reference list. The list contents are of
-	 * type {@link org.eclipse.papyrus.sysml.requirements.Requirement}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Satisfies</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.sysml.requirements.Requirement}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Satisfies</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -84,8 +87,9 @@ public interface RequirementRelated extends EObject {
 	EList<Requirement> getSatisfies();
 
 	/**
-	 * Returns the value of the '<em><b>Traced From</b></em>' reference list. The list contents are
-	 * of type {@link org.eclipse.papyrus.sysml.requirements.Requirement}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Traced From</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.sysml.requirements.Requirement}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Traced From</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -99,8 +103,9 @@ public interface RequirementRelated extends EObject {
 	EList<Requirement> getTracedFrom();
 
 	/**
-	 * Returns the value of the '<em><b>Verifies</b></em>' reference list. The list contents are of
-	 * type {@link org.eclipse.papyrus.sysml.requirements.Requirement}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Verifies</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.sysml.requirements.Requirement}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Verifies</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -114,8 +119,9 @@ public interface RequirementRelated extends EObject {
 	EList<Requirement> getVerifies();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement
-	 * <em>Base Named Element</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement <em>Base Named Element</em>}'
+	 * reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Named Element</em>' reference.

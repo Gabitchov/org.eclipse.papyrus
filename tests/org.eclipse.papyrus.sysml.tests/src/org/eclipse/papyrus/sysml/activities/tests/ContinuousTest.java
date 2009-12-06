@@ -36,7 +36,8 @@ public class ContinuousTest extends RateTest {
 	}
 
 	/**
-	 * Constructs a new Continuous test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Continuous test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -53,7 +54,7 @@ public class ContinuousTest extends RateTest {
 	 */
 	@Override
 	protected Continuous getFixture() {
-		return (Continuous) fixture;
+		return (Continuous)fixture;
 	}
 
 	/**

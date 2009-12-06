@@ -41,6 +41,8 @@ public class ConstraintsTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new ConstraintsTests("constraints Tests");
+		suite.addTestSuite(ConstraintBlockTest.class);
+		suite.addTestSuite(ConstraintPropertyTest.class);
 		return suite;
 	}
 

@@ -20,8 +20,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksFactory;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 
 /**
- * <!-- begin-user-doc --> A test case for the model object '<em><b>Property Specific Type</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object '<em><b>Property Specific Type</b></em> '. <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -37,7 +36,8 @@ public class PropertySpecificTypeTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Property Specific Type test case. <!-- begin-user-doc --> <!--
+	 * The fixture for this Property Specific Type test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -45,7 +45,8 @@ public class PropertySpecificTypeTest extends TestCase {
 	protected PropertySpecificType fixture = null;
 
 	/**
-	 * Constructs a new Property Specific Type test case with the given name. <!-- begin-user-doc
+	 * Constructs a new Property Specific Type test case with the given name.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -55,7 +56,8 @@ public class PropertySpecificTypeTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Property Specific Type test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Property Specific Type test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -65,7 +67,8 @@ public class PropertySpecificTypeTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Property Specific Type test case. <!-- begin-user-doc --> <!--
+	 * Sets the fixture for this Property Specific Type test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

@@ -14,15 +14,14 @@
 package org.eclipse.papyrus.uml.standard.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
+import org.eclipse.papyrus.resource.provider.ResourceEditPlugin;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
- * This is the central singleton for the standard edit plugin. <!-- begin-user-doc --> <!--
+ * This is the central singleton for the standard edit plugin.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated
@@ -30,30 +29,39 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 public final class standardEditPlugin extends EMFPlugin {
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Keep track of the singleton.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static final standardEditPlugin INSTANCE = new standardEditPlugin();
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Keep track of the singleton.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private static Implementation plugin;
 
 	/**
-	 * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Create the instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public standardEditPlugin() {
-		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]
+				{
+				EcoreEditPlugin.INSTANCE,
+				UMLEditPlugin.INSTANCE,
+				ResourceEditPlugin.INSTANCE,
+				});
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!--
+	 * Returns the singleton instance of the Eclipse plugin.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the singleton instance.
@@ -65,7 +73,8 @@ public final class standardEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!--
+	 * Returns the singleton instance of the Eclipse plugin.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the singleton instance.
@@ -76,7 +85,8 @@ public final class standardEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc --> <!--
+	 * The actual implementation of the Eclipse <b>Plugin</b>.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -84,7 +94,8 @@ public final class standardEditPlugin extends EMFPlugin {
 	public static class Implementation extends EclipsePlugin {
 
 		/**
-		 * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * Creates an instance.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */

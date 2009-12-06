@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Property;
 
@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getBase_Property <em>Base Property </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getBase_Property <em>Base Property</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getDirection <em>Direction</em>}</li>
  * </ul>
  * </p>
@@ -33,10 +33,11 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface FlowProperty extends EObject {
+public interface FlowProperty extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Property</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -51,8 +52,10 @@ public interface FlowProperty extends EObject {
 	Property getBase_Property();
 
 	/**
-	 * Returns the value of the '<em><b>Direction</b></em>' attribute. The default value is <code>"inout"</code>. The literals are from the
-	 * enumeration {@link org.eclipse.papyrus.sysml.portandflows.FlowDirection}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
+	 * The default value is <code>"inout"</code>.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.sysml.portandflows.FlowDirection}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Direction</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -76,8 +79,8 @@ public interface FlowProperty extends EObject {
 	Image getIcon();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getBase_Property
-	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getBase_Property <em>Base Property</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Property</em>' reference.
@@ -87,8 +90,8 @@ public interface FlowProperty extends EObject {
 	void setBase_Property(Property value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getDirection <em>Direction</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getDirection <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Direction</em>' attribute.

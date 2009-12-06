@@ -37,14 +37,16 @@ public class DimensionTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Dimension test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Dimension test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected Dimension fixture = null;
 
 	/**
-	 * Constructs a new Dimension test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Dimension test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -64,7 +66,8 @@ public class DimensionTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Dimension test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Dimension test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

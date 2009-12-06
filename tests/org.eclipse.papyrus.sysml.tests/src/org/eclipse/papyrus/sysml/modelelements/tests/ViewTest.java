@@ -78,7 +78,8 @@ public class ViewTest extends TestCase {
 	protected Model model = null;
 
 	/**
-	 * Constructs a new View test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new View test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -88,7 +89,8 @@ public class ViewTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this View test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the fixture for this View test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -97,7 +99,8 @@ public class ViewTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this View test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this View test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -117,11 +120,11 @@ public class ViewTest extends TestCase {
 
 		// Prepare test
 		model = SysMLTestResources.createSysMLModel();
-		if (model == null) {
+		if(model == null) {
 			fail();
 		}
 
-		if (model.getAppliedProfiles().isEmpty()) {
+		if(model.getAppliedProfiles().isEmpty()) {
 			fail();
 		}
 
@@ -133,11 +136,11 @@ public class ViewTest extends TestCase {
 		c1 = model.createOwnedClass("c1", false);
 
 		// Add View stereotype
-		v0 = (View) p0.applyStereotype(p0.getApplicableStereotype(VIEW_ID));
-		v1 = (View) p1.applyStereotype(p1.getApplicableStereotype(VIEW_ID));
+		v0 = (View)p0.applyStereotype(p0.getApplicableStereotype(VIEW_ID));
+		v1 = (View)p1.applyStereotype(p1.getApplicableStereotype(VIEW_ID));
 
 		// Add ViewPoint stereotype
-		vp1 = (ViewPoint) c1.applyStereotype(c1.getApplicableStereotype(VIEWPOINT_ID));
+		vp1 = (ViewPoint)c1.applyStereotype(c1.getApplicableStereotype(VIEWPOINT_ID));
 
 		// Add Abstractions with allocate stereotype
 		// v1 (p1) -> vp1 (c1)
@@ -146,7 +149,7 @@ public class ViewTest extends TestCase {
 		v1_vp1.getSuppliers().add(c1);
 		model.getPackagedElements().add(v1_vp1);
 		@SuppressWarnings("unused")
-		Conform c_v1_vp1 = (Conform) v1_vp1.applyStereotype(v1_vp1.getApplicableStereotype(CONFORM_ID));
+		Conform c_v1_vp1 = (Conform)v1_vp1.applyStereotype(v1_vp1.getApplicableStereotype(CONFORM_ID));
 
 	}
 
@@ -171,12 +174,12 @@ public class ViewTest extends TestCase {
 	public void testGetViewPoint() {
 
 		// Verifies : v0.getViewPoint = []
-		if (v0.getViewPoint() != null) {
+		if(v0.getViewPoint() != null) {
 			fail();
 		}
 
 		// Verifies : v1.getViewPoint = vp1
-		if (!v1.getViewPoint().equals(vp1)) {
+		if(!v1.getViewPoint().equals(vp1)) {
 			fail();
 		}
 	}

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * @model
  * @generated
  */
-public interface Dimension extends EObject {
+public interface Dimension extends ResourceEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Instance Specification</b></em>' reference. <!--

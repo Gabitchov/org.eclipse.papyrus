@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.papyrus.uml.standard.SystemModel;
 import org.eclipse.uml2.uml.Model;
@@ -28,13 +28,13 @@ import org.eclipse.uml2.uml.Model;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.SystemModelImpl#getBase_Model <em>Base Model </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.SystemModelImpl#getBase_Model <em>Base Model</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class SystemModelImpl extends EObjectImpl implements SystemModel {
+public class SystemModelImpl extends ResourceEObjectImpl implements SystemModel {
 
 	/**
 	 * The cached value of the '{@link #getBase_Model() <em>Base Model</em>}' reference. <!--
@@ -76,8 +76,7 @@ public class SystemModelImpl extends EObjectImpl implements SystemModel {
 			base_Model = (Model)eResolveProxy(oldBase_Model);
 			if(base_Model != oldBase_Model) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.SYSTEM_MODEL__BASE_MODEL,
-							oldBase_Model, base_Model));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.SYSTEM_MODEL__BASE_MODEL, oldBase_Model, base_Model));
 			}
 		}
 		return base_Model;
@@ -101,8 +100,7 @@ public class SystemModelImpl extends EObjectImpl implements SystemModel {
 		Model oldBase_Model = base_Model;
 		base_Model = newBase_Model;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.SYSTEM_MODEL__BASE_MODEL,
-					oldBase_Model, base_Model));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.SYSTEM_MODEL__BASE_MODEL, oldBase_Model, base_Model));
 	}
 
 	/**

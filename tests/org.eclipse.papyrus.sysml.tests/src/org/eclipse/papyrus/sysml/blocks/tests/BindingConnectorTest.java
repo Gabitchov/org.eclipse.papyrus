@@ -45,7 +45,8 @@ public class BindingConnectorTest extends TestCase {
 	protected BindingConnector fixture = null;
 
 	/**
-	 * Constructs a new Binding Connector test case with the given name. <!-- begin-user-doc -->
+	 * Constructs a new Binding Connector test case with the given name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -55,7 +56,8 @@ public class BindingConnectorTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Binding Connector test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Binding Connector test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -65,7 +67,8 @@ public class BindingConnectorTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Binding Connector test case. <!-- begin-user-doc --> <!--
+	 * Sets the fixture for this Binding Connector test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

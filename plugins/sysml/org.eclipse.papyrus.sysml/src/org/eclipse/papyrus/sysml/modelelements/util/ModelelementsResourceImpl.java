@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 public class ModelelementsResourceImpl extends XMLResourceImpl {
 
 	/**
-	 * Creates an instance of the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param uri
 	 *        the URI of the new resource.

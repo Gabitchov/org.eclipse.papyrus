@@ -20,8 +20,7 @@ import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.AllocationsFactory;
 
 /**
- * <!-- begin-user-doc --> A test case for the model object '
- * <em><b>Allocate Activity Partition</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object ' <em><b>Allocate Activity Partition</b></em>'. <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -37,7 +36,8 @@ public class AllocateActivityPartitionTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Allocate Activity Partition test case. <!-- begin-user-doc --> <!--
+	 * The fixture for this Allocate Activity Partition test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -55,7 +55,8 @@ public class AllocateActivityPartitionTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Allocate Activity Partition test case. <!-- begin-user-doc -->
+	 * Returns the fixture for this Allocate Activity Partition test case.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -65,7 +66,8 @@ public class AllocateActivityPartitionTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Allocate Activity Partition test case. <!-- begin-user-doc --> <!--
+	 * Sets the fixture for this Allocate Activity Partition test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 public class UsecasesResourceFactoryImpl extends ResourceFactoryImpl {
 
 	/**
-	 * Creates an instance of the resource factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the resource factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -36,7 +37,8 @@ public class UsecasesResourceFactoryImpl extends ResourceFactoryImpl {
 	}
 
 	/**
-	 * Creates an instance of the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

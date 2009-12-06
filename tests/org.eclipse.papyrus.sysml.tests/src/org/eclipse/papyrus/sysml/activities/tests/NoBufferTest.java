@@ -37,14 +37,16 @@ public class NoBufferTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this No Buffer test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this No Buffer test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected NoBuffer fixture = null;
 
 	/**
-	 * Constructs a new No Buffer test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new No Buffer test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -64,7 +66,8 @@ public class NoBufferTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this No Buffer test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this No Buffer test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

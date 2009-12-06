@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Rate;
 import org.eclipse.uml2.uml.ActivityEdge;
@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.Parameter;
  * 
  * @generated
  */
-public class RateImpl extends EObjectImpl implements Rate {
+public class RateImpl extends ResourceEObjectImpl implements Rate {
 
 	/**
 	 * The cached value of the '{@link #getBase_Parameter() <em>Base Parameter</em>}' reference.
@@ -51,8 +51,8 @@ public class RateImpl extends EObjectImpl implements Rate {
 	protected Parameter base_Parameter;
 
 	/**
-	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_ActivityEdge()
 	 * @generated
@@ -61,7 +61,8 @@ public class RateImpl extends EObjectImpl implements Rate {
 	protected ActivityEdge base_ActivityEdge;
 
 	/**
-	 * The cached value of the '{@link #getRate() <em>Rate</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRate() <em>Rate</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getRate()
@@ -211,8 +212,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 			base_ActivityEdge = (ActivityEdge)eResolveProxy(oldBase_ActivityEdge);
 			if(base_ActivityEdge != oldBase_ActivityEdge) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE, oldBase_ActivityEdge, base_ActivityEdge));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE, oldBase_ActivityEdge, base_ActivityEdge));
 			}
 		}
 		return base_ActivityEdge;
@@ -229,8 +229,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 			base_Parameter = (Parameter)eResolveProxy(oldBase_Parameter);
 			if(base_Parameter != oldBase_Parameter) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.RATE__BASE_PARAMETER,
-							oldBase_Parameter, base_Parameter));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.RATE__BASE_PARAMETER, oldBase_Parameter, base_Parameter));
 			}
 		}
 		return base_Parameter;
@@ -247,8 +246,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 			rate = (InstanceSpecification)eResolveProxy(oldRate);
 			if(rate != oldRate) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.RATE__RATE, oldRate,
-							rate));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.RATE__RATE, oldRate, rate));
 			}
 		}
 		return rate;
@@ -263,8 +261,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 		ActivityEdge oldBase_ActivityEdge = base_ActivityEdge;
 		base_ActivityEdge = newBase_ActivityEdge;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE,
-					oldBase_ActivityEdge, base_ActivityEdge));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__BASE_ACTIVITY_EDGE, oldBase_ActivityEdge, base_ActivityEdge));
 	}
 
 	/**
@@ -276,8 +273,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 		Parameter oldBase_Parameter = base_Parameter;
 		base_Parameter = newBase_Parameter;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__BASE_PARAMETER,
-					oldBase_Parameter, base_Parameter));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__BASE_PARAMETER, oldBase_Parameter, base_Parameter));
 	}
 
 	/**

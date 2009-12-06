@@ -90,7 +90,8 @@ public class FlowPortTest extends TestCase {
 	protected Model model = null;
 
 	/**
-	 * Constructs a new Flow Port test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Flow Port test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -110,7 +111,8 @@ public class FlowPortTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Flow Port test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Flow Port test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -130,11 +132,11 @@ public class FlowPortTest extends TestCase {
 
 		// Prepare test
 		model = SysMLTestResources.createSysMLModel();
-		if (model == null) {
+		if(model == null) {
 			fail();
 		}
 
-		if (model.getAppliedProfiles().isEmpty()) {
+		if(model.getAppliedProfiles().isEmpty()) {
 			fail();
 		}
 
@@ -151,15 +153,15 @@ public class FlowPortTest extends TestCase {
 		p2 = c0.createOwnedPort("p2", i2);
 
 		// Add FlowPort stereotypes
-		fp0 = (FlowPort) p0.applyStereotype(p0.getApplicableStereotype(FLOWPORT_ID));
-		fp1 = (FlowPort) p1.applyStereotype(p1.getApplicableStereotype(FLOWPORT_ID));
+		fp0 = (FlowPort)p0.applyStereotype(p0.getApplicableStereotype(FLOWPORT_ID));
+		fp1 = (FlowPort)p1.applyStereotype(p1.getApplicableStereotype(FLOWPORT_ID));
 		fp1.setDirection(FlowDirection.OUT);
-		fp2 = (FlowPort) p2.applyStereotype(p2.getApplicableStereotype(FLOWPORT_ID));
+		fp2 = (FlowPort)p2.applyStereotype(p2.getApplicableStereotype(FLOWPORT_ID));
 		fp2.setDirection(FlowDirection.IN);
 		fp2.setIsConjugated(true);
 
 		// Add FlowSpecification
-		fsp2 = (FlowSpecification) i2.applyStereotype(i2.getApplicableStereotype(FLOWSPECIFICATION_ID));
+		fsp2 = (FlowSpecification)i2.applyStereotype(i2.getApplicableStereotype(FLOWSPECIFICATION_ID));
 	}
 
 	/**
@@ -197,15 +199,15 @@ public class FlowPortTest extends TestCase {
 		// Image i7 = s.getIcons().get(7); // NA_NC_OUT
 		// Image i8 = s.getIcons().get(8); // NA_NC_INOUT
 
-		if (!fp0.getIcon().equals(i2)) {
+		if(!fp0.getIcon().equals(i2)) {
 			fail();
 		}
 
-		if (!fp1.getIcon().equals(i1)) {
+		if(!fp1.getIcon().equals(i1)) {
 			fail();
 		}
 
-		if (!fp2.getIcon().equals(i3)) {
+		if(!fp2.getIcon().equals(i3)) {
 			fail();
 		}
 	}
@@ -220,17 +222,17 @@ public class FlowPortTest extends TestCase {
 	public void testIsIsAtomic() {
 
 		// FlowPort without type is Atomic
-		if (!fp0.isIsAtomic()) {
+		if(!fp0.isIsAtomic()) {
 			fail();
 		}
 
 		// FlowPort type is not a FlowSpecification
-		if (!fp1.isIsAtomic()) {
+		if(!fp1.isIsAtomic()) {
 			fail();
 		}
 
 		// FlowPort type is a FlowSpecification
-		if (fp2.isIsAtomic()) {
+		if(fp2.isIsAtomic()) {
 			fail();
 		}
 	}

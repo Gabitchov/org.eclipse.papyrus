@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.papyrus.uml.standard.Trace;
 import org.eclipse.uml2.uml.Abstraction;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Abstraction;
  * 
  * @generated
  */
-public class TraceImpl extends EObjectImpl implements Trace {
+public class TraceImpl extends ResourceEObjectImpl implements Trace {
 
 	/**
 	 * The cached value of the '{@link #getBase_Abstraction() <em>Base Abstraction</em>}' reference.
@@ -76,8 +76,7 @@ public class TraceImpl extends EObjectImpl implements Trace {
 			base_Abstraction = (Abstraction)eResolveProxy(oldBase_Abstraction);
 			if(base_Abstraction != oldBase_Abstraction) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.TRACE__BASE_ABSTRACTION,
-							oldBase_Abstraction, base_Abstraction));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.TRACE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 			}
 		}
 		return base_Abstraction;
@@ -101,8 +100,7 @@ public class TraceImpl extends EObjectImpl implements Trace {
 		Abstraction oldBase_Abstraction = base_Abstraction;
 		base_Abstraction = newBase_Abstraction;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.TRACE__BASE_ABSTRACTION,
-					oldBase_Abstraction, base_Abstraction));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.TRACE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 	}
 
 	/**

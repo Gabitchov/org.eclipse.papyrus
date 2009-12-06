@@ -41,6 +41,16 @@ public class BlocksTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new BlocksTests("blocks Tests");
+		suite.addTestSuite(BlockTest.class);
+		suite.addTestSuite(DistributedPropertyTest.class);
+		suite.addTestSuite(DimensionTest.class);
+		suite.addTestSuite(UnitTest.class);
+		suite.addTestSuite(ValueTypeTest.class);
+		suite.addTestSuite(NestedConnectorEndTest.class);
+		suite.addTestSuite(ParticipantPropertyTest.class);
+		suite.addTestSuite(ConnectorPropertyTest.class);
+		suite.addTestSuite(BindingConnectorTest.class);
+		suite.addTestSuite(PropertySpecificTypeTest.class);
 		return suite;
 	}
 

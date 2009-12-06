@@ -41,14 +41,14 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static SysmlFactory init() {
 		try {
-			SysmlFactory theSysmlFactory = (SysmlFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML");
+			SysmlFactory theSysmlFactory = (SysmlFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML");
 			if(theSysmlFactory != null) {
 				return theSysmlFactory;
 			}
@@ -59,7 +59,8 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

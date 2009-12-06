@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Optionnal;
 import org.eclipse.uml2.uml.Parameter;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Parameter;
  * 
  * @generated
  */
-public class OptionnalImpl extends EObjectImpl implements Optionnal {
+public class OptionnalImpl extends ResourceEObjectImpl implements Optionnal {
 
 	/**
 	 * The cached value of the '{@link #getBase_Parameter() <em>Base Parameter</em>}' reference.
@@ -145,8 +145,7 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 			base_Parameter = (Parameter)eResolveProxy(oldBase_Parameter);
 			if(base_Parameter != oldBase_Parameter) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ActivitiesPackage.OPTIONNAL__BASE_PARAMETER, oldBase_Parameter, base_Parameter));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivitiesPackage.OPTIONNAL__BASE_PARAMETER, oldBase_Parameter, base_Parameter));
 			}
 		}
 		return base_Parameter;
@@ -161,8 +160,7 @@ public class OptionnalImpl extends EObjectImpl implements Optionnal {
 		Parameter oldBase_Parameter = base_Parameter;
 		base_Parameter = newBase_Parameter;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.OPTIONNAL__BASE_PARAMETER,
-					oldBase_Parameter, base_Parameter));
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.OPTIONNAL__BASE_PARAMETER, oldBase_Parameter, base_Parameter));
 	}
 
 } // OptionnalImpl

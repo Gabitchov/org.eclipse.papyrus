@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.Dimension;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -28,13 +28,13 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl#getBase_InstanceSpecification <em> Base Instance Specification</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class DimensionImpl extends EObjectImpl implements Dimension {
+public class DimensionImpl extends ResourceEObjectImpl implements Dimension {
 
 	/**
 	 * The cached value of the '{@link #getBase_InstanceSpecification()
@@ -146,9 +146,7 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 			base_InstanceSpecification = (InstanceSpecification)eResolveProxy(oldBase_InstanceSpecification);
 			if(base_InstanceSpecification != oldBase_InstanceSpecification) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification,
-							base_InstanceSpecification));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification, base_InstanceSpecification));
 			}
 		}
 		return base_InstanceSpecification;
@@ -163,8 +161,7 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 		InstanceSpecification oldBase_InstanceSpecification = base_InstanceSpecification;
 		base_InstanceSpecification = newBase_InstanceSpecification;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION,
-					oldBase_InstanceSpecification, base_InstanceSpecification));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification, base_InstanceSpecification));
 	}
 
 } // DimensionImpl

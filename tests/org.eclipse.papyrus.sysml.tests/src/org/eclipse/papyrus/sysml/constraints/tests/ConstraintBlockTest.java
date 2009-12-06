@@ -37,7 +37,8 @@ public class ConstraintBlockTest extends BlockTest {
 	}
 
 	/**
-	 * Constructs a new Constraint Block test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Constraint Block test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -47,14 +48,15 @@ public class ConstraintBlockTest extends BlockTest {
 	}
 
 	/**
-	 * Returns the fixture for this Constraint Block test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Constraint Block test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	protected ConstraintBlock getFixture() {
-		return (ConstraintBlock) fixture;
+		return (ConstraintBlock)fixture;
 	}
 
 	/**

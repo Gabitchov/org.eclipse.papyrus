@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelelements;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Dependency;
 
 /**
@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Dependency;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
  * </p>
  * 
@@ -31,10 +31,11 @@ import org.eclipse.uml2.uml.Dependency;
  * @model
  * @generated
  */
-public interface Conform extends EObject {
+public interface Conform extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Dependency</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Dependency</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Dependency</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,8 +50,8 @@ public interface Conform extends EObject {
 	Dependency getBase_Dependency();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency
-	 * <em>Base Dependency</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Dependency</em>' reference.

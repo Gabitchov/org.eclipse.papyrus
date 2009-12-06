@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.Dimension;
 import org.eclipse.papyrus.sysml.blocks.Unit;
@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * 
  * @generated
  */
-public class UnitImpl extends EObjectImpl implements Unit {
+public class UnitImpl extends ResourceEObjectImpl implements Unit {
 
 	/**
 	 * The cached value of the '{@link #getBase_InstanceSpecification()
@@ -179,9 +179,7 @@ public class UnitImpl extends EObjectImpl implements Unit {
 			base_InstanceSpecification = (InstanceSpecification)eResolveProxy(oldBase_InstanceSpecification);
 			if(base_InstanceSpecification != oldBase_InstanceSpecification) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification,
-							base_InstanceSpecification));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification, base_InstanceSpecification));
 			}
 		}
 		return base_InstanceSpecification;
@@ -198,8 +196,7 @@ public class UnitImpl extends EObjectImpl implements Unit {
 			dimension = (Dimension)eResolveProxy(oldDimension);
 			if(dimension != oldDimension) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.UNIT__DIMENSION,
-							oldDimension, dimension));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.UNIT__DIMENSION, oldDimension, dimension));
 			}
 		}
 		return dimension;
@@ -214,8 +211,7 @@ public class UnitImpl extends EObjectImpl implements Unit {
 		InstanceSpecification oldBase_InstanceSpecification = base_InstanceSpecification;
 		base_InstanceSpecification = newBase_InstanceSpecification;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION,
-					oldBase_InstanceSpecification, base_InstanceSpecification));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.UNIT__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification, base_InstanceSpecification));
 	}
 
 	/**
@@ -227,8 +223,7 @@ public class UnitImpl extends EObjectImpl implements Unit {
 		Dimension oldDimension = dimension;
 		dimension = newDimension;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.UNIT__DIMENSION, oldDimension,
-					dimension));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.UNIT__DIMENSION, oldDimension, dimension));
 	}
 
 } // UnitImpl

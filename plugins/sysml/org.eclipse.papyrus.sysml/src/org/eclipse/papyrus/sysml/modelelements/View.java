@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelelements;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>View</b></em>'. <!--
@@ -31,10 +31,11 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface View extends EObject {
+public interface View extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Package</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Package</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,7 +50,8 @@ public interface View extends EObject {
 	org.eclipse.uml2.uml.Package getBase_Package();
 
 	/**
-	 * Returns the value of the '<em><b>View Point</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>View Point</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>View Point</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -57,15 +59,14 @@ public interface View extends EObject {
 	 * 
 	 * @return the value of the '<em>View Point</em>' reference.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage#getView_ViewPoint()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        ordered="false"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	ViewPoint getViewPoint();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package
-	 * <em>Base Package</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package <em>Base Package</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Package</em>' reference.

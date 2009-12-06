@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -46,11 +46,11 @@ import org.eclipse.uml2.uml.NamedElement;
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getText <em>Text</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getId <em>Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived <em>Derived </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived <em>Derived</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerivedFrom <em>Derived From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy <em> Satisfied By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy <em>Satisfied By</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getRefinedBy <em>Refined By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo <em>Traced To </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo <em>Traced To</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getVerifiedBy <em>Verified By</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getMaster <em>Master</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getBase_Class <em>Base Class</em>}</li>
@@ -59,10 +59,11 @@ import org.eclipse.uml2.uml.NamedElement;
  * 
  * @generated
  */
-public class RequirementImpl extends EObjectImpl implements Requirement {
+public class RequirementImpl extends ResourceEObjectImpl implements Requirement {
 
 	/**
-	 * The default value of the '{@link #getText() <em>Text</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @see #getText()
@@ -72,7 +73,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	protected static final String TEXT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getText()
@@ -82,7 +84,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	protected String text = TEXT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
@@ -92,7 +95,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
@@ -297,8 +301,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
 			if(base_Class != oldBase_Class) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementsPackage.REQUIREMENT__BASE_CLASS, oldBase_Class, base_Class));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.REQUIREMENT__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
 		return base_Class;
@@ -534,8 +537,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__BASE_CLASS,
-					oldBase_Class, base_Class));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**

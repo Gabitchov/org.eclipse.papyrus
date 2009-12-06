@@ -37,7 +37,8 @@ public class NestedConnectorEndTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Nested Connector End test case. <!-- begin-user-doc --> <!--
+	 * The fixture for this Nested Connector End test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -45,7 +46,8 @@ public class NestedConnectorEndTest extends TestCase {
 	protected NestedConnectorEnd fixture = null;
 
 	/**
-	 * Constructs a new Nested Connector End test case with the given name. <!-- begin-user-doc -->
+	 * Constructs a new Nested Connector End test case with the given name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -55,7 +57,8 @@ public class NestedConnectorEndTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Nested Connector End test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Nested Connector End test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -65,7 +68,8 @@ public class NestedConnectorEndTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Nested Connector End test case. <!-- begin-user-doc --> <!--
+	 * Sets the fixture for this Nested Connector End test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

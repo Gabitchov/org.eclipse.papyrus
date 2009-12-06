@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.Destroy;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.BehavioralFeature;
@@ -34,11 +34,11 @@ import org.eclipse.uml2.uml.BehavioralFeature;
  * 
  * @generated
  */
-public class DestroyImpl extends EObjectImpl implements Destroy {
+public class DestroyImpl extends ResourceEObjectImpl implements Destroy {
 
 	/**
-	 * The cached value of the '{@link #getBase_BehavioralFeature()
-	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_BehavioralFeature() <em>Base Behavioral Feature</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_BehavioralFeature()
 	 * @generated
@@ -76,9 +76,7 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 			base_BehavioralFeature = (BehavioralFeature)eResolveProxy(oldBase_BehavioralFeature);
 			if(base_BehavioralFeature != oldBase_BehavioralFeature) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE, oldBase_BehavioralFeature,
-							base_BehavioralFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE, oldBase_BehavioralFeature, base_BehavioralFeature));
 			}
 		}
 		return base_BehavioralFeature;
@@ -102,8 +100,7 @@ public class DestroyImpl extends EObjectImpl implements Destroy {
 		BehavioralFeature oldBase_BehavioralFeature = base_BehavioralFeature;
 		base_BehavioralFeature = newBase_BehavioralFeature;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE,
-					oldBase_BehavioralFeature, base_BehavioralFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.DESTROY__BASE_BEHAVIORAL_FEATURE, oldBase_BehavioralFeature, base_BehavioralFeature));
 	}
 
 	/**

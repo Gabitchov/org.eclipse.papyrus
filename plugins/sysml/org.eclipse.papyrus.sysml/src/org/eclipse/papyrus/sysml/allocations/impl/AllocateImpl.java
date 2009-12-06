@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.uml2.uml.Abstraction;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Abstraction;
  * 
  * @generated
  */
-public class AllocateImpl extends EObjectImpl implements Allocate {
+public class AllocateImpl extends ResourceEObjectImpl implements Allocate {
 
 	/**
 	 * The cached value of the '{@link #getBase_Abstraction() <em>Base Abstraction</em>}' reference.
@@ -145,8 +145,7 @@ public class AllocateImpl extends EObjectImpl implements Allocate {
 			base_Abstraction = (Abstraction)eResolveProxy(oldBase_Abstraction);
 			if(base_Abstraction != oldBase_Abstraction) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							AllocationsPackage.ALLOCATE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AllocationsPackage.ALLOCATE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 			}
 		}
 		return base_Abstraction;
@@ -161,8 +160,7 @@ public class AllocateImpl extends EObjectImpl implements Allocate {
 		Abstraction oldBase_Abstraction = base_Abstraction;
 		base_Abstraction = newBase_Abstraction;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATE__BASE_ABSTRACTION,
-					oldBase_Abstraction, base_Abstraction));
+			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 	}
 
 } // AllocateImpl

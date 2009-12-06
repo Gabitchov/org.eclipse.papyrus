@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Continuous;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
@@ -40,14 +41,16 @@ import org.eclipse.papyrus.sysml.activities.Rate;
 public class ActivitiesSwitch<T> {
 
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static ActivitiesPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -148,6 +151,23 @@ public class ActivitiesSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResourceEObject(ResourceEObject object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Probability</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
@@ -193,8 +213,8 @@ public class ActivitiesSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -204,13 +224,15 @@ public class ActivitiesSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -220,8 +242,8 @@ public class ActivitiesSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -233,6 +255,8 @@ public class ActivitiesSwitch<T> {
 			Optionnal optionnal = (Optionnal)theEObject;
 			T result = caseOptionnal(optionnal);
 			if(result == null)
+				result = caseResourceEObject(optionnal);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -241,6 +265,8 @@ public class ActivitiesSwitch<T> {
 			Rate rate = (Rate)theEObject;
 			T result = caseRate(rate);
 			if(result == null)
+				result = caseResourceEObject(rate);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -248,6 +274,8 @@ public class ActivitiesSwitch<T> {
 		{
 			Probability probability = (Probability)theEObject;
 			T result = caseProbability(probability);
+			if(result == null)
+				result = caseResourceEObject(probability);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -259,6 +287,8 @@ public class ActivitiesSwitch<T> {
 			if(result == null)
 				result = caseRate(continuous);
 			if(result == null)
+				result = caseResourceEObject(continuous);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -269,6 +299,8 @@ public class ActivitiesSwitch<T> {
 			if(result == null)
 				result = caseRate(discrete);
 			if(result == null)
+				result = caseResourceEObject(discrete);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -276,6 +308,8 @@ public class ActivitiesSwitch<T> {
 		{
 			ControlOperator controlOperator = (ControlOperator)theEObject;
 			T result = caseControlOperator(controlOperator);
+			if(result == null)
+				result = caseResourceEObject(controlOperator);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -285,6 +319,8 @@ public class ActivitiesSwitch<T> {
 			NoBuffer noBuffer = (NoBuffer)theEObject;
 			T result = caseNoBuffer(noBuffer);
 			if(result == null)
+				result = caseResourceEObject(noBuffer);
+			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -292,6 +328,8 @@ public class ActivitiesSwitch<T> {
 		{
 			Overwrite overwrite = (Overwrite)theEObject;
 			T result = caseOverwrite(overwrite);
+			if(result == null)
+				result = caseResourceEObject(overwrite);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

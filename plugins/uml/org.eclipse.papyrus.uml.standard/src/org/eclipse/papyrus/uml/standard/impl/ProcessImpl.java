@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Component;
 
@@ -27,13 +27,13 @@ import org.eclipse.uml2.uml.Component;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.ProcessImpl#getBase_Component <em>Base Component </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.ProcessImpl#getBase_Component <em>Base Component</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ProcessImpl extends EObjectImpl implements org.eclipse.papyrus.uml.standard.Process {
+public class ProcessImpl extends ResourceEObjectImpl implements org.eclipse.papyrus.uml.standard.Process {
 
 	/**
 	 * The cached value of the '{@link #getBase_Component() <em>Base Component</em>}' reference.
@@ -75,8 +75,7 @@ public class ProcessImpl extends EObjectImpl implements org.eclipse.papyrus.uml.
 			base_Component = (Component)eResolveProxy(oldBase_Component);
 			if(base_Component != oldBase_Component) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.PROCESS__BASE_COMPONENT,
-							oldBase_Component, base_Component));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.PROCESS__BASE_COMPONENT, oldBase_Component, base_Component));
 			}
 		}
 		return base_Component;
@@ -100,8 +99,7 @@ public class ProcessImpl extends EObjectImpl implements org.eclipse.papyrus.uml.
 		Component oldBase_Component = base_Component;
 		base_Component = newBase_Component;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.PROCESS__BASE_COMPONENT,
-					oldBase_Component, base_Component));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.PROCESS__BASE_COMPONENT, oldBase_Component, base_Component));
 	}
 
 	/**

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.Responsibility;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Usage;
@@ -28,13 +28,13 @@ import org.eclipse.uml2.uml.Usage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.ResponsibilityImpl#getBase_Usage <em>Base Usage </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.ResponsibilityImpl#getBase_Usage <em>Base Usage</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ResponsibilityImpl extends EObjectImpl implements Responsibility {
+public class ResponsibilityImpl extends ResourceEObjectImpl implements Responsibility {
 
 	/**
 	 * The cached value of the '{@link #getBase_Usage() <em>Base Usage</em>}' reference. <!--
@@ -76,8 +76,7 @@ public class ResponsibilityImpl extends EObjectImpl implements Responsibility {
 			base_Usage = (Usage)eResolveProxy(oldBase_Usage);
 			if(base_Usage != oldBase_Usage) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.RESPONSIBILITY__BASE_USAGE, oldBase_Usage, base_Usage));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.RESPONSIBILITY__BASE_USAGE, oldBase_Usage, base_Usage));
 			}
 		}
 		return base_Usage;
@@ -101,8 +100,7 @@ public class ResponsibilityImpl extends EObjectImpl implements Responsibility {
 		Usage oldBase_Usage = base_Usage;
 		base_Usage = newBase_Usage;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.RESPONSIBILITY__BASE_USAGE,
-					oldBase_Usage, base_Usage));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.RESPONSIBILITY__BASE_USAGE, oldBase_Usage, base_Usage));
 	}
 
 	/**

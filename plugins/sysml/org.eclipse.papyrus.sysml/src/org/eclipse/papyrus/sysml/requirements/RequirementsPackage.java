@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
 /**
@@ -51,8 +52,8 @@ public interface RequirementsPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl <em>Derive Reqt</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl <em>Derive Reqt</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getDeriveReqt()
@@ -61,7 +62,7 @@ public interface RequirementsPackage extends EPackage {
 		EClass DERIVE_REQT = eINSTANCE.getDeriveReqt();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl <em>Verify</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl <em>Verify</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl
@@ -81,7 +82,7 @@ public interface RequirementsPackage extends EPackage {
 		EClass COPY = eINSTANCE.getCopy();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl <em>Satisfy</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl <em>Satisfy</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl
@@ -91,8 +92,8 @@ public interface RequirementsPackage extends EPackage {
 		EClass SATISFY = eINSTANCE.getSatisfy();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl <em>Test Case</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl <em>Test Case</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getTestCase()
@@ -125,8 +126,8 @@ public interface RequirementsPackage extends EPackage {
 		EReference TEST_CASE__VERIFIES = eINSTANCE.getTestCase_Verifies();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl <em>Requirement</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl <em>Requirement</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirement()
@@ -215,8 +216,9 @@ public interface RequirementsPackage extends EPackage {
 		EReference REQUIREMENT__BASE_CLASS = eINSTANCE.getRequirement_Base_Class();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl
-		 * <em>Requirement Related</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl <em>Requirement Related</em>}'
+		 * class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl
 		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirementRelated()
@@ -267,36 +269,40 @@ public interface RequirementsPackage extends EPackage {
 	}
 
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNAME = "requirements";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "Requirements";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	RequirementsPackage eINSTANCE = org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl.init();
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl <em>Derive Reqt</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl <em>Derive Reqt</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getDeriveReqt()
@@ -305,7 +311,8 @@ public interface RequirementsPackage extends EPackage {
 	int DERIVE_REQT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -314,7 +321,8 @@ public interface RequirementsPackage extends EPackage {
 	int DERIVE_REQT__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
 
 	/**
-	 * The number of structural features of the '<em>Derive Reqt</em>' class. <!-- begin-user-doc
+	 * The number of structural features of the '<em>Derive Reqt</em>' class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -323,8 +331,8 @@ public interface RequirementsPackage extends EPackage {
 	int DERIVE_REQT_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl
-	 * <em>Verify</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl <em>Verify</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getVerify()
@@ -333,7 +341,8 @@ public interface RequirementsPackage extends EPackage {
 	int VERIFY = 1;
 
 	/**
-	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -342,7 +351,8 @@ public interface RequirementsPackage extends EPackage {
 	int VERIFY__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
 
 	/**
-	 * The number of structural features of the '<em>Verify</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Verify</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -351,8 +361,8 @@ public interface RequirementsPackage extends EPackage {
 	int VERIFY_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.CopyImpl
-	 * <em>Copy</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.CopyImpl <em>Copy</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.CopyImpl
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getCopy()
@@ -361,7 +371,8 @@ public interface RequirementsPackage extends EPackage {
 	int COPY = 2;
 
 	/**
-	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -370,7 +381,8 @@ public interface RequirementsPackage extends EPackage {
 	int COPY__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
 
 	/**
-	 * The number of structural features of the '<em>Copy</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Copy</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -379,8 +391,8 @@ public interface RequirementsPackage extends EPackage {
 	int COPY_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl
-	 * <em>Satisfy</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl <em>Satisfy</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getSatisfy()
@@ -389,7 +401,8 @@ public interface RequirementsPackage extends EPackage {
 	int SATISFY = 3;
 
 	/**
-	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -398,7 +411,8 @@ public interface RequirementsPackage extends EPackage {
 	int SATISFY__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
 
 	/**
-	 * The number of structural features of the '<em>Satisfy</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Satisfy</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -407,8 +421,8 @@ public interface RequirementsPackage extends EPackage {
 	int SATISFY_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl
-	 * <em>Test Case</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl <em>Test Case</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getTestCase()
@@ -417,44 +431,48 @@ public interface RequirementsPackage extends EPackage {
 	int TEST_CASE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Base Behavior</b></em>' reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Base Behavior</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__BASE_BEHAVIOR = 0;
+	int TEST_CASE__BASE_BEHAVIOR = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Operation</b></em>' reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Base Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__BASE_OPERATION = 1;
+	int TEST_CASE__BASE_OPERATION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Verifies</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Verifies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__VERIFIES = 2;
+	int TEST_CASE__VERIFIES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Test Case</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Test Case</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE_FEATURE_COUNT = 3;
+	int TEST_CASE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl <em>Requirement</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl <em>Requirement</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirement()
@@ -463,107 +481,118 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__TEXT = 0;
+	int REQUIREMENT__TEXT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__ID = 1;
+	int REQUIREMENT__ID = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Derived</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Derived</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__DERIVED = 2;
+	int REQUIREMENT__DERIVED = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Derived From</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Derived From</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__DERIVED_FROM = 3;
+	int REQUIREMENT__DERIVED_FROM = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Satisfied By</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Satisfied By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__SATISFIED_BY = 4;
+	int REQUIREMENT__SATISFIED_BY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Refined By</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Refined By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__REFINED_BY = 5;
+	int REQUIREMENT__REFINED_BY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Traced To</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Traced To</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__TRACED_TO = 6;
+	int REQUIREMENT__TRACED_TO = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Verified By</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Verified By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__VERIFIED_BY = 7;
+	int REQUIREMENT__VERIFIED_BY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Master</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Master</b></em>' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__MASTER = 8;
+	int REQUIREMENT__MASTER = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__BASE_CLASS = 9;
+	int REQUIREMENT__BASE_CLASS = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 9;
 
 	/**
-	 * The number of structural features of the '<em>Requirement</em>' class. <!-- begin-user-doc
+	 * The number of structural features of the '<em>Requirement</em>' class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_FEATURE_COUNT = 10;
+	int REQUIREMENT_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 10;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl
-	 * <em>Requirement Related</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl <em>Requirement Related</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl
 	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirementRelated()
@@ -572,49 +601,54 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT_RELATED = 6;
 
 	/**
-	 * The feature id for the '<em><b>Base Named Element</b></em>' reference. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__BASE_NAMED_ELEMENT = 0;
+	int REQUIREMENT_RELATED__BASE_NAMED_ELEMENT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Traced From</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Traced From</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__TRACED_FROM = 1;
+	int REQUIREMENT_RELATED__TRACED_FROM = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Satisfies</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Satisfies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__SATISFIES = 2;
+	int REQUIREMENT_RELATED__SATISFIES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Refines</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Refines</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__REFINES = 3;
+	int REQUIREMENT_RELATED__REFINES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Verifies</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Verifies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__VERIFIES = 4;
+	int REQUIREMENT_RELATED__VERIFIES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Requirement Related</em>' class. <!--
@@ -623,11 +657,11 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED_FEATURE_COUNT = 5;
+	int REQUIREMENT_RELATED_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 5;
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Copy
-	 * <em>Copy</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Copy <em>Copy</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Copy</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.Copy
@@ -636,8 +670,8 @@ public interface RequirementsPackage extends EPackage {
 	EClass getCopy();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.DeriveReqt
-	 * <em>Derive Reqt</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.DeriveReqt <em>Derive Reqt</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Derive Reqt</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.DeriveReqt
@@ -646,8 +680,8 @@ public interface RequirementsPackage extends EPackage {
 	EClass getDeriveReqt();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Requirement
-	 * <em>Requirement</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Requirement <em>Requirement</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Requirement</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement
@@ -656,7 +690,7 @@ public interface RequirementsPackage extends EPackage {
 	EClass getRequirement();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>} '.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
@@ -678,8 +712,9 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirement_Derived();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom
-	 * <em>Derived From</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom <em>Derived From</em>}
+	 * '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Derived From</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom()
@@ -711,7 +746,7 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirement_Master();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy <em>Refined By</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy <em>Refined By</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Refined By</em>'.
@@ -722,8 +757,9 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirement_RefinedBy();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy
-	 * <em>Satisfied By</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy <em>Satisfied By</em>}
+	 * '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Satisfied By</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy()
@@ -744,7 +780,7 @@ public interface RequirementsPackage extends EPackage {
 	EAttribute getRequirement_Text();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo <em>Traced To</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo <em>Traced To</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Traced To</em>'.
@@ -755,8 +791,8 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirement_TracedTo();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy <em>Verified By</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy <em>Verified By</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Verified By</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy()
@@ -766,8 +802,8 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirement_VerifiedBy();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated
-	 * <em>Requirement Related</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated <em>Requirement Related</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Requirement Related</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated
@@ -776,8 +812,9 @@ public interface RequirementsPackage extends EPackage {
 	EClass getRequirementRelated();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement
-	 * <em>Base Named Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement
+	 * <em>Base Named Element</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Named Element</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement()
@@ -787,8 +824,8 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirementRelated_Base_NamedElement();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines <em>Refines</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines <em>Refines</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Refines</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines()
@@ -798,8 +835,9 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirementRelated_Refines();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies
-	 * <em>Satisfies</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies
+	 * <em>Satisfies</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Satisfies</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies()
@@ -809,8 +847,9 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirementRelated_Satisfies();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom
-	 * <em>Traced From</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom
+	 * <em>Traced From</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Traced From</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom()
@@ -820,8 +859,9 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirementRelated_TracedFrom();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies
-	 * <em>Verifies</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies <em>Verifies</em>}
+	 * '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Verifies</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies()
@@ -831,7 +871,8 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirementRelated_Verifies();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!--
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -840,8 +881,8 @@ public interface RequirementsPackage extends EPackage {
 	RequirementsFactory getRequirementsFactory();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Satisfy
-	 * <em>Satisfy</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Satisfy <em>Satisfy</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Satisfy</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.Satisfy
@@ -850,8 +891,8 @@ public interface RequirementsPackage extends EPackage {
 	EClass getSatisfy();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.TestCase
-	 * <em>Test Case</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.TestCase <em>Test Case</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Test Case</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.TestCase
@@ -860,8 +901,8 @@ public interface RequirementsPackage extends EPackage {
 	EClass getTestCase();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.requirements.TestCase#getBase_Behavior
-	 * <em>Base Behavior</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.requirements.TestCase#getBase_Behavior <em>Base Behavior</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Behavior</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.TestCase#getBase_Behavior()
@@ -871,8 +912,8 @@ public interface RequirementsPackage extends EPackage {
 	EReference getTestCase_Base_Behavior();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.requirements.TestCase#getBase_Operation
-	 * <em>Base Operation</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.requirements.TestCase#getBase_Operation <em>Base Operation</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Operation</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.TestCase#getBase_Operation()
@@ -893,8 +934,8 @@ public interface RequirementsPackage extends EPackage {
 	EReference getTestCase_Verifies();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Verify
-	 * <em>Verify</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Verify <em>Verify</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Verify</em>'.
 	 * @see org.eclipse.papyrus.sysml.requirements.Verify

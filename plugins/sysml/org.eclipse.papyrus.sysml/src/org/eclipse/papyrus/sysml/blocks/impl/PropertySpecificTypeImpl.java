@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.uml2.uml.Classifier;
@@ -27,13 +27,13 @@ import org.eclipse.uml2.uml.Classifier;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl#getBase_Classifier <em> Base Classifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl#getBase_Classifier <em>Base Classifier</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpecificType {
+public class PropertySpecificTypeImpl extends ResourceEObjectImpl implements PropertySpecificType {
 
 	/**
 	 * The cached value of the '{@link #getBase_Classifier() <em>Base Classifier</em>}' reference.
@@ -144,8 +144,7 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 			base_Classifier = (Classifier)eResolveProxy(oldBase_Classifier);
 			if(base_Classifier != oldBase_Classifier) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 			}
 		}
 		return base_Classifier;
@@ -160,8 +159,7 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 		Classifier oldBase_Classifier = base_Classifier;
 		base_Classifier = newBase_Classifier;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 	}
 
 } // PropertySpecificTypeImpl

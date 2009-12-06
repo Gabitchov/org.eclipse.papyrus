@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.Specification;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Classifier;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Classifier;
  * 
  * @generated
  */
-public class SpecificationImpl extends EObjectImpl implements Specification {
+public class SpecificationImpl extends ResourceEObjectImpl implements Specification {
 
 	/**
 	 * The cached value of the '{@link #getBase_Classifier() <em>Base Classifier</em>}' reference.
@@ -76,8 +76,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 			base_Classifier = (Classifier)eResolveProxy(oldBase_Classifier);
 			if(base_Classifier != oldBase_Classifier) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.SPECIFICATION__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.SPECIFICATION__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 			}
 		}
 		return base_Classifier;
@@ -101,8 +100,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		Classifier oldBase_Classifier = base_Classifier;
 		base_Classifier = newBase_Classifier;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.SPECIFICATION__BASE_CLASSIFIER,
-					oldBase_Classifier, base_Classifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.SPECIFICATION__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 	}
 
 	/**

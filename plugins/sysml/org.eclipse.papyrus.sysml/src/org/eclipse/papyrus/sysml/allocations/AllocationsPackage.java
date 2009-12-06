@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.allocations;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta
@@ -49,7 +50,7 @@ public interface AllocationsPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl <em>Allocate</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl <em>Allocate</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl
@@ -67,8 +68,8 @@ public interface AllocationsPackage extends EPackage {
 		EReference ALLOCATE__BASE_ABSTRACTION = eINSTANCE.getAllocate_Base_Abstraction();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl <em>Allocated</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl <em>Allocated</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl
 		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocated()
@@ -112,47 +113,50 @@ public interface AllocationsPackage extends EPackage {
 		EClass ALLOCATE_ACTIVITY_PARTITION = eINSTANCE.getAllocateActivityPartition();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Activity Partition</b></em>' reference
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Activity Partition</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION = eINSTANCE
-				.getAllocateActivityPartition_Base_ActivityPartition();
+		EReference ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION = eINSTANCE.getAllocateActivityPartition_Base_ActivityPartition();
 
 	}
 
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNAME = "allocations";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "Allocations";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	AllocationsPackage eINSTANCE = org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl
-	 * <em>Allocate</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl <em>Allocate</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl
 	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocate()
@@ -161,26 +165,28 @@ public interface AllocationsPackage extends EPackage {
 	int ALLOCATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATE__BASE_ABSTRACTION = 0;
+	int ALLOCATE__BASE_ABSTRACTION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Allocate</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Allocate</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATE_FEATURE_COUNT = 1;
+	int ALLOCATE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl
-	 * <em>Allocated</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl <em>Allocated</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl
 	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocated()
@@ -189,44 +195,49 @@ public interface AllocationsPackage extends EPackage {
 	int ALLOCATED = 1;
 
 	/**
-	 * The feature id for the '<em><b>Base Named Element</b></em>' reference. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Base Named Element</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATED__BASE_NAMED_ELEMENT = 0;
+	int ALLOCATED__BASE_NAMED_ELEMENT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Allocated From</b></em>' reference list. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Allocated From</b></em>' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATED__ALLOCATED_FROM = 1;
+	int ALLOCATED__ALLOCATED_FROM = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Allocated To</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Allocated To</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATED__ALLOCATED_TO = 2;
+	int ALLOCATED__ALLOCATED_TO = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Allocated</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Allocated</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATED_FEATURE_COUNT = 3;
+	int ALLOCATED_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl
-	 * <em>Allocate Activity Partition</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl
+	 * <em>Allocate Activity Partition</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl
 	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocateActivityPartition()
@@ -241,7 +252,7 @@ public interface AllocationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION = 0;
+	int ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Allocate Activity Partition</em>' class. <!--
@@ -250,11 +261,11 @@ public interface AllocationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATE_ACTIVITY_PARTITION_FEATURE_COUNT = 1;
+	int ALLOCATE_ACTIVITY_PARTITION_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.allocations.Allocate
-	 * <em>Allocate</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.allocations.Allocate <em>Allocate</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Allocate</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.Allocate
@@ -263,8 +274,9 @@ public interface AllocationsPackage extends EPackage {
 	EClass getAllocate();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction
-	 * <em>Base Abstraction</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction <em>Base Abstraction</em>}
+	 * '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Abstraction</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction()
@@ -274,8 +286,9 @@ public interface AllocationsPackage extends EPackage {
 	EReference getAllocate_Base_Abstraction();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition
-	 * <em>Allocate Activity Partition</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition <em>Allocate Activity Partition</em>}
+	 * '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Allocate Activity Partition</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition
@@ -284,8 +297,9 @@ public interface AllocationsPackage extends EPackage {
 	EClass getAllocateActivityPartition();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition#getBase_ActivityPartition
-	 * <em>Base Activity Partition</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition#getBase_ActivityPartition
+	 * <em>Base Activity Partition</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Activity Partition</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition#getBase_ActivityPartition()
@@ -295,8 +309,8 @@ public interface AllocationsPackage extends EPackage {
 	EReference getAllocateActivityPartition_Base_ActivityPartition();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.allocations.Allocated
-	 * <em>Allocated</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.allocations.Allocated <em>Allocated</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Allocated</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.Allocated
@@ -305,8 +319,9 @@ public interface AllocationsPackage extends EPackage {
 	EClass getAllocated();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedFrom
-	 * <em>Allocated From</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedFrom
+	 * <em>Allocated From</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Allocated From</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedFrom()
@@ -316,8 +331,8 @@ public interface AllocationsPackage extends EPackage {
 	EReference getAllocated_AllocatedFrom();
 
 	/**
-	 * Returns the meta object for the reference list ' {@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedTo <em>Allocated To</em>} 
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedTo <em>Allocated To</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Allocated To</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedTo()
@@ -327,8 +342,9 @@ public interface AllocationsPackage extends EPackage {
 	EReference getAllocated_AllocatedTo();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.allocations.Allocated#getBase_NamedElement
-	 * <em>Base Named Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.allocations.Allocated#getBase_NamedElement
+	 * <em>Base Named Element</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Named Element</em>'.
 	 * @see org.eclipse.papyrus.sysml.allocations.Allocated#getBase_NamedElement()
@@ -338,7 +354,8 @@ public interface AllocationsPackage extends EPackage {
 	EReference getAllocated_Base_NamedElement();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!--
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.

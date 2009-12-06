@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.uml2.uml.ActivityPartition;
@@ -27,19 +27,17 @@ import org.eclipse.uml2.uml.ActivityPartition;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl#getBase_ActivityPartition
- * <em>Base Activity Partition</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class AllocateActivityPartitionImpl extends EObjectImpl implements AllocateActivityPartition {
+public class AllocateActivityPartitionImpl extends ResourceEObjectImpl implements AllocateActivityPartition {
 
 	/**
-	 * The cached value of the '{@link #getBase_ActivityPartition()
-	 * <em>Base Activity Partition</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_ActivityPartition() <em>Base Activity Partition</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_ActivityPartition()
 	 * @generated
@@ -146,9 +144,7 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 			base_ActivityPartition = (ActivityPartition)eResolveProxy(oldBase_ActivityPartition);
 			if(base_ActivityPartition != oldBase_ActivityPartition) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION,
-							oldBase_ActivityPartition, base_ActivityPartition));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, oldBase_ActivityPartition, base_ActivityPartition));
 			}
 		}
 		return base_ActivityPartition;
@@ -163,9 +159,7 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 		ActivityPartition oldBase_ActivityPartition = base_ActivityPartition;
 		base_ActivityPartition = newBase_ActivityPartition;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, oldBase_ActivityPartition,
-					base_ActivityPartition));
+			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, oldBase_ActivityPartition, base_ActivityPartition));
 	}
 
 } // AllocateActivityPartitionImpl

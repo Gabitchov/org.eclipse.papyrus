@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.Create;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.BehavioralFeature;
@@ -36,11 +36,11 @@ import org.eclipse.uml2.uml.Usage;
  * 
  * @generated
  */
-public class CreateImpl extends EObjectImpl implements Create {
+public class CreateImpl extends ResourceEObjectImpl implements Create {
 
 	/**
-	 * The cached value of the '{@link #getBase_BehavioralFeature()
-	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_BehavioralFeature() <em>Base Behavioral Feature</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_BehavioralFeature()
 	 * @generated
@@ -88,9 +88,7 @@ public class CreateImpl extends EObjectImpl implements Create {
 			base_BehavioralFeature = (BehavioralFeature)eResolveProxy(oldBase_BehavioralFeature);
 			if(base_BehavioralFeature != oldBase_BehavioralFeature) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.CREATE__BASE_BEHAVIORAL_FEATURE, oldBase_BehavioralFeature,
-							base_BehavioralFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.CREATE__BASE_BEHAVIORAL_FEATURE, oldBase_BehavioralFeature, base_BehavioralFeature));
 			}
 		}
 		return base_BehavioralFeature;
@@ -114,8 +112,7 @@ public class CreateImpl extends EObjectImpl implements Create {
 		BehavioralFeature oldBase_BehavioralFeature = base_BehavioralFeature;
 		base_BehavioralFeature = newBase_BehavioralFeature;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.CREATE__BASE_BEHAVIORAL_FEATURE,
-					oldBase_BehavioralFeature, base_BehavioralFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.CREATE__BASE_BEHAVIORAL_FEATURE, oldBase_BehavioralFeature, base_BehavioralFeature));
 	}
 
 	/**
@@ -129,8 +126,7 @@ public class CreateImpl extends EObjectImpl implements Create {
 			base_Usage = (Usage)eResolveProxy(oldBase_Usage);
 			if(base_Usage != oldBase_Usage) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.CREATE__BASE_USAGE,
-							oldBase_Usage, base_Usage));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.CREATE__BASE_USAGE, oldBase_Usage, base_Usage));
 			}
 		}
 		return base_Usage;
@@ -154,8 +150,7 @@ public class CreateImpl extends EObjectImpl implements Create {
 		Usage oldBase_Usage = base_Usage;
 		base_Usage = newBase_Usage;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.CREATE__BASE_USAGE, oldBase_Usage,
-					base_Usage));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.CREATE__BASE_USAGE, oldBase_Usage, base_Usage));
 	}
 
 	/**

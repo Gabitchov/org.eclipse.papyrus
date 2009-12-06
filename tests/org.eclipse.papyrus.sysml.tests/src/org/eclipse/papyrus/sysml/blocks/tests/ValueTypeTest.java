@@ -37,14 +37,16 @@ public class ValueTypeTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Value Type test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Value Type test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ValueType fixture = null;
 
 	/**
-	 * Constructs a new Value Type test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Value Type test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -64,7 +66,8 @@ public class ValueTypeTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Value Type test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Value Type test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

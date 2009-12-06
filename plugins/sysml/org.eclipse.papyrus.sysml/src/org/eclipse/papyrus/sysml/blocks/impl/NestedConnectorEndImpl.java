@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -32,14 +32,14 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getPropertyPath <em> Property Path</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getBase_ConnectorEnd <em> Base Connector End</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getPropertyPath <em>Property Path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getBase_ConnectorEnd <em>Base Connector End</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnectorEnd {
+public class NestedConnectorEndImpl extends ResourceEObjectImpl implements NestedConnectorEnd {
 
 	/**
 	 * The cached value of the '{@link #getPropertyPath() <em>Property Path</em>}' reference list.
@@ -52,8 +52,8 @@ public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnect
 	protected EList<Property> propertyPath;
 
 	/**
-	 * The cached value of the '{@link #getBase_ConnectorEnd() <em>Base Connector End</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_ConnectorEnd() <em>Base Connector End</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_ConnectorEnd()
 	 * @generated
@@ -172,9 +172,7 @@ public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnect
 			base_ConnectorEnd = (ConnectorEnd)eResolveProxy(oldBase_ConnectorEnd);
 			if(base_ConnectorEnd != oldBase_ConnectorEnd) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BlocksPackage.NESTED_CONNECTOR_END__BASE_CONNECTOR_END, oldBase_ConnectorEnd,
-							base_ConnectorEnd));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlocksPackage.NESTED_CONNECTOR_END__BASE_CONNECTOR_END, oldBase_ConnectorEnd, base_ConnectorEnd));
 			}
 		}
 		return base_ConnectorEnd;
@@ -187,8 +185,7 @@ public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnect
 	 */
 	public EList<Property> getPropertyPath() {
 		if(propertyPath == null) {
-			propertyPath = new EObjectResolvingEList<Property>(Property.class, this,
-					BlocksPackage.NESTED_CONNECTOR_END__PROPERTY_PATH);
+			propertyPath = new EObjectResolvingEList<Property>(Property.class, this, BlocksPackage.NESTED_CONNECTOR_END__PROPERTY_PATH);
 		}
 		return propertyPath;
 	}
@@ -202,8 +199,7 @@ public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnect
 		ConnectorEnd oldBase_ConnectorEnd = base_ConnectorEnd;
 		base_ConnectorEnd = newBase_ConnectorEnd;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BlocksPackage.NESTED_CONNECTOR_END__BASE_CONNECTOR_END, oldBase_ConnectorEnd, base_ConnectorEnd));
+			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.NESTED_CONNECTOR_END__BASE_CONNECTOR_END, oldBase_ConnectorEnd, base_ConnectorEnd));
 	}
 
 } // NestedConnectorEndImpl

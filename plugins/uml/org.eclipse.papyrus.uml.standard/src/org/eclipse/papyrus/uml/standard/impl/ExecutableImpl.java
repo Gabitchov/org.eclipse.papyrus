@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.Executable;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Artifact;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Artifact;
  * 
  * @generated
  */
-public class ExecutableImpl extends EObjectImpl implements Executable {
+public class ExecutableImpl extends ResourceEObjectImpl implements Executable {
 
 	/**
 	 * The cached value of the '{@link #getBase_Artifact() <em>Base Artifact</em>}' reference. <!--
@@ -76,8 +76,7 @@ public class ExecutableImpl extends EObjectImpl implements Executable {
 			base_Artifact = (Artifact)eResolveProxy(oldBase_Artifact);
 			if(base_Artifact != oldBase_Artifact) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StandardPackage.EXECUTABLE__BASE_ARTIFACT, oldBase_Artifact, base_Artifact));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.EXECUTABLE__BASE_ARTIFACT, oldBase_Artifact, base_Artifact));
 			}
 		}
 		return base_Artifact;
@@ -101,8 +100,7 @@ public class ExecutableImpl extends EObjectImpl implements Executable {
 		Artifact oldBase_Artifact = base_Artifact;
 		base_Artifact = newBase_Artifact;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.EXECUTABLE__BASE_ARTIFACT,
-					oldBase_Artifact, base_Artifact));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.EXECUTABLE__BASE_ARTIFACT, oldBase_Artifact, base_Artifact));
 	}
 
 	/**

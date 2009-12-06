@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.uml.standard.Call;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Usage;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Usage;
  * 
  * @generated
  */
-public class CallImpl extends EObjectImpl implements Call {
+public class CallImpl extends ResourceEObjectImpl implements Call {
 
 	/**
 	 * The cached value of the '{@link #getBase_Usage() <em>Base Usage</em>}' reference. <!--
@@ -76,8 +76,7 @@ public class CallImpl extends EObjectImpl implements Call {
 			base_Usage = (Usage)eResolveProxy(oldBase_Usage);
 			if(base_Usage != oldBase_Usage) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.CALL__BASE_USAGE,
-							oldBase_Usage, base_Usage));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StandardPackage.CALL__BASE_USAGE, oldBase_Usage, base_Usage));
 			}
 		}
 		return base_Usage;
@@ -101,8 +100,7 @@ public class CallImpl extends EObjectImpl implements Call {
 		Usage oldBase_Usage = base_Usage;
 		base_Usage = newBase_Usage;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.CALL__BASE_USAGE, oldBase_Usage,
-					base_Usage));
+			eNotify(new ENotificationImpl(this, Notification.SET, StandardPackage.CALL__BASE_USAGE, oldBase_Usage, base_Usage));
 	}
 
 	/**

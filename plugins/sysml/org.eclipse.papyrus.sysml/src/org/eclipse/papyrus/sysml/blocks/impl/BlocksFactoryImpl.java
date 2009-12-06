@@ -50,14 +50,14 @@ public class BlocksFactoryImpl extends EFactoryImpl implements BlocksFactory {
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static BlocksFactory init() {
 		try {
-			BlocksFactory theBlocksFactory = (BlocksFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks");
+			BlocksFactory theBlocksFactory = (BlocksFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks");
 			if(theBlocksFactory != null) {
 				return theBlocksFactory;
 			}
@@ -68,7 +68,8 @@ public class BlocksFactoryImpl extends EFactoryImpl implements BlocksFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

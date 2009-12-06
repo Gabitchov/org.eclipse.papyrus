@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
@@ -39,18 +39,18 @@ import org.eclipse.uml2.uml.NamedElement;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedFrom <em> Allocated From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedFrom <em>Allocated From</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedTo <em>Allocated To</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class AllocatedImpl extends EObjectImpl implements Allocated {
+public class AllocatedImpl extends ResourceEObjectImpl implements Allocated {
 
 	/**
-	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_NamedElement()
 	 * @generated
@@ -231,8 +231,7 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 			base_NamedElement = (NamedElement)eResolveProxy(oldBase_NamedElement);
 			if(base_NamedElement != oldBase_NamedElement) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 			}
 		}
 		return base_NamedElement;
@@ -247,8 +246,7 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		NamedElement oldBase_NamedElement = base_NamedElement;
 		base_NamedElement = newBase_NamedElement;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT,
-					oldBase_NamedElement, base_NamedElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 	}
 
 } // AllocatedImpl

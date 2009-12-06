@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.uml2.uml.InformationFlow;
@@ -29,18 +29,18 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl#getBase_InformationFlow <em> Base Information Flow</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl#getBase_InformationFlow <em>Base Information Flow</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl#getItemProperty <em>Item Property</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
+public class ItemFlowImpl extends ResourceEObjectImpl implements ItemFlow {
 
 	/**
-	 * The cached value of the '{@link #getBase_InformationFlow() <em>Base Information Flow</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_InformationFlow() <em>Base Information Flow</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_InformationFlow()
 	 * @generated
@@ -178,9 +178,7 @@ public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 			base_InformationFlow = (InformationFlow)eResolveProxy(oldBase_InformationFlow);
 			if(base_InformationFlow != oldBase_InformationFlow) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							PortandflowsPackage.ITEM_FLOW__BASE_INFORMATION_FLOW, oldBase_InformationFlow,
-							base_InformationFlow));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PortandflowsPackage.ITEM_FLOW__BASE_INFORMATION_FLOW, oldBase_InformationFlow, base_InformationFlow));
 			}
 		}
 		return base_InformationFlow;
@@ -197,8 +195,7 @@ public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 			itemProperty = (Property)eResolveProxy(oldItemProperty);
 			if(itemProperty != oldItemProperty) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							PortandflowsPackage.ITEM_FLOW__ITEM_PROPERTY, oldItemProperty, itemProperty));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PortandflowsPackage.ITEM_FLOW__ITEM_PROPERTY, oldItemProperty, itemProperty));
 			}
 		}
 		return itemProperty;
@@ -213,8 +210,7 @@ public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 		InformationFlow oldBase_InformationFlow = base_InformationFlow;
 		base_InformationFlow = newBase_InformationFlow;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.ITEM_FLOW__BASE_INFORMATION_FLOW,
-					oldBase_InformationFlow, base_InformationFlow));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.ITEM_FLOW__BASE_INFORMATION_FLOW, oldBase_InformationFlow, base_InformationFlow));
 	}
 
 	/**
@@ -226,8 +222,7 @@ public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 		Property oldItemProperty = itemProperty;
 		itemProperty = newItemProperty;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.ITEM_FLOW__ITEM_PROPERTY,
-					oldItemProperty, itemProperty));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.ITEM_FLOW__ITEM_PROPERTY, oldItemProperty, itemProperty));
 	}
 
 } // ItemFlowImpl

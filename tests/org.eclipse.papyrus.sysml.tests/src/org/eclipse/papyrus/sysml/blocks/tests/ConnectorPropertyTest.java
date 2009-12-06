@@ -45,7 +45,8 @@ public class ConnectorPropertyTest extends TestCase {
 	protected ConnectorProperty fixture = null;
 
 	/**
-	 * Constructs a new Connector Property test case with the given name. <!-- begin-user-doc -->
+	 * Constructs a new Connector Property test case with the given name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -55,7 +56,8 @@ public class ConnectorPropertyTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Connector Property test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Connector Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -65,7 +67,8 @@ public class ConnectorPropertyTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Connector Property test case. <!-- begin-user-doc --> <!--
+	 * Sets the fixture for this Connector Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

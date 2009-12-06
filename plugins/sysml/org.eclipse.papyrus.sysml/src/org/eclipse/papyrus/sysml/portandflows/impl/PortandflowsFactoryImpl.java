@@ -46,14 +46,14 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static PortandflowsFactory init() {
 		try {
-			PortandflowsFactory thePortandflowsFactory = (PortandflowsFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows");
+			PortandflowsFactory thePortandflowsFactory = (PortandflowsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows");
 			if(thePortandflowsFactory != null) {
 				return thePortandflowsFactory;
 			}
@@ -64,7 +64,8 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -125,8 +126,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	public FlowDirection createFlowDirectionFromString(EDataType eDataType, String initialValue) {
 		FlowDirection result = FlowDirection.get(initialValue);
 		if(result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-					+ eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 

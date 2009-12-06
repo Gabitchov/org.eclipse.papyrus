@@ -41,14 +41,14 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static InteractionsFactory init() {
 		try {
-			InteractionsFactory theInteractionsFactory = (InteractionsFactory)EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Interactions");
+			InteractionsFactory theInteractionsFactory = (InteractionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Interactions");
 			if(theInteractionsFactory != null) {
 				return theInteractionsFactory;
 			}
@@ -59,7 +59,8 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

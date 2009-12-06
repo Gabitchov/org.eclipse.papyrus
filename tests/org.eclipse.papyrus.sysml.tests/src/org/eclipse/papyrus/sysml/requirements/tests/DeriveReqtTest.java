@@ -37,14 +37,16 @@ public class DeriveReqtTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Derive Reqt test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Derive Reqt test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected DeriveReqt fixture = null;
 
 	/**
-	 * Constructs a new Derive Reqt test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new Derive Reqt test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

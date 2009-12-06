@@ -25,14 +25,16 @@ import org.eclipse.emf.ecore.EFactory;
 public interface BlocksFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	BlocksFactory eINSTANCE = org.eclipse.papyrus.sysml.blocks.impl.BlocksFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Binding Connector</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Binding Connector</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Binding Connector</em>'.
@@ -41,7 +43,8 @@ public interface BlocksFactory extends EFactory {
 	BindingConnector createBindingConnector();
 
 	/**
-	 * Returns a new object of class '<em>Block</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Block</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Block</em>'.
 	 * @generated
@@ -49,7 +52,8 @@ public interface BlocksFactory extends EFactory {
 	Block createBlock();
 
 	/**
-	 * Returns a new object of class '<em>Connector Property</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Connector Property</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Connector Property</em>'.
@@ -67,7 +71,8 @@ public interface BlocksFactory extends EFactory {
 	Dimension createDimension();
 
 	/**
-	 * Returns a new object of class '<em>Distributed Property</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Distributed Property</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Distributed Property</em>'.
@@ -76,7 +81,8 @@ public interface BlocksFactory extends EFactory {
 	DistributedProperty createDistributedProperty();
 
 	/**
-	 * Returns a new object of class '<em>Nested Connector End</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Nested Connector End</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Nested Connector End</em>'.
@@ -85,7 +91,8 @@ public interface BlocksFactory extends EFactory {
 	NestedConnectorEnd createNestedConnectorEnd();
 
 	/**
-	 * Returns a new object of class '<em>Participant Property</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Participant Property</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Participant Property</em>'.
@@ -94,7 +101,8 @@ public interface BlocksFactory extends EFactory {
 	ParticipantProperty createParticipantProperty();
 
 	/**
-	 * Returns a new object of class '<em>Property Specific Type</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Property Specific Type</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Property Specific Type</em>'.
@@ -103,7 +111,8 @@ public interface BlocksFactory extends EFactory {
 	PropertySpecificType createPropertySpecificType();
 
 	/**
-	 * Returns a new object of class '<em>Unit</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Unit</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Unit</em>'.
 	 * @generated
@@ -111,7 +120,8 @@ public interface BlocksFactory extends EFactory {
 	Unit createUnit();
 
 	/**
-	 * Returns a new object of class '<em>Value Type</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Value Type</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Value Type</em>'.
@@ -120,7 +130,8 @@ public interface BlocksFactory extends EFactory {
 	ValueType createValueType();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

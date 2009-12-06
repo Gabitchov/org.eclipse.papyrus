@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.standard;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Artifact;
 
 /**
@@ -31,10 +31,11 @@ import org.eclipse.uml2.uml.Artifact;
  * @model
  * @generated
  */
-public interface File extends EObject {
+public interface File extends ResourceEObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Artifact</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Artifact</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Artifact</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,8 +50,8 @@ public interface File extends EObject {
 	Artifact getBase_Artifact();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.File#getBase_Artifact
-	 * <em>Base Artifact</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.File#getBase_Artifact <em>Base Artifact</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Artifact</em>' reference.

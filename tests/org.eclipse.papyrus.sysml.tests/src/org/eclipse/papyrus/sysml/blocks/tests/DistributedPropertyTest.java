@@ -37,7 +37,8 @@ public class DistributedPropertyTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Distributed Property test case. <!-- begin-user-doc --> <!--
+	 * The fixture for this Distributed Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -45,7 +46,8 @@ public class DistributedPropertyTest extends TestCase {
 	protected DistributedProperty fixture = null;
 
 	/**
-	 * Constructs a new Distributed Property test case with the given name. <!-- begin-user-doc -->
+	 * Constructs a new Distributed Property test case with the given name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -55,7 +57,8 @@ public class DistributedPropertyTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Distributed Property test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Distributed Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -65,7 +68,8 @@ public class DistributedPropertyTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Distributed Property test case. <!-- begin-user-doc --> <!--
+	 * Sets the fixture for this Distributed Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

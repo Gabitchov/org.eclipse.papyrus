@@ -37,14 +37,16 @@ public class ViewPointTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this View Point test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this View Point test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ViewPoint fixture = null;
 
 	/**
-	 * Constructs a new View Point test case with the given name. <!-- begin-user-doc --> <!--
+	 * Constructs a new View Point test case with the given name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -64,7 +66,8 @@ public class ViewPointTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this View Point test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this View Point test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
@@ -32,13 +32,13 @@ import org.eclipse.uml2.uml.Stereotype;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getBase_Property <em>Base Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getDirection <em> Direction</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
+public class FlowPropertyImpl extends ResourceEObjectImpl implements FlowProperty {
 
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference. <!--
@@ -179,8 +179,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 			base_Property = (Property)eResolveProxy(oldBase_Property);
 			if(base_Property != oldBase_Property) {
 				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 			}
 		}
 		return base_Property;
@@ -236,8 +235,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY,
-					oldBase_Property, base_Property));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 	}
 
 	/**
@@ -249,8 +247,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 		FlowDirection oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
 		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PROPERTY__DIRECTION,
-					oldDirection, direction));
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PROPERTY__DIRECTION, oldDirection, direction));
 	}
 
 	/**

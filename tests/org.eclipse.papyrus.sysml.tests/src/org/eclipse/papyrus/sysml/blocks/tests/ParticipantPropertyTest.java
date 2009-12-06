@@ -37,7 +37,8 @@ public class ParticipantPropertyTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Participant Property test case. <!-- begin-user-doc --> <!--
+	 * The fixture for this Participant Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -45,7 +46,8 @@ public class ParticipantPropertyTest extends TestCase {
 	protected ParticipantProperty fixture = null;
 
 	/**
-	 * Constructs a new Participant Property test case with the given name. <!-- begin-user-doc -->
+	 * Constructs a new Participant Property test case with the given name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -55,7 +57,8 @@ public class ParticipantPropertyTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Participant Property test case. <!-- begin-user-doc --> <!--
+	 * Returns the fixture for this Participant Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -65,7 +68,8 @@ public class ParticipantPropertyTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Participant Property test case. <!-- begin-user-doc --> <!--
+	 * Sets the fixture for this Participant Property test case.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
