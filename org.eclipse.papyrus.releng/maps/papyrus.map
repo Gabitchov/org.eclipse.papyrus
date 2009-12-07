@@ -1,49 +1,73 @@
 ##### features
+feature@org.eclipse.papyrus=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus-feature
 feature@org.eclipse.papyrus.backbone=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.backbone-feature
+feature@org.eclipse.papyrus.developer=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.developer-feature
 feature@org.eclipse.papyrus.diagram.clazz=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.diagram.clazz-feature
 feature@org.eclipse.papyrus.diagram.composite=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.diagram.composite-feature
 feature@org.eclipse.papyrus.diagram.sequence=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.diagram.sequence-feature
 feature@org.eclipse.papyrus.diagram.usecase=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.diagram.usecase-feature
+feature@org.eclipse.papyrus.sysml=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.sysml-feature
 feature@org.eclipse.papyrus.uml=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.uml-feature
-feature@org.eclipse.papyrus=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus-feature
 
 ##### plugins
 
-# backbone
-plugin@org.eclipse.papyrus.core.adaptor.gmf=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.core.adaptor.gmf
-plugin@org.eclipse.papyrus.core=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.core
-plugin@org.eclipse.papyrus.tabbedproperties.core=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.tabbedproperties.core
-plugin@org.eclipse.papyrus.sasheditor=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.sasheditor
-plugin@org.eclipse.papyrus.sasheditor.di=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.sasheditor.di
-plugin@org.eclipse.papyrus.wizards=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.wizards
-plugin@org.eclipse.papyrus.extensionpoints.editors=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.extensionpoints.editors
-plugin@org.eclipse.papyrus.preferences=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.preferences
-plugin@org.eclipse.papyrus.editor=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.editor
-plugin@org.eclipse.papyrus.log=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.log
+# core
+plugin@org.eclipse.papyrus.controlmode=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.controlmode
+plugin@org.eclipse.papyrus.core=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.core
+plugin@org.eclipse.papyrus.core.adaptor.emf=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.core.adaptor.emf
+plugin@org.eclipse.papyrus.core.adaptor.gmf=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.core.adaptor.gmf
+plugin@org.eclipse.papyrus.di=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.di
+plugin@org.eclipse.papyrus.di.edit=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.di.edit
+plugin@org.eclipse.papyrus.di.editor=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.di.editor
+plugin@org.eclipse.papyrus.editor=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.editor
+plugin@org.eclipse.papyrus.extensionpoints.editors=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.extensionpoints.editors
+plugin@org.eclipse.papyrus.log=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.log
+plugin@org.eclipse.papyrus.perspective=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.perspective
+plugin@org.eclipse.papyrus.preferences=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.preferences
+plugin@org.eclipse.papyrus.sasheditor=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.sasheditor
+plugin@org.eclipse.papyrus.sasheditor.di=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.sasheditor.di
+plugin@org.eclipse.papyrus.tabbedproperties.core=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.tabbedproperties.core
+plugin@org.eclipse.papyrus.wizards=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/core,,org.eclipse.papyrus.wizards
+
+# developer
+plugin@org.eclipse.papyrus.codegen=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/developer,,org.eclipse.papyrus.codegen
+plugin@org.eclipse.papyrus.def=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/developer,,org.eclipse.papyrus.def
+plugin@org.eclipse.papyrus.gmfgenextension=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/developer,,org.eclipse.papyrus.gmfgenextension
+plugin@org.eclipse.papyrus.java.reverse=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/developer,,org.eclipse.papyrus.java.reverse
+plugin@org.eclipse.papyrus.java.reverse.ui=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/developer,,org.eclipse.papyrus.java.reverse.ui
+plugin@org.eclipse.papyrus.java.template=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/developer,,org.eclipse.papyrus.java.template
+
+# others
+plugin@org.eclipse.papyrus.profile=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/others,,org.eclipse.papyrus.profile
+plugin@org.eclipse.papyrus.outline=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/others,,org.eclipse.papyrus.outline
+
+# profile-tool
+plugin@org.eclipse.papyrus.resource=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/profile-tool,,org.eclipse.papyrus.resource
+plugin@org.eclipse.papyrus.resource.edit=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/profile-tool,,org.eclipse.papyrus.resource.edit
+plugin@org.eclipse.papyrus.resource.migration=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/profile-tool,,org.eclipse.papyrus.resource.migration
+
+# sysml
+plugin@org.eclipse.papyrus.sysml=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/sysml,,org.eclipse.papyrus.sysml
+plugin@org.eclipse.papyrus.sysml.edit=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/sysml,,org.eclipse.papyrus.sysml.edit
 
 # uml
-plugin@org.eclipse.papyrus.diagram.common=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.diagram.common
-plugin@org.eclipse.papyrus.extensionpoints.uml2=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.extensionpoints.uml2
-plugin@org.eclipse.papyrus.navigator=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.navigator
-plugin@org.eclipse.papyrus.outline=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.outline
-plugin@org.eclipse.papyrus.outline.emftree=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.outline.emftree
-plugin@org.eclipse.papyrus.parsers=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.parsers
-plugin@org.eclipse.papyrus.perspective=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.perspective
-plugin@org.eclipse.papyrus.profile=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.profile
-plugin@org.eclipse.papyrus.core=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.core
-plugin@org.eclipse.papyrus.tabbedproperties.appearance=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.tabbedproperties.appearance
-plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.tabbedproperties.uml
-plugin@org.eclipse.papyrus.ui.toolbox=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.ui.toolbox
-plugin@org.eclipse.papyrus.umlutils=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.umlutils
+plugin@org.eclipse.papyrus.diagram.activity=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.activity
+plugin@org.eclipse.papyrus.diagram.clazz=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.clazz
+plugin@org.eclipse.papyrus.diagram.common=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.common
+plugin@org.eclipse.papyrus.diagram.composite=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.composite
+plugin@org.eclipse.papyrus.diagram.emftree=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.emftree
+plugin@org.eclipse.papyrus.diagram.sequence=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.sequence
+plugin@org.eclipse.papyrus.diagram.statemachine=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.statemachine
+plugin@org.eclipse.papyrus.diagram.usecase=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.diagram.usecase
+plugin@org.eclipse.papyrus.extensionpoints.uml2=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.extensionpoints.uml2
+plugin@org.eclipse.papyrus.navigator=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.navigator
+plugin@org.eclipse.papyrus.outline.emftree=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.outline.emftree
+plugin@org.eclipse.papyrus.parsers=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.parsers
+plugin@org.eclipse.papyrus.tabbedproperties.appearance=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.tabbedproperties.appearance
+plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.tabbedproperties.uml
+plugin@org.eclipse.papyrus.ui.toolbox=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.ui.toolbox
+plugin@org.eclipse.papyrus.uml.standard=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.uml.standard
+plugin@org.eclipse.papyrus.uml.standard.edit=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.uml.standard.edit
+plugin@org.eclipse.papyrus.umlutils=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins/uml,,org.eclipse.papyrus.umlutils
 
-# clazz
-plugin@org.eclipse.papyrus.diagram.clazz=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.diagram.clazz
 
-# composite
-plugin@org.eclipse.papyrus.diagram.composite=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.diagram.composite
-
-# usecase
-plugin@org.eclipse.papyrus.diagram.usecase=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.diagram.usecase
-
-# sequence
-plugin@org.eclipse.papyrus.diagram.sequence=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/plugins,,org.eclipse.papyrus.diagram.sequence
