@@ -15,12 +15,16 @@ package org.eclipse.papyrus.diagram.clazz.custom.factory;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CAssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CDependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CPackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CPackageEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
@@ -52,6 +56,10 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 				return new CAssociationNodeEditPart(view);
 			case Dependency2EditPart.VISUAL_ID:
 				return new CDependencyNodeEditPart(view);
+			case AssociationName5EditPart.VISUAL_ID:
+				return new AssociationEndSourceEditPart(view);	
+			case AssociationName3EditPart.VISUAL_ID:
+				return new AssociationEndTargetEditPart(view);	
 			}
 		}
 		return super.createEditPart(context, model);
