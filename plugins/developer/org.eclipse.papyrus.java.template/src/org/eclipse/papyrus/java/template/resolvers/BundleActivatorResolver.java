@@ -14,7 +14,9 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.internal.corext.template.java.CompilationUnitContext;
+import org.eclipse.jdt.internal.corext.template.java.JavaContext;
 import org.eclipse.jface.text.templates.TemplateContext;
+import org.eclipse.jface.text.templates.TemplateVariable;
 import org.eclipse.jface.text.templates.TemplateVariableResolver;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
@@ -30,7 +32,7 @@ import org.osgi.framework.Constants;
 public class BundleActivatorResolver extends TemplateVariableResolver {
 
 	public BundleActivatorResolver() {
-		super("bundleActivator", "Plugin activator containing the current compilation unit"); //$NON-NLS-1$ //$NON-NLS-2$
+		super("activatorLog", "Static field log in the activator containing the current compilation unit"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -42,20 +44,23 @@ public class BundleActivatorResolver extends TemplateVariableResolver {
 	 */
 	@SuppressWarnings("restriction")
 	@Override
-	protected String resolve(final TemplateContext pContext) {
-		String result = null;
-		if(pContext instanceof CompilationUnitContext) {
-			final CompilationUnitContext context = (CompilationUnitContext)pContext;
+	public void resolve(TemplateVariable variable, TemplateContext pContext) {
+		variable.setUnambiguous(true);
+		variable.setValue(""); //$NON-NLS-1$
+		if(pContext instanceof JavaContext) {
+			final JavaContext context = (JavaContext)pContext;
 			final IPluginModelBase pluginModelBase = PluginRegistry.findModel(getProject(context));
 			Bundle bundle = getBundle(pluginModelBase);
 			if(bundle != null) {
 				Object obj = bundle.getHeaders().get(Constants.BUNDLE_ACTIVATOR);
 				if(obj instanceof String) {
-					result = (String)obj;
+					StringBuffer qualifiedName = new StringBuffer((String)obj);
+					qualifiedName.append(".log");
+					context.addStaticImport(qualifiedName.toString());
 				}
 			}
 		}
-		return result;
+		
 	}
 
 	/**
@@ -91,5 +96,12 @@ public class BundleActivatorResolver extends TemplateVariableResolver {
 			}
 		}
 		return project;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.text.templates.TemplateVariableResolver#resolveAll(org.eclipse.jface.text.templates.TemplateContext)
+	 */
+	protected String[] resolveAll(TemplateContext context) {
+		return new String[0];
 	}
 }
