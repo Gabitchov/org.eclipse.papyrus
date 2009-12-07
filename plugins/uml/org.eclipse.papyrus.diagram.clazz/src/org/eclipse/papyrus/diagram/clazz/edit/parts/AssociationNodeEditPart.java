@@ -113,7 +113,7 @@ ShapeNodeEditPart {
 		private Rectangle getTemplateBounds() {
 			if(myTemplateBounds == null) {
 				myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-				// just safety -- we are going to use this as divider
+				//just safety -- we are going to use this as divider 
 				if(myTemplateBounds.width < 1) {
 					myTemplateBounds.width = 1;
 				}
@@ -166,28 +166,19 @@ ShapeNodeEditPart {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Association",
-						PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("Association", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Association",
-						PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("Association", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Association",
-						PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("Association", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
-					prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Association",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Association", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
@@ -233,8 +224,7 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationNodeItemSemanticEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -312,17 +302,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -342,19 +322,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.AssociationClass_4017);
 		}
@@ -1163,17 +1132,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -1194,19 +1153,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.AssociationClass_4017) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
@@ -1975,19 +1923,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.AssociationClass_4017) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}

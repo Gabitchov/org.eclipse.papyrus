@@ -162,8 +162,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateGeneralizationSet_4020(Package container, Generalization source,
-				Generalization target) {
+		public static boolean canCreateGeneralizationSet_4020(Package container, Generalization source, Generalization target) {
 			return canExistGeneralizationSet_4020(container, source, target);
 		}
 
@@ -226,8 +225,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateTemplateBinding_4015(TemplateableElement container, TemplateableElement source,
-				Element target) {
+		public static boolean canCreateTemplateBinding_4015(TemplateableElement container, TemplateableElement source, Element target) {
 			return canExistTemplateBinding_4015(container, source, target);
 		}
 
@@ -311,8 +309,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistGeneralizationSet_4020(Package container, Generalization source,
-				Generalization target) {
+		public static boolean canExistGeneralizationSet_4020(Package container, Generalization source, Generalization target) {
 			return true;
 		}
 
@@ -375,8 +372,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistTemplateBinding_4015(TemplateableElement container, TemplateableElement source,
-				Element target) {
+		public static boolean canExistTemplateBinding_4015(TemplateableElement container, TemplateableElement source, Element target) {
 			return true;
 		}
 
@@ -512,8 +508,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand)
-					.getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);

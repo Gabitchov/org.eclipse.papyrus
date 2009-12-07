@@ -75,8 +75,7 @@ public class UMLVisualIDRegistry {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
 			if(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance()
-						.logError("Unable to parse view type as a visualID number: " + type);
+				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
 			}
 		}
 		return -1;
@@ -96,8 +95,7 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-				&& isDiagram((Package)domainElement)) {
+		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return ModelEditPart.VISUAL_ID;
 		}
 

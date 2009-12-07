@@ -44,8 +44,7 @@ public class DataTypeAttributeCompartment2CanonicalEditPolicy extends CanonicalE
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getDataTypeAttributeCompartment_7032SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getDataTypeAttributeCompartment_7032SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;

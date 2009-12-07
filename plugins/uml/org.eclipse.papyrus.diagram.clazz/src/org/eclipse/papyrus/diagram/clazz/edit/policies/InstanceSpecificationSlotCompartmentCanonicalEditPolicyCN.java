@@ -44,8 +44,7 @@ public class InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN extends C
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getInstanceSpecificationSlotCompartment_7035SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getInstanceSpecificationSlotCompartment_7035SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;

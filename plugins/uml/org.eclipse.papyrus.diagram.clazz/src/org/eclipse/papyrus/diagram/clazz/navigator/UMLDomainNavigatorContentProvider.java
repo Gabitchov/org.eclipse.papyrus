@@ -72,8 +72,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public UMLDomainNavigatorContentProvider() {
-		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
+		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain)editingDomain;
 		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
@@ -192,8 +191,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		}
 
 		if(parentElement instanceof UMLDomainNavigatorItem) {
-			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem)parentElement)
-					.getEObject()), parentElement);
+			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem)parentElement).getEObject()), parentElement);
 		}
 		return EMPTY_ARRAY;
 	}
@@ -205,8 +203,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		Collection result = new ArrayList();
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] instanceof EObject) {
-				result.add(new UMLDomainNavigatorItem((EObject)objects[i], parentElement,
-						myAdapterFctoryContentProvier));
+				result.add(new UMLDomainNavigatorItem((EObject)objects[i], parentElement, myAdapterFctoryContentProvier));
 			}
 		}
 		return result.toArray();

@@ -86,8 +86,7 @@ public class AssociationClassReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, getNewSource(),
-				target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, getNewSource(), target);
 	}
 
 	/**
@@ -105,8 +104,7 @@ public class AssociationClassReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, source,
-				getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociationClass_4017(container, source, getNewTarget());
 	}
 
 	/**

@@ -44,8 +44,7 @@ public class ComponentOperationCompartment2CanonicalEditPolicy extends Canonical
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getComponentOperationCompartment_7024SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getComponentOperationCompartment_7024SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;

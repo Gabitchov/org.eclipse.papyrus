@@ -84,8 +84,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		if(!(oldEnd instanceof Element && newEnd instanceof Comment)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_4013(getNewSource(),
-				getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_4013(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -95,8 +94,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_4013(getOldSource(),
-				getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistCommentAnnotatedElement_4013(getOldSource(), getNewTarget());
 	}
 
 	/**

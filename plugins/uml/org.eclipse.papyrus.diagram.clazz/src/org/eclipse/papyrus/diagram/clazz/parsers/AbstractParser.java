@@ -287,8 +287,7 @@ public abstract class AbstractParser implements IParser {
 						try {
 							value = Byte.valueOf(s);
 						} catch (NumberFormatException nfe) {
-							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass
-									.getName()));
+							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass.getName()));
 						}
 					}
 				} else {
@@ -307,8 +306,7 @@ public abstract class AbstractParser implements IParser {
 						try {
 							value = Short.valueOf(s);
 						} catch (NumberFormatException nfe) {
-							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass
-									.getName()));
+							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass.getName()));
 						}
 					}
 				} else {
@@ -327,8 +325,7 @@ public abstract class AbstractParser implements IParser {
 						try {
 							value = Integer.valueOf(s);
 						} catch (NumberFormatException nfe) {
-							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass
-									.getName()));
+							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass.getName()));
 						}
 					}
 				} else {
@@ -347,8 +344,7 @@ public abstract class AbstractParser implements IParser {
 						try {
 							value = Long.valueOf(s);
 						} catch (NumberFormatException nfe) {
-							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass
-									.getName()));
+							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass.getName()));
 						}
 					}
 				} else {
@@ -367,8 +363,7 @@ public abstract class AbstractParser implements IParser {
 						try {
 							value = Float.valueOf(s);
 						} catch (NumberFormatException nfe) {
-							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass
-									.getName()));
+							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass.getName()));
 						}
 					}
 				} else {
@@ -387,8 +382,7 @@ public abstract class AbstractParser implements IParser {
 						try {
 							value = Double.valueOf(s);
 						} catch (NumberFormatException nfe) {
-							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass
-									.getName()));
+							value = new InvalidValue(NLS.bind(Messages.AbstractParser_WrongStringConversion, iClass.getName()));
 						}
 					}
 				} else {
@@ -403,8 +397,7 @@ public abstract class AbstractParser implements IParser {
 						value = literal.getInstance();
 					}
 				} else {
-					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, String.class
-							.getName()));
+					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, String.class.getName()));
 				}
 			}
 		}

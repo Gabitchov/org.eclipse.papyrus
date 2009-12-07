@@ -234,8 +234,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		for(Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge)linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if(diagramLinkVisualID == -1 || diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID
-					|| diagramLinkVisualID == InstanceSpecificationLinkEditPart.VISUAL_ID) {
+			if(diagramLinkVisualID == -1 || diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID || diagramLinkVisualID == InstanceSpecificationLinkEditPart.VISUAL_ID) {
 				if(nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
@@ -246,10 +245,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
 			for(Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
 				UMLLinkDescriptor nextLinkDescriptor = (UMLLinkDescriptor)linkDescriptorsIterator.next();
-				if(diagramLinkObject == nextLinkDescriptor.getModelElement()
-						&& diagramLinkSrc == nextLinkDescriptor.getSource()
-						&& diagramLinkDst == nextLinkDescriptor.getDestination()
-						&& diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
+				if(diagramLinkObject == nextLinkDescriptor.getModelElement() && diagramLinkSrc == nextLinkDescriptor.getSource() && diagramLinkDst == nextLinkDescriptor.getDestination() && diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
 					linksIterator.remove();
 					linkDescriptorsIterator.remove();
 					break;
@@ -761,9 +757,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			if(sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
-			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
-					nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND, false,
-					((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
 			ccr.setType(RequestConstants.REQ_CONNECTION_START);
 			ccr.setSourceEditPart(sourceEditPart);

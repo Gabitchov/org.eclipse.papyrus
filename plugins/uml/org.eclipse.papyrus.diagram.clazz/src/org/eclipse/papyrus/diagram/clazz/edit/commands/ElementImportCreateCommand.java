@@ -96,8 +96,7 @@ public class ElementImportCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(ElementImport newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(ElementImport newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

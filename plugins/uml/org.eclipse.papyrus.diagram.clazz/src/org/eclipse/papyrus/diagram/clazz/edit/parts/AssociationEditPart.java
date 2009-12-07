@@ -59,8 +59,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof AppliedStereotypeAssociationEditPart) {
-			((AppliedStereotypeAssociationEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getAppliedStereotypeAssociationLabel());
+			((AppliedStereotypeAssociationEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeAssociationLabel());
 			return true;
 		}
 		if(childEditPart instanceof AssociationName2EditPart) {
@@ -97,8 +96,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}

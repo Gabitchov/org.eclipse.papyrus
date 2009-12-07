@@ -58,8 +58,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof AppliedStereotypeInterfaceRealizationEditPart) {
-			((AppliedStereotypeInterfaceRealizationEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getAppliedStereotypeLabel());
+			((AppliedStereotypeInterfaceRealizationEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		if(childEditPart instanceof InterfaceRealizationName2EditPart) {
@@ -88,8 +87,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceRealizationItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 

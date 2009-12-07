@@ -529,8 +529,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			return ((RedefinableTemplateSignatureEditPart)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((RedefinableTemplateSignatureEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof InstanceSpecificationEditPartCN) {
 			return ((InstanceSpecificationEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -807,8 +806,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);

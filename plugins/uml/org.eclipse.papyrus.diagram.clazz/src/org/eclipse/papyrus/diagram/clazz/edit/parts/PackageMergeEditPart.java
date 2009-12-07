@@ -49,8 +49,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageMergeItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypePackageMergeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypePackageMergeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -59,8 +58,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof AppliedStereotypePackageMergeEditPart) {
-			((AppliedStereotypePackageMergeEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getAppliedStereotypeLabel());
+			((AppliedStereotypePackageMergeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;

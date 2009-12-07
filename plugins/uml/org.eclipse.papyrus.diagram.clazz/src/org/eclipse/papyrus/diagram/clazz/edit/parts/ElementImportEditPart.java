@@ -49,8 +49,7 @@ public class ElementImportEditPart extends UMLConnectionNodeEditPart implements 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ElementImportItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeElementImportLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeElementImportLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -63,8 +62,7 @@ public class ElementImportEditPart extends UMLConnectionNodeEditPart implements 
 			return true;
 		}
 		if(childEditPart instanceof AppliedStereotypeElementImportEditPart) {
-			((AppliedStereotypeElementImportEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getAppliedStereotypeLabel());
+			((AppliedStereotypeElementImportEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;

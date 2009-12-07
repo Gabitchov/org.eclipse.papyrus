@@ -79,8 +79,7 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateTemplateBinding_4015(getContainer(), getSource(),
-				getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateTemplateBinding_4015(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -98,8 +97,7 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(TemplateBinding newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(TemplateBinding newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

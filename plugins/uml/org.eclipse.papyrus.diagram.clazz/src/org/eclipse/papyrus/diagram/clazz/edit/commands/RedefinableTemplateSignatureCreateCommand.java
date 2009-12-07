@@ -115,8 +115,7 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(RedefinableTemplateSignature newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(RedefinableTemplateSignature newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

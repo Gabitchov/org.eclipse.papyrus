@@ -98,15 +98,13 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralizationSet_4020(getContainer(),
-				getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralizationSet_4020(getContainer(), getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(GeneralizationSet newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(GeneralizationSet newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

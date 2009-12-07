@@ -56,15 +56,12 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PackagePackageableElementCompartment2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackagePackageableElementCompartment2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartment2CanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.PackagePackageableElementCompartment2CanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
@@ -101,10 +98,7 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

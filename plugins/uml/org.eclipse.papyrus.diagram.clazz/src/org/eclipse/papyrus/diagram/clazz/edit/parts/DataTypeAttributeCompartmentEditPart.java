@@ -84,10 +84,8 @@ public class DataTypeAttributeCompartmentEditPart extends ResizeableListCompartm
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.clazz.edit.policies.DataTypeAttributeCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.DataTypeAttributeCompartmentCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
@@ -107,10 +105,7 @@ public class DataTypeAttributeCompartmentEditPart extends ResizeableListCompartm
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

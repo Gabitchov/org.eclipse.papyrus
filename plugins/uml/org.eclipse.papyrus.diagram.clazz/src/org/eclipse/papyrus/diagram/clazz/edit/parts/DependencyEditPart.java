@@ -62,8 +62,7 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 			return true;
 		}
 		if(childEditPart instanceof AppliedStereotypeDependencyEditPart) {
-			((AppliedStereotypeDependencyEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getAppliedStereotypeLabel());
+			((AppliedStereotypeDependencyEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -88,8 +87,7 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DependencyItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 

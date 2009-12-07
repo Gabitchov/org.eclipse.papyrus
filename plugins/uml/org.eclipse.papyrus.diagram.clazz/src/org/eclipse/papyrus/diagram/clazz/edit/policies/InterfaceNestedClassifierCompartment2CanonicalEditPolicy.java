@@ -44,8 +44,7 @@ public class InterfaceNestedClassifierCompartment2CanonicalEditPolicy extends Ca
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getInterfaceNestedClassifierCompartment_7029SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getInterfaceNestedClassifierCompartment_7029SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;

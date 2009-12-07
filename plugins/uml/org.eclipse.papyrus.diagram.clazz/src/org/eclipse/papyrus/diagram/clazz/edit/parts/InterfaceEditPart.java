@@ -103,19 +103,16 @@ ClassifierEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.InterfaceCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInterfaceItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -186,34 +183,29 @@ ClassifierEditPart
 
 		if(childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
 		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
 		if(childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InterfaceNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
-		// Papyrus Gencode :precise the locator for a template signature
+		//Papyrus Gencode :precise the locator for a template signature
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(),
-					PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(
-					((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
+			BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
@@ -229,28 +221,24 @@ ClassifierEditPart
 		}
 		if(childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InterfaceNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(
-					((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -385,17 +373,7 @@ ClassifierEditPart
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -415,19 +393,8 @@ ClassifierEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.AssociationClass_4017);
 		}
@@ -1235,19 +1202,8 @@ ClassifierEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.AssociationClass_4017) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
@@ -2056,17 +2012,7 @@ ClassifierEditPart
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.AssociationClass_4017);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
@@ -2088,19 +2034,8 @@ ClassifierEditPart
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.AssociationClass_4017) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
@@ -2886,20 +2821,16 @@ ClassifierEditPart
 	 */
 	public EditPart getTargetEditPart(Request request) {
 		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor()
-					.getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.Property_3006) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID));
 			}
 			if(type == UMLElementTypes.Operation_3007) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
 			}
 			if(type == UMLElementTypes.Class_3008) {
-				return getChildBySemanticHint(UMLVisualIDRegistry
-						.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
@@ -2913,28 +2844,19 @@ ClassifierEditPart
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Interface",
-						PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("Interface", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Interface",
-						PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("Interface", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Interface",
-						PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("Interface", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
-					prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Interface",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Interface", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {

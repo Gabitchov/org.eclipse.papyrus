@@ -79,8 +79,7 @@ public class PackageMergeCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreatePackageMerge_4011(getContainer(), getSource(),
-				getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreatePackageMerge_4011(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -104,8 +103,7 @@ public class PackageMergeCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(PackageMerge newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(PackageMerge newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

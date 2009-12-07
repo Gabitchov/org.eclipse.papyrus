@@ -59,8 +59,7 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements 
 			return true;
 		}
 		if(childEditPart instanceof AppliedStereotypeDependency3EditPart) {
-			((AppliedStereotypeDependency3EditPart)childEditPart).setLabel(getPrimaryShape()
-					.getAppliedStereotypeLabel());
+			((AppliedStereotypeDependency3EditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;

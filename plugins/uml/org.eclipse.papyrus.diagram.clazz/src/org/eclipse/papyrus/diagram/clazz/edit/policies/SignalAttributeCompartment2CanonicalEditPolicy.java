@@ -44,8 +44,7 @@ public class SignalAttributeCompartment2CanonicalEditPolicy extends CanonicalEdi
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getSignalAttributeCompartment_7026SemanticChildren(viewObject).iterator(); it
-				.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getSignalAttributeCompartment_7026SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;

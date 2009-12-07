@@ -80,8 +80,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateAssociation_4019(getContainer(), getSource(),
-				getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateAssociation_4019(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -101,8 +100,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	// @unused
-	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

@@ -72,8 +72,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateInterfaceRealization_4003(getSource(),
-				getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateInterfaceRealization_4003(getSource(), getTarget());
 	}
 
 	/**
@@ -97,8 +96,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(InterfaceRealization newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(InterfaceRealization newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
