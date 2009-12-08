@@ -16,6 +16,7 @@ package org.eclipse.papyrus.resource.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -61,16 +62,14 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<EObject> getEobjects() {
-		// TODO: implement this method to return the 'Eobjects' containment reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and
-		// org.eclipse.emf.ecore.EStructuralFeature.Setting
-		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList
-		// should be used.
-		throw new UnsupportedOperationException();
+		if (eResource() != null)
+		{
+			return eResource().getContents();
+		}
+		return new BasicEList<EObject>();
 	}
 
 	/**
