@@ -1,5 +1,5 @@
 ##### features
-feature@org.eclipse.papyrus=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus,features,org.eclipse.papyrus-feature
+feature@org.eclipse.papyrus=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features/,,org.eclipse.papyrus-feature
 feature@org.eclipse.papyrus.backbone=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.backbone-feature
 feature@org.eclipse.papyrus.developer=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.developer-feature
 feature@org.eclipse.papyrus.diagram.clazz=SVN,trunk,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/features,,org.eclipse.papyrus.diagram.clazz-feature
