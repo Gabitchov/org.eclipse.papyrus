@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - add condition to the create command (task #296902)
  *******************************************************************************/
 package org.eclipse.papyrus.navigator.actions;
 
@@ -36,9 +37,11 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 			PackageableElement packageableElement = (PackageableElement)selectedElement;
 			MenuManager newDiagramMenu = new MenuManager("New Diagram");
 			menu.add(newDiagramMenu);
-			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-				CreateDiagramAction createDiagramAction = new CreateDiagramAction(packageableElement, desc);
-				newDiagramMenu.add(createDiagramAction);
+			for (CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+				if (desc.getCondition() == null || desc.getCondition().create(packageableElement)) {
+					CreateDiagramAction createDiagramAction = new CreateDiagramAction(packageableElement, desc);
+					newDiagramMenu.add(createDiagramAction);
+				}
 			}
 		}
 	}
