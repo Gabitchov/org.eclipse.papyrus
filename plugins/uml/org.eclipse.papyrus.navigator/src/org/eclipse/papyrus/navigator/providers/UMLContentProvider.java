@@ -38,6 +38,7 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.PackageImport;
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
@@ -90,6 +91,10 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		if(element instanceof Diagram) {
 			return false;
 		}
+		if(element instanceof PackageImport){
+			return ((PackageImport)element).getImportedPackage().getPackagedElements().size()>0;
+
+		}
 		return getChildren(element).length > 0;
 	}
 
@@ -109,9 +114,9 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		// fjcano #290422 :: add "Group children" action.
 		// if grouping is enabled, return the children in a folder organization
 		if(getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
-				&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
+			&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
 			ITreeItemContentProvider provider = (ITreeItemContentProvider)groupableFactory.adapt(parentElement,
-					ITreeItemContentProvider.class);
+				ITreeItemContentProvider.class);
 			return provider == null ? null : provider.getChildren(parentElement).toArray();
 		}
 
@@ -123,10 +128,16 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		for(Object child : modelChildren) {
 			children.add(child);
 		}
+		if(parentElement instanceof PackageImport){
+			Object[] importedChildren=	 super.getChildren(((PackageImport)parentElement).getImportedPackage());
+			for(Object child : importedChildren) {
+				children.add(child);
+			}
+		}
 
 		// 2. and associated diagrams
 		if(parentElement instanceof EObject || parentElement instanceof IWrapperItemProvider
-				|| parentElement instanceof FeatureMap.Entry) {
+			|| parentElement instanceof FeatureMap.Entry) {
 			Object object = AdapterFactoryEditingDomain.unwrap(parentElement);
 			if(object instanceof Element) {
 				Element owner = (Element)object;
@@ -148,15 +159,15 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		 * super.getParent(object);
 		 */
 		if(getModelNavigator() != null && getModelNavigator().isGroupingChildsEnabled()
-				&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
+			&& groupableFactory.isFactoryForType(ITreeItemContentProvider.class)) {
 			ITreeItemContentProvider provider = (ITreeItemContentProvider)groupableFactory.adapt(element,
-					ITreeItemContentProvider.class);
+				ITreeItemContentProvider.class);
 			return provider == null ? null : provider.getParent(element);
 		}
 
 		// Delegates
 		if(element instanceof IWrapperItemProvider || element instanceof FeatureMap.Entry
-				|| element instanceof EObject) {
+			|| element instanceof EObject) {
 			return super.getParent(element);
 		}
 
