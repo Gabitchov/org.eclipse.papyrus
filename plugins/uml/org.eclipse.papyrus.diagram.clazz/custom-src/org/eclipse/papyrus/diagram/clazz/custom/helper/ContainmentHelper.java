@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Fadoi LAKHAL  Fadoi.Lakhal@cea.fr - Initial API and implementation
+ *  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.helper;
@@ -255,8 +255,8 @@ public class ContainmentHelper extends ElementHelper {
 			cc.add(new ICommandProxy(setBoundsCommand));
 
 			/* Recovery of the eventual stereotype and his display */
-			if(!(semanticClass.getAppliedStereotypes().isEmpty())) {
-				cc.add(new ICommandProxy(new customDiferedAppliedStereotypeCommand(this.editDomain, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), "SysML::", VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION)));
+			if(!(semanticClass.getAppliedStereotypes().isEmpty())){
+			cc.add(new ICommandProxy(new customDiferedAppliedStereotypeCommand(this.editDomain, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), "SysML::", VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION)));
 			}
 
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022, ((INotationType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022).getSemanticHint(), ownergep.getDiagramPreferencesHint());

@@ -128,6 +128,50 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	protected Command outlineDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
+		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
+		return containmentHelper.outlineDropContainedClass((Class)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
+	}
+
+	protected Command compartmentDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
+		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
+		CompositeCommand cc = new CompositeCommand("compartmentDropContainedClass");
+		Point location = dropRequest.getLocation().getCopy();
+		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
+		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
+		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
+		cc = getDefaultDropNodeCommand(nodeVISUALID, location, semanticObject);
+		GraphicalEditPart owner = null;
+		Collection<EditPart> editPartSet = getViewer().getEditPartRegistry().values();
+		Iterator<EditPart> editPartIterator = editPartSet.iterator();
+		while(editPartIterator.hasNext()) {
+			EditPart currentEditPart = editPartIterator.next();
+			if(currentEditPart instanceof ClassEditPart) {
+				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticObject)) {
+					cc.add(new DeleteCommand(getEditingDomain(), (View)((GraphicalEditPart)currentEditPart).getModel()));
+
+				}
+				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticObject.getOwner())) {
+					owner = (GraphicalEditPart)currentEditPart;
+					Collection<EditPart> ownereditPartSet = owner.getViewer().getEditPartRegistry().values();
+					Iterator<EditPart> ownereditPartIterator = ownereditPartSet.iterator();
+					while(ownereditPartIterator.hasNext()) {
+						EditPart ownercurrentEditPart = ownereditPartIterator.next();
+						if(ownercurrentEditPart instanceof ContainmentCircleEditPart) {
+							ContainmentCircleEditPart containmentcircleeditpart = (ContainmentCircleEditPart)ownercurrentEditPart;
+							if(containmentcircleeditpart.getSourceConnections().size() == 1) {
+								cc.add(new DeleteCommand(getEditingDomain(), (View)ownercurrentEditPart.getModel()));
+							}
+						}
+					}
+
+				}
+			}
+		}
+
+		return new ICommandProxy(cc);
+	}
+
 	/**
 	 * {@inheritedDoc}
 	 */
@@ -139,7 +183,10 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);
 		case 2015:
 			return dropAssociation(dropRequest, semanticLink, nodeVISUALID);
-
+		case 3014:
+			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
+		case 2008:
+			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;
 		}

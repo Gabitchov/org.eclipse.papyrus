@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Fadoi LAKHAL  Fadoi.Lakhal@cea.fr - Initial API and implementation
+ *  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;

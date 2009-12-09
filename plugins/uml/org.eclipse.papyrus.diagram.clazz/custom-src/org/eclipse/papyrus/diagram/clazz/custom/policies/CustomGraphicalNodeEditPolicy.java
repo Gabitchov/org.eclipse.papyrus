@@ -75,6 +75,31 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 					return c;
 				}
 			}
+			if(request instanceof CreateConnectionViewRequest) {
+				Command c = getConnectionCompleteCommand((CreateConnectionViewRequest)request);
+				if((((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.Link_4023).getSemanticHint()))) {
+
+					ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
+
+					return containmentHelper.getContainmentElementCommand((CreateConnectionViewRequest)request, c);
+
+				}
+			} else if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
+				return getUnspecifiedConnectionCompleteCommand((CreateUnspecifiedTypeConnectionRequest)request);
+			}
+		}
+		if(REQ_RECONNECT_TARGET.equals(request.getType())) {
+			if(request instanceof ReconnectRequest) {
+				if(((ReconnectRequest)request).getConnectionEditPart() instanceof AddedLinkEditPart) {
+					View modelrequest = (View)getHost().getModel();
+					Element element = (Element)modelrequest.getElement();
+					if(!(element.getOwner() instanceof ClassImpl)) {
+						return getReconnectTargetCommand((ReconnectRequest)request);
+					} else {
+						return null;
+					}
+				}
+			}
 		}
 		return super.getCommand(request);
 	}

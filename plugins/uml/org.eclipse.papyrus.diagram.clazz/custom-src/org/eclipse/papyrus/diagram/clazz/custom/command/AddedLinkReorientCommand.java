@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Fadoi LAKHAL  Fadoi.Lakhal@cea.fr - Initial API and implementation
+ *  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.command;
@@ -63,6 +63,13 @@ public class AddedLinkReorientCommand extends AbstractTransactionalCommand {
 		request = req;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 * org.eclipse.core.runtime.IAdaptable)
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Classifier oldEnd = (Classifier)request.getOldRelationshipEnd();
