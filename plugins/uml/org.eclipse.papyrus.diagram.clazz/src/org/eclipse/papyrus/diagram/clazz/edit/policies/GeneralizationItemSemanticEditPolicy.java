@@ -36,7 +36,8 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class GeneralizationItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -56,25 +57,31 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.CommentAnnotatedElement_4013 == req.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
+				.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req
+				.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
+			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -82,18 +89,25 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.CommentAnnotatedElement_4013 == req.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
+				.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req
+				.getElementType()) {
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new TemplateBindingCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
+			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req
+					.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -104,8 +118,9 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getGEFWrapper(new TemplateBindingReorientCommand(req));
 		case GeneralizationSetEditPart.VISUAL_ID:
@@ -120,12 +135,14 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		switch(getVisualID(req)) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(
+					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

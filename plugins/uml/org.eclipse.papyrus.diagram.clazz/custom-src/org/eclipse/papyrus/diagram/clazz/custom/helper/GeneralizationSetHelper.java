@@ -239,8 +239,8 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * @return the reconnect source command
 	 */
 	public Command getReconnectSourceCommand(ReconnectRequest request, INodeEditPart node) {
-		//System.err.println("custom reconnection for GeneralizationSet source");
-		//System.err.println("node--> " + node);
+		// System.err.println("custom reconnection for GeneralizationSet source");
+		// System.err.println("node--> " + node);
 
 		if(node == null)
 			return null;
@@ -248,7 +248,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 
 		ConnectionAnchor sourceAnchor = node.getSourceConnectionAnchor(request);
-		//System.err.println("sourceAnchor--> " + sourceAnchor.getReferencePoint());
+		// System.err.println("sourceAnchor--> " + sourceAnchor.getReferencePoint());
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
 		sceCommand.setEdgeAdaptor(new EObjectAdapter((View)request.getConnectionEditPart().getModel()));
 		sceCommand.setNewSourceAdaptor(new EObjectAdapter((View)node.getModel()));

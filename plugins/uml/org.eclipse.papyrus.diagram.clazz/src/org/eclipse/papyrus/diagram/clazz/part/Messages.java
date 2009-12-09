@@ -392,6 +392,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ContainmentLink19CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ContainmentLink19CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String InstanceSpecification18CreationTool_title;
 
 	/**

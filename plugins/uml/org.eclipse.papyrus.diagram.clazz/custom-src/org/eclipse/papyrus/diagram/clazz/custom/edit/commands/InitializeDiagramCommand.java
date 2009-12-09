@@ -81,8 +81,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 		createdViews.addAll(populateSemanticNodes());
 
 		if(createdViews.size() > 0) {
-			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(
-					((DiagramEditPart)getHost()), createdViews);
+			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(((DiagramEditPart)getHost()), createdViews);
 			CommandUtil.executeCommand(new ICommandProxy(restoreRelatedLinksCommand), host());
 			// DeferredLayoutCommand layoutCmd = new
 			// DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());

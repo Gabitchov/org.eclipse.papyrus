@@ -37,9 +37,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public EditPart createEditPart(EditPart context, Object model) {
-		if(model instanceof View) {
-			View view = (View)model;
-			switch(UMLVisualIDRegistry.getVisualID(view)) {
+		if (model instanceof View) {
+			View view = (View) model;
+			switch (UMLVisualIDRegistry.getVisualID(view)) {
 
 			case ModelEditPart.VISUAL_ID:
 				return new ModelEditPart(view);
@@ -260,6 +260,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case SlotEditPart.VISUAL_ID:
 				return new SlotEditPart(view);
 
+			case ContainmentCircleEditPart.VISUAL_ID:
+				return new ContainmentCircleEditPart(view);
+
 			case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassAttributeCompartmentEditPart(view);
 
@@ -276,7 +279,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ComponentNestedClassifierCompartmentEditPart(view);
 
 			case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
-				return new RedefinableTemplateSignatureTemplateParameterCompartmentEditPart(view);
+				return new RedefinableTemplateSignatureTemplateParameterCompartmentEditPart(
+						view);
 
 			case SignalAttributeCompartmentEditPart.VISUAL_ID:
 				return new SignalAttributeCompartmentEditPart(view);
@@ -318,7 +322,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ModelPackageableElementCompartment2EditPart(view);
 
 			case EnumerationEnumerationLiteralCompartment2EditPart.VISUAL_ID:
-				return new EnumerationEnumerationLiteralCompartment2EditPart(view);
+				return new EnumerationEnumerationLiteralCompartment2EditPart(
+						view);
 
 			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 				return new PackagePackageableElementCompartmentEditPart(view);
@@ -339,7 +344,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new DataTypeOperationCompartment2EditPart(view);
 
 			case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
-				return new EnumerationEnumerationLiteralCompartmentEditPart(view);
+				return new EnumerationEnumerationLiteralCompartmentEditPart(
+						view);
 
 			case PackagePackageableElementCompartment2EditPart.VISUAL_ID:
 				return new PackagePackageableElementCompartment2EditPart(view);
@@ -503,6 +509,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InstanceSpecificationLinkEditPart.VISUAL_ID:
 				return new InstanceSpecificationLinkEditPart(view);
 
+			case AddedLinkEditPart.VISUAL_ID:
+				return new AddedLinkEditPart(view);
+
+			case ContainmentLinkEditPart.VISUAL_ID:
+				return new ContainmentLinkEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -519,11 +531,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof WrappingLabel)
-			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
+	public static CellEditorLocator getTextCellEditorLocator(
+			ITextAwareEditPart source) {
+		if (source.getFigure() instanceof WrappingLabel)
+			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
-			return new LabelCellEditorLocator((Label)source.getFigure());
+			return new LabelCellEditorLocator((Label) source.getFigure());
 		}
 	}
 
@@ -555,16 +568,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text)celleditor.getControl();
+			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if(getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+			if (getWrapLabel().isTextWrapOn()
+					&& getWrapLabel().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
+				int avr = FigureUtilities.getFontMetrics(text.getFont())
+						.getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
+						SWT.DEFAULT)).expand(avr * 2, 0));
 			}
-			if(!rect.equals(new Rectangle(text.getBounds()))) {
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
@@ -598,12 +615,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text)celleditor.getControl();
+			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
-			if(!rect.equals(new Rectangle(text.getBounds()))) {
+			int avr = FigureUtilities.getFontMetrics(text.getFont())
+					.getAverageCharWidth();
+			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
+					SWT.DEFAULT)).expand(avr * 2, 0));
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}

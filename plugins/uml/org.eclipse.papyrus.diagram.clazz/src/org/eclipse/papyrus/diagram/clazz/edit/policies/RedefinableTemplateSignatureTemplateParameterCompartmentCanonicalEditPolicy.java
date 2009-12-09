@@ -32,7 +32,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy
+		extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -43,10 +44,12 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEd
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View)getHost().getModel();
+		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getRedefinableTemplateSignatureTemplateParameterCompartment_7014SemanticChildren(viewObject).iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
+		for (Iterator it = UMLDiagramUpdater
+				.getRedefinableTemplateSignatureTemplateParameterCompartment_7014SemanticChildren(
+						viewObject).iterator(); it.hasNext();) {
+			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -56,10 +59,10 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEd
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch(visualID) {
+		switch (visualID) {
 		case ClassifierTemplateParameterEditPart.VISUAL_ID:
 		case TemplateParameterEditPart.VISUAL_ID:
-			if(!semanticChildren.contains(view.getElement())) {
+			if (!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -77,9 +80,10 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEd
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
+		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
+					.getTemplateSignature_OwnedParameter());
 		}
 		return myFeaturesToSynchronize;
 	}

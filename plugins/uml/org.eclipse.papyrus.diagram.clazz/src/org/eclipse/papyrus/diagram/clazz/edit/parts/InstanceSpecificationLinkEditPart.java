@@ -47,9 +47,11 @@ implements ITreeBranchEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
+				new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
@@ -68,7 +70,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx)getFigure();
+		return (PolylineConnectionEx) getFigure();
 	}
 
 }

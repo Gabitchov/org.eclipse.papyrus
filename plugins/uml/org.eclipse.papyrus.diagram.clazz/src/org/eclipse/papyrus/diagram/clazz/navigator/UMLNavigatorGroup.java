@@ -91,9 +91,9 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if(obj instanceof org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorGroup) {
-			org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorGroup)obj;
-			if(getGroupName().equals(anotherGroup.getGroupName())) {
+		if (obj instanceof org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorGroup) {
+			org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorGroup) obj;
+			if (getGroupName().equals(anotherGroup.getGroupName())) {
 				return getParent().equals(anotherGroup.getParent());
 			}
 		}

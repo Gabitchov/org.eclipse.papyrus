@@ -59,13 +59,13 @@ public class RealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == getElementToEdit() instanceof Realization) {
+		if (false == getElementToEdit() instanceof Realization) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -75,49 +75,53 @@ public class RealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getSuppliers().size() != 1) {
+		if (getLink().getSuppliers().size() != 1) {
 			return false;
 		}
-		NamedElement target = (NamedElement)getLink().getSuppliers().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		NamedElement target = (NamedElement) getLink().getSuppliers().get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistRealization_4005(container, getNewSource(), target);
+		Package container = (Package) getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistRealization_4005(container, getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getClients().size() != 1) {
+		if (getLink().getClients().size() != 1) {
 			return false;
 		}
-		NamedElement source = (NamedElement)getLink().getClients().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		NamedElement source = (NamedElement) getLink().getClients().get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistRealization_4005(container, source, getNewTarget());
+		Package container = (Package) getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints
+				.canExistRealization_4005(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -145,34 +149,34 @@ public class RealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Realization getLink() {
-		return (Realization)getElementToEdit();
+		return (Realization) getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldSource() {
-		return (NamedElement)oldEnd;
+		return (NamedElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewSource() {
-		return (NamedElement)newEnd;
+		return (NamedElement) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldTarget() {
-		return (NamedElement)oldEnd;
+		return (NamedElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewTarget() {
-		return (NamedElement)newEnd;
+		return (NamedElement) newEnd;
 	}
 }

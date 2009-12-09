@@ -28,7 +28,8 @@ import org.eclipse.papyrus.diagram.common.figure.edge.CAssociationFigure;
 /**
  * @generated
  */
-public class AssociationClass2EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,8 +48,10 @@ public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationClass2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new AssociationClass2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
+				new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
@@ -68,7 +71,7 @@ public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public AssociationDescriptor getPrimaryShape() {
-		return (AssociationDescriptor)getFigure();
+		return (AssociationDescriptor) getFigure();
 	}
 
 	/**

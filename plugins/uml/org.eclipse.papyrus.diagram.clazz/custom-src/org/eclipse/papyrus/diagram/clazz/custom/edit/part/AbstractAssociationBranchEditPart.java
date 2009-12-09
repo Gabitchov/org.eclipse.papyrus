@@ -47,8 +47,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 	 */
 	protected void addAssociationEndListeners() {
 		if(resolveSemanticElement() instanceof Association) {
-			Property targetEnd = MultiAssociationHelper.getPropertyToListen(((Edge)getModel()),
-					(Association)resolveSemanticElement());
+			Property targetEnd = MultiAssociationHelper.getPropertyToListen(((Edge)getModel()), (Association)resolveSemanticElement());
 			if(targetEnd != null) {
 				addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
 
@@ -92,8 +91,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 	protected void refreshVisuals() {
 		if(resolveSemanticElement() != null) {
 			if(resolveSemanticElement() instanceof Association) {
-				Property target = MultiAssociationHelper.getPropertyToListen(((Edge)getModel()),
-						(Association)resolveSemanticElement());
+				Property target = MultiAssociationHelper.getPropertyToListen(((Edge)getModel()), (Association)resolveSemanticElement());
 				if(target != null && target.getOwner() != null) {
 					int sourceType = 0;
 					int targetType = 0;

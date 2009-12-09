@@ -75,6 +75,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		InterfacePreferencePage.initDefaults(store);
 
+		PortPreferencePage.initDefaults(store);
+
 		ReceptionPreferencePage.initDefaults(store);
 
 		ClassifierTemplateParameterPreferencePage.initDefaults(store);

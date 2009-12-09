@@ -92,16 +92,14 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 			if(getSource() == null || getTarget() == null) {
 				return;
 			}
-			if(((GraphicalEditPart)getSource()).resolveSemanticElement() == null
-					|| ((GraphicalEditPart)getTarget()).resolveSemanticElement() == null) {
+			if(((GraphicalEditPart)getSource()).resolveSemanticElement() == null || ((GraphicalEditPart)getTarget()).resolveSemanticElement() == null) {
 				return;
 			}
 
 			Property source = null;
 			Property target = null;
 
-			if(((Property)(((Association)getUMLElement()).getMemberEnds().get(0))).getType().equals(
-					((GraphicalEditPart)getSource()).resolveSemanticElement())) {
+			if(((Property)(((Association)getUMLElement()).getMemberEnds().get(0))).getType().equals(((GraphicalEditPart)getSource()).resolveSemanticElement())) {
 				source = ((Property)(((Association)getUMLElement()).getMemberEnds().get(0)));
 				target = ((Property)(((Association)getUMLElement()).getMemberEnds().get(1)));
 			} else {

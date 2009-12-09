@@ -1919,6 +1919,37 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Slot/definingFeature"/>
         </labelModelFacet>
       </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3032"
+          editPartClassName="ContainmentCircleEditPart"
+          itemSemanticEditPolicyClassName="ContainmentCircleItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ContainmentCircleCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ContainmentCircleGraphicalNodeEditPolicy"
+          createCommandClassName="ContainmentCircleCreateCommand"
+          containers="/0/@diagram/@topLevelNodes.10"
+          preferredSideName="NORTH">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"
+            displayName="Port"
+            editHelperClassName="PortEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.ContainmentFigure"/>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Port"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/EncapsulatedClassifier/ownedPort"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/EncapsulatedClassifier/ownedPort"/>
+        </modelFacet>
+      </childNodes>
       <topLevelNodes
           visualID="2014"
           editPartClassName="Dependency2EditPart"
@@ -2685,7 +2716,7 @@
           editPartClassName="ClassEditPart"
           itemSemanticEditPolicyClassName="ClassItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.30"
           compartments="/0/@diagram/@compartments.28 /0/@diagram/@compartments.29 /0/@diagram/@compartments.30"
           graphicalNodeEditPolicyClassName="ClassGraphicalNodeEditPolicy"
           createCommandClassName="ClassCreateCommand">
@@ -2728,6 +2759,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomViewComponentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
@@ -4554,6 +4589,44 @@
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy"/>
       </links>
+      <links
+          visualID="4022"
+          editPartClassName="AddedLinkEditPart"
+          itemSemanticEditPolicyClassName="AddedLinkItemSemanticEditPolicy"
+          createCommandClassName="AddedLinkCreateCommand"
+          reorientCommandClassName="AddedLinkReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.AddedLink_4022"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AddedLinkFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomViewComponentEditPolicy"/>
+      </links>
+      <links
+          visualID="4023"
+          editPartClassName="ContainmentLinkEditPart"
+          itemSemanticEditPolicyClassName="ContainmentLinkItemSemanticEditPolicy"
+          createCommandClassName="ContainmentLinkCreateCommand"
+          reorientCommandClassName="ContainmentLinkReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AddedLinkFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomViewComponentEditPolicy"/>
+      </links>
       <compartments
           visualID="7034"
           editPartClassName="AssociationClassAttributeCompartmentEditPart"
@@ -5679,6 +5752,12 @@
               smallIconPath="icons/obj16/InstanceLink.gif"
               id="&quot;clazz.tool.instancespecificationlink&quot;"
               genLinks="/0/@diagram/@links.20"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="ContainmentLink"
+              description="Create a ContainmentLink"
+              id="&quot;clazz.tool.containmentlink&quot;"
+              genLinks="/0/@diagram/@links.22"/>
         </groups>
         <groups
             title="Features"
@@ -5973,5 +6052,16 @@
         genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.11 /0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.14 /0/@diagram/@compartments.15 /0/@diagram/@compartments.16 /0/@diagram/@compartments.17 /0/@diagram/@compartments.21 /0/@diagram/@compartments.22 /0/@diagram/@compartments.23 /0/@diagram/@compartments.24 /0/@diagram/@compartments.25 /0/@diagram/@compartments.28 /0/@diagram/@compartments.29 /0/@diagram/@compartments.30 /0/@diagram/@compartments.31 /0/@diagram/@compartments.32"
         name="ResizeableListCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.ResizeableListCompartmentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocator"
+        comment="Affixed Containment locator"
+        classpath="org.eclipse.papyrus.diagram.clazz.custom.locator.ContainmentPositionLocator"
+        genChildSideAffixedNode="/0/@diagram/@childNodes.30"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="With the mecanism of around, the methods hasborderItems(self) is never call on the template. To have the right superclass, we declare it here."
+        genView="/0/@diagram/@childNodes.30"
+        name="AbstractBorderItemEditPart"
+        superOwnedEditPart="org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
