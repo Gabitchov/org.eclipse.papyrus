@@ -47,8 +47,7 @@ public class DestroyAssociationCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		Association association = (Association)getElementToDestroy();
-		DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), association.getMemberEnds()
-				.get(1), true);
+		DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), association.getMemberEnds().get(1), true);
 		DestroyElementCommand c = new DestroyElementCommand(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		request = new DestroyElementRequest(getEditingDomain(), association.getMemberEnds().get(0), true);

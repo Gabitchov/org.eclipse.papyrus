@@ -149,11 +149,9 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * 
 	 * @return the generalization set
 	 */
-	public GeneralizationSet createGeneralizationSet(Generalization source, Generalization target,
-			org.eclipse.uml2.uml.Package container) {
+	public GeneralizationSet createGeneralizationSet(Generalization source, Generalization target, org.eclipse.uml2.uml.Package container) {
 
-		final ArrayList<GeneralizationSet> generalizationSetList = new ArrayList<GeneralizationSet>(source
-				.getGeneralizationSets());
+		final ArrayList<GeneralizationSet> generalizationSetList = new ArrayList<GeneralizationSet>(source.getGeneralizationSets());
 		Iterator<GeneralizationSet> iterator = target.getGeneralizationSets().iterator();
 		while(iterator.hasNext()) {
 			GeneralizationSet currentGeneralizationSet = (GeneralizationSet)iterator.next();
@@ -193,8 +191,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * 
 	 * @return the move target
 	 */
-	public org.eclipse.gef.commands.Command getMoveTarget(ReconnectRequest request,
-			org.eclipse.gef.commands.Command command, INodeEditPart node, ConnectionAnchor targetAnchor) {
+	public org.eclipse.gef.commands.Command getMoveTarget(ReconnectRequest request, org.eclipse.gef.commands.Command command, INodeEditPart node, ConnectionAnchor targetAnchor) {
 		//System.err.println("custom reconnection for GeneralizationSet target");
 		org.eclipse.gef.commands.CompoundCommand cc = new org.eclipse.gef.commands.CompoundCommand();
 		// look for all Generalization set connected to the source location that reference the same
@@ -210,16 +207,14 @@ public class GeneralizationSetHelper extends ElementHelper {
 		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
 			if(currentObject instanceof GeneralizationSetEditPart) {
-				if(((GeneralizationSetEditPart)request.getConnectionEditPart()).resolveSemanticElement().equals(
-						((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
+				if(((GeneralizationSetEditPart)request.getConnectionEditPart()).resolveSemanticElement().equals(((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
 					edgeToMove = (GeneralizationSetEditPart)currentObject;
 				}
 			}
 		}
 		cc.add(command);
 		if(edgeToMove != null) {
-			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(getEditingDomain(),
-					StringStatics.BLANK);
+			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(getEditingDomain(), StringStatics.BLANK);
 			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View)edgeToMove.getModel()));
 			if(node.getSourceConnections().contains(edgeToMove)) {
 				scaCommandbis.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(targetAnchor));
@@ -278,15 +273,13 @@ public class GeneralizationSetHelper extends ElementHelper {
 		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
 			if(currentObject instanceof GeneralizationSetEditPart) {
-				if(((GeneralizationSetEditPart)request.getConnectionEditPart()).resolveSemanticElement().equals(
-						((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
+				if(((GeneralizationSetEditPart)request.getConnectionEditPart()).resolveSemanticElement().equals(((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
 					edgeToMove = (GeneralizationSetEditPart)currentObject;
 				}
 			}
 		}
 		if(edgeToMove != null) {
-			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(editingDomain,
-					StringStatics.BLANK);
+			SetConnectionAnchorsCommand scaCommandbis = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
 			scaCommandbis.setEdgeAdaptor(new EObjectAdapter((View)edgeToMove.getModel()));
 			if(node.getSourceConnections().contains(edgeToMove)) {
 				scaCommandbis.setNewSourceTerminal(node.mapConnectionAnchorToTerminal(sourceAnchor));
@@ -308,8 +301,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 	 * @param editingDomain
 	 *        the editing domain
 	 */
-	private void launchDialog(final ArrayList<GeneralizationSet> generalizationSetList,
-			TransactionalEditingDomain editingDomain) {
+	private void launchDialog(final ArrayList<GeneralizationSet> generalizationSetList, TransactionalEditingDomain editingDomain) {
 
 		// Thread myThread = new Thread(new Runnable() {
 

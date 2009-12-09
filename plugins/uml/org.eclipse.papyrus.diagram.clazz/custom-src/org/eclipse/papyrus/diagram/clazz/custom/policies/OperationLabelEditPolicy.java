@@ -64,17 +64,14 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
-		EAnnotation customeDisplayAnnotation = ((View)getHost().getModel())
-				.getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation customeDisplayAnnotation = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
 		if(customeDisplayAnnotation != null) {
-			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(
-					VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store
-					.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
+			int displayValueTemp = store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
 			if(displayValueTemp != 0) {
 				displayValue = displayValueTemp;
 			}

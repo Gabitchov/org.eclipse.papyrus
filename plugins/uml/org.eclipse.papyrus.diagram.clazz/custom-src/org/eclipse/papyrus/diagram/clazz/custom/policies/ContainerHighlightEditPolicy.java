@@ -93,11 +93,7 @@ public class ContainerHighlightEditPolicy extends org.eclipse.gef.editpolicies.G
 	 * {@inheritedDoc}
 	 */
 	public void showTargetFeedback(Request request) {
-		if(request.getType().equals(RequestConstants.REQ_MOVE) || request.getType().equals(RequestConstants.REQ_ADD)
-				|| request.getType().equals(RequestConstants.REQ_CLONE)
-				|| request.getType().equals(RequestConstants.REQ_CONNECTION_START)
-				|| request.getType().equals(RequestConstants.REQ_CONNECTION_END)
-				|| request.getType().equals(RequestConstants.REQ_CREATE)) {
+		if(request.getType().equals(RequestConstants.REQ_MOVE) || request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_CLONE) || request.getType().equals(RequestConstants.REQ_CONNECTION_START) || request.getType().equals(RequestConstants.REQ_CONNECTION_END) || request.getType().equals(RequestConstants.REQ_CREATE)) {
 			showHighlight();
 		}
 	}

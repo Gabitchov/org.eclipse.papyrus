@@ -27,7 +27,7 @@ public class SetCompositePropertyAction extends SetAggregationPropertyAction {
 	 */
 	public SetCompositePropertyAction() {
 		super();
-		aggregationKind=AggregationKind.COMPOSITE_LITERAL;
+		aggregationKind = AggregationKind.COMPOSITE_LITERAL;
 	}
 
 }

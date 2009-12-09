@@ -52,13 +52,13 @@ public class SetAggregationPropertyAction implements IObjectActionDelegate {
 
 	/** The selected element. */
 	private GraphicalEditPart selectedElement;
-	
+
 	/** The feature. */
 	protected final EStructuralFeature feature = UMLPackage.eINSTANCE.getProperty_Aggregation();
-	
+
 	/** The aggregation kind. */
-	protected AggregationKind aggregationKind=null;
-	
+	protected AggregationKind aggregationKind = null;
+
 	/**
 	 * Instantiates a new sets the aggregation property action.
 	 */
@@ -68,11 +68,11 @@ public class SetAggregationPropertyAction implements IObjectActionDelegate {
 
 	/**
 	 * @see org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.action.IAction, org.eclipse.ui.IWorkbenchPart)
-	 *
+	 * 
 	 * @param action
 	 * @param targetPart
 	 */
-	
+
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
 
@@ -81,18 +81,18 @@ public class SetAggregationPropertyAction implements IObjectActionDelegate {
 
 	/**
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-	 *
+	 * 
 	 * @param action
 	 */
-	
+
 	public void run(IAction action) {
 		//1 this is a associationEnd?
 		CompoundCommand command = new CompoundCommand();
-		if(selectedElement instanceof AssociationEndSourceEditPart||selectedElement instanceof AssociationEndTargetEditPart){
+		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart) {
 
 			//2. look for the future owner of the property, run only for binary association
 			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();
-			if(aggregationKind!=null){
+			if(aggregationKind != null) {
 
 				// add property in association
 
@@ -106,11 +106,11 @@ public class SetAggregationPropertyAction implements IObjectActionDelegate {
 
 	/**
 	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-	 *
+	 * 
 	 * @param action
 	 * @param selection
 	 */
-	
+
 	public void selectionChanged(IAction action, ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();

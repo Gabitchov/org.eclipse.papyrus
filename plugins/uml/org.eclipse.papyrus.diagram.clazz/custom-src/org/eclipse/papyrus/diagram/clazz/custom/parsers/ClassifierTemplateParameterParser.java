@@ -41,8 +41,7 @@ public class ClassifierTemplateParameterParser implements IParser {
 
 	public String getPrintString(IAdaptable element, int flags) {
 		if(element instanceof EObjectAdapter) {
-			final ClassifierTemplateParameter templateParam = ((ClassifierTemplateParameter)((EObjectAdapter)element)
-					.getRealObject());
+			final ClassifierTemplateParameter templateParam = ((ClassifierTemplateParameter)((EObjectAdapter)element).getRealObject());
 			if(templateParam.getOwnedParameteredElement() == null) {
 				return "<UNDEFINED>";
 			}

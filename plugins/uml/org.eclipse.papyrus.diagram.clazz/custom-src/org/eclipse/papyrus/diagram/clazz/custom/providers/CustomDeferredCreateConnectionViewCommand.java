@@ -41,33 +41,26 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 	/**
 	 * {@inheritDoc}
 	 */
-	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element,
-			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
-			PreferencesHint preferencesHint, ICommand command) {
+	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, command);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint,
-			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
-			PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
-		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint,
-				viewDescriptor, command);
+	public CustomDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
+		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, command);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult commandResult = null;
 		if(command != null && command instanceof AssociationClassViewCreateCommand) {
 			Map epRegistry = viewer.getEditPartRegistry();
 			IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
-			IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry
-					.get(((AssociationClassViewCreateCommand)command).getNode());
+			IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(((AssociationClassViewCreateCommand)command).getNode());
 
 			commandResult = super.doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);
 		} else {

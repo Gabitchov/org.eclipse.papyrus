@@ -71,12 +71,10 @@ public class PropertyParser implements IParser {
 		final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement
-				.getTransactionalEditingDomain(), "Edit Property", (List)null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit Property", (List)null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {

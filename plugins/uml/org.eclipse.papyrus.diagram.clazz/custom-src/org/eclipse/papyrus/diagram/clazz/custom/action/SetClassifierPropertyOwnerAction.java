@@ -61,46 +61,45 @@ public class SetClassifierPropertyOwnerAction implements IObjectActionDelegate {
 
 	/**
 	 * @see org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.action.IAction, org.eclipse.ui.IWorkbenchPart)
-	 *
+	 * 
 	 * @param action
 	 * @param targetPart
 	 */
-	
+
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
 
 	}
 
-	
+
 	/**
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-	 *
+	 * 
 	 * @param action
 	 */
-	
+
 	public void run(IAction action) {
 		System.err.println(selectedElement);
 		//1 this is a associationEnd?
 		CompoundCommand command = new CompoundCommand();
-		if(selectedElement instanceof AssociationEndSourceEditPart||selectedElement instanceof AssociationEndTargetEditPart){
-			Type owner=null;
+		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart) {
+			Type owner = null;
 			//2. look for the future owner of the property, run only for binary association
 			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();
-			if(property.getOwner()instanceof Association){
+			if(property.getOwner() instanceof Association) {
 				//look for the owner of the property to Set
-				Association association= (Association) property.getOwner();
-				List<Type> ownerList=association.getEndTypes();
-				if(ownerList.get(0).equals(property.getType())&&ownerList.size()>1){
-					owner=(Type)ownerList.get(1);
-				}
-				else{
-					owner=(Type)ownerList.get(0);
+				Association association = (Association)property.getOwner();
+				List<Type> ownerList = association.getEndTypes();
+				if(ownerList.get(0).equals(property.getType()) && ownerList.size() > 1) {
+					owner = (Type)ownerList.get(1);
+				} else {
+					owner = (Type)ownerList.get(0);
 				}
 			}
 			// this is a classifier , construct and run the command
-		
+
 			EStructuralFeature feature = UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
-			if(owner instanceof org.eclipse.uml2.uml.Class){
+			if(owner instanceof org.eclipse.uml2.uml.Class) {
 				List<Property> attributeList = new ArrayList<Property>();
 				attributeList.addAll(((org.eclipse.uml2.uml.Class)owner).getAttributes());
 				attributeList.add(property);
@@ -114,11 +113,11 @@ public class SetClassifierPropertyOwnerAction implements IObjectActionDelegate {
 
 	/**
 	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-	 *
+	 * 
 	 * @param action
 	 * @param selection
 	 */
-	
+
 	public void selectionChanged(IAction action, ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();

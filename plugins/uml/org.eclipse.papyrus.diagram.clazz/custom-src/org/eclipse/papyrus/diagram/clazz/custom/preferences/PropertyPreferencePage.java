@@ -79,32 +79,24 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	public static void initDefaults(IPreferenceStore store) {
 
 		String elementName = "Property";
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
 
 		// Set the default for the gradient
-		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.GRADIENT_POLICY), false);
-		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-				new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY), false);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 		// custom code
-		store.setDefault(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE,
-				ICustomAppearence.DEFAULT_UML_PROPERTY);
+		store.setDefault(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE, ICustomAppearence.DEFAULT_UML_PROPERTY);
 
 	}
 
 	/** buttons to select the display kind for the label of the {@link Property} */
-	protected Button displVisibility, displDerive, displName, displType, displMutliplicity, displDfltValue,
-			displModifiers;
+	protected Button displVisibility, displDerive, displName, displType, displMutliplicity, displDfltValue, displModifiers;
 
 	/** current property display style */
-	private int propertyValue = getPreferenceStore().getInt(
-			IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+	private int propertyValue = getPreferenceStore().getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
@@ -206,8 +198,7 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 	 * Load the default preferences of the fields contained in this page
 	 */
 	protected void loadDefaultPreferences() {
-		propertyValue = getPreferenceStore().getInt(
-				IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
+		propertyValue = getPreferenceStore().getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
 		refreshButtons();
 	}
 
@@ -240,17 +231,13 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 		// displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 		// }
 
-		displVisibility
-				.setSelection((propertyValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
+		displVisibility.setSelection((propertyValue & ICustomAppearence.DISP_VISIBILITY) == ICustomAppearence.DISP_VISIBILITY);
 		displDerive.setSelection((propertyValue & ICustomAppearence.DISP_DERIVE) == ICustomAppearence.DISP_DERIVE);
 		displName.setSelection((propertyValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
 		displType.setSelection((propertyValue & ICustomAppearence.DISP_TYPE) == ICustomAppearence.DISP_TYPE);
-		displMutliplicity
-				.setSelection((propertyValue & ICustomAppearence.DISP_MULTIPLICITY) == ICustomAppearence.DISP_MULTIPLICITY);
-		displDfltValue
-				.setSelection((propertyValue & ICustomAppearence.DISP_DFLT_VALUE) == ICustomAppearence.DISP_DFLT_VALUE);
-		displModifiers
-				.setSelection((propertyValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
+		displMutliplicity.setSelection((propertyValue & ICustomAppearence.DISP_MULTIPLICITY) == ICustomAppearence.DISP_MULTIPLICITY);
+		displDfltValue.setSelection((propertyValue & ICustomAppearence.DISP_DFLT_VALUE) == ICustomAppearence.DISP_DFLT_VALUE);
+		displModifiers.setSelection((propertyValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
 	}
 
 	/**

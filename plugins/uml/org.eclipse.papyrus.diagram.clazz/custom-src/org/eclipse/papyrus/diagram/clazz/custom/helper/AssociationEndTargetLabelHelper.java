@@ -42,15 +42,12 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
-			Classifier target = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getTarget()
-					.getElement();
+			Classifier target = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getTarget().getElement();
 			Property propertyToDisplay = null;
-			if(((View)editPart.getModel()) != null
-					&& (((View)editPart.getModel()).getElement() instanceof Association)) {
+			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
 
-				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement())
-						.getMemberEnds().iterator();
+				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
 
 				//find the last
 				while(propertiesIterator.hasNext()) {

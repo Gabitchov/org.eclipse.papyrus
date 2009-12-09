@@ -27,8 +27,7 @@ import org.eclipse.uml2.uml.Package;
 /**
  * custom class to create an association
  */
-public class CGeneralizationSetCreateCommand extends
-		org.eclipse.papyrus.diagram.clazz.edit.commands.GeneralizationSetCreateCommand {
+public class CGeneralizationSetCreateCommand extends org.eclipse.papyrus.diagram.clazz.edit.commands.GeneralizationSetCreateCommand {
 
 	// code copy from the super class!
 	private static Package deduceContainer(EObject source, EObject target) {
@@ -65,8 +64,7 @@ public class CGeneralizationSetCreateCommand extends
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
-		GeneralizationSet newElement = generalizationSetHelper.createGeneralizationSet(getSource(), getTarget(),
-				container);
+		GeneralizationSet newElement = generalizationSetHelper.createGeneralizationSet(getSource(), getTarget(), container);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -37,8 +37,7 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 
 	protected EditPartViewer viewer;
 
-	public AttachInstanceSpecifcationCommand(TransactionalEditingDomain domain, IAdaptable viewAdapter,
-			EditPartViewer viewer) {
+	public AttachInstanceSpecifcationCommand(TransactionalEditingDomain domain, IAdaptable viewAdapter, EditPartViewer viewer) {
 		super(domain, "attach instance", null);
 		this.viewAdapter = viewAdapter;
 		this.viewer = viewer;
@@ -49,8 +48,7 @@ public class AttachInstanceSpecifcationCommand extends AbstractTransactionalComm
 		View view = (View)viewAdapter.getAdapter(View.class);
 		if(view != null && view.eContainer() != null) {
 			View parent = (View)view.eContainer();
-			InstanceSpecification instanceSpecification = org.eclipse.uml2.uml.UMLFactory.eINSTANCE
-					.createInstanceSpecification();
+			InstanceSpecification instanceSpecification = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
 			if(parent.getElement() instanceof Package) {
 				((Package)parent.getElement()).getPackagedElements().add(instanceSpecification);
 			}

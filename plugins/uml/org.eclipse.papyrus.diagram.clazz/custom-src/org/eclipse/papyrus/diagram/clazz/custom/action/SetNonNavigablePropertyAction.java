@@ -60,36 +60,36 @@ public class SetNonNavigablePropertyAction implements IObjectActionDelegate {
 
 	/**
 	 * @see org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.action.IAction, org.eclipse.ui.IWorkbenchPart)
-	 *
+	 * 
 	 * @param action
 	 * @param targetPart
 	 */
-	
+
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
 
 	}
 
-	
+
 	/**
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-	 *
+	 * 
 	 * @param action
 	 */
-	
+
 	public void run(IAction action) {
 		System.err.println(selectedElement);
 		//1 this is a associationEnd?
 		CompoundCommand command = new CompoundCommand();
-		if(selectedElement instanceof AssociationEndSourceEditPart||selectedElement instanceof AssociationEndTargetEditPart){
-			
+		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart) {
+
 			//2. look for the future owner of the property, run only for binary association
 			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();
-			if(property.getAssociation()!=null){
-				
-			// add property in association
-		
-			EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd();
+			if(property.getAssociation() != null) {
+
+				// add property in association
+
+				EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd();
 				List<Property> attributeList = new ArrayList<Property>();
 				attributeList.addAll(property.getAssociation().getNavigableOwnedEnds());
 				attributeList.remove(property);
@@ -103,11 +103,11 @@ public class SetNonNavigablePropertyAction implements IObjectActionDelegate {
 
 	/**
 	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-	 *
+	 * 
 	 * @param action
 	 * @param selection
 	 */
-	
+
 	public void selectionChanged(IAction action, ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();

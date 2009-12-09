@@ -51,13 +51,10 @@ public class InstanceSpecificationGraphicalNodeEditPolicy extends CustomGraphica
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
 		Diagram diagramView = ((View)getHost().getModel()).getDiagram();
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		CreateCommand createCommand = new CreateCommand(editingDomain, req.getConnectionViewDescriptor(), diagramView
-				.getDiagram());
+		CreateCommand createCommand = new CreateCommand(editingDomain, req.getConnectionViewDescriptor(), diagramView.getDiagram());
 
-		if(req.getConnectionViewDescriptor().getSemanticHint()
-				.equals("" + InstanceSpecificationLinkEditPart.VISUAL_ID)) {
-			instanceSpecifcationCommand = new AttachInstanceSpecifcationCommand(getEditingDomain(),
-					((IAdaptable)createCommand.getCommandResult().getReturnValue()), getViewer());
+		if(req.getConnectionViewDescriptor().getSemanticHint().equals("" + InstanceSpecificationLinkEditPart.VISUAL_ID)) {
+			instanceSpecifcationCommand = new AttachInstanceSpecifcationCommand(getEditingDomain(), ((IAdaptable)createCommand.getCommandResult().getReturnValue()), getViewer());
 		}
 		setViewAdapter((IAdaptable)createCommand.getCommandResult().getReturnValue());
 

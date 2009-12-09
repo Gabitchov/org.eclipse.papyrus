@@ -84,8 +84,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 
 		// create target property
 
-		CreateElementRequest request = new CreateElementRequest(domain, getSource(), UMLElementTypes.Property_3002,
-				UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+		CreateElementRequest request = new CreateElementRequest(domain, getSource(), UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
 		EditElementCommand c = new PropertyCreateCommand(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
@@ -97,8 +96,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		targetProperty.setUpper(1);
 		// create source property
 
-		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE
-				.getAssociation_OwnedEnd());
+		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);

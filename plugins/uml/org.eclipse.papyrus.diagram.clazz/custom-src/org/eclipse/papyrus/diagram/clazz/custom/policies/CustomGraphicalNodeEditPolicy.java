@@ -49,14 +49,11 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				Command c = getConnectionAndRelationshipCompleteCommand((CreateConnectionViewAndElementRequest)request);
 
 				// case of associationClass
-				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest)request)
-						.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
-				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter
-						.getAdapter(CreateRelationshipRequest.class);
+				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest)request).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
+				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class);
 				if(UMLElementTypes.AssociationClass_4017.equals(createElementRequest.getElementType())) {
 					AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
-					return associationClassHelper.getAssociationClassElementCommand(
-							((CreateConnectionViewAndElementRequest)request), c);
+					return associationClassHelper.getAssociationClassElementCommand(((CreateConnectionViewAndElementRequest)request), c);
 
 				} else if(UMLElementTypes.Dependency_4018.equals(createElementRequest.getElementType())) {
 					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(getEditingDomain());
@@ -96,8 +93,7 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		Command command = super.getReconnectTargetCommand(request);
 		if(request.getConnectionEditPart() instanceof GeneralizationSetEditPart) {
 			GeneralizationSetHelper generalizationSetHelper = new GeneralizationSetHelper(getEditingDomain());
-			return generalizationSetHelper.getMoveTarget(request, command, super.getConnectableEditPart(), super
-					.getConnectionTargetAnchor(request));
+			return generalizationSetHelper.getMoveTarget(request, command, super.getConnectableEditPart(), super.getConnectionTargetAnchor(request));
 		}
 		return command;
 	}

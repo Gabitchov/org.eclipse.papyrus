@@ -57,9 +57,9 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 			case Dependency2EditPart.VISUAL_ID:
 				return new CDependencyNodeEditPart(view);
 			case AssociationName5EditPart.VISUAL_ID:
-				return new AssociationEndSourceEditPart(view);	
+				return new AssociationEndSourceEditPart(view);
 			case AssociationName3EditPart.VISUAL_ID:
-				return new AssociationEndTargetEditPart(view);	
+				return new AssociationEndTargetEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);

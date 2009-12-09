@@ -57,8 +57,7 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_4001(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4001(container, getNewSource(), target);
 	}
 
 	/**
@@ -78,8 +77,7 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_4001(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4001(container, source, getNewTarget());
 	}
 
 	/**

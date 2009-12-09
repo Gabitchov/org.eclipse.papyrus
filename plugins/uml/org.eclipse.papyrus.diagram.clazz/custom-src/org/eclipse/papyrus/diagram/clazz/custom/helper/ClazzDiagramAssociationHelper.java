@@ -35,14 +35,12 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ClazzDiagramAssociationHelper {
 
-	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target,
-			Package container) {
+	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target, Package container) {
 
 		Association association = UMLFactory.eINSTANCE.createAssociation();
 
 		// create target property
-		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002,
-				UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
+		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		EditElementCommand c = new PropertyCommandForAssociation(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
@@ -54,8 +52,7 @@ public class ClazzDiagramAssociationHelper {
 		targetProperty.setUpper(1);
 		// create source property
 
-		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE
-				.getAssociation_OwnedEnd());
+		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
 		LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);

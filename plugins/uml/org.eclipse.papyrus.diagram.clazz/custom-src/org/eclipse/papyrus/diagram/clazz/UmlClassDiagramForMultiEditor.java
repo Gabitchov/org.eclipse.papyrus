@@ -54,8 +54,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
-			.getBundledImageDescriptor(UmlClassDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlClassDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
@@ -68,8 +67,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	 * @throws ServiceException
 	 * 
 	 */
-	public UmlClassDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
-			throws BackboneException, ServiceException {
+	public UmlClassDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 
@@ -127,4 +125,3 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 		return "org.eclipse.papyrus.diagram.clazz.EditingDomain";
 	}
 }
-

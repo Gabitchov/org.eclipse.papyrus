@@ -42,15 +42,12 @@ public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
-			Classifier source = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource()
-					.getElement();
+			Classifier source = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource().getElement();
 			Property propertyToDisplay = null;
-			if(((View)editPart.getModel()) != null
-					&& (((View)editPart.getModel()).getElement() instanceof Association)) {
+			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
 
-				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement())
-						.getMemberEnds().iterator();
+				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
 				//find the first
 				while(propertiesIterator.hasNext() && propertyToDisplay == null) {
 					Property currentProperty = (Property)propertiesIterator.next();

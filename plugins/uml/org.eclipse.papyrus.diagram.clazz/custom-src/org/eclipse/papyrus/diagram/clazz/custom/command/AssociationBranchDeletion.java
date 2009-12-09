@@ -91,8 +91,7 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 		command.add(new ICommandProxy(new DeleteCommand(domain, associationBranchView)));
 
 		// 3. test if it exists more than 2 branches
-		int branchNumber = associationNodeEditPart.getSourceConnections().size()
-				+ associationNodeEditPart.getTargetConnections().size();
+		int branchNumber = associationNodeEditPart.getSourceConnections().size() + associationNodeEditPart.getTargetConnections().size();
 		if(branchNumber == 3) {
 			// 4. Graphical deletion of the node
 			command.add(new ICommandProxy(new DeleteCommand(domain, associationNodeEditPart.getNotationView())));
@@ -106,16 +105,10 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 			targetList.addAll(associationNodeEditPart.getTargetConnections());
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
-			PreferencesHint preferencesHint = ((GraphicalEditPart)((ConnectionEditPart)(sourceList.get(0)))
-					.getTarget()).getDiagramPreferencesHint();
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4001,
-					((IHintedType)UMLElementTypes.Association_4001).getSemanticHint(), preferencesHint);
+			PreferencesHint preferencesHint = ((GraphicalEditPart)((ConnectionEditPart)(sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4001, ((IHintedType)UMLElementTypes.Association_4001).getSemanticHint(), preferencesHint);
 
-			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(
-					domain, ((IHintedType)UMLElementTypes.Association_4001).getSemanticHint(), new SemanticAdapter(
-					null, (((ConnectionEditPart)(sourceList.get(0))).getTarget()).getModel()),
-					new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(1))).getTarget()).getModel()),
-					sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
+			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType)UMLElementTypes.Association_4001).getSemanticHint(), new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(0))).getTarget()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(1))).getTarget()).getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(association);
 			command.add(new ICommandProxy(binaryCommand));
 		}

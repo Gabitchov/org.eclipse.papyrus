@@ -40,8 +40,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
  * this policy allows displaying generalizationSet without label if it references the same semantic
  * element. It allows placing correctly anchors in this case
  */
-public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy implements NotificationListener,
-		IPapyrusListener {
+public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
 	/**
 	 * 
@@ -81,8 +80,7 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 		while(iterator.hasNext()) {
 			Object currentObject = iterator.next();
 			if(currentObject instanceof GeneralizationSetEditPart) {
-				if(((GeneralizationSetEditPart)getHost()).resolveSemanticElement().equals(
-						((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
+				if(((GeneralizationSetEditPart)getHost()).resolveSemanticElement().equals(((GeneralizationSetEditPart)currentObject).resolveSemanticElement())) {
 					result.add((GeneralizationSetEditPart)currentObject);
 				}
 			}
@@ -110,10 +108,8 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	public void notifyChanged(Notification notification) {
 		if(getHost().getViewer() instanceof DiagramGraphicalViewer) {
 			if(getHost() instanceof GeneralizationSetEditPart) {
-				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart)getHost())
-						.resolveSemanticElement());
-				List<EditPart> editpartList = ((DiagramGraphicalViewer)(getHost().getViewer()))
-						.findEditPartsForElement(elementID, GeneralizationSetEditPart.class);
+				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart)getHost()).resolveSemanticElement());
+				List<EditPart> editpartList = ((DiagramGraphicalViewer)(getHost().getViewer())).findEditPartsForElement(elementID, GeneralizationSetEditPart.class);
 				if(editpartList.size() > 1 && editpartList.indexOf(getHost()) > 0) {
 					for(int i = 0; i < getHost().getChildren().size(); i++) {
 						((View)((EditPart)getHost().getChildren().get(i)).getModel()).setVisible(false);
@@ -122,25 +118,21 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 			}
 		}
 		if(notification.getNotifier() instanceof RelativeBendpoints) {
-			if(getAllSameSemanticGeneralizationSet(
-					((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getTarget())).size() != 0) {
+			if(getAllSameSemanticGeneralizationSet(((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getTarget())).size() != 0) {
 				ReconnectRequest reconnectRequest = new ReconnectRequest();
 				reconnectRequest.setType(GraphicalNodeEditPolicy.REQ_RECONNECT_TARGET);
 				reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart)getHost()));
 				reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart)getHost()).getTarget());
 				Command command = ((GeneralizationSetEditPart)getHost()).getTarget().getCommand(reconnectRequest);
-				((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack()
-						.execute(command);
+				((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(command);
 			}
-			if(getAllSameSemanticGeneralizationSet(
-					((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getSource())).size() != 0) {
+			if(getAllSameSemanticGeneralizationSet(((GeneralizationEditPart)((GeneralizationSetEditPart)getHost()).getSource())).size() != 0) {
 				ReconnectRequest reconnectRequest = new ReconnectRequest();
 				reconnectRequest.setType(GraphicalNodeEditPolicy.REQ_RECONNECT_SOURCE);
 				reconnectRequest.setConnectionEditPart(((GeneralizationSetEditPart)getHost()));
 				reconnectRequest.setTargetEditPart(((GeneralizationSetEditPart)getHost()).getSource());
 				Command command = ((GeneralizationSetEditPart)getHost()).getSource().getCommand(reconnectRequest);
-				((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack()
-						.execute(command);
+				((GeneralizationSetEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(command);
 			}
 		}
 	}

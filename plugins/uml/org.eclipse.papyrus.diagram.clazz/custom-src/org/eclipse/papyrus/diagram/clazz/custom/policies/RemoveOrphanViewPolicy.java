@@ -23,9 +23,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
-	public int[] notOrphanNode = { 7034, 7001, 7002, 7003, 7004, 7014, 7005, 7006, 7007, 7008, 7009, 7022, 7023, 7024,
-			7025, 7026, 7027, 7028, 7029, 7030, 7031, 7010, 7011, 7013, 7032, 7033, 7015, 7016, 7017, 7018, 7019, 7020,
-			7021, 4016 };
+	public int[] notOrphanNode = { 7034, 7001, 7002, 7003, 7004, 7014, 7005, 7006, 7007, 7008, 7009, 7022, 7023, 7024, 7025, 7026, 7027, 7028, 7029, 7030, 7031, 7010, 7011, 7013, 7032, 7033, 7015, 7016, 7017, 7018, 7019, 7020, 7021, 4016 };
 
 	public RemoveOrphanViewPolicy() {
 		super();

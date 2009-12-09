@@ -27,7 +27,7 @@ public class SetSharedPropertyAction extends SetAggregationPropertyAction {
 	 */
 	public SetSharedPropertyAction() {
 		super();
-		aggregationKind=AggregationKind.SHARED_LITERAL;
+		aggregationKind = AggregationKind.SHARED_LITERAL;
 	}
 
 }

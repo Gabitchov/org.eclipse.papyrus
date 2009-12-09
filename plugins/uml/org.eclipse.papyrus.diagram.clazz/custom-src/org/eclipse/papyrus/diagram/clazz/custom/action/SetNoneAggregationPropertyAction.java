@@ -26,7 +26,7 @@ public class SetNoneAggregationPropertyAction extends SetAggregationPropertyActi
 	 */
 	public SetNoneAggregationPropertyAction() {
 		super();
-		aggregationKind=AggregationKind.NONE_LITERAL;
+		aggregationKind = AggregationKind.NONE_LITERAL;
 	}
 
 }

@@ -66,8 +66,7 @@ public class CAssociationCreateCommand extends org.eclipse.papyrus.diagram.clazz
 		}
 		if(source instanceof Type && target instanceof Type && container instanceof Package) {
 
-			Association newElement = (Association)ClazzDiagramAssociationHelper.createAssociation(getEditingDomain(),
-					(Type)source, (Type)target, (Package)container);
+			Association newElement = (Association)ClazzDiagramAssociationHelper.createAssociation(getEditingDomain(), (Type)source, (Type)target, (Package)container);
 			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}
