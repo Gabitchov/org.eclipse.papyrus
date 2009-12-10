@@ -75,6 +75,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
@@ -218,9 +219,9 @@ public class ContainmentHelper extends ElementHelper {
 								viewexist = true;
 							}
 							if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(owner)) {
-								//ownerelement = (Element) ((GraphicalEditPart) currentEditPart).resolveSemanticElement();
 								ownereditpart = (EditPart)currentEditPart;
 								ownergep = (GraphicalEditPart)currentEditPart;
+	
 							}
 
 						}
@@ -228,10 +229,12 @@ public class ContainmentHelper extends ElementHelper {
 				}
 			}
 		}
-
-
+		
+		if(ownergep ==null){
+			return cc;
+		}
 		Collection<EditPart> ownereditPartSet = ownergep.getViewer().getEditPartRegistry().values();
-		Iterator<EditPart> ownereditPartIterator = ownereditPartSet.iterator();
+			Iterator<EditPart> ownereditPartIterator = ownereditPartSet.iterator();
 		while(ownereditPartIterator.hasNext()) {
 			EditPart currentEditPart = ownereditPartIterator.next();
 			if(currentEditPart instanceof Class5EditPart) {
@@ -240,6 +243,7 @@ public class ContainmentHelper extends ElementHelper {
 				}
 			}
 		}
+		
 
 		/* if the element view doesn't exist on the diagram */
 		if(!viewexist) {
@@ -262,7 +266,7 @@ public class ContainmentHelper extends ElementHelper {
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022, ((INotationType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022).getSemanticHint(), ownergep.getDiagramPreferencesHint());
 
 			/* if a containment circle exists, only the dashedline will be create */
-			if(!(ownereditpart instanceof PackageEditPart)) {
+			if(!(ownereditpart instanceof ModelEditPart)) {
 				if(ownergep.getChildren().toString().contains("ContainmentCircleEditPart")) {
 					IGraphicalEditPart circle = ownergep.getChildBySemanticHint(((IHintedType)UMLElementTypes.Port_3032).getSemanticHint());
 					cc.add(new ICommandProxy(new customDefferedContainmentLinkCommand(this.editDomain, (EditPartViewer)ownergep.getViewer(), (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), null, ownergep.getDiagramPreferencesHint(), viewDescriptor, location)));
@@ -276,6 +280,7 @@ public class ContainmentHelper extends ElementHelper {
 				}
 			}
 		}
+
 		return cc;
 	}
 

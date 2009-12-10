@@ -22,6 +22,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -45,6 +46,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
+import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
@@ -52,6 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 
 public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 
@@ -103,33 +107,26 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 
 		/* if the element deleted is the contained class, the link connected should be delete also */
 		if(getHost() instanceof ClassEditPart) {
+			EList<ConnectorImpl> linklist = null;
 			ClassEditPart hostclass = (ClassEditPart)getHost();
-			EditPartViewer viewHost = getHost().getViewer();
-			EList<AddedLinkEditPart> linklistfinal = null;
-			Collection<EditPart> editPartSet = viewHost.getEditPartRegistry().values();
+			EditPartViewer viewHost = hostclass.getViewer();
+			View shapehost = (View)hostclass.getModel();
+			linklist = shapehost.getTargetEdges();
+			Classifier classhost = (Classifier)shapehost.getElement();
+			Iterator<ConnectorImpl> addedlinkIterator = linklist.iterator();
+			
+			if(classhost.getOwner() instanceof ClassImpl){
+		while(addedlinkIterator.hasNext()){
+			ConnectorImpl currentEditPart = addedlinkIterator.next();
+			ShapeImpl sourcelink = (ShapeImpl)currentEditPart.getSource();
+			if(sourcelink.getType().equals("3032")){
+					/* The containment circle node is deleted only if any other link is connected */
+				if(sourcelink.getSourceEdges().size() == 1) {
+					cc.compose(new DeleteCommand(editingDomain, (View)sourcelink));
 
-			Iterator<EditPart> editPartIterator = editPartSet.iterator();
-			while(editPartIterator.hasNext()) {
-				AddedLinkEditPart linkcurrenteditpart = null;
-				Collection<AddedLinkEditPart> linklist = null;
-				EditPart currentEditPart = editPartIterator.next();
-				if(!(currentEditPart instanceof RenderedDiagramRootEditPart)) {
-					if((!(currentEditPart instanceof ContainmentCircleEditPart))) {
-						if((!(currentEditPart instanceof CompartmentEditPart))) {
-							if((currentEditPart instanceof AddedLinkEditPart)) {
-								linkcurrenteditpart = (AddedLinkEditPart)currentEditPart;
-								ContainmentCircleEditPart containmentcircleeditpart = (ContainmentCircleEditPart)linkcurrenteditpart.getSource();
-								EditPart circlecontainment = linkcurrenteditpart.getSource();
-
-								/* The containment circle node is deleted only if any other link is connected */
-								if(containmentcircleeditpart.getSourceConnections().size() == 1) {
-									cc.compose(new DeleteCommand(editingDomain, (View)circlecontainment.getModel()));
-
-								}
-							}
-						}
-					}
 				}
+			}
+		}
 			}
 		}
 
