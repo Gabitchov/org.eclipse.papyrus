@@ -44,7 +44,7 @@ plugin@org.eclipse.papyrus.outline=SVN,,svn://dev.eclipse.org/svnroot/modeling/o
 
 #others/autolayout
 plugin@org.eclipse.papyrus.layouttool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/autolayout,,org.eclipse.papyrus.layouttool
-plugin@org.eclipse.papyrus.layouttool.algorithms.gridAlgorithm=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/autolayout,,org.eclipse.papyrus.layouttool.algorithms.gridAlgorith
+plugin@org.eclipse.papyrus.layouttool.algorithms.gridAlgorithm=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/autolayout,,org.eclipse.papyrus.layouttool.algorithms.gridAlgorithm
 plugin@org.eclipse.papyrus.layouttool.algorithms.horizontalAlgorithm=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/autolayout,,org.eclipse.papyrus.layouttool.algorithms.horizontalAlgorithm
 plugin@org.eclipse.papyrus.layouttool.algorithms.horizontalSymmetryAlgorithm=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/autolayout,,org.eclipse.papyrus.layouttool.algorithms.horizontalSymmetryAlgorithm
 plugin@org.eclipse.papyrus.layouttool.algorithms.horizontalTreeAlgorithm=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/autolayout,,org.eclipse.papyrus.layouttool.algorithms.horizontalTreeAlgorithm
