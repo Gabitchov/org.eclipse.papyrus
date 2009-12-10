@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -26,6 +27,9 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
+import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
+import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
@@ -38,6 +42,7 @@ import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 
 /**
  * The Class ClassDiagramDragDropEditPolicy.
@@ -130,7 +135,25 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 
 	protected Command outlineDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
-		return containmentHelper.outlineDropContainedClass((Class)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
+		Element owner = (Element)semanticObject.getOwner();
+		boolean ownerviewexist = false;
+		Collection<EditPart> editPartSet = getViewer().getEditPartRegistry().values();
+		Iterator<EditPart> editPartIterator = editPartSet.iterator();
+		while(editPartIterator.hasNext()) {
+			EditPart currentEditPart = editPartIterator.next();
+			if((currentEditPart instanceof ClassEditPart)) {
+				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(owner)) {
+					ownerviewexist = true;
+				}
+			}
+		}
+
+		if(ownerviewexist) {
+			return containmentHelper.outlineDropContainedClass((Class)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
+		} else {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
+		}
+
 	}
 
 	protected Command compartmentDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
@@ -148,27 +171,27 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 			EditPart currentEditPart = editPartIterator.next();
 			if(currentEditPart instanceof ClassEditPart) {
 				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticObject)) {
-					cc.add(new DeleteCommand(getEditingDomain(), (View)((GraphicalEditPart)currentEditPart).getModel()));
+					View view = (View) currentEditPart.getModel();
+					EList<ConnectorImpl> listlink = view.getTargetEdges();
+					Iterator<ConnectorImpl> addedlinkIterator = listlink.iterator();
+					while(addedlinkIterator.hasNext()) {
+						ConnectorImpl currentconnector = addedlinkIterator.next();
+						ShapeImpl containmenetshape= (ShapeImpl)currentconnector.getSource();
+						if(containmenetshape.getType().equals("3032")) {
+							/* The containment circle node is deleted only if any other link is connected */
+							if(containmenetshape.getSourceEdges().size() == 1) {
+								cc.compose(new DeleteCommand(getEditingDomain(), (View)containmenetshape));
 
-				}
-				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticObject.getOwner())) {
-					owner = (GraphicalEditPart)currentEditPart;
-					Collection<EditPart> ownereditPartSet = owner.getViewer().getEditPartRegistry().values();
-					Iterator<EditPart> ownereditPartIterator = ownereditPartSet.iterator();
-					while(ownereditPartIterator.hasNext()) {
-						EditPart ownercurrentEditPart = ownereditPartIterator.next();
-						if(ownercurrentEditPart instanceof ContainmentCircleEditPart) {
-							ContainmentCircleEditPart containmentcircleeditpart = (ContainmentCircleEditPart)ownercurrentEditPart;
-							if(containmentcircleeditpart.getSourceConnections().size() == 1) {
-								cc.add(new DeleteCommand(getEditingDomain(), (View)ownercurrentEditPart.getModel()));
 							}
 						}
 					}
+					cc.add(new DeleteCommand(getEditingDomain(), (View)((GraphicalEditPart)currentEditPart).getModel()));
 
-				}
+				
+			}
 			}
 		}
-
+		
 		return new ICommandProxy(cc);
 	}
 

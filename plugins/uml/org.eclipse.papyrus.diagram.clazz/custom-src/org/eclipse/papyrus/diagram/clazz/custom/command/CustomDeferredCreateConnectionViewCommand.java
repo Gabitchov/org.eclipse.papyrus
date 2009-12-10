@@ -41,6 +41,7 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.internal.impl.ProfileImpl;
 
 /**
  * This class is used to create a connection view.
@@ -82,7 +83,7 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 			View sep = (View)sourceEP.getParent().getAdapter(View.class);
 			Classifier elementsep = (Classifier)sep.getElement();
 			/* only if the target EditPart is not contained by a class or only in the case of a DragDrop Request */
-			if((elementtep.getOwner() instanceof Model) || (command.getLabel().equals("DragDrogContainmentViewCommand"))) {
+			if((elementtep.getOwner() instanceof Model) || (command.getLabel().equals("DragDrogContainmentViewCommand")) || (elementtep.getOwner() instanceof ProfileImpl)) {
 
 				/* Avoid the fact that two links can be create between the same source and the target */
 				if((!(elementsep.getOwnedElements().contains(elementtep))) || (command.getLabel().equals("DragDrogContainmentViewCommand"))) {
@@ -117,7 +118,7 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 			if((elementtep.getOwner() instanceof Model) || (command.getLabel().equals("DragDrogContainmentViewCommand"))) {
 
 				/* Avoid the fact that two links can be create between the same source and the target */
-				if((!(elementsep.getOwnedElements().contains(elementtep))) || (command.getLabel().equals("DragDrogContainmentViewCommand"))) {
+				if((!(elementsep.getOwnedElements().contains(elementtep))) || (command.getLabel().equals("DragDrogContainmentViewCommand")) || (elementtep.getOwner() instanceof ProfileImpl)) {
 					commandResult = super.doExecuteWithResult(progressMonitor1, info, sourceEP, targetEP);
 				}
 

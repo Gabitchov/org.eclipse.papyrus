@@ -24,8 +24,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * this a specialization to manage creation of association and associationClass
  */
-public class CustomAssociationItemSemanticEditPolicy extends
-		org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationItemSemanticEditPolicy {
+public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationItemSemanticEditPolicy {
 
 	/**
 	 * 
@@ -33,8 +32,7 @@ public class CustomAssociationItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
@@ -56,8 +54,7 @@ public class CustomAssociationItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));

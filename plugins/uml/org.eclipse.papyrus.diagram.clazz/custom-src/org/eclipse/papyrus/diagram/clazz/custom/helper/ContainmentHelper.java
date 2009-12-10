@@ -211,30 +211,25 @@ public class ContainmentHelper extends ElementHelper {
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
 		while(editPartIterator.hasNext()) {
 			EditPart currentEditPart = editPartIterator.next();
-			if(!(currentEditPart instanceof RenderedDiagramRootEditPart)) {
-				if((!(currentEditPart instanceof ContainmentCircleEditPart))) {
-					if((!(currentEditPart instanceof CompartmentEditPart))) {
-						if((!(currentEditPart instanceof AddedLinkEditPart))) {
-							if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticClass)) {
-								viewexist = true;
-							}
-							if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(owner)) {
-								ownereditpart = (EditPart)currentEditPart;
-								ownergep = (GraphicalEditPart)currentEditPart;
-	
-							}
-
-						}
-					}
+			if((currentEditPart instanceof ClassEditPart)) {
+				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticClass)) {
+					viewexist = true;
 				}
+				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(owner)) {
+					ownereditpart = (EditPart)currentEditPart;
+					ownergep = (GraphicalEditPart)currentEditPart;
+
+				}
+
 			}
 		}
-		
-		if(ownergep ==null){
+
+
+		if(ownergep == null) {
 			return cc;
 		}
 		Collection<EditPart> ownereditPartSet = ownergep.getViewer().getEditPartRegistry().values();
-			Iterator<EditPart> ownereditPartIterator = ownereditPartSet.iterator();
+		Iterator<EditPart> ownereditPartIterator = ownereditPartSet.iterator();
 		while(ownereditPartIterator.hasNext()) {
 			EditPart currentEditPart = ownereditPartIterator.next();
 			if(currentEditPart instanceof Class5EditPart) {
@@ -243,7 +238,7 @@ public class ContainmentHelper extends ElementHelper {
 				}
 			}
 		}
-		
+
 
 		/* if the element view doesn't exist on the diagram */
 		if(!viewexist) {
@@ -259,8 +254,8 @@ public class ContainmentHelper extends ElementHelper {
 			cc.add(new ICommandProxy(setBoundsCommand));
 
 			/* Recovery of the eventual stereotype and his display */
-			if(!(semanticClass.getAppliedStereotypes().isEmpty())){
-			cc.add(new ICommandProxy(new customDiferedAppliedStereotypeCommand(this.editDomain, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), "SysML::", VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION)));
+			if(!(semanticClass.getAppliedStereotypes().isEmpty())) {
+				cc.add(new ICommandProxy(new customDiferedAppliedStereotypeCommand(this.editDomain, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), "SysML::", VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION)));
 			}
 
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022, ((INotationType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Link_4022).getSemanticHint(), ownergep.getDiagramPreferencesHint());

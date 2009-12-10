@@ -32,8 +32,7 @@ public class CustomSignalItemSemanticEditPolicy extends SignalItemSemanticEditPo
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
@@ -52,8 +51,7 @@ public class CustomSignalItemSemanticEditPolicy extends SignalItemSemanticEditPo
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}

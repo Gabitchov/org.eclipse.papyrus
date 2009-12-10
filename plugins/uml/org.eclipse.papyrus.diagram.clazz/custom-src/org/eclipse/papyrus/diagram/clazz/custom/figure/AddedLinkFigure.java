@@ -21,7 +21,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
  * The Class AddedLinkFigure.
  */
 public class AddedLinkFigure extends UMLEdgeFigure {
-	
+
 	/**
 	 * Instantiates a new added link figure.
 	 */

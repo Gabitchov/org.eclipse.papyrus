@@ -114,19 +114,19 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 			linklist = shapehost.getTargetEdges();
 			Classifier classhost = (Classifier)shapehost.getElement();
 			Iterator<ConnectorImpl> addedlinkIterator = linklist.iterator();
-			
-			if(classhost.getOwner() instanceof ClassImpl){
-		while(addedlinkIterator.hasNext()){
-			ConnectorImpl currentEditPart = addedlinkIterator.next();
-			ShapeImpl sourcelink = (ShapeImpl)currentEditPart.getSource();
-			if(sourcelink.getType().equals("3032")){
-					/* The containment circle node is deleted only if any other link is connected */
-				if(sourcelink.getSourceEdges().size() == 1) {
-					cc.compose(new DeleteCommand(editingDomain, (View)sourcelink));
 
+			if(classhost.getOwner() instanceof ClassImpl) {
+				while(addedlinkIterator.hasNext()) {
+					ConnectorImpl currentConnector = addedlinkIterator.next();
+					ShapeImpl containmenetshape = (ShapeImpl)currentConnector.getSource();
+					if(containmenetshape.getType().equals("3032")) {
+						/* The containment circle node is deleted only if any other link is connected */
+						if(containmenetshape.getSourceEdges().size() == 1) {
+							cc.compose(new DeleteCommand(editingDomain, (View)containmenetshape));
+
+						}
+					}
 				}
-			}
-		}
 			}
 		}
 

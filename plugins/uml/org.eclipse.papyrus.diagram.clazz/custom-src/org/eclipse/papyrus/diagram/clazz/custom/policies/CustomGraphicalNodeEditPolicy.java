@@ -88,19 +88,7 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				return getUnspecifiedConnectionCompleteCommand((CreateUnspecifiedTypeConnectionRequest)request);
 			}
 		}
-		if(REQ_RECONNECT_TARGET.equals(request.getType())) {
-			if(request instanceof ReconnectRequest) {
-				if(((ReconnectRequest)request).getConnectionEditPart() instanceof AddedLinkEditPart) {
-					View modelrequest = (View)getHost().getModel();
-					Element element = (Element)modelrequest.getElement();
-					if(!(element.getOwner() instanceof ClassImpl)) {
-						return getReconnectTargetCommand((ReconnectRequest)request);
-					} else {
-						return null;
-					}
-				}
-			}
-		}
+
 		return super.getCommand(request);
 	}
 
