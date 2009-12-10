@@ -18,8 +18,8 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="editorDiagram" minOccurs="1" maxOccurs="unbounded"/>
-            <element ref="editorContext" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="editorDiagram" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="editorContext" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="creationCommand" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="actionBarContributor" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>

@@ -129,6 +129,7 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 		for(IConfigurationElement ele : configElements) {
 			ActionBarContributorDescriptor desc;
 			try {
+				System.err.println(ele.getName()+ " "+ele.getContributor());
 				if(ActionBarContributorExtensionFactory.EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT.equals(ele.getName())) {
 					desc = extensionReader.createActionBarContributorDescriptor(ele);
 					// Check double

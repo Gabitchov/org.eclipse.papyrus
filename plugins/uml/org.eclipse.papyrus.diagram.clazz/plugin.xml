@@ -24,19 +24,19 @@
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
-<extension point="org.eclipse.ui.editors" id="gmf-editor">
-      <?gmfgen generated="true"?>
-      <editor
-         id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"
-         name="%editorName"
-         icon="icons/obj16/UMLDiagramFile.gif"
-         extensions="PapyrusUMLClass_diagram"
-         default="true"
+<extension
+      id="gmf-editor"
+      point="org.eclipse.ui.editors">
+   <editor
          class="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor"
+         default="true"
+         extensions="PapyrusUMLClass_diagram"
+         icon="icons/obj16/UMLDiagramFile.gif"
+         id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"
          matchingStrategy="org.eclipse.papyrus.diagram.clazz.part.UMLMatchingStrategy"
-         contributorClass="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor">
-      </editor>
-   </extension>
+         name="%editorName">
+   </editor>
+</extension>
 <extension point="org.eclipse.ui.contexts" id="ui-context">
       <?gmfgen generated="true"?>
       <context
@@ -1197,7 +1197,7 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor"
+            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory"
             icon="icons/ClassDiagram.gif">
@@ -1208,10 +1208,6 @@
             id="org.eclipse.papyrus.diagram.clazz.action.CreationCommand"
             label="UML Class Diagram">
       </creationCommand>      
-      <actionBarContributor
-            id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor"
-            implementingClass="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramActionBarContributor">
-      </actionBarContributor>
    </extension>
    <!--extension
          point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">

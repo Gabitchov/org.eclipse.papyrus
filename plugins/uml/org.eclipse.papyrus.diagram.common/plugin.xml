@@ -310,5 +310,19 @@
          realization="org.eclipse.papyrus.diagram.common.service.PaletteProfileApplicationListener">
    </listener>
 </extension>
+<extension
+      point="org.eclipse.papyrus.core.modelListener">
+   <listener
+         name="org.eclipse.papyrus.diagram.common.listener1"
+         realization="org.eclipse.papyrus.diagram.common.listeners.RemoveStereotypeApplicationListener">
+   </listener>
+</extension>
+<extension
+      point="org.eclipse.papyrus.core.papyrusDiagram">
+   <actionBarContributor
+         id="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+         implementingClass="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor">
+   </actionBarContributor>
+</extension>
 
 </plugin>
