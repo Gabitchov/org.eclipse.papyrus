@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Modified 21 september 2007
  * 
  * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
+ * @author <a href="mailto:fjcano@prodevleop.es">Francisco Javier Cano Muñoz</a>
  */
 public class LabelHelper {
 
