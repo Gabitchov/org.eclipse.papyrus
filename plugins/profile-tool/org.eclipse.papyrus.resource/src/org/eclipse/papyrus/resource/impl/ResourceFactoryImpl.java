@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.resource.*;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.resource.ResourceFactory;
@@ -37,9 +38,9 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 */
 	public static ResourceFactory init() {
 		try {
-			ResourceFactory theResourceFactory = (ResourceFactory)EPackage.Registry.INSTANCE
+			ResourceFactory theResourceFactory = (ResourceFactory) EPackage.Registry.INSTANCE
 					.getEFactory("http://www.eclipse.org/papyurs/0.7.0/Resource");
-			if(theResourceFactory != null) {
+			if (theResourceFactory != null) {
 				return theResourceFactory;
 			}
 		} catch (Exception exception) {
@@ -64,7 +65,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
+		switch (eClass.getClassifierID()) {
 		case ResourcePackage.RESOURCE:
 			return createResource();
 		case ResourcePackage.RESOURCE_EOBJECT:
@@ -100,7 +101,7 @@ public class ResourceFactoryImpl extends EFactoryImpl implements ResourceFactory
 	 * @generated
 	 */
 	public ResourcePackage getResourcePackage() {
-		return (ResourcePackage)getEPackage();
+		return (ResourcePackage) getEPackage();
 	}
 
 	/**

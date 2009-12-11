@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.resource.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,6 +43,14 @@ import org.eclipse.papyrus.resource.ResourcePackage;
 public class ResourceImpl extends EObjectImpl implements Resource {
 
 	/**
+	 * Map to register the managed EMF resources with the papyrus resource TODO don't forget to
+	 * unload your resource after using it.
+	 */
+	private static Map<org.eclipse.emf.ecore.resource.Resource, Resource> resources = new HashMap<org.eclipse.emf.ecore.resource.Resource, Resource>();
+
+	private org.eclipse.emf.ecore.resource.Resource eobjectResource = null;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -65,11 +75,41 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 * @generated NOT
 	 */
 	public EList<EObject> getEobjects() {
-		if (eResource() != null)
-		{
-			return eResource().getContents();
+		if (eobjectResource != null) {
+			return eobjectResource.getContents();
 		}
 		return new BasicEList<EObject>();
+	}
+	
+	/**
+	 * Gets the Papyrus resource from the EMF resource
+	 * 
+	 * @param r the EMF resource
+	 * 
+	 * @return the Papyrus resource
+	 */
+	public static Resource getResource(org.eclipse.emf.ecore.resource.Resource r) {
+		return resources.get(r);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> Register the EMF resource <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public void setResource(org.eclipse.emf.ecore.resource.Resource r) {
+		eobjectResource = r;
+		resources.put(r, this);
+	}
+
+	/**
+	 * Unregister the EMF resource
+	 * 
+	 * @param r
+	 *            the resource
+	 */
+	public static void dispose(org.eclipse.emf.ecore.resource.Resource r) {
+		resources.remove(r);
 	}
 
 	/**
@@ -79,9 +119,9 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
+		switch (featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
-			return ((InternalEList<?>)getEobjects()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getEobjects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -93,7 +133,7 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
+		switch (featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			return getEobjects();
 		}
@@ -108,10 +148,10 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
+		switch (featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			getEobjects().clear();
-			getEobjects().addAll((Collection<? extends EObject>)newValue);
+			getEobjects().addAll((Collection<? extends EObject>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,7 +164,7 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
+		switch (featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			getEobjects().clear();
 			return;
@@ -139,7 +179,7 @@ public class ResourceImpl extends EObjectImpl implements Resource {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
+		switch (featureID) {
 		case ResourcePackage.RESOURCE__EOBJECTS:
 			return !getEobjects().isEmpty();
 		}

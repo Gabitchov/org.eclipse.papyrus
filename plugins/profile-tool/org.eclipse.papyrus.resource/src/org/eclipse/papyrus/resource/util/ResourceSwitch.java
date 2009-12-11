@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.resource.*;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.resource.ResourcePackage;
@@ -46,7 +47,7 @@ public class ResourceSwitch<T> {
 	 * @generated
 	 */
 	public ResourceSwitch() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = ResourcePackage.eINSTANCE;
 		}
 	}
@@ -70,7 +71,7 @@ public class ResourceSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if(theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
@@ -86,20 +87,18 @@ public class ResourceSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch(classifierID) {
-		case ResourcePackage.RESOURCE:
-		{
-			Resource resource = (Resource)theEObject;
+		switch (classifierID) {
+		case ResourcePackage.RESOURCE: {
+			Resource resource = (Resource) theEObject;
 			T result = caseResource(resource);
-			if(result == null)
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ResourcePackage.RESOURCE_EOBJECT:
-		{
-			ResourceEObject resourceEObject = (ResourceEObject)theEObject;
+		case ResourcePackage.RESOURCE_EOBJECT: {
+			ResourceEObject resourceEObject = (ResourceEObject) theEObject;
 			T result = caseResourceEObject(resourceEObject);
-			if(result == null)
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -114,7 +113,7 @@ public class ResourceSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *        the target of the switch.
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -129,7 +128,7 @@ public class ResourceSwitch<T> {
 	 * terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *        the target of the switch.
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -144,7 +143,7 @@ public class ResourceSwitch<T> {
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
-	 *        the target of the switch.
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

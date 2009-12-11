@@ -121,7 +121,8 @@ public interface ResourcePackage extends EPackage {
 	EClass getResource();
 
 	/**
-	 * Returns the meta object for the containment reference list ' {@link org.eclipse.papyrus.resource.Resource#getEobjects <em>Eobjects</em>}'. <!--
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.resource.Resource#getEobjects <em>Eobjects</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Eobjects</em>'.
@@ -183,7 +184,8 @@ public interface ResourcePackage extends EPackage {
 		EReference RESOURCE__EOBJECTS = eINSTANCE.getResource_Eobjects();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.resource.impl.ResourceEObjectImpl <em>EObject</em>}' class.
+		 * The meta object literal for the '
+		 * {@link org.eclipse.papyrus.resource.impl.ResourceEObjectImpl <em>EObject</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.resource.impl.ResourceEObjectImpl

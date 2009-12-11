@@ -4,6 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="resource"
     nsURI="http://www.eclipse.org/papyurs/0.7.0/Resource" nsPrefix="resource">
   <eClassifiers xsi:type="ecore:EClass" name="Resource">
+    <eOperations name="setResource">
+      <eParameters name="r" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eobjects" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" volatile="true"
         transient="true" containment="true"/>

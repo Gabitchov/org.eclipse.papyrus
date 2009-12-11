@@ -10,6 +10,9 @@
       ecorePackage="resource.ecore#/">
     <genClasses ecoreClass="resource.ecore#//Resource">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference resource.ecore#//Resource/eobjects"/>
+      <genOperations ecoreOperation="resource.ecore#//Resource/setResource">
+        <genParameters ecoreParameter="resource.ecore#//Resource/setResource/r"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="resource.ecore#//ResourceEObject"/>
   </genPackages>

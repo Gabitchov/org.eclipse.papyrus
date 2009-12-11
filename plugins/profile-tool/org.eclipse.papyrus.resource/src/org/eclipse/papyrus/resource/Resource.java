@@ -37,7 +37,8 @@ public interface Resource extends EObject {
 	 * Returns the value of the '<em><b>Eobjects</b></em>' containment reference list. The list
 	 * contents are of type {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Eobjects</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Eobjects</em>' containment reference list isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -47,5 +48,13 @@ public interface Resource extends EObject {
 	 * @generated
 	 */
 	EList<EObject> getEobjects();
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @model
+	 * @generated
+	 */
+	void setResource(org.eclipse.emf.ecore.resource.Resource r);
 
 } // Resource

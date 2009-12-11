@@ -18,6 +18,7 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.resource.ResourceFactory;
+import org.eclipse.papyrus.resource.impl.ResourceImpl;
 
 /**
  * This class provides static methods to help users using Resources
@@ -53,16 +54,10 @@ public class ResourceUtil {
 		if (eResource == null) {
 			return null;
 		}
-		Resource result = null;
-		for (EObject e : eResource.getContents()) {
-			if (e instanceof Resource) {
-				result = (Resource) e;
-				break;
-			}
-		}
+		Resource result = ResourceImpl.getResource(eResource);
 		if (result == null) {
 			result = ResourceFactory.eINSTANCE.createResource();
-			eResource.getContents().add(result);
+			result.setResource(eResource);
 		}
 		return result;
 	}

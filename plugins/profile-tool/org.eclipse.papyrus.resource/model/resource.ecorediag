@@ -8,6 +8,10 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_l5eDh65mEd6h2ecTXi7wcw"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_l5eDiK5mEd6h2ecTXi7wcw" type="5002">
+      <children xmi:type="notation:Node" xmi:id="_n7r08eWzEd6SJ_7l1eHvag" type="2002">
+        <element xmi:type="ecore:EOperation" href="resource.ecore#//Resource/setResource"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_n7r08uWzEd6SJ_7l1eHvag"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_l5eDia5mEd6h2ecTXi7wcw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_l5eDiq5mEd6h2ecTXi7wcw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_l5eDi65mEd6h2ecTXi7wcw"/>

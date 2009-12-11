@@ -44,7 +44,7 @@ public final class ResourceEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ResourceEditPlugin() {
-		super(new ResourceLocator[]{});
+		super(new ResourceLocator[] {});
 	}
 
 	/**

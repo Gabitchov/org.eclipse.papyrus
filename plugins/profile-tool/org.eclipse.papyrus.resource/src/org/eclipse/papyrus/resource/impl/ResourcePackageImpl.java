@@ -16,6 +16,7 @@ package org.eclipse.papyrus.resource.impl;
 import static org.eclipse.papyrus.resource.ResourcePackage.RESOURCE;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -46,13 +47,13 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	private EClass resourceEObjectEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
 	 * value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init
-	 * init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * init()}, which also performs initialization of the package, or returns the registered
+	 * package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.resource.ResourcePackage#eNS_URI
@@ -75,8 +76,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * upon which it depends.
 	 * 
 	 * <p>
-	 * This method is used to initialize {@link ResourcePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
-	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link ResourcePackage#eINSTANCE} when that field is
+	 * accessed. Clients should not invoke it directly. Instead, they should simply access that
+	 * field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -84,11 +86,11 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	public static ResourcePackage init() {
-		if(isInited)
-			return (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
+		if (isInited)
+			return (ResourcePackage) EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ResourcePackageImpl ? EPackage.Registry.INSTANCE
+		ResourcePackageImpl theResourcePackage = (ResourcePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ResourcePackageImpl ? EPackage.Registry.INSTANCE
 				.get(eNS_URI)
 				: new ResourcePackageImpl());
 
@@ -123,7 +125,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	public EReference getResource_Eobjects() {
-		return (EReference)resourceEClass.getEStructuralFeatures().get(0);
+		return (EReference) resourceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -141,7 +143,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	public ResourceFactory getResourceFactory() {
-		return (ResourceFactory)getEFactoryInstance();
+		return (ResourceFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -158,7 +160,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
+		if (isCreated)
 			return;
 		isCreated = true;
 
@@ -183,7 +185,7 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
+		if (isInitialized)
 			return;
 		isInitialized = true;
 
@@ -204,6 +206,9 @@ public class ResourcePackageImpl extends EPackageImpl implements ResourcePackage
 		initEReference(getResource_Eobjects(), ecorePackage.getEObject(), null, "eobjects", null, 0, -1,
 				Resource.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = addEOperation(resourceEClass, null, "setResource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResource(), "r", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(resourceEObjectEClass, ResourceEObject.class, "ResourceEObject", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
