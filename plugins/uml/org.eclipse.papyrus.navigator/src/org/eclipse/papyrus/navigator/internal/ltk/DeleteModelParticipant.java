@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
+import org.eclipse.ltk.core.refactoring.NullChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.DeleteParticipant;
@@ -38,7 +39,7 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
  */
 public class DeleteModelParticipant extends DeleteParticipant implements IModelParticipantConstants {
 
-	private List<IPath> filesToRemove = new ArrayList<IPath>();
+	private List<IFile> filesToRemove = new ArrayList<IFile>();
 
 	/**
 	 * Overrides checkConditions.
@@ -63,12 +64,17 @@ public class DeleteModelParticipant extends DeleteParticipant implements IModelP
 	 */
 	@Override
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-		Change[] changes = new Change[filesToRemove.size()];
-		int i = 0;
-		for(IPath path : filesToRemove) {
-			changes[i++] = new DeleteResourceChange(path, true);
+		List<Change> changes = new ArrayList<Change>(filesToRemove.size());
+		for(IFile file : filesToRemove) {
+			if(file.exists()) {
+				changes.add(new DeleteResourceChange(file.getFullPath(), true));
+			}
 		}
-		return new CompositeChange(getName(), changes);
+		if(changes.isEmpty()) {
+			return new NullChange();
+		} else {
+			return new CompositeChange(getName(), changes.toArray(new Change[changes.size()]));
+		}
 	}
 
 	/**
@@ -108,7 +114,7 @@ public class DeleteModelParticipant extends DeleteParticipant implements IModelP
 				// Note: the current file is already marked as deleted... so do not add it here!
 				IFile childFile = parent.getFile(path.makeRelativeTo(parent.getFullPath()));
 				if(!path.equals(file.getFullPath()) && childFile.exists()) {
-					filesToRemove.add(path);
+					filesToRemove.add(childFile);
 				}
 			}
 			return filesToRemove.size() > 0;

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.core.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -83,6 +84,7 @@ public class DiResourceSet extends ResourceSetImpl {
 	 * Load both files (DI and UML) from an handle on one of the two files.
 	 * 
 	 * @param file
+	 *        The file to load (no matter the extension)
 	 */
 	public void loadResources(IFile file) {
 		// Extract file name, without extension
@@ -107,10 +109,23 @@ public class DiResourceSet extends ResourceSetImpl {
 	}
 
 	/**
+	 * Unload all the resources.
+	 */
+	public void unload() {
+		for(Iterator<Resource> iter = getResources().iterator(); iter.hasNext();) {
+			iter.next().unload();
+			iter.remove();
+		}
+		diResource = null;
+		modelResource = null;
+		notationResource = null;
+	}
+
+	/**
 	 * Create both files (DI and UML) from a filename.
 	 * 
 	 * @param newFile
-	 *        the file from which path is extracted to create the new files
+	 *        The file from which path is extracted to create the new files
 	 */
 	public void createModelResources(IFile newFile, String eContentType) {
 

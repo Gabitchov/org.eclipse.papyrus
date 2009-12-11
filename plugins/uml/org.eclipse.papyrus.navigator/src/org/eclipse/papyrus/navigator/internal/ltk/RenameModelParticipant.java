@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.navigator.internal.ltk;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -23,11 +20,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.Change;
-import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.RenameParticipant;
-import org.eclipse.ltk.core.refactoring.resource.RenameResourceChange;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 /**
@@ -38,9 +33,9 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
  */
 public class RenameModelParticipant extends RenameParticipant implements IModelParticipantConstants {
 
-	private List<IPath> filesToRename = new ArrayList<IPath>();
+	private IFile fileToRename;
 
-	private String newName;
+	private IFile newFile;
 
 	/**
 	 * Overrides checkConditions.
@@ -65,12 +60,7 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 	 */
 	@Override
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-		Change[] changes = new Change[filesToRename.size()];
-		int i = 0;
-		for(IPath path : filesToRename) {
-			changes[i++] = new RenameResourceChange(path, newName + '.' + path.getFileExtension());
-		}
-		return new CompositeChange(getName(), changes);
+		return new RenameModelChange(fileToRename, newFile);
 	}
 
 	/**
@@ -97,31 +87,41 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 		if(!(element instanceof IFile)) {
 			return false;
 		}
-		IFile file = (IFile)element;
-		String ext = file.getFileExtension();
+		fileToRename = (IFile)element;
+		String ext = fileToRename.getFileExtension();
 		if(DiResourceSet.DI_FILE_EXTENSION.equals(ext) || DiResourceSet.MODEL_FILE_EXTENSION.equals(ext)
 				|| DiResourceSet.NOTATION_FILE_EXTENSION.equals(ext)) {
-			IContainer parent = file.getParent();
-			IPath resourcePath = file.getFullPath().removeFileExtension();
-			newName = getArguments().getNewName();
+			IContainer parent = fileToRename.getParent();
+			String newName = getArguments().getNewName();
 			int idx = newName.lastIndexOf('.');
 			if(idx > 0) {
 				newName = newName.substring(0, idx);
 			} else {
 				newName = newName + '.' + ext; // Always append the extension
 			}
-
 			IPath path;
+			IPath resourcePath = fileToRename.getFullPath().removeFileExtension();
+			boolean otherFiles = false;
 			for(String pathExt : MODEL_EXTENSIONS) {
 				path = resourcePath.addFileExtension(pathExt);
 				// Only add the change if the resource exists
-				// Note: the current file is already marked as deleted... so do not add it here!
-				if(!path.equals(file.getFullPath()) && parent.exists(path.makeRelativeTo(parent.getFullPath()))) {
-					filesToRename.add(path);
+				IFile renFile = parent.getFile(path.makeRelativeTo(parent.getFullPath()));
+				if(!path.equals(fileToRename.getFullPath()) && renFile.exists()) {
+					otherFiles = true;
+					break;
 				}
 			}
-			return filesToRename.size() > 0;
+			if(otherFiles) {
+				// Get the new file
+				IPath newDiPath = fileToRename.getFullPath().removeLastSegments(1);
+				newDiPath = newDiPath.append(newName).addFileExtension(ext);
+				newFile = parent.getFile(newDiPath.makeRelativeTo(parent.getFullPath()));
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
 		}
-		return false;
 	}
 }

@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
+import org.eclipse.ltk.core.refactoring.NullChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.MoveArguments;
@@ -66,12 +67,18 @@ public class MoveModelParticipant extends MoveParticipant implements IModelParti
 	 */
 	@Override
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-		Change[] changes = new Change[filesToMove.size()];
-		int i = 0;
+		List<Change> changes = new ArrayList<Change>(filesToMove.size());
+
 		for(IFile path : filesToMove) {
-			changes[i++] = new MoveResourceChange(path, destination);
+			if(path.exists()) {
+				changes.add(new MoveResourceChange(path, destination));
+			}
 		}
-		return new CompositeChange(getName(), changes);
+		if(changes.isEmpty()) {
+			return new NullChange();
+		} else {
+			return new CompositeChange(getName(), changes.toArray(new Change[changes.size()]));
+		}
 	}
 
 	/**

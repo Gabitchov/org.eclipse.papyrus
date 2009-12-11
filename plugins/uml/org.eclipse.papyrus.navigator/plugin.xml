@@ -246,7 +246,7 @@
          </enablement>
       </moveParticipant>
    </extension>
- <!--  <extension
+  <extension
          point="org.eclipse.ltk.core.refactoring.renameParticipants">
       <renameParticipant
             class="org.eclipse.papyrus.navigator.internal.ltk.RenameModelParticipant"
@@ -258,5 +258,5 @@
 			</with>
          </enablement>
       </renameParticipant>
-   </extension>-->
+   </extension>
 </plugin>
