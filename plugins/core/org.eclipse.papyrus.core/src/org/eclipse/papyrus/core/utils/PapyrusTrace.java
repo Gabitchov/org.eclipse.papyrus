@@ -14,13 +14,16 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.core.Activator;
+import org.eclipse.papyrus.log.LogHelper;
 
 /**
  * Utility class to log errors or debug information either in the plugin'log or in the console.
  * <p>
  * A set of channels is used to separate different traces for different aspects. A short list is displayed at the end of the file to give an example
  * of channels
+ * @deprecated Use {@link LogHelper} instead
  **/
+@Deprecated
 public class PapyrusTrace implements IDebugChannel {
 
 	public static final String PAPYRUS_CORE = "org.eclipse.papyrus.core/debug";
