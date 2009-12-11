@@ -96,7 +96,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
 
 	/** Log object */
-	Logger log = Logger.getLogger(getClass().getName());
+	private Logger log = Logger.getLogger(getClass().getName());
 
 	/** Gef adapter */
 	private MultiDiagramEditorGefDelegate gefAdaptorDelegate;
@@ -163,6 +163,55 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 	};
 
+	private final org.eclipse.emf.common.command.CommandStackListener commandStackListener = new org.eclipse.emf.common.command.CommandStackListener() {
+
+		public void commandStackChanged(EventObject event) {
+			getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+				public void run() {
+					firePropertyChange(IEditorPart.PROP_DIRTY);
+					}
+								});
+		}
+	};
+
+	private final ResourceSetListener resourceSetListener = new ResourceSetListener() {
+
+		public NotificationFilter getFilter() {
+			return null;
+		}
+
+		public boolean isAggregatePrecommitListener() {
+			return false;
+		}
+
+		public boolean isPostcommitOnly() {
+			return true;
+		}
+
+		public boolean isPrecommitOnly() {
+			return false;
+		}
+
+		public void resourceSetChanged(ResourceSetChangeEvent event) {
+			if(event.getTransaction() != null && event.getTransaction().getStatus().isOK()) {
+				getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+					public void run() {
+						firePropertyChange(IEditorPart.PROP_DIRTY);
+						}
+										});
+			}
+		}
+
+		public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+			return null;
+		}
+
+	};
+
+
+
 	/**
 	 * Create a PageEditor for the specified model. Default implementation delegates to pageEditorFactory.createPageEditorFor(model); Not intended for
 	 * external use.
@@ -228,8 +277,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @return the contentOutlineRegistry
 	 */
 	protected ContentOutlineRegistry getContentOutlineRegistry() {
-		if(contentOutlineRegistry == null)
+		if(contentOutlineRegistry == null) {
 			createContentOutlineRegistry();
+		}
 
 		return contentOutlineRegistry;
 	}
@@ -343,8 +393,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @return
 	 */
 	public ActionBarContributorRegistry getActionBarContributorRegistry() {
-		if(actionBarContributorRegistry != null)
+		if(actionBarContributorRegistry != null) {
 			return actionBarContributorRegistry;
+		}
 
 		// Try to got it from CoreComposedActionBarContributor
 		// The ActionBarContributorRegistry is initialized by the Contributor.
@@ -398,8 +449,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		if(IContentOutlinePage.class == adapter) {
 			try {
 				IContentOutlinePage contentOutline = getContentOutlineRegistry().getContentOutline();
-				if(contentOutline != null)
+				if(contentOutline != null) {
 					return contentOutline;
+				}
 			} catch (BackboneException e) {
 				// TODO change next exception to more appropriate one
 				throw new RuntimeException(e);
@@ -495,54 +547,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
 
 		// Listen to the modifications of the EMF model
-		transactionalEditingDomain.getCommandStack().addCommandStackListener(new org.eclipse.emf.common.command.CommandStackListener() {
-
-			public void commandStackChanged(EventObject event) {
-				getSite().getShell().getDisplay().asyncExec(new Runnable() {
-
-					public void run() {
-						// System.out.println(getTitle() + " > GEF Stack changed");
-						firePropertyChange(IEditorPart.PROP_DIRTY);
-					}
-				});
-			}
-		});
+		transactionalEditingDomain.getCommandStack().addCommandStackListener(commandStackListener);
 
 		// Let's listen to the resource set change
-		transactionalEditingDomain.addResourceSetListener(new ResourceSetListener() {
-
-			public NotificationFilter getFilter() {
-				return null;
-			}
-
-			public boolean isAggregatePrecommitListener() {
-				return false;
-			}
-
-			public boolean isPostcommitOnly() {
-				return true;
-			}
-
-			public boolean isPrecommitOnly() {
-				return false;
-			}
-
-			public void resourceSetChanged(ResourceSetChangeEvent event) {
-				if(event.getTransaction() != null && event.getTransaction().getStatus().isOK()) {
-					getSite().getShell().getDisplay().asyncExec(new Runnable() {
-
-						public void run() {
-							firePropertyChange(IEditorPart.PROP_DIRTY);
-						}
-					});
-				}
-			}
-
-			public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
-				return null;
-			}
-
-		});
+		transactionalEditingDomain.addResourceSetListener(resourceSetListener);
 
 		// Set editor name
 		setPartName(file.getName());
@@ -563,6 +571,28 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			this.tabbedPropertySheetPage = new TabbedPropertySheetPage(this);
 		}
 		return tabbedPropertySheetPage;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor#dispose()
+	 * 
+	 */
+	@Override
+	public void dispose() {
+		if(sashModelMngr != null) {
+			sashModelMngr.getSashModelContentChangedProvider().removeContentChangedListener(contentChangedListener);
+		}
+
+		if(transactionalEditingDomain != null) {
+			transactionalEditingDomain.getCommandStack().removeCommandStackListener(commandStackListener);
+			transactionalEditingDomain.removeResourceSetListener(resourceSetListener);
+		}
+
+		// Avoid memory leak
+		if(resourceSet != null) {
+			resourceSet.unload();
+		}
+		super.dispose();
 	}
 
 	/**
@@ -631,10 +661,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 						try {
 							resourceSet.saveAs(path);
 						} catch (IOException ioe) {
-							// Debug.log(ioe);
+													// Debug.log(ioe);
 						}
-					}
-				});
+						}
+										});
 				// set input to the new file
 				setInput(new FileEditorInput(file));
 				markSaveLocation();
@@ -710,8 +740,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Get the editor under the mouse
 		// IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
 		IEditorPart activeEditor = getActiveEditor();
-		if(activeEditor == null)
+		if(activeEditor == null) {
 			return null;
+		}
 		// IEditorPart activeEditor = getActiveEditor();
 		if(activeEditor instanceof DiagramEditor) {
 			return ((DiagramEditor)activeEditor).getDiagramEditPart();
