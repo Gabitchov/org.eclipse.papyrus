@@ -6,9 +6,7 @@
 # Hudson because it does not have the necessary rights.
 
 lastPromoteFileN=/opt/public/modeling/mdt/papyrus/lastPromoteRefN
-lastPromoteFileI=/opt/public/modeling/mdt/papyrus/lastPromoteRefI
 promoteSignalN=/opt/public/modeling/mdt/papyrus/modiscoBuildPromoteSignalN
-promoteSignalI=/opt/public/modeling/mdt/papyrus/modiscoBuildPromoteSignalI
 logFile=/opt/public/modeling/mdt/papyrus/log-cronPromote
 
 ANT=/opt/public/common/apache-ant-1.7.1/bin/ant
@@ -47,14 +45,10 @@ function prune() {
 
 
 if [ ! -e $lastPromoteFileN ]; then touch $lastPromoteFileN; fi
-if [ ! -e $lastPromoteFileI ]; then touch $lastPromoteFileI; fi
 if [ ! -e $promoteSignalN ]; then echo "$DATE: ERROR: $promoteSignalN not found" >> $logFile; exit 1; fi
-if [ ! -e $promoteSignalI ]; then echo "$DATE: ERROR: $promoteSignalI not found" >> $logFile; exit 1; fi
 
 signalDateN=`stat --format=%Y $promoteSignalN`
-signalDateI=`stat --format=%Y $promoteSignalI`
 lastPromoteDateN=`stat --format=%Y $lastPromoteFileN`
-lastPromoteDateI=`stat --format=%Y $lastPromoteFileI`
 
 if [ $signalDateN -gt $lastPromoteDateN ]; then 
         echo "$DATE: removing old nightlies" >> $logFile
@@ -63,18 +57,6 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
         mkdir -p $PROMO_LOGS_DIR
         $ANT -f $RELENG_DIR/promote.xml -Dpromote.properties=$RELENG_DIR/promote-N.properties 2>/dev/null 1> $PROMO_LOGS_DIR/cbi-papyrus-nightly-promo-${DATE}.txt 
         touch $lastPromoteFileN
-        echo "$DATE: done" >> $logFile
-        trimLog
-fi
-
-
-if [ $signalDateI -gt $lastPromoteDateI ]; then 
-        echo "$DATE: removing old integration builds" >> $logFile
-        prune I $BUILDS_DIR 4   
-        echo "$DATE: publishing integration build ..." >> $logFile
-        mkdir -p $PROMO_LOGS_DIR
-        $ANT -f $RELENG_DIR/promote.xml -Dpromote.properties=$RELENG_DIR/promote-I.properties 2>/dev/null 1> $PROMO_LOGS_DIR/cbi-papyrus-integration-promo-${DATE}.txt 
-        touch $lastPromoteFileI
         echo "$DATE: done" >> $logFile
         trimLog
 fi
