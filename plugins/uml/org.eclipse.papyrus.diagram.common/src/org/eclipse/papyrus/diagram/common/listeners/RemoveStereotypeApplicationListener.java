@@ -15,17 +15,13 @@ package org.eclipse.papyrus.diagram.common.listeners;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
@@ -52,15 +48,17 @@ public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 		if(notification.getEventType() == Notification.REMOVE || notification.getEventType() == Notification.SET) {
 
 			//listen if the the notifier  is an eObject
-			if(notification.getNotifier() != null && notification.getNotifier() instanceof EObject) {
+			if(notification.getNotifier() instanceof EObject) {
 				resource = ((EObject)notification.getNotifier()).eResource();
-				TreeIterator<EObject> iterator = resource.getAllContents();
+				if(resource != null) {
+					TreeIterator<EObject> iterator = resource.getAllContents();
 
-				//look for applied stereotype without based element
-				while(iterator.hasNext()) {
-					EObject eObject = (EObject)iterator.next();
-					if(eObject instanceof DynamicEObjectImpl && UMLUtil.getBaseElement(eObject) == null) {
-						appliedstereotypeToRemove.add((DynamicEObjectImpl)eObject);
+					//look for applied stereotype without based element
+					while(iterator.hasNext()) {
+						EObject eObject = (EObject)iterator.next();
+						if(eObject instanceof DynamicEObjectImpl && UMLUtil.getBaseElement(eObject) == null) {
+							appliedstereotypeToRemove.add((DynamicEObjectImpl)eObject);
+						}
 					}
 				}
 			}
