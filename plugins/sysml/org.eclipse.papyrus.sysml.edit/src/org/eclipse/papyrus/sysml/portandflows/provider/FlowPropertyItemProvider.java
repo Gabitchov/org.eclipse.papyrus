@@ -80,19 +80,7 @@ public class FlowPropertyItemProvider extends ResourceEObjectItemProvider implem
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FlowProperty_base_Property_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature", "_UI_FlowProperty_type"),
-				PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature", "_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**
@@ -103,19 +91,7 @@ public class FlowPropertyItemProvider extends ResourceEObjectItemProvider implem
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FlowProperty_direction_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"),
-				PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -139,9 +115,7 @@ public class FlowPropertyItemProvider extends ResourceEObjectItemProvider implem
 	public String getText(Object object) {
 		FlowDirection labelValue = ((FlowProperty)object).getDirection();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-				getString("_UI_FlowProperty_type") :
-				getString("_UI_FlowProperty_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_FlowProperty_type") : getString("_UI_FlowProperty_type") + " " + label;
 	}
 
 	/**

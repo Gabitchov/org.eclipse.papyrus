@@ -79,19 +79,7 @@ public class RequirementRelatedItemProvider extends ResourceEObjectItemProvider 
 	 * @generated
 	 */
 	protected void addBase_NamedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_RequirementRelated_base_NamedElement_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_base_NamedElement_feature", "_UI_RequirementRelated_type"),
-				RequirementsPackage.Literals.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_base_NamedElement_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_base_NamedElement_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -102,19 +90,7 @@ public class RequirementRelatedItemProvider extends ResourceEObjectItemProvider 
 	 * @generated
 	 */
 	protected void addTracedFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_RequirementRelated_tracedFrom_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_tracedFrom_feature", "_UI_RequirementRelated_type"),
-				RequirementsPackage.Literals.REQUIREMENT_RELATED__TRACED_FROM,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_tracedFrom_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_tracedFrom_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__TRACED_FROM, false, false, false, null, null, null));
 	}
 
 	/**
@@ -125,19 +101,7 @@ public class RequirementRelatedItemProvider extends ResourceEObjectItemProvider 
 	 * @generated
 	 */
 	protected void addSatisfiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_RequirementRelated_satisfies_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_satisfies_feature", "_UI_RequirementRelated_type"),
-				RequirementsPackage.Literals.REQUIREMENT_RELATED__SATISFIES,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_satisfies_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_satisfies_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__SATISFIES, false, false, false, null, null, null));
 	}
 
 	/**
@@ -148,19 +112,7 @@ public class RequirementRelatedItemProvider extends ResourceEObjectItemProvider 
 	 * @generated
 	 */
 	protected void addRefinesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_RequirementRelated_refines_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_refines_feature", "_UI_RequirementRelated_type"),
-				RequirementsPackage.Literals.REQUIREMENT_RELATED__REFINES,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_refines_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_refines_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__REFINES, false, false, false, null, null, null));
 	}
 
 	/**
@@ -171,19 +123,7 @@ public class RequirementRelatedItemProvider extends ResourceEObjectItemProvider 
 	 * @generated
 	 */
 	protected void addVerifiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_RequirementRelated_verifies_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_verifies_feature", "_UI_RequirementRelated_type"),
-				RequirementsPackage.Literals.REQUIREMENT_RELATED__VERIFIES,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_verifies_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_verifies_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__VERIFIES, false, false, false, null, null, null));
 	}
 
 	/**

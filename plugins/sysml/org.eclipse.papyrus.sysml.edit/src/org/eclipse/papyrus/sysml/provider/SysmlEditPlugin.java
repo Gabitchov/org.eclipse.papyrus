@@ -52,13 +52,7 @@ public final class SysmlEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public SysmlEditPlugin() {
-		super(new ResourceLocator[]
-				{
-				EcoreEditPlugin.INSTANCE,
-				standardEditPlugin.INSTANCE,
-				UMLEditPlugin.INSTANCE,
-				ResourceEditPlugin.INSTANCE,
-				});
+		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, standardEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, ResourceEditPlugin.INSTANCE, });
 	}
 
 	/**

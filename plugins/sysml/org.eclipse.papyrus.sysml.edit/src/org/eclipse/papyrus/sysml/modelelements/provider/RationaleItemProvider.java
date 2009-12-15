@@ -74,19 +74,7 @@ public class RationaleItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_CommentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Rationale_base_Comment_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Rationale_base_Comment_feature", "_UI_Rationale_type"),
-				ModelelementsPackage.Literals.RATIONALE__BASE_COMMENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rationale_base_Comment_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rationale_base_Comment_feature", "_UI_Rationale_type"), ModelelementsPackage.Literals.RATIONALE__BASE_COMMENT, true, false, true, null, null, null));
 	}
 
 	/**

@@ -93,8 +93,7 @@ public class SysMLTestResources {
 
 			Resource resource = RESOURCE_SET.getResource(uri, true);
 
-			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(),
-					UMLPackage.Literals.PACKAGE);
+			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);
 
 		} catch (WrappedException we) {
 			// null package
@@ -105,19 +104,15 @@ public class SysMLTestResources {
 	}
 
 	protected static void registerPathmaps(URI uri) {
-		URIConverter.URI_MAP.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri.appendSegment("libraries")
-				.appendSegment(""));
+		URIConverter.URI_MAP.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri.appendSegment("libraries").appendSegment(""));
 
-		URIConverter.URI_MAP.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri.appendSegment("metamodels")
-				.appendSegment(""));
+		URIConverter.URI_MAP.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri.appendSegment("metamodels").appendSegment(""));
 
-		URIConverter.URI_MAP.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri.appendSegment("profiles")
-				.appendSegment(""));
+		URIConverter.URI_MAP.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri.appendSegment("profiles").appendSegment(""));
 	}
 
 	protected static void registerResourceFactories() {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION,
-				UMLResource.Factory.INSTANCE);
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 	}
 
 	protected static void save(org.eclipse.uml2.uml.Package package_, URI uri) {

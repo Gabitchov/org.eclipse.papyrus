@@ -76,19 +76,7 @@ public class RateItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addBase_ParameterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Rate_base_Parameter_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_Parameter_feature", "_UI_Rate_type"),
-				ActivitiesPackage.Literals.RATE__BASE_PARAMETER,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_Parameter_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_Parameter_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__BASE_PARAMETER, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class RateItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addBase_ActivityEdgePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Rate_base_ActivityEdge_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_ActivityEdge_feature", "_UI_Rate_type"),
-				ActivitiesPackage.Literals.RATE__BASE_ACTIVITY_EDGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_ActivityEdge_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_ActivityEdge_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__BASE_ACTIVITY_EDGE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -122,19 +98,7 @@ public class RateItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addRatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Rate_rate_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Rate_rate_feature", "_UI_Rate_type"),
-				ActivitiesPackage.Literals.RATE__RATE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_rate_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_rate_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__RATE, true, false, true, null, null, null));
 	}
 
 	/**

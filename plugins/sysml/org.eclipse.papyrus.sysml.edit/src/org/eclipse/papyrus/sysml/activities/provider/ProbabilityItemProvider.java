@@ -76,19 +76,7 @@ public class ProbabilityItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addBase_ActivityEdgePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Probability_base_ActivityEdge_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ActivityEdge_feature", "_UI_Probability_type"),
-				ActivitiesPackage.Literals.PROBABILITY__BASE_ACTIVITY_EDGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ActivityEdge_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ActivityEdge_feature", "_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_ACTIVITY_EDGE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class ProbabilityItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addBase_ParameterSetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Probability_base_ParameterSet_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ParameterSet_feature", "_UI_Probability_type"),
-				ActivitiesPackage.Literals.PROBABILITY__BASE_PARAMETER_SET,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ParameterSet_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ParameterSet_feature", "_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_PARAMETER_SET, true, false, true, null, null, null));
 	}
 
 	/**
@@ -122,19 +98,7 @@ public class ProbabilityItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addProbabilityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Probability_probability_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Probability_probability_feature", "_UI_Probability_type"),
-				ActivitiesPackage.Literals.PROBABILITY__PROBABILITY,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_probability_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Probability_probability_feature", "_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__PROBABILITY, true, false, true, null, null, null));
 	}
 
 	/**

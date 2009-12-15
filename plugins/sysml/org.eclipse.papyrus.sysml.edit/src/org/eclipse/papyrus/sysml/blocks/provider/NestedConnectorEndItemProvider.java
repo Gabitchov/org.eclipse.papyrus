@@ -76,19 +76,7 @@ public class NestedConnectorEndItemProvider extends ResourceEObjectItemProvider 
 	 * @generated
 	 */
 	protected void addPropertyPathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_NestedConnectorEnd_propertyPath_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_NestedConnectorEnd_propertyPath_feature", "_UI_NestedConnectorEnd_type"),
-				BlocksPackage.Literals.NESTED_CONNECTOR_END__PROPERTY_PATH,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NestedConnectorEnd_propertyPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_NestedConnectorEnd_propertyPath_feature", "_UI_NestedConnectorEnd_type"), BlocksPackage.Literals.NESTED_CONNECTOR_END__PROPERTY_PATH, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class NestedConnectorEndItemProvider extends ResourceEObjectItemProvider 
 	 * @generated
 	 */
 	protected void addBase_ConnectorEndPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_NestedConnectorEnd_base_ConnectorEnd_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_NestedConnectorEnd_base_ConnectorEnd_feature", "_UI_NestedConnectorEnd_type"),
-				BlocksPackage.Literals.NESTED_CONNECTOR_END__BASE_CONNECTOR_END,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NestedConnectorEnd_base_ConnectorEnd_feature"), getString("_UI_PropertyDescriptor_description", "_UI_NestedConnectorEnd_base_ConnectorEnd_feature", "_UI_NestedConnectorEnd_type"), BlocksPackage.Literals.NESTED_CONNECTOR_END__BASE_CONNECTOR_END, true, false, true, null, null, null));
 	}
 
 	/**

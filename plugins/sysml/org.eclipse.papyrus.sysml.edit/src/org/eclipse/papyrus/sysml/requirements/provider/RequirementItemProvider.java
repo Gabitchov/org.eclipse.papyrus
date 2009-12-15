@@ -87,19 +87,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addTextPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_text_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_text_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__TEXT,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_text_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_text_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__TEXT, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -109,19 +97,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_id_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_id_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__ID,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_id_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_id_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -132,19 +108,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addDerivedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_derived_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_derived_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__DERIVED,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_derived_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_derived_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__DERIVED, false, false, false, null, null, null));
 	}
 
 	/**
@@ -155,19 +119,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addDerivedFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_derivedFrom_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_derivedFrom_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__DERIVED_FROM,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_derivedFrom_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_derivedFrom_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__DERIVED_FROM, false, false, false, null, null, null));
 	}
 
 	/**
@@ -178,19 +130,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addSatisfiedByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_satisfiedBy_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_satisfiedBy_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__SATISFIED_BY,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_satisfiedBy_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_satisfiedBy_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__SATISFIED_BY, false, false, false, null, null, null));
 	}
 
 	/**
@@ -201,19 +141,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addRefinedByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_refinedBy_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_refinedBy_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__REFINED_BY,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_refinedBy_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_refinedBy_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__REFINED_BY, false, false, false, null, null, null));
 	}
 
 	/**
@@ -224,19 +152,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addTracedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_tracedTo_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_tracedTo_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__TRACED_TO,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_tracedTo_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_tracedTo_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__TRACED_TO, false, false, false, null, null, null));
 	}
 
 	/**
@@ -247,19 +163,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addVerifiedByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_verifiedBy_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_verifiedBy_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__VERIFIED_BY,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_verifiedBy_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_verifiedBy_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__VERIFIED_BY, false, false, false, null, null, null));
 	}
 
 	/**
@@ -270,19 +174,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addMasterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_master_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_master_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__MASTER,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_master_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_master_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__MASTER, false, false, false, null, null, null));
 	}
 
 	/**
@@ -293,19 +185,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Requirement_base_Class_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Requirement_base_Class_feature", "_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__BASE_CLASS,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Requirement_base_Class_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Requirement_base_Class_feature", "_UI_Requirement_type"), RequirementsPackage.Literals.REQUIREMENT__BASE_CLASS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -328,9 +208,7 @@ public class RequirementItemProvider extends ResourceEObjectItemProvider impleme
 	@Override
 	public String getText(Object object) {
 		String label = ((Requirement)object).getId();
-		return label == null || label.length() == 0 ?
-				getString("_UI_Requirement_type") :
-				getString("_UI_Requirement_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Requirement_type") : getString("_UI_Requirement_type") + " " + label;
 	}
 
 	/**

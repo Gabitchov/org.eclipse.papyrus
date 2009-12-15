@@ -49,8 +49,7 @@ public class ModelelementsAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected ModelelementsSwitch<Adapter> modelSwitch = new ModelelementsSwitch<Adapter>()
-			{
+	protected ModelelementsSwitch<Adapter> modelSwitch = new ModelelementsSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseConform(Conform object) {

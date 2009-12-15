@@ -74,19 +74,7 @@ public class OverwriteItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_ObjectNodePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Overwrite_base_ObjectNode_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature", "_UI_Overwrite_type"),
-				ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Overwrite_base_ObjectNode_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature", "_UI_Overwrite_type"), ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false, true, null, null, null));
 	}
 
 	/**

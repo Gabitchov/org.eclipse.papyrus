@@ -74,19 +74,7 @@ public class OptionnalItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_ParameterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Optionnal_base_Parameter_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Optionnal_base_Parameter_feature", "_UI_Optionnal_type"),
-				ActivitiesPackage.Literals.OPTIONNAL__BASE_PARAMETER,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Optionnal_base_Parameter_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Optionnal_base_Parameter_feature", "_UI_Optionnal_type"), ActivitiesPackage.Literals.OPTIONNAL__BASE_PARAMETER, true, false, true, null, null, null));
 	}
 
 	/**

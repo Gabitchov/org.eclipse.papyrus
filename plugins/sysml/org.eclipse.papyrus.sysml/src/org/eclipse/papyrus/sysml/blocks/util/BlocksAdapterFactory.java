@@ -54,8 +54,7 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected BlocksSwitch<Adapter> modelSwitch = new BlocksSwitch<Adapter>()
-			{
+	protected BlocksSwitch<Adapter> modelSwitch = new BlocksSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseBlock(Block object) {

@@ -76,19 +76,7 @@ public class ValueTypeItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_DataTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ValueType_base_DataType_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ValueType_base_DataType_feature", "_UI_ValueType_type"),
-				BlocksPackage.Literals.VALUE_TYPE__BASE_DATA_TYPE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_base_DataType_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ValueType_base_DataType_feature", "_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__BASE_DATA_TYPE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class ValueTypeItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addUnitPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ValueType_unit_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ValueType_unit_feature", "_UI_ValueType_type"),
-				BlocksPackage.Literals.VALUE_TYPE__UNIT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_unit_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ValueType_unit_feature", "_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__UNIT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -122,19 +98,7 @@ public class ValueTypeItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addDimensionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ValueType_dimension_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ValueType_dimension_feature", "_UI_ValueType_type"),
-				BlocksPackage.Literals.VALUE_TYPE__DIMENSION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_dimension_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ValueType_dimension_feature", "_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__DIMENSION, true, false, true, null, null, null));
 	}
 
 	/**

@@ -75,19 +75,7 @@ public class ItemFlowItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addBase_InformationFlowPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ItemFlow_base_InformationFlow_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_base_InformationFlow_feature", "_UI_ItemFlow_type"),
-				PortandflowsPackage.Literals.ITEM_FLOW__BASE_INFORMATION_FLOW,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ItemFlow_base_InformationFlow_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_base_InformationFlow_feature", "_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__BASE_INFORMATION_FLOW, true, false, true, null, null, null));
 	}
 
 	/**
@@ -98,19 +86,7 @@ public class ItemFlowItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addItemPropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ItemFlow_itemProperty_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_itemProperty_feature", "_UI_ItemFlow_type"),
-				PortandflowsPackage.Literals.ITEM_FLOW__ITEM_PROPERTY,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ItemFlow_itemProperty_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_itemProperty_feature", "_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__ITEM_PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**

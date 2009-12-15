@@ -76,19 +76,7 @@ public class ConnectorPropertyItemProvider extends ResourceEObjectItemProvider i
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ConnectorProperty_base_Property_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ConnectorProperty_base_Property_feature", "_UI_ConnectorProperty_type"),
-				BlocksPackage.Literals.CONNECTOR_PROPERTY__BASE_PROPERTY,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConnectorProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ConnectorProperty_base_Property_feature", "_UI_ConnectorProperty_type"), BlocksPackage.Literals.CONNECTOR_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class ConnectorPropertyItemProvider extends ResourceEObjectItemProvider i
 	 * @generated
 	 */
 	protected void addConnectorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ConnectorProperty_connector_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ConnectorProperty_connector_feature", "_UI_ConnectorProperty_type"),
-				BlocksPackage.Literals.CONNECTOR_PROPERTY__CONNECTOR,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConnectorProperty_connector_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ConnectorProperty_connector_feature", "_UI_ConnectorProperty_type"), BlocksPackage.Literals.CONNECTOR_PROPERTY__CONNECTOR, true, false, true, null, null, null));
 	}
 
 	/**

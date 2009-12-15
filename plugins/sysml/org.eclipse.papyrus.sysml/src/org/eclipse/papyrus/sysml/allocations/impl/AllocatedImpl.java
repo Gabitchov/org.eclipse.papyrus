@@ -172,8 +172,7 @@ public class AllocatedImpl extends ResourceEObjectImpl implements Allocated {
 			Iterator<DirectedRelationship> itDep = getBase_NamedElement().getTargetDirectedRelationships().iterator();
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDRelationship,
-						AllocationsPackage.eINSTANCE.getAllocate());
+				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDRelationship, AllocationsPackage.eINSTANCE.getAllocate());
 
 				if(currentAllocate != null) {
 					EList<Element> targets = currentAllocate.getBase_Abstraction().getSources();
@@ -208,8 +207,7 @@ public class AllocatedImpl extends ResourceEObjectImpl implements Allocated {
 			Iterator<Dependency> itDep = getBase_NamedElement().getClientDependencies().iterator();
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDependency, AllocationsPackage.eINSTANCE
-						.getAllocate());
+				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDependency, AllocationsPackage.eINSTANCE.getAllocate());
 
 				if(currentAllocate != null) {
 					allocatedFrom.addAll(currentAllocate.getBase_Abstraction().getSuppliers());

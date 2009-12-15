@@ -238,15 +238,13 @@ public class TestCaseImpl extends ResourceEObjectImpl implements TestCase {
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE
-						.getVerify());
+				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE.getVerify());
 
 				if(currentVerify != null) {
 					EList<NamedElement> suppliers = currentVerify.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
-								RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
 						if(currentRequirement != null) {
 							verifies.add(currentRequirement);
 						}

@@ -201,15 +201,13 @@ public class RequirementRelatedImpl extends ResourceEObjectImpl implements Requi
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentRefine = (Refine)ElementUtil.hasStereotype(currentDependency, StandardPackage.eINSTANCE
-						.getRefine());
+				currentRefine = (Refine)ElementUtil.hasStereotype(currentDependency, StandardPackage.eINSTANCE.getRefine());
 
 				if(currentRefine != null) {
 					EList<NamedElement> suppliers = currentRefine.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
-								RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
 						if(currentRequirement != null) {
 							refines.add(currentRequirement);
 						}
@@ -237,15 +235,13 @@ public class RequirementRelatedImpl extends ResourceEObjectImpl implements Requi
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentSatisfy = (Satisfy)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE
-						.getSatisfy());
+				currentSatisfy = (Satisfy)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE.getSatisfy());
 
 				if(currentSatisfy != null) {
 					EList<NamedElement> suppliers = currentSatisfy.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
-								RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
 						if(currentRequirement != null) {
 							satisfies.add(currentRequirement);
 						}
@@ -275,15 +271,13 @@ public class RequirementRelatedImpl extends ResourceEObjectImpl implements Requi
 
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentTrace = (Trace)ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE
-						.getTrace());
+				currentTrace = (Trace)ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE.getTrace());
 
 				if(currentTrace != null) {
 					EList<NamedElement> clients = currentTrace.getBase_Abstraction().getClients();
 					Iterator<NamedElement> it = clients.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
-								RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
 						if(currentRequirement != null) {
 							tracedFrom.add(currentRequirement);
 						}
@@ -311,15 +305,13 @@ public class RequirementRelatedImpl extends ResourceEObjectImpl implements Requi
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE
-						.getVerify());
+				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE.getVerify());
 
 				if(currentVerify != null) {
 					EList<NamedElement> suppliers = currentVerify.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(),
-								RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
 						if(currentRequirement != null) {
 							verifies.add(currentRequirement);
 						}

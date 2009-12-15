@@ -76,19 +76,7 @@ public class TestCaseItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addBase_BehaviorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_TestCase_base_Behavior_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Behavior_feature", "_UI_TestCase_type"),
-				RequirementsPackage.Literals.TEST_CASE__BASE_BEHAVIOR,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"), getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Behavior_feature", "_UI_TestCase_type"), RequirementsPackage.Literals.TEST_CASE__BASE_BEHAVIOR, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class TestCaseItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addBase_OperationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_TestCase_base_Operation_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Operation_feature", "_UI_TestCase_type"),
-				RequirementsPackage.Literals.TEST_CASE__BASE_OPERATION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"), getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Operation_feature", "_UI_TestCase_type"), RequirementsPackage.Literals.TEST_CASE__BASE_OPERATION, true, false, true, null, null, null));
 	}
 
 	/**
@@ -122,19 +98,7 @@ public class TestCaseItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addVerifiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_TestCase_verifies_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"),
-				RequirementsPackage.Literals.TEST_CASE__VERIFIES,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"), getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"), RequirementsPackage.Literals.TEST_CASE__VERIFIES, false, false, false, null, null, null));
 	}
 
 	/**

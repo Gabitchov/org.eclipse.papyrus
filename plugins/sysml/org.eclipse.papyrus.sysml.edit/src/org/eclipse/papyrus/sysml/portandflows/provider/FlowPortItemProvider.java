@@ -80,19 +80,7 @@ public class FlowPortItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addBase_PortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FlowPort_base_Port_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_base_Port_feature", "_UI_FlowPort_type"),
-				PortandflowsPackage.Literals.FLOW_PORT__BASE_PORT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_base_Port_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_base_Port_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__BASE_PORT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -103,19 +91,7 @@ public class FlowPortItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addIsAtomicPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FlowPort_isAtomic_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_isAtomic_feature", "_UI_FlowPort_type"),
-				PortandflowsPackage.Literals.FLOW_PORT__IS_ATOMIC,
-				false,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_isAtomic_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_isAtomic_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__IS_ATOMIC, false, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -126,19 +102,7 @@ public class FlowPortItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addIsConjugatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FlowPort_isConjugated_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_isConjugated_feature", "_UI_FlowPort_type"),
-				PortandflowsPackage.Literals.FLOW_PORT__IS_CONJUGATED,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_isConjugated_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_isConjugated_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__IS_CONJUGATED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -149,19 +113,7 @@ public class FlowPortItemProvider extends ResourceEObjectItemProvider implements
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FlowPort_direction_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_direction_feature", "_UI_FlowPort_type"),
-				PortandflowsPackage.Literals.FLOW_PORT__DIRECTION,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_direction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_direction_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__DIRECTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**

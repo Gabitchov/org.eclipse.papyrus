@@ -52,8 +52,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected ActivitiesSwitch<Adapter> modelSwitch = new ActivitiesSwitch<Adapter>()
-			{
+	protected ActivitiesSwitch<Adapter> modelSwitch = new ActivitiesSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseOptionnal(Optionnal object) {

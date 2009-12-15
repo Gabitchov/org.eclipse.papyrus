@@ -74,19 +74,7 @@ public class BindingConnectorItemProvider extends ResourceEObjectItemProvider im
 	 * @generated
 	 */
 	protected void addBase_ConnectorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_BindingConnector_base_Connector_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_BindingConnector_base_Connector_feature", "_UI_BindingConnector_type"),
-				BlocksPackage.Literals.BINDING_CONNECTOR__BASE_CONNECTOR,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_BindingConnector_base_Connector_feature"), getString("_UI_PropertyDescriptor_description", "_UI_BindingConnector_base_Connector_feature", "_UI_BindingConnector_type"), BlocksPackage.Literals.BINDING_CONNECTOR__BASE_CONNECTOR, true, false, true, null, null, null));
 	}
 
 	/**

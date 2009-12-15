@@ -75,19 +75,7 @@ public class PropertySpecificTypeItemProvider extends ResourceEObjectItemProvide
 	 * @generated
 	 */
 	protected void addBase_ClassifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_PropertySpecificType_base_Classifier_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertySpecificType_base_Classifier_feature", "_UI_PropertySpecificType_type"),
-				BlocksPackage.Literals.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PropertySpecificType_base_Classifier_feature"), getString("_UI_PropertyDescriptor_description", "_UI_PropertySpecificType_base_Classifier_feature", "_UI_PropertySpecificType_type"), BlocksPackage.Literals.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, true, false, true, null, null, null));
 	}
 
 	/**

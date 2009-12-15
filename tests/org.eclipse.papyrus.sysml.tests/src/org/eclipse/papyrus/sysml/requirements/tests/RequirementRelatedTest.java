@@ -169,16 +169,14 @@ public class RequirementRelatedTest extends TestCase {
 		Class defaultClass = model.createOwnedClass("defaultClass", false);
 
 		// Add Requirement stereotypes
-		default_reqR = (RequirementRelated)defaultClass.applyStereotype(defaultClass
-				.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		default_reqR = (RequirementRelated)defaultClass.applyStereotype(defaultClass.getApplicableStereotype(REQUIREMENT_RELATED_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 		// Prepare getTracedFrom test elements
 		// ////////////////////////////////////////////////////////////////////
 
 		Class traced = model.createOwnedClass("traced", false);
-		traced_reqR = (RequirementRelated)traced.applyStereotype(traced
-				.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		traced_reqR = (RequirementRelated)traced.applyStereotype(traced.getApplicableStereotype(REQUIREMENT_RELATED_ID));
 
 		Class trace1 = model.createOwnedClass("trace1", false);
 		trace1_req = (Requirement)trace1.applyStereotype(trace1.getApplicableStereotype(REQUIREMENT_ID));
@@ -208,8 +206,7 @@ public class RequirementRelatedTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class satisfying = model.createOwnedClass("satisfying", false);
-		satisfying_reqR = (RequirementRelated)satisfying.applyStereotype(satisfying
-				.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		satisfying_reqR = (RequirementRelated)satisfying.applyStereotype(satisfying.getApplicableStereotype(REQUIREMENT_RELATED_ID));
 
 		Class satisfied1 = model.createOwnedClass("satisfied1", false);
 		satisfied1_req = (Requirement)satisfied1.applyStereotype(satisfied1.getApplicableStereotype(REQUIREMENT_ID));
@@ -239,8 +236,7 @@ public class RequirementRelatedTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class verifying = model.createOwnedClass("verifying", false);
-		verifying_reqR = (RequirementRelated)verifying.applyStereotype(verifying
-				.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		verifying_reqR = (RequirementRelated)verifying.applyStereotype(verifying.getApplicableStereotype(REQUIREMENT_RELATED_ID));
 
 		Class verified1 = model.createOwnedClass("verified1", false);
 		verified1_req = (Requirement)verified1.applyStereotype(verified1.getApplicableStereotype(REQUIREMENT_ID));
@@ -270,8 +266,7 @@ public class RequirementRelatedTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class refining = model.createOwnedClass("refining", false);
-		refining_reqR = (RequirementRelated)refining.applyStereotype(refining
-				.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		refining_reqR = (RequirementRelated)refining.applyStereotype(refining.getApplicableStereotype(REQUIREMENT_RELATED_ID));
 
 		Class refined1 = model.createOwnedClass("refined1", false);
 		refined1_req = (Requirement)refined1.applyStereotype(refined1.getApplicableStereotype(REQUIREMENT_ID));

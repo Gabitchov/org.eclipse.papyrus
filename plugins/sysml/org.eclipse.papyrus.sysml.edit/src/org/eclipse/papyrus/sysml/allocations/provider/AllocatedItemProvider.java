@@ -76,19 +76,7 @@ public class AllocatedItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_NamedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Allocated_base_NamedElement_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Allocated_base_NamedElement_feature", "_UI_Allocated_type"),
-				AllocationsPackage.Literals.ALLOCATED__BASE_NAMED_ELEMENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_base_NamedElement_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocated_base_NamedElement_feature", "_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__BASE_NAMED_ELEMENT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class AllocatedItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addAllocatedFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Allocated_allocatedFrom_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedFrom_feature", "_UI_Allocated_type"),
-				AllocationsPackage.Literals.ALLOCATED__ALLOCATED_FROM,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedFrom_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedFrom_feature", "_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_FROM, false, false, false, null, null, null));
 	}
 
 	/**
@@ -122,19 +98,7 @@ public class AllocatedItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addAllocatedToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Allocated_allocatedTo_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedTo_feature", "_UI_Allocated_type"),
-				AllocationsPackage.Literals.ALLOCATED__ALLOCATED_TO,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedTo_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedTo_feature", "_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_TO, false, false, false, null, null, null));
 	}
 
 	/**

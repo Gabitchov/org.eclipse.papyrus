@@ -143,12 +143,9 @@ public class TestCaseTest extends TestCase {
 		Operation op1 = testClass.createOwnedOperation("op1", null, null, null);
 		Operation op2 = testClass.createOwnedOperation("op2", null, null, null);
 
-		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)op0.applyStereotype(op0
-				.getApplicableStereotype(TESTCASE_ID));
-		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)op1.applyStereotype(op1
-				.getApplicableStereotype(TESTCASE_ID));
-		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)op2.applyStereotype(op2
-				.getApplicableStereotype(TESTCASE_ID));
+		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)op0.applyStereotype(op0.getApplicableStereotype(TESTCASE_ID));
+		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)op1.applyStereotype(op1.getApplicableStereotype(TESTCASE_ID));
+		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)op2.applyStereotype(op2.getApplicableStereotype(TESTCASE_ID));
 
 		// Add "Verify" (Abstraction)
 		// testCase1, testCase2 -> verified1

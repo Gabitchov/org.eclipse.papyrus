@@ -48,8 +48,7 @@ public class PortandflowsAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected PortandflowsSwitch<Adapter> modelSwitch = new PortandflowsSwitch<Adapter>()
-			{
+	protected PortandflowsSwitch<Adapter> modelSwitch = new PortandflowsSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseFlowPort(FlowPort object) {

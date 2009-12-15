@@ -52,8 +52,7 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected RequirementsSwitch<Adapter> modelSwitch = new RequirementsSwitch<Adapter>()
-			{
+	protected RequirementsSwitch<Adapter> modelSwitch = new RequirementsSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseDeriveReqt(DeriveReqt object) {

@@ -75,19 +75,7 @@ public class ViewItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addViewPointPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_View_viewPoint_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_View_viewPoint_feature", "_UI_View_type"),
-				ModelelementsPackage.Literals.VIEW__VIEW_POINT,
-				false,
-				false,
-				false,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_View_viewPoint_feature"), getString("_UI_PropertyDescriptor_description", "_UI_View_viewPoint_feature", "_UI_View_type"), ModelelementsPackage.Literals.VIEW__VIEW_POINT, false, false, false, null, null, null));
 	}
 
 	/**
@@ -98,19 +86,7 @@ public class ViewItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addBase_PackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_View_base_Package_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_View_base_Package_feature", "_UI_View_type"),
-				ModelelementsPackage.Literals.VIEW__BASE_PACKAGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_View_base_Package_feature"), getString("_UI_PropertyDescriptor_description", "_UI_View_base_Package_feature", "_UI_View_type"), ModelelementsPackage.Literals.VIEW__BASE_PACKAGE, true, false, true, null, null, null));
 	}
 
 	/**

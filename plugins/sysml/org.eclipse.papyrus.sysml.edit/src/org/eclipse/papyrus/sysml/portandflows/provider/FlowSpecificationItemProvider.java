@@ -75,19 +75,7 @@ public class FlowSpecificationItemProvider extends ResourceEObjectItemProvider i
 	 * @generated
 	 */
 	protected void addBase_InterfacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FlowSpecification_base_Interface_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FlowSpecification_base_Interface_feature", "_UI_FlowSpecification_type"),
-				PortandflowsPackage.Literals.FLOW_SPECIFICATION__BASE_INTERFACE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowSpecification_base_Interface_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowSpecification_base_Interface_feature", "_UI_FlowSpecification_type"), PortandflowsPackage.Literals.FLOW_SPECIFICATION__BASE_INTERFACE, true, false, true, null, null, null));
 	}
 
 	/**

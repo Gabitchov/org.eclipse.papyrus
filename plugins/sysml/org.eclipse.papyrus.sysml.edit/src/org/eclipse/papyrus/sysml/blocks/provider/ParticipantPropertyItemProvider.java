@@ -76,19 +76,7 @@ public class ParticipantPropertyItemProvider extends ResourceEObjectItemProvider
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ParticipantProperty_base_Property_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_base_Property_feature", "_UI_ParticipantProperty_type"),
-				BlocksPackage.Literals.PARTICIPANT_PROPERTY__BASE_PROPERTY,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_base_Property_feature", "_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class ParticipantPropertyItemProvider extends ResourceEObjectItemProvider
 	 * @generated
 	 */
 	protected void addEndPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ParticipantProperty_end_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_end_feature", "_UI_ParticipantProperty_type"),
-				BlocksPackage.Literals.PARTICIPANT_PROPERTY__END,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_end_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_end_feature", "_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__END, true, false, true, null, null, null));
 	}
 
 	/**

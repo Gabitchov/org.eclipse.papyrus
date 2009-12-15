@@ -74,19 +74,7 @@ public class ConformItemProvider extends ResourceEObjectItemProvider implements 
 	 * @generated
 	 */
 	protected void addBase_DependencyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Conform_base_Dependency_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"),
-				ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"), ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true, null, null, null));
 	}
 
 	/**

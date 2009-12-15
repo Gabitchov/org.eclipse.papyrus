@@ -78,19 +78,7 @@ public class BlockItemProvider extends ResourceEObjectItemProvider implements IE
 	 * @generated
 	 */
 	protected void addIsEncapsulatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Block_isEncapsulated_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Block_isEncapsulated_feature", "_UI_Block_type"),
-				BlocksPackage.Literals.BLOCK__IS_ENCAPSULATED,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_isEncapsulated_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Block_isEncapsulated_feature", "_UI_Block_type"), BlocksPackage.Literals.BLOCK__IS_ENCAPSULATED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,19 +89,7 @@ public class BlockItemProvider extends ResourceEObjectItemProvider implements IE
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Block_base_Class_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Block_base_Class_feature", "_UI_Block_type"),
-				BlocksPackage.Literals.BLOCK__BASE_CLASS,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_base_Class_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Block_base_Class_feature", "_UI_Block_type"), BlocksPackage.Literals.BLOCK__BASE_CLASS, true, false, true, null, null, null));
 	}
 
 	/**

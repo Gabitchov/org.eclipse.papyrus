@@ -73,19 +73,7 @@ public class DimensionItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_InstanceSpecificationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Dimension_base_InstanceSpecification_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Dimension_base_InstanceSpecification_feature", "_UI_Dimension_type"),
-				BlocksPackage.Literals.DIMENSION__BASE_INSTANCE_SPECIFICATION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Dimension_base_InstanceSpecification_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Dimension_base_InstanceSpecification_feature", "_UI_Dimension_type"), BlocksPackage.Literals.DIMENSION__BASE_INSTANCE_SPECIFICATION, true, false, true, null, null, null));
 	}
 
 	/**

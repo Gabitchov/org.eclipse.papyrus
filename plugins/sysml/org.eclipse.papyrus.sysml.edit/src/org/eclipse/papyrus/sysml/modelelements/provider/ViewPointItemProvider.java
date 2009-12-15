@@ -82,19 +82,7 @@ public class ViewPointItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ViewPoint_base_Class_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_base_Class_feature", "_UI_ViewPoint_type"),
-				ModelelementsPackage.Literals.VIEW_POINT__BASE_CLASS,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_base_Class_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_base_Class_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__BASE_CLASS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -105,19 +93,7 @@ public class ViewPointItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addStakeHoldersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ViewPoint_stakeHolders_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_stakeHolders_feature", "_UI_ViewPoint_type"),
-				ModelelementsPackage.Literals.VIEW_POINT__STAKE_HOLDERS,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_stakeHolders_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_stakeHolders_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__STAKE_HOLDERS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -128,19 +104,7 @@ public class ViewPointItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addPurposePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ViewPoint_purpose_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_purpose_feature", "_UI_ViewPoint_type"),
-				ModelelementsPackage.Literals.VIEW_POINT__PURPOSE,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_purpose_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_purpose_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__PURPOSE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -151,19 +115,7 @@ public class ViewPointItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addConcernsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ViewPoint_concerns_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_concerns_feature", "_UI_ViewPoint_type"),
-				ModelelementsPackage.Literals.VIEW_POINT__CONCERNS,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_concerns_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_concerns_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__CONCERNS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -174,19 +126,7 @@ public class ViewPointItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addLanguagesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ViewPoint_languages_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_languages_feature", "_UI_ViewPoint_type"),
-				ModelelementsPackage.Literals.VIEW_POINT__LANGUAGES,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_languages_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_languages_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__LANGUAGES, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -197,19 +137,7 @@ public class ViewPointItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ViewPoint_methods_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_methods_feature", "_UI_ViewPoint_type"),
-				ModelelementsPackage.Literals.VIEW_POINT__METHODS,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_methods_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_methods_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__METHODS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -232,9 +160,7 @@ public class ViewPointItemProvider extends ResourceEObjectItemProvider implement
 	@Override
 	public String getText(Object object) {
 		String label = ((ViewPoint)object).getPurpose();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ViewPoint_type") :
-				getString("_UI_ViewPoint_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ViewPoint_type") : getString("_UI_ViewPoint_type") + " " + label;
 	}
 
 	/**

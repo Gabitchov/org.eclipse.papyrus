@@ -74,19 +74,7 @@ public class UnitItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addBase_InstanceSpecificationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Unit_base_InstanceSpecification_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Unit_base_InstanceSpecification_feature", "_UI_Unit_type"),
-				BlocksPackage.Literals.UNIT__BASE_INSTANCE_SPECIFICATION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_base_InstanceSpecification_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Unit_base_InstanceSpecification_feature", "_UI_Unit_type"), BlocksPackage.Literals.UNIT__BASE_INSTANCE_SPECIFICATION, true, false, true, null, null, null));
 	}
 
 	/**
@@ -97,19 +85,7 @@ public class UnitItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addDimensionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Unit_dimension_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Unit_dimension_feature", "_UI_Unit_type"),
-				BlocksPackage.Literals.UNIT__DIMENSION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_dimension_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Unit_dimension_feature", "_UI_Unit_type"), BlocksPackage.Literals.UNIT__DIMENSION, true, false, true, null, null, null));
 	}
 
 	/**

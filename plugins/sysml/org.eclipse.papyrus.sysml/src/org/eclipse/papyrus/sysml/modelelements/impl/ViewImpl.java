@@ -86,8 +86,7 @@ public class ViewImpl extends ResourceEObjectImpl implements View {
 			Iterator<Dependency> itDep = getBase_Package().getClientDependencies().iterator();
 			while(itDep.hasNext() && (conform == null)) {
 				Dependency currentDependency = itDep.next();
-				conform = (Conform)ElementUtil.hasStereotype(currentDependency, ModelelementsPackage.eINSTANCE
-						.getConform());
+				conform = (Conform)ElementUtil.hasStereotype(currentDependency, ModelelementsPackage.eINSTANCE.getConform());
 			}
 
 			// Find ViewPoint
@@ -95,8 +94,7 @@ public class ViewImpl extends ResourceEObjectImpl implements View {
 				Iterator<Element> itElt = conform.getBase_Dependency().getTargets().iterator();
 				while(itElt.hasNext()) {
 					Element currentElt = itElt.next();
-					viewPoint = (ViewPoint)ElementUtil.hasStereotype(currentElt, ModelelementsPackage.eINSTANCE
-							.getViewPoint());
+					viewPoint = (ViewPoint)ElementUtil.hasStereotype(currentElt, ModelelementsPackage.eINSTANCE.getViewPoint());
 				}
 			}
 		}

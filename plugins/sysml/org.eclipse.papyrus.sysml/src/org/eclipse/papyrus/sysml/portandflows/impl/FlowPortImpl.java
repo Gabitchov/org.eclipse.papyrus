@@ -315,8 +315,7 @@ public class FlowPortImpl extends ResourceEObjectImpl implements FlowPort {
 			// Find FlowPort type
 			Type type = getBase_Port().getType();
 			if((type != null) && (type instanceof Interface)) {
-				flowSpec = (FlowSpecification)ElementUtil.hasStereotype(type, PortandflowsPackage.eINSTANCE
-						.getFlowSpecification());
+				flowSpec = (FlowSpecification)ElementUtil.hasStereotype(type, PortandflowsPackage.eINSTANCE.getFlowSpecification());
 			}
 
 			if(flowSpec != null) {

@@ -47,8 +47,7 @@ public class AllocationsAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected AllocationsSwitch<Adapter> modelSwitch = new AllocationsSwitch<Adapter>()
-			{
+	protected AllocationsSwitch<Adapter> modelSwitch = new AllocationsSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseAllocate(Allocate object) {

@@ -47,8 +47,7 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected ConstraintsSwitch<Adapter> modelSwitch = new ConstraintsSwitch<Adapter>()
-			{
+	protected ConstraintsSwitch<Adapter> modelSwitch = new ConstraintsSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseConstraintBlock(ConstraintBlock object) {

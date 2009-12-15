@@ -74,19 +74,7 @@ public class AllocateActivityPartitionItemProvider extends ResourceEObjectItemPr
 	 * @generated
 	 */
 	protected void addBase_ActivityPartitionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_AllocateActivityPartition_base_ActivityPartition_feature", "_UI_AllocateActivityPartition_type"),
-				AllocationsPackage.Literals.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"), getString("_UI_PropertyDescriptor_description", "_UI_AllocateActivityPartition_base_ActivityPartition_feature", "_UI_AllocateActivityPartition_type"), AllocationsPackage.Literals.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, true, false, true, null, null, null));
 	}
 
 	/**

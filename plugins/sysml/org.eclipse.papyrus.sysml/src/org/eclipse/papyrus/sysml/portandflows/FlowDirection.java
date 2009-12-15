@@ -110,12 +110,7 @@ public enum FlowDirection implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final FlowDirection[] VALUES_ARRAY = new FlowDirection[]
-			{
-			IN,
-			OUT,
-			INOUT,
-			};
+	private static final FlowDirection[] VALUES_ARRAY = new FlowDirection[]{ IN, OUT, INOUT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Flow Direction</b></em>' enumerators. <!--

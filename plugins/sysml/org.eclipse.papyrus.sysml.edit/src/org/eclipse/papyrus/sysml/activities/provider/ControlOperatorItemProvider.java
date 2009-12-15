@@ -76,19 +76,7 @@ public class ControlOperatorItemProvider extends ResourceEObjectItemProvider imp
 	 * @generated
 	 */
 	protected void addBase_OperationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ControlOperator_base_Operation_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Operation_feature", "_UI_ControlOperator_type"),
-				ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_OPERATION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ControlOperator_base_Operation_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Operation_feature", "_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_OPERATION, true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,19 +87,7 @@ public class ControlOperatorItemProvider extends ResourceEObjectItemProvider imp
 	 * @generated
 	 */
 	protected void addBase_BehaviorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ControlOperator_base_Behavior_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Behavior_feature", "_UI_ControlOperator_type"),
-				ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_BEHAVIOR,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ControlOperator_base_Behavior_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Behavior_feature", "_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_BEHAVIOR, true, false, true, null, null, null));
 	}
 
 	/**
