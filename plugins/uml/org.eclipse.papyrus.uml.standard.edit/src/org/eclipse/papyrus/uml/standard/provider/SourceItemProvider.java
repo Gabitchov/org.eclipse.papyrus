@@ -73,19 +73,7 @@ public class SourceItemProvider extends ResourceEObjectItemProvider implements I
 	 * @generated
 	 */
 	protected void addBase_ArtifactPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Source_base_Artifact_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Source_base_Artifact_feature", "_UI_Source_type"),
-				StandardPackage.Literals.SOURCE__BASE_ARTIFACT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Source_base_Artifact_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Source_base_Artifact_feature", "_UI_Source_type"), StandardPackage.Literals.SOURCE__BASE_ARTIFACT, true, false, true, null, null, null));
 	}
 
 	/**

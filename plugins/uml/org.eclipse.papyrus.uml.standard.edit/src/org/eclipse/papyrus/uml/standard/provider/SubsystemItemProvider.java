@@ -73,19 +73,7 @@ public class SubsystemItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_ComponentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Subsystem_base_Component_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Subsystem_base_Component_feature", "_UI_Subsystem_type"),
-				StandardPackage.Literals.SUBSYSTEM__BASE_COMPONENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Subsystem_base_Component_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Subsystem_base_Component_feature", "_UI_Subsystem_type"), StandardPackage.Literals.SUBSYSTEM__BASE_COMPONENT, true, false, true, null, null, null));
 	}
 
 	/**

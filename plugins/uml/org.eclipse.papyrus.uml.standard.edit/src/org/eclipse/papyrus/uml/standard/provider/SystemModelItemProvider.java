@@ -73,19 +73,7 @@ public class SystemModelItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addBase_ModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_SystemModel_base_Model_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_SystemModel_base_Model_feature", "_UI_SystemModel_type"),
-				StandardPackage.Literals.SYSTEM_MODEL__BASE_MODEL,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemModel_base_Model_feature"), getString("_UI_PropertyDescriptor_description", "_UI_SystemModel_base_Model_feature", "_UI_SystemModel_type"), StandardPackage.Literals.SYSTEM_MODEL__BASE_MODEL, true, false, true, null, null, null));
 	}
 
 	/**

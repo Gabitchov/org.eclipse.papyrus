@@ -73,19 +73,7 @@ public class ExecutableItemProvider extends ResourceEObjectItemProvider implemen
 	 * @generated
 	 */
 	protected void addBase_ArtifactPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Executable_base_Artifact_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Executable_base_Artifact_feature", "_UI_Executable_type"),
-				StandardPackage.Literals.EXECUTABLE__BASE_ARTIFACT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Executable_base_Artifact_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Executable_base_Artifact_feature", "_UI_Executable_type"), StandardPackage.Literals.EXECUTABLE__BASE_ARTIFACT, true, false, true, null, null, null));
 	}
 
 	/**

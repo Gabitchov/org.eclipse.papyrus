@@ -73,19 +73,7 @@ public class MetamodelItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_ModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Metamodel_base_Model_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Metamodel_base_Model_feature", "_UI_Metamodel_type"),
-				StandardPackage.Literals.METAMODEL__BASE_MODEL,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Metamodel_base_Model_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Metamodel_base_Model_feature", "_UI_Metamodel_type"), StandardPackage.Literals.METAMODEL__BASE_MODEL, true, false, true, null, null, null));
 	}
 
 	/**

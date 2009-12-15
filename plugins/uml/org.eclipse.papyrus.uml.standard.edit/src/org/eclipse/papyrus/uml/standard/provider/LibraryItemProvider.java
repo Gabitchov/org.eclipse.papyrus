@@ -73,19 +73,7 @@ public class LibraryItemProvider extends ResourceEObjectItemProvider implements 
 	 * @generated
 	 */
 	protected void addBase_ArtifactPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Library_base_Artifact_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Library_base_Artifact_feature", "_UI_Library_type"),
-				StandardPackage.Literals.LIBRARY__BASE_ARTIFACT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Library_base_Artifact_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Library_base_Artifact_feature", "_UI_Library_type"), StandardPackage.Literals.LIBRARY__BASE_ARTIFACT, true, false, true, null, null, null));
 	}
 
 	/**

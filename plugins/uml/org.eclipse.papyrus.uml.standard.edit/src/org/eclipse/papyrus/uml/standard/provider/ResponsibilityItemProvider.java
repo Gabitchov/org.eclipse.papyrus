@@ -73,19 +73,7 @@ public class ResponsibilityItemProvider extends ResourceEObjectItemProvider impl
 	 * @generated
 	 */
 	protected void addBase_UsagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Responsibility_base_Usage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Responsibility_base_Usage_feature", "_UI_Responsibility_type"),
-				StandardPackage.Literals.RESPONSIBILITY__BASE_USAGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Responsibility_base_Usage_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Responsibility_base_Usage_feature", "_UI_Responsibility_type"), StandardPackage.Literals.RESPONSIBILITY__BASE_USAGE, true, false, true, null, null, null));
 	}
 
 	/**

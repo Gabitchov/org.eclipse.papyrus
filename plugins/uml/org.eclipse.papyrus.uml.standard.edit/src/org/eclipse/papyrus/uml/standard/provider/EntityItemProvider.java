@@ -73,19 +73,7 @@ public class EntityItemProvider extends ResourceEObjectItemProvider implements I
 	 * @generated
 	 */
 	protected void addBase_ComponentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Entity_base_Component_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Entity_base_Component_feature", "_UI_Entity_type"),
-				StandardPackage.Literals.ENTITY__BASE_COMPONENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Entity_base_Component_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Entity_base_Component_feature", "_UI_Entity_type"), StandardPackage.Literals.ENTITY__BASE_COMPONENT, true, false, true, null, null, null));
 	}
 
 	/**

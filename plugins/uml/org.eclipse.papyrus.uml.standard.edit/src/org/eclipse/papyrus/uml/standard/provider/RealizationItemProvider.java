@@ -73,19 +73,7 @@ public class RealizationItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addBase_ClassifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Realization_base_Classifier_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Realization_base_Classifier_feature", "_UI_Realization_type"),
-				StandardPackage.Literals.REALIZATION__BASE_CLASSIFIER,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Realization_base_Classifier_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Realization_base_Classifier_feature", "_UI_Realization_type"), StandardPackage.Literals.REALIZATION__BASE_CLASSIFIER, true, false, true, null, null, null));
 	}
 
 	/**

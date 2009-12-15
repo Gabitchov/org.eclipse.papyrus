@@ -73,19 +73,7 @@ public class ServiceItemProvider extends ResourceEObjectItemProvider implements 
 	 * @generated
 	 */
 	protected void addBase_ComponentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Service_base_Component_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Service_base_Component_feature", "_UI_Service_type"),
-				StandardPackage.Literals.SERVICE__BASE_COMPONENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Service_base_Component_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Service_base_Component_feature", "_UI_Service_type"), StandardPackage.Literals.SERVICE__BASE_COMPONENT, true, false, true, null, null, null));
 	}
 
 	/**

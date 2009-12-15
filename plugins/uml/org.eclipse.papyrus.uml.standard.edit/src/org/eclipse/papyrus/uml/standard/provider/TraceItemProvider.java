@@ -73,19 +73,7 @@ public class TraceItemProvider extends ResourceEObjectItemProvider implements IE
 	 * @generated
 	 */
 	protected void addBase_AbstractionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Trace_base_Abstraction_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Trace_base_Abstraction_feature", "_UI_Trace_type"),
-				StandardPackage.Literals.TRACE__BASE_ABSTRACTION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Trace_base_Abstraction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Trace_base_Abstraction_feature", "_UI_Trace_type"), StandardPackage.Literals.TRACE__BASE_ABSTRACTION, true, false, true, null, null, null));
 	}
 
 	/**

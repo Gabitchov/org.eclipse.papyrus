@@ -73,19 +73,7 @@ public class FrameworkItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_PackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Framework_base_Package_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Framework_base_Package_feature", "_UI_Framework_type"),
-				StandardPackage.Literals.FRAMEWORK__BASE_PACKAGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Framework_base_Package_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Framework_base_Package_feature", "_UI_Framework_type"), StandardPackage.Literals.FRAMEWORK__BASE_PACKAGE, true, false, true, null, null, null));
 	}
 
 	/**

@@ -73,19 +73,7 @@ public class DeriveItemProvider extends ResourceEObjectItemProvider implements I
 	 * @generated
 	 */
 	protected void addBase_AbstractionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Derive_base_Abstraction_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Derive_base_Abstraction_feature", "_UI_Derive_type"),
-				StandardPackage.Literals.DERIVE__BASE_ABSTRACTION,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Derive_base_Abstraction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Derive_base_Abstraction_feature", "_UI_Derive_type"), StandardPackage.Literals.DERIVE__BASE_ABSTRACTION, true, false, true, null, null, null));
 	}
 
 	/**

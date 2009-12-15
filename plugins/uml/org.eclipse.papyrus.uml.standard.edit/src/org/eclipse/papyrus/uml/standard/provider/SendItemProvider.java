@@ -73,19 +73,7 @@ public class SendItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addBase_UsagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Send_base_Usage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Send_base_Usage_feature", "_UI_Send_type"),
-				StandardPackage.Literals.SEND__BASE_USAGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Send_base_Usage_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Send_base_Usage_feature", "_UI_Send_type"), StandardPackage.Literals.SEND__BASE_USAGE, true, false, true, null, null, null));
 	}
 
 	/**

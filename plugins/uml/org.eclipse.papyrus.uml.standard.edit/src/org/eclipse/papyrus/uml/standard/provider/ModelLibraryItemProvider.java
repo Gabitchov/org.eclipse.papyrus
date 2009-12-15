@@ -73,19 +73,7 @@ public class ModelLibraryItemProvider extends ResourceEObjectItemProvider implem
 	 * @generated
 	 */
 	protected void addBase_PackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ModelLibrary_base_Package_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ModelLibrary_base_Package_feature", "_UI_ModelLibrary_type"),
-				StandardPackage.Literals.MODEL_LIBRARY__BASE_PACKAGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelLibrary_base_Package_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ModelLibrary_base_Package_feature", "_UI_ModelLibrary_type"), StandardPackage.Literals.MODEL_LIBRARY__BASE_PACKAGE, true, false, true, null, null, null));
 	}
 
 	/**

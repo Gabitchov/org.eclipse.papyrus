@@ -73,19 +73,7 @@ public class UtilityItemProvider extends ResourceEObjectItemProvider implements 
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Utility_base_Class_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Utility_base_Class_feature", "_UI_Utility_type"),
-				StandardPackage.Literals.UTILITY__BASE_CLASS,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Utility_base_Class_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Utility_base_Class_feature", "_UI_Utility_type"), StandardPackage.Literals.UTILITY__BASE_CLASS, true, false, true, null, null, null));
 	}
 
 	/**

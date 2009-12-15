@@ -73,19 +73,7 @@ public class DestroyItemProvider extends ResourceEObjectItemProvider implements 
 	 * @generated
 	 */
 	protected void addBase_BehavioralFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Destroy_base_BehavioralFeature_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Destroy_base_BehavioralFeature_feature", "_UI_Destroy_type"),
-				StandardPackage.Literals.DESTROY__BASE_BEHAVIORAL_FEATURE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Destroy_base_BehavioralFeature_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Destroy_base_BehavioralFeature_feature", "_UI_Destroy_type"), StandardPackage.Literals.DESTROY__BASE_BEHAVIORAL_FEATURE, true, false, true, null, null, null));
 	}
 
 	/**

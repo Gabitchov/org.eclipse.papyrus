@@ -108,8 +108,7 @@ public class StandardAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected StandardSwitch<Adapter> modelSwitch = new StandardSwitch<Adapter>()
-			{
+	protected StandardSwitch<Adapter> modelSwitch = new StandardSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseAuxiliary(Auxiliary object) {

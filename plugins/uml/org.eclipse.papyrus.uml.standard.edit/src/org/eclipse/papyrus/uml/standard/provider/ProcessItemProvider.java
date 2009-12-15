@@ -73,19 +73,7 @@ public class ProcessItemProvider extends ResourceEObjectItemProvider implements 
 	 * @generated
 	 */
 	protected void addBase_ComponentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Process_base_Component_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Process_base_Component_feature", "_UI_Process_type"),
-				StandardPackage.Literals.PROCESS__BASE_COMPONENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Process_base_Component_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Process_base_Component_feature", "_UI_Process_type"), StandardPackage.Literals.PROCESS__BASE_COMPONENT, true, false, true, null, null, null));
 	}
 
 	/**

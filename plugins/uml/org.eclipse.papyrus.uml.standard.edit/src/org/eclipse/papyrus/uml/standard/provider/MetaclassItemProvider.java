@@ -73,19 +73,7 @@ public class MetaclassItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Metaclass_base_Class_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Metaclass_base_Class_feature", "_UI_Metaclass_type"),
-				StandardPackage.Literals.METACLASS__BASE_CLASS,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Metaclass_base_Class_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Metaclass_base_Class_feature", "_UI_Metaclass_type"), StandardPackage.Literals.METACLASS__BASE_CLASS, true, false, true, null, null, null));
 	}
 
 	/**

@@ -73,19 +73,7 @@ public class CallItemProvider extends ResourceEObjectItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addBase_UsagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Call_base_Usage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Call_base_Usage_feature", "_UI_Call_type"),
-				StandardPackage.Literals.CALL__BASE_USAGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Call_base_Usage_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Call_base_Usage_feature", "_UI_Call_type"), StandardPackage.Literals.CALL__BASE_USAGE, true, false, true, null, null, null));
 	}
 
 	/**

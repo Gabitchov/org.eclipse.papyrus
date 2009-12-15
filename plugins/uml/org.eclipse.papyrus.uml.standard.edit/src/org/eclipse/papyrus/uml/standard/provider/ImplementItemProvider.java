@@ -73,19 +73,7 @@ public class ImplementItemProvider extends ResourceEObjectItemProvider implement
 	 * @generated
 	 */
 	protected void addBase_ComponentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Implement_base_Component_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Implement_base_Component_feature", "_UI_Implement_type"),
-				StandardPackage.Literals.IMPLEMENT__BASE_COMPONENT,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Implement_base_Component_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Implement_base_Component_feature", "_UI_Implement_type"), StandardPackage.Literals.IMPLEMENT__BASE_COMPONENT, true, false, true, null, null, null));
 	}
 
 	/**

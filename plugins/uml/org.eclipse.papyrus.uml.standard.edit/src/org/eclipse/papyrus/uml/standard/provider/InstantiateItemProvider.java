@@ -73,19 +73,7 @@ public class InstantiateItemProvider extends ResourceEObjectItemProvider impleme
 	 * @generated
 	 */
 	protected void addBase_UsagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Instantiate_base_Usage_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Instantiate_base_Usage_feature", "_UI_Instantiate_type"),
-				StandardPackage.Literals.INSTANTIATE__BASE_USAGE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Instantiate_base_Usage_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Instantiate_base_Usage_feature", "_UI_Instantiate_type"), StandardPackage.Literals.INSTANTIATE__BASE_USAGE, true, false, true, null, null, null));
 	}
 
 	/**
