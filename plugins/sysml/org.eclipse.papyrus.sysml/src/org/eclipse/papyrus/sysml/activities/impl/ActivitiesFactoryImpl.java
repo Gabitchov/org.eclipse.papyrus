@@ -24,7 +24,7 @@ import org.eclipse.papyrus.sysml.activities.Continuous;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
 import org.eclipse.papyrus.sysml.activities.Discrete;
 import org.eclipse.papyrus.sysml.activities.NoBuffer;
-import org.eclipse.papyrus.sysml.activities.Optionnal;
+import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
@@ -83,8 +83,8 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	@Override
 	public EObject create(EClass eClass) {
 		switch(eClass.getClassifierID()) {
-		case ActivitiesPackage.OPTIONNAL:
-			return createOptionnal();
+		case ActivitiesPackage.OPTIONAL:
+			return createOptional();
 		case ActivitiesPackage.RATE:
 			return createRate();
 		case ActivitiesPackage.PROBABILITY:
@@ -102,6 +102,17 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Optional createOptional() {
+		OptionalImpl optional = new OptionalImpl();
+		return optional;
 	}
 
 	/**
@@ -142,16 +153,6 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	public NoBuffer createNoBuffer() {
 		NoBufferImpl noBuffer = new NoBufferImpl();
 		return noBuffer;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public Optionnal createOptionnal() {
-		OptionnalImpl optionnal = new OptionnalImpl();
-		return optionnal;
 	}
 
 	/**

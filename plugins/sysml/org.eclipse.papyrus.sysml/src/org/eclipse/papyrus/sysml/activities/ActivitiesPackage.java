@@ -50,22 +50,24 @@ public interface ActivitiesPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.impl.OptionnalImpl <em>Optionnal</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl <em>Optional</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.OptionnalImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOptionnal()
+		 * @see org.eclipse.papyrus.sysml.activities.impl.OptionalImpl
+		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOptional()
 		 * @generated
 		 */
-		EClass OPTIONNAL = eINSTANCE.getOptionnal();
+		EClass OPTIONAL = eINSTANCE.getOptional();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Parameter</b></em>' reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference OPTIONNAL__BASE_PARAMETER = eINSTANCE.getOptionnal_Base_Parameter();
+		EReference OPTIONAL__BASE_PARAMETER = eINSTANCE.getOptional_Base_Parameter();
 
 		/**
 		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.impl.RateImpl <em>Rate</em>}' class. <!--
@@ -252,14 +254,15 @@ public interface ActivitiesPackage extends EPackage {
 	ActivitiesPackage eINSTANCE = org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.OptionnalImpl <em>Optionnal</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl <em>Optional</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.OptionnalImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOptionnal()
+	 * @see org.eclipse.papyrus.sysml.activities.impl.OptionalImpl
+	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOptional()
 	 * @generated
 	 */
-	int OPTIONNAL = 0;
+	int OPTIONAL = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Parameter</b></em>' reference.
@@ -269,17 +272,17 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONNAL__BASE_PARAMETER = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int OPTIONAL__BASE_PARAMETER = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Optionnal</em>' class.
+	 * The number of structural features of the '<em>Optional</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONNAL_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int OPTIONAL_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl <em>Rate</em>}' class.
@@ -581,6 +584,29 @@ public interface ActivitiesPackage extends EPackage {
 	int OVERWRITE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.activities.Optional <em>Optional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Optional</em>'.
+	 * @see org.eclipse.papyrus.sysml.activities.Optional
+	 * @generated
+	 */
+	EClass getOptional();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter <em>Base Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Base Parameter</em>'.
+	 * @see org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter()
+	 * @see #getOptional()
+	 * @generated
+	 */
+	EReference getOptional_Base_Parameter();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -664,27 +690,6 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNoBuffer_Base_ObjectNode();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.activities.Optionnal <em>Optionnal</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Optionnal</em>'.
-	 * @see org.eclipse.papyrus.sysml.activities.Optionnal
-	 * @generated
-	 */
-	EClass getOptionnal();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter <em>Base Parameter</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the reference '<em>Base Parameter</em>'.
-	 * @see org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter()
-	 * @see #getOptionnal()
-	 * @generated
-	 */
-	EReference getOptionnal_Base_Parameter();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.activities.Overwrite <em>Overwrite</em>}'.

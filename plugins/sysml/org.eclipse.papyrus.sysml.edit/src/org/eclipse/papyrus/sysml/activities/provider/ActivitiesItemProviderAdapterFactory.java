@@ -83,27 +83,28 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Optionnal} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Optional} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected OptionnalItemProvider optionnalItemProvider;
+	protected OptionalItemProvider optionalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.activities.Optionnal}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.activities.Optional}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createOptionnalAdapter() {
-		if(optionnalItemProvider == null) {
-			optionnalItemProvider = new OptionnalItemProvider(this);
+	public Adapter createOptionalAdapter() {
+		if(optionalItemProvider == null) {
+			optionalItemProvider = new OptionalItemProvider(this);
 		}
 
-		return optionnalItemProvider;
+		return optionalItemProvider;
 	}
 
 	/**
@@ -376,8 +377,8 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * @generated
 	 */
 	public void dispose() {
-		if(optionnalItemProvider != null)
-			optionnalItemProvider.dispose();
+		if(optionalItemProvider != null)
+			optionalItemProvider.dispose();
 		if(rateItemProvider != null)
 			rateItemProvider.dispose();
 		if(probabilityItemProvider != null)

@@ -33,6 +33,16 @@ public interface ActivitiesFactory extends EFactory {
 	ActivitiesFactory eINSTANCE = org.eclipse.papyrus.sysml.activities.impl.ActivitiesFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Optional</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Optional</em>'.
+	 * @generated
+	 */
+	Optional createOptional();
+
+	/**
 	 * Returns a new object of class '<em>Continuous</em>'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -69,15 +79,6 @@ public interface ActivitiesFactory extends EFactory {
 	 * @generated
 	 */
 	NoBuffer createNoBuffer();
-
-	/**
-	 * Returns a new object of class '<em>Optionnal</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @return a new object of class '<em>Optionnal</em>'.
-	 * @generated
-	 */
-	Optionnal createOptionnal();
 
 	/**
 	 * Returns a new object of class '<em>Overwrite</em>'. <!-- begin-user-doc --> <!-- end-user-doc

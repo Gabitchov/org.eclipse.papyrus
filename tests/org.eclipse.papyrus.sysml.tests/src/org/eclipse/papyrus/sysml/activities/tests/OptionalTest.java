@@ -17,77 +17,84 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import org.eclipse.papyrus.sysml.activities.ActivitiesFactory;
-import org.eclipse.papyrus.sysml.activities.Optionnal;
+import org.eclipse.papyrus.sysml.activities.Optional;
 
 /**
- * <!-- begin-user-doc --> A test case for the model object '<em><b>Optionnal</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A test case for the model object '<em><b>Optional</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class OptionnalTest extends TestCase {
+public class OptionalTest extends TestCase {
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Optional test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected Optional fixture = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(OptionnalTest.class);
+		TestRunner.run(OptionalTest.class);
 	}
 
 	/**
-	 * The fixture for this Optionnal test case.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Constructs a new Optional test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected Optionnal fixture = null;
-
-	/**
-	 * Constructs a new Optionnal test case with the given name.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public OptionnalTest(String name) {
+	public OptionalTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Optionnal test case. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the fixture for this Optional test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected Optionnal getFixture() {
-		return fixture;
-	}
-
-	/**
-	 * Sets the fixture for this Optionnal test case.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void setFixture(Optionnal fixture) {
+	protected void setFixture(Optional fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the fixture for this Optional test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected Optional getFixture() {
+		return fixture;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ActivitiesFactory.eINSTANCE.createOptionnal());
+		setFixture(ActivitiesFactory.eINSTANCE.createOptional());
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
@@ -97,4 +104,4 @@ public class OptionnalTest extends TestCase {
 		setFixture(null);
 	}
 
-} // OptionnalTest
+} //OptionalTest

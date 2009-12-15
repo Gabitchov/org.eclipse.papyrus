@@ -500,7 +500,7 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Profile" xmi:id="_C2zXMLX8EduFmqQsrNB9lw" name="Activities">
-      <packagedElement xmi:type="uml:Stereotype" xmi:id="_1uhmQLXjEduHWpAaWjM62w" name="Optionnal">
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_1uhmQLXjEduHWpAaWjM62w" name="Optional">
         <ownedAttribute xmi:id="_Cs5hMLXkEduHWpAaWjM62w" name="base_Parameter" isUnique="false" association="_CslYILXkEduHWpAaWjM62w">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
         </ownedAttribute>
@@ -543,8 +543,8 @@
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_-N-e0LXjEduHWpAaWjM62w" name="Discrete">
         <generalization xmi:id="_BcS08LXkEduHWpAaWjM62w" general="_2a7ZQLXjEduHWpAaWjM62w"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Extension" xmi:id="_CslYILXkEduHWpAaWjM62w" name="ParameterOptionnal" memberEnd="_CsppkLXkEduHWpAaWjM62w _Cs5hMLXkEduHWpAaWjM62w">
-        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_CsppkLXkEduHWpAaWjM62w" name="extension_Optionnal" type="_1uhmQLXjEduHWpAaWjM62w" aggregation="composite" association="_CslYILXkEduHWpAaWjM62w"/>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_CslYILXkEduHWpAaWjM62w" name="ParameterOptional" memberEnd="_CsppkLXkEduHWpAaWjM62w _Cs5hMLXkEduHWpAaWjM62w">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_CsppkLXkEduHWpAaWjM62w" name="extension_Optional" type="_1uhmQLXjEduHWpAaWjM62w" aggregation="composite" association="_CslYILXkEduHWpAaWjM62w"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Extension" xmi:id="_C-XrsLXkEduHWpAaWjM62w" name="ParameterRate" memberEnd="_C-b9ILXkEduHWpAaWjM62w _C-oKYLXkEduHWpAaWjM62w">
         <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_C-b9ILXkEduHWpAaWjM62w" name="extension_Rate" type="_2a7ZQLXjEduHWpAaWjM62w" aggregation="composite" association="_C-XrsLXkEduHWpAaWjM62w"/>

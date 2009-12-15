@@ -151,7 +151,7 @@
   </eSubpackages>
   <eSubpackages name="activities" nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Activities"
       nsPrefix="Activities">
-    <eClassifiers xsi:type="ecore:EClass" name="Optionnal" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
+    <eClassifiers xsi:type="ecore:EClass" name="Optional" eSuperTypes="platform:/plugin/org.eclipse.papyrus.resource/model/resource.ecore#//ResourceEObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="base_Parameter" ordered="false"
           unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     </eClassifiers>

@@ -25,7 +25,7 @@ import org.eclipse.papyrus.sysml.activities.Continuous;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
 import org.eclipse.papyrus.sysml.activities.Discrete;
 import org.eclipse.papyrus.sysml.activities.NoBuffer;
-import org.eclipse.papyrus.sysml.activities.Optionnal;
+import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
@@ -57,6 +57,14 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPackage {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass optionalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -137,11 +145,24 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	private EClass optionnalEClass = null;
+	public EClass getOptional() {
+		return optionalEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getOptional_Base_Parameter() {
+		return (EReference)optionalEClass.getEStructuralFeatures().get(0);
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -236,8 +257,8 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		isCreated = true;
 
 		// Create classes and their features
-		optionnalEClass = createEClass(OPTIONNAL);
-		createEReference(optionnalEClass, OPTIONNAL__BASE_PARAMETER);
+		optionalEClass = createEClass(OPTIONAL);
+		createEReference(optionalEClass, OPTIONAL__BASE_PARAMETER);
 
 		rateEClass = createEClass(RATE);
 		createEReference(rateEClass, RATE__BASE_PARAMETER);
@@ -334,24 +355,6 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 	 */
 	public EReference getNoBuffer_Base_ObjectNode() {
 		return (EReference)noBufferEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getOptionnal() {
-		return optionnalEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getOptionnal_Base_Parameter() {
-		return (EReference)optionnalEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -470,7 +473,7 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		optionnalEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
+		optionalEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 		rateEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 		probabilityEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 		continuousEClass.getESuperTypes().add(this.getRate());
@@ -480,8 +483,8 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		overwriteEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(optionnalEClass, Optionnal.class, "Optionnal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOptionnal_Base_Parameter(), theUMLPackage.getParameter(), null, "base_Parameter", null, 1, 1, Optionnal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(optionalEClass, Optional.class, "Optional", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOptional_Base_Parameter(), theUMLPackage.getParameter(), null, "base_Parameter", null, 1, 1, Optional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(rateEClass, Rate.class, "Rate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRate_Base_Parameter(), theUMLPackage.getParameter(), null, "base_Parameter", null, 1, 1, Rate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

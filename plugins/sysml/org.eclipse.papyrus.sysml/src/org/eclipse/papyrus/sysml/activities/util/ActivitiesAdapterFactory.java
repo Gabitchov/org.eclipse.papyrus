@@ -23,7 +23,7 @@ import org.eclipse.papyrus.sysml.activities.Continuous;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
 import org.eclipse.papyrus.sysml.activities.Discrete;
 import org.eclipse.papyrus.sysml.activities.NoBuffer;
-import org.eclipse.papyrus.sysml.activities.Optionnal;
+import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
@@ -55,8 +55,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	protected ActivitiesSwitch<Adapter> modelSwitch = new ActivitiesSwitch<Adapter>() {
 
 		@Override
-		public Adapter caseOptionnal(Optionnal object) {
-			return createOptionnalAdapter();
+		public Adapter caseOptional(Optional object) {
+			return createOptionalAdapter();
 		}
 
 		@Override
@@ -132,6 +132,21 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.Optional <em>Optional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.sysml.activities.Optional
+	 * @generated
+	 */
+	public Adapter createOptionalAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Continuous <em>Continuous</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -196,20 +211,6 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNoBufferAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Optionnal <em>Optionnal</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.sysml.activities.Optionnal
-	 * @generated
-	 */
-	public Adapter createOptionnalAdapter() {
 		return null;
 	}
 

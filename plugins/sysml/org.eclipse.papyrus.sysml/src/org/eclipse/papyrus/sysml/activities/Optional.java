@@ -17,21 +17,22 @@ import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.uml2.uml.Parameter;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Optionnal</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Optional</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter <em>Base Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter <em>Base Parameter</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.papyrus.sysml.activities.ActivitiesPackage#getOptionnal()
+ * @see org.eclipse.papyrus.sysml.activities.ActivitiesPackage#getOptional()
  * @model
  * @generated
  */
-public interface Optionnal extends ResourceEObject {
+public interface Optional extends ResourceEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Parameter</b></em>' reference.
@@ -43,15 +44,16 @@ public interface Optionnal extends ResourceEObject {
 	 * 
 	 * @return the value of the '<em>Base Parameter</em>' reference.
 	 * @see #setBase_Parameter(Parameter)
-	 * @see org.eclipse.papyrus.sysml.activities.ActivitiesPackage#getOptionnal_Base_Parameter()
+	 * @see org.eclipse.papyrus.sysml.activities.ActivitiesPackage#getOptional_Base_Parameter()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	Parameter getBase_Parameter();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Optionnal#getBase_Parameter <em>Base Parameter</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter <em>Base Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Parameter</em>' reference.
@@ -60,4 +62,4 @@ public interface Optionnal extends ResourceEObject {
 	 */
 	void setBase_Parameter(Parameter value);
 
-} // Optionnal
+} // Optional
