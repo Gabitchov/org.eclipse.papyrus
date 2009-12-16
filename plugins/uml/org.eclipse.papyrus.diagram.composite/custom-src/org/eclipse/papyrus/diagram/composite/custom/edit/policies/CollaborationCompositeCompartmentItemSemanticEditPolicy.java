@@ -24,8 +24,7 @@ import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
  * generated for the Collaboration element (when used in CompositeStructure Diagram)
  * </pre>
  */
-public class CollaborationCompositeCompartmentItemSemanticEditPolicy extends
-		org.eclipse.papyrus.diagram.composite.edit.policies.CollaborationCompositeCompartmentItemSemanticEditPolicy {
+public class CollaborationCompositeCompartmentItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.composite.edit.policies.CollaborationCompositeCompartmentItemSemanticEditPolicy {
 
 	/**
 	 * <pre>

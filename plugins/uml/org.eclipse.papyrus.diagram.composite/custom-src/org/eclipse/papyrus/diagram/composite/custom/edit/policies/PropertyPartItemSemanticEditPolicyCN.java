@@ -29,8 +29,7 @@ import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
  * TODO : This should probably also manage Port clean removal (semantic deletion causes issues)
  * </pre>
  */
-public class PropertyPartItemSemanticEditPolicyCN extends
-		org.eclipse.papyrus.diagram.composite.edit.policies.PropertyPartItemSemanticEditPolicyCN {
+public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.diagram.composite.edit.policies.PropertyPartItemSemanticEditPolicyCN {
 
 	/**
 	 * <pre>

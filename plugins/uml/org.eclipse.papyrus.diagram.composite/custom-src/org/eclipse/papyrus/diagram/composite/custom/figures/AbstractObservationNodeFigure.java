@@ -59,10 +59,8 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 				if(container.getChildren().get(i) instanceof Label) {
 					// Do nothing
 				} else {
-					minimumHeight = minimumHeight
-							+ ((IFigure)container.getChildren().get(i)).getPreferredSize().height + 2;
-					minimumWidth = minimumWidth + ((IFigure)container.getChildren().get(i)).getPreferredSize().width
-							+ 1;
+					minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height + 2;
+					minimumWidth = minimumWidth + ((IFigure)container.getChildren().get(i)).getPreferredSize().width + 1;
 
 				}
 			}

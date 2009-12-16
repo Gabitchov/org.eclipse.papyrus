@@ -23,8 +23,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
 
-public class PropertyPartCreateCommand extends
-		org.eclipse.papyrus.diagram.composite.edit.commands.PropertyPartCreateCommandCN {
+public class PropertyPartCreateCommand extends org.eclipse.papyrus.diagram.composite.edit.commands.PropertyPartCreateCommandCN {
 
 	/** Constructor **/
 	public PropertyPartCreateCommand(CreateElementRequest req) {

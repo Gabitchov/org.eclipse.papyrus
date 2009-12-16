@@ -86,8 +86,7 @@ public class AbstractionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAbstraction_4007(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAbstraction_4007(container, getNewSource(), target);
 	}
 
 	/**
@@ -105,8 +104,7 @@ public class AbstractionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAbstraction_4007(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAbstraction_4007(container, source, getNewTarget());
 	}
 
 	/**

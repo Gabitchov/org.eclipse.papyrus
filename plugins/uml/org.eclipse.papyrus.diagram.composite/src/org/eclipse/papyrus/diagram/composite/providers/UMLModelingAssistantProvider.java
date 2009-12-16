@@ -1446,8 +1446,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((InteractionCompositeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ProtocolStateMachineCompositeEditPart) {
-			return ((ProtocolStateMachineCompositeEditPart)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((ProtocolStateMachineCompositeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof StateMachineCompositeEditPart) {
 			return ((StateMachineCompositeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -1465,8 +1464,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DeviceCompositeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ExecutionEnvironmentCompositeEditPart) {
-			return ((ExecutionEnvironmentCompositeEditPart)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((ExecutionEnvironmentCompositeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof NodeCompositeEditPart) {
 			return ((NodeCompositeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -1625,15 +1623,13 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((InteractionCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ProtocolStateMachineCompositeEditPartCN) {
-			return ((ProtocolStateMachineCompositeEditPartCN)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((ProtocolStateMachineCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof StateMachineCompositeEditPartCN) {
 			return ((StateMachineCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof FunctionBehaviorCompositeEditPartCN) {
-			return ((FunctionBehaviorCompositeEditPartCN)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((FunctionBehaviorCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof OpaqueBehaviorCompositeEditPartCN) {
 			return ((OpaqueBehaviorCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -1645,8 +1641,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DeviceCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ExecutionEnvironmentCompositeEditPartCN) {
-			return ((ExecutionEnvironmentCompositeEditPartCN)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((ExecutionEnvironmentCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof NodeCompositeEditPartCN) {
 			return ((NodeCompositeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -2253,8 +2248,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);

@@ -48,8 +48,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConnectorItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -61,18 +60,15 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 			return true;
 		}
 		if(childEditPart instanceof ConnectorMultiplicitySourceEditPart) {
-			((ConnectorMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getMultiplicitySourceLabel());
+			((ConnectorMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
 		if(childEditPart instanceof ConnectorMultiplicityTargetEditPart) {
-			((ConnectorMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getMultiplicityTargetLabel());
+			((ConnectorMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		if(childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
-			((ConnectorAppliedStereotypeEditPart)childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((ConnectorAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;

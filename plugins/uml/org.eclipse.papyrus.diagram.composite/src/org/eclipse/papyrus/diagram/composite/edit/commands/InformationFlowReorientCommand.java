@@ -86,8 +86,7 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, getNewSource(),
-				target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, getNewSource(), target);
 	}
 
 	/**
@@ -105,8 +104,7 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, source,
-				getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, source, getNewTarget());
 	}
 
 	/**

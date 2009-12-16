@@ -75,8 +75,7 @@ public class ConnectorHelper extends ElementHelper {
 	 * @param containerView
 	 * @return the drop command for Connector
 	 */
-	public CompositeCommand dropConnector(Connector connector, int linkVisualID, EditPartViewer viewer, EditPart host,
-			PreferencesHint diagramPreferencesHint, Point location, View containerView) {
+	public CompositeCommand dropConnector(Connector connector, int linkVisualID, EditPartViewer viewer, EditPart host, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 
 		CompositeCommand cc = new CompositeCommand("drop Connector");
 
@@ -91,24 +90,18 @@ public class ConnectorHelper extends ElementHelper {
 		GraphicalEditPart targetEditPart = resolveRoleEditPart(targetRole, targetPartWithPort, viewer);
 
 		// descriptor of the link
-		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
-				UMLElementTypes.getElementType(linkVisualID), ((IHintedType)UMLElementTypes
-				.getElementType(linkVisualID)).getSemanticHint(), diagramPreferencesHint);
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(UMLElementTypes.getElementType(linkVisualID), ((IHintedType)UMLElementTypes.getElementType(linkVisualID)).getSemanticHint(), diagramPreferencesHint);
 
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
 		if(sourceEditPart == null) {
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(sourceRole), Node.class, null,
-					ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(sourceRole), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(),
-					descriptor, ((View)host.getModel()));
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)host.getModel()));
 			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-					(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x,
-					location.y + 100));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100));
 			cc.compose(setBoundsCommand);
 
 			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
@@ -117,16 +110,12 @@ public class ConnectorHelper extends ElementHelper {
 		}
 		if(targetEditPart == null) {
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(targetRole), Node.class, null,
-					ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(targetRole), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(),
-					descriptor, ((View)host.getModel()));
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)host.getModel()));
 			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move",
-					(IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x,
-					location.y - 100));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
 			cc.compose(setBoundsCommand);
 			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 
@@ -134,9 +123,7 @@ public class ConnectorHelper extends ElementHelper {
 			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
 		}
 
-		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(
-				getEditingDomain(), ((IHintedType)UMLElementTypes.getElementType(linkVisualID)).getSemanticHint(),
-				sourceAdapter, targetAdapter, viewer, diagramPreferencesHint, linkdescriptor, null);
+		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.getElementType(linkVisualID)).getSemanticHint(), sourceAdapter, targetAdapter, viewer, diagramPreferencesHint, linkdescriptor, null);
 		aLinkCommand.setElement(connector);
 		cc.compose(aLinkCommand);
 		return cc;
@@ -160,8 +147,7 @@ public class ConnectorHelper extends ElementHelper {
 
 			EditPart currentEditPart = editPartIterator.next();
 
-			if((currentEditPart instanceof ShapeNodeEditPart)
-					&& (role.equals(((ShapeNodeEditPart)currentEditPart).resolveSemanticElement()))) {
+			if((currentEditPart instanceof ShapeNodeEditPart) && (role.equals(((ShapeNodeEditPart)currentEditPart).resolveSemanticElement()))) {
 
 				if(partWithPort == null) {
 

@@ -57,9 +57,7 @@ import org.eclipse.uml2.uml.Type;
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	/** List of VISUAL_ID for which a specific Drop behavior is provided */
-	public int[] secificDropNode = { DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID,
-			ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, PropertyPartEditPartCN.VISUAL_ID,
-			TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
+	public int[] secificDropNode = { DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
 
 	/**
 	 * Default constructor
@@ -97,8 +95,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID,
-			int linkVISUALID) {
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 
 		// Retrieve drop location
 		Point location = dropRequest.getLocation().getCopy();
@@ -124,8 +121,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case TimeObservationEditPart.VISUAL_ID:
 				return dropTimeObservation(dropRequest, location, (TimeObservation)semanticElement, nodeVISUALID);
 			case DurationObservationEditPart.VISUAL_ID:
-				return dropDurationObservation(dropRequest, location, (DurationObservation)semanticElement,
-						nodeVISUALID);
+				return dropDurationObservation(dropRequest, location, (DurationObservation)semanticElement, nodeVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			}
@@ -203,9 +199,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if((connectorEnds != null) && (connectorEnds.size() == 2)) {
 
 			ConnectorHelper helper = new ConnectorHelper(getEditingDomain());
-			return new ICommandProxy(helper.dropConnector((Connector)semanticLink, linkVISUALID, getViewer(),
-					getHost(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
-					.getNotationView()));
+			return new ICommandProxy(helper.dropConnector((Connector)semanticLink, linkVISUALID, getViewer(), getHost(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView()));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -224,8 +218,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropProperty(DropObjectsRequest dropRequest, Point location, Property droppedElement,
-			int nodeVISUALID) {
+	protected Command dropProperty(DropObjectsRequest dropRequest, Point location, Property droppedElement, int nodeVISUALID) {
 
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
@@ -233,15 +226,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// Port inherits from Property this case should be excluded and treated separately
 		if(!(droppedElement instanceof Port)) {
 
-			if((graphicalParentObject instanceof Classifier)
-					&& (((Classifier)graphicalParentObject).getAttributes().contains(droppedElement))) {
+			if((graphicalParentObject instanceof Classifier) && (((Classifier)graphicalParentObject).getAttributes().contains(droppedElement))) {
 				// The graphical parent is the real owner of the dropped property.
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 
 			} else if(graphicalParentObject instanceof ConnectableElement) {
 				Type type = ((ConnectableElement)graphicalParentObject).getType();
-				if((type != null) && (type instanceof Classifier)
-						&& (((Classifier)type).getAttributes().contains(droppedElement))) {
+				if((type != null) && (type instanceof Classifier) && (((Classifier)type).getAttributes().contains(droppedElement))) {
 					// The graphical parent is a Property typed by a Classifier that owns of the
 					// dropped property.
 					return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
@@ -270,15 +261,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
-		if((graphicalParentObject instanceof EncapsulatedClassifier)
-				&& (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
+		if((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 
 		} else if(graphicalParentObject instanceof ConnectableElement) {
 			Type type = ((ConnectableElement)graphicalParentObject).getType();
 
-			if((type != null) && (type instanceof EncapsulatedClassifier)
-					&& (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
+			if((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 			}
 		}
@@ -300,13 +289,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the drop command
 	 * 
 	 */
-	protected Command dropDurationObservation(DropObjectsRequest dropRequest, Point location,
-			DurationObservation droppedElement, int nodeVISUALID) {
+	protected Command dropDurationObservation(DropObjectsRequest dropRequest, Point location, DurationObservation droppedElement, int nodeVISUALID) {
 
 		DurationObservationHelper durationObservationHelper = new DurationObservationHelper(getEditingDomain());
-		return durationObservationHelper.dropDurationObservation((DurationObservation)droppedElement, getViewer(),
-				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
-				.getNotationView());
+		return durationObservationHelper.dropDurationObservation((DurationObservation)droppedElement, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 
 	}
 
@@ -324,13 +310,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the drop command
 	 * 
 	 */
-	protected Command dropTimeObservation(DropObjectsRequest dropRequest, Point location,
-			TimeObservation droppedElement, int nodeVISUALID) {
+	protected Command dropTimeObservation(DropObjectsRequest dropRequest, Point location, TimeObservation droppedElement, int nodeVISUALID) {
 
 		TimeObservationHelper timeObservationHelper = new TimeObservationHelper(getEditingDomain());
-		return timeObservationHelper.dropTimeObservation((TimeObservation)droppedElement, getViewer(),
-				getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost())
-				.getNotationView());
+		return timeObservationHelper.dropTimeObservation((TimeObservation)droppedElement, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 	}
 
 }

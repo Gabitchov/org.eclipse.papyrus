@@ -61,8 +61,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
-			.getBundledImageDescriptor(DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(DIAG_IMG_PATH);
 
 	/**
 	 * Parent
@@ -81,8 +80,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	 * @throws ServiceException
 	 * 
 	 */
-	public UmlCompositeDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
-			throws BackboneException, ServiceException {
+	public UmlCompositeDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
@@ -173,8 +171,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
 			@Override
 			protected Object getJavaObject(TransferData data) {

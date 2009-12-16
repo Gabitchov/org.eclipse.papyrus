@@ -141,8 +141,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand)
-					.getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -354,16 +353,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateComponentRealization_4004(Package container, NamedElement source,
-				NamedElement target) {
+		public static boolean canCreateComponentRealization_4004(Package container, NamedElement source, NamedElement target) {
 			return canExistComponentRealization_4004(container, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateInterfaceRealization_4005(Package container, NamedElement source,
-				NamedElement target) {
+		public static boolean canCreateInterfaceRealization_4005(Package container, NamedElement source, NamedElement target) {
 			return canExistInterfaceRealization_4005(container, source, target);
 		}
 
@@ -426,8 +423,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConnector_4013(StructuredClassifier container, ConnectorEnd source,
-				ConnectorEnd target) {
+		public static boolean canCreateConnector_4013(StructuredClassifier container, ConnectorEnd source, ConnectorEnd target) {
 			return canExistConnector_4013(container, source, target);
 		}
 
@@ -495,16 +491,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistComponentRealization_4004(Package container, NamedElement source,
-				NamedElement target) {
+		public static boolean canExistComponentRealization_4004(Package container, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistInterfaceRealization_4005(Package container, NamedElement source,
-				NamedElement target) {
+		public static boolean canExistInterfaceRealization_4005(Package container, NamedElement source, NamedElement target) {
 			return true;
 		}
 
@@ -588,8 +582,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistConnector_4013(StructuredClassifier container, ConnectorEnd source,
-				ConnectorEnd target) {
+		public static boolean canExistConnector_4013(StructuredClassifier container, ConnectorEnd source, ConnectorEnd target) {
 			return true;
 		}
 

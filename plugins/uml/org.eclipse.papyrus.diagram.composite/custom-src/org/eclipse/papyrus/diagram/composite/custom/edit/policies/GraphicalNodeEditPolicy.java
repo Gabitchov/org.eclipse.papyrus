@@ -67,11 +67,9 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		// return super.getConnectionAndRelationshipCompleteCommand(request);
 
 		// get the element descriptor
-		CreateElementRequestAdapter requestAdapter = request.getConnectionViewAndElementDescriptor()
-				.getCreateElementRequestAdapter();
+		CreateElementRequestAdapter requestAdapter = request.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 		// get the semantic request
-		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter
-				.getAdapter(CreateRelationshipRequest.class);
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class);
 
 		createElementRequest.setPrompt(!request.isUISupressed());
 
@@ -115,9 +113,7 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 
 		// get the create element request based on the elementdescriptor's
 		// request
-		Command createElementCommand = targetEP.getCommand(new EditCommandRequestWrapper(
-				(CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class), request
-				.getExtendedData()));
+		Command createElementCommand = targetEP.getCommand(new EditCommandRequestWrapper((CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class), request.getExtendedData()));
 
 		// create the create semantic element wrapper command
 		if(null == createElementCommand)

@@ -24,8 +24,7 @@ import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
  * generated for the PropertyPartCompartment element (when used in CompositeStructure Diagram)
  * </pre>
  */
-public class PropertyPartCompartmentItemSemanticEditPolicyCN extends
-		org.eclipse.papyrus.diagram.composite.edit.policies.PropertyPartCompartmentItemSemanticEditPolicyCN {
+public class PropertyPartCompartmentItemSemanticEditPolicyCN extends org.eclipse.papyrus.diagram.composite.edit.policies.PropertyPartCompartmentItemSemanticEditPolicyCN {
 
 	/**
 	 * <pre>

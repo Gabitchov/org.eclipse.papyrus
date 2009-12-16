@@ -25,8 +25,7 @@ import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
  * generated for the Port element (when used in CompositeStructure Diagram)
  * </pre>
  */
-public class PortItemSemanticEditPolicy extends
-		org.eclipse.papyrus.diagram.composite.edit.policies.PortItemSemanticEditPolicy {
+public class PortItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.composite.edit.policies.PortItemSemanticEditPolicy {
 
 	/**
 	 * <pre>

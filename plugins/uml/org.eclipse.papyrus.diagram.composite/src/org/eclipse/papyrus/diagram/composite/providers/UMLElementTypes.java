@@ -677,8 +677,7 @@ public class UMLElementTypes extends ElementInitializers {
 		if(element instanceof EClass) {
 			EClass eClass = (EClass)element;
 			if(!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(
-						eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features

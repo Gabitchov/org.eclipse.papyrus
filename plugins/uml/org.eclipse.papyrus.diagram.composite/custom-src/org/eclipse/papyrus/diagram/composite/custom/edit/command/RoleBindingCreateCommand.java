@@ -40,8 +40,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * {@link ConnectableElement}.
  * </pre>
  */
-public class RoleBindingCreateCommand extends
-		org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateCommand {
+public class RoleBindingCreateCommand extends org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateCommand {
 
 	/**
 	 * Constructor
@@ -67,8 +66,7 @@ public class RoleBindingCreateCommand extends
 	 * </pre>
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 
 		if(!canExecute()) {
 			throw new ExecutionException(Messages.RoleBindingCreateCommand_INVALID_ARGS_MSG);
@@ -82,8 +80,7 @@ public class RoleBindingCreateCommand extends
 		// Create and open the selection dialog
 		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		Shell currentShell = new Shell(Display.getCurrent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(currentShell,
-				new AdapterFactoryLabelProvider(adapterFactory), new CollaborationRoleTreeContentProvider());
+		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(currentShell, new AdapterFactoryLabelProvider(adapterFactory), new CollaborationRoleTreeContentProvider());
 
 		// Set dialog parameters
 		dialog.setTitle(Messages.RoleBindingRoleSelectionDialog_Title);

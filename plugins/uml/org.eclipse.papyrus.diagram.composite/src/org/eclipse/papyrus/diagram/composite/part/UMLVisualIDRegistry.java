@@ -78,8 +78,7 @@ public class UMLVisualIDRegistry {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
 			if(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance()
-						.logError("Unable to parse view type as a visualID number: " + type);
+				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
 			}
 		}
 		return -1;
@@ -99,8 +98,7 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-				&& isDiagram((Package)domainElement)) {
+		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
 
@@ -114,15 +112,13 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		String containerModelID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getModelID(containerView);
 		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
 		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
@@ -430,8 +426,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ActivityCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -556,8 +551,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -682,8 +676,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -808,8 +801,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -934,8 +926,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1060,8 +1051,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1186,8 +1176,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1312,8 +1301,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1438,8 +1426,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1564,8 +1551,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1690,8 +1676,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1816,8 +1801,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case CollaborationCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1837,8 +1821,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ActivityCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -1963,8 +1946,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InteractionCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2089,8 +2071,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2215,8 +2196,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2341,8 +2321,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2467,8 +2446,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2593,8 +2571,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2719,8 +2696,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2845,8 +2821,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -2971,8 +2946,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case NodeCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -3097,8 +3071,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -3223,8 +3196,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case CollaborationCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
@@ -3244,8 +3216,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PropertyPartCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-					&& isProperty_3070(containerView, (Property)domainElement)) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
@@ -3539,15 +3510,13 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getModelID(containerView);
 		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
 		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;

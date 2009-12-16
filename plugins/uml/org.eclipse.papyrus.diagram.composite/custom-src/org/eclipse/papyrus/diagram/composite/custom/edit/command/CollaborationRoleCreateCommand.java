@@ -88,8 +88,7 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 	 * {@inheritDoc}
 	 * </pre>
 	 */
-	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 
 		// Retrieve the edited Collaboration
 		Collaboration owner = (Collaboration)getElementToEdit();
@@ -97,8 +96,7 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 		// Create and open the selection dialog
 		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		Shell currentShell = new Shell(Display.getCurrent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(currentShell,
-				new AdapterFactoryLabelProvider(adapterFactory), new AdapterFactoryContentProvider(adapterFactory));
+		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(currentShell, new AdapterFactoryLabelProvider(adapterFactory), new AdapterFactoryContentProvider(adapterFactory));
 
 		// Set dialog parameters
 		dialog.setTitle(Messages.CollaborationRoleSelectionDialog_Title);

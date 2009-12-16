@@ -65,12 +65,10 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View)getHost().getModel())
-				.getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation propertyDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
 		if(propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(
-					VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
@@ -167,8 +165,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 			// notifier is the eannotation. Check this is the annotation in charge of the property
 			// label display
-			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
-					.equals(((EAnnotation)object).getSource())) {
+			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)object).getSource())) {
 				return true;
 			}
 		}
@@ -197,8 +194,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				// this is an annotation which is returned
 				if(oldValue instanceof EAnnotation) {
 					// returns true if the annotation has the correct source
-					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
-							.equals(((EAnnotation)oldValue).getSource());
+					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)oldValue).getSource());
 				}
 			}
 		}
@@ -344,9 +340,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	public void setDefaultDisplayValue() {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(
-					new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(),
-					VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
 		}
 
 	}
@@ -357,10 +351,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	public void updateDisplayValue(int newValue) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		if(editingDomain != null) {
-			editingDomain.getCommandStack()
-					.execute(
-					new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(),
-					newValue));
+			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(), newValue));
 		}
 	}
 

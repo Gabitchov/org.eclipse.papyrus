@@ -121,15 +121,13 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
@@ -207,15 +205,13 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
@@ -322,8 +318,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case PropertyEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -338,8 +333,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ReceptionEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -347,8 +341,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case OperationEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -363,8 +356,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ActivityEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -372,8 +364,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case InteractionEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -381,8 +372,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case ProtocolStateMachineEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -390,8 +380,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case StateMachineEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -399,8 +388,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case FunctionBehaviorEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -408,8 +396,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case OpaqueBehaviorEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -417,8 +404,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case CollaborationEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -426,8 +412,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case InterfaceEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -435,8 +420,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case EnumerationEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -444,8 +428,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case PrimitiveTypeEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -453,8 +436,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case DataTypeEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -462,8 +444,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						// cnode));
 						break;
 					case ClassEditPartCLN.VISUAL_ID:
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -481,8 +462,7 @@ public class ClassClassifierItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 

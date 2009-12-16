@@ -79,12 +79,10 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 		// Resolve graphical parents of source and target store in request as Parameters
 		// These parameters are added in request by (custom) GraphicalNodeEditPolicy
 		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT) instanceof Property) {
-			sourcePartWithPort = (Property)req
-					.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT);
+			sourcePartWithPort = (Property)req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT);
 		}
 		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT) instanceof Property) {
-			targetPartWithPort = (Property)req
-					.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT);
+			targetPartWithPort = (Property)req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT);
 		}
 	}
 
@@ -198,8 +196,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	 * </pre>
 	 */
 	@Override
-	protected void doConfigure(Connector newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(Connector newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
