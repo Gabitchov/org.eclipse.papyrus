@@ -21,9 +21,7 @@ public class FunctionBehaviorCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "FunctionBehavior"; //$NON-NLS-1$
 
 	public FunctionBehaviorCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add a "FunctionBehavior" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

@@ -75,6 +75,7 @@ public class AnyReceiveEventCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,10 +99,12 @@ public class AnyReceiveEventCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		AnyReceiveEvent newElement = UMLFactory.eINSTANCE.createAnyReceiveEvent();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
+
 
 		UMLElementTypes.init_AnyReceiveEvent_2085(newElement);
 
@@ -110,6 +113,9 @@ public class AnyReceiveEventCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

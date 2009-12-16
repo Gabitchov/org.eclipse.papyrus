@@ -54,6 +54,7 @@ public class ComponentCompositeCompartmentItemSemanticEditPolicy extends UMLBase
 		super(UMLElementTypes.Component_2069);
 	}
 
+
 	/**
 	 * @generated
 	 */

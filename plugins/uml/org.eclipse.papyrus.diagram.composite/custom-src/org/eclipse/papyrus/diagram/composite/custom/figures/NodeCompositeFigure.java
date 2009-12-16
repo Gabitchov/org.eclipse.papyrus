@@ -21,9 +21,7 @@ public class NodeCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "Node"; //$NON-NLS-1$
 
 	public NodeCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add an "Node" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

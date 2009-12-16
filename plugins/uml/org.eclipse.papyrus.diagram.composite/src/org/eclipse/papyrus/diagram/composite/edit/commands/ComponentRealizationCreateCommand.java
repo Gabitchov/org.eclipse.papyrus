@@ -46,6 +46,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -84,6 +85,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateComponentRealization_4004(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -102,6 +104,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
+
 
 	/**
 	 * @generated
@@ -148,8 +151,8 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
-	 * with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */

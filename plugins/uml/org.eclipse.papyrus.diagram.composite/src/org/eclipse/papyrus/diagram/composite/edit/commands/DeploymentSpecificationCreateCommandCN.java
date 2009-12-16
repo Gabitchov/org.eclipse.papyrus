@@ -75,6 +75,7 @@ public class DeploymentSpecificationCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,10 +99,12 @@ public class DeploymentSpecificationCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		DeploymentSpecification newElement = UMLFactory.eINSTANCE.createDeploymentSpecification();
 
 		Class owner = (Class)getElementToEdit();
 		owner.getNestedClassifiers().add(newElement);
+
 
 		UMLElementTypes.init_DeploymentSpecification_3092(newElement);
 
@@ -110,6 +113,9 @@ public class DeploymentSpecificationCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

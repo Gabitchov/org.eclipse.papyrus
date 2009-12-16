@@ -102,11 +102,15 @@ public class UsageAppliedStereotypeEditPart extends LabelEditPart implements ITe
 	 */
 	private String defaultText;
 
+
+
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -559,11 +563,12 @@ public class UsageAppliedStereotypeEditPart extends LabelEditPart implements ITe
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -660,6 +665,8 @@ public class UsageAppliedStereotypeEditPart extends LabelEditPart implements ITe
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -689,6 +696,9 @@ public class UsageAppliedStereotypeEditPart extends LabelEditPart implements ITe
 				}
 			}
 		}
+
+
+
 
 		super.handleNotificationEvent(event);
 	}

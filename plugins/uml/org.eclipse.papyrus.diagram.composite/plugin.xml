@@ -230,7 +230,7 @@
             <method name="getType()" value="4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4016,4018,4019"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5112,5113,5114,5115,5116,5117,5121,5122,5123,5124,5156,5157,5158,5159,5118,5119,5120,5160,5161,5162,5163,5164,5165,5166,5167,5168,5169,5170,5171,5172,5173,5174,5175,5151,5152,5142,5143,5178,5179,5180,5181,5182,5183,5184,5185,5186,5187,5188,5189,5190,5191,5192,5193,5194,5195,5196,5197,5125,5126,5198,5127,5128,5129,5130,5131,5132,5133,5137,5138,5139,5140,5155,5141,5154,5134,5135,5136,5144,5145,5146,5147,5148,5149,5150"/>
+            <method name="getType()" value="5112,5113,5114,5115,5116,5117,5121,5122,5123,5124,5156,5157,5158,5159,5118,5119,5120,5160,5161,5162,5163,5164,5165,5166,5167,5168,5169,5170,5171,5172,5173,5174,5175,5151,5152,5142,5143,5178,5179,5180,5181,5182,5183,5184,5185,5186,5187,5188,5189,5190,5191,5192,5193,5194,5195,5196,5197,5125,6029,5126,5198,5127,5128,5129,5130,5131,5132,5133,5137,5138,5139,5140,5155,5141,5154,5134,5135,5136,5144,5145,5146,5147,5148,5149,5150"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7033,7034,7036,7037,7043,7044,7045,7048,7049,7050,7051,7052,7053,7054,7055,7056,7057,7058,7059,7060,7061,7062,7063,7064,7065,7066,7067,7068,7069,7070,7071,7072,7073,7075,7076,7077"/>
@@ -1591,7 +1591,6 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.composite.CompositeDiagramEditorFactory"
             icon="icons/obj16/Diagram_CompositeStructureDiagram.gif">
@@ -1602,6 +1601,10 @@
             id="org.eclipse.papyrus.diagram.composite.CreationCommand"
             label="UML CompositeStructure Diagram">
       </creationCommand>
+      <actionBarContributor
+            id="org.eclipse.papyrus.diagram.composite.actionBarContributor"
+            implementingClass="org.eclipse.papyrus.diagram.composite.part.UMLDiagramActionBarContributor">
+      </actionBarContributor>
    </extension>
    <extension
          point="org.eclipse.ui.menus">

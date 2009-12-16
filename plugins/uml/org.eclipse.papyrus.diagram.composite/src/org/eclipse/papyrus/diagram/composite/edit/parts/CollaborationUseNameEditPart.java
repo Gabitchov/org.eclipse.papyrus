@@ -109,11 +109,15 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 	 */
 	private String defaultText;
 
+
+
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -574,11 +578,12 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -675,6 +680,8 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -690,6 +697,7 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -737,7 +745,10 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		return null;
 	}
 
+
+
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -764,6 +775,7 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -771,5 +783,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

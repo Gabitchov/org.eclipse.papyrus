@@ -34,6 +34,7 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		super(UMLElementTypes.OpaqueBehavior_3108);
 	}
 
+
 	/**
 	 * @generated
 	 */

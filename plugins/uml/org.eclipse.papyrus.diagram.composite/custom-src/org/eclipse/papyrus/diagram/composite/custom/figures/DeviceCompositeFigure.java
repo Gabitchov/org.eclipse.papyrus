@@ -21,9 +21,7 @@ public class DeviceCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "Device"; //$NON-NLS-1$
 
 	public DeviceCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add a "Device" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

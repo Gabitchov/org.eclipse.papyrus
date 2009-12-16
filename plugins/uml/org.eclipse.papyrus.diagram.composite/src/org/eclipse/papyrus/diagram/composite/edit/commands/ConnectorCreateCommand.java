@@ -46,6 +46,7 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -84,6 +85,7 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateConnector_4013(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -102,6 +104,7 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
+
 
 	/**
 	 * @generated
@@ -148,8 +151,8 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
-	 * with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */

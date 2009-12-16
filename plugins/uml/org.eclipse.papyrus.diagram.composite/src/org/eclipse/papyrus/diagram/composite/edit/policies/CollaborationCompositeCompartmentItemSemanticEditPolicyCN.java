@@ -33,6 +33,7 @@ public class CollaborationCompositeCompartmentItemSemanticEditPolicyCN extends U
 		super(UMLElementTypes.Collaboration_3086);
 	}
 
+
 	/**
 	 * @generated
 	 */

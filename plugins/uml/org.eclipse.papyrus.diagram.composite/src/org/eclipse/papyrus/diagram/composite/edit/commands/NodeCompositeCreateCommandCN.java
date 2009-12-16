@@ -75,6 +75,7 @@ public class NodeCompositeCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,10 +99,12 @@ public class NodeCompositeCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		Node newElement = UMLFactory.eINSTANCE.createNode();
 
 		Class owner = (Class)getElementToEdit();
 		owner.getNestedClassifiers().add(newElement);
+
 
 		UMLElementTypes.init_Node_3084(newElement);
 
@@ -110,6 +113,9 @@ public class NodeCompositeCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

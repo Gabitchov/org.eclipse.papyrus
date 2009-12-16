@@ -21,9 +21,7 @@ public class OpaqueBehaviorCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "OpaqueBehavior"; //$NON-NLS-1$
 
 	public OpaqueBehaviorCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add an "OpaqueBehavior" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

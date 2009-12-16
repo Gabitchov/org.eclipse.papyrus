@@ -97,6 +97,7 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Enumeration_2067);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -311,11 +312,8 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case EnumerationLiteralEditPartCLN.VISUAL_ID:
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child
-				// views as well
-				// cmd.add(new
-				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
-				// node));
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
 				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
@@ -323,11 +321,8 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case EnumerationLiteralEditPartCLN.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would
-						// clean child views as well
-						// cmd.add(new
-						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
-						// cnode));
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					}
 				}
@@ -455,8 +450,8 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -491,8 +486,8 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

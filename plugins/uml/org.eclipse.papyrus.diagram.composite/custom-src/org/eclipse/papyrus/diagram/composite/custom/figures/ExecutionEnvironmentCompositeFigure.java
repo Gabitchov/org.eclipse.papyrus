@@ -21,9 +21,7 @@ public class ExecutionEnvironmentCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "ExecutionEnvironment"; //$NON-NLS-1$
 
 	public ExecutionEnvironmentCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add a "ExecutionEnvironment" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

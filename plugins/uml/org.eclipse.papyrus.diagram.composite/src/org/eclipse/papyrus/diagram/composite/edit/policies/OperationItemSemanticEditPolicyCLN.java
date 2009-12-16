@@ -34,6 +34,7 @@ public class OperationItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Operation_3102);
 	}
 
+
 	/**
 	 * @generated
 	 */

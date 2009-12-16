@@ -21,9 +21,7 @@ public class StateMachineCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "StateMachine"; //$NON-NLS-1$
 
 	public StateMachineCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add a "StateMachine" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

@@ -55,6 +55,7 @@ public class CommentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		super(UMLElementTypes.Comment_2109);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -169,8 +170,8 @@ public class CommentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -185,8 +186,8 @@ public class CommentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

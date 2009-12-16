@@ -24,9 +24,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editparts.IUMLNamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 
-/*
- * This class looks like AbstractShortCutDiagramEditPart
- * This class update the icon (icon UML or stereotype's icon)
+/**
+ * 
+ * 
  */
 public abstract class AbstractObservationEditPart extends NamedElementEditPart implements IUMLNamedElementEditPart {
 

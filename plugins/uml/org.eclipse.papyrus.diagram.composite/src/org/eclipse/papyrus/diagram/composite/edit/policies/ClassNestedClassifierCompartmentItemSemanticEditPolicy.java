@@ -41,6 +41,7 @@ public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends UMLB
 		super(UMLElementTypes.Class_2074);
 	}
 
+
 	/**
 	 * @generated
 	 */

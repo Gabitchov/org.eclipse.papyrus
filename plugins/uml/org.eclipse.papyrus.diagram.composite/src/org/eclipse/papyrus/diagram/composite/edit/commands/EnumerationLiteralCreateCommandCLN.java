@@ -75,6 +75,7 @@ public class EnumerationLiteralCreateCommandCLN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,10 +99,12 @@ public class EnumerationLiteralCreateCommandCLN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		EnumerationLiteral newElement = UMLFactory.eINSTANCE.createEnumerationLiteral();
 
 		Enumeration owner = (Enumeration)getElementToEdit();
 		owner.getOwnedLiterals().add(newElement);
+
 
 		UMLElementTypes.init_EnumerationLiteral_3066(newElement);
 
@@ -110,6 +113,9 @@ public class EnumerationLiteralCreateCommandCLN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

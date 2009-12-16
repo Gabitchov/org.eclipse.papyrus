@@ -29,8 +29,9 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This registry is used to determine which type of visual object should be created for the
- * corresponding Diagram, Node, ChildNode or Link represented by a domain model object.
+ * This registry is used to determine which type of visual object should be
+ * created for the corresponding Diagram, Node, ChildNode or Link represented
+ * by a domain model object.
  * 
  * @generated
  */
@@ -3903,6 +3904,9 @@ public class UMLVisualIDRegistry {
 			if(PortNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PortAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PropertyPartEditPartCN.VISUAL_ID:
 			if(PropertyPartNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -6217,40 +6221,56 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return ComponentRealizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getInterfaceRealization().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return InterfaceRealizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getSubstitution().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return SubstitutionEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getRealization().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return RealizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getManifestation().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return ManifestationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return AbstractionEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return UsageEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getDeployment().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return DeploymentEditPart.VISUAL_ID;
@@ -6271,15 +6291,21 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return ConnectorEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return InformationFlowEditPart.VISUAL_ID;
@@ -6288,8 +6314,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific situations not covered
-	 * by default logic.
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
 	 * 
 	 * @generated
 	 */
@@ -6297,13 +6323,15 @@ public class UMLVisualIDRegistry {
 		return true;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 
 	private static boolean isProperty_3070(View containerView, Property domainElement) {
 
-		// Property / CollaborationRole constraint
+		// Property / CollaborationRole constraint		
 		// Restriction for the case where domainElement owner is a Collaboration
 		// If the domainElement is not referenced as one of its owner role
 		// then it should be considered as a Property creation on Collaboration,
@@ -6324,7 +6352,9 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 
+
 	private static boolean isDependency_4017(Dependency domainElement) {
+
 
 		// Test if the dependency is a RoleBinding
 		if(domainElement.getOwner() instanceof CollaborationUse) {
@@ -6340,7 +6370,9 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 
+
 	private static boolean isDependency_4010(Dependency domainElement) {
+
 
 		// Test if the dependency is not a RoleBinding
 		if(domainElement.getOwner() instanceof CollaborationUse) {
@@ -6352,10 +6384,15 @@ public class UMLVisualIDRegistry {
 		return true;
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */
 	private static ViewInfo diagramViewInfo = null;
+
 
 	/**
 	 * @generated
@@ -6366,6 +6403,8 @@ public class UMLVisualIDRegistry {
 		}
 		return diagramViewInfo;
 	}
+
+
 
 	/**
 	 * @generated
@@ -6543,134 +6582,178 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6016, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6017, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6018, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6019, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6020, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6021, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6022, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4017, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6026, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6027, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6028, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6023, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4013, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6025, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4015, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "Port");
 
@@ -6719,6 +6802,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(2070, viewInfo);
 
 		root.addNode(2069, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "Property");
 
@@ -6772,11 +6856,13 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7077, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3115, ViewInfo.Node, "ConnectableElement");
 
 		root.addNode(7061, viewInfo);
 
 		root.addNode(7075, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "CollaborationUse");
 
@@ -6828,6 +6914,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7075, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3072, ViewInfo.Node, "Activity");
 
 		root.addNode(7050, viewInfo);
@@ -6873,6 +6960,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3073, ViewInfo.Node, "Interaction");
 
@@ -6920,6 +7008,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "ProtocolStateMachine");
 
 		root.addNode(7050, viewInfo);
@@ -6965,6 +7054,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "StateMachine");
 
@@ -7012,6 +7102,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3076, ViewInfo.Node, "FunctionBehavior");
 
 		root.addNode(7050, viewInfo);
@@ -7057,6 +7148,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3077, ViewInfo.Node, "OpaqueBehavior");
 
@@ -7104,6 +7196,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "Component");
 
 		root.addNode(7050, viewInfo);
@@ -7149,6 +7242,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3082, ViewInfo.Node, "Device");
 
@@ -7196,6 +7290,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3083, ViewInfo.Node, "ExecutionEnvironment");
 
 		root.addNode(7050, viewInfo);
@@ -7241,6 +7336,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3084, ViewInfo.Node, "Node");
 
@@ -7288,6 +7384,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3085, ViewInfo.Node, "Class");
 
 		root.addNode(7050, viewInfo);
@@ -7333,6 +7430,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3086, ViewInfo.Node, "Collaboration");
 
@@ -7380,6 +7478,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3087, ViewInfo.Node, "Interface");
 
 		root.addNode(7050, viewInfo);
@@ -7425,6 +7524,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3078, ViewInfo.Node, "PrimitiveType");
 
@@ -7472,6 +7572,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3079, ViewInfo.Node, "Enumeration");
 
 		root.addNode(7050, viewInfo);
@@ -7517,6 +7618,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "DataType");
 
@@ -7564,6 +7666,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3091, ViewInfo.Node, "Actor");
 
 		root.addNode(7050, viewInfo);
@@ -7609,6 +7712,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3092, ViewInfo.Node, "DeploymentSpecification");
 
@@ -7656,6 +7760,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3093, ViewInfo.Node, "Artifact");
 
 		root.addNode(7050, viewInfo);
@@ -7701,6 +7806,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3094, ViewInfo.Node, "InformationItem");
 
@@ -7748,6 +7854,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3095, ViewInfo.Node, "Signal");
 
 		root.addNode(7050, viewInfo);
@@ -7794,6 +7901,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7073, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3096, ViewInfo.Node, "UseCase");
 
 		root.addNode(7050, viewInfo);
@@ -7839,6 +7947,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7072, viewInfo);
 
 		root.addNode(7073, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3097, ViewInfo.Node, "Comment");
 
@@ -7892,6 +8001,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7077, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3101, ViewInfo.Node, "Property");
 
 		root.addNode(7043, viewInfo);
@@ -7899,6 +8009,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7033, viewInfo);
 
 		root.addNode(7036, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3102, ViewInfo.Node, "Operation");
 
@@ -7908,9 +8019,11 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7037, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3100, ViewInfo.Node, "Reception");
 
 		root.addNode(7044, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3066, ViewInfo.Node, "EnumerationLiteral");
 
@@ -7922,49 +8035,61 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7048, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3103, ViewInfo.Node, "Activity");
 
 		root.addNode(7045, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3104, ViewInfo.Node, "Interaction");
 
 		root.addNode(7045, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3105, ViewInfo.Node, "ProtocolStateMachine");
 
 		root.addNode(7045, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3106, ViewInfo.Node, "StateMachine");
 
 		root.addNode(7045, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3107, ViewInfo.Node, "FunctionBehavior");
 
 		root.addNode(7045, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3108, ViewInfo.Node, "OpaqueBehavior");
 
 		root.addNode(7045, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3109, ViewInfo.Node, "Collaboration");
 
 		root.addNode(7045, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3110, ViewInfo.Node, "Interface");
 
 		root.addNode(7045, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3111, ViewInfo.Node, "Enumeration");
 
 		root.addNode(7045, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3112, ViewInfo.Node, "PrimitiveType");
 
 		root.addNode(7045, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3113, ViewInfo.Node, "DataType");
 
 		root.addNode(7045, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3114, ViewInfo.Node, "Class");
 

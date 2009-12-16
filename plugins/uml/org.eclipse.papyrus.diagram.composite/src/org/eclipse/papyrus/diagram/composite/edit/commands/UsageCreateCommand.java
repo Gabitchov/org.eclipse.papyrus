@@ -46,6 +46,7 @@ public class UsageCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -84,6 +85,7 @@ public class UsageCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateUsage_4008(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -102,6 +104,7 @@ public class UsageCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
+
 
 	/**
 	 * @generated
@@ -148,8 +151,8 @@ public class UsageCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
-	 * with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */

@@ -21,9 +21,6 @@ public class ActivityCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "Activity"; //$NON-NLS-1$
 
 	public ActivityCompositeFigure() {
-		super();
-
-		// Add a "Activity" tag on this figure
-		createTagLabel(TAG_LABEL);
+		super(TAG_LABEL);
 	}
 }

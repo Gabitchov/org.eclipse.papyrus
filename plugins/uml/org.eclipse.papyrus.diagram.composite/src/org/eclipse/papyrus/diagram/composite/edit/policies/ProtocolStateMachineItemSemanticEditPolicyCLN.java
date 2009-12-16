@@ -34,6 +34,7 @@ public class ProtocolStateMachineItemSemanticEditPolicyCLN extends UMLBaseItemSe
 		super(UMLElementTypes.ProtocolStateMachine_3105);
 	}
 
+
 	/**
 	 * @generated
 	 */

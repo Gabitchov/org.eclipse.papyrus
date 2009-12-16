@@ -91,6 +91,7 @@ public class InformationItemItemSemanticEditPolicyCN extends UMLBaseItemSemantic
 		super(UMLElementTypes.InformationItem_3094);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -403,8 +404,8 @@ public class InformationItemItemSemanticEditPolicyCN extends UMLBaseItemSemantic
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -439,8 +440,8 @@ public class InformationItemItemSemanticEditPolicyCN extends UMLBaseItemSemantic
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

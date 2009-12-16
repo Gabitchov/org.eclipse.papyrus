@@ -75,6 +75,7 @@ public class CollaborationUseCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,10 +99,12 @@ public class CollaborationUseCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		CollaborationUse newElement = UMLFactory.eINSTANCE.createCollaborationUse();
 
 		Classifier owner = (Classifier)getElementToEdit();
 		owner.getCollaborationUses().add(newElement);
+
 
 		UMLElementTypes.init_CollaborationUse_3071(newElement);
 
@@ -110,6 +113,9 @@ public class CollaborationUseCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

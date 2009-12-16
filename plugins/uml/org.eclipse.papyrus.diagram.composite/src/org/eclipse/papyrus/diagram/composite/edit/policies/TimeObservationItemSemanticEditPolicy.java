@@ -91,6 +91,7 @@ public class TimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.TimeObservation_2094);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -409,8 +410,8 @@ public class TimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -445,8 +446,8 @@ public class TimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

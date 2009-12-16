@@ -1143,6 +1143,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return constraintName_5197Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -1158,6 +1159,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			portName_5125Parser = parser;
 		}
 		return portName_5125Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser portName_6029Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPortName_6029Parser() {
+		if(portName_6029Parser == null) {
+			portName_6029Parser = new AppliedStereotypeParser();
+		}
+		return portName_6029Parser;
 	}
 
 	/**
@@ -1991,6 +2007,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return class_3114Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -2413,6 +2430,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return generalizationIsSubstitutable_6024Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -2534,6 +2552,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_5197Parser();
 		case PortNameEditPart.VISUAL_ID:
 			return getPortName_5125Parser();
+		case PortAppliedStereotypeEditPart.VISUAL_ID:
+			return getPortName_6029Parser();
 		case PropertyPartNameEditPartCN.VISUAL_ID:
 			return getPropertyName_5126Parser();
 		case CollaborationRoleNameEditPartCN.VISUAL_ID:

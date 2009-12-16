@@ -34,6 +34,7 @@ public class StateMachineItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.StateMachine_3106);
 	}
 
+
 	/**
 	 * @generated
 	 */

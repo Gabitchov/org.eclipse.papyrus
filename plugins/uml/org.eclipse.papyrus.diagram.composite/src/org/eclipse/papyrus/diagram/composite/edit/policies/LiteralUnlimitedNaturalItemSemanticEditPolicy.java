@@ -91,6 +91,7 @@ public class LiteralUnlimitedNaturalItemSemanticEditPolicy extends UMLBaseItemSe
 		super(UMLElementTypes.LiteralUnlimitedNatural_2099);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -403,8 +404,8 @@ public class LiteralUnlimitedNaturalItemSemanticEditPolicy extends UMLBaseItemSe
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -439,8 +440,8 @@ public class LiteralUnlimitedNaturalItemSemanticEditPolicy extends UMLBaseItemSe
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

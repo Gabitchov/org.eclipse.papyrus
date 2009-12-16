@@ -21,9 +21,7 @@ public class InteractionCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "Interaction"; //$NON-NLS-1$
 
 	public InteractionCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add an "Interaction" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

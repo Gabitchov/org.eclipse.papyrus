@@ -29,10 +29,8 @@ public class CollaborationCompositeFigure extends CompositeFigure {
 	 * Creates a new CollaborationCompositeFigure.
 	 */
 	public CollaborationCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add a "Collaboration" tag on this figure
-		createTagLabel(TAG_LABEL);
 		// Use dashed borders for Collaboration
 		setLineStyle(Graphics.LINE_DASH);
 	}

@@ -79,6 +79,7 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class TimeObservationStereotypeLabelEditPart
 
+
 extends AbstractLabelEditPart
 
 implements ITextAwareEditPart, IBorderItemEditPart {
@@ -108,11 +109,15 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	private String defaultText;
 
+
+
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -574,11 +579,12 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -674,6 +680,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			e.printStackTrace();
 		}
 	}
+
+
 
 	/**
 	 * @generated

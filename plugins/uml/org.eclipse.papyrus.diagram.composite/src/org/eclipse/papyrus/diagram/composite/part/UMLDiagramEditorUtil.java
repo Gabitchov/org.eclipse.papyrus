@@ -134,6 +134,8 @@ public class UMLDiagramEditorUtil {
 		return filePath.lastSegment();
 	}
 
+
+
 	/**
 	 * Runs the wizard in a dialog.
 	 * 
@@ -196,9 +198,11 @@ public class UMLDiagramEditorUtil {
 		return diagramResource;
 	}
 
+
 	/**
-	 * Create a new instance of domain element associated with canvas. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Create a new instance of domain element associated with canvas.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -206,14 +210,21 @@ public class UMLDiagramEditorUtil {
 		return UMLFactory.eINSTANCE.createPackage();
 	}
 
+
 	/**
-	 * Store model element in the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Store model element in the resource.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -234,6 +245,7 @@ public class UMLDiagramEditorUtil {
 			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -275,6 +287,7 @@ public class UMLDiagramEditorUtil {
 		}
 		return editPartCollector.size() - intialNumOfEditParts;
 	}
+
 
 	/**
 	 * @generated
@@ -336,15 +349,13 @@ public class UMLDiagramEditorUtil {
 		public final Map getElement2ViewMap() {
 			if(element2ViewMap == null) {
 				element2ViewMap = new HashMap();
-				// map possible notation elements to itself as these can't be found by
-				// view.getElement()
+				// map possible notation elements to itself as these can't be found by view.getElement()
 				for(Iterator it = elementSet.iterator(); it.hasNext();) {
 					EObject element = (EObject)it.next();
 					if(element instanceof View) {
 						View view = (View)element;
 						if(view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, element); // take only those that part of
-							// our diagram
+							element2ViewMap.put(element, element); // take only those that part of our diagram
 						}
 					}
 				}
@@ -384,6 +395,8 @@ public class UMLDiagramEditorUtil {
 			}
 			return element2ViewMap;
 		}
-	} // LazyElement2ViewMap
+	} //LazyElement2ViewMap	
+
+
 
 }

@@ -75,6 +75,7 @@ public class PropertyPartCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,10 +99,12 @@ public class PropertyPartCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 
 		StructuredClassifier owner = (StructuredClassifier)getElementToEdit();
 		owner.getOwnedAttributes().add(newElement);
+
 
 		UMLElementTypes.init_Property_3070(newElement);
 
@@ -110,6 +113,9 @@ public class PropertyPartCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

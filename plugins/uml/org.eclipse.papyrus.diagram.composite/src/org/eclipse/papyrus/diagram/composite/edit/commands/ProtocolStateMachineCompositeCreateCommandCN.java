@@ -75,6 +75,7 @@ public class ProtocolStateMachineCompositeCreateCommandCN extends EditElementCom
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,10 +99,12 @@ public class ProtocolStateMachineCompositeCreateCommandCN extends EditElementCom
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		ProtocolStateMachine newElement = UMLFactory.eINSTANCE.createProtocolStateMachine();
 
 		Class owner = (Class)getElementToEdit();
 		owner.getNestedClassifiers().add(newElement);
+
 
 		UMLElementTypes.init_ProtocolStateMachine_3074(newElement);
 
@@ -110,6 +113,9 @@ public class ProtocolStateMachineCompositeCreateCommandCN extends EditElementCom
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

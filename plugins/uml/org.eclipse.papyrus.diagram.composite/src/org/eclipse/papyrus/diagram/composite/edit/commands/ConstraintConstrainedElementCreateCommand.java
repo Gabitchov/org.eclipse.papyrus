@@ -68,6 +68,7 @@ public class ConstraintConstrainedElementCreateCommand extends EditElementComman
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateConstraintConstrainedElement_4003(getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -82,6 +83,8 @@ public class ConstraintConstrainedElementCreateCommand extends EditElementComman
 		return CommandResult.newOKCommandResult();
 
 	}
+
+
 
 	/**
 	 * @generated

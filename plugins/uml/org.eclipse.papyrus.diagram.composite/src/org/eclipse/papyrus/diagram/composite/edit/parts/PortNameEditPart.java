@@ -16,7 +16,6 @@ package org.eclipse.papyrus.diagram.composite.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -70,10 +69,8 @@ import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -82,7 +79,9 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class PortNameEditPart
 
+
 extends LabelEditPart
+
 
 implements ITextAwareEditPart, IBorderItemEditPart {
 
@@ -111,11 +110,15 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	private String defaultText;
 
+
+
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -586,14 +589,15 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getModel();
+		return getPrimaryView();
 	}
+
+
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -690,6 +694,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -735,30 +741,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new PortNameDescriptor();
+		return new WrappingLabel();
 	}
-
-	/**
-	 * @generated
-	 */
-	public class PortNameDescriptor extends WrappingLabel {
-
-		/**
-		 * @generated
-		 */
-		public PortNameDescriptor() {
-			this.setText("");
-			this.setForegroundColor(ColorConstants.black);
-
-			this.setFont(THIS_FONT);
-
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 }

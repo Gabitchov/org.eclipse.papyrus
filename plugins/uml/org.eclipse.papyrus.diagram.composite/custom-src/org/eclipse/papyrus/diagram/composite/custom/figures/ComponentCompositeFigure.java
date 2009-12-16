@@ -21,9 +21,7 @@ public class ComponentCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "Component"; //$NON-NLS-1$
 
 	public ComponentCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add a "Component" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

@@ -21,9 +21,7 @@ public class ProtocolStateMachineCompositeFigure extends CompositeFigure {
 	private static String TAG_LABEL = "ProtocolStateMachine"; //$NON-NLS-1$
 
 	public ProtocolStateMachineCompositeFigure() {
-		super();
+		super(TAG_LABEL);
 
-		// Add a "ProtocolStateMachine" tag on this figure
-		createTagLabel(TAG_LABEL);
 	}
 }

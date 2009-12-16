@@ -33,6 +33,8 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -643,6 +645,7 @@ public class Messages extends NLS {
 	 */
 	public static String PropertyPartCompartmentEditPartCN_title;
 
+
 	/**
 	 * @generated
 	 */
@@ -663,6 +666,7 @@ public class Messages extends NLS {
 	 */
 	public static String AbstractParser_UnknownLiteral;
 
+
 	/**
 	 * @generated
 	 */
@@ -678,5 +682,5 @@ public class Messages extends NLS {
 	 */
 	public static String UMLModelingAssistantProviderMessage;
 
-	// TODO: put accessor fields manually
+	//TODO: put accessor fields manually	
 }

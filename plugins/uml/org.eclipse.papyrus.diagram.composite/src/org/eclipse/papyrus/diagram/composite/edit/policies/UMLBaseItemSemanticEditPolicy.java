@@ -86,10 +86,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to
-	 * extended data of the request so command switch can decide what kind of diagram element is
-	 * being edited. It is done in those cases when it's not possible to deduce diagram element kind
-	 * from domain element.
+	 * Extended request data key to hold editpart visual id.
+	 * Add visual id of edited editpart to extended data of the request
+	 * so command switch can decide what kind of diagram element is being edited.
+	 * It is done in those cases when it's not possible to deduce diagram
+	 * element kind from domain element.
 	 * 
 	 * @generated
 	 */
@@ -257,7 +258,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
+
 		return getGEFWrapper(new MoveElementsCommand(req));
+
 
 	}
 
@@ -316,6 +319,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+
+
 
 		/**
 		 * @generated

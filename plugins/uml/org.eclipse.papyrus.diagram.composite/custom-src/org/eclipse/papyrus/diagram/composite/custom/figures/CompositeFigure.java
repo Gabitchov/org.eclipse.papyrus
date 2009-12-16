@@ -13,174 +13,52 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.figures;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
+import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 
 /**
  * Figure for Composite representation of Class.
  */
-public class CompositeFigure extends NodeNamedElementFigure {
+public class CompositeFigure extends CompartmentFigure {
 
-	/**
-	 * Layout manager for the Composite figure
-	 */
-	private class CompositeLayoutManager extends AbstractLayout {
+	/** The Internal Structure Compartment */
+	private final static String COMPOSITE_COMPARTMENT = "compositeCompartment";
 
-		/**
-		 * Space separation between figure Top border and first child
-		 */
-		private int UPPER_SPACE = 2;
+	/** The List of Compartment */
+	private final static List<String> COMPARTMENT = new ArrayList<String>() {
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
-			// Return preferred size of the name label
-			return getNameLabel().getPreferredSize();
+		private static final long serialVersionUID = 1L;
+		{
+			add(COMPOSITE_COMPARTMENT);
 		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public void layout(IFigure container) {
-
-			// Update Figure children bounds (labels, containers...)
-			List<?> childrenList = container.getChildren();
-			for(int i = 0; i < childrenList.size(); i++) {
-
-				// Initialize child bounds
-				IFigure currentChild = (IFigure)childrenList.get(i);
-				Rectangle oldBounds = ((IFigure)childrenList.get(i)).getBounds();
-				Rectangle newBounds = new Rectangle(oldBounds);
-
-				// Update child size
-				newBounds.setSize(currentChild.getPreferredSize());
-				newBounds.width = getBounds().width;
-
-				// Update child position
-				if(i > 0) {
-					// Calculate position based on the above child
-					IFigure previousChild = (IFigure)childrenList.get(i - 1);
-					int previousChildY = previousChild.getBounds().getBottomLeft().y;
-
-					newBounds.x = getBounds().x;
-					newBounds.y = previousChildY + 1;
-				} else {
-					// First child, placed in the upper left corner
-					newBounds.x = getBounds().x;
-					newBounds.y = getBounds().y + UPPER_SPACE;
-					// UPPER_SEPARATION adds a vertical empty space before the
-					// first child.
-					// This is used to avoid element icon to appear on the
-					// border
-					// when no qualified name is shown
-				}
-
-				// Set calculated bounds in current child
-				currentChild.setBounds(newBounds);
-			}
-
-			// Update Composite compartment bounds
-			if(getCompositeCompartmentFigure() != null) {
-
-				// Initialize compartment bounds
-				Rectangle oldCompositeBound = getCompositeCompartmentFigure().getBounds();
-				Rectangle newCompositeBound = new Rectangle(oldCompositeBound);
-
-				// Update compartment size taking above children into account
-				newCompositeBound.height = getBounds().y + getBounds().height - oldCompositeBound.y;
-				newCompositeBound.width = getBounds().width;
-
-				// Set calculated bounds in Composite compartment
-				getCompositeCompartmentFigure().setBounds(newCompositeBound);
-			}
-		}
-	}
+	};
 
 	/**
-	 * Composite compartment of the figure
-	 */
-	private RectangleFigure compositeCompartment;
-
-	/**
-	 * Optional Tag Label for the figure. May be used by inherited figures (ex: {@link InterfaceCompositeFigure}) to add a stereotype like label
-	 * describing element type (ex:
-	 * <<Interface>>).
-	 */
-	private Label tagLabel;
-
-	/**
-	 * Creates a new CompositeFigure.
-	 * 
-	 * <pre>
-	 * 	 +-------------------+
-	 * 	 |   [Stereotypes]   | - Child 0
-	 * 	 |  [QualifiedName]  | - Child 1
-	 * 	 |    [ClassName]    | - ...
-	 * 	 +-------------------+
-	 * 	 |                   |
-	 * 	 |     +------+      | - CompositeContainer
-	 * 	 |     | Part |      |
-	 * 	 |     +------+      |
-	 * 	 |                   |
-	 * 	 +-------------------+
-	 * </pre>
+	 * Default Constructor
 	 */
 	public CompositeFigure() {
-		super();
-		setLayoutManager(new CompositeLayoutManager());
-		setOpaque(true);
-
-		// Add internal Compartment figure
-		compositeCompartment = new RectangleFigure();
-		compositeCompartment.setOpaque(false);
-		compositeCompartment.setFill(false);
-		compositeCompartment.setBorder(null);
-		compositeCompartment.setOutline(false);
-		this.add(compositeCompartment);
+		this(null);
 	}
 
 	/**
-	 * Get the Composite compartment of the figure
+	 * Create a new Classifier figure with the given tag
 	 * 
-	 * @return the composite compartment
+	 * @param tagLabel
+	 *        a String that will be displayed at the top of the figure
 	 */
-	public RectangleFigure getCompositeCompartmentFigure() {
-		return compositeCompartment;
+	public CompositeFigure(String tagLabel) {
+		super(COMPARTMENT, tagLabel);
 	}
 
 	/**
-	 * Initialize tagLabel with the keyword parameter
+	 * Get the attribute's compartment figure
 	 * 
-	 * @param keyword
-	 *        the string to show in label
+	 * @return
 	 */
-	protected void createTagLabel(String keyword) {
-
-		// Retrieve current figure font
-		FontData[] fontdata = { new FontData("Arial", 12, SWT.NORMAL) }; //$NON-NLS-1$
-		Font font = Activator.getFontManager().get(fontdata);
-
-		// Create the TagLabel
-		tagLabel = new Label();
-		tagLabel.setFont(font);
-		tagLabel.setForegroundColor(getForegroundColor());
-		tagLabel.setOpaque(false);
-		tagLabel.setText(Activator.ST_LEFT + keyword + Activator.ST_RIGHT);
-
-		// Add the tag label to the figure at the position 0
-		this.add(tagLabel, 0);
+	public IFigure getCompositeCompartmentFigure() {
+		return getCompartment(COMPOSITE_COMPARTMENT);
 	}
 }

@@ -54,6 +54,7 @@ public class FunctionBehaviorCompositeCompartmentItemSemanticEditPolicyCN extend
 		super(UMLElementTypes.FunctionBehavior_3076);
 	}
 
+
 	/**
 	 * @generated
 	 */

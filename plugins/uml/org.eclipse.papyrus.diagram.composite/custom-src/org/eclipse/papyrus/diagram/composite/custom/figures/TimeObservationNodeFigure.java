@@ -17,19 +17,19 @@ package org.eclipse.papyrus.diagram.composite.custom.figures;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 
-/*
- * This class looks like DiagramNodeFigure
+/**
+ * Figure for TimeObservation
  */
-//public class ObservationNodeFigure extends RectangleFigure {
 public class TimeObservationNodeFigure extends AbstractObservationNodeFigure {
 
 	public static final String IMAGE_OBSERVATION = "TimeObservation.gif"; //$NON-NLS-1$
 
 	public void setAppliedStereotypeIcon(Image image) {
-		if(image == null)
+		if(image == null) {
 			setIcon(Activator.getPluginIconImage(ID, PATH + IMAGE_OBSERVATION));
-		else
+		} else {
 			setIcon(image);
+		}
 
 	}
 

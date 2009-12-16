@@ -28,6 +28,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
 
+
 	/**
 	 * @generated
 	 */
@@ -37,6 +38,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		return etype == null ? "" : etype.getDisplayName();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -44,6 +46,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		IElementType etype = getElementType(getView(unwrap(element)));
 		return etype == null ? null : UMLElementTypes.getImage(etype);
 	}
+
 
 	/**
 	 * @generated
@@ -72,8 +75,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private IElementType getElementType(View view) {
-		// For intermediate views climb up the containment hierarchy to find the one associated with
-		// an element type.
+		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
 		while(view != null) {
 			int vid = UMLVisualIDRegistry.getVisualID(view);
 			IElementType etype = UMLElementTypes.getElementType(vid);
@@ -84,5 +86,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		}
 		return null;
 	}
+
+
 
 }

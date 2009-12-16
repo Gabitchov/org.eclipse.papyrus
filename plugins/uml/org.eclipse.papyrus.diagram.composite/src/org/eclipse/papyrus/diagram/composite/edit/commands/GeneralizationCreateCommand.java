@@ -44,6 +44,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -82,6 +83,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralization_4015(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -93,6 +95,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		throw new UnsupportedOperationException();
 
 	}
+
 
 	/**
 	 * @generated
@@ -139,8 +142,8 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
-	 * with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */

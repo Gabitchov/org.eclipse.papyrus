@@ -108,11 +108,15 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 	 */
 	private String defaultText;
 
+
+
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -572,11 +576,12 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -673,6 +678,8 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -688,6 +695,7 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -735,7 +743,10 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		return null;
 	}
 
+
+
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -762,6 +773,7 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -769,5 +781,6 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

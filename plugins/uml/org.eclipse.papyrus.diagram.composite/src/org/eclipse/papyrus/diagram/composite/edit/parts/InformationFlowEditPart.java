@@ -49,11 +49,15 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InformationFlowItemSemanticEditPolicy());
 	}
 
+
+
+
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -69,15 +73,18 @@ implements ITreeBranchEditPart {
 		return (DirectedRelationshipDescriptor)getFigure();
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public class DirectedRelationshipDescriptor extends PolylineConnectionEx {
 
+
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fDirectedRelationshipAppliedStereotypeLabel;
+
 
 		/**
 		 * @generated
@@ -88,17 +95,21 @@ implements ITreeBranchEditPart {
 			createContents();
 		}
 
+
 		/**
 		 * @generated
 		 */
 		private void createContents() {
+
 
 			fDirectedRelationshipAppliedStereotypeLabel = new WrappingLabel();
 			fDirectedRelationshipAppliedStereotypeLabel.setText("");
 
 			this.add(fDirectedRelationshipAppliedStereotypeLabel);
 
+
 		}
+
 
 		/**
 		 * @generated
@@ -107,6 +118,9 @@ implements ITreeBranchEditPart {
 			return fDirectedRelationshipAppliedStereotypeLabel;
 		}
 
+
 	}
+
+
 
 }

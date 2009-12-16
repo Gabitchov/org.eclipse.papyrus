@@ -111,11 +111,15 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 	 */
 	private String defaultText;
 
+
+
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -570,11 +574,12 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -671,6 +676,8 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -686,6 +693,8 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
+
 
 	/**
 	 * @generated
@@ -738,10 +747,14 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 		return new LiteralEnumerationDescriptor();
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public class LiteralEnumerationDescriptor extends WrappingLabel {
+
+
+
 
 		/**
 		 * @generated
@@ -751,7 +764,12 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 
 			this.setFont(THIS_FONT);
 
+
 		}
+
+
+
+
 
 	}
 
@@ -759,5 +777,7 @@ public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implement
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
+
+
 
 }

@@ -40,6 +40,8 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
+
+
 	/**
 	 * @generated
 	 */
@@ -59,6 +61,10 @@ public class PackageEditPart extends DiagramEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */
@@ -68,11 +74,12 @@ public class PackageEditPart extends DiagramEditPart {
 		if(event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
 			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				// modification form MOSKitt approach, canonical policies are not called
+				//modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -84,5 +91,7 @@ public class PackageEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
+
+
 
 }

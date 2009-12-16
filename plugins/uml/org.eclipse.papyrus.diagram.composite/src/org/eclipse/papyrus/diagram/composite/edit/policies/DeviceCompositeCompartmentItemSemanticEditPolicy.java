@@ -54,6 +54,7 @@ public class DeviceCompositeCompartmentItemSemanticEditPolicy extends UMLBaseIte
 		super(UMLElementTypes.Device_2070);
 	}
 
+
 	/**
 	 * @generated
 	 */

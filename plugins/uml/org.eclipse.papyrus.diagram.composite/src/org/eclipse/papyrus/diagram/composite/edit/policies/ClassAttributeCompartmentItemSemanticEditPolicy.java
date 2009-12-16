@@ -30,6 +30,7 @@ public class ClassAttributeCompartmentItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.Class_2074);
 	}
 
+
 	/**
 	 * @generated
 	 */

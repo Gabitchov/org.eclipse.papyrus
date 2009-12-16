@@ -109,11 +109,15 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 	 */
 	private String defaultText;
 
+
+
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -574,11 +578,12 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -675,6 +680,8 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -690,6 +697,7 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -737,7 +745,10 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		return null;
 	}
 
+
+
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -764,6 +775,7 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -771,5 +783,6 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

@@ -54,6 +54,7 @@ public class NodeCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseIte
 		super(UMLElementTypes.Node_3084);
 	}
 
+
 	/**
 	 * @generated
 	 */

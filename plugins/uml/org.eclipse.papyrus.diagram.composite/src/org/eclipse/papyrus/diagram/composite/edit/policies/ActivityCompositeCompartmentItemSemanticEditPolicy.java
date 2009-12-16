@@ -54,6 +54,7 @@ public class ActivityCompositeCompartmentItemSemanticEditPolicy extends UMLBaseI
 		super(UMLElementTypes.Activity_2060);
 	}
 
+
 	/**
 	 * @generated
 	 */
