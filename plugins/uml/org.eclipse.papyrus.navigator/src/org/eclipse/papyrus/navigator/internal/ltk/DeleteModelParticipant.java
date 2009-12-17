@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -67,7 +68,7 @@ public class DeleteModelParticipant extends DeleteParticipant implements IModelP
 		List<Change> changes = new ArrayList<Change>(filesToRemove.size());
 		for(IFile file : filesToRemove) {
 			if(file.exists()) {
-				changes.add(new DeleteResourceChange(file.getFullPath(), true));
+				changes.add(new InternalDeleteResourceChange(file.getFullPath(), true));
 			}
 		}
 		if(changes.isEmpty()) {
@@ -120,5 +121,38 @@ public class DeleteModelParticipant extends DeleteParticipant implements IModelP
 			return filesToRemove.size() > 0;
 		}
 		return false;
+	}
+
+	private class InternalDeleteResourceChange extends DeleteResourceChange {
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param resourcePath
+		 *        The file to delete.
+		 * @param forceOutOfSync
+		 *        Delete even if out of sync
+		 */
+		public InternalDeleteResourceChange(IPath resourcePath, boolean forceOutOfSync) {
+			super(resourcePath, forceOutOfSync);
+		}
+
+		/**
+		 * @see org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange#perform(org.eclipse.core.runtime.IProgressMonitor)
+		 * 
+		 * @param pm
+		 * @return
+		 * @throws CoreException
+		 */
+
+		@Override
+		public Change perform(IProgressMonitor pm) throws CoreException {
+			IResource resource = getModifiedResource();
+			// If the user selects the 3 resources, the delete fails.
+			if(resource == null || !resource.exists()) {
+				return new NullChange();
+			}
+			return super.perform(pm);
+		}
 	}
 }
