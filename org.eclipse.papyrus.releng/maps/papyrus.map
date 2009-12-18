@@ -2,13 +2,17 @@
 feature@org.eclipse.papyrus=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features/,,org.eclipse.papyrus-feature
 feature@org.eclipse.papyrus.backbone=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.backbone-feature
 feature@org.eclipse.papyrus.developer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.developer-feature
+feature@org.eclipse.papyrus.diagram.activity=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.activity-feature
 feature@org.eclipse.papyrus.diagram.clazz=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.clazz-feature
 feature@org.eclipse.papyrus.diagram.composite=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.composite-feature
+feature@org.eclipse.papyrus.diagram.internalblock=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.internalblock-feature
+feature@org.eclipse.papyrus.diagram.parametric=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.parametric-feature
 feature@org.eclipse.papyrus.diagram.sequence=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.sequence-feature
 feature@org.eclipse.papyrus.diagram.usecase=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.usecase-feature
+feature@org.eclipse.papyrus.layouttool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.layouttool-feature
+feature@org.eclipse.papyrus.profiletool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.profile-tool-feature
 feature@org.eclipse.papyrus.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.sysml-feature
 feature@org.eclipse.papyrus.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.uml-feature
-feature@org.eclipse.papyrus.layouttool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.layouttool-feature
 
 ##### plugins
 
@@ -56,12 +60,15 @@ plugin@org.eclipse.papyrus.layouttool.algorithms.verticalSymmetryAlgorithm=SVN,,
 plugin@org.eclipse.papyrus.layouttool.subeditor.gmf=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/autolayout,,org.eclipse.papyrus.layouttool.subeditor.gmf
 
 # profile-tool
+plugin@org.eclipse.papyrus.diagramprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.diagramprofile
 plugin@org.eclipse.papyrus.resource=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.resource
 plugin@org.eclipse.papyrus.resource.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.resource.edit
 plugin@org.eclipse.papyrus.resource.migration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.resource.migration
 
 # sysml
 plugin@org.eclipse.papyrus.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml
+plugin@org.eclipse.papyrus.diagram.internalblock=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.internalblock
+plugin@org.eclipse.papyrus.diagram.parametric=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.parametric
 plugin@org.eclipse.papyrus.sysml.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.edit
 
 # uml
