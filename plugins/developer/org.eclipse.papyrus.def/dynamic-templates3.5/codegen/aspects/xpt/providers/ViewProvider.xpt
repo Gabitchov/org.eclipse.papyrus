@@ -27,7 +27,7 @@ package «providersPackageName»;
 public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvider::extendsList»«EXPAND xpt::providers::ViewProvider::implementsList» {
 
 	«EXPAND xpt::Common::generatedMemberComment»
-	public final boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
+	public boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
 		if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation) {
 			return provides((org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation) operation);
 		}
