@@ -33,7 +33,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -67,12 +69,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 			return types;
 		}
+		if(editPart instanceof InteractionOperandEditPart) {
+			ArrayList types = new ArrayList(3);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			return types;
+		}
 		if(editPart instanceof InteractionInteractionCompartmentEditPart) {
-			ArrayList types = new ArrayList(4);
+			ArrayList types = new ArrayList(6);
 			types.add(UMLElementTypes.Lifeline_3001);
 			types.add(UMLElementTypes.InteractionUse_3002);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
 			return types;
 		}
 		if(editPart instanceof PackageEditPart) {
@@ -112,6 +123,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof InteractionOperandEditPart) {
 			return ((InteractionOperandEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -144,6 +161,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			return ((InteractionOperandEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -160,12 +183,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((LifelineEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ActionExecutionSpecificationEditPart) {
-			return ((ActionExecutionSpecificationEditPart)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((ActionExecutionSpecificationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
-			return ((BehaviorExecutionSpecificationEditPart)sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
+			return ((BehaviorExecutionSpecificationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -178,6 +199,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof InteractionOperandEditPart) {
 			return ((InteractionOperandEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -211,6 +238,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			return ((InteractionOperandEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -242,6 +275,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof InteractionOperandEditPart) {
 			return ((InteractionOperandEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -298,8 +337,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);

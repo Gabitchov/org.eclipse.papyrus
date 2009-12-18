@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -42,6 +43,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -59,6 +64,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageReorientCommand
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
@@ -78,12 +85,7 @@ import org.eclipse.swt.widgets.Display;
 public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
-	 * @generated NOT
-	 */
-	private static final String DELETE_FROM_MODEL_DLG_TITLE = DiagramUIMessages.PromptingDeleteFromModelAction_DeleteFromModelDialog_Title;
-
-	/**
-	 * @generated NOT
+	 * Delete messages of a combined fragment message
 	 */
 	private static final String DELETE_FROM_MODEL_DLG_MESSAGE = "Are you sure you want to delete all messages on the combined fragment ?";
 
@@ -183,8 +185,7 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 								continue;
 							}
 						}
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode
-								.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would
 						// clean child views as well
 						// cmd.add(new
@@ -202,8 +203,7 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
@@ -232,6 +232,12 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+			return null;
+		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -259,6 +265,12 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		}
 		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -290,6 +302,22 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 	}
 
 	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+		switch(getVisualID(req)) {
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
+	}
+
+	/**
 	 * Suppress messages on a combined fragment
 	 * 
 	 * @generated NOT
@@ -303,13 +331,11 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		for(Object child : getHost().getParent().getChildren()) {
 			if(child instanceof LifelineEditPart) {
 				for(Object littlechild : ((LifelineEditPart)child).getChildren()) {
-					if(littlechild instanceof ActionExecutionSpecificationEditPart
-							|| littlechild instanceof BehaviorExecutionSpecificationEditPart) {
+					if(littlechild instanceof ActionExecutionSpecificationEditPart || littlechild instanceof BehaviorExecutionSpecificationEditPart) {
 						ShapeNodeEditPart editPart = (ShapeNodeEditPart)littlechild;
 						Rectangle executionSpecificationBounds = editPart.getFigure().getBounds();
 						if(combinedFragmentBounds.intersects(executionSpecificationBounds)) {
-							cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), editPart
-									.resolveSemanticElement(), false)));
+							cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), editPart.resolveSemanticElement(), false)));
 							cmd.add(new DeleteCommand(getEditingDomain(), (View)editPart.getModel()));
 						}
 					}
@@ -319,6 +345,9 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		return !cmd.isEmpty() ? cmd : null;
 	}
 
+	/**
+	 * Delete command with popup
+	 */
 	private final class DeleteCommandWithPopup extends CompositeCommand {
 
 		private DeleteCommandWithPopup(String label) {
@@ -329,9 +358,8 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		 * {@inheritDoc}
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-				throws ExecutionException {
-			if(showMessageDialog(DELETE_FROM_MODEL_DLG_TITLE, DELETE_FROM_MODEL_DLG_MESSAGE)) {
+		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+			if(showMessageDialog(DiagramUIMessages.PromptingDeleteFromModelAction_DeleteFromModelDialog_Title, DELETE_FROM_MODEL_DLG_MESSAGE)) {
 				return super.doExecuteWithResult(progressMonitor, info);
 			}
 			return null;
@@ -340,7 +368,6 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		/**
 		 * Show popup message
 		 * 
-		 * @generated NOT
 		 * @param title
 		 *        The title
 		 * @param message
@@ -348,15 +375,13 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		 * @return True if user click on OK
 		 */
 		private boolean showMessageDialog(String title, String message) {
-			MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(Display.getCurrent()
-					.getActiveShell(), title, message, null, false, (IPreferenceStore)((IGraphicalEditPart)getHost())
-					.getDiagramPreferencesHint().getPreferenceStore(),
-					IPreferenceConstants.PREF_PROMPT_ON_DEL_FROM_MODEL);
+			MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(Display.getCurrent().getActiveShell(), title, message, null, false, (IPreferenceStore)((IGraphicalEditPart)getHost()).getDiagramPreferencesHint().getPreferenceStore(), IPreferenceConstants.PREF_PROMPT_ON_DEL_FROM_MODEL);
 
-			if(dialog.getReturnCode() == IDialogConstants.YES_ID)
+			if(dialog.getReturnCode() == IDialogConstants.YES_ID) {
 				return true;
-			else
+			} else {
 				return false;
+			}
 		}
 	}
 

@@ -23,7 +23,9 @@ import java.util.Set;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
@@ -47,8 +49,7 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getInteractionInteractionCompartment_7001SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getInteractionInteractionCompartment_7001SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
@@ -64,6 +65,8 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 		case InteractionUseEditPart.VISUAL_ID:
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 		case CombinedFragmentEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -86,6 +89,8 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Lifeline());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		}
 		return myFeaturesToSynchronize;
 	}

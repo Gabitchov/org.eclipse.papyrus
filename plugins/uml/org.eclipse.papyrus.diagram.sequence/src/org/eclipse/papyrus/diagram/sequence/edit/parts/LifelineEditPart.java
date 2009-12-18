@@ -21,17 +21,20 @@ import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -59,23 +62,32 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.figures.LifelineAnchor;
+import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -99,14 +111,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	protected IFigure primaryShape;
 
 	/**
-	 * The center figure for synch, asynch and reply message
+	 * True if the lifeline is in inline mode
 	 */
-	private RectangleFigure centerFigure;
-
-	/**
-	 * The bottom center figure for delete message
-	 */
-	private RectangleFigure bottomCenterFigure;
+	private boolean inlineMode;
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -118,6 +125,21 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			handleNotificationEvent(msg);
 		}
 	});
+
+	/**
+	 * Layout role for inline mode
+	 */
+	private LayoutEditPolicy inlineModeLayoutRole = createLayoutEditPolicy();;
+
+	/**
+	 * Layout role for normal mode
+	 */
+	private LayoutEditPolicy normalModeLayoutRole = new LifelineXYLayoutEditPolicy();
+
+	/**
+	 * Layout role for drag drop
+	 */
+	private DragDropEditPolicy dragDropEditPolicy = new DragDropEditPolicy();
 
 	/**
 	 * @generated
@@ -135,15 +157,15 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
+
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifelineXYLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -173,24 +195,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * This operation returns the ExecutionSpecification EditParts contained in the Lifeline
-	 * EditPart
-	 * 
-	 * @return the list of ExecutionSpecification EditParts
-	 */
-	public List<ShapeNodeEditPart> getExecutionSpecificationList() {
-		List<ShapeNodeEditPart> executionSpecificationList = new ArrayList<ShapeNodeEditPart>();
-		for(Object obj : getChildren()) {
-			if(obj instanceof BehaviorExecutionSpecificationEditPart) {
-				executionSpecificationList.add((ShapeNodeEditPart)obj);
-			} else if(obj instanceof ActionExecutionSpecificationEditPart) {
-				executionSpecificationList.add((ShapeNodeEditPart)obj);
-			}
-		}
-		return executionSpecificationList;
-	}
-
-	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
@@ -213,6 +217,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			((LifelineNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
 			return true;
 		}
+
 
 		return false;
 	}
@@ -248,13 +253,14 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		// Execution specification handling
-		if(editPart instanceof BehaviorExecutionSpecificationEditPart
-				|| editPart instanceof ActionExecutionSpecificationEditPart) {
+		if(editPart instanceof BehaviorExecutionSpecificationEditPart || editPart instanceof ActionExecutionSpecificationEditPart) {
 			return getPrimaryShape().getFigureLifelineDotLineFigure();
 		}
 
@@ -262,10 +268,22 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * Overrides to disable the defaultAnchorArea. The edge is now more stuck with the middle of the
+	 * figure.
+	 * 
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 250);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 250) {
+
+			/**
+			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
+			 */
+			@Override
+			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
+				return false;
+			}
+		};
 		return result;
 	}
 
@@ -358,17 +376,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -382,19 +390,8 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -417,6 +414,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionEditPart) {
@@ -443,6 +446,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -467,6 +476,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -491,6 +506,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -515,6 +536,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -539,6 +566,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -561,6 +594,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
@@ -569,19 +608,8 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -605,6 +633,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -630,6 +664,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -654,6 +694,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -678,6 +724,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -702,6 +754,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -726,6 +784,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -749,6 +813,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		return types;
 	}
@@ -757,17 +827,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -775,25 +835,16 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		types.add(UMLElementTypes.Message_4007);
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -817,6 +868,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -842,6 +899,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -866,6 +929,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -890,6 +959,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -914,6 +989,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -938,6 +1019,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -961,6 +1048,18 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Constraint_3008);
 		}
 		return types;
 	}
@@ -988,7 +1087,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private LifelineDotLineFigure fFigureLifelineDotLineFigure;
+		private LifelineDotLineCustomFigure fFigureLifelineDotLineFigure;
 
 		/**
 		 * @generated
@@ -1008,31 +1107,41 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public LifelineDotLineFigure getFigureLifelineDotLineFigure() {
-			return fFigureLifelineDotLineFigure;
-		}
-
-		/**
-		 * Generated not for set text wrapping to true
-		 * 
-		 * @generated NOT
-		 */
 		private void createContents() {
+
 
 			fFigureLifelineNameContainerFigure = new RectangleFigure();
 			fFigureLifelineNameContainerFigure.setLineWidth(1);
 
-			fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode()
-					.DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
+			fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
 
 			this.add(fFigureLifelineNameContainerFigure, BorderLayout.TOP);
 			fFigureLifelineNameContainerFigure.setLayoutManager(new StackLayout());
 
+
 			fFigureLifelineLabelFigure = new WrappingLabel();
+
+
+
+
 			fFigureLifelineLabelFigure.setText("<...>");
+
+
+
+
 			fFigureLifelineLabelFigure.setTextWrap(true);
 
+
+
+
+			fFigureLifelineLabelFigure.setAlignment(PositionConstants.CENTER);
+
+
+
 			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
+
+
+
 
 			fFigureExecutionsContainerFigure = new RectangleFigure();
 			fFigureExecutionsContainerFigure.setFill(false);
@@ -1042,10 +1151,15 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
 			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
 
-			fFigureLifelineDotLineFigure = new LifelineDotLineFigure();
+
+			fFigureLifelineDotLineFigure = new LifelineDotLineCustomFigure();
+
+
 
 			fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);
-			fFigureLifelineDotLineFigure.setLayoutManager(new XYLayout());
+
+
+
 		}
 
 		/**
@@ -1087,6 +1201,14 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		public RectangleFigure getFigureExecutionsContainerFigure() {
 			return fFigureExecutionsContainerFigure;
 		}
+
+		/**
+		 * @generated
+		 */
+		public LifelineDotLineCustomFigure getFigureLifelineDotLineFigure() {
+			return fFigureLifelineDotLineFigure;
+		}
+
 	}
 
 	/**
@@ -1097,28 +1219,19 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper
-						.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper
-						.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper
-						.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
-					prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Lifeline",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
@@ -1133,33 +1246,48 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
+	 * This operation returns the ExecutionSpecification EditParts contained in the Lifeline
+	 * EditPart
+	 * 
+	 * @return the list of ExecutionSpecification EditParts
+	 */
+	public List<ShapeNodeEditPart> getExecutionSpecificationList() {
+		List<ShapeNodeEditPart> executionSpecificationList = new ArrayList<ShapeNodeEditPart>();
+		for(Object obj : getChildren()) {
+			if(obj instanceof BehaviorExecutionSpecificationEditPart) {
+				executionSpecificationList.add((ShapeNodeEditPart)obj);
+			} else if(obj instanceof ActionExecutionSpecificationEditPart) {
+				executionSpecificationList.add((ShapeNodeEditPart)obj);
+			}
+		}
+		return executionSpecificationList;
+	}
+
+	/**
+	 * This operation returns the InnerConnectableElement EditParts contained in the Lifeline
+	 * EditPart
+	 * 
+	 * @return the list of InnerConnectableElement EditParts
+	 */
+	public List<LifelineEditPart> getInnerConnectableElementList() {
+		List<LifelineEditPart> propertyList = new ArrayList<LifelineEditPart>();
+		for(Object obj : getChildren()) {
+			if(obj instanceof LifelineEditPart) {
+				propertyList.add((LifelineEditPart)obj);
+			}
+		}
+		return propertyList;
+	}
+
+	/**
 	 * Handle lifeline covered by and destruction event
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 
-		if(notification.getNotifier() instanceof Bounds) {
-			Bounds newBounds = (Bounds)notification.getNotifier();
-			Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds
-					.getHeight());
-			Lifeline lifeline = (Lifeline)resolveSemanticElement();
-			EList<InteractionFragment> coveredbyInteractionFragments = lifeline.getCoveredBys();
-			for(Object child : getParent().getChildren()) {
-				if(child instanceof CombinedFragmentEditPart) {
-					InteractionFragmentEditPart interactionFragmentEditPart = (InteractionFragmentEditPart)child;
-					InteractionFragment interactionFragment = (InteractionFragment)interactionFragmentEditPart
-							.resolveSemanticElement();
-					if(newBound.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
-						if(!coveredbyInteractionFragments.contains(interactionFragment)) {
-							coveredbyInteractionFragments.add(interactionFragment);
-						}
-					} else {
-						coveredbyInteractionFragments.remove(interactionFragment);
-					}
-				}
-			}
-		} else if(UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(feature)) {
+		if(UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(feature)) {
+			// Handle coveredBy attribute
 			Object newValue = notification.getNewValue();
 			if(notification.getOldValue() instanceof MessageOccurrenceSpecification) {
 				notifier.unlistenObject((Notifier)notification.getOldValue());
@@ -1176,57 +1304,126 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 				}
 			}
 		} else if(UMLPackage.eINSTANCE.getOccurrenceSpecification_Event().equals(feature)) {
+			// Handle destruction event
 			Object newValue = notification.getNewValue();
-			if(notification.getOldValue() instanceof DestructionEvent
-					&& (newValue instanceof DestructionEvent == false)) {
+			if(notification.getOldValue() instanceof DestructionEvent && newValue instanceof DestructionEvent == false) {
 				updateCrossEnd();
 			}
 			if(newValue instanceof DestructionEvent) {
 				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
 				getPrimaryShape().repaint();
 			}
+		} else if(notification.getNotifier() instanceof Bounds) {
+			updateCoveredByLifelines((Bounds)notification.getNotifier());
 		}
 
 		super.handleNotificationEvent(notification);
 	}
 
 	/**
-	 * Update the cross end
+	 * Update covered lifelines of a Interaction fragment
+	 * 
+	 * @param newBounds
+	 *        The new bounds of the lifeline
 	 */
-	private void updateCrossEnd() {
-		getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(false);
+	public void updateCoveredByLifelines(Bounds newBounds) {
+		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
 		Lifeline lifeline = (Lifeline)resolveSemanticElement();
-		for(InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
-			if(interactionFragment instanceof MessageOccurrenceSpecification) {
-				MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification)interactionFragment;
-				notifier.listenObject(messageOccurrenceSpecification);
-				if(messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
-					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+		EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
+
+		List<InteractionFragment> coveredByLifelinesToAdd = new ArrayList<InteractionFragment>();
+		List<InteractionFragment> coveredByLifelinesToRemove = new ArrayList<InteractionFragment>();
+		for(Object child : getParent().getChildren()) {
+			if(child instanceof InteractionFragmentEditPart) {
+				InteractionFragmentEditPart interactionFragmentEditPart = (InteractionFragmentEditPart)child;
+				InteractionFragment interactionFragment = (InteractionFragment)interactionFragmentEditPart.resolveSemanticElement();
+				if(newBound.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
+					if(!coveredByLifelines.contains(interactionFragment)) {
+						coveredByLifelinesToAdd.add(interactionFragment);
+					}
+				} else if(coveredByLifelines.contains(interactionFragment)) {
+					coveredByLifelinesToRemove.add(interactionFragment);
 				}
 			}
 		}
-		getPrimaryShape().repaint();
+
+		if(!coveredByLifelinesToAdd.isEmpty()) {
+			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToAdd));
+		}
+		if(!coveredByLifelinesToRemove.isEmpty()) {
+			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToRemove));
+		}
 	}
 
 	/**
-	 * Create specific anchor to handle connection on center of the lifeline
+	 * Update the cross end
 	 */
-	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor)super
-				.getSourceConnectionAnchor(connEditPart);
-		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
-		return connectionAnchor;
+	private void updateCrossEnd() {
+		LifelineDotLineFigure figureLifelineDotLineFigure = getPrimaryShape().getFigureLifelineDotLineFigure();
+		if(figureLifelineDotLineFigure != null) {
+			figureLifelineDotLineFigure.setCrossAtEnd(false);
+			Lifeline lifeline = (Lifeline)resolveSemanticElement();
+			if(lifeline != null) {
+				for(InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
+					if(interactionFragment instanceof MessageOccurrenceSpecification) {
+						MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification)interactionFragment;
+						notifier.listenObject(messageOccurrenceSpecification);
+						if(messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
+							figureLifelineDotLineFigure.setCrossAtEnd(true);
+						}
+					}
+				}
+				getPrimaryShape().repaint();
+			}
+		}
 	}
 
 	/**
-	 * Create specific anchor to handle connection on center of the lifeline
+	 * Overrides to return the DashLineFigure instead of this figure. This is necessary for the
+	 * connections anchor.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getNodeFigure()
 	 */
 	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor)super.getSourceConnectionAnchor(request);
-		connectionAnchor.setOwner(getCenterFigure(getContentPane()));
-		return connectionAnchor;
+	protected NodeFigure getNodeFigure() {
+		return getDashLineFigure();
+	}
+
+	/**
+	 * Overrides because getNodeFigure() doesn't return the getFigure() anymore.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setBackgroundColor(org.eclipse.swt.graphics.Color)
+	 */
+	protected void setBackgroundColor(Color c) {
+		NodeFigure fig = (NodeFigure)getFigure();
+		fig.setBackgroundColor(c);
+		fig.setIsUsingGradient(false);
+		fig.setGradientData(-1, -1, 0);
+	}
+
+	/**
+	 * Overrides because getNodeFigure() doesn't return the getFigure() anymore.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData)
+	 */
+	protected void setGradient(GradientData gradient) {
+		NodeFigure fig = (NodeFigure)getFigure();
+		if(gradient != null) {
+			fig.setIsUsingGradient(true);
+			fig.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle());
+		} else {
+			fig.setIsUsingGradient(false);
+		}
+	}
+
+	/**
+	 * Overrides because getNodeFigure() doesn't return the getFigure() anymore.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setTransparency(int)
+	 */
+	protected void setTransparency(int transp) {
+		NodeFigure fig = (NodeFigure)getFigure();
+		fig.setTransparency(transp);
 	}
 
 	/**
@@ -1236,17 +1433,19 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
 		IFigure owner;
 		if(connEditPart instanceof Message4EditPart) {
-			owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
+			// Create message
+			LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
+			return fixedAnchor;
+
 		} else if(connEditPart instanceof Message5EditPart) {
-			owner = getBottomCenterFigure(getContentPane());
+			// Delete message
+			AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(connEditPart);
+			anchor.setOwner(getCrossFigure());
+			return anchor;
 		} else {
-			owner = getCenterFigure(getContentPane());
+			return super.getTargetConnectionAnchor(connEditPart);
 		}
 
-		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor)super
-				.getTargetConnectionAnchor(connEditPart);
-		connectionAnchor.setOwner(owner);
-		return connectionAnchor;
 	}
 
 	/**
@@ -1260,87 +1459,55 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for(Object obj : relationshipTypes) {
 				if(UMLElementTypes.Message_4006.equals(obj)) {
-					owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
-					break;
+					LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
+					return fixedAnchor;
 				} else if(UMLElementTypes.Message_4007.equals(obj)) {
-					owner = getBottomCenterFigure(getContentPane());
-					break;
-				}
-			}
-		} else if(request instanceof CreateConnectionViewAndElementRequest) {
-			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest)request;
-			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
-			if(createRequest.getConnectionViewDescriptor() != null) {
-				if(String.valueOf(Message4EditPart.VISUAL_ID).equals(connectionViewDescriptor.getSemanticHint())) {
-					owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
-				} else if(String.valueOf(Message5EditPart.VISUAL_ID)
-						.equals(connectionViewDescriptor.getSemanticHint())) {
-					owner = getBottomCenterFigure(getContentPane());
+					AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
+					anchor.setOwner(getCrossFigure());
+					return anchor;
 				}
 			}
 		} else if(request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
 			if(connectionEditPart instanceof Message4EditPart) {
-				owner = getPrimaryShape().getFigureLifelineNameContainerFigure();
+				LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
+				return fixedAnchor;
 			} else if(connectionEditPart instanceof Message5EditPart) {
-				owner = getBottomCenterFigure(getContentPane());
+				AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
+				anchor.setOwner(getCrossFigure());
+				return anchor;
+			}
+		} else if(request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest)request;
+			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
+			if(connectionViewDescriptor != null) {
+
 			}
 		}
 
-		if(owner == null) {
-			owner = getCenterFigure(getContentPane());
-		}
-
-		AbstractConnectionAnchor connectionAnchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
-		connectionAnchor.setOwner(owner);
-		return connectionAnchor;
+		return super.getTargetConnectionAnchor(request);
 	}
 
 	/**
-	 * Create a figure center on a reference figure
-	 * 
-	 * @param referenceFigure
-	 *        The reference figure
-	 * @return The center figure
+	 * Create the dashLine figure
 	 */
-	private RectangleFigure getCenterFigure(IFigure referenceFigure) {
-		if(centerFigure == null) {
-			centerFigure = new RectangleFigure();
+	private NodeFigure getDashLineFigure() {
+		NodeFigure centerFigure = null;
+		if(getContentPane() instanceof LifelineDotLineCustomFigure) {
+			centerFigure = ((LifelineDotLineCustomFigure)getContentPane()).getDashLineRectangle();
 		}
-
-		Rectangle bounds = referenceFigure.getBounds().getCopy();
-		bounds.x = bounds.x + bounds.width / 2;
-		bounds.width = 1;
-		bounds.height -= 30;
-
-		centerFigure.setBounds(bounds);
-		centerFigure.setParent(referenceFigure.getParent());
-
 		return centerFigure;
 	}
 
 	/**
-	 * Create a figure center on the botton of a reference figure
-	 * 
-	 * @param referenceFigure
-	 *        The reference figure
-	 * @return The bottom center figure
+	 * Get the cross figure
 	 */
-	private RectangleFigure getBottomCenterFigure(IFigure referenceFigure) {
-		if(bottomCenterFigure == null) {
-			bottomCenterFigure = new RectangleFigure();
+	private IFigure getCrossFigure() {
+		IFigure bottomCenterFigure = getContentPane();
+		if(bottomCenterFigure instanceof LifelineDotLineCustomFigure) {
+			bottomCenterFigure = ((LifelineDotLineCustomFigure)bottomCenterFigure).getCrossAtEndRectangle();
 		}
-
-		Rectangle bounds = referenceFigure.getBounds().getCopy();
-		bounds.x = bounds.x + bounds.width / 2;
-		bounds.width = 1;
-		bounds.y += bounds.height - 25;
-		bounds.height = 1;
-
-		bottomCenterFigure.setBounds(bounds);
-		bottomCenterFigure.setParent(referenceFigure.getParent());
-
 		return bottomCenterFigure;
 	}
 
@@ -1355,17 +1522,18 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			if(target instanceof LifelineEditPart) {
 				LifelineEditPart lifelineEditPart = (LifelineEditPart)target;
 				Rectangle lifelineBounds = lifelineEditPart.getContentPane().getBounds();
-				for(ShapeNodeEditPart executionSpecificationEditPart : lifelineEditPart
-						.getExecutionSpecificationList()) {
+				for(ShapeNodeEditPart executionSpecificationEditPart : lifelineEditPart.getExecutionSpecificationList()) {
 					IFigure executionSpecificationFigure = executionSpecificationEditPart.getFigure();
 					Rectangle esBounds = executionSpecificationFigure.getBounds().getCopy();
 					esBounds.x = lifelineBounds.x;
 					esBounds.width = lifelineBounds.width;
-					Point location = createConnectionRequest.getLocation().getCopy();
-					executionSpecificationFigure.translateToRelative(location);
-					if(esBounds.contains(location)) {
-						createConnectionRequest.setTargetEditPart(executionSpecificationEditPart);
-						return executionSpecificationEditPart.getCommand(request);
+					if(createConnectionRequest.getLocation() != null) {
+						Point location = createConnectionRequest.getLocation().getCopy();
+						executionSpecificationFigure.translateToRelative(location);
+						if(esBounds.contains(location)) {
+							createConnectionRequest.setTargetEditPart(executionSpecificationEditPart);
+							return executionSpecificationEditPart.getCommand(request);
+						}
 					}
 				}
 			} else {
@@ -1401,6 +1569,121 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	public void removeNotify() {
 		notifier.unlistenAll();
 		super.removeNotify();
+	}
+
+	/**
+	 * Configure inline mode
+	 */
+	@Override
+	protected void refreshChildren() {
+		super.refreshChildren();
+		configure(isInlineMode());
+	}
+
+	/**
+	 * Determine inline capability
+	 * 
+	 * @return True if inline mode is possible
+	 */
+	public boolean isInlineCapability() {
+		List<Property> properties = getAvailableProperties();
+		if(properties != null && !properties.isEmpty()) {
+			return inlineMode || getChildren().size() < 2;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get the inline mode
+	 * 
+	 * @return True if the lifeline is in inline mode and if there are properties, else false
+	 */
+	private boolean isInlineMode() {
+		for(Object o : getChildren()) {
+			if(o instanceof LifelineEditPart) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Configure the lifeline
+	 * 
+	 * @param inlineMode
+	 *        True if the lifeline is in inline mode
+	 */
+	private void configure(boolean inlineMode) {
+		((LifelineDotLineCustomFigure)getPrimaryShape().getFigureLifelineDotLineFigure()).configure(inlineMode, getInnerConnectableElementList().size());
+		if(this.inlineMode != inlineMode) {
+			this.inlineMode = inlineMode;
+			if(inlineMode) {
+				installEditPolicy(EditPolicy.LAYOUT_ROLE, inlineModeLayoutRole);
+				removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
+			} else {
+				installEditPolicy(EditPolicy.LAYOUT_ROLE, normalModeLayoutRole);
+				installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, dragDropEditPolicy);
+			}
+			refreshVisuals();
+		}
+	}
+
+	/**
+	 * Return the inner ConnectableElements of the lifeline
+	 * 
+	 * @return inner ConnectableElements
+	 */
+	public List<Property> getProperties() {
+		Lifeline lifeline = (Lifeline)resolveSemanticElement();
+		return getProperties(lifeline);
+	}
+
+	/**
+	 * Get available properties
+	 * 
+	 * @return Only not already used properties
+	 */
+	public List<Property> getAvailableProperties() {
+		List<Property> properties = getProperties();
+		if(properties != null) {
+			for(EditPart editPart : (List<EditPart>)getChildren()) {
+				if(editPart instanceof LifelineEditPart) {
+					Lifeline lifeline = (Lifeline)((LifelineEditPart)editPart).resolveSemanticElement();
+					ConnectableElement represents = lifeline.getRepresents();
+					if(properties.contains(represents)) {
+						properties.remove(represents);
+					}
+				}
+			}
+		}
+		return properties;
+	}
+
+	/**
+	 * Return the inner ConnectableElements of the lifeline
+	 * 
+	 * @param lifeline
+	 *        The lifeline
+	 * @return inner ConnectableElements
+	 */
+	// TODO Extract in a helper
+	public static List<Property> getProperties(Lifeline lifeline) {
+		if(lifeline != null) {
+			ConnectableElement represents = lifeline.getRepresents();
+			if(represents != null) {
+				Type type = (Type)represents.getType();
+				if(type instanceof StructuredClassifier) {
+					StructuredClassifier structuredClassifier = (StructuredClassifier)type;
+
+					if(!structuredClassifier.getAllAttributes().isEmpty()) {
+						return new ArrayList<Property>(((StructuredClassifier)type).getAllAttributes());
+					}
+				}
+			}
+		}
+
+		return null;
 	}
 
 }

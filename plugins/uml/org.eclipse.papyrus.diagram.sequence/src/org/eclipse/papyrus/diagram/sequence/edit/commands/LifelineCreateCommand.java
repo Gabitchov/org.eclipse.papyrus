@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -26,8 +28,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -44,6 +48,11 @@ public class LifelineCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	private EObject eObject = null;
+
+	/**
+	 * The list of the available properties
+	 */
+	private List<Property> availableProperties;
 
 	/**
 	 * @generated
@@ -75,6 +84,7 @@ public class LifelineCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,13 +104,33 @@ public class LifelineCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Generated not for add lifelines on lifeline
+	 * 
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		EObject object = getElementToEdit();
+		Interaction owner;
+		Property property = null;
+		if(object instanceof Lifeline) {
+			Lifeline lifeline = (Lifeline)object;
+			property = CommandHelper.getProperties(availableProperties);
+
+			if(property == null) {
+				return CommandResult.newCancelledCommandResult();
+			}
+
+			owner = lifeline.getInteraction();
+		} else {
+			owner = (Interaction)getElementToEdit();
+		}
 
 		Lifeline newElement = UMLFactory.eINSTANCE.createLifeline();
 
-		Interaction owner = (Interaction)getElementToEdit();
+		if(property != null) {
+			newElement.setRepresents(property);
+		}
+
 		owner.getLifelines().add(newElement);
 
 		UMLElementTypes.init_Lifeline_3001(newElement);
@@ -114,8 +144,7 @@ public class LifelineCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Lifeline newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(Lifeline newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
@@ -124,6 +153,16 @@ public class LifelineCreateCommand extends EditElementCommand {
 		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
+	}
+
+	/**
+	 * Set available property
+	 * 
+	 * @param availableProperties
+	 *        The available properties
+	 */
+	public void setAvailableProperties(List<Property> availableProperties) {
+		this.availableProperties = availableProperties;
 	}
 
 }

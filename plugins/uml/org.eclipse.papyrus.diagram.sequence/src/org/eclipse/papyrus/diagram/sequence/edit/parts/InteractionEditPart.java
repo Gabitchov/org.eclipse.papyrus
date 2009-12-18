@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
@@ -35,6 +33,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -42,11 +41,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -87,8 +88,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
-	 * 
-	 * @generated NOT
 	 */
 	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
 
@@ -112,8 +111,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -165,10 +163,10 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof InteractionInteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InteractionInteractionCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -185,8 +183,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if(childEditPart instanceof InteractionInteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his
-			// own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InteractionInteractionCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -332,17 +329,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -356,19 +343,8 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -391,6 +367,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
@@ -417,6 +399,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -441,6 +429,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -465,6 +459,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -489,6 +489,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -513,6 +519,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -535,6 +547,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
@@ -543,19 +561,8 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -579,6 +586,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -604,6 +617,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -628,6 +647,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -652,6 +677,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -676,6 +707,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -700,6 +737,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -723,6 +766,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		return types;
 	}
@@ -731,17 +780,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -749,25 +788,16 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		types.add(UMLElementTypes.Message_4007);
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -791,6 +821,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -816,6 +852,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -840,6 +882,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -864,6 +912,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -888,6 +942,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -912,6 +972,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -935,6 +1001,18 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Constraint_3008);
 		}
 		return types;
 	}
@@ -947,28 +1025,19 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Interaction",
-						PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Interaction",
-						PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Interaction",
-						PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
-					prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Interaction",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
@@ -989,7 +1058,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * Handle formal gate's name
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
@@ -998,8 +1067,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			// Handle formal gate
 			notifier.unlistenObject((Notifier)notification.getOldValue());
 			notifier.listenObject((Notifier)notification.getNewValue());
-		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				&& notification.getNotifier() instanceof Gate) {
+		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) && notification.getNotifier() instanceof Gate) {
 			// Handle modification of formal gate's name
 			Gate gate = (Gate)notification.getNotifier();
 			String oldStringValue = notification.getOldStringValue();
@@ -1007,9 +1075,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			if(oldStringValue != null && newStringValue != null) {
 				String oldPrefix = oldStringValue.split("_")[0];
 				String newPrefix = newStringValue.split("_")[0];
-				if(!oldPrefix.equals(newPrefix)
-						&& (oldPrefix.equals(MessageDirection.IN.getName()) || oldPrefix.equals(MessageDirection.OUT
-						.getName()))) {
+				if(!oldPrefix.equals(newPrefix) && (oldPrefix.equals(MessageDirection.IN.getName()) || oldPrefix.equals(MessageDirection.OUT.getName()))) {
 					notifier.unlistenObject(gate);
 					gate.setName(oldPrefix + "_" + gate.getName());
 					notifier.listenObject(gate);
@@ -1022,8 +1088,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * Activate a listener for the interactionUse to Handle notification in the refered Interaction
-	 * 
-	 * @generated NOT
 	 */
 	public void activate() {
 		super.activate();
@@ -1036,8 +1100,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	/**
 	 * Deactivate a listener for the interactionUse to Handle notification in the refered
 	 * Interaction
-	 * 
-	 * @generated NOT
 	 */
 	public void deactivate() {
 		super.deactivate();
@@ -1054,115 +1116,115 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		return sourceAnchor;
-	}
-
-	/**
-	 * @generated NOT
+	 * Handle found message
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		sourceAnchor = super.getTargetConnectionAnchor(request);
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
-			List<?> relationshipTypes = createRequest.getElementTypes();
-			for(Object obj : relationshipTypes) {
-				if(UMLElementTypes.Message_4009.equals(obj) && request instanceof CreateRequest) {
-					Point location = ((CreateRequest)request).getLocation().getCopy();
-					location.x -= getFigure().getBounds().x;
-					location.y -= getFigure().getBounds().y;
-					sourceAnchor = new XYAnchor(location);
-					break;
-				}
-			}
-		} else if(request instanceof CreateConnectionViewAndElementRequest) {
-			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest)request;
-			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
-			if(createRequest.getConnectionViewDescriptor() != null) {
-				if(String.valueOf(Message6EditPart.VISUAL_ID).equals(connectionViewDescriptor.getSemanticHint())
-						&& request instanceof CreateRequest) {
-					Point location = ((CreateRequest)request).getLocation().getCopy();
-					location.x -= getFigure().getBounds().x;
-					location.y -= getFigure().getBounds().y;
-					sourceAnchor = new XYAnchor(location);
-				}
-			}
-		} else if(request instanceof ReconnectRequest) {
-			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
-			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof Message7EditPart && request instanceof CreateRequest) {
-				Point location = ((CreateRequest)request).getLocation().getCopy();
-				location.x -= getFigure().getBounds().x;
-				location.y -= getFigure().getBounds().y;
-				sourceAnchor = new XYAnchor(location);
-			}
-		}
-
-		return sourceAnchor;
+		// ConnectionAnchor sourceAnchor = createAnchor(request, UMLElementTypes.Message_4009,
+		// Message7EditPart.VISUAL_ID, Message7EditPart.class);
+		//
+		// if (sourceAnchor == null) {
+		// sourceAnchor = super.getSourceConnectionAnchor(request);
+		// }
+		//
+		// return sourceAnchor;
+		return super.getSourceConnectionAnchor(request);
 	}
 
-	private Map<Message7EditPart, ConnectionAnchor> sourceAnchors = new HashMap<Message7EditPart, ConnectionAnchor>();
-
-	private Map<Message6EditPart, ConnectionAnchor> targetAnchors = new HashMap<Message6EditPart, ConnectionAnchor>();
-
-	private ConnectionAnchor sourceAnchor;
-
-	private ConnectionAnchor targetAnchor;
-
 	/**
-	 * @generated NOT
+	 * Handle found message
 	 */
 	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		return targetAnchor;
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
+		ConnectionAnchor sourceConnectionAnchor = super.getSourceConnectionAnchor(connEditPart);
+		Point referencePoint = sourceConnectionAnchor.getReferencePoint();
+		if(connEditPart instanceof Message7EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+			sourceConnectionAnchor = new XYAnchor(referencePoint);
+		}
+
+		return sourceConnectionAnchor;
 	}
 
 	/**
-	 * @generated NOT
+	 * Handle lost message
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		targetAnchor = super.getTargetConnectionAnchor(request);
+		// ConnectionAnchor targetAnchor = createAnchor(request, UMLElementTypes.Message_4008,
+		// Message6EditPart.VISUAL_ID, Message6EditPart.class);
+		//
+		// if (targetAnchor == null) {
+		// targetAnchor = super.getTargetConnectionAnchor(request);
+		// }
+		//
+		// return targetAnchor;
+		return super.getTargetConnectionAnchor(request);
+	}
+
+	/**
+	 * Handle lost message
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(connEditPart);
+		Point referencePoint = targetConnectionAnchor.getReferencePoint();
+		if(connEditPart instanceof Message6EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+			targetConnectionAnchor = new XYAnchor(referencePoint);
+		}
+
+		return targetConnectionAnchor;
+	}
+
+	/**
+	 * Create Anchor
+	 * 
+	 * @param request
+	 *        The request
+	 * @param elementType
+	 *        The element type of the message
+	 * @param visualId
+	 *        The visual ID of the message
+	 * @param messageType
+	 *        The type of the message
+	 * @return The connection anchor
+	 */
+	private ConnectionAnchor createAnchor(Request request, IElementType elementType, int visualId, Class<?> messageType) {
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for(Object obj : relationshipTypes) {
-				if(UMLElementTypes.Message_4008.equals(obj) && request instanceof CreateRequest) {
-					Point location = ((CreateRequest)request).getLocation().getCopy();
-					location.x -= getFigure().getBounds().x;
-					location.y -= getFigure().getBounds().y;
-					targetAnchor = new XYAnchor(location);
-					break;
+				if(elementType.equals(obj)) {
+					return createAnchor(createRequest.getLocation().getCopy());
 				}
 			}
 		} else if(request instanceof CreateConnectionViewAndElementRequest) {
 			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest)request;
 			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
-			if(createRequest.getConnectionViewDescriptor() != null) {
-				if(String.valueOf(Message6EditPart.VISUAL_ID).equals(connectionViewDescriptor.getSemanticHint())
-						&& request instanceof CreateRequest) {
-					Point location = ((CreateRequest)request).getLocation().getCopy();
-					location.x -= getFigure().getBounds().x;
-					location.y -= getFigure().getBounds().y;
-					targetAnchor = new XYAnchor(location);
+			if(connectionViewDescriptor != null) {
+				if(String.valueOf(visualId).equals(connectionViewDescriptor.getSemanticHint())) {
+					return createAnchor(createRequest.getLocation().getCopy());
 				}
 			}
 		} else if(request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof Message6EditPart && request instanceof CreateRequest) {
-				Point location = ((CreateRequest)request).getLocation().getCopy();
-				location.x -= getFigure().getBounds().x;
-				location.y -= getFigure().getBounds().y;
-				targetAnchor = new XYAnchor(location);
+			if(messageType.equals(connectionEditPart.getClass()) && request instanceof LocationRequest) {
+				return createAnchor(((LocationRequest)request).getLocation().getCopy());
 			}
-		}
 
-		return targetAnchor;
+		}
+		return null;
+	}
+
+	/**
+	 * Create Anchor
+	 * 
+	 * @param location
+	 *        The location
+	 * @return The connection anchor
+	 */
+	private ConnectionAnchor createAnchor(Point location) {
+		return new SlidableAnchor(getFigure(), BaseSlidableAnchor.getAnchorRelativeLocation(location, getFigure().getBounds()));
 	}
 
 }

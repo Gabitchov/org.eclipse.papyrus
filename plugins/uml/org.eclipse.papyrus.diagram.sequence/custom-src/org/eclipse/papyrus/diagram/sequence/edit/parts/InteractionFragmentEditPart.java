@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -20,14 +21,18 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.UMLPackage;
 
 public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 
@@ -131,23 +136,33 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 	 * @param newBounds
 	 */
 	public void updateCoveredLifelines(Bounds newBounds) {
-		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds
-				.getHeight());
+		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
 		InteractionFragment combinedFragment = (InteractionFragment)resolveSemanticElement();
 		EList<Lifeline> coveredLifelines = combinedFragment.getCovereds();
+
+		List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>();
+		List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>();
 		for(Object child : getParent().getChildren()) {
 			if(child instanceof LifelineEditPart) {
 				LifelineEditPart lifelineEditPart = (LifelineEditPart)child;
 				Lifeline lifeline = (Lifeline)lifelineEditPart.resolveSemanticElement();
 				if(newBound.intersects(lifelineEditPart.getFigure().getBounds())) {
 					if(!coveredLifelines.contains(lifeline)) {
-						coveredLifelines.add(lifeline);
+						coveredLifelinesToAdd.add(lifeline);
 					}
-				} else {
-					coveredLifelines.remove(lifeline);
+				} else if(coveredLifelines.contains(lifeline)) {
+					coveredLifelinesToRemove.add(lifeline);
 				}
 			}
 		}
+
+		if(!coveredLifelinesToAdd.isEmpty()) {
+			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
+		}
+		if(!coveredLifelinesToRemove.isEmpty()) {
+			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+		}
+
 	}
 
 }

@@ -30,21 +30,39 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		InteractionPreferencePage.initDefaults(store);
 
+
 		InteractionUsePreferencePage.initDefaults(store);
+
+
+		CommentPreferencePage.initDefaults(store);
+
 
 		ConsiderIgnoreFragmentPreferencePage.initDefaults(store);
 
+
 		CombinedFragmentPreferencePage.initDefaults(store);
+
+
+		ConstraintPreferencePage.initDefaults(store);
+
 
 		ActionExecutionSpecificationPreferencePage.initDefaults(store);
 
+
 		LifelinePreferencePage.initDefaults(store);
+
 
 		InteractionOperandPreferencePage.initDefaults(store);
 
+
 		BehaviorExecutionSpecificationPreferencePage.initDefaults(store);
 
+
+
+
+
 		MessagePreferencePage.initDefaults(store);
+
 
 	}
 

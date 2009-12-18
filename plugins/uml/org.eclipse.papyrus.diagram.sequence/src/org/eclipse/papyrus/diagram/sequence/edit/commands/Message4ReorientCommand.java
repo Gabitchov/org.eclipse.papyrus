@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.util.ReconnectMessageHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
@@ -72,25 +73,22 @@ public class Message4ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean canReorientSource() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		if(getLink().getOwnedElements().size() != 1) {
-			return false;
-		}
-		Element target = (Element)getLink().getOwnedElements().get(0);
 		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistMessage_4006(container, getNewSource(), target);
+
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistMessage_4006(container, getNewSource(), getOldTarget());
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean canReorientTarget() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
@@ -105,35 +103,37 @@ public class Message4ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Block reorient source or target
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
-			// return reorientSource();
+			return reorientSource();
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
-			// return reorientTarget();
+			return reorientTarget();
 		}
 		throw new IllegalStateException();
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		ReconnectMessageHelper.updateMessageEnd(getLink().getSendEvent(), getOldSource(), getNewSource());
+
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		ReconnectMessageHelper.updateMessageEnd(getLink().getReceiveEvent(), getOldTarget(), getNewTarget());
+		ReconnectMessageHelper.updateMessage(getLink());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**

@@ -30,6 +30,7 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -39,6 +40,9 @@ import org.osgi.framework.BundleContext;
  * @generated
  */
 public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
+
+	/** Logging helper */
+	public static LogHelper log;
 
 	/**
 	 * @generated
@@ -161,8 +165,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if(p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
-					.toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}

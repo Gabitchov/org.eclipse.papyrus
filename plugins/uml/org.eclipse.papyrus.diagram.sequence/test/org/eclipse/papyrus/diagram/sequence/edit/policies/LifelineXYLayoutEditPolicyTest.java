@@ -54,10 +54,8 @@ public class LifelineXYLayoutEditPolicyTest {
 	public void testIsAffixedToRight() {
 		Rectangle leftFigure = new Rectangle(10, 10, 10, 10);
 		Rectangle rightFigure = new Rectangle(15, 15, 10, 10);
-		assertTrue("Left figure is not on the left of the right figure", LifelineXYLayoutEditPolicy.isAffixedToRight(
-				leftFigure, rightFigure));
-		assertFalse("Right figure is on the left of the left figure", LifelineXYLayoutEditPolicy.isAffixedToRight(
-				rightFigure, leftFigure));
+		assertTrue("Left figure is not on the left of the right figure", LifelineXYLayoutEditPolicy.isAffixedToRight(leftFigure, rightFigure));
+		assertFalse("Right figure is on the left of the left figure", LifelineXYLayoutEditPolicy.isAffixedToRight(rightFigure, leftFigure));
 	}
 
 	@Test

@@ -74,24 +74,6 @@
             <ownedChild>
               <domainMetaElement
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActionExecutionSpecification"/>
-              <domainInitializer
-                  xsi:type="gmfmap:FeatureSeqInitializer">
-                <initializers
-                    xsi:type="gmfmap:FeatureValueSpec">
-                  <feature
-                      xsi:type="ecore:EAttribute"
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-                  <value
-                      body="let base : String = 'ActionExecutionSpecification' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-                </initializers>
-              </domainInitializer>
-              <labelMappings
-                  xsi:type="gmfmap:FeatureLabelMapping">
-                <diagramLabel
-                    href="sequenceDiagram.gmfgraph#ActionExecutionSpecificationLabel"/>
-                <features
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
                   href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.1"/>
@@ -105,17 +87,6 @@
             <ownedChild>
               <domainMetaElement
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehaviorExecutionSpecification"/>
-              <domainInitializer
-                  xsi:type="gmfmap:FeatureSeqInitializer">
-                <initializers
-                    xsi:type="gmfmap:FeatureValueSpec">
-                  <feature
-                      xsi:type="ecore:EAttribute"
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-                  <value
-                      body="let base : String = 'BehaviorExecutionSpecification' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-                </initializers>
-              </domainInitializer>
               <tool
                   xsi:type="gmftool:CreationTool"
                   href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.2"/>
@@ -233,6 +204,21 @@
                   href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.5"/>
               <diagramNode
                   href="sequenceDiagram.gmfgraph#InteractionOperandNode"/>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+              </children>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.3/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+              </children>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.2/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+              </children>
             </ownedChild>
           </children>
           <compartments
@@ -242,8 +228,84 @@
           </compartments>
         </ownedChild>
       </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/ownedRule"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression/body"/>
+                  <value
+                      body="'OpaqueExpression'"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+              </newElementInitializers>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              editPattern="">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
+              <value
+                  body="' '"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              editPattern="">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+        </ownedChild>
+      </children>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.2 //@nodes.0/@ownedChild/@children.3">
+          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.2 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.5">
         <compartment
             href="sequenceDiagram.gmfgraph#InteractionCompartment"/>
       </compartments>
@@ -254,18 +316,7 @@
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <domainSpecialization
-        body="self.messageSort=MessageSort::synchCall"/>
-    <domainInitializer
-        xsi:type="gmfmap:FeatureSeqInitializer">
-      <initializers
-          xsi:type="gmfmap:FeatureValueSpec">
-        <feature
-            xsi:type="ecore:EAttribute"
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-        <value
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-      </initializers>
-    </domainInitializer>
+        body="self.messageSort=MessageSort::synchCall and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern=""
@@ -290,9 +341,9 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedElement"/>
     <creationConstraints>
       <sourceEnd
-          body="self.oclIsKindOf(uml::ExecutionSpecification)"/>
+          body="self.oclIsKindOf(uml::InteractionFragment)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::ExecutionSpecification) and self.oclAsType(uml::ExecutionSpecification).start = null and self.eContainer() = oppositeEnd.eContainer()"/>
+          body="self.oclIsKindOf(uml::InteractionFragment)"/>
     </creationConstraints>
   </links>
   <links
@@ -300,18 +351,7 @@
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <domainSpecialization
-        body="self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal"/>
-    <domainInitializer
-        xsi:type="gmfmap:FeatureSeqInitializer">
-      <initializers
-          xsi:type="gmfmap:FeatureValueSpec">
-        <feature
-            xsi:type="ecore:EAttribute"
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-        <value
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-      </initializers>
-    </domainInitializer>
+        body="(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editPattern="">
@@ -334,8 +374,10 @@
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedElement"/>
     <creationConstraints>
+      <sourceEnd
+          body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
       <targetEnd
-          body="self.eContainer() = oppositeEnd.eContainer() or self.eContainer() = oppositeEnd or self = oppositeEnd.eContainer()"/>
+          body="(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.eContainer() = oppositeEnd.eContainer() or self.eContainer() = oppositeEnd or self = oppositeEnd.eContainer())"/>
     </creationConstraints>
   </links>
   <links
@@ -343,18 +385,7 @@
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <domainSpecialization
-        body="self.messageSort=MessageSort::reply"/>
-    <domainInitializer
-        xsi:type="gmfmap:FeatureSeqInitializer">
-      <initializers
-          xsi:type="gmfmap:FeatureValueSpec">
-        <feature
-            xsi:type="ecore:EAttribute"
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-        <value
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-      </initializers>
-    </domainInitializer>
+        body="self.messageSort=MessageSort::reply and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editPattern="">
@@ -378,9 +409,9 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedElement"/>
     <creationConstraints>
       <sourceEnd
-          body="self.oclIsKindOf(uml::ExecutionSpecification) and self.oclAsType(uml::ExecutionSpecification).finish = null"/>
+          body="self.oclIsKindOf(uml::InteractionFragment)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::ExecutionSpecification) and self.eContainer() = oppositeEnd.eContainer()"/>
+          body="self.oclIsKindOf(uml::InteractionFragment)"/>
     </creationConstraints>
   </links>
   <links
@@ -388,18 +419,7 @@
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <domainSpecialization
-        body="self.messageSort=MessageSort::createMessage"/>
-    <domainInitializer
-        xsi:type="gmfmap:FeatureSeqInitializer">
-      <initializers
-          xsi:type="gmfmap:FeatureValueSpec">
-        <feature
-            xsi:type="ecore:EAttribute"
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-        <value
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-      </initializers>
-    </domainInitializer>
+        body="self.messageSort=MessageSort::createMessage and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern=""
@@ -424,9 +444,9 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedElement"/>
     <creationConstraints>
       <sourceEnd
-          body="self.oclIsKindOf(uml::ExecutionSpecification) or self.oclIsKindOf(uml::Lifeline)"/>
+          body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::Lifeline) and self.eContainer() = oppositeEnd.eContainer() and self.oclAsType(uml::Lifeline).coveredBy->select(itf : uml::InteractionFragment | itf.oclAsType(uml::MessageOccurrenceSpecification).message.messageSort = uml::MessageSort::createMessage)->isEmpty()"/>
+          body="self.oclIsKindOf(uml::Lifeline)"/>
     </creationConstraints>
   </links>
   <links
@@ -434,18 +454,7 @@
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <domainSpecialization
-        body="self.messageSort=MessageSort::deleteMessage"/>
-    <domainInitializer
-        xsi:type="gmfmap:FeatureSeqInitializer">
-      <initializers
-          xsi:type="gmfmap:FeatureValueSpec">
-        <feature
-            xsi:type="ecore:EAttribute"
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-        <value
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-      </initializers>
-    </domainInitializer>
+        body="self.messageSort=MessageSort::deleteMessage and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editPattern="">
@@ -469,9 +478,9 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedElement"/>
     <creationConstraints>
       <sourceEnd
-          body="self.oclIsKindOf(uml::ExecutionSpecification) or self.oclIsKindOf(uml::Lifeline)"/>
+          body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::Lifeline) and self.eContainer() = oppositeEnd.eContainer() and self.oclAsType(uml::Lifeline).coveredBy->select(itf : uml::InteractionFragment | itf.oclAsType(uml::MessageOccurrenceSpecification).message.messageSort = uml::MessageSort::deleteMessage)->isEmpty()"/>
+          body="self.oclIsKindOf(uml::Lifeline)"/>
     </creationConstraints>
   </links>
   <links
@@ -480,17 +489,6 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <domainSpecialization
         body="self.receiveEvent=null"/>
-    <domainInitializer
-        xsi:type="gmfmap:FeatureSeqInitializer">
-      <initializers
-          xsi:type="gmfmap:FeatureValueSpec">
-        <feature
-            xsi:type="ecore:EAttribute"
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-        <value
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-      </initializers>
-    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editorPattern=""
@@ -515,9 +513,9 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedElement"/>
     <creationConstraints>
       <sourceEnd
-          body="self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::ExecutionSpecification)"/>
+          body="self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::Interaction) and self = oppositeEnd.eContainer()"/>
+          body="self.oclIsKindOf(uml::Interaction)"/>
     </creationConstraints>
   </links>
   <links
@@ -526,17 +524,6 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <domainSpecialization
         body="self.sendEvent=null"/>
-    <domainInitializer
-        xsi:type="gmfmap:FeatureSeqInitializer">
-      <initializers
-          xsi:type="gmfmap:FeatureValueSpec">
-        <feature
-            xsi:type="ecore:EAttribute"
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-        <value
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-      </initializers>
-    </domainInitializer>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         editPattern="">
@@ -562,8 +549,30 @@
       <sourceEnd
           body="self.oclIsKindOf(uml::Interaction)"/>
       <targetEnd
-          body="(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::ExecutionSpecification)) and self.eContainer() = oppositeEnd"/>
+          body="(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))"/>
     </creationConstraints>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/annotatedElement"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+    <diagramLink
+        href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/constrainedElement"/>
   </links>
   <diagram>
     <diagramCanvas

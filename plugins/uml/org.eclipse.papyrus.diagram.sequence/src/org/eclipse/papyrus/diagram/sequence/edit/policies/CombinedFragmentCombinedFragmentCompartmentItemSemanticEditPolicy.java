@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -42,20 +43,35 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.InteractionOperand_3005 == req.getElementType()) {
-			CombinedFragment combinedFragment = (CombinedFragment)req.getContainer();
+
+			CombinedFragment combinedFragment = getAssociatedCombinedFragment(req.getContainer());
+			if(combinedFragment == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			// Set the container of the request to the combinedFragment.
+			req.setContainer(combinedFragment);
 			InteractionOperatorKind interactionOperator = combinedFragment.getInteractionOperator();
 			EList<InteractionOperand> operands = combinedFragment.getOperands();
-			if(interactionOperator != null
-					&& !operands.isEmpty()
-					&& (InteractionOperatorKind.OPT_LITERAL.equals(interactionOperator)
-					|| InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator)
-					|| InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator) || InteractionOperatorKind.NEG_LITERAL
-					.equals(interactionOperator))) {
+			if(interactionOperator != null && !operands.isEmpty() && (InteractionOperatorKind.OPT_LITERAL.equals(interactionOperator) || InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator) || InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator) || InteractionOperatorKind.NEG_LITERAL.equals(interactionOperator))) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(new InteractionOperandCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
+	}
+
+	/**
+	 * Retrieve the combined fragment associated with the request.
+	 */
+	private CombinedFragment getAssociatedCombinedFragment(EObject eObject) {
+		CombinedFragment combinedFragment = null;
+		if(eObject instanceof CombinedFragment) {
+			return (CombinedFragment)eObject;
+		} else if(eObject != null) {
+			combinedFragment = getAssociatedCombinedFragment(eObject.eContainer());
+		}
+
+		return combinedFragment;
 	}
 
 }

@@ -53,22 +53,16 @@ implements ITreeBranchEditPart {
 
 	/**
 	 * Title for dialog of block message sort modification error
-	 * 
-	 * @generated NOT
 	 */
 	private static final String BLOCK_SORT_MODIFICATION_TITLE = "Forbidden action"; //$NON-NLS-1$
 
 	/**
 	 * Message for dialog of block message sort modification error
-	 * 
-	 * @generated NOT
 	 */
 	private static final String BLOCK_SORT_MODIFICATION_MSG = "It's impossible to change the message sort"; //$NON-NLS-1$
 
 	/**
 	 * The current message sort
-	 * 
-	 * @generated NOT
 	 */
 	private MessageSort messageSort;
 
@@ -174,22 +168,23 @@ implements ITreeBranchEditPart {
 		 */
 		private void createContents() {
 
+
 			fFigureMessageSyncLabelFigure = new WrappingLabel();
 			fFigureMessageSyncLabelFigure.setText("");
 
 			fFigureMessageSyncLabelFigure.setFont(FFIGUREMESSAGESYNCLABELFIGURE_FONT);
 
-			fFigureMessageSyncLabelFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0),
-					getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
+
+
+			fFigureMessageSyncLabelFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 
 			this.add(fFigureMessageSyncLabelFigure);
+
 
 		}
 
 		/**
-		 * Generated NOT for block bend points
-		 * 
-		 * @generated NOT
+		 * Block bend points
 		 */
 		@Override
 		public void setRoutingStyles(boolean closestDistance, boolean avoidObstacles) {
@@ -230,9 +225,7 @@ implements ITreeBranchEditPart {
 	static final Font FFIGUREMESSAGESYNCLABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
 
 	/**
-	 * Generated not for block bend point
-	 * 
-	 * @generated NOT
+	 * Block bend point
 	 */
 	@Override
 	public Command getCommand(Request request) {
@@ -243,21 +236,17 @@ implements ITreeBranchEditPart {
 	}
 
 	/**
-	 * Generated not for block message sort modification
-	 * 
-	 * @generated NOT
+	 * Block message sort modification
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 
-		if(UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature)
-				&& (messageSort == null || !messageSort.equals(notification.getNewValue()))) {
+		if(UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature) && (messageSort == null || !messageSort.equals(notification.getNewValue()))) {
 			Object oldValue = notification.getOldValue();
 			if(oldValue instanceof MessageSort) {
 				Message message = (Message)resolveSemanticElement();
-				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE,
-						BLOCK_SORT_MODIFICATION_MSG);
+				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE, BLOCK_SORT_MODIFICATION_MSG);
 				// TODO Improve cancelation method
 				message.setMessageSort((MessageSort)oldValue);
 				messageSort = (MessageSort)oldValue;

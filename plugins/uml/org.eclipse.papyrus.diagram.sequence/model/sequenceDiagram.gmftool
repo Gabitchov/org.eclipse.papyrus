@@ -8,65 +8,261 @@
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Objects"
+        description=""
         collapsible="true">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Lifeline"
-          description="Create a Lifeline"/>
+          description="Create a Lifeline">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Lifeline.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Lifeline.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Execution Action"
-          description="Create an Execution Action"/>
+          title="Action Execution Specification"
+          description="Create an Action Execution Specification">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/ActionExecutionSpecification.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/ActionExecutionSpecification.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Execution Behaviour"
-          description="Create an Execution Behaviour"/>
+          title=" Behavior Execution Specification"
+          description="Create an BehaviorExecutionSpecification">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/BehaviorExecutionSpecification.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/BehaviorExecutionSpecification.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="InteractionUse"
-          description="Create InteractionUse"/>
+          description="Create InteractionUse">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/InteractionUse.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/InteractionUse.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Combined Fragment"
-          description="Create Combined Fragment"/>
+          description="Create Combined Fragment">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/CombinedFragment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/CombinedFragment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Interaction Operand"
-          description="Create Interaction Operand"/>
+          description="Create Interaction Operand">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/InteractionOperand.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/InteractionOperand.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Message"
         description="Message tools"
         collapsible="true">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Sync"
-          description="Create MessageSync"/>
+          description="Create MessageSync">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_synchCall.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_synchCall.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Async"
-          description="Create MessageAsync"/>
+          description="Create MessageAsync">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_asynchCall.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_asynchCall.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Reply"
-          description="Create MessageReply"/>
+          description="Create MessageReply">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_reply.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_reply.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Create"
-          description="Create MessageCreate"/>
+          description="Create MessageCreate">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_createMessage.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_createMessage.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Delete"
-          description="Create MessageDelete"/>
+          description="Create MessageDelete">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_deleteMessage.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message_deleteMessage.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Lost"
-          description="Create MessageLost"/>
+          description="Create MessageLost">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Message Found"
-          description="Create MessageFound"/>
+          description="Create MessageFound">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Message.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Common"
+        description="Common elements"
+        collapsible="true">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Comment">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Comment link">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Constraint">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Constraint link">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

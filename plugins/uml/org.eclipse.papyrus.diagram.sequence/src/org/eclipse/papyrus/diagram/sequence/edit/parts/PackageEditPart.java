@@ -18,8 +18,10 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.PackageItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 
@@ -52,10 +54,13 @@ public class PackageEditPart extends DiagramEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new org.eclipse.papyrus.diagram.sequence.edit.policies.PackageCanonicalEditPolicy());
 
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.PackageCanonicalEditPolicy());
+
+
+		installEditPolicy("RemoveOrphanView", new OrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
@@ -68,7 +73,7 @@ public class PackageEditPart extends DiagramEditPart {
 		if(event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
 			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				// modification form MOSKitt approach, canonical policies are not called
+				//modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}

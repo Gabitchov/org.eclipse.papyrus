@@ -24,6 +24,14 @@
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="&quot;RemoveOrphanView&quot;"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.DRAG_DROP_ROLE"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
@@ -44,7 +52,7 @@
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="LifelineFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class LifelineFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureLifelineLabelFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureLifelineNameContainerFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureExecutionsContainerFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure fFigureLifelineDotLineFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public LifelineFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(200)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureLifelineNameContainerFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fFigureLifelineNameContainerFigure.setLineWidth(1);&#xA;&#xA;fFigureLifelineNameContainerFigure.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(7)&#xA;));&#xA;&#xA;this.add(fFigureLifelineNameContainerFigure, org.eclipse.draw2d.BorderLayout.TOP);&#xA;fFigureLifelineNameContainerFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;fFigureLifelineLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureLifelineLabelFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureExecutionsContainerFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fFigureExecutionsContainerFigure.setFill(false);&#xA;fFigureExecutionsContainerFigure.setOutline(false);&#xA;fFigureExecutionsContainerFigure.setLineWidth(1);&#xA;&#xA;this.add(fFigureExecutionsContainerFigure, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;fFigureExecutionsContainerFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;fFigureLifelineDotLineFigure = new org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure();&#xA;&#xA;&#xA;&#xA;fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);&#xA;fFigureLifelineDotLineFigure.setLayoutManager(new org.eclipse.draw2d.XYLayout());&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureLifelineLabelFigure() {&#xA;&#x9;&#x9;return fFigureLifelineLabelFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureLifelineNameContainerFigure() {&#xA;&#x9;&#x9;return fFigureLifelineNameContainerFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureExecutionsContainerFigure() {&#xA;&#x9;&#x9;return fFigureExecutionsContainerFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure getFigureLifelineDotLineFigure() {&#xA;&#x9;&#x9;return fFigureLifelineDotLineFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class LifelineFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureLifelineLabelFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureLifelineNameContainerFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureExecutionsContainerFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure fFigureLifelineDotLineFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public LifelineFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(200)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureLifelineNameContainerFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fFigureLifelineNameContainerFigure.setLineWidth(1);&#xA;&#xA;fFigureLifelineNameContainerFigure.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(7)&#xA;));&#xA;&#xA;this.add(fFigureLifelineNameContainerFigure, org.eclipse.draw2d.BorderLayout.TOP);&#xA;fFigureLifelineNameContainerFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;fFigureLifelineLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;&#xA;&#xA;&#xA;fFigureLifelineLabelFigure.setText(&#xA;&quot;&lt;...>&quot;);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureLifelineLabelFigure.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureLifelineLabelFigure.setAlignment(&#xA;org.eclipse.draw2d.PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureExecutionsContainerFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fFigureExecutionsContainerFigure.setFill(false);&#xA;fFigureExecutionsContainerFigure.setOutline(false);&#xA;fFigureExecutionsContainerFigure.setLineWidth(1);&#xA;&#xA;this.add(fFigureExecutionsContainerFigure, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;fFigureExecutionsContainerFigure.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;fFigureLifelineDotLineFigure = new org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure();&#xA;&#xA;&#xA;&#xA;fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureLifelineLabelFigure() {&#xA;&#x9;&#x9;return fFigureLifelineLabelFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureLifelineNameContainerFigure() {&#xA;&#x9;&#x9;return fFigureLifelineNameContainerFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureExecutionsContainerFigure() {&#xA;&#x9;&#x9;return fFigureExecutionsContainerFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure getFigureLifelineDotLineFigure() {&#xA;&#x9;&#x9;return fFigureLifelineDotLineFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="100"
@@ -56,6 +64,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
@@ -115,14 +127,15 @@
             editHelperClassName="ActionExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="ActionExecutionSpecificationFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActionExecutionSpecificationFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureActionExecutionSpecificationLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActionExecutionSpecificationFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(50)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(50)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureActionExecutionSpecificationLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureActionExecutionSpecificationLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureActionExecutionSpecificationLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureActionExecutionSpecificationLabel() {&#xA;&#x9;&#x9;return fFigureActionExecutionSpecificationLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            className="ExecutionSpecificationRectangleFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ExecutionSpecificationRectangleFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ExecutionSpecificationRectangleFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(60)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:ResizeConstraints"
               resizeHandles="5"/>
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
-              width="50"/>
+              width="16"
+              height="60"/>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -131,34 +144,7 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.2">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
         </modelFacet>
-        <labels
-            visualID="5005"
-            editPartClassName="ActionExecutionSpecificationNameEditPart"
-            itemSemanticEditPolicyClassName="ActionExecutionSpecificationNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ActionExecutionSpecificationNameViewFactory">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getFigureActionExecutionSpecificationLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
       </childNodes>
       <childNodes
           visualID="3003"
@@ -176,8 +162,8 @@
             editHelperClassName="BehaviorExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="BehaviourExecutionSpecificationRectangleFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class BehaviourExecutionSpecificationRectangleFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public BehaviourExecutionSpecificationRectangleFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(60)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            className="ExecutionSpecificationRectangleFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ExecutionSpecificationRectangleFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ExecutionSpecificationRectangleFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(60)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:ResizeConstraints"
               resizeHandles="5"/>
@@ -193,15 +179,6 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.3">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -212,7 +189,7 @@
           canonicalEditPolicyClassName="InteractionUseCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="InteractionUseGraphicalNodeEditPolicy"
           createCommandClassName="InteractionUseCreateCommand"
-          containers="/0/@diagram/@compartments.0">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@childNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -234,7 +211,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.4">
+                value="/0/@expressionProviders/@providers.0/@expressions.2">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -292,7 +269,7 @@
           canonicalEditPolicyClassName="ConsiderIgnoreFragmentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConsiderIgnoreFragmentGraphicalNodeEditPolicy"
           createCommandClassName="ConsiderIgnoreFragmentCreateCommand"
-          containers="/0/@diagram/@compartments.0">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@childNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -316,7 +293,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.5">
+                value="/0/@expressionProviders/@providers.0/@expressions.3">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -332,7 +309,7 @@
           compartments="/0/@diagram/@compartments.1"
           graphicalNodeEditPolicyClassName="CombinedFragmentGraphicalNodeEditPolicy"
           createCommandClassName="CombinedFragmentCreateCommand"
-          containers="/0/@diagram/@compartments.0">
+          containers="/0/@diagram/@childNodes.6 /0/@diagram/@compartments.0">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -356,7 +333,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.6">
+                value="/0/@expressionProviders/@providers.0/@expressions.4">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -369,6 +346,7 @@
           itemSemanticEditPolicyClassName="InteractionOperandItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionOperandViewFactory"
           canonicalEditPolicyClassName="InteractionOperandCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.4"
           graphicalNodeEditPolicyClassName="InteractionOperandGraphicalNodeEditPolicy"
           createCommandClassName="InteractionOperandCreateCommand"
           containers="/0/@diagram/@compartments.1">
@@ -406,6 +384,143 @@
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment/operand"/>
         </modelFacet>
+      </childNodes>
+      <childNodes
+          visualID="3008"
+          editPartClassName="ConstraintEditPart"
+          itemSemanticEditPolicyClassName="ConstraintItemSemanticEditPolicy"
+          notationViewFactoryClassName="ConstraintViewFactory"
+          canonicalEditPolicyClassName="ConstraintCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ConstraintGraphicalNodeEditPolicy"
+          createCommandClassName="ConstraintCreateCommand"
+          containers="/0/@diagram/@compartments.0">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="ConstraintEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedForeground="true"
+              fixedBackground="true"/>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenReferenceNewElementSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfgen:GenFeatureValueSpec"
+                    value="/0/@expressionProviders/@providers.0/@expressions.5">
+                  <feature
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression/body"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression"/>
+              </newElementInitializers>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5005"
+            editPartClassName="ConstraintNameEditPart"
+            itemSemanticEditPolicyClassName="ConstraintNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="ConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContentLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3009"
+          editPartClassName="CommentEditPart"
+          itemSemanticEditPolicyClassName="CommentItemSemanticEditPolicy"
+          notationViewFactoryClassName="CommentViewFactory"
+          canonicalEditPolicyClassName="CommentCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="CommentGraphicalNodeEditPolicy"
+          createCommandClassName="CommentCreateCommand"
+          containers="/0/@diagram/@compartments.0">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="CommentEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedForeground="true"
+              fixedBackground="true"/>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.6">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5006"
+            editPartClassName="CommentBodyEditPart"
+            itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicy"
+            notationViewFactoryClassName="CommentBodyViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContentLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+          </modelFacet>
+        </labels>
       </childNodes>
       <topLevelNodes
           visualID="2001"
@@ -497,15 +612,6 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.8">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
@@ -532,7 +638,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.3"
               editorPattern=""
               editPattern="">
             <metaFeatures
@@ -540,8 +646,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.9"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.10"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.8"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.9"/>
       </links>
       <links
           visualID="4004"
@@ -565,22 +671,13 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.11">
+            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.10">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.12">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
@@ -608,14 +705,15 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.3"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <creationConstraints
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.13"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.11"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.12"/>
       </links>
       <links
           visualID="4005"
@@ -639,22 +737,13 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.14">
+            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.13">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.15">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
@@ -681,15 +770,15 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.3"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.16"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.17"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.14"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.15"/>
       </links>
       <links
           visualID="4006"
@@ -713,22 +802,13 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.18">
+            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.16">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.19">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
@@ -755,7 +835,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.3"
               editorPattern=""
               editPattern="">
             <metaFeatures
@@ -763,8 +843,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.20"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.21"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.17"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.18"/>
       </links>
       <links
           visualID="4007"
@@ -788,22 +868,13 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.22">
+            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.19">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.23">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
@@ -830,15 +901,15 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.3"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.24"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.25"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.20"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.21"/>
       </links>
       <links
           visualID="4008"
@@ -855,29 +926,20 @@
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="MessageLost"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MessageLost extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMessageLostLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MessageLost() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMessageLostLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureMessageLostLabelFigure.setText(&quot;&quot;);&#xA;&#xA;fFigureMessageLostLabelFigure.setFont(FFIGUREMESSAGELOSTLABELFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fFigureMessageLostLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.uml2.diagram.common.draw2d.decoration.EllipseDecoration df = new org.eclipse.uml2.diagram.common.draw2d.decoration.EllipseDecoration();&#xA;&#xA;&#xA;&#xA;&#xA;df.setAlwaysFill(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;df.setPreferredSize(&#xA;new org.eclipse.draw2d.geometry.Dimension(10,10));&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMessageLostLabelFigure() {&#xA;&#x9;&#x9;return fFigureMessageLostLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREMESSAGELOSTLABELFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MessageLost extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMessageLostLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MessageLost() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMessageLostLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureMessageLostLabelFigure.setText(&quot;&quot;);&#xA;&#xA;fFigureMessageLostLabelFigure.setFont(FFIGUREMESSAGELOSTLABELFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fFigureMessageLostLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.papyrus.diagram.sequence.figures.EllipseDecoration df = new org.eclipse.papyrus.diagram.sequence.figures.EllipseDecoration();&#xA;&#xA;&#xA;&#xA;&#xA;df.setAlwaysFill(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;df.setPreferredSize(&#xA;new org.eclipse.draw2d.geometry.Dimension(10,10));&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMessageLostLabelFigure() {&#xA;&#x9;&#x9;return fFigureMessageLostLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREMESSAGELOSTLABELFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.26">
+            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.22">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.27">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
@@ -904,7 +966,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.3"
               editorPattern=""
               editPattern="">
             <metaFeatures
@@ -912,8 +974,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.28"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.29"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.23"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.24"/>
       </links>
       <links
           visualID="4009"
@@ -930,29 +992,20 @@
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="MessageFound"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MessageFound extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMessageFoundLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MessageFound() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setSourceDecoration(createSourceDecoration());&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMessageFoundLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureMessageFoundLabelFigure.setText(&quot;&quot;);&#xA;&#xA;fFigureMessageFoundLabelFigure.setFont(FFIGUREMESSAGEFOUNDLABELFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fFigureMessageFoundLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createSourceDecoration() {&#xA;&#x9;&#x9;org.eclipse.uml2.diagram.common.draw2d.decoration.EllipseDecoration df = new org.eclipse.uml2.diagram.common.draw2d.decoration.EllipseDecoration();&#xA;&#xA;&#xA;&#xA;&#xA;df.setAlwaysFill(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;df.setPreferredSize(&#xA;new org.eclipse.draw2d.geometry.Dimension(10,10));&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;df.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;org.eclipse.draw2d.geometry.PointList pl = new org.eclipse.draw2d.geometry.PointList();&#xA;pl.addPoint(getMapMode().DPtoLP(-2)&#xA;, getMapMode().DPtoLP(2)&#xA;);&#xA;pl.addPoint(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;);&#xA;pl.addPoint(getMapMode().DPtoLP(-2)&#xA;, getMapMode().DPtoLP(-2)&#xA;);&#xA;df.setTemplate(pl);&#xA;df.setScale(getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(3)&#xA;);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMessageFoundLabelFigure() {&#xA;&#x9;&#x9;return fFigureMessageFoundLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREMESSAGEFOUNDLABELFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MessageFound extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMessageFoundLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MessageFound() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setSourceDecoration(createSourceDecoration());&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMessageFoundLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureMessageFoundLabelFigure.setText(&quot;&quot;);&#xA;&#xA;fFigureMessageFoundLabelFigure.setFont(FFIGUREMESSAGEFOUNDLABELFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fFigureMessageFoundLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createSourceDecoration() {&#xA;&#x9;&#x9;org.eclipse.papyrus.diagram.sequence.figures.EllipseDecoration df = new org.eclipse.papyrus.diagram.sequence.figures.EllipseDecoration();&#xA;&#xA;&#xA;&#xA;&#xA;df.setAlwaysFill(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;df.setPreferredSize(&#xA;new org.eclipse.draw2d.geometry.Dimension(10,10));&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;df.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;org.eclipse.draw2d.geometry.PointList pl = new org.eclipse.draw2d.geometry.PointList();&#xA;pl.addPoint(getMapMode().DPtoLP(-2)&#xA;, getMapMode().DPtoLP(2)&#xA;);&#xA;pl.addPoint(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;);&#xA;pl.addPoint(getMapMode().DPtoLP(-2)&#xA;, getMapMode().DPtoLP(-2)&#xA;);&#xA;df.setTemplate(pl);&#xA;df.setScale(getMapMode().DPtoLP(7)&#xA;, getMapMode().DPtoLP(3)&#xA;);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMessageFoundLabelFigure() {&#xA;&#x9;&#x9;return fFigureMessageFoundLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREMESSAGEFOUNDLABELFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedForeground="true"/>
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.30">
+            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.25">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.31">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
@@ -979,15 +1032,57 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.3"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.32"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.33"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.26"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.27"/>
+      </links>
+      <links
+          visualID="4010"
+          editPartClassName="CommentAnnotatedElementEditPart"
+          itemSemanticEditPolicyClassName="CommentAnnotatedElementItemSemanticEditPolicy"
+          notationViewFactoryClassName="CommentAnnotatedElementViewFactory"
+          createCommandClassName="CommentAnnotatedElementCreateCommand"
+          reorientCommandClassName="CommentAnnotatedElementReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CommentLinkDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentLinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentLinkDescriptor() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
+        </modelFacet>
+      </links>
+      <links
+          visualID="4011"
+          editPartClassName="ConstraintConstrainedElementEditPart"
+          itemSemanticEditPolicyClassName="ConstraintConstrainedElementItemSemanticEditPolicy"
+          notationViewFactoryClassName="ConstraintConstrainedElementViewFactory"
+          createCommandClassName="ConstraintConstrainedElementCreateCommand"
+          reorientCommandClassName="ConstraintConstrainedElementReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CommentLinkDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommentLinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommentLinkDescriptor() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
+        </modelFacet>
       </links>
       <compartments
           visualID="7001"
@@ -995,7 +1090,7 @@
           itemSemanticEditPolicyClassName="InteractionInteractionCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionInteractionCompartmentViewFactory"
           canonicalEditPolicyClassName="InteractionInteractionCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8"
           title="InteractionCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -1011,6 +1106,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
           visualID="7002"
@@ -1029,10 +1132,19 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <palette>
         <groups
             title="Objects"
+            description=""
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             collapse="true">
@@ -1045,15 +1157,15 @@
               genNodes="/0/@diagram/@childNodes.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Execution Action"
-              description="Create an Execution Action"
+              title="Action Execution Specification"
+              description="Create an Action Execution Specification"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif"
               genNodes="/0/@diagram/@childNodes.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Execution Behaviour"
-              description="Create an Execution Behaviour"
+              title=" Behavior Execution Specification"
+              description="Create an BehaviorExecutionSpecification"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif"
               genNodes="/0/@diagram/@childNodes.2"/>
@@ -1082,7 +1194,7 @@
         <groups
             title="Message"
             description="Message tools"
-             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             collapse="true">
           <entries
@@ -1134,6 +1246,37 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
               genLinks="/0/@diagram/@links.6"/>
+        </groups>
+        <groups
+            title="Common"
+            description="Common elements"
+            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            collapse="true">
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Comment"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              genNodes="/0/@diagram/@childNodes.8"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Comment link"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              genLinks="/0/@diagram/@links.7"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              genNodes="/0/@diagram/@childNodes.7"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Constraint link"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              genLinks="/0/@diagram/@links.8"/>
         </groups>
       </palette>
       <preferencePages
@@ -1188,11 +1331,26 @@
           parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.4"/>
       <childReferences
+          parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@childNodes.3"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@childNodes.5"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@childNodes.4"/>
+      <childReferences
           parent="/0/@diagram/@childNodes.5"
           child="/0/@diagram/@childNodes.6"/>
       <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.5"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.7"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.8"/>
       <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@topLevelNodes.0"/>
@@ -1299,6 +1457,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -1389,6 +1571,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
           child="/0/@diagram/@links.0"
           referenceType="out_target"
           groupName="outgoing links"
@@ -1496,6 +1702,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -1586,6 +1816,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.1"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.1"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
           child="/0/@diagram/@links.1"
           referenceType="out_target"
           groupName="outgoing links"
@@ -1693,6 +1947,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.2"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.2"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -1783,6 +2061,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.2"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.2"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
           child="/0/@diagram/@links.2"
           referenceType="out_target"
           groupName="outgoing links"
@@ -1890,6 +2192,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.3"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.3"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -1980,6 +2306,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.3"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.3"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
           child="/0/@diagram/@links.3"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2087,6 +2437,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.4"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.4"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2177,6 +2551,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.4"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.4"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
           child="/0/@diagram/@links.4"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2284,6 +2682,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.5"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.5"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2374,6 +2796,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.5"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.5"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
           child="/0/@diagram/@links.5"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2481,6 +2927,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.6"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.6"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2572,6 +3042,304 @@
       <childReferences
           parent="/0/@diagram/@childNodes.6"
           child="/0/@diagram/@links.6"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.6"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.6"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram"
+          child="/0/@diagram/@links.7"
+          groupName="links"
+          groupIcon="icons/linksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@topLevelNodes.0"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.0"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.0"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.1"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.1"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.2"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.2"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.3"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.3"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.4"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.4"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.5"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.5"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.6"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.7"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram"
+          child="/0/@diagram/@links.8"
+          groupName="links"
+          groupIcon="icons/linksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@topLevelNodes.0"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.0"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.0"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.1"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.1"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.2"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.2"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.3"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.3"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.4"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.4"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.5"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.5"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.6"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.6"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.8"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.7"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@links.8"
           referenceType="out_target"
           groupName="outgoing links"
           groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
@@ -2606,96 +3374,85 @@
         <expressions
             body="let base : String = 'Lifeline' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
         <expressions
-            body="let base : String = 'ActionExecutionSpecification' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
-            body="let base : String = 'BehaviorExecutionSpecification' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
             body="let base : String = 'InteractionUse' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
         <expressions
             body="let base : String = 'ConsiderIgnoreFragment' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
         <expressions
             body="let base : String = 'CombinedFragment' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
         <expressions
-            xsi:type="gmfgen:GenConstraint"
-            body="self.messageSort=MessageSort::synchCall"/>
+            body="'OpaqueExpression'"/>
         <expressions
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
-            xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::ExecutionSpecification)"/>
+            body="' '"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::ExecutionSpecification) and self.oclAsType(uml::ExecutionSpecification).start = null and self.eContainer() = oppositeEnd.eContainer()"/>
+            body="self.messageSort=MessageSort::synchCall and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal"/>
-        <expressions
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
+            body="self.oclIsKindOf(uml::InteractionFragment)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.eContainer() = oppositeEnd.eContainer() or self.eContainer() = oppositeEnd or self = oppositeEnd.eContainer()"/>
+            body="self.oclIsKindOf(uml::InteractionFragment)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.messageSort=MessageSort::reply"/>
-        <expressions
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
+            body="(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::ExecutionSpecification) and self.oclAsType(uml::ExecutionSpecification).finish = null"/>
+            body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::ExecutionSpecification) and self.eContainer() = oppositeEnd.eContainer()"/>
+            body="(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.eContainer() = oppositeEnd.eContainer() or self.eContainer() = oppositeEnd or self = oppositeEnd.eContainer())"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.messageSort=MessageSort::createMessage"/>
-        <expressions
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
+            body="self.messageSort=MessageSort::reply and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::ExecutionSpecification) or self.oclIsKindOf(uml::Lifeline)"/>
+            body="self.oclIsKindOf(uml::InteractionFragment)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::Lifeline) and self.eContainer() = oppositeEnd.eContainer() and self.oclAsType(uml::Lifeline).coveredBy->select(itf : uml::InteractionFragment | itf.oclAsType(uml::MessageOccurrenceSpecification).message.messageSort = uml::MessageSort::createMessage)->isEmpty()"/>
+            body="self.oclIsKindOf(uml::InteractionFragment)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.messageSort=MessageSort::deleteMessage"/>
-        <expressions
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
+            body="self.messageSort=MessageSort::createMessage and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::ExecutionSpecification) or self.oclIsKindOf(uml::Lifeline)"/>
+            body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::Lifeline) and self.eContainer() = oppositeEnd.eContainer() and self.oclAsType(uml::Lifeline).coveredBy->select(itf : uml::InteractionFragment | itf.oclAsType(uml::MessageOccurrenceSpecification).message.messageSort = uml::MessageSort::deleteMessage)->isEmpty()"/>
+            body="self.oclIsKindOf(uml::Lifeline)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.messageSort=MessageSort::deleteMessage and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.receiveEvent=null"/>
         <expressions
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::ExecutionSpecification)"/>
-        <expressions
-            xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::Interaction) and self = oppositeEnd.eContainer()"/>
-        <expressions
-            xsi:type="gmfgen:GenConstraint"
-            body="self.sendEvent=null"/>
-        <expressions
-            body="let base : String = 'Message' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
+            body="self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.oclIsKindOf(uml::Interaction)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::ExecutionSpecification)) and self.eContainer() = oppositeEnd"/>
+            body="self.sendEvent=null"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.oclIsKindOf(uml::Interaction)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))"/>
       </providers>
     </expressionProviders>
     <labelParsers
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.0/@labels.0/@modelFacet"
@@ -2704,6 +3461,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.3/@labels.1/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet"
+          qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

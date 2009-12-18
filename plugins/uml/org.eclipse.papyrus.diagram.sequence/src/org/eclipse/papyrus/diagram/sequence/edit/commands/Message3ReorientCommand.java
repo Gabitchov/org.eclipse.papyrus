@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.util.ReconnectMessageHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
@@ -56,39 +57,33 @@ public class Message3ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Block reorient source or target
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean canExecute() {
 		if(false == getElementToEdit() instanceof Message) {
 			return false;
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
-			// return canReorientSource();
+			return canReorientSource();
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
-			// return canReorientTarget();
+			return canReorientTarget();
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean canReorientSource() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		if(getLink().getOwnedElements().size() != 1) {
-			return false;
-		}
-		Element target = (Element)getLink().getOwnedElements().get(0);
 		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistMessage_4005(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistMessage_4005(container, getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -123,17 +118,20 @@ public class Message3ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		ReconnectMessageHelper.updateMessageEnd(getLink().getSendEvent(), getOldSource(), getNewSource());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		ReconnectMessageHelper.updateMessageEnd(getLink().getReceiveEvent(), getOldTarget(), getNewTarget());
+		ReconnectMessageHelper.updateMessage(getLink());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**

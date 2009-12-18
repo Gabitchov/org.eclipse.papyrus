@@ -13,24 +13,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.util.MultiDiagramUtil;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Action;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
-import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class ActionExecutionSpecificationCreateCommand extends CreateElementCommand {
+public class ActionExecutionSpecificationCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -43,10 +46,10 @@ public class ActionExecutionSpecificationCreateCommand extends CreateElementComm
 	private EObject eObject = null;
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionExecutionSpecificationCreateCommand(CreateElementRequest req, EObject eObject) {
-		super(req);
+		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
 	}
@@ -59,31 +62,25 @@ public class ActionExecutionSpecificationCreateCommand extends CreateElementComm
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionExecutionSpecificationCreateCommand(CreateElementRequest req) {
-		super(req);
+		super(req.getLabel(), null, req);
 	}
 
 	/**
 	 * FIXME: replace with setElementToEdit()
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	protected EObject getElementToEdit() {
+
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
 		}
-
-		// AES : Added to contain the ActionExecutionSpecification inside the
-		// Interaction, not in the Lifeline (where it is shown)
-		if(container instanceof Lifeline) {
-			return ((Lifeline)container).getInteraction();
-		}
-
 		if(container != null) {
 			return container;
 		}
@@ -100,25 +97,36 @@ public class ActionExecutionSpecificationCreateCommand extends CreateElementComm
 	}
 
 	/**
+	 * To add the lifeline to the attribute covered of the AES
+	 * 
 	 * @generated NOT
 	 */
 	@Override
-	protected EObject doDefaultElementCreation() {
-		ActionExecutionSpecification newElement = (ActionExecutionSpecification)super.doDefaultElementCreation();
-		if(newElement != null) {
-			Interaction owner = (Interaction)getElementToEdit();
-			owner.getFragments().add(newElement);
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			UMLElementTypes.init_ActionExecutionSpecification_3006(newElement);
+		ActionExecutionSpecification aes = (ActionExecutionSpecification)CommandHelper.doCreateExecutionSpecification(UMLFactory.eINSTANCE.createActionExecutionSpecification(), (Lifeline)getElementToEdit());
 
-			MultiDiagramUtil.addEAnnotationReferenceToDiagram(UMLDiagramEditorPlugin.getInstance(), newElement);
+		//TODO : add the corresponding action
 
-			if(newElement.getAction() == null) {
-				Action action = owner.createAction("Action", UMLPackage.eINSTANCE.getOpaqueAction());
-				newElement.setAction(action);
-			}
+		doConfigure(aes, monitor, info);
+
+		((CreateElementRequest)getRequest()).setNewElement(aes);
+
+		return CommandResult.newOKCommandResult(aes);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void doConfigure(ActionExecutionSpecification newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+		configureRequest.addParameters(getRequest().getParameters());
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		if(configureCommand != null && configureCommand.canExecute()) {
+			configureCommand.execute(monitor, info);
 		}
-		return newElement;
 	}
 
 }

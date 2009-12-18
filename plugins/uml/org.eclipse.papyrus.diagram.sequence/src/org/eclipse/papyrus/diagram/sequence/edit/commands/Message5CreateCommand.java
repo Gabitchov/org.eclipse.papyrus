@@ -25,16 +25,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * @generated
@@ -86,8 +81,7 @@ public class Message5CreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4007(getContainer(), getSource(),
-				getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4007(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -100,50 +94,11 @@ public class Message5CreateCommand extends EditElementCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		// Retrieve container of call event which is an instance of Package
-		Package eventContainer = CommandHelper.getEventContainer(container.getOwner());
-		if(eventContainer != null) {
-			Message newElement = container.createMessage("");
-			newElement.setMessageSort(MessageSort.DELETE_MESSAGE_LITERAL);
-			ElementInitializers.init_Message_4007(newElement);
-
-			// add the message to the interaction
-			container.getMessages().add(newElement);
-
-			MessageOccurrenceSpecification msgOccurenceInvocationStart = CommandHelper.doCreateMessageOccurrence(
-					container, CommandHelper.createSendSignalEvent(eventContainer, null));
-			msgOccurenceInvocationStart.setMessage(newElement);
-			newElement.setSendEvent(msgOccurenceInvocationStart);
-
-			Element diagramSource = (Element)getSource();
-			Lifeline sourceLifeline = null;
-			if(diagramSource instanceof ExecutionSpecification) {
-				ExecutionSpecification es = (ExecutionSpecification)diagramSource;
-				sourceLifeline = es.getCovereds().get(0);
-				es.setFinish(msgOccurenceInvocationStart);
-			} else if(diagramSource instanceof Lifeline) {
-				sourceLifeline = (Lifeline)diagramSource;
-			}
-			CommandHelper.setSingleCovered(sourceLifeline, msgOccurenceInvocationStart);
-
-			MessageOccurrenceSpecification msgOccurenceInvocationEnd = CommandHelper.doCreateMessageOccurrence(
-					container, CommandHelper.createDestructionEvent(eventContainer));
-			msgOccurenceInvocationEnd.setMessage(newElement);
-			newElement.setReceiveEvent(msgOccurenceInvocationEnd);
-			Element diagramTarget = (Element)getTarget();
-			Lifeline targetLifeline = null;
-			if(diagramTarget instanceof ExecutionSpecification) {
-				ExecutionSpecification es = (ExecutionSpecification)diagramTarget;
-				targetLifeline = es.getCovereds().get(0);
-				es.setFinish(msgOccurenceInvocationEnd);
-			} else if(diagramTarget instanceof Lifeline) {
-				targetLifeline = (Lifeline)diagramTarget;
-			}
-			CommandHelper.setSingleCovered(targetLifeline, msgOccurenceInvocationEnd);
-
-			doConfigure(newElement, monitor, info);
-			((CreateElementRequest)getRequest()).setNewElement(newElement);
-			return CommandResult.newOKCommandResult(newElement);
+		Message message = CommandHelper.doCreateMessage(container, MessageSort.DELETE_MESSAGE_LITERAL, getSource(), getTarget());
+		if(message != null) {
+			doConfigure(message, monitor, info);
+			((CreateElementRequest)getRequest()).setNewElement(message);
+			return CommandResult.newOKCommandResult(message);
 		}
 
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$

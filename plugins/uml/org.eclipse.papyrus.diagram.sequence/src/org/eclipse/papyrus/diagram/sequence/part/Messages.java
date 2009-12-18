@@ -261,12 +261,27 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Objects1Group_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Message2Group_title;
 
 	/**
 	 * @generated
 	 */
 	public static String Message2Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Common3Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Common3Group_desc;
 
 	/**
 	 * @generated
@@ -281,22 +296,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ExecutionAction2CreationTool_title;
+	public static String ActionExecutionSpecification2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ExecutionAction2CreationTool_desc;
+	public static String ActionExecutionSpecification2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ExecutionBehaviour3CreationTool_title;
+	public static String BehaviorExecutionSpecification3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ExecutionBehaviour3CreationTool_desc;
+	public static String BehaviorExecutionSpecification3CreationTool_desc;
 
 	/**
 	 * @generated
@@ -401,6 +416,26 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Comment1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Commentlink2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraint3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraintlink4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String InteractionInteractionCompartmentEditPart_title;
 
 	/**
@@ -491,6 +526,26 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Constraint_3008_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Constraint_3008_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Comment_3009_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Comment_3009_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ConsiderIgnoreFragment_3007_incominglinks;
 
 	/**
@@ -567,6 +622,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Message_4009_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4010_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CommentAnnotatedElement_4010_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ConstraintConstrainedElement_4011_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ConstraintConstrainedElement_4011_source;
 
 	/**
 	 * @generated

@@ -9,7 +9,7 @@
     <figures
         xsi:type="gmfgraph:CustomDecoration"
         name="RoundedArrow"
-        qualifiedClassName="org.eclipse.uml2.diagram.common.draw2d.decoration.EllipseDecoration">
+        qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.EllipseDecoration">
       <attributes
           name="alwaysFill"
           value="true"/>
@@ -104,9 +104,19 @@
               bottom="7"
               right="7"/>
           <children
-              xsi:type="gmfgraph:Label"
+              xsi:type="gmfgraph:CustomFigure"
               name="LifelineLabelFigure"
-              text="&lt;...>"/>
+              qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                name="Text"
+                value="&quot;&lt;...>&quot;"/>
+            <attributes
+                name="TextWrap"
+                value="true"/>
+            <attributes
+                name="Alignment"
+                value="org.eclipse.draw2d.PositionConstants.CENTER"/>
+          </children>
         </children>
         <children
             xsi:type="gmfgraph:Rectangle"
@@ -121,10 +131,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="LifelineDotLineFigure"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure">
-            <layout
-                xsi:type="gmfgraph:XYLayout"/>
-          </children>
+              qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure"/>
         </children>
       </actualFigure>
       <accessors
@@ -132,38 +139,17 @@
       <accessors
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
       <accessors
+          accessor="getFigureExecutionsContainerFigure"
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
       <accessors
           accessor="getFigureLifelineDotLineFigure"
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.1/@children.0"/>
     </descriptors>
     <descriptors
-        name="ActionExecutionSpecificationFigure">
+        name="ExecutionSpecificationRectangleFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="ActionExecutionSpecificationFigure">
-        <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
-        <minimumSize
-            dx="50"
-            dy="30"/>
-        <preferredSize
-            dx="50"
-            dy="30"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="ActionExecutionSpecificationLabel"/>
-      </actualFigure>
-      <accessors
-          accessor="getFigureActionExecutionSpecificationLabel"
-          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors
-        name="BehaviourExecutionSpecificationRectangleFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="BehaviourExecutionSpecificationRectangleFigure">
+          name="ExecutionSpecificationRectangleFigure">
         <minimumSize
             dx="16"
             dy="25"/>
@@ -190,7 +176,7 @@
           figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.0/@typedFigure"/>
       <accessors
           accessor="getCenterLabel"
-          figure="//@figures.0/@descriptors.4/@actualFigure/@customChildren.0/@typedFigure"/>
+          figure="//@figures.0/@descriptors.3/@actualFigure/@customChildren.0/@typedFigure"/>
     </descriptors>
     <descriptors
         name="CustomCombinedFragmentFigureDescriptor">
@@ -209,7 +195,7 @@
       </actualFigure>
       <accessors
           accessor="getCompartmentFigure"
-          figure="//@figures.0/@descriptors.5/@actualFigure/@customChildren.0/@typedFigure"/>
+          figure="//@figures.0/@descriptors.4/@actualFigure/@customChildren.0/@typedFigure"/>
     </descriptors>
     <descriptors
         name="CustomInteractionOperandFigure">
@@ -244,7 +230,7 @@
       </actualFigure>
       <accessors
           accessor="getInteractionConstraintLabel"
-          figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageSync">
@@ -266,7 +252,7 @@
         </children>
       </actualFigure>
       <accessors
-          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageAsync">
@@ -286,7 +272,7 @@
         </children>
       </actualFigure>
       <accessors
-          figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageReply">
@@ -308,7 +294,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureMessageReplyLabelFigure"
-          figure="//@figures.0/@descriptors.9/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageCreate">
@@ -330,7 +316,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureMessageCreateLabelFigure"
-          figure="//@figures.0/@descriptors.10/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.9/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageDelete">
@@ -351,7 +337,7 @@
         </children>
       </actualFigure>
       <accessors
-          figure="//@figures.0/@descriptors.11/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.10/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageLost">
@@ -371,7 +357,7 @@
         </children>
       </actualFigure>
       <accessors
-          figure="//@figures.0/@descriptors.12/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.11/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageFound">
@@ -392,7 +378,7 @@
         </children>
       </actualFigure>
       <accessors
-          figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.12/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -410,13 +396,12 @@
   </nodes>
   <nodes
       name="ActionExecutionSpecificationNode"
-      figure="ActionExecutionSpecificationFigure"
+      figure="ExecutionSpecificationRectangleFigure"
       resizeConstraint="NORTH_SOUTH"/>
   <nodes
       name="BehaviourExecutionSpecification"
-      figure="BehaviourExecutionSpecificationRectangleFigure"
-      resizeConstraint="NORTH_SOUTH"
-      contentPane="//@figures.0/@descriptors.1/@accessors.2"/>
+      figure="ExecutionSpecificationRectangleFigure"
+      resizeConstraint="NORTH_SOUTH"/>
   <nodes
       name="InteractionUseNode"
       figure="CustomInteractionUse"/>
@@ -454,12 +439,11 @@
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <compartments
       name="ExecutionCompartment"
-      figure="LifelineFigure"
-      accessor="//@figures.0/@descriptors.1/@accessors.2"/>
+      figure="LifelineFigure"/>
   <compartments
       name="CombinedFragmentCompartment"
       figure="CustomCombinedFragmentFigureDescriptor"
-      accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
   <labels
       name="InteractionName"
       figure="CustomInteractionRectangleFigure"
@@ -471,25 +455,20 @@
       elementIcon="false"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
-      name="ActionExecutionSpecificationLabel"
-      figure="ActionExecutionSpecificationFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels
       name="InteractionUseName"
       figure="CustomInteractionUse"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
   <labels
       name="InteractionUseRef"
       figure="CustomInteractionUse"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.4/@accessors.1"/>
+      accessor="//@figures.0/@descriptors.3/@accessors.1"/>
   <labels
       name="MessageSyncLabel"
       figure="MessageSync"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.7/@accessors.0">
+      accessor="//@figures.0/@descriptors.6/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -502,7 +481,7 @@
       name="MessageAsyncLabel"
       figure="MessageAsync"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.8/@accessors.0">
+      accessor="//@figures.0/@descriptors.7/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -515,7 +494,7 @@
       name="MessageReplyLabel"
       figure="MessageReply"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.9/@accessors.0">
+      accessor="//@figures.0/@descriptors.8/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -528,7 +507,7 @@
       name="MessageCreateLabel"
       figure="MessageCreate"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.10/@accessors.0">
+      accessor="//@figures.0/@descriptors.9/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -541,7 +520,7 @@
       name="MessageDeleteLabel"
       figure="MessageDelete"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.11/@accessors.0">
+      accessor="//@figures.0/@descriptors.10/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -554,7 +533,7 @@
       name="MessageLostLabel"
       figure="MessageLost"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.12/@accessors.0">
+      accessor="//@figures.0/@descriptors.11/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -567,7 +546,7 @@
       name="MessageFoundLabel"
       figure="MessageFound"
       elementIcon="false"
-      accessor="//@figures.0/@descriptors.13/@accessors.0">
+      accessor="//@figures.0/@descriptors.12/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

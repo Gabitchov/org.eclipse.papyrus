@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -75,6 +76,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,16 +96,33 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Handle creation on InteractionOperand
+	 * 
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
 
-		Interaction owner = (Interaction)getElementToEdit();
-		owner.getFragments().add(newElement);
-
 		UMLElementTypes.init_CombinedFragment_3004(newElement);
+
+		// START GENERATED NOT CODE
+		EObject elementToEdit = getElementToEdit();
+		if(elementToEdit instanceof InteractionOperand) {
+			InteractionOperand owner = (InteractionOperand)elementToEdit;
+			owner.getFragments().add(newElement);
+		} else {
+			Interaction owner = (Interaction)elementToEdit;
+			owner.getFragments().add(newElement);
+		}
+
+		// Create an interaction operand with the CombinedFragment (multiplicy 1...*)
+		InteractionOperand createInteractionOperand = UMLFactory.eINSTANCE.createInteractionOperand();
+		newElement.getOperands().add(createInteractionOperand);
+
+		// END GENERATED NOT CODE
+
 
 		doConfigure(newElement, monitor, info);
 
@@ -114,8 +133,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(CombinedFragment newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(CombinedFragment newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

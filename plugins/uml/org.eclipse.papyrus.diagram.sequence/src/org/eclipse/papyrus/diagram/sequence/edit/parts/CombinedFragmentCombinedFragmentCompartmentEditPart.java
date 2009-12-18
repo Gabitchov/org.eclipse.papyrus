@@ -17,17 +17,24 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutManager;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 
 /**
@@ -93,16 +100,16 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
 
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
+
+		installEditPolicy("RemoveOrphanView", new OrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
 	/**
@@ -129,10 +136,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	}
 
 	/**
-	 * Not generated for handle the first InteractionOperand deletion case (change FirstOperand
-	 * attribute) {@inheritDoc}
-	 * 
-	 * @generataed NOT
+	 * Handle the first InteractionOperand deletion case (change FirstOperand attribute)
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
@@ -148,11 +152,9 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 						Object firstChild = children.get(0);
 						if(firstChild instanceof InteractionOperandEditPart) {
 							InteractionOperandEditPart firstOperandChild = (InteractionOperandEditPart)firstChild;
-							firstOperandChild.setFirstOperand(false);
 							Object firstChildModel = firstOperandChild.getModel();
 							if(firstChildModel != null && firstChildModel.equals(event.getOldValue())) {
-								InteractionOperandEditPart secondOperandChild = (InteractionOperandEditPart)children
-										.get(1);
+								InteractionOperandEditPart secondOperandChild = (InteractionOperandEditPart)children.get(1);
 								secondOperandChild.setFirstOperand(true);
 							}
 						}
@@ -161,6 +163,27 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 			}
 		}
 		super.handleNotificationEvent(event);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void refreshBounds() {
+		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		Dimension size = new Dimension(width, height);
+		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		Point loc = new Point(x, y);
+		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshBounds();
 	}
 
 }

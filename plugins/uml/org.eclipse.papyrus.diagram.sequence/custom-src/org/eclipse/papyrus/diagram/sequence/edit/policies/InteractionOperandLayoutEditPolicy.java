@@ -50,14 +50,11 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		EditPart combinedFragment = combinedFragmentCompartment.getParent();
 		EditPart interactionCompartment = combinedFragment.getParent();
 		if(REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
-			if(UMLElementTypes.InteractionOperand_3005.equals(((CreateUnspecifiedTypeRequest)request)
-					.getElementTypes().get(0))) {
+			if(UMLElementTypes.InteractionOperand_3005.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0))) {
 				return combinedFragmentCompartment.getCommand(request);
-			} else if(UMLElementTypes.CombinedFragment_3004.equals(((CreateUnspecifiedTypeRequest)request)
-					.getElementTypes().get(0))) {
+			} else if(UMLElementTypes.CombinedFragment_3004.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0))) {
 				return interactionCompartment.getCommand(request);
-			} else if(UMLElementTypes.Lifeline_3001.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes()
-					.get(0))) {
+			} else if(UMLElementTypes.Lifeline_3001.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0))) {
 				return interactionCompartment.getCommand(request);
 			}
 		} else if(request instanceof CreateConnectionViewAndElementRequest) {

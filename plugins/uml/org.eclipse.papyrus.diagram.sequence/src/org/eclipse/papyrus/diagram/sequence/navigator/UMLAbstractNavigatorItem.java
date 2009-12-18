@@ -37,8 +37,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if(adaptableObject instanceof org.eclipse.papyrus.diagram.sequence.navigator.UMLAbstractNavigatorItem
-						&& adapterType == ITabbedPropertySheetPageContributor.class) {
+				if(adaptableObject instanceof org.eclipse.papyrus.diagram.sequence.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
 				}
 				return null;

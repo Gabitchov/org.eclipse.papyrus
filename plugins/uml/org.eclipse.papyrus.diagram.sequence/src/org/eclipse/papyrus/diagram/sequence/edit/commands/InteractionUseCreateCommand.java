@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -75,6 +76,7 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,14 +96,24 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Handle creation on InteractionOperand
+	 * 
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		InteractionUse newElement = UMLFactory.eINSTANCE.createInteractionUse();
 
-		Interaction owner = (Interaction)getElementToEdit();
-		owner.getFragments().add(newElement);
+		EObject elementToEdit = getElementToEdit();
+		if(elementToEdit instanceof InteractionOperand) {
+			InteractionOperand owner = (InteractionOperand)elementToEdit;
+			owner.getFragments().add(newElement);
+		} else {
+			Interaction owner = (Interaction)elementToEdit;
+			owner.getFragments().add(newElement);
+		}
+
 
 		UMLElementTypes.init_InteractionUse_3002(newElement);
 
@@ -114,8 +126,7 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(InteractionUse newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(InteractionUse newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

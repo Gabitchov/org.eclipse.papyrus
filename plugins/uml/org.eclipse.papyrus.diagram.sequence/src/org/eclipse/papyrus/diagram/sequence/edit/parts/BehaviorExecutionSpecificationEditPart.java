@@ -24,6 +24,7 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -40,6 +41,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -90,8 +92,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BehaviorExecutionSpecificationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -124,22 +125,34 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		BehaviourExecutionSpecificationRectangleFigure figure = new BehaviourExecutionSpecificationRectangleFigure();
+		ExecutionSpecificationRectangleFigure figure = new ExecutionSpecificationRectangleFigure();
 		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public BehaviourExecutionSpecificationRectangleFigure getPrimaryShape() {
-		return (BehaviourExecutionSpecificationRectangleFigure)primaryShape;
+	public ExecutionSpecificationRectangleFigure getPrimaryShape() {
+		return (ExecutionSpecificationRectangleFigure)primaryShape;
 	}
 
 	/**
-	 * @generated
+	 * Overrides to disable the defaultAnchorArea. The edge is now more stuck with the middle of the
+	 * figure.
+	 * 
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 60);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 60) {
+
+			/**
+			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
+			 */
+			@Override
+			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
+				return false;
+			}
+		};
 		return result;
 	}
 
@@ -230,17 +243,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -254,19 +257,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -289,6 +281,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionEditPart) {
@@ -315,6 +313,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -339,6 +343,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -363,6 +373,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -387,6 +403,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -411,6 +433,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -433,6 +461,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
@@ -441,19 +475,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -477,6 +500,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -502,6 +531,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -526,6 +561,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -550,6 +591,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -574,6 +621,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -598,6 +651,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -621,6 +680,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		return types;
 	}
@@ -629,17 +694,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -647,25 +702,16 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		types.add(UMLElementTypes.Message_4007);
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -689,6 +735,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -714,6 +766,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -738,6 +796,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -762,6 +826,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -786,6 +856,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -810,6 +886,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -833,6 +915,18 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Constraint_3008);
 		}
 		return types;
 	}
@@ -840,12 +934,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class BehaviourExecutionSpecificationRectangleFigure extends RectangleFigure {
+	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
 
 		/**
 		 * @generated
 		 */
-		public BehaviourExecutionSpecificationRectangleFigure() {
+		public ExecutionSpecificationRectangleFigure() {
 			this.setLineWidth(1);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(25)));
@@ -859,7 +953,6 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}
@@ -881,28 +974,19 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification",
-						PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification",
-						PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification",
-						PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
-					prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
@@ -938,8 +1022,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		// TODO : don't know why, but it seems we need to add twice the height of the figure to have
 		// the real bottom...
 		// Need more investigation to clean that !
-		int endOfTheFigure = getFigure().getBounds().y + getFigure().getBounds().height
-				+ getFigure().getBounds().height;
+		int endOfTheFigure = getFigure().getBounds().y + getFigure().getBounds().height + getFigure().getBounds().height;
 
 		updateRequestPosition(request, endOfTheFigure, Message3EditPart.VISUAL_ID, Message3EditPart.class);
 
@@ -988,6 +1071,17 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 				location.y = yPosition;
 			}
 		}
+	}
+
+	/**
+	 * Override for add elements on ExecutionSpecification
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			return getParent().getCommand(request);
+		}
+		return super.getCommand(request);
 	}
 
 }

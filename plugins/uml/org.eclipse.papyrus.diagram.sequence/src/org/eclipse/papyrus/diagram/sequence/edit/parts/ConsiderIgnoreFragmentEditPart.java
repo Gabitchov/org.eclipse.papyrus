@@ -68,11 +68,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	public static final int VISUAL_ID = 3007;
 
 	/**
-	 * @generated NOT
-	 */
-	private static final InteractionOperatorKind INTERACTION_OPERATOR_CONSIDER_IGNORE_FRAGMENT_DEFAULT_VALUE = InteractionOperatorKind.CONSIDER_LITERAL;
-
-	/**
 	 * @generated
 	 */
 	protected IFigure contentPane;
@@ -84,8 +79,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
-	 * 
-	 * @generated NOT
 	 */
 	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
 
@@ -110,8 +103,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConsiderIgnoreFragmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CombinedFragmentItemComponentEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -151,6 +143,8 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	public CombinedFragmentFigure getPrimaryShape() {
@@ -235,17 +229,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -259,19 +243,8 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -294,6 +267,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionEditPart) {
@@ -320,6 +299,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -344,6 +329,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -368,6 +359,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -392,6 +389,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -416,6 +419,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -438,6 +447,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
@@ -446,19 +461,8 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -482,6 +486,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -507,6 +517,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -531,6 +547,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -555,6 +577,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -579,6 +607,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -603,6 +637,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -626,6 +666,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		return types;
 	}
@@ -634,17 +680,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	 * @generated
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -652,25 +688,16 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		types.add(UMLElementTypes.Message_4007);
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -694,6 +721,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Comment_3009);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
@@ -719,6 +752,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -743,6 +782,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -767,6 +812,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -791,6 +842,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -815,6 +872,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 		}
@@ -838,6 +901,18 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Constraint_3008);
 		}
 		return types;
 	}
@@ -850,28 +925,19 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment",
-						PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment",
-						PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment",
-						PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
-					prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
@@ -886,26 +952,36 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	}
 
 	/**
-	 * Return true if the InteractionOperatorKind is allowed
-	 * 
-	 * @param interactionOperatorLiteral
-	 *        The InteractionOperator to test
-	 * @return true if allowed
-	 * @generated NOT
+	 * Handle for message
 	 */
-	protected boolean isAllowedInteractionOperator(String interactionOperatorLiteral) {
-		return InteractionOperatorKind.CONSIDER_LITERAL.getLiteral().equals(interactionOperatorLiteral)
-				|| InteractionOperatorKind.IGNORE_LITERAL.getLiteral().equals(interactionOperatorLiteral);
+	protected void handleNotificationEvent(Notification notification) {
+		Object feature = notification.getFeature();
+
+		if(UMLPackage.eINSTANCE.getConsiderIgnoreFragment_Message().equals(feature)) {
+			// Handle message creation
+			Object newValue = notification.getNewValue();
+			// TODO Filter NamedElements type for message on higher level
+			if(newValue == null || newValue instanceof Operation || newValue instanceof Reception || newValue instanceof Signal) {
+				updateHeaderLabel();
+				notifier.unlistenObject((Notifier)notification.getOldValue());
+				notifier.listenObject((Notifier)notification.getNewValue());
+			} else {
+				ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
+				considerIgnoreFragment.getMessages().remove(newValue);
+			}
+		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)) {
+			// Handle message modification
+			updateHeaderLabel();
+		}
+
+		super.handleNotificationEvent(notification);
 	}
 
 	/**
-	 * @generated NOT
+	 * Update operator kind
 	 */
-	protected void updateOperatorKind() {
+	protected void updateHeaderLabel() {
 		ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
-		if(considerIgnoreFragment.getInteractionOperator() == null) {
-			considerIgnoreFragment.setInteractionOperator(INTERACTION_OPERATOR_CONSIDER_IGNORE_FRAGMENT_DEFAULT_VALUE);
-		}
 		StringBuilder operatorKind = new StringBuilder();
 		operatorKind.append(considerIgnoreFragment.getInteractionOperator().getName());
 		EList<NamedElement> messages = considerIgnoreFragment.getMessages();
@@ -926,38 +1002,18 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	}
 
 	/**
-	 * Handle for message
+	 * Return true if the InteractionOperatorKind is allowed
 	 * 
-	 * @generated NOT
+	 * @param interactionOperatorLiteral
+	 *        The InteractionOperator to test
+	 * @return true if allowed
 	 */
-	protected void handleNotificationEvent(Notification notification) {
-		Object feature = notification.getFeature();
-
-		if(UMLPackage.eINSTANCE.getConsiderIgnoreFragment_Message().equals(feature)) {
-			// Handle message creation
-			Object newValue = notification.getNewValue();
-			// TODO Filter NamedElements type for message on higher level
-			if(newValue == null || newValue instanceof Operation || newValue instanceof Reception
-					|| newValue instanceof Signal) {
-				updateOperatorKind();
-				notifier.unlistenObject((Notifier)notification.getOldValue());
-				notifier.listenObject((Notifier)notification.getNewValue());
-			} else {
-				ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
-				considerIgnoreFragment.getMessages().remove(newValue);
-			}
-		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)) {
-			// Handle message modification
-			updateOperatorKind();
-		}
-
-		super.handleNotificationEvent(notification);
+	protected boolean isAllowedInteractionOperator(String interactionOperatorLiteral) {
+		return InteractionOperatorKind.CONSIDER_LITERAL.getLiteral().equals(interactionOperatorLiteral) || InteractionOperatorKind.IGNORE_LITERAL.getLiteral().equals(interactionOperatorLiteral);
 	}
 
 	/**
 	 * Activate a listener for the interactionUse to Handle notification in the refered Interaction
-	 * 
-	 * @generated NOT
 	 */
 	public void activate() {
 		super.activate();
@@ -970,8 +1026,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * Deactivate a listener for the interactionUse to Handle notification in the refered
 	 * Interaction
-	 * 
-	 * @generated NOT
 	 */
 	public void deactivate() {
 		super.deactivate();
@@ -979,7 +1033,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void removeNotify() {

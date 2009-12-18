@@ -44,8 +44,7 @@ public class CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy exte
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getCombinedFragmentCombinedFragmentCompartment_7002SemanticChildren(
-				viewObject).iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getCombinedFragmentCombinedFragmentCompartment_7002SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;

@@ -62,6 +62,7 @@ import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
@@ -104,10 +105,10 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	private String defaultText;
 
 	/** direct edition mode (default, undefined, registered editor, etc.) */
-	protected int directEditionMode = org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition.UNDEFINED_DIRECT_EDITOR;
+	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
-	protected org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration configuration;
+	protected IDirectEditorConfiguration configuration;
 
 	/**
 	 * @generated
@@ -283,8 +284,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(
-								new RunnableWithResult.Impl() {
+						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
 
 							public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
@@ -324,9 +324,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider
-					.getParser(UMLElementTypes.Interaction_2001, getParserElement(), UMLVisualIDRegistry
-					.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Interaction_2001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -336,8 +334,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 */
 	protected DirectEditManager getManager() {
 		if(manager == null) {
-			setManager(new TextDirectEditManager(this, TextDirectEditManager.getTextCellEditorClass(this),
-					UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new TextDirectEditManager(this, TextDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -396,9 +393,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
-				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
-						.getTextToEdit(resolveSemanticElement()), configuration);
+				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -421,13 +416,10 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 
 					public void run() {
 						if(isActive() && isEditable()) {
-							if(theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character)theRequest.getExtendedData().get(
-										RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+								Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 								performDirectEdit(initialChar.charValue());
-							} else if((theRequest instanceof DirectEditRequest)
-									&& (getEditText().equals(getLabelText()))) {
+							} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 								DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 								performDirectEdit(editRequest.getLocation());
 							} else {
@@ -502,9 +494,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	protected void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD
-					: SWT.NORMAL)
-					| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -594,8 +584,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 */
 	protected boolean checkExtendedEditor() {
 		if(resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass()
-					.getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
 		}
 		return false;
 	}
@@ -617,14 +606,11 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if(configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if(languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
-						.eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
-						resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
 			}
 		}
 	}
@@ -633,14 +619,9 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 * Updates the preference configuration
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault()
-				.getPreferenceStore().getString(
-				org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT
-				+ resolveSemanticElement().eClass().getInstanceClassName());
+		String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if(languagePreferred != configuration.getLanguage()) {
-			configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil
-					.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass()
-					.getInstanceClassName());
+			configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 		}
 	}
 
@@ -658,8 +639,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 				public void run() {
 					if(isActive() && isEditable()) {
 						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character)theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest)theRequest;
@@ -704,10 +684,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 			refreshUnderline();
 		} else if(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if(getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
@@ -724,6 +701,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 				}
 			}
 		}
+
 
 		super.handleNotificationEvent(event);
 	}

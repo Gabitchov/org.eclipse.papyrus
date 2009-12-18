@@ -140,8 +140,7 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		return UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature)
-				|| UMLPackage.eINSTANCE.getInteractionUse_RefersTo().equals(feature);
+		return UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature) || UMLPackage.eINSTANCE.getInteractionUse_RefersTo().equals(feature);
 	}
 
 }

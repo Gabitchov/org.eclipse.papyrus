@@ -41,8 +41,9 @@ import org.eclipse.swt.widgets.Display;
 
 public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy {
 
-	private static final String DELETE_FROM_DIAGRAM_DLG_TITLE = DiagramUIMessages.PromptingDeleteAction_DeleteFromDiagramDialog_Title;
-
+	/**
+	 * Delete messages of a combined fragment message
+	 */
 	private static final String DELETE_FROM_DIAGRAM_DLG_MESSAGE = "Are you sure you want to delete all messages on the combined fragment ?";
 
 	/**
@@ -57,8 +58,7 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 		for(Object child : getHost().getParent().getChildren()) {
 			if(child instanceof LifelineEditPart) {
 				for(Object littlechild : ((LifelineEditPart)child).getChildren()) {
-					if(littlechild instanceof ActionExecutionSpecificationEditPart
-							|| littlechild instanceof BehaviorExecutionSpecificationEditPart) {
+					if(littlechild instanceof ActionExecutionSpecificationEditPart || littlechild instanceof BehaviorExecutionSpecificationEditPart) {
 						ShapeNodeEditPart editPart = (ShapeNodeEditPart)littlechild;
 						Rectangle executionSpecificationBounds = editPart.getFigure().getBounds();
 						if(combinedFragmentBounds.intersects(executionSpecificationBounds)) {
@@ -72,6 +72,9 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 		return new ICommandProxy(cmd);
 	}
 
+	/**
+	 * A delete command with a popup
+	 */
 	private final class DeleteCommandWithPopup extends CompositeCommand {
 
 		public DeleteCommandWithPopup(String label) {
@@ -82,9 +85,8 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 		 * {@inheritDoc}
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-				throws ExecutionException {
-			if(showMessageDialog(DELETE_FROM_DIAGRAM_DLG_TITLE, DELETE_FROM_DIAGRAM_DLG_MESSAGE)) {
+		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+			if(showMessageDialog(DiagramUIMessages.PromptingDeleteAction_DeleteFromDiagramDialog_Title, DELETE_FROM_DIAGRAM_DLG_MESSAGE)) {
 				return super.doExecuteWithResult(progressMonitor, info);
 			}
 			return null;
@@ -93,7 +95,6 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 		/**
 		 * Show popup message
 		 * 
-		 * @generated NOT
 		 * @param title
 		 *        The title
 		 * @param message
@@ -101,15 +102,13 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 		 * @return True if user click on OK
 		 */
 		private boolean showMessageDialog(String title, String message) {
-			MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(Display.getCurrent()
-					.getActiveShell(), title, message, null, false, (IPreferenceStore)((IGraphicalEditPart)getHost())
-					.getDiagramPreferencesHint().getPreferenceStore(),
-					IPreferenceConstants.PREF_PROMPT_ON_DEL_FROM_MODEL);
+			MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(Display.getCurrent().getActiveShell(), title, message, null, false, (IPreferenceStore)((IGraphicalEditPart)getHost()).getDiagramPreferencesHint().getPreferenceStore(), IPreferenceConstants.PREF_PROMPT_ON_DEL_FROM_MODEL);
 
-			if(dialog.getReturnCode() == IDialogConstants.YES_ID)
+			if(dialog.getReturnCode() == IDialogConstants.YES_ID) {
 				return true;
-			else
+			} else {
 				return false;
+			}
 		}
 	}
 

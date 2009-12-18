@@ -32,10 +32,8 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if(adaptableObject instanceof org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem
-						&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem)adaptableObject)
-							.getView();
+				if(adaptableObject instanceof org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem)adaptableObject).getView();
 				}
 				return null;
 			}
@@ -84,10 +82,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 */
 	public boolean equals(Object obj) {
 		if(obj instanceof org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem) {
-			return EcoreUtil.getURI(getView())
-					.equals(
-					EcoreUtil.getURI(((org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem)obj)
-					.getView()));
+			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorItem)obj).getView()));
 		}
 		return super.equals(obj);
 	}

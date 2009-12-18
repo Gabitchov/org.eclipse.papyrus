@@ -28,6 +28,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -75,6 +77,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,16 +97,34 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Handle creation on InteractionOperand
+	 * 
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
 
-		Interaction owner = (Interaction)getElementToEdit();
-		owner.getFragments().add(newElement);
-
 		UMLElementTypes.init_ConsiderIgnoreFragment_3007(newElement);
+
+		// START GENERATED NOT CODE
+		EObject elementToEdit = getElementToEdit();
+		if(elementToEdit instanceof InteractionOperand) {
+			InteractionOperand owner = (InteractionOperand)elementToEdit;
+			owner.getFragments().add(newElement);
+		} else {
+			Interaction owner = (Interaction)elementToEdit;
+			owner.getFragments().add(newElement);
+		}
+
+		newElement.setInteractionOperator(InteractionOperatorKind.CONSIDER_LITERAL);
+
+		// Create an interaction operand with the ConsiderIgnoreFragment (multiplicy 1...*)
+		InteractionOperand createInteractionOperand = UMLFactory.eINSTANCE.createInteractionOperand();
+		newElement.getOperands().add(createInteractionOperand);
+
+		// END GENERATED NOT CODE
 
 		doConfigure(newElement, monitor, info);
 
@@ -114,8 +135,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(ConsiderIgnoreFragment newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(ConsiderIgnoreFragment newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

@@ -16,23 +16,30 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.commands.CreateElementAndInitializeFeatureCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ActionExecutionSpecificationCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.BehaviorExecutionSpecificationCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -49,6 +56,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
@@ -58,7 +68,6 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -73,47 +82,30 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * For BES
+	 * Generated not for add lifelines on lifeline
 	 * 
 	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
+		if(UMLElementTypes.ActionExecutionSpecification_3006 == req.getElementType()) {
+			return getGEFWrapper(new ActionExecutionSpecificationCreateCommand(req));
+		}
 		if(UMLElementTypes.BehaviorExecutionSpecification_3003 == req.getElementType()) {
-			if(req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getInteraction_Fragment());
+			return getGEFWrapper(new BehaviorExecutionSpecificationCreateCommand(req));
+		}
+		if(UMLElementTypes.Lifeline_3001 == req.getElementType()) {
+			LifelineEditPart lifelineEditPart = (LifelineEditPart)getHost();
+			if(lifelineEditPart.isInlineCapability()) {
+				LifelineCreateCommand cmd = new LifelineCreateCommand(req);
+				cmd.setAvailableProperties(lifelineEditPart.getAvailableProperties());
+				return getGEFWrapper(cmd);
 			}
-
-			// Added to initialize the property "Covered" of the new
-			// BehaviourExecutionSpecification
-			CreateElementCommand behaviourCmd = new BehaviorExecutionSpecificationCreateCommand(req);
-			EReference feature = UMLPackage.eINSTANCE.getInteractionFragment_Covered();
-			Object value = req.getContainer();
-			return new CreateElementAndInitializeFeatureCommand(behaviourCmd, feature, value);
-
-			/*
-			 * return getGEFWrapper(new BehaviorExecutionSpecificationCreateCommand( req));
-			 */
-		} else if(UMLElementTypes.ActionExecutionSpecification_3006 == req.getElementType()) {
-			if(req.getContainmentFeature() == null) {
-				req.setContainmentFeature(UMLPackage.eINSTANCE.getInteraction_Fragment());
-			}
-
-			// Added to initialize the property "Covered" of the new
-			// ActionExecutionSpecification
-			CreateElementCommand actionCmd = new ActionExecutionSpecificationCreateCommand(req);
-			EReference feature = UMLPackage.eINSTANCE.getInteractionFragment_Covered();
-			Object value = req.getContainer();
-			return new CreateElementAndInitializeFeatureCommand(actionCmd, feature, value);
-
-			/*
-			 * return getGEFWrapper(new ActionExecutionSpecificationCreateCommand( req));
-			 */
 		}
 		return super.getCreateCommand(req);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
@@ -213,6 +205,9 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: true
 			addDestroyChildNodesCommand(cmd);
+
+			addDestroyChildLifelineNodesCommand(cmd);
+
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));
@@ -275,6 +270,18 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						continue;
 					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
 				}
 				for(Iterator it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
@@ -321,13 +328,9 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						continue;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(),
-						false))); // directlyOwned: false
-				// don't need explicit deletion of node as parent's view deletion would clean child
-				// views as well
-				// cmd.add(new
-				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
-				// node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				for(Iterator it = node.getTargetEdges().iterator(); it.hasNext();) {
@@ -374,6 +377,18 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						continue;
 					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
 				}
 				for(Iterator it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
@@ -420,14 +435,26 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						continue;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(),
-						false))); // directlyOwned: false
-				// don't need explicit deletion of node as parent's view deletion would clean child
-				// views as well
-				// cmd.add(new
-				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
-				// node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
+			}
+		}
+	}
+
+	/**
+	 * Create destroy command for sub lifelines
+	 * 
+	 * @param cmd
+	 *        The command
+	 */
+	private void addDestroyChildLifelineNodesCommand(CompositeTransactionalCommand cmd) {
+		if(getHost() instanceof LifelineEditPart) {
+			LifelineEditPart lifelineEditPart = (LifelineEditPart)getHost();
+			for(LifelineEditPart childLifelineEditPart : lifelineEditPart.getInnerConnectableElementList()) {
+				DestroyElementRequest destroyRequest = new DestroyElementRequest(childLifelineEditPart.getEditingDomain(), lifelineEditPart.resolveSemanticElement(), false);
+				cmd.add(new CommandProxy(childLifelineEditPart.getCommand(new EditCommandRequestWrapper(destroyRequest))));
 			}
 		}
 	}
@@ -436,8 +463,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
@@ -465,6 +491,12 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+			return null;
+		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+			return null;
 		}
 		return null;
 	}
@@ -494,6 +526,12 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.Message_4009 == req.getElementType()) {
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -521,6 +559,22 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			return getGEFWrapper(new Message7ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+		switch(getVisualID(req)) {
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
 	}
 
 }

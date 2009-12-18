@@ -59,9 +59,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return new ActionExecutionSpecificationEditPart(view);
 
-			case ActionExecutionSpecificationNameEditPart.VISUAL_ID:
-				return new ActionExecutionSpecificationNameEditPart(view);
-
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return new BehaviorExecutionSpecificationEditPart(view);
 
@@ -83,6 +80,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InteractionOperandEditPart.VISUAL_ID:
 				return new InteractionOperandEditPart(view);
 
+			case ConstraintEditPart.VISUAL_ID:
+				return new ConstraintEditPart(view);
+
+			case ConstraintNameEditPart.VISUAL_ID:
+				return new ConstraintNameEditPart(view);
+
+			case CommentEditPart.VISUAL_ID:
+				return new CommentEditPart(view);
+
+			case CommentBodyEditPart.VISUAL_ID:
+				return new CommentBodyEditPart(view);
+
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				return new InteractionInteractionCompartmentEditPart(view);
 
@@ -95,11 +104,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageNameEditPart.VISUAL_ID:
 				return new MessageNameEditPart(view);
 
+
 			case Message2EditPart.VISUAL_ID:
 				return new Message2EditPart(view);
 
 			case MessageName2EditPart.VISUAL_ID:
 				return new MessageName2EditPart(view);
+
 
 			case Message3EditPart.VISUAL_ID:
 				return new Message3EditPart(view);
@@ -107,11 +118,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName3EditPart.VISUAL_ID:
 				return new MessageName3EditPart(view);
 
+
 			case Message4EditPart.VISUAL_ID:
 				return new Message4EditPart(view);
 
 			case MessageName4EditPart.VISUAL_ID:
 				return new MessageName4EditPart(view);
+
 
 			case Message5EditPart.VISUAL_ID:
 				return new Message5EditPart(view);
@@ -119,17 +132,27 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName5EditPart.VISUAL_ID:
 				return new MessageName5EditPart(view);
 
+
 			case Message6EditPart.VISUAL_ID:
 				return new Message6EditPart(view);
 
 			case MessageName6EditPart.VISUAL_ID:
 				return new MessageName6EditPart(view);
 
+
 			case Message7EditPart.VISUAL_ID:
 				return new Message7EditPart(view);
 
 			case MessageName7EditPart.VISUAL_ID:
 				return new MessageName7EditPart(view);
+
+
+			case CommentAnnotatedElementEditPart.VISUAL_ID:
+				return new CommentAnnotatedElementEditPart(view);
+
+
+			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+				return new ConstraintConstrainedElementEditPart(view);
 
 			}
 		}

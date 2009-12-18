@@ -70,7 +70,7 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+    	    actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.sequence.SequenceDiagramEditorFactory"
             icon="icons/SequenceDiagram.gif">
@@ -265,8 +265,8 @@
       <viewProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLSequenceDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3006,3003,3002,3007,3004,3005"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3006,3003,3002,3007,3004,3005,3008,3009"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
       </viewProvider>
    </extension>
 
@@ -278,13 +278,13 @@
             <method name="getType()" value="PapyrusUMLSequenceDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3006,3003,3002,3007,3004,3005"/>
+            <method name="getType()" value="2001,3001,3006,3003,3002,3007,3004,3005,3008,3009"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009"/>
+            <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5005,5003,5004"/>
+            <method name="getType()" value="5001,5002,5003,5004,5005,5006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002"/>
@@ -411,6 +411,26 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.sequence.Constraint_3008"
+               name="%metatype.name.Constraint_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Constraint"
+               edithelper="org.eclipse.papyrus.diagram.sequence.edit.helpers.ConstraintEditHelper">
+            <param name="semanticHint" value="3008"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.sequence.Comment_3009"
+               name="%metatype.name.Comment_3009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Comment"
+               edithelper="org.eclipse.papyrus.diagram.sequence.edit.helpers.CommentEditHelper">
+            <param name="semanticHint" value="3009"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.sequence.Message_4003"
                name="%metatype.name.Message_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -473,6 +493,24 @@
             <param name="semanticHint" value="4009"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.CommentAnnotatedElement_4010"
+               name="%metatype.name.CommentAnnotatedElement_4010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4010"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.ConstraintConstrainedElement_4011"
+               name="%metatype.name.ConstraintConstrainedElement_4011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4011"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -494,6 +532,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.sequence.ConsiderIgnoreFragment_3007"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.CombinedFragment_3004"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.InteractionOperand_3005"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Constraint_3008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Comment_3009"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4004"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4005"/>
@@ -501,6 +541,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4007"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4008"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4009"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.CommentAnnotatedElement_4010"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.ConstraintConstrainedElement_4011"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -716,6 +758,13 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
+            name="Comment" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
             name="ConsiderIgnoreFragment" />	
@@ -726,6 +775,13 @@
 			class="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
             name="CombinedFragment" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            name="Constraint" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -757,6 +813,7 @@
 	
 
 
+	
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
@@ -791,20 +848,20 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create an Execution Action"
-       id="createExecutionAction2CreationTool"
+       description="Create an Action Execution Specification"
+       id="createActionExecutionSpecification2CreationTool"
        kind="tool"
-       label="Execution Action"
+       label="Action Execution Specification"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif">
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create an Execution Behaviour"
-       id="createExecutionBehaviour3CreationTool"
+       description="Create an BehaviorExecutionSpecification"
+       id="createBehaviorExecutionSpecification3CreationTool"
        kind="tool"
-       label="Execution Behaviour"
+       label=" Behavior Execution Specification"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif">
@@ -909,6 +966,46 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
  	</entry>
+	<entry
+       defineOnly="true"
+       description=""
+       id="createComment1CreationTool"
+       kind="tool"
+       label="Comment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description=""
+       id="createCommentlink2CreationTool"
+       kind="tool"
+       label="Comment link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description=""
+       id="createConstraint3CreationTool"
+       kind="tool"
+       label="Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description=""
+       id="createConstraintlink4CreationTool"
+       kind="tool"
+       label="Constraint link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
 
 			</contribution>
 			<editor id="org.eclipse.papyrus.diagram.sequence"/>
@@ -944,11 +1041,11 @@
           path="/createObjects1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createExecutionAction2CreationTool"
+          id="createActionExecutionSpecification2CreationTool"
           path="/createObjects1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createExecutionBehaviour3CreationTool"
+          id="createBehaviorExecutionSpecification3CreationTool"
           path="/createObjects1Group">
     </predefinedEntry>
  	<predefinedEntry
@@ -1001,6 +1098,33 @@
  	<predefinedEntry
           id="createMessageFound7CreationTool"
           path="/createMessage2Group">
+    </predefinedEntry>
+
+	<entry
+       description="Common elements"
+       id="createCommon3Group"
+       kind="drawer"
+       label="Common"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createComment1CreationTool"
+          path="/createCommon3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCommentlink2CreationTool"
+          path="/createCommon3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConstraint3CreationTool"
+          path="/createCommon3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConstraintlink4CreationTool"
+          path="/createCommon3Group">
     </predefinedEntry>
 
 

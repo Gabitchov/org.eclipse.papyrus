@@ -13,71 +13,186 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.util;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.eclipse.uml2.uml.CallEvent;
-import org.eclipse.uml2.uml.CreationEvent;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.ExecutionEvent;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.ReceiveOperationEvent;
-import org.eclipse.uml2.uml.ReceiveSignalEvent;
-import org.eclipse.uml2.uml.SendOperationEvent;
-import org.eclipse.uml2.uml.SendSignalEvent;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A helper class for the message command.
+ * A helper class for the command.
  * 
  */
 public class CommandHelper {
 
+
 	/**
-	 * Retrieve the event container. A recursive method that test if a given element is a Package.
-	 * 
-	 * @param element
-	 *        the element
-	 * @return the first package found in the hierarchy or null if nothing has been found
+	 * Title for dialog of no referenced interaction error
 	 */
-	public static Package getEventContainer(Element element) {
-		Package container = null;
-		if(element instanceof Package) {
-			container = (Package)element;
-		} else if(element != null) {
-			container = getEventContainer(element.getOwner());
-		}
-		return container;
+	private static final String NO_REFERENCED_INTERACTION_DIALOG_TITLE = "No referenced interaction"; //$NON-NLS-1$
+
+	/**
+	 * Message for dialog of no referenced interaction error
+	 */
+	private static final String NO_REFERENCED_INTERACTION_DIALOG_MSG = "Couldn't had message if there isn't referenced interaction"; //$NON-NLS-1$
+
+	/**
+	 * Message for wrong gate container type error
+	 */
+	private static final String WRONG_GATE_CONTAINER_TYPE_ERROR_MSG = "Wrong element UML type for create a gate"; //$NON-NLS-1$
+
+	/**
+	 * Title for dialog of choose actual gate
+	 */
+	private static final String CHOOSE_GATE_DIALOG_TITLE = "Actual gates of the interaction use"; //$NON-NLS-1$
+
+	/**
+	 * Message for dialog of choose actual gate
+	 */
+	private static final String CHOOSE_GATE_DIALOG_MSG = "Choose the gate to attach the message"; //$NON-NLS-1$
+
+
+
+	/**
+	 * Create a message on the given interaction. It only creates the message and not its messages end.
+	 * 
+	 * @param interaction
+	 *        the containing interaction
+	 * @param messageSort
+	 *        the messageSort.
+	 * @return the created message
+	 */
+	public static Message doCreateMessage(Interaction interaction, MessageSort messageSort) {
+		Message message = interaction.createMessage(null);
+
+		// Set the interaction that will contain the message
+		message.setInteraction(interaction);
+
+		// Set MessageSort
+		message.setMessageSort(messageSort);
+
+		// Init Name 
+		ElementInitializers.init_NamedElement(message);
+
+		return message;
 	}
 
 	/**
+	 * Create message occurence specification
+	 * 
 	 * @param interaction
-	 * @param newCallevent
-	 * @return
+	 *        The interaction
+	 * @param event
+	 *        The event to attach
+	 * @return The message occurence specification
 	 */
-	public static MessageOccurrenceSpecification doCreateMessageOccurrence(Interaction interaction, Event event) {
-		MessageOccurrenceSpecification result = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
-		ElementInitializers.init_NamedElement(result);
-		result.setEnclosingInteraction(interaction);
-		result.setEvent(event);
-		return result;
+	public static MessageOccurrenceSpecification doCreateMessageOccurrence(InteractionFragment fragment, Event event, Lifeline lifeline) {
+
+		// Create the MOS
+		MessageOccurrenceSpecification mos = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
+
+		// Configure the MOS
+		doConfigureOccurenceSpecification(mos, event, fragment, lifeline);
+
+		return mos;
+	}
+
+
+	/**
+	 * Create an ExecutionOccurrenceSpecification
+	 * 
+	 * @param es
+	 *        the ExecutionSpecification associated with this ExecutionOccurrenceSpecification.
+	 * @param event
+	 *        the event associated with this OccurrenceSpecification. It must be of type ExecutionEvent.
+	 * @param fragment
+	 *        the fragment enclosing this OccurenceSpecifcation. It must be an Interaction or an Operand.
+	 * @return the Execution Occurrence Specification
+	 */
+	public static ExecutionOccurrenceSpecification doCreateExecutionOccurenceSpecification(ExecutionSpecification es, ExecutionEvent event, InteractionFragment fragment, Lifeline lifeline) {
+
+		// Create the ExecutionOccurrenceSpecification
+		ExecutionOccurrenceSpecification eos = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification();
+
+		// Configure the EOS. 
+		// The event is an ExecutionEvent
+		doConfigureOccurenceSpecification(eos, event, fragment, lifeline);
+
+		// Set the executionSpecification of the ExecutionOccurrenceSpecification
+		eos.setExecution(es);
+
+		return eos;
+	}
+
+	/**
+	 * Configure an OccurrenceSpecification
+	 * 
+	 * @param os
+	 *        the occurrenceSpecification to configure
+	 * @param event
+	 *        the event to associated with the {@link OccurrenceSpecification}
+	 * @param fragment
+	 *        the fragment containing the {@link OccurrenceSpecification}. It can be an {@link Interaction} or an {@link InteractionOperand}
+	 * @param lifeline
+	 *        the covered lifeline
+	 */
+	private static void doConfigureOccurenceSpecification(OccurrenceSpecification os, Event event, InteractionFragment fragment, Lifeline lifeline) {
+
+		// Set the Container of the OccurrenceSpecification
+		if(fragment instanceof Interaction) {
+			os.setEnclosingInteraction((Interaction)fragment);
+		} else if(fragment instanceof InteractionOperand) {
+			os.setEnclosingOperand((InteractionOperand)fragment);
+		}
+
+		// Set the covered lifeline
+		os.getCovereds().add(lifeline);
+
+		// Set the event of the OccurrenceSpecification
+		os.setEvent(event);
+
+		// Set the name of the OS 
+		ElementInitializers.init_NamedElement(os);
+
 	}
 
 	/**
@@ -94,132 +209,39 @@ public class CommandHelper {
 		}
 	}
 
-	/**
-	 * Create a call event
-	 * 
-	 * @param eventContainer
-	 *        the container
-	 * @return the call event
-	 */
-	public static CallEvent createCallEvent(Package eventContainer) {
-		CallEvent callevent = (CallEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getCallEvent()); //$NON-NLS-1$
-		ElementInitializers.init_NamedElement(callevent);
-		return callevent;
-	}
+
 
 	/**
-	 * Create a SendOperation event and initializes its name
-	 * 
-	 * @param eventContainer
-	 *        the container
-	 * @param operation
-	 *        the operation of the event
-	 * @return the sendOperation event
-	 */
-	public static SendOperationEvent createSendOperationEvent(Package eventContainer, Operation operation) {
-		SendOperationEvent sendOperationEvent = (SendOperationEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getSendOperationEvent()); //$NON-NLS-1$
-		ElementInitializers.init_NamedElement(sendOperationEvent);
-		if(operation != null) {
-			sendOperationEvent.setOperation(operation);
-		}
-		return sendOperationEvent;
-	}
-
-	/**
-	 * Create a ReceiveOperation event and initializes its name
-	 * 
-	 * @param eventContainer
-	 *        the container
-	 * @return the receiveOperation event
-	 */
-	public static ReceiveOperationEvent createReceiveOperationEvent(Package eventContainer, Operation operation) {
-		ReceiveOperationEvent receiveOperationEvent = (ReceiveOperationEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getReceiveOperationEvent()); //$NON-NLS-1$
-		ElementInitializers.init_NamedElement(receiveOperationEvent);
-		if(operation != null) {
-			receiveOperationEvent.setOperation(operation);
-		}
-		return receiveOperationEvent;
-	}
-
-	/**
-	 * Create a send signal event and initializes its name
-	 * 
-	 * @param eventContainer
-	 *        the container
-	 * @return the send signal event
-	 */
-	public static SendSignalEvent createSendSignalEvent(Package eventContainer, Signal signal) {
-		SendSignalEvent sendSignalEvent = (SendSignalEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getSendSignalEvent()); //$NON-NLS-1$
-		ElementInitializers.init_NamedElement(sendSignalEvent);
-		if(signal != null) {
-			sendSignalEvent.setSignal(signal);
-		}
-		return sendSignalEvent;
-	}
-
-	/**
-	 * Create a ReceiveSignal event and initializes its name
-	 * 
-	 * @param eventContainer
-	 *        the container
-	 * @return the ReceiveSignal event
-	 */
-	public static ReceiveSignalEvent createReceiveSignalEvent(Package eventContainer, Signal signal) {
-		ReceiveSignalEvent receiveSignalEvent = (ReceiveSignalEvent)eventContainer.createPackagedElement("", UMLPackage.eINSTANCE.getReceiveSignalEvent()); //$NON-NLS-1$
-		ElementInitializers.init_NamedElement(receiveSignalEvent);
-		if(signal != null) {
-			receiveSignalEvent.setSignal(signal);
-		}
-		return receiveSignalEvent;
-	}
-
-	/**
-	 * Create a receive signal event
-	 * 
-	 * @param eventContainer
-	 *        the container
-	 * @return the receive signal event
-	 */
-	public static CreationEvent createCreationEvent(Package eventContainer) {
-		CreationEvent creationEvent = UMLFactory.eINSTANCE.createCreationEvent();
-		creationEvent = (CreationEvent)eventContainer.createPackagedElement("", creationEvent.eClass()); //$NON-NLS-1$
-		ElementInitializers.init_NamedElement(creationEvent);
-		return creationEvent;
-	}
-
-	/**
-	 * Create a destruction event
-	 * 
-	 * @param eventContainer
-	 *        the container
-	 * @return the destruction event
-	 */
-	public static DestructionEvent createDestructionEvent(Package eventContainer) {
-		DestructionEvent destructionEvent = UMLFactory.eINSTANCE.createDestructionEvent();
-		destructionEvent = (DestructionEvent)eventContainer.createPackagedElement("", destructionEvent.eClass()); //$NON-NLS-1$
-		ElementInitializers.init_NamedElement(destructionEvent);
-		return destructionEvent;
-	}
-
-	public static Element getSignature(Message message) {
-		return getSignature(message, true);
-	}
-
-	/**
+	 * Get the signature of the message. Opens a dialog box to select a signature.
 	 * 
 	 * @param message
-	 * @return
+	 *        The message
+	 * @return null, if cancel has been pressed. An empty list if the null Element has been
+	 *         selected, or a list with the selected element.
 	 */
-	public static Element getSignature(Message message, boolean hasMessageSort) {
+	public static List<NamedElement> getSignature(Element message) {
+		return getSignature(message, null);
+	}
+
+	/**
+	 * Get the signature of the message. Opens a dialog box to select a signature. Inputs depends on
+	 * the messageSort, if any.
+	 * 
+	 * @param message
+	 *        The message
+	 * @param hasMessageSort
+	 *        true if message sort is set
+	 * @return null, if cancel has been pressed. An empty list if the null Element has been
+	 *         selected, or a list with the selected element.
+	 */
+	public static List<NamedElement> getSignature(Element message, MessageSort messageSort) {
 
 		if(message == null) {
 			return null;
 		}
 
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(),
-				labelProvider);
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(), labelProvider);
 		dialog.setTitle("Signature Selection");
 		dialog.setMessage("Select a signature (* = any string, ? = any char):");
 
@@ -227,29 +249,310 @@ public class CommandHelper {
 
 		result.add("");
 
-		if(!hasMessageSort) {
-			result.addAll(ItemPropertyDescriptor
-					.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
+		if(messageSort != null) {
+			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
 			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getSignal()));
-		} else if(MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())
-				|| MessageSort.ASYNCH_CALL_LITERAL.equals(message.getMessageSort())
-				|| MessageSort.REPLY_LITERAL.equals(message.getMessageSort())) {
-			result.addAll(ItemPropertyDescriptor
-					.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
-		} else if(MessageSort.ASYNCH_SIGNAL_LITERAL.equals(message.getMessageSort())) {
+		} else if(MessageSort.SYNCH_CALL_LITERAL.equals(messageSort) || MessageSort.ASYNCH_CALL_LITERAL.equals(messageSort) || MessageSort.REPLY_LITERAL.equals(messageSort)) {
+			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
+		} else if(MessageSort.ASYNCH_SIGNAL_LITERAL.equals(messageSort)) {
 			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getSignal()));
 		}
 
 		result.remove(null);
 		dialog.setElements(result.toArray());
 
-		Element signature = null;
-		if(dialog.open() == Dialog.OK) {
+		List<NamedElement> elements = null;
+		int dialogResult = dialog.open();
+		if(dialogResult == Dialog.OK) {
+			elements = new ArrayList<NamedElement>();
 			if(!"".equals(dialog.getFirstResult())) {
-				signature = (Element)dialog.getFirstResult();
+				elements.add((NamedElement)dialog.getFirstResult());
 			}
 		}
-		return signature;
+		return elements;
 	}
+
+	/**
+	 * Get the signature of the message. Opens a dialog box to select a signature. Inputs depends on
+	 * the messageSort, if any.
+	 * 
+	 * @param availableProperties
+	 *        list of available properties
+	 * @return null, if cancel has been pressed. An empty list if the null Element has been
+	 *         selected, or a list with the selected element.
+	 */
+	public static Property getProperties(List<Property> availableProperties) {
+
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(), labelProvider);
+		dialog.setTitle("Property Selection");
+		dialog.setMessage("Select a property (* = any string, ? = any char):");
+
+		if(availableProperties == null || availableProperties.isEmpty()) {
+			return null;
+		}
+
+		dialog.setElements(availableProperties.toArray());
+
+		Property element = null;
+		int dialogResult = dialog.open();
+		if(dialogResult == Dialog.OK) {
+			if(!"".equals(dialog.getFirstResult())) {
+				element = (Property)dialog.getFirstResult();
+			}
+		}
+		return element;
+	}
+
+	/**
+	 * Execute a EMF command without history (cancelation usage)
+	 * 
+	 * @param editingDomain
+	 *        The editing domain
+	 * @param command
+	 *        The command
+	 */
+	public static void executeCommandWithoutHistory(EditingDomain editingDomain, org.eclipse.emf.common.command.Command command) {
+		try {
+			CommandStack commandStack = editingDomain.getCommandStack();
+			if(commandStack instanceof TransactionalCommandStack) {
+				((TransactionalCommandStack)commandStack).execute(command, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+			} else {
+				commandStack.execute(command);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (RollbackException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Retrieve the Lifeline associated with an ExecutionSpecification.
+	 * According to the UML Specification, an ExecutionSpecification must have a start and a finish.
+	 * 
+	 * In Papyrus, an ExecutionSpecification may not have a start and finish.
+	 * To handle this specific case, we return the first lifeline that the ES covered.
+	 * 
+	 * @param es
+	 *        the targeted execution specification
+	 * @return the associated lifeline, or null if the ES has no start, no finish, no covered lifelines.
+	 */
+	public static Lifeline getExecutionSpecificationLifeline(ExecutionSpecification es) {
+		Lifeline lifeline = null;
+		if(es.getStart() != null) {
+			lifeline = es.getStart().getCovereds().get(0);
+		} else if(es.getFinish() != null) {
+			lifeline = es.getFinish().getCovereds().get(0);
+		}
+
+		if(lifeline == null) {
+			if(!es.getCovereds().isEmpty()) {
+				lifeline = es.getCovereds().get(0);
+			}
+		}
+		return lifeline;
+	}
+
+	/**
+	 * Create an ExecutionSpecification. It also creates the start and finish ExecutionOccurenceSpecification of the ExecutionSpecification, and their
+	 * corresponding events.
+	 * 
+	 * @param es
+	 *        the executionSpecification to create.
+	 * @param lifeline
+	 *        the lifeline covered by the ExecutionSpecification.
+	 * @return the created executionSpecification
+	 */
+	public static ExecutionSpecification doCreateExecutionSpecification(ExecutionSpecification es, Lifeline lifeline) {
+
+
+		// Get the enclosing interaction fragment
+		Interaction interactionFragment = lifeline.getInteraction();
+		// Create the ES 
+		es = (ExecutionSpecification)interactionFragment.createFragment(null, es.eClass());
+
+		// Get the covered lifeline
+		es.getCovereds().add(lifeline);
+
+		org.eclipse.uml2.uml.Package eventContainer = EventHelper.getEventContainer(interactionFragment);
+
+		ExecutionEvent startingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
+		ExecutionEvent finishingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
+
+		// Get the start and the finish ExecutionOccurrenceSpecification
+		es.setStart(CommandHelper.doCreateExecutionOccurenceSpecification(es, startingExecutionEvent, interactionFragment, lifeline));
+		es.setFinish(CommandHelper.doCreateExecutionOccurenceSpecification(es, finishingExecutionEvent, interactionFragment, lifeline));
+
+		// Init the name 
+		UMLElementTypes.init_NamedElement(es);
+
+		return es;
+	}
+
+
+	/**
+	 * Create a MessageEnd
+	 * 
+	 * @param interaction
+	 *        The Interaction
+	 * @param callEvent
+	 *        The call event
+	 * @param element
+	 *        The element
+	 * @param direction
+	 *        The message direction
+	 * @return A MessageOccurrenceSpecification if element is ExecutionSpecification or Lifeline. A
+	 *         Gate if element is Interaction or CombinedFragment or InteractionUse
+	 */
+	public static MessageEnd createMessageEnd(Interaction interaction, Event event, Element element, MessageDirection direction) {
+		MessageEnd endMsg = null;
+		if(element instanceof Lifeline) {
+			endMsg = doCreateMessageOccurrence(interaction, event, (Lifeline)element);
+		} else if(element instanceof ExecutionSpecification) {
+			Lifeline lifeline = getExecutionSpecificationLifeline((ExecutionSpecification)element);
+			endMsg = doCreateMessageOccurrence(interaction, event, lifeline);
+		} else if(element instanceof Interaction || element instanceof CombinedFragment || element instanceof InteractionUse) {
+			endMsg = doCreateGate(element, direction);
+		}
+		return endMsg;
+	}
+
+	/**
+	 * Create gate if element is a Interaction, a Combined Fragment or a Interaction Use
+	 * 
+	 * @param element
+	 *        The element
+	 * @param direction
+	 *        The message direction
+	 * @return The gate
+	 * @throws IllegalArgumentException
+	 *         if the element is not a right element type
+	 */
+	public static Gate doCreateGate(Element element, MessageDirection direction) {
+		Gate gate = null;
+
+		if(element instanceof Interaction) {
+			gate = ((Interaction)element).createFormalGate(null);
+		} else if(element instanceof CombinedFragment) {
+			gate = ((CombinedFragment)element).createCfragmentGate(null);
+		} else if(element instanceof InteractionUse) {
+			Shell shell = Display.getCurrent().getActiveShell();
+			InteractionUse interactionUse = (InteractionUse)element;
+
+			if(interactionUse.getRefersTo() == null) {
+				MessageDialog.openError(shell, NO_REFERENCED_INTERACTION_DIALOG_TITLE, NO_REFERENCED_INTERACTION_DIALOG_MSG);
+				return null;
+			}
+
+			ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+			ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+			dialog.setTitle(CHOOSE_GATE_DIALOG_TITLE);
+			dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
+			dialog.setMultipleSelection(false);
+
+			List<Gate> gates = new ArrayList<Gate>();
+			for(Gate actualGate : ((InteractionUse)element).getActualGates()) {
+				if(actualGate.getName().startsWith(direction.getName())) {
+					gates.add(actualGate);
+				}
+			}
+			dialog.setElements(gates.toArray());
+			if(dialog.open() == Window.OK) {
+				gate = (Gate)dialog.getFirstResult();
+			}
+		} else {
+			throw new IllegalArgumentException(WRONG_GATE_CONTAINER_TYPE_ERROR_MSG);
+		}
+
+		if(gate != null) {
+			ElementInitializers.init_NamedElement(gate, direction.toString().toLowerCase() + "_");
+		}
+
+		return gate;
+	}
+
+	/**
+	 * Create a message. It also creates its message end, their corresponding events and updates the signature of the message.
+	 * 
+	 * @param container
+	 *        the interaction containing the message.
+	 * @param messageSort
+	 *        the messageSort of the message, it can be null
+	 * @param source
+	 *        the source of the message, it can be null
+	 * @param target
+	 *        the target of the message, it can be null
+	 * @return the created message
+	 */
+	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target) {
+
+		List<NamedElement> signatures = getSignature(container.getModel(), messageSort);
+
+		// If signatures == null, means the user click on cancel button during selection --> Cancel the whole process of creation
+		if(signatures == null) {
+			return null;
+		}
+
+		NamedElement signature = null;
+		if(!signatures.isEmpty()) {
+			signature = signatures.get(0);
+		}
+
+		// Get the correct MessageSort
+		messageSort = getMessageSort(signature, messageSort);
+
+		// Create the message
+		Message message = doCreateMessage(container, messageSort);
+
+		MessageEnd sendMessageEnd = null;
+		MessageEnd receiveMessageEnd = null;
+
+		// Create the two message ends
+		if(source != null) {
+			sendMessageEnd = createMessageEnd(container, EventHelper.doCreateSendEvent(messageSort, container, signature), source, MessageDirection.OUT);
+		}
+		if(target != null) {
+			receiveMessageEnd = createMessageEnd(container, EventHelper.doCreateReceiveEvent(messageSort, container, signature), target, MessageDirection.IN);
+		}
+
+		// Update the messages end with the message
+		if(sendMessageEnd != null) {
+			sendMessageEnd.setMessage(message);
+		}
+		if(receiveMessageEnd != null) {
+			receiveMessageEnd.setMessage(message);
+		}
+
+		// Update the message with the messages end
+		message.setSendEvent(sendMessageEnd);
+		message.setReceiveEvent(receiveMessageEnd);
+
+		return message;
+	}
+
+
+
+	/**
+	 * Get the messageSort of a message if it doesn't exist yet depending of the messageSignature.
+	 * If no messageSort exists, and if the signature is null, then return a MessageSort.ASYNCH_CALL_LITERAL
+	 * 
+	 * @param signature
+	 *        the signature of the message or null
+	 * @param messageSort
+	 *        a messageSort or null
+	 * @return the messageSort
+	 */
+	private static MessageSort getMessageSort(NamedElement signature, MessageSort messageSort) {
+		if(messageSort == null) {
+			if(signature instanceof Signal) {
+				return MessageSort.ASYNCH_SIGNAL_LITERAL;
+			} else {
+				return MessageSort.ASYNCH_CALL_LITERAL;
+			}
+		}
+		return messageSort;
+	}
+
 
 }

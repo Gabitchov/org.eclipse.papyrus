@@ -21,11 +21,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -141,8 +144,7 @@ public class UMLVisualIDRegistry {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
 			if(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance()
-						.logError("Unable to parse view type as a visualID number: " + type);
+				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
 			}
 		}
 		return -1;
@@ -162,8 +164,7 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-				&& isDiagram((Package)domainElement)) {
+		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
 
@@ -171,21 +172,21 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * Generated not for add lifelines on lifeline
+	 * 
+	 * @generated NOT
 	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
 		if(domainElement == null) {
 			return -1;
 		}
-		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getModelID(containerView);
 		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
 		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
@@ -204,6 +205,28 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return LifelineEditPart.VISUAL_ID;
+			}
+			break;
+		case InteractionOperandEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InteractionUseEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
@@ -226,6 +249,16 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return CombinedFragmentEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPart.VISUAL_ID;
 			}
 			break;
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
@@ -250,15 +283,13 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getModelID(containerView);
 		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
 		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
@@ -286,11 +317,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ActionExecutionSpecificationEditPart.VISUAL_ID:
-			if(ActionExecutionSpecificationNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case InteractionUseEditPart.VISUAL_ID:
 			if(InteractionUseNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -301,6 +327,27 @@ public class UMLVisualIDRegistry {
 			break;
 		case CombinedFragmentEditPart.VISUAL_ID:
 			if(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InteractionOperandEditPart.VISUAL_ID:
+			if(InteractionUseEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ConstraintEditPart.VISUAL_ID:
+			if(ConstraintNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case CommentEditPart.VISUAL_ID:
+			if(CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -315,6 +362,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -441,7 +494,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_4003(Message domainElement) {
 		if(Message_4003_Constraint == null) { // lazy initialization
-			Message_4003_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::synchCall", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_4003_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4003_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -452,8 +505,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_4004(Message domainElement) {
 		if(Message_4004_Constraint == null) { // lazy initialization
-			Message_4004_Constraint = UMLOCLFactory
-					.getExpression("self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_4004_Constraint = UMLOCLFactory.getExpression("(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4004_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -464,7 +516,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_4005(Message domainElement) {
 		if(Message_4005_Constraint == null) { // lazy initialization
-			Message_4005_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::reply", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_4005_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::reply and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4005_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -475,7 +527,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_4006(Message domainElement) {
 		if(Message_4006_Constraint == null) { // lazy initialization
-			Message_4006_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::createMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_4006_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4006_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -486,7 +538,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_4007(Message domainElement) {
 		if(Message_4007_Constraint == null) { // lazy initialization
-			Message_4007_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::deleteMessage", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
+			Message_4007_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::deleteMessage and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
 		}
 		Object result = Message_4007_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -545,72 +597,116 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");
 
 		root.addNode(7001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "ActionExecutionSpecification");
 
 		root.addNode(3001, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "BehaviorExecutionSpecification");
 
 		root.addNode(3001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "InteractionUse");
 
 		root.addNode(7001, viewInfo);
+
+		root.addNode(3005, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");
 
 		root.addNode(7001, viewInfo);
 
+		root.addNode(3005, viewInfo);
+
+
 		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "CombinedFragment");
 
+		root.addNode(3005, viewInfo);
+
 		root.addNode(7001, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "InteractionOperand");
 
 		root.addNode(7002, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "Constraint");
+
+		root.addNode(7001, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3009, ViewInfo.Node, "Comment");
+
+		root.addNode(7001, viewInfo);
 
 		return root;
 	}

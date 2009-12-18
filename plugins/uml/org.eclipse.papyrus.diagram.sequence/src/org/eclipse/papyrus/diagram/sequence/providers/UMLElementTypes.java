@@ -30,7 +30,11 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -116,6 +120,16 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Constraint_3008 = getElementType("org.eclipse.papyrus.diagram.sequence.Constraint_3008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Comment_3009 = getElementType("org.eclipse.papyrus.diagram.sequence.Comment_3009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ConsiderIgnoreFragment_3007 = getElementType("org.eclipse.papyrus.diagram.sequence.ConsiderIgnoreFragment_3007"); //$NON-NLS-1$
 
 	/**
@@ -156,6 +170,16 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType CommentAnnotatedElement_4010 = getElementType("org.eclipse.papyrus.diagram.sequence.CommentAnnotatedElement_4010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ConstraintConstrainedElement_4011 = getElementType("org.eclipse.papyrus.diagram.sequence.ConstraintConstrainedElement_4011"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -187,8 +211,7 @@ public class UMLElementTypes extends ElementInitializers {
 		if(element instanceof EClass) {
 			EClass eClass = (EClass)element;
 			if(!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(
-						eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -262,35 +285,60 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
+
 			elements.put(Interaction_2001, UMLPackage.eINSTANCE.getInteraction());
+
 
 			elements.put(Lifeline_3001, UMLPackage.eINSTANCE.getLifeline());
 
+
 			elements.put(ActionExecutionSpecification_3006, UMLPackage.eINSTANCE.getActionExecutionSpecification());
+
 
 			elements.put(BehaviorExecutionSpecification_3003, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
 
+
 			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
+
 
 			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
 
+
 			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
+
 
 			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
 
+
+			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
+
+
+			elements.put(Comment_3009, UMLPackage.eINSTANCE.getComment());
+
+
 			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
+
 
 			elements.put(Message_4004, UMLPackage.eINSTANCE.getMessage());
 
+
 			elements.put(Message_4005, UMLPackage.eINSTANCE.getMessage());
+
 
 			elements.put(Message_4006, UMLPackage.eINSTANCE.getMessage());
 
+
 			elements.put(Message_4007, UMLPackage.eINSTANCE.getMessage());
+
 
 			elements.put(Message_4008, UMLPackage.eINSTANCE.getMessage());
 
+
 			elements.put(Message_4009, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(CommentAnnotatedElement_4010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+
+			elements.put(ConstraintConstrainedElement_4011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -317,6 +365,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_3007);
 			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
 			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
+			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
+			KNOWN_ELEMENT_TYPES.add(Comment_3009);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
 			KNOWN_ELEMENT_TYPES.add(Message_4004);
 			KNOWN_ELEMENT_TYPES.add(Message_4005);
@@ -324,6 +374,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Message_4007);
 			KNOWN_ELEMENT_TYPES.add(Message_4008);
 			KNOWN_ELEMENT_TYPES.add(Message_4009);
+			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4010);
+			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4011);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -351,6 +403,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return CombinedFragment_3004;
 		case InteractionOperandEditPart.VISUAL_ID:
 			return InteractionOperand_3005;
+		case ConstraintEditPart.VISUAL_ID:
+			return Constraint_3008;
+		case CommentEditPart.VISUAL_ID:
+			return Comment_3009;
 		case MessageEditPart.VISUAL_ID:
 			return Message_4003;
 		case Message2EditPart.VISUAL_ID:
@@ -365,6 +421,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return Message_4008;
 		case Message7EditPart.VISUAL_ID:
 			return Message_4009;
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return CommentAnnotatedElement_4010;
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return ConstraintConstrainedElement_4011;
 		}
 		return null;
 	}

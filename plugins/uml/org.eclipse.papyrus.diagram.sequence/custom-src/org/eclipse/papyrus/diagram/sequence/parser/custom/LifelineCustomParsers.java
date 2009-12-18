@@ -105,8 +105,7 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 			}
 
 			// Add the selector if it is an Expression
-			if(selector instanceof Expression || selector instanceof OpaqueExpression
-					|| selector instanceof TimeExpression) {
+			if(selector instanceof Expression || selector instanceof OpaqueExpression || selector instanceof TimeExpression) {
 				String specificationValue = ValueSpecificationUtil.getSpecificationValue(selector);
 				if(specificationValue != null && specificationValue.length() > 0) {
 					sb.append("\n").append(specificationValue);
@@ -164,10 +163,14 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 				semanticElementsBeingParsed.add(lifeline.getSelector());
 			}
 
-			// Add the Interaction refered by the partDecomposition
+			// Add the partDecomposition
 			PartDecomposition partDecomposition = lifeline.getDecomposedAs();
-			if(partDecomposition != null && partDecomposition.getRefersTo() != null) {
-				semanticElementsBeingParsed.add(partDecomposition.getRefersTo());
+			if(partDecomposition != null) {
+				semanticElementsBeingParsed.add(partDecomposition);
+				// Add the Interaction refered by the partDecomposition
+				if(partDecomposition.getRefersTo() != null) {
+					semanticElementsBeingParsed.add(partDecomposition.getRefersTo());
+				}
 			}
 
 			// Add the connectableElement and its type if it has any
@@ -190,15 +193,6 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				|| UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature)
-				|| UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(feature)
-				|| UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(feature)
-				|| UMLPackage.eINSTANCE.getLiteralBoolean_Value().equals(feature)
-				|| UMLPackage.eINSTANCE.getLiteralString_Value().equals(feature)
-				|| UMLPackage.eINSTANCE.getOpaqueExpression_Body().equals(feature)
-				|| UMLPackage.eINSTANCE.getLifeline_Selector().equals(feature)
-				|| UMLPackage.eINSTANCE.getLifeline_DecomposedAs().equals(feature)
-				|| UMLPackage.eINSTANCE.getLifeline_Represents().equals(feature);
+		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(feature) || UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(feature) || UMLPackage.eINSTANCE.getLiteralBoolean_Value().equals(feature) || UMLPackage.eINSTANCE.getLiteralString_Value().equals(feature) || UMLPackage.eINSTANCE.getOpaqueExpression_Body().equals(feature) || UMLPackage.eINSTANCE.getLifeline_Selector().equals(feature) || UMLPackage.eINSTANCE.getLifeline_DecomposedAs().equals(feature) || UMLPackage.eINSTANCE.getLifeline_Represents().equals(feature) || UMLPackage.eINSTANCE.getInteractionUse_RefersTo().equals(feature);
 	}
 }
