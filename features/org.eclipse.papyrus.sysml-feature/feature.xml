@@ -29,13 +29,28 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <requires>
-      <import plugin="org.eclipse.papyrus.extensionpoints.uml2"/>
-      <import plugin="org.eclipse.papyrus.uml.standard"/>
-      <import plugin="org.eclipse.papyrus.umlutils"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="org.eclipse.papyrus.uml.standard" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.umlutils" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.extensionpoints.uml2" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.emf.ecore.edit"/>
+      <import plugin="org.eclipse.papyrus.uml.standard.edit"/>
+      <import plugin="org.eclipse.uml2.uml.edit"/>
    </requires>
 
    <plugin
          id="org.eclipse.papyrus.sysml"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.sysml.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"
