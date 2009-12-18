@@ -21,8 +21,26 @@
    <feature url="features/org.eclipse.papyrus.diagram.usecase_feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.diagram.usecase_feature" version="0.7.0.qualifier">
       <category name="umldiagrams"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.profiletool_0.7.0.vqualifier.jar" id="org.eclipse.papyrus.profiletool" version="0.7.0.vqualifier">
+      <category name="profiletool"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.activity_0.7.0.vqualifier.jar" id="org.eclipse.papyrus.diagram.activity" version="0.7.0.vqualifier">
+      <category name="umldiagrams"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.internalblock_0.7.0.vqualifier.jar" id="org.eclipse.papyrus.diagram.internalblock" version="0.7.0.vqualifier">
+      <category name="sysmldiagrams"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.parametric_0.7.0.vqualifier.jar" id="org.eclipse.papyrus.diagram.parametric" version="0.7.0.vqualifier">
+      <category name="sysmldiagrams"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml_0.7.0.qualifier.jar" id="org.eclipse.papyrus.sysml" version="0.7.0.qualifier">
+      <category name="sysmleditor"/>
+   </feature>
    <category-def name="backbone" label="BackBone"/>
    <category-def name="umleditor" label="UML Editor"/>
    <category-def name="umldiagrams" label="UML Diagrams"/>
    <category-def name="additionalTools" label="Additional Tools"/>
+   <category-def name="profiletool" label="Profile tool"/>
+   <category-def name="sysmldiagrams" label="SysML Diagrams"/>
+   <category-def name="sysmleditor" label="SysML Editor"/>
 </site>
