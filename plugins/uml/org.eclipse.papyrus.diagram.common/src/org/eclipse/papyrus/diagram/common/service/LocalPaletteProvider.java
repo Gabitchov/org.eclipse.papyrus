@@ -22,7 +22,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -111,11 +110,9 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 			File file = getXmlFile(path);
 			// the file should never be null in this implementation, but sub-classes could return null
 			if(file == null) {
-				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + path);
-				contributions = new EmptyNodeList();
+				throw new IOException("Impossible to load file: " + path);
 			} else if(!file.exists()) {
-				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + file);
-				contributions = new EmptyNodeList();
+				throw new IOException("Impossible to load file: " + file);
 			} else {
 				Document document = documentBuilder.parse(file);
 				contributions = document.getChildNodes();
