@@ -108,11 +108,12 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 		try {
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
-			// Bundle bundle = Platform.getBundle(pluginID);
-			// URL url = bundle.getEntry(path);
-
-			File file = Activator.getDefault().getStateLocation().append(path).toFile();
-			if(!file.exists()) {
+			File file = getXmlFile(path);
+			// the file should never be null in this implementation, but sub-classes could return null
+			if(file == null) {
+				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + path);
+				contributions = new EmptyNodeList();
+			} else if(!file.exists()) {
 				PapyrusTrace.log(IStatus.ERROR, "Impossible to load file: " + file);
 				contributions = new EmptyNodeList();
 			} else {
@@ -129,7 +130,18 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 			PapyrusTrace.log(e);
 			contributions = new EmptyNodeList();
 		}
+	}
 
+	/**
+	 * Returns the file using the specified path in the plugin state location
+	 * 
+	 * @param path
+	 *        the path to the file
+	 * @return the file using the specified path in the plugin state location, even if it does not exists. In the latter case, the method
+	 *         {@link File#exists()} returns <code>false</code>.
+	 */
+	public File getXmlFile(String path) throws IOException {
+		return Activator.getDefault().getStateLocation().append(path).toFile();
 	}
 
 	/**
