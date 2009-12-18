@@ -52,4 +52,24 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.layouttool"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.diagram.activity"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.diagram.internalblock"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.diagram.parametric"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.profiletool"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml"
+         version="0.0.0"/>
+
 </feature>
