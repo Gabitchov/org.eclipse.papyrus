@@ -35,12 +35,12 @@ plugin@org.eclipse.papyrus.tabbedproperties.core=SVN,,svn://dev.eclipse.org/svnr
 plugin@org.eclipse.papyrus.wizards=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.wizards
 
 # developer
-plugin@org.eclipse.papyrus.codegen=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.codegen
-plugin@org.eclipse.papyrus.def=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.def
-plugin@org.eclipse.papyrus.gmfgenextension=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.gmfgenextension
-plugin@org.eclipse.papyrus.java.reverse=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.reverse
-plugin@org.eclipse.papyrus.java.reverse.ui=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.reverse.ui
-plugin@org.eclipse.papyrus.java.template=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.template
+#plugin@org.eclipse.papyrus.codegen=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.codegen
+#plugin@org.eclipse.papyrus.def=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.def
+#plugin@org.eclipse.papyrus.gmfgenextension=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.gmfgenextension
+#plugin@org.eclipse.papyrus.java.reverse=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.reverse
+#plugin@org.eclipse.papyrus.java.reverse.ui=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.reverse.ui
+#plugin@org.eclipse.papyrus.java.template=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.template
 
 # others
 plugin@org.eclipse.papyrus.profile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others,,org.eclipse.papyrus.profile
