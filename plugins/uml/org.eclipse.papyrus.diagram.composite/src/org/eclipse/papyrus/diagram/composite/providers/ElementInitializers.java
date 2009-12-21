@@ -339,6 +339,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InformationItem_2080(instance);
 			instance.setName((String)value_0);
+			Object value_1 = isAbstract_InformationItem_2080(instance);
+			instance.setIsAbstract(((Boolean)value_1).booleanValue());
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1035,6 +1037,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InformationItem_3094(instance);
 			instance.setName((String)value_0);
+			Object value_1 = isAbstract_InformationItem_3094(instance);
+			instance.setIsAbstract(((Boolean)value_1).booleanValue());
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1538,6 +1542,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private static Boolean isAbstract_InformationItem_2080(InformationItem self) {
+		// InformationItem is Abstract
+		return true;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static String name_Signal_2081(Signal self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -1939,6 +1951,14 @@ public class ElementInitializers {
 	 */
 	private static String name_InformationItem_3094(InformationItem self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Boolean isAbstract_InformationItem_3094(InformationItem self) {
+		// InformationItem is Abstract
+		return true;
 	}
 
 	/**

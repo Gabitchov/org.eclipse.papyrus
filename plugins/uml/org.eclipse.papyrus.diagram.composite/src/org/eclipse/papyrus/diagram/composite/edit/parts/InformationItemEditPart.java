@@ -16,11 +16,10 @@ package org.eclipse.papyrus.diagram.composite.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -30,11 +29,9 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -42,26 +39,27 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.figures.InformationItemFigure;
 import org.eclipse.papyrus.diagram.composite.edit.policies.InformationItemItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
 public class InformationItemEditPart extends
 
-ShapeNodeEditPart {
+
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -95,8 +93,22 @@ ShapeNodeEditPart {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+
+
+
+	/**
+	 *Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 
@@ -132,15 +144,14 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		NamedElementDescriptor figure = new NamedElementDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new InformationItemFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public NamedElementDescriptor getPrimaryShape() {
-		return (NamedElementDescriptor)primaryShape;
+	public InformationItemFigure getPrimaryShape() {
+		return (InformationItemFigure)primaryShape;
 	}
 
 	/**
@@ -148,7 +159,7 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof InformationItemNameEditPart) {
-			((InformationItemNameEditPart)childEditPart).setLabel(getPrimaryShape().getNamedElementNameLabel());
+			((InformationItemNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
@@ -199,7 +210,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(80, 40);
 		return result;
 	}
 
@@ -9053,88 +9064,6 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
-
-
-
-	/**
-	 * @generated
-	 */
-	public class NamedElementDescriptor extends RectangleFigure {
-
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fNamedElementNameLabel;
-
-
-		/**
-		 * @generated
-		 */
-		public NamedElementDescriptor() {
-			this.setLineWidth(1);
-			this.setForegroundColor(ColorConstants.black);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			fNamedElementNameLabel = new WrappingLabel();
-			fNamedElementNameLabel.setText("");
-			fNamedElementNameLabel.setForegroundColor(ColorConstants.black);
-
-			fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);
-
-
-
-			this.add(fNamedElementNameLabel);
-
-
-		}
-
-
-
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getNamedElementNameLabel() {
-			return fNamedElementNameLabel;
-		}
-
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FNAMEDELEMENTNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
 
 
 

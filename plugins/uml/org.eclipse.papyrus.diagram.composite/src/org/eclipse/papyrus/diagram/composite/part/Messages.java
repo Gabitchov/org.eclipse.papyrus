@@ -378,6 +378,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String InformationItem11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InformationItem11CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Link1CreationTool_title;
 
 	/**

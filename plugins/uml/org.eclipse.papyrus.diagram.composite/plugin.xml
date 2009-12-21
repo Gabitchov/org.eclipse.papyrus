@@ -2356,6 +2356,16 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create new InformationItem"
+       id="createInformationItem11CreationTool"
+       kind="tool"
+       label="InformationItem"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create new Link (Comment / Constraint)"
        id="createLink1CreationTool"
        kind="tool"
@@ -2512,6 +2522,10 @@
     </predefinedEntry>
  	<predefinedEntry
           id="createDurationObservation10CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createInformationItem11CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
 

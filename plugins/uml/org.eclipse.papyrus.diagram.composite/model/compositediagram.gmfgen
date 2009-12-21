@@ -1858,12 +1858,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="InformationItemEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="NamedElementDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class NamedElementDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fNamedElementNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public NamedElementDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fNamedElementNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fNamedElementNameLabel.setText(&quot;&quot;);&#xA;&#x9;fNamedElementNameLabel.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fNamedElementNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getNamedElementNameLabel() {&#xA;&#x9;&#x9;return fNamedElementNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FNAMEDELEMENTNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.figures.InformationItemFigure">
           <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"/>
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="80"
+              height="40"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -1877,6 +1877,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InformationItem"/>
@@ -1892,6 +1896,12 @@
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.7">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/isAbstract"/>
+            </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labels
@@ -1903,13 +1913,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getNamedElementNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"
-                fixedForeground="true"/>
-          </viewmap>
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
@@ -4389,12 +4394,12 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.23/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="NamedElementDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class NamedElementDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fNamedElementNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public NamedElementDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fNamedElementNameLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fNamedElementNameLabel.setText(&quot;&quot;);&#xA;&#x9;fNamedElementNameLabel.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fNamedElementNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getNamedElementNameLabel() {&#xA;&#x9;&#x9;return fNamedElementNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FNAMEDELEMENTNAMELABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.figures.InformationItemFigure">
           <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"/>
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="80"
+              height="40"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -4408,6 +4413,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InformationItem"/>
@@ -4423,6 +4432,12 @@
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.7">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier/isAbstract"/>
+            </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labels
@@ -4434,13 +4449,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getNamedElementNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"
-                fixedForeground="true"/>
-          </viewmap>
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
@@ -9282,6 +9292,13 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               genNodes="/0/@diagram/@topLevelNodes.33"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="InformationItem"
+              description="Create new InformationItem"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
+              genNodes="/0/@diagram/@childNodes.23 /0/@diagram/@topLevelNodes.20"/>
         </groups>
         <groups
             title="Edges"
@@ -9435,6 +9452,8 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="// RoleBinding target constraint&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if ((target != null) &amp;&amp; !(target instanceof org.eclipse.uml2.uml.ConnectableElement)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// RoleBinding source and target have the same semantic parent&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if ((source != null) &amp;&amp; (target != null) &amp;&amp; (source.getOwner() != target.getOwner())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
+        <expressions
+            body="// InformationItem is Abstract&#xD;&#xA;return true;"/>
       </providers>
     </expressionProviders>
     <labelParsers
@@ -9462,7 +9481,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Add super class to a selected set of generated EditParts"
-        genView="/0/@diagram/@topLevelNodes.14 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.17 /0/@diagram/@topLevelNodes.21 /0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.19 /0/@diagram/@topLevelNodes.16 /0/@diagram/@childNodes.18 /0/@diagram/@topLevelNodes.15 /0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.16 /0/@diagram/@topLevelNodes.13 /0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.15 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.11 /0/@diagram/@topLevelNodes.12 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3"
+        genView="/0/@diagram/@topLevelNodes.14 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.17 /0/@diagram/@topLevelNodes.21 /0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.19 /0/@diagram/@topLevelNodes.16 /0/@diagram/@childNodes.18 /0/@diagram/@topLevelNodes.15 /0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.16 /0/@diagram/@topLevelNodes.13 /0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.15 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.11 /0/@diagram/@topLevelNodes.12 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@topLevelNodes.20 /0/@diagram/@childNodes.23"
         name="EP_NamedElement_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes

@@ -85,6 +85,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEINFORMATIONITEM11CREATIONTOOL = "createInformationItem11CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATELINK1CREATIONTOOL = "createLink1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -171,6 +176,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEDURATIONOBSERVATION10CREATIONTOOL)) {
 			return createDurationObservation10CreationTool();
+		}
+		if(toolId.equals(CREATEINFORMATIONITEM11CREATIONTOOL)) {
+			return createInformationItem11CreationTool();
 		}
 		if(toolId.equals(CREATELINK1CREATIONTOOL)) {
 			return createLink1CreationTool();
@@ -323,6 +331,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createDurationObservation10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.DurationObservation_2093);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createInformationItem11CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.InformationItem_3094);
+		types.add(UMLElementTypes.InformationItem_2080);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

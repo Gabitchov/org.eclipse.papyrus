@@ -573,7 +573,7 @@ public class InformationItemNameEditPartCN extends CompartmentEditPart implement
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getModel();
+		return getPrimaryView();
 	}
 
 
