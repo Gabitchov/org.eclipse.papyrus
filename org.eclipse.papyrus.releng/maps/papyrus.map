@@ -67,8 +67,8 @@ plugin@org.eclipse.papyrus.resource.migration=SVN,,svn://dev.eclipse.org/svnroot
 
 # sysml
 plugin@org.eclipse.papyrus.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml
-plugin@org.eclipse.papyrus.diagram.internalblock=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.internalblock
-plugin@org.eclipse.papyrus.diagram.parametric=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.parametric
+plugin@org.eclipse.papyrus.diagram.internalblock=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.diagram.internalblock
+plugin@org.eclipse.papyrus.diagram.parametric=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.diagram.parametric
 plugin@org.eclipse.papyrus.sysml.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.edit
 
 # uml
