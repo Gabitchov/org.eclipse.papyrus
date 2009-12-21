@@ -42,77 +42,77 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.layouttool"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.gridAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.horizontalAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.horizontalSymmetryAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.horizontalTreeAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.radialAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.springAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.treeAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.verticalAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.algorithms.verticalSymmetryAlgorithm"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.layouttool.subeditor.gmf"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
