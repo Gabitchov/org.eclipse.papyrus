@@ -310,6 +310,7 @@ NamedElementEditPart {
 		types.add(UMLElementTypes.Dependency_4010);
 		types.add(UMLElementTypes.Generalization_4015);
 		types.add(UMLElementTypes.InformationFlow_4016);
+		types.add(UMLElementTypes.InformationItemRepresented_4020);
 		return types;
 	}
 
@@ -3209,6 +3210,141 @@ NamedElementEditPart {
 		}
 		if(targetEditPart instanceof CommentEditPartCN) {
 			types.add(UMLElementTypes.InformationFlow_4016);
+		}
+		if(targetEditPart instanceof ActivityCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof InteractionCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ProtocolStateMachineCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof StateMachineCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof FunctionBehaviorCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof OpaqueBehaviorCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ComponentCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof DeviceCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ExecutionEnvironmentCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof NodeCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ClassCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ClassClassifierEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof CollaborationCompositeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof InterfaceEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof EnumerationEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ActorEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof DeploymentSpecificationEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ArtifactEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof SignalEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof UseCaseEditPart) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ActivityCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof InteractionCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ProtocolStateMachineCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof StateMachineCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof FunctionBehaviorCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof OpaqueBehaviorCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ComponentCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof DeviceCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ExecutionEnvironmentCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof NodeCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ClassCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof CollaborationCompositeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof InterfaceEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof DataTypeEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ActorEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof DeploymentSpecificationEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof ArtifactEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.composite.edit.parts.InformationItemEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof SignalEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
+		}
+		if(targetEditPart instanceof UseCaseEditPartCN) {
+			types.add(UMLElementTypes.InformationItemRepresented_4020);
 		}
 		return types;
 	}
@@ -6110,6 +6246,141 @@ NamedElementEditPart {
 		if(relationshipType == UMLElementTypes.InformationFlow_4016) {
 			types.add(UMLElementTypes.Comment_3097);
 		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Activity_2060);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Interaction_2061);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.ProtocolStateMachine_2062);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.StateMachine_2063);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.FunctionBehavior_2064);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.OpaqueBehavior_2065);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Component_2069);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Device_2070);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.ExecutionEnvironment_2071);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Node_2072);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Class_2073);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Class_2074);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Collaboration_2075);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Interface_2076);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.PrimitiveType_2066);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Enumeration_2067);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.DataType_2068);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Actor_2077);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.DeploymentSpecification_2078);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Artifact_2079);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.InformationItem_2080);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Signal_2081);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.UseCase_2082);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Activity_3072);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Interaction_3073);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.StateMachine_3075);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Component_3081);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Device_3082);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Node_3084);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Class_3085);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Collaboration_3086);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Interface_3087);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.PrimitiveType_3078);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Enumeration_3079);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.DataType_3080);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Actor_3091);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Artifact_3093);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.InformationItem_3094);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.Signal_3095);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.UseCase_3096);
+		}
 		return types;
 	}
 
@@ -6134,6 +6405,7 @@ NamedElementEditPart {
 		types.add(UMLElementTypes.InformationFlow_4016);
 		types.add(UMLElementTypes.TimeObservationEvent_4018);
 		types.add(UMLElementTypes.DurationObservationEvent_4019);
+		types.add(UMLElementTypes.InformationItemRepresented_4020);
 		return types;
 	}
 
@@ -9060,6 +9332,12 @@ NamedElementEditPart {
 		}
 		if(relationshipType == UMLElementTypes.DurationObservationEvent_4019) {
 			types.add(UMLElementTypes.DurationObservation_2093);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.InformationItem_2080);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.InformationItem_3094);
 		}
 		return types;
 	}

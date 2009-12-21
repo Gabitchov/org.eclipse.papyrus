@@ -56,6 +56,8 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationCreateCo
 import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RepresentationCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.RepresentationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionCreateCommand;
@@ -79,6 +81,7 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.OperationEditPartCLN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyEditPartCLN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.RepresentationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.UsageEditPart;
@@ -198,6 +201,12 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if(UMLVisualIDRegistry.getVisualID(incomingLink) == RepresentationEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -388,6 +397,9 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.DurationObservationEvent_4019 == req.getElementType()) {
 			return null;
 		}
+		if(UMLElementTypes.InformationItemRepresented_4020 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -442,6 +454,9 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		if(UMLElementTypes.DurationObservationEvent_4019 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.InformationItemRepresented_4020 == req.getElementType()) {
+			return getGEFWrapper(new RepresentationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -498,6 +513,8 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			return getGEFWrapper(new ConnectorTimeObservationReorientCommand(req));
 		case ConnectorDurationObservationEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConnectorDurationObservationReorientCommand(req));
+		case RepresentationEditPart.VISUAL_ID:
+			return getGEFWrapper(new RepresentationReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

@@ -6208,6 +6208,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case RepresentationEditPart.VISUAL_ID:
+			if(RepresentationTagLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -6753,6 +6758,14 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(4020, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		labelInfo = new BaseViewInfo(6030, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 
 
 		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "Port");

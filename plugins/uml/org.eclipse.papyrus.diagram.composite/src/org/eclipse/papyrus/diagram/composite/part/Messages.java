@@ -478,6 +478,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Representation10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Representation10CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String DataTypeAttributeCompartmentEditPart_title;
 
 	/**

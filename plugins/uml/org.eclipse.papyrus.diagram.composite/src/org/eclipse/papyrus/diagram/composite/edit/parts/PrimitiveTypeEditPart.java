@@ -6132,6 +6132,7 @@ NamedElementEditPart {
 		types.add(UMLElementTypes.InformationFlow_4016);
 		types.add(UMLElementTypes.TimeObservationEvent_4018);
 		types.add(UMLElementTypes.DurationObservationEvent_4019);
+		types.add(UMLElementTypes.InformationItemRepresented_4020);
 		return types;
 	}
 
@@ -9058,6 +9059,12 @@ NamedElementEditPart {
 		}
 		if(relationshipType == UMLElementTypes.DurationObservationEvent_4019) {
 			types.add(UMLElementTypes.DurationObservation_2093);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.InformationItem_2080);
+		}
+		if(relationshipType == UMLElementTypes.InformationItemRepresented_4020) {
+			types.add(UMLElementTypes.InformationItem_3094);
 		}
 		return types;
 	}

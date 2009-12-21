@@ -48,16 +48,21 @@ import org.eclipse.papyrus.diagram.composite.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InformationItem;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.TimeObservation;
 
@@ -475,6 +480,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateInformationItemRepresented_4020(InformationItem source, Classifier target) {
+			if(source != null) {
+				if(source.getRepresenteds().contains(target)) {
+					return false;
+				}
+			}
+
+			return canExistInformationItemRepresented_4020(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistLink_4001() {
 			return true;
 		}
@@ -617,6 +635,24 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
 			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistInformationItemRepresented_4020(InformationItem source, Classifier target) {
+			try {
+				// Represented InformationItem Target
+				if(target != null) {
+					if(!((target instanceof Class) || (target instanceof Interface) || (target instanceof InformationItem) || (target instanceof Signal) || (target instanceof Component))) {
+						return false;
+					}
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 	}
 }
