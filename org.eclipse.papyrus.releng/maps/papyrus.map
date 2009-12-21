@@ -1,7 +1,7 @@
 ##### features
 feature@org.eclipse.papyrus=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features/,,org.eclipse.papyrus-feature
 feature@org.eclipse.papyrus.backbone=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.backbone-feature
-feature@org.eclipse.papyrus.developer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.developer-feature
+# feature@org.eclipse.papyrus.developer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.developer-feature
 feature@org.eclipse.papyrus.diagram.activity=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.activity-feature
 feature@org.eclipse.papyrus.diagram.clazz=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.clazz-feature
 feature@org.eclipse.papyrus.diagram.composite=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.composite-feature
