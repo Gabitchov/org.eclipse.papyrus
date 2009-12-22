@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.common.editpolicies;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
@@ -26,8 +25,6 @@ import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -35,15 +32,19 @@ import org.eclipse.uml2.uml.UMLPackage;
  * this edit policy has in charge to display the qualified name of an element.
  * To display it, the editpart must be a {@link IPapyrusEditPart} and the associated figure has to be a {@link NodeNamedElementFigure}
  */
-public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implements
-		NotificationListener, IPapyrusListener {
+public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
-	public static String QUALIFIED_NAME_POLICY = "Qualified_name_editpolicy";
+	/** key for this edit policy */
+	public final static String QUALIFIED_NAME_POLICY = "Qualified_name_editpolicy";
 
+	/** host semantic element */
+	protected NamedElement hostSemanticNamedElement;
 
+	/**
+	 * Creates a new QualifiedNameDisplayEditPolicy
+	 */
 	public QualifiedNameDisplayEditPolicy() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -57,17 +58,15 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 			return;
 		}
 
-		NamedElement namedElement = getNamedElement();
-		if(namedElement != null) {
-			Element element = (NamedElement)view.getElement();
-
+		hostSemanticNamedElement = getNamedElement();
+		if(hostSemanticNamedElement != null) {
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 
-			if(element == null) {
+			if(hostSemanticNamedElement == null) {
 				return;
 			}
-			getDiagramEventBroker().addNotificationListener(element, this);
+			getDiagramEventBroker().addNotificationListener(hostSemanticNamedElement, this);
 
 			refreshQualifiedNameDisplay();
 		}
@@ -94,7 +93,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	 *        the associated figure to the editpart
 	 */
 	protected void refreshQualifiedName(NodeNamedElementFigure nodeNamedElementFigure) {
-		nodeNamedElementFigure.setQualifiedName((getNamedElement()).getQualifiedName());
+		nodeNamedElementFigure.setQualifiedName(hostSemanticNamedElement.getQualifiedName());
 	}
 
 	/**
@@ -117,12 +116,14 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 		if(view == null) {
 			return;
 		}
-		NamedElement namedElement = getNamedElement();
-		if(getNamedElement() != null) {
+		if(hostSemanticNamedElement != null) {
 			// remove notification on element and view
 			getDiagramEventBroker().removeNotificationListener(view, this);
-			getDiagramEventBroker().removeNotificationListener(namedElement, this);
+			getDiagramEventBroker().removeNotificationListener(hostSemanticNamedElement, this);
 		}
+
+		// removes the reference to the semantic element
+		hostSemanticNamedElement = null;
 	}
 
 	/**
@@ -159,8 +160,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	 * {@inheritDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeatureID(NamedElement.class)) ||
-				notification.getNotifier() instanceof EAnnotation) {
+		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeatureID(NamedElement.class)) || notification.getNotifier() instanceof EAnnotation) {
 			refreshQualifiedNameDisplay();
 		}
 

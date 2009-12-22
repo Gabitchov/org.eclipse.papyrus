@@ -339,6 +339,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(getUMLElement().getType() != null) {
 			getDiagramEventBroker().removeNotificationListener(getUMLElement().getType(), this);
 		}
+
+		getDiagramEventBroker().removeNotificationListener(getUMLElement().getUpperValue(), this);
+		getDiagramEventBroker().removeNotificationListener(getUMLElement().getLowerValue(), this);
 	}
 
 	/**

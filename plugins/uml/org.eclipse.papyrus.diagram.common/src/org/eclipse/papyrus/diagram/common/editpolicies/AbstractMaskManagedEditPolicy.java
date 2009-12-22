@@ -30,8 +30,9 @@ import org.eclipse.uml2.uml.Element;
 /**
  * Default Abstract implementation of the {@link IMaskManagedLabelEditPolicy}.
  */
-public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyEx implements NotificationListener,
-		IPapyrusListener, IMaskManagedLabelEditPolicy {
+public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener, IMaskManagedLabelEditPolicy {
+
+	protected Element hostSemanticElement;
 
 	/**
 	 * 
@@ -43,12 +44,12 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 		if(view == null) {
 			return;
 		}
-		Element element = getUMLElement();
-		if(getUMLElement() != null) {
+		hostSemanticElement = getUMLElement();
+		if(hostSemanticElement != null) {
 
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
-			getDiagramEventBroker().addNotificationListener(element, this);
+			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
 
 			addAdditionalListeners();
 
@@ -82,18 +83,17 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 		if(view == null) {
 			return;
 		}
-		Element element = (Element)getUMLElement();
-
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
 
-		if(element == null) {
-			return;
+		if(hostSemanticElement != null) {
+			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
 		}
-		getDiagramEventBroker().removeNotificationListener(element, this);
 
 		removeAdditionalListeners();
 
+		// removes the reference to the semantic element
+		hostSemanticElement = null;
 	}
 
 	/**
@@ -149,8 +149,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 
 			// notifier is the eannotation. Check this is the annotation in charge of the property
 			// label display
-			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
-					.equals(((EAnnotation)object).getSource())) {
+			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)object).getSource())) {
 				return true;
 			}
 		}
@@ -179,8 +178,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 				// this is an annotation which is returned
 				if(oldValue instanceof EAnnotation) {
 					// returns true if the annotation has the correct source
-					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION
-							.equals(((EAnnotation)oldValue).getSource());
+					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)oldValue).getSource());
 				}
 			}
 		}
@@ -198,9 +196,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	public void setDefaultDisplayValue() {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(
-					new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(),
-					VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
 		}
 
 	}
@@ -211,10 +207,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	public void updateDisplayValue(int newValue) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		if(editingDomain != null) {
-			editingDomain.getCommandStack()
-					.execute(
-					new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(),
-					newValue));
+			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(), newValue));
 		}
 	}
 

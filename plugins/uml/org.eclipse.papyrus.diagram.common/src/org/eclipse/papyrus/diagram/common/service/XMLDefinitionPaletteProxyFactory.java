@@ -16,9 +16,8 @@ package org.eclipse.papyrus.diagram.common.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gef.palette.PaletteEntry;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteAspectToolEntryProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteContainerProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
@@ -30,8 +29,7 @@ import org.w3c.dom.Node;
 /**
  * Implementation that creates proxies used by the palette previewer in the customiza dialog
  */
-public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPaletteFactory implements
-		IPapyrusPaletteConstant {
+public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPaletteFactory implements IPapyrusPaletteConstant {
 
 	/** map of predefined entries */
 	protected final Map<String, PaletteEntry> predefinedEntries;
@@ -72,9 +70,7 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
 		PaletteContainerProxy proxy;
-		proxy = new PaletteLocalDrawerProxy(node.getAttributes().getNamedItem(NAME).getNodeValue(), node
-				.getAttributes().getNamedItem(ID).getNodeValue(), node.getAttributes().getNamedItem(ICON_PATH)
-				.getNodeValue());
+		proxy = new PaletteLocalDrawerProxy(node.getAttributes().getNamedItem(NAME).getNodeValue(), node.getAttributes().getNamedItem(ID).getNodeValue(), node.getAttributes().getNamedItem(ICON_PATH).getNodeValue());
 
 		getParentProxy(node).addChild(proxy);
 		registry.put(node, proxy);
@@ -139,7 +135,7 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 			getParentProxy(node).addChild(proxy);
 			registry.put(node, proxy);
 		} else {
-			PapyrusTrace.log(IStatus.WARNING, "impossible to log class " + id);
+			Activator.log.error("impossible to log class " + id, null);
 		}
 	}
 

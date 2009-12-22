@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
@@ -29,7 +28,6 @@ import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.w3c.dom.Node;
@@ -180,7 +178,7 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 
 		final PaletteToolEntry entry = (PaletteToolEntry)predefinedEntries.get(refToolID);
 		if(entry == null) {
-			PapyrusTrace.log(IStatus.WARNING, "could not find entry " + refToolID);
+			Activator.log.error("could not find entry " + refToolID, null);
 			return;
 		}
 		final Map properties = new HashMap();
@@ -209,22 +207,21 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	 * @param path
 	 * @param paletteEntry
 	 */
-	private static void appendPaletteEntry(PaletteRoot root, Map predefinedEntries, String path,
-			PaletteEntry paletteEntry) {
+	private static void appendPaletteEntry(PaletteRoot root, Map predefinedEntries, String path, PaletteEntry paletteEntry) {
 		PaletteEntry fEntry = findPaletteEntry(root, path);
 		if(fEntry == null) {
 			fEntry = findPredefinedEntry(predefinedEntries, path);
 		}
-		if(fEntry == null)
-			PapyrusTrace.log(IStatus.ERROR, "Invalid palette entry path: " + path); //$NON-NLS-1$                
-		else if(fEntry instanceof PaletteContainer) {
+		if(fEntry == null) {
+			Activator.log.error("Invalid palette entry path: " + path, null);
+		} else if(fEntry instanceof PaletteContainer) {
 			// remove if it already exists
 			if(!((PaletteContainer)fEntry).getChildren().contains(paletteEntry)) {
 				((PaletteContainer)fEntry).add(paletteEntry);
 			}
-		} else if(fEntry instanceof PaletteSeparator)
+		} else if(fEntry instanceof PaletteSeparator) {
 			appendTo((PaletteSeparator)fEntry, paletteEntry);
-		else
+		} else
 			fEntry.getParent().add(fEntry.getParent().getChildren().indexOf(fEntry) + 1, paletteEntry);
 	}
 

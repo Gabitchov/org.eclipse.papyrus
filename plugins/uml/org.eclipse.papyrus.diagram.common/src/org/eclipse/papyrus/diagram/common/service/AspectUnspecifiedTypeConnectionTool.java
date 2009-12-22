@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.diagram.common.Activator;
 
 /**
  * Connection tool that adds stereotype application after creation actions.
@@ -104,7 +104,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 				eventBroker.addNotificationListener(eObject, listener);
 			} catch (ServiceException e) {
-				PapyrusTrace.log(e);
+				Activator.log.error(e);
 			}
 		}
 

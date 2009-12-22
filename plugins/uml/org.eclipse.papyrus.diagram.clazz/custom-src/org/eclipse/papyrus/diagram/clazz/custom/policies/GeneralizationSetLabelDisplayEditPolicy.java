@@ -42,13 +42,18 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
  */
 public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
+	/** stores the host associated semantic element */
+	protected EObject hostSemanticElement;
+
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
 	public void activate() {
-		getDiagramEventBroker().addNotificationListener(((EObject)getHost().getModel()), this);
-		getDiagramEventBroker().addNotificationListener(((View)getHost().getModel()).getElement(), this);
+		View view = (View)getHost().getModel();
+		hostSemanticElement = view.getElement();
+		getDiagramEventBroker().addNotificationListener(view, this);
+		getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
 	}
 
 	/**
@@ -56,8 +61,12 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	 * {@inheritDoc}
 	 */
 	public void deactivate() {
-		getDiagramEventBroker().removeNotificationListener(((EObject)getHost().getModel()), this);
-		getDiagramEventBroker().removeNotificationListener(((View)getHost().getModel()).getElement(), this);
+		View view = (View)getHost().getModel();
+		getDiagramEventBroker().removeNotificationListener(view, this);
+		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
+
+		// removes the reference to the semantic element
+		hostSemanticElement = null;
 	}
 
 	/**

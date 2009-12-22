@@ -31,8 +31,10 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 
+	/**
+	 * Creates a new RemoveStereotypeApplicationListener.
+	 */
 	public RemoveStereotypeApplicationListener() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -40,7 +42,6 @@ public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 	 * 
 	 * @param notification
 	 */
-
 	public void notifyChanged(Notification notification) {
 		Resource resource = null;
 		ArrayList<DynamicEObjectImpl> appliedstereotypeToRemove = new ArrayList<DynamicEObjectImpl>();
@@ -68,8 +69,6 @@ public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 			DynamicEObjectImpl dynamicEObjectImpl = (DynamicEObjectImpl)iterator.next();
 			resource.getContents().remove(dynamicEObjectImpl);
 		}
-
-
 	}
 
 }

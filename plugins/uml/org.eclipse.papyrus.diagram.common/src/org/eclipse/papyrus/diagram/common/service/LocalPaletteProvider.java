@@ -26,7 +26,6 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.IPaletteDescription;
 import org.eclipse.ui.IEditorPart;
@@ -118,13 +117,13 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 				contributions = document.getChildNodes();
 			}
 		} catch (ParserConfigurationException e) {
-			PapyrusTrace.log(e);
+			Activator.log.error(e);
 			contributions = new EmptyNodeList();
 		} catch (IOException e) {
-			PapyrusTrace.log(e);
+			Activator.log.error(e);
 			contributions = new EmptyNodeList();
 		} catch (SAXException e) {
-			PapyrusTrace.log(e);
+			Activator.log.error(e);
 			contributions = new EmptyNodeList();
 		}
 	}

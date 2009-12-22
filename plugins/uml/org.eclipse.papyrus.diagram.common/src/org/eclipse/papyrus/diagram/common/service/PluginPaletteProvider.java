@@ -35,7 +35,7 @@ public class PluginPaletteProvider extends LocalPaletteProvider {
 	/**
 	 * Return the provider ID that declares this provider
 	 * 
-	 * @return the providerID
+	 * @return the id of the plugin that realizes this contribution to the palette
 	 */
 	protected String getProviderID() {
 		return providerID;
@@ -54,7 +54,6 @@ public class PluginPaletteProvider extends LocalPaletteProvider {
 			urlFile = FileLocator.toFileURL(urlFile);
 			if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
 				return new File(urlFile.getFile());
-				// file = URIUtil.toFile();
 			}
 		}
 		return null;
