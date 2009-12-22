@@ -22,6 +22,18 @@ public class Messages extends NLS {
 
 	public static String RoleBindingRoleSelectionDialog_Message;
 
+	public static String InformationFlowSelectionDialog_Title;
+
+	public static String InformationFlowSelectionDialog_Message;
+
+	public static String InformationItemGetNameDialog_Error_Message;
+
+	public static String SelectionValidated;
+
+	public static String InformationFlowSelectInformationItem_ERROR;
+
+	public static String NoSelectionFound;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

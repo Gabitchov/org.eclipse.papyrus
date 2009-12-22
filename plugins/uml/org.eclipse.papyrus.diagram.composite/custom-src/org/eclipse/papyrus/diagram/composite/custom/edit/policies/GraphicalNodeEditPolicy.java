@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo(CEA LIST) vincent.lorenzo@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
@@ -24,8 +25,11 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.composite.custom.edit.command.InformationFlowCreateCommand;
+import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 
 /**
  * <pre>
@@ -58,6 +62,8 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 	 * These information is stored in the request as Parameters under the following keys:
 	 * - &quot;SOURCE_PARENT&quot; : UML Element used as Graphical parent of the source Port (end of Connector)
 	 * - &quot;TARGET_PARENT&quot; : UML Element used as Graphical parent of the target Port (end of Connector)
+	 * 
+	 * This method is used too to call the custom command for InformationFlow creation.
 	 * 
 	 * {@inheritDoc}
 	 * </pre>
@@ -111,9 +117,19 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		createElementRequest.setParameter(CONNECTOR_CREATE_REQUEST_TARGET_PARENT, targetParent);
 		createElementRequest.setTarget(target);
 
-		// get the create element request based on the elementdescriptor's
-		// request
-		Command createElementCommand = targetEP.getCommand(new EditCommandRequestWrapper((CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class), request.getExtendedData()));
+		Command createElementCommand = null;
+
+		//we have a custom command for the InformationFlow
+		if(request.getConnectionViewDescriptor().getSemanticHint().equals((((IHintedType)UMLElementTypes.InformationFlow_4021).getSemanticHint()))) {
+
+			createElementCommand = new ICommandProxy(new InformationFlowCreateCommand(createElementRequest, source, target));
+
+		} else {
+			// get the create element request based on the elementdescriptor's
+			// request
+			createElementCommand = targetEP.getCommand(new EditCommandRequestWrapper((CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class), request.getExtendedData()));
+
+		}
 
 		// create the create semantic element wrapper command
 		if(null == createElementCommand)
@@ -129,14 +145,5 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		cc.compose(semanticCommand);
 		cc.compose(new CommandProxy(viewCommand));
 		return new ICommandProxy(cc);
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Command getConnectionAndRelationshipCreateCommand(CreateConnectionViewAndElementRequest request) {
-		return super.getConnectionAndRelationshipCreateCommand(request);
 	}
 }

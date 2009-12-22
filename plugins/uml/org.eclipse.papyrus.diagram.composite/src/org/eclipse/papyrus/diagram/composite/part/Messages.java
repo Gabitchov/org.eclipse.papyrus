@@ -488,6 +488,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String InformationFlow11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InformationFlow11CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String DataTypeAttributeCompartmentEditPart_title;
 
 	/**

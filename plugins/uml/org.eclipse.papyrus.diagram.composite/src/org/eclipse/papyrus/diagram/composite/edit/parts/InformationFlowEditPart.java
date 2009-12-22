@@ -14,25 +14,27 @@
 package org.eclipse.papyrus.diagram.composite.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeInformationFlowLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.figures.InformationFlowFigure;
 import org.eclipse.papyrus.diagram.composite.edit.policies.InformationFlowItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class InformationFlowEditPart extends ConnectionNodeEditPart
+public class InformationFlowEditPart extends
 
-implements ITreeBranchEditPart {
+UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4016;
+	public static final int VISUAL_ID = 4021;
 
 	/**
 	 * @generated
@@ -47,10 +49,59 @@ implements ITreeBranchEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InformationFlowItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeInformationFlowLabelDisplayEditPolicy());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof InformationFlowConveyedLabelEditPart) {
+			((InformationFlowConveyedLabelEditPart)childEditPart).setLabel(getPrimaryShape().getConveyedLabel());
+			return true;
+		}
+		if(childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
+			((InformationFlowAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
+		}
+		return false;
 	}
 
 
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if(addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
 
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof InformationFlowConveyedLabelEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if(removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
 
 
 	/**
@@ -61,66 +112,15 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
-		return new DirectedRelationshipDescriptor();
+		return new InformationFlowFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public DirectedRelationshipDescriptor getPrimaryShape() {
-		return (DirectedRelationshipDescriptor)getFigure();
+	public InformationFlowFigure getPrimaryShape() {
+		return (InformationFlowFigure)getFigure();
 	}
-
-
-	/**
-	 * @generated
-	 */
-	public class DirectedRelationshipDescriptor extends PolylineConnectionEx {
-
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fDirectedRelationshipAppliedStereotypeLabel;
-
-
-		/**
-		 * @generated
-		 */
-		public DirectedRelationshipDescriptor() {
-			this.setLineWidth(1);
-
-			createContents();
-		}
-
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			fDirectedRelationshipAppliedStereotypeLabel = new WrappingLabel();
-			fDirectedRelationshipAppliedStereotypeLabel.setText("");
-
-			this.add(fDirectedRelationshipAppliedStereotypeLabel);
-
-
-		}
-
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getDirectedRelationshipAppliedStereotypeLabel() {
-			return fDirectedRelationshipAppliedStereotypeLabel;
-		}
-
-
-	}
-
-
 
 }

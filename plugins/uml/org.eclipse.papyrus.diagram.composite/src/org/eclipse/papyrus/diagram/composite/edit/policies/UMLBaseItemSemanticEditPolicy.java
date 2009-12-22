@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.composite.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -48,6 +49,10 @@ import org.eclipse.papyrus.diagram.composite.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.CollaborationUse;
@@ -59,12 +64,18 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InformationItem;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.UseCase;
 
 /**
  * @generated
@@ -440,15 +451,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateGeneralization_4015(Classifier container, Element source, Element target) {
+		public static boolean canCreateGeneralization_4015(Classifier container, Classifier source, Classifier target) {
 			return canExistGeneralization_4015(container, source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateInformationFlow_4016(Package container, Element source, Element target) {
-			return canExistInformationFlow_4016(container, source, target);
 		}
 
 		/**
@@ -488,6 +492,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 
 			return canExistInformationItemRepresented_4020(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
+			return canExistInformationFlow_4021(container, source, target);
 		}
 
 		/**
@@ -612,14 +623,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistGeneralization_4015(Classifier container, Element source, Element target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canExistInformationFlow_4016(Package container, Element source, Element target) {
+		public static boolean canExistGeneralization_4015(Classifier container, Classifier source, Classifier target) {
 			return true;
 		}
 
@@ -646,6 +650,50 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if(target != null) {
 					if(!((target instanceof Class) || (target instanceof Interface) || (target instanceof InformationItem) || (target instanceof Signal) || (target instanceof Component))) {
 						return false;
+					}
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
+			try {
+				//Information Flow source constraint
+				if(source != null) {
+					if(!((source instanceof Actor) || (source instanceof Node) || (source instanceof UseCase) || (source instanceof Artifact) || (source instanceof Class) || (source instanceof Component) || (source instanceof Port) || (source instanceof Property) || (source instanceof Interface) || (source instanceof Package) || (source instanceof ActivityNode) || (source instanceof ActivityPartition) || (source instanceof InstanceSpecification))) {
+
+						return false;
+
+					}
+					if(source instanceof InstanceSpecification) {
+						EList<Classifier> classes = ((InstanceSpecification)source).getClassifiers();
+						for(int i = 0; i < classes.size(); i++) {
+							if(classes.get(i) instanceof Relationship) {
+								return false;
+							}
+						}
+					}
+				}
+				//Information Flow target constraint
+				if(target != null) {
+					if(!((target instanceof Actor) || (target instanceof Node) || (target instanceof UseCase) || (target instanceof Artifact) || (target instanceof Class) || (target instanceof Component) || (target instanceof Port) || (target instanceof Property) || (target instanceof Interface) || (target instanceof Package) || (target instanceof ActivityNode) || (target instanceof ActivityPartition) || (target instanceof InstanceSpecification))) {
+
+						return false;
+
+					}
+					if(target instanceof InstanceSpecification) {
+						EList<Classifier> classes = ((InstanceSpecification)target).getClassifiers();
+						for(int i = 0; i < classes.size(); i++) {
+							if(classes.get(i) instanceof Relationship) {
+								return false;
+							}
+						}
 					}
 				}
 				return true;

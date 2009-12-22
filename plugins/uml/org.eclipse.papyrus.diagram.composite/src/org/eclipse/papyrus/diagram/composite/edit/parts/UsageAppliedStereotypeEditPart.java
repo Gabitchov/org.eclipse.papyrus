@@ -116,7 +116,7 @@ public class UsageAppliedStereotypeEditPart extends LabelEditPart implements ITe
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.composite.edit.parts.UsageAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 60));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.composite.edit.parts.UsageAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 30));
 	}
 
 	/**

@@ -116,7 +116,7 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.composite.edit.parts.ManifestationAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 60));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.composite.edit.parts.ManifestationAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 30));
 	}
 
 	/**

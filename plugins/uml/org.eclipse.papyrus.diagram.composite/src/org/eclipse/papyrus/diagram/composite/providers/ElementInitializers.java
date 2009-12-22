@@ -48,6 +48,7 @@ import org.eclipse.uml2.uml.ExecutionEnvironment;
 import org.eclipse.uml2.uml.ExecutionEvent;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.FunctionBehavior;
+import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.InformationItem;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Interaction;
@@ -1395,6 +1396,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static void init_InformationFlow_4021(InformationFlow instance) {
+		try {
+			Object value_0 = name_InformationFlow_4021(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private static String name_Activity_2060(Activity self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -2161,6 +2174,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_Connector_4013(Connector self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_InformationFlow_4021(InformationFlow self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

@@ -533,14 +533,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createConnector_4013(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case GeneralizationEditPart.VISUAL_ID:
 			return createGeneralization_4015(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case InformationFlowEditPart.VISUAL_ID:
-			return createInformationFlow_4016(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case ConnectorTimeObservationEditPart.VISUAL_ID:
 			return createTimeObservationEvent_4018(containerView, index, persisted, preferencesHint);
 		case ConnectorDurationObservationEditPart.VISUAL_ID:
 			return createDurationObservationEvent_4019(containerView, index, persisted, preferencesHint);
 		case RepresentationEditPart.VISUAL_ID:
 			return createInformationItemRepresented_4020(containerView, index, persisted, preferencesHint);
+		case InformationFlowEditPart.VISUAL_ID:
+			return createInformationFlow_4021(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -2986,7 +2986,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6015 = (Location)label6015.getLayoutConstraint();
 		location6015.setX(0);
-		location6015.setY(60);
+		location6015.setY(30);
 		return edge;
 	}
 
@@ -3027,7 +3027,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6016.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6016 = (Location)label6016.getLayoutConstraint();
 		location6016.setX(0);
-		location6016.setY(60);
+		location6016.setY(30);
 		return edge;
 	}
 
@@ -3068,7 +3068,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6017 = (Location)label6017.getLayoutConstraint();
 		location6017.setX(0);
-		location6017.setY(60);
+		location6017.setY(30);
 		return edge;
 	}
 
@@ -3109,7 +3109,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6018.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6018 = (Location)label6018.getLayoutConstraint();
 		location6018.setX(0);
-		location6018.setY(60);
+		location6018.setY(30);
 		return edge;
 	}
 
@@ -3150,7 +3150,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6019.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6019 = (Location)label6019.getLayoutConstraint();
 		location6019.setX(0);
-		location6019.setY(60);
+		location6019.setY(30);
 		return edge;
 	}
 
@@ -3191,7 +3191,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6020 = (Location)label6020.getLayoutConstraint();
 		location6020.setX(0);
-		location6020.setY(60);
+		location6020.setY(30);
 		return edge;
 	}
 
@@ -3232,7 +3232,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6021.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6021 = (Location)label6021.getLayoutConstraint();
 		location6021.setX(0);
-		location6021.setY(60);
+		location6021.setY(30);
 		return edge;
 	}
 
@@ -3273,7 +3273,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6022.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6022 = (Location)label6022.getLayoutConstraint();
 		location6022.setX(0);
-		location6022.setY(60);
+		location6022.setY(30);
 		return edge;
 	}
 
@@ -3305,11 +3305,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6026 = createLabel(edge, UMLVisualIDRegistry.getType(RoleBindingNameEditPart.VISUAL_ID));
-		label6026.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6026 = (Location)label6026.getLayoutConstraint();
-		location6026.setX(0);
-		location6026.setY(40);
 		Node label6027 = createLabel(edge, UMLVisualIDRegistry.getType(RoleBindingRoleNameEditPart.VISUAL_ID));
 		label6027.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6027 = (Location)label6027.getLayoutConstraint();
@@ -3392,21 +3387,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6010 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorNameEditPart.VISUAL_ID));
-		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6010 = (Location)label6010.getLayoutConstraint();
-		location6010.setX(0);
-		location6010.setY(60);
-		Node label6012 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorMultiplicitySourceEditPart.VISUAL_ID));
-		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6012 = (Location)label6012.getLayoutConstraint();
-		location6012.setX(0);
-		location6012.setY(100);
-		Node label6014 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorMultiplicityTargetEditPart.VISUAL_ID));
-		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6014 = (Location)label6014.getLayoutConstraint();
-		location6014.setX(0);
-		location6014.setY(140);
 		Node label6025 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorAppliedStereotypeEditPart.VISUAL_ID));
 		label6025.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6025 = (Location)label6025.getLayoutConstraint();
@@ -3448,37 +3428,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6024 = (Location)label6024.getLayoutConstraint();
 		location6024.setX(0);
 		location6024.setY(60);
-		return edge;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Edge createInformationFlow_4016(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Connector edge = NotationFactory.eINSTANCE.createConnector();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
-		points.add(new RelativeBendpoint());
-		points.add(new RelativeBendpoint());
-		bendpoints.setPoints(points);
-		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(UMLVisualIDRegistry.getType(InformationFlowEditPart.VISUAL_ID));
-		edge.setElement(domainElement);
-		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
-
-		initForegroundFromPrefs(edge, prefStore, "InformationFlow");
-
-
-		initFontStyleFromPrefs(edge, prefStore, "InformationFlow");
-
-		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-		if(routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		}
 		return edge;
 	}
 
@@ -3565,6 +3514,47 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6030 = (Location)label6030.getLayoutConstraint();
 		location6030.setX(0);
 		location6030.setY(15);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createInformationFlow_4021(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList points = new ArrayList(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(InformationFlowEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		initForegroundFromPrefs(edge, prefStore, "InformationFlow");
+
+
+		initFontStyleFromPrefs(edge, prefStore, "InformationFlow");
+
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if(routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		Node label6031 = createLabel(edge, UMLVisualIDRegistry.getType(InformationFlowConveyedLabelEditPart.VISUAL_ID));
+		label6031.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6031 = (Location)label6031.getLayoutConstraint();
+		location6031.setX(0);
+		location6031.setY(30);
+		Node label6032 = createLabel(edge, UMLVisualIDRegistry.getType(InformationFlowAppliedStereotypeEditPart.VISUAL_ID));
+		label6032.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6032 = (Location)label6032.getLayoutConstraint();
+		location6032.setX(0);
+		location6032.setY(15);
 		return edge;
 	}
 

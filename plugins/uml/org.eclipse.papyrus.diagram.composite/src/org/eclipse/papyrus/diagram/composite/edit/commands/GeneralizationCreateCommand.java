@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
@@ -67,10 +67,10 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		if(source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof Element) {
+		if(source != null && false == source instanceof Classifier) {
 			return false;
 		}
-		if(target != null && false == target instanceof Element) {
+		if(target != null && false == target instanceof Classifier) {
 			return false;
 		}
 		if(getSource() == null) {
@@ -92,7 +92,13 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		throw new UnsupportedOperationException();
+		Generalization newElement = UMLFactory.eINSTANCE.createGeneralization();
+		getContainer().getGeneralizations().add(newElement);
+		newElement.setSpecific(getSource());
+		newElement.setGeneral(getTarget());
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 
 	}
 
@@ -123,15 +129,15 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Element getSource() {
-		return (Element)source;
+	protected Classifier getSource() {
+		return (Classifier)source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getTarget() {
-		return (Element)target;
+	protected Classifier getTarget() {
+		return (Classifier)target;
 	}
 
 	/**

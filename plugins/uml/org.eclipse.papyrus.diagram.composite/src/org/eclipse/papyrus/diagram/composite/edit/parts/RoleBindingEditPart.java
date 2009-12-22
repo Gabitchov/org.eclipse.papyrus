@@ -55,10 +55,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RoleBindingNameEditPart) {
-			((RoleBindingNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
-			return true;
-		}
 		if(childEditPart instanceof RoleBindingRoleNameEditPart) {
 			((RoleBindingRoleNameEditPart)childEditPart).setLabel(getPrimaryShape().getRoleLabel());
 			return true;
@@ -86,9 +82,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RoleBindingNameEditPart) {
-			return true;
-		}
 		if(childEditPart instanceof RoleBindingRoleNameEditPart) {
 			return true;
 		}

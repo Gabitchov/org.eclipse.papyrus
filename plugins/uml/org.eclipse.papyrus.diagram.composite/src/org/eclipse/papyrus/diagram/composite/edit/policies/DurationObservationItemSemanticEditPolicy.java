@@ -44,8 +44,6 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.DependencyCreateComma
 import org.eclipse.papyrus.diagram.composite.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DeploymentCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DeploymentReorientCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.GeneralizationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.GeneralizationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InformationFlowCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InformationFlowReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InterfaceRealizationCreateCommand;
@@ -68,7 +66,6 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorTimeObservation
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DeploymentEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InformationFlowEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ManifestationEditPart;
@@ -173,18 +170,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == GeneralizationEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == InformationFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
@@ -194,6 +179,12 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if(UMLVisualIDRegistry.getVisualID(incomingLink) == InformationFlowEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -260,21 +251,15 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == GeneralizationEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
+			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == InformationFlowEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
@@ -339,17 +324,14 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		if(UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Generalization_4015 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.InformationFlow_4016 == req.getElementType()) {
-			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.TimeObservationEvent_4018 == req.getElementType()) {
 			return null;
 		}
 		if(UMLElementTypes.DurationObservationEvent_4019 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.InformationFlow_4021 == req.getElementType()) {
+			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -394,17 +376,14 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		if(UMLElementTypes.Dependency_4010 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Generalization_4015 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.InformationFlow_4016 == req.getElementType()) {
-			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.TimeObservationEvent_4018 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.DurationObservationEvent_4019 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.InformationFlow_4021 == req.getElementType()) {
+			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -437,8 +416,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 			return getGEFWrapper(new RoleBindingReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
-		case GeneralizationEditPart.VISUAL_ID:
-			return getGEFWrapper(new GeneralizationReorientCommand(req));
 		case InformationFlowEditPart.VISUAL_ID:
 			return getGEFWrapper(new InformationFlowReorientCommand(req));
 		}

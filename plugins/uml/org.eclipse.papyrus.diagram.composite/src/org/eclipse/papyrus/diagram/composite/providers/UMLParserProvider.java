@@ -2267,23 +2267,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser dependencyName_6026Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDependencyName_6026Parser() {
-		if(dependencyName_6026Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			dependencyName_6026Parser = parser;
-		}
-		return dependencyName_6026Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private RoleBindingRoleNameParser dependencyName_6027Parser;
 
 	/**
@@ -2346,63 +2329,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser connectorName_6010Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConnectorName_6010Parser() {
-		if(connectorName_6010Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			connectorName_6010Parser = parser;
-		}
-		return connectorName_6010Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser connectorName_6012Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConnectorName_6012Parser() {
-		if(connectorName_6012Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("srcMul{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("srcMul{0}"); //$NON-NLS-1$
-			parser.setEditPattern("srcMul{0}"); //$NON-NLS-1$
-			connectorName_6012Parser = parser;
-		}
-		return connectorName_6012Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser connectorName_6014Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConnectorName_6014Parser() {
-		if(connectorName_6014Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("targMul{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("targMul{0}"); //$NON-NLS-1$
-			parser.setEditPattern("targMul{0}"); //$NON-NLS-1$
-			connectorName_6014Parser = parser;
-		}
-		return connectorName_6014Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private AppliedStereotypeParser connectorName_6025Parser;
 
 	/**
@@ -2428,6 +2354,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			generalizationIsSubstitutable_6024Parser = new AppliedStereotypeParser();
 		}
 		return generalizationIsSubstitutable_6024Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser informationFlowName_6032Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInformationFlowName_6032Parser() {
+		if(informationFlowName_6032Parser == null) {
+			informationFlowName_6032Parser = new AppliedStereotypeParser();
+		}
+		return informationFlowName_6032Parser;
 	}
 
 
@@ -2670,8 +2611,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDeploymentName_6008Parser();
 		case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 			return getDeploymentName_6022Parser();
-		case RoleBindingNameEditPart.VISUAL_ID:
-			return getDependencyName_6026Parser();
 		case RoleBindingRoleNameEditPart.VISUAL_ID:
 			return getDependencyName_6027Parser();
 		case RoleBindingAppliedStereotypeEditPart.VISUAL_ID:
@@ -2680,16 +2619,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDependencyName_6009Parser();
 		case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 			return getDependencyName_6023Parser();
-		case ConnectorNameEditPart.VISUAL_ID:
-			return getConnectorName_6010Parser();
-		case ConnectorMultiplicitySourceEditPart.VISUAL_ID:
-			return getConnectorName_6012Parser();
-		case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
-			return getConnectorName_6014Parser();
 		case ConnectorAppliedStereotypeEditPart.VISUAL_ID:
 			return getConnectorName_6025Parser();
 		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_6024Parser();
+		case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
+			return getInformationFlowName_6032Parser();
 		}
 		return null;
 	}

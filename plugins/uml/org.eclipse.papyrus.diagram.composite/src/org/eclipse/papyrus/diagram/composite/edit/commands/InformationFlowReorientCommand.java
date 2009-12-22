@@ -21,8 +21,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InformationFlow;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
 /**
@@ -75,36 +75,36 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getTargets().size() != 1) {
+		if(getLink().getInformationTargets().size() != 1) {
 			return false;
 		}
-		Element target = (Element)getLink().getTargets().get(0);
+		NamedElement target = (NamedElement)getLink().getInformationTargets().get(0);
 		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4021(container, getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getSources().size() != 1) {
+		if(getLink().getInformationSources().size() != 1) {
 			return false;
 		}
-		Element source = (Element)getLink().getSources().get(0);
+		NamedElement source = (NamedElement)getLink().getInformationSources().get(0);
 		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4016(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationFlow_4021(container, source, getNewTarget());
 	}
 
 	/**
@@ -127,14 +127,18 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		getLink().getInformationSources().remove(getOldSource());
+		getLink().getInformationSources().add(getNewSource());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		getLink().getInformationTargets().remove(getOldTarget());
+		getLink().getInformationTargets().add(getNewTarget());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
@@ -147,28 +151,28 @@ public class InformationFlowReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Element getOldSource() {
-		return (Element)oldEnd;
+	protected NamedElement getOldSource() {
+		return (NamedElement)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getNewSource() {
-		return (Element)newEnd;
+	protected NamedElement getNewSource() {
+		return (NamedElement)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getOldTarget() {
-		return (Element)oldEnd;
+	protected NamedElement getOldTarget() {
+		return (NamedElement)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getNewTarget() {
-		return (Element)newEnd;
+	protected NamedElement getNewTarget() {
+		return (NamedElement)newEnd;
 	}
 }

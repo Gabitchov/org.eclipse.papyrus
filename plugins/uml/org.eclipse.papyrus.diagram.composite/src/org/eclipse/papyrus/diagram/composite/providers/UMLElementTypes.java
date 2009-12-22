@@ -631,11 +631,6 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType InformationFlow_4016 = getElementType("org.eclipse.papyrus.diagram.composite.InformationFlow_4016"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType TimeObservationEvent_4018 = getElementType("org.eclipse.papyrus.diagram.composite.TimeObservationEvent_4018"); //$NON-NLS-1$
 
 	/**
@@ -647,6 +642,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType InformationItemRepresented_4020 = getElementType("org.eclipse.papyrus.diagram.composite.Representation_4020"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InformationFlow_4021 = getElementType("org.eclipse.papyrus.diagram.composite.InformationFlow_4021"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -1090,14 +1090,14 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Generalization_4015, UMLPackage.eINSTANCE.getGeneralization());
 
-
-			elements.put(InformationFlow_4016, UMLPackage.eINSTANCE.getInformationFlow());
-
 			elements.put(TimeObservationEvent_4018, UMLPackage.eINSTANCE.getTimeObservation_Event());
 
 			elements.put(DurationObservationEvent_4019, UMLPackage.eINSTANCE.getDurationObservation_Event());
 
 			elements.put(InformationItemRepresented_4020, UMLPackage.eINSTANCE.getInformationItem_Represented());
+
+
+			elements.put(InformationFlow_4021, UMLPackage.eINSTANCE.getInformationFlow());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -1229,10 +1229,10 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Dependency_4010);
 			KNOWN_ELEMENT_TYPES.add(Connector_4013);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4015);
-			KNOWN_ELEMENT_TYPES.add(InformationFlow_4016);
 			KNOWN_ELEMENT_TYPES.add(TimeObservationEvent_4018);
 			KNOWN_ELEMENT_TYPES.add(DurationObservationEvent_4019);
 			KNOWN_ELEMENT_TYPES.add(InformationItemRepresented_4020);
+			KNOWN_ELEMENT_TYPES.add(InformationFlow_4021);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -1470,14 +1470,14 @@ public class UMLElementTypes extends ElementInitializers {
 			return Connector_4013;
 		case GeneralizationEditPart.VISUAL_ID:
 			return Generalization_4015;
-		case InformationFlowEditPart.VISUAL_ID:
-			return InformationFlow_4016;
 		case ConnectorTimeObservationEditPart.VISUAL_ID:
 			return TimeObservationEvent_4018;
 		case ConnectorDurationObservationEditPart.VISUAL_ID:
 			return DurationObservationEvent_4019;
 		case RepresentationEditPart.VISUAL_ID:
 			return InformationItemRepresented_4020;
+		case InformationFlowEditPart.VISUAL_ID:
+			return InformationFlow_4021;
 		}
 		return null;
 	}

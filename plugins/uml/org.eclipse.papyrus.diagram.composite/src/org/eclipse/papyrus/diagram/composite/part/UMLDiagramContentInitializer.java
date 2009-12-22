@@ -1803,7 +1803,7 @@ public class UMLDiagramContentInitializer {
 						additionalDescriptors.addAll(UMLDiagramUpdater.getGeneralization_4015OutgoingLinks(edge));
 						break;
 					case InformationFlowEditPart.VISUAL_ID:
-						additionalDescriptors.addAll(UMLDiagramUpdater.getInformationFlow_4016OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.getInformationFlow_4021OutgoingLinks(edge));
 						break;
 					}
 				}

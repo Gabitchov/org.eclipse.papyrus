@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 
 /**
@@ -75,13 +74,10 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
 			return false;
 		}
-		if(getLink().getTargets().size() != 1) {
-			return false;
-		}
-		Element target = (Element)getLink().getTargets().get(0);
+		Classifier target = getLink().getGeneral();
 		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
@@ -93,13 +89,10 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
 			return false;
 		}
-		if(getLink().getSources().size() != 1) {
-			return false;
-		}
-		Element source = (Element)getLink().getSources().get(0);
+		Classifier source = getLink().getSpecific();
 		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
@@ -127,14 +120,16 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		getLink().setSpecific(getNewSource());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		getLink().setGeneral(getNewTarget());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
@@ -147,28 +142,28 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Element getOldSource() {
-		return (Element)oldEnd;
+	protected Classifier getOldSource() {
+		return (Classifier)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getNewSource() {
-		return (Element)newEnd;
+	protected Classifier getNewSource() {
+		return (Classifier)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getOldTarget() {
-		return (Element)oldEnd;
+	protected Classifier getOldTarget() {
+		return (Classifier)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getNewTarget() {
-		return (Element)newEnd;
+	protected Classifier getNewTarget() {
+		return (Classifier)newEnd;
 	}
 }

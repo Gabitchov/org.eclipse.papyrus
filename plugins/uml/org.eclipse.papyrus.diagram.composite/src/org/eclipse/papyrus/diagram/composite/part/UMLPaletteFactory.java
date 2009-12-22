@@ -137,6 +137,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private final static String CREATEREPRESENTATION10CREATIONTOOL = "createRepresentation10CreationTool"; //$NON-NLS-1$
 
+	/**
+	 * @generated
+	 */
+	private final static String CREATEINFORMATIONFLOW11CREATIONTOOL = "createInformationFlow11CreationTool"; //$NON-NLS-1$
+
 
 
 	/**
@@ -214,6 +219,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEREPRESENTATION10CREATIONTOOL)) {
 			return createRepresentation10CreationTool();
+		}
+		if(toolId.equals(CREATEINFORMATIONFLOW11CREATIONTOOL)) {
+			return createInformationFlow11CreationTool();
 		}
 
 		// default return: null
@@ -464,6 +472,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createRepresentation10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.InformationItemRepresented_4020);
+
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createInformationFlow11CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.InformationFlow_4021);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

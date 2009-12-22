@@ -127,6 +127,11 @@ public class LinkMappingHelper {
 		};
 
 		@Override
+		public Collection<?> caseInformationFlow(org.eclipse.uml2.uml.InformationFlow object) {
+			return object.getInformationSources();
+		};
+
+		@Override
 		public Collection<?> defaultCase(org.eclipse.emf.ecore.EObject object) {
 			return Collections.EMPTY_LIST;
 		};
@@ -173,6 +178,11 @@ public class LinkMappingHelper {
 			ArrayList result = new ArrayList();
 			result.add(object.getImportedPackage());
 			return result;
+		};
+
+		@Override
+		public Collection<?> caseInformationFlow(org.eclipse.uml2.uml.InformationFlow object) {
+			return object.getInformationTargets();
 		};
 
 		@Override

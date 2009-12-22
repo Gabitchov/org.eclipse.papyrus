@@ -796,9 +796,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RoleBindingEditPart.VISUAL_ID:
 				return new RoleBindingEditPart(view);
 
-			case RoleBindingNameEditPart.VISUAL_ID:
-				return new RoleBindingNameEditPart(view);
-
 			case RoleBindingRoleNameEditPart.VISUAL_ID:
 				return new RoleBindingRoleNameEditPart(view);
 
@@ -819,15 +816,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConnectorEditPart.VISUAL_ID:
 				return new ConnectorEditPart(view);
 
-			case ConnectorNameEditPart.VISUAL_ID:
-				return new ConnectorNameEditPart(view);
-
-			case ConnectorMultiplicitySourceEditPart.VISUAL_ID:
-				return new ConnectorMultiplicitySourceEditPart(view);
-
-			case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
-				return new ConnectorMultiplicityTargetEditPart(view);
-
 			case ConnectorAppliedStereotypeEditPart.VISUAL_ID:
 				return new ConnectorAppliedStereotypeEditPart(view);
 
@@ -837,10 +825,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
-
-
-			case InformationFlowEditPart.VISUAL_ID:
-				return new InformationFlowEditPart(view);
 
 
 			case ConnectorTimeObservationEditPart.VISUAL_ID:
@@ -856,6 +840,16 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case RepresentationTagLabelEditPart.VISUAL_ID:
 				return new RepresentationTagLabelEditPart(view);
+
+
+			case InformationFlowEditPart.VISUAL_ID:
+				return new InformationFlowEditPart(view);
+
+			case InformationFlowConveyedLabelEditPart.VISUAL_ID:
+				return new InformationFlowConveyedLabelEditPart(view);
+
+			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
+				return new InformationFlowAppliedStereotypeEditPart(view);
 
 			}
 		}

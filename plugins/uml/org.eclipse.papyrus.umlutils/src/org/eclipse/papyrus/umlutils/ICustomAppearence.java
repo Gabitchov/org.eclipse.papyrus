@@ -122,33 +122,30 @@ public interface ICustomAppearence {
 	/**
 	 * default uml property display in classes edit part.
 	 */
-	public final static int DEFAULT_UML_PROPERTY = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE
-			| DISP_MULTIPLICITY;
+	public final static int DEFAULT_UML_PROPERTY = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY;
 
 	/**
 	 * default uml operation display.
 	 */
-	public final static int DEFAULT_UML_OPERATION = DISP_VISIBILITY | DISP_NAME | DISP_PARAMETER_DIRECTION
-			| DISP_PARAMETER_TYPE | DISP_RT_TYPE | DISP_MOFIFIERS;
+	public final static int DEFAULT_UML_OPERATION = DISP_VISIBILITY | DISP_NAME | DISP_PARAMETER_DIRECTION | DISP_PARAMETER_TYPE | DISP_RT_TYPE | DISP_MOFIFIERS;
 
 	/**
 	 * default uml Property in composite diagrams.
 	 */
 	// @unused
-	public final static int DEFAULT_UML_COMPO_PROPERTY = DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY;
+	public final static int DEFAULT_UML_COMPO_PROPERTY = DISP_NAME | DISP_TYPE;
 
 	/**
 	 * default uml Property in class diagrams as association ends.
 	 */
 	// @unused
-	public final static int DEFAULT_UML_RELATIONEND_PROPERTY = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME
-			| DISP_MOFIFIERS | DISP_MULTI_LINE;
+	public final static int DEFAULT_UML_RELATIONEND_PROPERTY = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_MOFIFIERS | DISP_MULTI_LINE;
 
 	/**
 	 * default uml Port ins composite diagrams.
 	 */
 	// @unused
-	public final static int DEFAULT_UML_PORT = DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY;
+	public final static int DEFAULT_UML_PORT = DISP_NAME | DISP_TYPE;
 
 	/**
 	 * default uml OpaqueAction in activity diagrams.

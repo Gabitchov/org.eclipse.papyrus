@@ -6171,9 +6171,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case RoleBindingEditPart.VISUAL_ID:
-			if(RoleBindingNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(RoleBindingRoleNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -6190,15 +6187,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ConnectorEditPart.VISUAL_ID:
-			if(ConnectorNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ConnectorMultiplicitySourceEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ConnectorMultiplicityTargetEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ConnectorAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -6210,6 +6198,14 @@ public class UMLVisualIDRegistry {
 			break;
 		case RepresentationEditPart.VISUAL_ID:
 			if(RepresentationTagLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InformationFlowEditPart.VISUAL_ID:
+			if(InformationFlowConveyedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InformationFlowAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -6696,10 +6692,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 
-		labelInfo = new BaseViewInfo(6026, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-
 		labelInfo = new BaseViewInfo(6027, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
@@ -6724,18 +6716,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 
-		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-
-		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-
-		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-
 		labelInfo = new BaseViewInfo(6025, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
@@ -6746,10 +6726,6 @@ public class UMLVisualIDRegistry {
 
 		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
-
-		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
 
 
 		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
@@ -6765,6 +6741,18 @@ public class UMLVisualIDRegistry {
 
 
 		labelInfo = new BaseViewInfo(6030, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(4021, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		labelInfo = new BaseViewInfo(6031, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6032, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 
