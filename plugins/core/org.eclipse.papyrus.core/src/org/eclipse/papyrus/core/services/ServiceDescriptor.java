@@ -7,8 +7,7 @@ package org.eclipse.papyrus.core.services;
 
 /**
  * Descriptor of a service.
- * This descriptor describe a service. It hold the instance of the services when it is started.
- * It starts the service when needed.
+ * This descriptor describe a service. 
  * 
  * @author dumoulin
  * 
