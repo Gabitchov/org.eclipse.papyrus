@@ -30,7 +30,7 @@ public class NameLabelValidator implements IInputValidator {
 	}
 
 	public String isValid(String newText) {
-		if(!newText.isEmpty()) {
+		if((newText != null) && (!"".equals(newText))) {
 			return null;// OK
 		} else {
 			return error;
