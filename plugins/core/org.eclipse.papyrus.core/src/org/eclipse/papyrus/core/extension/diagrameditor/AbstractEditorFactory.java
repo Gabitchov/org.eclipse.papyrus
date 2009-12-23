@@ -72,13 +72,21 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 
 	/**
 	 * {@inheritDoc}
+	 * @Deprecated Use createIPageModel() instead
 	 */
-	public abstract IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException;
+	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException
+	{
+		return null;
+	}
 
 	/**
 	 * {@inheritDoc} This method should be implemented by subclasses
+	 * @deprecated isPageModelFactoryFor() is used instead.
 	 */
-	abstract public boolean isEditorFor(Object root);
+	public boolean isEditorFor(Object root)
+	{
+		return isPageModelFactoryFor(root);
+	}
 
 	/**
 	 * @return the editorDescriptor
