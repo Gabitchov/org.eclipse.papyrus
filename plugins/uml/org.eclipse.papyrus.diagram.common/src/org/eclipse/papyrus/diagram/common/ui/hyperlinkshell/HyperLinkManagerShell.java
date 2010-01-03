@@ -102,15 +102,9 @@ public class HyperLinkManagerShell {
 		public void widgetSelected(SelectionEvent e) {
 			try {
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-				IEditorContextRegistry contextRegistry = (IEditorContextRegistry)servicesRegistry
-						.getService(IEditorContextRegistry.class);
+				DiResourceSet diResourceSet = servicesRegistry.getService(DiResourceSet.class);
 
-				// Get the context by its ID
-				BackboneContext editorContext = (BackboneContext)contextRegistry
-						.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
-				ICreationCommand creationCommand = iCreationCommandRegistry
-						.getCommand(commandDescriptor.getCommandId());
-				DiResourceSet diResourceSet = editorContext.getResourceSet();
+				ICreationCommand creationCommand = iCreationCommandRegistry.getCommand(commandDescriptor.getCommandId());
 				creationCommand.createDiagram(diResourceSet, container, null);
 				diagramTableViewer.setInput(null);
 				diagramTableViewer.setInput(element);

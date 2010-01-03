@@ -138,15 +138,9 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 				setContainer(elt);
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-				IEditorContextRegistry contextRegistry = (IEditorContextRegistry)servicesRegistry
-						.getService(IEditorContextRegistry.class);
+				DiResourceSet diResourceSet = servicesRegistry.getService(DiResourceSet.class);
 
-				// Get the context by its ID
-				BackboneContext editorContext = (BackboneContext)contextRegistry
-						.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
-				ICreationCommand creationCommand = iCreationCommandRegistry
-						.getCommand(commandDescriptor.getCommandId());
-				DiResourceSet diResourceSet = editorContext.getResourceSet();
+				ICreationCommand creationCommand = iCreationCommandRegistry.getCommand(commandDescriptor.getCommandId());
 				creationCommand.createDiagram(diResourceSet, container, null);
 
 				// refresh several filtered tree
