@@ -13,7 +13,6 @@ package org.eclipse.papyrus.diagram.emftree;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
@@ -64,17 +63,10 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 
 	/**
 	 * {@inheritDoc}
+	 * @deprecated not used anymore
 	 */
 	public IEditorPart createEditorFor(IEditorContext context, Object root) {
-		assert (context instanceof BackboneContext);
-		return createEditorFor((BackboneContext)context, root);
-	}
-
-	/**
-	 * Create our editor. We do direct instanciation.
-	 */
-	public IEditorPart createEditorFor(BackboneContext context, Object root) {
-		return new UMLEditor(context);
+		throw new UnsupportedOperationException("Deprecated. Should not be used anymore.");
 	}
 
 	/**

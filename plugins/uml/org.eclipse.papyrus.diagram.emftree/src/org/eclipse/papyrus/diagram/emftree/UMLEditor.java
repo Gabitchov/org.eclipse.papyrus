@@ -24,12 +24,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.ui.IActionBars;
@@ -48,10 +47,9 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 		ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
 	/**
-	 * Object shared between all Papyrus plugin.
+	 * ServiceRegistry used to retrieve needed services. This registry is provided by the multieditor.
 	 */
-	protected BackboneContext editorContext;
-
+	protected ServicesRegistry servicesRegistry;
 	/**
 	 * 
 	 * Constructor. Create an DiEditor using the {@link ServicesRegistry}.
@@ -59,36 +57,21 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 	 * @param servicesRegistry
 	 */
 	public UMLEditor(ServicesRegistry servicesRegistry) throws ServiceException, BackboneException {
-		IEditorContextRegistry contextRegistry;
-		contextRegistry = (IEditorContextRegistry)servicesRegistry.getService(IEditorContextRegistry.class);
-
-		// Get the context by its ID
-		BackboneContext editorContext = (BackboneContext)contextRegistry
-				.getContext(BackboneContext.BACKBONE_CONTEXT_ID);
-
-		initEditor(editorContext);
-	}
-
-	/**
-	 * This creates a model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public UMLEditor(BackboneContext editorContext) {
-		super();
-
-		initEditor(editorContext);
-
+		this.servicesRegistry = servicesRegistry;
+		initEditor();
 	}
 
 	/**
 	 * Init the editor from the specified context.
 	 * 
 	 * @param editorContext
+	 * @throws ServiceException 
 	 */
-	private void initEditor(BackboneContext editorContext) {
-		CommandStack commandStack = editorContext.getTransactionalEditingDomain().getCommandStack();
-
+	private void initEditor() throws ServiceException {
+		
+		TransactionalEditingDomain papyrusEditingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
+		CommandStack commandStack = papyrusEditingDomain.getCommandStack();
+		
 		// Add a listener to set the most recent command's affected objects to be the selection of
 		// the viewer with focus.
 		//
@@ -121,7 +104,7 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 		// editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new
 		// HashMap<Resource, Boolean>());
 
-		ResourceSet resourceSet = editorContext.getResourceSet();
+		ResourceSet resourceSet = papyrusEditingDomain.getResourceSet();
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, resourceSet);
 
 		// editingDomain = editorContext.getTransactionalEditingDomain();
