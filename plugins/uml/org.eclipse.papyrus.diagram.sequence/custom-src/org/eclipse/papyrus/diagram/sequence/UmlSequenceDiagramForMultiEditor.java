@@ -19,9 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorContext;
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditor;
@@ -47,11 +45,6 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlSequenceDiagramForMultiEditor.DIAG_IMG_PATH);
 
-	/**
-	 * The editor's owner
-	 */
-	private GmfEditorContext context;
-
 	/** The editor splitter. */
 	private Composite splitter;
 
@@ -65,17 +58,6 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	public UmlSequenceDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 
-		// ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-		IEditorContextRegistry contextRegistry;
-		contextRegistry = servicesRegistry.getService(IEditorContextRegistry.class);
-
-		// Get the context by its ID
-		this.context = (GmfEditorContext)contextRegistry.getContext(GmfEditorContext.GMF_CONTEXT_ID);
-
-		// overrides editing domain created by super constructor
-
-		setDocumentProvider(context.getDocumentProvider());
-		System.err.println(this.getClass().getName());
 	}
 
 	/**
@@ -131,20 +113,4 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 		return "org.eclipse.papyrus.diagram.sequence.EditingDomain";
 	}
 
-	// ================ Getters & Setters ==================
-
-	/**
-	 * @return the parentEditor
-	 */
-	public GmfEditorContext getSharedObjects() {
-		return context;
-	}
-
-	/**
-	 * @param parentEditor
-	 *        the parentEditor to set
-	 */
-	public void setSharedObject(GmfEditorContext parentEditor) {
-		this.context = parentEditor;
-	}
 }
