@@ -13,9 +13,9 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 /**
  * PageModelFactory for the sashwindow.
  * This factory is used by the SashWindows to create Diagrams.
- * It is a wrapper arround the {@link EditorFactoryRegistry}
+ * It is a wrapper around the {@link EditorFactoryRegistry}
  * 
- * @author dumoulin
+ * @author cedric dumoulin
  */
 public class PageModelFactory implements IPageModelFactory {
 

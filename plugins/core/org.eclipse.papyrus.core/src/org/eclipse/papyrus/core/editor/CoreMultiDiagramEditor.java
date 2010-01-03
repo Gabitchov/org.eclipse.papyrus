@@ -87,7 +87,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  * The real implementation for the generic type T of SashMultiPageEditorPart is actually di2.Diagram
  * 
- * @author dumoulin
+ * @author cedric dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a> Refactoring.
  * 
@@ -267,7 +267,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @return the IEditorContextRegistry for nested editor descriptors
 	 */
 	@Deprecated
-	protected IEditorContextRegistry createEditorContextRegistry() {
+	private IEditorContextRegistry createEditorContextRegistry() {
 		return new EditorContextRegistry(this, Activator.PLUGIN_ID);
 	}
 

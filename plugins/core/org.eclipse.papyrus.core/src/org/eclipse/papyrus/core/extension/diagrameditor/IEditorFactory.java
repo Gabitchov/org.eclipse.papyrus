@@ -46,6 +46,7 @@ public interface IEditorFactory {
 	 * @return the created editor
 	 * @throws BackboneException
 	 *         editor could not be created
+	 * @deprecated use createIPageModel
 	 */
 	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException;
 
