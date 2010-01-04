@@ -16,7 +16,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
@@ -44,29 +43,6 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	public static final String EMF_DIAGRAM_TYPE = "emftree";
 
 	public EmfTreeDiagramEditorFactory() {
-	}
-
-	/**
-	 * Is this editor for the provided object ?
-	 */
-	public boolean isEditorFor(Object root) {
-		if(root instanceof Diagram) {
-			Diagram diagram = (Diagram)root;
-
-			if(EMF_DIAGRAM_TYPE.equals(diagram.getType())) {
-				return true;
-			}
-		}
-		// no
-		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @deprecated not used anymore
-	 */
-	public IEditorPart createEditorFor(IEditorContext context, Object root) {
-		throw new UnsupportedOperationException("Deprecated. Should not be used anymore.");
 	}
 
 	/**

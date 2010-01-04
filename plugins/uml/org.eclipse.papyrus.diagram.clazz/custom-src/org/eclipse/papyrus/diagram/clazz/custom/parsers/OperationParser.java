@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Operation;
@@ -81,7 +82,7 @@ public class OperationParser implements IParser {
 								operation.setName(result);
 							}
 						};
-						LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
+						EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(rc);
 					}
 				});
 				return CommandResult.newOKCommandResult();

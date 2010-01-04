@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -37,6 +38,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.core.contentoutline.IPapyrusContentOutlinePage;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.outline.emftree.internal.OutlineDragAdapter;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -129,7 +131,11 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 		//		EditorActionBarContributor actionBarContributor = multiEditor.getActionBarContributorRegistry().getActionBarContributor(EditorActionBarContributorId);
 		//		IEditorSite site = new MultiPageAdapterSite(multiEditor.getEditorSite(), actionBarContributor);
 		this.editorSite = multiEditor.getEditorSite();
-		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
+		try {
+			this.editingDomain = multiEditor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			throw new BackboneException("Can't get TransactionalEditingDomain", e);
+		}
 		initAdapterFactory();
 
 	}

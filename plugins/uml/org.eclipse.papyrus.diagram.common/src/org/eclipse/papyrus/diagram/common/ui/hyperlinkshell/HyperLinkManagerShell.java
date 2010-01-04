@@ -26,7 +26,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
@@ -34,7 +33,6 @@ import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -86,9 +84,6 @@ public class HyperLinkManagerShell {
 		/** The command descriptor. */
 		private final CreationCommandDescriptor commandDescriptor;
 
-		/** The backbone context. */
-		private final BackboneContext backboneContext;
-
 		/** The container. */
 		private final Element container;
 
@@ -132,11 +127,10 @@ public class HyperLinkManagerShell {
 		 * @param iCreationCommandRegistry
 		 *        the i creation command registry
 		 */
-		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, BackboneContext backboneContext,
+		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor,
 				Element container, ICreationCommandRegistry iCreationCommandRegistry) {
 			super();
 			this.commandDescriptor = commandDescriptor;
-			this.backboneContext = backboneContext;
 			this.container = container;
 			this.iCreationCommandRegistry = iCreationCommandRegistry;
 		}
@@ -761,7 +755,7 @@ public class HyperLinkManagerShell {
 				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		for(CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
 			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
-			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, element, commandRegistry));
+			menuItem.addSelectionListener(new DiagramCreateListener(desc, element, commandRegistry));
 			menuItem.setText(desc.getLabel());
 		}
 		diagramAddButton.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {

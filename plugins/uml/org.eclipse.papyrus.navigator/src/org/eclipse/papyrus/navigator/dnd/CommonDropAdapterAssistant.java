@@ -17,8 +17,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
@@ -103,19 +103,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	}
 
 	private TransactionalEditingDomain getEditingDomain() {
-		BackboneContext backboneContext = getBackboneContext();
-		if(backboneContext != null) {
-			return backboneContext.getTransactionalEditingDomain();
-		}
-		return null;
-	}
-
-	private BackboneContext getBackboneContext() {
-		IMultiDiagramEditor multiDiagramEditor = getMultiDiagramEditor();
-		if(multiDiagramEditor != null) {
-			return multiDiagramEditor.getDefaultContext();
-		}
-		return null;
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 
 	private IMultiDiagramEditor getMultiDiagramEditor() {

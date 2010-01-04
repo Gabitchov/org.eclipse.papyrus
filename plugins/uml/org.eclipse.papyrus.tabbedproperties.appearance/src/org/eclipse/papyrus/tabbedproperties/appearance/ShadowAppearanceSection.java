@@ -19,8 +19,8 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.umlutils.ui.command.SetShadowFigureCommand;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.SWT;
@@ -59,8 +59,6 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 	private GraphicalEditPart editPart;
 
 	private IMultiDiagramEditor editor;
-
-	private BackboneContext backbone;
 
 	private TransactionalEditingDomain editingDomain;
 
@@ -175,10 +173,24 @@ public class ShadowAppearanceSection extends AbstractPropertySection {
 		}
 		if(part instanceof IMultiDiagramEditor) {
 			editor = (IMultiDiagramEditor)part;
-			backbone = editor.getDefaultContext();
-			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
+			editingDomain = getTransactionalEditingDomain(editor);
 		} else
 			editingDomain = null;
+	}
+
+	/**
+	 * Get the {@link TransactionalEditingDomain} from the {@link IMultiDiagramEditor}.
+	 * @param editor
+	 * @return
+	 */
+	private TransactionalEditingDomain getTransactionalEditingDomain(IMultiDiagramEditor editor) {
+		try {
+			return editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			// TODO Log instead of showing the trace.
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

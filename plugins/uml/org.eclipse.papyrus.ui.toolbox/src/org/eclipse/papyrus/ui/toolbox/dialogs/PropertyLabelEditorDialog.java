@@ -24,6 +24,7 @@ import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyLabelSourceViewerConfiguration;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
@@ -158,7 +159,7 @@ public class PropertyLabelEditorDialog extends LabelEditorDialog {
 					generator.parseAndModifyProperty(initialValue);
 				}
 			};
-			LookForElement.getTransactionalEditingDomain().getCommandStack().execute(rc);
+			EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(rc);
 			// all the types that have been created during the dialog session
 			// are deleted
 			for(Type t : dynamicallyCreatedTypes) {

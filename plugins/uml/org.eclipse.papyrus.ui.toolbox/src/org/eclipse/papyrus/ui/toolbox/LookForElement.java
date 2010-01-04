@@ -32,6 +32,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Association;
@@ -493,20 +494,9 @@ public class LookForElement {
 	 * Gets the TransactionalEditingDomain.
 	 * 
 	 * @return the {@link TransactionalEditingDomain}
+	 * @deprecated Use {@link EditorUtils#getTransactionalEditingDomain()} instead
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomain() {
-		// getCommandStack
-		if((PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage() != null)
-				&& (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor() != null)) {
-
-			IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.getActiveEditor();
-
-			if(editorPart instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor multiEditorPart = (IMultiDiagramEditor)editorPart;
-				return multiEditorPart.getDefaultContext().getTransactionalEditingDomain();
-			}
-		}
-		return null;
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 }

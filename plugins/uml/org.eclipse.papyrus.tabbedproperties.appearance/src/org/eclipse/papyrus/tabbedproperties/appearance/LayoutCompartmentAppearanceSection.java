@@ -19,8 +19,8 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.diagram.common.helper.BasicClassifierCompartmentLayoutHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -56,9 +56,6 @@ public class LayoutCompartmentAppearanceSection extends AbstractPropertySection 
 
 	/** The editor. */
 	private IMultiDiagramEditor editor;
-
-	/** The backbone. */
-	private BackboneContext backbone;
 
 	/** The editing domain. */
 	private TransactionalEditingDomain editingDomain;
@@ -193,10 +190,23 @@ public class LayoutCompartmentAppearanceSection extends AbstractPropertySection 
 		}
 		if(part instanceof IMultiDiagramEditor) {
 			editor = (IMultiDiagramEditor)part;
-			backbone = editor.getDefaultContext();
-			editingDomain = editor.getDefaultContext().getTransactionalEditingDomain();
+			editingDomain = getTransactionalEditingDomain(editor);
 		} else
 			editingDomain = null;
 	}
 
+	/**
+	 * Get the {@link TransactionalEditingDomain} from the {@link IMultiDiagramEditor}.
+	 * @param editor
+	 * @return
+	 */
+	private TransactionalEditingDomain getTransactionalEditingDomain(IMultiDiagramEditor editor) {
+		try {
+			return editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			// TODO Log instead of showing the trace.
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
