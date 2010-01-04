@@ -14,9 +14,6 @@
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * @author Remi Schnekenburger
@@ -68,24 +65,6 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	 */
 	public String getExpectedType() {
 		return expectedType;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @Deprecated Use createIPageModel() instead
-	 */
-	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException
-	{
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc} This method should be implemented by subclasses
-	 * @deprecated isPageModelFactoryFor() is used instead.
-	 */
-	public boolean isEditorFor(Object root)
-	{
-		return isPageModelFactoryFor(root);
 	}
 
 	/**

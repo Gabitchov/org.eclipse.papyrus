@@ -66,7 +66,6 @@ public class EditorContextRegistry implements IEditorContextRegistry, IService {
 		// Check parameters
 		assert (multiEditor.getEditorInput() != null);
 		assert (multiEditor.getEditorSite() != null);
-		assert (multiEditor.getDefaultContext() != null);
 		// Check parameters. To be removed later
 		if(multiEditor.getEditorInput() == null || multiEditor.getEditorSite() == null /* || multiEditor.getDefaultContext() == null */) {
 			throw new IllegalArgumentException("IMultiDiagramEditor should be initialized before calling constructor " + getClass().getSimpleName() + "(IMultiDiagramEditor multiEditor)");

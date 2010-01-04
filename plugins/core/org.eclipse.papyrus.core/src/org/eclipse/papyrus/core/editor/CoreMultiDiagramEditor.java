@@ -43,11 +43,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorNotFoundException;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.MultiDiagramException;
-import org.eclipse.papyrus.core.extension.editorcontext.EditorContextRegistry;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
@@ -72,7 +68,6 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
-import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -104,10 +99,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/** Registry to store editor factories */
 	private IEditorFactoryRegistry editorRegistry;
 
-	/** Registry for editor contexts */
-	@Deprecated
-	private IEditorContextRegistry editorContextRegistry;
-
 	/** ContentOutline registry */
 	private ContentOutlineRegistry contentOutlineRegistry;
 
@@ -121,12 +112,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/** SashModelMngr to add pages */
 	protected DiSashModelMngr sashModelMngr;
-
-	/**
-	 * Context associated to this backbone editor.
-	 */
-	@Deprecated
-	private BackboneContext defaultContext;
 
 	private TransactionalEditingDomain transactionalEditingDomain;
 
@@ -170,8 +155,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 				public void run() {
 					firePropertyChange(IEditorPart.PROP_DIRTY);
-					}
-								});
+				}
+			});
 		}
 	};
 
@@ -199,8 +184,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 					public void run() {
 						firePropertyChange(IEditorPart.PROP_DIRTY);
-						}
-										});
+					}
+				});
 			}
 		}
 
@@ -209,67 +194,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 
 	};
-
-
-
-	/**
-	 * Create a PageEditor for the specified model. Default implementation delegates to pageEditorFactory.createPageEditorFor(model); Not intended for
-	 * external use.
-	 * 
-	 * @param model
-	 *        the diagram to be displayed
-	 * @return the Graphical Editor that displays the specified diagram
-	 * @throws EditorNotFoundException
-	 *         No editor handling the model can be found.
-	 */
-	public IEditorPart createPageEditor(Object model) throws MultiDiagramException {
-		IEditorPart part = getEditorRegistry().createEditorFor(getContextRegistry(), model);
-		return part;
-	}
-
-	/**
-	 * Get the EditorActionBarContributor that should be associated with the editor of the specified model.
-	 * 
-	 * @param editorModel
-	 * @return
-	 * @throws MultiDiagramException
-	 * 
-	 */
-	public EditorActionBarContributor getActionBarContributor(Object editorModel) {
-
-		try {
-			Object contributorId = getEditorRegistry().getEditorDescriptorFor(editorModel).getActionBarContributorId();
-			return getActionBarContributorRegistry().getActionBarContributor(contributorId);
-		} catch (BackboneException e) {
-			log.warning(e.getMessage());
-			// e.printStackTrace();
-		} catch (MultiDiagramException e) {
-			log.warning(e.getMessage());
-			// e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
-	 * Get the contextRegistry
-	 * 
-	 * @return The context registry
-	 */
-	@Deprecated
-	public IEditorContextRegistry getContextRegistry() {
-		return editorContextRegistry;
-	}
-
-	/**
-	 * Create the IEditorContextRegistry containing registered contexts. Subclass should implements this method in order to return the registry
-	 * associated to the extension point namespace.
-	 * 
-	 * @return the IEditorContextRegistry for nested editor descriptors
-	 */
-	@Deprecated
-	private IEditorContextRegistry createEditorContextRegistry() {
-		return new EditorContextRegistry(this, Activator.PLUGIN_ID);
-	}
 
 	/**
 	 * Get the contentOutlineRegistry. Create it if needed.
@@ -319,7 +243,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @return the servicesRegistry The registry.
 	 */
-	protected ServicesRegistry getServicesRegistry() {
+	public ServicesRegistry getServicesRegistry() {
 		if(servicesRegistry == null) {
 			servicesRegistry = createServicesRegistry();
 		}
@@ -392,7 +316,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @return
 	 */
-	public ActionBarContributorRegistry getActionBarContributorRegistry() {
+	protected ActionBarContributorRegistry getActionBarContributorRegistry() {
 		if(actionBarContributorRegistry != null) {
 			return actionBarContributorRegistry;
 		}
@@ -458,10 +382,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			}
 		}
 
-		if(BackboneContext.class == adapter) {
-			return defaultContext;
-		}
-
 		if(EditingDomain.class == adapter) {
 			return transactionalEditingDomain;
 		}
@@ -518,23 +438,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
 
-		// Just for backwards compatibility
-		// FIXME Remove the following lines
-		// =============
-		// Create registries
-		// editorContextRegistry should be created after site, input and
-		// defaultContext are created.
-		editorContextRegistry = createEditorContextRegistry();
-		defaultContext = new BackboneContext(this);
-		editorContextRegistry.registerContext(BackboneContext.BACKBONE_CONTEXT_ID, defaultContext);
-		// =============
-
 		editorRegistry = createEditorRegistry();
 
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
-		servicesRegistry.add(IEditorContextRegistry.class, 1, editorContextRegistry);
 		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
 		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
 
@@ -661,10 +569,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 						try {
 							resourceSet.saveAs(path);
 						} catch (IOException ioe) {
-													// Debug.log(ioe);
+							// Debug.log(ioe);
 						}
-						}
-										});
+					}
+				});
 				// set input to the new file
 				setInput(new FileEditorInput(file));
 				markSaveLocation();
@@ -688,14 +596,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public boolean isSaveAsAllowed() {
 		return true;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.core.editor.IMultiDiagramEditor#getDefaultContext()
-	 */
-	@Deprecated
-	public BackboneContext getDefaultContext() {
-		return defaultContext;
 	}
 
 	/**

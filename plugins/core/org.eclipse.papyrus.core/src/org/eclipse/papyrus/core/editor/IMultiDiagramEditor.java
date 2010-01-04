@@ -15,8 +15,8 @@ package org.eclipse.papyrus.core.editor;
 
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -33,10 +33,12 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider {
 
 	/**
-	 * @return the defaultContext
+	 * Returns the service registry associated to the editor.
+	 * 
+	 * @return the servicesRegistry The registry.
 	 */
-	@Deprecated
-	public BackboneContext getDefaultContext();
+	public ServicesRegistry getServicesRegistry();
+
 
 	/**
 	 * Return the editor site.
@@ -53,12 +55,6 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	public IEditorInput getEditorInput();
 
 	/**
-	 * Get the associated context registry.
-	 */
-	@Deprecated
-	public IEditorContextRegistry getContextRegistry();
-
-	/**
 	 * Returns the edit domain shared among editors
 	 * 
 	 * @return the edit domain shared among editors
@@ -70,13 +66,6 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	 * Get the currently active Editor.
 	 */
 	public IEditorPart getActiveEditor();
-
-	/**
-	 * Get the ActionBarContributorRegistry.
-	 * 
-	 * @return
-	 */
-	public ActionBarContributorRegistry getActionBarContributorRegistry();
 
 	/**
 	 * Get the property sheet page associated to the Editor.

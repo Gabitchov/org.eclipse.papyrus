@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.diagrameditor.AbstractEditorFactory;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
@@ -53,67 +52,6 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 */
 	protected GmfEditorFactory(Class<?> diagramClass, String expectedType) {
 		super(diagramClass, expectedType);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isEditorFor(Object root) {
-
-		if(root instanceof Diagram) {
-			Diagram diagram = (Diagram)root;
-			final String type = diagram.getType();
-			return getExpectedType().equals(type);
-		}
-		// no
-		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException {
-		assert (context instanceof GmfEditorContext);
-		return createEditorFor((GmfEditorContext)context, root);
-	}
-
-	/**
-	 * It is used to create the editor by taking account the root element, for example a diagram
-	 * 
-	 * @param context
-	 *        the gmf context
-	 * @param root
-	 *        the element on which the editor can be launch , for example the editor
-	 * @return the created editor
-	 * @throws BackboneException
-	 *         editor could not be created
-	 */
-	public IEditorPart createEditorFor(GmfEditorContext context, Object root) throws BackboneException {
-		GraphicalEditor editor;
-
-		// TODO Change next to remove dependency on di2.
-		// Retrieve GMF diagram, if any.
-		if(root instanceof Diagram) {
-			Diagram diagram = (Diagram)root;
-			if(!GMF_DIAGRAM.equals(diagram.getType()))
-				throw new BackboneException(Messages.GmfEditorFactory_ErrorRetrievingDiagram);
-			// Ok, this is a gmf diagram
-			root = diagram.getElement();
-		}
-
-		try {
-			Constructor<?> c = getDiagramClass().getConstructor(Diagram.class, GmfEditorContext.class);
-			editor = (GraphicalEditor)c.newInstance((Diagram)root, context);
-			// editor = new ClassDiagramEditor((Diagram)root, context.getModelMngr(),
-			// context.getCommandStack(), context.getActionRegistry() );
-			return editor;
-
-		} catch (Exception e) {
-			// Lets propagate. This is an implementation problem that should be solved by
-			// programmer.
-			throw new BackboneException(e);
-		}
 	}
 
 	/**

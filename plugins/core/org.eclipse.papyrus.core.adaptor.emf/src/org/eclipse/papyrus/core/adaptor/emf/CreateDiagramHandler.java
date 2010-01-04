@@ -18,25 +18,30 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.eclipse.papyrus.core.editor.BackboneContext;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.papyrus.core.utils.NotationUtils;
 
 /**
- * @author dumoulin
+ * Base class for create diagram Handlers.
+ *  
+ * @author cedric dumoulin
  * 
  */
 public abstract class CreateDiagramHandler extends AbstractHandler implements IHandler {
 
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 *
+	 * @param event
+	 * @return
+	 * @throws ExecutionException
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		TransactionalEditingDomain editingDomain = getEditingDomain();
@@ -53,6 +58,9 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 		return null;
 	}
 
+	/**
+	 * Subclasses should implements this method.
+	 */
 	protected abstract void addNewDiagram();
 
 	/**
@@ -60,7 +68,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 * 
 	 * @param diagram
 	 *        The diagram to add to graphical model. This will be the diagram provided to
-	 *        {@link IEditorFactory#createEditorFor(org.eclipse.papyrus.backbone.IEditorContext, Object)}
+	 *        {@link IEditorFactory#createIPageModel(Object, org.eclipse.papyrus.core.services.ServicesRegistry)}
 	 */
 	protected void addNewDiagram(String name, String type, EObject diagram) {
 
@@ -76,41 +84,11 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 			di2Diagram.setName(name);
 
 		// Add it to resource, so that it will be saved.
-		getDiResource().getContents().add(di2Diagram);
+		NotationUtils.getNotationResource().getContents().add(di2Diagram);
 
 		// Attach to sash in order to show it
 		// Add the diagram as a page to the current sash folder
 		EditorUtils.getISashWindowsContentProvider().addPage(di2Diagram);
-	}
-
-	/**
-	 * Get the current MultiDiagramEditor.
-	 * 
-	 * @return
-	 */
-	protected IMultiDiagramEditor getMultiDiagramEditor() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorPart editorPart = page.getActiveEditor();
-		return (IMultiDiagramEditor)editorPart;
-	}
-
-	/**
-	 * Get the shared object.
-	 * 
-	 * @return
-	 */
-	protected BackboneContext getDefaultContext() {
-		IMultiDiagramEditor editor = getMultiDiagramEditor();
-		return (BackboneContext)editor.getDefaultContext();
-	}
-
-	/**
-	 * Get the di resource.
-	 * 
-	 * @return
-	 */
-	private Resource getDiResource() {
-		return getDefaultContext().getResourceSet().getDiResource();
 	}
 
 	/**
@@ -119,6 +97,6 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 * @return
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		return getDefaultContext().getTransactionalEditingDomain();
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 }

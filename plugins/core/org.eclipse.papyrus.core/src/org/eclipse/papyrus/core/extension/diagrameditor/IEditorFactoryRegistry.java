@@ -15,6 +15,7 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
@@ -27,29 +28,13 @@ import org.eclipse.ui.IEditorPart;
 public interface IEditorFactoryRegistry {
 
 	/**
-	 * Create a new editor for the specified diagram root.
-	 * 
-	 * @param contextFactoryRegistry
-	 *        *
-	 * @param model
-	 * @throws EditorNotFoundException
-	 *         No editor handling the model can be found.
-	 */
-	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model) throws MultiDiagramException;
-
-	/**
-	 * Get the editor descriptor for the specified model.
-	 * 
-	 * @throws EditorNotFoundException
-	 *         No editor handling the model can be found.
-	 */
-	public IEditorDescriptor getEditorDescriptorFor(Object model) throws MultiDiagramException;
-
-	/**
 	 * Get the editor icon.
-	 * 
+	 * Return the icon associated to this kind of editor.
+	 * TODO CDM : Not sure that this method should be here. May be a method from the sasheditor
+	 * should be used instead of this one. For example, we can have sash method returning the 
+	 * {@link IEditorModel} for a model. From this model, it is possible to get the icon.
 	 * @param model
-	 *        the model object
+	 *        the model representing the Editor. This is usually the EObject used to reconstruct the editor.
 	 * @return the icon representing the editor
 	 */
 	public Image getEditorIcon(Object model);

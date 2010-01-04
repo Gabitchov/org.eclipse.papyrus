@@ -26,6 +26,16 @@ import org.eclipse.gmf.runtime.notation.Diagram;
  */
 public class NotationUtils {
 
+	
+	/**
+	 * Get the notation Resource.
+	 * 
+	 * @return
+	 */
+	public static Resource getNotationResource() {
+		return EditorUtils.getDiResourceSet().getNotationResource();
+	}
+	
 	/**
 	 * Gets the direct associated diagram of the specified eObject.
 	 * 

@@ -36,9 +36,9 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -70,19 +70,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		BackboneContext context;
-		try {
-			context = getDefaultContext();
-		} catch (ClassCastException ex) {
-			// Bad current editor. Skip
-			throw new ExecutionException(Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NotSupportedEditor, ex);
-		}
 		EObject container = null;
 		// if editor is open and active
 		if(getMultiDiagramEditor() != null) {
 			container = getSelectedElement();
 		}
-		runAsTransaction(context, container);
+		runAsTransaction(container);
 		return null;
 	}
 
@@ -92,9 +85,17 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @param sharedObjects
 	 * @param container
 	 *        The uml element to which the diagram should be attached, if possible.
+	 * @throws ExecutionException 
 	 */
-	protected void runAsTransaction(BackboneContext sharedObjects, EObject container) {
-		DiResourceSet diResourceSet = sharedObjects.getResourceSet();
+	protected void runAsTransaction(EObject container) throws ExecutionException {
+		
+		DiResourceSet diResourceSet;
+		try {
+			diResourceSet = EditorUtils.getServiceRegistry().getService(DiResourceSet.class);
+		} catch (ServiceException e) {
+			throw new ExecutionException("Can't get diResourceSet", e);
+		}
+		
 		runAsTransaction(diResourceSet, container, null);
 	}
 
@@ -288,16 +289,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editorPart = page.getActiveEditor();
 		return (IMultiDiagramEditor)editorPart;
-	}
-
-	/**
-	 * Get the shared object.
-	 * 
-	 * @return
-	 */
-	protected BackboneContext getDefaultContext() {
-		IMultiDiagramEditor editor = getMultiDiagramEditor();
-		return editor.getDefaultContext();
 	}
 
 	/**

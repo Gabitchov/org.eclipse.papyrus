@@ -29,28 +29,6 @@ import org.eclipse.ui.IEditorPart;
 public interface IEditorFactory {
 
 	/**
-	 * This method is used in order to know if the editor can edit the root object. example a diagram di2 or notation
-	 * 
-	 * @param root
-	 *        the element that can be edited
-	 * @return boolean true if the editor can edit it.
-	 */
-	public boolean isEditorFor(Object root);
-
-	/**
-	 * It is used to create the editor by taking account the root element, for example a diagram
-	 * 
-	 * @param context
-	 * @param root
-	 *        the element on which the editor can be launch , for example the editor
-	 * @return the created editor
-	 * @throws BackboneException
-	 *         editor could not be created
-	 * @deprecated use createIPageModel
-	 */
-	public IEditorPart createEditorFor(IEditorContext context, Object root) throws BackboneException;
-
-	/**
 	 * Create the {@link IPageModel} for the specified identifier.
 	 * 
 	 * @param pageIdentifier

@@ -19,20 +19,16 @@ import java.util.List;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.ExtensionException;
-import org.eclipse.papyrus.core.extension.NotFoundException;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContextRegistry;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * A registry recording possible editor descriptors. This class use the eclipse extension mechanism.
+ * This registry also read editor descriptors from the Eclipse extension mechanism.
  */
 public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 
@@ -50,7 +46,8 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 
 
 	/**
-	 * Create a new Registry reading extension from the specified namespace. The namespace is usually the name of the plugin owning the registry.
+	 * Create a new Registry reading extension from the specified namespace. The namespace is 
+	 * usually the name of the plugin owning the registry.
 	 * 
 	 * @param extensionPointNamespace
 	 */
@@ -58,36 +55,6 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 		super();
 		this.extensionPointNamespace = extensionPointNamespace;
 		editorDescriptors = new ArrayList<EditorDescriptor>();
-	}
-
-	/**
-	 * Create a new editor for the specified diagram root.
-	 * 
-	 * @throws EditorNotFoundException
-	 *         No editor handling the model can be found.
-	 */
-	public IEditorPart createEditorFor(IEditorContextRegistry contextFactoryRegistry, Object model) throws MultiDiagramException {
-		for(EditorDescriptor desc : getEditorDescriptors()) {
-			if(desc.isEditorFor(model)) {
-				{
-					// Get requested context
-					IEditorContext context;
-					try {
-						PapyrusTrace.trace(IDebugChannel.PAPYRUS_CORE, this, "creation of an editor");
-						context = contextFactoryRegistry.getContext(desc.getRequestedContextId());
-						return desc.createEditorFor(context, model);
-					} catch (NotFoundException e) {
-						throw new EditorNotFoundException(e);
-					} catch (ExtensionException e) {
-						throw new EditorNotFoundException(e);
-					} catch (BackboneException e) {
-						throw new MultiDiagramException(e);
-					}
-				}
-			}
-		}
-		// no editor found !
-		throw new EditorNotFoundException("No editor registered for '" + model + "'.");
 	}
 
 	/**
@@ -107,24 +74,6 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 		// TODO Throw an exception.
 		// throw new EditorNotFoundException("No editor registered for '" + pageIdentifier + "'.");
 		return null;
-	}
-
-	/**
-	 * Get the editor descriptor for the specified model.
-	 * 
-	 * @throws EditorNotFoundException
-	 *         No editor handling the model can be found.
-	 */
-	public EditorDescriptor getEditorDescriptorFor(Object model) throws MultiDiagramException {
-		for(EditorDescriptor desc : getEditorDescriptors()) {
-			if(desc.isEditorFor(model)) {
-				{
-					return desc;
-				}
-			}
-		}
-		// no editor found !
-		throw new EditorNotFoundException("No editor registered for '" + model + "'.");
 	}
 
 	/**
@@ -167,7 +116,7 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	 */
 	public Image getEditorIcon(Object model) {
 		for(EditorDescriptor desc : getEditorDescriptors()) {
-			if(desc.isEditorFor(model)) {
+			if(desc.isDescriptorForPage(model)) {
 				// if (model instanceof org.eclipse.papyrus.di.Diagram) {
 				// org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram) model;
 				// if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
