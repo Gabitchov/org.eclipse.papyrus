@@ -21,8 +21,8 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.ui.compositeforview.AppearanceForAppliedStereotypeComposite;
 import org.eclipse.swt.widgets.Composite;
@@ -74,8 +74,7 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 
 			if(part instanceof IMultiDiagramEditor) {
 				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
-				BackboneContext backbone = editor.getDefaultContext();
-				domain = editor.getDefaultContext().getTransactionalEditingDomain();
+				domain = EditorUtils.getTransactionalEditingDomain();
 				appearanceForAppliedStereotype.setDomain(domain);
 			} else {
 				domain = null;

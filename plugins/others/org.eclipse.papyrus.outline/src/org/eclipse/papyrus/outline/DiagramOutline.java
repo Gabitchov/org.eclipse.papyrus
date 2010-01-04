@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.outline;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
@@ -29,6 +30,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.papyrus.core.contentoutline.IPapyrusContentOutlinePage;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.outline.internal.Activator;
 import org.eclipse.papyrus.outline.internal.Messages;
 import org.eclipse.papyrus.outline.overview.OverviewComposite;
@@ -90,7 +92,15 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	 * {@inheritDoc}
 	 */
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
-		this.editingDomain = multiEditor.getDefaultContext().getTransactionalEditingDomain();
+		
+		// Get TransactionalEditingDomain
+		try {
+			this.editingDomain = multiEditor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			throw new BackboneException("Can't get TransactionalEditingDomain", e);
+		}
+		
+		// Set multieditor.
 		this.multiEditor = multiEditor;
 
 		// Add listener to detect selection change

@@ -10,8 +10,8 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
@@ -180,8 +180,7 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 			}
 			if(part instanceof IMultiDiagramEditor) {
 				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
-				BackboneContext backbone = editor.getDefaultContext();
-				domain = editor.getDefaultContext().getTransactionalEditingDomain();
+				domain = EditorUtils.getTransactionalEditingDomain();
 			} else
 				domain = null;
 		}
