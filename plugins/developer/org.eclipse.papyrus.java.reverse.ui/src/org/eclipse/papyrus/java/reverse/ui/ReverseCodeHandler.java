@@ -23,11 +23,10 @@ import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.papyrus.core.editor.BackboneContext;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.java.reverse.ui.dialog.ReverseCodeDialog;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
@@ -160,7 +159,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	 * @return
 	 */
 	private Resource getUmlResource() {
-		Resource umlResource = getDefaultContext().getResourceSet().getModelResource();
+		Resource umlResource = EditorUtils.getDiResourceSet().getModelResource();
 		return umlResource;
 	}
 
@@ -175,34 +174,12 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	}
 
 	/**
-	 * Get the name of the root model.
-	 * 
-	 * @return
-	 */
-	private String getRootModelName(Resource umlResource) {
-		Package rootPackage = (Package)umlResource.getContents().get(0);
-		return rootPackage.getName();
-	}
-
-	/**
 	 * Get the current MultiDiagramEditor.
 	 * 
 	 * @return
 	 */
 	protected IMultiDiagramEditor getMultiDiagramEditor() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorPart editorPart = page.getActiveEditor();
-		return (IMultiDiagramEditor)editorPart;
-	}
-
-	/**
-	 * Get the shared object.
-	 * 
-	 * @return
-	 */
-	protected BackboneContext getDefaultContext() {
-		IMultiDiagramEditor editor = getMultiDiagramEditor();
-		return (BackboneContext)editor.getDefaultContext();
+		return EditorUtils.getMultiDiagramEditor();
 	}
 
 	/**
@@ -211,7 +188,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	 * @return
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		return getDefaultContext().getTransactionalEditingDomain();
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 
 }
