@@ -13,11 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * Editor factory. A factory is responsible to create an editor for the specified root object.

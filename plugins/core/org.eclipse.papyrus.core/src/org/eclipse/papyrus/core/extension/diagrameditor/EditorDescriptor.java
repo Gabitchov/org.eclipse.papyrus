@@ -14,12 +14,9 @@
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.editorcontext.IEditorContext;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the nested diagram. It is fill by an extension.
