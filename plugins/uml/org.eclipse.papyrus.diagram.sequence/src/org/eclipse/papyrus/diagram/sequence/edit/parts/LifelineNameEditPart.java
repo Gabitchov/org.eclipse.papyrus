@@ -72,6 +72,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -107,9 +108,9 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
-	protected int directEditionMode = IDirectEdition.NO_DIRECT_EDITION;
+	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
@@ -378,11 +379,19 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	}
 
 	/**
-	 * @generated
+	 * This methods is no more generated to handle the case of editing the name of a lifeline 
+	 * with a directEdition when its properties represents and decomposedAs are null
+	 * @generated NOT
 	 */
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
+		
+
+		Lifeline lifeline = (Lifeline)resolveSemanticElement();
+		if(lifeline.getRepresents() != null || lifeline.getDecomposedAs() != null){
+			directEditionMode = IDirectEdition.NO_DIRECT_EDITION;
+		}
 
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
