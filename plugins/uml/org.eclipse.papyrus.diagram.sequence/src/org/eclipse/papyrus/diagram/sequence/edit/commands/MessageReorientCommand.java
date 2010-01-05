@@ -56,7 +56,7 @@ public class MessageReorientCommand extends EditElementCommand {
 		newEnd = request.getNewRelationshipEnd();
 	}
 
-	/** 
+	/**
 	 * @generated
 	 */
 	public boolean canExecute() {
