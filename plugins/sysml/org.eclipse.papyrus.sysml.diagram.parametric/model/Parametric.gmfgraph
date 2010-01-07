@@ -45,6 +45,22 @@
           accessor="getPropertyFigureLabel"
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="ParameterDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ParameterRectangle">
+        <preferredSize
+            dx="16"
+            dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ParameterLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ParameterLabel"/>
+    </descriptors>
   </figures>
   <nodes
       name="NodeConstraintProperty"
@@ -52,6 +68,10 @@
   <nodes
       name="NodeProperty"
       figure="PropertyFigure"/>
+  <nodes
+      name="ParameterNode"
+      figure="ParameterDescriptor"
+      affixedParentSide="NSEW"/>
   <labels
       name="Property"
       figure="PropertyFigure"
@@ -67,5 +87,12 @@
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
+  </labels>
+  <labels
+      name="ParameterLabel"
+      figure="ParameterLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
 </gmfgraph:Canvas>

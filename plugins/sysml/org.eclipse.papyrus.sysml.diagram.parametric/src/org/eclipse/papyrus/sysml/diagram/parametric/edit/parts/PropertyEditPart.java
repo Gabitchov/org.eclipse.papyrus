@@ -18,6 +18,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -29,11 +30,17 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.PropertyItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -125,6 +132,7 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 			((PropertyNameEditPart) childEditPart).setLabel(getPrimaryShape().getPropertyFigureLabel());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -229,15 +237,6 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void setBackgroundColor(Color color) {
-		if (primaryShape != null) {
-			primaryShape.setBackgroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -322,6 +321,49 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 			return fPropertyFigureLabel;
 		}
 
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public Object getPreferredValue(EStructuralFeature feature) {
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		Object result = null;
+
+		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
+				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
+				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			String prefColor = null;
+			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper
+						.getElementConstant("Property", PreferenceConstantHelper.COLOR_LINE);
+			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper
+						.getElementConstant("Property", PreferenceConstantHelper.COLOR_FONT);
+			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper
+						.getElementConstant("Property", PreferenceConstantHelper.COLOR_FILL);
+			}
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore,
+					prefColor));
+		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
+				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Property",
+					PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
+					.getString(prefGradient));
+			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+				result = gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		if (result == null) {
+			result = getStructuralFeatureValue(feature);
+		}
+		return result;
 	}
 
 }

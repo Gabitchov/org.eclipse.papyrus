@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -32,7 +33,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class PropertyCreateCommand extends EditElementCommand {
+public class Property2CreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +48,7 @@ public class PropertyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public PropertyCreateCommand(CreateElementRequest req, EObject eObject) {
+	public Property2CreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -56,14 +57,14 @@ public class PropertyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static PropertyCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new PropertyCreateCommand(req, eObject);
+	public static Property2CreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new Property2CreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public PropertyCreateCommand(CreateElementRequest req) {
+	public Property2CreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -88,6 +89,11 @@ public class PropertyCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+		ConstraintProperty container = (ConstraintProperty) getElementToEdit();
+		// StructuredClassifier container = (StructuredClassifier) getElementToEdit();
+		if (container.getBase_Property() != null) {
+			return false;
+		}
 		return true;
 
 	}
@@ -101,6 +107,8 @@ public class PropertyCreateCommand extends EditElementCommand {
 
 		StructuredClassifier owner = (StructuredClassifier) getElementToEdit();
 		owner.getOwnedAttributes().add(newElement);
+		ConstraintProperty childHolder = (ConstraintProperty) getElementToEdit();
+		childHolder.setBase_Property(newElement);
 
 		doConfigure(newElement, monitor, info);
 

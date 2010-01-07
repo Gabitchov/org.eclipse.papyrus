@@ -21,13 +21,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagramprofile.utils.OCLUtils;
 import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.resource.util.ResourceUtil;
+import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
 
 /**
  * @generated
@@ -39,10 +43,47 @@ public class SysmlDiagramUpdater {
 	 */
 	public static List getSemanticChildren(View view) {
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
+		case ConstraintPropertyEditPart.VISUAL_ID:
+			return getConstraintProperty_2003SemanticChildren(view);
 		case ResourceEditPart.VISUAL_ID:
 			return getResource_1000SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public static List getConstraintProperty_2003SemanticChildren(View view) {
+		if (!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		ConstraintProperty modelElement = (ConstraintProperty) view.getElement();
+		List result = new LinkedList();
+
+		Object oclRuleResult = OCLUtils.runOclRule("self.base_Property.type", modelElement);
+		if (oclRuleResult != null) {
+			if (oclRuleResult instanceof StructuredClassifier) {
+				StructuredClassifier aClass = (StructuredClassifier) oclRuleResult;
+				for (Iterator it = aClass.getAttributes().iterator(); it.hasNext();) {
+					Property childElement = (Property) it.next();
+					int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement);
+					if (visualID == Property2EditPart.VISUAL_ID) {
+						result.add(new SysmlNodeDescriptor(childElement, visualID));
+						continue;
+					}
+				}
+			} else {
+				throw new UnsupportedOperationException("Can't access with ...");
+			}
+		}
+
+		// Property childElement = modelElement.getBase_Property();
+		// int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement);
+		// if (visualID == Property2EditPart.VISUAL_ID) {
+		// result.add(new SysmlNodeDescriptor(childElement, visualID));
+		// }
+		return result;
 	}
 
 	/**
@@ -95,6 +136,8 @@ public class SysmlDiagramUpdater {
 			return getConstraintProperty_2003ContainedLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005ContainedLinks(view);
+		case Property2EditPart.VISUAL_ID:
+			return getProperty_3002ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -108,6 +151,8 @@ public class SysmlDiagramUpdater {
 			return getConstraintProperty_2003IncomingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005IncomingLinks(view);
+		case Property2EditPart.VISUAL_ID:
+			return getProperty_3002IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -121,6 +166,8 @@ public class SysmlDiagramUpdater {
 			return getConstraintProperty_2003OutgoingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005OutgoingLinks(view);
+		case Property2EditPart.VISUAL_ID:
+			return getProperty_3002OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -149,6 +196,13 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getProperty_3002ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getConstraintProperty_2003IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -163,6 +217,13 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getProperty_3002IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getConstraintProperty_2003OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -171,6 +232,13 @@ public class SysmlDiagramUpdater {
 	 * @generated
 	 */
 	public static List getProperty_2005OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getProperty_3002OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 

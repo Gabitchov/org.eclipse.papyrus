@@ -18,10 +18,14 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
+import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.WrappingLabelEditPart;
@@ -129,11 +133,22 @@ public class SysmlVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case ConstraintPropertyEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return Property2EditPart.VISUAL_ID;
+			}
+			break;
 		case ResourceEditPart.VISUAL_ID:
-			if (ConstraintsPackage.eINSTANCE.getConstraintProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (ConstraintsPackage.eINSTANCE.getConstraintProperty().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return ConstraintPropertyEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
+
+			) {
 				return PropertyEditPart.VISUAL_ID;
 			}
 			break;
@@ -166,9 +181,17 @@ public class SysmlVisualIDRegistry {
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (Property2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PropertyEditPart.VISUAL_ID:
 			if (PropertyNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Property2EditPart.VISUAL_ID:
+			if (PropertyName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -202,6 +225,42 @@ public class SysmlVisualIDRegistry {
 	 */
 	private static boolean isDiagram(Resource element) {
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static ViewInfo diagramViewInfo = null;
+
+	/**
+	 * @generated
+	 */
+	public static ViewInfo getDiagramViewInfo() {
+		if (diagramViewInfo == null) {
+			diagramViewInfo = getResource_1000ViewInfo();
+		}
+		return diagramViewInfo;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected static ViewInfo getResource_1000ViewInfo() {
+		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
+		ViewInfo viewInfo = null;
+		ViewInfo labelInfo = null;
+
+		viewInfo = new BaseViewInfo(2003, ViewInfo.Node, "ConstraintProperty");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(2005, ViewInfo.Node, "Property");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
+
+		root.addNode(2003, viewInfo);
+
+		return root;
 	}
 
 }

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.parametric.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -40,6 +41,32 @@ public class ConstraintPropertyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	private EClass eClass = null;
+
+	/**
+	 * @generated
+	 */
+	private EObject eObject = null;
+
+	/**
+	 * @generated
+	 */
+	public ConstraintPropertyCreateCommand(CreateElementRequest req, EObject eObject) {
+		super(req.getLabel(), null, req);
+		this.eObject = eObject;
+		this.eClass = eObject != null ? eObject.eClass() : null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static ConstraintPropertyCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new ConstraintPropertyCreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
 	public ConstraintPropertyCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
@@ -50,11 +77,15 @@ public class ConstraintPropertyCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
-		return container;
+		if (container != null) {
+			return container;
+		}
+		return eObject;
 	}
 
 	/**

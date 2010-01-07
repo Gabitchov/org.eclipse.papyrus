@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
@@ -132,6 +133,39 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid
+	 * getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForResourceEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(ConstraintPropertyEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(PropertyEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid
+	 * getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForConstraintPropertyEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(Property2EditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		return result.toArray();
+	}
+
+	/**
 	 * @generated
 	 */
 	public void dispose() {
@@ -215,15 +249,19 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
 
 		case ResourceEditPart.VISUAL_ID: {
-			Collection result = new ArrayList();
-			Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
-					.getType(ConstraintPropertyEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
-			connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
-					.getType(PropertyEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
-			return result.toArray();
+
+			// modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForResourceEditPart(view, parentElement);
+
 		}
+
+		case ConstraintPropertyEditPart.VISUAL_ID: {
+
+			// modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConstraintPropertyEditPart(view, parentElement);
+
+		}
+
 		}
 		return EMPTY_ARRAY;
 	}

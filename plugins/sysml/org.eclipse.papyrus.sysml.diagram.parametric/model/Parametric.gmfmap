@@ -19,6 +19,30 @@
           href="Parametric.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="Parametric.gmfgraph#NodeConstraintProperty"/>
+      <children
+          referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier/ownedAttribute"/>
+        <childrenFeature
+            href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//constraints/ConstraintProperty/base_Property"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="Parametric.gmfgraph#ParameterLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="Parametric.gmftool#//@palette/@tools.0/@tools.1"/>
+          <diagramNode
+              href="Parametric.gmfgraph#ParameterNode"/>
+        </ownedChild>
+      </children>
     </ownedChild>
   </nodes>
   <nodes>

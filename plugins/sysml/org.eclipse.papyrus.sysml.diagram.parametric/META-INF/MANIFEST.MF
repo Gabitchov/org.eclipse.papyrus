@@ -43,7 +43,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.core.adaptor.gmf,
  org.eclipse.papyrus.uml.standard;visibility:=reexport,
  org.eclipse.papyrus.uml.standard.edit;visibility:=reexport,
- org.eclipse.papyrus.diagramprofile
+ org.eclipse.papyrus.diagramprofile,
+ org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

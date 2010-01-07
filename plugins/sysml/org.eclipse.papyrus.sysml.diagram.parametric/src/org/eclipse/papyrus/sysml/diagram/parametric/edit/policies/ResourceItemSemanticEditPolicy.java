@@ -54,7 +54,11 @@ public class ResourceItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPol
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
+		Diagram currentDiagram = null;
+		if (getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView().getDiagram();
+		}
+		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
 	}
 
 	/**
@@ -62,14 +66,16 @@ public class ResourceItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPol
 	 */
 	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 
+		private Diagram diagram;
+
 		/**
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
+		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req,
+				Diagram currentDiagram) {
 			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+			this.diagram = currentDiagram;
 		}
-
-		private Diagram diagram;
 	}
 
 }

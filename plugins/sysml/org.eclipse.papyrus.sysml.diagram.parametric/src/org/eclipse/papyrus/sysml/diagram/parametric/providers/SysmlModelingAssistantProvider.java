@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.Messages;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
@@ -47,6 +48,11 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
+		if (editPart instanceof ConstraintPropertyEditPart) {
+			ArrayList types = new ArrayList(1);
+			types.add(SysmlElementTypes.Property_3002);
+			return types;
+		}
 		if (editPart instanceof ResourceEditPart) {
 			ArrayList types = new ArrayList(2);
 			types.add(SysmlElementTypes.ConstraintProperty_2003);

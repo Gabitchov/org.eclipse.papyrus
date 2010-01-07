@@ -55,6 +55,12 @@ public class SysmlEditPartFactory implements EditPartFactory {
 
 			case PropertyNameEditPart.VISUAL_ID:
 				return new PropertyNameEditPart(view);
+
+			case Property2EditPart.VISUAL_ID:
+				return new Property2EditPart(view);
+
+			case PropertyName2EditPart.VISUAL_ID:
+				return new PropertyName2EditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

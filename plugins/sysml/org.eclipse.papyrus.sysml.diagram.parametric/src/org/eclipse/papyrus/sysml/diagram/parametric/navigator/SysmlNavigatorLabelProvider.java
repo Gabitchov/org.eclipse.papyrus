@@ -25,7 +25,9 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.WrappingLabelEditPart;
@@ -99,6 +101,9 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 		case PropertyEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_2005); //$NON-NLS-1$
+		case Property2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_3002); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -155,6 +160,8 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			return getConstraintProperty_2003Text(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005Text(view);
+		case Property2EditPart.VISUAL_ID:
+			return getProperty_3002Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -194,6 +201,22 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 					ParserOptions.NONE.intValue());
 		} else {
 			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5002); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getProperty_3002Text(View view) {
+		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Property_3002,
+				view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry
+						.getType(PropertyName2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5003); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

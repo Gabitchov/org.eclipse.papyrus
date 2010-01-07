@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.parsers.MessageFormatParser;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
@@ -55,10 +56,29 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	/**
 	 * @generated
 	 */
+	private IParser propertyName_5003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPropertyName_5003Parser() {
+		if (propertyName_5003Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			propertyName_5003Parser = parser;
+		}
+		return propertyName_5003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case PropertyNameEditPart.VISUAL_ID:
 			return getPropertyName_5002Parser();
+		case PropertyName2EditPart.VISUAL_ID:
+			return getPropertyName_5003Parser();
 		}
 		return null;
 	}
