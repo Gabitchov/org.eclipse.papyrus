@@ -76,13 +76,15 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
+	 * It is no more generated to initialize the log. 
+	 * @generated NOT
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
+		log = new LogHelper(instance);
 	}
 
 	/**
