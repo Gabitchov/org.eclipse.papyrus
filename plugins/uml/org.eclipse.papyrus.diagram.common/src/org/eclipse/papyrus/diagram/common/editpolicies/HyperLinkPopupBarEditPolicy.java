@@ -26,27 +26,32 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MouseEvent;
 import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.RoundedRectangle;
+import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Handle;
 import org.eclipse.gef.LayerConstants;
+import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell2;
+import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkWeb;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkDocument;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
@@ -305,7 +310,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 					// getEditorRegistry(), ((GraphicalEditPart)
 					// getHost()).getEditingDomain());
 					// hyperLinkManagerShell.createShell();
-					hyperLinkManagerShell = new HyperLinkManagerShell2(getEditorRegistry(),
+					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(),
 							((GraphicalEditPart)getHost()).getEditingDomain(),
 							(Element)((GraphicalEditPart)getHost()).getNotationView().getElement(),
 							((GraphicalEditPart)getHost()).getNotationView(),
@@ -468,7 +473,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	private IFigure figureBar;
 
 	/** The hyper link manager shell. */
-	private HyperLinkManagerShell2 hyperLinkManagerShell;
+	private HyperLinkManagerShell hyperLinkManagerShell;
 
 	/** Images created that must be deleted when popup bar is removed. */
 	protected List<Image> imagesToBeDisposed = new ArrayList<Image>();
@@ -738,8 +743,19 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(referencePoint == null) {
 				referencePoint = getHostFigure().getBounds().getCenter();
 			}
+			Point position=getHostFigure().getBounds().getBottomLeft();
+			getHostFigure().translateToAbsolute(position);
+			EditPartViewer viewer=getHost().getRoot().getViewer();
+			Viewport viewport=null;
+			if( viewer instanceof DiagramGraphicalViewer){
+				viewport=((FigureCanvas)((DiagramGraphicalViewer)viewer).getControl()).getViewport();
+			}
+			if (viewport!=null){
+				position.x=position.x+viewport.getClientArea().x;
+				position.y=position.y+viewport.getClientArea().y;
+			}
 			getFigureBar().setSize(width, 30);
-			getFigureBar().setLocation(getHostFigure().getBounds().getBottomLeft());
+			getFigureBar().setLocation(position);
 			getFigureBar().setBackgroundColor(ColorConstants.white);
 			getFigureBar().setForegroundColor(ColorConstants.orange);
 
