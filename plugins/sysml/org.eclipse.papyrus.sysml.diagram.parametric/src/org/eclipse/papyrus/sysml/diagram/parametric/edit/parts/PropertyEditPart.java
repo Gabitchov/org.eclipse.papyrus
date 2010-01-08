@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -42,13 +41,16 @@ import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.PropertyItemSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * @generated
  */
-public class PropertyEditPart extends ShapeNodeEditPart {
+public class PropertyEditPart extends
+
+ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -267,7 +269,7 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fPropertyFigureLabel;
+		private CenteredWrappedLabel fPropertyFigureLabel;
 
 		/**
 		 * @generated
@@ -288,8 +290,7 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fPropertyFigureLabel = new WrappingLabel();
-			fPropertyFigureLabel.setText("PropertyName");
+			fPropertyFigureLabel = new CenteredWrappedLabel();
 
 			this.add(fPropertyFigureLabel);
 
@@ -317,7 +318,7 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getPropertyFigureLabel() {
+		public CenteredWrappedLabel getPropertyFigureLabel() {
 			return fPropertyFigureLabel;
 		}
 
@@ -365,5 +366,4 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 		}
 		return result;
 	}
-
 }

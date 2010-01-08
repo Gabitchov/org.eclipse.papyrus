@@ -65,6 +65,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialo
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlTextSelectionEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlParserProvider;
@@ -194,7 +195,7 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(CenteredWrappedLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);

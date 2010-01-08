@@ -64,7 +64,9 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorCo
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlTextSelectionEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlParserProvider;
@@ -81,7 +83,7 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  * @generated
  */
-public class WrappingLabelEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class ConstraintPropertyNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -117,7 +119,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 	/**
 	 * @generated
 	 */
-	public WrappingLabelEditPart(View view) {
+	public ConstraintPropertyNameEditPart(View view) {
 		super(view);
 	}
 
@@ -194,7 +196,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(CenteredWrappedLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -220,7 +222,12 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 	 * @generated
 	 */
 	protected EObject getParserElement() {
-		return resolveSemanticElement();
+		EObject semanticElement = resolveSemanticElement();
+		if (semanticElement instanceof ConstraintProperty) {
+			return ((ConstraintProperty) resolveSemanticElement()).getBase_Property();
+		} else {
+			return resolveSemanticElement();
+		}
 	}
 
 	/**
@@ -346,7 +353,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 							SysmlElementTypes.ConstraintProperty_2003,
 							getParserElement(),
 							SysmlVisualIDRegistry
-									.getType(org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.WrappingLabelEditPart.VISUAL_ID));
+									.getType(org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -627,7 +634,12 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 	 * @generated
 	 */
 	protected boolean checkDefaultEdition() {
-		return (resolveSemanticElement() instanceof NamedElement);
+		EObject semanticElement = resolveSemanticElement();
+		if (semanticElement instanceof ConstraintProperty) {
+			return (((ConstraintProperty) semanticElement).getBase_Property() instanceof NamedElement);
+		} else {
+			return (semanticElement instanceof NamedElement);
+		}
 	}
 
 	/**
@@ -796,5 +808,14 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
+	// @Override
+	// public EObject resolveSemanticElement() {
+	// EObject semanticElement = super.resolveSemanticElement();
+	// if (semanticElement instanceof ConstraintProperty) {
+	// semanticElement = ((ConstraintProperty) semanticElement).getBase_Property();
+	// }
+	// return semanticElement;
+	// }
 
 }

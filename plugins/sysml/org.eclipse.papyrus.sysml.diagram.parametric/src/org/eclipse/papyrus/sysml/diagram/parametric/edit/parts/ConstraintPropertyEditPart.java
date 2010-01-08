@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -50,6 +49,7 @@ import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConstraintPropertyItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CreateParameterEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.locator.ParameterPositionLocator;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -155,8 +155,9 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabelEditPart) {
-			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintPropertyFigureLabel());
+		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
+			((ConstraintPropertyNameEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getConstraintPropertyFigureLabel());
 			return true;
 		}
 
@@ -174,7 +175,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabelEditPart) {
+		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
 			return true;
 		}
 		if (childEditPart instanceof Property2EditPart) {
@@ -297,7 +298,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(SysmlVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(SysmlVisualIDRegistry.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -308,7 +309,7 @@ AbstractBorderedShapeEditPart {
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fConstraintPropertyFigureLabel;
+		private CenteredWrappedLabel fConstraintPropertyFigureLabel;
 
 		/**
 		 * @generated
@@ -330,8 +331,7 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
-			fConstraintPropertyFigureLabel = new WrappingLabel();
-			fConstraintPropertyFigureLabel.setText("ConstraintPropertyName");
+			fConstraintPropertyFigureLabel = new CenteredWrappedLabel();
 
 			this.add(fConstraintPropertyFigureLabel);
 
@@ -359,7 +359,7 @@ AbstractBorderedShapeEditPart {
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getConstraintPropertyFigureLabel() {
+		public CenteredWrappedLabel getConstraintPropertyFigureLabel() {
 			return fConstraintPropertyFigureLabel;
 		}
 

@@ -49,12 +49,12 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.WrappingLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
@@ -130,12 +130,12 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
-									// element type
+					// element type
 				}
 				if (domainElement != null
 						&& visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element
-									// type
+					// type
 				}
 			} else {
 				if (!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
@@ -148,7 +148,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 					if (domainElement == null
 							|| visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
-										// domain element
+						// domain element
 					}
 					break;
 				default:
@@ -171,7 +171,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
-							// as in element type
+			// as in element type
 		}
 		int visualID = SysmlVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -250,7 +250,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 
 		initBackgroundFromPrefs(node, prefStore, "ConstraintProperty");
 
-		Node label5001 = createLabel(node, SysmlVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		Node label5001 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
 		return node;
 	}
 

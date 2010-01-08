@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
-import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.resource.util.ResourceUtil;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
@@ -68,29 +67,18 @@ public class SysmlDiagramUpdater {
 		}
 		return result;
 		/*
-		if (!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		ConstraintProperty modelElement = (ConstraintProperty) view.getElement();
-		List result = new LinkedList();
-
-		Object oclRuleResult = OCLUtils.runOclRule("self.base_Property.type", modelElement);
-		if (oclRuleResult != null) {
-			if (oclRuleResult instanceof StructuredClassifier) {
-				StructuredClassifier aClass = (StructuredClassifier) oclRuleResult;
-				for (Iterator it = aClass.getAttributes().iterator(); it.hasNext();) {
-					Property childElement = (Property) it.next();
-					int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement);
-					if (visualID == Property2EditPart.VISUAL_ID) {
-						result.add(new SysmlNodeDescriptor(childElement, visualID));
-						//continue;
-					}
-				}
-			} else {
-				throw new UnsupportedOperationException("Can't access with ...");
-			}
-		}
-		*/
+		 * if (!view.isSetElement()) { return Collections.EMPTY_LIST; } ConstraintProperty
+		 * modelElement = (ConstraintProperty) view.getElement(); List result = new LinkedList();
+		 * 
+		 * Object oclRuleResult = OCLUtils.runOclRule("self.base_Property.type", modelElement); if
+		 * (oclRuleResult != null) { if (oclRuleResult instanceof StructuredClassifier) {
+		 * StructuredClassifier aClass = (StructuredClassifier) oclRuleResult; for (Iterator it =
+		 * aClass.getAttributes().iterator(); it.hasNext();) { Property childElement = (Property)
+		 * it.next(); int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement); if
+		 * (visualID == Property2EditPart.VISUAL_ID) { result.add(new
+		 * SysmlNodeDescriptor(childElement, visualID)); //continue; } } } else { throw new
+		 * UnsupportedOperationException("Can't access with ..."); } }
+		 */
 	}
 
 	/**

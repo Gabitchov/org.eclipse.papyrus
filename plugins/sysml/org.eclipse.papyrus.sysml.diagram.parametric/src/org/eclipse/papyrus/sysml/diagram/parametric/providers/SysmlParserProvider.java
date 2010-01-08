@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.sysml.diagram.parametric.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -25,11 +24,11 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.parsers.MessageFormatParser;
+import org.eclipse.papyrus.sysml.diagram.parametric.parsers.ParameterParser;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -39,16 +38,29 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	/**
 	 * @generated
 	 */
-	private IParser propertyName_5002Parser;
+	private ParameterParser constraintPropertyLabel_5001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintPropertyLabel_5001Parser() {
+		if (constraintPropertyLabel_5001Parser == null) {
+			constraintPropertyLabel_5001Parser = new ParameterParser();
+		}
+		return constraintPropertyLabel_5001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ParameterParser propertyName_5002Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getPropertyName_5002Parser() {
 		if (propertyName_5002Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			propertyName_5002Parser = parser;
+			propertyName_5002Parser = new ParameterParser();
 		}
 		return propertyName_5002Parser;
 	}
@@ -56,16 +68,14 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	/**
 	 * @generated
 	 */
-	private IParser propertyName_5003Parser;
+	private ParameterParser propertyName_5003Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getPropertyName_5003Parser() {
 		if (propertyName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			propertyName_5003Parser = parser;
+			propertyName_5003Parser = new ParameterParser();
 		}
 		return propertyName_5003Parser;
 	}
@@ -75,6 +85,8 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
+		case ConstraintPropertyNameEditPart.VISUAL_ID:
+			return getConstraintPropertyLabel_5001Parser();
 		case PropertyNameEditPart.VISUAL_ID:
 			return getPropertyName_5002Parser();
 		case PropertyName2EditPart.VISUAL_ID:

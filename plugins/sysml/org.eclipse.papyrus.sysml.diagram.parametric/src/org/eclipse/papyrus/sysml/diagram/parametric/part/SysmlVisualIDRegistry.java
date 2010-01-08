@@ -21,15 +21,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.resource.Resource;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.WrappingLabelEditPart;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -179,7 +178,7 @@ public class SysmlVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
-			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+			if (ConstraintPropertyNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (Property2EditPart.VISUAL_ID == nodeVisualID) {

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.sysml.diagram.parametric.parsers;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.diagramprofile.parsers.ResourceEObjectParserProvider;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.WrappingLabelEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class ConstraintPropertyParser extends ResourceEObjectParserProvider {
@@ -32,7 +32,7 @@ public class ConstraintPropertyParser extends ResourceEObjectParserProvider {
 
 	@Override
 	public String getTargetType() {
-		return String.valueOf(WrappingLabelEditPart.VISUAL_ID);
+		return String.valueOf(ConstraintPropertyNameEditPart.VISUAL_ID);
 	}
 
 }

@@ -25,12 +25,12 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.WrappingLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
@@ -179,7 +179,7 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	private String getConstraintProperty_2003Text(View view) {
 		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.ConstraintProperty_2003,
 				view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry
-						.getType(WrappingLabelEditPart.VISUAL_ID));
+						.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
