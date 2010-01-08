@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -86,34 +87,39 @@ public class Property2CreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
 		ConstraintProperty container = (ConstraintProperty) getElementToEdit();
-		// StructuredClassifier container = (StructuredClassifier) getElementToEdit();
+		//StructuredClassifier container = (StructuredClassifier) getElementToEdit();
+		// FIXME return true if base property != null
 		if (container.getBase_Property() != null) {
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Property newElement = UMLFactory.eINSTANCE.createProperty();
+		Property newElement = UMLFactory.eINSTANCE.createProperty();		
+		ConstraintProperty owner = (ConstraintProperty) getElementToEdit();
+		Type type = owner.getBase_Property().getType();
+		
+		if (type != null && type instanceof StructuredClassifier) {
+			StructuredClassifier classifier = (StructuredClassifier) type;
+			classifier.getOwnedAttributes().add(newElement);
+			
+			doConfigure(newElement, monitor, info);
 
-		StructuredClassifier owner = (StructuredClassifier) getElementToEdit();
-		owner.getOwnedAttributes().add(newElement);
-		ConstraintProperty childHolder = (ConstraintProperty) getElementToEdit();
-		childHolder.setBase_Property(newElement);
-
-		doConfigure(newElement, monitor, info);
-
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+			return CommandResult.newOKCommandResult(newElement);
+		} else {
+			return CommandResult.newCancelledCommandResult();
+		}		
 	}
 
 	/**

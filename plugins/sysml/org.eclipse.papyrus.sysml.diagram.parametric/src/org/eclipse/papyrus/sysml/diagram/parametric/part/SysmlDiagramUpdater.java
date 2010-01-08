@@ -21,8 +21,8 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagramprofile.utils.OCLUtils;
 import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
+import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.resource.util.ResourceUtil;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
@@ -31,7 +31,6 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.StructuredClassifier;
 
 /**
  * @generated
@@ -60,6 +59,20 @@ public class SysmlDiagramUpdater {
 		}
 		ConstraintProperty modelElement = (ConstraintProperty) view.getElement();
 		List result = new LinkedList();
+		{
+			Property childElement = modelElement.getBase_Property();
+			int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Property2EditPart.VISUAL_ID) {
+				result.add(new SysmlNodeDescriptor(childElement, visualID));
+			}
+		}
+		return result;
+		/*
+		if (!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		ConstraintProperty modelElement = (ConstraintProperty) view.getElement();
+		List result = new LinkedList();
 
 		Object oclRuleResult = OCLUtils.runOclRule("self.base_Property.type", modelElement);
 		if (oclRuleResult != null) {
@@ -70,20 +83,14 @@ public class SysmlDiagramUpdater {
 					int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement);
 					if (visualID == Property2EditPart.VISUAL_ID) {
 						result.add(new SysmlNodeDescriptor(childElement, visualID));
-						continue;
+						//continue;
 					}
 				}
 			} else {
 				throw new UnsupportedOperationException("Can't access with ...");
 			}
 		}
-
-		// Property childElement = modelElement.getBase_Property();
-		// int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement);
-		// if (visualID == Property2EditPart.VISUAL_ID) {
-		// result.add(new SysmlNodeDescriptor(childElement, visualID));
-		// }
-		return result;
+		*/
 	}
 
 	/**

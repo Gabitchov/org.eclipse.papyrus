@@ -66,11 +66,12 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createConstraintBlock1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(SysmlElementTypes.Property_2005);
+		types.add(SysmlElementTypes.Property_3002);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

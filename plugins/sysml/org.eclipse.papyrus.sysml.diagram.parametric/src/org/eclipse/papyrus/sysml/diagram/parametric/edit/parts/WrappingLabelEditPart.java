@@ -400,30 +400,7 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-		
-		final Request theRequest = request;
-		try {
-			getEditingDomain().runExclusive(new Runnable() {
 
-				public void run() {
-					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-							performDirectEdit(editRequest.getLocation());
-						} else {
-							performDirectEdit();
-						}
-					}
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		/*
 		final Request theRequest = request;
 
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
@@ -486,7 +463,6 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 		default:
 			break;
 		}
-		*/
 	}
 
 	/**
