@@ -153,8 +153,9 @@ public class ValueSpecificationUtil {
 	public static void restoreLiteralBoolean(LiteralBoolean specification, String value) {
 		if("true".equals(value) || "1".equals(value)) {
 			specification.setValue(true);
+		} else {
+			specification.setValue(false);
 		}
-		specification.setValue(false);
 	}
 
 	/**
