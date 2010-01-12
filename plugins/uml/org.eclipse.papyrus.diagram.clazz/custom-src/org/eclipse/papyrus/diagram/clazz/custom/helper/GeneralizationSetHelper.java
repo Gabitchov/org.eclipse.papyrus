@@ -164,6 +164,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 		}
 		if(generalizationSettoCreate == null) {
 			generalizationSettoCreate = UMLFactory.eINSTANCE.createGeneralizationSet();
+			generalizationSettoCreate.setName("GeneralizationSet_"+source.getSpecific().getName()+"_"+target.getSpecific().getName());
 			container.getPackagedElements().add(generalizationSettoCreate);
 
 		}
@@ -221,7 +222,6 @@ public class GeneralizationSetHelper extends ElementHelper {
 			} else {
 				scaCommandbis.setNewTargetTerminal(node.mapConnectionAnchorToTerminal(targetAnchor));
 			}
-			System.err.println("can execute " + scaCommandbis.canExecute());
 			cc.add(new ICommandProxy(scaCommandbis));
 		}
 		return cc;
