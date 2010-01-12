@@ -16,9 +16,11 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
@@ -68,6 +70,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * @generated
@@ -105,6 +110,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
+	 * Also delete occurrence specification linked with the lifeline
 	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
@@ -214,6 +220,19 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
+		
+		// Destroy all the OccurenceSpecification linked with this lifeline
+		EObject eObject = ViewUtil.resolveSemanticElement(view);
+		if(eObject instanceof Lifeline){
+			Lifeline lifeline = (Lifeline)eObject;
+			for(InteractionFragment ift : lifeline.getCoveredBys()){
+				if(ift instanceof OccurrenceSpecification){
+					DestroyElementRequest r = new DestroyElementRequest(ift, false);
+					cmd.add(new DestroyElementCommand(r));
+				}
+			}
+		}
+		
 		return getGEFWrapper(cmd.reduce());
 	}
 
