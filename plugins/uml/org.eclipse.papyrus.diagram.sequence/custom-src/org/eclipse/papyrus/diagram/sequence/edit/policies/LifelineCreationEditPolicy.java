@@ -122,7 +122,7 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		InteractionFragment interactionFragment = null;
 		// Get the rootEditpart Contents
 		EditPart ep = getHost().getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		if(ep != null) {
+		if(ep != null && ep.getModel() instanceof View) {
 			EObject eObject = ViewUtil.resolveSemanticElement((View)ep.getModel());
 			if(eObject instanceof InteractionOperand || eObject instanceof Interaction) {
 				interactionFragment = (InteractionFragment)eObject;
