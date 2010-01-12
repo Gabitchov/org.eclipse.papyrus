@@ -76,7 +76,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * It is no more generated to initialize the log. 
+	 * It is no more generated to initialize the log.
+	 * 
 	 * @generated NOT
 	 */
 	public void start(BundleContext context) throws Exception {

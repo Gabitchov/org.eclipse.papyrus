@@ -364,13 +364,25 @@ public class CommandHelper {
 	 *        the lifeline covered by the ExecutionSpecification.
 	 * @return the created executionSpecification
 	 */
-	public static ExecutionSpecification doCreateExecutionSpecification(ExecutionSpecification es, Lifeline lifeline) {
+	public static ExecutionSpecification doCreateExecutionSpecification(ExecutionSpecification es, Lifeline lifeline, Object modelContainer) {
 
-
+		InteractionFragment interactionFragment = null;
 		// Get the enclosing interaction fragment
-		Interaction interactionFragment = lifeline.getInteraction();
-		// Create the ES 
-		es = (ExecutionSpecification)interactionFragment.createFragment(null, es.eClass());
+		if(modelContainer instanceof InteractionOperand) {
+			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
+			// Create the ES 
+			es = (ExecutionSpecification)interactionOperand.createFragment(null, es.eClass());
+
+			interactionFragment = interactionOperand;
+		} else {
+			Interaction interaction = lifeline.getInteraction();
+			// Create the ES 
+			es = (ExecutionSpecification)interaction.createFragment(null, es.eClass());
+
+			interactionFragment = interaction;
+		}
+
+
 
 		// Get the covered lifeline
 		es.getCovereds().add(lifeline);

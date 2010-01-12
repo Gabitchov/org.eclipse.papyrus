@@ -379,17 +379,18 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	}
 
 	/**
-	 * This methods is no more generated to handle the case of editing the name of a lifeline 
+	 * This methods is no more generated to handle the case of editing the name of a lifeline
 	 * with a directEdition when its properties represents and decomposedAs are null
+	 * 
 	 * @generated NOT
 	 */
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
-		
+
 
 		Lifeline lifeline = (Lifeline)resolveSemanticElement();
-		if(lifeline.getRepresents() != null || lifeline.getDecomposedAs() != null){
+		if(lifeline.getRepresents() != null || lifeline.getDecomposedAs() != null) {
 			directEditionMode = IDirectEdition.NO_DIRECT_EDITION;
 		}
 
