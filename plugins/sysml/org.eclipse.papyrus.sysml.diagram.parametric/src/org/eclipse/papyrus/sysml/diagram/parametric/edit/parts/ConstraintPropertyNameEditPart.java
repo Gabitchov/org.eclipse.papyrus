@@ -617,12 +617,15 @@ public class ConstraintPropertyNameEditPart extends CompartmentEditPart implemen
 	 * Checks if an extended editor is present.
 	 * 
 	 * @return <code>true</code> if an extended editor is present.
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean checkExtendedEditor() {
-		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass()
+		EObject semanticElement = resolveSemanticElement();
+		if (semanticElement != null && semanticElement instanceof ConstraintProperty) {			
+			boolean hasSpecificEditorConfiguration = DirectEditorsUtil.hasSpecificEditorConfiguration(((ConstraintProperty)semanticElement).getBase_Property().eClass()
 					.getInstanceClassName());
+			
+			return hasSpecificEditorConfiguration;
 		}
 		return false;
 	}
@@ -634,12 +637,7 @@ public class ConstraintPropertyNameEditPart extends CompartmentEditPart implemen
 	 * @generated
 	 */
 	protected boolean checkDefaultEdition() {
-		EObject semanticElement = resolveSemanticElement();
-		if (semanticElement instanceof ConstraintProperty) {
-			return (((ConstraintProperty) semanticElement).getBase_Property() instanceof NamedElement);
-		} else {
-			return (semanticElement instanceof NamedElement);
-		}
+		return  (resolveSemanticElement() instanceof NamedElement);
 	}
 
 	/**
