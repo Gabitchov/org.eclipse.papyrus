@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Diagram Common Tests
+Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.tests;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.diagram.common.tests.Activator
+Bundle-Vendor: CEA LIST
+Require-Bundle: org.eclipse.core.runtime,
+ org.junit4,
+ org.eclipse.papyrus.diagram.common;bundle-version="0.7.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
