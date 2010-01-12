@@ -1086,24 +1086,26 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 				}
 			}
 		} else if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature)) {
-			// Synchronize operands' covered lifelines with combined fragment's covered lifelines
-			CombinedFragment combinedFragment = (CombinedFragment)notification.getNotifier();
-			EList<Lifeline> combinedFragmentCoveredLifelines = combinedFragment.getCovereds();
-			for(InteractionOperand operand : combinedFragment.getOperands()) {
-				EList<Lifeline> operandCoveredLifelines = operand.getCovereds();
-				if(!operandCoveredLifelines.equals(combinedFragmentCoveredLifelines)) {
-					// Add new covered lifelines (not already covered)
-					List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(combinedFragmentCoveredLifelines);
-					coveredLifelinesToAdd.removeAll(operandCoveredLifelines);
-					if(!coveredLifelinesToAdd.isEmpty()) {
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
-					}
-
-					// Delete old covered lifelines (not covered anymore)
-					List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(operandCoveredLifelines);
-					coveredLifelinesToRemove.removeAll(combinedFragmentCoveredLifelines);
-					if(!coveredLifelinesToRemove.isEmpty()) {
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+			if(notification.getNotifier() instanceof CombinedFragment){
+				// Synchronize operands' covered lifelines with combined fragment's covered lifelines
+				CombinedFragment combinedFragment = (CombinedFragment)notification.getNotifier();
+				EList<Lifeline> combinedFragmentCoveredLifelines = combinedFragment.getCovereds();
+				for(InteractionOperand operand : combinedFragment.getOperands()) {
+					EList<Lifeline> operandCoveredLifelines = operand.getCovereds();
+					if(!operandCoveredLifelines.equals(combinedFragmentCoveredLifelines)) {
+						// Add new covered lifelines (not already covered)
+						List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(combinedFragmentCoveredLifelines);
+						coveredLifelinesToAdd.removeAll(operandCoveredLifelines);
+						if(!coveredLifelinesToAdd.isEmpty()) {
+							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
+						}
+	
+						// Delete old covered lifelines (not covered anymore)
+						List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(operandCoveredLifelines);
+						coveredLifelinesToRemove.removeAll(combinedFragmentCoveredLifelines);
+						if(!coveredLifelinesToRemove.isEmpty()) {
+							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+						}
 					}
 				}
 			}
