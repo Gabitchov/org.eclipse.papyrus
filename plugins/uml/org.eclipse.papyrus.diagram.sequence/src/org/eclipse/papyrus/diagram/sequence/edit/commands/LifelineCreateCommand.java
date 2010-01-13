@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -96,10 +97,11 @@ public class LifelineCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Add generated NOT to constrain the creation of a lifeline
+	 * @generated NOT  
 	 */
 	public boolean canExecute() {
-		return true;
+		return !(getElementToEdit() instanceof InteractionOperand);
 
 	}
 
