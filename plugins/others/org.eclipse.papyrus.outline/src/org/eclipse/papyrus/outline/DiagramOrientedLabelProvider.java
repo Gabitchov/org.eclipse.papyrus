@@ -16,8 +16,10 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -32,7 +34,7 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider;
 
 	/** Registry to store editor factories */
-	private IEditorFactoryRegistry editorRegistry;
+	private IPageIconsRegistry editorRegistry;
 
 	public DiagramOrientedLabelProvider(AdapterFactoryLabelProvider adapterFactoryLabelProvider) {
 		this.myAdapterFactoryLabelProvider = adapterFactoryLabelProvider;
@@ -45,6 +47,7 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 		if(element instanceof Diagram) {
 			return getEditorRegistry().getEditorIcon(element);
 		}
+		
 		return myAdapterFactoryLabelProvider.getImage(element);
 	}
 
@@ -93,8 +96,9 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
+	 * @throws ServiceException 
 	 */
-	protected IEditorFactoryRegistry getEditorRegistry() {
+	protected IPageIconsRegistry getEditorRegistry() {
 		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
@@ -106,9 +110,15 @@ public class DiagramOrientedLabelProvider implements ILabelProvider {
 	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
+	 * @throws ServiceException 
 	 */
-	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+	protected IPageIconsRegistry createEditorRegistry() {
+		try {
+			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+		} catch (ServiceException e) {
+			// Not found, return an empty one which return null for each request.
+			return new PageIconsRegistry();
+		}
 	}
 
 }
