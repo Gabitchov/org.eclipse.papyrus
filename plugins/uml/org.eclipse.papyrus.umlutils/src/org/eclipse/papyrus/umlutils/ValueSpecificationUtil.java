@@ -28,6 +28,9 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class ValueSpecificationUtil {
 
+	/** The * KeyWord to represent an unlimited integer (infinite)*/
+	private static final String UNLIMITED_KEYWORD = "*";
+
 	/**
 	 * Get a string representing of a ValueSpecification
 	 * 
@@ -50,7 +53,7 @@ public class ValueSpecificationUtil {
 		case UMLPackage.LITERAL_UNLIMITED_NATURAL:
 			value = Integer.toString(((LiteralUnlimitedNatural)specification).getValue());
 			if("-1".equals(value)) { //$NON-NLS-1$
-				value = "*"; //$NON-NLS-1$
+				value = UNLIMITED_KEYWORD; //$NON-NLS-1$
 			}
 			break;
 		case UMLPackage.LITERAL_NULL:
@@ -172,6 +175,10 @@ public class ValueSpecificationUtil {
 			intValue = Integer.decode(value);
 		} catch (NumberFormatException e) {
 			// Do nothing, this was not a number. 0 will be the default value
+		}
+		// Handle the special unlimited value separately
+		if(UNLIMITED_KEYWORD.equals(value)) {
+			intValue = -1;
 		}
 		specification.setValue(intValue);
 	}
