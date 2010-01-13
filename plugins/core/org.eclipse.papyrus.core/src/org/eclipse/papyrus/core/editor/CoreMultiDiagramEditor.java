@@ -42,8 +42,10 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageModelFactoryRegistry;
+import org.eclipse.papyrus.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
@@ -95,9 +97,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/** Gef adapter */
 	private MultiDiagramEditorGefDelegate gefAdaptorDelegate;
-
-	/** Registry to store editor factories */
-	private IEditorFactoryRegistry editorRegistry;
 
 	/** ContentOutline registry */
 	private ContentOutlineRegistry contentOutlineRegistry;
@@ -213,29 +212,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	private void createContentOutlineRegistry() {
 		contentOutlineRegistry = new ContentOutlineRegistry(this, Activator.PLUGIN_ID);
-	}
-
-	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return the singleton eINSTANCE. This method can be
-	 * subclassed to return another registry.
-	 * 
-	 * @return the singleton eINSTANCE of editor registry
-	 */
-	protected IEditorFactoryRegistry getEditorRegistry() {
-		if(editorRegistry == null) {
-			editorRegistry = createEditorRegistry();
-		}
-		return editorRegistry;
-	}
-
-	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this method in order to return the registry associated to
-	 * the extension point namespace.
-	 * 
-	 * @return the EditorRegistry for nested editor descriptors
-	 */
-	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(Activator.PLUGIN_ID);
 	}
 
 	/**
@@ -403,7 +379,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// return gefAdaptorDelegate.getSelectionSynchronizer();
 		// }
 
-		// TODO : following code is GMF dependant. It should be moved to adapter
+		// TODO : following code is GMF dependent. It should be moved to adapter
 		// Do we really need it? Who use it ?
 		if(adapter == IDiagramGraphicalViewer.class) {
 			IEditorPart activeEditor = getActiveEditor();
@@ -425,7 +401,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Init super
 		super.init(site, input);
 
-		// FIXME What for ?? Was used by the BackbonContext...
+		// Used to get the appropriate domain object from a graphical object (EditPart, ...)
 		BusinessModelResolver.getInstance();
 
 		// Load resources
@@ -438,16 +414,24 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
 
-		editorRegistry = createEditorRegistry();
-
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
 		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
 		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
 
-		// Create ContentProvider
-		PageModelFactory pageModelRegistry = new PageModelFactory(editorRegistry, servicesRegistry);
+		// Create and initalize editor icons service
+		PageIconsRegistry pageIconsRegistry = new PageIconsRegistry();
+		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
+		editorReader.populate(pageIconsRegistry);
+		servicesRegistry.add(IPageIconsRegistry.class, 1, pageIconsRegistry);
+		
+		
+		// Create PageModelRegistry requested by content provider.
+		// Also populate it from extensions.
+		PageModelFactoryRegistry pageModelRegistry = new PageModelFactoryRegistry();
+		editorReader.populate(pageModelRegistry, servicesRegistry);
+		
 		// TODO : create appropriate Resource for the contentProvider, and pass it here.
 		// This will allow to remove the old sash stuff.
 		setContentProvider(createPageProvider(pageModelRegistry, resourceSet.getDiResource(), transactionalEditingDomain));

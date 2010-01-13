@@ -22,7 +22,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
+import org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.NotationUtils;
 
@@ -68,7 +68,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 * 
 	 * @param diagram
 	 *        The diagram to add to graphical model. This will be the diagram provided to
-	 *        {@link IEditorFactory#createIPageModel(Object, org.eclipse.papyrus.core.services.ServicesRegistry)}
+	 *        {@link IPluggableEditorFactory#createIPageModel(Object, org.eclipse.papyrus.core.services.ServicesRegistry)}
 	 */
 	protected void addNewDiagram(String name, String type, EObject diagram) {
 

@@ -13,24 +13,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageModelFactoryRegistry;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.IDebugChannel;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
-import org.eclipse.swt.graphics.Image;
 
 /**
- * A registry recording possible editor descriptors. This class use the eclipse extension mechanism.
- * This registry also read editor descriptors from the Eclipse extension mechanism.
+ * This reader is used to read PluggableEditorFactory from the Eclipse extension declarations.
+ * It can be used to populate an {@link PageModelFactoryRegistry}.
  */
-public class EditorFactoryRegistry implements IEditorFactoryRegistry {
+public class PluggableEditorFactoryReader {
 
 	/** ID of the editor extension (schema filename) */
 	public static final String EDITOR_EXTENSION_ID = "papyrusDiagram";
@@ -51,31 +50,49 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 	 * 
 	 * @param extensionPointNamespace
 	 */
-	public EditorFactoryRegistry(String extensionPointNamespace) {
+	public PluggableEditorFactoryReader(String extensionPointNamespace) {
 		super();
 		this.extensionPointNamespace = extensionPointNamespace;
 		editorDescriptors = new ArrayList<EditorDescriptor>();
 	}
 
 	/**
-	 * Create the IPageModel for the specified identifier. {@inheritDoc}
+	 * Populate the provided {@link PageModelFactoryRegistry} with {@link IPluggableEditorFactory} read
+	 * from Eclipse extension declarations.
+	 * For each declared editor, create a proxy encapsulating the real EditorFactory. Then the proxy is
+	 * added to the PageModelFactoryRegistry.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
+	 * @param pageModelFactoryRegistry The object to populate
+	 * @param serviceRegistry ServiceRegistry provided to newly instantiated {@link IPluggableEditorFactory}.
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
-		for(EditorDescriptor desc : getEditorDescriptors()) {
-			if(desc.isDescriptorForPage(pageIdentifier)) {
-				{
-					return desc.createIPageModel(pageIdentifier, servicesRegistry);
-				}
-			}
-		}
-		// no editor found !
-		// TODO Throw an exception.
-		// throw new EditorNotFoundException("No editor registered for '" + pageIdentifier + "'.");
-		return null;
-	}
+	public void populate(PageModelFactoryRegistry pageModelFactoryRegistry, ServicesRegistry serviceRegistry) {
 
+		for(EditorDescriptor desc : getEditorDescriptors()) {
+			
+			// Create and add a proxy encapsulating the EditorFactory.
+			pageModelFactoryRegistry.add( new EditorFactoryProxy(serviceRegistry, desc));
+		}
+	}
+	
+	/**
+	 * Populate the provided {@link PageIconsRegistry} with icons read
+	 * from Eclipse extension declarations.
+	 * For each declared editor, create a {@link EditorIconFactory}.
+	 * 
+	 * @param pageModelFactoryRegistry The object to populate
+	 * @param serviceRegistry ServiceRegistry provided to newly instantiated {@link IPluggableEditorFactory}.
+	 */
+	public void populate(PageIconsRegistry registry) {
+
+		for(EditorDescriptor desc : getEditorDescriptors()) {
+			
+			// Create and add a proxy encapsulating the EditorFactory.
+			registry.add( new EditorIconFactory(desc));
+		}
+	}
+	
+	
+	
 	/**
 	 * Get the list of editor descriptor.
 	 * 
@@ -104,33 +121,11 @@ public class EditorFactoryRegistry implements IEditorFactoryRegistry {
 					editorDescriptors.add(desc);
 				}
 			} catch (ExtensionException e) {
-				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem " + e);
+				log.error("Initialization editor problem ", e);
 			}
 		}
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorDescriptors.size() + " editorDescriptions loaded");
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Image getEditorIcon(Object model) {
-		for(EditorDescriptor desc : getEditorDescriptors()) {
-			if(desc.isDescriptorForPage(model)) {
-				// if (model instanceof org.eclipse.papyrus.di.Diagram) {
-				// org.eclipse.papyrus.di.Diagram di2Diagram = (org.eclipse.papyrus.di.Diagram) model;
-				// if (!GMF_DIAGRAM.equals(di2Diagram.getType()))
-				// return false;
-				// Ok, this is a gmf diagram
-				// EObject root = ((CoreSemanticModelBridge) di2Diagram.getSemanticModel()).getElement();
-				ImageDescriptor imageDescriptor = desc.getIcon();
-				if(imageDescriptor == null)
-					return null;
-				Image image = imageDescriptor.createImage();
-				return image;
-			}
-		}
-		return null;
+		
+		log.debug( "Read " + editorDescriptors.size() + " editor descriptors from Eclipse extensions");
 	}
 
 	/**

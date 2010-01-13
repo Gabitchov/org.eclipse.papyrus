@@ -13,12 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
 import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
 import org.eclipse.papyrus.core.extension.ExtensionException;
-import org.eclipse.papyrus.core.utils.IDebugChannel;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
@@ -62,20 +62,23 @@ public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory
 	 * @return a nestedEditorDescriptor strucure that contains information to create diagrams
 	 * @throws BadNameExtensionException
 	 */
+	@SuppressWarnings("unchecked")
 	public EditorDescriptor createNestedEditorDescriptor(IConfigurationElement element) throws ExtensionException {
 		EditorDescriptor res;
 
 		checkTagName(element, EDITOR_DIAGRAM_EXTENSIONPOINT);
 
 		res = new EditorDescriptor();
-		res.setEditorFactoryClass((Class<IEditorFactory>)parseClass(element, FACTORYCLASS_ATTRIBUTE, EDITOR_DIAGRAM_EXTENSIONPOINT));
-		res.setRequestedContextId(element.getAttribute(CONTEXTID_ATTRIBUTE));
+		res.setEditorFactoryClass((Class<IPluggableEditorFactory>)parseClass(element, FACTORYCLASS_ATTRIBUTE, EDITOR_DIAGRAM_EXTENSIONPOINT));
 		res.setActionBarContributorId(element.getAttribute(ACTIONBARCONTRIBUTORID_ATTRIBUTE));
 		String iconPath = element.getAttribute(ICON_ATTRIBUTE);
 		if(iconPath != null) {
 			res.setIcon(AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath));
 		}
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "a nested editor ready " + res);
+
+		if(log.isDebugEnabled()) {
+			log.debug("Read editor descriptor " + res);
+		}
 		return res;
 	}
 }

@@ -29,12 +29,7 @@ public class EditorDescriptor {
 	/**
 	 * Editor factory implementation class.
 	 */
-	private Class<IEditorFactory> editorFactoryClass;
-
-	/**
-	 * Context Id used to search the context requested by the editor.
-	 */
-	private String requestedContextId;
+	private Class<IPluggableEditorFactory> editorFactoryClass;
 
 	/**
 	 * EditorActionBarContributor Id used to search the EditorActionBarContributor requested by the editor.
@@ -49,32 +44,13 @@ public class EditorDescriptor {
 	/**
 	 * Cached factory. Initialized by first call to getXxx
 	 */
-	private IEditorFactory editorFactory;
+	private IPluggableEditorFactory editorFactory;
 
 	/**
 	 * Constructor.
 	 */
 	public EditorDescriptor() {
 
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorDescriptor#getRequestedContextId()
-	 * @return
-	 * 
-	 */
-	public String getRequestedContextId() {
-		return requestedContextId;
-	}
-
-	/**
-	 * set the requestedContextId
-	 * 
-	 * @param requestedContextId
-	 *        the requestedContextId to set
-	 */
-	public void setRequestedContextId(String requestedContextId) {
-		this.requestedContextId = requestedContextId;
 	}
 
 	/**
@@ -115,63 +91,11 @@ public class EditorDescriptor {
 	}
 
 	/**
-	 * Get associated editorFactory. The editorFactoryClass should be set, otherwise an error is thrown.
-	 * 
-	 * @return the IEditorFactory
-	 */
-	public IEditorFactory getEditorFactory() {
-		if(editorFactory != null)
-			return editorFactory;
-
-		if(editorFactoryClass == null) { // error
-			throw new IllegalStateException("EditorFactory class should be set.");
-		}
-
-		// Create it
-		try {
-			editorFactory = (IEditorFactory)editorFactoryClass.newInstance();
-			// Set the descriptor. USed by the factory to get the ActionBarId and Icon
-			editorFactory.init(this);
-			return editorFactory;
-		} catch (InstantiationException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
-			// Lets propagate. This is an implementation problem that should be
-			// solved by programmer.
-			throw new RuntimeException(e);
-		}
-	}
-
-	/**
-	 * Return true if the descriptor is for the specified pageIdentifier.
-	 * Delegate to the PageModelFactory s.
-	 * 
-	 * @param root
-	 *        the element that can be edited
-	 * @return boolean true if the editor can edit it.
-	 */
-	public boolean isDescriptorForPage(Object pageIdentifier) {
-		return getEditorFactory().isPageModelFactoryFor(pageIdentifier);
-	}
-
-	/**
-	 * see {@link IPageModelFactory#createIPageModel(Object)}
-	 * 
-	 * @param pageIdentifier
-	 * @return
-	 */
-	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
-		return getEditorFactory().createIPageModel(pageIdentifier, servicesRegistry);
-	}
-
-	/**
 	 * get the class of the editor factory
 	 * 
 	 * @return the class of the editor
 	 */
-	public Class<IEditorFactory> getEditorFactoryClass() {
+	public Class<IPluggableEditorFactory> getEditorFactoryClass() {
 		return editorFactoryClass;
 	}
 
@@ -181,7 +105,7 @@ public class EditorDescriptor {
 	 * @param editorFactoryClass
 	 *        the class that represents the editor factory
 	 */
-	public void setEditorFactoryClass(Class<IEditorFactory> editorFactoryClass) {
+	public void setEditorFactoryClass(Class<IPluggableEditorFactory> editorFactoryClass) {
 		this.editorFactoryClass = editorFactoryClass;
 	}
 
@@ -191,9 +115,9 @@ public class EditorDescriptor {
 	 */
 	public String toString() {
 		if(editorFactoryClass == null || editorFactoryClass.getName() == null) {
-			return "[nestedEditor  editorFactory:" + editorFactoryClass + "(null) requestedContextID:" + requestedContextId + "]";
+			return "[nestedEditor  editorFactory:" + editorFactoryClass + "(null)]";
 		}
-		return "[nestedEditor  editorFactory:" + editorFactoryClass.getName() + " requestedContextID:" + requestedContextId + "]";
+		return "[nestedEditor  editorFactory:" + editorFactoryClass.getName()+ "]";
 	}
 
 }

@@ -40,8 +40,6 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  */
 public class GmfEditorFactory extends AbstractEditorFactory {
 
-	public static final String GMF_DIAGRAM = "diagram.gmf"; //$NON-NLS-1$
-
 	/**
 	 * Creates a new GmfEditorFactory.
 	 * 
@@ -58,7 +56,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 * Return true if this PageModelFactory can create a PageModel for the specified pageIdentifier.
 	 * The pageIdentifier is an instance of Diagram.
 	 * 
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 
@@ -77,14 +75,14 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#createIPageModel(java.lang.Object)
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
+	public IPageModel createIPageModel(Object pageIdentifier) {
 
-		return new GMFEditorModel((Diagram)pageIdentifier, servicesRegistry);
+		return new GMFEditorModel((Diagram)pageIdentifier, getServiceRegistry());
 	}
 
 	/**
@@ -159,8 +157,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			// ServicesRegistry serviceRegistry = getServicesRegistry();
 			ActionBarContributorRegistry registry;
 			try {
-				registry = (ActionBarContributorRegistry)servicesRegistry
-						.getService(ActionBarContributorRegistry.class);
+				registry = (ActionBarContributorRegistry)servicesRegistry.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
 				// TODO Log the error

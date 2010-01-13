@@ -15,6 +15,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.core.contentoutline,
  org.eclipse.papyrus.core.editor,
+ org.eclipse.papyrus.core.editorsfactory,
  org.eclipse.papyrus.core.extension,
  org.eclipse.papyrus.core.extension.commands,
  org.eclipse.papyrus.core.extension.diagrameditor,

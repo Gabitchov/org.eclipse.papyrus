@@ -14,12 +14,19 @@
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.editorsfactory.IEditorFactory;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 
 /**
+ * Abstract base class for Factory of editors. 
+ * See {@link IEditorFactory}.
+ * 
+ * 
  * @author Remi Schnekenburger
  * @author Patrick Tessier
+ * @author cedric dumoulin
  */
-public abstract class AbstractEditorFactory implements IEditorFactory {
+public abstract class AbstractEditorFactory implements IPluggableEditorFactory {
 
 	/**
 	 * Expected Class of the diagram to create.
@@ -36,6 +43,11 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 	protected EditorDescriptor editorDescriptor;
 
 	/**
+	 * ServiceRegistry that can be provided to created editors.
+	 */
+	private ServicesRegistry serviceRegistry;
+
+	/**
 	 * Creates a new AbstractEditorFactory.
 	 * 
 	 * @param diagramClass
@@ -47,6 +59,26 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 		assert (expectedType != null);
 		this.diagramClass = diagramClass;
 		this.expectedType = expectedType;
+	}
+
+	/**
+	 * Initialize the factory with useful Classes.
+	 * 
+	 * @param serviceRegistry Service registry that will be provided to created editor.
+	 * @param editorDescriptor Descriptor containing data from the Eclipse Extension.
+	 */
+	public void init(ServicesRegistry serviceRegistry, EditorDescriptor editorDescriptor) {
+		this.editorDescriptor = editorDescriptor;
+		this.serviceRegistry = serviceRegistry;
+
+	}
+
+	
+	/**
+	 * @return the serviceRegistry
+	 */
+	public ServicesRegistry getServiceRegistry() {
+		return serviceRegistry;
 	}
 
 	/**
@@ -74,16 +106,5 @@ public abstract class AbstractEditorFactory implements IEditorFactory {
 		return editorDescriptor;
 	}
 
-
-	/**
-	 * Initialize the factory with useful Classes.
-	 * TODO Find a better way to provide these data.
-	 * 
-	 * @param editorDescriptor
-	 */
-	public void init(EditorDescriptor editorDescriptor) {
-		this.editorDescriptor = editorDescriptor;
-
-	}
 
 }

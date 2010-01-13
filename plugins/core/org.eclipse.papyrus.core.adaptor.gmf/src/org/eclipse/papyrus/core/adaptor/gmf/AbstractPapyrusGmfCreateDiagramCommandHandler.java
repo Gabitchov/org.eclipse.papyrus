@@ -51,7 +51,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * Command creating a new GMF diagram in Papyrus. This command is intended to be used in eclipse
- * extensions. This command is to be used with Editors using Context.
+ * extensions. 
  * 
  * Commands to create a GMF Diagram can subclass this class. There is two kinds of commands: -
  * Eclipse handlers issuing commands (toolbar, menu, ...). This commands can find the active editor
@@ -59,7 +59,7 @@ import org.eclipse.ui.PlatformUI;
  * Commands called during editor initializing (like wizard). This commands require the diResourceSet
  * to work. The entry point is {@link #createDiagram(DiResourceSet, EObject, String)}
  * 
- * @author dumoulin
+ * @author cedric dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends AbstractHandler implements IHandler,
