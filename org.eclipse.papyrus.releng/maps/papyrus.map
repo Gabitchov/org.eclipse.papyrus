@@ -90,5 +90,6 @@ plugin@org.eclipse.papyrus.ui.toolbox=SVN,,svn://dev.eclipse.org/svnroot/modelin
 plugin@org.eclipse.papyrus.uml.standard=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard
 plugin@org.eclipse.papyrus.uml.standard.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard.edit
 plugin@org.eclipse.papyrus.umlutils=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.umlutils
+plugin@org.eclipse.papyrus.templaterepository=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.templaterepository
 
 
