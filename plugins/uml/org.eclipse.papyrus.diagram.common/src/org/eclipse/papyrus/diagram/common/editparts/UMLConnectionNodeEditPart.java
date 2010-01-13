@@ -168,8 +168,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	 */
 	public String stereotypesToDisplay() {
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getModel());
-		String stereotypespresentationKind = AppliedStereotypeHelper
-				.getAppliedStereotypePresentationKind((View)getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getModel());
 
 		// check the presentation kind. if only icon => do not display stereotypes
 		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
@@ -178,8 +177,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 
 		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View)getModel()));
 		if(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			return stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay,
-					stereotypesToDisplayWithQN);
+			return stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay, stereotypesToDisplayWithQN);
 		} else {
 			return stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
 		}
@@ -192,14 +190,11 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	 *         image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
-		String stereotypespresentationKind = AppliedStereotypeHelper
-				.getAppliedStereotypePresentationKind((View)getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getModel());
 		if(stereotypespresentationKind == null) {
 			return null;
 		}
-		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
-				|| stereotypespresentationKind
-				.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getModel());

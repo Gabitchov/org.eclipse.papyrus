@@ -88,13 +88,10 @@ ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new Constraint2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Constraint2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -106,9 +103,8 @@ ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -137,16 +133,15 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public CornerBentDescriptor getPrimaryShape() {
-		return (CornerBentDescriptor) primaryShape;
+		return (CornerBentDescriptor)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintName2EditPart) {
-			((ConstraintName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getCornerBentContentLabel());
+		if(childEditPart instanceof ConstraintName2EditPart) {
+			((ConstraintName2EditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
 			return true;
 		}
 
@@ -157,7 +152,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintName2EditPart) {
+		if(childEditPart instanceof ConstraintName2EditPart) {
 			return true;
 		}
 		return false;
@@ -167,7 +162,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -177,7 +172,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -224,7 +219,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -236,7 +231,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -246,7 +241,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -255,8 +250,8 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -264,8 +259,8 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -273,15 +268,14 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(ConstraintName2EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintName2EditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
@@ -294,499 +288,498 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (targetEditPart instanceof Dependency2EditPart) {
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof CommentEditPart) {
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof Comment2EditPart) {
+		if(targetEditPart instanceof Comment2EditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
 		return types;
@@ -795,499 +788,498 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Comment_2012);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Comment_3028);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Port_3032);
 		}
 		return types;
@@ -1296,8 +1288,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
@@ -1313,544 +1305,543 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Usage_4007) {
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4008) {
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.InstanceSpecification_2001);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.Dependency_4018) {
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Port_3032);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
 		}
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_3028);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
-		if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Association_2015);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Component_2002);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Signal_2003);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Interface_2004);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Model_2005);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Enumeration_2006);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Package_2007);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Class_2008);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.PrimitiveType_2009);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.DataType_2010);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Component_3021);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Signal_3022);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Interface_3023);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Model_3024);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Enumeration_3025);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Package_3009);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Class_3010);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 		}
-		if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
 		return types;
@@ -1926,56 +1917,37 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display
-			.getCurrent(), "Arial", 8, SWT.NORMAL);
+	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
 
 	/**
 	 * @generated
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Constraint", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Constraint", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Constraint", PreferenceConstantHelper.COLOR_FILL);
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(
-					(IPreferenceStore) preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE
-				.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant(
-					"Constraint", PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				result = new Integer(gradientPreferenceConverter
-						.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

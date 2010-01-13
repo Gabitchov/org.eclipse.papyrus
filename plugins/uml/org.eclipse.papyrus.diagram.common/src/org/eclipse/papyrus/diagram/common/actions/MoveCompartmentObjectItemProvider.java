@@ -24,8 +24,7 @@ import org.eclipse.ui.IWorkbenchPage;
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 
  */
-public class MoveCompartmentObjectItemProvider extends
-		AbstractContributionItemProvider implements IProvider {
+public class MoveCompartmentObjectItemProvider extends AbstractContributionItemProvider implements IProvider {
 
 	/** The Constant MENU_CREATE_DIAGRAM. */
 	public static final String MENU_CREATE_DIAGRAM = "menu_order_within_compartment"; //$NON-NLS-1$
@@ -34,8 +33,7 @@ public class MoveCompartmentObjectItemProvider extends
 	 * It creates the menu with the list of actions.
 	 */
 	@Override
-	protected IMenuManager createMenuManager(String menuId,
-			IWorkbenchPartDescriptor partDescriptor) {
+	protected IMenuManager createMenuManager(String menuId, IWorkbenchPartDescriptor partDescriptor) {
 		if(!MENU_CREATE_DIAGRAM.equals(menuId)) {
 			return super.createMenuManager(menuId, partDescriptor);
 		}
@@ -85,14 +83,10 @@ public class MoveCompartmentObjectItemProvider extends
 			MoveCompartmentObjectAction actionTop, actionBottom, actionUp, actionDown;
 
 			// Create the actions
-			actionTop = new MoveCompartmentObjectAction(getWorkbenchPage(),
-					MoveCompartmentObjectAction.MOVE_TOP);
-			actionUp = new MoveCompartmentObjectAction(getWorkbenchPage(),
-					MoveCompartmentObjectAction.MOVE_UP);
-			actionDown = new MoveCompartmentObjectAction(getWorkbenchPage(),
-					MoveCompartmentObjectAction.MOVE_DOWN);
-			actionBottom = new MoveCompartmentObjectAction(getWorkbenchPage(),
-					MoveCompartmentObjectAction.MOVE_BOTTOM);
+			actionTop = new MoveCompartmentObjectAction(getWorkbenchPage(), MoveCompartmentObjectAction.MOVE_TOP);
+			actionUp = new MoveCompartmentObjectAction(getWorkbenchPage(), MoveCompartmentObjectAction.MOVE_UP);
+			actionDown = new MoveCompartmentObjectAction(getWorkbenchPage(), MoveCompartmentObjectAction.MOVE_DOWN);
+			actionBottom = new MoveCompartmentObjectAction(getWorkbenchPage(), MoveCompartmentObjectAction.MOVE_BOTTOM);
 
 			// Initialize the actions
 			actionTop.init();

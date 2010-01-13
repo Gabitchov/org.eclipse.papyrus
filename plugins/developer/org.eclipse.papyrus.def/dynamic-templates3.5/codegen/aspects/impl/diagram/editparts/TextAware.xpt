@@ -137,6 +137,8 @@
 	protected String getLabelTextHelper(org.eclipse.draw2d.IFigure figure) {
 		if (figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
 			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) figure).getText();
+		} else if (figure instanceof org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) {
+			return ((org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) figure).getText();
 		} else {
 			return ((org.eclipse.draw2d.Label) figure).getText();
 		}
@@ -148,6 +150,8 @@
 	protected void setLabelTextHelper(org.eclipse.draw2d.IFigure figure, String text) {
 		if (figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
 			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) figure).setText(text);
+		} else if (figure instanceof org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) {
+			((org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) figure).setText(text);
 		} else {
 			((org.eclipse.draw2d.Label) figure).setText(text);
 		}
@@ -159,6 +163,8 @@
 	protected org.eclipse.swt.graphics.Image getLabelIconHelper(org.eclipse.draw2d.IFigure figure) {
 		if (figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
 			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) figure).getIcon();
+		} else if (figure instanceof org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) {
+			return ((org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) figure).getIcon();
 		} else {
 			return ((org.eclipse.draw2d.Label) figure).getIcon();
 		}
@@ -170,6 +176,8 @@
 	protected void setLabelIconHelper(org.eclipse.draw2d.IFigure figure, org.eclipse.swt.graphics.Image icon) {
 		if (figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
 			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) figure).setIcon(icon);
+		} else if (figure instanceof org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) {
+			((org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure) figure).setIcon(icon);
 		} else {
 			((org.eclipse.draw2d.Label) figure).setIcon(icon);
 		}

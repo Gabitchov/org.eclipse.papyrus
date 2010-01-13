@@ -164,7 +164,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 		}
 		if(generalizationSettoCreate == null) {
 			generalizationSettoCreate = UMLFactory.eINSTANCE.createGeneralizationSet();
-			generalizationSettoCreate.setName("GeneralizationSet_"+source.getSpecific().getName()+"_"+target.getSpecific().getName());
+			generalizationSettoCreate.setName("GeneralizationSet_" + source.getSpecific().getName() + "_" + target.getSpecific().getName());
 			container.getPackagedElements().add(generalizationSettoCreate);
 
 		}

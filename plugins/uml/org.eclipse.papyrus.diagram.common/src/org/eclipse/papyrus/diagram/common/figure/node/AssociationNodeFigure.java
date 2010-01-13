@@ -37,10 +37,8 @@ public class AssociationNodeFigure extends DefaultSizeNodeFigure {
 		PointList points = new PointList(5);
 		Rectangle anchorableRectangle = getHandleBounds();
 		points.addPoint(anchorableRectangle.x + (anchorableRectangle.width / 2), anchorableRectangle.y);
-		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y
-				+ anchorableRectangle.height / 2);
-		points.addPoint(anchorableRectangle.x + (anchorableRectangle.width / 2), anchorableRectangle.y
-				+ anchorableRectangle.height);
+		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + anchorableRectangle.height / 2);
+		points.addPoint(anchorableRectangle.x + (anchorableRectangle.width / 2), anchorableRectangle.y + anchorableRectangle.height);
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height / 2);
 		points.addPoint(anchorableRectangle.x + (anchorableRectangle.width / 2), anchorableRectangle.y);
 

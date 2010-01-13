@@ -109,8 +109,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		int height = 0, width = 0;
 		for(int i = 0; i < children.size(); i++) {
 			child = (IFigure)children.get(i);
-			childSize = transposer.t(preferred ? child.getPreferredSize(wHint, hHint) : child.getMinimumSize(wHint,
-					hHint));
+			childSize = transposer.t(preferred ? child.getPreferredSize(wHint, hHint) : child.getMinimumSize(wHint, hHint));
 			height += childSize.height;
 			width = Math.max(width, childSize.width);
 		}
@@ -162,8 +161,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		}
 
 		minSize.height += Math.max(0, children.size() - 1) * spacing;
-		return transposer.t(minSize).expand(insets.getWidth(), insets.getHeight()).union(
-				getBorderPreferredSize(container));
+		return transposer.t(minSize).expand(insets.getWidth(), insets.getHeight()).union(getBorderPreferredSize(container));
 	}
 
 	/**
@@ -211,8 +209,7 @@ public class LeftToolbarLayout extends AbstractHintLayout {
 		}
 
 		prefSize.height += Math.max(0, children.size() - 1) * spacing;
-		return transposer.t(prefSize).expand(insets.getWidth(), insets.getHeight()).union(
-				getBorderPreferredSize(container));
+		return transposer.t(prefSize).expand(insets.getWidth(), insets.getHeight()).union(getBorderPreferredSize(container));
 	}
 
 	/**

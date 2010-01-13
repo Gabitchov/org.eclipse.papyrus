@@ -171,12 +171,12 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 			EditPart currentEditPart = editPartIterator.next();
 			if(currentEditPart instanceof ClassEditPart) {
 				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticObject)) {
-					View view = (View) currentEditPart.getModel();
+					View view = (View)currentEditPart.getModel();
 					EList<ConnectorImpl> listlink = view.getTargetEdges();
 					Iterator<ConnectorImpl> addedlinkIterator = listlink.iterator();
 					while(addedlinkIterator.hasNext()) {
 						ConnectorImpl currentconnector = addedlinkIterator.next();
-						ShapeImpl containmenetshape= (ShapeImpl)currentconnector.getSource();
+						ShapeImpl containmenetshape = (ShapeImpl)currentconnector.getSource();
 						if(containmenetshape.getType().equals("3032")) {
 							/* The containment circle node is deleted only if any other link is connected */
 							if(containmenetshape.getSourceEdges().size() == 1) {
@@ -187,11 +187,11 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 					}
 					cc.add(new DeleteCommand(getEditingDomain(), (View)((GraphicalEditPart)currentEditPart).getModel()));
 
-				
-			}
+
+				}
 			}
 		}
-		
+
 		return new ICommandProxy(cc);
 	}
 

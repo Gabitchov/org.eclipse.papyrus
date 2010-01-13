@@ -310,8 +310,7 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * @param preserveAxis
 	 * @param figureBounds
 	 */
-	protected static void modifySizeDeltaToFitAnchor(IdentityAnchor anchor, Dimension sizeDelta, int preserveAxis,
-			Rectangle figureBounds) {
+	protected static void modifySizeDeltaToFitAnchor(IdentityAnchor anchor, Dimension sizeDelta, int preserveAxis, Rectangle figureBounds) {
 		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(anchor.getId());
 
 		int margin = 6;

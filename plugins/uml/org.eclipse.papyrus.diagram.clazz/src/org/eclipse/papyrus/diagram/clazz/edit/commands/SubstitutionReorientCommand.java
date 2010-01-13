@@ -58,13 +58,13 @@ public class SubstitutionReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Substitution) {
+		if(false == getElementToEdit() instanceof Substitution) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -74,47 +74,43 @@ public class SubstitutionReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
+		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
 			return false;
 		}
 		Classifier target = getLink().getContract();
-		if (!(getLink().eContainer() instanceof Classifier)) {
+		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
-		Classifier container = (Classifier) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistSubstitution_4004(container, getNewSource(), target);
+		Classifier container = (Classifier)getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistSubstitution_4004(container, getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
+		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
 			return false;
 		}
 		Classifier source = getLink().getSubstitutingClassifier();
-		if (!(getLink().eContainer() instanceof Classifier)) {
+		if(!(getLink().eContainer() instanceof Classifier)) {
 			return false;
 		}
-		Classifier container = (Classifier) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistSubstitution_4004(container, source, getNewTarget());
+		Classifier container = (Classifier)getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistSubstitution_4004(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -140,34 +136,34 @@ public class SubstitutionReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Substitution getLink() {
-		return (Substitution) getElementToEdit();
+		return (Substitution)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getOldSource() {
-		return (Classifier) oldEnd;
+		return (Classifier)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getNewSource() {
-		return (Classifier) newEnd;
+		return (Classifier)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getOldTarget() {
-		return (Classifier) oldEnd;
+		return (Classifier)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Classifier getNewTarget() {
-		return (Classifier) newEnd;
+		return (Classifier)newEnd;
 	}
 }

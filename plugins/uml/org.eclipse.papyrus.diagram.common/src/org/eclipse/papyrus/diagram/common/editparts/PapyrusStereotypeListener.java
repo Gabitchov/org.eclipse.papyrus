@@ -95,8 +95,7 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 
 		// we are sure this is a new stereotype application => the element should yield it has been
 		// changed, so its edit parts can react
-		StereotypeCustomNotification newNotification = new StereotypeCustomNotification((ElementImpl)newValue,
-				APPLIED_STEREOTYPE, feature.getFeatureID(), null, notification.getNotifier());
+		StereotypeCustomNotification newNotification = new StereotypeCustomNotification((ElementImpl)newValue, APPLIED_STEREOTYPE, feature.getFeatureID(), null, notification.getNotifier());
 		((Element)newValue).eNotify(newNotification);
 	}
 
@@ -134,8 +133,7 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 		 * @param newValue
 		 *        the new value of the modified feature
 		 */
-		public StereotypeCustomNotification(ElementImpl notifier, int eventType, int featureID, Object oldValue,
-				Object newValue) {
+		public StereotypeCustomNotification(ElementImpl notifier, int eventType, int featureID, Object oldValue, Object newValue) {
 			super(notifier, eventType, featureID, oldValue, newValue);
 		}
 

@@ -85,9 +85,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			// opens a dialog using specific configuration
 			configuration.preEditAction(getUMLElement());
-			final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), getUMLElement(), configuration
-					.getTextToEdit(getUMLElement()), configuration);
+			final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getUMLElement(), configuration.getTextToEdit(getUMLElement()), configuration);
 			if(Window.OK == dialog.open()) {
 				TransactionalEditingDomain domain = getEditingDomain();
 				try {
@@ -173,8 +171,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 */
 	protected boolean checkExtendedEditor() {
 		if(getUMLElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement()
-					.eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement().eClass().getInstanceClassName());
 		}
 		return false;
 	}
@@ -193,8 +190,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if(configuration == null) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement()
-					.eClass().getInstanceClassName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement().eClass().getInstanceClassName());
 		}
 	}
 

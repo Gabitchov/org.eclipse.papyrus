@@ -94,8 +94,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 		final IEditorPart part = getActiveSashPage();
 		final List<String> hiddenPalettes = PapyrusPalettePreferences.getHiddenPalettes(part);
 
-		for(PapyrusPaletteService.ProviderDescriptor descriptor : PapyrusPaletteService.getInstance()
-				.getContributingProviders(part, getPaletteViewer().getPaletteRoot())) {
+		for(PapyrusPaletteService.ProviderDescriptor descriptor : PapyrusPaletteService.getInstance().getContributingProviders(part, getPaletteViewer().getPaletteRoot())) {
 
 			action = new DisplayPaletteChangeAction(descriptor);
 
@@ -140,8 +139,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editorPart = page.getActiveEditor();
 		assert editorPart != null;
-		ISashWindowsContainer sashWindowsContainer = (ISashWindowsContainer)editorPart
-				.getAdapter(ISashWindowsContainer.class);
+		ISashWindowsContainer sashWindowsContainer = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
 		if(sashWindowsContainer != null) {
 			return sashWindowsContainer.getActiveEditor();
 		}
@@ -219,8 +217,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 		 */
 		@Override
 		public void run() {
-			PapyrusPalettePreferences.changePaletteVisibility(getProviderDescriptor().getContributionID(),
-					getActiveSashPage().getClass().getName(), isChecked());
+			PapyrusPalettePreferences.changePaletteVisibility(getProviderDescriptor().getContributionID(), getActiveSashPage().getClass().getName(), isChecked());
 		}
 	}
 

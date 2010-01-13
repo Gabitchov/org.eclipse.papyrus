@@ -67,8 +67,7 @@ public class MessageFormatParser extends AbstractParser {
 	/**
 	 * @generated
 	 */
-	public MessageFormatParser(EAttribute[] features,
-			EAttribute[] editableFeatures) {
+	public MessageFormatParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
 	}
 
@@ -76,10 +75,10 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected String getDefaultPattern() {
-		if (defaultPattern == null) {
+		if(defaultPattern == null) {
 			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < features.length; i++) {
-				if (i > 0) {
+			for(int i = 0; i < features.length; i++) {
+				if(i > 0) {
 					sb.append(' ');
 				}
 				sb.append('{');
@@ -111,10 +110,8 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected MessageFormat getViewProcessor() {
-		if (viewProcessor == null) {
-			viewProcessor = new MessageFormat(
-					getViewPattern() == null ? getDefaultPattern()
-							: getViewPattern());
+		if(viewProcessor == null) {
+			viewProcessor = new MessageFormat(getViewPattern() == null ? getDefaultPattern() : getViewPattern());
 		}
 		return viewProcessor;
 	}
@@ -123,10 +120,8 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected MessageFormat getEditorProcessor() {
-		if (editorProcessor == null) {
-			editorProcessor = new MessageFormat(
-					getEditorPattern() == null ? getDefaultEditablePattern()
-							: getEditorPattern());
+		if(editorProcessor == null) {
+			editorProcessor = new MessageFormat(getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
 		}
 		return editorProcessor;
 	}
@@ -135,10 +130,10 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected String getDefaultEditablePattern() {
-		if (defaultEditablePattern == null) {
+		if(defaultEditablePattern == null) {
 			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < editableFeatures.length; i++) {
-				if (i > 0) {
+			for(int i = 0; i < editableFeatures.length; i++) {
+				if(i > 0) {
 					sb.append(' ');
 				}
 				sb.append('{');
@@ -162,10 +157,8 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	protected MessageFormat getEditProcessor() {
-		if (editProcessor == null) {
-			editProcessor = new MessageFormat(
-					getEditPattern() == null ? getDefaultEditablePattern()
-							: getEditPattern());
+		if(editProcessor == null) {
+			editProcessor = new MessageFormat(getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
 		}
 		return editProcessor;
 	}
@@ -174,23 +167,18 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getEditorProcessor().format(getEditableValues(element),
-				new StringBuffer(), new FieldPosition(0)).toString();
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
 	 * @generated
 	 */
-	public IParserEditStatus isValidEditString(IAdaptable adapter,
-			String editString) {
+	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
-		if (values == null) {
-			return new ParserEditStatus(UMLDiagramEditorPlugin.ID,
-					IParserEditStatus.UNEDITABLE, NLS.bind(
-							Messages.MessageFormatParser_InvalidInputError,
-							new Integer(pos.getErrorIndex())));
+		if(values == null) {
+			return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.UNEDITABLE, NLS.bind(Messages.MessageFormatParser_InvalidInputError, new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}
@@ -198,10 +186,8 @@ public class MessageFormatParser extends AbstractParser {
 	/**
 	 * @generated
 	 */
-	public ICommand getParseCommand(IAdaptable adapter, String newString,
-			int flags) {
-		Object[] values = getEditProcessor().parse(newString,
-				new ParsePosition(0));
+	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
+		Object[] values = getEditProcessor().parse(newString, new ParsePosition(0));
 		return getParseCommand(adapter, values, flags);
 	}
 
@@ -209,9 +195,8 @@ public class MessageFormatParser extends AbstractParser {
 	 * @generated
 	 */
 	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getViewProcessor().format(getValues(element),
-				new StringBuffer(), new FieldPosition(0)).toString();
+		EObject element = (EObject)adapter.getAdapter(EObject.class);
+		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 }

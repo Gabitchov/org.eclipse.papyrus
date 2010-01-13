@@ -182,8 +182,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))) {
 				compartmentList.add(((IFigure)container.getChildren().get(i)));
 			} else {
-				if((container.getChildren().get(i)) instanceof Label
-						|| (container.getChildren().get(i)) instanceof WrappingLabel) {
+				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel) {
 					notCompartmentList.add(((IFigure)container.getChildren().get(i)));
 				}
 			}

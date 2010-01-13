@@ -74,12 +74,7 @@ public class AssociationMultiplicityParser extends AbstractAssociationEndParser 
 
 		EStructuralFeature feature = getEStructuralFeature(event);
 
-		if(UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature)
-				|| UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(feature)
-				|| UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(feature)) {
+		if(UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(feature) || UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(feature)) {
 			isAffectingEvent = true;
 		}
 		return isAffectingEvent;

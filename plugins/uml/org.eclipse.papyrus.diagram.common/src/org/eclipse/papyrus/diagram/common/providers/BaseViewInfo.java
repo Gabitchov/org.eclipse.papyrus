@@ -354,8 +354,7 @@ public class BaseViewInfo implements ViewInfo {
 		Map<Integer, Collection<ViewInfo>> toAdd = getToAdd();
 		if(toAdd.containsKey(parentVisualID)) {
 			for(ViewInfo viewInfo : toAdd.get(parentVisualID)) {
-				if(info.getChildren().contains(viewInfo) == false && info != viewInfo
-						&& isAlreadyContained(viewInfo) == false) {
+				if(info.getChildren().contains(viewInfo) == false && info != viewInfo && isAlreadyContained(viewInfo) == false) {
 					info.getChildren().add(viewInfo);
 					if(viewInfo.getParent() == null) {
 						viewInfo.setParent(info);

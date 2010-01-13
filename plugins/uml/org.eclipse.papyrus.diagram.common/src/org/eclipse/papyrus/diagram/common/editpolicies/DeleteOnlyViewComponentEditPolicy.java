@@ -72,8 +72,7 @@ public class DeleteOnlyViewComponentEditPolicy extends ComponentEditPolicy {
 		EObject element = editPart != null ? editPart.resolveSemanticElement() : null;
 		Command command = super.getDeleteCommand(request);
 		if(domain != null && diagram != null && element != null) {
-			command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(domain, diagram,
-					Collections.singletonList(element))));
+			command = command.chain(new ICommandProxy(new RemoveEObjectReferencesFromDiagram(domain, diagram, Collections.singletonList(element))));
 		}
 		return command;
 	}

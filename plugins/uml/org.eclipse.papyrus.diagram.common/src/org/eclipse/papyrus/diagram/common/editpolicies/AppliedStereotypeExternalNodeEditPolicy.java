@@ -67,12 +67,9 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 		// retrieve all stereotypes to be displayed
 
 		// try to display stereotype properties
-		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper
-				.getAppliedStereotypesPropertiesToDisplay((View)((View)getHost().getModel()).eContainer());
-		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)((View)getHost()
-				.getModel()).eContainer());
-		String stereotypespresentationKind = AppliedStereotypeHelper
-				.getAppliedStereotypePresentationKind((View)((View)getHost().getModel()).eContainer());
+		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)((View)getHost().getModel()).eContainer());
+		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)((View)getHost().getModel()).eContainer());
+		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)((View)getHost().getModel()).eContainer());
 
 		// now check presentation.
 		// if horizontal => equivalent to the inBrace visualization in nodes (i.e. only name =
@@ -85,19 +82,16 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 		}
 
-		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay((View)((View)getHost()
-				.getModel()).eContainer());
+		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay((View)((View)getHost().getModel()).eContainer());
 		String display = "";
 		if(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN,
-					stereotypesPropertiesToDisplay);
+			display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
 		} else {
 			final String st = stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
 			if(st != null && !st.equals("")) {
 				display += Activator.ST_LEFT + st + Activator.ST_RIGHT;
 			}
-			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay,
-					getUMLElement());
+			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 			if(propSt != null && !propSt.equals("")) {
 				if(st != null && !st.equals("")) {
 					display += "\n";

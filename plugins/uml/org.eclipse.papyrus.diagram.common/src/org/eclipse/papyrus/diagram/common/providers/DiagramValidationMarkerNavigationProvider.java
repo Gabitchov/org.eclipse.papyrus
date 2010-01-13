@@ -34,36 +34,28 @@ import org.eclipse.papyrus.diagram.common.Activator;
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 
  */
-public class DiagramValidationMarkerNavigationProvider extends
-		AbstractModelMarkerNavigationProvider {
+public class DiagramValidationMarkerNavigationProvider extends AbstractModelMarkerNavigationProvider {
 
 	public static final String MARKER_TYPE = "es.cv.gvcase.mdt.common.validation.diagnostic";
 
 	protected void doGotoMarker(IMarker marker) {
-		String elementId = marker
-				.getAttribute(
-				org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID,
-				null);
+		String elementId = marker.getAttribute(org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID, null);
 		if(elementId == null || !(getEditor() instanceof DiagramEditor)) {
 			return;
 		}
 		DiagramEditor editor = (DiagramEditor)getEditor();
-		Map<?, ?> editPartRegistry = editor.getDiagramGraphicalViewer()
-				.getEditPartRegistry();
-		EObject targetView = editor.getDiagram().eResource().getEObject(
-				elementId);
+		Map<?, ?> editPartRegistry = editor.getDiagramGraphicalViewer().getEditPartRegistry();
+		EObject targetView = editor.getDiagram().eResource().getEObject(elementId);
 		if(targetView == null) {
 			return;
 		}
 		EditPart targetEditPart = (EditPart)editPartRegistry.get(targetView);
 		if(targetEditPart != null) {
-			selectElementsInDiagram(editor, Arrays
-					.asList(new EditPart[]{ targetEditPart }));
+			selectElementsInDiagram(editor, Arrays.asList(new EditPart[]{ targetEditPart }));
 		}
 	}
 
-	public static void selectElementsInDiagram(
-			IDiagramWorkbenchPart diagramPart, List<?> editParts) {
+	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List<?> editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;
@@ -76,9 +68,7 @@ public class DiagramValidationMarkerNavigationProvider extends
 		}
 
 		if(!editParts.isEmpty()) {
-			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart)editParts
-					.get(0));
+			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}
 	}
 
@@ -105,23 +95,18 @@ public class DiagramValidationMarkerNavigationProvider extends
 	 * @param statusSeverity
 	 * @return
 	 */
-	public static IMarker addMarker(IFile file, String elementId,
-			String location, String message, int statusSeverity) {
+	public static IMarker addMarker(IFile file, String elementId, String location, String message, int statusSeverity) {
 		IMarker marker = null;
 		try {
 			marker = file.createMarker(MARKER_TYPE);
 			marker.setAttribute(IMarker.MESSAGE, message);
 			marker.setAttribute(IMarker.LOCATION, location);
 
-			marker
-					.setAttribute(
-					org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID,
-					elementId);
+			marker.setAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, elementId);
 			int markerSeverity = IMarker.SEVERITY_INFO;
 			if(statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if(statusSeverity == IStatus.ERROR
-					|| statusSeverity == IStatus.CANCEL) {
+			} else if(statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);

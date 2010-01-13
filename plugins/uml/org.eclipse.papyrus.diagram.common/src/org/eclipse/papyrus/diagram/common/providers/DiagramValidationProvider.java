@@ -31,37 +31,30 @@ import org.eclipse.ui.PlatformUI;
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 
  */
-public class DiagramValidationProvider extends AbstractContributionItemProvider
-		implements IProvider {
+public class DiagramValidationProvider extends AbstractContributionItemProvider implements IProvider {
 
 	public static final String VALIDATE_ACTION_KEY = "validateDiagramAction"; //$NON-NLS-1$
 
-	protected IAction createAction(String actionId,
-			IWorkbenchPartDescriptor partDescriptor) {
+	protected IAction createAction(String actionId, IWorkbenchPartDescriptor partDescriptor) {
 		if(ValidationAction.VALIDATE_ACTION_KEY.equals(actionId)) {
 			ValidationAction va = new ValidationAction(partDescriptor);
 			try {
 				String imagePath = "";
 				Image image = null;
-				imagePath = FileLocator.toFileURL(
-						Platform.getBundle(Activator.ID).getResource(
-						"icons")).getPath();
+				imagePath = FileLocator.toFileURL(Platform.getBundle(Activator.ID).getResource("icons")).getPath();
 				imagePath += "validation.gif";
-				image = new Image(PlatformUI.getWorkbench().getDisplay(),
-						imagePath);
+				image = new Image(PlatformUI.getWorkbench().getDisplay(), imagePath);
 				va.setImageDescriptor(ImageDescriptor.createFromImage(image));
 				return va;
 			} catch (IOException ex) {
-				Activator.getDefault().logWarning(
-						"Image file for Validation Action not found", ex);
+				Activator.getDefault().logWarning("Image file for Validation Action not found", ex);
 				return va;
 			}
 		}
 		return super.createAction(actionId, partDescriptor);
 	}
 
-	public static void runWithConstraints(
-			TransactionalEditingDomain editingDomain, Runnable operation) {
+	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
 

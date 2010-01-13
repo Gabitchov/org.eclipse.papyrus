@@ -60,8 +60,7 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	 * @param reqString
 	 *        the req string
 	 */
-	public ChangeZOrderOfCreatedEP(TransactionalEditingDomain domain, ViewDescriptor descriptor, EditPartViewer viewer,
-			String reqString) {
+	public ChangeZOrderOfCreatedEP(TransactionalEditingDomain domain, ViewDescriptor descriptor, EditPartViewer viewer, String reqString) {
 		super(domain, "Change ZOrder of Created Node", null);
 		viewDescriptor = descriptor;
 		this.viewer = viewer;

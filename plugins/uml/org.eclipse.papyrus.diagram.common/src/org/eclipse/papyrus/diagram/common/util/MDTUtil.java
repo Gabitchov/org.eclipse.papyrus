@@ -374,13 +374,11 @@ public class MDTUtil {
 
 	public static List<EObject> getRootElementsFromFile(IEditorInput input, ResourceSet resourceSet) {
 		URI uri = null;
-		IURIEditorInput uriEditorInput = (IURIEditorInput)Platform.getAdapterManager().getAdapter(input,
-				IURIEditorInput.class);
+		IURIEditorInput uriEditorInput = (IURIEditorInput)Platform.getAdapterManager().getAdapter(input, IURIEditorInput.class);
 		if(uriEditorInput != null) {
 			uri = URI.createURI(uriEditorInput.getURI().toString());
 		} else {
-			IFileEditorInput fileEditorInput = (IFileEditorInput)Platform.getAdapterManager().getAdapter(input,
-					IFileEditorInput.class);
+			IFileEditorInput fileEditorInput = (IFileEditorInput)Platform.getAdapterManager().getAdapter(input, IFileEditorInput.class);
 			if(fileEditorInput != null) {
 				uri = URI.createURI(fileEditorInput.getFile().getLocationURI().toString());
 			}
@@ -479,8 +477,7 @@ public class MDTUtil {
 	private static final String LastOpenedDiagramPropertyBase = "lastOpenedDiagram";
 
 	/** The Constant LastOpenedDiagramProperty. */
-	public static final QualifiedName LastOpenedDiagramProperty = new QualifiedName(Activator.ID,
-			LastOpenedDiagramPropertyBase);
+	public static final QualifiedName LastOpenedDiagramProperty = new QualifiedName(Activator.ID, LastOpenedDiagramPropertyBase);
 
 	/**
 	 * A QualifiedName for a specific editor.
@@ -503,8 +500,7 @@ public class MDTUtil {
 			return null;
 		}
 
-		CachedResourcesDiagramEditor editor = (CachedResourcesDiagramEditor)Platform.getAdapterManager().getAdapter(
-				part, CachedResourcesDiagramEditor.class);
+		CachedResourcesDiagramEditor editor = (CachedResourcesDiagramEditor)Platform.getAdapterManager().getAdapter(part, CachedResourcesDiagramEditor.class);
 		if(editor != null) {
 			return editor;
 		}
@@ -543,8 +539,7 @@ public class MDTUtil {
 	 * 
 	 * @return true, if successful
 	 */
-	public static boolean setLastOpenedDiagramProperty(Diagram diagram, String editorID,
-			boolean setEditorForFileProperty) {
+	public static boolean setLastOpenedDiagramProperty(Diagram diagram, String editorID, boolean setEditorForFileProperty) {
 		if(editorID == null) {
 			editorID = MOSKittEditorIDs.getAllExtensionModelToEditor().get(diagram.getType());
 		}
@@ -565,8 +560,7 @@ public class MDTUtil {
 	 * 
 	 * @return true, if successful
 	 */
-	public static boolean setLastOpenedDiagramProperty(String path, String fragment, String editorID,
-			boolean setEditorForFileProperty) {
+	public static boolean setLastOpenedDiagramProperty(String path, String fragment, String editorID, boolean setEditorForFileProperty) {
 		IPath filePath = new Path(path);
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(filePath);
 		// set IFile property
@@ -784,8 +778,7 @@ public class MDTUtil {
 		if(editorID != null && editorInput != null) {
 			// get the shared editing domain, that will have the resources
 			// already loaded and with the latest changes.
-			TransactionalEditingDomain domain = EditingDomainRegistry.getInstance().get(editorID,
-					editorInput.trimFragment().toString());
+			TransactionalEditingDomain domain = EditingDomainRegistry.getInstance().get(editorID, editorInput.trimFragment().toString());
 			if(domain != null) {
 				// search for the given diagram in all the resourceSet.
 				URI uri = getProperDiagramURIToOpen(domain.getResourceSet(), editorInput);
@@ -1176,10 +1169,8 @@ public class MDTUtil {
 					Object value = request.getValue();
 					EObject elementToEdit = request.getElementToEdit();
 					EStructuralFeature feature = request.getFeature();
-					if(value != null && elementToEdit != null && feature != null
-							&& elementToEdit.eGet(feature) != null && !value.equals(elementToEdit.eGet(feature))) {
-						TransactionUtil.getEditingDomain(view).getCommandStack().execute(
-								new GMFtoEMFCommandWrapper(command));
+					if(value != null && elementToEdit != null && feature != null && elementToEdit.eGet(feature) != null && !value.equals(elementToEdit.eGet(feature))) {
+						TransactionUtil.getEditingDomain(view).getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 					}
 				}
 			}
@@ -1190,8 +1181,7 @@ public class MDTUtil {
 	// @unused
 	public static IStatusLineManager getStatusLineManager() {
 		try {
-			return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()
-					.getEditorSite().getActionBars().getStatusLineManager();
+			return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorSite().getActionBars().getStatusLineManager();
 		} catch (NullPointerException ex) {
 			return null;
 		}

@@ -52,8 +52,7 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public AssociationBranchCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public AssociationBranchCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -65,36 +64,32 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if(source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Type) {
+		if(source != null && false == source instanceof Type) {
 			return false;
 		}
-		if (target != null && false == target instanceof Type) {
+		if(target != null && false == target instanceof Type) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
+		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateAssociation_4019(getContainer(), getSource(),
-						getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateAssociation_4019(getContainer(), getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
 		throw new UnsupportedOperationException();
@@ -105,23 +100,15 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	// @unused
-	protected void doConfigure(Association newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
-				getSource());
-		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
-				getTarget());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
+		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -138,14 +125,14 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Type getSource() {
-		return (Type) source;
+		return (Type)source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Type getTarget() {
-		return (Type) target;
+		return (Type)target;
 	}
 
 	/**
@@ -165,10 +152,9 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
-			if (element instanceof Package) {
-				return (Package) element;
+		for(EObject element = source; element != null; element = element.eContainer()) {
+			if(element instanceof Package) {
+				return (Package)element;
 			}
 		}
 		return null;

@@ -128,37 +128,35 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart)getHost()).resolveSemanticElement());
 				List<EditPart> editpartList = ((DiagramGraphicalViewer)(getHost().getViewer())).findEditPartsForElement(elementID, GeneralizationSetEditPart.class);
 				if(editpartList.size() > 1 && editpartList.indexOf(getHost()) > 0) {
-					
-						try {
 
-							((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
+					try {
 
-								public void run() {
+						((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
-									Display.getCurrent().asyncExec(new Runnable() {
+							public void run() {
 
-										public void run() {
-											for(int i = 0; i < getHost().getChildren().size(); i++) {
-											SetRequest setRequest = new SetRequest((View)((EditPart)getHost().getChildren().get(i)).getModel(),
-												NotationPackage.eINSTANCE.getView_Visible(),
-												false);
+								Display.getCurrent().asyncExec(new Runnable() {
+
+									public void run() {
+										for(int i = 0; i < getHost().getChildren().size(); i++) {
+											SetRequest setRequest = new SetRequest((View)((EditPart)getHost().getChildren().get(i)).getModel(), NotationPackage.eINSTANCE.getView_Visible(), false);
 											SetValueCommand setValueCommand = new SetValueCommand(setRequest);
 											((IGraphicalEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(setValueCommand));
 											// refresh();
-											}
 										}
-									});
-								}
-							});
+									}
+								});
+							}
+						});
 
-						} catch (Exception e) {
-							System.err.println(e);
-						}
+					} catch (Exception e) {
+						System.err.println(e);
+					}
 				}
 			}
 		}
 		if(notification.getNotifier() instanceof RelativeBendpoints) {
-			
+
 			try {
 
 				((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
@@ -192,7 +190,7 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 			} catch (Exception e) {
 				System.err.println(e);
 			}
-			
+
 		}
 	}
 

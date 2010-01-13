@@ -58,8 +58,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 * org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 		if(canExecute()) {
 			emfCommand.execute();
@@ -75,8 +74,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
-	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 		emfCommand.redo();
 
@@ -90,8 +88,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
-	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 		if(canUndo()) {
 			emfCommand.undo();

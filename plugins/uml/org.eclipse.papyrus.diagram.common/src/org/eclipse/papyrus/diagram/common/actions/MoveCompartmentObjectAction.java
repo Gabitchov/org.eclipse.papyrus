@@ -71,8 +71,7 @@ public class MoveCompartmentObjectAction extends DiagramAction {
 	 * @param diagramKind
 	 *        the diagram kind
 	 */
-	public MoveCompartmentObjectAction(IWorkbenchPage workbenchPage,
-			int actionType) {
+	public MoveCompartmentObjectAction(IWorkbenchPage workbenchPage, int actionType) {
 		super(workbenchPage);
 		if(actionType > MOVE_TOP || actionType < MOVE_BOTTOM)
 			this.actionType = getDefaultAction();
@@ -144,9 +143,7 @@ public class MoveCompartmentObjectAction extends DiagramAction {
 					pos = viewParent.getPersistedChildren().size() - 1;
 					break;
 				};
-				MoveCommand moveCmd = new MoveCommand(eDomain, viewParent,
-						NotationPackage.eINSTANCE.getView_PersistedChildren(),
-						view, pos);
+				MoveCommand moveCmd = new MoveCommand(eDomain, viewParent, NotationPackage.eINSTANCE.getView_PersistedChildren(), view, pos);
 				return new EMFtoGEFCommandWrapper(moveCmd);
 			}
 		}
@@ -270,8 +267,7 @@ public class MoveCompartmentObjectAction extends DiagramAction {
 			imgPath = MOVE_BOTTOM_IMG;
 			break;
 		}
-		ImageDescriptor descriptor = Activator.imageDescriptorFromPlugin(
-				Activator.ID, imgPath);
+		ImageDescriptor descriptor = Activator.imageDescriptorFromPlugin(Activator.ID, imgPath);
 		return descriptor;
 	}
 

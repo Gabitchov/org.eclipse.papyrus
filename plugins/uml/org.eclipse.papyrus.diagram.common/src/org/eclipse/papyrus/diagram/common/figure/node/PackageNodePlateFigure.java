@@ -49,10 +49,8 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 			if(getChildren().get(0) instanceof PackageFigure) {
 				PackageFigure packageFigure = (PackageFigure)getChildren().get(0);
 				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y);
-				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y
-						+ packageFigure.getHeader().height);
-				points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y
-						+ packageFigure.getHeader().height);
+				points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y + packageFigure.getHeader().height);
+				points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + packageFigure.getHeader().height);
 
 			}// no header
 			else {
@@ -60,8 +58,7 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 			}
 		}
 
-		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y
-				+ anchorableRectangle.height);
+		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + anchorableRectangle.height);
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height);
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y);
 		return points;

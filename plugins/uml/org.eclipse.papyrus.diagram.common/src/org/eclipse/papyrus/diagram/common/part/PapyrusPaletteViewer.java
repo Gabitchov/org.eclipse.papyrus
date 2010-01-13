@@ -25,8 +25,7 @@ public class PapyrusPaletteViewer extends PaletteViewerEx {
 
 	public PaletteCustomizerDialog getCustomizerDialog() {
 		if(customizerDialog == null) {
-			customizerDialog = new PapyrusPaletteCustomizerDialog(getControl().getShell(), getCustomizer(),
-					getPaletteRoot());
+			customizerDialog = new PapyrusPaletteCustomizerDialog(getControl().getShell(), getCustomizer(), getPaletteRoot());
 		}
 		return customizerDialog;
 	}

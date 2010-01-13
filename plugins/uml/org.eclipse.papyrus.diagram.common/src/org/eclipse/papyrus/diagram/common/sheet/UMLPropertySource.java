@@ -81,8 +81,7 @@ public class UMLPropertySource extends PropertySource {
 
 					@Override
 					protected Object openDialogBox(Control cellEditorWindow) {
-						ElementListSelectionDialog dialog = new ElementListSelectionDialog(cellEditorWindow.getShell(),
-								editLabelProvider);
+						ElementListSelectionDialog dialog = new ElementListSelectionDialog(cellEditorWindow.getShell(), editLabelProvider);
 
 						dialog.setTitle("Element Selection");
 						dialog.setMessage("Select a String (* = any string, ? = any char):");

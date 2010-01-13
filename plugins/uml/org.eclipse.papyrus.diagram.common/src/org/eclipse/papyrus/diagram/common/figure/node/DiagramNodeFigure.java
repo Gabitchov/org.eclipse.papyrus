@@ -92,8 +92,7 @@ public class DiagramNodeFigure extends RectangleFigure {
 
 	public void setIcon(Image image) {
 		Image initialImage = image;
-		ImageDescriptor visDesc = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
-				"/icons/obj16/call.gif");
+		ImageDescriptor visDesc = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/call.gif");
 
 		// Overlay custom image over base image
 		// OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(initialImage, visDesc);

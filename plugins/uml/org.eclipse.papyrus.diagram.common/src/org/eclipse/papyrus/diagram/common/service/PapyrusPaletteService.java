@@ -61,8 +61,7 @@ import org.eclipse.ui.IEditorPart;
  * <p>
  * It replaces the standard palette service. It provides better preferences management, and better customization possibilities.
  */
-public class PapyrusPaletteService extends PaletteService implements IPaletteProvider, IPapyrusPaletteConstant,
-		IPreferenceChangeListener {
+public class PapyrusPaletteService extends PaletteService implements IPaletteProvider, IPapyrusPaletteConstant, IPreferenceChangeListener {
 
 	/**
 	 * A descriptor for palette providers defined by a configuration element.
@@ -307,8 +306,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 				// will never work, ID of the site is the multi diagram editor...
 				if(description.getContributionEditorID() != null) {
-					if(!description.getContributionEditorID().equals(
-							((DiagramEditorWithFlyOutPalette)part).getContributorId())) {
+					if(!description.getContributionEditorID().equals(((DiagramEditorWithFlyOutPalette)part).getContributorId())) {
 						return false;
 					}
 				}
@@ -351,8 +349,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 				// will never work, ID of the site is the multi diagram editor...
 				if(description.getContributionEditorID() != null) {
-					if(!description.getContributionEditorID().equals(
-							((DiagramEditorWithFlyOutPalette)part).getContributorId())) {
+					if(!description.getContributionEditorID().equals(((DiagramEditorWithFlyOutPalette)part).getContributorId())) {
 						return false;
 					}
 				}
@@ -633,8 +630,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		// to this service
 		// 3. inits the list of ids of hidden palettes
 		List<PapyrusPaletteService.ProviderDescriptor> descriptors = new ArrayList<PapyrusPaletteService.ProviderDescriptor>();
-		final ContributeToPaletteOperation o = new ContributeToPaletteOperation(part, part.getEditorInput(), root,
-				new HashMap());
+		final ContributeToPaletteOperation o = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap());
 		// For each provider, checks it contributes to the palette of this editor part
 		Iterator<? extends Service.ProviderDescriptor> it = getProviders().iterator();
 		while(it.hasNext()) {
@@ -678,8 +674,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 */
 	protected boolean isChangeable(PapyrusPaletteService.ProviderDescriptor provider, String name) {
 		assert name != null;
-		final String[] providersToRemove = new String[]{ "<Unnamed>", "Presentation Palette", "Geoshapes",
-				"org.eclipse.papyrus.diagram.common" };
+		final String[] providersToRemove = new String[]{ "<Unnamed>", "Presentation Palette", "Geoshapes", "org.eclipse.papyrus.diagram.common" };
 		final List<String> providersList = Arrays.asList(providersToRemove);
 
 		// if the name is in the list, it is not changeable

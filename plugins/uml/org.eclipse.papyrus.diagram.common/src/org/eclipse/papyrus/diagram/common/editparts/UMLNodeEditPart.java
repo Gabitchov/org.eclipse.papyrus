@@ -195,8 +195,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * @return the new font data to use
 	 */
 	protected FontData getFontData(FontStyle style) {
-		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
-				| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 	}
 
 	/**

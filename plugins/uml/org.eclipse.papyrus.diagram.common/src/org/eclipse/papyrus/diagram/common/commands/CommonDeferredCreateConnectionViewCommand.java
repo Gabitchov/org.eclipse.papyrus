@@ -64,9 +64,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param command
 	 *        the command in which we look for the result for the target (may be null)
 	 */
-	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element,
-			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
-			PreferencesHint preferencesHint, ICommand command) {
+	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
 		this.command = command;
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
@@ -92,9 +90,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param command
 	 *        the command in which we look for the result for the target (may be null)
 	 */
-	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint,
-			IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer,
-			PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
+	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
 		this.viewDescriptor = viewDescriptor;
 		this.command = command;
@@ -105,8 +101,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		Map epRegistry = viewer.getEditPartRegistry();
 		IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetViewAdapter.getAdapter(View.class));
@@ -119,8 +114,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * 
 	 * @throws ExecutionException
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info,
-			IGraphicalEditPart sourceEditPart, IGraphicalEditPart targetEditPart) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info, IGraphicalEditPart sourceEditPart, IGraphicalEditPart targetEditPart) throws ExecutionException {
 
 		// If these are null, then the diagram's editparts may not
 		// have been refreshed yet.
@@ -130,8 +124,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 		// use the String semanticHint to create a view
 		// modification in order to fix the bug
 		CreateConnectionViewRequest createRequest = new CreateConnectionViewRequest(viewDescriptor);
-		createConnectionCmd = CreateConnectionViewRequest.getCreateCommand(createRequest, sourceEditPart,
-				targetEditPart);
+		createConnectionCmd = CreateConnectionViewRequest.getCreateCommand(createRequest, sourceEditPart, targetEditPart);
 
 		if(createConnectionCmd.canExecute()) {
 			createConnectionCmd.execute();

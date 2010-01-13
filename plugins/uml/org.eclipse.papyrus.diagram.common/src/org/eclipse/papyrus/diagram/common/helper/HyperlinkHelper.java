@@ -53,8 +53,7 @@ public class HyperlinkHelper {
 	 * 
 	 * @return the adds the hyper link command
 	 */
-	public static RecordingCommand getAddHyperLinkDocumentCommand(TransactionalEditingDomain domain,
-			EModelElement object, String tooltipText, String localization) {
+	public static RecordingCommand getAddHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltipText, String localization) {
 		return new CreateHyperLinkDocumentCommand(domain, object, tooltipText, localization);
 	}
 
@@ -72,8 +71,7 @@ public class HyperlinkHelper {
 	 * 
 	 * @return the adds the document command
 	 */
-	public static RecordingCommand getAddHyperLinkWebCommand(TransactionalEditingDomain domain, EModelElement object,
-			String tooltiptext, String link) {
+	public static RecordingCommand getAddHyperLinkWebCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String link) {
 		return new CreateHyperLinkWebCommand(domain, object, tooltiptext, link);
 	}
 
@@ -93,8 +91,7 @@ public class HyperlinkHelper {
 	 * 
 	 * @return the adds the hyper link diagram command
 	 */
-	public static RecordingCommand getAddHyperLinkDiagamCommand(TransactionalEditingDomain domain,
-			EModelElement object, String tooltiptext, String diagramName, EModelElement diagram) {
+	public static RecordingCommand getAddHyperLinkDiagamCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String diagramName, EModelElement diagram) {
 		return new CreateHyperLinkDiagramCommand(domain, object, tooltiptext, diagramName, diagram);
 	}
 
@@ -110,8 +107,7 @@ public class HyperlinkHelper {
 	 * 
 	 * @return the removes the element command
 	 */
-	public static RecordingCommand getRemoveHyperlinkCommand(TransactionalEditingDomain domain, EModelElement object,
-			String localization) {
+	public static RecordingCommand getRemoveHyperlinkCommand(TransactionalEditingDomain domain, EModelElement object, String localization) {
 		return new DeleteHyperLinkDocumentCommand(domain, object, localization);
 
 	}
@@ -129,8 +125,7 @@ public class HyperlinkHelper {
 	 * @return the removes the hyperlink diagram command
 	 */
 	// @unused
-	public static RecordingCommand getRemoveHyperlinkDiagramCommand(TransactionalEditingDomain domain,
-			EModelElement object, EModelElement diagram) {
+	public static RecordingCommand getRemoveHyperlinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, EModelElement diagram) {
 		return new DeleteHyperLinkDiagramCommand(domain, object, diagram);
 
 	}
@@ -154,22 +149,17 @@ public class HyperlinkHelper {
 				if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
 					HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
 					hyperLinkDiagram.setDiagram((Diagram)currentAnnotation.getReferences().get(0));
-					hyperLinkDiagram.setTooltipText(currentAnnotation.getDetails().get(
-							VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
+					hyperLinkDiagram.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 					result.add(hyperLinkDiagram);
 				} else if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT)) {
 					HyperlinkDocument hyperLinkDocument = new HyperlinkDocument();
-					hyperLinkDocument.setHyperlinkDocument(currentAnnotation.getDetails().get(
-							VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION));
-					hyperLinkDocument.setTooltipText(currentAnnotation.getDetails().get(
-							VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
+					hyperLinkDocument.setHyperlinkDocument(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION));
+					hyperLinkDocument.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 					result.add(hyperLinkDocument);
 				} else if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)) {
 					HyperLinkWeb hyperLinkWeb = new HyperLinkWeb();
-					hyperLinkWeb.setHyperLinkWeb(currentAnnotation.getDetails().get(
-							VisualInformationPapyrusConstant.HYPERLINK_WEB_LINK));
-					hyperLinkWeb.setTooltipText(currentAnnotation.getDetails().get(
-							VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
+					hyperLinkWeb.setHyperLinkWeb(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_WEB_LINK));
+					hyperLinkWeb.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 					result.add(hyperLinkWeb);
 				}
 			}
@@ -189,8 +179,7 @@ public class HyperlinkHelper {
 	 * 
 	 * @return the empty all hyper link command
 	 */
-	public static EmptyAllHyperLinkCommand getEmptyAllHyperLinkCommand(TransactionalEditingDomain domain,
-			EModelElement object) {
+	public static EmptyAllHyperLinkCommand getEmptyAllHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object) {
 		return new EmptyAllHyperLinkCommand(domain, object);
 	}
 

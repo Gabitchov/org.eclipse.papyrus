@@ -61,8 +61,7 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 				if(nextSelectedObject instanceof EObject) {
 					EObject modelElement = (EObject)nextSelectedObject;
 					Resource modelElementResource = modelElement.eResource();
-					uris.add(modelElementResource.getURI().appendFragment(
-							modelElementResource.getURIFragment(modelElement)));
+					uris.add(modelElementResource.getURI().appendFragment(modelElementResource.getURIFragment(modelElement)));
 					// TODO check visualID supported by class diagram
 				}
 			}

@@ -127,8 +127,7 @@ public class CleanDiagram implements IObjectActionDelegate {
 		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)selectedElement, false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
-		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)selectedElement).getEditingDomain(),
-				StringStatics.BLANK, options) {
+		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)selectedElement).getEditingDomain(), StringStatics.BLANK, options) {
 
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 

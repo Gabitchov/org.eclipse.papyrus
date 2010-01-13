@@ -190,8 +190,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		 */
 		public Image getImage(Object element) {
 			if(element instanceof HyperlinkDocument || element instanceof HyperLinkWeb) {
-				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", theImagePath)
-						.createImage();
+				return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", theImagePath).createImage();
 			} else if(element instanceof HyperLinkDiagram) {
 				return editorRegistry.getEditorIcon(((HyperLinkDiagram)element).getDiagram());
 			}
@@ -308,8 +307,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * @param aview
 	 *        the aview of the uml element
 	 */
-	public HyperLinkManagerShell(IEditorFactoryRegistry editorFactoryRegistry, TransactionalEditingDomain domain,
-			Element umlElement, View aview, Package model) {
+	public HyperLinkManagerShell(IEditorFactoryRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model) {
 		super();
 		this.element = umlElement;
 		this.view = aview;
@@ -352,32 +350,25 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 			public void widgetSelected(SelectionEvent e) {
 
 				// empaty all hyperlinks
-				transactionalEditingDomain.getCommandStack().execute(
-						HyperlinkHelper.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
+				transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
 				// save hyperlink Document list
 				Iterator<HyperlinkDocument> iterdoc = documentList.iterator();
 				while(iterdoc.hasNext()) {
 					HyperlinkDocument currentDocument = iterdoc.next();
-					transactionalEditingDomain.getCommandStack().execute(
-							HyperlinkHelper.getAddHyperLinkDocumentCommand(transactionalEditingDomain, view,
-							currentDocument.getTooltipText(), currentDocument.getHyperlinkDocument()));
+					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkDocumentCommand(transactionalEditingDomain, view, currentDocument.getTooltipText(), currentDocument.getHyperlinkDocument()));
 				}
 
 				// save hyperlinkWeb list
 				Iterator<HyperLinkWeb> iterweb = hyperlinkWebList.iterator();
 				while(iterweb.hasNext()) {
 					HyperLinkWeb currentWeb = iterweb.next();
-					transactionalEditingDomain.getCommandStack().execute(
-							HyperlinkHelper.getAddHyperLinkWebCommand(transactionalEditingDomain, view, currentWeb
-							.getTooltipText(), currentWeb.getHyperLinkWeb()));
+					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkWebCommand(transactionalEditingDomain, view, currentWeb.getTooltipText(), currentWeb.getHyperLinkWeb()));
 				}
 				// save hyperlink Document list
 				Iterator<HyperLinkDiagram> iterDiag = diagramList.iterator();
 				while(iterDiag.hasNext()) {
 					HyperLinkDiagram currentDiag = iterDiag.next();
-					transactionalEditingDomain.getCommandStack().execute(
-							HyperlinkHelper.getAddHyperLinkDiagamCommand(transactionalEditingDomain, view, currentDiag
-							.getTooltipText(), currentDiag.getDiagram().getName(), currentDiag.getDiagram()));
+					transactionalEditingDomain.getCommandStack().execute(HyperlinkHelper.getAddHyperLinkDiagamCommand(transactionalEditingDomain, view, currentDiag.getTooltipText(), currentDiag.getDiagram().getName(), currentDiag.getDiagram()));
 				}
 
 				getHyperLinkShell().close();
@@ -426,8 +417,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 			public void mouseDown(MouseEvent e) {
 
 				if(hyperlinkWeblistTableViewer.getTable().getSelection().length != 0) {
-					HyperLinkWeb hyperLinkWeb = (HyperLinkWeb)((IStructuredSelection)hyperlinkWeblistTableViewer
-							.getSelection()).getFirstElement();
+					HyperLinkWeb hyperLinkWeb = (HyperLinkWeb)((IStructuredSelection)hyperlinkWeblistTableViewer.getSelection()).getFirstElement();
 					EditorHyperlinkWebShell editor = new EditorHyperlinkWebShell();
 					editor.setHyperLinkWeb(hyperLinkWeb);
 					editor.open();
@@ -443,12 +433,9 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 			}
 		});
-		getRemoveHyperLinkButton().addMouseListener(
-				new RemoveElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
-		getUpHyperLinkWebButton()
-				.addMouseListener(new UpElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
-		getDownHyperLinkWebbutton().addMouseListener(
-				new DownElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
+		getRemoveHyperLinkButton().addMouseListener(new RemoveElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
+		getUpHyperLinkWebButton().addMouseListener(new UpElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
+		getDownHyperLinkWebbutton().addMouseListener(new DownElementListener(hyperlinkWeblistTableViewer, hyperlinkWebList));
 	}
 
 	/**
@@ -484,8 +471,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 			public void mouseDown(MouseEvent e) {
 				if(documentlistTableViewer.getTable().getSelection().length != 0) {
-					HyperlinkDocument hyperLinkdoc = (HyperlinkDocument)((IStructuredSelection)documentlistTableViewer
-							.getSelection()).getFirstElement();
+					HyperlinkDocument hyperLinkdoc = (HyperlinkDocument)((IStructuredSelection)documentlistTableViewer.getSelection()).getFirstElement();
 					EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
 					editor.setHyperlinkDocument(hyperLinkdoc);
 					editor.open();
@@ -536,8 +522,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 			public void mouseDown(MouseEvent e) {
 				if(diagramlistTableViewer.getTable().getSelection().length != 0) {
-					HyperLinkDiagram hyperLinkdiagram = (HyperLinkDiagram)((IStructuredSelection)diagramlistTableViewer
-							.getSelection()).getFirstElement();
+					HyperLinkDiagram hyperLinkdiagram = (HyperLinkDiagram)((IStructuredSelection)diagramlistTableViewer.getSelection()).getFirstElement();
 					EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
 					editor.setHyperLinkDiagram(hyperLinkdiagram);
 					editor.open();

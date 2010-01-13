@@ -38,8 +38,7 @@ public class DocumentProviderRegistry extends HashMap<String, CachedResourcesDoc
 
 	@Override
 	public CachedResourcesDocumentProvider get(Object arg0) {
-		throw new UnsupportedOperationException(
-				"Operation not supported. Use #get(String domainID, IEditorInput input)");
+		throw new UnsupportedOperationException("Operation not supported. Use #get(String domainID, IEditorInput input)");
 	}
 
 	// @unused

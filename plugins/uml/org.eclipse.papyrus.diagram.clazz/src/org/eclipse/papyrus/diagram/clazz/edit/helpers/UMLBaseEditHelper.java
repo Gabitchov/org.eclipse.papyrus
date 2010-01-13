@@ -44,9 +44,8 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	 * @generated
 	 */
 	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
-		if (req.getParameter(CONTEXT_ELEMENT_TYPE) instanceof IElementType) {
-			return ElementTypeRegistry.getInstance().getEditHelperAdvice(
-					(IElementType) req.getParameter(CONTEXT_ELEMENT_TYPE));
+		if(req.getParameter(CONTEXT_ELEMENT_TYPE) instanceof IElementType) {
+			return ElementTypeRegistry.getInstance().getEditHelperAdvice((IElementType)req.getParameter(CONTEXT_ELEMENT_TYPE));
 		}
 		return super.getEditHelperAdvice(req);
 	}
@@ -55,13 +54,13 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	 * @generated
 	 */
 	protected ICommand getInsteadCommand(IEditCommandRequest req) {
-		ICommand epCommand = (ICommand) req.getParameter(EDIT_POLICY_COMMAND);
+		ICommand epCommand = (ICommand)req.getParameter(EDIT_POLICY_COMMAND);
 		req.setParameter(EDIT_POLICY_COMMAND, null);
 		ICommand ehCommand = super.getInsteadCommand(req);
-		if (epCommand == null) {
+		if(epCommand == null) {
 			return ehCommand;
 		}
-		if (ehCommand == null) {
+		if(ehCommand == null) {
 			return epCommand;
 		}
 		CompositeCommand command = new CompositeCommand(null);
@@ -80,8 +79,7 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
-	protected ICommand getCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return null;
 	}
 

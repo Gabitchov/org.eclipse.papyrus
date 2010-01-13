@@ -41,13 +41,7 @@ public class ProfileApplicationPreferencePage extends FieldEditorPreferencePage 
 	@Override
 	public void createFieldEditors() {
 
-		addField(new RadioGroupFieldEditor(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE,
-				"Stereotype Name Display Preferences :", 1, new String[][]{
-				{ "UML Compatibility (force lower case for first letter - default)",
-				VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM },
-				{ "User Controlled (let name as entered by user)",
-				VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED } },
-				getFieldEditorParent()));
+		addField(new RadioGroupFieldEditor(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE, "Stereotype Name Display Preferences :", 1, new String[][]{ { "UML Compatibility (force lower case for first letter - default)", VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM }, { "User Controlled (let name as entered by user)", VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED } }, getFieldEditorParent()));
 	}
 
 	/**

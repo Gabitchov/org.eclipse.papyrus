@@ -62,8 +62,7 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 * @param diagram
 	 *        the diagram
 	 */
-	public SelectDiagramViewsFilterDialog(IShellProvider parentShell,
-			DiagramEditPart diagram) {
+	public SelectDiagramViewsFilterDialog(IShellProvider parentShell, DiagramEditPart diagram) {
 		super(parentShell);
 		this.diagram = diagram;
 	}
@@ -76,8 +75,7 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 * @param diagram
 	 *        the diagram
 	 */
-	public SelectDiagramViewsFilterDialog(Shell parentShell,
-			DiagramEditPart diagram) {
+	public SelectDiagramViewsFilterDialog(Shell parentShell, DiagramEditPart diagram) {
 		super(parentShell);
 		this.diagram = diagram;
 	}
@@ -143,8 +141,7 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 */
 	protected void buildSelected() {
 		selected = new ArrayList<Integer>();
-		if(getTreeViewer() == null || getTreeViewer().getTree() == null
-				|| getTreeViewer().getTree().getItems().length <= 0) {
+		if(getTreeViewer() == null || getTreeViewer().getTree() == null || getTreeViewer().getTree().getItems().length <= 0) {
 			return;
 		}
 		for(TreeItem item : getTreeViewer().getTree().getItems()) {
@@ -203,8 +200,7 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 		getShell().setText("Select the views to filter");
 		// create a checked treeviewer
 		Composite composite = new Composite(parent, 0);
-		GridData data = new GridData(GridData.FILL_HORIZONTAL,
-				GridData.FILL_VERTICAL, true, true);
+		GridData data = new GridData(GridData.FILL_HORIZONTAL, GridData.FILL_VERTICAL, true, true);
 		data.widthHint = 600;
 		data.heightHint = 400;
 		composite.setLayoutData(data);
@@ -223,8 +219,7 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 				treeItemSelected(e);
 			}
 		});
-		data = new GridData(GridData.FILL_HORIZONTAL, GridData.FILL_VERTICAL,
-				true, true);
+		data = new GridData(GridData.FILL_HORIZONTAL, GridData.FILL_VERTICAL, true, true);
 		data.widthHint = 600;
 		data.heightHint = 400;
 		treeViewer.getTree().setLayoutData(data);
@@ -237,13 +232,11 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 * Populate tree.
 	 */
 	protected void populateTree() {
-		if(getTreeViewer() == null || getTreeViewer().getTree() == null
-				|| getViewInfo() == null || getDiagram() == null) {
+		if(getTreeViewer() == null || getTreeViewer().getTree() == null || getViewInfo() == null || getDiagram() == null) {
 			return;
 		}
 		Diagram diagram = getDiagram();
-		Collection<Integer> filters = MDTUtil
-				.getAllViewsToFilterFromDiagram(diagram);
+		Collection<Integer> filters = MDTUtil.getAllViewsToFilterFromDiagram(diagram);
 		for(TreeItem item : getTreeViewer().getTree().getItems()) {
 			Object data = item.getData();
 			if(data instanceof ViewInfo) {
@@ -291,16 +284,11 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 			isChecking = true;
 			try {
 				Object data = e.item.getData();
-				ViewInfo viewInfo = (ViewInfo)Platform.getAdapterManager()
-						.getAdapter(data, ViewInfo.class);
-				TreeItem item = (TreeItem)Platform.getAdapterManager()
-						.getAdapter(e.item, TreeItem.class);
-				if(viewInfo != null && item != null
-						&& getTreeViewer().getTree().getItems() != null) {
+				ViewInfo viewInfo = (ViewInfo)Platform.getAdapterManager().getAdapter(data, ViewInfo.class);
+				TreeItem item = (TreeItem)Platform.getAdapterManager().getAdapter(e.item, TreeItem.class);
+				if(viewInfo != null && item != null && getTreeViewer().getTree().getItems() != null) {
 					if(viewInfo.isSelectable()) {
-						setAllVisualIDsChecked(getTreeViewer().getTree()
-								.getItems(), viewInfo.getVisualID(), item
-								.getChecked());
+						setAllVisualIDsChecked(getTreeViewer().getTree().getItems(), viewInfo.getVisualID(), item.getChecked());
 					} else {
 						item.setChecked(!item.getChecked());
 					}
@@ -319,13 +307,11 @@ public class SelectDiagramViewsFilterDialog extends Dialog {
 	 * @param visualID
 	 * @param check
 	 */
-	protected void setAllVisualIDsChecked(TreeItem[] items, int visualID,
-			boolean check) {
+	protected void setAllVisualIDsChecked(TreeItem[] items, int visualID, boolean check) {
 		ViewInfo viewInfo = null;
 		for(TreeItem item : items) {
 			if(item != null) {
-				viewInfo = (ViewInfo)Platform.getAdapterManager().getAdapter(
-						item.getData(), ViewInfo.class);
+				viewInfo = (ViewInfo)Platform.getAdapterManager().getAdapter(item.getData(), ViewInfo.class);
 				if(viewInfo != null && visualID == viewInfo.getVisualID()) {
 					item.setChecked(check);
 				}

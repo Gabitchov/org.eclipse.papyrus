@@ -82,8 +82,7 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	protected String elementLabel(GraphicalEditPart editPart) {
 		int displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;
 
-		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart
-				.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
 		}

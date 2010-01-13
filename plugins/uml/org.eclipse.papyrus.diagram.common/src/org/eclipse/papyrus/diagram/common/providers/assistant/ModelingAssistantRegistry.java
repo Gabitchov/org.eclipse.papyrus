@@ -50,8 +50,7 @@ public class ModelingAssistantRegistry {
 
 	private static final String modelingAssistantExtensionPointID = "org.eclipse.papyrus.diagram.common.editorAssistantProvider";
 
-	private static final Class<Object>[] classes = new Class[]{ Assistant.class, AssistedEditPart.class,
-			Include.class, Exclude.class, ElementType.class };
+	private static final Class<Object>[] classes = new Class[]{ Assistant.class, AssistedEditPart.class, Include.class, Exclude.class, ElementType.class };
 
 	private static final Map<String, List<Assistant>> mapEditorID2Assistant = new HashMap<String, List<Assistant>>();
 

@@ -171,8 +171,7 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 		for(EObject element : elements) {
 			int semanticHint = viewResolver.getEObjectSemanticHint(element);
 			if(semanticHint > -1) {
-				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String
-						.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
+				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
 				viewDescriptors.add(viewDescriptor);
 			}
 		}
@@ -193,8 +192,7 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	 * 
 	 * @return the command
 	 */
-	protected Command buildDropCommand(DropObjectsRequest request, List<EObject> nodes, List<ViewDescriptor> views,
-			List<EObject> edges) {
+	protected Command buildDropCommand(DropObjectsRequest request, List<EObject> nodes, List<ViewDescriptor> views, List<EObject> edges) {
 		// build commands that add references to the diagram.
 		Command command = buildAddEObjectsReferencesCommand(nodes);
 		Command edgesCommand = buildAddEObjectsReferencesCommand(edges);

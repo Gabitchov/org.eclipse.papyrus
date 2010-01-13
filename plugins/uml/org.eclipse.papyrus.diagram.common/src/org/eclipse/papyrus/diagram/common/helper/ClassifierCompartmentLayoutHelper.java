@@ -77,8 +77,7 @@ public abstract class ClassifierCompartmentLayoutHelper implements ICompartmentL
 	/**
 	 * {@inheritDoc}
 	 */
-	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view,
-			String layoutKind) {
+	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view, String layoutKind) {
 		return new setLayoutKindCommand(domain, view, layoutKind);
 	}
 

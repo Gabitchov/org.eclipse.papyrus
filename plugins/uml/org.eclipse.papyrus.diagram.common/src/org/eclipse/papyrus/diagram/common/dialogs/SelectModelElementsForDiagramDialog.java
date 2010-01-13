@@ -71,8 +71,7 @@ public class SelectModelElementsForDiagramDialog extends WizardPage {
 	 *        the label provider
 	 */
 	// @unused
-	public SelectModelElementsForDiagramDialog(IWizardModelElementProvider elementProvider,
-			IContentProvider contentProvider, IBaseLabelProvider labelProvider) {
+	public SelectModelElementsForDiagramDialog(IWizardModelElementProvider elementProvider, IContentProvider contentProvider, IBaseLabelProvider labelProvider) {
 		super("Select model elements for diagram");
 		setTitle("Model objects");
 		setDescription("Select model objects that must appear in the diagram");

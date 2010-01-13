@@ -29,8 +29,7 @@ public class StereotypePropertiesCompartment extends RectangleFigure {
 		paintChildren(graphics);
 		graphics.setForegroundColor(getForegroundColor());
 		for(int i = 0; i < getChildren().size(); i++) {
-			graphics.drawLine(((IFigure)getChildren().get(i)).getBounds().getTopLeft(), ((IFigure)getChildren()
-					.get(i)).getBounds().getTopRight());
+			graphics.drawLine(((IFigure)getChildren().get(i)).getBounds().getTopLeft(), ((IFigure)getChildren().get(i)).getBounds().getTopRight());
 		}
 	}
 

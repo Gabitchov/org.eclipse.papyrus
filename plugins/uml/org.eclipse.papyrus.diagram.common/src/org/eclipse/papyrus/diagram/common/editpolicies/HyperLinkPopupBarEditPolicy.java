@@ -270,8 +270,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * Instantiates a new popup bar label plus handle.
 		 */
 		public PopupBarLabelPlusHandle() {
-			super(null, AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
-					"/icons/obj16/Plus.gif").createImage());
+			super(null, AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Plus.gif").createImage());
 			// TODO Auto-generated constructor stub
 		}
 	}
@@ -310,11 +309,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 					// getEditorRegistry(), ((GraphicalEditPart)
 					// getHost()).getEditingDomain());
 					// hyperLinkManagerShell.createShell();
-					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(),
-							((GraphicalEditPart)getHost()).getEditingDomain(),
-							(Element)((GraphicalEditPart)getHost()).getNotationView().getElement(),
-							((GraphicalEditPart)getHost()).getNotationView(),
-							topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()));
+					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()));
 					hyperLinkManagerShell.setDiagramList(hyperLinkDiagramList);
 					hyperLinkManagerShell.setDocumentList(hyperLinkDocumentList);
 					hyperLinkManagerShell.setHyperlinkWebList(hyperLinkList);
@@ -322,8 +317,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 				} else if(me.getSource() instanceof PopupBarLabelHandle) {
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkDiagram) {
-						HyperLinkDiagram hyperLinkDiagram = (HyperLinkDiagram)(((PopupBarLabelHandle)me.getSource())
-								.getReferencedObject());
+						HyperLinkDiagram hyperLinkDiagram = (HyperLinkDiagram)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
 						// better to set focus on existing page than close and
 						// open
 						if(pageMngr.isOpen(hyperLinkDiagram.getDiagram())) {
@@ -332,12 +326,10 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 						pageMngr.openPage((hyperLinkDiagram.getDiagram()));
 					}
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperlinkDocument) {
-						HyperlinkDocument hyperlinkDocument = (HyperlinkDocument)(((PopupBarLabelHandle)me
-								.getSource()).getReferencedObject());
+						HyperlinkDocument hyperlinkDocument = (HyperlinkDocument)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
 						try {
 							// this is a file try to open it
-							IEditorDescriptor eDesc = PlatformUI.getWorkbench().getEditorRegistry().findEditor(
-									IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
+							IEditorDescriptor eDesc = PlatformUI.getWorkbench().getEditorRegistry().findEditor(IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
 
 							// creation of a phantom workspace
 							IWorkspace ws = ResourcesPlugin.getWorkspace();
@@ -362,13 +354,10 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 						}
 					}
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkWeb) {
-						HyperLinkWeb hyperLinkWeb = (HyperLinkWeb)(((PopupBarLabelHandle)me.getSource())
-								.getReferencedObject());
+						HyperLinkWeb hyperLinkWeb = (HyperLinkWeb)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
 						try {
 							// this is an url
-							PlatformUI.getWorkbench().getBrowserSupport().createBrowser(
-									IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(
-									new URL(hyperLinkWeb.getHyperLinkWeb()));
+							PlatformUI.getWorkbench().getBrowserSupport().createBrowser(IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(new URL(hyperLinkWeb.getHyperLinkWeb()));
 						} catch (Exception e) {
 							System.err.println(e);
 						}
@@ -509,8 +498,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	public int addObjectList(String imageLocation, int positonwidth, List<?> objectList) {
 		for(int i = 0; i < objectList.size(); i++) {
-			PopupBarLabelHandle handle = new PopupBarLabelHandle(objectList.get(i), AbstractUIPlugin
-					.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", imageLocation).createImage());
+			PopupBarLabelHandle handle = new PopupBarLabelHandle(objectList.get(i), AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", imageLocation).createImage());
 
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
@@ -673,14 +661,11 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		if(getFigureBar() != null) {
 			// add all subdiagrams
 
-			hyperLinkDiagramList = (ArrayList<HyperLinkDiagram>)HyperlinkHelper.getAllreferenced(
-					((GraphicalEditPart)getHost()).getNotationView(),
-					VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
+			hyperLinkDiagramList = (ArrayList<HyperLinkDiagram>)HyperlinkHelper.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView(), VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
 			for(int i = 0; i < hyperLinkDiagramList.size(); i++) {
 
 				// Button b = new Button(theDesc.myButtonIcon);
-				PopupBarLabelHandle handle = new PopupBarLabelHandle(hyperLinkDiagramList.get(i), getEditorRegistry()
-						.getEditorIcon(hyperLinkDiagramList.get(i).getObject()));
+				PopupBarLabelHandle handle = new PopupBarLabelHandle(hyperLinkDiagramList.get(i), getEditorRegistry().getEditorIcon(hyperLinkDiagramList.get(i).getObject()));
 
 				Rectangle r1 = new Rectangle();
 				r1.setLocation(xLoc, 5);
@@ -699,12 +684,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 				handle.addMouseMotionListener(this);
 
 			}
-			hyperLinkList = (ArrayList<HyperLinkWeb>)HyperlinkHelper.getAllreferenced(((GraphicalEditPart)getHost())
-					.getNotationView(), VisualInformationPapyrusConstant.HYPERLINK_WEB);
+			hyperLinkList = (ArrayList<HyperLinkWeb>)HyperlinkHelper.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView(), VisualInformationPapyrusConstant.HYPERLINK_WEB);
 			xLoc = addObjectList("/icons/obj16/hyperlink.gif", xLoc, hyperLinkList);
-			hyperLinkDocumentList = (ArrayList<HyperlinkDocument>)HyperlinkHelper.getAllreferenced(
-					((GraphicalEditPart)getHost()).getNotationView(),
-					VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT);
+			hyperLinkDocumentList = (ArrayList<HyperlinkDocument>)HyperlinkHelper.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView(), VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT);
 			xLoc = addObjectList("/icons/obj16/file.gif", xLoc, hyperLinkDocumentList);
 			// add the PLUS button
 			PopupBarLabelHandle handle = new PopupBarLabelPlusHandle();
@@ -743,16 +725,16 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(referencePoint == null) {
 				referencePoint = getHostFigure().getBounds().getCenter();
 			}
-			Point position=getHostFigure().getBounds().getBottomLeft();
+			Point position = getHostFigure().getBounds().getBottomLeft();
 			getHostFigure().translateToAbsolute(position);
-			EditPartViewer viewer=getHost().getRoot().getViewer();
-			Viewport viewport=null;
-			if( viewer instanceof DiagramGraphicalViewer){
-				viewport=((FigureCanvas)((DiagramGraphicalViewer)viewer).getControl()).getViewport();
+			EditPartViewer viewer = getHost().getRoot().getViewer();
+			Viewport viewport = null;
+			if(viewer instanceof DiagramGraphicalViewer) {
+				viewport = ((FigureCanvas)((DiagramGraphicalViewer)viewer).getControl()).getViewport();
 			}
-			if (viewport!=null){
-				position.x=position.x+viewport.getClientArea().x;
-				position.y=position.y+viewport.getClientArea().y;
+			if(viewport != null) {
+				position.x = position.x + viewport.getClientArea().x;
+				position.y = position.y + viewport.getClientArea().y;
 			}
 			getFigureBar().setSize(width, 30);
 			getFigureBar().setLocation(position);

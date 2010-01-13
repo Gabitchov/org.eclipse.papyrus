@@ -153,8 +153,7 @@ public class PathsUtil {
 			return path;
 		}
 		String newPath = path;
-		if(newPath.startsWith(MDTUtil.getWorkspaceLocation().toString())
-				|| newPath.startsWith("/" + MDTUtil.getWorkspaceLocation().toString())) {
+		if(newPath.startsWith(MDTUtil.getWorkspaceLocation().toString()) || newPath.startsWith("/" + MDTUtil.getWorkspaceLocation().toString())) {
 			newPath = newPath.replaceFirst(MDTUtil.getWorkspaceLocation().toString(), replacement);
 		}
 		return newPath;

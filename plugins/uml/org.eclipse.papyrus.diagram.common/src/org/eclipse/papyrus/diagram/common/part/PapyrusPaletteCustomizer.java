@@ -165,8 +165,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	public void revertToSaved() {
-		for(Iterator<Entry<PaletteEntry, IPaletteState>> iterator = paletteStates.entrySet().iterator(); iterator
-				.hasNext();) {
+		for(Iterator<Entry<PaletteEntry, IPaletteState>> iterator = paletteStates.entrySet().iterator(); iterator.hasNext();) {
 			Entry<PaletteEntry, IPaletteState> entry = iterator.next();
 			entry.getValue().rollback();
 		}
@@ -185,8 +184,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 		if(rootMemento == null) {
 			rootMemento = XMLMemento.createWriteRoot(PALETTE_CUSTOMIZATIONS_ID);
 		}
-		for(Iterator<Entry<PaletteEntry, IPaletteState>> iterator = paletteStates.entrySet().iterator(); iterator
-				.hasNext();) {
+		for(Iterator<Entry<PaletteEntry, IPaletteState>> iterator = paletteStates.entrySet().iterator(); iterator.hasNext();) {
 			Entry<PaletteEntry, IPaletteState> entry = iterator.next();
 
 			IMemento memento = getMementoForEntry(rootMemento, entry.getKey());

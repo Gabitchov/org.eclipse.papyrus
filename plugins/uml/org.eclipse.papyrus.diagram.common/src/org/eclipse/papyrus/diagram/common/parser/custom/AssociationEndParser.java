@@ -52,15 +52,7 @@ public class AssociationEndParser extends AbstractAssociationEndParser {
 		EStructuralFeature feature = getEStructuralFeature(event);
 
 		boolean isAffectingEvent = false;
-		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_SubsettedProperty().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_IsDerived().equals(feature)
-				|| UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature)
-				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature)
-				|| UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(feature)
-				|| UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature)) {
+		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature) || UMLPackage.eINSTANCE.getProperty_SubsettedProperty().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerived().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(feature) || UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature)) {
 			isAffectingEvent = true;
 		}
 		return isAffectingEvent;

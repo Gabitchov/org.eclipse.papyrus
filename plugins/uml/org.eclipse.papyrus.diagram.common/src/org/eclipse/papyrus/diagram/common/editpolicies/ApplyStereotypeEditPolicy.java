@@ -132,8 +132,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)getHost(), false, false))
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
 
-		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)getHost()).getEditingDomain(),
-				StringStatics.BLANK, options) {
+		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)getHost()).getEditingDomain(), StringStatics.BLANK, options) {
 
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -179,8 +178,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		cc.compose(new AbstractTransactionalCommand(editingDomain, "Apply Stereotype", null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 				// retrieves the edit part on which stereotype request is made
 				if(getHost() instanceof IUMLEditPart) {
@@ -194,8 +192,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 						Stereotype stereotype = element.getApplicableStereotype(stereotypeQName);
 						if(stereotype == null) {
 							// stereotype has no been found. should ask for profile application ?
-							PapyrusTrace.log(IStatus.WARNING, "impossible to retrieve the stereotype "
-									+ stereotypeQName);
+							PapyrusTrace.log(IStatus.WARNING, "impossible to retrieve the stereotype " + stereotypeQName);
 						} else {
 							result.add(element.applyStereotype(stereotype));
 						}
@@ -213,8 +210,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 			cc.compose(new AbstractTransactionalCommand(editingDomain, "Edit Base Element Name", null) {
 
 				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-						throws ExecutionException {
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 					// retrieves the edit part on which stereotype request is made
 					if(getHost() instanceof IUMLEditPart) {
@@ -226,8 +222,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 						List<String> stereotypeQNames = _request.getStereotypesToApply();
 						String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQNames.get(0));
 						// find a new name for the element
-						String name = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(),
-								stereotypeName);
+						String name = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), stereotypeName);
 						((NamedElement)element).setName(name);
 
 					}
@@ -239,8 +234,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		// 2. display stereotypes
 		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(element);
 		// should display real applied stereotypes and not the list of stereotypes to apply...
-		cc.compose(new EMFtoGMFCommandWrapper(new DefferedAppliedStereotypeToDisplayCommand(editingDomain, getHost(),
-				"", presentationKind)));
+		cc.compose(new EMFtoGMFCommandWrapper(new DefferedAppliedStereotypeToDisplayCommand(editingDomain, getHost(), "", presentationKind)));
 
 		return new ICommandProxy(cc.reduce());
 	}

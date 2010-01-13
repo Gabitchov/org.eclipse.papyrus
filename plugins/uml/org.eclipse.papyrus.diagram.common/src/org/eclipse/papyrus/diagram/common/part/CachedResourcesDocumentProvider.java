@@ -571,9 +571,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 		 */
 		public ResourceSetModificationListener(CachedResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(
-					NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(
-					NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
+			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		/**
@@ -704,8 +702,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 					thrownExcp = (CoreException)e;
 				} else {
 					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, msg != null ? msg
-							: "Messages.SqlmodelDocumentProvider_DiagramLoadingError", e));
+					thrownExcp = new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, msg != null ? msg : "Messages.SqlmodelDocumentProvider_DiagramLoadingError", e));
 				}
 				throw thrownExcp;
 			}
@@ -753,8 +750,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 					files2Validate.add(file);
 				}
 			}
-			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[])files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
+			ResourcesPlugin.getWorkspace().validateEdit((IFile[])files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -896,8 +892,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 					files.add(file);
 				}
 			}
-			return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule(
-					(IFile[])files.toArray(new IFile[files.size()]));
+			return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule((IFile[])files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
@@ -930,33 +925,28 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	@Override
-	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
-			throws CoreException {
+	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
 		try {
 			// fjcano : we are modifying the resource by an internal save.
 			setChangingResourceBySave(true);
 			CachedResourceSetInfo info = getResourceSetInfo(element);
 			if(info != null) {
 				if(!overwrite && !info.isSynchronized()) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, IResourceStatus.OUT_OF_SYNC_LOCAL,
-							"Messages.SqlmodelDocumentProvider_UnsynchronizedFileSaveError", null));
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, IResourceStatus.OUT_OF_SYNC_LOCAL, "Messages.SqlmodelDocumentProvider_UnsynchronizedFileSaveError", null));
 				}
 				info.stopResourceListening();
 				fireElementStateChanging(element);
 				try {
-					monitor.beginTask("Messages.SqlmodelDocumentProvider_SaveDiagramTask", info.getResourceSet()
-							.getResources().size() + 1); // "Saving diagram"
+					monitor.beginTask("Messages.SqlmodelDocumentProvider_SaveDiagramTask", info.getResourceSet().getResources().size() + 1); // "Saving diagram"
 					for(Iterator it = info.getLoadedResourcesIterator(); it.hasNext();) {
 						Resource nextResource = (Resource)it.next();
-						monitor.setTaskName(NLS.bind("Messages.SqlmodelDocumentProvider_SaveNextResourceTask",
-								nextResource.getURI()));
+						monitor.setTaskName(NLS.bind("Messages.SqlmodelDocumentProvider_SaveNextResourceTask", nextResource.getURI()));
 						if(nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 							try {
 								nextResource.save(MDTUtil.getSaveOptions());
 							} catch (IOException e) {
 								fireElementStateChangeFailed(element);
-								throw new CoreException(new Status(IStatus.ERROR, Activator.ID,
-										EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
+								throw new CoreException(new Status(IStatus.ERROR, Activator.ID, EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 							}
 						}
 						monitor.worked(1);
@@ -980,38 +970,21 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 					newResoruceURI = ((URIEditorInput)element).getURI();
 				} else {
 					fireElementStateChangeFailed(element);
-					throw new CoreException(
-							new Status(
-							IStatus.ERROR,
-							Activator.ID,
-							0,
-							NLS
-							.bind(
-							"Messages.SqlmodelDocumentProvider_IncorrectInputError",
-							new Object[]{
-							element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, NLS.bind("Messages.SqlmodelDocumentProvider_IncorrectInputError", new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 				}
 				if(false == document instanceof IDiagramDocument) {
 					fireElementStateChangeFailed(element);
-					throw new CoreException(
-							new Status(
-							IStatus.ERROR,
-							Activator.ID,
-							0,
-							"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+					throw new CoreException(new Status(IStatus.ERROR, Activator.ID, 0, "Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				IDiagramDocument diagramDocument = (IDiagramDocument)document;
-				final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(
-						newResoruceURI);
+				final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(newResoruceURI);
 				final Diagram diagramCopy = (Diagram)EcoreUtil.copy(diagramDocument.getDiagram());
 				try {
-					new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
-							"Messages.SqlmodelDocumentProvider_SaveAsOperation", diagramCopy.getName()), affectedFiles) {
+					new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind("Messages.SqlmodelDocumentProvider_SaveAsOperation", diagramCopy.getName()), affectedFiles) {
 
 						@Override
-						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-								throws ExecutionException {
+						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 							newResource.getContents().add(diagramCopy);
 							return CommandResult.newOKCommandResult();
 						}
@@ -1039,8 +1012,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 				try {
 					file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 				} catch (CoreException ex) {
-					Activator.getDefault()
-							.logError("Messages.SqlmodelDocumentProvider_handleElementContentChanged", ex);
+					Activator.getDefault().logError("Messages.SqlmodelDocumentProvider_handleElementContentChanged", ex);
 				}
 			}
 			changedResource.unload();
@@ -1063,8 +1035,7 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 
 	protected void handleElementMoved(IEditorInput input, URI uri) {
 		if(input instanceof FileEditorInput) {
-			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new Path(URI.decode(uri.path())).removeFirstSegments(1));
+			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(URI.decode(uri.path())).removeFirstSegments(1));
 			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
 			return;
 		}

@@ -117,8 +117,7 @@ public class FilterViewsLabelsAction extends DiagramAction {
 			return;
 		}
 		// // show dialog to user
-		SelectDiagramViewsFilterDialog dialog = new SelectDiagramViewsFilterDialog(Display.getCurrent()
-				.getActiveShell(), getDiagramEditPart());
+		SelectDiagramViewsFilterDialog dialog = new SelectDiagramViewsFilterDialog(Display.getCurrent().getActiveShell(), getDiagramEditPart());
 		int result = dialog.open();
 		// // filter the selected elements
 		if(result == Window.OK) {
@@ -165,12 +164,10 @@ public class FilterViewsLabelsAction extends DiagramAction {
 	 */
 	protected void executeCommand(final Collection<Integer> infos) {
 		final Diagram diagram = getDiagram();
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(getTransactionalEditingDomain(),
-				"Add filter references", null) {
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(getTransactionalEditingDomain(), "Add filter references", null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				MDTUtil.setElementsToFilterToDiagram(diagram, infos);
 				return null;
 			}

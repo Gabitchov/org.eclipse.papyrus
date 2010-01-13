@@ -44,8 +44,7 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry {
 	 * @param entry
 	 * @param properties
 	 */
-	public AspectCreationEntry(String name, String desc, String id, ImageDescriptor descriptor,
-			CombinedTemplateCreationEntry entry, Map<?, ?> properties) {
+	public AspectCreationEntry(String name, String desc, String id, ImageDescriptor descriptor, CombinedTemplateCreationEntry entry, Map<?, ?> properties) {
 		super(name, desc, null, descriptor, descriptor);
 		setId(id);
 		this.entry = entry;

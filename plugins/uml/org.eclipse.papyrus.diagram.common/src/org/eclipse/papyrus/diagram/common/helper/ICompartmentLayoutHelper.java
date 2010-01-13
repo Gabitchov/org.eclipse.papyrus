@@ -34,8 +34,7 @@ public interface ICompartmentLayoutHelper {
 	 * @param layoutKind
 	 *        the new layout kind on view
 	 */
-	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view,
-			String layoutKind);
+	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view, String layoutKind);
 
 	/**
 	 * Gets the layout kind from view.

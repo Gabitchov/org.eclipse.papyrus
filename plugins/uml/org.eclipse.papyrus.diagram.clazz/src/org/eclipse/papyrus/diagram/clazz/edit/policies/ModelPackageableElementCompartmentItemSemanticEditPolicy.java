@@ -32,8 +32,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ModelPackageableElementCompartmentItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class ModelPackageableElementCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -46,40 +45,40 @@ public class ModelPackageableElementCompartmentItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.InstanceSpecification_3020 == req.getElementType()) {
+		if(UMLElementTypes.InstanceSpecification_3020 == req.getElementType()) {
 			return getGEFWrapper(new InstanceSpecificationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Component_3021 == req.getElementType()) {
+		if(UMLElementTypes.Component_3021 == req.getElementType()) {
 			return getGEFWrapper(new ComponentCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Signal_3022 == req.getElementType()) {
+		if(UMLElementTypes.Signal_3022 == req.getElementType()) {
 			return getGEFWrapper(new SignalCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Interface_3023 == req.getElementType()) {
+		if(UMLElementTypes.Interface_3023 == req.getElementType()) {
 			return getGEFWrapper(new InterfaceCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Model_3024 == req.getElementType()) {
+		if(UMLElementTypes.Model_3024 == req.getElementType()) {
 			return getGEFWrapper(new ModelCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Enumeration_3025 == req.getElementType()) {
+		if(UMLElementTypes.Enumeration_3025 == req.getElementType()) {
 			return getGEFWrapper(new EnumerationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Package_3009 == req.getElementType()) {
+		if(UMLElementTypes.Package_3009 == req.getElementType()) {
 			return getGEFWrapper(new PackageCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Class_3010 == req.getElementType()) {
+		if(UMLElementTypes.Class_3010 == req.getElementType()) {
 			return getGEFWrapper(new ClassCreateCommandCN(req));
 		}
-		if (UMLElementTypes.PrimitiveType_3026 == req.getElementType()) {
+		if(UMLElementTypes.PrimitiveType_3026 == req.getElementType()) {
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.DataType_3027 == req.getElementType()) {
+		if(UMLElementTypes.DataType_3027 == req.getElementType()) {
 			return getGEFWrapper(new DataTypeCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Comment_3028 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3028 == req.getElementType()) {
 			return getGEFWrapper(new Comment2CreateCommand(req));
 		}
-		if (UMLElementTypes.Constraint_3029 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_3029 == req.getElementType()) {
 			return getGEFWrapper(new Constraint2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

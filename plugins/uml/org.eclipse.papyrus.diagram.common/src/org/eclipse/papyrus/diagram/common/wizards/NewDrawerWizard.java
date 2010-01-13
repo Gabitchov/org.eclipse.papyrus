@@ -52,8 +52,7 @@ public class NewDrawerWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		paletteContainerProxy.addChild(new PaletteLocalDrawerProxy(infoPage.getDrawerName(), infoPage.getDrawerID(),
-				infoPage.getImageDescriptorPath()));
+		paletteContainerProxy.addChild(new PaletteLocalDrawerProxy(infoPage.getDrawerName(), infoPage.getDrawerID(), infoPage.getImageDescriptorPath()));
 		return true;
 	}
 }

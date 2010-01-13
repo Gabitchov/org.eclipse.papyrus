@@ -151,14 +151,12 @@ public class MOSKittEditorFactoryRegistry {
 	private static final String ExtensionPointID = "org.eclipse.papyrus.diagram.common.moskittEditorFactory";
 
 	protected void readExtensionPoint() {
-		ExtensionPointParser parser = new ExtensionPointParser(ExtensionPointID,
-				new Class[]{ MOSKittEditorFactory.class });
+		ExtensionPointParser parser = new ExtensionPointParser(ExtensionPointID, new Class[]{ MOSKittEditorFactory.class });
 		MOSKittEditorFactory factory = null;
 		List<MOSKittEditorFactory> factories = new ArrayList<MOSKittEditorFactory>();
 		// parse extension point
 		for(Object object : parser.parseExtensionPoint()) {
-			factory = (MOSKittEditorFactory)Platform.getAdapterManager()
-					.getAdapter(object, MOSKittEditorFactory.class);
+			factory = (MOSKittEditorFactory)Platform.getAdapterManager().getAdapter(object, MOSKittEditorFactory.class);
 			if(factory != null) {
 				factories.add(factory);
 			}
@@ -167,8 +165,7 @@ public class MOSKittEditorFactoryRegistry {
 		for(MOSKittEditorFactory editorFactoryElement : factories) {
 			IMOSKittEditorFactory editorFactory = null;
 			if(editorFactoryElement.factory != null) {
-				editorFactory = (IMOSKittEditorFactory)Platform.getAdapterManager().getAdapter(
-						editorFactoryElement.factory, IMOSKittEditorFactory.class);
+				editorFactory = (IMOSKittEditorFactory)Platform.getAdapterManager().getAdapter(editorFactoryElement.factory, IMOSKittEditorFactory.class);
 				if(editorFactory != null) {
 					if(editorFactoryElement.diagramType != null) {
 						getMapModel2Factory().put(editorFactoryElement.diagramType, editorFactory);

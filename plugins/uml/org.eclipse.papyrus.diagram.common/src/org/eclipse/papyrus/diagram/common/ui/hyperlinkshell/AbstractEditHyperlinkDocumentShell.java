@@ -113,8 +113,7 @@ public class AbstractEditHyperlinkDocumentShell {
 		chooseDiagramButton = new Button(getEditHyperlinkShell(), SWT.NONE);
 		// chooseDiagramButton.setImage(new Image(Display.getCurrent(),
 		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.diagram.common/icons/obj16/insp_sbook.gif"));
-		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common",
-				"/icons/obj16/insp_sbook.gif").createImage());
+		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/insp_sbook.gif").createImage());
 		chooseDiagramButton.setLayoutData(gridData51);
 		chooseDiagramButton.setText("");
 		tooltipInputLabel = new CLabel(editHyperlinkShell, SWT.NONE);

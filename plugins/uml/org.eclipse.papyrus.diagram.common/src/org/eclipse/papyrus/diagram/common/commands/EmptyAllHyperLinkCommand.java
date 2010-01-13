@@ -51,9 +51,7 @@ public class EmptyAllHyperLinkCommand extends CreateEAnnotationCommand {
 		// look for interesting eannotations
 		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT)
-					|| currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)
-					|| currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT) || currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_WEB) || currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
 				eAnnotationsToRemove.add(currentAnnotation);
 			}
 		}

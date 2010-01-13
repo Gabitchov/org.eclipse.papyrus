@@ -29,8 +29,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 /**
  * @generated
  */
-public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -49,27 +48,21 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new SubstitutionItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SubstitutionItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
-			((AppliedStereotypeSubstitutionEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
+			((AppliedStereotypeSubstitutionEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
-		if (childEditPart instanceof SubstitutionName2EditPart) {
-			((SubstitutionName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof SubstitutionName2EditPart) {
+			((SubstitutionName2EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -79,7 +72,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -89,10 +82,10 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
+		if(childEditPart instanceof AppliedStereotypeSubstitutionEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof SubstitutionName2EditPart) {
+		if(childEditPart instanceof SubstitutionName2EditPart) {
 			return true;
 		}
 		return false;
@@ -102,7 +95,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -125,7 +118,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

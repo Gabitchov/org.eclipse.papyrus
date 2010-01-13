@@ -42,8 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class PackagePackageableElementCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class PackagePackageableElementCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -54,12 +53,10 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
+		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = UMLDiagramUpdater
-				.getPackagePackageableElementCompartment_7010SemanticChildren(
-						viewObject).iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor) it.next()).getModelElement());
+		for(Iterator it = UMLDiagramUpdater.getPackagePackageableElementCompartment_7010SemanticChildren(viewObject).iterator(); it.hasNext();) {
+			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -69,7 +66,7 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
+		switch(visualID) {
 		case InstanceSpecificationEditPartCN.VISUAL_ID:
 		case ComponentEditPartCN.VISUAL_ID:
 		case SignalEditPartCN.VISUAL_ID:
@@ -82,7 +79,7 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends
 		case DataTypeEditPartCN.VISUAL_ID:
 		case Comment2EditPart.VISUAL_ID:
 		case Constraint2EditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
+			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
 		}
@@ -100,12 +97,10 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected Set getFeaturesToSynchronize() {
-		if (myFeaturesToSynchronize == null) {
+		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getPackage_PackagedElement());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE
-					.getElement_OwnedComment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		}
 		return myFeaturesToSynchronize;
 	}

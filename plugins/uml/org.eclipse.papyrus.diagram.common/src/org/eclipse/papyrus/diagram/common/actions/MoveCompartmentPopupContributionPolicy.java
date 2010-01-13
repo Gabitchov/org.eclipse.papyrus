@@ -27,11 +27,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * 
  */
-public class MoveCompartmentPopupContributionPolicy implements
-		IPopupMenuContributionPolicy {
+public class MoveCompartmentPopupContributionPolicy implements IPopupMenuContributionPolicy {
 
-	public boolean appliesTo(ISelection selection,
-			IConfigurationElement configuration) {
+	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {
 		if(selection instanceof IStructuredSelection) {
 			IStructuredSelection ss = ((IStructuredSelection)selection);
 			if(ss.size() <= 0 || ss.size() > 1) {

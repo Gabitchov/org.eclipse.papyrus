@@ -48,9 +48,7 @@ public class AppliedStereotypeLinkLabelDisplayEditPolicy extends AppliedStereoty
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 		if(figure instanceof IPapyrusUMLElementFigure) {
-			((UMLEdgeFigure)figure).setStereotypeDisplay(tag
-					+ (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay),
-					imageToDisplay);
+			((UMLEdgeFigure)figure).setStereotypeDisplay(tag + (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay), imageToDisplay);
 		}
 	}
 

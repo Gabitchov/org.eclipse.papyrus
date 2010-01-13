@@ -34,8 +34,7 @@ public class CreateUMLModelWizard extends CreateModelWizard {
 	}
 
 	@Override
-	protected void initializeModelResource(Resource resource,
-			String rootElementName) {
+	protected void initializeModelResource(Resource resource, String rootElementName) {
 		// fjcano #293135 :: support model templates
 		if(!isInitializeFromTemplate()) {
 			Model model = UMLFactory.eINSTANCE.createModel();

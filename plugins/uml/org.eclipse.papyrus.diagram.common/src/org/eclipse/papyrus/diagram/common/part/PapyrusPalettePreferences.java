@@ -307,8 +307,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	/**
 	 * Adds or update local palette
 	 */
-	public static void addLocalPalette(String paletteID, String paletteName, ProviderPriority priority,
-			String editorID, Set<String> requiredProfiles) {
+	public static void addLocalPalette(String paletteID, String paletteName, ProviderPriority priority, String editorID, Set<String> requiredProfiles) {
 		// retrieves memento
 		XMLMemento rootMemento = getExistingLocalPalettes();
 
@@ -326,8 +325,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 
 		// add properties if required
 		IMemento propertiesMemento = paletteMemento.createChild(IPapyrusPaletteConstant.PALETTE_DESCRIPTION_PROPERTIES);
-		propertiesMemento.putString(IPapyrusPaletteConstant.PROFILE_LIST, PaletteUtil
-				.getSerializedProfileListFromSet(requiredProfiles));
+		propertiesMemento.putString(IPapyrusPaletteConstant.PROFILE_LIST, PaletteUtil.getSerializedProfileListFromSet(requiredProfiles));
 
 		// saves the root memento
 		saveLocalPalettes(rootMemento);

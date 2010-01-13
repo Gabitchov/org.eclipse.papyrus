@@ -36,8 +36,7 @@ import org.eclipse.papyrus.diagram.common.commands.UpdateDiagramCommand;
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @deprecated
  */
-public class DiagramDragDropEditPolicy extends
-		org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy {
+public class DiagramDragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy {
 
 	/** The resolver. */
 	private ViewResolver resolver = null;
@@ -150,8 +149,7 @@ public class DiagramDragDropEditPolicy extends
 		for(EObject element : elements) {
 			int semanticHint = resolver.getEObjectSemanticHint(element);
 			if(semanticHint > -1) {
-				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String
-						.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
+				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, String.valueOf(semanticHint), getGraphicalHost().getDiagramPreferencesHint());
 				viewDescriptors.add(viewDescriptor);
 			}
 		}

@@ -187,8 +187,7 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 
 			}
 
-			contentPane.getBounds().setSize(getBounds().width,
-					getBounds().y + getBounds().height - contentPane.getBounds().y);
+			contentPane.getBounds().setSize(getBounds().width, getBounds().y + getBounds().height - contentPane.getBounds().y);
 		}
 
 		/**
@@ -251,8 +250,7 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 
 				// ratio between the height of all compartments and the size of
 				// the compartments container.
-				double ratio = new Integer(compartmentsHeight).doubleValue()
-						/ new Integer(getContentPane().getBounds().height).doubleValue();
+				double ratio = new Integer(compartmentsHeight).doubleValue() / new Integer(getContentPane().getBounds().height).doubleValue();
 
 				for(Dimension dimension : compartmentsDimension.values()) {
 					dimension.height = (int)(dimension.height / ratio);

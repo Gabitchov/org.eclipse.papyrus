@@ -67,8 +67,7 @@ public class LookupResolverImpl implements LookupResolver {
 			return null;
 		}
 		TransactionalEditingDomain domain = myResolvingEditPart.getEditingDomain();
-		final CreateUnspecifiedTypeRequest createRequest = new CreateUnspecifiedTypeRequest(myTheOnlyRequest
-				.getElementTypes(), myResolvingEditPart.getDiagramPreferencesHint());
+		final CreateUnspecifiedTypeRequest createRequest = new CreateUnspecifiedTypeRequest(myTheOnlyRequest.getElementTypes(), myResolvingEditPart.getDiagramPreferencesHint());
 		final Command gefCommand = myResolvingEditPart.getCommand(createRequest);
 		if(!gefCommand.canExecute()) {
 			return null;
@@ -77,8 +76,7 @@ public class LookupResolverImpl implements LookupResolver {
 		return new AbstractTransactionalCommand(domain, "", null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				gefCommand.execute();
 				NamedElement resolution = getNewObject();
 				if(resolution != null) {

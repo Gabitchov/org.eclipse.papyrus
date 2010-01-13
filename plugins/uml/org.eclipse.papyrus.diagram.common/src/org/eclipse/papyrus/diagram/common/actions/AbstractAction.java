@@ -67,8 +67,7 @@ public abstract class AbstractAction extends Action {
 	 */
 	protected List<View> getSelection() {
 		List<View> viewSelected = new ArrayList<View>();
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
-				.getSelection();
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 		if(false == selection instanceof IStructuredSelection) {
 			return Collections.emptyList();
 		}

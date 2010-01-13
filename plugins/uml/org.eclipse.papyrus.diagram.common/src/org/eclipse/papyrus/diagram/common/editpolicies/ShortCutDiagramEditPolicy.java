@@ -59,8 +59,7 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 		 * {@inheritedDoc}
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-				throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
 				IPageMngr pageMngr = EditorUtils.getIPageMngr();
 				if(pageMngr.isOpen(diagramToOpen)) {
@@ -80,8 +79,7 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 	@Override
 	protected Command getOpenCommand(Request request) {
 		Diagram diagram = (Diagram)((GraphicalEditPart)getHost()).getNotationView().getElement();
-		OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart)getHost())
-				.getEditingDomain(), diagram);
+		OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart)getHost()).getEditingDomain(), diagram);
 		return new ICommandProxy(openDiagramCommand);
 	}
 

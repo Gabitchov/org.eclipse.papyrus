@@ -56,12 +56,10 @@ public abstract class StereotypedElementLabelHelper {
 	 * @return a map. The keys are the name of displayed stereotypes, the corresponding data is a
 	 *         collection of its properties to be displayed
 	 */
-	protected Map<String, List<String>> parseStereotypeProperties(GraphicalEditPart editPart,
-			String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
+	protected Map<String, List<String>> parseStereotypeProperties(GraphicalEditPart editPart, String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
 		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
 
-		StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay,
-				VisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
+		StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, VisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
 		while(stringTokenizer.hasMoreTokens()) {
 			String propertyName = stringTokenizer.nextToken();
 			// retrieve the name of the stereotype for this property
@@ -70,8 +68,7 @@ public abstract class StereotypedElementLabelHelper {
 				List<String> propertiesForStereotype = new ArrayList<String>();
 				propertiesMap.put(stereotypeName, propertiesForStereotype);
 			}
-			propertiesMap.get(stereotypeName).add(
-					propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length()));
+			propertiesMap.get(stereotypeName).add(propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length()));
 		}
 		return propertiesMap;
 	}
@@ -83,14 +80,11 @@ public abstract class StereotypedElementLabelHelper {
 	 *         image has to be displayed
 	 */
 	public Collection<Image> stereotypeIconsToDisplay(GraphicalEditPart editPart) {
-		String stereotypespresentationKind = AppliedStereotypeHelper
-				.getAppliedStereotypePresentationKind((View)editPart.getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)editPart.getModel());
 		if(stereotypespresentationKind == null) {
 			return null;
 		}
-		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
-				|| stereotypespresentationKind
-				.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)editPart.getModel());
@@ -122,8 +116,7 @@ public abstract class StereotypedElementLabelHelper {
 	 * @return a string that displays stereotypes (using their simple name or their qualified name)
 	 *         and their properties
 	 */
-	public String stereotypesAndPropertiesToDisplay(GraphicalEditPart editPart, String separator,
-			String stereotypesToDisplay, String stereotypeWithQualifiedName, String stereotypesPropertiesToDisplay) {
+	public String stereotypesAndPropertiesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName, String stereotypesPropertiesToDisplay) {
 		// Get the preference from PreferenceStore. there should be an assert
 		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		assert store != null : "The preference store was not found";
@@ -135,8 +128,7 @@ public abstract class StereotypedElementLabelHelper {
 
 		// changes the string of properties into a map, where the entries of the map are the
 		// stereotype qualified name, and the properties to display are the data
-		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(editPart, stereotypesToDisplay,
-				stereotypesPropertiesToDisplay);
+		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(editPart, stereotypesToDisplay, stereotypesPropertiesToDisplay);
 
 		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
 		String out = "";
@@ -181,9 +173,7 @@ public abstract class StereotypedElementLabelHelper {
 				if(properties != null) {
 					// retrieve property
 					for(String propertyName : properties) {
-						out = out
-								+ StereotypeUtil.displayPropertyValue(stereotype, StereotypeUtil.getPropertyByName(
-								stereotype, propertyName), getUMLElement(editPart), " ");
+						out = out + StereotypeUtil.displayPropertyValue(stereotype, StereotypeUtil.getPropertyByName(stereotype, propertyName), getUMLElement(editPart), " ");
 					}
 				}
 			}
@@ -225,15 +215,13 @@ public abstract class StereotypedElementLabelHelper {
 		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(view);
 		String display = "";
 		if(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			display += stereotypesAndPropertiesToDisplay(editPart, "\n", stereotypesToDisplay,
-					stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
+			display += stereotypesAndPropertiesToDisplay(editPart, "\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
 		} else {
 			final String st = stereotypesToDisplay(editPart, ", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
 			if(st != null && !st.equals("")) {
 				display += Activator.ST_LEFT + st + Activator.ST_RIGHT + " ";
 			}
-			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay,
-					getUMLElement(editPart));
+			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement(editPart));
 			if(propSt != null && !propSt.equals("")) {
 				if(st != null && !st.equals("")) {
 					// display += "\n";
@@ -255,8 +243,7 @@ public abstract class StereotypedElementLabelHelper {
 	 *        the list of stereotypes displayed using their qualified names
 	 * @return the string that represent the stereotypes
 	 */
-	public String stereotypesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay,
-			String stereotypeWithQualifiedName) {
+	public String stereotypesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
 
 		// AL Changes Feb. 07 - Beg
 		// Style Handling for STEREOTYPE_NAME_APPEARANCE from ProfileApplicationPreferencePage

@@ -72,8 +72,7 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 	 *        the editor part in which the wizard was created
 	 */
 	public DrawerInformationPage() {
-		super(Messages.Wizard_Drawer_Page_Name, Messages.Wizard_Drawer_Page_Title, Activator
-				.getImageDescriptor(WIZARD_ICON));
+		super(Messages.Wizard_Drawer_Page_Name, Messages.Wizard_Drawer_Page_Title, Activator.getImageDescriptor(WIZARD_ICON));
 		drawerProxy = null;
 	}
 
@@ -84,8 +83,7 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 	 *        the editor part in which the wizard was created
 	 */
 	public DrawerInformationPage(PaletteLocalDrawerProxy drawerProxy) {
-		super(Messages.Wizard_Drawer_Page_Name, Messages.Wizard_Drawer_Page_Title, Activator
-				.getImageDescriptor(WIZARD_ICON));
+		super(Messages.Wizard_Drawer_Page_Name, Messages.Wizard_Drawer_Page_Title, Activator.getImageDescriptor(WIZARD_ICON));
 		this.drawerProxy = drawerProxy;
 	}
 

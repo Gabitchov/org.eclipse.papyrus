@@ -214,16 +214,13 @@ public class PaletteUtil {
 		Set<? extends PaletteEntry> entries = new HashSet<PaletteEntry>();
 
 		// retrieve all provider for the given editor ID
-		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService
-				.getInstance().getProviders();
-		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(),
-				new PaletteRoot(), new HashMap<Object, Object>());
+		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), new PaletteRoot(), new HashMap<Object, Object>());
 		PaletteRoot root = new PaletteRoot();
 
 		for(PapyrusPaletteService.ProviderDescriptor descriptor : providers) {
 			if(descriptor.providesWithVisibility(operation)) {
-				((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root,
-						new HashMap<Object, Object>());
+				((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, new HashMap<Object, Object>());
 			}
 
 		}
@@ -310,15 +307,13 @@ public class PaletteUtil {
 	 *        the current provider descriptor to test
 	 * @return <code>true</code> if all required profile are present
 	 */
-	public static boolean areRequiredProfileApplied(IEditorPart part,
-			PapyrusPaletteService.ProviderDescriptor papyrusProviderDesc) {
+	public static boolean areRequiredProfileApplied(IEditorPart part, PapyrusPaletteService.ProviderDescriptor papyrusProviderDesc) {
 		if(!(part instanceof DiagramEditorWithFlyOutPalette)) {
 			PapyrusTrace.log(IStatus.WARNING, "trying to check a papyrus palette descriptor outside papyrus framework");
 			return false;
 		}
 		if(papyrusProviderDesc instanceof PapyrusPaletteService.LocalProviderDescriptor) {
-			IPaletteDescription description = ((PapyrusPaletteService.LocalProviderDescriptor)papyrusProviderDesc)
-					.getDescription();
+			IPaletteDescription description = ((PapyrusPaletteService.LocalProviderDescriptor)papyrusProviderDesc).getDescription();
 			// checks the presence of required profile
 			Diagram diagram = ((DiagramEditorWithFlyOutPalette)part).getDiagram();
 			EObject element = diagram.getElement();

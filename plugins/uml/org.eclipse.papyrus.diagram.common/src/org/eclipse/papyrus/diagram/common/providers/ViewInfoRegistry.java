@@ -117,10 +117,8 @@ public class ViewInfoRegistry {
 	 * @return
 	 */
 	public ViewInfo getHeadViewInfoForEditor(String editorID) {
-		RootViewInfo rootViewInfo = readMapEditorID2RootViewInfo()
-				.get(editorID);
-		if(rootViewInfo != null && rootViewInfo.headViewInfo != null
-				&& rootViewInfo.headViewInfo.getType() == ViewInfo.Head) {
+		RootViewInfo rootViewInfo = readMapEditorID2RootViewInfo().get(editorID);
+		if(rootViewInfo != null && rootViewInfo.headViewInfo != null && rootViewInfo.headViewInfo.getType() == ViewInfo.Head) {
 			return rootViewInfo.headViewInfo;
 		}
 		return null;
@@ -134,8 +132,7 @@ public class ViewInfoRegistry {
 	 * @param visualID
 	 * @return
 	 */
-	public ViewInfo getViewInfoForVisualIDForEditor(String editorID,
-			int visualID) {
+	public ViewInfo getViewInfoForVisualIDForEditor(String editorID, int visualID) {
 		if(editorID == null || editorID.length() <= 0) {
 			return null;
 		}
@@ -146,15 +143,13 @@ public class ViewInfoRegistry {
 		return findViewInfoByVisualIDInChildren(headViewInfo, visualID);
 	}
 
-	protected ViewInfo findViewInfoByVisualIDInChildren(ViewInfo viewInfo,
-			int visualID) {
+	protected ViewInfo findViewInfoByVisualIDInChildren(ViewInfo viewInfo, int visualID) {
 		if(viewInfo.getVisualID() == visualID) {
 			return viewInfo;
 		}
 		ViewInfo foundViewInfo = null;
 		for(ViewInfo childrenViewInfo : viewInfo.getChildren()) {
-			foundViewInfo = findViewInfoByVisualIDInChildren(childrenViewInfo,
-					visualID);
+			foundViewInfo = findViewInfoByVisualIDInChildren(childrenViewInfo, visualID);
 			if(foundViewInfo != null) {
 				return foundViewInfo;
 			}
@@ -170,12 +165,9 @@ public class ViewInfoRegistry {
 	 */
 	protected Map<String, RootViewInfo> readMapEditorID2RootViewInfo() {
 		Map<String, RootViewInfo> map = getMapEditorID2RootViewInfo();
-		ExtensionPointParser parser = new ExtensionPointParser(
-				getExtensionPointID(), new Class[]{ RootViewInfo.class,
-				BaseViewInfo.class });
+		ExtensionPointParser parser = new ExtensionPointParser(getExtensionPointID(), new Class[]{ RootViewInfo.class, BaseViewInfo.class });
 		for(Object object : parser.parseExtensionPoint()) {
-			RootViewInfo rootViewInfo = (RootViewInfo)Platform
-					.getAdapterManager().getAdapter(object, RootViewInfo.class);
+			RootViewInfo rootViewInfo = (RootViewInfo)Platform.getAdapterManager().getAdapter(object, RootViewInfo.class);
 			if(rootViewInfo != null) {
 				if(processRootViewInfo(rootViewInfo)) {
 					map.put(rootViewInfo.editorID, rootViewInfo);
@@ -194,8 +186,7 @@ public class ViewInfoRegistry {
 	 * @return
 	 */
 	protected boolean processRootViewInfo(RootViewInfo rootViewInfo) {
-		if(rootViewInfo == null || rootViewInfo.BaseViewInfo == null
-				|| rootViewInfo.BaseViewInfo.size() <= 0) {
+		if(rootViewInfo == null || rootViewInfo.BaseViewInfo == null || rootViewInfo.BaseViewInfo.size() <= 0) {
 			return false;
 		}
 		// find Head node
@@ -214,13 +205,11 @@ public class ViewInfoRegistry {
 	}
 
 	protected BaseViewInfo findHeadNodeInRootViewInfo(RootViewInfo rootViewInfo) {
-		if(rootViewInfo == null || rootViewInfo.BaseViewInfo == null
-				|| rootViewInfo.BaseViewInfo.size() <= 0) {
+		if(rootViewInfo == null || rootViewInfo.BaseViewInfo == null || rootViewInfo.BaseViewInfo.size() <= 0) {
 			return null;
 		}
 		for(Object object : rootViewInfo.BaseViewInfo) {
-			BaseViewInfo baseViewInfo = (BaseViewInfo)Platform
-					.getAdapterManager().getAdapter(object, BaseViewInfo.class);
+			BaseViewInfo baseViewInfo = (BaseViewInfo)Platform.getAdapterManager().getAdapter(object, BaseViewInfo.class);
 			if(baseViewInfo != null && ViewInfo.Head == baseViewInfo.getType()) {
 				baseViewInfo.rootViewInfo = rootViewInfo;
 				return baseViewInfo;
@@ -230,20 +219,15 @@ public class ViewInfoRegistry {
 	}
 
 	protected boolean addKnownTypesViewInfo(RootViewInfo rootViewInfo) {
-		if(rootViewInfo.headViewInfo == null || rootViewInfo == null
-				|| rootViewInfo.BaseViewInfo == null
-				|| rootViewInfo.BaseViewInfo.size() <= 0) {
+		if(rootViewInfo.headViewInfo == null || rootViewInfo == null || rootViewInfo.BaseViewInfo == null || rootViewInfo.BaseViewInfo.size() <= 0) {
 			return false;
 		}
 		ViewInfo headViewInfo = rootViewInfo.headViewInfo;
 		for(Object object : rootViewInfo.BaseViewInfo) {
-			BaseViewInfo baseViewInfo = (BaseViewInfo)Platform
-					.getAdapterManager().getAdapter(object, BaseViewInfo.class);
-			if(baseViewInfo != null && ViewInfo.Head != baseViewInfo.getType()
-					&& ViewInfo.None != baseViewInfo.getType()) {
+			BaseViewInfo baseViewInfo = (BaseViewInfo)Platform.getAdapterManager().getAdapter(object, BaseViewInfo.class);
+			if(baseViewInfo != null && ViewInfo.Head != baseViewInfo.getType() && ViewInfo.None != baseViewInfo.getType()) {
 				baseViewInfo.rootViewInfo = rootViewInfo;
-				headViewInfo.addNode(Integer.valueOf(baseViewInfo.parent),
-						baseViewInfo);
+				headViewInfo.addNode(Integer.valueOf(baseViewInfo.parent), baseViewInfo);
 			}
 		}
 		return true;

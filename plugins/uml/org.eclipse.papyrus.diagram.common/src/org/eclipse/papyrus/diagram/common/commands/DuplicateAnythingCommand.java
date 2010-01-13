@@ -26,8 +26,7 @@ public class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 
 	private final Diagram diagram;
 
-	public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req,
-			Diagram currentDiagram) {
+	public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {
 
 		super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
 
@@ -35,16 +34,14 @@ public class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 		CommandResult result = super.doExecuteWithResult(progressMonitor, info);
 
 		for(Object duplicatedObject : this.getAllDuplicatedObjectsMap().keySet()) {
 			if(duplicatedObject instanceof EObject) {
 				if(MultiDiagramUtil.findEObjectReferencedInEAnnotation(diagram, (EObject)duplicatedObject)) {
-					MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, (EObject)this
-							.getAllDuplicatedObjectsMap().get(duplicatedObject));
+					MultiDiagramUtil.AddEAnnotationReferenceToDiagram(diagram, (EObject)this.getAllDuplicatedObjectsMap().get(duplicatedObject));
 				}
 			}
 		}

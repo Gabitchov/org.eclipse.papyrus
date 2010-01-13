@@ -135,8 +135,7 @@ public class UMLElementChooserDialog extends Dialog {
 
 		private ITreeContentProvider myWorkbenchContentProvider = new WorkbenchContentProvider();
 
-		private AdapterFactoryContentProvider myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
-				myItemProvidersAdapterFactory);
+		private AdapterFactoryContentProvider myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(myItemProvidersAdapterFactory);
 
 		public Object[] getChildren(Object parentElement) {
 			Object[] result = myWorkbenchContentProvider.getChildren(parentElement);
@@ -148,8 +147,7 @@ public class UMLElementChooserDialog extends Dialog {
 				IPath resourcePath = modelFile.getFullPath();
 				ResourceSet resourceSet = myEditingDomain.getResourceSet();
 				try {
-					Resource modelResource = resourceSet.getResource(URI.createPlatformResourceURI(resourcePath
-							.toString(), true), true);
+					Resource modelResource = resourceSet.getResource(URI.createPlatformResourceURI(resourcePath.toString(), true), true);
 					return myAdapterFctoryContentProvier.getChildren(modelResource);
 				} catch (WrappedException e) {
 					e.printStackTrace();
@@ -180,8 +178,7 @@ public class UMLElementChooserDialog extends Dialog {
 			if(element instanceof IFile) {
 				return isValidModelFile((IFile)element);
 			}
-			return myWorkbenchContentProvider.hasChildren(element)
-					|| myAdapterFctoryContentProvier.hasChildren(element);
+			return myWorkbenchContentProvider.hasChildren(element) || myAdapterFctoryContentProvier.hasChildren(element);
 		}
 
 		private boolean isValidModelFile(IFile file) {
@@ -217,8 +214,7 @@ public class UMLElementChooserDialog extends Dialog {
 
 		private WorkbenchLabelProvider myWorkbenchLabelProvider = new WorkbenchLabelProvider();
 
-		private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				myItemProvidersAdapterFactory);
+		private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(myItemProvidersAdapterFactory);
 
 		public Image getImage(Object element) {
 			Image result = myWorkbenchLabelProvider.getImage(element);
@@ -241,8 +237,7 @@ public class UMLElementChooserDialog extends Dialog {
 		}
 
 		public boolean isLabelProperty(Object element, String property) {
-			return myWorkbenchLabelProvider.isLabelProperty(element, property)
-					|| myAdapterFactoryLabelProvider.isLabelProperty(element, property);
+			return myWorkbenchLabelProvider.isLabelProperty(element, property) || myAdapterFactoryLabelProvider.isLabelProperty(element, property);
 		}
 
 		public void removeListener(ILabelProviderListener listener) {

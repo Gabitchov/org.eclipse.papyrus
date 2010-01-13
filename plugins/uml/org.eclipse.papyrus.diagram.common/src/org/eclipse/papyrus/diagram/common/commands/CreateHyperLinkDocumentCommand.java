@@ -43,8 +43,7 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	 * @param localization
 	 *        the localization
 	 */
-	public CreateHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext,
-			String localization) {
+	public CreateHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String localization) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT);
 		this.tooltiptext = tooltiptext;
 		this.localization = localization;
@@ -56,8 +55,7 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	protected void doExecute() {
 		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
-		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION,
-				this.localization);
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION, this.localization);
 		attachEannotation(eAnnotation, getObject());
 	}
 

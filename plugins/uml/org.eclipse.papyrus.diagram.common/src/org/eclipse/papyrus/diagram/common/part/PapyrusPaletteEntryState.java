@@ -73,8 +73,7 @@ public class PapyrusPaletteEntryState extends PaletteEntryState {
 		PaletteEntry entry = getPaletteEntry();
 
 		// stores the parent id name
-		if(parentID != null && !parentID.equals(entry.getParent().getId())
-				|| (parentID == null && entry.getParent() != null)) {
+		if(parentID != null && !parentID.equals(entry.getParent().getId()) || (parentID == null && entry.getParent() != null)) {
 			memento.putString(PARENT_ID_KEY, entry.getParent().getId());
 		}
 

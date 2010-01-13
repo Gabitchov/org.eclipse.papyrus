@@ -82,8 +82,7 @@ public class URIUtil {
 				return uri;
 			}
 			ResourceSet resourceSet = new ResourceSetImpl();
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-					Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 			Resource resource = resourceSet.getResource(uri, true);
 			Diagram diagram = MDTUtil.getFirstDiagramFromResource(resource);
 			if(diagram != null) {

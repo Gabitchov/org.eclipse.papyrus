@@ -19,11 +19,9 @@ import org.eclipse.jface.viewers.ISelection;
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
-public class ValidationPopupMenuContributionPolicy implements
-		IPopupMenuContributionPolicy {
+public class ValidationPopupMenuContributionPolicy implements IPopupMenuContributionPolicy {
 
-	public boolean appliesTo(ISelection selection,
-			IConfigurationElement configuration) {
+	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {
 		return true;
 	}
 }

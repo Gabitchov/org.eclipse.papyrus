@@ -43,8 +43,7 @@ public class CreateHyperLinkWebCommand extends CreateEAnnotationCommand {
 	 * @param link
 	 *        the localization
 	 */
-	public CreateHyperLinkWebCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext,
-			String link) {
+	public CreateHyperLinkWebCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String link) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_WEB);
 		this.tooltiptext = tooltiptext;
 		this.link = link;

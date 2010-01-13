@@ -62,8 +62,7 @@ public abstract class ClassifierEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected FontData getFontData(FontStyle style) {
-		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
-				| (isAbstract ? SWT.ITALIC : (style.isItalic() ? SWT.ITALIC : SWT.NORMAL)));
+		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (isAbstract ? SWT.ITALIC : (style.isItalic() ? SWT.ITALIC : SWT.NORMAL)));
 	}
 
 }

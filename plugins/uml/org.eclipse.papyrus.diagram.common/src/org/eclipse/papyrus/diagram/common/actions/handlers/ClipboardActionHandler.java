@@ -126,8 +126,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 					if(!allElementsSameType(eobjects, eobject)) {
 						return false;
 					}
-					IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-							.getActiveEditor();
+					IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 					if(editorPart instanceof DiagramEditor) {
 						if(((DiagramEditor)editorPart).getDiagram().getElement().equals(eobject)) {
 							return false;
@@ -166,8 +165,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 			Object firstElement = ((StructuredSelection)cntxt.getSelection()).getFirstElement();
 			if(firstElement instanceof IGraphicalEditPart) {
 				IGraphicalEditPart pasteDestination = ((IGraphicalEditPart)firstElement);
-				if(pasteDestination != null && pasteDestination.resolveSemanticElement() != null
-						&& (!pasteDestination.resolveSemanticElement().equals(container) || !isCut)) {
+				if(pasteDestination != null && pasteDestination.resolveSemanticElement() != null && (!pasteDestination.resolveSemanticElement().equals(container) || !isCut)) {
 					TransactionalEditingDomain domain = pasteDestination.getEditingDomain();
 					if(domain.getClipboard() != null && domain.getClipboard().size() > 0) {
 						// All the elements in the clipboard are of the same
@@ -254,8 +252,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 
 				for(Object view : DiagramEditPartsUtil.getEObjectViews(eobj)) {
 					if(view instanceof View) {
-						EditPart editpart = DiagramEditPartsUtil.getEditPartFromView((View)view,
-								(EditPart)firstElement);
+						EditPart editpart = DiagramEditPartsUtil.getEditPartFromView((View)view, (EditPart)firstElement);
 						editPartsInClipboard.add(editpart);
 					}
 				}
@@ -321,8 +318,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 
 				for(Object view : DiagramEditPartsUtil.getEObjectViews(eobj)) {
 					if(view instanceof View) {
-						EditPart editpart = DiagramEditPartsUtil.getEditPartFromView((View)view,
-								(EditPart)firstElement);
+						EditPart editpart = DiagramEditPartsUtil.getEditPartFromView((View)view, (EditPart)firstElement);
 						editPartsInClipboard.add(editpart);
 					}
 				}
@@ -390,12 +386,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 		final Object firstElement = first;
 		final IGraphicalEditPart editPart = pasteDestination;
 		final TransactionalEditingDomain domain = editingDomain;
-		AbstractCommonTransactionalCommmand command = new AbstractCommonTransactionalCommmand(editingDomain,
-				"Paste after copy", null) {
+		AbstractCommonTransactionalCommmand command = new AbstractCommonTransactionalCommmand(editingDomain, "Paste after copy", null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				if(domain.getClipboard() != null && domain.getClipboard().size() > 0) {
 					// All the objects in the clipboard are supposed to
 					// be of the same type
@@ -404,8 +398,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 					EStructuralFeature feature = getFeature(firstObjectToBePasted, editPart);
 
 					// Execute paste
-					Command pasteCommand = PasteFromClipboardCommand.create(domain, editPart.resolveSemanticElement(),
-							feature);
+					Command pasteCommand = PasteFromClipboardCommand.create(domain, editPart.resolveSemanticElement(), feature);
 
 					domain.getCommandStack().execute(pasteCommand);
 
@@ -419,8 +412,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 						}
 					}
 
-					ICommand command = new AddEObjectReferencesToDiagram(domain, DiagramEditPartsUtil
-							.findDiagramFromEditPart((IGraphicalEditPart)firstElement), eobjects);
+					ICommand command = new AddEObjectReferencesToDiagram(domain, DiagramEditPartsUtil.findDiagramFromEditPart((IGraphicalEditPart)firstElement), eobjects);
 					domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 
 					// refresh the affected EditPart
@@ -458,12 +450,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 		final Object firstElement = first;
 		final IGraphicalEditPart editPart = pasteDestination;
 		final TransactionalEditingDomain domain = editingDomain;
-		AbstractCommonTransactionalCommmand command = new AbstractCommonTransactionalCommmand(editingDomain,
-				"Paste after cut", null) {
+		AbstractCommonTransactionalCommmand command = new AbstractCommonTransactionalCommmand(editingDomain, "Paste after cut", null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 				if(domain.getClipboard() != null && domain.getClipboard().size() > 0) {
 
@@ -510,8 +500,7 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 						}
 					}
 
-					ICommand command = new AddEObjectReferencesToDiagram(domain, DiagramEditPartsUtil
-							.findDiagramFromEditPart((IGraphicalEditPart)firstElement), eobjects);
+					ICommand command = new AddEObjectReferencesToDiagram(domain, DiagramEditPartsUtil.findDiagramFromEditPart((IGraphicalEditPart)firstElement), eobjects);
 					if(!command.canExecute()) {
 						return CommandResult.newCancelledCommandResult();
 					}

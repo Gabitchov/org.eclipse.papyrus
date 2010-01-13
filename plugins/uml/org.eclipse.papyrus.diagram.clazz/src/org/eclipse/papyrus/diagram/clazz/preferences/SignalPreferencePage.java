@@ -31,24 +31,13 @@ public class SignalPreferencePage extends AbstractPapyrusNodePreferencePage {
 	public static void initDefaults(IPreferenceStore store) {
 
 		String elementName = "Signal";
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper
-				.getElementConstant(elementName,
-						PreferenceConstantHelper.COLOR_FILL),
-				new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper
-				.getElementConstant(elementName,
-						PreferenceConstantHelper.COLOR_LINE),
-				new org.eclipse.swt.graphics.RGB(0, 0, 0));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
 		// Set the default for the gradient
-		store.setDefault(PreferenceConstantHelper.getElementConstant(
-				elementName, PreferenceConstantHelper.GRADIENT_POLICY), false);
-		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-				new org.eclipse.swt.graphics.RGB(255, 255, 255),
-				new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(
-				elementName, PreferenceConstantHelper.COLOR_GRADIENT),
-				gradientPreferenceConverter.getPreferenceValue());
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY), false);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 	}
 

@@ -33,8 +33,7 @@ public abstract class CreateLinkToolBase extends UnspecifiedTypeConnectionTool {
 	@Override
 	@SuppressWarnings("unchecked")
 	protected Request createTargetRequest() {
-		CreateUnspecifiedTypeConnectionRequest request = (CreateUnspecifiedTypeConnectionRequest)super
-				.createTargetRequest();
+		CreateUnspecifiedTypeConnectionRequest request = (CreateUnspecifiedTypeConnectionRequest)super.createTargetRequest();
 
 		// below is the only way to propagate extended data into
 		// IEditCommandRequest#parameters

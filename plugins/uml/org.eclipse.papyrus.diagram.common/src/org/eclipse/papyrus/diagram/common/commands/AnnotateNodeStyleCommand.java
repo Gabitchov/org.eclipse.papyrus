@@ -59,8 +59,7 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 	 *        List of affected files. It may be null.
 	 */
 	// @unused
-	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain,
-			List affectedFiles) {
+	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain, List affectedFiles) {
 		this(ep, attr, domain, COMMAND_LABEL, affectedFiles);
 	}
 
@@ -78,8 +77,7 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 	 * @param affectedFiles
 	 *        List of affected files. It may be null.
 	 */
-	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain,
-			String commandLabel, List affectedFiles) {
+	public AnnotateNodeStyleCommand(IGraphicalEditPart ep, EAttribute attr, TransactionalEditingDomain domain, String commandLabel, List affectedFiles) {
 		super(domain, commandLabel, affectedFiles);
 		setEAttribute(attr);
 		setEditPart(ep);

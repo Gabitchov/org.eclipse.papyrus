@@ -86,8 +86,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	protected boolean validateOnLaunch = false;
 
 	static {
-		priorityList = new String[]{ ProviderPriority.LOWEST.getName(), ProviderPriority.LOW.getName(),
-				ProviderPriority.MEDIUM.getName(), ProviderPriority.HIGH.getName(), ProviderPriority.HIGHEST.getName() };
+		priorityList = new String[]{ ProviderPriority.LOWEST.getName(), ProviderPriority.LOW.getName(), ProviderPriority.MEDIUM.getName(), ProviderPriority.HIGH.getName(), ProviderPriority.HIGHEST.getName() };
 	}
 
 	/**
@@ -97,8 +96,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 *        the editor part in which the wizard was created
 	 */
 	public LocalPaletteInformationPage(IEditorPart part) {
-		super(Messages.Local_Palette_InfoPage_Name, Messages.Local_Palette_InfoPage_Title, Activator
-				.getImageDescriptor(WIZARD_ICON));
+		super(Messages.Local_Palette_InfoPage_Name, Messages.Local_Palette_InfoPage_Title, Activator.getImageDescriptor(WIZARD_ICON));
 		this.editorPart = part;
 	}
 

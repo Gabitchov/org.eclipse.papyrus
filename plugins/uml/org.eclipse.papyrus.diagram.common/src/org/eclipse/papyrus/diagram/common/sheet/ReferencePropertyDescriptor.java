@@ -27,8 +27,7 @@ public class ReferencePropertyDescriptor extends EMFCompositeSourcePropertyDescr
 
 	private final AdapterFactory myItemProvidersAdapterFactory;
 
-	public ReferencePropertyDescriptor(Object sourceObject, IItemPropertyDescriptor itemPropertyDescriptor,
-			String category, AdapterFactory itemProvidersAdapterFactory) {
+	public ReferencePropertyDescriptor(Object sourceObject, IItemPropertyDescriptor itemPropertyDescriptor, String category, AdapterFactory itemProvidersAdapterFactory) {
 		super(sourceObject, itemPropertyDescriptor, category);
 		myItemProvidersAdapterFactory = itemProvidersAdapterFactory;
 	}
@@ -36,16 +35,14 @@ public class ReferencePropertyDescriptor extends EMFCompositeSourcePropertyDescr
 	@Override
 	protected CellEditor doCreateEditor(Composite composite) {
 		final EStructuralFeature feature = (EStructuralFeature)getFeature();
-		UMLElementChooserDialog dialog = new ReferenceElementChooserDialog(composite.getShell(),
-				myItemProvidersAdapterFactory, (EObject)object, feature) {
+		UMLElementChooserDialog dialog = new ReferenceElementChooserDialog(composite.getShell(), myItemProvidersAdapterFactory, (EObject)object, feature) {
 
 			@Override
 			protected boolean isValid(EObject selectedElement) {
 				return feature.getEType().isInstance(selectedElement);
 			}
 		};
-		return new ReferenceComboAndDialogCellEditor(composite, new ArrayList(getChoiceOfValues()), getLabelProvider(),
-				true, dialog, TransactionUtil.getEditingDomain(object));
+		return new ReferenceComboAndDialogCellEditor(composite, new ArrayList(getChoiceOfValues()), getLabelProvider(), true, dialog, TransactionUtil.getEditingDomain(object));
 
 	}
 

@@ -71,8 +71,7 @@ public class NewLocalPaletteWizard extends Wizard {
 		contentPage.performFinish(PapyrusPalettePreferences.getPalettePathFromID(infoPage.getPaletteID()));
 
 		// generate the preference for local palette
-		PapyrusPalettePreferences.addLocalPalette(infoPage.getPaletteID(), infoPage.getPaletteName(), infoPage
-				.getPalettePriority(), infoPage.getEditorID(), contentPage.getRequiredProfiles());
+		PapyrusPalettePreferences.addLocalPalette(infoPage.getPaletteID(), infoPage.getPaletteName(), infoPage.getPalettePriority(), infoPage.getEditorID(), contentPage.getRequiredProfiles());
 		return true;
 	}
 

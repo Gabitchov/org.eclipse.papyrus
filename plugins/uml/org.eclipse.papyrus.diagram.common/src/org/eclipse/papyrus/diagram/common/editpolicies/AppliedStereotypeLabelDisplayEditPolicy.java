@@ -86,14 +86,11 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	 *         image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
-		String stereotypespresentationKind = AppliedStereotypeHelper
-				.getAppliedStereotypePresentationKind((View)getHost().getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());
 		if(stereotypespresentationKind == null) {
 			return null;
 		}
-		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION)
-				|| stereotypespresentationKind
-				.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getHost().getModel());
@@ -122,8 +119,7 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	 * @return a string that displays stereotypes (using their simple name or their qualified name)
 	 *         and their properties
 	 */
-	public String stereotypesAndPropertiesToDisplay(String separator, String stereotypesToDisplay,
-			String stereotypeWithQualifiedName, String stereotypesPropertiesToDisplay) {
+	public String stereotypesAndPropertiesToDisplay(String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName, String stereotypesPropertiesToDisplay) {
 		// Get the preference from PreferenceStore. there should be an assert
 		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		assert store != null : "The preference store was not found";
@@ -135,8 +131,7 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 
 		// changes the string of properties into a map, where the entries of the map are the
 		// stereotype qualified name, and the properties to display are the data
-		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(stereotypesToDisplay,
-				stereotypesPropertiesToDisplay);
+		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(stereotypesToDisplay, stereotypesPropertiesToDisplay);
 
 		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
 		String out = "";
@@ -181,9 +176,7 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 				if(properties != null) {
 					// retrieve property
 					for(String propertyName : properties) {
-						out = out
-								+ StereotypeUtil.displayPropertyValue(stereotype, StereotypeUtil.getPropertyByName(
-								stereotype, propertyName), getUMLElement(), "\n");
+						out = out + StereotypeUtil.displayPropertyValue(stereotype, StereotypeUtil.getPropertyByName(stereotype, propertyName), getUMLElement(), "\n");
 					}
 				}
 			}
@@ -207,11 +200,9 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 		// retrieve all stereotypes to be displayed
 
 		// try to display stereotype properties
-		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper
-				.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
+		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getHost().getModel());
-		String stereotypespresentationKind = AppliedStereotypeHelper
-				.getAppliedStereotypePresentationKind((View)getHost().getModel());
+		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());
 
 		// now check presentation.
 		// if horizontal => equivalent to the inBrace visualization in nodes (i.e. only name =
@@ -224,19 +215,16 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 		}
 
-		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View)getHost()
-				.getModel()));
+		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View)getHost().getModel()));
 		String display = "";
 		if(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN,
-					stereotypesPropertiesToDisplay);
+			display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
 		} else {
 			final String st = stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
 			if(st != null && !st.equals("")) {
 				display += Activator.ST_LEFT + st + Activator.ST_RIGHT;
 			}
-			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay,
-					getUMLElement());
+			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 			if(propSt != null && !propSt.equals("")) {
 				if(st != null && !st.equals("")) {
 					display += "\n";

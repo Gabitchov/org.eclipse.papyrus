@@ -49,8 +49,15 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public void addAdditionalListeners() {
+		// check host semantic element is not null
+		if(!(hostSemanticElement instanceof Operation)) {
+			return;
+		}
+
+		Operation operation = (Operation)hostSemanticElement;
+
 		// adds a listener to the element itself, and to linked elements, like Type
-		for(Parameter parameter : getUMLElement().getOwnedParameters()) {
+		for(Parameter parameter : operation.getOwnedParameters()) {
 			getDiagramEventBroker().addNotificationListener(parameter, this);
 
 			// should also add this element as a listener of parameter type
@@ -353,7 +360,14 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	protected void removeAdditionalListeners() {
-		for(Parameter parameter : getUMLElement().getOwnedParameters()) {
+		// check host semantic element is not null
+		if(!(hostSemanticElement instanceof Operation)) {
+			return;
+		}
+
+		Operation operation = (Operation)hostSemanticElement;
+
+		for(Parameter parameter : operation.getOwnedParameters()) {
 			getDiagramEventBroker().removeNotificationListener(parameter, this);
 
 			// remove parameter type listener

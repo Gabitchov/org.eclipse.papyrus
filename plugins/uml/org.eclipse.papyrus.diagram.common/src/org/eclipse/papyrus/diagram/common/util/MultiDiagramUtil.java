@@ -170,8 +170,7 @@ public class MultiDiagramUtil {
 	 * @return the diagram resource
 	 */
 	private static GMFResource getDiagramResource() {
-		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.getActiveEditor();
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if(activeEditor != null && activeEditor instanceof DiagramEditor) {
 			TransactionalEditingDomain domain = ((DiagramEditor)activeEditor).getEditingDomain();
 			if(domain == null) {
@@ -186,8 +185,7 @@ public class MultiDiagramUtil {
 			if(activeEditor != null) {
 				Diagram diagram = (Diagram)activeEditor.getAdapter(Diagram.class);
 				if(diagram != null && diagram.eResource() != null) {
-					GMFResource resource = (GMFResource)Platform.getAdapterManager().getAdapter(diagram.eResource(),
-							GMFResource.class);
+					GMFResource resource = (GMFResource)Platform.getAdapterManager().getAdapter(diagram.eResource(), GMFResource.class);
 					return resource;
 				}
 			}
@@ -420,8 +418,7 @@ public class MultiDiagramUtil {
 		if(editorId == null)
 			return;
 
-		IPluginContribution pluginContribution = (IPluginContribution)PlatformUI.getWorkbench().getEditorRegistry()
-				.findEditor(editorId);
+		IPluginContribution pluginContribution = (IPluginContribution)PlatformUI.getWorkbench().getEditorRegistry().findEditor(editorId);
 		if(pluginContribution == null) {
 			return;
 		}
@@ -452,8 +449,7 @@ public class MultiDiagramUtil {
 	 *         the execution exception
 	 */
 	// @unused
-	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource,
-			Map<String, IDiagramInitializer> initializers) throws ExecutionException {
+	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource, Map<String, IDiagramInitializer> initializers) throws ExecutionException {
 		return intializeNewDiagram(kind, domainElement, resource, initializers, true);
 	}
 
@@ -476,8 +472,7 @@ public class MultiDiagramUtil {
 	 * @throws ExecutionException
 	 *         the execution exception
 	 */
-	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource,
-			Map<String, IDiagramInitializer> initializers, boolean askName) throws ExecutionException {
+	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource, Map<String, IDiagramInitializer> initializers, boolean askName) throws ExecutionException {
 		Diagram d = null;
 		try {
 			d = ViewService.createDiagram(domainElement, kind, MDTUtil.getPreferencesHint(kind));
@@ -495,8 +490,7 @@ public class MultiDiagramUtil {
 
 		// insert the eAnnotation to set the diagram to be opened in the
 		// OpenUpper action
-		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.getActiveEditor();
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		Diagram activeDiagram = null;
 		if(activeEditor instanceof DiagramEditor) {
 			DiagramEditor diagramEditor = (DiagramEditor)activeEditor;
@@ -527,8 +521,7 @@ public class MultiDiagramUtil {
 	protected static boolean setDigramName(Diagram diagram) {
 		String message = "";
 		message += "New " + diagram.getType() + " diagram name";
-		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Diagram name", message, diagram
-				.getType(), null);
+		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Diagram name", message, diagram.getType(), null);
 		int result = dialog.open();
 		if(result == Window.OK) {
 			String name = dialog.getValue();
@@ -560,8 +553,7 @@ public class MultiDiagramUtil {
 	 *         the execution exception
 	 */
 	// @unused
-	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource,
-			Map<String, IDiagramInitializer> initializers, boolean askName, String name) throws ExecutionException {
+	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource, Map<String, IDiagramInitializer> initializers, boolean askName, String name) throws ExecutionException {
 		return intializeNewDiagram(kind, domainElement, resource, initializers, askName, name, null);
 	}
 
@@ -589,9 +581,7 @@ public class MultiDiagramUtil {
 	 * @throws ExecutionException
 	 *         the execution exception
 	 */
-	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource,
-			Map<String, IDiagramInitializer> initializers, boolean askName, String name, Diagram upperDiagram)
-			throws ExecutionException {
+	public static Diagram intializeNewDiagram(String kind, EObject domainElement, Resource resource, Map<String, IDiagramInitializer> initializers, boolean askName, String name, Diagram upperDiagram) throws ExecutionException {
 
 		Diagram d = null;
 		try {
@@ -609,8 +599,7 @@ public class MultiDiagramUtil {
 		// insert the eAnnotation to set the diagram to be opened in the
 		// OpenUpper action
 		if(upperDiagram == null) {
-			IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.getActiveEditor();
+			IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 			if(activeEditor != null) {
 				upperDiagram = (Diagram)activeEditor.getAdapter(Diagram.class);
 			}
@@ -731,9 +720,7 @@ public class MultiDiagramUtil {
 
 		// The diagram is Ok to be deleted. Ask user confirmation.
 		if(confirm) {
-			MessageDialog confirmDialog = new MessageDialog(Display.getCurrent().getActiveShell(), "Delete diagram?",
-					null, "Are oyu sure you want to delete the selected diagram?", MessageDialog.WARNING, new String[]{
-					"Yes", "No" }, 1);
+			MessageDialog confirmDialog = new MessageDialog(Display.getCurrent().getActiveShell(), "Delete diagram?", null, "Are oyu sure you want to delete the selected diagram?", MessageDialog.WARNING, new String[]{ "Yes", "No" }, 1);
 			int result = confirmDialog.open();
 			if(result == Window.CANCEL) {
 				return null;
@@ -776,8 +763,7 @@ public class MultiDiagramUtil {
 	 * @return true, if is diagram active
 	 */
 	public static boolean isDiagramActive(Diagram diagram) {
-		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.getActiveEditor();
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if(activeEditor instanceof DiagramEditor) {
 			DiagramEditor diagramEditor = (DiagramEditor)activeEditor;
 			Diagram activeDiagram = diagramEditor.getDiagram();
@@ -927,8 +913,7 @@ public class MultiDiagramUtil {
 	public static boolean deleteAndSaveEObjectInResource(URI uri, String fragment) {
 		URI resourceURI = uri;
 		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		Resource resource = resourceSet.getResource(resourceURI, true);
 		EObject toDelete = resource.getEObject(fragment);
 		if(toDelete != null && resource.getContents().contains(toDelete)) {
@@ -1185,8 +1170,7 @@ public class MultiDiagramUtil {
 	// //
 	// qualified name for the IFile property that will store the info about the
 	// open diagrams.
-	private static final QualifiedName OpenDiagramsFileProperty = new QualifiedName(
-			"es.cv.gvcase.mdt.common.part.MOSKittMultiPageEditor", "openDiagrams");
+	private static final QualifiedName OpenDiagramsFileProperty = new QualifiedName("es.cv.gvcase.mdt.common.part.MOSKittMultiPageEditor", "openDiagrams");
 
 	private static final String OpenDiagramsSeparator = ";";
 

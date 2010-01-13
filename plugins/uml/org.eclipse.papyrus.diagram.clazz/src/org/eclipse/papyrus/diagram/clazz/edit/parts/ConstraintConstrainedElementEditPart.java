@@ -27,8 +27,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.ConstraintConstrainedElem
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,10 +46,8 @@ public class ConstraintConstrainedElementEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ConstraintConstrainedElementItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
@@ -70,7 +67,7 @@ public class ConstraintConstrainedElementEditPart extends
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor) getFigure();
+		return (CommentLinkDescriptor)getFigure();
 	}
 
 	/**

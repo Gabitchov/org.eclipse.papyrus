@@ -158,8 +158,7 @@ public class DiagramEditPartsUtil {
 	 *        the features
 	 */
 	// @unused
-	public static void handleNotificationForDiagram(IGraphicalEditPart editPart, Notification notification,
-			List<EStructuralFeature> features) {
+	public static void handleNotificationForDiagram(IGraphicalEditPart editPart, Notification notification, List<EStructuralFeature> features) {
 		EObject element = editPart.resolveSemanticElement();
 		Object notifier = notification.getNotifier();
 		Object feature = notification.getFeature();
@@ -184,8 +183,7 @@ public class DiagramEditPartsUtil {
 	 *        the features
 	 */
 	// @unused
-	public static void handleNotificationForView(IGraphicalEditPart editPart, Notification notification,
-			List<EStructuralFeature> features) {
+	public static void handleNotificationForView(IGraphicalEditPart editPart, Notification notification, List<EStructuralFeature> features) {
 		EObject element = editPart.resolveSemanticElement();
 		Object notifier = notification.getNotifier();
 		Object feature = notification.getFeature();

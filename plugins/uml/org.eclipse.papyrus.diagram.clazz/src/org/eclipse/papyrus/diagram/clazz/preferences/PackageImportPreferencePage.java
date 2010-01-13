@@ -20,8 +20,7 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 /**
  * @generated
  */
-public class PackageImportPreferencePage extends
-		AbstractPapyrusLinkPreferencePage {
+public class PackageImportPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated

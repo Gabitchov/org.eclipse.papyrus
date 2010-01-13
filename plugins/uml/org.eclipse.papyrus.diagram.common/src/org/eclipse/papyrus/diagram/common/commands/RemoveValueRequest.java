@@ -52,8 +52,7 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	 * @param value
 	 *        the value to remove
 	 */
-	public RemoveValueRequest(TransactionalEditingDomain editingDomain, EObject elementToEdit,
-			EStructuralFeature feature, Object value) {
+	public RemoveValueRequest(TransactionalEditingDomain editingDomain, EObject elementToEdit, EStructuralFeature feature, Object value) {
 
 		super(editingDomain);
 		this.elementToEdit = elementToEdit;

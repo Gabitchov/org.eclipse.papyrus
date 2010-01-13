@@ -63,8 +63,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	private final String SEP = " - ";
 
 	/** The adapter factory. */
-	protected AdapterFactory adapterFactory = new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	protected AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	/** The selected diagram. */
 	protected Diagram selectedDiagram;
@@ -164,8 +163,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		 * @param iCreationCommandRegistry
 		 *        the i creation command registry
 		 */
-		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor,
-				Element container, ICreationCommandRegistry iCreationCommandRegistry) {
+		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, Element container, ICreationCommandRegistry iCreationCommandRegistry) {
 			super();
 			this.commandDescriptor = commandDescriptor;
 			this.container = container;
@@ -371,8 +369,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		// add listner on the new button to display menu for each diagram
 		diagramMenuButton = new Menu(getNewDiagrambutton());
 		getNewDiagrambutton().setMenu(diagramMenuButton);
-		CreationCommandRegistry commandRegistry = new CreationCommandRegistry(
-				org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		CreationCommandRegistry commandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		for(CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
 			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
 			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, commandRegistry));
@@ -391,8 +388,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
-				IStructuredSelection iSelection = (IStructuredSelection)getModeFilteredTree().getViewer()
-						.getSelection();
+				IStructuredSelection iSelection = (IStructuredSelection)getModeFilteredTree().getViewer().getSelection();
 				Iterator iterator = iSelection.iterator();
 				while(iterator.hasNext()) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr();
@@ -410,8 +406,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		getModeFilteredTree().getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selection = ((IStructuredSelection)getModeFilteredTree().getViewer().getSelection())
-						.getFirstElement();
+				Object selection = ((IStructuredSelection)getModeFilteredTree().getViewer().getSelection()).getFirstElement();
 				if(selection instanceof Diagram) {
 					selectedDiagram = (Diagram)selection;
 				}
@@ -424,8 +419,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		getDiagramfilteredTree().getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selection = ((IStructuredSelection)getDiagramfilteredTree().getViewer().getSelection())
-						.getFirstElement();
+				Object selection = ((IStructuredSelection)getDiagramfilteredTree().getViewer().getSelection()).getFirstElement();
 				if(selection instanceof Diagram) {
 					selectedDiagram = (Diagram)selection;
 				}

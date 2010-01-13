@@ -40,8 +40,7 @@ public class AssistedEditPart {
 		types = removeTypes(types);
 		types = addTypes(types);
 		if(customizerClass != null) {
-			AssistantCustomizeEditPart assistant = (AssistantCustomizeEditPart)Platform.getAdapterManager()
-					.getAdapter(customizerClass, AssistantCustomizeEditPart.class);
+			AssistantCustomizeEditPart assistant = (AssistantCustomizeEditPart)Platform.getAdapterManager().getAdapter(customizerClass, AssistantCustomizeEditPart.class);
 			if(assistant != null) {
 				types = assistant.customizeTypes(types);
 			}

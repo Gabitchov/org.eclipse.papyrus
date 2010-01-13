@@ -54,13 +54,19 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public void addAdditionalListeners() {
+		// check host semantic element is not null
+		if(!(hostSemanticElement instanceof Property)) {
+			return;
+		}
+
+		Property property = (Property)hostSemanticElement;
 		// adds a listener to the element itself, and to linked elements, like Type
-		if(getUMLElement().getType() != null) {
-			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
+		if(property.getType() != null) {
+			getDiagramEventBroker().addNotificationListener(property.getType(), this);
 
 		}
-		getDiagramEventBroker().addNotificationListener(getUMLElement().getUpperValue(), this);
-		getDiagramEventBroker().addNotificationListener(getUMLElement().getLowerValue(), this);
+		getDiagramEventBroker().addNotificationListener(property.getUpperValue(), this);
+		getDiagramEventBroker().addNotificationListener(property.getLowerValue(), this);
 	}
 
 	/**
@@ -333,15 +339,22 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * 
+	 * {@inheritDoc}
 	 */
 	protected void removeAdditionalListeners() {
-		if(getUMLElement().getType() != null) {
-			getDiagramEventBroker().removeNotificationListener(getUMLElement().getType(), this);
+		if(!(hostSemanticElement instanceof Property)) {
+			// check semantic element is not null and this is really an instance of Property
+			return;
 		}
 
-		getDiagramEventBroker().removeNotificationListener(getUMLElement().getUpperValue(), this);
-		getDiagramEventBroker().removeNotificationListener(getUMLElement().getLowerValue(), this);
+		Property property = (Property)hostSemanticElement;
+
+		if(property.getType() != null) {
+			getDiagramEventBroker().removeNotificationListener(property.getType(), this);
+		}
+
+		getDiagramEventBroker().removeNotificationListener(property.getUpperValue(), this);
+		getDiagramEventBroker().removeNotificationListener(property.getLowerValue(), this);
 	}
 
 	/**

@@ -61,24 +61,18 @@ public class ValidationAction extends Action {
 	 * Executes the action
 	 */
 	public void run() {
-		IWorkbenchPart workbenchPart = workbenchPartDescriptor.getPartPage()
-				.getActivePart();
+		IWorkbenchPart workbenchPart = workbenchPartDescriptor.getPartPage().getActivePart();
 		if(workbenchPart instanceof IDiagramWorkbenchPart) {
 			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart)workbenchPart;
 			try {
-				new WorkspaceModifyDelegatingOperation(
-						new IRunnableWithProgress() {
+				new WorkspaceModifyDelegatingOperation(new IRunnableWithProgress() {
 
-					public void run(IProgressMonitor monitor)
-							throws InterruptedException,
-							InvocationTargetException {
-						runValidation(part.getDiagramEditPart(), part
-								.getDiagram());
+					public void run(IProgressMonitor monitor) throws InterruptedException, InvocationTargetException {
+						runValidation(part.getDiagramEditPart(), part.getDiagram());
 					}
 				}).run(new NullProgressMonitor());
 			} catch (Exception e) {
-				Activator.getDefault().logError(
-						"Diagram Validation action failed", e);
+				Activator.getDefault().logError("Diagram Validation action failed", e);
 			}
 		}
 	}
@@ -92,8 +86,7 @@ public class ValidationAction extends Action {
 	public static void runValidation(DiagramEditPart diagramEditPart, View view) {
 		final DiagramEditPart fpart = diagramEditPart;
 		final View fview = view;
-		TransactionalEditingDomain txDomain = TransactionUtil
-				.getEditingDomain(view);
+		TransactionalEditingDomain txDomain = TransactionUtil.getEditingDomain(view);
 		DiagramValidationProvider.runWithConstraints(txDomain, new Runnable() {
 
 			public void run() {
@@ -109,8 +102,7 @@ public class ValidationAction extends Action {
 	 * @param view
 	 */
 	private static void validate(DiagramEditPart diagramEditPart, View view) {
-		IFile target = view.eResource() != null ? WorkspaceSynchronizer
-				.getFile(view.eResource()) : null;
+		IFile target = view.eResource() != null ? WorkspaceSynchronizer.getFile(view.eResource()) : null;
 		if(target != null) {
 			DiagramValidationMarkerNavigationProvider.deleteMarkers(target);
 		}
@@ -149,38 +141,27 @@ public class ValidationAction extends Action {
 	 * @param emfValidationStatus
 	 * @param diagramEditPart
 	 */
-	private static void createMarkers(IFile target,
-			Diagnostic emfValidationStatus, DiagramEditPart diagramEditPart) {
+	private static void createMarkers(IFile target, Diagnostic emfValidationStatus, DiagramEditPart diagramEditPart) {
 		if(emfValidationStatus.getSeverity() == Diagnostic.OK) {
 			return;
 		}
-		for(Iterator<?> it = emfValidationStatus.getChildren().iterator(); it
-				.hasNext();) {
+		for(Iterator<?> it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
 			Diagnostic nextDiagnostic = (Diagnostic)it.next();
 			List<?> data = nextDiagnostic.getData();
-			if(data != null && !data.isEmpty()
-					&& data.get(0) instanceof EObject) {
+			if(data != null && !data.isEmpty() && data.get(0) instanceof EObject) {
 				EObject element = (EObject)data.get(0);
 				List<?> list = DiagramEditPartsUtil.getEObjectViews(element);
 
 				// add the marker to the file if affected element has no
 				// graphical representation
 				if(list.size() == 0) {
-					addMarker(target, element.eResource().getURI().toString(),
-							EMFCoreUtil.getQualifiedName(element, true),
-							nextDiagnostic.getMessage(),
-							diagnosticToStatusSeverity(nextDiagnostic
-							.getSeverity()));
+					addMarker(target, element.eResource().getURI().toString(), EMFCoreUtil.getQualifiedName(element, true), nextDiagnostic.getMessage(), diagnosticToStatusSeverity(nextDiagnostic.getSeverity()));
 				}
 				// add the marker to the views if the element has representation
 				for(Object o : list) {
 					if(o instanceof View) {
 						View v = (View)o;
-						addMarker(target, v.eResource().getURIFragment(v),
-								EMFCoreUtil.getQualifiedName(element, true),
-								nextDiagnostic.getMessage(),
-								diagnosticToStatusSeverity(nextDiagnostic
-								.getSeverity()));
+						addMarker(target, v.eResource().getURIFragment(v), EMFCoreUtil.getQualifiedName(element, true), nextDiagnostic.getMessage(), diagnosticToStatusSeverity(nextDiagnostic.getSeverity()));
 					}
 				}
 			}
@@ -196,13 +177,11 @@ public class ValidationAction extends Action {
 	 * @param message
 	 * @param statusSeverity
 	 */
-	private static void addMarker(IFile target, String elementId,
-			String location, String message, int statusSeverity) {
+	private static void addMarker(IFile target, String elementId, String location, String message, int statusSeverity) {
 		if(target == null) {
 			return;
 		}
-		DiagramValidationMarkerNavigationProvider.addMarker(target, elementId,
-				location, message, statusSeverity);
+		DiagramValidationMarkerNavigationProvider.addMarker(target, elementId, location, message, statusSeverity);
 	}
 
 	/**
@@ -218,8 +197,7 @@ public class ValidationAction extends Action {
 			return IStatus.INFO;
 		} else if(diagnosticSeverity == Diagnostic.WARNING) {
 			return IStatus.WARNING;
-		} else if(diagnosticSeverity == Diagnostic.ERROR
-				|| diagnosticSeverity == Diagnostic.CANCEL) {
+		} else if(diagnosticSeverity == Diagnostic.ERROR || diagnosticSeverity == Diagnostic.CANCEL) {
 			return IStatus.ERROR;
 		}
 		return IStatus.INFO;
