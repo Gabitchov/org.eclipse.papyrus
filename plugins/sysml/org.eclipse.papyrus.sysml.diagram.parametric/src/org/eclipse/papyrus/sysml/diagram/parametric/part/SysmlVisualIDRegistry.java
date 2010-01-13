@@ -22,6 +22,8 @@ import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
@@ -203,6 +205,11 @@ public class SysmlVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ConnectorEditPart.VISUAL_ID:
+			if (ConnectorNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -213,6 +220,11 @@ public class SysmlVisualIDRegistry {
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
+		}
+		if (UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())
+
+		) {
+			return ConnectorEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -255,6 +267,12 @@ public class SysmlVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(2005, ViewInfo.Node, "Property");
 		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
 

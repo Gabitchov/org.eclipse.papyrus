@@ -13,23 +13,34 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.part;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.resource.util.ResourceUtil;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -133,6 +144,8 @@ public class SysmlDiagramUpdater {
 			return getProperty_2005ContainedLinks(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002ContainedLinks(view);
+		case ConnectorEditPart.VISUAL_ID:
+			return getConnector_4001ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -148,6 +161,8 @@ public class SysmlDiagramUpdater {
 			return getProperty_2005IncomingLinks(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002IncomingLinks(view);
+		case ConnectorEditPart.VISUAL_ID:
+			return getConnector_4001IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -163,6 +178,8 @@ public class SysmlDiagramUpdater {
 			return getProperty_2005OutgoingLinks(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002OutgoingLinks(view);
+		case ConnectorEditPart.VISUAL_ID:
+			return getConnector_4001OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -198,6 +215,13 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getConnector_4001ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getConstraintProperty_2003IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -206,13 +230,28 @@ public class SysmlDiagramUpdater {
 	 * @generated
 	 */
 	public static List getProperty_2005IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		Property modelElement = (Property) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Connector_4001(modelElement, crossReferences));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List getProperty_3002IncomingLinks(View view) {
+		Property modelElement = (Property) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Connector_4001(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConnector_4001IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -227,14 +266,100 @@ public class SysmlDiagramUpdater {
 	 * @generated
 	 */
 	public static List getProperty_2005OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		Property modelElement = (Property) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Connector_4001(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List getProperty_3002OutgoingLinks(View view) {
+		Property modelElement = (Property) view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Connector_4001(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConnector_4001OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static Collection getIncomingTypeModelFacetLinks_Connector_4001(ConnectableElement target,
+			Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getConnectorEnd_Role()
+					|| false == setting.getEObject() instanceof Connector) {
+				continue;
+			}
+			Connector link = (Connector) setting.getEObject();
+			if (ConnectorEditPart.VISUAL_ID != SysmlVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			ConnectableElement src = null;
+			EList<ConnectorEnd> ends = link.getEnds();
+			if (ends != null && !ends.isEmpty()) {
+				src = ends.get(0).getRole();
+			}
+			result.add(new SysmlLinkDescriptor(src, target, link, SysmlElementTypes.Connector_4001,
+					ConnectorEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static Collection getOutgoingTypeModelFacetLinks_Connector_4001(ConnectableElement source) {
+		StructuredClassifier container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof StructuredClassifier) {
+				container = (StructuredClassifier) element;
+			}
+		}
+		if (container == null) {
+			return Collections.EMPTY_LIST;
+		}
+		Collection result = new LinkedList();
+		for (Iterator links = container.getOwnedConnectors().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Connector) {
+				continue;
+			}
+			Connector link = (Connector) linkObject;
+			if (ConnectorEditPart.VISUAL_ID != SysmlVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			
+			ConnectableElement src = null;
+			ConnectableElement dst = null;
+			EList<ConnectorEnd> ends = link.getEnds();
+			if (ends != null && !ends.isEmpty()) {
+				src = ends.get(0).getRole();
+				dst = ends.get(1).getRole();
+			}
+
+			if (src != source) {
+				continue;
+			}
+			result.add(new SysmlLinkDescriptor(src, dst, link, SysmlElementTypes.Connector_4001,
+					ConnectorEditPart.VISUAL_ID));
+
+		}
+		return result;
 	}
 
 }

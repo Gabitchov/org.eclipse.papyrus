@@ -121,23 +121,32 @@
 					<entry
        defineOnly="true"
        description="Create new Property"
-       id="createPropertyCreationTool"
+       id="createProperty2CreationTool"
        kind="tool"
        label="Property"
-       large_icon=""
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
        path=""
-       small_icon="">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
  	</entry>
 	<entry
        defineOnly="true"
        description="Create new ConstraintProperty"
-       id="createConstraintProperty2CreationTool"
+       id="createConstraintProperty1CreationTool"
        kind="tool"
        label="ConstraintProperty"
-       large_icon=""
+       large_icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/ConstraintProperty.gif"
        path=""
-       small_icon="">
+       small_icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/ConstraintProperty.gif">
  	</entry>
+ <entry
+       defineOnly="true"
+       description="Create new Connector"
+       id="createConnector3CreationTool"
+       kind="tool"
+       label="Connector"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
+ </entry>
 
 			</contribution>
 			<editor id="org.eclipse.papyrus.sysml.diagram.parametric"/>
@@ -161,20 +170,24 @@
        description=""
        id="createSysml1Group"
        kind="drawer"
-       label="sysml"
-       large_icon=""
+       label="Parametric Diagram"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
-       small_icon="">
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createPropertyCreationTool"
+          id="createProperty2CreationTool"
           path="/createSysml1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createConstraintProperty2CreationTool"
+          id="createConstraintProperty1CreationTool"
           path="/createSysml1Group">
     </predefinedEntry>
+  <predefinedEntry
+        id="createConnector3CreationTool"
+        path="/createSysml1Group">
+  </predefinedEntry>
 
 
 			</contribution>
@@ -287,7 +300,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Parametric"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2003,2005,3002"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints=""/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001"/>
       </viewProvider>
    </extension>
 
@@ -302,7 +315,7 @@
             <method name="getType()" value="2003,2005,3002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value=""/>
+            <method name="getType()" value="4001"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5001,5002,5003"/>
@@ -373,6 +386,16 @@
             <param name="semanticHint" value="3002"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.sysml.diagram.parametric.Connector_4001"
+               name="%metatype.name.Connector_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Connector"
+               edithelper="org.eclipse.papyrus.sysml.diagram.parametric.edit.helpers.ConnectorEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -389,6 +412,7 @@
          <elementType ref="org.eclipse.papyrus.sysml.diagram.parametric.ConstraintProperty_2003"/>
          <elementType ref="org.eclipse.papyrus.sysml.diagram.parametric.Property_2005"/>
          <elementType ref="org.eclipse.papyrus.sysml.diagram.parametric.Property_3002"/>
+         <elementType ref="org.eclipse.papyrus.sysml.diagram.parametric.Connector_4001"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -608,85 +632,7 @@
       </Priority>
    </ParserProvider>
 </extension>
-<!--
-<extension
-		id="Sysml Parametric diagram Plugin.palettedefinition"
-		name="Sysml Parametric diagram Plugin Predefined Entries"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-		
-		<?gmfgen generated="true"?>	
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Lowest"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       defineOnly="true"
-       description="Create new ConstraintProperty"
-       id="createConstraintProperty1CreationTool"
-       kind="tool"
-       label="ConstraintProperty"
-       large_icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/ConstraintProperty.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/ConstraintProperty.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create new Property"
-       id="createProperty2CreationTool"
-       kind="tool"
-       label="Property"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
- 	</entry>
 
-			</contribution>
-			<editor id="org.eclipse.papyrus.sysml.diagram.parametric"/>
-		</paletteProvider>	
-			
-	</extension>
-
-<extension
-		id="Sysml Parametric diagram Plugin.standard"
-		name="Sysml Parametric diagram Plugin Standard Palette"
-		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
-		
-		<?gmfgen generated="true"?>	
-		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-			<Priority name="Low"/>
-      		<contribution
-            	factoryClass="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlPaletteFactory">
-     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-					<entry
-       description=""
-       id="createParametric1Group"
-       kind="drawer"
-       label="Parametric"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="createConstraintProperty1CreationTool"
-          path="/createParametric1Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createProperty2CreationTool"
-          path="/createParametric1Group">
-    </predefinedEntry>
-
-
-			</contribution>
-			<editor id="org.eclipse.papyrus.sysml.diagram.parametric"/>
-		</paletteProvider>	
-			
-	</extension>
 
 <extension point="org.eclipse.ui.preferencePages">
 
@@ -707,11 +653,19 @@
 	
 
 
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
+			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConnectorPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConnectorPreferencePage"
+            name="Connector" />	
+	
 
 </extension>
--->
 
-	
+
+
+
 		
 
    <!-- optionally, specify keybindings -->

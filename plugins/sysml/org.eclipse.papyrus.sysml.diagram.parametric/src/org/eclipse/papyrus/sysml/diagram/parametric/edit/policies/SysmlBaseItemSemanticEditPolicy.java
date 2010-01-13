@@ -47,6 +47,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.helpers.SysmlBaseEditHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
+import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.StructuredClassifier;
 
 /**
  * @generated
@@ -299,5 +301,21 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	public static class LinkConstraints {
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateConnector_4001(StructuredClassifier container, ConnectableElement source,
+				ConnectableElement target) {
+			return canExistConnector_4001(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistConnector_4001(StructuredClassifier container, ConnectableElement source,
+				ConnectableElement target) {
+			return true;
+		}
 	}
 }

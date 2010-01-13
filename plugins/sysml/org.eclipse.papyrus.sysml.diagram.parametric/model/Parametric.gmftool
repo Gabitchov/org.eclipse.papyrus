@@ -42,6 +42,15 @@
             path="/icons/full/obj16/Property.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Connector"
+          description="Create new Connector">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Connector.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

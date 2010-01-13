@@ -10,36 +10,31 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.preferences;
 
-import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 
 /**
  * @generated
  */
-public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
+public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated
 	 */
-	public void initializeDefaultPreferences() {
-		IPreferenceStore store = getPreferenceStore();
-
-		PropertyPreferencePage.initDefaults(store);
-
-		ConstraintPropertyPreferencePage.initDefaults(store);
-
-		ConnectorPreferencePage.initDefaults(store);
-
+	@Override
+	protected String getBundleId() {
+		return SysmlDiagramEditorPlugin.getInstance().ID;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IPreferenceStore getPreferenceStore() {
-		return SysmlDiagramEditorPlugin.getInstance().getPreferenceStore();
+	public static void initDefaults(IPreferenceStore store) {
+
 	}
+
 }

@@ -122,7 +122,7 @@
               getterName="getConstraintPropertyFigureLabel"
               figureQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel"/>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.2"/>
+              parser="/0/@labelParsers/@implementations.4"/>
         </labels>
       </topLevelNodes>
       <topLevelNodes
@@ -170,6 +170,59 @@
           </modelFacet>
         </labels>
       </topLevelNodes>
+      <links
+          visualID="4001"
+          editPartClassName="ConnectorEditPart"
+          itemSemanticEditPolicyClassName="ConnectorItemSemanticEditPolicy"
+          notationViewFactoryClassName="ConnectorViewFactory"
+          createCommandClassName="ConnectorCreateCommand"
+          reorientCommandClassName="ConnectorReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="ConnectorEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="ConnectorFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ConnectorFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fConnectorLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ConnectorFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fConnectorLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fConnectorLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fConnectorLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getConnectorLabel() {&#xA;&#x9;&#x9;return fConnectorLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet
+            xsi:type="gmfgen:TypeLinkModelFacet">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Connector"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedConnector"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedConnector"/>
+          <sourceMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ConnectorEnd/role"/>
+          <targetMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ConnectorEnd/role"/>
+        </modelFacet>
+        <labels
+            visualID="6001"
+            editPartClassName="ConnectorNameEditPart"
+            itemSemanticEditPolicyClassName="ConnectorNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="ConnectorNameViewFactory"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getConnectorLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="40"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.3">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </links>
       <palette>
         <groups
             title="Parametric"
@@ -189,6 +242,12 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
               genNodes="/0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.1"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Connector"
+              description="Create new Connector"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
+              genLinks="/0/@diagram/@links.0"/>
         </groups>
       </palette>
       <preferencePages
@@ -238,6 +297,59 @@
       <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@topLevelNodes.1"/>
+      <childReferences
+          parent="/0/@diagram"
+          child="/0/@diagram/@links.0"
+          groupName="links"
+          groupIcon="icons/linksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@topLevelNodes.1"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.1"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.0"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.0"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@topLevelNodes.1"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.1"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.0"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.0"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     </navigator>
     <diagramUpdater/>
     <propertySheet>
@@ -266,12 +378,19 @@
       <implementations
           xsi:type="gmfgen:PredefinedParser"/>
       <implementations
-          xsi:type="gmfgen:ExternalParser"
-          hint=""/>
+          xsi:type="gmfgen:ExternalParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet"
-          qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.ParameterParser"/>
+          uses="/0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.PropertyLabelParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@links.0/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConnectorLabelParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintPropertyLabelParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

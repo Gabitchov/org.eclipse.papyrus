@@ -23,9 +23,11 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.Property2CreateCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
@@ -81,6 +83,24 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 			Node node = (Node) nit.next();
 			switch (SysmlVisualIDRegistry.getVisualID(node)) {
 			case Property2EditPart.VISUAL_ID:
+				for (Iterator it = node.getTargetEdges().iterator(); it.hasNext();) {
+					Edge incomingLink = (Edge) it.next();
+					if (SysmlVisualIDRegistry.getVisualID(incomingLink) == ConnectorEditPart.VISUAL_ID) {
+						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
+				}
+				for (Iterator it = node.getSourceEdges().iterator(); it.hasNext();) {
+					Edge outgoingLink = (Edge) it.next();
+					if (SysmlVisualIDRegistry.getVisualID(outgoingLink) == ConnectorEditPart.VISUAL_ID) {
+						DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+						continue;
+					}
+				}
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(),
 						false))); // directlyOwned: false
 				// don't need explicit deletion of node as parent's view deletion would clean child

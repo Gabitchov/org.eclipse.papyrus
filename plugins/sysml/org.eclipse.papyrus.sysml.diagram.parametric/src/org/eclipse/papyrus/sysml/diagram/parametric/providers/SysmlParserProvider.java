@@ -24,10 +24,13 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.parsers.ParameterParser;
+import org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConnectorLabelParser;
+import org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintPropertyLabelParser;
+import org.eclipse.papyrus.sysml.diagram.parametric.parsers.PropertyLabelParser;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 
 /**
@@ -38,14 +41,14 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	/**
 	 * @generated
 	 */
-	private ParameterParser constraintPropertyLabel_5001Parser;
+	private ConstraintPropertyLabelParser constraintPropertyLabel_5001Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getConstraintPropertyLabel_5001Parser() {
 		if (constraintPropertyLabel_5001Parser == null) {
-			constraintPropertyLabel_5001Parser = new ParameterParser();
+			constraintPropertyLabel_5001Parser = new ConstraintPropertyLabelParser();
 		}
 		return constraintPropertyLabel_5001Parser;
 	}
@@ -53,14 +56,14 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	/**
 	 * @generated
 	 */
-	private ParameterParser propertyName_5002Parser;
+	private PropertyLabelParser propertyName_5002Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getPropertyName_5002Parser() {
 		if (propertyName_5002Parser == null) {
-			propertyName_5002Parser = new ParameterParser();
+			propertyName_5002Parser = new PropertyLabelParser();
 		}
 		return propertyName_5002Parser;
 	}
@@ -68,16 +71,31 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	/**
 	 * @generated
 	 */
-	private ParameterParser propertyName_5003Parser;
+	private PropertyLabelParser propertyName_5003Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getPropertyName_5003Parser() {
 		if (propertyName_5003Parser == null) {
-			propertyName_5003Parser = new ParameterParser();
+			propertyName_5003Parser = new PropertyLabelParser();
 		}
 		return propertyName_5003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConnectorLabelParser connectorName_6001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectorName_6001Parser() {
+		if (connectorName_6001Parser == null) {
+			connectorName_6001Parser = new ConnectorLabelParser();
+		}
+		return connectorName_6001Parser;
 	}
 
 	/**
@@ -91,6 +109,8 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 			return getPropertyName_5002Parser();
 		case PropertyName2EditPart.VISUAL_ID:
 			return getPropertyName_5003Parser();
+		case ConnectorNameEditPart.VISUAL_ID:
+			return getConnectorName_6001Parser();
 		}
 		return null;
 	}

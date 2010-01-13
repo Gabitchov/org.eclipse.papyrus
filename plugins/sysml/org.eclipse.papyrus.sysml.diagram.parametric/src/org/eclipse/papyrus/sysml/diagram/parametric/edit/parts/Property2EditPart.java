@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.parts;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,10 +35,12 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -49,6 +52,7 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.Property2ItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
+import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -241,6 +245,119 @@ BorderedBorderItemEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(SysmlVisualIDRegistry.getType(PropertyName2EditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse
+																							 * .gmf.
+																							 * runtime
+																							 * .
+																							 * emf.type
+																							 * .
+																							 * core.
+																							 * IElementType
+																							 * >
+																							 */();
+		types.add(SysmlElementTypes.Connector_4001);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
+			IGraphicalEditPart targetEditPart) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse
+																							 * .gmf.
+																							 * runtime
+																							 * .
+																							 * emf.type
+																							 * .
+																							 * core.
+																							 * IElementType
+																							 * >
+																							 */();
+		if (targetEditPart instanceof PropertyEditPart) {
+			types.add(SysmlElementTypes.Connector_4001);
+		}
+		if (targetEditPart instanceof org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart) {
+			types.add(SysmlElementTypes.Connector_4001);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
+			IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse
+																							 * .gmf.
+																							 * runtime
+																							 * .
+																							 * emf.type
+																							 * .
+																							 * core.
+																							 * IElementType
+																							 * >
+																							 */();
+		if (relationshipType == SysmlElementTypes.Connector_4001) {
+			types.add(SysmlElementTypes.Property_2005);
+		}
+		if (relationshipType == SysmlElementTypes.Connector_4001) {
+			types.add(SysmlElementTypes.Property_3002);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse
+																							 * .gmf.
+																							 * runtime
+																							 * .
+																							 * emf.type
+																							 * .
+																							 * core.
+																							 * IElementType
+																							 * >
+																							 */();
+		types.add(SysmlElementTypes.Connector_4001);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
+			IElementType relationshipType) {
+		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
+																							 * <org.eclipse
+																							 * .gmf.
+																							 * runtime
+																							 * .
+																							 * emf.type
+																							 * .
+																							 * core.
+																							 * IElementType
+																							 * >
+																							 */();
+		if (relationshipType == SysmlElementTypes.Connector_4001) {
+			types.add(SysmlElementTypes.Property_2005);
+		}
+		if (relationshipType == SysmlElementTypes.Connector_4001) {
+			types.add(SysmlElementTypes.Property_3002);
+		}
+		return types;
 	}
 
 	/**

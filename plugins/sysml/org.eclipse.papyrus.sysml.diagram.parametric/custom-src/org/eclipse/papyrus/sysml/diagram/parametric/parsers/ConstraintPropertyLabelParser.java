@@ -8,9 +8,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
+ *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.parsers;
 
 import java.text.FieldPosition;
@@ -35,26 +35,26 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying an Activity's Parameter. This parser refreshes the text
- * displayed for the Parameter.
+ * A specific parser for displaying a ConstraintProperty label. This parser refreshes the text
+ * displayed for the ConstraintProperty.
  */
-public class ParameterParser extends MessageFormatParser implements ISemanticParser {
+public class ConstraintPropertyLabelParser extends MessageFormatParser implements ISemanticParser {
 
-	/** The String format for displaying a parameter with its type */
+	/** The String format for displaying a ConstraintProperty with its type */
 	private static final String TYPED_PARAMETER_FORMAT = "%s: %s";
 
-	/** The String format for displaying a parameter with no type */
+	/** The String format for displaying a ConstraintProperty with no type */
 	private static final String UNTYPED_PARAMETER_FORMAT = "%s";
 
-	public ParameterParser(EAttribute[] features, EAttribute[] editableFeatures) {
+	public ConstraintPropertyLabelParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
 	}
 
-	public ParameterParser(EAttribute[] features) {
+	public ConstraintPropertyLabelParser(EAttribute[] features) {
 		super(features);
 	}
 
-	public ParameterParser() {
+	public ConstraintPropertyLabelParser() {
 		super(new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() });
 	}
 
@@ -83,13 +83,9 @@ public class ParameterParser extends MessageFormatParser implements ISemanticPar
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-
 		Property property = null;
-		// TODO another custom parser will be needed to manage equation in ConstraintProperty
 		if (obj instanceof ConstraintProperty) {
 			property = ((ConstraintProperty) obj).getBase_Property();
-		} else if (obj instanceof Property) {
-			property = (Property) obj;
 		}
 
 		if (property != null) {
@@ -126,8 +122,6 @@ public class ParameterParser extends MessageFormatParser implements ISemanticPar
 		Property property = null;
 		if (element instanceof ConstraintProperty) {
 			property = ((ConstraintProperty) element).getBase_Property();
-		} else if (element instanceof Property) {
-			property = (Property) element;
 		}
 		if (property != null) {
 			semanticElementsBeingParsed.add(property);
@@ -185,5 +179,5 @@ public class ParameterParser extends MessageFormatParser implements ISemanticPar
 		}
 		return command;
 	}
-	
+
 }

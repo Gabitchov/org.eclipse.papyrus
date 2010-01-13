@@ -29,6 +29,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
@@ -82,6 +83,11 @@ public class SysmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Property_3002 = getElementType("org.eclipse.papyrus.sysml.diagram.parametric.Property_3002"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Connector_4001 = getElementType("org.eclipse.papyrus.sysml.diagram.parametric.Connector_4001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -197,6 +203,8 @@ public class SysmlElementTypes extends ElementInitializers {
 			elements.put(Property_2005, UMLPackage.eINSTANCE.getProperty());
 
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
+
+			elements.put(Connector_4001, UMLPackage.eINSTANCE.getConnector());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -218,6 +226,7 @@ public class SysmlElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ConstraintProperty_2003);
 			KNOWN_ELEMENT_TYPES.add(Property_2005);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
+			KNOWN_ELEMENT_TYPES.add(Connector_4001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -235,6 +244,8 @@ public class SysmlElementTypes extends ElementInitializers {
 			return Property_2005;
 		case Property2EditPart.VISUAL_ID:
 			return Property_3002;
+		case ConnectorEditPart.VISUAL_ID:
+			return Connector_4001;
 		}
 		return null;
 	}

@@ -222,16 +222,11 @@ public class ConstraintPropertyNameEditPart extends CompartmentEditPart implemen
 	 * @generated
 	 */
 	protected EObject getParserElement() {
-		EObject semanticElement = resolveSemanticElement();
-		if (semanticElement instanceof ConstraintProperty) {
-			return ((ConstraintProperty) resolveSemanticElement()).getBase_Property();
-		} else {
-			return resolveSemanticElement();
-		}
+		return resolveSemanticElement();
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Image getLabelIcon() {
 		EObject parserElement = getParserElement();
@@ -621,10 +616,11 @@ public class ConstraintPropertyNameEditPart extends CompartmentEditPart implemen
 	 */
 	protected boolean checkExtendedEditor() {
 		EObject semanticElement = resolveSemanticElement();
-		if (semanticElement != null && semanticElement instanceof ConstraintProperty) {			
-			boolean hasSpecificEditorConfiguration = DirectEditorsUtil.hasSpecificEditorConfiguration(((ConstraintProperty)semanticElement).getBase_Property().eClass()
-					.getInstanceClassName());
-			
+		if (semanticElement != null && semanticElement instanceof ConstraintProperty) {
+			boolean hasSpecificEditorConfiguration = DirectEditorsUtil
+					.hasSpecificEditorConfiguration(((ConstraintProperty) semanticElement).getBase_Property().eClass()
+							.getInstanceClassName());
+
 			return hasSpecificEditorConfiguration;
 		}
 		return false;
@@ -637,7 +633,7 @@ public class ConstraintPropertyNameEditPart extends CompartmentEditPart implemen
 	 * @generated
 	 */
 	protected boolean checkDefaultEdition() {
-		return  (resolveSemanticElement() instanceof NamedElement);
+		return (resolveSemanticElement() instanceof NamedElement);
 	}
 
 	/**

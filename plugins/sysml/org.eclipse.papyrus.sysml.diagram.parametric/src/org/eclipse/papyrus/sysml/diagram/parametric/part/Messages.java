@@ -281,7 +281,52 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Connector3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Connector3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Resource_1000_links;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Property_2005_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Property_2005_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Property_3002_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Property_3002_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Connector_4001_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Connector_4001_source;
 
 	/**
 	 * @generated

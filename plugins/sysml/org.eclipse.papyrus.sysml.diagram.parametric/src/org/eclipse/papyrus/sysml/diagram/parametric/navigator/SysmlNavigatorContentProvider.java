@@ -30,10 +30,12 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.part.Messages;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
@@ -141,12 +143,20 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 **/
 	private Object[] getViewChildrenForResourceEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
+		SysmlNavigatorGroup links = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Resource_1000_links,
+				"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
 				.getType(ConstraintPropertyEditPart.VISUAL_ID));
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 		connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
 				.getType(PropertyEditPart.VISUAL_ID));
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getDiagramLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(ConnectorEditPart.VISUAL_ID));
+		links.addChildren(createNavigatorItems(connectedViews, links, false));
+		if (!links.isEmpty()) {
+			result.add(links);
+		}
 		return result.toArray();
 	}
 
@@ -162,6 +172,100 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
 				.getType(Property2EditPart.VISUAL_ID));
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid
+	 * getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForPropertyEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		SysmlNavigatorGroup incominglinks = new SysmlNavigatorGroup(
+				Messages.NavigatorGroupName_Property_2005_incominglinks,
+				"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		SysmlNavigatorGroup outgoinglinks = new SysmlNavigatorGroup(
+				Messages.NavigatorGroupName_Property_2005_outgoinglinks,
+				"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(ConnectorEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getOutgoingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(ConnectorEditPart.VISUAL_ID));
+		outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+		if (!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		if (!outgoinglinks.isEmpty()) {
+			result.add(outgoinglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid
+	 * getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForProperty2EditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		SysmlNavigatorGroup incominglinks = new SysmlNavigatorGroup(
+				Messages.NavigatorGroupName_Property_3002_incominglinks,
+				"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		SysmlNavigatorGroup outgoinglinks = new SysmlNavigatorGroup(
+				Messages.NavigatorGroupName_Property_3002_outgoinglinks,
+				"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(ConnectorEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getOutgoingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(ConnectorEditPart.VISUAL_ID));
+		outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+		if (!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		if (!outgoinglinks.isEmpty()) {
+			result.add(outgoinglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template this method is a modification of gmf code in order to avoid
+	 * getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForConnectorEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		SysmlNavigatorGroup target = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Connector_4001_target,
+				"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		SysmlNavigatorGroup source = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Connector_4001_source,
+				"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getLinksTargetByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(PropertyEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(Property2EditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksSourceByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(PropertyEditPart.VISUAL_ID));
+		source.addChildren(createNavigatorItems(connectedViews, source, true));
+		connectedViews = getLinksSourceByType(Collections.singleton(view), SysmlVisualIDRegistry
+				.getType(Property2EditPart.VISUAL_ID));
+		source.addChildren(createNavigatorItems(connectedViews, source, true));
+		if (!target.isEmpty()) {
+			result.add(target);
+		}
+		if (!source.isEmpty()) {
+			result.add(source);
+		}
 		return result.toArray();
 	}
 
@@ -259,6 +363,27 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 
 			// modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintPropertyEditPart(view, parentElement);
+
+		}
+
+		case PropertyEditPart.VISUAL_ID: {
+
+			// modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForPropertyEditPart(view, parentElement);
+
+		}
+
+		case Property2EditPart.VISUAL_ID: {
+
+			// modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForProperty2EditPart(view, parentElement);
+
+		}
+
+		case ConnectorEditPart.VISUAL_ID: {
+
+			// modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConnectorEditPart(view, parentElement);
 
 		}
 

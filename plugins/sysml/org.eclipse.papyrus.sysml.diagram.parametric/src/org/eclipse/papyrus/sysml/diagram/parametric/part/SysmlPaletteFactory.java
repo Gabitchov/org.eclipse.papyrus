@@ -19,23 +19,29 @@ import java.util.List;
 import org.eclipse.gef.Tool;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 
 /**
- * @generated NOT
+ * @generated
  */
 public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEPROPERTYCREATIONTOOL = "createPropertyCreationTool"; //$NON-NLS-1$
+	private final static String CREATECONSTRAINTPROPERTY1CREATIONTOOL = "createConstraintProperty1CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONSTRAINTPROPERTY2CREATIONTOOL = "createConstraintProperty2CreationTool"; //$NON-NLS-1$
+	private final static String CREATEPROPERTY2CREATIONTOOL = "createProperty2CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATECONNECTOR3CREATIONTOOL = "createConnector3CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -48,11 +54,14 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATEPROPERTYCREATIONTOOL)) {
-			return createConstraintBlock1CreationTool();
+		if (toolId.equals(CREATECONSTRAINTPROPERTY1CREATIONTOOL)) {
+			return createConstraintProperty1CreationTool();
 		}
-		if (toolId.equals(CREATECONSTRAINTPROPERTY2CREATIONTOOL)) {
-			return createConstraintProperty2CreationTool();
+		if (toolId.equals(CREATEPROPERTY2CREATIONTOOL)) {
+			return createProperty2CreationTool();
+		}
+		if (toolId.equals(CREATECONNECTOR3CREATIONTOOL)) {
+			return createConnector3CreationTool();
 		}
 
 		// default return: null
@@ -66,12 +75,11 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
-	private Tool createConstraintBlock1CreationTool() {
+	private Tool createConstraintProperty1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(SysmlElementTypes.Property_2005);
-		types.add(SysmlElementTypes.Property_3002);
+		types.add(SysmlElementTypes.ConstraintProperty_2003);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -80,11 +88,23 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createConstraintProperty2CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(SysmlElementTypes.ConstraintProperty_2003);
+	private Tool createProperty2CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(SysmlElementTypes.Property_3002);
+		types.add(SysmlElementTypes.Property_2005);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createConnector3CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(SysmlElementTypes.Connector_4001);
+
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
 

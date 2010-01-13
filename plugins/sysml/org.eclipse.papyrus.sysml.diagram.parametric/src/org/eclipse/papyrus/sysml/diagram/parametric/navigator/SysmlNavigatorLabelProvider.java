@@ -24,6 +24,8 @@ import org.eclipse.jface.viewers.ITreePathLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
@@ -104,6 +106,9 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 		case Property2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_3002); //$NON-NLS-1$
+		case ConnectorEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Connector", SysmlElementTypes.Connector_4001); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -162,6 +167,8 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			return getProperty_2005Text(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002Text(view);
+		case ConnectorEditPart.VISUAL_ID:
+			return getConnector_4001Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -217,6 +224,22 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 					ParserOptions.NONE.intValue());
 		} else {
 			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getConnector_4001Text(View view) {
+		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Connector_4001,
+				view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry
+						.getType(ConnectorNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

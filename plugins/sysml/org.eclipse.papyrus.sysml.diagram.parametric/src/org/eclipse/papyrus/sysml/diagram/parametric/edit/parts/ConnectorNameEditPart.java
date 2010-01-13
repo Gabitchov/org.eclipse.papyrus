@@ -10,13 +10,13 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
- *****************************************************************************/
+  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.parts;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -30,20 +30,18 @@ import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -65,7 +63,6 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialo
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlTextSelectionEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlParserProvider;
@@ -82,12 +79,12 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  * @generated
  */
-public class PropertyNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5002;
+	public static final int VISUAL_ID = 6001;
 
 	/**
 	 * @generated
@@ -118,7 +115,16 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public PropertyNameEditPart(View view) {
+	static {
+		registerSnapBackPosition(SysmlVisualIDRegistry
+				.getType(org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart.VISUAL_ID),
+				new Point(0, 40));
+	}
+
+	/**
+	 * @generated
+	 */
+	public ConnectorNameEditPart(View view) {
 		super(view);
 	}
 
@@ -127,25 +133,23 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SysmlTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SysmlTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableLabelEditPolicy() {
 
 			protected List createSelectionHandles() {
-				List handles = new ArrayList();
-				NonResizableHandleKit.addMoveHandle((GraphicalEditPart) getHost(), handles);
-				((MoveHandle) handles.get(0)).setBorder(null);
-				return handles;
-			}
-
-			public Command getCommand(Request request) {
-				return null;
-			}
-
-			public boolean understandsRequest(Request request) {
-				return false;
+				MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+				mh.setBorder(null);
+				return Collections.singletonList(mh);
 			}
 		});
+	}
+
+	/**
+	 * @generated
+	 */
+	public int getKeyPoint() {
+		return ConnectionLocator.MIDDLE;
 	}
 
 	/**
@@ -195,7 +199,7 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public void setLabel(CenteredWrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -344,10 +348,10 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 		if (parser == null) {
 			parser = SysmlParserProvider
 					.getParser(
-							SysmlElementTypes.Property_2005,
+							SysmlElementTypes.Connector_4001,
 							getParserElement(),
 							SysmlVisualIDRegistry
-									.getType(org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart.VISUAL_ID));
+									.getType(org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -699,24 +703,7 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void handleNotificationEvent(Notification event) {
-		refreshLabel();
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
@@ -761,41 +748,6 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
-	}
-
-	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
-	/**
-	 * @generated
-	 */
-	public void activate() {
-		super.activate();
-		addOwnerElementListeners();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addOwnerElementListeners() {
-		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel())); //$NON-NLS-1$
-
-	}
-
-	/**
-	 * @generated
-	 */
-	public void deactivate() {
-		removeOwnerElementListeners();
-		super.deactivate();
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeOwnerElementListeners() {
-		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
 
 }
