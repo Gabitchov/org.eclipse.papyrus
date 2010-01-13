@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="TreeOutlinePage">
+         <propertySection
+               class="org.eclipse.papyrus.tabbedproperties.comments.CommentPropertySection"
+               filter="org.eclipse.papyrus.tabbedproperties.comments.CommentFilter"
+               id="org.eclipse.papyrus.tabbedproperties.comment.styledsection"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.papyrus.tabbedproperties.comments.CommentedElementPropertySection"
+               filter="org.eclipse.papyrus.tabbedproperties.comments.CommentedElementPropertySection"
+               id="org.eclipse.papyrus.tabbedproperties.comment.umlelementsection"
+               tab="Comments">
+         </propertySection>
+      </propertySections>
+   </extension>
+
+</plugin>
