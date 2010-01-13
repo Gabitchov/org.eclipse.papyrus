@@ -27,6 +27,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <url>
       <discovery label="%PapyrusUpdateSiteName" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
+      <discovery label="EEF Update Site" url="http://download.eclipse.org/modeling/emft/eef/updates/0.7.1/"/>
    </url>
 
    <requires>
