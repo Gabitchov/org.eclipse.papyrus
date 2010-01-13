@@ -15,7 +15,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory;
+import org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
@@ -31,13 +31,18 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * @author Remi Schnekenburger
  * @author Patrick Tessier
  */
-public class EmfTreeDiagramEditorFactory implements IEditorFactory {
+public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 
 	/**
 	 * Descriptor of the editor. Values come from the declaration in the extension point. The
 	 * descriptor is set by the EditorFactory.
 	 */
 	private EditorDescriptor editorDescriptor;
+
+	/**
+	 * ServiceRegistry that can be provided to created editors.
+	 */
+	private ServicesRegistry serviceRegistry;
 
 	/** name of the emf diagram in Di2 type diagram */
 	public static final String EMF_DIAGRAM_TYPE = "emftree";
@@ -46,20 +51,33 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 	}
 
 	/**
+	 * Initialize the factory with useful Classes.
+	 * @see IPluggableEditorFactory#init(ServicesRegistry, EditorDescriptor)
+	 * 
+	 * @param serviceRegistry Service registry that will be provided to created editor.
+	 * @param editorDescriptor Descriptor containing data from the Eclipse Extension.
+	 */
+	public void init(ServicesRegistry serviceRegistry, EditorDescriptor editorDescriptor) {
+		this.editorDescriptor = editorDescriptor;
+		this.serviceRegistry = serviceRegistry;
+
+	}
+
+	/**
 	 * TODO Implements next methods
 	 * 
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#createIPageModel(java.lang.Object)
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 
 	 */
-	public IPageModel createIPageModel(Object pageIdentifier, ServicesRegistry serviceRegistry) {
+	public IPageModel createIPageModel(Object pageIdentifier) {
 		return new EmfTreeEditorModel((Diagram)pageIdentifier, serviceRegistry);
 	}
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 
@@ -74,16 +92,6 @@ public class EmfTreeDiagramEditorFactory implements IEditorFactory {
 		}
 		// no
 		return false;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactory#setEditorDescriptor(org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor)
-	 * @param editorDescriptor
-	 * 
-	 */
-	public void init(EditorDescriptor editorDescriptor) {
-		this.editorDescriptor = editorDescriptor;
 	}
 
 	/**

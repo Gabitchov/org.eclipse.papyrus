@@ -28,12 +28,12 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.editor.BackboneException;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -56,7 +56,7 @@ import org.eclipse.uml2.uml.Package;
 public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 	/** The editor registry. */
-	private final IEditorFactoryRegistry editorRegistry;
+	private final IPageIconsRegistry editorRegistry;
 
 	/** The SEP. */
 	// @unused
@@ -333,7 +333,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	 * @param amodel
 	 *        the amodel
 	 */
-	public EditorLookForDiagram(IEditorFactoryRegistry editorFactoryRegistry, Package amodel) {
+	public EditorLookForDiagram(IPageIconsRegistry editorFactoryRegistry, Package amodel) {
 		super();
 		this.editorRegistry = editorFactoryRegistry;
 		this.model = amodel;

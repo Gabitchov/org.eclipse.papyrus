@@ -24,7 +24,7 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -264,7 +264,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	}
 
 	/** The editor registry. */
-	private IEditorFactoryRegistry editorRegistry;
+	private IPageIconsRegistry editorRegistry;
 
 	/** The SEP. */
 	private final String SEP = " - ";
@@ -307,7 +307,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * @param aview
 	 *        the aview of the uml element
 	 */
-	public HyperLinkManagerShell(IEditorFactoryRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model) {
+	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model) {
 		super();
 		this.element = umlElement;
 		this.view = aview;

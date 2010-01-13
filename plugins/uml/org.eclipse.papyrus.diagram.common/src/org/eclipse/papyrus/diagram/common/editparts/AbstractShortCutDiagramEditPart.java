@@ -21,8 +21,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure;
 
 /**
@@ -30,7 +32,7 @@ import org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure;
  */
 public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart {
 
-	private IEditorFactoryRegistry editorRegistry;
+	private IPageIconsRegistry editorRegistry;
 
 	public AbstractShortCutDiagramEditPart(View view) {
 		super(view);
@@ -43,8 +45,13 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * @return the EditorRegistry for nested editor descriptors
 	 * 
 	 */
-	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+	protected IPageIconsRegistry createEditorRegistry() {
+		try {
+			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+		} catch (ServiceException e) {
+			// Not found, return an empty one which return null for each request.
+			return new PageIconsRegistry();
+		}
 	}
 
 	/**
@@ -54,7 +61,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * @return the singleton eINSTANCE of editor registry
 	 * 
 	 */
-	protected IEditorFactoryRegistry getEditorRegistry() {
+	protected IPageIconsRegistry getEditorRegistry() {
 		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}

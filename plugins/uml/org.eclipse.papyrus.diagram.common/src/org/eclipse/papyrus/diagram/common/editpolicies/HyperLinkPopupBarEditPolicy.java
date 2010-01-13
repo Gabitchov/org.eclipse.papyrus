@@ -40,14 +40,14 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Handle;
 import org.eclipse.gef.LayerConstants;
-import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
@@ -456,7 +456,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 															 */
 
 	/** The editor registry. */
-	private IEditorFactoryRegistry editorRegistry;
+	private IPageIconsRegistry editorRegistry;
 
 	/** The figure bar. */
 	private IFigure figureBar;
@@ -529,8 +529,13 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 * 
 	 * @generated NOT
 	 */
-	protected IEditorFactoryRegistry createEditorRegistry() {
-		return new EditorFactoryRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+	protected IPageIconsRegistry createEditorRegistry() {
+		try {
+			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+		} catch (ServiceException e) {
+			// Return an empty registry always providing null;
+			return new PageIconsRegistry();
+		}
 	}
 
 	/**
@@ -552,7 +557,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 *            implementation return the singleton eINSTANCE. This method can be subclassed to
 	 *            return another registry.
 	 */
-	protected IEditorFactoryRegistry getEditorRegistry() {
+	protected IPageIconsRegistry getEditorRegistry() {
 		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}

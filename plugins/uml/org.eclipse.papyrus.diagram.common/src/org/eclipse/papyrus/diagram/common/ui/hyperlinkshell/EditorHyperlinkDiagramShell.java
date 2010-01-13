@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
-import org.eclipse.papyrus.core.extension.diagrameditor.IEditorFactoryRegistry;
+import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;
@@ -32,7 +32,7 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 	protected HyperLinkDiagram hyperLinkDiagram;
 
 	/** The editor registry. */
-	private IEditorFactoryRegistry editorRegistry;
+	private IPageIconsRegistry editorRegistry;
 
 	/** The amodel. */
 	protected final Package amodel;
@@ -60,7 +60,7 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 	 * @param model
 	 *        the model
 	 */
-	public EditorHyperlinkDiagramShell(IEditorFactoryRegistry editorFactoryRegistry, Package model) {
+	public EditorHyperlinkDiagramShell(IPageIconsRegistry editorFactoryRegistry, Package model) {
 		super();
 		this.amodel = model;
 		this.editorRegistry = editorFactoryRegistry;
