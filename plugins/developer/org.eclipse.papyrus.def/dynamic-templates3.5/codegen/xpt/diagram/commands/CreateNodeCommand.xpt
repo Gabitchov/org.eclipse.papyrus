@@ -17,6 +17,7 @@
 «EXTENSION xpt::GenModelUtils»
 «EXTENSION xpt::diagram::Utils»
 «EXTENSION xpt::diagram::commands::file»
+«EXTENSION xpt::diagram::commands::NodeConstraintUtils»
 «DEFINE CreateNodeCommand FOR gmfgen::GenNode-»
 «EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
 package «getDiagram().editCommandsPackageName»;
@@ -148,7 +149,15 @@ protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 		}
 	«ENDIF-»
 «ENDIF-»
-	return true;
+«REM» [NodeCreationConstraint] START   «ENDREM»
+«IF getOwningGenNode().hasNodeCreationConstraint()-»
+	«getOwningGenNode().getNodeCreationConstraintBody()-»
+«ELSE-»
+«REM» [NodeCreationConstraint] END   «ENDREM»
+return true;
+«REM» [NodeCreationConstraint] START   «ENDREM»
+«ENDIF-»
+«REM» [NodeCreationConstraint] END   «ENDREM»
 «ENDDEFINE»
 «DEFINE phantomElementCreation(node : gmfgen::GenNode, varName : String) FOR gmfgen::TypeModelFacet-»
 	// Uncomment to put "phantom" objects into the diagram file.		

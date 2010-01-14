@@ -13,9 +13,6 @@ package org.eclipse.papyrus.papyrusgmfgenextension.popupaction;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.codegen.gmfgen.Behaviour;
-import org.eclipse.gmf.codegen.gmfgen.CustomBehaviour;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;
 import org.eclipse.gmf.codegen.gmfgen.GenNode;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IViewPart;

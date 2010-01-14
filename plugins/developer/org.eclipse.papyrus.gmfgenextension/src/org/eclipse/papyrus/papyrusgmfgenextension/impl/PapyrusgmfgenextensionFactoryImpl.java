@@ -9,12 +9,23 @@ package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.papyrusgmfgenextension.*;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
+import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionFactory;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
+import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,6 +99,8 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			return createOwnedEditpart();
 		case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER:
 			return createSpecificDiagramUpdater();
+		case PapyrusgmfgenextensionPackage.GEN_NODE_CONSTRAINT:
+			return createGenNodeConstraint();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -223,6 +236,17 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public SpecificDiagramUpdater createSpecificDiagramUpdater() {
 		SpecificDiagramUpdaterImpl specificDiagramUpdater = new SpecificDiagramUpdaterImpl();
 		return specificDiagramUpdater;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public GenNodeConstraint createGenNodeConstraint() {
+		GenNodeConstraintImpl genNodeConstraint = new GenNodeConstraintImpl();
+		return genNodeConstraint;
 	}
 
 	/**

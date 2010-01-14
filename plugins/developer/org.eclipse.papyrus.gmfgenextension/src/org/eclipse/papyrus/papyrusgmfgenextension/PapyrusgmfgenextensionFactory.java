@@ -149,6 +149,16 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	SpecificDiagramUpdater createSpecificDiagramUpdater();
 
 	/**
+	 * Returns a new object of class '<em>Gen Node Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Gen Node Constraint</em>'.
+	 * @generated
+	 */
+	GenNodeConstraint createGenNodeConstraint();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

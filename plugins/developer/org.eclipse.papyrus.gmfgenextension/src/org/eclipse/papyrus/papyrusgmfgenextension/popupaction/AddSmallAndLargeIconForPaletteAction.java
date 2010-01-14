@@ -78,8 +78,7 @@ public class AddSmallAndLargeIconForPaletteAction extends Action {
 			}
 
 			if(!messages.isEmpty()) {
-				MessageDialog
-						.openInformation(Display.getCurrent().getActiveShell(), "Information", messages.toString());
+				MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Information", messages.toString());
 				System.err.println(messages);
 			}
 		}

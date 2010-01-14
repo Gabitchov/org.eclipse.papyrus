@@ -12,13 +12,9 @@ package org.eclipse.papyrus.papyrusgmfgenextension.popupaction;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
-import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.Behaviour;
-import org.eclipse.gmf.codegen.gmfgen.CustomBehaviour;
 import org.eclipse.gmf.codegen.gmfgen.CustomParser;
 import org.eclipse.gmf.codegen.gmfgen.FeatureLabelModelFacet;
 import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;

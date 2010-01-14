@@ -17,24 +17,16 @@ package org.eclipse.papyrus.papyrusgmfgenextension.popupaction;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
-import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.Behaviour;
-import org.eclipse.gmf.codegen.gmfgen.CustomBehaviour;
 import org.eclipse.gmf.codegen.gmfgen.FeatureLabelModelFacet;
 import org.eclipse.gmf.codegen.gmfgen.FigureViewmap;
 import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;
 import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenLink;
 import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
 import org.eclipse.gmf.codegen.gmfgen.GenNode;
 import org.eclipse.gmf.codegen.gmfgen.GenNodeLabel;
-import org.eclipse.gmf.codegen.gmfgen.LabelOffsetAttributes;
-import org.eclipse.gmf.codegen.gmfgen.LinkLabelAlignment;
-import org.eclipse.gmf.codegen.gmfgen.ParentAssignedViewmap;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IViewPart;
 

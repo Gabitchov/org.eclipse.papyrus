@@ -10,8 +10,20 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.papyrusgmfgenextension.*;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
+import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
+import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,9 +87,7 @@ public class PapyrusgmfgenextensionSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -213,6 +223,16 @@ public class PapyrusgmfgenextensionSwitch<T> {
 				result = caseExternalHook(specificDiagramUpdater);
 			if(result == null)
 				result = caseCommentedElement(specificDiagramUpdater);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PapyrusgmfgenextensionPackage.GEN_NODE_CONSTRAINT:
+		{
+			GenNodeConstraint genNodeConstraint = (GenNodeConstraint)theEObject;
+			T result = caseGenNodeConstraint(genNodeConstraint);
+			if(result == null)
+				result = caseCommentedElement(genNodeConstraint);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -423,6 +443,23 @@ public class PapyrusgmfgenextensionSwitch<T> {
 	 * @generated
 	 */
 	public T caseSpecificDiagramUpdater(SpecificDiagramUpdater object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Node Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Node Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenNodeConstraint(GenNodeConstraint object) {
 		return null;
 	}
 

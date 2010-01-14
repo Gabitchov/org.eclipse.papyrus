@@ -705,6 +705,58 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl <em>Gen Node Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenNodeConstraint()
+	 * @generated
+	 */
+	int GEN_NODE_CONSTRAINT = 12;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_CONSTRAINT__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Gen Node</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_CONSTRAINT__GEN_NODE = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Gen Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_CONSTRAINT__GEN_CONSTRAINT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Gen Node Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_CONSTRAINT_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1133,6 +1185,43 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getSpecificDiagramUpdater_GenNode();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint <em>Gen Node Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Gen Node Constraint</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint
+	 * @generated
+	 */
+	EClass getGenNodeConstraint();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenNode
+	 * <em>Gen Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Gen Node</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenNode()
+	 * @see #getGenNodeConstraint()
+	 * @generated
+	 */
+	EReference getGenNodeConstraint_GenNode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint
+	 * <em>Gen Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Gen Constraint</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint()
+	 * @see #getGenNodeConstraint()
+	 * @generated
+	 */
+	EReference getGenNodeConstraint_GenConstraint();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1505,6 +1594,36 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIFIC_DIAGRAM_UPDATER__GEN_NODE = eINSTANCE.getSpecificDiagramUpdater_GenNode();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl <em>Gen Node Constraint</em>}
+		 * ' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenNodeConstraint()
+		 * @generated
+		 */
+		EClass GEN_NODE_CONSTRAINT = eINSTANCE.getGenNodeConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Gen Node</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference GEN_NODE_CONSTRAINT__GEN_NODE = eINSTANCE.getGenNodeConstraint_GenNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Gen Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference GEN_NODE_CONSTRAINT__GEN_CONSTRAINT = eINSTANCE.getGenNodeConstraint_GenConstraint();
 
 	}
 

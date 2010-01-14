@@ -20,6 +20,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
 import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
@@ -120,6 +121,14 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass specificDiagramUpdaterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass genNodeConstraintEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
@@ -502,6 +511,36 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getGenNodeConstraint() {
+		return genNodeConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getGenNodeConstraint_GenNode() {
+		return (EReference)genNodeConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getGenNodeConstraint_GenConstraint() {
+		return (EReference)genNodeConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -576,6 +615,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		specificDiagramUpdaterEClass = createEClass(SPECIFIC_DIAGRAM_UPDATER);
 		createEReference(specificDiagramUpdaterEClass, SPECIFIC_DIAGRAM_UPDATER__GEN_NODE);
+
+		genNodeConstraintEClass = createEClass(GEN_NODE_CONSTRAINT);
+		createEReference(genNodeConstraintEClass, GEN_NODE_CONSTRAINT__GEN_NODE);
+		createEReference(genNodeConstraintEClass, GEN_NODE_CONSTRAINT__GEN_CONSTRAINT);
 	}
 
 	/**
@@ -623,6 +666,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		mutatingCanvasEClass.getESuperTypes().add(this.getCommentedElement());
 		ownedEditpartEClass.getESuperTypes().add(this.getExternalHook());
 		specificDiagramUpdaterEClass.getESuperTypes().add(this.getExternalHook());
+		genNodeConstraintEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -671,6 +715,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		initEClass(specificDiagramUpdaterEClass, SpecificDiagramUpdater.class, "SpecificDiagramUpdater", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecificDiagramUpdater_GenNode(), theGMFGenPackage.getGenCommonBase(), null, "genNode", null, 0, 1, SpecificDiagramUpdater.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(genNodeConstraintEClass, GenNodeConstraint.class, "GenNodeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGenNodeConstraint_GenNode(), theGMFGenPackage.getGenNode(), null, "genNode", null, 0, -1, GenNodeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenNodeConstraint_GenConstraint(), theGMFGenPackage.getGenConstraint(), null, "genConstraint", null, 0, 1, GenNodeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

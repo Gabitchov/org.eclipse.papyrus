@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 
 /**

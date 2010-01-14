@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
-import org.eclipse.gmf.codegen.gmfgen.GenChildNode;
 
 /**
  * <!-- begin-user-doc -->

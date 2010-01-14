@@ -8,12 +8,22 @@ package org.eclipse.papyrus.papyrusgmfgenextension.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.papyrusgmfgenextension.*;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
+import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
+import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,8 +85,7 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * 
 	 * @generated
 	 */
-	protected PapyrusgmfgenextensionSwitch<Adapter> modelSwitch =
-			new PapyrusgmfgenextensionSwitch<Adapter>() {
+	protected PapyrusgmfgenextensionSwitch<Adapter> modelSwitch = new PapyrusgmfgenextensionSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseExtendedGenView(ExtendedGenView object) {
@@ -136,6 +145,11 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseSpecificDiagramUpdater(SpecificDiagramUpdater object) {
 			return createSpecificDiagramUpdaterAdapter();
+		}
+
+		@Override
+		public Adapter caseGenNodeConstraint(GenNodeConstraint object) {
+			return createGenNodeConstraintAdapter();
 		}
 
 		@Override
@@ -341,6 +355,22 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSpecificDiagramUpdaterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint <em>Gen Node Constraint</em>}
+	 * '.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint
+	 * @generated
+	 */
+	public Adapter createGenNodeConstraintAdapter() {
 		return null;
 	}
 
