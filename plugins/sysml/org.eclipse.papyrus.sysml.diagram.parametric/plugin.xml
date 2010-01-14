@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
-
+	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.ParametricDiagramContributionItemProvider">
+      <Priority name="Low"/>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+            <popupAction id="papyrus.restoreRelatedLinksAction" path="/navigateMenu/additions"/>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
    <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
       <fileTypes type="text" extension="sysml_diagram"/>
@@ -662,11 +670,6 @@
 	
 
 </extension>
-
-
-
-
-		
 
    <!-- optionally, specify keybindings -->
 </plugin>

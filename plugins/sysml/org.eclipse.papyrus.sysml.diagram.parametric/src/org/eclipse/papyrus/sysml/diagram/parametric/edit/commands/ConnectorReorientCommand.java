@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -137,8 +137,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		if (ends != null && !ends.isEmpty()) {
 			ends.get(0).setRole(getNewSource());
 			return CommandResult.newOKCommandResult(getLink());
-		}
-		else {
+		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
 	}
@@ -151,8 +150,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		if (ends != null && !ends.isEmpty()) {
 			ends.get(1).setRole(getNewTarget());
 			return CommandResult.newOKCommandResult(getLink());
-		}
-		else {
+		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
 	}

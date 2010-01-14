@@ -10,13 +10,12 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -93,18 +92,18 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		Connector newElement = UMLFactory.eINSTANCE.createConnector();
 		getContainer().getOwnedConnectors().add(newElement);
-		EList<ConnectorEnd> ends = newElement.getEnds();
-		if (ends != null &  !ends.isEmpty()) {
-			ends.get(0).setRole(getSource());
-			ends.get(1).setRole(getTarget());
-		}
+		// create the connector ends
+		// TODO manage nested connector end
+		ConnectorEnd source = newElement.createEnd();
+		ConnectorEnd target = newElement.createEnd();
+		source.setRole(getSource());
+		target.setRole(getTarget());
+			
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**

@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -91,9 +92,9 @@ public class Property2CreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 		ConstraintProperty container = (ConstraintProperty) getElementToEdit();
-		// StructuredClassifier container = (StructuredClassifier) getElementToEdit();
-		// FIXME return true if base property != null
-		if (container.getBase_Property() != null) {
+		Property baseProperty = container.getBase_Property();
+		if (baseProperty != null
+				&& StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock", baseProperty.getType())) {
 			return true;
 		}
 		return false;

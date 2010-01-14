@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;

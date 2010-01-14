@@ -24,6 +24,10 @@
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.DRAG_DROP_ROLE"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource"/>
       <childNodes
@@ -381,7 +385,7 @@
           xsi:type="gmfgen:ExternalParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.PropertyLabelParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"

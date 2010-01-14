@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ResourceItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 
@@ -57,6 +58,7 @@ public class ResourceEditPart extends DiagramEditPart {
 		// new
 		// org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ResourceCanonicalEditPolicy());
 
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

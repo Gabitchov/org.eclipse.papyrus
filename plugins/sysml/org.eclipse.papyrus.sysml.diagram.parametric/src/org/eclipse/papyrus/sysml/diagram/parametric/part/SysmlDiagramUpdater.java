@@ -299,10 +299,11 @@ public class SysmlDiagramUpdater {
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
 			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getConnectorEnd_Role()
-					|| false == setting.getEObject() instanceof Connector) {
+					|| false == setting.getEObject() instanceof ConnectorEnd) {
 				continue;
 			}
-			Connector link = (Connector) setting.getEObject();
+			ConnectorEnd connectorEnd = (ConnectorEnd) setting.getEObject();
+			Connector link = (Connector) connectorEnd.getOwner();
 			if (ConnectorEditPart.VISUAL_ID != SysmlVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -343,11 +344,11 @@ public class SysmlDiagramUpdater {
 			if (ConnectorEditPart.VISUAL_ID != SysmlVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			
+
 			ConnectableElement src = null;
 			ConnectableElement dst = null;
 			EList<ConnectorEnd> ends = link.getEnds();
-			if (ends != null && !ends.isEmpty()) {
+			if (ends != null && !ends.isEmpty() && ends.size() > 1) {
 				src = ends.get(0).getRole();
 				dst = ends.get(1).getRole();
 			}
