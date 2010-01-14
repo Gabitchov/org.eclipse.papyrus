@@ -51,8 +51,6 @@ public class EditorIconFactory implements IEditorIconFactory {
 	 * @param pageIdentifier
 	 * @return
 	 */
-	
-	@Override
 	public Image getEditorIcon(Object pageIdentifier) {
 
 
