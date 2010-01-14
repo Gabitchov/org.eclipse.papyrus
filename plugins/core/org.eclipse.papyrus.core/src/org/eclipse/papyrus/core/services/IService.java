@@ -14,14 +14,6 @@ package org.eclipse.papyrus.core.services;
 public interface IService {
 
 	/**
-	 * Init the service. Pass the {@link ServicesRegistry} so that the service can use other services.
-	 * 
-	 * @deprecated Not called. To be Removed ? Use a constructor with {@link ServicesRegistry} as parameter.
-	 * @param servicesRegistry
-	 */
-	public void initService(ServicesRegistry servicesRegistry);
-
-	/**
 	 * Start the service. This method is called when the service is started.
 	 */
 	public void startService();

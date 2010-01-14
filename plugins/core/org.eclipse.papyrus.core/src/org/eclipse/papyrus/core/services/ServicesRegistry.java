@@ -60,7 +60,7 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add a already instanciated service.
+	 * Add a service.
 	 * The descriptor will be created.
 	 * 
 	 * @param key
@@ -204,22 +204,6 @@ public class ServicesRegistry {
 				serviceEntry.startup();
 			} catch (ServiceException e) {
 				log.log(Level.SEVERE, "Can't init service '" + serviceEntry + "'", e);
-			}
-		}
-	}
-
-	/**
-	 * Start services marked as start = STARTUP.
-	 * 
-	 * @throws ServiceException
-	 *         If a service can't be started.
-	 */
-	private void startServices() {
-		for(AbstractServiceEntry serviceEntry : services.values()) {
-			try {
-				serviceEntry.startService();
-			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't start service '" + serviceEntry + "'", e);
 			}
 		}
 	}

@@ -47,6 +47,9 @@ import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageModelFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.PluggableEditorFactoryReader;
+import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProvider;
+import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
@@ -117,6 +120,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	protected DiResourceSet resourceSet = new DiResourceSet();
 
+	/**
+	 * Class used to propagate life cycle events.
+	 * This class can be retrieved as a service using {@link ILifeCycleEventsProvider}.class.
+	 */
+	protected LifeCycleEventsProvider lifeCycleEventsProvider;
+	
+	/**
+	 * Cached event that can be reused.
+	 */
+	protected DoSaveEvent lifeCycleEvent;
+	
 	/**
 	 * 
 	 */
@@ -233,7 +247,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create Services Registry
 		try {
 			ServicesRegistry servicesRegistry = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
-			servicesRegistry.startRegistry();
+//			servicesRegistry.startRegistry();
 			return servicesRegistry;
 		} catch (ServiceException e) {
 			// Show log and error
@@ -411,8 +425,16 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
 
+		
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
+		
+		// Create lifeCycle event provider.
+		lifeCycleEventsProvider = new LifeCycleEventsProvider();
+		lifeCycleEvent = new DoSaveEvent(servicesRegistry, this);
+		servicesRegistry.add(ILifeCycleEventsProvider.class, 1, lifeCycleEventsProvider);
+
+		// register services
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
 		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
 		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
@@ -435,6 +457,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
 
+		
+		// Start servicesRegistry
+		servicesRegistry.startRegistry();
+		
 		// Listen to the modifications of the EMF model
 		transactionalEditingDomain.getCommandStack().addCommandStackListener(commandStackListener);
 
@@ -493,6 +519,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void doSave(IProgressMonitor monitor) {
+		
+		// Sent pre doSave event
+		lifeCycleEventsProvider.fireAboutToDoSaveEvent(lifeCycleEvent);
+		
+		// sent doSaveEvent
+		lifeCycleEventsProvider.fireDoSaveEvent(lifeCycleEvent);
+		// Perform local doSave
+		// TODO : put it in a listener ?
 		try {
 			// Save each associated resource
 			resourceSet.save(monitor);
@@ -500,7 +534,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		} catch (IOException e) {
 			log.error("Error during save", e);
 		}
-
+		
+		// Sent post Events
+		lifeCycleEventsProvider.firePostDoSaveEvent(lifeCycleEvent);
+		
 	}
 
 	/**
@@ -530,6 +567,15 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void doSaveAs() {
+		
+		// Sent pre doSave event
+		lifeCycleEventsProvider.fireAboutToDoSaveAsEvent(lifeCycleEvent);
+		
+		// sent doSaveEvent
+		lifeCycleEventsProvider.fireDoSaveAsEvent(lifeCycleEvent);
+		// Perform local doSaveAs
+
+		
 		// Show a SaveAs dialog
 		Shell shell = getEditorSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
@@ -563,6 +609,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				log.error(e);
 			}
 		}
+
+		// sent doSaveEvent
+		lifeCycleEventsProvider.firePostDoSaveAsEvent(lifeCycleEvent);
 
 	}
 

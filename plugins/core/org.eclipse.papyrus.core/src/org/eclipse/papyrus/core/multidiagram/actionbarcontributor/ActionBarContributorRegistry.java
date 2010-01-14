@@ -147,14 +147,6 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 	/**
 	 * Do nothing in this implementation. {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.core.services.IService#initService(org.eclipse.papyrus.core.services.ServicesRegistry)
-	 */
-	public void initService(ServicesRegistry servicesRegistry) {
-	}
-
-	/**
-	 * Do nothing in this implementation. {@inheritDoc}
-	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#startService()
 	 */
 	public void startService() {
