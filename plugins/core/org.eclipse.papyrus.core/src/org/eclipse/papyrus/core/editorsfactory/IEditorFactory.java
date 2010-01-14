@@ -4,18 +4,15 @@
 package org.eclipse.papyrus.core.editorsfactory;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
-import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 
 
 
 /**
  * Factory used to get the Icon associated to the editor used to render the specified pageIdentifier.
- *  
+ * 
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public interface IEditorFactory {
 

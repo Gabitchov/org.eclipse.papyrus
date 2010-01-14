@@ -6,9 +6,6 @@ package org.eclipse.papyrus.core.editorsfactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -44,11 +41,11 @@ public class PageIconsRegistry implements IPageIconsRegistry {
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
 	 */
 	public Image getEditorIcon(Object pageIdentifier) {
-		
+
 		for(IEditorIconFactory factory : getPageIcons()) {
 			if(factory.isPageModelFactoryFor(pageIdentifier)) {
 				{
-//					return factory.getEditorIcon(pageIdentifier);
+					//					return factory.getEditorIcon(pageIdentifier);
 					return factory.createEditorIcon(pageIdentifier);
 				}
 			}
@@ -59,7 +56,7 @@ public class PageIconsRegistry implements IPageIconsRegistry {
 		return null;
 	}
 
-	
+
 	/**
 	 * @return the editorFactories
 	 */
@@ -69,23 +66,23 @@ public class PageIconsRegistry implements IPageIconsRegistry {
 
 	/**
 	 * Add the specified {@link IEditorFactory}
+	 * 
 	 * @param editorIconFactory
 	 */
-	public void add(IEditorIconFactory editorIconFactory)
-	{
+	public void add(IEditorIconFactory editorIconFactory) {
 		// This should never happen
-		if( editorIconFactory==null)
+		if(editorIconFactory == null)
 			throw new RuntimeException("Parameter should not be null.");
-		
+
 		pageIcons.add(editorIconFactory);
 	}
-	
+
 	/**
 	 * Remove the specified {@link IEditorFactory}
+	 * 
 	 * @param editorIconFactory
 	 */
-	public void remove(IEditorIconFactory editorIconFactory)
-	{
+	public void remove(IEditorIconFactory editorIconFactory) {
 		pageIcons.remove(editorIconFactory);
 	}
 }
