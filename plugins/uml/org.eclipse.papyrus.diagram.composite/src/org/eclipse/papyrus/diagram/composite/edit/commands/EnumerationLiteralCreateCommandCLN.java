@@ -90,7 +90,11 @@ public class EnumerationLiteralCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

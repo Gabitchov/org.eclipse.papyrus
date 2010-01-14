@@ -30,13 +30,63 @@ import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingH
 import org.eclipse.papyrus.diagram.composite.custom.helper.ConnectorHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.TimeObservationHelper;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ActorEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.AnyReceiveEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ArtifactEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CallEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ChangeEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassClassifierEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CollaborationCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CreationEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DeploymentSpecificationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DeviceCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DurationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.EnumerationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ExecutionEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ExpressionEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InformationItemEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InstanceValueEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InteractionCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InteractionConstraintEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InterfaceEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.IntervalConstraintEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.IntervalEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralBooleanEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralIntegerEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralNullEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralStringEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralUnlimitedNaturalEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.NodeCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueBehaviorCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueExpressionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.SendOperationEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.SendSignalEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.SignalEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.SignalEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.StateMachineCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.StringExpressionEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.TimeEventEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.TimeExpressionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
@@ -57,7 +107,14 @@ import org.eclipse.uml2.uml.Type;
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	/** List of VISUAL_ID for which a specific Drop behavior is provided */
-	public int[] secificDropNode = { DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
+	public int[] secificDropNode = {
+	// TopLevelNodes
+	ActivityCompositeEditPart.VISUAL_ID, InteractionCompositeEditPart.VISUAL_ID, ProtocolStateMachineCompositeEditPart.VISUAL_ID, StateMachineCompositeEditPart.VISUAL_ID, FunctionBehaviorCompositeEditPart.VISUAL_ID, OpaqueBehaviorCompositeEditPart.VISUAL_ID, ComponentCompositeEditPart.VISUAL_ID, DeviceCompositeEditPart.VISUAL_ID, ExecutionEnvironmentCompositeEditPart.VISUAL_ID, NodeCompositeEditPart.VISUAL_ID, ClassCompositeEditPart.VISUAL_ID, ClassClassifierEditPart.VISUAL_ID, CollaborationCompositeEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID, ActorEditPart.VISUAL_ID, DeploymentSpecificationEditPart.VISUAL_ID, ArtifactEditPart.VISUAL_ID, InformationItemEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID, UseCaseEditPart.VISUAL_ID, SignalEventEditPart.VISUAL_ID, CallEventEditPart.VISUAL_ID, AnyReceiveEventEditPart.VISUAL_ID, SendSignalEventEditPart.VISUAL_ID, SendOperationEventEditPart.VISUAL_ID, ChangeEventEditPart.VISUAL_ID, TimeEventEditPart.VISUAL_ID, CreationEventEditPart.VISUAL_ID, ExecutionEventEditPart.VISUAL_ID, LiteralBooleanEditPart.VISUAL_ID, LiteralIntegerEditPart.VISUAL_ID, LiteralNullEditPart.VISUAL_ID, LiteralStringEditPart.VISUAL_ID, LiteralUnlimitedNaturalEditPart.VISUAL_ID, StringExpressionEditPart.VISUAL_ID, OpaqueExpressionEditPart.VISUAL_ID, TimeExpressionEditPart.VISUAL_ID, ExpressionEditPart.VISUAL_ID, DurationEditPart.VISUAL_ID, IntervalEditPart.VISUAL_ID, InstanceValueEditPart.VISUAL_ID, CommentEditPart.VISUAL_ID, DurationConstraintEditPart.VISUAL_ID, TimeConstraintEditPart.VISUAL_ID, IntervalConstraintEditPart.VISUAL_ID, InteractionConstraintEditPart.VISUAL_ID, ConstraintEditPart.VISUAL_ID,
+	// TopLevelNodes
+	DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
+
+
+
 
 	/**
 	 * Default constructor
@@ -114,6 +171,108 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		default:
 			// Switch test over nodeVISUALID
 			switch(nodeVISUALID) {
+			// Test TopLevelNode... Start
+			case ActivityCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case InteractionCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ProtocolStateMachineCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case StateMachineCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case FunctionBehaviorCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case OpaqueBehaviorCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ComponentCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case DeviceCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ExecutionEnvironmentCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case NodeCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ClassCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ClassClassifierEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case CollaborationCompositeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case InterfaceEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case PrimitiveTypeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case EnumerationEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case DataTypeEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ActorEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case DeploymentSpecificationEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ArtifactEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case InformationItemEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case SignalEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case UseCaseEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case SignalEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case CallEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case AnyReceiveEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case SendSignalEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case SendOperationEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ChangeEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case TimeEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case CreationEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ExecutionEventEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case LiteralBooleanEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case LiteralIntegerEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case LiteralNullEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case LiteralStringEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case LiteralUnlimitedNaturalEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case StringExpressionEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case OpaqueExpressionEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case TimeExpressionEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ExpressionEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case DurationEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case IntervalEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case InstanceValueEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case CommentEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case DurationConstraintEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case TimeConstraintEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case IntervalConstraintEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case InteractionConstraintEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ConstraintEditPart.VISUAL_ID:
+				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+				// Test TopLevelNode... End
 			case PortEditPart.VISUAL_ID:
 				return dropPort(dropRequest, location, (Port)semanticElement, nodeVISUALID);
 			case PropertyPartEditPartCN.VISUAL_ID:
@@ -291,6 +450,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropDurationObservation(DropObjectsRequest dropRequest, Point location, DurationObservation droppedElement, int nodeVISUALID) {
 
+		// Test canvas element
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof org.eclipse.uml2.uml.Package)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		DurationObservationHelper durationObservationHelper = new DurationObservationHelper(getEditingDomain());
 		return durationObservationHelper.dropDurationObservation((DurationObservation)droppedElement, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 
@@ -312,8 +478,39 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropTimeObservation(DropObjectsRequest dropRequest, Point location, TimeObservation droppedElement, int nodeVISUALID) {
 
+		// Test canvas element
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof org.eclipse.uml2.uml.Package)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		TimeObservationHelper timeObservationHelper = new TimeObservationHelper(getEditingDomain());
 		return timeObservationHelper.dropTimeObservation((TimeObservation)droppedElement, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 	}
 
+	/**
+	 * This method return a drop command for TopLevelNode. It returns an {@link org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand} in
+	 * case the element is dropped on a canvas referencing a domain element that is not a Package.
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticElement
+	 *        the semantic element
+	 * @param nodeVISUALID
+	 *        the visual identifier of the EditPart of the dropped element
+	 * @param linkVISUALID
+	 *        the visual identifier of the EditPart of the dropped element
+	 * @return the drop command
+	 */
+	protected Command dropTopLevelNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(graphicalParentObject instanceof org.eclipse.uml2.uml.Package) {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement));
+		}
+
+		return UnexecutableCommand.INSTANCE;
+	}
 }

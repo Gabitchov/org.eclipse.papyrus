@@ -90,7 +90,11 @@ public class DeviceCompositeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

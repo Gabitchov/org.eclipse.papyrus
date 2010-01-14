@@ -90,7 +90,11 @@ public class InformationItemCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

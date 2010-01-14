@@ -90,7 +90,11 @@ public class OpaqueBehaviorCompositeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

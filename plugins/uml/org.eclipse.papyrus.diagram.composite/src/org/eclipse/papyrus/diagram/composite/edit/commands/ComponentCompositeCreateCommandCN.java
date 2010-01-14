@@ -90,7 +90,11 @@ public class ComponentCompositeCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

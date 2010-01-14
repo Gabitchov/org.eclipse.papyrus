@@ -90,7 +90,11 @@ public class FunctionBehaviorCompositeCreateCommandCN extends EditElementCommand
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

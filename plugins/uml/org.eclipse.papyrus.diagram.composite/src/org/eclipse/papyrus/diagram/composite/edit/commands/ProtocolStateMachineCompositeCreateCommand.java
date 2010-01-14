@@ -90,6 +90,12 @@ public class ProtocolStateMachineCompositeCreateCommand extends EditElementComma
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+		// Creation constraint for TopLevelNodes
+		if(!(getElementToEdit() instanceof Package)) {
+			return false;
+		}
+
 		return true;
 
 	}

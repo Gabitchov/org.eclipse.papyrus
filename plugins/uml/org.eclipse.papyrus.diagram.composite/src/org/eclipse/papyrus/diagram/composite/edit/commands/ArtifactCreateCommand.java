@@ -90,6 +90,12 @@ public class ArtifactCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+		// Creation constraint for TopLevelNodes
+		if(!(getElementToEdit() instanceof Package)) {
+			return false;
+		}
+
 		return true;
 
 	}

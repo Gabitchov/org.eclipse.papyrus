@@ -90,7 +90,11 @@ public class FunctionBehaviorCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

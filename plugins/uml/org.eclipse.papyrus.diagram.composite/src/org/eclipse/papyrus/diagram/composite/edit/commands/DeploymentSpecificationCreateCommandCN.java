@@ -90,7 +90,11 @@ public class DeploymentSpecificationCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

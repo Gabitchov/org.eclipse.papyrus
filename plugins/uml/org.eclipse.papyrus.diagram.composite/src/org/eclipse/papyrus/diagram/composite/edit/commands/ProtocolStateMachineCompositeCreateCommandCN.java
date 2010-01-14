@@ -90,7 +90,11 @@ public class ProtocolStateMachineCompositeCreateCommandCN extends EditElementCom
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+
 		return true;
+
+
 
 	}
 

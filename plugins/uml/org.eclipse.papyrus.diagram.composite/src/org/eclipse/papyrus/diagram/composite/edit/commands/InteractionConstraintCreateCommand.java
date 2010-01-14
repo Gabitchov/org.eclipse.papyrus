@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -90,6 +91,12 @@ public class InteractionConstraintCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
+		// Creation constraint for TopLevelNodes
+		if(!(getElementToEdit() instanceof Package)) {
+			return false;
+		}
+
 		return true;
 
 	}
