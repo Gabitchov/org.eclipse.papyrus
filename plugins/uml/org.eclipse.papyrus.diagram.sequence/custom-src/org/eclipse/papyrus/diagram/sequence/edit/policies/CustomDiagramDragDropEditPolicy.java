@@ -46,6 +46,7 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceLinkMappingHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * A policy to support dNd from the Model Explorer in the sequence diagram
@@ -121,9 +122,18 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if(semanticLink instanceof ExecutionSpecification) {
 			List<View> existingViews = DiagramEditPartsUtil.findViews(semanticLink, getViewer());
 			if(existingViews.isEmpty()) {
-				ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticLink), Node.class, String.valueOf(nodeVisualID), ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-				CreateCommand cc = new CreateCommand(getEditingDomain(), viewDescriptor, (View)getHost().getModel());
-				return new ICommandProxy(cc);
+				// Find the lifeline of the ES
+				ExecutionSpecification es = (ExecutionSpecification)semanticLink;
+				if(es.getStart() != null) {
+					// an Occurrence Specification covereds systematically a unique lifeline
+					Lifeline lifeline = es.getStart().getCovereds().get(0);
+					// Check that the container view is the view of the lifeline
+					if(lifeline.equals(ViewUtil.resolveSemanticElement((View)getHost().getModel()))) {
+						ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticLink), Node.class, String.valueOf(nodeVisualID), ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+						CreateCommand cc = new CreateCommand(getEditingDomain(), viewDescriptor, (View)getHost().getModel());
+						return new ICommandProxy(cc);
+					}
+				}
 			} else {
 				//TODO : implements a move command of the existing view.
 			}
