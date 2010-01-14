@@ -58,6 +58,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.composite.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -157,6 +158,8 @@ public class ExpressionNameEditPart extends CompartmentEditPart implements IText
 	protected String getLabelTextHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getText();
+		} else if(figure instanceof ILabelFigure) {
+			return ((ILabelFigure)figure).getText();
 		} else {
 			return ((Label)figure).getText();
 		}
@@ -168,6 +171,8 @@ public class ExpressionNameEditPart extends CompartmentEditPart implements IText
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setText(text);
+		} else if(figure instanceof ILabelFigure) {
+			((ILabelFigure)figure).setText(text);
 		} else {
 			((Label)figure).setText(text);
 		}
@@ -179,6 +184,8 @@ public class ExpressionNameEditPart extends CompartmentEditPart implements IText
 	protected Image getLabelIconHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getIcon();
+		} else if(figure instanceof ILabelFigure) {
+			return ((ILabelFigure)figure).getIcon();
 		} else {
 			return ((Label)figure).getIcon();
 		}
@@ -190,6 +197,8 @@ public class ExpressionNameEditPart extends CompartmentEditPart implements IText
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setIcon(icon);
+		} else if(figure instanceof ILabelFigure) {
+			((ILabelFigure)figure).setIcon(icon);
 		} else {
 			((Label)figure).setIcon(icon);
 		}
@@ -290,7 +299,10 @@ public class ExpressionNameEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		if(this.getNotationView().isMutable()) {
+			return getParser() != null;
+		}
+		return false;
 	}
 
 	/**
