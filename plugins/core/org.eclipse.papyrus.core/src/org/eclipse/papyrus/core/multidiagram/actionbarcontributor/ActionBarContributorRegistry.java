@@ -13,25 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.multidiagram.actionbarcontributor;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.IDebugChannel;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
@@ -42,9 +37,6 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * 
  */
 public class ActionBarContributorRegistry implements IActionBarContributorFactory, IService {
-
-	/** Log object */
-	Logger log = Logger.getLogger(getClass().getName());
 
 	/** ID of the editor extension (schema filename) */
 	public static final String EDITOR_EXTENSION_ID = "papyrusDiagram";
@@ -135,23 +127,21 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 					if(editorContextDescriptors.get(desc.contextId) != null) {
 						// Already exists. Check if it is the same
 						ActionBarContributorDescriptor existingDesc = editorContextDescriptors.get(desc.contextId);
-						if(desc.equals(existingDesc))
-							log.warning("More than one ActionBarContributor is registered under the name '"
-									+ desc.contextId
-									+ "', with different parameters. Extra declaration are disguarded. ");
-					} else
+						if(desc.equals(existingDesc)) {
+							log.warn("More than one ActionBarContributor is registered under the name '" + desc.contextId + "', with different parameters. Extra declaration are discarded.");
+						}
+					} else {
 						editorContextDescriptors.put(desc.contextId, desc);
+					}
 				}
 			} catch (ExtensionException e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, e.getMessage(), e));
-				PapyrusTrace.error(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "Initialization editor problem " + e);
+				log.error(e.getMessage(), e);
 			}
 		}
 
-		if(log.isLoggable(Level.WARNING))
-			log.warning(this.getClass().getSimpleName() + " : contributors desc loaded  [" + editorContextDescriptors.size() + "]");
-		PapyrusTrace.trace(IDebugChannel.PAPYRUS_EXTENSIONPOINT_LOADING, this, "" + editorContextDescriptors.size() + " editorContextDescriptors loaded");
-
+		if(log.isDebugEnabled()) {
+			log.debug(this.getClass().getSimpleName() + " : contributors desc loaded  [" + editorContextDescriptors.size() + "]");
+		}
 	}
 
 	/**

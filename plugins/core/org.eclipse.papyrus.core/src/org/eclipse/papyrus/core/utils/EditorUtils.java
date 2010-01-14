@@ -15,6 +15,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.utils;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
@@ -30,10 +36,11 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashMode
 import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-
 
 /**
  * Set of utility methods for the CoreEditor.
@@ -68,6 +75,59 @@ public class EditorUtils {
 	}
 
 	/**
+	 * Gets the opened multi-diagram editors.
+	 * 
+	 * @return The opened {@link IMultiDiagramEditor} or null if an error occured.
+	 */
+	public static IMultiDiagramEditor[] getMultiDiagramEditors() {
+		// Lookup ServiceRegistry
+		IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if(workbenchWindow == null) {
+			return null;
+		}
+		IWorkbenchPage page = workbenchWindow.getActivePage();
+		if(page == null) {
+			return null;
+		}
+		List<IMultiDiagramEditor> list = new ArrayList<IMultiDiagramEditor>();
+		for(IEditorReference editorRef : page.getEditorReferences()) {
+			IEditorPart editorPart = editorRef.getEditor(false);
+			if(editorPart instanceof IMultiDiagramEditor) {
+				list.add((IMultiDiagramEditor)editorPart);
+			}
+		}
+		return list.toArray(new IMultiDiagramEditor[list.size()]);
+	}
+
+	/**
+	 * Returns the editors that are related to to given file.<BR>
+	 * 
+	 * @param file
+	 *        The file (model, di or notation).
+	 * @return The associated editors.
+	 */
+	public static IMultiDiagramEditor[] getRelatedEditors(IFile file) {
+		// Get the DI file
+		IFile diFile = DiResourceSet.getRelatedDiFile(file);
+		if(diFile == null || !diFile.exists()) {
+			return new IMultiDiagramEditor[0];
+		}
+
+		IMultiDiagramEditor[] openedEditors = EditorUtils.getMultiDiagramEditors();
+		if(openedEditors == null) {
+			return new IMultiDiagramEditor[0];
+		}
+		List<IMultiDiagramEditor> list = new ArrayList<IMultiDiagramEditor>(openedEditors.length);
+
+		for(IMultiDiagramEditor editorPart : openedEditors) {
+			if(editorPart.getEditorInput() instanceof IFileEditorInput && diFile.equals(((IFileEditorInput)editorPart.getEditorInput()).getFile())) {
+				list.add(editorPart);
+			}
+		}
+		return list.toArray(new IMultiDiagramEditor[list.size()]);
+	}
+
+	/**
 	 * Get the service registry of the currently active main editor.
 	 * 
 	 * @return The {@link ServicesRegistry} or null if not found.
@@ -85,8 +145,7 @@ public class EditorUtils {
 	 */
 	static public ISashWindowsContentProvider getISashWindowsContentProvider() {
 		IEditorPart editorPart = getMultiDiagramEditor();
-		return editorPart == null ? null : (ISashWindowsContentProvider)editorPart
-				.getAdapter(ISashWindowsContentProvider.class);
+		return editorPart == null ? null : (ISashWindowsContentProvider)editorPart.getAdapter(ISashWindowsContentProvider.class);
 
 	}
 
@@ -217,8 +276,7 @@ public class EditorUtils {
 			ServicesRegistry registry = getServiceRegistry();
 			return registry == null ? null : registry.getService(DiResourceSet.class);
 		} catch (ServiceException e) {
-			// FIXME wait to use log
-			e.printStackTrace();
+			log.error(e);
 		}
 		return null;
 	}
@@ -235,8 +293,7 @@ public class EditorUtils {
 		} catch (IllegalStateException e) {
 			// Registry can't be found, do nothing.
 		} catch (ServiceException e) {
-			// FIXME wait to use log
-			e.printStackTrace();
+			log.error(e);
 		}
 		return null;
 	}

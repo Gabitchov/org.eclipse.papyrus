@@ -269,4 +269,26 @@ public class DiResourceSet extends ResourceSetImpl {
 		return transactionalEditingDomain;
 	}
 
+	/**
+	 * Returns the related di file.
+	 * 
+	 * @param file
+	 *        A file (di, model or notation).
+	 * @return The associated DI file.
+	 */
+	public static IFile getRelatedDiFile(IFile file) {
+		if(file == null) {
+			return null;
+		}
+		IFile diFile;
+		if(DiResourceSet.DI_FILE_EXTENSION.equals(file.getFileExtension())) {
+			diFile = file;
+		} else {
+			// Find the correct file
+			IPath diPath = file.getFullPath().removeFileExtension().addFileExtension(DiResourceSet.DI_FILE_EXTENSION);
+			diFile = file.getParent().getFile(diPath.makeRelativeTo(file.getParent().getFullPath()));
+		}
+		return diFile;
+	}
+
 }

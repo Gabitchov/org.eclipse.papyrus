@@ -14,10 +14,11 @@
 
 package org.eclipse.papyrus.core.editor;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.EventObject;
-import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -91,9 +92,6 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  *         TODO : remove GMF dependency !
  */
 public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
-
-	/** Log object */
-	private Logger log = Logger.getLogger(getClass().getName());
 
 	/** Gef adapter */
 	private MultiDiagramEditorGefDelegate gefAdaptorDelegate;
@@ -239,8 +237,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			return servicesRegistry;
 		} catch (ServiceException e) {
 			// Show log and error
-			log.severe(e.getMessage());
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 		return null;
 	}
@@ -306,7 +303,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			return ((CoreComposedActionBarContributor)contributor).getActionBarContributorRegistry();
 		} else {
 			// Create a registry.
-			log.warning(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
+			log.info(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
 			return createActionBarContributorRegistry();
 		}
 
@@ -425,13 +422,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
 		editorReader.populate(pageIconsRegistry);
 		servicesRegistry.add(IPageIconsRegistry.class, 1, pageIconsRegistry);
-		
-		
+
+
 		// Create PageModelRegistry requested by content provider.
 		// Also populate it from extensions.
 		PageModelFactoryRegistry pageModelRegistry = new PageModelFactoryRegistry();
 		editorReader.populate(pageModelRegistry, servicesRegistry);
-		
+
 		// TODO : create appropriate Resource for the contentProvider, and pass it here.
 		// This will allow to remove the old sash stuff.
 		setContentProvider(createPageProvider(pageModelRegistry, resourceSet.getDiResource(), transactionalEditingDomain));
@@ -500,8 +497,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			// Save each associated resource
 			resourceSet.save(monitor);
 			markSaveLocation();
-		} catch (IOException ioe) {
-			log.warning("Error during save");
+		} catch (IOException e) {
+			log.error("Error during save", e);
 		}
 
 	}
@@ -521,8 +518,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public boolean isDirty() {
 		// First, look if the model part (EMF) is dirty, else look at the Graphical part (GEF/GMF)
-		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded()
-				|| super.isDirty();
+		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded() || super.isDirty();
 	}
 
 	/**
@@ -552,19 +548,19 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 					public void execute(final IProgressMonitor monitor) {
 						try {
 							resourceSet.saveAs(path);
-						} catch (IOException ioe) {
-							// Debug.log(ioe);
+						} catch (IOException e) {
+							log.error("Unable to saveAs the resource set", e);
 						}
 					}
 				});
 				// set input to the new file
 				setInput(new FileEditorInput(file));
 				markSaveLocation();
-			} catch (InterruptedException ie) {
+			} catch (InterruptedException e) {
 				// should not happen, since the monitor dialog is not cancelable
-				ie.printStackTrace();
-			} catch (InvocationTargetException ite) {
-				ite.printStackTrace();
+				log.error(e);
+			} catch (InvocationTargetException e) {
+				log.error(e);
 			}
 		}
 
@@ -673,14 +669,20 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		throw new UnsupportedOperationException("Not implemented. Should not be called.");
 	}
 
+
 	/**
-	 * Returns resourceSet.
+	 * Change the editor input.<BR>
+	 * <U>Note</U>: that method should be called within the UI-Thread.
 	 * 
-	 * @return The resourceSet.
+	 * @see org.eclipse.papyrus.core.editor.IMultiDiagramEditor#setEditorInput(org.eclipse.ui.IEditorInput)
+	 * 
+	 * @param newInput
+	 *        The new input
 	 */
-	@Deprecated
-	// Removes it when Backbone is deleted
-	public DiResourceSet getResourceSet() {
-		return resourceSet;
+
+	public void setEditorInput(IEditorInput newInput) {
+		setInputWithNotify(newInput);
+		setPartName(newInput.getName());
+		markSaveLocation();
 	}
 }

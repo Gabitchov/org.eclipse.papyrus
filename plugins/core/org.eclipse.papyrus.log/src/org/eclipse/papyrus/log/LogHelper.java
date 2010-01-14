@@ -87,6 +87,17 @@ public class LogHelper {
 	}
 
 	/**
+	 * Log a warning message.
+	 * 
+	 * @param e
+	 *        the exception to log
+	 */
+	public void warn(String message) {
+		log(message, IStatus.WARNING);
+	}
+
+
+	/**
 	 * Log an exception into the Eclipse log file
 	 * 
 	 * @param e

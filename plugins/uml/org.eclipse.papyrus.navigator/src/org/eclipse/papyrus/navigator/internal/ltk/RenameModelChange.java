@@ -16,7 +16,9 @@ package org.eclipse.papyrus.navigator.internal.ltk;
 import static org.eclipse.papyrus.navigator.internal.Activator.log;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
@@ -33,7 +35,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.resource.RenameResourceChange;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.part.FileEditorInput;
 
 /**
  * Rename the model.<BR>
@@ -134,6 +141,7 @@ public class RenameModelChange extends Change {
 		return URI.createPlatformResourceURI(path.toString(), true);
 	}
 
+
 	/**
 	 * Overrides perform.
 	 * 
@@ -145,7 +153,7 @@ public class RenameModelChange extends Change {
 	public Change perform(IProgressMonitor pm) throws CoreException {
 		String lMsg = "Rename " + oldFile.getName() + " to " + newFile.getName();
 		log.info(lMsg);
-		pm.beginTask(lMsg, 20);
+		pm.beginTask(lMsg, 30);
 		try {
 			// That change assumes that the model resource has already been renamed
 			// So, the first thing to do is to get the new file, to restore it in order
@@ -156,6 +164,26 @@ public class RenameModelChange extends Change {
 			if(!isUndoOperation) {
 				newFile.move(oldFile.getFullPath(), true, new SubProgressMonitor(pm, 1));
 			}
+
+			pm.subTask("Saving dirty editors");
+			// We need to get the current workbench... so we have to use the UI-Thread!
+			final List<IMultiDiagramEditor> openedEditors = new ArrayList<IMultiDiagramEditor>();
+			Display.getDefault().syncExec(new Runnable() {
+
+				public void run() {
+					IMultiDiagramEditor[] multiEditors = EditorUtils.getRelatedEditors(oldFile);
+					if(multiEditors != null) {
+						for(IMultiDiagramEditor editor : multiEditors) {
+							if(editor.isDirty()) {
+								editor.doSave(new NullProgressMonitor());
+							}
+							openedEditors.add(editor);
+						}
+					}
+				}
+			});
+			pm.worked(10);
+
 			// Then, we can load the resource set as the file structure is now correct
 			DiResourceSet resourceSet = new DiResourceSet();
 			resourceSet.loadResources(oldFile);
@@ -192,6 +220,31 @@ public class RenameModelChange extends Change {
 			pm.subTask("Unloading model");
 			resourceSet.unload();
 			pm.worked(1);
+
+			// Now, notify the editor of the change
+			if(!openedEditors.isEmpty()) {
+				Display.getDefault().syncExec(new Runnable() {
+
+					public void run() {
+						// Get the DI file as the rename could occur on any model's file.
+						IFile newDiFile = DiResourceSet.getRelatedDiFile(newFile);
+						for(IMultiDiagramEditor editor : openedEditors) {
+							try {
+								DiResourceSet diRes = editor.getServicesRegistry().getService(DiResourceSet.class);
+								if(diRes != null) {
+									diRes.saveAs(newFile.getFullPath());
+								}
+								editor.setEditorInput(new FileEditorInput(newDiFile));
+
+							} catch (ServiceException e) {
+								log.error(e);
+							} catch (IOException e) {
+								log.error(e);
+							}
+						}
+					}
+				});
+			}
 
 			// Then, remove the old model files
 			IContainer parent = oldFile.getParent();

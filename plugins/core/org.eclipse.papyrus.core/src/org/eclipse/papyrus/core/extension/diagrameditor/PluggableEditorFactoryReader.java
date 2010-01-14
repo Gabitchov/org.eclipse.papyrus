@@ -45,7 +45,7 @@ public class PluggableEditorFactoryReader {
 
 
 	/**
-	 * Create a new Registry reading extension from the specified namespace. The namespace is 
+	 * Create a new Registry reading extension from the specified namespace. The namespace is
 	 * usually the name of the plugin owning the registry.
 	 * 
 	 * @param extensionPointNamespace
@@ -68,12 +68,12 @@ public class PluggableEditorFactoryReader {
 	public void populate(PageModelFactoryRegistry pageModelFactoryRegistry, ServicesRegistry serviceRegistry) {
 
 		for(EditorDescriptor desc : getEditorDescriptors()) {
-			
+
 			// Create and add a proxy encapsulating the EditorFactory.
-			pageModelFactoryRegistry.add( new EditorFactoryProxy(serviceRegistry, desc));
+			pageModelFactoryRegistry.add(new EditorFactoryProxy(serviceRegistry, desc));
 		}
 	}
-	
+
 	/**
 	 * Populate the provided {@link PageIconsRegistry} with icons read
 	 * from Eclipse extension declarations.
@@ -85,14 +85,14 @@ public class PluggableEditorFactoryReader {
 	public void populate(PageIconsRegistry registry) {
 
 		for(EditorDescriptor desc : getEditorDescriptors()) {
-			
+
 			// Create and add a proxy encapsulating the EditorFactory.
-			registry.add( new EditorIconFactory(desc));
+			registry.add(new EditorIconFactory(desc));
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get the list of editor descriptor.
 	 * 
@@ -124,8 +124,10 @@ public class PluggableEditorFactoryReader {
 				log.error("Initialization editor problem ", e);
 			}
 		}
-		
-		log.debug( "Read " + editorDescriptors.size() + " editor descriptors from Eclipse extensions");
+
+		if(log.isDebugEnabled()) {
+			log.debug("Read " + editorDescriptors.size() + " editor descriptors from Eclipse extensions");
+		}
 	}
 
 	/**

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sasheditor.editor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -38,9 +37,6 @@ import org.eclipse.ui.part.EditorPart;
  */
 public abstract class AbstractMultiPageSashEditor extends EditorPart implements IMultiPageEditorPart, IMultiEditorManager {
 
-	/** Log object */
-	protected Logger log = Logger.getLogger(getClass().getName());
-
 	/** The pageProvider */
 	private ISashWindowsContentProvider pageProvider;
 
@@ -53,8 +49,9 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * @return
 	 */
 	protected ISashWindowsContentProvider getContentProvider() {
-		if(pageProvider == null)
+		if(pageProvider == null) {
 			pageProvider = createPageProvider();
+		}
 
 		return pageProvider;
 	}
@@ -65,8 +62,9 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * @param contentProvider
 	 */
 	protected void setContentProvider(ISashWindowsContentProvider contentProvider) {
-		if(pageProvider == null)
+		if(pageProvider == null) {
 			pageProvider = contentProvider;
+		}
 	}
 
 	/**
@@ -162,8 +160,9 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Refresh the sash windows system
 	 */
 	protected void refreshTabs() {
-		if(sashContainer != null)
+		if(sashContainer != null) {
 			sashContainer.refreshTabs();
+		}
 
 	}
 
@@ -175,15 +174,18 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#getAdapter(java.lang.Class)
 	 */
+	@Override
 	public Object getAdapter(Class adapter) {
 
 		// Get the content provider if requested.
-		if(ISashWindowsContentProvider.class == adapter)
+		if(ISashWindowsContentProvider.class == adapter) {
 			return getContentProvider();
+		}
 
 		// Get the content provider if requested.
-		if(ISashWindowsContainer.class == adapter)
+		if(ISashWindowsContainer.class == adapter) {
 			return sashContainer;
+		}
 
 		// Look in hierarchy
 		Object result = super.getAdapter(adapter);

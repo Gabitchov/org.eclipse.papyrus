@@ -15,7 +15,6 @@ package org.eclipse.papyrus.core.editor;
 
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
-import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -55,6 +54,13 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	public IEditorInput getEditorInput();
 
 	/**
+	 * Change the editor input.
+	 * 
+	 * @param newInput The new input.
+	 */
+	public void setEditorInput(IEditorInput newInput);
+
+	/**
 	 * Returns the edit domain shared among editors
 	 * 
 	 * @return the edit domain shared among editors
@@ -73,5 +79,4 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	 * @return the property sheet page associated to the Editor.
 	 */
 	public IPropertySheetPage getPropertySheetPage();
-
 }

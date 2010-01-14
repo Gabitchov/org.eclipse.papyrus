@@ -38,6 +38,21 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 	private IFile newFile;
 
 	/**
+	 * @see org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant#createPreChange(org.eclipse.core.runtime.IProgressMonitor)
+	 * 
+	 * @param pm
+	 *        The progress monitor.
+	 * @return The change.
+	 * @throws CoreException
+	 * @throws OperationCanceledException
+	 */
+
+	@Override
+	public Change createPreChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+		return new DirtyEditorChange(fileToRename, newFile);
+	}
+
+	/**
 	 * Overrides checkConditions.
 	 * 
 	 * {@inheritDoc}
@@ -46,8 +61,7 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 	 *      org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext)
 	 */
 	@Override
-	public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context)
-			throws OperationCanceledException {
+	public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context) throws OperationCanceledException {
 		return new RefactoringStatus();
 	}
 
@@ -89,8 +103,7 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 		}
 		fileToRename = (IFile)element;
 		String ext = fileToRename.getFileExtension();
-		if(DiResourceSet.DI_FILE_EXTENSION.equals(ext) || DiResourceSet.MODEL_FILE_EXTENSION.equals(ext)
-				|| DiResourceSet.NOTATION_FILE_EXTENSION.equals(ext)) {
+		if(DiResourceSet.DI_FILE_EXTENSION.equals(ext) || DiResourceSet.MODEL_FILE_EXTENSION.equals(ext) || DiResourceSet.NOTATION_FILE_EXTENSION.equals(ext)) {
 			IContainer parent = fileToRename.getParent();
 			String newName = getArguments().getNewName();
 			int idx = newName.lastIndexOf('.');
