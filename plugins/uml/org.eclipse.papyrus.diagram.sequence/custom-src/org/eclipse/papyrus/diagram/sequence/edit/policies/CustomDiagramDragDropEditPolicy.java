@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.AddCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -28,6 +29,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
@@ -46,7 +51,9 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceLinkMappingHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A policy to support dNd from the Model Explorer in the sequence diagram
@@ -121,9 +128,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	private Command dropExecutionSpecification(DropObjectsRequest dropRequest, Element semanticLink, int nodeVisualID) {
 		if(semanticLink instanceof ExecutionSpecification) {
 			List<View> existingViews = DiagramEditPartsUtil.findViews(semanticLink, getViewer());
+			ExecutionSpecification es = (ExecutionSpecification)semanticLink;
 			if(existingViews.isEmpty()) {
 				// Find the lifeline of the ES
-				ExecutionSpecification es = (ExecutionSpecification)semanticLink;
+				
 				if(es.getStart() != null) {
 					// an Occurrence Specification covereds systematically a unique lifeline
 					Lifeline lifeline = es.getStart().getCovereds().get(0);
@@ -135,11 +143,51 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					}
 				}
 			} else {
-				//TODO : implements a move command of the existing view.
+				
+				CompositeCommand cc = new CompositeCommand("Moving an ES");
+
+				// Add the view to the new container
+				AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
+				cc.add(addCommand);
+				
+
+				Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
+				
+				// Update the ES covered lifeline
+				updateCoveredLifeline(es, cc, oldCoveredLifeline);
+				
+				// Update the start and finish occurrence specification covered lifeline
+				updateCoveredLifeline(es.getStart(), cc, oldCoveredLifeline);
+				updateCoveredLifeline(es.getFinish(), cc, oldCoveredLifeline);
+				
+				//TODO  Set the new location of the view. 
+				// Actually there is some layout problems, so it is disable. 
+//				SetBoundsCommand boundsCommand = new SetBoundsCommand(getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(existingViews.get(0)), dropRequest.getLocation());
+//				cc.add(boundsCommand);
+			
+				return new ICommandProxy(cc);
 			}
 
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Update the covered feature of the interactionFragment : remove the old lifeline and add the new lifeline.
+	 * @param interactionFragment the interaction fragment impacted
+	 * @param cc the composite command to add the new commands
+	 * @param oldCoveredLifeline the old covered lifeline
+	 */
+	private void updateCoveredLifeline(InteractionFragment interactionFragment, CompositeCommand cc, Lifeline oldCoveredLifeline) {
+		// Remove old covered lifeline 
+		DestroyReferenceRequest destroyReferenceRequest = new DestroyReferenceRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), oldCoveredLifeline, false);
+		DestroyReferenceCommand destroyReferenceCommand = new DestroyReferenceCommand(destroyReferenceRequest);
+		cc.add(destroyReferenceCommand);
+		
+		// Add new covered lifeline
+		SetRequest setRequest = new SetRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), ViewUtil.resolveSemanticElement((View)getHost().getModel()));
+		SetValueCommand coveredLifelineCommand = new SetValueCommand(setRequest);
+		cc.add(coveredLifelineCommand);
 	}
 
 	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
