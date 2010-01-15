@@ -22,7 +22,6 @@ public class FakeSaveEventListener implements ISaveEventListener {
 	 *
 	 * @param event
 	 */
-	@Override
 	public void doSave(DoSaveEvent event) {
 		receivedEvents.add(event);
 
@@ -33,7 +32,6 @@ public class FakeSaveEventListener implements ISaveEventListener {
 	 *
 	 * @param event
 	 */
-	@Override
 	public void doSaveAs(DoSaveEvent event) {
 		receivedEvents.add(event);
 
