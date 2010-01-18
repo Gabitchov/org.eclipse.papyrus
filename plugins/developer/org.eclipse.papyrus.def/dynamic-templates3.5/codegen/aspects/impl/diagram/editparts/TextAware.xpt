@@ -312,7 +312,7 @@
 		«IF readOnly-»
 		return false;
 		«ELSE-»
-		if(this.getNotationView().isMutable()){
+		if(!this.getNotationView().isMutable()){
 			return getParser() != null;
 		}
 		return false;
@@ -382,8 +382,8 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.tools.DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager(this,
-				org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager.getTextCellEditorClass(this),
+			setManager(new org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager(this,
+				org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager.getTextCellEditorClass(this),
 				«diagram.getEditPartFactoryQualifiedClassName()».getTextCellEditorLocator(this)));
 		}
 		return manager;
@@ -443,16 +443,24 @@
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
-				final org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog dialog = new org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog(org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
-					.getTextToEdit(resolveSemanticElement()), configuration);
+				org.eclipse.jface.dialogs.Dialog dialog = null;
+				if(configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration) {
+					dialog = new org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+				} else if(configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration) {
+					dialog = ((org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration)configuration).createDialog(org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
+				} else {
+					return;
+				}
+				final org.eclipse.jface.dialogs.Dialog finalDialog = dialog;
+				
 				if (org.eclipse.jface.window.Window.OK == dialog.open()) {
 					org.eclipse.emf.transaction.TransactionalEditingDomain domain = getEditingDomain();
 					org.eclipse.emf.transaction.RecordingCommand command = new org.eclipse.emf.transaction.RecordingCommand(domain, "Edit Label") {
-	
+		
 						@Override
 						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
-	
+							configuration.postEditAction(resolveSemanticElement(), ((org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog)finalDialog).getValue());
+		
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -672,7 +680,7 @@
 	 * @generated
 	 */
 	protected boolean checkDefaultEdition() {
-		return (resolveSemanticElement() instanceof org.eclipse.uml2.uml.NamedElement);
+		return (getParser() != null);
 	}
 «ENDDEFINE»
 

@@ -17,6 +17,11 @@
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
 «EXTENSION xpt::StringOperations»
+«EXTENSION xpt::editor::Utils»
+«EXTENSION xpt::GenModelUtils»
+«EXTENSION xpt::diagram::editpolicies::LinkUtils»
+«EXTENSION xpt::expressions::ValueExpression»
+
 
 «DEFINE visualIDConstant FOR gmfgen::GenCommonBase-»
 	«EXPAND xpt::Common::generatedMemberComment»
