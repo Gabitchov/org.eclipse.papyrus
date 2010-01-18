@@ -13,10 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.directedit;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.tools.CellEditorLocator;
+import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
@@ -24,38 +27,57 @@ import org.eclipse.swt.widgets.Composite;
  * DirectEdit manager for multi lines label managed by a LabelControlerManager. It is intended to be
  * used in conjunction with LabelDirectEditPolicy and LabelControler.
  */
-public class MultilineLabelDirectEditManager extends LabelDirectEditManager {
+public class MultilineLabelDirectEditManager extends TextDirectEditManager {
+
+	protected boolean multiLine = false;
+
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param locator
-	 * @param labelCtrl
-	 *        The label to edit
 	 * @param source
-	 *        The EditPart owning the label.
+	 * @param editorType
+	 * @param locator
 	 */
-	// @unused
-	public MultilineLabelDirectEditManager(GraphicalEditPart source, CellEditorLocator locator, ILabelControler labelCtrl) {
-		super(source, locator, labelCtrl);
+	public MultilineLabelDirectEditManager(GraphicalEditPart source, Class editorType, CellEditorLocator locator) {
+		super(source, editorType, locator);
+		if(editorType != null && editorType.isAssignableFrom(MultiLineCellEditor.class)) {
+			multiLine = true;
+		}
+
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.tools.DirectEditManager#createCellEditorOn(org.eclipse
-	 * .swt.widgets.Composite)
-	 */
 	/**
-	 * 
+	 * @param source
+	 *        the <code>GraphicalEditPart</code> that is used to determine
+	 *        which <code>CellEditor</code> class to use.
+	 * @return the <code>Class</code> of the <code>CellEditor</code> to use
+	 *         for the text editing.
+	 */
+	public static Class getTextCellEditorClass(GraphicalEditPart source) {
+		IFigure figure = source.getFigure();
+
+		if(figure instanceof HTMLCornerBentFigure) {
+			return MultiLineCellEditor.class;
+		} else {
+			return TextDirectEditManager.getTextCellEditorClass(source);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager#createCellEditorOn(org.eclipse.swt.widgets.Composite)
 	 * 
 	 * @param composite
-	 * 
-	 * @return
+	 *        the editor on which to create the direct editor
+	 * @return the cell editor
 	 */
 	@Override
 	protected CellEditor createCellEditorOn(Composite composite) {
-		// creates a new TextCell Editor, but with multiline support
-		return new TextCellEditor(composite, SWT.MULTI | SWT.WRAP);
+		if(multiLine) {
+			// creates a new TextCell Editor, but with multiline support
+			return new TextCellEditor(composite, SWT.MULTI | SWT.WRAP);
+		}
+		return super.createCellEditorOn(composite);
+
 	}
 }

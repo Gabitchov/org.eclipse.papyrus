@@ -8,7 +8,7 @@
 // Contributors:
 // IBM Corporation - initial implementation
 //------------------------------------------------------------------------------
-package org.eclipse.papyrus.tabbedproperties.comments;
+package org.eclipse.papyrus.tabbedproperties.comments.propertysection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -66,14 +66,13 @@ public class CommentRichTextEditor extends RichTextEditor {
 	 * Creates a new instance.
 	 * 
 	 * @param parent
-	 *            The parent control.
+	 *        The parent control.
 	 * @param style
-	 *            The initial style for the editor.
+	 *        The initial style for the editor.
 	 * @param basePath
-	 *            The base path used for resolving hrefs.
+	 *        The base path used for resolving hrefs.
 	 */
-	public CommentRichTextEditor(Composite parent, int style, String basePath, Comment comment, Label label,
-			IEditorSite editorSite) {
+	public CommentRichTextEditor(Composite parent, int style, String basePath, Comment comment, Label label, IEditorSite editorSite) {
 		super(parent, style, editorSite, basePath);
 		this.comment = comment;
 		init(comment, label);
@@ -83,11 +82,11 @@ public class CommentRichTextEditor extends RichTextEditor {
 	 * Creates the underlying rich text control.
 	 * 
 	 * @param parent
-	 *            The parent composite.
+	 *        The parent composite.
 	 * @param style
-	 *            The style for this control.
+	 *        The style for this control.
 	 * @param basePath
-	 *            The path used for resolving links.
+	 *        The path used for resolving links.
 	 */
 	protected IRichText createRichTextControl(Composite parent, int style, String basePath) {
 		CommentRichText commentRichText = new CommentRichText(parent, style, basePath);
@@ -102,7 +101,7 @@ public class CommentRichTextEditor extends RichTextEditor {
 	 * Fills the Rich Text editor tool bar with action items.
 	 * 
 	 * @param toolBar
-	 *            The Rich text editor tool bar.
+	 *        The Rich text editor tool bar.
 	 */
 	public void fillToolBar(IRichTextToolBar toolBar) {
 		toolBar.addAction(new FontStyleAction(this));
@@ -179,15 +178,15 @@ public class CommentRichTextEditor extends RichTextEditor {
 	}
 
 	public void init(Comment comment, Label label) {
-		if (richText instanceof CommentRichText)
-			((CommentRichText) richText).init(comment, label);
+		if(richText instanceof CommentRichText)
+			((CommentRichText)richText).init(comment, label);
 	}
 
 	/**
 	 * Returns the rich text control embedded within this editor.
 	 */
-	public CommentRichText getRichTextControl() {
-		return (CommentRichText) richText;
+	public FocusAwareCommentRichText getRichTextControl() {
+		return (FocusAwareCommentRichText)richText;
 	}
 
 }

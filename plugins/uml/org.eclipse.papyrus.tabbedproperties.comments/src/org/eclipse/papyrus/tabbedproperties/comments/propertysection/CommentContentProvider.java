@@ -11,7 +11,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.tabbedproperties.comments;
+package org.eclipse.papyrus.tabbedproperties.comments.propertysection;
 
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.Viewer;

@@ -56,7 +56,7 @@ public class HTMLCommentParser {
 			Activator.log.error(e);
 			nodelist = new EmptyNodeList();
 		} catch (SAXException e) {
-			Activator.log.error(e);
+			// Activator.log.error(e);
 			nodelist = new EmptyNodeList();
 		}
 		return nodelist;

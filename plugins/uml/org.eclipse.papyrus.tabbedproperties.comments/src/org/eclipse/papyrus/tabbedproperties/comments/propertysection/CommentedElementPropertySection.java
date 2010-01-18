@@ -11,7 +11,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.tabbedproperties.comments;
+package org.eclipse.papyrus.tabbedproperties.comments.propertysection;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -67,6 +67,8 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.parser.HTMLCleaner;
+import org.eclipse.papyrus.tabbedproperties.comments.Activator;
+import org.eclipse.papyrus.tabbedproperties.comments.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -182,7 +184,7 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 		viewer.addSelectionChangedListener(viewerListener);
 
 		// creates the rich text editor content
-		richText = CommentRichTextFormToolkit.createRichTextEditor(getWidgetFactory(), mainComposite, "", comment, //$NON-NLS-1$
+		richText = CommentRichTextFormToolkit.createFocusAwareRichTextEditor(getWidgetFactory(), mainComposite, "", comment, //$NON-NLS-1$
 		SWT.NONE, EditorUtils.getMultiDiagramEditor().getEditorSite());
 		data = new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1);
 		data.heightHint = 240;

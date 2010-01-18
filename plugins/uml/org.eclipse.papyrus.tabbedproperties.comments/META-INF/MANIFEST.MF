@@ -13,13 +13,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit;bundle-version="2.5.0",
  org.eclipse.papyrus.core;bundle-version="0.7.0",
  org.eclipse.epf.common;bundle-version="1.2.0",
- org.eclipse.epf.common.service;bundle-version="1.2.0",
  org.eclipse.epf.common.win32.win32.x86;bundle-version="1.2.0",
  org.eclipse.epf.ui;bundle-version="1.2.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.epf.richtext;bundle-version="1.2.0",
  org.eclipse.emf.edit.ui;bundle-version="2.5.0",
- org.eclipse.papyrus.log;bundle-version="0.7.0"
+ org.eclipse.papyrus.log;bundle-version="0.7.0",
+ org.eclipse.papyrus.extensionpoints.editors
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.tabbedproperties.comments
+Export-Package: org.eclipse.papyrus.tabbedproperties.comments,
+ org.eclipse.papyrus.tabbedproperties.comments.propertysection

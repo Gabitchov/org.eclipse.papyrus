@@ -11,7 +11,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.tabbedproperties.comments;
+package org.eclipse.papyrus.tabbedproperties.comments.propertysection;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -50,8 +50,7 @@ public class CommentPropertySection extends AbstractPropertySection {
 	public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
 		super.createControls(parent, aTabbedPropertySheetPage);
 
-		richText = CommentRichTextFormToolkit.createRichTextEditor(getWidgetFactory(), parent, "", comment, SWT.NONE,
-				EditorUtils.getMultiDiagramEditor().getEditorSite());
+		richText = CommentRichTextFormToolkit.createFocusAwareRichTextEditor(getWidgetFactory(), parent, "", comment, SWT.NONE, EditorUtils.getMultiDiagramEditor().getEditorSite());
 	}
 
 	/**
@@ -60,16 +59,15 @@ public class CommentPropertySection extends AbstractPropertySection {
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
-		if (!(selection instanceof IStructuredSelection)
-				|| !((part instanceof IEditingDomainProvider) || part.getAdapter(IEditingDomainProvider.class) != null)) {
+		if(!(selection instanceof IStructuredSelection) || !((part instanceof IEditingDomainProvider) || part.getAdapter(IEditingDomainProvider.class) != null)) {
 			return;
 		}
 
-		Object firstElement = ((IStructuredSelection) selection).getFirstElement();
+		Object firstElement = ((IStructuredSelection)selection).getFirstElement();
 		EObject newEObject = resolveSemanticObject(firstElement);
 
-		if (newEObject instanceof Comment) {
-			setComment((Comment) newEObject);
+		if(newEObject instanceof Comment) {
+			setComment((Comment)newEObject);
 			richText.init(comment, null);
 			richText.setText(comment.getBody());
 		}
@@ -79,7 +77,7 @@ public class CommentPropertySection extends AbstractPropertySection {
 	 * Sets the comment to edit
 	 * 
 	 * @param comment
-	 *            the comment to edit
+	 *        the comment to edit
 	 */
 	protected void setComment(Comment comment) {
 		this.comment = comment;
@@ -98,16 +96,16 @@ public class CommentPropertySection extends AbstractPropertySection {
 	 * Resolve semantic element
 	 * 
 	 * @param object
-	 *            the object to resolve
+	 *        the object to resolve
 	 * @return <code>null</code> or the semantic element associated to the specified object
 	 */
 	private EObject resolveSemanticObject(Object object) {
-		if (object instanceof EObject) {
-			return (EObject) object;
-		} else if (object instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable) object;
-			if (adaptable.getAdapter(EObject.class) != null) {
-				return (EObject) adaptable.getAdapter(EObject.class);
+		if(object instanceof EObject) {
+			return (EObject)object;
+		} else if(object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)object;
+			if(adaptable.getAdapter(EObject.class) != null) {
+				return (EObject)adaptable.getAdapter(EObject.class);
 			}
 		}
 		return null;

@@ -167,7 +167,15 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		NodeList nodeList = generateNodeList("<body>" + text + "</body>");
 
 		// generate blocks from this list and adds it to the flow page children
-		generateBlocksFromNodeList(nodeList, page);
+		if(nodeList.getLength() > 0) {
+			generateBlocksFromNodeList(nodeList, page);
+		} else {
+			// problem during parsing
+			// return only one text flow with the content of the text
+			TextFlowEx textFlow = new TextFlowEx(text);
+			page.add(textFlow);
+		}
+
 	}
 
 	/**

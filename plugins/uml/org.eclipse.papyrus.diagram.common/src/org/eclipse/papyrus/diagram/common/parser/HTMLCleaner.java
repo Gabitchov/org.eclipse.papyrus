@@ -161,6 +161,82 @@ public class HTMLCleaner {
 
 	}
 
+	public static String removeHTMLTags(String htmlString) {
+		StringBuffer buffer = new StringBuffer();
+
+		// indicating if parser is in tag
+		boolean inTag = false;
+
+		// indicating if parser is in special character
+		boolean inSpecial = false;
+
+		// skip the next character
+		boolean skip = false;
+
+		// ignore or keep whitespace ?
+		boolean keepWhitespace = true;
+
+		// ignore or keep whitespace ?
+		boolean keepCarriageReturn = false;
+
+		int length = htmlString.length();
+
+		for(int i = 0; i < length; i++) {
+			skip = false;
+			char c = htmlString.charAt(i);
+			if(c == '<') { // opening a new tag...
+				inTag = true;
+
+				// should do specific check for new lines (<BR>, <P>, <H1>, <H2>, etc..)
+				// get tag value
+				String tagValue = htmlString.substring(i + 1, htmlString.indexOf('>', i));
+				if(newLine.contains(tagValue)) {
+					if(keepCarriageReturn) {
+						buffer.append("\n");
+						keepCarriageReturn = false;
+					}
+					keepWhitespace = false;
+				}
+
+			} else if(c == '>' && inTag) { // closing tag. must be in tag to close it...
+				inTag = false;
+				skip = true;
+			} else if(c == '&') {
+				inSpecial = true;
+				// this is a special character
+				// look for next ';', which closes the special character
+				String specialCharacter = htmlString.substring(i + 1, htmlString.indexOf(';', i));
+
+				// replace the value with the specified 
+				String replacement = specials.get(specialCharacter);
+				if(replacement != null) {
+					buffer.append(replacement);
+				}
+			} else if(c == ';' && inSpecial) {
+				inSpecial = false;
+				skip = true;
+				keepWhitespace = true;
+			} else if(c == ' ' || c == '\t') {
+				if(keepWhitespace) {
+					buffer.append(" ");
+				}
+				keepWhitespace = false;
+			} else if(c == '\n' || c == '\r') {
+				if(keepCarriageReturn) {
+					buffer.append("\n");
+					keepCarriageReturn = false;
+					keepWhitespace = false;
+				}
+			} else if(!skip && !inSpecial && !inTag) {
+				buffer.append(c);
+				keepWhitespace = true;
+				keepCarriageReturn = true;
+			}
+		}
+
+		return buffer.toString();
+	}
+
 	/**
 	 * Returns a string derived from the specified string. It removes htlm tags, adding new line separator when useful.
 	 * 

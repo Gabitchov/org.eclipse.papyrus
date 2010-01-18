@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.tabbedproperties.comments;
+package org.eclipse.papyrus.tabbedproperties.comments.propertysection;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IFilter;

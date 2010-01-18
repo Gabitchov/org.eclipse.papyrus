@@ -8,25 +8,19 @@
 // Contributors:
 // IBM Corporation - initial implementation
 //------------------------------------------------------------------------------
-package org.eclipse.papyrus.tabbedproperties.comments;
+package org.eclipse.papyrus.tabbedproperties.comments.propertysection;
 
 import java.io.UnsupportedEncodingException;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.epf.richtext.RichText;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.uml2.uml.Comment;
 
 /**
@@ -103,70 +97,6 @@ public class CommentRichText extends RichText {
 		// return ResourceHelper.validateRichTextContent(comment, text, new
 		// RichTextContentValidator());
 		return text;
-	}
-
-	/**
-	 * Adds listeners to manage the activation and focus events.
-	 */
-	protected void addListeners() {
-		editorControl = getControlSite(editor);
-
-		editorControl.addListener(SWT.FocusOut, new Listener() {
-
-			public void handleEvent(Event event) {
-				if(debug) {
-					printDebugMessage("focusOutListener"); //$NON-NLS-1$
-				}
-				focusLostAction(event);
-				notifyListeners(SWT.FocusOut, event);
-			}
-
-		});
-
-		super.addListeners();
-	}
-
-	/**
-	 * Action to take when the focus is lost
-	 * 
-	 * @param event
-	 *        the focus lost event
-	 */
-	protected void focusLostAction(Event event) {
-		saveCommentBody();
-	}
-
-	/**
-	 * Saves the body of the current comment
-	 */
-	public void saveCommentBody() {
-		if(comment != null) {
-
-			// check save must be done (comment is perhaps not modified)
-			if(getText().equals(comment.getBody())) {
-				// do not save
-				return;
-			}
-
-			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
-			// open transaction to save the comment body
-			// retrieve editing domain
-			if(domain != null) {
-				RecordingCommand command = new RecordingCommand(domain, "Set Comment Body") {
-
-					@Override
-					protected void doExecute() {
-						comment.setBody(getText());
-
-					}
-
-				};
-				domain.getCommandStack().execute(command);
-			} else {
-				Activator.log.error("impossible to find the editing domain", null);
-			}
-
-		}
 	}
 
 	/**

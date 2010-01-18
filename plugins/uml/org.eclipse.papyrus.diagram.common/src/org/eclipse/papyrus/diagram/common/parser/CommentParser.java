@@ -18,9 +18,16 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -29,7 +36,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Specific Parser for the comment, in case they have a html format.
  */
-public class CommentParser implements ISemanticParser {
+public class CommentParser implements IParser {
 
 	/**
 	 * {@inheritDoc}
@@ -62,14 +69,25 @@ public class CommentParser implements ISemanticParser {
 		if(comment == null) {
 			return "<NULL COMMENT>"; //$NON-NLS-1$
 		}
-		return comment.getBody();
+		return HTMLCleaner.removeHTMLTags(HTMLCleaner.preClean(comment.getBody()));
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		return null;
+		Comment comment = doAdapt(element);
+		if(comment == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(comment);
+		if(editingDomain == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Body"); //$NON-NLS-1$
+		SetRequest request = new SetRequest(comment, UMLPackage.eINSTANCE.getComment_Body(), newString);
+		command.compose(new SetValueCommand(request));
+		return command;
 	}
 
 	/**
@@ -110,7 +128,7 @@ public class CommentParser implements ISemanticParser {
 	 * {@inheritDoc}
 	 */
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		return null;
+		return ParserEditStatus.EDITABLE_STATUS;
 	}
 
 
