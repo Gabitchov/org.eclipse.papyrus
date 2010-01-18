@@ -48,7 +48,7 @@
           canonicalEditPolicyClassName="PortCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="PortGraphicalNodeEditPolicy"
           createCommandClassName="PortCreateCommand"
-          containers="/0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.6">
+          containers="/0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.6 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.11 /0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.14 /0/@diagram/@compartments.15 /0/@diagram/@compartments.16 /0/@diagram/@compartments.17 /0/@diagram/@compartments.18 /0/@diagram/@compartments.19 /0/@diagram/@compartments.22 /0/@diagram/@compartments.23 /0/@diagram/@compartments.24 /0/@diagram/@compartments.25 /0/@diagram/@compartments.26 /0/@diagram/@compartments.27 /0/@diagram/@compartments.28 /0/@diagram/@compartments.29 /0/@diagram/@compartments.30 /0/@diagram/@compartments.31 /0/@diagram/@compartments.32 /0/@diagram/@compartments.35">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -8480,7 +8480,7 @@
           editPartClassName="ActivityCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ActivityCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ActivityCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ActivityCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.4"
@@ -8503,13 +8503,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7051"
           editPartClassName="InteractionCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="InteractionCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InteractionCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="InteractionCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.5"
@@ -8532,13 +8536,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7052"
           editPartClassName="ProtocolStateMachineCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ProtocolStateMachineCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ProtocolStateMachineCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ProtocolStateMachineCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.6"
@@ -8561,13 +8569,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7053"
           editPartClassName="StateMachineCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="StateMachineCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="StateMachineCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="StateMachineCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.7"
@@ -8590,13 +8602,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7054"
           editPartClassName="FunctionBehaviorCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="FunctionBehaviorCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="FunctionBehaviorCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="FunctionBehaviorCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.8"
@@ -8619,13 +8635,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7055"
           editPartClassName="OpaqueBehaviorCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="OpaqueBehaviorCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="OpaqueBehaviorCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="OpaqueBehaviorCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.9"
@@ -8648,13 +8668,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7056"
           editPartClassName="ComponentCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ComponentCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.10"
@@ -8677,13 +8701,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7057"
           editPartClassName="DeviceCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="DeviceCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="DeviceCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="DeviceCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.11"
@@ -8706,13 +8734,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7058"
           editPartClassName="ExecutionEnvironmentCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ExecutionEnvironmentCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ExecutionEnvironmentCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.12"
@@ -8735,13 +8767,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7059"
           editPartClassName="NodeCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="NodeCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="NodeCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="NodeCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.13"
@@ -8764,13 +8800,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7060"
           editPartClassName="ClassCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ClassCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ClassCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ClassCompositeCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.14"
@@ -8793,6 +8833,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7061"
@@ -8860,7 +8904,7 @@
           editPartClassName="ActivityCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="ActivityCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ActivityCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ActivityCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.0"
@@ -8883,13 +8927,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7064"
           editPartClassName="InteractionCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="InteractionCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InteractionCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="InteractionCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.1"
@@ -8912,13 +8960,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7065"
           editPartClassName="ProtocolStateMachineCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="ProtocolStateMachineCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ProtocolStateMachineCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ProtocolStateMachineCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.2"
@@ -8941,13 +8993,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7066"
           editPartClassName="StateMachineCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="StateMachineCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="StateMachineCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="StateMachineCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.3"
@@ -8970,13 +9026,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7067"
           editPartClassName="FunctionBehaviorCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="FunctionBehaviorCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="FunctionBehaviorCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="FunctionBehaviorCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.4"
@@ -8999,13 +9059,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7068"
           editPartClassName="OpaqueBehaviorCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="OpaqueBehaviorCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="OpaqueBehaviorCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="OpaqueBehaviorCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.5"
@@ -9028,13 +9092,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7069"
           editPartClassName="ComponentCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ComponentCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.6"
@@ -9057,13 +9125,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7070"
           editPartClassName="DeviceCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="DeviceCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DeviceCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="DeviceCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.7"
@@ -9086,13 +9158,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7071"
           editPartClassName="ExecutionEnvironmentCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ExecutionEnvironmentCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ExecutionEnvironmentCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.8"
@@ -9115,13 +9191,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7072"
           editPartClassName="NodeCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="NodeCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="NodeCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="NodeCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.9"
@@ -9144,13 +9224,17 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7073"
           editPartClassName="ClassCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="ClassCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26"
           title="ClassCompositeCompartment"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.10"
@@ -9173,6 +9257,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <compartments
           visualID="7075"
@@ -9240,7 +9328,7 @@
           editPartClassName="PropertyPartCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="PropertyPartCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="PropertyPartCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.26"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.26"
           title="PropertyPartCompartmentCN"
           needsTitle="false"
           node="/0/@diagram/@childNodes.1"
@@ -9267,6 +9355,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy"/>
       </compartments>
       <palette>
         <groups

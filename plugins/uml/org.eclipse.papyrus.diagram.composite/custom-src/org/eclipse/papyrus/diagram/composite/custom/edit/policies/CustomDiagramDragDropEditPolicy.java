@@ -15,15 +15,24 @@ package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingHelper;
@@ -73,7 +82,6 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueBehaviorCompositeE
 import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueExpressionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PrimitiveTypeEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SendOperationEventEditPart;
@@ -111,7 +119,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	// TopLevelNodes
 	ActivityCompositeEditPart.VISUAL_ID, InteractionCompositeEditPart.VISUAL_ID, ProtocolStateMachineCompositeEditPart.VISUAL_ID, StateMachineCompositeEditPart.VISUAL_ID, FunctionBehaviorCompositeEditPart.VISUAL_ID, OpaqueBehaviorCompositeEditPart.VISUAL_ID, ComponentCompositeEditPart.VISUAL_ID, DeviceCompositeEditPart.VISUAL_ID, ExecutionEnvironmentCompositeEditPart.VISUAL_ID, NodeCompositeEditPart.VISUAL_ID, ClassCompositeEditPart.VISUAL_ID, ClassClassifierEditPart.VISUAL_ID, CollaborationCompositeEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID, ActorEditPart.VISUAL_ID, DeploymentSpecificationEditPart.VISUAL_ID, ArtifactEditPart.VISUAL_ID, InformationItemEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID, UseCaseEditPart.VISUAL_ID, SignalEventEditPart.VISUAL_ID, CallEventEditPart.VISUAL_ID, AnyReceiveEventEditPart.VISUAL_ID, SendSignalEventEditPart.VISUAL_ID, SendOperationEventEditPart.VISUAL_ID, ChangeEventEditPart.VISUAL_ID, TimeEventEditPart.VISUAL_ID, CreationEventEditPart.VISUAL_ID, ExecutionEventEditPart.VISUAL_ID, LiteralBooleanEditPart.VISUAL_ID, LiteralIntegerEditPart.VISUAL_ID, LiteralNullEditPart.VISUAL_ID, LiteralStringEditPart.VISUAL_ID, LiteralUnlimitedNaturalEditPart.VISUAL_ID, StringExpressionEditPart.VISUAL_ID, OpaqueExpressionEditPart.VISUAL_ID, TimeExpressionEditPart.VISUAL_ID, ExpressionEditPart.VISUAL_ID, DurationEditPart.VISUAL_ID, IntervalEditPart.VISUAL_ID, InstanceValueEditPart.VISUAL_ID, CommentEditPart.VISUAL_ID, DurationConstraintEditPart.VISUAL_ID, TimeConstraintEditPart.VISUAL_ID, IntervalConstraintEditPart.VISUAL_ID, InteractionConstraintEditPart.VISUAL_ID, ConstraintEditPart.VISUAL_ID,
 	// TopLevelNodes
-	DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
+	DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
 
 
 
@@ -275,7 +283,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				// Test TopLevelNode... End
 			case PortEditPart.VISUAL_ID:
 				return dropPort(dropRequest, location, (Port)semanticElement, nodeVISUALID);
-			case PropertyPartEditPartCN.VISUAL_ID:
+			case org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID:
 				return dropProperty(dropRequest, location, (Property)semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
 				return dropTimeObservation(dropRequest, location, (TimeObservation)semanticElement, nodeVISUALID);
@@ -417,16 +425,31 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropPort(DropObjectsRequest dropRequest, Point location, Port droppedElement, int nodeVISUALID) {
 
+		// Manage Port drop in compartment
+		Boolean isCompartmentTarget = false; // True if the target is a ShapeCompartmentEditPart
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		if(graphicalParentEditPart instanceof ShapeCompartmentEditPart) {
+			isCompartmentTarget = true;
+			// Replace compartment edit part by its parent EditPart
+			graphicalParentEditPart = (GraphicalEditPart)graphicalParentEditPart.getParent();
+		}
+		// Manage Port drop in compartment
+
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
 		if((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
+			if(isCompartmentTarget) {
+				return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, location, droppedElement));
+			}
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 
 		} else if(graphicalParentObject instanceof ConnectableElement) {
 			Type type = ((ConnectableElement)graphicalParentObject).getType();
 
 			if((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
+				if(isCompartmentTarget) {
+					return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, location, droppedElement));
+				}
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 			}
 		}
@@ -512,5 +535,30 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		}
 
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * This method returns the drop command for Port in case the Port is dropped on a ShapeCompartmentEditPart.
+	 * 
+	 * @param nodeVISUALID
+	 *        the node visual identifier
+	 * @param location
+	 *        the drop location
+	 * @param droppedObject
+	 *        the object to drop
+	 * @return a CompositeCommand for Drop
+	 */
+	protected CompositeCommand getDropPortInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+		CompositeCommand cc = new CompositeCommand("Drop");
+		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
+
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		// Create the command targeting host parent (owner of the ShapeCompartmentEditPart) 
+		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getParent().getModel())));
+		cc.compose(createCommand);
+
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location);
+		cc.compose(setBoundsCommand);
+		return cc;
 	}
 }

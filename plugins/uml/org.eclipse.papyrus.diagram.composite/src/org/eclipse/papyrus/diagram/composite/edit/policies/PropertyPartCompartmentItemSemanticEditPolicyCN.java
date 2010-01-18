@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.composite.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.PortCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PropertyPartCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 
@@ -36,6 +37,9 @@ public class PropertyPartCompartmentItemSemanticEditPolicyCN extends UMLBaseItem
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
+		if(UMLElementTypes.Port_3069 == req.getElementType()) {
+			return getGEFWrapper(new PortCreateCommand(req));
+		}
 		if(UMLElementTypes.Property_3070 == req.getElementType()) {
 			return getGEFWrapper(new PropertyPartCreateCommandCN(req));
 		}

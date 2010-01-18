@@ -1118,6 +1118,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1253,6 +1257,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1388,6 +1396,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1523,6 +1535,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1658,6 +1674,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1793,6 +1813,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1928,6 +1952,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -2063,6 +2091,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -2198,6 +2230,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -2333,6 +2369,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -2468,6 +2508,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -2654,6 +2698,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -2789,6 +2837,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -2924,6 +2976,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -3059,6 +3115,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -3194,6 +3254,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -3329,6 +3393,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -3464,6 +3532,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -3599,6 +3671,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -3734,6 +3810,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -3869,6 +3949,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -4004,6 +4088,10 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;

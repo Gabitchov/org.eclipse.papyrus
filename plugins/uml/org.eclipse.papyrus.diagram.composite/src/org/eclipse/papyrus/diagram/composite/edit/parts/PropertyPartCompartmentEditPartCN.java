@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortInCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.composite.edit.policies.PropertyPartCompartmentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.composite.part.Messages;
@@ -88,6 +89,7 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new org.eclipse.papyrus.diagram.composite.custom.edit.policies.PropertyPartCompartmentItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PortInCompartmentCreationEditPolicy());
 	}
 
 

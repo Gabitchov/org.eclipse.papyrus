@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.InteractionCompositeC
 import org.eclipse.papyrus.diagram.composite.edit.commands.InterfaceCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.NodeCompositeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.OpaqueBehaviorCompositeCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.PortCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PrimitiveTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PropertyPartCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ProtocolStateMachineCompositeCreateCommandCN;
@@ -59,6 +60,9 @@ public class ProtocolStateMachineCompositeCompartmentItemSemanticEditPolicyCN ex
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
+		if(UMLElementTypes.Port_3069 == req.getElementType()) {
+			return getGEFWrapper(new PortCreateCommand(req));
+		}
 		if(UMLElementTypes.Property_3070 == req.getElementType()) {
 			return getGEFWrapper(new PropertyPartCreateCommandCN(req));
 		}
