@@ -630,17 +630,6 @@
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
-<extension
-      id="constraintProperty-parser-provider"
-      point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
-   <ParserProvider
-         class="org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintPropertyParser">
-      <Priority
-            name="Lowest">
-      </Priority>
-   </ParserProvider>
-</extension>
-
 
 <extension point="org.eclipse.ui.preferencePages">
 

@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.parsers;
 
 import java.text.FieldPosition;
@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -30,9 +31,12 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * A specific parser for displaying a ConstraintProperty label. This parser refreshes the text
@@ -40,11 +44,20 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ConstraintPropertyLabelParser extends MessageFormatParser implements ISemanticParser {
 
+	/** The String format for displaying a ConstraintProperty with no type */
+	private static final String UNTYPED_PARAMETER_FORMAT = "%s";
+
 	/** The String format for displaying a ConstraintProperty with its type */
 	private static final String TYPED_PARAMETER_FORMAT = "%s: %s";
 
-	/** The String format for displaying a ConstraintProperty with no type */
-	private static final String UNTYPED_PARAMETER_FORMAT = "%s";
+	/** The String format for displaying a ConstraintProperty with multiplicity */
+	private static final String MULTIPLICITY_PARAMETER_FORMAT = "%s[%s..%s]";
+
+	/** The String format for displaying a ConstraintProperty with default value */
+	private static final String DEFAULT_VALUE_PARAMETER_FORMAT = "%s= %s";
+
+	/** The String format for displaying a ConstraintProperty with attribute */
+	private static final String MODIFIER_PARAMETER_FORMAT = "%s{%s}";
 
 	public ConstraintPropertyLabelParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
@@ -75,13 +88,13 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
+		String result = "";
 		Object obj = element.getAdapter(EObject.class);
 		Property property = null;
 		if (obj instanceof ConstraintProperty) {
@@ -89,21 +102,52 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 		}
 
 		if (property != null) {
-			String name = property.getName();
-			if (name == null) {
-				name = " ";
-			}
+			String name = property.isDerived() ? "/ " + property.getName() : property.getName();
 			if (property.getType() != null) {
 				String type = property.getType().getName();
-				if (type == null) {
-					type = "";
+				result = String.format(TYPED_PARAMETER_FORMAT, name, type);
+				// manage multiplicity
+				if (property.getLower() != 1 || property.getUpper() != 1) {
+					result = String.format(MULTIPLICITY_PARAMETER_FORMAT, result, ValueSpecificationUtil
+							.getSpecificationValue(property.getLowerValue()), ValueSpecificationUtil
+							.getSpecificationValue(property.getUpperValue()));
 				}
-				return String.format(TYPED_PARAMETER_FORMAT, name, type);
+				// manage initial values
+				if (property.getDefaultValue() != null) {
+					ValueSpecification valueSpecification = property.getDefaultValue();
+					if (valueSpecification instanceof InstanceValue
+							&& property.getType().equals(valueSpecification.getType())) {
+						result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
+					}
+				}
 			} else {
-				return String.format(UNTYPED_PARAMETER_FORMAT, name);
+				result = String.format(UNTYPED_PARAMETER_FORMAT, name);
+			}
+			// manage modifier
+			StringBuffer sb = new StringBuffer();
+			if (property.isReadOnly()) {
+				sb.append(sb.length() == 0 ? "readOnly" : ", readOnly");
+			}
+			if (property.isOrdered()) {
+				sb.append(sb.length() == 0 ? "ordered" : ", ordered");
+			}
+			if (property.isUnique()) {
+				sb.append(sb.length() == 0 ? "unique" : ", unique");
+			}
+			if (property.isDerivedUnion()) {
+				sb.append(sb.length() == 0 ? "union" : ", union");
+			}
+			EList<Property> redefinedProperties = property.getRedefinedProperties();
+			if (redefinedProperties != null && !redefinedProperties.isEmpty()) {
+				for (Property p : redefinedProperties) {
+					sb.append(sb.length() == 0 ? p.getName() : ", redefines " + p.getName());
+				}
+			}
+			if (sb.length() != 0) {
+				result = String.format(MODIFIER_PARAMETER_FORMAT, result, sb.toString());
 			}
 		}
-		return " ";
+		return result;
 	}
 
 	/**
@@ -127,6 +171,15 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 			semanticElementsBeingParsed.add(property);
 			if (property.getType() != null) {
 				semanticElementsBeingParsed.add(property.getType());
+				int lower = property.getLower();
+				int upper = property.getUpper();
+				if (lower != 1 || upper != 1) {
+					semanticElementsBeingParsed.add(property.getLowerValue());
+					semanticElementsBeingParsed.add(property.getUpperValue());
+				}
+				if (property.getDefaultValue() != null) {
+					semanticElementsBeingParsed.add(property.getDefaultValue());
+				}
 			}
 		}
 		return semanticElementsBeingParsed;
@@ -141,9 +194,19 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				|| UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature);
+				|| UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature)
+				|| UMLPackage.eINSTANCE.getInstanceValue_Instance().equals(feature)
+				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature)
+				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature)
+				|| UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature)
+				|| UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature)
+				|| UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature)
+				|| UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)
+				|| UMLPackage.eINSTANCE.getProperty_IsDerived().equals(feature)
+				|| UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature)
+				|| UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -156,7 +219,7 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0))
 				.toString();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
