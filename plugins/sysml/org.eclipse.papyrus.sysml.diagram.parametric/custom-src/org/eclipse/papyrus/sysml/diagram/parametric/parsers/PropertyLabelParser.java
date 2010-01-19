@@ -100,7 +100,7 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 							.getSpecificationValue(property.getLowerValue()), ValueSpecificationUtil
 							.getSpecificationValue(property.getUpperValue()));
 				}
-				// manage initial values TODO manage all instances of value specification
+				// manage initial values
 				if (property.getDefaultValue() != null) {
 					ValueSpecification valueSpecification = property.getDefaultValue();
 					if (valueSpecification instanceof InstanceValue
