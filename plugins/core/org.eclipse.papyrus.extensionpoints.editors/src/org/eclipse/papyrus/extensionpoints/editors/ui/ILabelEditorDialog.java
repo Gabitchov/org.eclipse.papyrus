@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
+ * Copyright (c) 2010 CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,21 +8,15 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *
  *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.ui;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExecutableExtension;
 
-//@unused
-public class DirectEditExecutableExtension implements IExecutableExtension {
+/**
+ *
+ */
+public interface ILabelEditorDialog {
 
-	public DirectEditExecutableExtension() {
-	}
-
-	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
-	}
-
+	/** gets the value returned by the dialog */
+	public String getValue();
 }

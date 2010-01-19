@@ -13,12 +13,11 @@ package org.eclipse.papyrus.extensionpoints.editors.ui;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
 import org.eclipse.swt.graphics.Point;
@@ -90,16 +89,24 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 		final IDirectEditorConfiguration configuration = directEditorExtensionPoint.getDirectEditorConfiguration();
 		configuration.preEditAction(getEditedObject());
 
-		final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), getEditedObject(), configuration
-				.getTextToEdit(getEditedObject()), configuration);
+		Dialog dialog = null;
+		if(configuration instanceof IDirectEditorConfiguration) {
+			dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getEditedObject(), ((IDirectEditorConfiguration)configuration).getTextToEdit(getEditedObject()), (IDirectEditorConfiguration)configuration);
+
+		} else if(configuration instanceof IAdvancedEditorConfiguration) {
+			dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getEditedObject(), configuration.getTextToEdit(getEditedObject()));
+		} else {
+			return;
+		}
+		final Dialog finalDialog = dialog;
+
 		if(Window.OK == dialog.open()) {
 			TransactionalEditingDomain domain = ((DiagramEditor)part).getEditingDomain();
 			RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 				@Override
 				protected void doExecute() {
-					configuration.postEditAction(getEditedObject(), dialog.getValue());
+					configuration.postEditAction(getEditedObject(), ((ILabelEditorDialog)finalDialog).getValue());
 
 				}
 			};
@@ -122,28 +129,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * 
 	 * @return the parent composite for the new embedded editor
 	 */
-	// @unused
 	protected abstract Composite getParentComposite();
-
-	/**
-	 * Creates the editor in the given shell
-	 * 
-	 * @param shell
-	 *        the shell parent of the editor composite
-	 * @return the created EmbeddedTextEditor
-	 */
-	// @unused
-	protected EmbeddedTextEditor createEditor(Composite composite) {
-		// retrieves the source viewer configuration
-		final CoreMultiDiagramEditor multiDiagramEditor = (CoreMultiDiagramEditor)part.getSite().getPage()
-				.getActiveEditor();
-		TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
-		
-		
-		DiagramCommandStack diagramCommandStack = multiDiagramEditor.getDiagramEditDomain().getDiagramCommandStack();
-		return new EmbeddedTextEditor(directEditorExtensionPoint.getDirectEditorConfiguration(), diagramCommandStack,
-				domain);
-	}
 
 	/**
 	 * Returns whether the widget is <code>null</code> or disposed or active.
@@ -152,7 +138,6 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 *        the widget to check
 	 * @return <code>true</code> if the widget can be used
 	 */
-	// @unused
 	public static boolean isValid(Widget widget) {
 		return (widget != null && !widget.isDisposed());
 	}

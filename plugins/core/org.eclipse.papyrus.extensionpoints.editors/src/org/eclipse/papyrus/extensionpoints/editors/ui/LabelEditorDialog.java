@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * 
  */
-public class LabelEditorDialog extends Dialog {
+public class LabelEditorDialog extends Dialog implements ILabelEditorDialog {
 
 	/**
 	 * The title of the dialog.

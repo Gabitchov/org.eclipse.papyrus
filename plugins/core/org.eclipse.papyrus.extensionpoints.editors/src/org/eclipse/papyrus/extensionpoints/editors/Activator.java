@@ -133,8 +133,7 @@ public class Activator extends AbstractUIPlugin {
 	 *        the message to log
 	 */
 	public static void log(Exception e) {
-		getDefault().getLog().log(
-				new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, e.getLocalizedMessage(), e));
+		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, e.getLocalizedMessage(), e));
 	}
 
 	/**

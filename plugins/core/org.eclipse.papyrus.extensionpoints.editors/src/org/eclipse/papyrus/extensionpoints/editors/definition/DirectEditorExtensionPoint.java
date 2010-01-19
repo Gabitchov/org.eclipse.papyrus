@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.graphics.Image;
@@ -57,8 +58,7 @@ public class DirectEditorExtensionPoint {
 		List<DirectEditorExtensionPoint> directEditorExtensionPoints = new ArrayList<DirectEditorExtensionPoint>();
 
 		// Reading data from plug-ins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				IDirectEditorConfigurationIds.DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID);
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(IDirectEditorConfigurationIds.DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID);
 
 		// Read configuration elements for the current extension
 		for(IConfigurationElement configElement : configElements) {
@@ -69,8 +69,7 @@ public class DirectEditorExtensionPoint {
 			}
 		} // end of configElements loop
 
-		configurations = directEditorExtensionPoints.toArray(new DirectEditorExtensionPoint[directEditorExtensionPoints
-				.size()]);
+		configurations = directEditorExtensionPoints.toArray(new DirectEditorExtensionPoint[directEditorExtensionPoints.size()]);
 		return configurations;
 	}
 
@@ -83,8 +82,7 @@ public class DirectEditorExtensionPoint {
 	 */
 	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(Class class_) {
 		// retrieves preference for this element
-		String language = Activator.getDefault().getPreferenceStore().getString(
-				IDirectEditorsIds.EDITOR_FOR_ELEMENT + class_.getCanonicalName());
+		String language = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + class_.getCanonicalName());
 		if(language == null || IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(language)) {
 			return null;
 		}
@@ -163,9 +161,11 @@ public class DirectEditorExtensionPoint {
 		// be
 		// a
 		// string
-		objectToEdit = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_OBJECT_TO_EDIT, "java.lang.Object",
-				true); // should already be a string
+		objectToEdit = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_OBJECT_TO_EDIT, "java.lang.Object", true); // should already be a string
 		directEditorConfiguration = getDirectEditorConfigurationClass(configElt);
+		if(directEditorConfiguration == null) {
+			directEditorConfiguration = getAdvancedDirectEditorConfigurationClass(configElt);
+		}
 		directEditorConfiguration.setLanguage(language);
 
 		// retrieve the bundle loader of the plugin that declares the extension
@@ -181,14 +181,40 @@ public class DirectEditorExtensionPoint {
 	protected static IDirectEditorConfiguration getDirectEditorConfigurationClass(IConfigurationElement configElement) {
 		IDirectEditorConfiguration configuration = null;
 		try {
-			configuration = (IDirectEditorConfiguration)configElement
-					.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
+			if(configElement.getChildren(IDirectEditorConfigurationIds.TAG_SIMPLE_EDITOR).length > 0) {
+				Object config = configElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
+				if(config instanceof IDirectEditorConfiguration) {
+					configuration = (IDirectEditorConfiguration)config;
+				}
+			}
 		} catch (CoreException e) {
 			Activator.log(e);
 			configuration = new DefaultDirectEditorConfiguration();
 		}
 		return configuration;
 	}
+
+	protected static IAdvancedEditorConfiguration getAdvancedDirectEditorConfigurationClass(IConfigurationElement configElement) {
+		IAdvancedEditorConfiguration configuration = null;
+		try {
+			for(IConfigurationElement childConfigElement : configElement.getChildren(IDirectEditorConfigurationIds.TAG_ADVANCED_EDITOR)) {
+				for(String attname : childConfigElement.getAttributeNames()) {
+					System.err.println(attname);
+				}
+
+				Object config = childConfigElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
+				if(config instanceof IAdvancedEditorConfiguration) {
+					configuration = (IAdvancedEditorConfiguration)config;
+				}
+			}
+
+		} catch (CoreException e) {
+			Activator.log(e);
+			configuration = null;
+		}
+		return configuration;
+	}
+
 
 	/**
 	 * Returns the value of the attribute that has the given name, for the given configuration
@@ -208,8 +234,7 @@ public class DirectEditorExtensionPoint {
 	 *        the name of the attribute to read
 	 * @return the attribute value
 	 */
-	protected static String getAttribute(IConfigurationElement configElt, String name, String defaultValue,
-			boolean isRequired) {
+	protected static String getAttribute(IConfigurationElement configElt, String name, String defaultValue, boolean isRequired) {
 		String value = configElt.getAttribute(name);
 
 		if(value != null) {
@@ -311,4 +336,5 @@ public class DirectEditorExtensionPoint {
 	public void setDirectEditorConfiguration(IDirectEditorConfiguration directEditorConfiguration) {
 		this.directEditorConfiguration = directEditorConfiguration;
 	}
+
 }

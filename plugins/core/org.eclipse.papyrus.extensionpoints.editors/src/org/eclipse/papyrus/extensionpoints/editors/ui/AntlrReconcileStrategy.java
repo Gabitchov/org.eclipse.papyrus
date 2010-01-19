@@ -81,9 +81,7 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 
 		public void accept(Throwable exception) {
 			if(exception instanceof RecognitionException) {
-				fAddAnnotations.put(new ErrorAnnotation(false, exception.getLocalizedMessage()), new Position(
-						((RecognitionException)exception).token.getCharPositionInLine(),
-						((RecognitionException)exception).token.getText().length()));
+				fAddAnnotations.put(new ErrorAnnotation(false, exception.getLocalizedMessage()), new Position(((RecognitionException)exception).token.getCharPositionInLine(), ((RecognitionException)exception).token.getText().length()));
 			}
 		}
 
@@ -111,8 +109,7 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 			buffer.append(',');
 			buffer.append(offset + length);
 			buffer.append("] ");
-			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString() + exception), new Position(offset,
-					length));
+			return fAddAnnotations.put(new ErrorAnnotation(true, buffer.toString() + exception), new Position(offset, length));
 		}
 
 		protected Object addErrorAnnotation(MismatchedTokenException exception) {
@@ -177,8 +174,7 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 				Annotation[] annotationsToRemove = (Annotation[])toRemove.toArray(new Annotation[toRemove.size()]);
 
 				if(fAnnotationModel instanceof IAnnotationModelExtension)
-					((IAnnotationModelExtension)fAnnotationModel).replaceAnnotations(annotationsToRemove,
-							fAddAnnotations);
+					((IAnnotationModelExtension)fAnnotationModel).replaceAnnotations(annotationsToRemove, fAddAnnotations);
 				else {
 					for(int i = 0; i < annotationsToRemove.length; i++)
 						fAnnotationModel.removeAnnotation(annotationsToRemove[i]);
@@ -194,8 +190,7 @@ public class AntlrReconcileStrategy implements IReconcilingStrategy {
 	}
 
 	/** Text content type */
-	private static final IContentType TEXT_CONTENT_TYPE = Platform.getContentTypeManager().getContentType(
-			IContentTypeManager.CT_TEXT);
+	private static final IContentType TEXT_CONTENT_TYPE = Platform.getContentTypeManager().getContentType(IContentTypeManager.CT_TEXT);
 
 	/** The text editor to operate on. */
 	private ISourceViewer viewer;

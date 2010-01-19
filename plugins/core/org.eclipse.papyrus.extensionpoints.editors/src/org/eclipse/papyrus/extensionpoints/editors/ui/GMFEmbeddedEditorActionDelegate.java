@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * 
+ * Action delegate for direct editors embedded in GMF editors
  */
 public class GMFEmbeddedEditorActionDelegate extends OpenEmbeddedTextEditorObjectActionDelegate {
 

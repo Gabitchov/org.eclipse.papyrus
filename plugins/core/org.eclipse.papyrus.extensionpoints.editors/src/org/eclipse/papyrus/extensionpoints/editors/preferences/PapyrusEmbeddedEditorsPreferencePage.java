@@ -350,8 +350,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 	/**
 	 * Create a new <code>TableItem</code> to represent the element type supplied.
 	 */
-	protected TableItem newElementTypeTableItem(List<DirectEditorExtensionPoint> configurations, int index,
-			boolean selected) {
+	protected TableItem newElementTypeTableItem(List<DirectEditorExtensionPoint> configurations, int index, boolean selected) {
 		TableItem item = new TableItem(elementTypeTable, SWT.NULL, index);
 		item.setText(configurations.get(0).getObjectToEdit());
 		item.setData(configurations);
@@ -393,21 +392,18 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 			if(item.getText().endsWith(DEFAULT_EDITOR_LABEL)) {
 				DirectEditorExtensionPoint oldExtensionPoint = (DirectEditorExtensionPoint)item.getData(DATA_EDITOR);
 				// no configuration associated => standard editor
-				item.setText((oldExtensionPoint != null) ? oldExtensionPoint.getLanguage()
-						: IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
+				item.setText((oldExtensionPoint != null) ? oldExtensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
 			}
 		}
 		TableItem[] selectedItems = editorTable.getSelection();
 		if(selectedItems.length > 0) {
 			// First change the label of the old default
 			// Now set the new default
-			DirectEditorExtensionPoint extensionPoint = (DirectEditorExtensionPoint)selectedItems[0]
-					.getData(DATA_EDITOR);
+			DirectEditorExtensionPoint extensionPoint = (DirectEditorExtensionPoint)selectedItems[0].getData(DATA_EDITOR);
 			selectedItems[0].setText(selectedItems[0].getText() + DEFAULT_EDITOR_LABEL);
 
 			// retrieve current object to edit name
-			getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT + getSelectedElementType(),
-					(extensionPoint != null) ? extensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
+			getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT + getSelectedElementType(), (extensionPoint != null) ? extensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
 		}
 	}
 

@@ -95,8 +95,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		}
 
 		// retrieves all editor configurations for this kind of element
-		final Collection<DirectEditorExtensionPoint> configurations = DirectEditorExtensionPoint
-				.getDirectEditorConfigurations(businessObject.getClass());
+		final Collection<DirectEditorExtensionPoint> configurations = DirectEditorExtensionPoint.getDirectEditorConfigurations(businessObject.getClass());
 
 		// if configurations is not empty, a submenu should open to select which
 		// editor to use...
@@ -109,8 +108,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	}
 
 	// creates the submenu "open editors" > "edit with UML", "edit with AL", etc
-	protected void createSubMenu(Menu menu, int index, Object businessObject,
-			Collection<DirectEditorExtensionPoint> configurations) {
+	protected void createSubMenu(Menu menu, int index, Object businessObject, Collection<DirectEditorExtensionPoint> configurations) {
 		// create direct item, and then create sub-items
 		subMenuItem = new MenuItem(menu, SWT.CASCADE);
 		String type = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getName() : "");
@@ -123,10 +121,8 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 
 		// items on the submenu
 		// there are as many items as configurations
-		Class fullType = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getInstanceClass()
-				: null);
-		final DirectEditorExtensionPoint defaultConfig = DirectEditorExtensionPoint
-				.getDefautDirectEditorConfiguration(fullType);
+		Class fullType = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getInstanceClass() : null);
+		final DirectEditorExtensionPoint defaultConfig = DirectEditorExtensionPoint.getDefautDirectEditorConfiguration(fullType);
 
 		for(final DirectEditorExtensionPoint configuration : configurations) {
 			MenuItem item = new MenuItem(subMenu, SWT.NONE);
@@ -153,8 +149,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 				public void widgetSelected(SelectionEvent e) {
 					// launch editor
 					GMFEmbeddedEditorActionDelegate actionDelegate = new GMFEmbeddedEditorActionDelegate();
-					actionDelegate.setActivePart(null, ((CoreMultiDiagramEditor)PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getActiveEditor());
+					actionDelegate.setActivePart(null, ((CoreMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getActiveEditor());
 					actionDelegate.selectionChanged(null, getSelection());
 					actionDelegate.setExtensionPointConfiguration(configuration);
 					actionDelegate.run(null);

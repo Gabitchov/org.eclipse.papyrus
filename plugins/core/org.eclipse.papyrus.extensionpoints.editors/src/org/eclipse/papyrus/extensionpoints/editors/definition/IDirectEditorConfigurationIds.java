@@ -15,13 +15,12 @@
 package org.eclipse.papyrus.extensionpoints.editors.definition;
 
 /**
- * 
+ * Constant for the direct editor extension point
  */
 public interface IDirectEditorConfigurationIds {
 
 	/** id of the direct editor configuration extension point */
-	public final static String DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID = org.eclipse.papyrus.extensionpoints.editors.Activator.PLUGIN_ID
-			+ ".DirectEditor";
+	public final static String DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID = org.eclipse.papyrus.extensionpoints.editors.Activator.PLUGIN_ID + ".DirectEditor";
 
 	/** id of the direct editor configuration element */
 	public static final String TAG_DIRECT_EDITOR_CONFIGURATION = "DirectEditor";
@@ -34,4 +33,10 @@ public interface IDirectEditorConfigurationIds {
 
 	/** id of the direct editor configuration attribute */
 	public static final String ATT_EDITOR_CONFIGURATION = "editorConfiguration";
+
+	/** id of the direct editor simple configuration tag */
+	public static final String TAG_SIMPLE_EDITOR = "simpleeditor";
+
+	/** id of the direct editor advanced configuration tag */
+	public static final String TAG_ADVANCED_EDITOR = "advancededitor";
 }

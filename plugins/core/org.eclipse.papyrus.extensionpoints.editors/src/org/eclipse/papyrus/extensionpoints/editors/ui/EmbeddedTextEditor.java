@@ -63,8 +63,7 @@ public class EmbeddedTextEditor extends TextEditor {
 	/**
 	 * Creates a new EmbeddedTextEditor.
 	 */
-	public EmbeddedTextEditor(IDirectEditorConfiguration directEditorConfiguration,
-			DiagramCommandStack diagramCommandStack, TransactionalEditingDomain transactionalEditingDomain) {
+	public EmbeddedTextEditor(IDirectEditorConfiguration directEditorConfiguration, DiagramCommandStack diagramCommandStack, TransactionalEditingDomain transactionalEditingDomain) {
 		super();
 		this.directEditorConfiguration = directEditorConfiguration;
 		this.diagramCommandStack = diagramCommandStack;
@@ -121,14 +120,11 @@ public class EmbeddedTextEditor extends TextEditor {
 
 		if(save) {
 			// get command stack of the 'parent' editor
-			Command command = new ICommandProxy(new AbstractTransactionalCommand(transactionalEditingDomain,
-					"Edit property", null) {
+			Command command = new ICommandProxy(new AbstractTransactionalCommand(transactionalEditingDomain, "Edit property", null) {
 
 				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-						throws ExecutionException {
-					return CommandResult.newOKCommandResult(((EmbeddedEditorDocumentProvider)getDocumentProvider())
-							.applyChanges(getEditorInput()));
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					return CommandResult.newOKCommandResult(((EmbeddedEditorDocumentProvider)getDocumentProvider()).applyChanges(getEditorInput()));
 				}
 			});
 			diagramCommandStack.execute(command, new NullProgressMonitor());
@@ -146,8 +142,7 @@ public class EmbeddedTextEditor extends TextEditor {
 		fAnnotationAccess = getAnnotationAccess();
 		fOverviewRuler = createOverviewRuler(getSharedColors());
 
-		SourceViewer viewer = new SourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
-				SWT.FULL_SELECTION | SWT.BORDER);
+		SourceViewer viewer = new SourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(), SWT.FULL_SELECTION | SWT.BORDER);
 		// ensure decoration support has been created and configured.
 		getSourceViewerDecorationSupport(viewer);
 

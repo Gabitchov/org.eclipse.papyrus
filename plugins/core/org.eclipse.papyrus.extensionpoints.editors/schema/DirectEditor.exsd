@@ -2,9 +2,9 @@
 <!-- Schema file written by PDE -->
 <schema targetNamespace="org.eclipse.papyrus.extensionpoints.editors" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appinfo>
+      <appInfo>
          <meta.schema plugin="org.eclipse.papyrus.extensionpoints.editors" id="DirectEditor" name="Extension Poin that defines new editors for specific objects and specific language in Papyrus"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          This extension point is used to registered new editors into Papyrus modeling tool to edit objects using a given language.
       </documentation>
@@ -12,9 +12,9 @@
 
    <element name="extension">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element />
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
@@ -39,9 +39,9 @@
                <documentation>
                   
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute translatable="true"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>
@@ -49,14 +49,18 @@
 
    <element name="DirectEditor">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element labelAttribute="objectToEdit"/>
-         </appinfo>
+         </appInfo>
          <documentation>
             Extension points for direct editors in Papyrus UML2.
          </documentation>
       </annotation>
       <complexType>
+         <choice>
+            <element ref="advancededitor"/>
+            <element ref="simpleeditor"/>
+         </choice>
          <attribute name="language" type="string" use="required">
             <annotation>
                <documentation>
@@ -71,24 +75,14 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="editorConfiguration" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The class that configure the direct editor
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration"/>
-               </appinfo>
-            </annotation>
-         </attribute>
          <attribute name="icon" type="string">
             <annotation>
                <documentation>
                   Icon used in menus for this editor
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute kind="resource"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="contributor" type="string">
@@ -101,46 +95,76 @@
       </complexType>
    </element>
 
+   <element name="simpleeditor">
+      <complexType>
+         <attribute name="editorConfiguration" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class that configure the direct editor
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="advancededitor">
+      <complexType>
+         <attribute name="editorConfiguration" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class that configure the direct editor
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.jface.dialogs.Dialog:"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="since"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Since 1.9.0
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="examples"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [Enter extension point usage example here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="apiInfo"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [Enter API information here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="implementation"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [Enter information about supplied implementation of this extension point.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="copyright"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Copyright (c) 2008 CEA LIST
 All rights reserved. This program and the accompanying materials

@@ -59,8 +59,7 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 	 * @param initialValue
 	 *        the initial text value
 	 */
-	public ExtendedDirectEditionDialog(Shell parentShell, Object object, String initialValue,
-			IDirectEditorConfiguration configuration) {
+	public ExtendedDirectEditionDialog(Shell parentShell, Object object, String initialValue, IDirectEditorConfiguration configuration) {
 		super(parentShell, TITLE, initialValue, configuration.getInputValidator());
 		this.editedObject = object;
 		this.value = initialValue;
@@ -85,8 +84,7 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 		Composite viewerGroup = new Composite(composite, SWT.RESIZE);
 		FillLayout viewerLayout = new FillLayout();
 		viewerGroup.setLayout(viewerLayout);
-		GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL
-				| GridData.VERTICAL_ALIGN_CENTER);
+		GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
 		data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
 		viewerGroup.setLayoutData(data);
 		viewer = new SourceViewer(viewerGroup, null, SWT.BORDER | SWT.FILL_EVEN_ODD);

@@ -36,8 +36,7 @@ import org.eclipse.swt.widgets.Listener;
  * 
  */
 // @unused
-public class CloseListener implements ControlListener, MouseListener, DisposeListener, FocusListener, KeyListener,
-		TraverseListener, Listener {
+public class CloseListener implements ControlListener, MouseListener, DisposeListener, FocusListener, KeyListener, TraverseListener, Listener {
 
 	/** main control of the parent editor to be listen */
 	private final Control control;

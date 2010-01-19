@@ -93,8 +93,7 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 	protected Object applyChanges(Object element) {
 		if(element instanceof EmbeddedEditorInput) {
 			EObject object = ((EmbeddedEditorInput)element).getEditedObject();
-			return textEditor.getDirectEditorConfiguration().postEditAction(object,
-					getDocument(((EmbeddedEditorInput)element)).get());
+			return textEditor.getDirectEditorConfiguration().postEditAction(object, getDocument(((EmbeddedEditorInput)element)).get());
 		}
 		return element.toString();
 	}
@@ -103,8 +102,7 @@ public class EmbeddedEditorDocumentProvider extends AbstractDocumentProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
-			throws CoreException {
+	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
 		throw new RuntimeException("Impossible to save the content of an embedded editor.");
 	}
 
