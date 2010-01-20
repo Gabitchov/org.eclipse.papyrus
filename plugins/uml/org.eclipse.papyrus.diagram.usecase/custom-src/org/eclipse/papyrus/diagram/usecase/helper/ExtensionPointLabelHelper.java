@@ -69,18 +69,13 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * Computes the label to be displayed for the property
+	 * {@inheritDoc}
 	 */
-	protected String labelToDisplay(GraphicalEditPart editPart) {
-		StringBuffer buffer = new StringBuffer();
-
-		// computes the label for the stereotype (horizontal presentation)
-		buffer.append(stereotypesToDisplay(editPart));
-
-		// computes the string label to be displayed
-		buffer.append(((NamedElement)getUMLElement(editPart)).getName());
-
-		return buffer.toString();
+	@Override
+	protected String elementLabel(GraphicalEditPart editPart) {
+		return ((NamedElement)getUMLElement(editPart)).getName();
 	}
+
+
 
 }

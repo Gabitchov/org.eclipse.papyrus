@@ -138,10 +138,11 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * 
 	 * {@inheritedDoc}
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
+		super.notifyChanged(notification);
 		// change the label of the figure managed by the host edit part (managed by the parent edit
 		// part in general...)
 		// it must be changed only if:

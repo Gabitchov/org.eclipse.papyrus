@@ -191,6 +191,19 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	abstract public void refreshDisplay();
 
 	/**
+	 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
+	 * 
+	 * @param notification
+	 *        the notification object
+	 */
+	public void notifyChanged(Notification notification) {
+		Object object = notification.getNotifier();
+		if(object != null && object.equals(getView())) {
+			refreshDisplay();
+		}
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public void setDefaultDisplayValue() {

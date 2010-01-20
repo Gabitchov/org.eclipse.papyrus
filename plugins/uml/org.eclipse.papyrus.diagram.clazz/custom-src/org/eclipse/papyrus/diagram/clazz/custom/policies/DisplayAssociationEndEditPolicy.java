@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndTargetLabelHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
@@ -35,11 +34,9 @@ import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.RemoveEAnnotationCommand;
-import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * I is used to display the label of an association branch
@@ -209,10 +206,11 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	}
 
 	/**
-	 * 
 	 * {@inheritedDoc}
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
+		super.notifyChanged(notification);
 		// change the label of the figure managed by the host edit part (managed by the parent edit
 		// part in general...)
 		// it must be changed only if:

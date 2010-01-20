@@ -14,21 +14,29 @@ package org.eclipse.papyrus.diagram.common.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -96,7 +104,7 @@ public abstract class StereotypedElementLabelHelper {
 			}
 			return Activator.getIconElements(getUMLElement(editPart), stereotypes, false);
 		}
-		return Collections.emptyList();
+		return new ArrayList<Image>();
 	}
 
 	/**
@@ -305,6 +313,100 @@ public abstract class StereotypedElementLabelHelper {
 			return out.substring(0, out.length() - separator.length());
 		}
 		return out;
+	}
+
+	/**
+	 * Refreshes the label of the figure associated to the specified edit part
+	 * 
+	 * @param editPart
+	 *        the edit part managing the refreshed figure
+	 */
+	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
+		IFigure figure = editPart.getFigure();
+
+		// computes the icon to be displayed
+		final Collection<Image> imageToDisplay = stereotypeIconsToDisplay(editPart);
+
+		// should check if edit part has to display the element icon or not
+		if(NameLabelIconHelper.showLabelIcon((View)editPart.getModel())) {
+			imageToDisplay.add(getImage(editPart));
+		}
+
+		// for each element in the list of stereotype icon, adds it to the icons list of the
+		// wrapping label
+		// problem (RS - CEA LIST): more icons were displayed before refresh: has to clean
+		// problem 2 (RS - CEA LIST): no method to know how many icons were displayed => should fix
+		// a max number ?!
+		// solution: set all images to null, and then add the correct icons
+		int i = 0;
+		while(((WrappingLabel)figure).getIcon(i) != null) {
+			((WrappingLabel)figure).setIcon(null, i);
+			i++;
+		}
+		i = 0;
+		for(Image image : imageToDisplay) {
+			((WrappingLabel)figure).setIcon(image, i);
+			i++;
+		}
+		((WrappingLabel)figure).setText(labelToDisplay(editPart));
+	}
+
+	/**
+	 * Computes the label to be displayed for the property
+	 */
+	protected String labelToDisplay(GraphicalEditPart editPart) {
+		StringBuffer buffer = new StringBuffer();
+
+		// computes the label for the stereotype (horizontal presentation)
+		buffer.append(stereotypesToDisplay(editPart));
+
+		// computes the string label to be displayed
+		buffer.append(elementLabel(editPart));
+
+		// buffer.append(PropertyUtil.getCustomLabel(getUMLElement(), 0));
+		return buffer.toString();
+	}
+
+	/**
+	 * Computes the label corresponding to the semantic element
+	 * 
+	 * @param editPart
+	 *        the graphical part managing the semantic element
+	 * @return the string corresponding to the display of the semantic element
+	 */
+	protected abstract String elementLabel(GraphicalEditPart editPart);
+
+	/**
+	 * Returns the image for the element
+	 * 
+	 * @param editPart
+	 *        the edit part that displays the element
+	 * @return the image
+	 */
+	public Image getImage(GraphicalEditPart editPart) {
+		Element element = getUMLElement(editPart);
+		String key = "";
+		if(element instanceof NamedElement) {
+			key = ((NamedElement)element).getName() + "::" + ((NamedElement)element).getVisibility();
+		} else if(element != null) {
+			key = element.getClass().getName();
+		}
+		ImageRegistry imageRegistry = Activator.getDefault().getImageRegistry();
+		Image image = imageRegistry.get(key);
+		ImageDescriptor descriptor = null;
+		if(image == null) {
+			AdapterFactory factory = Activator.getDefault().getItemProvidersAdapterFactory();
+			IItemLabelProvider labelProvider = (IItemLabelProvider)factory.adapt(getUMLElement(editPart), IItemLabelProvider.class);
+			if(labelProvider != null) {
+				descriptor = ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(getUMLElement(editPart)));
+			}
+			if(descriptor == null) {
+				descriptor = ImageDescriptor.getMissingImageDescriptor();
+			}
+			imageRegistry.put(key, descriptor);
+			image = imageRegistry.get(key);
+		}
+		return image;
 	}
 
 }

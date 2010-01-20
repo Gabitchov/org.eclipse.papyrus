@@ -19,15 +19,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.umlutils.CollaborationUseUtil;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Property;
 
@@ -114,56 +111,10 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * Computes the label to be displayed for the property
-	 */
-	protected String labelToDisplay(GraphicalEditPart editPart) {
-		StringBuffer buffer = new StringBuffer();
-
-		// computes the label for the stereotype (horizontal presentation)
-		buffer.append(stereotypesToDisplay(editPart));
-
-		// computes the string label to be displayed
-		buffer.append(elementLabel(editPart));
-
-		// buffer.append(PropertyUtil.getCustomLabel(getUMLElement(), 0));
-		return buffer.toString();
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public CollaborationUse getUMLElement(GraphicalEditPart editPart) {
 		return (CollaborationUse)((View)editPart.getModel()).getElement();
 	}
 
-	/**
-	 * Refreshes the label of the figure associated to the specified edit part
-	 * 
-	 * @param editPart
-	 *        the edit part managing the refreshed figure
-	 */
-	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
-		IFigure figure = editPart.getFigure();
-
-		// computes the icon to be displayed
-		final Collection<Image> imageToDisplay = stereotypeIconsToDisplay(editPart);
-
-		// for each element in the list of stereotype icon, adds it to the icons list of the
-		// wrapping label
-		// problem (RS - CEA LIST): more icons were displayed before refresh: has to clean
-		// problem 2 (RS - CEA LIST): no method to know how many icons were displayed => should fix
-		// a max number ?!
-		// solution: set all images to null, and then add the correct icons
-		int i = 0;
-		while(((WrappingLabel)figure).getIcon(i) != null) {
-			((WrappingLabel)figure).setIcon(null, i);
-			i++;
-		}
-		i = 0;
-		for(Image image : imageToDisplay) {
-			((WrappingLabel)figure).setIcon(image, i);
-			i++;
-		}
-		((WrappingLabel)figure).setText(labelToDisplay(editPart));
-	}
 }
