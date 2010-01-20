@@ -507,6 +507,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		if(resourceSet != null) {
 			resourceSet.unload();
 		}
+		
+		// dispose available service
+		if(servicesRegistry != null)
+		{
+			servicesRegistry.disposeService();
+		}
+		
 		super.dispose();
 	}
 
