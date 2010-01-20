@@ -18,6 +18,7 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.tabbedproperties.comments.Messages;
 import org.eclipse.papyrus.tabbedproperties.comments.propertysection.CommentRichTextEditor;
 import org.eclipse.papyrus.tabbedproperties.comments.propertysection.CommentRichTextFormToolkit;
 import org.eclipse.swt.SWT;
@@ -82,7 +83,7 @@ public class HTMLCommentEditorDialogConfiguration extends DefaultDirectEditorCon
 		private Comment commentToEdit;
 
 		/** return value */
-		String returnValue = "";
+		String returnValue = ""; //$NON-NLS-1$
 
 		private CommentRichTextEditor richText;
 
@@ -96,6 +97,15 @@ public class HTMLCommentEditorDialogConfiguration extends DefaultDirectEditorCon
 			super(parentShell);
 			this.commentToEdit = commentToEdit;
 			this.textToEdit = textToEdit;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected void configureShell(Shell newShell) {
+			super.configureShell(newShell);
+			newShell.setText(Messages.HTMLCommentEditorDialogConfiguration_CommentDialogTitle);
 		}
 
 		/**

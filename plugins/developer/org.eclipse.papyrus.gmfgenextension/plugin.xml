@@ -123,6 +123,19 @@
                                 </or>
                              </enablement>
                           </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddOrUpdateCommentEditParts"
+                                enablesFor="*"
+                                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddOrUpdateCommentEditParts"
+                                label="Update Comments For multi label management"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddOrUpdateCommentEditParts">
+                             <enablement>
+                                <objectClass
+                                      name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                </objectClass>
+                             </enablement>
+                          </action>
       </objectContribution>
    </extension>
 

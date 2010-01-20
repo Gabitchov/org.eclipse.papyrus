@@ -22,6 +22,8 @@ public class Messages extends NLS {
 
 	public static String CommentedElementPropertySection_RemoveCommentCommand;
 
+	public static String HTMLCommentEditorDialogConfiguration_CommentDialogTitle;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

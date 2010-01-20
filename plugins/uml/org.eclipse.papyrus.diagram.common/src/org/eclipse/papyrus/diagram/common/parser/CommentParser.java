@@ -102,7 +102,7 @@ public class CommentParser implements IParser {
 		// remove all "<***>" characters, replace &gt;, etc...
 		String roughBody = comment.getBody();
 		if(roughBody == null || roughBody.length() == 0) {
-			return "<EMPTY BODY>";//$NON-NLS-1$
+			return "";//$NON-NLS-1$
 		}
 
 		// comment not null, comment not empty, do the parse...

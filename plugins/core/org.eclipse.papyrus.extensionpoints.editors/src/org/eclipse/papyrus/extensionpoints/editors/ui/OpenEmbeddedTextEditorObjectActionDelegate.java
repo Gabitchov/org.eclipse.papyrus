@@ -90,11 +90,11 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 		configuration.preEditAction(getEditedObject());
 
 		Dialog dialog = null;
-		if(configuration instanceof IDirectEditorConfiguration) {
+		if(configuration instanceof IAdvancedEditorConfiguration) {
+			dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getEditedObject(), configuration.getTextToEdit(getEditedObject()));
+		} else if(configuration instanceof IDirectEditorConfiguration) {
 			dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getEditedObject(), ((IDirectEditorConfiguration)configuration).getTextToEdit(getEditedObject()), (IDirectEditorConfiguration)configuration);
 
-		} else if(configuration instanceof IAdvancedEditorConfiguration) {
-			dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getEditedObject(), configuration.getTextToEdit(getEditedObject()));
 		} else {
 			return;
 		}
