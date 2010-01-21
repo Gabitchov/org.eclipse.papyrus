@@ -34,6 +34,8 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 
 public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
@@ -88,7 +90,23 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	@Override
 	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
 		Diagram diagram = null;
-		if (owner instanceof Class) {
+		if (owner instanceof Model) {
+			Model model = (Model) owner;
+			Profile sysmlProfile = StereotypeUtils.loadProfile(StereotypeUtils.SYSML_URI, model.eResource().getResourceSet());
+			if (!StereotypeUtils.isProfileApplied("SysML", model)) {
+				model.applyProfile(sysmlProfile);
+			}
+			
+			Class ownedClass = model.createOwnedClass("Parametric", false);
+			Profile blockProfile = (Profile) sysmlProfile.getOwnedMember("Blocks");
+			if (blockProfile != null) {
+				if (!model.isProfileApplied(blockProfile)) {
+					model.applyProfile(blockProfile);					
+				}
+				ownedClass.applyStereotype(blockProfile.getOwnedStereotype("Block"));				
+				diagram = super.createDiagram(diagramResource, ownedClass, name);
+			}
+		} else if (owner instanceof Class) {
 			diagram = super.createDiagram(diagramResource, owner, name);
 		}
 		return diagram;
