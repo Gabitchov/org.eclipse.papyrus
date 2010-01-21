@@ -190,12 +190,6 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 		}
 		Node node = super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-		initForegroundFromPrefs(node, prefStore, "Node");
-		initFontStyleFromPrefs(node, prefStore, "Node");
-		initBackgroundFromPrefs(node, prefStore, "Node");
-		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return node;
 	}
 
