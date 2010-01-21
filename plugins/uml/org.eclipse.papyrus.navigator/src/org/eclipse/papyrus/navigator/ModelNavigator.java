@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.navigator;
 
+import static org.eclipse.papyrus.navigator.internal.Activator.log;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,6 +45,7 @@ import org.eclipse.papyrus.navigator.actions.RemoveTypePrefixAction;
 import org.eclipse.papyrus.navigator.actions.SearchElementAction;
 import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
+import org.eclipse.papyrus.navigator.internal.utils.StereotypeApplicationUtils;
 import org.eclipse.papyrus.navigator.providers.IContentProvider;
 import org.eclipse.papyrus.navigator.providers.ToEditorSaveable;
 import org.eclipse.swt.widgets.Composite;
@@ -65,8 +68,6 @@ import org.eclipse.ui.navigator.INavigatorContentExtension;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-
-import static org.eclipse.papyrus.navigator.internal.Activator.log;
 
 /**
  * This class define a view used to navigate in UML model and resource
@@ -135,7 +136,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	// //
 	private final ToEditorSaveable toEditorSaveable = new ToEditorSaveable(null, this);
 
-	private final Saveable[] toEditorSaveableArray = new Saveable[]{ toEditorSaveable };
+	private final Saveable[] toEditorSaveableArray = new Saveable[] { toEditorSaveable };
 
 	/**
 	 * Make the synchronization between the editor and the model explorer active by default.
@@ -144,7 +145,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	public void init(IViewSite aSite, IMemento aMemento) throws PartInitException {
 		super.init(aSite, aMemento);
 		// fjcano #288599# :: linking enabled by default
-		if(memento != null) {
+		if (memento != null) {
 			Integer linkingEnabledInteger = memento.getInteger(LINKING_ENABLED);
 			setLinkingEnabled(((linkingEnabledInteger != null) ? linkingEnabledInteger.intValue() == 1 : true));
 		} else {
@@ -191,7 +192,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void doUpdate() {
 		// fjcano #290424 :: allow saving from the Model Explorer
-		if(getToEditorSaveable() != null) {
+		if (getToEditorSaveable() != null) {
 			getToEditorSaveable().setEditor(editorPart);
 		}
 	}
@@ -207,8 +208,8 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		isGroupingChildsEnabled = toGroupChilds;
 		firePropertyChange(IS_GROUPINGCHILDS_ENABLED_PROPERTY);
 		ISelection sel = this.getCommonViewer().getSelection();
-		if(sel instanceof ITreeSelection && ((ITreeSelection)sel).getFirstElement() != null) {
-			IStructuredSelection s = new StructuredSelection(((ITreeSelection)sel).getFirstElement());
+		if (sel instanceof ITreeSelection && ((ITreeSelection) sel).getFirstElement() != null) {
+			IStructuredSelection s = new StructuredSelection(((ITreeSelection) sel).getFirstElement());
 			this.getCommonViewer().setSelection(s, true);
 		}
 		this.refreshViewer();
@@ -301,19 +302,19 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 		List<Notification> notifications = event.getNotifications();
 		int i = 0;
 		boolean finish = false;
-		while(!finish && i < notifications.size()) {
+		while (!finish && i < notifications.size()) {
 			Object n = notifications.get(i);
-			if(n instanceof Notification) {
-				Notification notification = (Notification)n;
+			if (n instanceof Notification) {
+				Notification notification = (Notification) n;
 				Iterator<?> it = getNavigatorContentService().findRootContentExtensions(notification.getNotifier())
 						.iterator();
-				while(it.hasNext()) {
+				while (it.hasNext()) {
 					Object obj = it.next();
 					finish = true;
-					if(obj instanceof INavigatorContentExtension) {
-						INavigatorContentExtension nce = (INavigatorContentExtension)obj;
-						if(nce.getContentProvider() instanceof IContentProvider) {
-							IContentProvider provider = (IContentProvider)nce.getContentProvider();
+					if (obj instanceof INavigatorContentExtension) {
+						INavigatorContentExtension nce = (INavigatorContentExtension) obj;
+						if (nce.getContentProvider() instanceof IContentProvider) {
+							IContentProvider provider = (IContentProvider) nce.getContentProvider();
 							provider.resourceSetChanged(event);
 						}
 					}
@@ -330,7 +331,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void handlePartActivated(IWorkbenchPartReference partRef) {
 		IWorkbenchPart part = partRef.getPart(false);
-		if(part instanceof IEditorPart) {
+		if (part instanceof IEditorPart) {
 			activate();
 		}
 	}
@@ -342,7 +343,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void handlePartDeactivated(IWorkbenchPartReference partRef) {
 		IWorkbenchPart part = partRef.getPart(false);
-		if(editorPart != null && editorPart.equals(part)) {
+		if (editorPart != null && editorPart.equals(part)) {
 			deactivate();
 		}
 	}
@@ -353,7 +354,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	private void activate() {
 		this.editorPart = EditorUtils.getMultiDiagramEditor();
 		this.editingDomain = EditorUtils.getTransactionalEditingDomain();
-		if(editingDomain != null) {
+		if (editingDomain != null) {
 			editingDomain.addResourceSetListener(resourceSetListener);
 		}
 		refreshViewer();
@@ -366,7 +367,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void deactivate() {
 		editorPart = null;
-		if(editingDomain != null) {
+		if (editingDomain != null) {
 			editingDomain.removeResourceSetListener(resourceSetListener);
 		}
 		// if (propertySheet != null) {
@@ -383,7 +384,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object getAdapter(Class adapter) {
-		if(IPropertySheetPage.class.equals(adapter)) {
+		if (IPropertySheetPage.class.equals(adapter)) {
 			return getPropertySheetPage();
 		}
 		return super.getAdapter(adapter);
@@ -394,7 +395,7 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void refreshViewer() {
 		CommonViewer viewer = getCommonViewer();
-		if(viewer != null && viewer.getTree().isDisposed() == false) {
+		if (viewer != null && viewer.getTree().isDisposed() == false) {
 			viewer.refresh();
 		}
 	}
@@ -456,11 +457,11 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private IPropertySheetPage getPropertySheetPage() {
 		final IMultiDiagramEditor multiDiagramEditor = EditorUtils.getMultiDiagramEditor();
-		if(multiDiagramEditor != null) {
-			if(propertySheetPage == null) {
+		if (multiDiagramEditor != null) {
+			if (propertySheetPage == null) {
 				// An 'EEF' properties view
-				if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
-					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
+				if (multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
+					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor) multiDiagramEditor;
 					this.propertySheetPage = new TabbedPropertySheetPage(contributor);
 				}
 			}
@@ -493,11 +494,16 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part, ISelection selection) {
 		// Handle selection from diagram editor
-		if(isLinkingEnabled() && !handlingSelectionChanged) {
+		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
-			if(part instanceof IEditorPart) {
+			if (part instanceof IEditorPart) {
 				ISelection unwrappedSelection = NavigatorUtils.unwrapSelection(selection);
-				if(!unwrappedSelection.isEmpty()) {
+				if (!unwrappedSelection.isEmpty() && unwrappedSelection instanceof StructuredSelection) {
+					// forward the selection to the stereotyped element if needed
+					EObject firstElement = (EObject) ((StructuredSelection) unwrappedSelection).getFirstElement();
+					if (firstElement != null && firstElement.eContainer() == null) {
+						unwrappedSelection = StereotypeApplicationUtils.unwrapStereotypedSelection(unwrappedSelection);
+					}
 					getCommonViewer().setSelection(unwrappedSelection, true);
 				}
 			}
@@ -512,18 +518,23 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void handleSelectionChangedFromCommonViewer(SelectionChangedEvent event) {
 		// Handle selection from common viewer
-		if(isLinkingEnabled() && !handlingSelectionChanged) {
+		if (isLinkingEnabled() && !handlingSelectionChanged) {
 			this.handlingSelectionChanged = true;
 			DiagramEditor editor = EditorUtils.lookupActiveDiagramEditor();
-			if(editor != null) {
+			if (editor != null) {
 				// set editor selection and select the EditParts
 				IDiagramGraphicalViewer diagramGraphicalViewer = editor.getDiagramGraphicalViewer();
 				List<?> editPartsToSelect = NavigatorUtils.getEditPartsFromSelection(event.getSelection(),
 						diagramGraphicalViewer);
+				if (editPartsToSelect.isEmpty()) {
+					// forward the selection to the stereotype application
+					editPartsToSelect = NavigatorUtils.getEditPartsFromSelection(StereotypeApplicationUtils
+							.getStereotypedSelectionFromCommonViewer(event.getSelection()), diagramGraphicalViewer);
+				}
 				StructuredSelection selectedEditParts = new StructuredSelection(editPartsToSelect);
 				diagramGraphicalViewer.setSelection(selectedEditParts);
-				if(!selectedEditParts.isEmpty()) {
-					EditPart editPart = (EditPart)selectedEditParts.getFirstElement();
+				if (!selectedEditParts.isEmpty()) {
+					EditPart editPart = (EditPart) selectedEditParts.getFirstElement();
 					diagramGraphicalViewer.reveal(editPart);
 				}
 			}
@@ -536,22 +547,22 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	@Override
 	protected void handleDoubleClick(DoubleClickEvent anEvent) {
-		if(log.isDebugEnabled()) {
+		if (log.isDebugEnabled()) {
 			log.debug("Model Navigator got a double click");
 		}
 		IAction openHandler = getViewSite().getActionBars().getGlobalActionHandler(ICommonActionConstants.OPEN);
-		if(openHandler != null) {
+		if (openHandler != null) {
 			openHandler.run();
 		} else {
-			IStructuredSelection selection = (IStructuredSelection)anEvent.getSelection();
+			IStructuredSelection selection = (IStructuredSelection) anEvent.getSelection();
 			Object element = selection.getFirstElement();
-			if(element instanceof Diagram) {
+			if (element instanceof Diagram) {
 				// fjcano #287943 :: handle a double click on a papyrus Diagram
-				handleDoubleClickOnDiagram((Diagram)element);
-			} else if(element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
+				handleDoubleClickOnDiagram((Diagram) element);
+			} else if (element instanceof org.eclipse.gmf.runtime.notation.Diagram) {
 				// fjcano #287943 :: handle a double click on a gmf Diagram
-				handleDoubleClickOnDiagram((org.eclipse.gmf.runtime.notation.Diagram)element);
-			} else if(element instanceof EObject) {
+				handleDoubleClickOnDiagram((org.eclipse.gmf.runtime.notation.Diagram) element);
+			} else if (element instanceof EObject) {
 				// Open SWT EEF Properties UI
 				NavigatorUtils.openPropertySheetsView();
 			} else {
@@ -567,10 +578,10 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	 */
 	private void handleDoubleClickOnDiagram(Diagram diagram) {
 		// fjcano #287943 :: handle double click on a gmf diagram
-		if(log.isDebugEnabled()) {
+		if (log.isDebugEnabled()) {
 			log.debug("#ModelNavigator-> handleDoubleClickOnDiagram : " + diagram);
 		}
-		if(!EditorUtils.getIPageMngr().isOpen(diagram)) {
+		if (!EditorUtils.getIPageMngr().isOpen(diagram)) {
 			// open the diagram if not already open
 			EditorUtils.getIPageMngr().openPage(diagram);
 		}
