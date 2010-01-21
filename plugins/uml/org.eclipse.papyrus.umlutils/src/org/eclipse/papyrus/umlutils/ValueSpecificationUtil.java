@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.umlutils;
 
+import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralNull;
@@ -60,6 +61,9 @@ public class ValueSpecificationUtil {
 			break;
 		case UMLPackage.OPAQUE_EXPRESSION:
 			value = OpaqueExpressionUtil.getBodyForLanguage((OpaqueExpression)specification, "UML"); //$NON-NLS-1$
+			break;
+		case UMLPackage.INSTANCE_VALUE:
+			value = ((InstanceValue)specification).getInstance().getName();
 			break;
 		case UMLPackage.EXPRESSION:
 			// TODO
