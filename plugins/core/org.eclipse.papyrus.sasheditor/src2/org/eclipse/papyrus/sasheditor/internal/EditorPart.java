@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
@@ -43,7 +46,7 @@ import org.eclipse.ui.part.IWorkbenchPartOrientation;
  * This Part encapsulate an Eclipse Editor implementing {@link IEditorPart}.
  * 
  * @author dumoulin
- * 
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas SZADEL</a> Improve the error text (avoid NPE)
  */
 @SuppressWarnings("restriction")
 public class EditorPart extends PagePart implements IEditorPage {
@@ -154,6 +157,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * 
 	 * @param parent
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 
 		try {
@@ -188,16 +192,17 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 		Composite comp = new Composite(parent, SWT.NONE);
 		comp.setLayout(new FillLayout());
-		// TODO Auto-generated method stub
+		// Show the stack trace
+		StringWriter strOut = new StringWriter();
+		PrintWriter out = new PrintWriter(strOut);
+		e.printStackTrace(out);
+		out.flush();
+		out.close();
+
 		Text diag = new Text(comp, SWT.MULTI);
 		diag.setSize(64, 32);
 
-		diag.setText(e.getMessage());
-
-		for(StackTraceElement ele : e.getStackTrace()) {
-			diag.append("\n");
-			diag.append(ele.toString());
-		}
+		diag.setText(strOut.toString());
 		return comp;
 	}
 
@@ -222,8 +227,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * @return
 	 * @throws PartInitException
 	 */
-	private Composite createEditorPartControl(Composite parentControl, IEditorPart editor)
-			throws PartInitException {
+	private Composite createEditorPartControl(Composite parentControl, IEditorPart editor) throws PartInitException {
 		IEditorSite site = createSite(editor);
 		// call init first so that if an exception is thrown, we have created no
 		// new widgets
@@ -395,17 +399,16 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * @param toFind
 	 * @return
 	 */
+	@Override
 	public PagePart findPartAt(Point toFind, Class<?> expectedTileType) {
 
-		if(expectedTileType == this.getClass())
+		if(expectedTileType == this.getClass()) {
 			return this;
+		}
 
 		// Not found !!
 		// The tile contains the position, but the type is not found.
-		throw new UnsupportedOperationException("Tile match the expected position '"
-				+ toFind
-				+ "' but there is no Tile of requested type '"
-				+ expectedTileType.getClass().getName() + "'");
+		throw new UnsupportedOperationException("Tile match the expected position '" + toFind + "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'");
 	}
 
 	/**
@@ -413,8 +416,9 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * @return
 	 */
 	public PagePart findPart(Object control) {
-		if(getControl() == control)
+		if(getControl() == control) {
 			return this;
+		}
 
 		// Not found
 		return null;
@@ -437,6 +441,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * 
 	 * @return
 	 */
+	@Override
 	public Composite getControl() {
 		return editorControl;
 	}
@@ -459,6 +464,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	/**
 	 * @return
 	 */
+	@Override
 	public GarbageState getGarbageState() {
 		return garbageState;
 	}
@@ -488,6 +494,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * @param compositeParent
 	 *        The composite that should be used as parent.
 	 */
+	@Override
 	public void reparent(TabFolderPart newParent) {
 
 		// Change the tile parent
@@ -511,6 +518,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * Asks this part to take focus within the workbench.
 	 * Set the focus on the active nested part if the part is a container.
 	 */
+	@Override
 	public void setFocus() {
 		editorPart.setFocus();
 	}
@@ -536,6 +544,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * from its parent.
 	 * 
 	 */
+	@Override
 	public void garbage() {
 		dispose();
 	}
@@ -548,6 +557,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * @param visitor
 	 * @return
 	 */
+	@Override
 	public boolean visit(IPartVisitor visitor) {
 		return visitor.accept(this);
 	}
@@ -574,8 +584,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		//				+ ", '" + editorPart.getTitle()
 		//				+ "', " + this);
 		String title = (editorPart != null ? editorPart.getTitle() : "no editorPart");
-		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n"
-				, editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, title, this);
+		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, title, this);
 
 	}
 
