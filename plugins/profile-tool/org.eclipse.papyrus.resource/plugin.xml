@@ -16,5 +16,15 @@
             class="org.eclipse.papyrus.resource.ResourcePackage"
             genModel="model/resource.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonFilter
+            activeByDefault="true"
+            class="org.eclipse.papyrus.resource.filters.HideStereotypeApplicationsViewerFilter"
+            description="Hide Steretype Applications items in the navigator"
+            id="org.eclipse.papyrus.navigator.filters.HideStereotypeApplicationsViewerFilter"
+            name="Stereotype Applications">
+      </commonFilter>
+   </extension>
 
 </plugin>
