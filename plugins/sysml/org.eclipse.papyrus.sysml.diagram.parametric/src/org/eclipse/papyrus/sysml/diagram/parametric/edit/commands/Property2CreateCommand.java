@@ -93,8 +93,9 @@ public class Property2CreateCommand extends EditElementCommand {
 	public boolean canExecute() {
 		ConstraintProperty container = (ConstraintProperty) getElementToEdit();
 		Property baseProperty = container.getBase_Property();
-		if (baseProperty != null
-				&& StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock", baseProperty.getType())) {
+		if (baseProperty != null && baseProperty.getType() != null) {
+				// TODO constraint is too restrictive
+				// && StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock", baseProperty.getType())) {
 			return true;
 		}
 		return false;
