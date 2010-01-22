@@ -19,7 +19,6 @@
       <complexType>
          <sequence>
             <element ref="editorDiagram" minOccurs="0" maxOccurs="unbounded"/>
-            <element ref="editorContext" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="creationCommand" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="actionBarContributor" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
@@ -65,16 +64,8 @@ Such diagram is a Eclipse Editor.
 The factory must implements org.eclipse.papyrus.sasheditor.extension.IEditorFactory
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.IEditorFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory"/>
                </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="contextId" type="string">
-            <annotation>
-               <documentation>
-                  Id of the context required by the diagram editor. If no context is specified, the defaultContext will be provided.
-If specified, the context should be declared as another extension.
-               </documentation>
             </annotation>
          </attribute>
          <attribute name="actionBarContributorId" type="string">
@@ -82,7 +73,7 @@ If specified, the context should be declared as another extension.
                <documentation>
                   ID of the ActionBarContributor requested by the editor.
 The ID must match a declared ActionBarContributor.
-If no ID is set, use the main ActionBarContributor (the one associated to the MultiEditor).
+If no ID is set, the main ActionBarContributor is used (the one associated to the MultiEditor).
                </documentation>
             </annotation>
          </attribute>
@@ -93,33 +84,6 @@ If no ID is set, use the main ActionBarContributor (the one associated to the Mu
                </documentation>
                <appinfo>
                   <meta.attribute kind="resource"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="editorContext">
-      <annotation>
-         <documentation>
-            A context provided to the editor.
-         </documentation>
-      </annotation>
-      <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  Id of the context. Use to associate the context to editors.
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="contextClass" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The class implementing the context.
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.editor.IEditorContext"/>
                </appinfo>
             </annotation>
          </attribute>

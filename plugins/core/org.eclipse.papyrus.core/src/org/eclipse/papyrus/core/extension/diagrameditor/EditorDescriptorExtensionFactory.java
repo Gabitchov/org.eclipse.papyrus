@@ -39,9 +39,6 @@ public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory
 	public final static String FACTORYCLASS_ATTRIBUTE = "factoryClass";
 
 	/** constant for the attribute contextId **/
-	public final static String CONTEXTID_ATTRIBUTE = "contextId";
-
-	/** constant for the attribute contextId **/
 	public final static String ACTIONBARCONTRIBUTORID_ATTRIBUTE = "actionBarContributorId";
 
 	/** constant for the attribute icon **/
