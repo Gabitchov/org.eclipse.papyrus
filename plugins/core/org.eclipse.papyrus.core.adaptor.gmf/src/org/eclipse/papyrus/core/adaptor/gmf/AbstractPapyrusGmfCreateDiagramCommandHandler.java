@@ -173,12 +173,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected EObject getRootElement(Resource modelResource) {
 		EObject rootElement = null;
-		if(modelResource != null && modelResource.getContents() != null) {
-			if(modelResource.getContents().size() > 0) {
+		if(modelResource != null && modelResource.getContents() != null&& modelResource.getContents().size() > 0) {
 				Object root = modelResource.getContents().get(0);
 				if(root instanceof EObject) {
 					rootElement = (EObject)root;
-				}
 			}
 		} else {
 			rootElement = createRootElement();
