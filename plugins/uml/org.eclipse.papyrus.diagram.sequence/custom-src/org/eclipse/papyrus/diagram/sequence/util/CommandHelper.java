@@ -35,6 +35,7 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
@@ -190,9 +191,6 @@ public class CommandHelper {
 		// Set the event of the OccurrenceSpecification
 		os.setEvent(event);
 
-		// Set the name of the OS 
-		ElementInitializers.init_NamedElement(os);
-
 	}
 
 	/**
@@ -285,8 +283,8 @@ public class CommandHelper {
 
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(), labelProvider);
-		dialog.setTitle("Property Selection");
-		dialog.setMessage("Select a property (* = any string, ? = any char):");
+		dialog.setTitle("Property Selection"); //$NON-NLS-1$
+		dialog.setMessage("Select a property (* = any string, ? = any char):"); //$NON-NLS-1$
 
 		if(availableProperties == null || availableProperties.isEmpty()) {
 			return null;
@@ -382,8 +380,6 @@ public class CommandHelper {
 			interactionFragment = interaction;
 		}
 
-
-
 		// Get the covered lifeline
 		es.getCovereds().add(lifeline);
 
@@ -396,10 +392,27 @@ public class CommandHelper {
 		es.setStart(CommandHelper.doCreateExecutionOccurenceSpecification(es, startingExecutionEvent, interactionFragment, lifeline));
 		es.setFinish(CommandHelper.doCreateExecutionOccurenceSpecification(es, finishingExecutionEvent, interactionFragment, lifeline));
 
-		// Init the name 
-		UMLElementTypes.init_NamedElement(es);
-
+		// Init the name of the ES and its EOS
+		initExecutionSpecificationName(es);
+		
 		return es;
+	}
+	
+	
+	private static void initExecutionSpecificationName(ExecutionSpecification es){
+		
+		String body = ""; //$NON-NLS-1$
+		if(es instanceof ActionExecutionSpecification){
+			body = "ActionExecSpec"; //$NON-NLS-1$
+		}else {
+			body = "BehaviorExecSpec"; //$NON-NLS-1$
+		}
+		// Init the name
+		UMLElementTypes.init_NamedElement(es, "", body, ""); //$NON-NLS-1$ //$NON-NLS-2$
+		
+		// Init the name of the related executionOccurrenceSpecification
+		UMLElementTypes.init_NamedElement(es.getStart(), "", es.getName(), "Start"); //$NON-NLS-1$ //$NON-NLS-2$
+		UMLElementTypes.init_NamedElement(es.getFinish(), "", es.getName(), "Finish"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
@@ -531,9 +544,11 @@ public class CommandHelper {
 		// Update the messages end with the message
 		if(sendMessageEnd != null) {
 			sendMessageEnd.setMessage(message);
+			ElementInitializers.init_NamedElement(sendMessageEnd, "", message.getName(), "Send"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		if(receiveMessageEnd != null) {
 			receiveMessageEnd.setMessage(message);
+			ElementInitializers.init_NamedElement(receiveMessageEnd, "", message.getName(), "Recv"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		// Update the message with the messages end
