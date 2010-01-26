@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -105,6 +106,7 @@ public class InitialNodeCreateCommand extends EditElementCommand {
 		owner.getNodes().add(newElement);
 
 
+		UMLElementTypes.init_InitialNode_3004(newElement);
 
 		doConfigure(newElement, monitor, info);
 

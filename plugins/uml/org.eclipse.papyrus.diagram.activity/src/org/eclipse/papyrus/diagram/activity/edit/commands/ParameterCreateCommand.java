@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -105,6 +106,7 @@ public class ParameterCreateCommand extends EditElementCommand {
 		owner.getOwnedParameters().add(newElement);
 
 
+		UMLElementTypes.init_Parameter_3001(newElement);
 
 		doConfigure(newElement, monitor, info);
 

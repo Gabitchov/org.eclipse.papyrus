@@ -14,12 +14,16 @@
 package org.eclipse.papyrus.diagram.activity.helper;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper;
 import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
 import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
  * Specialization of the link mapping helper for the Activity diagram
@@ -56,13 +60,17 @@ public class ActivityLinkMappingHelper implements ILinkMappingHelper {
 	public Collection<?> getSource(Element link) {
 		return LinkMappingHelper.getSource(link, new CommonSourceUMLSwitch() {
 
-			public java.util.Collection<?> caseInclude(org.eclipse.uml2.uml.Include object) {
-				return object.getSources();
-			};
+			public Collection<?> caseActivityEdge(ActivityEdge object) {
+				return Collections.singleton(object.getSource());
+			}
 
-			public java.util.Collection<?> caseExtend(org.eclipse.uml2.uml.Extend object) {
-				return object.getSources();
-			};
+			public Collection<?> caseObjectFlow(ObjectFlow object) {
+				return caseActivityEdge(object);
+			}
+
+			public Collection<?> caseControlFlow(ControlFlow object) {
+				return caseActivityEdge(object);
+			}
 		});
 	}
 
@@ -72,13 +80,17 @@ public class ActivityLinkMappingHelper implements ILinkMappingHelper {
 	public Collection<?> getTarget(Element link) {
 		return LinkMappingHelper.getTarget(link, new CommonTargetUMLSwitch() {
 
-			public java.util.Collection<?> caseInclude(org.eclipse.uml2.uml.Include object) {
-				return object.getTargets();
-			};
+			public Collection<?> caseActivityEdge(ActivityEdge object) {
+				return Collections.singleton(object.getTarget());
+			}
 
-			public java.util.Collection<?> caseExtend(org.eclipse.uml2.uml.Extend object) {
-				return object.getTargets();
-			};
+			public Collection<?> caseObjectFlow(ObjectFlow object) {
+				return caseActivityEdge(object);
+			}
+
+			public Collection<?> caseControlFlow(ControlFlow object) {
+				return caseActivityEdge(object);
+			}
 		});
 	}
 

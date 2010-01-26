@@ -56,11 +56,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ParameterEditPart.VISUAL_ID:
 				return new ParameterEditPart(view);
 
-			case ConstraintEditPart.VISUAL_ID:
-				return new ConstraintEditPart(view);
+			case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
+				return new ConstraintInActivityAsPrecondEditPart(view);
 
-			case Constraint2EditPart.VISUAL_ID:
-				return new Constraint2EditPart(view);
+			case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
+				return new ConstraintInActivityAsPostcondEditPart(view);
 
 			case InitialNodeEditPart.VISUAL_ID:
 				return new InitialNodeEditPart(view);
@@ -70,6 +70,162 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case FlowFinalNodeEditPart.VISUAL_ID:
 				return new FlowFinalNodeEditPart(view);
+
+			case OpaqueActionEditPart.VISUAL_ID:
+				return new OpaqueActionEditPart(view);
+
+			case OpaqueActionNameEditPart.VISUAL_ID:
+				return new OpaqueActionNameEditPart(view);
+
+			case ValuePinInOpaqueActEditPart.VISUAL_ID:
+				return new ValuePinInOpaqueActEditPart(view);
+
+			case ValuePinInOActLabelEditPart.VISUAL_ID:
+				return new ValuePinInOActLabelEditPart(view);
+
+			case ValuePinInOActValueEditPart.VISUAL_ID:
+				return new ValuePinInOActValueEditPart(view);
+
+			case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
+				return new ActionInputPinInOpaqueActEditPart(view);
+
+			case ActionInputPinInOActLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInOActLabelEditPart(view);
+
+			case ActionInputPinInOActValueEditPart.VISUAL_ID:
+				return new ActionInputPinInOActValueEditPart(view);
+
+			case InputPinInOpaqueActEditPart.VISUAL_ID:
+				return new InputPinInOpaqueActEditPart(view);
+
+			case InputPinInOActLabelEditPart.VISUAL_ID:
+				return new InputPinInOActLabelEditPart(view);
+
+			case OutputPinInOpaqueActEditPart.VISUAL_ID:
+				return new OutputPinInOpaqueActEditPart(view);
+
+			case OutputPinInOActLabelEditPart.VISUAL_ID:
+				return new OutputPinInOActLabelEditPart(view);
+
+			case CallBehaviorActionEditPart.VISUAL_ID:
+				return new CallBehaviorActionEditPart(view);
+
+			case CallBehaviorActionNameEditPart.VISUAL_ID:
+				return new CallBehaviorActionNameEditPart(view);
+
+			case ValuePinInCallBeActEditPart.VISUAL_ID:
+				return new ValuePinInCallBeActEditPart(view);
+
+			case ValuePinInCBActLabelEditPart.VISUAL_ID:
+				return new ValuePinInCBActLabelEditPart(view);
+
+			case ValuePinInCBActValueEditPart.VISUAL_ID:
+				return new ValuePinInCBActValueEditPart(view);
+
+			case ActionInputPinInCallBeActEditPart.VISUAL_ID:
+				return new ActionInputPinInCallBeActEditPart(view);
+
+			case ActionInputPinInCBActLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInCBActLabelEditPart(view);
+
+			case ActionInputPinInCBActValueEditPart.VISUAL_ID:
+				return new ActionInputPinInCBActValueEditPart(view);
+
+			case InputPinInCallBeActEditPart.VISUAL_ID:
+				return new InputPinInCallBeActEditPart(view);
+
+			case InputPinInCBActLabelEditPart.VISUAL_ID:
+				return new InputPinInCBActLabelEditPart(view);
+
+			case OutputPinInCallBeActEditPart.VISUAL_ID:
+				return new OutputPinInCallBeActEditPart(view);
+
+			case OutputPinInCBActLabelEditPart.VISUAL_ID:
+				return new OutputPinInCBActLabelEditPart(view);
+
+			case CallOperationActionEditPart.VISUAL_ID:
+				return new CallOperationActionEditPart(view);
+
+			case CallOperationActionNameEditPart.VISUAL_ID:
+				return new CallOperationActionNameEditPart(view);
+
+			case ActionInputPinInCallOpActEditPart.VISUAL_ID:
+				return new ActionInputPinInCallOpActEditPart(view);
+
+			case ActionInputPinInCOActLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInCOActLabelEditPart(view);
+
+			case ActionInputPinInCOActValueEditPart.VISUAL_ID:
+				return new ActionInputPinInCOActValueEditPart(view);
+
+			case ValuePinInCallOpActEditPart.VISUAL_ID:
+				return new ValuePinInCallOpActEditPart(view);
+
+			case ValuePinInCOActLabelEditPart.VISUAL_ID:
+				return new ValuePinInCOActLabelEditPart(view);
+
+			case ValuePinInCOActValueEditPart.VISUAL_ID:
+				return new ValuePinInCOActValueEditPart(view);
+
+			case InputPinInCallOpActEditPart.VISUAL_ID:
+				return new InputPinInCallOpActEditPart(view);
+
+			case InputPinInCOActLabelEditPart.VISUAL_ID:
+				return new InputPinInCOActLabelEditPart(view);
+
+			case OutputPinInCallOpActEditPart.VISUAL_ID:
+				return new OutputPinInCallOpActEditPart(view);
+
+			case OutputPinInCOActLabelEditPart.VISUAL_ID:
+				return new OutputPinInCOActLabelEditPart(view);
+
+			case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
+				return new ValuePinInCallOpActAsTargetEditPart(view);
+
+			case ValuePinInCOActAsTargetLabelEditPart.VISUAL_ID:
+				return new ValuePinInCOActAsTargetLabelEditPart(view);
+
+			case ValuePinInCOActAsTargetValueEditPart.VISUAL_ID:
+				return new ValuePinInCOActAsTargetValueEditPart(view);
+
+			case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+				return new ActionInputPinInCallOpActAsTargetEditPart(view);
+
+			case ActionInputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInCOActAsTargetLabelEditPart(view);
+
+			case ActionInputPinInCOActAsTargetValueEditPart.VISUAL_ID:
+				return new ActionInputPinInCOActAsTargetValueEditPart(view);
+
+			case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+				return new InputPinInCallOpActAsTargetEditPart(view);
+
+			case InputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
+				return new InputPinInCOActAsTargetLabelEditPart(view);
+
+			case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPrecondEditPart(view);
+
+			case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPrecondNameEditPart(view);
+
+			case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPostcondEditPart(view);
+
+			case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPostcondNameEditPart(view);
+
+			case ActivityAsSelectionEditPart.VISUAL_ID:
+				return new ActivityAsSelectionEditPart(view);
+
+			case ActivityAsSelectionNameEditPart.VISUAL_ID:
+				return new ActivityAsSelectionNameEditPart(view);
+
+			case ActivityAsTransformationEditPart.VISUAL_ID:
+				return new ActivityAsTransformationEditPart(view);
+
+			case ActivityAsTransformationNameEditPart.VISUAL_ID:
+				return new ActivityAsTransformationNameEditPart(view);
 
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
@@ -82,6 +238,42 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ActivityActivityContentCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityContentCompartmentEditPart(view);
+
+			case ActionLocalPreconditionEditPart.VISUAL_ID:
+				return new ActionLocalPreconditionEditPart(view);
+
+
+			case ActionLocalPostconditionEditPart.VISUAL_ID:
+				return new ActionLocalPostconditionEditPart(view);
+
+
+			case ObjectFlowSelectionEditPart.VISUAL_ID:
+				return new ObjectFlowSelectionEditPart(view);
+
+
+			case ObjectFlowTransformationEditPart.VISUAL_ID:
+				return new ObjectFlowTransformationEditPart(view);
+
+
+			case ObjectFlowEditPart.VISUAL_ID:
+				return new ObjectFlowEditPart(view);
+
+			case ObjectFlowNameEditPart.VISUAL_ID:
+				return new ObjectFlowNameEditPart(view);
+
+			case ObjectFlowWeightEditPart.VISUAL_ID:
+				return new ObjectFlowWeightEditPart(view);
+
+
+			case ControlFlowEditPart.VISUAL_ID:
+				return new ControlFlowEditPart(view);
+
+			case ControlFlowNameEditPart.VISUAL_ID:
+				return new ControlFlowNameEditPart(view);
+
+			case ControlFlowWeightEditPart.VISUAL_ID:
+				return new ControlFlowWeightEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

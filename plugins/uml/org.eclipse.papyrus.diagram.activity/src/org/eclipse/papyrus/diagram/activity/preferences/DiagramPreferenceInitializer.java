@@ -28,10 +28,16 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		ActivityPreferencePage.initDefaults(store);
+		OpaqueActionPreferencePage.initDefaults(store);
 
 
 		InitialNodePreferencePage.initDefaults(store);
+
+
+		CallBehaviorActionPreferencePage.initDefaults(store);
+
+
+		OutputPinPreferencePage.initDefaults(store);
 
 
 		FlowFinalNodePreferencePage.initDefaults(store);
@@ -43,9 +49,31 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ActivityFinalNodePreferencePage.initDefaults(store);
 
 
+		ActivityPreferencePage.initDefaults(store);
+
+
+		InputPinPreferencePage.initDefaults(store);
+
+
+		ValuePinPreferencePage.initDefaults(store);
+
+
+		CallOperationActionPreferencePage.initDefaults(store);
+
+
+		ActionInputPinPreferencePage.initDefaults(store);
+
+
 		ParameterPreferencePage.initDefaults(store);
 
 
+
+
+		ObjectFlowPreferencePage.initDefaults(store);
+
+
+
+		ControlFlowPreferencePage.initDefaults(store);
 
 
 	}

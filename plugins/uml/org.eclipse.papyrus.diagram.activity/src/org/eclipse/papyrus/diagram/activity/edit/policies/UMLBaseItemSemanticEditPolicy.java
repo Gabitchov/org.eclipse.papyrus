@@ -47,6 +47,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Action;
+import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
  * @generated
@@ -306,6 +312,120 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
+			if(source != null) {
+				if(source.getLocalPreconditions().contains(target)) {
+					return false;
+				}
+				if(source == target) {
+					return false;
+				}
+			}
+
+			return canExistActionLocalPrecondition_4001(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateActionLocalPostcondition_4002(Action source, Constraint target) {
+			if(source != null) {
+				if(source.getLocalPostconditions().contains(target)) {
+					return false;
+				}
+				if(source == target) {
+					return false;
+				}
+			}
+
+			return canExistActionLocalPostcondition_4002(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateObjectFlowSelection_4005(ObjectFlow source, Behavior target) {
+			if(source != null) {
+				if(source.getSelection() != null) {
+					return false;
+				}
+			}
+
+			return canExistObjectFlowSelection_4005(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateObjectFlowTransformation_4006(ObjectFlow source, Behavior target) {
+			if(source != null) {
+				if(source.getTransformation() != null) {
+					return false;
+				}
+			}
+
+			return canExistObjectFlowTransformation_4006(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
+			return canExistObjectFlow_4003(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
+			return canExistControlFlow_4004(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistActionLocalPrecondition_4001(Action source, Constraint target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistActionLocalPostcondition_4002(Action source, Constraint target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistObjectFlowSelection_4005(ObjectFlow source, Behavior target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistObjectFlowTransformation_4006(ObjectFlow source, Behavior target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
+			return true;
+		}
 
 	}
 }

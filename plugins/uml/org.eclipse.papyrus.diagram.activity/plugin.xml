@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.diagram.activity.providers.ActivityDiagramContributionItemProvider">
+      <Priority name="Low"/>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+            <popupAction id="papyrus.restoreRelatedLinksAction" path="/navigateMenu/additions"/>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
@@ -206,9 +215,9 @@
        id="createInitialnode1CreationTool"
        kind="tool"
        label="Initial node"
-       large_icon=""
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif"
        path=""
-       small_icon="">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -216,9 +225,9 @@
        id="createActivityfinal2CreationTool"
        kind="tool"
        label="Activity final"
-       large_icon=""
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif"
        path=""
-       small_icon="">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -226,9 +235,139 @@
        id="createFlowfinal3CreationTool"
        kind="tool"
        label="Flow final"
-       large_icon=""
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif"
        path=""
-       small_icon="">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Opaque Action node"
+       id="createOpaqueAction1CreationTool"
+       kind="tool"
+       label="Opaque Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Call Behavior Action node"
+       id="createCallBehaviorAction2CreationTool"
+       kind="tool"
+       label="Call Behavior Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Call Operation Action node"
+       id="createCallOperationAction3CreationTool"
+       kind="tool"
+       label="Call Operation Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Output Pin"
+       id="createOutputPin1CreationTool"
+       kind="tool"
+       label="Output Pin"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Input Pin"
+       id="createInputPin2CreationTool"
+       kind="tool"
+       label="Input Pin"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Action Input Pin"
+       id="createActionInputPin3CreationTool"
+       kind="tool"
+       label="Action Input Pin"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Value Pin"
+       id="createValuePin4CreationTool"
+       kind="tool"
+       label="Value Pin"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Control Flow"
+       id="createControlFlow1CreationTool"
+       kind="tool"
+       label="Control Flow"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Object Flow"
+       id="createObjectFlow2CreationTool"
+       kind="tool"
+       label="Object Flow"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Constraint as Local Precondition for an Action"
+       id="createLocalPreconditionConstraint1CreationTool"
+       kind="tool"
+       label="Local Precondition Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Constraint as Local Postcondition for an Action"
+       id="createLocalPostconditionConstraint6CreationTool"
+       kind="tool"
+       label="Local Postcondition Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a new Behavior or choose an exisitng one as Selection for an Object Flow"
+       id="createSelectionBehavior1CreationTool"
+       kind="tool"
+       label="Selection Behavior"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a new Behavior or choose an exisitng one as Transformation for an Object Flow"
+       id="createTransformationBehavior2CreationTool"
+       kind="tool"
+       label="Transformation Behavior"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif">
  	</entry>
 
 			</contribution>
@@ -256,9 +395,9 @@
        id="createObjects1Group"
        kind="drawer"
        label="Objects"
-       large_icon=""
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
-       small_icon="">
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
  	</entry>
  	 
  	 	<predefinedEntry
@@ -272,6 +411,145 @@
  	<predefinedEntry
           id="createFlowfinal3CreationTool"
           path="/createObjects1Group">
+    </predefinedEntry>
+
+	<entry
+       description=""
+       id="createActions2Group"
+       kind="drawer"
+       label="Actions"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createOpaqueAction1CreationTool"
+          path="/createActions2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCallBehaviorAction2CreationTool"
+          path="/createActions2Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createCallOperationAction3CreationTool"
+          path="/createActions2Group">
+    </predefinedEntry>
+
+	<entry
+       description=""
+       id="createPins3Group"
+       kind="drawer"
+       label="Pins"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createOutputPin1CreationTool"
+          path="/createPins3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createInputPin2CreationTool"
+          path="/createPins3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createActionInputPin3CreationTool"
+          path="/createPins3Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createValuePin4CreationTool"
+          path="/createPins3Group">
+    </predefinedEntry>
+
+	<entry
+       description=""
+       id="createEdges4Group"
+       kind="drawer"
+       label="Edges"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createControlFlow1CreationTool"
+          path="/createEdges4Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createObjectFlow2CreationTool"
+          path="/createEdges4Group">
+    </predefinedEntry>
+
+	<entry
+       description=""
+       id="createActionsLocalConditions5Group"
+       kind="drawer"
+       label="Actions' Local Conditions"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createLocalPreconditionConstraint1CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionInteractionConstraint2CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionIntervalConstraint3CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionDurationConstraint4CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionTimeConstraint5CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionConstraint6CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionInteractionConstraint7CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionIntervalConstraint8CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionDurationConstraint9CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionTimeConstraint10CreationTool"
+          path="/createActionsLocalConditions5Group">
+    </predefinedEntry>
+
+	<entry
+       description=""
+       id="createObjectFlowsSpecifications6Group"
+       kind="drawer"
+       label="Object Flows' Specifications"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createSelectionBehavior1CreationTool"
+          path="/createObjectFlowsSpecifications6Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createTransformationBehavior2CreationTool"
+          path="/createObjectFlowsSpecifications6Group">
     </predefinedEntry>
 
 
@@ -379,9 +657,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
-            name="Activity" />	
+			class="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
+            name="OpaqueAction" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -389,6 +667,20 @@
 			class="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
             name="InitialNode" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
+            name="CallBehaviorAction" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
+            name="OutputPin" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -414,12 +706,62 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
+            name="Activity" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
+            name="InputPin" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
+            name="ValuePin" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
+            name="CallOperationAction" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
+            name="ActionInputPin" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
             name="Parameter" />	
 	
 
 
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
+            name="ObjectFlow" />	
+	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ControlFlowPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ControlFlowPreferencePage"
+            name="ControlFlow" />	
+	
 
 </extension>
 
@@ -433,8 +775,8 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints=""/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3011,3012,3028,3029"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4005,4006,4003,4004"/>
       </viewProvider>
    </extension>
 
@@ -446,13 +788,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3011,3012,3028,3029"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value=""/>
+            <method name="getType()" value="4001,4002,4005,4006,4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002"/>
+            <method name="getType()" value="5001,5002,5003,5011,5024,5012,5025,5009,5010,5004,5013,5026,5014,5027,5015,5016,5006,5017,5028,5018,5029,5019,5020,5021,5030,5022,5031,5023,5007,5008,5032,5033"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004"/>
@@ -566,6 +908,267 @@
             <param name="semanticHint" value="3006"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.OpaqueAction_3007"
+               name="%metatype.name.OpaqueAction_3007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="OpaqueAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.OpaqueActionEditHelper">
+            <param name="semanticHint" value="3007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.ValuePin_3015"
+               name="%metatype.name.ValuePin_3015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ValuePin"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ValuePinEditHelper">
+            <param name="semanticHint" value="3015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.ActionInputPin_3016"
+               name="%metatype.name.ActionInputPin_3016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ActionInputPin"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ActionInputPinEditHelper">
+            <param name="semanticHint" value="3016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.InputPin_3013"
+               name="%metatype.name.InputPin_3013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InputPin"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.InputPinEditHelper">
+            <param name="semanticHint" value="3013"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.OutputPin_3014"
+               name="%metatype.name.OutputPin_3014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="OutputPin"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.OutputPinEditHelper">
+            <param name="semanticHint" value="3014"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_3008"
+               name="%metatype.name.CallBehaviorAction_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CallBehaviorAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.CallBehaviorActionEditHelper">
+            <param name="semanticHint" value="3008"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ValuePin_3017"
+               name="%metatype.name.ValuePin_3017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ValuePin_3015"/>
+            <param name="semanticHint" value="3017"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ActionInputPin_3018"
+               name="%metatype.name.ActionInputPin_3018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ActionInputPin_3016"/>
+            <param name="semanticHint" value="3018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InputPin_3019"
+               name="%metatype.name.InputPin_3019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InputPin_3013"/>
+            <param name="semanticHint" value="3019"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.OutputPin_3020"
+               name="%metatype.name.OutputPin_3020"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.OutputPin_3014"/>
+            <param name="semanticHint" value="3020"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.CallOperationAction_3010"
+               name="%metatype.name.CallOperationAction_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CallOperationAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.CallOperationActionEditHelper">
+            <param name="semanticHint" value="3010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ActionInputPin_3021"
+               name="%metatype.name.ActionInputPin_3021"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ActionInputPin_3016"/>
+            <param name="semanticHint" value="3021"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ValuePin_3022"
+               name="%metatype.name.ValuePin_3022"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ValuePin_3015"/>
+            <param name="semanticHint" value="3022"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InputPin_3023"
+               name="%metatype.name.InputPin_3023"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InputPin_3013"/>
+            <param name="semanticHint" value="3023"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.OutputPin_3024"
+               name="%metatype.name.OutputPin_3024"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.OutputPin_3014"/>
+            <param name="semanticHint" value="3024"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ValuePin_3025"
+               name="%metatype.name.ValuePin_3025"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ValuePin_3015"/>
+            <param name="semanticHint" value="3025"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ActionInputPin_3026"
+               name="%metatype.name.ActionInputPin_3026"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ActionInputPin_3016"/>
+            <param name="semanticHint" value="3026"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InputPin_3027"
+               name="%metatype.name.InputPin_3027"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InputPin_3013"/>
+            <param name="semanticHint" value="3027"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.Constraint_3011"
+               name="%metatype.name.Constraint_3011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.Constraint_3002"/>
+            <param name="semanticHint" value="3011"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.Constraint_3012"
+               name="%metatype.name.Constraint_3012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.Constraint_3002"/>
+            <param name="semanticHint" value="3012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.Activity_3028"
+               name="%metatype.name.Activity_3028"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.Activity_2001"/>
+            <param name="semanticHint" value="3028"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.Activity_3029"
+               name="%metatype.name.Activity_3029"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.Activity_2001"/>
+            <param name="semanticHint" value="3029"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"
+               name="%metatype.name.ActionLocalPrecondition_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4001"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"
+               name="%metatype.name.ActionLocalPostcondition_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ObjectFlowSelection_4005"
+               name="%metatype.name.ObjectFlowSelection_4005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4005"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ObjectFlowTransformation_4006"
+               name="%metatype.name.ObjectFlowTransformation_4006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4006"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"
+               name="%metatype.name.ObjectFlow_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ObjectFlow"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper">
+            <param name="semanticHint" value="4003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.ControlFlow_4004"
+               name="%metatype.name.ControlFlow_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ControlFlow"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ControlFlowEditHelper">
+            <param name="semanticHint" value="4004"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -586,6 +1189,34 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.InitialNode_3004"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActivityFinalNode_3005"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.FlowFinalNode_3006"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OpaqueAction_3007"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ValuePin_3015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ActionInputPin_3016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3013"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3014"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_3008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ValuePin_3017"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ActionInputPin_3018"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3019"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3020"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.CallOperationAction_3010"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ActionInputPin_3021"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ValuePin_3022"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3023"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3024"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ValuePin_3025"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ActionInputPin_3026"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3027"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.Constraint_3011"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.Constraint_3012"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.Activity_3028"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.Activity_3029"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlowSelection_4005"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlowTransformation_4006"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ControlFlow_4004"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -768,7 +1399,7 @@
       <persistent value="true"/>
    </extension><extension point="org.eclipse.emf.validation.constraintProviders">
       <?gmfgen generated="true"?>
-            <category id="org.eclipse.uml2.uml.util.UMLValidator.validate" mandatory="false" name="validateNoIncomingEdges">
+            <category id="org.eclipse.uml2.uml.util.UMLValidator.validate" mandatory="false" name="validateUMLModel">
          <![CDATA[Validate the UML model]]>
       </category>
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode" mandatory="false" name="validateInitialNode">
@@ -776,6 +1407,30 @@
       </category>
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateFinalNode" mandatory="false" name="validateFinalNode">
          <![CDATA[Validate a final node]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateCallBehaviorAction" mandatory="false" name="validateCallBehaviorAction">
+         <![CDATA[Validate a call behavior action]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateCallOperationAction" mandatory="false" name="validateCallOperationAction">
+         <![CDATA[Validate a call operation action]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateCallAction" mandatory="false" name="validateCallAction">
+         <![CDATA[Validate a call action]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateInvocationAction" mandatory="false" name="validateInvocationAction">
+         <![CDATA[Validate an invocation action]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActivityNode" mandatory="false" name="validateActivityNode">
+         <![CDATA[Validate an activity node]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateRedefinableElement" mandatory="false" name="validateRedefinableElement">
+         <![CDATA[Validate a redefineable element]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateNamedElement" mandatory="false" name="validateNamedElement">
+         <![CDATA[Validate a named element]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateElement" mandatory="false" name="validateElement">
+         <![CDATA[Validate an element]]>
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
@@ -815,6 +1470,22 @@
             <target class="uml.FinalNode"/>
          </constraint>
                   </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateCallBehaviorAction">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateCallOperationAction">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateCallAction">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateInvocationAction">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActivityNode">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateRedefinableElement">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateNamedElement">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateElement">
+                  </constraints>
       </constraintProvider>
    </extension>
 
@@ -827,6 +1498,45 @@
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateNoIncomingEdges"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateControlEdges"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateFinalNode_validateNoOutgoingEdges"/>
+               </binding>
+
+   </extension>
+   
+<extension point="org.eclipse.emf.validation.constraintProviders">
+      <?gmfgen generated="false"?>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/pinAndParameterSynchronization" mandatory="false" name="validatePinAndParameterSynchronization">
+         <![CDATA[Validate that Pin and corresponding Parameter are correctly synchronized]]>
+      </category>
+      <constraintProvider cache="true">
+         <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/pinAndParameterSynchronization">
+                  <constraint id="org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer"
+            lang="Java"
+            name="PinAndParameterSynchronizer"
+            class="org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <description><![CDATA[Action's Pins and invoked object's Parameters are synchronized]]></description>
+            <message><![CDATA[Action's Pins must correspond to the called object's Parameters]]></message>
+            <target class="uml.Pin"/>
+            <target class="uml.Parameter"/>
+            <target class="uml.CallOperationAction"/>
+            <target class="uml.Operation"/>
+            <target class="uml.CallBehaviorAction"/>
+            <target class="uml.Behavior"/>
+            <target class="uml.ValueSpecification"/>
+         </constraint>
+                  </constraints>
+      </constraintProvider>
+   </extension>
+
+<extension point="org.eclipse.emf.validation.constraintBindings">
+      <?gmfgen generated="false"?>
+      <clientContext default="false" id="org.eclipse.papyrus.diagram.activityDefaultCtx">
+         <selector class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$DefaultCtx"/>
+      </clientContext>
+      <binding context="org.eclipse.papyrus.diagram.activityDefaultCtx">
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer"/>
                </binding>
 
    </extension>

@@ -715,20 +715,27 @@ CompartmentEditPart implements ITextAwareEditPart {
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new ActivityParameterFigure();
+		return new CommonLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class ActivityParameterFigure extends WrappingLabel {
+	public class CommonLabelFigure extends WrappingLabel {
+
+
+
 
 		/**
 		 * @generated
 		 */
-		public ActivityParameterFigure() {
+		public CommonLabelFigure() {
 			this.setText("");
 		}
+
+
+
+
 
 	}
 }

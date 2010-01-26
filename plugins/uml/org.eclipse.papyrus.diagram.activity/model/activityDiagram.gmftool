@@ -9,18 +9,388 @@
     <tools
         xsi:type="gmftool:ToolGroup"
         title="Objects">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Initial node"
-          description="Create an Initial node"/>
+          description="Create an Initial node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InitialNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InitialNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Activity final"
-          description="Create an Activity final node"/>
+          description="Create an Activity final node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ActivityFinalNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ActivityFinalNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Flow final"
-          description="Create a Flow final node"/>
+          description="Create a Flow final node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/FlowFinalNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/FlowFinalNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Actions">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Opaque Action"
+          description="Create an Opaque Action node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OpaqueAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OpaqueAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Call Behavior Action"
+          description="Create an Call Behavior Action node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/CallBehaviorAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/CallBehaviorAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Call Operation Action"
+          description="Create a Call Operation Action node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/CallOperationAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/CallOperationAction.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Pins">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Output Pin"
+          description="Create an Output Pin">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OutputPin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OutputPin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Input Pin"
+          description="Create an Input Pin">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InputPin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InputPin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Action Input Pin"
+          description="Create an Action Input Pin">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ActionInputPin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ActionInputPin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Value Pin"
+          description="Create a Value Pin">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ValuePin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ValuePin.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Edges">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Control Flow"
+          description="Create a Control Flow">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ControlFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ControlFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Object Flow"
+          description="Create an Object Flow">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ObjectFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ObjectFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Actions' Local Conditions">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Precondition Constraint"
+          description="Create a Constraint as Local Precondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Precondition Interaction Constraint"
+          description="Create an Interaction Constraint as Local Precondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InteractionConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InteractionConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Precondition Interval Constraint"
+          description="Create an Interval Constraint as Local Precondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/IntervalConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/IntervalConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Precondition Duration Constraint"
+          description="Create a Duration Constraint as Local Precondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/DurationConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/DurationConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Precondition Time Constraint"
+          description="Create a Time Constraint as Local Precondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/TimeConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/TimeConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Postcondition Constraint"
+          description="Create a Constraint as Local Postcondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Postcondition Interaction Constraint"
+          description="Create an Interaction Constraint as Local Postcondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InteractionConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InteractionConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Postcondition Interval Constraint"
+          description="Create an Interval Constraint as Local Postcondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/IntervalConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/IntervalConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Postcondition Duration Constraint"
+          description="Create a Duration Constraint as Local Postcondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/DurationConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/DurationConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Local Postcondition Time Constraint"
+          description="Create a Time Constraint as Local Postcondition for an Action">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/TimeConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/TimeConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Object Flows' Specifications">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <tools
+          xsi:type="gmftool:GenericTool"
+          title="Selection Behavior"
+          description="Create a new Behavior or choose an exisitng one as Selection for an Object Flow"
+          toolClass="org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectFlowActivitySelection">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Behavior.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Behavior.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:GenericTool"
+          title="Transformation Behavior"
+          description="Create a new Behavior or choose an exisitng one as Transformation for an Object Flow"
+          toolClass="org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectFlowActivityTransformation">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Behavior.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Behavior.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

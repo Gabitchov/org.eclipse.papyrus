@@ -15,7 +15,7 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.activity.edit.commands.Constraint2CreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintInActivityAsPostcondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
 /**
@@ -35,7 +35,7 @@ public class ActivityActivityPostConditionsCompartmentItemSemanticEditPolicy ext
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Constraint_3003 == req.getElementType()) {
-			return getGEFWrapper(new Constraint2CreateCommand(req));
+			return getGEFWrapper(new ConstraintInActivityAsPostcondCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
