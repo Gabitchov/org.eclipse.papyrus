@@ -43,6 +43,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -60,8 +61,19 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 
 	@Override
 	public boolean provides(IOperation operation) {
-		// TODO improve the treatment
-		return true;
+		if (operation instanceof CreateDiagramViewOperation) {
+			return provides((CreateDiagramViewOperation) operation);
+		}
+		if (operation instanceof CreateNodeViewOperation) {
+			return provides((CreateNodeViewOperation) operation);
+		}
+		if (operation instanceof CreateEdgeViewOperation) {
+			return provides((CreateEdgeViewOperation) operation);
+		}
+		if (operation instanceof CreateViewForKindOperation) {
+			return provides((CreateViewForKindOperation) operation);
+		}
+		return false;
 	}
 
 	/**
@@ -116,7 +128,17 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 				}
 				if (domainElement != null
 						&& visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-					return false; // visual id for node EClass should match visual id from element
+					return visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement); // visual
+					// id
+					// for
+					// node
+					// EClass
+					// should
+					// match
+					// visual
+					// id
+					// from
+					// element
 					// type
 				}
 			} else {

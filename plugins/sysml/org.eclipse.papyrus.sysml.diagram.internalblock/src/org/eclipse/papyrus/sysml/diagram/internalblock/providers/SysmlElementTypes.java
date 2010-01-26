@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.parts.FlowPortEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.parts.ResourceEditPart;
@@ -192,7 +193,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
@@ -200,7 +201,7 @@ public class SysmlElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Resource_1000);
 			KNOWN_ELEMENT_TYPES.add(FlowPort_2001);
 		}
-		return KNOWN_ELEMENT_TYPES.contains(elementType);
+		return KNOWN_ELEMENT_TYPES.contains(elementType) || UMLElementTypes.isKnownElementType(elementType);
 	}
 
 	/**
