@@ -312,10 +312,7 @@
 		«IF readOnly-»
 		return false;
 		«ELSE-»
-		if(!this.getNotationView().isMutable()){
 			return getParser() != null;
-		}
-		return false;
 		«ENDIF-»
 	}
 «ENDDEFINE»
