@@ -17,12 +17,13 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageNodePlateFigure;
 
 /**
  * this a specific editpart used to overload the method createNodePlate
  */
-public class CModelEditPart extends ModelEditPart {
+public class CModelEditPart extends ModelEditPartTN {
 
 	public CModelEditPart(View view) {
 		super(view);

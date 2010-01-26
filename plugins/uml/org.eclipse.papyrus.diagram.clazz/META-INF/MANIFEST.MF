@@ -48,7 +48,8 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.diagram.clazz.custom.providers,
+Export-Package: org.eclipse.papyrus.diagram.clazz,
+ org.eclipse.papyrus.diagram.clazz.custom.providers,
  org.eclipse.papyrus.diagram.clazz.edit.parts,
  org.eclipse.papyrus.diagram.clazz.edit.policies,
  org.eclipse.papyrus.diagram.clazz.part,

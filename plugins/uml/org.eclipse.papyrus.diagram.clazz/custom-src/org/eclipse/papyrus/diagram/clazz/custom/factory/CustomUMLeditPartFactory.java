@@ -31,6 +31,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UMLEditPartFactory;
@@ -50,7 +51,7 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 				return new CPackageEditPart(view);
 			case PackageEditPartCN.VISUAL_ID:
 				return new CPackageEditPartCN(view);
-			case ModelEditPart.VISUAL_ID:
+			case ModelEditPartTN.VISUAL_ID:
 				return new CModelEditPart(view);
 			case ContainmentCircleEditPart.VISUAL_ID:
 				return new CContainmentCircleEditPart(view);
