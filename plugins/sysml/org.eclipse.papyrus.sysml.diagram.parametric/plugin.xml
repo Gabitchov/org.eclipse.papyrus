@@ -659,6 +659,19 @@
 	
 
 </extension>
+<extension
+      point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+   <DirectEditor
+         contributor="Eclipse.org"
+         editorConfiguration="org.eclipse.papyrus.sysml.diagram.parametric.texteditor.ConstraintPropertyConfiguration"
+         icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif"
+         language="Papyrus SysML"
+         objectToEdit="org.eclipse.papyrus.sysml.constraints.ConstraintProperty">
+      <simpleeditor
+            editorConfiguration="org.eclipse.papyrus.sysml.diagram.parametric.texteditor.ConstraintPropertyConfiguration">
+      </simpleeditor>
+   </DirectEditor>
+</extension>
 
    <!-- optionally, specify keybindings -->
 </plugin>

@@ -639,7 +639,7 @@ public class ConstraintPropertyNameEditPart extends CompartmentEditPart implemen
 	/**
 	 * Initializes the extended editor configuration
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
@@ -649,7 +649,7 @@ public class ConstraintPropertyNameEditPart extends CompartmentEditPart implemen
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 						.eClass().getInstanceClassName());
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.SYSML_LANGUAGE,
 						resolveSemanticElement().eClass().getInstanceClassName());
 			}
 		}

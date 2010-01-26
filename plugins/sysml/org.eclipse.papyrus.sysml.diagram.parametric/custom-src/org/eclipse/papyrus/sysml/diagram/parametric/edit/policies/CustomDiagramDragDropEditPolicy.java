@@ -32,9 +32,12 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.helper.ConnectorLinkMappingHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
+import org.eclipse.papyrus.sysml.diagram.parametric.utils.PropertyLinkedToClassifier;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
@@ -48,7 +51,11 @@ import org.eclipse.uml2.uml.Property;
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	/** The specific drop node. */
-	public int[] secificDropNode = { ConnectorEditPart.VISUAL_ID, ConstraintPropertyEditPart.VISUAL_ID };
+	public int[] secificDropNode = { ConnectorEditPart.VISUAL_ID, ConstraintPropertyEditPart.VISUAL_ID,
+			PropertyEditPart.VISUAL_ID };
+
+	/** The container view where the drop is done */
+	private View containerView;
 
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy with the right link mapping helper.
@@ -71,6 +78,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	@Override
 	public int getNodeVisualID(View containerView, EObject domainElement) {
+		this.containerView = containerView;
 		if (domainElement instanceof Element) {
 			EObject e = getApplication(domainElement);
 			if (e != null) {
@@ -101,6 +109,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch (nodeVISUALID) {
 			case ConstraintPropertyEditPart.VISUAL_ID:
 				return dropConstraintProperty(dropRequest, semanticLink, nodeVISUALID);
+			case PropertyEditPart.VISUAL_ID:
+				return dropProperty(dropRequest, semanticLink, nodeVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticLink, nodeVISUALID, linkVISUALID);
 			}
@@ -161,6 +171,33 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (droppedObject != null) {
 			cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedObject);
 			return new ICommandProxy(cc);
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Specific drop for property. Check if the property is linked to the classifier we want to
+	 * drag&drop on
+	 * 
+	 * @param dropRequest
+	 *            the drop request
+	 * @param semanticElement
+	 *            the semantic element
+	 * @param nodeVISUALID
+	 *            the node visual id
+	 * 
+	 * @return the command
+	 */
+	private Command dropProperty(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
+		EObject eObject = containerView.getElement();
+		if (eObject instanceof Classifier) {
+			PropertyLinkedToClassifier propertyLinkedToClassifier = new PropertyLinkedToClassifier(
+					(Classifier) eObject, (Property) semanticElement);
+			if (propertyLinkedToClassifier.isLinkedToClassifier()) {
+				CompositeCommand cc = new CompositeCommand("Drop");
+				cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement);
+				return new ICommandProxy(cc);
+			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
