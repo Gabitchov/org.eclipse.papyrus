@@ -108,7 +108,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 			Element umlElement = getUMLElement();
 			if(umlElement instanceof Association) {
 				Association association = (Association)getUMLElement();
-				assert(association.getMemberEnds().size() >= 2);
+				assert (association.getMemberEnds().size() >= 2);
 				if(association.getMemberEnds() != null && association.getMemberEnds().size() >= 2) {
 					if(((Property)(association.getMemberEnds().get(0))).getType().equals(((GraphicalEditPart)getSource()).resolveSemanticElement())) {
 						source = ((Property)(association.getMemberEnds().get(0)));
