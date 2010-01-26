@@ -89,6 +89,7 @@ public class ClassCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

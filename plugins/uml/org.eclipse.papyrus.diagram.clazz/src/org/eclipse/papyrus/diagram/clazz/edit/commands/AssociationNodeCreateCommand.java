@@ -88,6 +88,7 @@ public class AssociationNodeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

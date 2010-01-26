@@ -91,6 +91,7 @@ public class Constraint2CreateCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
+
 		return true;
 
 	}

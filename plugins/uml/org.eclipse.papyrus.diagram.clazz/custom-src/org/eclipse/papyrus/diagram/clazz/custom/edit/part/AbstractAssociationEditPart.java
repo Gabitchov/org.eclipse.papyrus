@@ -53,10 +53,10 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 		EObject semanticElement = resolveSemanticElement();
 		if(semanticElement instanceof Association) {
 			Association association = (Association)semanticElement;
-			if(association.getMemberEnds().size() > 2){
+			if(association.getMemberEnds().size() > 2) {
 				EObject sourceEnd = association.getMemberEnds().get(0);
 				EObject targetEnd = association.getMemberEnds().get(1);
-	
+
 				addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd); //$NON-NLS-1$
 				addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd); //$NON-NLS-1$
 			}
@@ -103,10 +103,10 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 
 			Property source = null;
 			Property target = null;
-			
+
 			// Get the association
 			Element umlElement = getUMLElement();
-			if(umlElement instanceof Association){
+			if(umlElement instanceof Association) {
 				Association association = (Association)getUMLElement();
 				if(association.getMemberEnds() != null && association.getMemberEnds().size() >= 2) {
 					if(((Property)(association.getMemberEnds().get(0))).getType().equals(((GraphicalEditPart)getSource()).resolveSemanticElement())) {
@@ -153,7 +153,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 				}
 
 			}
-		
+
 		}
 		super.refreshVisuals();
 	}

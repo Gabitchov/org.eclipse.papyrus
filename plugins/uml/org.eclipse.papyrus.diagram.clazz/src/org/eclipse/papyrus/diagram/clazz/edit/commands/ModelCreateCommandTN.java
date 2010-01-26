@@ -89,6 +89,7 @@ public class ModelCreateCommandTN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

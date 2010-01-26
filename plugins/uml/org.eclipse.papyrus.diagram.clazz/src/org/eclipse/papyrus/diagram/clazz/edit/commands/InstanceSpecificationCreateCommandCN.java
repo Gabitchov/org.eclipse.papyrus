@@ -89,6 +89,7 @@ public class InstanceSpecificationCreateCommandCN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

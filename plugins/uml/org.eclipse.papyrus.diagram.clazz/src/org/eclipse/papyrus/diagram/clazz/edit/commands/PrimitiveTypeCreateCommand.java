@@ -89,6 +89,7 @@ public class PrimitiveTypeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

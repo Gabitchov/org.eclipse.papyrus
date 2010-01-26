@@ -89,6 +89,7 @@ public class Operation4CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

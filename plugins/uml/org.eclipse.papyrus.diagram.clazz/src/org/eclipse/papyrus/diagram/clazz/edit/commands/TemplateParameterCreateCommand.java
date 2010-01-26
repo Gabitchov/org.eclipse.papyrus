@@ -88,6 +88,7 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

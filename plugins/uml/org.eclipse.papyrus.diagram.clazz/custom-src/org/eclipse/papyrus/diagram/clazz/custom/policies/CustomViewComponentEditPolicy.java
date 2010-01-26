@@ -105,13 +105,13 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 			if(classhost.getOwner() instanceof ClassImpl) {
 				while(addedlinkIterator.hasNext()) {
 					ConnectorImpl currentConnector = addedlinkIterator.next();
-					if(currentConnector != null && currentConnector.getSource() instanceof Shape){
+					if(currentConnector != null && currentConnector.getSource() instanceof Shape) {
 						Shape containmenetshape = (Shape)currentConnector.getSource();
 						if(containmenetshape.getType().equals("3032")) {
 							/* The containment circle node is deleted only if any other link is connected */
 							if(containmenetshape.getSourceEdges().size() == 1) {
 								cc.compose(new DeleteCommand(editingDomain, (View)containmenetshape));
-	
+
 							}
 						}
 					}

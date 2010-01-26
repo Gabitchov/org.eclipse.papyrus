@@ -92,6 +92,7 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 		if(container.getOwnedTemplateSignature() != null) {
 			return false;
 		}
+
 		return true;
 
 	}

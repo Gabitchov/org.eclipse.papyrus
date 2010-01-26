@@ -91,6 +91,7 @@ public class CommentCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
+
 		return true;
 
 	}
