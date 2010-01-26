@@ -40,41 +40,42 @@ public class ValueSpecificationUtil {
 	// @unused
 	public static String getSpecificationValue(ValueSpecification specification) {
 		String value = ""; //$NON-NLS-1$
-
-		switch(specification.eClass().getClassifierID()) {
-		case UMLPackage.LITERAL_STRING:
-			value = ((LiteralString)specification).getValue();
-			break;
-		case UMLPackage.LITERAL_BOOLEAN:
-			value = Boolean.toString(((LiteralBoolean)specification).booleanValue());
-			break;
-		case UMLPackage.LITERAL_INTEGER:
-			value = Integer.toString(((LiteralInteger)specification).getValue());
-			break;
-		case UMLPackage.LITERAL_UNLIMITED_NATURAL:
-			value = Integer.toString(((LiteralUnlimitedNatural)specification).getValue());
-			if("-1".equals(value)) { //$NON-NLS-1$
-				value = UNLIMITED_KEYWORD; //$NON-NLS-1$
+		if (specification.eClass() != null) {
+			switch(specification.eClass().getClassifierID()) {
+			case UMLPackage.LITERAL_STRING:
+				value = ((LiteralString)specification).getValue();
+				break;
+			case UMLPackage.LITERAL_BOOLEAN:
+				value = Boolean.toString(((LiteralBoolean)specification).booleanValue());
+				break;
+			case UMLPackage.LITERAL_INTEGER:
+				value = Integer.toString(((LiteralInteger)specification).getValue());
+				break;
+			case UMLPackage.LITERAL_UNLIMITED_NATURAL:
+				value = Integer.toString(((LiteralUnlimitedNatural)specification).getValue());
+				if("-1".equals(value)) { //$NON-NLS-1$
+					value = UNLIMITED_KEYWORD; //$NON-NLS-1$
+				}
+				break;
+			case UMLPackage.LITERAL_NULL:
+				break;
+			case UMLPackage.OPAQUE_EXPRESSION:
+				value = OpaqueExpressionUtil.getBodyForLanguage((OpaqueExpression)specification, "UML"); //$NON-NLS-1$
+				break;
+			case UMLPackage.INSTANCE_VALUE:
+				value = ((InstanceValue)specification).getInstance().getName();
+				break;
+			case UMLPackage.EXPRESSION:
+				// TODO
+				break;
+			case UMLPackage.TIME_EXPRESSION:
+				// TODO
+				break;
+			default:
+			{
+				break;
 			}
-			break;
-		case UMLPackage.LITERAL_NULL:
-			break;
-		case UMLPackage.OPAQUE_EXPRESSION:
-			value = OpaqueExpressionUtil.getBodyForLanguage((OpaqueExpression)specification, "UML"); //$NON-NLS-1$
-			break;
-		case UMLPackage.INSTANCE_VALUE:
-			value = ((InstanceValue)specification).getInstance().getName();
-			break;
-		case UMLPackage.EXPRESSION:
-			// TODO
-			break;
-		case UMLPackage.TIME_EXPRESSION:
-			// TODO
-			break;
-		default:
-		{
-			break;
-		}
+			}
 		}
 		return value;
 	}
