@@ -23,9 +23,9 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -33,11 +33,12 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
-import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -47,6 +48,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.draw2d.anchors.FixedAnchor;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.ActionExecutionSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -85,6 +87,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActionExecutionSpecificationItemSemanticEditPolicy());
@@ -99,6 +102,7 @@ ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -107,10 +111,12 @@ ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -149,6 +155,7 @@ ShapeNodeEditPart {
 			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
 				return false;
 			}
+
 		};
 		return result;
 	}
@@ -156,6 +163,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if(result instanceof ResizableEditPolicy) {
@@ -173,6 +181,7 @@ ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -197,6 +206,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -207,6 +217,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -216,6 +227,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -225,6 +237,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
@@ -945,6 +958,7 @@ ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}
@@ -975,7 +989,7 @@ ShapeNodeEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("ActionExecutionSpecification", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("ActionExecutionSpecification", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
@@ -993,22 +1007,98 @@ ShapeNodeEditPart {
 	}
 
 	/**
-	 * Add connection on top off the figure
+	 * Add connection on top off the figure during the feedback.
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		if(request instanceof CreateConnectionRequest) {
-			CreateConnectionRequest createRequest = (CreateConnectionRequest)request;
-			if(!createRequest.getSourceEditPart().equals(createRequest.getTargetEditPart())) {
-				Point location = createRequest.getLocation();
-				location.y = getFigure().getBounds().y;
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for(Object obj : relationshipTypes) {
+				if(UMLElementTypes.Message_4003.equals(obj)) {
+					// Sync Message
+					return new FixedAnchor(getFigure(), FixedAnchor.TOP);
+				}
+			}
+		} else if(request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if(connectionEditPart instanceof MessageEditPart) {
+				// Sync Message
+				return new FixedAnchor(getFigure(), FixedAnchor.TOP);
 			}
 		}
+
 		return super.getTargetConnectionAnchor(request);
 	}
 
 	/**
-	 * Override for add elements on ExecutionSpecification
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
+	 * 
+	 * @param connEditPart
+	 *        The connection edit part.
+	 * @return The anchor.
+	 */
+
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		if(connEditPart instanceof MessageEditPart) {
+			// Sync Message
+			return new FixedAnchor(getFigure(), FixedAnchor.TOP);
+		}
+		return super.getTargetConnectionAnchor(connEditPart);
+	}
+
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
+	 * 
+	 * @param request
+	 *        The request
+	 * @return The anchor
+	 */
+
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for(Object obj : relationshipTypes) {
+				if(UMLElementTypes.Message_4005.equals(obj)) {
+					// Reply Message
+					return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
+				}
+			}
+		} else if(request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if(connectionEditPart instanceof Message3EditPart) {
+				// Reply Message
+				return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
+			}
+		}
+		return super.getSourceConnectionAnchor(request);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
+	 * 
+	 * @param connEditPart
+	 *        The connection edit part.
+	 * @return The anchor.
+	 */
+
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
+		if(connEditPart instanceof Message3EditPart) {
+			// Reply Message
+			return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
+		}
+		return super.getSourceConnectionAnchor(connEditPart);
+	}
+
+	/**
+	 * Override for adding elements on ExecutionSpecification
 	 */
 	@Override
 	public Command getCommand(Request request) {
