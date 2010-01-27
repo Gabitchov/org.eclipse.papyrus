@@ -286,7 +286,7 @@ public class AppliedStereotyperGeneralizationEditPart extends LabelEditPart impl
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**

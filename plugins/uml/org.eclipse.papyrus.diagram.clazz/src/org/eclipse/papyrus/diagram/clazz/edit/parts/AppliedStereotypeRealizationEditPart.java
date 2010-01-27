@@ -286,7 +286,7 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**

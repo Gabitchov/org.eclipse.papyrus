@@ -3485,7 +3485,8 @@
         <labels
             visualID="6007"
             editPartClassName="AppliedStereotyperGeneralizationEditPart"
-            itemSemanticEditPolicyClassName="GeneralizationIsSubstitutableItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="GeneralizationIsSubstitutableItemSemanticEditPolicy"
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -3552,7 +3553,8 @@
         <labels
             visualID="6008"
             editPartClassName="AppliedStereotypeInterfaceRealizationEditPart"
-            itemSemanticEditPolicyClassName="InterfaceRealizationNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceRealizationNameItemSemanticEditPolicy"
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -3645,7 +3647,8 @@
         <labels
             visualID="6010"
             editPartClassName="AppliedStereotypeSubstitutionEditPart"
-            itemSemanticEditPolicyClassName="SubstitutionNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="SubstitutionNameItemSemanticEditPolicy"
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -3738,7 +3741,8 @@
         <labels
             visualID="6012"
             editPartClassName="AppliedStereotypeRealizationEditPart"
-            itemSemanticEditPolicyClassName="RealizationNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="RealizationNameItemSemanticEditPolicy"
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -4533,7 +4537,8 @@
         <labels
             visualID="5067"
             editPartClassName="ConstraintLabelEditPart"
-            itemSemanticEditPolicyClassName="ConstraintLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ConstraintLabelItemSemanticEditPolicy"
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
