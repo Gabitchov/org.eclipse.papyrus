@@ -50,6 +50,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
@@ -1473,8 +1474,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			for(Object obj : relationshipTypes) {
 				if(UMLElementTypes.Message_4006.equals(obj)) {
 					// Create Message
-					LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-					return fixedAnchor;
+					return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 				} else if(UMLElementTypes.Message_4007.equals(obj)) {
 					// Delete Message
 					AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
@@ -1487,8 +1487,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
 			if(connectionEditPart instanceof Message4EditPart) {
 				// Create
-				LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-				return fixedAnchor;
+				return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 			} else if(connectionEditPart instanceof Message5EditPart) {
 				// Delete
 				AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
