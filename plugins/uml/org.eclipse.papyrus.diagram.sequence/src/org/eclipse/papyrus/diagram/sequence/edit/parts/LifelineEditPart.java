@@ -50,9 +50,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -152,6 +150,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -177,6 +176,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -185,10 +185,12 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -237,6 +239,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if(addFixedChild(childEditPart)) {
 			return;
@@ -247,6 +250,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if(removeFixedChild(childEditPart)) {
 			return;
@@ -259,6 +263,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		// Execution specification handling
@@ -297,6 +302,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -333,6 +339,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -343,6 +350,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -352,6 +360,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -361,6 +370,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
@@ -370,6 +380,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
 	}
@@ -1172,6 +1183,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}
@@ -1230,7 +1242,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
@@ -1396,6 +1408,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setBackgroundColor(org.eclipse.swt.graphics.Color)
 	 */
+	@Override
 	protected void setBackgroundColor(Color c) {
 		NodeFigure fig = (NodeFigure)getFigure();
 		fig.setBackgroundColor(c);
@@ -1408,6 +1421,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData)
 	 */
+	@Override
 	protected void setGradient(GradientData gradient) {
 		NodeFigure fig = (NodeFigure)getFigure();
 		if(gradient != null) {
@@ -1423,6 +1437,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setTransparency(int)
 	 */
+	@Override
 	protected void setTransparency(int transp) {
 		NodeFigure fig = (NodeFigure)getFigure();
 		fig.setTransparency(transp);
@@ -1433,12 +1448,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		IFigure owner;
 		if(connEditPart instanceof Message4EditPart) {
 			// Create message
-			LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-			return fixedAnchor;
-
+			return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 		} else if(connEditPart instanceof Message5EditPart) {
 			// Delete message
 			AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(connEditPart);
@@ -1455,15 +1467,16 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		IFigure owner = null;
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for(Object obj : relationshipTypes) {
 				if(UMLElementTypes.Message_4006.equals(obj)) {
+					// Create Message
 					LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 					return fixedAnchor;
 				} else if(UMLElementTypes.Message_4007.equals(obj)) {
+					// Delete Message
 					AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
 					anchor.setOwner(getCrossFigure());
 					return anchor;
@@ -1473,23 +1486,20 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
 			if(connectionEditPart instanceof Message4EditPart) {
+				// Create
 				LifelineAnchor fixedAnchor = new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 				return fixedAnchor;
 			} else if(connectionEditPart instanceof Message5EditPart) {
+				// Delete
 				AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
 				anchor.setOwner(getCrossFigure());
 				return anchor;
-			}
-		} else if(request instanceof CreateConnectionViewAndElementRequest) {
-			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest)request;
-			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewAndElementDescriptor();
-			if(connectionViewDescriptor != null) {
-
 			}
 		}
 
 		return super.getTargetConnectionAnchor(request);
 	}
+
 
 	/**
 	 * Create the dashLine figure
@@ -1617,7 +1627,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 *        True if the lifeline is in inline mode
 	 */
 	private void configure(boolean inlineMode) {
-		((LifelineDotLineCustomFigure)getPrimaryShape().getFigureLifelineDotLineFigure()).configure(inlineMode, getInnerConnectableElementList().size());
+		(getPrimaryShape().getFigureLifelineDotLineFigure()).configure(inlineMode, getInnerConnectableElementList().size());
 		if(this.inlineMode != inlineMode) {
 			this.inlineMode = inlineMode;
 			if(inlineMode) {
@@ -1674,7 +1684,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(lifeline != null) {
 			ConnectableElement represents = lifeline.getRepresents();
 			if(represents != null) {
-				Type type = (Type)represents.getType();
+				Type type = represents.getType();
 				if(type instanceof StructuredClassifier) {
 					StructuredClassifier structuredClassifier = (StructuredClassifier)type;
 
