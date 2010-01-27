@@ -25,13 +25,11 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -257,11 +255,16 @@ public class CommandHelper {
 		}
 
 		result.remove(null);
+
+		// If there is no type, do not show the dialog
+		if(result.size() == 1) {
+			return Collections.emptyList();
+		}
+		
 		dialog.setElements(result.toArray());
 
 		List<NamedElement> elements = null;
-		int dialogResult = dialog.open();
-		if(dialogResult == Dialog.OK) {
+		if(dialog.open() == Window.OK) {
 			elements = new ArrayList<NamedElement>();
 			if(!"".equals(dialog.getFirstResult())) {
 				elements.add((NamedElement)dialog.getFirstResult());
@@ -294,7 +297,7 @@ public class CommandHelper {
 
 		Property element = null;
 		int dialogResult = dialog.open();
-		if(dialogResult == Dialog.OK) {
+		if(dialogResult == Window.OK) {
 			if(!"".equals(dialog.getFirstResult())) {
 				element = (Property)dialog.getFirstResult();
 			}
@@ -394,25 +397,25 @@ public class CommandHelper {
 
 		// Init the name of the ES and its EOS
 		initExecutionSpecificationName(es);
-		
+
 		return es;
 	}
-	
-	
-	private static void initExecutionSpecificationName(ExecutionSpecification es){
-		
+
+
+	private static void initExecutionSpecificationName(ExecutionSpecification es) {
+
 		String body = ""; //$NON-NLS-1$
-		if(es instanceof ActionExecutionSpecification){
+		if(es instanceof ActionExecutionSpecification) {
 			body = "ActionExecSpec"; //$NON-NLS-1$
-		}else {
+		} else {
 			body = "BehaviorExecSpec"; //$NON-NLS-1$
 		}
 		// Init the name
-		UMLElementTypes.init_NamedElement(es, "", body, ""); //$NON-NLS-1$ //$NON-NLS-2$
-		
+		ElementInitializers.init_NamedElement(es, "", body, ""); //$NON-NLS-1$ //$NON-NLS-2$
+
 		// Init the name of the related executionOccurrenceSpecification
-		UMLElementTypes.init_NamedElement(es.getStart(), "", es.getName(), "Start"); //$NON-NLS-1$ //$NON-NLS-2$
-		UMLElementTypes.init_NamedElement(es.getFinish(), "", es.getName(), "Finish"); //$NON-NLS-1$ //$NON-NLS-2$
+		ElementInitializers.init_NamedElement(es.getStart(), "", es.getName(), "Start"); //$NON-NLS-1$ //$NON-NLS-2$
+		ElementInitializers.init_NamedElement(es.getFinish(), "", es.getName(), "Finish"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 
