@@ -39,9 +39,10 @@ public class MultilineLabelDirectEditManager extends TextDirectEditManager {
 	 * @param editorType
 	 * @param locator
 	 */
+	@SuppressWarnings("unchecked")
 	public MultilineLabelDirectEditManager(GraphicalEditPart source, Class editorType, CellEditorLocator locator) {
 		super(source, editorType, locator);
-		if(editorType != null && editorType.isAssignableFrom(MultiLineCellEditor.class)) {
+		if(editorType != null && MultiLineCellEditor.class.isAssignableFrom(editorType)) {
 			multiLine = true;
 		}
 
