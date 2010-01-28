@@ -260,7 +260,7 @@ public class CommandHelper {
 		if(result.size() == 1) {
 			return Collections.emptyList();
 		}
-		
+
 		dialog.setElements(result.toArray());
 
 		List<NamedElement> elements = null;
@@ -423,7 +423,8 @@ public class CommandHelper {
 	 * Create a MessageEnd
 	 * 
 	 * @param interaction
-	 *        The Interaction
+	 *        fragment
+	 *        The Interaction fragment
 	 * @param callEvent
 	 *        The call event
 	 * @param element
@@ -433,13 +434,13 @@ public class CommandHelper {
 	 * @return A MessageOccurrenceSpecification if element is ExecutionSpecification or Lifeline. A
 	 *         Gate if element is Interaction or CombinedFragment or InteractionUse
 	 */
-	public static MessageEnd createMessageEnd(Interaction interaction, Event event, Element element, MessageDirection direction) {
+	public static MessageEnd createMessageEnd(InteractionFragment interactionFragment, Event event, Element element, MessageDirection direction) {
 		MessageEnd endMsg = null;
 		if(element instanceof Lifeline) {
-			endMsg = doCreateMessageOccurrence(interaction, event, (Lifeline)element);
+			endMsg = doCreateMessageOccurrence(interactionFragment, event, (Lifeline)element);
 		} else if(element instanceof ExecutionSpecification) {
 			Lifeline lifeline = getExecutionSpecificationLifeline((ExecutionSpecification)element);
-			endMsg = doCreateMessageOccurrence(interaction, event, lifeline);
+			endMsg = doCreateMessageOccurrence(interactionFragment, event, lifeline);
 		} else if(element instanceof Interaction || element instanceof CombinedFragment || element instanceof InteractionUse) {
 			endMsg = doCreateGate(element, direction);
 		}
@@ -513,7 +514,7 @@ public class CommandHelper {
 	 *        the target of the message, it can be null
 	 * @return the created message
 	 */
-	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target) {
+	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target, InteractionFragment sourceContainer, InteractionFragment targetContainer) {
 
 		List<NamedElement> signatures = getSignature(container.getModel(), messageSort);
 
@@ -538,10 +539,10 @@ public class CommandHelper {
 
 		// Create the two message ends
 		if(source != null) {
-			sendMessageEnd = createMessageEnd(container, EventHelper.doCreateSendEvent(messageSort, container, signature), source, MessageDirection.OUT);
+			sendMessageEnd = createMessageEnd(sourceContainer, EventHelper.doCreateSendEvent(messageSort, container, signature), source, MessageDirection.OUT);
 		}
 		if(target != null) {
-			receiveMessageEnd = createMessageEnd(container, EventHelper.doCreateReceiveEvent(messageSort, container, signature), target, MessageDirection.IN);
+			receiveMessageEnd = createMessageEnd(targetContainer, EventHelper.doCreateReceiveEvent(messageSort, container, signature), target, MessageDirection.IN);
 		}
 
 		// Update the messages end with the message

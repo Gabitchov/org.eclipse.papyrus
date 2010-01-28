@@ -26,8 +26,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
 
@@ -64,6 +66,7 @@ public class Message4CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if(source == null && target == null) {
 			return false;
@@ -89,12 +92,17 @@ public class Message4CreateCommand extends EditElementCommand {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		Message message = CommandHelper.doCreateMessage(container, MessageSort.CREATE_MESSAGE_LITERAL, getSource(), getTarget());
+		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
+		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
+
+
+		Message message = CommandHelper.doCreateMessage(container, MessageSort.CREATE_MESSAGE_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
@@ -123,6 +131,7 @@ public class Message4CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}

@@ -52,6 +52,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -71,6 +72,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCreationEditPo
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineAnchor;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -167,6 +169,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifelineXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -1528,6 +1531,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	@Override
 	public Command getCommand(Request request) {
 		if(request instanceof CreateConnectionRequest) {
+
 			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest)request;
 			EditPart target = createConnectionRequest.getTargetEditPart();
 			if(target instanceof LifelineEditPart) {
@@ -1550,6 +1554,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			} else {
 				return target.getCommand(request);
 			}
+
 		}
 		return super.getCommand(request);
 	}

@@ -13,14 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -35,10 +30,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RefreshConnectionsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.util.InteractionConstants;
-import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.InteractionOperand;
 
 /**
  * A specific creation edit policy for the Lifeline.
@@ -74,9 +68,9 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 			createElementRequest.setContainer(hostElement);
 		}
 
-		InteractionFragment ift = findInteractionFragmentAt(request.getLocation());
+		InteractionFragment ift = SequenceUtil.findInteractionFragmentAt(request.getLocation(), getHost());
 
-		request.getExtendedData().put(InteractionConstants.INTERACTIONFRAGMENT_CONTAINER, ift);
+		request.getExtendedData().put(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
 		// get the create element command based on the elementdescriptor's
 		// request
 		Command createElementCommand = getHost().getCommand(new EditCommandRequestWrapper((CreateElementRequest)requestAdapter.getAdapter(CreateElementRequest.class), request.getExtendedData()));
@@ -103,32 +97,6 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		}
 
 		return new ICommandProxy(cc);
-	}
-
-	/**
-	 * Find the container interaction fragment at the given location.
-	 * The elements are drawn under the lifeline, but their model container is an interaction fragment.
-	 * It can be of type Interaction or InteractionOperand
-	 * 
-	 * @param location
-	 *        the location
-	 * @return the interaction fragment or null
-	 */
-	private InteractionFragment findInteractionFragmentAt(Point location) {
-
-		List<IFigure> exclusionSet = new ArrayList<IFigure>();
-		exclusionSet.add(((GraphicalEditPart)getHost()).getFigure());
-
-		InteractionFragment interactionFragment = null;
-		// Get the rootEditpart Contents
-		EditPart ep = getHost().getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		if(ep != null && ep.getModel() instanceof View) {
-			EObject eObject = ViewUtil.resolveSemanticElement((View)ep.getModel());
-			if(eObject instanceof InteractionOperand || eObject instanceof Interaction) {
-				interactionFragment = (InteractionFragment)eObject;
-			}
-		}
-		return interactionFragment;
 	}
 
 }

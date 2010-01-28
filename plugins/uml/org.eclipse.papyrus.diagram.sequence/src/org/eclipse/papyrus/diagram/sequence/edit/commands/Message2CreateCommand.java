@@ -26,8 +26,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
 
 /**
@@ -75,6 +77,7 @@ public class Message2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if(source == null && target == null) {
 			return false;
@@ -92,6 +95,11 @@ public class Message2CreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
+		//		if(getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) != null) {
+		//			if(!getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER).equals(getRequest().getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER))) {
+		//				return false;
+		//			}
+		//		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4004(getContainer(), getSource(), getTarget());
 	}
 
@@ -100,12 +108,15 @@ public class Message2CreateCommand extends EditElementCommand {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException(CREATE_LINK_ERROR_MSG);
 		}
+		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
+		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
 
-		Message message = CommandHelper.doCreateMessage(container, null, getSource(), getTarget());
+		Message message = CommandHelper.doCreateMessage(container, null, getSource(), getTarget(), sourceContainer, targetContainer);
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
@@ -135,6 +146,7 @@ public class Message2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}

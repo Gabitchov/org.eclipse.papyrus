@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
-import org.eclipse.papyrus.diagram.sequence.util.InteractionConstants;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -106,7 +106,7 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		// Get the model container
-		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(InteractionConstants.INTERACTIONFRAGMENT_CONTAINER);
+		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 
 		// Create the action execution specification
 		ActionExecutionSpecification aes = (ActionExecutionSpecification)CommandHelper.doCreateExecutionSpecification(UMLFactory.eINSTANCE.createActionExecutionSpecification(), (Lifeline)getElementToEdit(), modelContainer);
