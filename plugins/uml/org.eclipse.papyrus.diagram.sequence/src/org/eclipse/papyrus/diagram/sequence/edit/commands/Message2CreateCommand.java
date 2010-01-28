@@ -75,7 +75,9 @@ public class Message2CreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Add a condition on the MOS container
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public boolean canExecute() {
@@ -95,11 +97,11 @@ public class Message2CreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		//		if(getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) != null) {
-		//			if(!getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER).equals(getRequest().getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER))) {
-		//				return false;
-		//			}
-		//		}
+		if(getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) != null && getRequest().getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER) != null) {
+			if(!getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER).equals(getRequest().getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER))) {
+				return false;
+			}
+		}
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4004(getContainer(), getSource(), getTarget());
 	}
 
