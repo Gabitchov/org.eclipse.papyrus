@@ -99,7 +99,7 @@
           canonicalEditPolicyClassName="OperationCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="OperationGraphicalNodeEditPolicy"
           createCommandClassName="OperationCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.12">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.12 /0/@diagram/@compartments.34">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -155,7 +155,7 @@
           canonicalEditPolicyClassName="Class2CanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="Class2GraphicalNodeEditPolicy"
           createCommandClassName="Class2CreateCommand"
-          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.13"
+          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.13 /0/@diagram/@compartments.35"
           labelElementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1989,7 +1989,7 @@
           editPartClassName="AssociationClassEditPart"
           itemSemanticEditPolicyClassName="AssociationClassItemSemanticEditPolicy"
           canonicalEditPolicyClassName="AssociationClassCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.0"
+          compartments="/0/@diagram/@compartments.0 /0/@diagram/@compartments.34 /0/@diagram/@compartments.35"
           graphicalNodeEditPolicyClassName="AssociationClassGraphicalNodeEditPolicy"
           createCommandClassName="AssociationClassCreateCommand">
         <diagramRunTimeClass
@@ -5483,6 +5483,58 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7036"
+          editPartClassName="AssociationClassOperationCompartmentEditPart"
+          itemSemanticEditPolicyClassName="AssociationClassOperationCompartmentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="AssociationClassOperationCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.1"
+          title="OperationCompartment"
+          needsTitle="false"
+          node="/0/@diagram/@topLevelNodes.1">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getOperationCompartmentFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7037"
+          editPartClassName="AssociationClassNestedClassifierCompartmentEditPart"
+          itemSemanticEditPolicyClassName="AssociationClassNestedClassifierCompartmentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="AssociationClassNestedClassifierCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.2"
+          title="NestedClassifierCompartment"
+          needsTitle="false"
+          node="/0/@diagram/@topLevelNodes.1">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getNestedClassifierFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.NestedClazzCompartmentCreationEditPolicy"/>
       </compartments>
       <palette>
         <groups

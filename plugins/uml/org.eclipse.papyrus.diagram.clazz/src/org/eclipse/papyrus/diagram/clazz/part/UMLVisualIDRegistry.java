@@ -700,6 +700,20 @@ public class UMLVisualIDRegistry {
 				return SlotEditPart.VISUAL_ID;
 			}
 			break;
+		case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return OperationEditPart.VISUAL_ID;
+			}
+			break;
+		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return Class2EditPart.VISUAL_ID;
+			}
+			break;
 		case ModelEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
 
@@ -810,6 +824,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(AssociationClassAttributeCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AssociationClassOperationCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1395,6 +1415,16 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
+			if(OperationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+			if(Class2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ModelEditPart.VISUAL_ID:
 			if(Dependency2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1894,11 +1924,15 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7024, viewInfo);
 
+		root.addNode(7036, viewInfo);
+
 		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "Class");
 
 		root.addNode(7004, viewInfo);
 
 		root.addNode(7025, viewInfo);
+
+		root.addNode(7037, viewInfo);
 
 		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "RedefinableTemplateSignature");
 

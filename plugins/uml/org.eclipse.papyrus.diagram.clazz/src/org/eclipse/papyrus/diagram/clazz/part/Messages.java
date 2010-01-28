@@ -427,6 +427,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String AssociationClassOperationCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String AssociationClassNestedClassifierCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String Interface5CreationTool_desc;
 
 	/**

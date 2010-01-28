@@ -366,6 +366,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
 				return new InstanceSpecificationSlotCompartmentEditPartCN(view);
 
+			case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
+				return new AssociationClassOperationCompartmentEditPart(view);
+
+			case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+				return new AssociationClassNestedClassifierCompartmentEditPart(view);
+
 			case CommentLinkDescriptorEditPart.VISUAL_ID:
 				return new CommentLinkDescriptorEditPart(view);
 

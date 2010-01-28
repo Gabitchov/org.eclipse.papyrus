@@ -231,6 +231,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5066 = createLabel(node, UMLVisualIDRegistry.getType(AssociationClassName2EditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(AssociationClassOperationCompartmentEditPart.VISUAL_ID), true, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID), true, false, true, true);
 		return node;
 	}
 

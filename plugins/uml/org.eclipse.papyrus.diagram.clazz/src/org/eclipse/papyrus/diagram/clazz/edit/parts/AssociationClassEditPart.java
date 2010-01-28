@@ -112,6 +112,20 @@ ClassifierEditPart {
 			return true;
 		}
 
+		if(childEditPart instanceof AssociationClassOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((AssociationClassOperationCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
+
+		if(childEditPart instanceof AssociationClassNestedClassifierCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((AssociationClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
+
 		return false;
 	}
 
@@ -205,6 +219,12 @@ ClassifierEditPart {
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof AssociationClassAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
+		}
+		if(editPart instanceof AssociationClassOperationCompartmentEditPart) {
+			return getPrimaryShape().getOperationCompartmentFigure();
+		}
+		if(editPart instanceof AssociationClassNestedClassifierCompartmentEditPart) {
+			return getPrimaryShape().getNestedClassifierFigure();
 		}
 		return getContentPane();
 	}
@@ -2762,6 +2782,12 @@ ClassifierEditPart {
 			if(type == UMLElementTypes.Property_3002) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID));
 			}
+			if(type == UMLElementTypes.Operation_3003) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassOperationCompartmentEditPart.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.Class_3004) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID));
+			}
 		}
 		return super.getTargetEditPart(request);
 	}
@@ -2797,6 +2823,18 @@ ClassifierEditPart {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((AssociationClassAttributeCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof AssociationClassOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.remove(((AssociationClassOperationCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof AssociationClassNestedClassifierCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.remove(((AssociationClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;

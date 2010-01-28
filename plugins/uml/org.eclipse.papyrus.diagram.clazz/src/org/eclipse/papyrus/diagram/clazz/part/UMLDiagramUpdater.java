@@ -180,6 +180,10 @@ public class UMLDiagramUpdater {
 			return getDataTypeOperationCompartment_7021SemanticChildren(view);
 		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
 			return getInstanceSpecificationSlotCompartment_7035SemanticChildren(view);
+		case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
+			return getAssociationClassOperationCompartment_7036SemanticChildren(view);
+		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+			return getAssociationClassNestedClassifierCompartment_7037SemanticChildren(view);
 		case ModelEditPart.VISUAL_ID:
 			return getPackage_1000SemanticChildren(view);
 		}
@@ -1481,6 +1485,54 @@ public class UMLDiagramUpdater {
 			Slot childElement = (Slot)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == SlotEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getAssociationClassOperationCompartment_7036SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		AssociationClass modelElement = (AssociationClass)containerView.getElement();
+		List result = new LinkedList();
+		for(Iterator it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
+			Operation childElement = (Operation)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == OperationEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getAssociationClassNestedClassifierCompartment_7037SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		AssociationClass modelElement = (AssociationClass)containerView.getElement();
+		List result = new LinkedList();
+		for(Iterator it = modelElement.getNestedClassifiers().iterator(); it.hasNext();) {
+			Classifier childElement = (Classifier)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == Class2EditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
