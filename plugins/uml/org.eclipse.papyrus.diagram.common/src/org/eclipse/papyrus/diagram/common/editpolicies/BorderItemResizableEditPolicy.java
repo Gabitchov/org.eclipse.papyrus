@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -71,9 +72,9 @@ public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {
 			getHostFigure().translateToRelative(rect);
 			Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
 
-			// Point parentOrigin = borderItemEP.getFigure().getParent().getBounds().getTopLeft();
-			// Dimension d = realLocation.getTopLeft().getDifference(parentOrigin);
-			Point location = realLocation.getTopLeft();
+			Point parentOrigin = borderItemEP.getFigure().getParent().getBounds().getTopLeft();
+			Dimension d = realLocation.getTopLeft().getDifference(parentOrigin);
+			Point location = new Point(d.width, d.height);
 
 			ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View)getHost().getModel()), location);
 			return new ICommandProxy(moveCommand);
