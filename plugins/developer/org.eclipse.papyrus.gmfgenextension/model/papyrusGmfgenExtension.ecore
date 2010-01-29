@@ -47,7 +47,7 @@
       <details key="documentation" value="This class is used to precise itw own locator used for the border item, like port or template.&#xD;&#xA;&#xD;&#xA;for example, in the case of templateSignature of ClassEditPart in the method protected boolean addFixedChild(EditPart childEditPart):&#xD;&#xA;replacement of the general BorderItemLocator is needed in order to constrain the movement. &#xD;&#xA;&#xD;&#xA;if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {&#xD;&#xA;   // BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;&#xA;   BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;&#xA;   getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);&#xD;&#xA;   return true;&#xD;&#xA;}"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genChildSideAffixedNode"
-        eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenChildSideAffixedNode"/>
+        upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenChildSideAffixedNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusExtensionRootNode" eSuperTypes="#//CommentedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionNodes" upperBound="-1"
@@ -94,5 +94,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="genNode" upperBound="-1"
         eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genConstraint" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenConstraint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecificLocatorExternalLabel" eSuperTypes="#//ExternalHook">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This class is used to precise itw own locator used for the border item, like port or template.&#xD;&#xA;&#xD;&#xA;for example, in the case of templateSignature of ClassEditPart in the method protected boolean addFixedChild(EditPart childEditPart):&#xD;&#xA;replacement of the general BorderItemLocator is needed in order to constrain the movement. &#xD;&#xA;&#xD;&#xA;if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {&#xD;&#xA;   // BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;&#xA;   BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);&#xD;&#xA;   getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);&#xD;&#xA;   return true;&#xD;&#xA;}"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genExternalNodeLabel" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenExternalNodeLabel"/>
   </eClassifiers>
 </ecore:EPackage>

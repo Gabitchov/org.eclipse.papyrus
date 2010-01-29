@@ -7,11 +7,11 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode;
+import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Specific Locator</b></em>'.
+ * A representation of the model object '<em><b>Specific Locator External Label</b></em>'.
  * <!-- end-user-doc -->
  * 
  * <!-- begin-model-doc -->
@@ -31,30 +31,30 @@ import org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator#getGenChildSideAffixedNode <em>Gen Child Side Affixed Node</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel#getGenExternalNodeLabel <em>Gen External Node Label</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificLocator()
+ * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificLocatorExternalLabel()
  * @model
  * @generated
  */
-public interface SpecificLocator extends ExternalHook {
+public interface SpecificLocatorExternalLabel extends ExternalHook {
 
 	/**
-	 * Returns the value of the '<em><b>Gen Child Side Affixed Node</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode}.
+	 * Returns the value of the '<em><b>Gen External Node Label</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Gen Child Side Affixed Node</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Gen External Node Label</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Gen Child Side Affixed Node</em>' reference list.
-	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificLocator_GenChildSideAffixedNode()
+	 * @return the value of the '<em>Gen External Node Label</em>' reference list.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificLocatorExternalLabel_GenExternalNodeLabel()
 	 * @model
 	 * @generated
 	 */
-	EList<GenChildSideAffixedNode> getGenChildSideAffixedNode();
+	EList<GenExternalNodeLabel> getGenExternalNodeLabel();
 
-} // SpecificLocator
+} // SpecificLocatorExternalLabel

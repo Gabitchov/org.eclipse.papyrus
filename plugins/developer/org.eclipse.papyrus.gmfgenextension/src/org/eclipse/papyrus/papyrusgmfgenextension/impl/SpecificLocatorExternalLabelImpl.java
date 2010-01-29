@@ -11,35 +11,36 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode;
+import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
-import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Specific Locator</b></em>'.
+ * An implementation of the model object '<em><b>Specific Locator External Label</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl#getGenChildSideAffixedNode <em>Gen Child Side Affixed Node</em>}</li>
+ * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl#getGenExternalNodeLabel <em>Gen External Node Label
+ * </em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLocator {
+public class SpecificLocatorExternalLabelImpl extends ExternalHookImpl implements SpecificLocatorExternalLabel {
 
 	/**
-	 * The cached value of the '{@link #getGenChildSideAffixedNode() <em>Gen Child Side Affixed Node</em>}' reference list.
+	 * The cached value of the '{@link #getGenExternalNodeLabel() <em>Gen External Node Label</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getGenChildSideAffixedNode()
+	 * @see #getGenExternalNodeLabel()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GenChildSideAffixedNode> genChildSideAffixedNode;
+	protected EList<GenExternalNodeLabel> genExternalNodeLabel;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -47,7 +48,7 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	 * 
 	 * @generated
 	 */
-	protected SpecificLocatorImpl() {
+	protected SpecificLocatorExternalLabelImpl() {
 		super();
 	}
 
@@ -59,7 +60,7 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PapyrusgmfgenextensionPackage.Literals.SPECIFIC_LOCATOR;
+		return PapyrusgmfgenextensionPackage.Literals.SPECIFIC_LOCATOR_EXTERNAL_LABEL;
 	}
 
 	/**
@@ -68,11 +69,11 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	 * 
 	 * @generated
 	 */
-	public EList<GenChildSideAffixedNode> getGenChildSideAffixedNode() {
-		if(genChildSideAffixedNode == null) {
-			genChildSideAffixedNode = new EObjectResolvingEList<GenChildSideAffixedNode>(GenChildSideAffixedNode.class, this, PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE);
+	public EList<GenExternalNodeLabel> getGenExternalNodeLabel() {
+		if(genExternalNodeLabel == null) {
+			genExternalNodeLabel = new EObjectResolvingEList<GenExternalNodeLabel>(GenExternalNodeLabel.class, this, PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL);
 		}
-		return genChildSideAffixedNode;
+		return genExternalNodeLabel;
 	}
 
 	/**
@@ -84,8 +85,8 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			return getGenChildSideAffixedNode();
+		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL:
+			return getGenExternalNodeLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -100,9 +101,9 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			getGenChildSideAffixedNode().clear();
-			getGenChildSideAffixedNode().addAll((Collection<? extends GenChildSideAffixedNode>)newValue);
+		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL:
+			getGenExternalNodeLabel().clear();
+			getGenExternalNodeLabel().addAll((Collection<? extends GenExternalNodeLabel>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -117,8 +118,8 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	@Override
 	public void eUnset(int featureID) {
 		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			getGenChildSideAffixedNode().clear();
+		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL:
+			getGenExternalNodeLabel().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -133,10 +134,10 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			return genChildSideAffixedNode != null && !genChildSideAffixedNode.isEmpty();
+		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL:
+			return genExternalNodeLabel != null && !genExternalNodeLabel.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //SpecificLocatorImpl
+} //SpecificLocatorExternalLabelImpl

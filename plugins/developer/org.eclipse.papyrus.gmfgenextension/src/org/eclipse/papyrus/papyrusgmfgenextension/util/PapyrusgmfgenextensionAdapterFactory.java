@@ -24,6 +24,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
 
 /**
  * <!-- begin-user-doc -->
@@ -150,6 +151,11 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseGenNodeConstraint(GenNodeConstraint object) {
 			return createGenNodeConstraintAdapter();
+		}
+
+		@Override
+		public Adapter caseSpecificLocatorExternalLabel(SpecificLocatorExternalLabel object) {
+			return createSpecificLocatorExternalLabelAdapter();
 		}
 
 		@Override
@@ -371,6 +377,22 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenNodeConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel
+	 * <em>Specific Locator External Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel
+	 * @generated
+	 */
+	public Adapter createSpecificLocatorExternalLabelAdapter() {
 		return null;
 	}
 

@@ -322,7 +322,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	int SPECIFIC_LOCATOR__CLASSPATH = EXTERNAL_HOOK__CLASSPATH;
 
 	/**
-	 * The feature id for the '<em><b>Gen Child Side Affixed Node</b></em>' reference.
+	 * The feature id for the '<em><b>Gen Child Side Affixed Node</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
@@ -757,6 +757,59 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl
+	 * <em>Specific Locator External Label</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificLocatorExternalLabel()
+	 * @generated
+	 */
+	int SPECIFIC_LOCATOR_EXTERNAL_LABEL = 13;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_LOCATOR_EXTERNAL_LABEL__COMMENT = EXTERNAL_HOOK__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_LOCATOR_EXTERNAL_LABEL__CLASSPATH = EXTERNAL_HOOK__CLASSPATH;
+
+	/**
+	 * The feature id for the '<em><b>Gen External Node Label</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL = EXTERNAL_HOOK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Specific Locator External Label</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_LOCATOR_EXTERNAL_LABEL_FEATURE_COUNT = EXTERNAL_HOOK_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -938,12 +991,12 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EClass getSpecificLocator();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator#getGenChildSideAffixedNode
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator#getGenChildSideAffixedNode
 	 * <em>Gen Child Side Affixed Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference '<em>Gen Child Side Affixed Node</em>'.
+	 * @return the meta object for the reference list '<em>Gen Child Side Affixed Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator#getGenChildSideAffixedNode()
 	 * @see #getSpecificLocator()
 	 * @generated
@@ -1222,6 +1275,31 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getGenNodeConstraint_GenConstraint();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel
+	 * <em>Specific Locator External Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Specific Locator External Label</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel
+	 * @generated
+	 */
+	EClass getSpecificLocatorExternalLabel();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel#getGenExternalNodeLabel <em>Gen External Node Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Gen External Node Label</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel#getGenExternalNodeLabel()
+	 * @see #getSpecificLocatorExternalLabel()
+	 * @generated
+	 */
+	EReference getSpecificLocatorExternalLabel_GenExternalNodeLabel();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1396,7 +1474,7 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		EClass SPECIFIC_LOCATOR = eINSTANCE.getSpecificLocator();
 
 		/**
-		 * The meta object literal for the '<em><b>Gen Child Side Affixed Node</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Gen Child Side Affixed Node</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * 
@@ -1624,6 +1702,27 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEN_NODE_CONSTRAINT__GEN_CONSTRAINT = eINSTANCE.getGenNodeConstraint_GenConstraint();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl
+		 * <em>Specific Locator External Label</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificLocatorExternalLabel()
+		 * @generated
+		 */
+		EClass SPECIFIC_LOCATOR_EXTERNAL_LABEL = eINSTANCE.getSpecificLocatorExternalLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Gen External Node Label</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL = eINSTANCE.getSpecificLocatorExternalLabel_GenExternalNodeLabel();
 
 	}
 

@@ -18,6 +18,7 @@
 «EXTENSION xpt::diagram::Utils»
 «EXTENSION xpt::EMFUtils»
 «EXTENSION xpt::preferences::PrefsConstant»
+«EXTENSION aspects::impl::diagram::editparts::EditPartsUtils»
 
 «REM»-----«ENDREM»
 «REM» GMF «ENDREM»
@@ -81,8 +82,8 @@ new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolic
 «FOREACH getSideAffixedChildren(self) AS child-»
 	«REM»BEGIN PapyrusGencode«ENDREM»
 	«REM»adding IF else end in order to take in account the case where a specific locator is added«ENDREM»
-	«IF papyrusgmfgenextension::SpecificLocator.allInstances()->select(v:papyrusgmfgenextension::SpecificLocator | v.genChildSideAffixedNode=child)->size()<>0»
-	 «FOREACH papyrusgmfgenextension::SpecificLocator.allInstances()->select(v:papyrusgmfgenextension::SpecificLocator | v.genChildSideAffixedNode=child) AS extendedObject»
+	«IF papyrusgmfgenextension::SpecificLocator.allInstances()->select(v:papyrusgmfgenextension::SpecificLocator | v.genChildSideAffixedNode->includes(child))->size()<>0»
+	 «FOREACH papyrusgmfgenextension::SpecificLocator.allInstances()->select(v:papyrusgmfgenextension::SpecificLocator | v.genChildSideAffixedNode->includes(child)) AS extendedObject»
 	 	«EXPAND genSpecificLocator(child) FOR extendedObject-»
 	 «ENDFOREACH-»
 
@@ -151,7 +152,7 @@ switch («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDia
 «DEFINE genSpecificLocator(gmfgen::GenChildSideAffixedNode child) FOR papyrusgmfgenextension::SpecificLocator-»
 //Papyrus Gencode :«self.comment»
 	if (childEditPart instanceof «child.getEditPartQualifiedClassName()») {
-			org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator locator = new «self.classpath»(getMainFigure(), org.eclipse.draw2d.PositionConstants.«child.preferredSideName»);
+			org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator locator = new «self.classpath»(getMainFigure(), org.eclipse.draw2d.PositionConstants.«child.preferredSideName»);
 			getBorderedFigure().getBorderItemContainer().add(((«child.getEditPartQualifiedClassName()») childEditPart).getFigure(), locator);
 			return true;
 		}
@@ -240,6 +241,28 @@ if(«self.triggeringCondition»){
 «ENDDEFINE»
 «REM»END: PapyrusGenCode«ENDREM»
 
-
+«DEFINE addBorderItem FOR gmfgen::GenNode-»
+	«IF getExternalLabels(self)->size() > 0-»
+		«EXPAND xpt::Common::generatedMemberComment»
+		protected void addBorderItem(org.eclipse.draw2d.IFigure borderItemContainer, org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart borderItemEditPart) {
+		«IF self.getExternalLabelsWithoutSpecificLocator()->size() > 0-»	
+			if («FOREACH self.getExternalLabelsWithoutSpecificLocator() AS label SEPARATOR ' || '»borderItemEditPart instanceof «label.getEditPartQualifiedClassName()»«ENDFOREACH») {
+				org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator locator = new org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator(getMainFigure(), org.eclipse.draw2d.PositionConstants.SOUTH);
+				locator.setBorderItemOffset(new org.eclipse.draw2d.geometry.Dimension(-20, -20));
+				borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+			} else
+		«ENDIF-»
+		«FOREACH self.getExternalLabelsWithSpecificLocator() AS label-»
+			if (borderItemEditPart instanceof «label.getEditPartQualifiedClassName()») {
+				org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator locator = new «label.getSpecificLocator()»(getMainFigure());
+				borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+			} else
+		«ENDFOREACH-»
+			{
+				super.addBorderItem(borderItemContainer, borderItemEditPart);
+			}
+		}
+	«ENDIF-»
+«ENDDEFINE»
 
 

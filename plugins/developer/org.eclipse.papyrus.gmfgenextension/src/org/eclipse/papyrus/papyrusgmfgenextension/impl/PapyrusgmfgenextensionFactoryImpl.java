@@ -26,6 +26,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
 
 /**
  * <!-- begin-user-doc -->
@@ -101,6 +102,8 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			return createSpecificDiagramUpdater();
 		case PapyrusgmfgenextensionPackage.GEN_NODE_CONSTRAINT:
 			return createGenNodeConstraint();
+		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL:
+			return createSpecificLocatorExternalLabel();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -247,6 +250,17 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public GenNodeConstraint createGenNodeConstraint() {
 		GenNodeConstraintImpl genNodeConstraint = new GenNodeConstraintImpl();
 		return genNodeConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public SpecificLocatorExternalLabel createSpecificLocatorExternalLabel() {
+		SpecificLocatorExternalLabelImpl specificLocatorExternalLabel = new SpecificLocatorExternalLabelImpl();
+		return specificLocatorExternalLabel;
 	}
 
 	/**

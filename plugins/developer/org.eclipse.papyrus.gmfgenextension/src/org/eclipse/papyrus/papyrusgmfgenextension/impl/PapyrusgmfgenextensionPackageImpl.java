@@ -29,6 +29,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -129,6 +130,14 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass genNodeConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass specificLocatorExternalLabelEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
@@ -541,6 +550,26 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getSpecificLocatorExternalLabel() {
+		return specificLocatorExternalLabelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSpecificLocatorExternalLabel_GenExternalNodeLabel() {
+		return (EReference)specificLocatorExternalLabelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -619,6 +648,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		genNodeConstraintEClass = createEClass(GEN_NODE_CONSTRAINT);
 		createEReference(genNodeConstraintEClass, GEN_NODE_CONSTRAINT__GEN_NODE);
 		createEReference(genNodeConstraintEClass, GEN_NODE_CONSTRAINT__GEN_CONSTRAINT);
+
+		specificLocatorExternalLabelEClass = createEClass(SPECIFIC_LOCATOR_EXTERNAL_LABEL);
+		createEReference(specificLocatorExternalLabelEClass, SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL);
 	}
 
 	/**
@@ -667,6 +699,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		ownedEditpartEClass.getESuperTypes().add(this.getExternalHook());
 		specificDiagramUpdaterEClass.getESuperTypes().add(this.getExternalHook());
 		genNodeConstraintEClass.getESuperTypes().add(this.getCommentedElement());
+		specificLocatorExternalLabelEClass.getESuperTypes().add(this.getExternalHook());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -688,7 +721,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEAttribute(getExternalHook_Classpath(), ecorePackage.getEString(), "classpath", null, 0, 1, ExternalHook.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(specificLocatorEClass, SpecificLocator.class, "SpecificLocator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpecificLocator_GenChildSideAffixedNode(), theGMFGenPackage.getGenChildSideAffixedNode(), null, "genChildSideAffixedNode", null, 0, 1, SpecificLocator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecificLocator_GenChildSideAffixedNode(), theGMFGenPackage.getGenChildSideAffixedNode(), null, "genChildSideAffixedNode", null, 0, -1, SpecificLocator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(papyrusExtensionRootNodeEClass, PapyrusExtensionRootNode.class, "PapyrusExtensionRootNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPapyrusExtensionRootNode_ExtensionNodes(), this.getCommentedElement(), null, "extensionNodes", null, 0, -1, PapyrusExtensionRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -719,6 +752,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEClass(genNodeConstraintEClass, GenNodeConstraint.class, "GenNodeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGenNodeConstraint_GenNode(), theGMFGenPackage.getGenNode(), null, "genNode", null, 0, -1, GenNodeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenNodeConstraint_GenConstraint(), theGMFGenPackage.getGenConstraint(), null, "genConstraint", null, 0, 1, GenNodeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(specificLocatorExternalLabelEClass, SpecificLocatorExternalLabel.class, "SpecificLocatorExternalLabel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSpecificLocatorExternalLabel_GenExternalNodeLabel(), theGMFGenPackage.getGenExternalNodeLabel(), null, "genExternalNodeLabel", null, 0, -1, SpecificLocatorExternalLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -24,6 +24,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
 
 /**
  * <!-- begin-user-doc -->
@@ -233,6 +234,18 @@ public class PapyrusgmfgenextensionSwitch<T> {
 			T result = caseGenNodeConstraint(genNodeConstraint);
 			if(result == null)
 				result = caseCommentedElement(genNodeConstraint);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL:
+		{
+			SpecificLocatorExternalLabel specificLocatorExternalLabel = (SpecificLocatorExternalLabel)theEObject;
+			T result = caseSpecificLocatorExternalLabel(specificLocatorExternalLabel);
+			if(result == null)
+				result = caseExternalHook(specificLocatorExternalLabel);
+			if(result == null)
+				result = caseCommentedElement(specificLocatorExternalLabel);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -460,6 +473,23 @@ public class PapyrusgmfgenextensionSwitch<T> {
 	 * @generated
 	 */
 	public T caseGenNodeConstraint(GenNodeConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Specific Locator External Label</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Specific Locator External Label</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpecificLocatorExternalLabel(SpecificLocatorExternalLabel object) {
 		return null;
 	}
 
