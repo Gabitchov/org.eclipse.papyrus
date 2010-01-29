@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class InteractionOperandCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
 	/**
 	 * @generated
 	 */

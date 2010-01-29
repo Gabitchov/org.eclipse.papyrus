@@ -76,7 +76,6 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,6 +90,7 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -102,7 +102,6 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		InteractionUse newElement = UMLFactory.eINSTANCE.createInteractionUse();
 
 		EObject elementToEdit = getElementToEdit();
@@ -113,7 +112,6 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 			Interaction owner = (Interaction)elementToEdit;
 			owner.getFragments().add(newElement);
 		}
-
 
 		UMLElementTypes.init_InteractionUse_3002(newElement);
 

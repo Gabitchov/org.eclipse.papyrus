@@ -111,6 +111,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 
 	/**
 	 * Also delete occurrence specification linked with the lifeline
+	 * 
 	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
@@ -220,19 +221,19 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
-		
+
 		// Destroy all the OccurenceSpecification linked with this lifeline
 		EObject eObject = ViewUtil.resolveSemanticElement(view);
-		if(eObject instanceof Lifeline){
+		if(eObject instanceof Lifeline) {
 			Lifeline lifeline = (Lifeline)eObject;
-			for(InteractionFragment ift : lifeline.getCoveredBys()){
-				if(ift instanceof OccurrenceSpecification){
+			for(InteractionFragment ift : lifeline.getCoveredBys()) {
+				if(ift instanceof OccurrenceSpecification) {
 					DestroyElementRequest r = new DestroyElementRequest(ift, false);
 					cmd.add(new DestroyElementCommand(r));
 				}
 			}
 		}
-		
+
 		return getGEFWrapper(cmd.reduce());
 	}
 

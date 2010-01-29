@@ -85,7 +85,6 @@ public class LifelineCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -98,7 +97,8 @@ public class LifelineCreateCommand extends EditElementCommand {
 
 	/**
 	 * Add generated NOT to constrain the creation of a lifeline
-	 * @generated NOT  
+	 * 
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
 		return !(getElementToEdit() instanceof InteractionOperand);

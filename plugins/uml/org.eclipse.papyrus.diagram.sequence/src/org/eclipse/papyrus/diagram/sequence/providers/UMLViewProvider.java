@@ -311,13 +311,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "Interaction");
 
-
 		initFontStyleFromPrefs(node, prefStore, "Interaction");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "Interaction");
 
@@ -339,10 +335,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "Lifeline");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "Lifeline");
 
@@ -362,10 +355,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "BehaviorExecutionSpecification");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "BehaviorExecutionSpecification");
 
@@ -384,10 +374,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ActionExecutionSpecification");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ActionExecutionSpecification");
 
@@ -407,10 +394,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "InteractionUse");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "InteractionUse");
 
@@ -459,10 +443,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "InteractionOperand");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "InteractionOperand");
 
@@ -515,10 +496,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
 
@@ -781,8 +759,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
-
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
@@ -807,8 +783,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
-
 
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if(routing != null) {
@@ -931,10 +905,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY);
 
-
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
-
 
 		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);
 		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());

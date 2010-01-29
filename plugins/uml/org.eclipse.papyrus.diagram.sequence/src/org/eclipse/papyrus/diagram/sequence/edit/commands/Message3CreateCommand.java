@@ -115,10 +115,8 @@ public class Message3CreateCommand extends EditElementCommand {
 			return CommandResult.newOKCommandResult(message);
 		}
 
-
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated

@@ -76,7 +76,6 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,6 +90,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -101,7 +101,6 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 
 		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
 
@@ -122,7 +121,6 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 		newElement.getOperands().add(createInteractionOperand);
 
 		// END GENERATED NOT CODE
-
 
 		doConfigure(newElement, monitor, info);
 

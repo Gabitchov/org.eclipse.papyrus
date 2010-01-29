@@ -147,31 +147,34 @@ public class ElementInitializers {
 	public static void init_NamedElement(NamedElement namedElement, String prefix) {
 		init_NamedElement(namedElement, prefix, namedElement.eClass().getName(), "");
 	}
-	
+
 	/**
 	 * Initialize the name of a namedElement with a given suffix
 	 * 
 	 * @param namedElement
 	 *        the namedElement
-	 * @param prefix the prefix for the name
+	 * @param prefix
+	 *        the prefix for the name
 	 * @param suffix
 	 *        a suffix for the name
 	 */
 	public static void init_NamedElement(NamedElement namedElement, String prefix, String suffix) {
 		init_NamedElement(namedElement, prefix, namedElement.eClass().getName(), suffix);
 	}
-	
+
 	/**
 	 * Initialize the name of a namedElement with a given suffix
 	 * 
 	 * @param namedElement
 	 *        the namedElement
-	 * @param prefix the prefix for the name
-	 * @param body the body used for the name
+	 * @param prefix
+	 *        the prefix for the name
+	 * @param body
+	 *        the body used for the name
 	 * @param suffix
 	 *        a suffix for the name
 	 */
-	public static void init_NamedElement(NamedElement namedElement, String prefix, String body, String suffix){
+	public static void init_NamedElement(NamedElement namedElement, String prefix, String body, String suffix) {
 		try {
 			StringBuffer sb = new StringBuffer();
 			sb.append("let base : String = \'"); //$NON-NLS-1$
@@ -186,5 +189,5 @@ public class ElementInitializers {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
-	
+
 }

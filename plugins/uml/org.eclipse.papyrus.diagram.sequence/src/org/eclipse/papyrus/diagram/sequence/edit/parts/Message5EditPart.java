@@ -167,16 +167,12 @@ implements ITreeBranchEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureMessageDeleteLabelFigure = new WrappingLabel();
 			fFigureMessageDeleteLabelFigure.setText("");
 
 			fFigureMessageDeleteLabelFigure.setFont(FFIGUREMESSAGEDELETELABELFIGURE_FONT);
 
-
-
 			this.add(fFigureMessageDeleteLabelFigure);
-
 
 		}
 

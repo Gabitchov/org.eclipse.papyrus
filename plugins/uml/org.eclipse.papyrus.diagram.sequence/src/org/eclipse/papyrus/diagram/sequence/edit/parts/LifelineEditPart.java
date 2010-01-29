@@ -50,9 +50,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -160,7 +158,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
@@ -180,7 +177,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -189,12 +185,10 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -225,7 +219,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			((LifelineNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -1126,7 +1119,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureLifelineNameContainerFigure = new RectangleFigure();
 			fFigureLifelineNameContainerFigure.setLineWidth(1);
 
@@ -1135,30 +1127,15 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			this.add(fFigureLifelineNameContainerFigure, BorderLayout.TOP);
 			fFigureLifelineNameContainerFigure.setLayoutManager(new StackLayout());
 
-
 			fFigureLifelineLabelFigure = new WrappingLabel();
-
-
-
 
 			fFigureLifelineLabelFigure.setText("<...>");
 
-
-
-
 			fFigureLifelineLabelFigure.setTextWrap(true);
-
-
-
 
 			fFigureLifelineLabelFigure.setAlignment(PositionConstants.CENTER);
 
-
-
 			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
-
-
-
 
 			fFigureExecutionsContainerFigure = new RectangleFigure();
 			fFigureExecutionsContainerFigure.setFill(false);
@@ -1168,14 +1145,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
 			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
 
-
 			fFigureLifelineDotLineFigure = new LifelineDotLineCustomFigure();
 
-
-
 			fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);
-
-
 
 		}
 
@@ -1246,7 +1218,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
@@ -1501,7 +1473,6 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 
 		return super.getTargetConnectionAnchor(request);
 	}
-
 
 	/**
 	 * Create the dashLine figure

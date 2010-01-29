@@ -173,15 +173,14 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InteractionUseNameEditPart) {
-			((InteractionUseNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
-			return true;
-		}
 		if(childEditPart instanceof InteractionUseName2EditPart) {
 			((InteractionUseName2EditPart)childEditPart).setLabel(getPrimaryShape().getCenterLabel());
 			return true;
 		}
-
+		if(childEditPart instanceof InteractionUseNameEditPart) {
+			((InteractionUseNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
+			return true;
+		}
 
 		return false;
 	}
@@ -190,10 +189,10 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InteractionUseNameEditPart) {
+		if(childEditPart instanceof InteractionUseName2EditPart) {
 			return true;
 		}
-		if(childEditPart instanceof InteractionUseName2EditPart) {
+		if(childEditPart instanceof InteractionUseNameEditPart) {
 			return true;
 		}
 		return false;

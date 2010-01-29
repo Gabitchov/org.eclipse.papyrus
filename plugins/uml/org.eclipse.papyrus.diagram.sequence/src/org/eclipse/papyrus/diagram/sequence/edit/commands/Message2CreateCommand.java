@@ -37,8 +37,6 @@ import org.eclipse.uml2.uml.Message;
  */
 public class Message2CreateCommand extends EditElementCommand {
 
-
-
 	/**
 	 * Message for create link error
 	 */
@@ -127,7 +125,6 @@ public class Message2CreateCommand extends EditElementCommand {
 
 		return CommandResult.newErrorCommandResult(NO_CONTAINER_ERROR_MSG);
 	}
-
 
 	/**
 	 * @generated

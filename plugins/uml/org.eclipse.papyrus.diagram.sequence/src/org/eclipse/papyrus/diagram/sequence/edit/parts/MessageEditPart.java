@@ -168,18 +168,14 @@ implements ITreeBranchEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureMessageSyncLabelFigure = new WrappingLabel();
 			fFigureMessageSyncLabelFigure.setText("");
 
 			fFigureMessageSyncLabelFigure.setFont(FFIGUREMESSAGESYNCLABELFIGURE_FONT);
 
-
-
 			fFigureMessageSyncLabelFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 
 			this.add(fFigureMessageSyncLabelFigure);
-
 
 		}
 

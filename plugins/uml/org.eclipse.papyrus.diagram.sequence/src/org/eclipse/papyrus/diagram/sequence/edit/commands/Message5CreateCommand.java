@@ -108,7 +108,6 @@ public class Message5CreateCommand extends EditElementCommand {
 		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
 
-
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.DELETE_MESSAGE_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
 		if(message != null) {
 			doConfigure(message, monitor, info);

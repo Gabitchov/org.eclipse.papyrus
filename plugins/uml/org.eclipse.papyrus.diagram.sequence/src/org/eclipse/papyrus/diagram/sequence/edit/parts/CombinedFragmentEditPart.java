@@ -172,7 +172,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-
 		if(childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -1086,7 +1085,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 				}
 			}
 		} else if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature)) {
-			if(notification.getNotifier() instanceof CombinedFragment){
+			if(notification.getNotifier() instanceof CombinedFragment) {
 				// Synchronize operands' covered lifelines with combined fragment's covered lifelines
 				CombinedFragment combinedFragment = (CombinedFragment)notification.getNotifier();
 				EList<Lifeline> combinedFragmentCoveredLifelines = combinedFragment.getCovereds();
@@ -1099,7 +1098,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 						if(!coveredLifelinesToAdd.isEmpty()) {
 							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
 						}
-	
+
 						// Delete old covered lifelines (not covered anymore)
 						List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(operandCoveredLifelines);
 						coveredLifelinesToRemove.removeAll(combinedFragmentCoveredLifelines);

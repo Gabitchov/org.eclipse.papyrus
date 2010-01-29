@@ -131,7 +131,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			ExecutionSpecification es = (ExecutionSpecification)semanticLink;
 			if(existingViews.isEmpty()) {
 				// Find the lifeline of the ES
-				
+
 				if(es.getStart() != null) {
 					// an Occurrence Specification covereds systematically a unique lifeline
 					Lifeline lifeline = es.getStart().getCovereds().get(0);
@@ -143,28 +143,28 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					}
 				}
 			} else {
-				
+
 				CompositeCommand cc = new CompositeCommand("Moving an ES");
 
 				// Add the view to the new container
 				AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
 				cc.add(addCommand);
-				
+
 
 				Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
-				
+
 				// Update the ES covered lifeline
 				updateCoveredLifeline(es, cc, oldCoveredLifeline);
-				
+
 				// Update the start and finish occurrence specification covered lifeline
 				updateCoveredLifeline(es.getStart(), cc, oldCoveredLifeline);
 				updateCoveredLifeline(es.getFinish(), cc, oldCoveredLifeline);
-				
+
 				//TODO  Set the new location of the view. 
 				// Actually there is some layout problems, so it is disable. 
-//				SetBoundsCommand boundsCommand = new SetBoundsCommand(getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(existingViews.get(0)), dropRequest.getLocation());
-//				cc.add(boundsCommand);
-			
+				//				SetBoundsCommand boundsCommand = new SetBoundsCommand(getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(existingViews.get(0)), dropRequest.getLocation());
+				//				cc.add(boundsCommand);
+
 				return new ICommandProxy(cc);
 			}
 
@@ -174,16 +174,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/**
 	 * Update the covered feature of the interactionFragment : remove the old lifeline and add the new lifeline.
-	 * @param interactionFragment the interaction fragment impacted
-	 * @param cc the composite command to add the new commands
-	 * @param oldCoveredLifeline the old covered lifeline
+	 * 
+	 * @param interactionFragment
+	 *        the interaction fragment impacted
+	 * @param cc
+	 *        the composite command to add the new commands
+	 * @param oldCoveredLifeline
+	 *        the old covered lifeline
 	 */
 	private void updateCoveredLifeline(InteractionFragment interactionFragment, CompositeCommand cc, Lifeline oldCoveredLifeline) {
 		// Remove old covered lifeline 
 		DestroyReferenceRequest destroyReferenceRequest = new DestroyReferenceRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), oldCoveredLifeline, false);
 		DestroyReferenceCommand destroyReferenceCommand = new DestroyReferenceCommand(destroyReferenceRequest);
 		cc.add(destroyReferenceCommand);
-		
+
 		// Add new covered lifeline
 		SetRequest setRequest = new SetRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), ViewUtil.resolveSemanticElement((View)getHost().getModel()));
 		SetValueCommand coveredLifelineCommand = new SetValueCommand(setRequest);

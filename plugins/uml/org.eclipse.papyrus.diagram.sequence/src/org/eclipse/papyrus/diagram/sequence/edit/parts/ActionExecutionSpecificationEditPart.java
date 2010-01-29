@@ -104,7 +104,6 @@ ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -113,12 +112,10 @@ ShapeNodeEditPart {
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -991,7 +988,7 @@ ShapeNodeEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("ActionExecutionSpecification", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("ActionExecutionSpecification", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
@@ -1050,7 +1047,6 @@ ShapeNodeEditPart {
 		}
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
-
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)

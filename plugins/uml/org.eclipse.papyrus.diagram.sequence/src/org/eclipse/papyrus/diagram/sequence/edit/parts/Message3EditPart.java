@@ -168,16 +168,12 @@ implements ITreeBranchEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureMessageReplyLabelFigure = new WrappingLabel();
 			fFigureMessageReplyLabelFigure.setText("");
 
 			fFigureMessageReplyLabelFigure.setFont(FFIGUREMESSAGEREPLYLABELFIGURE_FONT);
 
-
-
 			this.add(fFigureMessageReplyLabelFigure);
-
 
 		}
 

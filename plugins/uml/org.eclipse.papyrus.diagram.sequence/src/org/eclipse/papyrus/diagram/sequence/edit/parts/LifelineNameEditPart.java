@@ -55,8 +55,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -73,7 +75,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * @generated
@@ -154,6 +155,8 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	protected String getLabelTextHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getText();
+		} else if(figure instanceof ILabelFigure) {
+			return ((ILabelFigure)figure).getText();
 		} else {
 			return ((Label)figure).getText();
 		}
@@ -165,6 +168,8 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setText(text);
+		} else if(figure instanceof ILabelFigure) {
+			((ILabelFigure)figure).setText(text);
 		} else {
 			((Label)figure).setText(text);
 		}
@@ -176,6 +181,8 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	protected Image getLabelIconHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getIcon();
+		} else if(figure instanceof ILabelFigure) {
+			return ((ILabelFigure)figure).getIcon();
 		} else {
 			return ((Label)figure).getIcon();
 		}
@@ -187,6 +194,8 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setIcon(icon);
+		} else if(figure instanceof ILabelFigure) {
+			((ILabelFigure)figure).setIcon(icon);
 		} else {
 			((Label)figure).setIcon(icon);
 		}
@@ -339,7 +348,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 */
 	protected DirectEditManager getManager() {
 		if(manager == null) {
-			setManager(new TextDirectEditManager(this, TextDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -362,7 +371,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager().getClass() == TextDirectEditManager.class) {
+		if(getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
@@ -387,7 +396,6 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
-
 
 		Lifeline lifeline = (Lifeline)resolveSemanticElement();
 		if(lifeline.getRepresents() != null || lifeline.getDecomposedAs() != null) {
@@ -610,7 +618,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected boolean checkDefaultEdition() {
-		return (resolveSemanticElement() instanceof NamedElement);
+		return (getParser() != null);
 	}
 
 	/**
@@ -715,7 +723,6 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 				}
 			}
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

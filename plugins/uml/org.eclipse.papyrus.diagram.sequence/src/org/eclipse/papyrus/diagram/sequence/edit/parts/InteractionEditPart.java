@@ -163,7 +163,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof InteractionInteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 

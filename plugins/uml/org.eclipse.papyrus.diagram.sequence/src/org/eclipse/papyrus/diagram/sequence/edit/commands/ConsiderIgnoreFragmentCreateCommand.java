@@ -77,7 +77,6 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -92,6 +91,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -102,7 +102,6 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 
 		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
 

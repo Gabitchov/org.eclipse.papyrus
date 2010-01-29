@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -104,13 +105,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageNameEditPart.VISUAL_ID:
 				return new MessageNameEditPart(view);
 
-
 			case Message2EditPart.VISUAL_ID:
 				return new Message2EditPart(view);
 
 			case MessageName2EditPart.VISUAL_ID:
 				return new MessageName2EditPart(view);
-
 
 			case Message3EditPart.VISUAL_ID:
 				return new Message3EditPart(view);
@@ -118,13 +117,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName3EditPart.VISUAL_ID:
 				return new MessageName3EditPart(view);
 
-
 			case Message4EditPart.VISUAL_ID:
 				return new Message4EditPart(view);
 
 			case MessageName4EditPart.VISUAL_ID:
 				return new MessageName4EditPart(view);
-
 
 			case Message5EditPart.VISUAL_ID:
 				return new Message5EditPart(view);
@@ -132,13 +129,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName5EditPart.VISUAL_ID:
 				return new MessageName5EditPart(view);
 
-
 			case Message6EditPart.VISUAL_ID:
 				return new Message6EditPart(view);
 
 			case MessageName6EditPart.VISUAL_ID:
 				return new MessageName6EditPart(view);
-
 
 			case Message7EditPart.VISUAL_ID:
 				return new Message7EditPart(view);
@@ -146,10 +141,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName7EditPart.VISUAL_ID:
 				return new MessageName7EditPart(view);
 
-
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
-
 
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
@@ -171,10 +164,52 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof WrappingLabel)
+		if(source.getFigure() instanceof HTMLCornerBentFigure)
+			return new CommentCellEditorLocator((HTMLCornerBentFigure)source.getFigure());
+		else if(source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
 		else {
 			return new LabelCellEditorLocator((Label)source.getFigure());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static private class CommentCellEditorLocator implements CellEditorLocator {
+
+		/**
+		 * @generated
+		 */
+		private HTMLCornerBentFigure commentFigure;
+
+		/**
+		 * @generated
+		 */
+		public CommentCellEditorLocator(HTMLCornerBentFigure commentFigure) {
+			this.commentFigure = commentFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public HTMLCornerBentFigure getCommentFigure() {
+			return commentFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public void relocate(CellEditor celleditor) {
+			Text text = (Text)celleditor.getControl();
+			Rectangle rect = getCommentFigure().getBounds().getCopy();
+			getCommentFigure().translateToAbsolute(rect);
+			if(getCommentFigure().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+			}
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
+				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			}
 		}
 	}
 
