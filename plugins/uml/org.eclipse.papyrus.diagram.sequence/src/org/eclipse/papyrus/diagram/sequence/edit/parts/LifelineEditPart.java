@@ -1317,7 +1317,11 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 *        The new bounds of the lifeline
 	 */
 	public void updateCoveredByLifelines(Bounds newBounds) {
-		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
+		Rectangle rect = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
+
+		// Get the valid rectangle bounds representing the lifeline
+		updateRectangleBounds(rect);
+
 		Lifeline lifeline = (Lifeline)resolveSemanticElement();
 		EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
 
@@ -1327,7 +1331,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			if(child instanceof InteractionFragmentEditPart) {
 				InteractionFragmentEditPart interactionFragmentEditPart = (InteractionFragmentEditPart)child;
 				InteractionFragment interactionFragment = (InteractionFragment)interactionFragmentEditPart.resolveSemanticElement();
-				if(newBound.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
+				if(rect.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
 					if(!coveredByLifelines.contains(interactionFragment)) {
 						coveredByLifelinesToAdd.add(interactionFragment);
 					}
@@ -1342,6 +1346,39 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if(!coveredByLifelinesToRemove.isEmpty()) {
 			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToRemove));
+		}
+	}
+
+	/**
+	 * Update the rectangle bounds.
+	 * In case of a creation, the lifeline width and height will be 0. Get the preferred size
+	 * In case of a move, when the lifeline has not be resize, the width or height may be set to -1. Get the according figure bounds.
+	 * 
+	 * @param rect
+	 *        the rectangle to update
+	 */
+	private void updateRectangleBounds(Rectangle rect) {
+
+		// When moving the lifeline
+		if(rect.width == -1) {
+			rect.width = getFigure().getBounds().width;
+		}
+		if(rect.height == -1) {
+			rect.height = getFigure().getBounds().height;
+		}
+		if(rect.x == -1) {
+			rect.x = getFigure().getBounds().x;
+		}
+		if(rect.y == -1) {
+			rect.y = getFigure().getBounds().y;
+		}
+
+		// When creating the lifeline
+		if(rect.width == 0) {
+			rect.width = getFigure().getPreferredSize().width;
+		}
+		if(rect.height == 0) {
+			rect.height = getFigure().getPreferredSize().height;
 		}
 	}
 
