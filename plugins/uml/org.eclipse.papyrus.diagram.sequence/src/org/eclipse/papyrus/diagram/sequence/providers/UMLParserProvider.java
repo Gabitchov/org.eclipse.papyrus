@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -140,16 +141,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser commentBody_5006Parser;
+	private CommentParser commentBody_5006Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getCommentBody_5006Parser() {
 		if(commentBody_5006Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getComment_Body() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			commentBody_5006Parser = parser;
+			commentBody_5006Parser = new CommentParser();
 		}
 		return commentBody_5006Parser;
 	}
