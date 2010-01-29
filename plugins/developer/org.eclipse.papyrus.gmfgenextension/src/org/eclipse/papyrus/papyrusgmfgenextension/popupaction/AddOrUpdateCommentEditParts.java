@@ -87,6 +87,9 @@ public class AddOrUpdateCommentEditParts extends Action {
 		messages.clear();
 		modifiedElements = 0;
 
+		boolean generateTopNode = true;
+		boolean generateChildNode = true;
+
 		// 1. retrieve existing elements: CommentEditParts (one top node, and one child node) and CommentParser
 		// 2. update if existing, or create if necessary
 		// selection should be the gen editor generator (root element)
@@ -111,23 +114,30 @@ public class AddOrUpdateCommentEditParts extends Action {
 
 			// 2. create top node
 			if(topNodeComments.isEmpty()) {
-				createTopNodeComment((GenEditorGenerator)eObject, monitor);
+				generateTopNode = false;
+				// remove the creation, because it causes problems in the update
+				// createTopNodeComment((GenEditorGenerator)eObject, monitor);
 			}
 
 			// 3. create child node
 			if(childNodeComments.isEmpty()) {
-				createChildNodeComment((GenEditorGenerator)eObject, monitor);
+				generateChildNode = false;
+				// createChildNodeComment((GenEditorGenerator)eObject, monitor);
 			}
 
 			// check if updates shall be done or the action should be aborted
-			if(commentParser == null || topNodeComments.isEmpty() || childNodeComments.isEmpty()) {
+			if(commentParser == null || (topNodeComments.isEmpty() && generateTopNode) || (childNodeComments.isEmpty() && generateChildNode)) {
 				return;
 			}
 
 			// do the update
 			updateCommentParser();
-			updateTopLevelNodes();
-			updateChildNodes();
+			if(generateTopNode) {
+				updateTopLevelNodes();
+			}
+			if(generateChildNode) {
+				updateChildNodes();
+			}
 
 
 			try {
@@ -351,12 +361,12 @@ public class AddOrUpdateCommentEditParts extends Action {
 			}
 		}
 
-		if(createOpenDiagramBehaviour) {
-			OpenDiagramBehaviour diagramBehaviour = GMFGenFactory.eINSTANCE.createOpenDiagramBehaviour();
-			diagramBehaviour.setEditPolicyClassName("OpenDiagramEditPolicy");
-			diagramBehaviour.setOpenAsEclipseEditor(true);
-			childNode.getBehaviour().add(diagramBehaviour);
-		}
+		//		if(createOpenDiagramBehaviour) {
+		//			OpenDiagramBehaviour diagramBehaviour = GMFGenFactory.eINSTANCE.createOpenDiagramBehaviour();
+		//			diagramBehaviour.setEditPolicyClassName("OpenDiagramEditPolicy");
+		//			diagramBehaviour.setOpenAsEclipseEditor(true);
+		//			childNode.getBehaviour().add(diagramBehaviour);
+		//		}
 
 		if(createGraphicalNodeRole) {
 			// add a custom edit policy if necessary for graphical node role
