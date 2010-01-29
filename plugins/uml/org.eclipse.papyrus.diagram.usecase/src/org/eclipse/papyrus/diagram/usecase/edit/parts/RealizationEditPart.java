@@ -45,8 +45,7 @@ implements ITreeBranchEditPart {
 			return true;
 		}
 		if(childEditPart instanceof AppliedStereotypeRealizationEditPart) {
-			((AppliedStereotypeRealizationEditPart)childEditPart).setLabel(getPrimaryShape()
-					.getAppliedStereotypeLabel());
+			((AppliedStereotypeRealizationEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;

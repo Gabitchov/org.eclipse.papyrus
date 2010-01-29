@@ -69,8 +69,7 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistPackageMerge_4018(container, getNewSource(),
-				target);
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistPackageMerge_4018(container, getNewSource(), target);
 	}
 
 	/**
@@ -85,8 +84,7 @@ public class PackageMergeReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistPackageMerge_4018(container, source,
-				getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistPackageMerge_4018(container, source, getNewTarget());
 	}
 
 	/**

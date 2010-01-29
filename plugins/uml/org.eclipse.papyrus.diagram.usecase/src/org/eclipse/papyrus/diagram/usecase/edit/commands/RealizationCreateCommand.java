@@ -68,8 +68,7 @@ public class RealizationCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateRealization_4017(getContainer(), getSource(),
-				getTarget());
+		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateRealization_4017(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -94,8 +93,7 @@ public class RealizationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Realization newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(Realization newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

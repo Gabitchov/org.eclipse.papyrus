@@ -67,8 +67,7 @@ public class UMLLinkDescriptor extends UMLNodeDescriptor {
 	/**
 	 * @generated
 	 */
-	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType,
-			int linkVID) {
+	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType, int linkVID) {
 		this(source, destination, linkElement, linkVID);
 		final IElementType elementTypeCopy = elementType;
 		mySemanticAdapter = new EObjectAdapter(linkElement) {

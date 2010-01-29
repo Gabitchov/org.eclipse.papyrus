@@ -116,7 +116,7 @@ AbstractBorderedShapeEditPart {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case DiagramNameEditPart.VISUAL_ID:
-									return new BorderItemSelectionEditPolicy() {
+					return new BorderItemSelectionEditPolicy() {
 
 						protected List createSelectionHandles() {
 							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
@@ -249,7 +249,7 @@ AbstractBorderedShapeEditPart {
 	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 *@generated NOT
 	 */
 	protected IPageIconsRegistry getEditorRegistry() {
@@ -264,7 +264,7 @@ AbstractBorderedShapeEditPart {
 	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 * 
 	 * @generated NOT
 	 */
@@ -296,7 +296,7 @@ AbstractBorderedShapeEditPart {
 	private void refreshIcons() {
 		Image image;
 		image = getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement());
-		
+
 		getPrimaryShape().setIcon(image);
 
 	}
@@ -325,28 +325,19 @@ AbstractBorderedShapeEditPart {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
-						PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
-						PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
-						PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore,
-					prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("ShortCutDiagram",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("ShortCutDiagram", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {

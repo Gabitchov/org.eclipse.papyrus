@@ -99,10 +99,8 @@ public class ModelElementSelectionPage extends WizardPage {
 		layoutData.heightHint = 300;
 		layoutData.widthHint = 300;
 		modelViewer.getTree().setLayoutData(layoutData);
-		modelViewer.setContentProvider(new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory()));
-		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory()));
+		modelViewer.setContentProvider(new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
+		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
 		if(selectedModelElement != null) {
 			modelViewer.setInput(selectedModelElement.eResource());
 			modelViewer.setSelection(new StructuredSelection(selectedModelElement));

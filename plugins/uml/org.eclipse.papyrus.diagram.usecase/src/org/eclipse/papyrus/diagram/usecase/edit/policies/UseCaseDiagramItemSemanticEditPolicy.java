@@ -99,8 +99,7 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		/**
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req,
-				Diagram currentDiagram) {
+		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {
 			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
 			this.diagram = currentDiagram;
 		}

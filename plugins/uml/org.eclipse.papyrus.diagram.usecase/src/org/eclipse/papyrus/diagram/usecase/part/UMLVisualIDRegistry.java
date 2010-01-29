@@ -178,8 +178,7 @@ public class UMLVisualIDRegistry {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
 			if(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance()
-						.logError("Unable to parse view type as a visualID number: " + type);
+				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
 			}
 		}
 		return -1;
@@ -199,8 +198,7 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-				&& isDiagram((Package)domainElement)) {
+		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return UseCaseDiagramEditPart.VISUAL_ID;
 		}
 
@@ -214,8 +212,7 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry.getModelID(containerView);
 		if(!UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
@@ -458,8 +455,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry.getModelID(containerView);
 		if(!UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
@@ -890,8 +886,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isDependency_4013(Dependency domainElement) {
 		if(Dependency_4013_Constraint == null) { // lazy initialization
-			Dependency_4013_Constraint = UMLOCLFactory
-					.getExpression("self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getDependency()); //$NON-NLS-1$
+			Dependency_4013_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getDependency()); //$NON-NLS-1$
 		}
 		Object result = Dependency_4013_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -902,8 +897,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isAbstraction_4015(Abstraction domainElement) {
 		if(Abstraction_4015_Constraint == null) { // lazy initialization
-			Abstraction_4015_Constraint = UMLOCLFactory
-					.getExpression("self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getAbstraction()); //$NON-NLS-1$
+			Abstraction_4015_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getAbstraction()); //$NON-NLS-1$
 		}
 		Object result = Abstraction_4015_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -914,8 +908,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isUsage_4016(Usage domainElement) {
 		if(Usage_4016_Constraint == null) { // lazy initialization
-			Usage_4016_Constraint = UMLOCLFactory
-					.getExpression("self.oclIsTypeOf(uml::Usage) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getUsage()); //$NON-NLS-1$
+			Usage_4016_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Usage) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getUsage()); //$NON-NLS-1$
 		}
 		Object result = Usage_4016_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
@@ -926,8 +919,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isRealization_4017(Realization domainElement) {
 		if(Realization_4017_Constraint == null) { // lazy initialization
-			Realization_4017_Constraint = UMLOCLFactory
-					.getExpression("self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getRealization()); //$NON-NLS-1$
+			Realization_4017_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getRealization()); //$NON-NLS-1$
 		}
 		Object result = Realization_4017_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();

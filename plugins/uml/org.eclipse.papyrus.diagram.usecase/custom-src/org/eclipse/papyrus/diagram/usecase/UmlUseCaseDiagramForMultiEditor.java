@@ -46,8 +46,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
-			.getBundledImageDescriptor(UmlUseCaseDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlUseCaseDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
@@ -61,8 +60,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * 
 	 * @generated NOT
 	 */
-	public UmlUseCaseDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
-			throws BackboneException, ServiceException {
+	public UmlUseCaseDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 

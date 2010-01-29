@@ -139,8 +139,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeExtensionPointLabelDisplayEditPolicy());
+		installEditPolicy(AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeExtensionPointLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -284,8 +283,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(
-								new RunnableWithResult.Impl() {
+						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
 
 							public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
@@ -325,9 +323,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3007, getParserElement(),
-					UMLVisualIDRegistry
-					.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3007, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -337,8 +333,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	 */
 	protected DirectEditManager getManager() {
 		if(manager == null) {
-			setManager(new TextDirectEditManager(this, TextDirectEditManager.getTextCellEditorClass(this),
-					UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new TextDirectEditManager(this, TextDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -397,9 +392,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
-				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration
-						.getTextToEdit(resolveSemanticElement()), configuration);
+				final ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -422,13 +415,10 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 
 					public void run() {
 						if(isActive() && isEditable()) {
-							if(theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character)theRequest.getExtendedData().get(
-										RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+								Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 								performDirectEdit(initialChar.charValue());
-							} else if((theRequest instanceof DirectEditRequest)
-									&& (getEditText().equals(getLabelText()))) {
+							} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 								DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 								performDirectEdit(editRequest.getLocation());
 							} else {
@@ -503,9 +493,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	protected void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD
-					: SWT.NORMAL)
-					| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -595,8 +583,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	 */
 	protected boolean checkExtendedEditor() {
 		if(resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass()
-					.getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
 		}
 		return false;
 	}
@@ -618,14 +605,11 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if(configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if(languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
-						.eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
-						resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
 			}
 		}
 	}
@@ -634,11 +618,9 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	 * Updates the preference configuration
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if(languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
-					.eClass().getInstanceClassName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 		}
 	}
 
@@ -656,8 +638,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 				public void run() {
 					if(isActive() && isEditable()) {
 						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character)theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest)theRequest;
@@ -701,10 +682,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 			refreshUnderline();
 		} else if(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if(getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {

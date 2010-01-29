@@ -58,8 +58,7 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PackagePackageableElementCompartment2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackagePackageableElementCompartment2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
@@ -86,10 +85,7 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

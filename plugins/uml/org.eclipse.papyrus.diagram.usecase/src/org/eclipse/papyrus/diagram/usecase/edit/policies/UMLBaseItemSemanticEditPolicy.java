@@ -143,8 +143,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand)
-					.getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -465,11 +464,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if(Generalization_4010_SourceExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getClassifier());
-					Generalization_4010_SourceExpression = UMLOCLFactory
-							.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getClassifier(), env); //$NON-NLS-1$
+					Generalization_4010_SourceExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getClassifier(), env); //$NON-NLS-1$
 				}
-				Object sourceVal = Generalization_4010_SourceExpression.evaluate(source, Collections.singletonMap(
-						OPPOSITE_END_VAR, target));
+				Object sourceVal = Generalization_4010_SourceExpression.evaluate(source, Collections.singletonMap(OPPOSITE_END_VAR, target));
 				if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 					return false;
 				} // else fall-through
@@ -478,11 +475,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if(Generalization_4010_TargetExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getClassifier());
-					Generalization_4010_TargetExpression = UMLOCLFactory
-							.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getClassifier(), env); //$NON-NLS-1$
+					Generalization_4010_TargetExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getClassifier(), env); //$NON-NLS-1$
 				}
-				Object targetVal = Generalization_4010_TargetExpression.evaluate(target, Collections.singletonMap(
-						OPPOSITE_END_VAR, source));
+				Object targetVal = Generalization_4010_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
 				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 					return false;
 				} // else fall-through
@@ -503,11 +498,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if(Association_4011_SourceExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getType());
-					Association_4011_SourceExpression = UMLOCLFactory
-							.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getType(), env); //$NON-NLS-1$
+					Association_4011_SourceExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getType(), env); //$NON-NLS-1$
 				}
-				Object sourceVal = Association_4011_SourceExpression.evaluate(source, Collections.singletonMap(
-						OPPOSITE_END_VAR, target));
+				Object sourceVal = Association_4011_SourceExpression.evaluate(source, Collections.singletonMap(OPPOSITE_END_VAR, target));
 				if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 					return false;
 				} // else fall-through
@@ -516,11 +509,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if(Association_4011_TargetExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getType());
-					Association_4011_TargetExpression = UMLOCLFactory
-							.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getType(), env); //$NON-NLS-1$
+					Association_4011_TargetExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getType(), env); //$NON-NLS-1$
 				}
-				Object targetVal = Association_4011_TargetExpression.evaluate(target, Collections.singletonMap(
-						OPPOSITE_END_VAR, source));
+				Object targetVal = Association_4011_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
 				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 					return false;
 				} // else fall-through
@@ -550,8 +541,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getNamedElement());
 					Dependency_4013_TargetExpression = UMLOCLFactory.getExpression("not self.oclIsKindOf(uml::Interface)\r\n", UMLPackage.eINSTANCE.getNamedElement(), env); //$NON-NLS-1$
 				}
-				Object targetVal = Dependency_4013_TargetExpression.evaluate(target, Collections.singletonMap(
-						OPPOSITE_END_VAR, source));
+				Object targetVal = Dependency_4013_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
 				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 					return false;
 				} // else fall-through
