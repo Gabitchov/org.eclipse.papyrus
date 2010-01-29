@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionNameEditPart;
@@ -191,16 +192,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser commentBody_5027Parser;
+	private CommentParser commentBody_5027Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getCommentBody_5027Parser() {
 		if(commentBody_5027Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getComment_Body() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			commentBody_5027Parser = parser;
+			commentBody_5027Parser = new CommentParser();
 		}
 		return commentBody_5027Parser;
 	}
@@ -293,16 +292,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser commentBody_5028Parser;
+	private CommentParser commentBody_5028Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getCommentBody_5028Parser() {
 		if(commentBody_5028Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getComment_Body() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			commentBody_5028Parser = parser;
+			commentBody_5028Parser = new CommentParser();
 		}
 		return commentBody_5028Parser;
 	}

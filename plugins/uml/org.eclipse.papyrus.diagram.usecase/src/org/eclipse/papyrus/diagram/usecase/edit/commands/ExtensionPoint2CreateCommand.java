@@ -89,6 +89,7 @@ public class ExtensionPoint2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}

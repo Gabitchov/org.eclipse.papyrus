@@ -88,6 +88,7 @@ public class PackageCreateCommandTN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
