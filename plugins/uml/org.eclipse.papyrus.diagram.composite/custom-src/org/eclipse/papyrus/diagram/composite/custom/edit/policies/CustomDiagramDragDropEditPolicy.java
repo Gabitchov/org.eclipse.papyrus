@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
@@ -27,6 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -428,10 +430,35 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// Manage Port drop in compartment
 		Boolean isCompartmentTarget = false; // True if the target is a ShapeCompartmentEditPart
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+
+		// Default drop location
+		Point dropLocation = location.getCopy();
+
+		// Detect if the drop target is a compartment
 		if(graphicalParentEditPart instanceof ShapeCompartmentEditPart) {
 			isCompartmentTarget = true;
+
 			// Replace compartment edit part by its parent EditPart
 			graphicalParentEditPart = (GraphicalEditPart)graphicalParentEditPart.getParent();
+
+			// Translate Port expected location according to the compartment location
+			Point targetLocation = graphicalParentEditPart.getContentPane().getBounds().getLocation();
+			ShapeCompartmentFigure compartmentFigure = (ShapeCompartmentFigure)getHostFigure();
+
+			// Retrieve ViewPort location = the area where compartment children are located
+			// Retrieve ViewPort view location =  the relative location of the viewed compartment
+			// depending on the current scroll bar state
+			Viewport compartmentViewPort = compartmentFigure.getScrollPane().getViewport();
+			Point compartmentViewPortLocation = compartmentViewPort.getLocation();
+			Point compartmentViewPortViewLocation = compartmentViewPort.getViewLocation();
+
+			// Calculate the delta between the targeted element position for drop (the Composite figure)
+			// and the View location with eventual scroll bar.
+			Point delta = compartmentViewPortLocation.translate(targetLocation.negate());
+			delta = delta.translate(compartmentViewPortViewLocation.negate());
+
+			// Translate the requested drop location
+			dropLocation = location.getTranslated(delta);
 		}
 		// Manage Port drop in compartment
 
@@ -439,18 +466,18 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		if((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
 			if(isCompartmentTarget) {
-				return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, location, droppedElement));
+				return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
 			}
-			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 
 		} else if(graphicalParentObject instanceof ConnectableElement) {
 			Type type = ((ConnectableElement)graphicalParentObject).getType();
 
 			if((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
 				if(isCompartmentTarget) {
-					return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, location, droppedElement));
+					return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
 				}
-				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
+				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 			}
 		}
 

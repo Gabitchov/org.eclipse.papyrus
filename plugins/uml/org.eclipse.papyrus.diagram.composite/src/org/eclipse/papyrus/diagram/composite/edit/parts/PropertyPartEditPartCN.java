@@ -51,6 +51,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPoli
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.PropertyLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.figures.PropertyPartFigure;
 import org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.diagram.composite.edit.policies.PropertyPartItemSemanticEditPolicyCN;
@@ -105,6 +106,7 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PropertyLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

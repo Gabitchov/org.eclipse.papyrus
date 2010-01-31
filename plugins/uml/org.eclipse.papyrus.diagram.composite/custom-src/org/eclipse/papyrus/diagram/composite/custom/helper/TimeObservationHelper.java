@@ -86,7 +86,7 @@ public class TimeObservationHelper extends ElementHelper {
 
 		// we have an event
 		if(endToConnect != null) {
-			// look for if an editpart exist for this element
+			// look for if an EditPart exist for this element
 			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
 			Iterator<EditPart> editPartIterator = editPartSet.iterator();
 

@@ -29,7 +29,7 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
  */
 public class InformationItemElementTreeSelectionDialog extends ElementTreeSelectionDialog {
 
-	private Button newInformationItemButton;
+	protected Button newInformationItemButton;
 
 	public static final int newInformationItemButton_ID = IDialogConstants.CLIENT_ID + 1;
 

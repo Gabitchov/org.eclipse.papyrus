@@ -1469,14 +1469,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label5151.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5151 = (Location)label5151.getLayoutConstraint();
-		location5151.setX(0);
-		location5151.setY(5);
+		location5151.setX(25);
+		location5151.setY(3);
 		Node label5152 = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationStereotypeLabelEditPart.VISUAL_ID));
 		label5152.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5152 = (Location)label5152.getLayoutConstraint();
-		location5152.setX(0);
-		location5152.setY(5);
+		location5152.setX(25);
+		location5152.setY(-10);
 		return node;
 	}
 
@@ -1507,14 +1507,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label5142.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5142 = (Location)label5142.getLayoutConstraint();
-		location5142.setX(0);
-		location5142.setY(5);
+		location5142.setX(25);
+		location5142.setY(3);
 		Node label5143 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationStereotypeLabelEditPart.VISUAL_ID));
 		label5143.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5143 = (Location)label5143.getLayoutConstraint();
-		location5143.setX(0);
-		location5143.setY(5);
+		location5143.setX(25);
+		location5143.setY(-10);
 		return node;
 	}
 
@@ -2062,14 +2062,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label5125.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5125 = (Location)label5125.getLayoutConstraint();
-		location5125.setX(0);
-		location5125.setY(5);
+		location5125.setX(25);
+		location5125.setY(3);
 		Node label6029 = createLabel(node, UMLVisualIDRegistry.getType(PortAppliedStereotypeEditPart.VISUAL_ID));
 		label6029.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location6029 = (Location)label6029.getLayoutConstraint();
-		location6029.setX(0);
-		location6029.setY(5);
+		location6029.setX(25);
+		location6029.setY(-10);
 		return node;
 	}
 

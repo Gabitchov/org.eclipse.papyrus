@@ -18,10 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
@@ -37,7 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -49,8 +47,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
+import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.diagram.composite.custom.edit.parts.AbstractBorderEditPart;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.figures.PortFigure;
 import org.eclipse.papyrus.diagram.composite.edit.policies.PortItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -101,6 +101,7 @@ AbstractBorderEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PortLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -179,9 +180,11 @@ AbstractBorderEditPart {
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof PortNameEditPart || borderItemEditPart instanceof PortAppliedStereotypeEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
+		if(borderItemEditPart instanceof PortNameEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if(borderItemEditPart instanceof PortAppliedStereotypeEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);

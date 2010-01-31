@@ -37,7 +37,7 @@ public class PortInCompartmentCreationEditPolicy extends CreationEditPolicy {
 			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
 
 			if(understandsRequest(request)) {
-				List elementTypes = createUnspecifiedTypeRequest.getElementTypes();
+				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 				// Treat the case where only one element type is listed
 				// Only take Port element type into account
 				if((elementTypes.size() == 1) && ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Port_3069)) {

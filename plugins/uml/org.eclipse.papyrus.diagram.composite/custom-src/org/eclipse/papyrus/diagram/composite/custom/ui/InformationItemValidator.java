@@ -42,7 +42,6 @@ public class InformationItemValidator implements ISelectionStatusValidator {
 	public IStatus validate(Object[] selection) {
 
 		IStatus status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.NoSelectionFound);
-		int ii = 0;
 		if(selection.length >= 1) {
 			for(int i = 0; i < selection.length; i++) {
 				if(selection[i] instanceof InformationItem || selection[i] instanceof Class || selection[i] instanceof Interface || selection[i] instanceof Signal || selection[i] instanceof Component)

@@ -78,6 +78,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PortLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Port"/>
@@ -105,7 +109,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
@@ -127,7 +136,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="-10"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -184,6 +198,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PropertyLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.2">
           <metaClass
@@ -423,6 +441,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -501,6 +523,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
@@ -579,6 +605,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProtocolStateMachine"/>
@@ -657,6 +687,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateMachine"/>
@@ -735,6 +769,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/FunctionBehavior"/>
@@ -813,6 +851,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueBehavior"/>
@@ -895,6 +937,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -973,6 +1019,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -1051,6 +1101,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -1133,6 +1187,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -1219,6 +1277,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
@@ -2926,6 +2988,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -3003,6 +3069,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
@@ -3080,6 +3150,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProtocolStateMachine"/>
@@ -3157,6 +3231,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateMachine"/>
@@ -3234,6 +3312,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/FunctionBehavior"/>
@@ -3311,6 +3393,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueBehavior"/>
@@ -3392,6 +3478,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -3469,6 +3559,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -3546,6 +3640,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -3627,6 +3725,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -3708,6 +3810,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
@@ -5443,6 +5549,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.ObservationLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation"/>
@@ -5469,7 +5579,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -5486,7 +5601,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="-10"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -5533,6 +5653,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.ObservationLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
@@ -5559,7 +5683,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -5576,7 +5705,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="-10"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -9684,6 +9818,11 @@
         comment="Affixed Port locator"
         classpath="org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator"
         genChildSideAffixedNode="/0/@diagram/@childNodes.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
+        comment="External node label locator"
+        classpath="org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator"
+        genExternalNodeLabel="/0/@diagram/@topLevelNodes.34/@labels.1 /0/@diagram/@topLevelNodes.33/@labels.1 /0/@diagram/@childNodes.0/@labels.1 /0/@diagram/@childNodes.0/@labels.0 /0/@diagram/@topLevelNodes.33/@labels.0 /0/@diagram/@topLevelNodes.34/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificDiagramUpdater"
         comment="Property (Part) custom DiagramUpdater"
