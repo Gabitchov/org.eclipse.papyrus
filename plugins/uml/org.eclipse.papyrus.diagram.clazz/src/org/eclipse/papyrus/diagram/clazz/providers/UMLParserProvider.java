@@ -44,6 +44,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutio
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
@@ -703,6 +705,46 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser associationClassName_6031Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationClassName_6031Parser() {
+		if(associationClassName_6031Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("srcRole{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("srcRole{0}"); //$NON-NLS-1$
+			parser.setEditPattern("srcRole{0}"); //$NON-NLS-1$
+			associationClassName_6031Parser = parser;
+		}
+		return associationClassName_6031Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationClassName_6032Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationClassName_6032Parser() {
+		if(associationClassName_6032Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("targetRole{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("targetRole{0}"); //$NON-NLS-1$
+			parser.setEditPattern("targetRole{0}"); //$NON-NLS-1$
+			associationClassName_6032Parser = parser;
+		}
+		return associationClassName_6032Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private ClassifierTemplateParameterParser classifierTemplateParameter_3031Parser;
 
 	/**
@@ -1159,6 +1201,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_5064Parser();
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030Parser();
+		case AssociationClassRoleSourceEditPart.VISUAL_ID:
+			return getAssociationClassName_6031Parser();
+		case AssociationClassRoleTargetEditPart.VISUAL_ID:
+			return getAssociationClassName_6032Parser();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAssociationName_6001Parser();
 		case AssociationName2EditPart.VISUAL_ID:

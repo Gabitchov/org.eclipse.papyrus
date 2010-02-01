@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -49,6 +50,54 @@ public class AssociationClass2EditPart extends ConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationClass2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
+			((AssociationClassRoleSourceEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+			return true;
+		}
+		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
+			((AssociationClassRoleTargetEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if(addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if(removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
 	}
 
 	/**

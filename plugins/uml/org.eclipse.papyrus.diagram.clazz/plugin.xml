@@ -1301,6 +1301,12 @@
                   <objectClass
                         name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
                   </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
+                  </objectClass>
                </or>
             </enablement>
          </action>
@@ -1310,6 +1316,22 @@
                id="org.eclipse.papyrus.diagram.clazz.setassociationpropertyowneraction"
                label="owned by the association"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend/group1">
+            <enablement>
+               <or>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
+                  </objectClass>
+               </or>
+            </enablement>
          </action>
          <menu
                icon="icons/obj16/css_propertyvalue_function.gif"
@@ -1334,6 +1356,12 @@
                   <objectClass
                         name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
                   </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
+                  </objectClass>
                </or>
             </enablement>
          </action>
@@ -1350,6 +1378,12 @@
                   </objectClass>
                   <objectClass
                         name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
                   </objectClass>
                </or>
             </enablement>
@@ -1378,6 +1412,12 @@
                   <objectClass
                         name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
                   </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
+                  </objectClass>
                </or>
             </enablement>
          </action>
@@ -1396,6 +1436,12 @@
                   <objectClass
                         name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
                   </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
+                  </objectClass>
                </or>
             </enablement>
          </action>
@@ -1413,6 +1459,12 @@
                   </objectClass>
                   <objectClass
                         name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
                   </objectClass>
                </or>
             </enablement>

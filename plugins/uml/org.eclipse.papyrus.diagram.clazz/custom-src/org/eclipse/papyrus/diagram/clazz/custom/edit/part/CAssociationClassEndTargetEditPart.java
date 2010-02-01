@@ -15,27 +15,30 @@ package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndTargetLabelHelper;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndSourceLabelHelper;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.ui.views.properties.IPropertySource;
 
 
 /**
- * The Class AssociationEndSourceEditPart.
+ * The Class AssociationEndTargetEditPart.
  * Ensure the edition of ends in the diagram
  */
-public class AssociationEndSourceEditPart extends AssociationName3EditPart {
+public class CAssociationClassEndTargetEditPart extends AssociationClassRoleTargetEditPart {
 
 	/**
-	 * Instantiates a new association end source edit part.
+	 * Instantiates a new association end target edit part.
 	 * 
 	 * @param view
 	 *        the view
 	 */
-	public AssociationEndSourceEditPart(View view) {
+	public CAssociationClassEndTargetEditPart(View view) {
 		super(view);
 		// TODO Auto-generated constructor stub
 	}
+
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
@@ -44,7 +47,7 @@ public class AssociationEndSourceEditPart extends AssociationName3EditPart {
 	 */
 
 	public EObject resolveSemanticElement() {
-		return AssociationEndTargetLabelHelper.getInstance().getUMLElement(this);
+		return AssociationEndSourceLabelHelper.getInstance().getUMLElement(this);
 	}
 
 	public Object getAdapter(Class key) {

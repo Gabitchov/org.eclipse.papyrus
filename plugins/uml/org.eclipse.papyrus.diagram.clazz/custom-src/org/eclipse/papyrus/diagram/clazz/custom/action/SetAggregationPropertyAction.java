@@ -33,6 +33,8 @@ import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEd
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -88,7 +90,7 @@ public class SetAggregationPropertyAction implements IObjectActionDelegate {
 	public void run(IAction action) {
 		//1 this is a associationEnd?
 		CompoundCommand command = new CompoundCommand();
-		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart) {
+		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart || selectedElement instanceof AssociationClassRoleSourceEditPart || selectedElement instanceof AssociationClassRoleTargetEditPart) {
 
 			//2. look for the future owner of the property, run only for binary association
 			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();

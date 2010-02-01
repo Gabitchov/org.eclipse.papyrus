@@ -17,6 +17,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CAssociationClassEndSourceEditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CAssociationClassEndTargetEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CAssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CDependencyNodeEditPart;
@@ -24,6 +26,8 @@ import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CPackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CPackageEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
@@ -65,6 +69,10 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 				return new AssociationEndSourceEditPart(view);
 			case AssociationName3EditPart.VISUAL_ID:
 				return new AssociationEndTargetEditPart(view);
+			case AssociationClassRoleSourceEditPart.VISUAL_ID:
+				return new CAssociationClassEndSourceEditPart(view);
+			case AssociationClassRoleTargetEditPart.VISUAL_ID:
+				return new CAssociationClassEndTargetEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);

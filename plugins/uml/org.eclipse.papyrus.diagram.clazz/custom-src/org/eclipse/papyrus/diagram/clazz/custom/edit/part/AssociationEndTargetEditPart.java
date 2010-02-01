@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndSourceLabelHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
+import org.eclipse.ui.views.properties.IPropertySource;
 
 
 /**
@@ -45,5 +46,12 @@ public class AssociationEndTargetEditPart extends AssociationName5EditPart {
 
 	public EObject resolveSemanticElement() {
 		return AssociationEndSourceLabelHelper.getInstance().getUMLElement(this);
+	}
+
+	public Object getAdapter(Class key) {
+		if(key == IPropertySource.class) {
+			return resolveSemanticElement();
+		}
+		return super.getAdapter(key);
 	}
 }

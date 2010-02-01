@@ -218,6 +218,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
 		Property property = getUMLElement();
+		if(property==null){return;}
 
 		if(object == null) {
 			return;
@@ -339,7 +340,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 * 
 	 */
 	protected void removeAdditionalListeners() {
-		if(getUMLElement().getType() != null) {
+		if(getUMLElement()!=null&& getUMLElement().getType() != null) {
 			getDiagramEventBroker().removeNotificationListener(getUMLElement().getType(), this);
 		}
 	}
