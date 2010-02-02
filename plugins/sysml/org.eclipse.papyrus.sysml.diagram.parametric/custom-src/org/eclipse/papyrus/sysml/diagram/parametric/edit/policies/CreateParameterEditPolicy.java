@@ -13,17 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.policies;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.sysml.diagram.parametric.command.CreateParameterViewCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 
@@ -42,12 +38,14 @@ public class CreateParameterEditPolicy extends AbstractEditPolicy {
 			CreateUnspecifiedTypeRequest creationRequest = (CreateUnspecifiedTypeRequest) request;
 			EditPart parentEditPart = getHost();
 			if (parentEditPart instanceof ConstraintPropertyEditPart) {
-				ConstraintPropertyEditPart compartementPart = (ConstraintPropertyEditPart) parentEditPart;
-				EObject action = ViewUtil.resolveSemanticElement((View) getHost().getModel());
+				//ConstraintPropertyEditPart compartementPart = (ConstraintPropertyEditPart) parentEditPart;
+				//EObject action = ViewUtil.resolveSemanticElement((View) getHost().getModel());
 				for (Object obj : creationRequest.getElementTypes()) {
 					if (SysmlElementTypes.Property_3002.equals(obj)) {
-						return new CreateParameterViewCommand((IHintedType) SysmlElementTypes.Property_3002,
-								compartementPart, action, getHost());
+						// do nothing or display WarningAndLinkDialog
+						return UnexecutableCommand.INSTANCE;
+//						return new CreateParameterViewCommand((IHintedType) SysmlElementTypes.Property_3002,
+//								compartementPart, action, getHost());
 					}
 				}
 			}

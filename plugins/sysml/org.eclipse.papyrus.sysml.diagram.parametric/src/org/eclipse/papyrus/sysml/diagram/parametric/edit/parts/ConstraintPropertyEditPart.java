@@ -19,6 +19,7 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -37,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -47,12 +49,16 @@ import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConstraintPropertyItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CreateParameterEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
+import org.eclipse.papyrus.sysml.diagram.parametric.helper.SelfCompartmentNotificationHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.locator.ParameterPositionLocator;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
+import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -75,6 +81,13 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure primaryShape;
+
+	/**
+	 * Notifier for listening and stop listening model element.
+	 */
+	private SelfCompartmentNotificationHelper notifier = new SelfCompartmentNotificationHelper(this,
+			UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(),
+			(IHintedType) SysmlElementTypes.Property_3002);
 
 	/**
 	 * @generated
@@ -406,5 +419,40 @@ AbstractBorderedShapeEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+	
+	/**
+	 * Activate a listener for to Handle notification for new owned property
+	 */
+	@Override
+	public void activate() {
+		super.activate();
+		EObject parent = resolveSemanticElement();
+		// listen constraint property and self base property
+		notifier.listenObject(parent);
+		if (parent instanceof ConstraintProperty) {
+			notifier.listenObject(((ConstraintProperty) parent).getBase_Property());
+		}
+		// ensure children parts are correctly initialized.
+		SelfCompartmentNotificationHelper.updateChildrenParts(this, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(), (IHintedType) SysmlElementTypes.Property_3002);
+	}
+	
+	/**
+	 * Deactivate listeners to handle notification in the message occurence
+	 * specification
+	 */
+	@Override
+	public void deactivate() {
+		notifier.unlistenAll();
+		super.deactivate();
+	}
+
+	/**
+	 * Remove listeners to handle notification in the message occurence specification
+	 */
+	@Override
+	public void removeNotify() {
+		notifier.unlistenAll();
+		super.removeNotify();
 	}
 }

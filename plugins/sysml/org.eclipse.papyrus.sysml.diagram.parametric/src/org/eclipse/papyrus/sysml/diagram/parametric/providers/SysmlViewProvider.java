@@ -55,6 +55,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
@@ -67,12 +68,15 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * @generated
  */
 public class SysmlViewProvider extends AbstractProvider implements IViewProvider {
-
+	
 	/**
 	 * @generated
 	 */
@@ -243,7 +247,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public Node createConstraintProperty_2003(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -263,6 +267,15 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		initBackgroundFromPrefs(node, prefStore, "ConstraintProperty");
 
 		Node label5001 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
+		
+		// create the associated properties
+		Type type = ((ConstraintProperty) domainElement).getBase_Property().getType();
+		if (type != null && type instanceof StructuredClassifier) {
+			for (Property property : ((StructuredClassifier) type).getOwnedAttributes()) {
+				createProperty_3002(property, node, index, persisted, preferencesHint);
+			}
+		}
+		// TODO do we need to restore connection ?
 		return node;
 	}
 

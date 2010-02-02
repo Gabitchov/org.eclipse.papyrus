@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -88,8 +87,10 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		String result = "";
-		Property property = (Property) element.getAdapter(EObject.class);
-		if (property != null) {
+		Property property = null;
+		Object adapter = element.getAdapter(EObject.class);
+		if (adapter instanceof Property) {
+			property = (Property) adapter;
 			String name = property.isDerived() ? "/ " + property.getName() : property.getName();
 			if (property.getType() != null) {
 				String type = property.getType().getName();
@@ -103,11 +104,9 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 				// manage initial values
 				if (property.getDefaultValue() != null) {
 					ValueSpecification valueSpecification = property.getDefaultValue();
-					if (valueSpecification instanceof InstanceValue
-							&& property.getType().equals(valueSpecification.getType())) {
-						result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
-					} else{						
-						result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue()));
+					String specificationValue = ValueSpecificationUtil.getSpecificationValue(valueSpecification);
+					if (specificationValue != null && specificationValue.length() > 0) {
+						result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));				
 					}
 				}
 			} else {
@@ -153,19 +152,22 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
-		Property property = (Property) element;
-		semanticElementsBeingParsed.add(property);
-		if (property.getType() != null) {
-			semanticElementsBeingParsed.add(property.getType());
-			int lower = property.getLower();
-			int upper = property.getUpper();
-			if (lower != 1 || upper != 1) {
-				semanticElementsBeingParsed.add(property.getLowerValue());
-				semanticElementsBeingParsed.add(property.getUpperValue());
-			}
-			if (property.getDefaultValue() != null) {
-				semanticElementsBeingParsed.add(property.getDefaultValue());
-			}
+		Property property = null;
+		if (element instanceof Property) {
+			property = (Property) element;
+			semanticElementsBeingParsed.add(property);
+			if (property.getType() != null) {
+				semanticElementsBeingParsed.add(property.getType());
+				int lower = property.getLower();
+				int upper = property.getUpper();
+				if (lower != 1 || upper != 1) {
+					semanticElementsBeingParsed.add(property.getLowerValue());
+					semanticElementsBeingParsed.add(property.getUpperValue());
+				}
+				if (property.getDefaultValue() != null) {
+					semanticElementsBeingParsed.add(property.getDefaultValue());
+				}
+			} 
 		}
 		return semanticElementsBeingParsed;
 	}

@@ -98,12 +98,12 @@ public class CreateParameterViewCommand extends Command {
 	 */
 	@Override
 	public void execute() {
-		Object property = null;
-		if (elementCreationCommand != null) {
-			// elementCreationCommand.execute();
-			// property = elementCreationCommand.getICommand().getCommandResult().getReturnValue();
-		}
-		// TODO Do we need to add the property graphically in the class
+		super.execute();
+//		Object property = null;
+//		if (elementCreationCommand != null) {
+//			 elementCreationCommand.execute();
+//			 property = elementCreationCommand.getICommand().getCommandResult().getReturnValue();
+//		}
 	}
 
 	/**
