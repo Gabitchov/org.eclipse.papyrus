@@ -384,7 +384,7 @@ public class Class2EditPart extends CompartmentEditPart implements ITextAwareEdi
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager().getClass() == TextDirectEditManager.class) {
+		if(getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}

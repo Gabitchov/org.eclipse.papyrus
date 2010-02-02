@@ -516,7 +516,7 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager().getClass() == TextDirectEditManager.class) {
+		if(getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}

@@ -575,7 +575,7 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager().getClass() == TextDirectEditManager.class) {
+		if(getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}

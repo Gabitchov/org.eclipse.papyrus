@@ -386,7 +386,7 @@ public class AssociationClassName2EditPart extends CompartmentEditPart implement
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager().getClass() == TextDirectEditManager.class) {
+		if(getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}

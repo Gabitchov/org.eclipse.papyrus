@@ -80,7 +80,6 @@ public class SetNonNavigablePropertyAction implements IObjectActionDelegate {
 	 */
 
 	public void run(IAction action) {
-		System.err.println(selectedElement);
 		//1 this is a associationEnd?
 		CompoundCommand command = new CompoundCommand();
 		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart || selectedElement instanceof AssociationClassRoleSourceEditPart || selectedElement instanceof AssociationClassRoleTargetEditPart) {

@@ -80,7 +80,6 @@ public class SetNavigablePropertyAction implements IObjectActionDelegate {
 	 */
 
 	public void run(IAction action) {
-		System.err.println(selectedElement);
 		//1 this is a associationEnd?
 		CompoundCommand command = new CompoundCommand();
 		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart || selectedElement instanceof AssociationClassRoleSourceEditPart || selectedElement instanceof AssociationClassRoleTargetEditPart) {
@@ -88,7 +87,6 @@ public class SetNavigablePropertyAction implements IObjectActionDelegate {
 			//2. look for the future owner of the property, run only for binary association
 			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();
 			if(property.getAssociation() != null) {
-
 				// add property in association
 
 				EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd();

@@ -53,7 +53,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 		EObject semanticElement = resolveSemanticElement();
 		if(semanticElement instanceof Association) {
 			Association association = (Association)semanticElement;
-			if(association.getMemberEnds().size() > 2) {
+			if(association.getMemberEnds().size() >= 2) {
 				EObject sourceEnd = association.getMemberEnds().get(0);
 				EObject targetEnd = association.getMemberEnds().get(1);
 
@@ -123,9 +123,11 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 					// owned?
 					if(!source.getOwner().equals(resolveSemanticElement())) {
 						sourceType += AssociationFigure.owned;
+						sourceType += AssociationFigure.navigable;
 					}
 					if(!target.getOwner().equals(resolveSemanticElement())) {
 						targetType += AssociationFigure.owned;
+						sourceType += AssociationFigure.navigable;
 					}
 					// aggregation? for it the opposite is changed
 					if(source.getAggregation() == AggregationKind.SHARED_LITERAL) {
@@ -142,10 +144,10 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 						sourceType += AssociationFigure.composition;
 					}
 					// navigable?
-					if(source.isNavigable()) {
+					if(association.getNavigableOwnedEnds().contains(source)) {
 						sourceType += AssociationFigure.navigable;
 					}
-					if(target.isNavigable()) {
+					if(association.getNavigableOwnedEnds().contains(target)) {
 						targetType += AssociationFigure.navigable;
 					}
 					if(getPrimaryShape() instanceof AssociationFigure) {
