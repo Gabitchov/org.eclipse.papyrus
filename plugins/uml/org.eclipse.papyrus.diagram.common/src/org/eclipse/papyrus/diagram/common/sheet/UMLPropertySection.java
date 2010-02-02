@@ -72,7 +72,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 	 * 
 	 */
 	protected Object transformSelection(Object selected) {
-		if(((IAdaptable)selected).getAdapter(IPropertySource.class)!=null ) {
+		if(selected instanceof IAdaptable && ((IAdaptable)selected).getAdapter(IPropertySource.class)!= null ) {
 			 return ((IAdaptable)selected).getAdapter(IPropertySource.class);
 		}
 		
