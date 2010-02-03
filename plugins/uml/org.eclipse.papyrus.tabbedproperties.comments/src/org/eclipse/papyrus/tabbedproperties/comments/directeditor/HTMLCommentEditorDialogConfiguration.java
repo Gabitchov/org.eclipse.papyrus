@@ -13,6 +13,7 @@ package org.eclipse.papyrus.tabbedproperties.comments.directeditor;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
@@ -100,6 +101,17 @@ public class HTMLCommentEditorDialogConfiguration extends DefaultDirectEditorCon
 		}
 
 		/**
+		 * @{inheritDoc
+		 */
+		protected void createButtonsForButtonBar(Composite parent) {
+			// create OK and Cancel buttons by default
+			// remove the OK button as default button, so Carriage Return key pressed does not close the dialog
+			createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, false);
+			createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
+		}
+
+
+		/**
 		 * {@inheritDoc}
 		 */
 		@Override
@@ -120,7 +132,6 @@ public class HTMLCommentEditorDialogConfiguration extends DefaultDirectEditorCon
 			Composite parentComposite = (Composite)super.createDialogArea(parent);
 
 			richText = CommentRichTextFormToolkit.createRichTextEditor(new FormToolkit(Display.getCurrent()), parent, textToEdit, commentToEdit, SWT.NONE, EditorUtils.getMultiDiagramEditor().getEditorSite());
-
 			return parentComposite;
 		}
 
@@ -164,4 +175,5 @@ public class HTMLCommentEditorDialogConfiguration extends DefaultDirectEditorCon
 		}
 		return objectToEdit;
 	}
+
 }

@@ -98,6 +98,24 @@ public class CommentRichTextEditor extends RichTextEditor {
 	}
 
 	/**
+	 * @{inheritDoc
+	 */
+	@Override
+	protected void createUndoRedoActions() {
+		// removes these actions, as they are already provided by the editor site 
+	}
+
+	/**
+	 * @{inheritDoc
+	 */
+	@Override
+	protected void createActions() {
+		// removes these actions, as they are already provided by the editor site 
+	}
+
+
+
+	/**
 	 * Fills the Rich Text editor tool bar with action items.
 	 * 
 	 * @param toolBar

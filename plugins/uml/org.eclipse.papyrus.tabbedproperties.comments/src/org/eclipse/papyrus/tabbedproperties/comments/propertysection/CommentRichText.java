@@ -11,16 +11,29 @@
 package org.eclipse.papyrus.tabbedproperties.comments.propertysection;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epf.richtext.RichText;
+import org.eclipse.epf.richtext.RichTextListener;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.browser.LocationAdapter;
+import org.eclipse.swt.browser.LocationEvent;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.uml2.uml.Comment;
 
 /**
@@ -97,6 +110,158 @@ public class CommentRichText extends RichText {
 		// return ResourceHelper.validateRichTextContent(comment, text, new
 		// RichTextContentValidator());
 		return text;
+	}
+
+	/**
+	 * Adds listeners to manage the activation and focus events.
+	 */
+	protected void addListeners() {
+		editorControl = getControlSite(editor);
+		if(editorControl != null) {
+			if(debug) {
+				printDebugMessage("init", "editorControl=" + editorControl.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
+			}
+
+			// only IE (win32) has the editorControl != null
+			isIE = true;
+
+			editorControl.addListener(SWT.Activate, new Listener() {
+
+				public void handleEvent(Event event) {
+					if(debug) {
+						printDebugMessage("activateListener"); //$NON-NLS-1$
+					}
+					// setFocus();	//NOTE (RS): this is removed because of the dialog flashing from the workbench to this dialog window
+					notifyListeners(SWT.Activate, event);
+				}
+			});
+
+			editorControl.addListener(SWT.Deactivate, new Listener() {
+
+				public void handleEvent(Event event) {
+					if(debug) {
+						printDebugMessage("deactivateListener"); //$NON-NLS-1$
+					}
+					setBlur();
+					notifyListeners(SWT.Deactivate, event);
+				}
+			});
+
+			editorControl.addListener(SWT.FocusIn, new Listener() {
+
+				public void handleEvent(Event event) {
+					if(debug) {
+						printDebugMessage("focusInListener"); //$NON-NLS-1$
+					}
+					executeCommand("updateSelection"); //$NON-NLS-1$					
+					notifyListeners(SWT.FocusIn, event);
+				}
+			});
+
+			editorControl.addListener(SWT.KeyUp, new Listener() {
+
+				public void handleEvent(Event event) {
+					int keyCode = event.keyCode;
+					int stateMask = event.stateMask;
+					if(debug) {
+						printDebugMessage("keyUpListener", "keyCode=" + keyCode //$NON-NLS-1$ //$NON-NLS-2$
+							+ ", stateMask=" + stateMask + ", editable=" + editable); //$NON-NLS-1$ //$NON-NLS-2$
+					}
+					if((stateMask & SWT.CTRL) > 0 || (stateMask & SWT.ALT) > 0 || ((stateMask & SWT.SHIFT) > 0 && keyCode == stateMask)) {
+						return;
+					}
+					if(editable) {
+						switch(event.keyCode) {
+						case SWT.ARROW_DOWN:
+						case SWT.ARROW_LEFT:
+						case SWT.ARROW_RIGHT:
+						case SWT.ARROW_UP:
+						case SWT.END:
+						case SWT.HOME:
+						case SWT.PAGE_DOWN:
+						case SWT.PAGE_UP:
+						case SWT.TAB:
+							return;
+						default:
+							checkModify();
+							break;
+						}
+					}
+				}
+			});
+
+			editor.addLocationListener(new LocationAdapter() {
+
+				public void changing(LocationEvent event) {
+					// Deactivate the links in the content page in readonly
+					// mode.
+					event.doit = editable;
+				}
+			});
+		} else {
+			editor.addListener(SWT.Activate, new Listener() {
+
+				public void handleEvent(Event event) {
+					if(debug) {
+						printDebugMessage("activateListener"); //$NON-NLS-1$
+					}
+					setFocus();
+				}
+			});
+
+			editor.addKeyListener(new KeyListener() {
+
+				public void keyPressed(KeyEvent e) {
+					if(e.keyCode == SWT.TAB) {
+						if((e.stateMask & SWT.SHIFT) != 0) {
+							editor.traverse(SWT.TRAVERSE_TAB_PREVIOUS);
+						} else {
+							editor.traverse(SWT.TRAVERSE_TAB_NEXT);
+						}
+						return;
+					}
+					if(!editable) {
+						e.doit = false;
+					}
+				}
+
+				public void keyReleased(KeyEvent e) {
+					if((e.stateMask & SWT.CTRL) > 0 || (e.stateMask & SWT.ALT) > 0)
+						return;
+					if(editable) {
+						switch(e.keyCode) {
+						case SWT.ARROW_DOWN:
+						case SWT.ARROW_LEFT:
+						case SWT.ARROW_RIGHT:
+						case SWT.ARROW_UP:
+						case SWT.END:
+						case SWT.HOME:
+						case SWT.PAGE_DOWN:
+						case SWT.PAGE_UP:
+						case SWT.SHIFT:
+						case SWT.TAB:
+							break;
+						default:
+							checkModify();
+							break;
+						}
+					}
+				}
+			});
+		}
+
+		editor.addDisposeListener(new DisposeListener() {
+
+			public void widgetDisposed(DisposeEvent e) {
+				if(debug) {
+					printDebugMessage("disposeListener"); //$NON-NLS-1$						
+				}
+				dispose();
+			}
+		});
+
+		listeners = new Hashtable<Listener, RichTextListener>();
+		modifyListeners = new ArrayList<ModifyListener>();
 	}
 
 	/**
