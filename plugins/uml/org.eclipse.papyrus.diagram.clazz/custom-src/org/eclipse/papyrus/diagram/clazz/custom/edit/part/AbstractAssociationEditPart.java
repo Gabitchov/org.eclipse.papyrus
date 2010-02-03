@@ -127,7 +127,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 					}
 					if(!target.getOwner().equals(resolveSemanticElement())) {
 						targetType += AssociationFigure.owned;
-						sourceType += AssociationFigure.navigable;
+						targetType += AssociationFigure.navigable;
 					}
 					// aggregation? for it the opposite is changed
 					if(source.getAggregation() == AggregationKind.SHARED_LITERAL) {
@@ -143,6 +143,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 					if(target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
 						sourceType += AssociationFigure.composition;
 					}
+					
 					// navigable?
 					if(association.getNavigableOwnedEnds().contains(source)) {
 						sourceType += AssociationFigure.navigable;
