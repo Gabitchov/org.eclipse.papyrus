@@ -29,10 +29,12 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -48,38 +50,9 @@ import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
  * Custom class to create the containment circle node.
  * 
  */
-public class ContainmentViewCreateCommand extends AbstractTransactionalCommand {
+public class ContainmentCircleViewCreateCommand extends AbstractTransactionalCommand {
 
-	/**
-	 * iadapter to send eobjet.
-	 */
-	private class SemanticAdapter implements IAdaptable {
 
-		/** The element. */
-		private EObject element;
-
-		/**
-		 * Instantiates a new semantic adapter.
-		 * 
-		 * @param element
-		 *        the element
-		 * @param view
-		 */
-		public SemanticAdapter(EObject element, View view) {
-			this.element = element;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public Object getAdapter(Class adapter) {
-			if(adapter.equals(EObject.class)) {
-				return element;
-			}
-			return null;
-		}
-
-	}
 
 	/** The node. */
 	private static View node;
@@ -105,6 +78,9 @@ public class ContainmentViewCreateCommand extends AbstractTransactionalCommand {
 	/** The viewer. */
 	private EditPartViewer viewer;
 
+	/** descriptor **/
+	protected ViewDescriptor descriptor;
+
 	/**
 	 * constructor.
 	 * 
@@ -121,12 +97,16 @@ public class ContainmentViewCreateCommand extends AbstractTransactionalCommand {
 	 * @param point
 	 *        the location of the future containment circle node
 	 */
-	public ContainmentViewCreateCommand(CreateConnectionViewRequest createConnectionViewRequest, TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint) {
+	public ContainmentCircleViewCreateCommand(CreateConnectionViewRequest createConnectionViewRequest, TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint) {
 		super(domain, "ContainmentCircleViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
 		this.preferenceHint = preferencesHint;
 		this.createConnectionViewRequest = createConnectionViewRequest;
+		// make sure the return object is available even before executing/undoing/redoing
+		descriptor = new ViewDescriptor(new SemanticAdapter(null, null), Node.class, null, ViewUtil.APPEND, false, preferencesHint);
+
+		setResult(CommandResult.newOKCommandResult(descriptor));
 	}
 
 	/**
@@ -138,6 +118,7 @@ public class ContainmentViewCreateCommand extends AbstractTransactionalCommand {
 		UMLViewProvider viewProvider = new UMLViewProvider();
 		this.node = viewProvider.createPort_3032(null, this.containerView, -1, true, preferenceHint);
 		IAdaptable nodeview = new SemanticAdapter(null, getNode());
+		descriptor.setView(node);
 		return CommandResult.newOKCommandResult(node);
 	}
 

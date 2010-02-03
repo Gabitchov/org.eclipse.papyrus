@@ -115,5 +115,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ProfileApplicationPreferencePage.initDefaults(store);
 
+		AddedLinkPreferencePage.initDefaults(store);
+
 	}
 }

@@ -55,3 +55,4 @@ Export-Package: org.eclipse.papyrus.diagram.clazz,
  org.eclipse.papyrus.diagram.clazz.part,
  org.eclipse.papyrus.diagram.clazz.providers
 Eclipse-LazyStart: true
+Import-Package: org.eclipse.papyrus.diagram.clazz.edit.policies

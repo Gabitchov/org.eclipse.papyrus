@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.clazz.custom.locator.ContainmentPositionLocator;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PackageItemSemanticEditPolicy;
@@ -127,6 +128,13 @@ NamedElementEditPart
 			return true;
 		}
 
+		//Papyrus Gencode :Affixed Containment locator
+		if(childEditPart instanceof ContainmentCircleEditPart) {
+			IBorderItemLocator locator = new ContainmentPositionLocator(getMainFigure(), PositionConstants.NORTH);
+			getBorderedFigure().getBorderItemContainer().add(((ContainmentCircleEditPart)childEditPart).getFigure(), locator);
+			return true;
+		}
+
 		return false;
 	}
 
@@ -163,6 +171,7 @@ NamedElementEditPart
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+				case ContainmentCircleEditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
@@ -254,6 +263,7 @@ NamedElementEditPart
 		types.add(UMLElementTypes.PackageImport_4010);
 		types.add(UMLElementTypes.PackageMerge_4011);
 		types.add(UMLElementTypes.TemplateBinding_4015);
+		types.add(UMLElementTypes.Dependency_4022);
 		return types;
 	}
 
@@ -853,6 +863,87 @@ NamedElementEditPart
 		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
+		if(targetEditPart instanceof Dependency2EditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof AssociationClassEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof AssociationNodeEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ComponentEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof SignalEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof InterfaceEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ModelEditPartTN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof EnumerationEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ClassEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ComponentEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof SignalEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof InterfaceEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ModelEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ClassEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof DataTypeEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof Constraint2EditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
 		return types;
 	}
 
@@ -872,6 +963,7 @@ NamedElementEditPart
 		types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		types.add(UMLElementTypes.TemplateBinding_4015);
+		types.add(UMLElementTypes.Dependency_4022);
 		return types;
 	}
 
@@ -1489,6 +1581,87 @@ NamedElementEditPart
 		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.DataType_3027);
 		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Dependency_2014);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.AssociationClass_2013);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Association_2015);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.InstanceSpecification_2001);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Component_2002);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Signal_2003);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Interface_2004);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Model_2005);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Enumeration_2006);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Package_2007);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Class_2008);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.PrimitiveType_2009);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DataType_2010);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Constraint_2011);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Component_3021);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Signal_3022);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Interface_3023);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Model_3024);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Enumeration_3025);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Package_3009);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Class_3010);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.PrimitiveType_3026);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DataType_3027);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Constraint_3029);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Port_3032);
+		}
 		return types;
 	}
 
@@ -2088,6 +2261,87 @@ NamedElementEditPart
 		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Port_3032);
 		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Dependency_2014);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.AssociationClass_2013);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Association_2015);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.InstanceSpecification_2001);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Component_2002);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Signal_2003);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Interface_2004);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Model_2005);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Enumeration_2006);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Package_2007);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Class_2008);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.PrimitiveType_2009);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DataType_2010);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Constraint_2011);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Component_3021);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Signal_3022);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Interface_3023);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Model_3024);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Enumeration_3025);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Package_3009);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Class_3010);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.PrimitiveType_3026);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DataType_3027);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Constraint_3029);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.Port_3032);
+		}
 		return types;
 	}
 
@@ -2174,6 +2428,10 @@ NamedElementEditPart
 		}
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof ContainmentCircleEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ContainmentCircleEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;

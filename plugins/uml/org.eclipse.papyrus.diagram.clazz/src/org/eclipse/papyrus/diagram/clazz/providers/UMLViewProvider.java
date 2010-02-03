@@ -861,7 +861,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case InstanceSpecificationLinkEditPart.VISUAL_ID:
 			return createLink_4021(containerView, index, persisted, preferencesHint);
 		case AddedLinkEditPart.VISUAL_ID:
-			return createLink_4022(containerView, index, persisted, preferencesHint);
+			return createDependency_4022(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case ContainmentLinkEditPart.VISUAL_ID:
 			return createLink_4023(containerView, index, persisted, preferencesHint);
 		}
@@ -1063,7 +1063,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createLink_4022(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createDependency_4022(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -1074,9 +1074,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(UMLVisualIDRegistry.getType(AddedLinkEditPart.VISUAL_ID));
-		edge.setElement(null);
+		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(edge, prefStore, "AddedLink");
+
+		initFontStyleFromPrefs(edge, prefStore, "AddedLink");
 
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if(routing != null) {

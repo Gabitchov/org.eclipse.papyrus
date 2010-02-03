@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,29 +22,43 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ViewComponentEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.internal.impl.ClassImpl;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 
 public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 
@@ -80,11 +96,6 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 			AddedLinkEditPart hostaddedlink = (AddedLinkEditPart)getHost();
 			EditPart circlecontainment = hostaddedlink.getSource();
 			ContainmentCircleEditPart containmentcircleeditpart = (ContainmentCircleEditPart)hostaddedlink.getSource();
-			Classifier source = (Classifier)hostaddedlink.getSource().getParent().getAdapter(Classifier.class);
-			Classifier target = (Classifier)hostaddedlink.getTarget().getAdapter(Classifier.class);
-
-			/* Change the owner of the target class */
-			cc.compose(new customRemoveCommand(editingDomain, source, target));
 
 			/* The containment circle node is deleted only if any other link is connected */
 			if(containmentcircleeditpart.getSourceConnections().size() == 1) {
@@ -94,25 +105,45 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 
 		/* if the element deleted is the contained class, the link connected should be delete also */
 		if(getHost() instanceof ClassEditPart) {
-			EList<ConnectorImpl> linklist = null;
-			ClassEditPart hostclass = (ClassEditPart)getHost();
-			EditPartViewer viewHost = hostclass.getViewer();
-			View shapehost = (View)hostclass.getModel();
-			linklist = shapehost.getTargetEdges();
-			Classifier classhost = (Classifier)shapehost.getElement();
-			Iterator<ConnectorImpl> addedlinkIterator = linklist.iterator();
+			EList<Connector> linkList = null;
+			ClassEditPart hostClass = (ClassEditPart)getHost();
+			View hostShape = (View)hostClass.getModel();
+			linkList = hostShape.getTargetEdges();
+			Classifier classhost = (Classifier)hostShape.getElement();
+			Iterator<Connector> addedLinkIterator = linkList.iterator();
 
-			if(classhost.getOwner() instanceof ClassImpl) {
-				while(addedlinkIterator.hasNext()) {
-					ConnectorImpl currentConnector = addedlinkIterator.next();
-					if(currentConnector != null && currentConnector.getSource() instanceof Shape) {
-						Shape containmenetshape = (Shape)currentConnector.getSource();
-						if(containmenetshape.getType().equals("3032")) {
-							/* The containment circle node is deleted only if any other link is connected */
-							if(containmenetshape.getSourceEdges().size() == 1) {
-								cc.compose(new DeleteCommand(editingDomain, (View)containmenetshape));
+			if(classhost.getOwner() instanceof org.eclipse.uml2.uml.Class) {
+				while(addedLinkIterator.hasNext()) {
+					Connector currentConnector = addedLinkIterator.next();
+					Shape containmentCircleShape = (Shape)((Edge)currentConnector).getSource();
+					if(((View)containmentCircleShape).getType().equals(ClassEditPart.VISUAL_ID)) {
+						/* The containment circle node is deleted only if any other link is connected */
+						if(((View)containmentCircleShape).getSourceEdges().size() == 1) {
+							cc.compose(new DeleteCommand(editingDomain, (View)containmentCircleShape));
 
-							}
+						}
+					}
+				}
+			}
+		}
+		/* if the element deleted is the contained class, the link connected should be delete also */
+		if(getHost() instanceof PackageEditPart) {
+			EList<Connector> linkList = null;
+			PackageEditPart hostPackage = (PackageEditPart)getHost();
+			View shapehost = (View)hostPackage.getModel();
+			linkList = shapehost.getTargetEdges();
+			PackageableElement classhost = (PackageableElement)shapehost.getElement();
+			Iterator<Connector> addedLinkIterator = linkList.iterator();
+
+			if(classhost.getOwner() instanceof org.eclipse.uml2.uml.Package) {
+				while(addedLinkIterator.hasNext()) {
+					Connector currentConnector = addedLinkIterator.next();
+					Shape containmentCircleShape = (Shape)((Edge)currentConnector).getSource();
+					if(((View)containmentCircleShape).getType().equals(PackageEditPart.VISUAL_ID)) {
+						/* The containment circle node is deleted only if any other link is connected */
+						if(((View)containmentCircleShape).getSourceEdges().size() == 1) {
+							cc.compose(new DeleteCommand(editingDomain, (View)containmentCircleShape));
+
 						}
 					}
 				}
@@ -142,31 +173,5 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 		return null;
 	}
 
-	private static class customRemoveCommand extends AbstractTransactionalCommand {
 
-		private Classifier sourceclassifier;
-
-		private Classifier targetclassifier;
-
-		public customRemoveCommand(TransactionalEditingDomain domain, Classifier source, Classifier target) {
-			super(domain, "CustomremoveCommand", null);
-			sourceclassifier = source;
-			targetclassifier = target;
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			// TODO Auto-generated method stub
-			if(sourceclassifier instanceof org.eclipse.uml2.uml.Class) {
-				org.eclipse.uml2.uml.Class sourceclass = (org.eclipse.uml2.uml.Class)sourceclassifier;
-				org.eclipse.uml2.uml.Class targetclass = (org.eclipse.uml2.uml.Class)targetclassifier;
-				targetclass.setPackage(sourceclass.getPackage());
-				EList<Classifier> listnestedclassifier = sourceclass.getNestedClassifiers();
-				listnestedclassifier.remove(targetclass);
-			}
-			return CommandResult.newOKCommandResult();
-		}
-
-	}
 }

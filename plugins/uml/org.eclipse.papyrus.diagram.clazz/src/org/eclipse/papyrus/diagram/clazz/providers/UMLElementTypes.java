@@ -477,7 +477,7 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Link_4022 = getElementType("org.eclipse.papyrus.diagram.clazz.AddedLink_4022"); //$NON-NLS-1$
+	public static final IElementType Dependency_4022 = getElementType("org.eclipse.papyrus.diagram.clazz.Dependency_4022"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -723,6 +723,8 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(TemplateBinding_4015, UMLPackage.eINSTANCE.getTemplateBinding());
 
 			elements.put(GeneralizationSet_4020, UMLPackage.eINSTANCE.getGeneralizationSet());
+
+			elements.put(Dependency_4022, UMLPackage.eINSTANCE.getDependency());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -809,7 +811,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(TemplateBinding_4015);
 			KNOWN_ELEMENT_TYPES.add(GeneralizationSet_4020);
 			KNOWN_ELEMENT_TYPES.add(Link_4021);
-			KNOWN_ELEMENT_TYPES.add(Link_4022);
+			KNOWN_ELEMENT_TYPES.add(Dependency_4022);
 			KNOWN_ELEMENT_TYPES.add(Link_4023);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
@@ -959,7 +961,7 @@ public class UMLElementTypes extends ElementInitializers {
 		case InstanceSpecificationLinkEditPart.VISUAL_ID:
 			return Link_4021;
 		case AddedLinkEditPart.VISUAL_ID:
-			return Link_4022;
+			return Dependency_4022;
 		case ContainmentLinkEditPart.VISUAL_ID:
 			return Link_4023;
 		}

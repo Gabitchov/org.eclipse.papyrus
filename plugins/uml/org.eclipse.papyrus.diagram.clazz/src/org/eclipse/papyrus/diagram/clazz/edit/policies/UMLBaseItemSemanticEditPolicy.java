@@ -176,8 +176,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateLink_4022() {
-			return canExistLink_4022();
+		public static boolean canCreateDependency_4022(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4022(container, source, target);
 		}
 
 		/**
@@ -337,7 +337,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistLink_4022() {
+		public static boolean canExistDependency_4022(Package container, NamedElement source, NamedElement target) {
 			return true;
 		}
 

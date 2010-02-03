@@ -26,10 +26,10 @@ import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
-import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
-import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
@@ -48,6 +48,8 @@ import org.eclipse.uml2.uml.internal.impl.ClassImpl;
  * The Class ClassDiagramDragDropEditPolicy.
  */
 public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
+
+	public static final String CONTAINED_CLASS_DROP_TO_COMPARTMENT = "ContainedClassDropToCompartment";
 
 	/** The specific drop node. */
 	public int[] secificDropNode = { 2014, 2013, 2015, 3014, 2008 };
@@ -133,6 +135,18 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Use to drop a class from the outline to the diagram
+	 * 
+	 * @param dropRequest
+	 *        is the request for the drop, never be null
+	 * @param semanticObject
+	 *        is the class dropped
+	 * @param nodeVISUALID
+	 *        is the visual ID of the class
+	 * @return a command to execute
+	 */
+
 	protected Command outlineDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		Element owner = (Element)semanticObject.getOwner();
@@ -156,36 +170,55 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 
 	}
 
-	protected Command compartmentDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
-		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
-		CompositeCommand cc = new CompositeCommand("compartmentDropContainedClass");
+	/**
+	 * Use to drop a class from the diagram to the nestedClassifierCompartment
+	 * 
+	 * @param dropRequest
+	 *        is the request for the drop, never be null
+	 * @param droppedElement
+	 *        is the class dropped
+	 * @param nodeVISUALID
+	 *        is the visual ID of the class
+	 * @return a command to execute
+	 */
+	protected Command compartmentDropContainedClass(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
+		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
+
+		// Get the location of the dropped element
 		Point location = dropRequest.getLocation().getCopy();
 		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
 		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
 		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
-		cc = getDefaultDropNodeCommand(nodeVISUALID, location, semanticObject);
-		GraphicalEditPart owner = null;
+
+		// Drop the element to the class compartment
+		cc = getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement);
+
+		// look for the dropped element existing outside the compartment in the current diagram and his containment connection
 		Collection<EditPart> editPartSet = getViewer().getEditPartRegistry().values();
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
 		while(editPartIterator.hasNext()) {
 			EditPart currentEditPart = editPartIterator.next();
 			if(currentEditPart instanceof ClassEditPart) {
-				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(semanticObject)) {
+				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(droppedElement)) {
 					View view = (View)currentEditPart.getModel();
-					EList<ConnectorImpl> listlink = view.getTargetEdges();
-					Iterator<ConnectorImpl> addedlinkIterator = listlink.iterator();
+
+					// look for the containment connection
+					EList<Connector> listlink = view.getTargetEdges();
+					Iterator<Connector> addedlinkIterator = listlink.iterator();
 					while(addedlinkIterator.hasNext()) {
-						ConnectorImpl currentconnector = addedlinkIterator.next();
-						ShapeImpl containmenetshape = (ShapeImpl)currentconnector.getSource();
-						if(containmenetshape.getType().equals("3032")) {
+						Connector currentconnector = addedlinkIterator.next();
+						Shape containmenetshape = (Shape)((Edge)currentconnector).getSource();
+						if(((View)containmenetshape).getType().equals(ContainmentCircleEditPart.VISUAL_ID)) {
 							/* The containment circle node is deleted only if any other link is connected */
-							if(containmenetshape.getSourceEdges().size() == 1) {
+							if(((View)containmenetshape).getSourceEdges().size() == 1) {
+								// Delete the containment circle
 								cc.compose(new DeleteCommand(getEditingDomain(), (View)containmenetshape));
 
 							}
 						}
 					}
-					cc.add(new DeleteCommand(getEditingDomain(), (View)((GraphicalEditPart)currentEditPart).getModel()));
+					// Delete the dropped element existing outside the compartment
+					cc.add(new DeleteCommand(getEditingDomain(), view));
 
 
 				}

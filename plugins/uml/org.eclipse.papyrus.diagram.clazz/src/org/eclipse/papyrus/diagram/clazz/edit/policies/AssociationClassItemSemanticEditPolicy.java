@@ -32,6 +32,8 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AddedLinkCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AddedLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationClass2CreateCommand;
@@ -63,6 +65,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCo
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart;
@@ -197,6 +200,12 @@ public class AssociationClassItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if(UMLVisualIDRegistry.getVisualID(incomingLink) == AddedLinkEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 		}
 		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
@@ -279,6 +288,12 @@ public class AssociationClassItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == TemplateBindingEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AddedLinkEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -406,6 +421,9 @@ public class AssociationClassItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
+			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -461,6 +479,9 @@ public class AssociationClassItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
+			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -500,6 +521,8 @@ public class AssociationClassItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			return getGEFWrapper(new PackageImportReorientCommand(req));
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getGEFWrapper(new TemplateBindingReorientCommand(req));
+		case AddedLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new AddedLinkReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

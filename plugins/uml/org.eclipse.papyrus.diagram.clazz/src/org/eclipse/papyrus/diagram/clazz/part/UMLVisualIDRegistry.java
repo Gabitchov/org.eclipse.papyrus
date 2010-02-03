@@ -158,6 +158,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ContainmentCircleEditPart.VISUAL_ID;
+			}
 			break;
 		case ClassEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())
@@ -913,6 +918,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ContainmentCircleEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1687,6 +1695,11 @@ public class UMLVisualIDRegistry {
 		) {
 			return GeneralizationSetEditPart.VISUAL_ID;
 		}
+		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
+
+		) {
+			return AddedLinkEditPart.VISUAL_ID;
+		}
 		return -1;
 	}
 
@@ -2181,6 +2194,8 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "Port");
 
 		root.addNode(2008, viewInfo);
+
+		root.addNode(2007, viewInfo);
 
 		return root;
 	}

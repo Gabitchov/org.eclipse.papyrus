@@ -282,6 +282,14 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
+		for(Iterator it = modelElement.getOwnedMembers().iterator(); it.hasNext();) {
+			Port childElement = (Port)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ContainmentCircleEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -1773,6 +1781,8 @@ public class UMLDiagramUpdater {
 			return getTemplateBinding_4015ContainedLinks(view);
 		case GeneralizationSetEditPart.VISUAL_ID:
 			return getGeneralizationSet_4020ContainedLinks(view);
+		case AddedLinkEditPart.VISUAL_ID:
+			return getDependency_4022ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1910,6 +1920,8 @@ public class UMLDiagramUpdater {
 			return getTemplateBinding_4015IncomingLinks(view);
 		case GeneralizationSetEditPart.VISUAL_ID:
 			return getGeneralizationSet_4020IncomingLinks(view);
+		case AddedLinkEditPart.VISUAL_ID:
+			return getDependency_4022IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -2047,6 +2059,8 @@ public class UMLDiagramUpdater {
 			return getTemplateBinding_4015OutgoingLinks(view);
 		case GeneralizationSetEditPart.VISUAL_ID:
 			return getGeneralizationSet_4020OutgoingLinks(view);
+		case AddedLinkEditPart.VISUAL_ID:
+			return getDependency_4022OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -2071,6 +2085,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -2180,6 +2195,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -2217,6 +2233,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -2449,6 +2466,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -2493,6 +2511,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_4020(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -2788,6 +2807,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getDependency_4022ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getDependency_2014IncomingLinks(View view) {
 		Dependency modelElement = (Dependency)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -2801,6 +2827,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2825,6 +2852,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2849,6 +2877,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2868,6 +2897,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2892,6 +2922,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2916,6 +2947,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2941,6 +2973,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2962,6 +2995,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2986,6 +3020,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3007,6 +3042,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3031,6 +3067,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3055,6 +3092,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3079,6 +3117,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3098,6 +3137,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3157,6 +3197,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3211,6 +3252,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3235,6 +3277,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3259,6 +3302,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3284,6 +3328,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3305,6 +3350,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3329,6 +3375,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3357,6 +3404,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3381,6 +3429,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3433,6 +3482,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3457,6 +3507,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3503,6 +3554,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3528,6 +3580,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3559,6 +3612,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3583,6 +3637,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3607,6 +3662,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3640,6 +3696,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3659,6 +3716,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3678,6 +3736,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3697,6 +3756,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3716,6 +3776,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3735,6 +3796,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3754,6 +3816,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3838,6 +3901,27 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDependency_4022IncomingLinks(View view) {
+		Dependency modelElement = (Dependency)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4018(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
 		return result;
 	}
 
@@ -3852,6 +3936,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -3875,6 +3960,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -3897,6 +3983,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -3911,6 +3998,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -3934,6 +4022,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -3956,6 +4045,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -3978,6 +4068,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -3997,6 +4088,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_4011(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4019,6 +4111,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4038,6 +4131,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_4011(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4061,6 +4155,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4083,6 +4178,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4105,6 +4201,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4120,6 +4217,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4172,6 +4270,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4221,6 +4320,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4244,6 +4344,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4266,6 +4367,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4288,6 +4390,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4307,6 +4410,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_4011(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4329,6 +4433,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4355,6 +4460,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_4011(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_4012(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4378,6 +4484,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4428,6 +4535,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4450,6 +4558,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4489,6 +4598,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4510,6 +4620,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4540,6 +4651,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4562,6 +4674,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4584,6 +4697,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4608,6 +4722,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4622,6 +4737,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4636,6 +4752,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4650,6 +4767,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4664,6 +4782,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4678,6 +4797,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4692,6 +4812,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -4741,6 +4862,22 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDependency_4022OutgoingLinks(View view) {
+		Dependency modelElement = (Dependency)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
 	}
 
@@ -5250,6 +5387,41 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection getContainedTypeModelFacetLinks_Dependency_4022(Package container) {
+		Collection result = new LinkedList();
+		for(Iterator links = container.getPackagedElements().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof Dependency) {
+				continue;
+			}
+			Dependency link = (Dependency)linkObject;
+			if(AddedLinkEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+			List targets = link.getSuppliers();
+			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
+			if(false == theTarget instanceof NamedElement) {
+				continue;
+			}
+			NamedElement dst = (NamedElement)theTarget;
+			List sources = link.getClients();
+
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+
+			if(false == theSource instanceof NamedElement) {
+				continue;
+			}
+			NamedElement src = (NamedElement)theSource;
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4022, AddedLinkEditPart.VISUAL_ID));
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getIncomingTypeModelFacetLinks_AssociationClass_4017(Type target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection)crossReferences.get(target);
@@ -5688,6 +5860,34 @@ public class UMLDiagramUpdater {
 			}
 			Generalization src = (Generalization)theSource;
 			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.GeneralizationSet_4020, GeneralizationSetEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getIncomingTypeModelFacetLinks_Dependency_4022(NamedElement target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection)crossReferences.get(target);
+		for(Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting)it.next();
+			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Dependency) {
+				continue;
+			}
+			Dependency link = (Dependency)setting.getEObject();
+			if(AddedLinkEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List sources = link.getClients();
+
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+
+			if(false == theSource instanceof NamedElement) {
+				continue;
+			}
+			NamedElement src = (NamedElement)theSource;
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4022, AddedLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -6284,6 +6484,56 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralizationSet_4020, GeneralizationSetEditPart.VISUAL_ID));
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingTypeModelFacetLinks_Dependency_4022(NamedElement source) {
+		Package container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if(element instanceof Package) {
+				container = (Package)element;
+			}
+		}
+		if(container == null) {
+			return Collections.EMPTY_LIST;
+		}
+		Collection result = new LinkedList();
+		for(Iterator links = container.getPackagedElements().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof Dependency) {
+				continue;
+			}
+			Dependency link = (Dependency)linkObject;
+			if(AddedLinkEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+			List targets = link.getSuppliers();
+			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
+			if(false == theTarget instanceof NamedElement) {
+				continue;
+			}
+			NamedElement dst = (NamedElement)theTarget;
+			List sources = link.getClients();
+
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+
+			if(false == theSource instanceof NamedElement) {
+				continue;
+			}
+			NamedElement src = (NamedElement)theSource;
+			if(src != source) {
+				continue;
+			}
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4022, AddedLinkEditPart.VISUAL_ID));
 
 		}
 		return result;

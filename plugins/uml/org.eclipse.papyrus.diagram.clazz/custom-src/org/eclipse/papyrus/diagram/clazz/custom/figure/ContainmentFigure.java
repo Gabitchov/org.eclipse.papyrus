@@ -25,9 +25,10 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.swt.SWT;
 
+/** Use to create a containment circle figure */
+
 public class ContainmentFigure extends Ellipse {
 
-	private static final Rectangle PRIVATE_RECT = new Rectangle();
 
 	/**
 	 * Fills the circle.

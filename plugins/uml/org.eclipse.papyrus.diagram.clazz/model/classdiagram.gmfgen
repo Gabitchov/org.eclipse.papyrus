@@ -1920,7 +1920,7 @@
           canonicalEditPolicyClassName="ContainmentCircleCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ContainmentCircleGraphicalNodeEditPolicy"
           createCommandClassName="ContainmentCircleCreateCommand"
-          containers="/0/@diagram/@topLevelNodes.10"
+          containers="/0/@diagram/@topLevelNodes.10 /0/@diagram/@topLevelNodes.9"
           preferredSideName="NORTH">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1934,6 +1934,14 @@
             figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.ContainmentFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomContainmentCircleItemSemanticEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;CustomDisplay&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomListenerContainmentCircleEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Port"/>
@@ -2623,7 +2631,7 @@
           editPartClassName="PackageEditPart"
           itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicy"
           canonicalEditPolicyClassName="PackageCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.30"
           compartments="/0/@diagram/@compartments.27"
           graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicy"
           createCommandClassName="PackageCreateCommand">
@@ -4643,8 +4651,9 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:NotationType"
-            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.AddedLink_4022"/>
+            xsi:type="gmfgen:MetamodelType"
+            displayName="AddedLink"
+            editHelperClassName="AddedLinkEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AddedLinkFigure"/>
@@ -4652,6 +4661,21 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomViewComponentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAddedLinkItemSemanticEditPolicy"/>
+        <modelFacet
+            xsi:type="gmfgen:TypeLinkModelFacet">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <sourceMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/client"/>
+          <targetMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
+        </modelFacet>
       </links>
       <links
           visualID="4023"

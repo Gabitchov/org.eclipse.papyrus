@@ -20,6 +20,10 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
+	public static final String AssociationClassNestedClassifierCompartmentEditPart_title = null;
+
+	public static final String AssociationClassOperationCompartmentEditPart_title = null;
+
 	/**
 	 * @generated
 	 */
@@ -423,16 +427,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String InstanceSpecificationSlotCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
-	public static String AssociationClassOperationCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String AssociationClassNestedClassifierCompartmentEditPart_title;
 
 	/**
 	 * @generated

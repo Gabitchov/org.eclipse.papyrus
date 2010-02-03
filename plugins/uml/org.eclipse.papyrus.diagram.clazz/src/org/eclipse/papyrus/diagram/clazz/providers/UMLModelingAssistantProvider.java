@@ -125,8 +125,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof PackageEditPart) {
-			ArrayList types = new ArrayList(1);
+			ArrayList types = new ArrayList(2);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Port_3032);
 			return types;
 		}
 		if(editPart instanceof ClassEditPart) {

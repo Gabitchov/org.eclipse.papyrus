@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
@@ -57,6 +58,7 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+		case ContainmentCircleEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -78,6 +80,7 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getEncapsulatedClassifier_OwnedPort());
 		}
 		return myFeaturesToSynchronize;
 	}
