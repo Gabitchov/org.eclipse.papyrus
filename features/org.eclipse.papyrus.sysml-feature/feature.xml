@@ -40,6 +40,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="org.eclipse.papyrus.uml.standard.edit"/>
       <import plugin="org.eclipse.uml2.uml.edit"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.ui.properties"/>
    </requires>
 
    <plugin
