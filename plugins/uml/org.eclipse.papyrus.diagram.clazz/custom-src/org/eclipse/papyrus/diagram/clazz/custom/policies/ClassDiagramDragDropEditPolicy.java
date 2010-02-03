@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
@@ -208,7 +209,7 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 					while(addedlinkIterator.hasNext()) {
 						Connector currentconnector = addedlinkIterator.next();
 						Shape containmenetshape = (Shape)((Edge)currentconnector).getSource();
-						if(((View)containmenetshape).getType().equals(ContainmentCircleEditPart.VISUAL_ID)) {
+						if(((View)containmenetshape).getType().equals(Integer.toString(CContainmentCircleEditPart.VISUAL_ID))) {
 							/* The containment circle node is deleted only if any other link is connected */
 							if(((View)containmenetshape).getSourceEdges().size() == 1) {
 								// Delete the containment circle

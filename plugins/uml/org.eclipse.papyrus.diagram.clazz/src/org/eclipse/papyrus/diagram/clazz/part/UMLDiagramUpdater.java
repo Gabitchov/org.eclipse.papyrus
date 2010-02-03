@@ -282,14 +282,6 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
-		for(Iterator it = modelElement.getOwnedMembers().iterator(); it.hasNext();) {
-			Port childElement = (Port)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ContainmentCircleEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
 		return result;
 	}
 

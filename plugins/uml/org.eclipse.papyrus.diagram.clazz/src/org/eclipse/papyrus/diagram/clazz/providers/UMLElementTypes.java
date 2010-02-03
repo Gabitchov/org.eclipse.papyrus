@@ -477,7 +477,7 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_4022 = getElementType("org.eclipse.papyrus.diagram.clazz.Dependency_4022"); //$NON-NLS-1$
+	public static final IElementType Dependency_4022 = getElementType("org.eclipse.papyrus.diagram.clazz.AddedLink_4022"); //$NON-NLS-1$
 
 	/**
 	 * @generated

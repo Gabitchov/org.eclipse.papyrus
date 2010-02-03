@@ -897,16 +897,13 @@
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
          <param name="semanticHint" value="4021"/>
       </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Dependency_4022"
-               name="%metatype.name.Dependency_4022"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Dependency"
-               edithelper="org.eclipse.papyrus.diagram.clazz.edit.helpers.AddedLinkEditHelper">
-            <param name="semanticHint" value="4022"/>
-         </metamodelType>
-      </metamodel>
+      <specializationType
+            id="org.eclipse.papyrus.diagram.clazz.AddedLink_4022"
+            name="%metatype.name.Dependency_4022"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="4022"/>
+      </specializationType>
       <specializationType
             id="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"
             name="%metatype.name.Link_4023"
@@ -994,7 +991,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateBinding_4015"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.SlotLink_4021"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Dependency_4022"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.AddedLink_4022"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
@@ -1832,13 +1829,6 @@
             id="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
             name="ProfileApplication" />	
 	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.AddedLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AddedLinkPreferencePage"
-            name="AddedLink" />	
 	
 
 </extension>

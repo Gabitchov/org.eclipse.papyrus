@@ -1078,9 +1078,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		initForegroundFromPrefs(edge, prefStore, "AddedLink");
+		initForegroundFromPrefs(edge, prefStore, "Dependency");
 
-		initFontStyleFromPrefs(edge, prefStore, "AddedLink");
+		initFontStyleFromPrefs(edge, prefStore, "Dependency");
 
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if(routing != null) {

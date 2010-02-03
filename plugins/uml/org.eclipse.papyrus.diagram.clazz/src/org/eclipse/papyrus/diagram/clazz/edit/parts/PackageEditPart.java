@@ -128,13 +128,6 @@ NamedElementEditPart
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Containment locator
-		if(childEditPart instanceof ContainmentCircleEditPart) {
-			IBorderItemLocator locator = new ContainmentPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((ContainmentCircleEditPart)childEditPart).getFigure(), locator);
-			return true;
-		}
-
 		return false;
 	}
 
@@ -171,7 +164,6 @@ NamedElementEditPart
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-				case ContainmentCircleEditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
@@ -2428,10 +2420,6 @@ NamedElementEditPart
 		}
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
-			return true;
-		}
-		if(childEditPart instanceof ContainmentCircleEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ContainmentCircleEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;

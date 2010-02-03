@@ -50,6 +50,7 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
@@ -116,7 +117,7 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 				while(addedLinkIterator.hasNext()) {
 					Connector currentConnector = addedLinkIterator.next();
 					Shape containmentCircleShape = (Shape)((Edge)currentConnector).getSource();
-					if(((View)containmentCircleShape).getType().equals(ClassEditPart.VISUAL_ID)) {
+					if(((View)containmentCircleShape).getType().equals(Integer.toString(CContainmentCircleEditPart.VISUAL_ID))) {
 						/* The containment circle node is deleted only if any other link is connected */
 						if(((View)containmentCircleShape).getSourceEdges().size() == 1) {
 							cc.compose(new DeleteCommand(editingDomain, (View)containmentCircleShape));
@@ -139,7 +140,7 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 				while(addedLinkIterator.hasNext()) {
 					Connector currentConnector = addedLinkIterator.next();
 					Shape containmentCircleShape = (Shape)((Edge)currentConnector).getSource();
-					if(((View)containmentCircleShape).getType().equals(PackageEditPart.VISUAL_ID)) {
+					if(((View)containmentCircleShape).getType().equals(Integer.toString(CContainmentCircleEditPart.VISUAL_ID))) {
 						/* The containment circle node is deleted only if any other link is connected */
 						if(((View)containmentCircleShape).getSourceEdges().size() == 1) {
 							cc.compose(new DeleteCommand(editingDomain, (View)containmentCircleShape));
