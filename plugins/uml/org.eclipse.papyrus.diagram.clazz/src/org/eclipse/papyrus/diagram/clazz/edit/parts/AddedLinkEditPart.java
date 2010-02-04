@@ -38,6 +38,7 @@ implements ITreeBranchEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AddedLinkItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CustomViewComponentEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAddedLinkItemSemanticEditPolicy());
 	}
 
 	/**

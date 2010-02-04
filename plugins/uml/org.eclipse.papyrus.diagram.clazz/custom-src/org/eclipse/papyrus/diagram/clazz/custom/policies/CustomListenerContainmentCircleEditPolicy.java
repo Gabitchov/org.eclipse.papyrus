@@ -57,7 +57,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEdit
 
 public class CustomListenerContainmentCircleEditPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
-
+public static  String CUSTOM_DISPLAY="CustomDisplay";
 	/** stores the host associated semantic element */
 	protected EObject hostSemanticElement;
 

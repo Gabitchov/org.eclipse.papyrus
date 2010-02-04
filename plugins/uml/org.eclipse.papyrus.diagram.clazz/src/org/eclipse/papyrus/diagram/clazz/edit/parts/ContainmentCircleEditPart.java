@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.figure.ContainmentFigure;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomListenerContainmentCircleEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
@@ -73,6 +74,8 @@ AbstractBorderItemEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContainmentCircleItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomContainmentCircleItemSemanticEditPolicy());
+		installEditPolicy(CustomListenerContainmentCircleEditPolicy.CUSTOM_DISPLAY, new CustomListenerContainmentCircleEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
