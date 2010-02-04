@@ -58,6 +58,7 @@ import org.eclipse.papyrus.sysml.diagram.parametric.locator.ParameterPositionLoc
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -431,7 +432,11 @@ AbstractBorderedShapeEditPart {
 		// listen constraint property and self base property
 		notifier.listenObject(parent);
 		if (parent instanceof ConstraintProperty) {
-			notifier.listenObject(((ConstraintProperty) parent).getBase_Property());
+			Property property = ((ConstraintProperty) parent).getBase_Property();
+			notifier.listenObject(property);
+			if (property.getType() != null) {
+				notifier.listenObject(property.getType());
+			}
 		}
 		// ensure children parts are correctly initialized.
 		SelfCompartmentNotificationHelper.updateChildrenParts(this, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(), (IHintedType) SysmlElementTypes.Property_3002);
@@ -455,4 +460,5 @@ AbstractBorderedShapeEditPart {
 		notifier.unlistenAll();
 		super.removeNotify();
 	}
+	
 }

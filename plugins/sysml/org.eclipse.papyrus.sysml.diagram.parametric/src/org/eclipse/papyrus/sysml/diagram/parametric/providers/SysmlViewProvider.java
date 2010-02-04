@@ -256,6 +256,8 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		node.setType(SysmlVisualIDRegistry.getType(ConstraintPropertyEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
+		//node.setElement(((ConstraintProperty) domainElement).getBase_Property());
+		
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.parametric.helper;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -21,6 +22,7 @@ import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -30,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.Activator;
 import org.eclipse.papyrus.diagram.common.helper.NotificationHelper;
@@ -47,28 +50,51 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class SelfCompartmentNotificationHelper extends NotificationHelper {
 
+	/** The UI adapter that listens model update */
+	private UIAdapter adapter = new UIAdapter();
+
+	/** The compartment part. */
+	private final ConstraintPropertyEditPart compartmentPart;
+
+	/** The child feature. */
+	private final EStructuralFeature childFeature;
+
+	/** The child type. */
+	private final IHintedType childType;
+
 	/**
-	 * Construct a new NotificationHelper which automatically manages contained element for a
-	 * particular feature.
+	 * Instantiates a new self compartment notification helper.
 	 * 
 	 * @param compartmentPart
-	 *            the compartment part containing parts to manage
+	 *            the compartment part
 	 * @param childFeature
-	 *            the feature for children parts (list feature)
+	 *            the child feature
 	 * @param childType
-	 *            the {@link IHintedType} for chidren node parts
+	 *            the child type
 	 */
 	public SelfCompartmentNotificationHelper(final ConstraintPropertyEditPart compartmentPart,
 			final EStructuralFeature childFeature, final IHintedType childType) {
-		super(new UIAdapterImpl() {
+		this.compartmentPart = compartmentPart;
+		this.childFeature = childFeature;
+		this.childType = childType;
+		this.setModelListener(adapter);
+	}
 
-			@Override
-			protected void safeNotifyChanged(Notification msg) {
-				if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(msg.getFeature())) {
-					updateChildrenParts(compartmentPart, childFeature, childType);
-				}
+	/**
+	 * private class UIAdapter.
+	 */
+	private class UIAdapter extends UIAdapterImpl {
+
+		@Override
+		protected void safeNotifyChanged(Notification msg) {
+			if (UMLPackage.eINSTANCE.getTypedElement_Type().equals(msg.getFeature())) {
+				// listen type once it's set
+				listenObject((Notifier) msg.getNewValue());
+				updateChildrenParts(compartmentPart, childFeature, childType);
+			} else if (UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute().equals(msg.getFeature())) {
+				updateChildrenParts(compartmentPart, childFeature, childType);
 			}
-		});
+		}
 	}
 
 	/**
@@ -97,15 +123,22 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 						List<?> ownedEObjectChildren = (List<?>) untypedOwnedObjects;
 						List<EObject> drawnEObjectChildren = new ArrayList<EObject>(ownedEObjectChildren.size());
 						// list children already drawn and remove old children
-						for (Object childView : compartmentView.getChildren()) {
+						for (Iterator<?> iterator = compartmentView.getPersistedChildren().iterator(); iterator
+								.hasNext();) {
+							EObject childView = (EObject) iterator.next();
 							if (childView instanceof View) {
 								EObject child = ((View) childView).getElement();
 								if (child instanceof Property) {
+									// property already drawn
 									if (ownedEObjectChildren.contains(child) && !drawnEObjectChildren.contains(child)) {
 										drawnEObjectChildren.add(child);
 									} else if (!ownedEObjectChildren.contains(child)) {
-										compartmentView.removeChild((View) childView);
+										// remove remaining property if any
+										iterator.remove();
 									}
+								} else if (child instanceof ConstraintProperty && childView instanceof Shape) {
+									// property doesn't exist in the model, remove the view
+									iterator.remove();
 								}
 							}
 						}
@@ -137,11 +170,12 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 					}
 				} else {
 					// constraint property type is set to null, remove old children
-					for (Object childView : compartmentView.getChildren()) {
+					for (Iterator<?> iterator = compartmentView.getPersistedChildren().iterator(); iterator.hasNext();) {
+						EObject childView = (EObject) iterator.next();
 						if (childView instanceof View) {
 							EObject child = ((View) childView).getElement();
 							if (child instanceof Property) {
-								compartmentView.removeChild((View) childView);
+								iterator.remove();
 							}
 						}
 					}
