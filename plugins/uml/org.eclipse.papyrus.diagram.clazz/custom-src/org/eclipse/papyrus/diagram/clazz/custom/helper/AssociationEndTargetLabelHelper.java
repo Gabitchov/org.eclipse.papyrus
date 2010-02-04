@@ -58,7 +58,28 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 				}
 
 			}
+			if( propertyToDisplay!=null){
+			return propertyToDisplay;}
+			///in the case of reorient the property must be not found,
+			// so we have to find the property that is different from the source.
+			
+			Classifier source = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource().getElement();
+			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
+				// look for the property that is typed by the classifier
+
+				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
+
+				//find the last
+				while(propertiesIterator.hasNext()) {
+					Property currentProperty = (Property)propertiesIterator.next();
+					if(!currentProperty.getType().equals(source)) {
+						propertyToDisplay = currentProperty;
+					}
+				}
+
+			}
 			return propertyToDisplay;
+			
 		}
 		return null;
 	}

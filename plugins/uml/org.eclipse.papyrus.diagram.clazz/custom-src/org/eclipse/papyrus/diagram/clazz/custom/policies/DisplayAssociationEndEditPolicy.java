@@ -217,7 +217,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
-		Property property = getUMLElement();
+		Property property = (Property)hostSemanticElement;
 		if(property == null) {
 			return;
 		}

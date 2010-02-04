@@ -96,6 +96,8 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
+		case AssociationClass2EditPart.VISUAL_ID:
+			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		}
