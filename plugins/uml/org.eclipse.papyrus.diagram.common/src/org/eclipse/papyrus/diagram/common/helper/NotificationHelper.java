@@ -25,10 +25,14 @@ public class NotificationHelper {
 
 	private List<Notifier> listeners = new ArrayList<Notifier>();
 
+	public NotificationHelper() {
+		super();
+	}
+
 	public NotificationHelper(UIAdapterImpl modelListener) {
 		this.modelListener = modelListener;
 	}
-
+	
 	/**
 	 * Add listener on a element
 	 * 
@@ -69,6 +73,10 @@ public class NotificationHelper {
 			}
 			listeners.clear();
 		}
+	}
+	
+	public void setModelListener(UIAdapterImpl adpater) {
+		this.modelListener = adpater;
 	}
 
 }
