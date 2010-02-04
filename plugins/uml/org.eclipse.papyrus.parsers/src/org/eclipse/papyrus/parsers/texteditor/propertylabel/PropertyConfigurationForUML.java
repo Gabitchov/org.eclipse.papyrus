@@ -47,8 +47,8 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 	 * {@inheritDoc}
 	 */
 	public String getTextToEdit(Object editedObject) {
-		if(editedObject instanceof Property) {
-			return PropertyUtil.getLabel((Property)editedObject);
+		if (editedObject instanceof Property) {
+			return PropertyUtil.getLabel((Property) editedObject);
 		}
 		return "not a Property";
 	}
@@ -58,8 +58,8 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 	 */
 	@Override
 	public Object preEditAction(Object objectToEdit) {
-		if(objectToEdit instanceof Property) {
-			configuration.setProperty((Property)objectToEdit);
+		if (objectToEdit instanceof Property) {
+			configuration.setProperty((Property) objectToEdit);
 		}
 		return super.preEditAction(objectToEdit);
 	}
@@ -70,8 +70,8 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 	public Object postEditAction(Object editedObject, String text) {
 		// should undo the various creations done in the property edition
 		// (template binding, etc...)
-		if(editedObject instanceof Property) {
-			PropertyGenerator generator = new PropertyGenerator(((Property)editedObject));
+		if (editedObject instanceof Property) {
+			PropertyGenerator generator = new PropertyGenerator(((Property) editedObject));
 			generator.parseAndModifyProperty(text);
 		}
 		return null;
@@ -85,13 +85,28 @@ public class PropertyConfigurationForUML extends DefaultDirectEditorConfiguratio
 		return new IInputValidator() {
 
 			public String isValid(String newText) {
-				if(getObjectToEdit() instanceof Property) {
-					PropertyGenerator generator = new PropertyGenerator(((Property)getObjectToEdit()));
+				if (getObjectToEdit() instanceof Property) {
+					PropertyGenerator generator = new PropertyGenerator(((Property) getObjectToEdit()));
 					return generator.parseAndValidateProperty(newText);
 				}
 				return null;
 			}
 		};
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Selection getTextSelection(String value, Object editedObject) {
+		if (editedObject instanceof Property) {
+			Property property = (Property) editedObject;
+			String name = PropertyUtil.getName(property);
+			int start = value.indexOf(name);
+			int length = name.length();
+			return new Selection(start, length);
+		}
+		return super.getTextSelection(value, editedObject);
 	}
 
 }
