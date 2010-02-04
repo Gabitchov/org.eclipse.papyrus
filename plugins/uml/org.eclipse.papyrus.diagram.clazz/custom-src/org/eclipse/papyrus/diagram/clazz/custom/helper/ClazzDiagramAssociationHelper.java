@@ -26,6 +26,7 @@ import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -50,6 +51,11 @@ public class ClazzDiagramAssociationHelper {
 		targetProperty.setName(target.getName().toLowerCase());
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
+		
+		//put the property in the class
+		if( source instanceof StructuredClassifier){
+			((StructuredClassifier) source).getOwnedAttributes().add(targetProperty);
+		}
 		// create source property
 
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
