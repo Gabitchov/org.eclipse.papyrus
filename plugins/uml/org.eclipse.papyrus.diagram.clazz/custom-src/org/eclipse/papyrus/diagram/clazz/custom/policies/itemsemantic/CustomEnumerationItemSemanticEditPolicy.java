@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
@@ -63,6 +64,11 @@ public class CustomEnumerationItemSemanticEditPolicy extends EnumerationItemSema
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		//forbid creation of association branch from it.
+		if(UMLElementTypes.Association_4019 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		return super.getStartCreateRelationshipCommand(req);
 	}
 }

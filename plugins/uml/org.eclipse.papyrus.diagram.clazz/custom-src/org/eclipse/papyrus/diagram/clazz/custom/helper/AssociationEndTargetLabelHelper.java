@@ -58,11 +58,12 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 				}
 
 			}
-			if( propertyToDisplay!=null){
-			return propertyToDisplay;}
+			if(propertyToDisplay != null) {
+				return propertyToDisplay;
+			}
 			///in the case of reorient the property must be not found,
 			// so we have to find the property that is different from the source.
-			
+
 			Classifier source = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource().getElement();
 			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
@@ -79,7 +80,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 
 			}
 			return propertyToDisplay;
-			
+
 		}
 		return null;
 	}

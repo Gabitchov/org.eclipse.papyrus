@@ -143,7 +143,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 					if(target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
 						sourceType += AssociationFigure.composition;
 					}
-					
+
 					// navigable?
 					if(association.getNavigableOwnedEnds().contains(source)) {
 						sourceType += AssociationFigure.navigable;

@@ -3494,7 +3494,7 @@
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndEditPolicy"/>
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"

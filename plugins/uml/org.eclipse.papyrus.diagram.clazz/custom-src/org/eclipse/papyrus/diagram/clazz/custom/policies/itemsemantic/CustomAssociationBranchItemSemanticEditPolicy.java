@@ -14,10 +14,12 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationBranchCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationBranchItemSemanticEditPolicy;
@@ -62,6 +64,9 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.Association_4019 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}

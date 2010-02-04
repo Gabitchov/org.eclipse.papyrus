@@ -51,10 +51,10 @@ public class ClazzDiagramAssociationHelper {
 		targetProperty.setName(target.getName().toLowerCase());
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
-		
+
 		//put the property in the class
-		if( source instanceof StructuredClassifier){
-			((StructuredClassifier) source).getOwnedAttributes().add(targetProperty);
+		if(source instanceof StructuredClassifier) {
+			((StructuredClassifier)source).getOwnedAttributes().add(targetProperty);
 		}
 		// create source property
 

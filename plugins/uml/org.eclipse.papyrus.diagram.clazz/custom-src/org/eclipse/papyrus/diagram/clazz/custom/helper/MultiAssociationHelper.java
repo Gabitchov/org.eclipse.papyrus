@@ -435,7 +435,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			return getBranchAssociationCommand(createConnectionViewAndElementRequest, command);
 		}
 
-		// the source or the target has to be different of a dependency branch
+		// the source or the target has to be different of a Association branch
 		if((((View)sourceEditPart.getModel()).getType() == "" + AssociationBranchEditPart.VISUAL_ID) || (((View)targetEditPart.getModel()).getType() == "" + AssociationBranchEditPart.VISUAL_ID)) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -443,4 +443,5 @@ public class MultiAssociationHelper extends ElementHelper {
 		return getAssociationToMultiAssociationCommand(createConnectionViewAndElementRequest, command);
 	}
 
+	
 }
