@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 import org.eclipse.swt.SWT;
 
@@ -49,6 +50,7 @@ public class RegionFigure extends CompartmentFigure {
 	 */
 	public RegionFigure(String tagLabel) {
 		super(COMPARTMENT, tagLabel);
+		((AutomaticCompartmentLayoutManager) getLayoutManager()).setAddExtraHeight(false);
 	}
 
 	/**

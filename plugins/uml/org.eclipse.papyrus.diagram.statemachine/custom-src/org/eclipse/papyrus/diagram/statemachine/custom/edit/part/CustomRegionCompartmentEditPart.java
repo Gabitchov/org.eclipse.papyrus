@@ -1,6 +1,11 @@
 package org.eclipse.papyrus.diagram.statemachine.custom.edit.part;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.SelectionRequest;
+import org.eclipse.gef.tools.DeselectAllTracker;
+import org.eclipse.gmf.runtime.diagram.ui.internal.tools.RubberbandDragTracker;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.CustomShapeCompartmentFigure;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
@@ -29,5 +34,27 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 
 		((CustomShapeCompartmentFigure) getFigure()).setToolTip(region.getName());
 
+	}
+
+	@Override
+	public DragTracker getDragTracker(Request req) {
+		if (!supportsDragSelection())
+			return super.getDragTracker(req);
+
+		if (req instanceof SelectionRequest && ((SelectionRequest) req).getLastButtonPressed() == 3)
+			return new DeselectAllTracker(this) {
+
+				protected boolean handleButtonDown(int button) {
+					getCurrentViewer().select(getParent());
+					return true;
+				}
+			};
+		return new RubberbandDragTracker() {
+
+			protected void handleFinished() {
+				if (getViewer().getSelectedEditParts().isEmpty())
+					getViewer().select(getParent());
+			}
+		};
 	}
 }

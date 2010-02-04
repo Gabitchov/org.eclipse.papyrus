@@ -8,6 +8,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
+import org.eclipse.papyrus.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 
 /**
@@ -46,6 +47,7 @@ public class StateMachineFigure extends CompartmentFigure {
 		super(COMPARTMENT, tagLabel);
 		shadowborder = new RoundedShadowBorder(getForegroundColor());
 		setBorder(shadowborder);
+		((AutomaticCompartmentLayoutManager) getLayoutManager()).setAddExtraHeight(false);
 	}
 
 	/**
