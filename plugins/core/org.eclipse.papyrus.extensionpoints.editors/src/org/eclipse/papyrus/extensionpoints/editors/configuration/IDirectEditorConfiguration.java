@@ -66,7 +66,7 @@ public interface IDirectEditorConfiguration {
 	 * Action executed before closing editor dialog window
 	 * 
 	 * @param newText
-	 *        the text to save
+	 *            the text to save
 	 * @return the result of this action
 	 */
 	public Object postEditAction(Object editedObject, String newText);
@@ -75,7 +75,7 @@ public interface IDirectEditorConfiguration {
 	 * Returns the extended Area for the dialog window
 	 * 
 	 * @param parent
-	 *        the parent of the returned composite
+	 *            the parent of the returned composite
 	 * @return the extended Area for the dialog window or <code>null</code> if no extension is
 	 *         required
 	 */
@@ -92,7 +92,7 @@ public interface IDirectEditorConfiguration {
 	 * Sets the language of the edited body
 	 * 
 	 * @param language
-	 *        the language of the edited body
+	 *            the language of the edited body
 	 */
 	public void setLanguage(String language);
 
@@ -106,4 +106,37 @@ public interface IDirectEditorConfiguration {
 	 */
 	// @unused
 	public void setInputValidator(IInputValidator validator);
+
+	/**
+	 * Get the text selection for the viewer
+	 * 
+	 * @param value
+	 * 
+	 * @return a selection
+	 */
+	public Selection getTextSelection(String value, Object editedObject);
+
+	/**
+	 * Class that represents an area for text selection
+	 */
+	public static class Selection {
+
+		private final int lentgh;
+
+		private final int start;
+
+		public Selection(int start, int lentgh) {
+			this.start = start;
+			this.lentgh = lentgh;
+		}
+
+		public int getLentgh() {
+			return lentgh;
+		}
+
+		public int getStart() {
+			return start;
+		}
+
+	}
 }

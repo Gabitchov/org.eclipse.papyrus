@@ -17,6 +17,7 @@ import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration.Selection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.VerifyKeyListener;
@@ -53,13 +54,14 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 	 * Creates a new ExtendedDirectEditionDialog
 	 * 
 	 * @param parentShell
-	 *        the parent shell
+	 *            the parent shell
 	 * @param parameter
-	 *        the editedObject
+	 *            the editedObject
 	 * @param initialValue
-	 *        the initial text value
+	 *            the initial text value
 	 */
-	public ExtendedDirectEditionDialog(Shell parentShell, Object object, String initialValue, IDirectEditorConfiguration configuration) {
+	public ExtendedDirectEditionDialog(Shell parentShell, Object object, String initialValue,
+			IDirectEditorConfiguration configuration) {
 		super(parentShell, TITLE, initialValue, configuration.getInputValidator());
 		this.editedObject = object;
 		this.value = initialValue;
@@ -84,7 +86,8 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 		Composite viewerGroup = new Composite(composite, SWT.RESIZE);
 		FillLayout viewerLayout = new FillLayout();
 		viewerGroup.setLayout(viewerLayout);
-		GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
+		GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL
+				| GridData.VERTICAL_ALIGN_CENTER);
 		data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
 		viewerGroup.setLayoutData(data);
 		viewer = new SourceViewer(viewerGroup, null, SWT.BORDER | SWT.FILL_EVEN_ODD);
@@ -100,10 +103,11 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 		viewer.configure(configuration.getSourceViewerConfiguration());
 		viewer.setDocument(document);
 
-		viewer.setSelectedRange(0, value.length());
+		Selection selection = configuration.getTextSelection(value, editedObject);
+		viewer.setSelectedRange(selection.getStart(), selection.getLentgh());
 
 		Composite extendedArea = configuration.createExtendedDialogArea(viewerGroup);
-		if(extendedArea != null) {
+		if (extendedArea != null) {
 			extendedArea.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
 		}
 
@@ -149,12 +153,12 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 		 * @param event
 		 */
 		public void verifyKey(VerifyEvent event) {
-			if((event.stateMask == SWT.CTRL) && (event.character == ' ')) {
-				if(viewer.canDoOperation(ISourceViewer.CONTENTASSIST_PROPOSALS)) {
+			if ((event.stateMask == SWT.CTRL) && (event.character == ' ')) {
+				if (viewer.canDoOperation(ISourceViewer.CONTENTASSIST_PROPOSALS)) {
 					viewer.doOperation(ISourceViewer.CONTENTASSIST_PROPOSALS);
 				}
 				event.doit = false;
-			} else if(event.character == SWT.CR) {
+			} else if (event.character == SWT.CR) {
 				event.doit = false;
 			}
 		}
