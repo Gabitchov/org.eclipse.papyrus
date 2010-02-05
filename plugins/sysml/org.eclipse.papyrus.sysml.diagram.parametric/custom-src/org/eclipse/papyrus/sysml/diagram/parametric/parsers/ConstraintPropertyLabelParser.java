@@ -51,7 +51,7 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 	private static final String TYPED_PARAMETER_FORMAT = "%s: %s";
 
 	/** The String format for displaying a ConstraintProperty with multiplicity */
-	private static final String MULTIPLICITY_PARAMETER_FORMAT = "%s[%s..%s]";
+	private static final String MULTIPLICITY_PARAMETER_FORMAT = "%s [%s..%s]";
 
 	/** The String format for displaying a ConstraintProperty with default value */
 	private static final String DEFAULT_VALUE_PARAMETER_FORMAT = "%s= %s";
@@ -100,28 +100,27 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 		if (obj instanceof ConstraintProperty) {
 			property = ((ConstraintProperty) obj).getBase_Property();
 		}
-
 		if (property != null) {
 			String name = property.isDerived() ? "/ " + property.getName() : property.getName();
+			result = String.format(UNTYPED_PARAMETER_FORMAT, name);
+			// manage type
 			if (property.getType() != null) {
 				String type = property.getType().getName();
 				result = String.format(TYPED_PARAMETER_FORMAT, name, type);
-				// manage multiplicity
-				if (property.getLower() != 1 || property.getUpper() != 1) {
-					result = String.format(MULTIPLICITY_PARAMETER_FORMAT, result, ValueSpecificationUtil
-							.getSpecificationValue(property.getLowerValue()), ValueSpecificationUtil
-							.getSpecificationValue(property.getUpperValue()));
+			}
+			// manage multiplicity
+			if (property.getLower() != 1 || property.getUpper() != 1) {
+				result = String.format(MULTIPLICITY_PARAMETER_FORMAT, result, ValueSpecificationUtil
+						.getSpecificationValue(property.getLowerValue()), ValueSpecificationUtil
+						.getSpecificationValue(property.getUpperValue()));
+			}
+			// manage initial values
+			if (property.getDefaultValue() != null) {
+				ValueSpecification valueSpecification = property.getDefaultValue();
+				if (valueSpecification instanceof InstanceValue
+						&& property.getType().equals(valueSpecification.getType())) {
+					result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
 				}
-				// manage initial values
-				if (property.getDefaultValue() != null) {
-					ValueSpecification valueSpecification = property.getDefaultValue();
-					if (valueSpecification instanceof InstanceValue
-							&& property.getType().equals(valueSpecification.getType())) {
-						result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
-					}
-				}
-			} else {
-				result = String.format(UNTYPED_PARAMETER_FORMAT, name);
 			}
 			// manage modifier
 			StringBuffer sb = new StringBuffer();
@@ -170,16 +169,16 @@ public class ConstraintPropertyLabelParser extends MessageFormatParser implement
 		if (property != null) {
 			semanticElementsBeingParsed.add(property);
 			if (property.getType() != null) {
-				semanticElementsBeingParsed.add(property.getType());
-				int lower = property.getLower();
-				int upper = property.getUpper();
-				if (lower != 1 || upper != 1) {
-					semanticElementsBeingParsed.add(property.getLowerValue());
-					semanticElementsBeingParsed.add(property.getUpperValue());
-				}
-				if (property.getDefaultValue() != null) {
-					semanticElementsBeingParsed.add(property.getDefaultValue());
-				}
+				semanticElementsBeingParsed.add(property.getType());				
+			}
+			if (property.getLowerValue() != null) {
+				semanticElementsBeingParsed.add(property.getLowerValue());
+			}
+			if (property.getUpperValue() != null) {
+				semanticElementsBeingParsed.add(property.getUpperValue());
+			}
+			if (property.getDefaultValue() != null) {
+				semanticElementsBeingParsed.add(property.getDefaultValue());
 			}
 		}
 		return semanticElementsBeingParsed;
