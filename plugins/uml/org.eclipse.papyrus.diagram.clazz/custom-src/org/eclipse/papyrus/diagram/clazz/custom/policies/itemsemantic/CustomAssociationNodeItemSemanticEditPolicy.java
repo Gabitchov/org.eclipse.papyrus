@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
@@ -58,10 +59,10 @@ public class CustomAssociationNodeItemSemanticEditPolicy extends AssociationNode
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			return UnexecutableCommand.INSTANCE;
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
-			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}

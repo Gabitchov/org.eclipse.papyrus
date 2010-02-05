@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
@@ -55,6 +56,10 @@ public class CustomSignalItemSemanticEditPolicy extends SignalItemSemanticEditPo
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		//forbid creation of association branch from it.
+		if(UMLElementTypes.Association_4019 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}

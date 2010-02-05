@@ -54,6 +54,8 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssoci
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
@@ -435,13 +437,44 @@ public class MultiAssociationHelper extends ElementHelper {
 			return getBranchAssociationCommand(createConnectionViewAndElementRequest, command);
 		}
 
-		// the source or the target has to be different of a Association branch
-		if((((View)sourceEditPart.getModel()).getType() == "" + AssociationBranchEditPart.VISUAL_ID) || (((View)targetEditPart.getModel()).getType() == "" + AssociationBranchEditPart.VISUAL_ID)) {
+		if((((View)targetEditPart.getModel()).getType() == "" + AssociationNodeEditPart.VISUAL_ID)) {
 			return UnexecutableCommand.INSTANCE;
 		}
+		// the source or the target has to be different of a dependency branch
+		if(sourceEditPart instanceof AssociationBranchEditPart) {
+			GraphicalEditPart associationNodeEditPart = lookForAssociationNodeEditPart((AssociationBranchEditPart)sourceEditPart);
+
+			if(associationNodeEditPart != null) {
+				createConnectionViewAndElementRequest.setSourceEditPart(associationNodeEditPart);
+				return getBranchAssociationCommand(createConnectionViewAndElementRequest, command);
+
+			} else {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		// the source or the target has to be different of a dependency branch
+		if(targetEditPart instanceof AssociationBranchEditPart) {
+				return UnexecutableCommand.INSTANCE;
+		}
+		
 		// if not this a transformation of simple dependency to multiDependency
 		return getAssociationToMultiAssociationCommand(createConnectionViewAndElementRequest, command);
 	}
 
+	/**
+	 * look for a dependency node from a dependency branch.
+	 * 
+	 * @param dependencyBranchEditPart
+	 * @return may be null
+	 */
+	protected GraphicalEditPart lookForAssociationNodeEditPart(AssociationBranchEditPart associationBranchEditPart) {
+		if(associationBranchEditPart.getSource() instanceof AssociationNodeEditPart) {
+			return (GraphicalEditPart)associationBranchEditPart.getSource();
+		}
+		if(associationBranchEditPart.getTarget() instanceof AssociationNodeEditPart) {
+			return (GraphicalEditPart)associationBranchEditPart.getTarget();
+		}
+		return null;
+	}
 
 }
