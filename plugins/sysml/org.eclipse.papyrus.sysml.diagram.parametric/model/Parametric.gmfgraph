@@ -9,7 +9,9 @@
         name="ConstraintPropertyFigureDescriptor">
       <actualFigure
           xsi:type="gmfgraph:RoundedRectangle"
-          name="ConstraintPropertyFigure">
+          name="ConstraintPropertyFigure"
+          cornerWidth="25"
+          cornerHeight="25">
         <layout
             xsi:type="gmfgraph:CustomLayout"
             qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>

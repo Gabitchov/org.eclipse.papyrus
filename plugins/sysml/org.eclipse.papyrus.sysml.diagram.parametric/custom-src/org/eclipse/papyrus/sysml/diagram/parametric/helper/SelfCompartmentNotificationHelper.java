@@ -25,22 +25,26 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.Activator;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -108,11 +112,15 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 	 * @param childType
 	 *            the children's IHintedType represented as Node
 	 */
+	// TODO refactor this method
 	public static void updateChildrenParts(ConstraintPropertyEditPart compartmentPart, EStructuralFeature childFeature,
 			IHintedType childType) {
 		if (compartmentPart == null || childFeature == null || childType == null) {
 			return;
 		}
+		
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "update children");
+		command.setTransactionNestingEnabled(false);
 		if (compartmentPart.getModel() instanceof View) {
 			View compartmentView = (View) compartmentPart.getModel();
 			EObject containerObject = compartmentView.getElement();
@@ -137,6 +145,9 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 										// remove remaining property if any
 										iterator.remove();
 									}
+									// delete old connectors
+									deleteConnectorsViews(command, (View) childView);
+									// TODO create the new connector views if any
 								} else if (SysmlVisualIDRegistry.getVisualID((View) childView) == ConstraintPropertyEditPart.VISUAL_ID) {
 									// property doesn't exist in the model, remove the view
 									iterator.remove();
@@ -146,7 +157,6 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 						// draw remaining children
 						List<Object> childrenToDraw = new ArrayList<Object>(ownedEObjectChildren);
 						childrenToDraw.removeAll(drawnEObjectChildren);
-						CompositeCommand drawChildrenCommand = new CompositeCommand("draw children nodes");
 						for (Object child : childrenToDraw) {
 							if (child instanceof EObject) {
 								IAdaptable adapter = new EObjectAdapter((EObject) child);
@@ -155,17 +165,7 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 										.getDiagramPreferencesHint());
 								CreateCommand nodeCreationCommand = new CreateCommand(compartmentPart
 										.getEditingDomain(), descriptor, compartmentView);
-								drawChildrenCommand.add(nodeCreationCommand);
-							}
-						}
-						// execute command
-						if (!drawChildrenCommand.isEmpty()) {
-							try {
-								OperationHistoryFactory.getOperationHistory().execute(drawChildrenCommand,
-										new NullProgressMonitor(), null);
-							} catch (ExecutionException e) {
-								e.printStackTrace();
-								Activator.getInstance().logError("Unable to create diagram elements", e); //$NON-NLS-1$
+								command.add(nodeCreationCommand);
 							}
 						}
 					}
@@ -173,14 +173,45 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 					// constraint property type is set to null, remove old children
 					for (Iterator<?> iterator = compartmentView.getPersistedChildren().iterator(); iterator.hasNext();) {
 						EObject childView = (EObject) iterator.next();
-						if (childView instanceof View) {
-							EObject child = ((View) childView).getElement();
-							if (child instanceof Property) {
-								iterator.remove();
-							}
+						if ((childView instanceof View) && SysmlVisualIDRegistry.getVisualID((View) childView) == Property2EditPart.VISUAL_ID) {
+							// delete old connectors
+							deleteConnectorsViews(command, (View) childView);
+							// delete parameter view
+							iterator.remove();
 						}
 					}
 				}
+				// execute command
+				if (!command.isEmpty()) {
+					try {
+						OperationHistoryFactory.getOperationHistory().execute(command,
+								new NullProgressMonitor(), null);
+					} catch (ExecutionException e) {
+						e.printStackTrace();
+						Activator.getInstance().logError("Unable to create diagram elements", e); //$NON-NLS-1$
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Delete source and target connectors of the deleted parameter view 
+	 * 
+	 * @param cmd the cmd
+	 * @param propertyView the property view
+	 */
+	private static void deleteConnectorsViews(ICompositeCommand cmd, View propertyView) {
+		for (Iterator<?> it = propertyView.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (SysmlVisualIDRegistry.getVisualID(incomingLink) == ConnectorEditPart.VISUAL_ID) {
+				cmd.add(new DeleteCommand(incomingLink));
+			}
+		}
+		for (Iterator<?> it = propertyView.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge) it.next();
+			if (SysmlVisualIDRegistry.getVisualID(outgoingLink) == ConnectorEditPart.VISUAL_ID) {
+				cmd.add(new DeleteCommand(outgoingLink));
 			}
 		}
 	}

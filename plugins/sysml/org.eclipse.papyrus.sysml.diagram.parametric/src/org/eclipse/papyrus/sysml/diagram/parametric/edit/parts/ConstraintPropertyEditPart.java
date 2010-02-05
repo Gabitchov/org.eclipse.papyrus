@@ -334,7 +334,7 @@ AbstractBorderedShapeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(25), getMapMode().DPtoLP(25)));
 			this.setLineWidth(1);
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(200), getMapMode().DPtoLP(120)));
 			createContents();
