@@ -24,7 +24,7 @@ import org.eclipse.jface.text.rules.BufferedRuleBasedScanner;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.jface.text.source.SourceViewerConfiguration;
+import org.eclipse.papyrus.parsers.texteditor.CompletionFilterSourceViewerConfiguration;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.Property;
 
@@ -34,26 +34,47 @@ import org.eclipse.uml2.uml.Property;
  * 
  * @see org.eclipse.jface.text.source.SourceViewerConfiguration
  */
-public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfiguration {
+public class PropertyLabelSourceViewerConfiguration extends CompletionFilterSourceViewerConfiguration {
 
 	/** edited PropertyUtil */
 	private Property property;
 
 	/**
 	 * Creates a new PropertyLabelSourceViewerConfiguration
-	 * 
-	 * @param property
-	 *        the property to edit
 	 */
-	public PropertyLabelSourceViewerConfiguration(Property property) {
-		setProperty(property);
+	public PropertyLabelSourceViewerConfiguration() {
+		this(null, null);
 	}
 
 	/**
 	 * Creates a new PropertyLabelSourceViewerConfiguration
+	 * 
+	 * @param property
+	 *            the property to edit
 	 */
-	public PropertyLabelSourceViewerConfiguration() {
-		this(null);
+	public PropertyLabelSourceViewerConfiguration(Property property) {
+		super(null);
+		setProperty(property);
+	}
+
+	/**
+	 * Instantiates a new property label source viewer configuration.
+	 * 
+	 * @param property
+	 *            the property
+	 * @param filter
+	 *            the filter
+	 */
+	public PropertyLabelSourceViewerConfiguration(Property property, ICompletionFilter filter) {
+		super(filter);
+		setProperty(property);
+	}
+
+	/**
+	 * @param filter
+	 */
+	public PropertyLabelSourceViewerConfiguration(ICompletionFilter filter) {
+		this(null, filter);
 	}
 
 	/**
@@ -100,7 +121,7 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
 		ContentAssistant assistant = new ContentAssistant();
 
-		IContentAssistProcessor processor = new PropertyLabelCompletionProcessor(property);
+		IContentAssistProcessor processor = new PropertyLabelCompletionProcessor(property, getFilter());
 		assistant.setContentAssistProcessor(processor, IDocument.DEFAULT_CONTENT_TYPE);
 
 		// IInformationControlCreator
@@ -125,7 +146,7 @@ public class PropertyLabelSourceViewerConfiguration extends SourceViewerConfigur
 	 * Sets the property to Edit
 	 * 
 	 * @param property
-	 *        the property to edit
+	 *            the property to edit
 	 */
 	public void setProperty(Property property) {
 		this.property = property;

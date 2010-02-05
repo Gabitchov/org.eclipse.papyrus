@@ -25,7 +25,9 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.papyrus.parsers.antlr.PropertyLabelLexer;
 import org.eclipse.papyrus.parsers.antlr.PropertyLabelParser;
+import org.eclipse.papyrus.parsers.texteditor.CompletionFilterSourceViewerConfiguration;
 import org.eclipse.papyrus.parsers.texteditor.LabelCompletionProcessor;
+import org.eclipse.papyrus.parsers.texteditor.CompletionFilterSourceViewerConfiguration.ICompletionFilter;
 import org.eclipse.papyrus.parsers.texteditor.completionproposals.DefaultValueCompletionProposal;
 import org.eclipse.papyrus.parsers.texteditor.completionproposals.DerivedPropertyCompletionProposal;
 import org.eclipse.papyrus.parsers.texteditor.completionproposals.MultiplicityCompletionProposal;
@@ -50,38 +52,44 @@ import org.eclipse.uml2.uml.Property;
  */
 public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor implements IContext {
 
-	/**
-	 * 
-	 */
+	
+	/** The completion filter. */
+	private final ICompletionFilter completionFilter;
+
+	/** The filtered property */
 	private Property property;
 
-	/**
-	 * 
-	 */
+	/** The modifiers used. */
 	private Map<String, Boolean> modifiersUsed;
 
 	/**
+	 * Instantiates a new property label completion processor.
 	 * 
-	 * 
-	 * @param property
+	 * @param property the property
 	 */
 	public PropertyLabelCompletionProcessor(Property property) {
 		this.property = property;
+		this.completionFilter = new CompletionFilterSourceViewerConfiguration.NullCompletionFilter();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
-	 * #computeCompletionProposals(org.eclipse.jface.text.ITextViewer, int)
-	 */
 	/**
+	 * The Constructor.
 	 * 
+	 * @param property the property
+	 * @param iCompletionFilter the i completion filter
+	 */
+	public PropertyLabelCompletionProcessor(Property property, ICompletionFilter iCompletionFilter) {
+		this.property = property;
+		this.completionFilter = iCompletionFilter;
+	}
+
+	/**
+	 * Compute completion proposals.
 	 * 
-	 * @param viewer
-	 * @param documentOffset
+	 * @param viewer the viewer
+	 * @param documentOffset the document offset
 	 * 
-	 * @return
+	 * @return the i completion proposal[]
 	 */
 	@Override
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int documentOffset) {
@@ -117,34 +125,23 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 			result = computeCompletions(viewer, parser.getContext(), documentOffset, selectionRange);
 		}
 
-		return result.toArray(new ICompletionProposal[]{});
+		return result.toArray(new ICompletionProposal[] {});
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see com.cea.papyrus.classdiagram.parsers.texteditor.LabelCompletionProcessor
 	 * #computeCompletions(org.eclipse.jface.text.ITextViewer, int, int, int)
 	 */
-	/**
-	 * 
-	 * 
-	 * @param viewer
-	 * @param selectionRange
-	 * @param context
-	 * @param documentOffset
-	 * 
-	 * @return
-	 */
-	@Override
+
 	public Collection<ICompletionProposal> computeCompletions(ITextViewer viewer, int context, int documentOffset,
 			int selectionRange) {
 		Vector<ICompletionProposal> v = new Vector<ICompletionProposal>();
-		PropertyModifierProposal modifierProposalComputer = new PropertyModifierProposal();;
+		PropertyModifierProposal modifierProposalComputer = new PropertyModifierProposal();
+		;
 		modifierProposalComputer.setModifiersUsed(modifiersUsed);
 
 		String prefix = getPrefix(viewer, documentOffset);
-		switch(context) {
+		switch (context) {
 
 		// DEFAULT : visibility, isDerived or name
 		case IContext.DEFAULT:
@@ -169,8 +166,8 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 
 		// NAME: either ':' or ":undefined"
 		case IContext.NAME:
-			v.addAll(createCompletionProposalsWithDifferentName(new String[]{ ": ", ": <Undefined>" }, new String[]{
-					"Property type", "Undefined property type" }, new String[]{ ": <Type Name>", ": <Undefined>" },
+			v.addAll(createCompletionProposalsWithDifferentName(new String[] { ": ", ": <Undefined>" }, new String[] {
+					"Property type", "Undefined property type" }, new String[] { ": <Type Name>", ": <Undefined>" },
 					"", documentOffset));
 			break;
 
@@ -180,7 +177,8 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 			// specific prefix for type... ('<' possible at the beginning)
 			prefix = getPrefixForType(viewer, documentOffset);
 			// generate completion for TypeUtil
-			TypeCompletionProposalComputer computer = new TypeCompletionProposalComputer();
+			TypeCompletionProposalComputer computer = new TypeCompletionProposalComputer(completionFilter,
+					IContext.AFTER_COLON);
 			computer.setElement(property);
 			v.addAll(computer.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			break;
@@ -189,7 +187,7 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 		case IContext.PROPERTY_TYPE:
 			// specific prefix for type... ('<' possible at the beginning)
 			prefix = getPrefixForType(viewer, documentOffset);
-			computer = new TypeCompletionProposalComputer();
+			computer = new TypeCompletionProposalComputer(completionFilter, IContext.PROPERTY_TYPE);
 			computer.setElement(property);
 			v.addAll(computer.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			// v.addAll(new
@@ -210,7 +208,7 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 			// specific prefix for type... ('<' possible at the beginning)
 			prefix = getPrefixForType(viewer, documentOffset);
 			// generate completion for TypeUtil
-			computer = new TypeCompletionProposalComputer();
+			computer = new TypeCompletionProposalComputer(completionFilter, IContext.AFTER_COLON);
 			computer.setElement(property);
 			v.addAll(computer.generateCompletionProposals(documentOffset, selectionRange, prefix));
 			v.addAll(new MultiplicityCompletionProposal().generateCompletionProposals(documentOffset, selectionRange,
@@ -263,7 +261,7 @@ public class PropertyLabelCompletionProcessor extends LabelCompletionProcessor i
 			break;
 
 		}
-
 		return v;
 	}
+
 }

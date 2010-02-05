@@ -23,6 +23,8 @@ import java.util.Vector;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.papyrus.parsers.texteditor.CompletionFilterSourceViewerConfiguration;
+import org.eclipse.papyrus.parsers.texteditor.CompletionFilterSourceViewerConfiguration.ICompletionFilter;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.umlutils.TemplateSignatureUtil;
 import org.eclipse.papyrus.umlutils.TypeUtil;
@@ -35,15 +37,35 @@ import org.eclipse.uml2.uml.Type;
  */
 public class TypeCompletionProposalComputer implements ICompletionProposalComputer {
 
-	/**
-	 * 
-	 */
+	private static final String UNDEFINED_TYPE = "<Undefined>";
+
 	private Element element;
 
+	/** set up a filter for choice of values */
+	private ICompletionFilter completionFilter;
+
+	/** Type of the filtered property */
+	private final int propertyType;
+
 	/**
-	 * 
+	 * Instantiates a new type completion proposal computer without active filter
 	 */
-	private static final String UNDEFINED_TYPE = "<Undefined>";
+	public TypeCompletionProposalComputer() {
+		this.completionFilter = new CompletionFilterSourceViewerConfiguration.NullCompletionFilter();
+		this.propertyType = -1;
+	}
+
+	/**
+	 * Instantiates a new type completion proposal computer with active filter on property
+	 * 
+	 * @param completionFilter the i completion filter
+	 * @param propertyType the property type
+	 */
+	public TypeCompletionProposalComputer(ICompletionFilter completionFilter, int propertyType) {
+		this.completionFilter = completionFilter == null ? new CompletionFilterSourceViewerConfiguration.NullCompletionFilter()
+				: completionFilter;
+		this.propertyType = propertyType;
+	}
 
 	/**
 	 * 
@@ -58,7 +80,7 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 	 * 
 	 * 
 	 * @param element
-	 *        the element to set
+	 *            the element to set
 	 */
 	public void setElement(Element element) {
 		this.element = element;
@@ -80,24 +102,28 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 		ICompletionProposal proposal = null;
 
 		// first, add <Undefined>
-		if(UNDEFINED_TYPE.startsWith(prefix)) {
-			proposal = new CompletionProposal(UNDEFINED_TYPE, documentOffset - prefix.length(), prefix.length() + selectionRange, UNDEFINED_TYPE.length(), null, UNDEFINED_TYPE, null, "Undefined Type");
+		if (UNDEFINED_TYPE.startsWith(prefix)) {
+			proposal = new CompletionProposal(UNDEFINED_TYPE, documentOffset - prefix.length(), prefix.length()
+					+ selectionRange, UNDEFINED_TYPE.length(), null, UNDEFINED_TYPE, null, "Undefined Type");
 			v.add(proposal);
 		}
 
-		if(element != null) {
+		if (element != null) {
 			// then, all accessible types, by alphabetic order...
 			Set<Type> types = computeAccessibleTypeList(element);
 			// generate the list of types, in alphabetical order
 			Iterator<Type> it = types.iterator();
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				Type type = it.next();
-				String name = type.getName();
-				if(name != null && name.startsWith(prefix)) {
-					// create a completion processor for the type if prefix
-					// corresponds
-					proposal = new CompletionProposal(name, documentOffset - prefix.length(), prefix.length() + selectionRange, name.length(), null, TypeUtil.getInfoString(type), null, "");
-					v.add(proposal);
+				if (!completionFilter.filter(propertyType, type)) {
+					String name = type.getName();
+					if (name != null && name.startsWith(prefix)) {
+						// create a completion processor for the type if prefix
+						// corresponds
+						proposal = new CompletionProposal(name, documentOffset - prefix.length(), prefix.length()
+								+ selectionRange, name.length(), null, TypeUtil.getInfoString(type), null, "");
+						v.add(proposal);
+					}
 				}
 			}
 		}
@@ -118,9 +144,9 @@ public class TypeCompletionProposalComputer implements ICompletionProposalComput
 
 		// In the context where element is owned by a template,
 		// types declared in the context of the template must also be added
-		if(element.getOwner() != null && element.getOwner() instanceof TemplateableElement) {
-			TemplateableElement template = (TemplateableElement)element.getOwner();
-			if(template.isTemplate()) {
+		if (element.getOwner() != null && element.getOwner() instanceof TemplateableElement) {
+			TemplateableElement template = (TemplateableElement) element.getOwner();
+			if (template.isTemplate()) {
 				list.addAll(TemplateSignatureUtil.getAccessibleTypes(template.getOwnedTemplateSignature()));
 			}
 		}
