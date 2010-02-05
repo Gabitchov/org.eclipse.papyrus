@@ -68,7 +68,6 @@ public class ActionLocalPostconditionCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateActionLocalPostcondition_4002(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -83,8 +82,6 @@ public class ActionLocalPostconditionCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult();
 
 	}
-
-
 
 	/**
 	 * @generated

@@ -56,10 +56,6 @@ implements ITreeBranchEditPart {
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateObjectFlowBehaviorEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -114,14 +110,10 @@ implements ITreeBranchEditPart {
 		return (ActivityEdgeDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class ActivityEdgeDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -171,11 +163,6 @@ implements ITreeBranchEditPart {
 			return fEdgeWeight;
 		}
 
-
-
-
 	}
-
-
 
 }

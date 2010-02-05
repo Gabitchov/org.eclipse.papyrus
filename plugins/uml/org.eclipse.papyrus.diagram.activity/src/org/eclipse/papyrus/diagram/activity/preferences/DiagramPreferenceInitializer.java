@@ -28,53 +28,43 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		OpaqueActionPreferencePage.initDefaults(store);
+		InteractionConstraintPreferencePage.initDefaults(store);
 
+		OpaqueActionPreferencePage.initDefaults(store);
 
 		InitialNodePreferencePage.initDefaults(store);
 
+		DurationConstraintPreferencePage.initDefaults(store);
 
 		CallBehaviorActionPreferencePage.initDefaults(store);
 
-
 		OutputPinPreferencePage.initDefaults(store);
-
 
 		FlowFinalNodePreferencePage.initDefaults(store);
 
-
 		ConstraintPreferencePage.initDefaults(store);
-
 
 		ActivityFinalNodePreferencePage.initDefaults(store);
 
-
 		ActivityPreferencePage.initDefaults(store);
-
 
 		InputPinPreferencePage.initDefaults(store);
 
-
 		ValuePinPreferencePage.initDefaults(store);
-
 
 		CallOperationActionPreferencePage.initDefaults(store);
 
-
 		ActionInputPinPreferencePage.initDefaults(store);
 
+		TimeConstraintPreferencePage.initDefaults(store);
+
+		IntervalConstraintPreferencePage.initDefaults(store);
 
 		ParameterPreferencePage.initDefaults(store);
 
-
-
-
 		ObjectFlowPreferencePage.initDefaults(store);
 
-
-
 		ControlFlowPreferencePage.initDefaults(store);
-
 
 	}
 

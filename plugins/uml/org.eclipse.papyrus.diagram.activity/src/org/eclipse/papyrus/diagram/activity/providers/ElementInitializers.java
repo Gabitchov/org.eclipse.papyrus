@@ -22,13 +22,17 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ControlFlow;
+import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.FlowFinalNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.InteractionConstraint;
+import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.ValuePin;
 
 /**
@@ -387,6 +391,102 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static void init_InteractionConstraint_3030(InteractionConstraint instance) {
+		try {
+			Object value_0 = name_InteractionConstraint_3030(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_InteractionConstraint_3031(InteractionConstraint instance) {
+		try {
+			Object value_0 = name_InteractionConstraint_3031(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_IntervalConstraint_3032(IntervalConstraint instance) {
+		try {
+			Object value_0 = name_IntervalConstraint_3032(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_IntervalConstraint_3033(IntervalConstraint instance) {
+		try {
+			Object value_0 = name_IntervalConstraint_3033(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_DurationConstraint_3034(DurationConstraint instance) {
+		try {
+			Object value_0 = name_DurationConstraint_3034(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_DurationConstraint_3035(DurationConstraint instance) {
+		try {
+			Object value_0 = name_DurationConstraint_3035(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_TimeConstraint_3036(TimeConstraint instance) {
+		try {
+			Object value_0 = name_TimeConstraint_3036(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_TimeConstraint_3037(TimeConstraint instance) {
+		try {
+			Object value_0 = name_TimeConstraint_3037(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public static void init_ObjectFlow_4003(ObjectFlow instance) {
 		try {
 			Object value_0 = name_ObjectFlow_4003(instance);
@@ -608,6 +708,62 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_Activity_3029(Activity self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_InteractionConstraint_3030(InteractionConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_InteractionConstraint_3031(InteractionConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_IntervalConstraint_3032(IntervalConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_IntervalConstraint_3033(IntervalConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_DurationConstraint_3034(DurationConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_DurationConstraint_3035(DurationConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_TimeConstraint_3036(TimeConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_TimeConstraint_3037(TimeConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

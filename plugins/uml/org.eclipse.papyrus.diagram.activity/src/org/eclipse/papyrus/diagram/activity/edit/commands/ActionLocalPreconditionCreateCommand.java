@@ -68,7 +68,6 @@ public class ActionLocalPreconditionCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateActionLocalPrecondition_4001(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -83,8 +82,6 @@ public class ActionLocalPreconditionCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult();
 
 	}
-
-
 
 	/**
 	 * @generated

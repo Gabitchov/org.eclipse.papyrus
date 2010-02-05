@@ -52,7 +52,14 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.FinalNode;
+import org.eclipse.uml2.uml.InitialNode;
+import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.ObjectFlow;
+import org.eclipse.uml2.uml.ObjectNode;
+import org.eclipse.uml2.uml.OpaqueAction;
+import org.eclipse.uml2.uml.OutputPin;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 
 /**
  * @generated
@@ -131,9 +138,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT adding the possibility to globally disabling a request
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
+		// disable the request if necessary
+		if(requestIsDisabled(request)) {
+			return null;
+		}
 		if(editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
@@ -150,6 +161,26 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return new ICommandProxy(command);
 		}
 		return editPolicyCommand;
+	}
+
+	/**
+	 * Check whether the request should be disabled.
+	 * 
+	 * @param request
+	 *        the request to analyze
+	 * @return true if the request must not succeed
+	 * @generated NOT
+	 */
+	private boolean requestIsDisabled(IEditCommandRequest request) {
+		if(request instanceof MoveRequest) {
+			// prevent moving a constraint to another parent, since the representation would not be the same
+			for(Object element : ((MoveRequest)request).getElementsToMove().keySet()) {
+				if(element instanceof Constraint) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -251,9 +282,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
@@ -414,18 +443,103 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT add check at edge creation (for simple conditions)
 		 */
 		public static boolean canExistObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
+			if(source instanceof Action) {
+				// rule validateObjectFlow_validateNoActions
+				// rule workaround by addition of pins in case of Opaque Action
+				if(!(source instanceof OpaqueAction)) {
+					return false;
+				}
+			}
+			if(target instanceof Action) {
+				// rule validateObjectFlow_validateNoActions
+				// rule workaround by addition of pins in case of Opaque Action
+				if(!(target instanceof OpaqueAction)) {
+					return false;
+				}
+			}
+			if(source instanceof InputPin) {
+				// rule validateInputPin_validateOutgoingEdgesStructuredOnly
+				if(source.getOwner() instanceof StructuredActivityNode) {
+					if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+			if(target instanceof OutputPin) {
+				// rule validateOutputPin_validateIncomingEdgesStructuredOnly
+				if(target.getOwner() instanceof StructuredActivityNode) {
+					if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+			if(source instanceof InitialNode) {
+				// rule validateInitialNode_validateControlEdges
+				return false;
+			}
+			if(target instanceof InitialNode) {
+				// rule validateInitialNode_validateNoIncomingEdges
+				return false;
+			}
+			if(source instanceof FinalNode) {
+				// rule validateFinalNode_validateNoOutgoingEdges
+				return false;
+			}
 			return true;
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT add check at edge creation (for simple conditions)
 		 */
 		public static boolean canExistControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
+			if(source instanceof ObjectNode) {
+				if(!((ObjectNode)source).isControlType()) {
+					// rule validateControlFlow_validateObjectNodes
+					return false;
+				}
+			}
+			if(target instanceof ObjectNode) {
+				if(!((ObjectNode)target).isControlType()) {
+					// rule validateControlFlow_validateObjectNodes
+					return false;
+				}
+			}
+			if(source instanceof InputPin) {
+				// rule validateInputPin_validateOutgoingEdgesStructuredOnly
+				if(source.getOwner() instanceof StructuredActivityNode) {
+					if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+			if(target instanceof OutputPin) {
+				// rule validateOutputPin_validateIncomingEdgesStructuredOnly
+				if(target.getOwner() instanceof StructuredActivityNode) {
+					if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+			if(target instanceof InitialNode) {
+				// rule validateInitialNode_validateNoIncomingEdges
+				return false;
+			}
+			if(source instanceof FinalNode) {
+				// rule validateFinalNode_validateNoOutgoingEdges
+				return false;
+			}
 			return true;
 		}
-
 	}
 }

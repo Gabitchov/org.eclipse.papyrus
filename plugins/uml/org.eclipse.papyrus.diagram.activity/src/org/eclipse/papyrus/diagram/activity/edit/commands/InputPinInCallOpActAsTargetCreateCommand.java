@@ -75,7 +75,6 @@ public class InputPinInCallOpActAsTargetCreateCommand extends EditElementCommand
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,6 +93,7 @@ public class InputPinInCallOpActAsTargetCreateCommand extends EditElementCommand
 		if(container.getTarget() != null) {
 			return false;
 		}
+
 		return true;
 
 	}
@@ -103,12 +103,10 @@ public class InputPinInCallOpActAsTargetCreateCommand extends EditElementCommand
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		InputPin newElement = UMLFactory.eINSTANCE.createInputPin();
 
 		CallOperationAction owner = (CallOperationAction)getElementToEdit();
 		owner.setTarget(newElement);
-
 
 		UMLElementTypes.init_InputPin_3027(newElement);
 
@@ -117,9 +115,6 @@ public class InputPinInCallOpActAsTargetCreateCommand extends EditElementCommand
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

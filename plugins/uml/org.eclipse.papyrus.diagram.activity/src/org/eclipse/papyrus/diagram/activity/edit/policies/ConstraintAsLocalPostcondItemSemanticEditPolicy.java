@@ -54,7 +54,6 @@ public class ConstraintAsLocalPostcondItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.Constraint_3012);
 	}
 
-
 	/**
 	 * @generated
 	 */

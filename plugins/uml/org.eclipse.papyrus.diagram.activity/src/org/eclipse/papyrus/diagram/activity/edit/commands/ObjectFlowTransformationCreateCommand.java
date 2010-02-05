@@ -68,7 +68,6 @@ public class ObjectFlowTransformationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateObjectFlowTransformation_4006(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -83,8 +82,6 @@ public class ObjectFlowTransformationCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult();
 
 	}
-
-
 
 	/**
 	 * @generated

@@ -75,7 +75,6 @@ public class ValuePinInOpaqueActCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,6 +89,7 @@ public class ValuePinInOpaqueActCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -99,12 +99,10 @@ public class ValuePinInOpaqueActCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		ValuePin newElement = UMLFactory.eINSTANCE.createValuePin();
 
 		OpaqueAction owner = (OpaqueAction)getElementToEdit();
 		owner.getInputValues().add(newElement);
-
 
 		UMLElementTypes.init_ValuePin_3015(newElement);
 
@@ -113,9 +111,6 @@ public class ValuePinInOpaqueActCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

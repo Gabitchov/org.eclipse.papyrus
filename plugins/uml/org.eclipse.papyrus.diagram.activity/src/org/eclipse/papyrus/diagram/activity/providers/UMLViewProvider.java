@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -94,6 +95,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPre
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowWeightEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditPart;
@@ -104,6 +109,14 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTarg
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
@@ -118,6 +131,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActAsTargetLabelEditPart;
@@ -130,11 +147,19 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPa
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.uml2.uml.ActionInputPin;
+import org.eclipse.uml2.uml.CallBehaviorAction;
+import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.OpaqueAction;
+import org.eclipse.uml2.uml.OutputPin;
+import org.eclipse.uml2.uml.ValuePin;
 
 /**
  * @generated
@@ -228,6 +253,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case OutputPinInOpaqueActEditPart.VISUAL_ID:
 				case CallBehaviorActionEditPart.VISUAL_ID:
 				case CallOperationActionEditPart.VISUAL_ID:
+				case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 				case ValuePinInCallBeActEditPart.VISUAL_ID:
 				case ActionInputPinInCallBeActEditPart.VISUAL_ID:
@@ -243,6 +272,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				case ActivityAsSelectionEditPart.VISUAL_ID:
+				case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -262,7 +295,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ActivityAsSelectionEditPart.VISUAL_ID == visualID || ActivityAsTransformationEditPart.VISUAL_ID == visualID;
+		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ActivityAsSelectionEditPart.VISUAL_ID == visualID || ActivityAsTransformationEditPart.VISUAL_ID == visualID || InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -359,6 +392,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createActionInputPin_3026(domainElement, containerView, index, persisted, preferencesHint);
 		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 			return createInputPin_3027(domainElement, containerView, index, persisted, preferencesHint);
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return createDurationConstraint_3034(domainElement, containerView, index, persisted, preferencesHint);
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return createDurationConstraint_3035(domainElement, containerView, index, persisted, preferencesHint);
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return createTimeConstraint_3036(domainElement, containerView, index, persisted, preferencesHint);
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return createTimeConstraint_3037(domainElement, containerView, index, persisted, preferencesHint);
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return createInteractionConstraint_3030(domainElement, containerView, index, persisted, preferencesHint);
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return createInteractionConstraint_3031(domainElement, containerView, index, persisted, preferencesHint);
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return createIntervalConstraint_3032(domainElement, containerView, index, persisted, preferencesHint);
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return createIntervalConstraint_3033(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return createConstraint_3011(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
@@ -409,13 +458,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "Activity");
 
-
 		initFontStyleFromPrefs(node, prefStore, "Activity");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "Activity");
 
@@ -480,7 +525,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initBackgroundFromPrefs(node, prefStore, "InitialNode");
 
 		return node;
@@ -502,7 +546,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initBackgroundFromPrefs(node, prefStore, "ActivityFinalNode");
 
 		return node;
@@ -521,10 +564,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "FlowFinalNode");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "FlowFinalNode");
 
@@ -532,26 +572,28 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT addition of pins initialization and height adaptation to pins
 	 */
 	public Node createOpaqueAction_3007(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		// adapt the height to contained pins
+		Bounds boundsConstraint = NotationFactory.eINSTANCE.createBounds();
+		PinPositionLocator.adaptActionHeight(boundsConstraint, domainElement);
+		node.setLayoutConstraint(boundsConstraint);
 		node.setType(UMLVisualIDRegistry.getType(OpaqueActionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "OpaqueAction");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "OpaqueAction");
 
 		Node label5003 = createLabel(node, UMLVisualIDRegistry.getType(OpaqueActionNameEditPart.VISUAL_ID));
+		// Add pins
+		createPins(domainElement, node, persisted, preferencesHint);
 		return node;
 	}
 
@@ -568,20 +610,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ValuePin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ValuePin");
 
 		Node label5011 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInOActLabelEditPart.VISUAL_ID));
 		label5011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5011 = (Location)label5011.getLayoutConstraint();
 		location5011.setX(0);
 		location5011.setY(5);
 		Node label5024 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInOActValueEditPart.VISUAL_ID));
 		label5024.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5024 = (Location)label5024.getLayoutConstraint();
 		location5024.setX(0);
 		location5024.setY(5);
@@ -601,20 +642,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ActionInputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ActionInputPin");
 
 		Node label5012 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInOActLabelEditPart.VISUAL_ID));
 		label5012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5012 = (Location)label5012.getLayoutConstraint();
 		location5012.setX(0);
 		location5012.setY(5);
 		Node label5025 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInOActValueEditPart.VISUAL_ID));
 		label5025.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5025 = (Location)label5025.getLayoutConstraint();
 		location5025.setX(0);
 		location5025.setY(5);
@@ -634,15 +674,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "InputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "InputPin");
 
 		Node label5009 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInOActLabelEditPart.VISUAL_ID));
 		label5009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5009 = (Location)label5009.getLayoutConstraint();
 		location5009.setX(0);
 		location5009.setY(5);
@@ -662,15 +700,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "OutputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "OutputPin");
 
 		Node label5010 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInOActLabelEditPart.VISUAL_ID));
 		label5010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5010 = (Location)label5010.getLayoutConstraint();
 		location5010.setX(0);
 		location5010.setY(5);
@@ -678,27 +714,105 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT addition of pins initialization and height adaptation to pins
 	 */
 	public Node createCallBehaviorAction_3008(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		// adapt the height to contained pins
+		Bounds boundsConstraint = NotationFactory.eINSTANCE.createBounds();
+		PinPositionLocator.adaptActionHeight(boundsConstraint, domainElement);
+		node.setLayoutConstraint(boundsConstraint);
 		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "CallBehaviorAction");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "CallBehaviorAction");
 
 		Node label5004 = createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionNameEditPart.VISUAL_ID));
+		// Add pins
+		createPins(domainElement, node, persisted, preferencesHint);
 		return node;
+	}
+
+	/**
+	 * Create pins in an action's node
+	 * 
+	 * @param domainElement
+	 *        the model action
+	 * @param node
+	 *        the action node
+	 * @param persisted
+	 *        the persisted property of views to create
+	 * @param preferencesHint
+	 *        the preference hint
+	 * @generated NOT
+	 */
+	private void createPins(EObject domainElement, Shape node, boolean persisted, PreferencesHint preferencesHint) {
+		if(domainElement instanceof OpaqueAction) {
+			// pins of an opaque action : input values and output values
+			int index = 0;
+			for(InputPin pin : ((OpaqueAction)domainElement).getInputValues()) {
+				if(pin instanceof ValuePin) {
+					createValuePin_3015(pin, node, index, persisted, preferencesHint);
+				} else if(pin instanceof ActionInputPin) {
+					createActionInputPin_3016(pin, node, index, persisted, preferencesHint);
+				} else {
+					createInputPin_3013(pin, node, index, persisted, preferencesHint);
+				}
+				index++;
+			}
+			index = 0;
+			for(OutputPin pin : ((OpaqueAction)domainElement).getOutputValues()) {
+				createOutputPin_3014(pin, node, index, persisted, preferencesHint);
+			}
+		} else if(domainElement instanceof CallBehaviorAction) {
+			// pins of a call behavior action : arguments and results
+			int index = 0;
+			for(InputPin pin : ((CallBehaviorAction)domainElement).getArguments()) {
+				if(pin instanceof ValuePin) {
+					createValuePin_3017(pin, node, index, persisted, preferencesHint);
+				} else if(pin instanceof ActionInputPin) {
+					createActionInputPin_3018(pin, node, index, persisted, preferencesHint);
+				} else {
+					createInputPin_3019(pin, node, index, persisted, preferencesHint);
+				}
+				index++;
+			}
+			index = 0;
+			for(OutputPin pin : ((CallBehaviorAction)domainElement).getResults()) {
+				createOutputPin_3020(pin, node, index, persisted, preferencesHint);
+			}
+		} else if(domainElement instanceof CallOperationAction) {
+			// pins of a call operation action : arguments, target and results
+			int index = 0;
+			for(InputPin pin : ((CallOperationAction)domainElement).getArguments()) {
+				if(pin instanceof ValuePin) {
+					createValuePin_3022(pin, node, index, persisted, preferencesHint);
+				} else if(pin instanceof ActionInputPin) {
+					createActionInputPin_3021(pin, node, index, persisted, preferencesHint);
+				} else {
+					createInputPin_3023(pin, node, index, persisted, preferencesHint);
+				}
+				index++;
+			}
+			InputPin target = ((CallOperationAction)domainElement).getTarget();
+			if(target instanceof ValuePin) {
+				createValuePin_3025(target, node, index, persisted, preferencesHint);
+			} else if(target instanceof ActionInputPin) {
+				createActionInputPin_3026(target, node, index, persisted, preferencesHint);
+			} else if(target != null) {
+				createInputPin_3027(target, node, index, persisted, preferencesHint);
+			}
+			index = 0;
+			for(OutputPin pin : ((CallOperationAction)domainElement).getResults()) {
+				createOutputPin_3024(pin, node, index, persisted, preferencesHint);
+			}
+		}
 	}
 
 	/**
@@ -714,20 +828,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ValuePin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ValuePin");
 
 		Node label5013 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCBActLabelEditPart.VISUAL_ID));
 		label5013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5013 = (Location)label5013.getLayoutConstraint();
 		location5013.setX(0);
 		location5013.setY(5);
 		Node label5026 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCBActValueEditPart.VISUAL_ID));
 		label5026.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5026 = (Location)label5026.getLayoutConstraint();
 		location5026.setX(0);
 		location5026.setY(5);
@@ -747,20 +860,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ActionInputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ActionInputPin");
 
 		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCBActLabelEditPart.VISUAL_ID));
 		label5014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5014 = (Location)label5014.getLayoutConstraint();
 		location5014.setX(0);
 		location5014.setY(5);
 		Node label5027 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCBActValueEditPart.VISUAL_ID));
 		label5027.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5027 = (Location)label5027.getLayoutConstraint();
 		location5027.setX(0);
 		location5027.setY(5);
@@ -780,15 +892,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "InputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "InputPin");
 
 		Node label5015 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCBActLabelEditPart.VISUAL_ID));
 		label5015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5015 = (Location)label5015.getLayoutConstraint();
 		location5015.setX(0);
 		location5015.setY(5);
@@ -808,15 +918,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "OutputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "OutputPin");
 
 		Node label5016 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInCBActLabelEditPart.VISUAL_ID));
 		label5016.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5016 = (Location)label5016.getLayoutConstraint();
 		location5016.setX(0);
 		location5016.setY(5);
@@ -824,26 +932,28 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT addition of pins initialization and height adaptation to pins
 	 */
 	public Node createCallOperationAction_3010(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		// adapt the height to contained pins
+		Bounds boundsConstraint = NotationFactory.eINSTANCE.createBounds();
+		PinPositionLocator.adaptActionHeight(boundsConstraint, domainElement);
+		node.setLayoutConstraint(boundsConstraint);
 		node.setType(UMLVisualIDRegistry.getType(CallOperationActionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "CallOperationAction");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "CallOperationAction");
 
 		Node label5006 = createLabel(node, UMLVisualIDRegistry.getType(CallOperationActionNameEditPart.VISUAL_ID));
+		// Add pins
+		createPins(domainElement, node, persisted, preferencesHint);
 		return node;
 	}
 
@@ -860,20 +970,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ActionInputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ActionInputPin");
 
 		Node label5017 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCOActLabelEditPart.VISUAL_ID));
 		label5017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5017 = (Location)label5017.getLayoutConstraint();
 		location5017.setX(0);
 		location5017.setY(5);
 		Node label5028 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCOActValueEditPart.VISUAL_ID));
 		label5028.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5028 = (Location)label5028.getLayoutConstraint();
 		location5028.setX(0);
 		location5028.setY(5);
@@ -893,20 +1002,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ValuePin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ValuePin");
 
 		Node label5018 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCOActLabelEditPart.VISUAL_ID));
 		label5018.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5018 = (Location)label5018.getLayoutConstraint();
 		location5018.setX(0);
 		location5018.setY(5);
 		Node label5029 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCOActValueEditPart.VISUAL_ID));
 		label5029.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5029 = (Location)label5029.getLayoutConstraint();
 		location5029.setX(0);
 		location5029.setY(5);
@@ -926,15 +1034,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "InputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "InputPin");
 
 		Node label5019 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCOActLabelEditPart.VISUAL_ID));
 		label5019.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5019 = (Location)label5019.getLayoutConstraint();
 		location5019.setX(0);
 		location5019.setY(5);
@@ -954,15 +1060,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "OutputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "OutputPin");
 
 		Node label5020 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInCOActLabelEditPart.VISUAL_ID));
 		label5020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5020 = (Location)label5020.getLayoutConstraint();
 		location5020.setX(0);
 		location5020.setY(5);
@@ -982,20 +1086,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ValuePin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ValuePin");
 
 		Node label5021 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCOActAsTargetLabelEditPart.VISUAL_ID));
 		label5021.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5021 = (Location)label5021.getLayoutConstraint();
 		location5021.setX(0);
 		location5021.setY(5);
 		Node label5030 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCOActAsTargetValueEditPart.VISUAL_ID));
 		label5030.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5030 = (Location)label5030.getLayoutConstraint();
 		location5030.setX(0);
 		location5030.setY(5);
@@ -1015,20 +1118,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "ActionInputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "ActionInputPin");
 
 		Node label5022 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCOActAsTargetLabelEditPart.VISUAL_ID));
 		label5022.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5022 = (Location)label5022.getLayoutConstraint();
 		location5022.setX(0);
 		location5022.setY(5);
 		Node label5031 = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCOActAsTargetValueEditPart.VISUAL_ID));
 		label5031.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5031 = (Location)label5031.getLayoutConstraint();
 		location5031.setX(0);
 		location5031.setY(5);
@@ -1048,15 +1150,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "InputPin");
-
-
 
 		initBackgroundFromPrefs(node, prefStore, "InputPin");
 
 		Node label5023 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCOActAsTargetLabelEditPart.VISUAL_ID));
 		label5023.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5023 = (Location)label5023.getLayoutConstraint();
 		location5023.setX(0);
 		location5023.setY(5);
@@ -1078,7 +1178,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
 
 		initForegroundFromPrefs(node, prefStore, "Constraint");
 
@@ -1102,7 +1201,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "Constraint");
 
 		Node label5008 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
@@ -1124,7 +1222,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
 
 		initForegroundFromPrefs(node, prefStore, "Activity");
 
@@ -1148,10 +1245,185 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(node, prefStore, "Activity");
 
 		Node label5033 = createLabel(node, UMLVisualIDRegistry.getType(ActivityAsTransformationNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createInteractionConstraint_3030(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "InteractionConstraint");
+
+		Node label5034 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createInteractionConstraint_3031(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "InteractionConstraint");
+
+		Node label5035 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createIntervalConstraint_3032(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "IntervalConstraint");
+
+		Node label5036 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createIntervalConstraint_3033(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "IntervalConstraint");
+
+		Node label5037 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDurationConstraint_3034(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "DurationConstraint");
+
+		Node label5038 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDurationConstraint_3035(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "DurationConstraint");
+
+		Node label5039 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createTimeConstraint_3036(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "TimeConstraint");
+
+		Node label5040 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createTimeConstraint_3037(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		initForegroundFromPrefs(node, prefStore, "TimeConstraint");
+
+		Node label5041 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1225,8 +1497,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
-
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
@@ -1251,8 +1521,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
-
 
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if(routing != null) {
@@ -1279,9 +1547,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(edge, prefStore, "ObjectFlow");
-
 
 		initFontStyleFromPrefs(edge, prefStore, "ObjectFlow");
 
@@ -1320,9 +1586,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-
 		initForegroundFromPrefs(edge, prefStore, "ControlFlow");
-
 
 		initFontStyleFromPrefs(edge, prefStore, "ControlFlow");
 
@@ -1457,10 +1721,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY);
 
-
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
-
 
 		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);
 		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());

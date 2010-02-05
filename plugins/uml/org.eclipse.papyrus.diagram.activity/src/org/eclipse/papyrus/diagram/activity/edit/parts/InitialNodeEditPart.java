@@ -664,14 +664,12 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			Ellipse disc0 = new Ellipse();
 			disc0.setLineWidth(1);
 			disc0.setBackgroundColor(ColorConstants.black);
 			disc0.setSize(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16));
 
 			this.add(disc0);
-
 
 		}
 

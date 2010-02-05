@@ -46,7 +46,6 @@ public class ValuePinInCallOpActAsTargetItemSemanticEditPolicy extends UMLBaseIt
 		super(UMLElementTypes.ValuePin_3025);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -96,7 +95,6 @@ public class ValuePinInCallOpActAsTargetItemSemanticEditPolicy extends UMLBaseIt
 		return getGEFWrapper(cmd.reduce());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -104,7 +102,6 @@ public class ValuePinInCallOpActAsTargetItemSemanticEditPolicy extends UMLBaseIt
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
-
 
 	/**
 	 * @generated
@@ -119,7 +116,6 @@ public class ValuePinInCallOpActAsTargetItemSemanticEditPolicy extends UMLBaseIt
 		return null;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -132,7 +128,6 @@ public class ValuePinInCallOpActAsTargetItemSemanticEditPolicy extends UMLBaseIt
 		}
 		return null;
 	}
-
 
 	/**
 	 * Returns command to reorient EClass based link. New link target or source

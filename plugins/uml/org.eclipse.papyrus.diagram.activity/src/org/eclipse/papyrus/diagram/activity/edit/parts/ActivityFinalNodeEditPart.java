@@ -651,14 +651,11 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			Ellipse circle0 = new Ellipse();
 			circle0.setLineWidth(1);
 			circle0.setSize(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22));
 
 			this.add(circle0);
-
-
 
 			Ellipse disc0 = new Ellipse();
 			disc0.setLineWidth(1);
@@ -667,7 +664,6 @@ ShapeNodeEditPart {
 			disc0.setSize(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16));
 
 			this.add(disc0);
-
 
 		}
 

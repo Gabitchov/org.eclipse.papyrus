@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.part;
 
-
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -34,7 +33,25 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	public static String CreatePinsForObjectFlowDialog_Title;
 
+	/**
+	 * @generated NOT
+	 */
+	public static String CreatePinsForObjectFlowDialog_PinCreationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreatePinsForObjectFlowDialog_Name;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreatePinsForObjectFlowDialog_Type;
 
 	/**
 	 * @generated NOT
@@ -369,11 +386,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ObjectFlowsSpecifications6Group_title;
-
-	/**
-	 * @generated
-	 */
 	public static String Initialnode1CreationTool_title;
 
 	/**
@@ -504,6 +516,46 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String LocalPreconditionInteractionConstraint2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPreconditionInteractionConstraint2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPreconditionIntervalConstraint3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPreconditionIntervalConstraint3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPreconditionDurationConstraint4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPreconditionDurationConstraint4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPreconditionTimeConstraint5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPreconditionTimeConstraint5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String LocalPostconditionConstraint6CreationTool_title;
 
 	/**
@@ -514,22 +566,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String SelectionBehavior1CreationTool_title;
+	public static String LocalPostconditionInteractionConstraint7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String SelectionBehavior1CreationTool_desc;
+	public static String LocalPostconditionInteractionConstraint7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TransformationBehavior2CreationTool_title;
+	public static String LocalPostconditionIntervalConstraint8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TransformationBehavior2CreationTool_desc;
+	public static String LocalPostconditionIntervalConstraint8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPostconditionDurationConstraint9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPostconditionDurationConstraint9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPostconditionTimeConstraint10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LocalPostconditionTimeConstraint10CreationTool_desc;
 
 	/**
 	 * @generated
@@ -550,7 +622,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String ActivityActivityContentCompartmentEditPart_title;
-
 
 	/**
 	 * @generated
@@ -810,6 +881,46 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_InteractionConstraint_3030_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InteractionConstraint_3031_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_IntervalConstraint_3032_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_IntervalConstraint_3033_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DurationConstraint_3034_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DurationConstraint_3035_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_TimeConstraint_3036_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_TimeConstraint_3037_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ActionLocalPrecondition_4001_target;
 
 	/**
@@ -876,7 +987,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String AbstractParser_UnknownLiteral;
-
 
 	/**
 	 * @generated

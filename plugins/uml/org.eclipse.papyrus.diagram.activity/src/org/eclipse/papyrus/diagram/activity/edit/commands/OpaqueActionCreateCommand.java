@@ -75,7 +75,6 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,6 +89,7 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -99,12 +99,10 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		OpaqueAction newElement = UMLFactory.eINSTANCE.createOpaqueAction();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
-
 
 		UMLElementTypes.init_OpaqueAction_3007(newElement);
 
@@ -113,9 +111,6 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

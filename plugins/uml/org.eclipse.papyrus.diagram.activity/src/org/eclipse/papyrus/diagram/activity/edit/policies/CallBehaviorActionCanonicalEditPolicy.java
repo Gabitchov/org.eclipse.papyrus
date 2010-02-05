@@ -36,7 +36,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CallBehaviorActionCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
 	/**
 	 * @generated
 	 */

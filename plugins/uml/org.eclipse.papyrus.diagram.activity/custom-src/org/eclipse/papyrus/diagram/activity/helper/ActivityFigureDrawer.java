@@ -121,6 +121,28 @@ public class ActivityFigureDrawer {
 	private static final Point PIN_ARROW_FIGURE_SIZE = new Point(8, 8);
 
 	/**
+	 * Get the direction opposite to the parameter one
+	 * 
+	 * @param direction
+	 *        {@link PositionConstants#NORTH}, {@link PositionConstants#EAST}, {@link PositionConstants#SOUTH} or {@link PositionConstants#WEST}
+	 * @return the direction at the opposite or {@link PositionConstants#NONE}
+	 */
+	public static int getOppositeDirection(int direction) {
+		switch(direction) {
+		case PositionConstants.NORTH:
+			return PositionConstants.SOUTH;
+		case PositionConstants.EAST:
+			return PositionConstants.WEST;
+		case PositionConstants.SOUTH:
+			return PositionConstants.NORTH;
+		case PositionConstants.WEST:
+			return PositionConstants.EAST;
+		default:
+			return PositionConstants.NONE;
+		}
+	}
+
+	/**
 	 * Draw the triangle or refresh it
 	 * 
 	 * @param triangle

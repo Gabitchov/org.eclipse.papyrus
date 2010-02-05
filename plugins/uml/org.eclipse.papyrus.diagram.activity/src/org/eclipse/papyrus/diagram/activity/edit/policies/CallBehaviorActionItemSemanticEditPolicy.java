@@ -15,23 +15,15 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.Iterator;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -72,7 +64,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.CallBehaviorAction_3008);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -92,9 +83,8 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return super.getCreateCommand(req);
 	}
 
-
 	/**
-	 * @generated
+	 * @generated NOT adding the deletion of local conditions
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
@@ -118,36 +108,20 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r) {
-
-					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-						EObject referencedObject = getReferencedObject();
-						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-						if(resource != null) {
-							resource.getContents().add(referencedObject);
-						}
-						return result;
-					}
-				});
+				/*
+				 * Simply delete the link and the local condition view.
+				 * Model arrangement are automatic since local condition is contained by the action.
+				 */
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink.getTarget()));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r) {
-
-					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-						EObject referencedObject = getReferencedObject();
-						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-						if(resource != null) {
-							resource.getContents().add(referencedObject);
-						}
-						return result;
-					}
-				});
+				/*
+				 * Simply delete the link and the local condition view.
+				 * Model arrangement are automatic since local condition is contained by the action.
+				 */
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink.getTarget()));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
@@ -176,7 +150,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
 
 	/**
 	 * @generated
@@ -330,7 +303,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -338,7 +310,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
-
 
 	/**
 	 * @generated
@@ -359,7 +330,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return null;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -379,7 +349,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return null;
 	}
 
-
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
@@ -395,7 +364,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
-
 
 	/**
 	 * Returns command to reorient EReference based link. New link target or source

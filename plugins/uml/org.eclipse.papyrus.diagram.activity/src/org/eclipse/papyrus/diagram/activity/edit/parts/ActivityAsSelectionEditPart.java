@@ -85,10 +85,6 @@ ShapeNodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -138,10 +134,8 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -180,7 +174,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -188,7 +181,6 @@ ShapeNodeEditPart {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -268,27 +260,20 @@ ShapeNodeEditPart {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActivityAsSelectionNameEditPart.VISUAL_ID));
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class CornerBentWithTextFigure extends CornerBentFigure {
-
 
 		/**
 		 * @generated
 		 */
 		private WrappedLabel fCornerBentContent;
 
-
 		/**
 		 * @generated
 		 */
 		public CornerBentWithTextFigure() {
-
 
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
@@ -299,18 +284,11 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			fCornerBentContent = new WrappedLabel();
-
-
 
 			this.add(fCornerBentContent);
 
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -331,8 +309,6 @@ ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
@@ -340,16 +316,12 @@ ShapeNodeEditPart {
 			return fCornerBentContent;
 		}
 
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Color THIS_BACK = new Color(null, 248, 249, 214);
-
-
-
 
 	/**
 	 * @generated

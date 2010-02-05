@@ -48,7 +48,6 @@ public class ActivityAsTransformationItemSemanticEditPolicy extends UMLBaseItemS
 		super(UMLElementTypes.Activity_3029);
 	}
 
-
 	/**
 	 * @generated
 	 */

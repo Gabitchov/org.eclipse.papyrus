@@ -75,7 +75,6 @@ public class ValuePinInCallBeActCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,6 +89,7 @@ public class ValuePinInCallBeActCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -99,12 +99,10 @@ public class ValuePinInCallBeActCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		ValuePin newElement = UMLFactory.eINSTANCE.createValuePin();
 
 		InvocationAction owner = (InvocationAction)getElementToEdit();
 		owner.getArguments().add(newElement);
-
 
 		UMLElementTypes.init_ValuePin_3017(newElement);
 
@@ -113,9 +111,6 @@ public class ValuePinInCallBeActCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

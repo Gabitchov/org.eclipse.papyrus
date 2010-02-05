@@ -138,11 +138,23 @@ public abstract class CreateCallActionDialog extends FormDialog {
 		createIsSynchronousSection(scrolledForm.getBody(), toolkit);
 
 		refreshSectionsEnable(true);
-		setInvokedName(null);
-		refreshOkButton();
 		hookListeners();
+		// invoked name is set after listeners, since we count on listener to update it properly
+		setInvokedName(null);
 
 		scrolledForm.reflow(true);
+	}
+
+	/**
+	 * Adds buttons to this dialog's button bar.
+	 * 
+	 * @param parent
+	 *        the button bar composite
+	 */
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		super.createButtonsForButtonBar(parent);
+		refreshOkButton();
 	}
 
 	/**

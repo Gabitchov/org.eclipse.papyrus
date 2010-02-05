@@ -53,10 +53,6 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ControlFlowItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -111,14 +107,10 @@ implements ITreeBranchEditPart {
 		return (ActivityEdgeDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class ActivityEdgeDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -168,11 +160,6 @@ implements ITreeBranchEditPart {
 			return fEdgeWeight;
 		}
 
-
-
-
 	}
-
-
 
 }

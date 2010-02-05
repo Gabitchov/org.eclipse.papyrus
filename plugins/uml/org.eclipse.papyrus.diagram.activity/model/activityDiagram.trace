@@ -220,6 +220,62 @@
         visualID="5033"
         queryText="true"/>
   </childNodeTraces>
+  <childNodeTraces
+      visualID="3030"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InteractionConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5034"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3031"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InteractionConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5035"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3032"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'IntervalConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5036"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3033"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'IntervalConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5037"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3034"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DurationConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5038"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3035"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DurationConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5039"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3036"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'TimeConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5040"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3037"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'TimeConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5041"
+        queryText="true"/>
+  </childNodeTraces>
   <linkTraces
       visualID="4001"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _feature_.name = 'localPrecondition')"/>

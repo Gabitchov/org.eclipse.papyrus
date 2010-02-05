@@ -42,16 +42,24 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPar
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
@@ -107,13 +115,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ActivityActivityContentCompartmentEditPart) {
-			ArrayList types = new ArrayList(10);
+			ArrayList types = new ArrayList(18);
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
 			types.add(UMLElementTypes.FlowFinalNode_3006);
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
 			types.add(UMLElementTypes.CallOperationAction_3010);
+			types.add(UMLElementTypes.DurationConstraint_3034);
+			types.add(UMLElementTypes.DurationConstraint_3035);
+			types.add(UMLElementTypes.TimeConstraint_3036);
+			types.add(UMLElementTypes.TimeConstraint_3037);
+			types.add(UMLElementTypes.InteractionConstraint_3030);
+			types.add(UMLElementTypes.InteractionConstraint_3031);
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
 			types.add(UMLElementTypes.Constraint_3012);
 			types.add(UMLElementTypes.Activity_3028);
@@ -267,6 +283,30 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
 			return ((InputPinInCallOpActAsTargetEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPrecondEditPart) {
+			return ((DurationConstraintAsLocalPrecondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPostcondEditPart) {
+			return ((DurationConstraintAsLocalPostcondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPrecondEditPart) {
+			return ((TimeConstraintAsLocalPrecondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
+			return ((TimeConstraintAsLocalPostcondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
+			return ((InteractionConstraintAsLocalPrecondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
+			return ((InteractionConstraintAsLocalPostcondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
+			return ((IntervalConstraintAsLocalPrecondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPostcondEditPart) {
+			return ((IntervalConstraintAsLocalPostcondEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		if(targetEditPart instanceof ConstraintAsLocalPrecondEditPart) {
 			return ((ConstraintAsLocalPrecondEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
@@ -415,6 +455,30 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
 			return ((InputPinInCallOpActAsTargetEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPrecondEditPart) {
+			return ((DurationConstraintAsLocalPrecondEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPostcondEditPart) {
+			return ((DurationConstraintAsLocalPostcondEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPrecondEditPart) {
+			return ((TimeConstraintAsLocalPrecondEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
+			return ((TimeConstraintAsLocalPostcondEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
+			return ((InteractionConstraintAsLocalPrecondEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
+			return ((InteractionConstraintAsLocalPostcondEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
+			return ((IntervalConstraintAsLocalPrecondEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPostcondEditPart) {
+			return ((IntervalConstraintAsLocalPostcondEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof ConstraintAsLocalPrecondEditPart) {
 			return ((ConstraintAsLocalPrecondEditPart)targetEditPart).getMATypesForSource(relationshipType);

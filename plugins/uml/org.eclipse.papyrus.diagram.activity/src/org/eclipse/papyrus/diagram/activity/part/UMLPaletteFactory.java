@@ -96,17 +96,47 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATELOCALPRECONDITIONINTERACTIONCONSTRAINT2CREATIONTOOL = "createLocalPreconditionInteractionConstraint2CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPRECONDITIONINTERVALCONSTRAINT3CREATIONTOOL = "createLocalPreconditionIntervalConstraint3CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPRECONDITIONDURATIONCONSTRAINT4CREATIONTOOL = "createLocalPreconditionDurationConstraint4CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPRECONDITIONTIMECONSTRAINT5CREATIONTOOL = "createLocalPreconditionTimeConstraint5CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATELOCALPOSTCONDITIONCONSTRAINT6CREATIONTOOL = "createLocalPostconditionConstraint6CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESELECTIONBEHAVIOR1CREATIONTOOL = "createSelectionBehavior1CreationTool"; //$NON-NLS-1$
+	private final static String CREATELOCALPOSTCONDITIONINTERACTIONCONSTRAINT7CREATIONTOOL = "createLocalPostconditionInteractionConstraint7CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATETRANSFORMATIONBEHAVIOR2CREATIONTOOL = "createTransformationBehavior2CreationTool"; //$NON-NLS-1$
+	private final static String CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT8CREATIONTOOL = "createLocalPostconditionIntervalConstraint8CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT9CREATIONTOOL = "createLocalPostconditionDurationConstraint9CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPOSTCONDITIONTIMECONSTRAINT10CREATIONTOOL = "createLocalPostconditionTimeConstraint10CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -158,14 +188,32 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATELOCALPRECONDITIONCONSTRAINT1CREATIONTOOL)) {
 			return createLocalPreconditionConstraint1CreationTool();
 		}
+		if(toolId.equals(CREATELOCALPRECONDITIONINTERACTIONCONSTRAINT2CREATIONTOOL)) {
+			return createLocalPreconditionInteractionConstraint2CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPRECONDITIONINTERVALCONSTRAINT3CREATIONTOOL)) {
+			return createLocalPreconditionIntervalConstraint3CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPRECONDITIONDURATIONCONSTRAINT4CREATIONTOOL)) {
+			return createLocalPreconditionDurationConstraint4CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPRECONDITIONTIMECONSTRAINT5CREATIONTOOL)) {
+			return createLocalPreconditionTimeConstraint5CreationTool();
+		}
 		if(toolId.equals(CREATELOCALPOSTCONDITIONCONSTRAINT6CREATIONTOOL)) {
 			return createLocalPostconditionConstraint6CreationTool();
 		}
-		if(toolId.equals(CREATESELECTIONBEHAVIOR1CREATIONTOOL)) {
-			return createSelectionBehavior1CreationTool();
+		if(toolId.equals(CREATELOCALPOSTCONDITIONINTERACTIONCONSTRAINT7CREATIONTOOL)) {
+			return createLocalPostconditionInteractionConstraint7CreationTool();
 		}
-		if(toolId.equals(CREATETRANSFORMATIONBEHAVIOR2CREATIONTOOL)) {
-			return createTransformationBehavior2CreationTool();
+		if(toolId.equals(CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT8CREATIONTOOL)) {
+			return createLocalPostconditionIntervalConstraint8CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT9CREATIONTOOL)) {
+			return createLocalPostconditionDurationConstraint9CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPOSTCONDITIONTIMECONSTRAINT10CREATIONTOOL)) {
+			return createLocalPostconditionTimeConstraint10CreationTool();
 		}
 
 		// default return: null
@@ -332,6 +380,50 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private Tool createLocalPreconditionInteractionConstraint2CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.InteractionConstraint_3030);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPreconditionIntervalConstraint3CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.IntervalConstraint_3032);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPreconditionDurationConstraint4CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.DurationConstraint_3034);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPreconditionTimeConstraint5CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.TimeConstraint_3036);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
 	private Tool createLocalPostconditionConstraint6CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Constraint_3012);
@@ -343,9 +435,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createSelectionBehavior1CreationTool() {
+	private Tool createLocalPostconditionInteractionConstraint7CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Activity_3028);
+		types.add(UMLElementTypes.InteractionConstraint_3031);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -354,9 +446,31 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createTransformationBehavior2CreationTool() {
+	private Tool createLocalPostconditionIntervalConstraint8CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Activity_3029);
+		types.add(UMLElementTypes.IntervalConstraint_3033);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPostconditionDurationConstraint9CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.DurationConstraint_3035);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPostconditionTimeConstraint10CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.TimeConstraint_3037);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

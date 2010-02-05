@@ -67,11 +67,69 @@
           name="validateElement"
           description="Validate an element"
           path="/0/@audits/@categories.0 /0/@audits/@categories.10"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode"
+          name="validateObjectNode"
+          description="Validate an object node"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.11"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateMultiplicityElement"
+          name="validateMultiplicityElement"
+          description="Validate a multilicity element"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.12"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validatePin"
+          name="validatePin"
+          description="Validate a pin"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.13"
+          audits="/0/@audits/@rules.3"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateInputPin"
+          name="validateInputPin"
+          description="Validate an input pin"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.14"
+          audits="/0/@audits/@rules.4"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin"
+          name="validateActionInputPin"
+          description="Validate an action input pin"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.15"
+          audits="/0/@audits/@rules.5 /0/@audits/@rules.6 /0/@audits/@rules.7"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin"
+          name="validateValuePin"
+          description="Validate a value pin"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.16"
+          audits="/0/@audits/@rules.8 /0/@audits/@rules.9"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateOutputPin"
+          name="validateOutputPin"
+          description="Validate an output pin"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.17"
+          audits="/0/@audits/@rules.10"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge"
+          name="validateActivityEdge"
+          description="Validate an activity edge"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.18"
+          audits="/0/@audits/@rules.11 /0/@audits/@rules.12 /0/@audits/@rules.13 /0/@audits/@rules.14"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow"
+          name="validateObjectFlow"
+          description="Validate an object flow"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.19"
+          audits="/0/@audits/@rules.15 /0/@audits/@rules.16 /0/@audits/@rules.17 /0/@audits/@rules.18 /0/@audits/@rules.19 /0/@audits/@rules.20 /0/@audits/@rules.21 /0/@audits/@rules.22"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow"
+          name="validateControlFlow"
+          description="Validate a control flow"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.20"
+          audits="/0/@audits/@rules.23"/>
       <rules
           name="validateNoIncomingEdges"
           description="An initial node has no incoming edge"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateNoIncomingEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.2"
+          rule="/0/@expressionProviders/@providers.1/@expressions.16"
           message="An initial node must have no incoming edge"
           useInLiveMode="true"
           category="/0/@audits/@categories.1">
@@ -86,22 +144,22 @@
           name="validateControlEdges"
           description="Only control edges can have initial nodes as source"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateControlEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.3"
-          message="Only control edges can have initial nodes as source"
+          rule="/0/@expressionProviders/@providers.1/@expressions.17"
+          message="Source of an object flow must not be an initial node"
           useInLiveMode="true"
           category="/0/@audits/@categories.1">
         <target
             xsi:type="gmfgen:GenDomainElementTarget"
             contextSelector="/0/@audits/@clientContexts.0">
           <element
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InitialNode"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
         </target>
       </rules>
       <rules
           name="validateNoOutgoingEdges"
           description="A fianl node has no outgoing edge"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateFinalNode_validateNoOutgoingEdges"
-          rule="/0/@expressionProviders/@providers.1/@expressions.4"
+          rule="/0/@expressionProviders/@providers.1/@expressions.18"
           message="A final node must have no outgoing edge"
           useInLiveMode="true"
           category="/0/@audits/@categories.2">
@@ -112,14 +170,328 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/FinalNode"/>
         </target>
       </rules>
+      <rules
+          name="validateControlPins"
+          description="Control pins have a control type"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validatePin_validateControlPins"
+          rule="/0/@expressionProviders/@providers.1/@expressions.19"
+          message="isControl muts imply isControlType for pins."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.13">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Pin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateOutgoingEdgesStructuredOnly"
+          description="Input pins may have outgoing edges only when they are on actions that are structured nodes, and these edges must target a node contained by the structured node."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateInputPin_validateOutgoingEdgesStructuredOnly"
+          rule="/0/@expressionProviders/@providers.1/@expressions.20"
+          message="Input pins may have outgoing edges only when they are on actions that are structured nodes, and these edges must target a node contained by the structured node."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.14">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateOneOutputPin"
+          description="The fromAction of an action input pin must have exactly one output pin."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateOneOutputPin"
+          rule="/0/@expressionProviders/@providers.1/@expressions.21"
+          message="The fromAction of an action input pin must have exactly one output pin."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.15">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateInputPin"
+          description="The fromAction of an action input pin must only have action input pins as input pins."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateInputPin"
+          rule="/0/@expressionProviders/@providers.1/@expressions.22"
+          message="The fromAction of an action input pin must only have action input pins as input pins."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.15">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateNoControlOrDataFlow"
+          description="The fromAction of an action input pin cannot have control or data flows coming into or out of it or its pins."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateNoControlOrDataFlow"
+          rule="/0/@expressionProviders/@providers.1/@expressions.23"
+          message="The fromAction of an action input pin cannot have control or data flows coming into or out of it or its pins."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.15">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateCompatibleType"
+          description="The type of value specification must be compatible with the type of the value pin."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateCompatibleType"
+          rule="/0/@expressionProviders/@providers.0/@expressions.39"
+          message="The type of value specification must be compatible with the type of the value pin."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.16">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateNoIncomingEdges"
+          description="Value pins have no incoming edges."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateNoIncomingEdges"
+          rule="/0/@expressionProviders/@providers.1/@expressions.24"
+          message="Value pins have no incoming edges."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.16">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateIncomingEdgesStructuredOnly"
+          description="Output pins may have incoming edges only when they are on actions that are structured nodes, and these edges may not target a node contained by the structured node."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateOutputPin_validateIncomingEdgesStructuredOnly"
+          rule="/0/@expressionProviders/@providers.1/@expressions.25"
+          message="Output pins may have incoming edges only when they are on actions that are structured nodes, and these edges may not target a node contained by the structured node."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.17">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
+        </target>
+      </rules>
+      <rules
+          name="validateSourceAndTarget"
+          description="The source and target of an edge must be in the same activity as the edge."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateSourceAndTarget"
+          rule="/0/@expressionProviders/@providers.0/@expressions.40"
+          message="The source and target of an edge must be in the same activity as the edge."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.18">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
+        </target>
+      </rules>
+      <rules
+          name="validateOwned"
+          description="Activity edges may be owned only by activities or groups."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateOwned"
+          rule="/0/@expressionProviders/@providers.1/@expressions.26"
+          message="Activity edges may be owned only by activities or groups."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.18">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
+        </target>
+      </rules>
+      <rules
+          name="validateStructuredNode"
+          description="Activity edges may be owned by at most one structured node."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateStructuredNode"
+          rule="/0/@expressionProviders/@providers.1/@expressions.27"
+          message="Activity edges may be owned by at most one structured node."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.18">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
+        </target>
+      </rules>
+      <rules
+          name="validateHasSourceAndTarget"
+          description="The source and target of an edge must be defined."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateHasSourceAndTarget"
+          rule="/0/@expressionProviders/@providers.1/@expressions.28"
+          message="The source and target of an edge must be defined."
+          category="/0/@audits/@categories.18">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
+        </target>
+      </rules>
+      <rules
+          name="validateNoActions"
+          description="Object flows may not have actions at either end."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateNoActions"
+          rule="/0/@expressionProviders/@providers.1/@expressions.29"
+          message="You can not link an action with an object flow"
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateCompatibleTypes"
+          description="Object nodes connected by an object flow, with optionally intervening control nodes, must have compatible types. In particular, the downstream object node type must be the same or a supertype of the upstream object node type"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateCompatibleTypes"
+          rule="/0/@expressionProviders/@providers.0/@expressions.41"
+          message="The object flow must link object nodes with compatible types (target type must be a supertype of the source type)."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateSameUpperBounds"
+          description="Object nodes connected by an object flow, with optionally intervening control nodes, must have the same upper bounds."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSameUpperBounds"
+          rule="/0/@expressionProviders/@providers.0/@expressions.42"
+          message="The object flow must link object nodes with the same upper bounds."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateTarget"
+          description="An edge with constant weight may not target an object node, or lead to an object node downstream with no intervening actions, that has an upper bound less than the weight."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTarget"
+          rule="/0/@expressionProviders/@providers.0/@expressions.43"
+          message="The target object node's upper bounds must be less than the object flow weight"
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateTransformationBehaviour"
+          description="A transformation behavior has one input parameter and one output parameter. The input parameter must be the same as or a supertype of the type of object token coming from the source end. The output parameter must be the same or a subtype of the type of object token expected downstream. The behavior cannot have side effects."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTransformationBehaviour"
+          rule="/0/@expressionProviders/@providers.0/@expressions.44"
+          message="A transformation behavior has one input parameter and one output parameter. The input parameter must be the same as or a supertype of the type of object token coming from the source end. The output parameter must be the same or a subtype of the type of object token expected downstream. The behavior cannot have side effects."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateSelectionBehaviour"
+          description="An object flow may have a selection behavior only if it has an object node as a source."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSelectionBehaviour"
+          rule="/0/@expressionProviders/@providers.1/@expressions.30"
+          message="Selection behavior is authorized only when the object flow's source is an object node."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateInputAndOutputParameter"
+          description="A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same as or a supertype of the type of source object node. The output parameter must be the same or a subtype of the type of source object node. The behavior cannot have side effects."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateInputAndOutputParameter"
+          rule="/0/@expressionProviders/@providers.0/@expressions.45"
+          message="A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same as or a supertype of the type of source object node. The output parameter must be the same or a subtype of the type of source object node. The behavior cannot have side effects."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateIsMulticastOrIsMultireceive"
+          description="isMulticast and isMultireceive cannot both be true."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateIsMulticastOrIsMultireceive"
+          rule="/0/@expressionProviders/@providers.1/@expressions.31"
+          message="isMulticast and isMultireceive cannot both be true."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.19">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectFlow"/>
+        </target>
+      </rules>
+      <rules
+          name="validateObjectNodes"
+          description="Control flows may not have object nodes at either end, except for object nodes with control type"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow_validateObjectNodes"
+          rule="/0/@expressionProviders/@providers.1/@expressions.32"
+          message="You can not link an object node with a control flow (except if its control type is true)."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.20">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ControlFlow"/>
+        </target>
+      </rules>
       <clientContexts
-          ruleTargets="/0/@audits/@rules.0/@target /0/@audits/@rules.1/@target /0/@audits/@rules.2/@target"/>
+          ruleTargets="/0/@audits/@rules.0/@target /0/@audits/@rules.1/@target /0/@audits/@rules.2/@target /0/@audits/@rules.3/@target /0/@audits/@rules.4/@target /0/@audits/@rules.5/@target /0/@audits/@rules.6/@target /0/@audits/@rules.7/@target /0/@audits/@rules.8/@target /0/@audits/@rules.9/@target /0/@audits/@rules.10/@target /0/@audits/@rules.11/@target /0/@audits/@rules.12/@target /0/@audits/@rules.13/@target /0/@audits/@rules.14/@target /0/@audits/@rules.15/@target /0/@audits/@rules.16/@target /0/@audits/@rules.17/@target /0/@audits/@rules.18/@target /0/@audits/@rules.19/@target /0/@audits/@rules.20/@target /0/@audits/@rules.21/@target /0/@audits/@rules.22/@target /0/@audits/@rules.23/@target"/>
     </audits>
     <diagram
         visualID="1000"
         editPartClassName="ActivityDiagramEditPart"
         itemSemanticEditPolicyClassName="ActivityDiagramItemSemanticEditPolicy"
-        canonicalEditPolicyClassName="ActivityCanonicalEditPolicy"
+        canonicalEditPolicyClassName="ActivityDiagramCanonicalEditPolicy"
         iconProviderPriority="Low"
         validationProviderPriority="Low">
       <diagramRunTimeClass
@@ -148,9 +520,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ParameterEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CommonLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Parameter"/>
@@ -187,9 +562,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CommonLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -233,9 +611,12 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.1/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CommonLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -425,6 +806,18 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.PinCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueAction"/>
@@ -488,6 +881,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
@@ -514,9 +911,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -529,9 +925,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -563,6 +958,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
@@ -589,9 +988,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -604,9 +1002,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -638,6 +1035,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
@@ -664,9 +1065,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -698,6 +1098,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -724,9 +1128,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -756,6 +1159,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.PinCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CallBehaviorAction"/>
@@ -815,6 +1226,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
@@ -841,9 +1256,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -856,9 +1270,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -890,6 +1303,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
@@ -916,9 +1333,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -931,9 +1347,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -965,6 +1380,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
@@ -991,9 +1410,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1025,6 +1443,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -1051,9 +1473,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1083,6 +1504,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.PinCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CallOperationAction"/>
@@ -1142,7 +1571,12 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <modelFacet>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.0">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
           <containmentMetaFeature
@@ -1168,9 +1602,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1183,9 +1616,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -1217,7 +1649,12 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <modelFacet>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.1">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
           <containmentMetaFeature
@@ -1243,9 +1680,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1258,9 +1694,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -1292,7 +1727,12 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <modelFacet>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
           <containmentMetaFeature
@@ -1318,9 +1758,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1352,6 +1791,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -1378,9 +1821,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1412,7 +1854,12 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <modelFacet>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.3">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
           <containmentMetaFeature
@@ -1438,9 +1885,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1453,9 +1899,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -1487,7 +1932,12 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <modelFacet>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
           <containmentMetaFeature
@@ -1513,9 +1963,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -1528,9 +1977,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -1562,7 +2010,12 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <modelFacet>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.5">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
           <containmentMetaFeature
@@ -1588,11 +2041,522 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3034"
+          editPartClassName="DurationConstraintAsLocalPrecondEditPart"
+          itemSemanticEditPolicyClassName="DurationConstraintAsLocalPrecondItemSemanticEditPolicy"
+          notationViewFactoryClassName="DurationConstraintViewFactory"
+          canonicalEditPolicyClassName="DurationConstraintAsLocalPrecondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DurationConstraintAsLocalPrecondGraphicalNodeEditPolicy"
+          createCommandClassName="DurationConstraintAsLocalPrecondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="DurationConstraintEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.6">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.25">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5038"
+            editPartClassName="DurationConstraintAsLocalPrecondNameEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintAsLocalPrecondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="DurationConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPrecondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3035"
+          editPartClassName="DurationConstraintAsLocalPostcondEditPart"
+          itemSemanticEditPolicyClassName="DurationConstraintAsLocalPostcondItemSemanticEditPolicy"
+          notationViewFactoryClassName="DurationConstraintViewFactory"
+          canonicalEditPolicyClassName="DurationConstraintAsLocalPostcondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DurationConstraintAsLocalPostcondGraphicalNodeEditPolicy"
+          createCommandClassName="DurationConstraintAsLocalPostcondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            metamodelType="/0/@diagram/@childNodes.24/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.7">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.26">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5039"
+            editPartClassName="DurationConstraintAsLocalPostcondNameEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintAsLocalPostcondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="DurationConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3036"
+          editPartClassName="TimeConstraintAsLocalPrecondEditPart"
+          itemSemanticEditPolicyClassName="TimeConstraintAsLocalPrecondItemSemanticEditPolicy"
+          notationViewFactoryClassName="TimeConstraintViewFactory"
+          canonicalEditPolicyClassName="TimeConstraintAsLocalPrecondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="TimeConstraintAsLocalPrecondGraphicalNodeEditPolicy"
+          createCommandClassName="TimeConstraintAsLocalPrecondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="TimeConstraintEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.8">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.27">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5040"
+            editPartClassName="TimeConstraintAsLocalPrecondNameEditPart"
+            itemSemanticEditPolicyClassName="TimeConstraintAsLocalPrecondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="TimeConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPrecondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3037"
+          editPartClassName="TimeConstraintAsLocalPostcondEditPart"
+          itemSemanticEditPolicyClassName="TimeConstraintAsLocalPostcondItemSemanticEditPolicy"
+          notationViewFactoryClassName="TimeConstraintViewFactory"
+          canonicalEditPolicyClassName="TimeConstraintAsLocalPostcondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="TimeConstraintAsLocalPostcondGraphicalNodeEditPolicy"
+          createCommandClassName="TimeConstraintAsLocalPostcondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            metamodelType="/0/@diagram/@childNodes.26/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.9">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.28">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5041"
+            editPartClassName="TimeConstraintAsLocalPostcondNameEditPart"
+            itemSemanticEditPolicyClassName="TimeConstraintAsLocalPostcondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="TimeConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3030"
+          editPartClassName="InteractionConstraintAsLocalPrecondEditPart"
+          itemSemanticEditPolicyClassName="InteractionConstraintAsLocalPrecondItemSemanticEditPolicy"
+          notationViewFactoryClassName="InteractionConstraintViewFactory"
+          canonicalEditPolicyClassName="InteractionConstraintAsLocalPrecondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="InteractionConstraintAsLocalPrecondGraphicalNodeEditPolicy"
+          createCommandClassName="InteractionConstraintAsLocalPrecondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="InteractionConstraintEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.10">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.29">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5034"
+            editPartClassName="InteractionConstraintAsLocalPrecondNameEditPart"
+            itemSemanticEditPolicyClassName="InteractionConstraintAsLocalPrecondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="InteractionConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPrecondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3031"
+          editPartClassName="InteractionConstraintAsLocalPostcondEditPart"
+          itemSemanticEditPolicyClassName="InteractionConstraintAsLocalPostcondItemSemanticEditPolicy"
+          notationViewFactoryClassName="InteractionConstraintViewFactory"
+          canonicalEditPolicyClassName="InteractionConstraintAsLocalPostcondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="InteractionConstraintAsLocalPostcondGraphicalNodeEditPolicy"
+          createCommandClassName="InteractionConstraintAsLocalPostcondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            metamodelType="/0/@diagram/@childNodes.28/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.11">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.30">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5035"
+            editPartClassName="InteractionConstraintAsLocalPostcondNameEditPart"
+            itemSemanticEditPolicyClassName="InteractionConstraintAsLocalPostcondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="InteractionConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3032"
+          editPartClassName="IntervalConstraintAsLocalPrecondEditPart"
+          itemSemanticEditPolicyClassName="IntervalConstraintAsLocalPrecondItemSemanticEditPolicy"
+          notationViewFactoryClassName="IntervalConstraintViewFactory"
+          canonicalEditPolicyClassName="IntervalConstraintAsLocalPrecondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="IntervalConstraintAsLocalPrecondGraphicalNodeEditPolicy"
+          createCommandClassName="IntervalConstraintAsLocalPrecondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="IntervalConstraintEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.12">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/IntervalConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPrecondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.31">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5036"
+            editPartClassName="IntervalConstraintAsLocalPrecondNameEditPart"
+            itemSemanticEditPolicyClassName="IntervalConstraintAsLocalPrecondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="IntervalConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPrecondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          visualID="3033"
+          editPartClassName="IntervalConstraintAsLocalPostcondEditPart"
+          itemSemanticEditPolicyClassName="IntervalConstraintAsLocalPostcondItemSemanticEditPolicy"
+          notationViewFactoryClassName="IntervalConstraintViewFactory"
+          canonicalEditPolicyClassName="IntervalConstraintAsLocalPostcondCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="IntervalConstraintAsLocalPostcondGraphicalNodeEditPolicy"
+          createCommandClassName="IntervalConstraintAsLocalPostcondCreateCommand"
+          containers="/0/@diagram/@compartments.3">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            metamodelType="/0/@diagram/@childNodes.30/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CornerBentWithTextFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.13">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/IntervalConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Action/localPostcondition"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.32">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5037"
+            editPartClassName="IntervalConstraintAsLocalPostcondNameEditPart"
+            itemSemanticEditPolicyClassName="IntervalConstraintAsLocalPostcondNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="IntervalConstraintNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentContent"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
         </labels>
       </childNodes>
       <childNodes
@@ -1620,7 +2584,7 @@
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.0">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.14">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
           <containmentMetaFeature
@@ -1631,7 +2595,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.25">
+                value="/0/@expressionProviders/@providers.0/@expressions.33">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -1684,7 +2648,7 @@
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.1">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.15">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
           <containmentMetaFeature
@@ -1695,7 +2659,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.26">
+                value="/0/@expressionProviders/@providers.0/@expressions.34">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -1758,7 +2722,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.27">
+                value="/0/@expressionProviders/@providers.0/@expressions.35">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -1821,7 +2785,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.28">
+                value="/0/@expressionProviders/@providers.0/@expressions.36">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -1854,7 +2818,7 @@
           editPartClassName="ActivityEditPart"
           itemSemanticEditPolicyClassName="ActivityItemSemanticEditPolicy"
           notationViewFactoryClassName="ActivityViewFactory"
-          canonicalEditPolicyClassName="Activity2CanonicalEditPolicy"
+          canonicalEditPolicyClassName="ActivityCanonicalEditPolicy"
           compartments="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3"
           graphicalNodeEditPolicyClassName="ActivityGraphicalNodeEditPolicy"
           createCommandClassName="ActivityCreateCommand">
@@ -2066,7 +3030,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.29">
+                value="/0/@expressionProviders/@providers.0/@expressions.37">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -2084,9 +3048,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="40"/>
@@ -2106,9 +3069,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="60"/>
@@ -2145,7 +3107,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.30">
+                value="/0/@expressionProviders/@providers.0/@expressions.38">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -2163,9 +3125,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="40"/>
@@ -2185,9 +3146,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="CommonLabelFigure"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CommonLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CommonLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="60"/>
@@ -2256,7 +3216,7 @@
           itemSemanticEditPolicyClassName="ActivityActivityContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="ActivityActivityContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityActivityContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35"
           title="ActivityContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -2388,82 +3348,69 @@
               description="Create a Constraint as Local Precondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              genNodes="/0/@diagram/@childNodes.24"/>
+              genNodes="/0/@diagram/@childNodes.32"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Precondition Interaction Constraint"
               description="Create an Interaction Constraint as Local Precondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"/>
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.28"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Precondition Interval Constraint"
               description="Create an Interval Constraint as Local Precondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"/>
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.30"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Precondition Duration Constraint"
               description="Create a Duration Constraint as Local Precondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"/>
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.24"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Precondition Time Constraint"
               description="Create a Time Constraint as Local Precondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"/>
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.26"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Postcondition Constraint"
               description="Create a Constraint as Local Postcondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              genNodes="/0/@diagram/@childNodes.25"/>
+              genNodes="/0/@diagram/@childNodes.33"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Postcondition Interaction Constraint"
               description="Create an Interaction Constraint as Local Postcondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"/>
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.29"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Postcondition Interval Constraint"
               description="Create an Interval Constraint as Local Postcondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"/>
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.31"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Postcondition Duration Constraint"
               description="Create a Duration Constraint as Local Postcondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"/>
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.25"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Local Postcondition Time Constraint"
               description="Create a Time Constraint as Local Postcondition for an Action"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"/>
-        </groups>
-        <groups
-            title="Object Flows' Specifications"
-            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Selection Behavior"
-              description="Create a new Behavior or choose an exisitng one as Selection for an Object Flow"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
-              qualifiedToolName="org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectFlowActivitySelection"
-              genNodes="/0/@diagram/@childNodes.26"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Transformation Behavior"
-              description="Create a new Behavior or choose an exisitng one as Transformation for an Object Flow"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
-              qualifiedToolName="org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectFlowActivityTransformation"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
               genNodes="/0/@diagram/@childNodes.27"/>
         </groups>
       </palette>
@@ -2591,6 +3538,30 @@
           parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.27"/>
       <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.28"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.29"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.30"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.31"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.32"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.33"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.34"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.35"/>
+      <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@topLevelNodes.0"/>
       <childReferences
@@ -2648,6 +3619,102 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.26"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.26"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.27"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.27"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.28"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.28"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.29"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.29"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.30"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.30"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.31"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.31"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.32"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.32"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.33"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.33"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
           child="/0/@diagram/@childNodes.6"
           referenceType="in_source"
           groupName="source"
@@ -2737,6 +3804,102 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.26"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.26"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.27"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.27"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.28"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.28"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.29"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.29"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.30"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.30"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.31"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.31"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.32"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.32"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.33"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.33"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
           child="/0/@diagram/@childNodes.6"
           referenceType="in_source"
           groupName="source"
@@ -2790,24 +3953,24 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.26"
+          child="/0/@diagram/@childNodes.34"
           referenceType="out_target"
           groupName="target"
           groupIcon="icons/linkTargetNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.26"
+          parent="/0/@diagram/@childNodes.34"
           child="/0/@diagram/@links.2"
           referenceType="in_source"
           groupName="incoming links"
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.27"
+          child="/0/@diagram/@childNodes.35"
           referenceType="out_target"
           groupName="target"
           groupIcon="icons/linkTargetNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.27"
+          parent="/0/@diagram/@childNodes.35"
           child="/0/@diagram/@links.2"
           referenceType="in_source"
           groupName="incoming links"
@@ -2831,24 +3994,24 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.26"
+          child="/0/@diagram/@childNodes.34"
           referenceType="out_target"
           groupName="target"
           groupIcon="icons/linkTargetNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.26"
+          parent="/0/@diagram/@childNodes.34"
           child="/0/@diagram/@links.3"
           referenceType="in_source"
           groupName="incoming links"
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.27"
+          child="/0/@diagram/@childNodes.35"
           referenceType="out_target"
           groupName="target"
           groupIcon="icons/linkTargetNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.27"
+          parent="/0/@diagram/@childNodes.35"
           child="/0/@diagram/@links.3"
           referenceType="in_source"
           groupName="incoming links"
@@ -3960,9 +5123,88 @@
             body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
         <expressions
             body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateCompatibleType(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateSourceAndTarget(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateCompatibleTypes(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateSameUpperBounds(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateTarget(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateTransformationBehaviour(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateInputAndOutputParameter(context, ctx);"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenExpressionInterpreter">
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(CallOperationAction)&#xD;&#xA;then self.owner.oclAsType(CallOperationAction).argument->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(CallOperationAction)&#xD;&#xA;then self.owner.oclAsType(CallOperationAction).argument->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(CallOperationAction)&#xD;&#xA;then self.owner.oclAsType(CallOperationAction).argument->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(CallOperationAction)&#xD;&#xA;then self.owner.oclAsType(CallOperationAction).target = self&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(CallOperationAction)&#xD;&#xA;then self.owner.oclAsType(CallOperationAction).target = self&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(CallOperationAction)&#xD;&#xA;then self.owner.oclAsType(CallOperationAction).target = self&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPrecondition->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPostcondition->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPrecondition->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPostcondition->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPrecondition->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPostcondition->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPrecondition->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPostcondition->includes(self)&#xD;&#xA;else false endif"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="if self.owner.oclIsKindOf(Action)&#xD;&#xA;then self.owner.oclAsType(Action).localPrecondition->includes(self)&#xD;&#xA;else false endif"/>
@@ -3974,17 +5216,59 @@
             body="self.incoming->isEmpty()"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="true"/>
+            body="not self.source.oclIsKindOf(InitialNode)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.outgoing->isEmpty()"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.isControl implies self.isControlType"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.outgoing.target->forAll(inStructuredNode=self.owner)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(not self.fromAction.oclIsUndefined()) implies&#xD;&#xA;self.fromAction.output->size() = 1"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(not self.fromAction.oclIsUndefined()) implies&#xD;&#xA;self.fromAction.input->forAll(oclIsKindOf(ActionInputPin))"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(not self.fromAction.oclIsUndefined()) implies&#xD;&#xA;(self.fromAction.incoming->isEmpty() and self.fromAction.outgoing->isEmpty()&#xD;&#xA;and self.fromAction.input->forAll(incoming->isEmpty() and outgoing->isEmpty())&#xD;&#xA;and self.fromAction.output->forAll(incoming->isEmpty() and outgoing->isEmpty()))"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.incoming->isEmpty()"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.incoming.source->forAll(inStructuredNode=self.owner)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.owner.oclIsKindOf(Activity)&#xD;&#xA;or self.owner.oclIsKindOf(ActivityGroup)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="true&#xD;&#xA;-- constraint is checked by the model structure"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="-- This constraint is implemented separately for not being in live mode.&#xD;&#xA;-- Other constraints have been relaxed to supprot null source and target&#xD;&#xA;not self.source.oclIsUndefined() and not self.target.oclIsUndefined()"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(self.source.oclIsUndefined() or not self.source.oclIsKindOf(Action))&#xD;&#xA;and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(not self.selection.oclIsUndefined()) implies self.source.oclIsKindOf(ObjectNode)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.isMulticast implies not self.isMultireceive"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(self.source.oclIsUndefined() or&#xD;&#xA;&#x9;(self.source.oclIsKindOf(ObjectNode) implies&#xD;&#xA;&#x9;self.source.oclAsType(ObjectNode).isControlType)&#xD;&#xA;) and&#xD;&#xA;(self.target.oclIsUndefined() or&#xD;&#xA;&#x9;(self.target.oclIsKindOf(ObjectNode) implies&#xD;&#xA;&#x9;self.target.oclAsType(ObjectNode).isControlType)&#xD;&#xA;)"/>
       </providers>
     </expressionProviders>
     <labelParsers
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet"
@@ -4003,11 +5287,11 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.CallBehaviorActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.PinParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.22/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"

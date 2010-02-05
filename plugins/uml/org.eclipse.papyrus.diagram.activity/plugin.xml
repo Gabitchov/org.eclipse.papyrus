@@ -341,6 +341,46 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create an Interaction Constraint as Local Precondition for an Action"
+       id="createLocalPreconditionInteractionConstraint2CreationTool"
+       kind="tool"
+       label="Local Precondition Interaction Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Interval Constraint as Local Precondition for an Action"
+       id="createLocalPreconditionIntervalConstraint3CreationTool"
+       kind="tool"
+       label="Local Precondition Interval Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Duration Constraint as Local Precondition for an Action"
+       id="createLocalPreconditionDurationConstraint4CreationTool"
+       kind="tool"
+       label="Local Precondition Duration Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Time Constraint as Local Precondition for an Action"
+       id="createLocalPreconditionTimeConstraint5CreationTool"
+       kind="tool"
+       label="Local Precondition Time Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create a Constraint as Local Postcondition for an Action"
        id="createLocalPostconditionConstraint6CreationTool"
        kind="tool"
@@ -351,23 +391,43 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a new Behavior or choose an exisitng one as Selection for an Object Flow"
-       id="createSelectionBehavior1CreationTool"
+       description="Create an Interaction Constraint as Local Postcondition for an Action"
+       id="createLocalPostconditionInteractionConstraint7CreationTool"
        kind="tool"
-       label="Selection Behavior"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
+       label="Local Postcondition Interaction Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif">
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a new Behavior or choose an exisitng one as Transformation for an Object Flow"
-       id="createTransformationBehavior2CreationTool"
+       description="Create an Interval Constraint as Local Postcondition for an Action"
+       id="createLocalPostconditionIntervalConstraint8CreationTool"
        kind="tool"
-       label="Transformation Behavior"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif"
+       label="Local Postcondition Interval Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Duration Constraint as Local Postcondition for an Action"
+       id="createLocalPostconditionDurationConstraint9CreationTool"
+       kind="tool"
+       label="Local Postcondition Duration Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Time Constraint as Local Postcondition for an Action"
+       id="createLocalPostconditionTimeConstraint10CreationTool"
+       kind="tool"
+       label="Local Postcondition Time Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif">
  	</entry>
 
 			</contribution>
@@ -533,25 +593,6 @@
           path="/createActionsLocalConditions5Group">
     </predefinedEntry>
 
-	<entry
-       description=""
-       id="createObjectFlowsSpecifications6Group"
-       kind="drawer"
-       label="Object Flows' Specifications"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="createSelectionBehavior1CreationTool"
-          path="/createObjectFlowsSpecifications6Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createTransformationBehavior2CreationTool"
-          path="/createObjectFlowsSpecifications6Group">
-    </predefinedEntry>
-
 
 			</contribution>
 			<editor id="org.eclipse.papyrus.diagram.activity"/>
@@ -657,6 +698,13 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
+            name="InteractionConstraint" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
             name="OpaqueAction" />	
@@ -667,6 +715,13 @@
 			class="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
             name="InitialNode" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
+            name="DurationConstraint" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -741,6 +796,20 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
+            name="TimeConstraint" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
+            name="IntervalConstraint" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
             name="Parameter" />	
@@ -775,7 +844,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3011,3012,3028,3029"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3028,3029"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4005,4006,4003,4004"/>
       </viewProvider>
    </extension>
@@ -788,13 +857,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3011,3012,3028,3029"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3028,3029"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4005,4006,4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5003,5011,5024,5012,5025,5009,5010,5004,5013,5026,5014,5027,5015,5016,5006,5017,5028,5018,5029,5019,5020,5021,5030,5022,5031,5023,5007,5008,5032,5033"/>
+            <method name="getType()" value="5001,5002,5003,5011,5024,5012,5025,5009,5010,5004,5013,5026,5014,5027,5015,5016,5006,5017,5028,5018,5029,5019,5020,5021,5030,5022,5031,5023,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5032,5033"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004"/>
@@ -1078,6 +1147,82 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.DurationConstraint_3034"
+               name="%metatype.name.DurationConstraint_3034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DurationConstraint"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.DurationConstraintEditHelper">
+            <param name="semanticHint" value="3034"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.DurationConstraint_3035"
+               name="%metatype.name.DurationConstraint_3035"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.DurationConstraint_3034"/>
+            <param name="semanticHint" value="3035"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.TimeConstraint_3036"
+               name="%metatype.name.TimeConstraint_3036"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TimeConstraint"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.TimeConstraintEditHelper">
+            <param name="semanticHint" value="3036"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.TimeConstraint_3037"
+               name="%metatype.name.TimeConstraint_3037"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.TimeConstraint_3036"/>
+            <param name="semanticHint" value="3037"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"
+               name="%metatype.name.InteractionConstraint_3030"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InteractionConstraint"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.InteractionConstraintEditHelper">
+            <param name="semanticHint" value="3030"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3031"
+               name="%metatype.name.InteractionConstraint_3031"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"/>
+            <param name="semanticHint" value="3031"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3032"
+               name="%metatype.name.IntervalConstraint_3032"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="IntervalConstraint"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.IntervalConstraintEditHelper">
+            <param name="semanticHint" value="3032"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3033"
+               name="%metatype.name.IntervalConstraint_3033"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3032"/>
+            <param name="semanticHint" value="3033"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.activity.Constraint_3011"
                name="%metatype.name.Constraint_3011"
@@ -1207,6 +1352,14 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.ValuePin_3025"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionInputPin_3026"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3027"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.DurationConstraint_3034"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.DurationConstraint_3035"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.TimeConstraint_3036"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.TimeConstraint_3037"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3031"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3032"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3033"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Constraint_3011"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Constraint_3012"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Activity_3028"/>
@@ -1432,6 +1585,36 @@
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateElement" mandatory="false" name="validateElement">
          <![CDATA[Validate an element]]>
       </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode" mandatory="false" name="validateObjectNode">
+         <![CDATA[Validate an object node]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateMultiplicityElement" mandatory="false" name="validateMultiplicityElement">
+         <![CDATA[Validate a multilicity element]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validatePin" mandatory="false" name="validatePin">
+         <![CDATA[Validate a pin]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateInputPin" mandatory="false" name="validateInputPin">
+         <![CDATA[Validate an input pin]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin" mandatory="false" name="validateActionInputPin">
+         <![CDATA[Validate an action input pin]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateValuePin" mandatory="false" name="validateValuePin">
+         <![CDATA[Validate a value pin]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateOutputPin" mandatory="false" name="validateOutputPin">
+         <![CDATA[Validate an output pin]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge" mandatory="false" name="validateActivityEdge">
+         <![CDATA[Validate an activity edge]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow" mandatory="false" name="validateObjectFlow">
+         <![CDATA[Validate an object flow]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow" mandatory="false" name="validateControlFlow">
+         <![CDATA[Validate a control flow]]>
+      </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
                <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate">
@@ -1452,10 +1635,10 @@
             name="validateControlEdges"
             mode="Live"
             severity="ERROR" statusCode="200">
-            <![CDATA[true]]>
+            <![CDATA[not self.source.oclIsKindOf(InitialNode)]]>
             <description><![CDATA[Only control edges can have initial nodes as source]]></description>
-            <message><![CDATA[Only control edges can have initial nodes as source]]></message>
-            <target class="uml.InitialNode"/>
+            <message><![CDATA[Source of an object flow must not be an initial node]]></message>
+            <target class="uml.ObjectFlow"/>
          </constraint>
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateFinalNode">
@@ -1486,6 +1669,253 @@
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateElement">
                   </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateMultiplicityElement">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validatePin">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validatePin_validateControlPins"
+            lang="OCL"
+            name="validateControlPins"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.isControl implies self.isControlType]]>
+            <description><![CDATA[Control pins have a control type]]></description>
+            <message><![CDATA[isControl muts imply isControlType for pins.]]></message>
+            <target class="uml.Pin"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateInputPin">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateInputPin_validateOutgoingEdgesStructuredOnly"
+            lang="OCL"
+            name="validateOutgoingEdgesStructuredOnly"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.outgoing.target->forAll(inStructuredNode=self.owner)]]>
+            <description><![CDATA[Input pins may have outgoing edges only when they are on actions that are structured nodes, and these edges must target a node contained by the structured node.]]></description>
+            <message><![CDATA[Input pins may have outgoing edges only when they are on actions that are structured nodes, and these edges must target a node contained by the structured node.]]></message>
+            <target class="uml.InputPin"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateOneOutputPin"
+            lang="OCL"
+            name="validateOneOutputPin"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.fromAction.oclIsUndefined()) implies
+self.fromAction.output->size() = 1]]>
+            <description><![CDATA[The fromAction of an action input pin must have exactly one output pin.]]></description>
+            <message><![CDATA[The fromAction of an action input pin must have exactly one output pin.]]></message>
+            <target class="uml.ActionInputPin"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateInputPin"
+            lang="OCL"
+            name="validateInputPin"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.fromAction.oclIsUndefined()) implies
+self.fromAction.input->forAll(oclIsKindOf(ActionInputPin))]]>
+            <description><![CDATA[The fromAction of an action input pin must only have action input pins as input pins.]]></description>
+            <message><![CDATA[The fromAction of an action input pin must only have action input pins as input pins.]]></message>
+            <target class="uml.ActionInputPin"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateNoControlOrDataFlow"
+            lang="OCL"
+            name="validateNoControlOrDataFlow"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.fromAction.oclIsUndefined()) implies
+(self.fromAction.incoming->isEmpty() and self.fromAction.outgoing->isEmpty()
+and self.fromAction.input->forAll(incoming->isEmpty() and outgoing->isEmpty())
+and self.fromAction.output->forAll(incoming->isEmpty() and outgoing->isEmpty()))]]>
+            <description><![CDATA[The fromAction of an action input pin cannot have control or data flows coming into or out of it or its pins.]]></description>
+            <message><![CDATA[The fromAction of an action input pin cannot have control or data flows coming into or out of it or its pins.]]></message>
+            <target class="uml.ActionInputPin"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateValuePin">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateCompatibleType"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter9"
+            name="validateCompatibleType"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[The type of value specification must be compatible with the type of the value pin.]]></description>
+            <message><![CDATA[The type of value specification must be compatible with the type of the value pin.]]></message>
+            <target class="uml.ValuePin"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateNoIncomingEdges"
+            lang="OCL"
+            name="validateNoIncomingEdges"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.incoming->isEmpty()]]>
+            <description><![CDATA[Value pins have no incoming edges.]]></description>
+            <message><![CDATA[Value pins have no incoming edges.]]></message>
+            <target class="uml.ValuePin"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateOutputPin">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateOutputPin_validateIncomingEdgesStructuredOnly"
+            lang="OCL"
+            name="validateIncomingEdgesStructuredOnly"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.incoming.source->forAll(inStructuredNode=self.owner)]]>
+            <description><![CDATA[Output pins may have incoming edges only when they are on actions that are structured nodes, and these edges may not target a node contained by the structured node.]]></description>
+            <message><![CDATA[Output pins may have incoming edges only when they are on actions that are structured nodes, and these edges may not target a node contained by the structured node.]]></message>
+            <target class="uml.OutputPin"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateSourceAndTarget"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter12"
+            name="validateSourceAndTarget"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[The source and target of an edge must be in the same activity as the edge.]]></description>
+            <message><![CDATA[The source and target of an edge must be in the same activity as the edge.]]></message>
+            <target class="uml.ActivityEdge"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateOwned"
+            lang="OCL"
+            name="validateOwned"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.owner.oclIsKindOf(Activity)
+or self.owner.oclIsKindOf(ActivityGroup)]]>
+            <description><![CDATA[Activity edges may be owned only by activities or groups.]]></description>
+            <message><![CDATA[Activity edges may be owned only by activities or groups.]]></message>
+            <target class="uml.ActivityEdge"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateStructuredNode"
+            lang="OCL"
+            name="validateStructuredNode"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[true
+-- constraint is checked by the model structure]]>
+            <description><![CDATA[Activity edges may be owned by at most one structured node.]]></description>
+            <message><![CDATA[Activity edges may be owned by at most one structured node.]]></message>
+            <target class="uml.ActivityEdge"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateHasSourceAndTarget"
+            lang="OCL"
+            name="validateHasSourceAndTarget"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[-- This constraint is implemented separately for not being in live mode.
+-- Other constraints have been relaxed to supprot null source and target
+not self.source.oclIsUndefined() and not self.target.oclIsUndefined()]]>
+            <description><![CDATA[The source and target of an edge must be defined.]]></description>
+            <message><![CDATA[The source and target of an edge must be defined.]]></message>
+            <target class="uml.ActivityEdge"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateNoActions"
+            lang="OCL"
+            name="validateNoActions"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(self.source.oclIsUndefined() or not self.source.oclIsKindOf(Action))
+and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
+            <description><![CDATA[Object flows may not have actions at either end.]]></description>
+            <message><![CDATA[You can not link an action with an object flow]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateCompatibleTypes"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter17"
+            name="validateCompatibleTypes"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[Object nodes connected by an object flow, with optionally intervening control nodes, must have compatible types. In particular, the downstream object node type must be the same or a supertype of the upstream object node type]]></description>
+            <message><![CDATA[The object flow must link object nodes with compatible types (target type must be a supertype of the source type).]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSameUpperBounds"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter18"
+            name="validateSameUpperBounds"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[Object nodes connected by an object flow, with optionally intervening control nodes, must have the same upper bounds.]]></description>
+            <message><![CDATA[The object flow must link object nodes with the same upper bounds.]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTarget"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter19"
+            name="validateTarget"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[An edge with constant weight may not target an object node, or lead to an object node downstream with no intervening actions, that has an upper bound less than the weight.]]></description>
+            <message><![CDATA[The target object node's upper bounds must be less than the object flow weight]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTransformationBehaviour"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter20"
+            name="validateTransformationBehaviour"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[A transformation behavior has one input parameter and one output parameter. The input parameter must be the same as or a supertype of the type of object token coming from the source end. The output parameter must be the same or a subtype of the type of object token expected downstream. The behavior cannot have side effects.]]></description>
+            <message><![CDATA[A transformation behavior has one input parameter and one output parameter. The input parameter must be the same as or a supertype of the type of object token coming from the source end. The output parameter must be the same or a subtype of the type of object token expected downstream. The behavior cannot have side effects.]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSelectionBehaviour"
+            lang="OCL"
+            name="validateSelectionBehaviour"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.selection.oclIsUndefined()) implies self.source.oclIsKindOf(ObjectNode)]]>
+            <description><![CDATA[An object flow may have a selection behavior only if it has an object node as a source.]]></description>
+            <message><![CDATA[Selection behavior is authorized only when the object flow's source is an object node.]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateInputAndOutputParameter"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter22"
+            name="validateInputAndOutputParameter"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same as or a supertype of the type of source object node. The output parameter must be the same or a subtype of the type of source object node. The behavior cannot have side effects.]]></description>
+            <message><![CDATA[A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same as or a supertype of the type of source object node. The output parameter must be the same or a subtype of the type of source object node. The behavior cannot have side effects.]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateIsMulticastOrIsMultireceive"
+            lang="OCL"
+            name="validateIsMulticastOrIsMultireceive"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.isMulticast implies not self.isMultireceive]]>
+            <description><![CDATA[isMulticast and isMultireceive cannot both be true.]]></description>
+            <message><![CDATA[isMulticast and isMultireceive cannot both be true.]]></message>
+            <target class="uml.ObjectFlow"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow_validateObjectNodes"
+            lang="OCL"
+            name="validateObjectNodes"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(self.source.oclIsUndefined() or
+	(self.source.oclIsKindOf(ObjectNode) implies
+	self.source.oclAsType(ObjectNode).isControlType)
+) and
+(self.target.oclIsUndefined() or
+	(self.target.oclIsKindOf(ObjectNode) implies
+	self.target.oclAsType(ObjectNode).isControlType)
+)]]>
+            <description><![CDATA[Control flows may not have object nodes at either end, except for object nodes with control type]]></description>
+            <message><![CDATA[You can not link an object node with a control flow (except if its control type is true).]]></message>
+            <target class="uml.ControlFlow"/>
+         </constraint>
+                  </constraints>
       </constraintProvider>
    </extension>
 
@@ -1498,6 +1928,27 @@
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateNoIncomingEdges"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateControlEdges"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateFinalNode_validateNoOutgoingEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validatePin_validateControlPins"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInputPin_validateOutgoingEdgesStructuredOnly"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateOneOutputPin"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateInputPin"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateNoControlOrDataFlow"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateCompatibleType"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateNoIncomingEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateOutputPin_validateIncomingEdgesStructuredOnly"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateSourceAndTarget"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateOwned"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateStructuredNode"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateHasSourceAndTarget"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateNoActions"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateCompatibleTypes"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSameUpperBounds"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTarget"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTransformationBehaviour"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSelectionBehaviour"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateInputAndOutputParameter"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateIsMulticastOrIsMultireceive"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow_validateObjectNodes"/>
                </binding>
 
    </extension>

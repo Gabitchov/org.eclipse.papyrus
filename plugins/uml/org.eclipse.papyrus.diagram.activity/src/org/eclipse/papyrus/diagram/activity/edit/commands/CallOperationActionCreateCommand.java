@@ -79,7 +79,6 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,6 +93,7 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -122,7 +122,6 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 
 		owner.getNodes().add(newElement);
 
-
 		UMLElementTypes.init_CallOperationAction_3010(newElement);
 
 		doConfigure(newElement, monitor, info);
@@ -130,9 +129,6 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

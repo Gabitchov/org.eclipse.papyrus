@@ -45,10 +45,16 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPos
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowWeightEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActAsTargetLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOActLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowWeightEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionNameEditPart;
@@ -56,6 +62,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCBActLabelEdit
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActAsTargetLabelEditPart;
@@ -642,6 +650,166 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser interactionConstraintName_5034Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInteractionConstraintName_5034Parser() {
+		if(interactionConstraintName_5034Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			interactionConstraintName_5034Parser = parser;
+		}
+		return interactionConstraintName_5034Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser interactionConstraintName_5035Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInteractionConstraintName_5035Parser() {
+		if(interactionConstraintName_5035Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			interactionConstraintName_5035Parser = parser;
+		}
+		return interactionConstraintName_5035Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser intervalConstraintName_5036Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIntervalConstraintName_5036Parser() {
+		if(intervalConstraintName_5036Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			intervalConstraintName_5036Parser = parser;
+		}
+		return intervalConstraintName_5036Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser intervalConstraintName_5037Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIntervalConstraintName_5037Parser() {
+		if(intervalConstraintName_5037Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			intervalConstraintName_5037Parser = parser;
+		}
+		return intervalConstraintName_5037Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser durationConstraintName_5038Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintName_5038Parser() {
+		if(durationConstraintName_5038Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			durationConstraintName_5038Parser = parser;
+		}
+		return durationConstraintName_5038Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser durationConstraintName_5039Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintName_5039Parser() {
+		if(durationConstraintName_5039Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			durationConstraintName_5039Parser = parser;
+		}
+		return durationConstraintName_5039Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser timeConstraintName_5040Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraintName_5040Parser() {
+		if(timeConstraintName_5040Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			timeConstraintName_5040Parser = parser;
+		}
+		return timeConstraintName_5040Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser timeConstraintName_5041Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraintName_5041Parser() {
+		if(timeConstraintName_5041Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			timeConstraintName_5041Parser = parser;
+		}
+		return timeConstraintName_5041Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser objectFlowName_6001Parser;
 
 	/**
@@ -770,6 +938,22 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getActionInputPinLabel_5031Parser();
 		case InputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
 			return getInputPinLabel_5023Parser();
+		case DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+			return getDurationConstraintName_5038Parser();
+		case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+			return getDurationConstraintName_5039Parser();
+		case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+			return getTimeConstraintName_5040Parser();
+		case TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+			return getTimeConstraintName_5041Parser();
+		case InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+			return getInteractionConstraintName_5034Parser();
+		case InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+			return getInteractionConstraintName_5035Parser();
+		case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+			return getIntervalConstraintName_5036Parser();
+		case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+			return getIntervalConstraintName_5037Parser();
 		case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getConstraintName_5007Parser();
 		case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:

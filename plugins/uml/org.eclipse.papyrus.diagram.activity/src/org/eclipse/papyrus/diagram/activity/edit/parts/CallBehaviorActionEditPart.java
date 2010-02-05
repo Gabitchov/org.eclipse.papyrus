@@ -24,6 +24,7 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -39,7 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -52,8 +53,11 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CallBehaviorActionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.PinCreationEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.activity.helper.ActionPinNotificationHelper;
 import org.eclipse.papyrus.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -90,6 +94,13 @@ AbstractBorderedShapeEditPart {
 	protected IFigure primaryShape;
 
 	/**
+	 * Notifier for listening and stop listening model element.
+	 * 
+	 * @generated NOT
+	 */
+	private ActionPinNotificationHelper notifier = ActionPinNotificationHelper.createHelper(this, UMLPackage.eINSTANCE.getCallBehaviorAction());
+
+	/**
 	 * @generated
 	 */
 	public CallBehaviorActionEditPart(View view) {
@@ -105,20 +116,17 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CallBehaviorActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.CallBehaviorActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PinCreationEditPolicy());
+		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 *Papyrus codeGen
@@ -127,6 +135,19 @@ AbstractBorderedShapeEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
+		//Refresh the RakeFigure if an Activity is selected as behavior when figure is resized
+		if(resolveSemanticElement() != null) {
+			if(event.getNotifier() instanceof Bounds && resolveSemanticElement() instanceof CallBehaviorAction) {
+				CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement();
+				Polyline rake = getPrimaryShape().getOptionalRakeFigure();
+				if(action.getBehavior() instanceof Activity) {
+					Dimension size = ActivityFigureDrawer.getNodeSize(this, event);
+					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
+				};
+				refreshVisuals();
+			}
+		}
 
 		//Add/Remove the RakeFigure when an Activity is selected as behavior or deselected
 		if(resolveSemanticElement() != null) {
@@ -138,19 +159,6 @@ AbstractBorderedShapeEditPart {
 					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
 				} else {
 					ActivityFigureDrawer.undrawFigure(rake);
-				};
-				refreshVisuals();
-			}
-		}
-
-		//Refresh the RakeFigure if an Activity is selected as behavior when figure is resized
-		if(resolveSemanticElement() != null) {
-			if(event.getNotifier() instanceof Bounds && resolveSemanticElement() instanceof CallBehaviorAction) {
-				CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement();
-				Polyline rake = getPrimaryShape().getOptionalRakeFigure();
-				if(action.getBehavior() instanceof Activity) {
-					Dimension size = ActivityFigureDrawer.getNodeSize(this, event);
-					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
 				};
 				refreshVisuals();
 			}
@@ -216,52 +224,33 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Value Pin 2 locator for CallBehaviorAction
 		if(childEditPart instanceof ValuePinInCallBeActEditPart) {
-			BorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Action Input Pin 2 locator for CallBehaviorAction
 		if(childEditPart instanceof ActionInputPinInCallBeActEditPart) {
-			BorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Input Pin 2 locator for CallBehaviorAction
 		if(childEditPart instanceof InputPinInCallBeActEditPart) {
-			BorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Output Pin 2 locator for CallBehaviorAction
 		if(childEditPart instanceof OutputPinInCallBeActEditPart) {
-			BorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
 
 		return false;
 	}
@@ -329,7 +318,6 @@ AbstractBorderedShapeEditPart {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -446,11 +434,59 @@ AbstractBorderedShapeEditPart {
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+		if(targetEditPart instanceof DurationConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
 		if(targetEditPart instanceof ConstraintAsLocalPrecondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		}
 		if(targetEditPart instanceof ConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
+		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
 		if(targetEditPart instanceof ConstraintAsLocalPrecondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
@@ -593,10 +629,58 @@ AbstractBorderedShapeEditPart {
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.DurationConstraint_3034);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.DurationConstraint_3035);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.TimeConstraint_3036);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.TimeConstraint_3037);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.InteractionConstraint_3030);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.InteractionConstraint_3031);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.IntervalConstraint_3033);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.Constraint_3011);
 		}
 		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.Constraint_3012);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.DurationConstraint_3034);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.DurationConstraint_3035);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.TimeConstraint_3036);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.TimeConstraint_3037);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.InteractionConstraint_3030);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.InteractionConstraint_3031);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.IntervalConstraint_3033);
 		}
 		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.Constraint_3011);
@@ -882,7 +966,6 @@ AbstractBorderedShapeEditPart {
 	 */
 	public class ActionFigure extends RoundedRectangle {
 
-
 		/**
 		 * @generated
 		 */
@@ -893,14 +976,12 @@ AbstractBorderedShapeEditPart {
 		 */
 		private Polyline fOptionalRakeFigure;
 
-
 		/**
 		 * @generated
 		 */
 		public ActionFigure() {
 
 			CenterLayout layoutThis = new CenterLayout();
-
 
 			this.setLayoutManager(layoutThis);
 
@@ -914,14 +995,9 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
-
 			fActionLabel = new CenteredWrappedLabel();
 
-
-
 			this.add(fActionLabel);
-
-
 
 			fOptionalRakeFigure = new Polyline();
 			fOptionalRakeFigure.setFill(false);
@@ -929,11 +1005,7 @@ AbstractBorderedShapeEditPart {
 
 			this.add(fOptionalRakeFigure);
 
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -954,8 +1026,6 @@ AbstractBorderedShapeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
@@ -970,11 +1040,7 @@ AbstractBorderedShapeEditPart {
 			return fOptionalRakeFigure;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -1008,5 +1074,41 @@ AbstractBorderedShapeEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+
+	/**
+	 * Activate a listener for to Handle notification for new owned pins
+	 * 
+	 * @generated NOT
+	 */
+	public void activate() {
+		super.activate();
+		EObject parent = resolveSemanticElement();
+		notifier.listenObject(parent);
+		// ensure children parts are correctly initialized.
+		ActionPinNotificationHelper.updateChildrenPinParts(this, UMLPackage.eINSTANCE.getCallBehaviorAction());
+	}
+
+	/**
+	 * Deactivate listeners to handle notification in the message occurence
+	 * specification
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void deactivate() {
+		notifier.unlistenAll();
+		super.deactivate();
+	}
+
+	/**
+	 * Remove listeners to handle notification in the message occurence specification
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void removeNotify() {
+		notifier.unlistenAll();
+		super.removeNotify();
 	}
 }

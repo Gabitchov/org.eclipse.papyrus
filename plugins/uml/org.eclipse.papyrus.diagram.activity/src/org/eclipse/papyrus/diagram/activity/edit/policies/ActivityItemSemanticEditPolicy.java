@@ -55,13 +55,21 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
@@ -469,6 +477,342 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 							}
 						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;

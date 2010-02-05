@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 
@@ -203,6 +204,54 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
 				return new InputPinInCOActAsTargetLabelEditPart(view);
 
+			case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				return new DurationConstraintAsLocalPrecondEditPart(view);
+
+			case DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+				return new DurationConstraintAsLocalPrecondNameEditPart(view);
+
+			case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				return new DurationConstraintAsLocalPostcondEditPart(view);
+
+			case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+				return new DurationConstraintAsLocalPostcondNameEditPart(view);
+
+			case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				return new TimeConstraintAsLocalPrecondEditPart(view);
+
+			case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+				return new TimeConstraintAsLocalPrecondNameEditPart(view);
+
+			case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				return new TimeConstraintAsLocalPostcondEditPart(view);
+
+			case TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+				return new TimeConstraintAsLocalPostcondNameEditPart(view);
+
+			case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				return new InteractionConstraintAsLocalPrecondEditPart(view);
+
+			case InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+				return new InteractionConstraintAsLocalPrecondNameEditPart(view);
+
+			case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				return new InteractionConstraintAsLocalPostcondEditPart(view);
+
+			case InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+				return new InteractionConstraintAsLocalPostcondNameEditPart(view);
+
+			case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPrecondEditPart(view);
+
+			case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPrecondNameEditPart(view);
+
+			case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPostcondEditPart(view);
+
+			case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPostcondNameEditPart(view);
+
 			case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPrecondEditPart(view);
 
@@ -242,18 +291,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return new ActionLocalPreconditionEditPart(view);
 
-
 			case ActionLocalPostconditionEditPart.VISUAL_ID:
 				return new ActionLocalPostconditionEditPart(view);
-
 
 			case ObjectFlowSelectionEditPart.VISUAL_ID:
 				return new ObjectFlowSelectionEditPart(view);
 
-
 			case ObjectFlowTransformationEditPart.VISUAL_ID:
 				return new ObjectFlowTransformationEditPart(view);
-
 
 			case ObjectFlowEditPart.VISUAL_ID:
 				return new ObjectFlowEditPart(view);
@@ -263,7 +308,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ObjectFlowWeightEditPart.VISUAL_ID:
 				return new ObjectFlowWeightEditPart(view);
-
 
 			case ControlFlowEditPart.VISUAL_ID:
 				return new ControlFlowEditPart(view);
@@ -291,10 +335,52 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof WrappingLabel)
+		if(source.getFigure() instanceof HTMLCornerBentFigure)
+			return new CommentCellEditorLocator((HTMLCornerBentFigure)source.getFigure());
+		else if(source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
 		else {
 			return new LabelCellEditorLocator((Label)source.getFigure());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static private class CommentCellEditorLocator implements CellEditorLocator {
+
+		/**
+		 * @generated
+		 */
+		private HTMLCornerBentFigure commentFigure;
+
+		/**
+		 * @generated
+		 */
+		public CommentCellEditorLocator(HTMLCornerBentFigure commentFigure) {
+			this.commentFigure = commentFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public HTMLCornerBentFigure getCommentFigure() {
+			return commentFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public void relocate(CellEditor celleditor) {
+			Text text = (Text)celleditor.getControl();
+			Rectangle rect = getCommentFigure().getBounds().getCopy();
+			getCommentFigure().translateToAbsolute(rect);
+			if(getCommentFigure().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+			}
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
+				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			}
 		}
 	}
 

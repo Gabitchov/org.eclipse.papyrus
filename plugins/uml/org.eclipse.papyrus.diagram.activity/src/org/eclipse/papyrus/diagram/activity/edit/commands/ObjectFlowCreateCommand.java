@@ -24,11 +24,15 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreatePinsForObjectFlowDialog;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ObjectFlow;
+import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -37,15 +41,14 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ObjectFlowCreateCommand extends EditElementCommand {
 
 	/**
-	 * @generated
+	 * @generated NOT removed the final to allow pin creation
 	 */
-	private final EObject source;
+	private EObject source;
 
 	/**
-	 * @generated
+	 * @generated NOT removed the final to allow pin creation
 	 */
-	private final EObject target;
-
+	private EObject target;
 
 	/**
 	 * @generated
@@ -85,13 +88,23 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateObjectFlow_4003(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
-	 * @generated
+	 * @generated NOT handling addition of pins when creating an object flow on actions
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+		}
+		// arrange source and target to add pins if there is an opaque action
+		if(getSource() instanceof OpaqueAction || getTarget() instanceof OpaqueAction) {
+			CreatePinsForObjectFlowDialog dialog = new CreatePinsForObjectFlowDialog(Display.getDefault().getActiveShell(), getSource(), getTarget());
+			if(IDialogConstants.OK_ID == dialog.open()) {
+				// replace adequate source and target
+				source = dialog.getSource();
+				target = dialog.getTarget();
+			} else {
+				return CommandResult.newCancelledCommandResult();
+			}
 		}
 
 		ObjectFlow newElement = UMLFactory.eINSTANCE.createObjectFlow();
@@ -104,7 +117,6 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated

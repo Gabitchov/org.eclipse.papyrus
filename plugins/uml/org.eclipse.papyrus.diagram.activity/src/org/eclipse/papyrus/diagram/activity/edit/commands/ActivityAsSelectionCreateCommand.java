@@ -76,7 +76,6 @@ public class ActivityAsSelectionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,14 +98,12 @@ public class ActivityAsSelectionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		Activity newElement = UMLFactory.eINSTANCE.createActivity();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 		ObjectFlow childHolder = (ObjectFlow)getElementToEdit();
 		childHolder.setSelection(newElement);
-
 
 		UMLElementTypes.init_Activity_3028(newElement);
 
@@ -115,9 +112,6 @@ public class ActivityAsSelectionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

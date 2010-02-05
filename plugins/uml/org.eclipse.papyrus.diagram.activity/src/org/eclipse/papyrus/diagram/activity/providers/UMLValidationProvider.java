@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -13,12 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.providers;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.validation.AbstractModelConstraint;
+import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.IClientSelector;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
+import org.eclipse.papyrus.diagram.activity.helper.UMLValidationHelper;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.ObjectFlow;
+import org.eclipse.uml2.uml.ValuePin;
 
 /**
  * @generated
@@ -77,7 +86,6 @@ public class UMLValidationProvider {
 		return true;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -91,8 +99,109 @@ public class UMLValidationProvider {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
+	public static class Adapter9 extends AbstractModelConstraint {
 
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ValuePin context = (ValuePin)ctx.getTarget();
+			return UMLValidationHelper.validateCompatibleType(context, ctx);
+		}
+	}
 
+	/**
+	 * @generated
+	 */
+	public static class Adapter12 extends AbstractModelConstraint {
 
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
+			return UMLValidationHelper.validateSourceAndTarget(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter17 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
+			return UMLValidationHelper.validateCompatibleTypes(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter18 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
+			return UMLValidationHelper.validateSameUpperBounds(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter19 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
+			return UMLValidationHelper.validateTarget(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter20 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
+			return UMLValidationHelper.validateTransformationBehaviour(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter22 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
+			return UMLValidationHelper.validateInputAndOutputParameter(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static String formatElement(EObject object) {
+		return EMFCoreUtil.getQualifiedName(object, true);
+	}
 
 }

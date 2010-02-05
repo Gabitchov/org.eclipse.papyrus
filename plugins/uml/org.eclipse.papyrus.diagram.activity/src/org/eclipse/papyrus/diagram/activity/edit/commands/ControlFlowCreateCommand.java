@@ -46,7 +46,6 @@ public class ControlFlowCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -85,7 +84,6 @@ public class ControlFlowCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateControlFlow_4004(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -104,7 +102,6 @@ public class ControlFlowCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated

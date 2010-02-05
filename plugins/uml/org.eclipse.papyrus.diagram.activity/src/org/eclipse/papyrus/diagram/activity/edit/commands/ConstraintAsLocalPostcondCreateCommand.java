@@ -75,7 +75,6 @@ public class ConstraintAsLocalPostcondCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,6 +89,7 @@ public class ConstraintAsLocalPostcondCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
 
 	}
@@ -99,12 +99,10 @@ public class ConstraintAsLocalPostcondCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
 		Action owner = (Action)getElementToEdit();
 		owner.getLocalPostconditions().add(newElement);
-
 
 		UMLElementTypes.init_Constraint_3012(newElement);
 
@@ -113,9 +111,6 @@ public class ConstraintAsLocalPostcondCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

@@ -181,9 +181,9 @@
     <descriptors
         name="CommonLabelFigure">
       <actualFigure
-          xsi:type="gmfgraph:Label"
+          xsi:type="gmfgraph:CustomFigure"
           name="CommonLabel"
-          text=""/>
+          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
     </descriptors>
     <descriptors
         name="InitialNodeFigure">

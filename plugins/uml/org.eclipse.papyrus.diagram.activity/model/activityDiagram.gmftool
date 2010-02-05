@@ -352,45 +352,5 @@
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
     </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="Object Flows' Specifications">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <tools
-          xsi:type="gmftool:GenericTool"
-          title="Selection Behavior"
-          description="Create a new Behavior or choose an exisitng one as Selection for an Object Flow"
-          toolClass="org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectFlowActivitySelection">
-        <smallIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/Behavior.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-        <largeIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/Behavior.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:GenericTool"
-          title="Transformation Behavior"
-          description="Create a new Behavior or choose an exisitng one as Transformation for an Object Flow"
-          toolClass="org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectFlowActivityTransformation">
-        <smallIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/Behavior.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-        <largeIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/Behavior.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-      </tools>
-    </tools>
   </palette>
 </gmftool:ToolRegistry>

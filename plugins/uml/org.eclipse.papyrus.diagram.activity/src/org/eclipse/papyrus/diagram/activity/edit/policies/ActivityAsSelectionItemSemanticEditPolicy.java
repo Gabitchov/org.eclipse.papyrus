@@ -48,7 +48,6 @@ public class ActivityAsSelectionItemSemanticEditPolicy extends UMLBaseItemSemant
 		super(UMLElementTypes.Activity_3028);
 	}
 
-
 	/**
 	 * @generated
 	 */

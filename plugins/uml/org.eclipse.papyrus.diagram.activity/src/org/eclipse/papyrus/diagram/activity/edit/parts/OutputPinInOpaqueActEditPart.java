@@ -25,6 +25,7 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -40,6 +41,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -48,8 +50,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OutputPinInOpaqueActItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -94,13 +98,10 @@ BorderedBorderItemEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OutputPinInOpaqueActItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -154,7 +155,6 @@ BorderedBorderItemEditPart {
 		return (PinDescriptor)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -178,7 +178,6 @@ BorderedBorderItemEditPart {
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -252,10 +251,6 @@ BorderedBorderItemEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(OutputPinInOActLabelEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -679,21 +674,15 @@ BorderedBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class PinDescriptor extends RectangleFigure {
 
-
 		/**
 		 * @generated
 		 */
 		private Polyline fOptionalArrowFigure;
-
 
 		/**
 		 * @generated
@@ -709,17 +698,12 @@ BorderedBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fOptionalArrowFigure = new Polyline();
 			fOptionalArrowFigure.setLineWidth(1);
 
 			this.add(fOptionalArrowFigure);
 
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -740,8 +724,6 @@ BorderedBorderItemEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
@@ -749,11 +731,7 @@ BorderedBorderItemEditPart {
 			return fOptionalArrowFigure;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -787,5 +765,77 @@ BorderedBorderItemEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+
+	/**
+	 * Notifies listeners that a target connection has been added.
+	 * 
+	 * @param connection
+	 *        <code>ConnectionEditPart</code> being added as child.
+	 * @param index
+	 *        Position child is being added into.
+	 * @generated NOT
+	 */
+	@Override
+	protected void fireSourceConnectionAdded(ConnectionEditPart connection, int index) {
+		super.fireSourceConnectionAdded(connection, index);
+		// undraw the pin arrow
+		if(connection instanceof ObjectFlowEditPart || connection instanceof ControlFlowEditPart) {
+			PinDescriptor pinFigure = getPrimaryShape();
+			Polyline arrow = ((PinDescriptor)pinFigure).getOptionalArrowFigure();
+			ActivityFigureDrawer.undrawFigure(arrow);
+		}
+	}
+
+	/**
+	 * Notifies listeners that a source connection has been removed.
+	 * 
+	 * @param connection
+	 *        <code>ConnectionEditPart</code> being added as child.
+	 * @param index
+	 *        Position child is being added into.
+	 * @generated NOT
+	 */
+	@Override
+	protected void fireRemovingSourceConnection(ConnectionEditPart connection, int index) {
+		super.fireRemovingSourceConnection(connection, index);
+		// redraw the pin arrow if no other target connection left
+		boolean hasActivityEdge = false;
+		for(Object connect : getSourceConnections()) {
+			if(!connection.equals(connect) && (connect instanceof ObjectFlowEditPart || connect instanceof ControlFlowEditPart)) {
+				hasActivityEdge = true;
+				break;
+			}
+		}
+		if(!hasActivityEdge) {
+			PinDescriptor pinFigure = getPrimaryShape();
+			Polyline arrow = pinFigure.getOptionalArrowFigure();
+			int direction = getBorderItemLocator().getCurrentSideOfParent();
+			ActivityFigureDrawer.redrawPinArrow(arrow, getMapMode(), getSize(), direction);
+		}
+	}
+
+	/**
+	 * Registers this editpart to recieve notation and semantic events.
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void activate() {
+		super.activate();
+		// redraw the pin arrow if no connection
+		boolean hasActivityEdge = false;
+		for(Object connection : getSourceConnections()) {
+			if(connection instanceof ObjectFlowEditPart || connection instanceof ControlFlowEditPart) {
+				hasActivityEdge = true;
+				break;
+			}
+		}
+		if(!hasActivityEdge) {
+			PinDescriptor pinFigure = getPrimaryShape();
+			Polyline arrow = pinFigure.getOptionalArrowFigure();
+			int direction = getBorderItemLocator().getCurrentSideOfParent();
+			ActivityFigureDrawer.redrawPinArrow(arrow, getMapMode(), getSize(), direction);
+		}
 	}
 }

@@ -54,6 +54,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPos
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditPart;
@@ -64,6 +68,14 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTarg
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
@@ -77,6 +89,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActAsTargetLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActLabelEditPart;
@@ -140,7 +156,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage(navigatorItem.getView());
 		}
 
-
 		return super.getImage(element);
 	}
 
@@ -201,6 +216,22 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3026); //$NON-NLS-1$
 		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3027); //$NON-NLS-1$
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3034); //$NON-NLS-1$
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3035); //$NON-NLS-1$
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3036); //$NON-NLS-1$
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3037); //$NON-NLS-1$
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionConstraint", UMLElementTypes.InteractionConstraint_3030); //$NON-NLS-1$
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionConstraint", UMLElementTypes.InteractionConstraint_3031); //$NON-NLS-1$
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3032); //$NON-NLS-1$
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3033); //$NON-NLS-1$
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3011); //$NON-NLS-1$
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
@@ -259,7 +290,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getText(navigatorItem.getView());
 		}
-
 
 		return super.getText(element);
 	}
@@ -324,6 +354,22 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getActionInputPin_3026Text(view);
 		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 			return getInputPin_3027Text(view);
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getDurationConstraint_3034Text(view);
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getDurationConstraint_3035Text(view);
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getTimeConstraint_3036Text(view);
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getTimeConstraint_3037Text(view);
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getInteractionConstraint_3030Text(view);
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getInteractionConstraint_3031Text(view);
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getIntervalConstraint_3032Text(view);
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getIntervalConstraint_3033Text(view);
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return getConstraint_3011Text(view);
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
@@ -734,6 +780,110 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5033); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getInteractionConstraint_3030Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.InteractionConstraint_3030, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5034); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getInteractionConstraint_3031Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.InteractionConstraint_3031, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5035); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getIntervalConstraint_3032Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.IntervalConstraint_3032, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5036); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getIntervalConstraint_3033Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.IntervalConstraint_3033, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5037); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDurationConstraint_3034Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DurationConstraint_3034, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5038); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDurationConstraint_3035Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DurationConstraint_3035, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5039); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getTimeConstraint_3036Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.TimeConstraint_3036, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5040); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getTimeConstraint_3037Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.TimeConstraint_3037, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5041); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

@@ -19,8 +19,10 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -38,6 +40,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPa
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
+import org.eclipse.uml2.uml.Action;
+import org.eclipse.uml2.uml.CallOperationAction;
 
 /**
  * This class is used to constrain the position of Pin
@@ -47,7 +51,10 @@ import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 public class PinPositionLocator extends AdvancedBorderItemLocator {
 
 	/** The offset to add to default position. (to avoid corner of rounded rectangles) */
-	private static final int EXTRA_BORDER_DEFAULT_OFFSET = 8;
+	public static final int EXTRA_BORDER_DEFAULT_OFFSET = 8;
+
+	/** The default size of a pin */
+	public static final int DEFAULT_PIN_SIZE = 16;
 
 	/** Constructor **/
 	public PinPositionLocator(IFigure parentFigure) {
@@ -167,7 +174,7 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 			arrowIn = false;
 			arrow = ((OutputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
 		}
-		if(arrow != null) {
+		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;
 			int side = getCurrentSideOfParent();
 			switch(side) {
@@ -244,4 +251,34 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		return new Point(x, y);
 	}
 
+	/**
+	 * Adapt the bounds constraint to fit to the action's contained pins
+	 * 
+	 * @param boundsConstraint
+	 *        the constraint to adapt
+	 * @param domainElement
+	 *        the model action
+	 * @return
+	 * @return boundsConstraint for convenience
+	 * @generated NOT
+	 */
+	public static Bounds adaptActionHeight(Bounds boundsConstraint, EObject domainElement) {
+		if(domainElement instanceof Action) {
+			int pinsOnHeight = 0;
+			int numberOfInputs = ((Action)domainElement).getInputs().size();
+			int numberOfOutputs = ((Action)domainElement).getOutputs().size();
+			if(domainElement instanceof CallOperationAction) {
+				// target is located on top
+				pinsOnHeight = Math.max(numberOfInputs - 1, numberOfOutputs);
+			} else {
+				pinsOnHeight = Math.max(numberOfInputs, numberOfOutputs);
+			}
+			if(pinsOnHeight > 0) {
+				// each pin is 16 px height, consider extra px for margins
+				int heightInPx = 2 * EXTRA_BORDER_DEFAULT_OFFSET + pinsOnHeight * (DEFAULT_PIN_SIZE + 8) - 8;
+				boundsConstraint.setHeight(heightInPx);
+			}
+		}
+		return boundsConstraint;
+	}
 }

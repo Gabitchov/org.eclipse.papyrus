@@ -45,12 +45,18 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
@@ -59,6 +65,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
@@ -246,6 +254,46 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType InteractionConstraint_3030 = getElementType("org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InteractionConstraint_3031 = getElementType("org.eclipse.papyrus.diagram.activity.InteractionConstraint_3031"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType IntervalConstraint_3032 = getElementType("org.eclipse.papyrus.diagram.activity.IntervalConstraint_3032"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType IntervalConstraint_3033 = getElementType("org.eclipse.papyrus.diagram.activity.IntervalConstraint_3033"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationConstraint_3034 = getElementType("org.eclipse.papyrus.diagram.activity.DurationConstraint_3034"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationConstraint_3035 = getElementType("org.eclipse.papyrus.diagram.activity.DurationConstraint_3035"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TimeConstraint_3036 = getElementType("org.eclipse.papyrus.diagram.activity.TimeConstraint_3036"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TimeConstraint_3037 = getElementType("org.eclipse.papyrus.diagram.activity.TimeConstraint_3037"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ActionLocalPrecondition_4001 = getElementType("org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"); //$NON-NLS-1$
 
 	/**
@@ -381,90 +429,77 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Activity_2001, UMLPackage.eINSTANCE.getActivity());
-
 
 			elements.put(Parameter_3001, UMLPackage.eINSTANCE.getParameter());
 
-
 			elements.put(Constraint_3002, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Constraint_3003, UMLPackage.eINSTANCE.getConstraint());
 
-
 			elements.put(InitialNode_3004, UMLPackage.eINSTANCE.getInitialNode());
-
 
 			elements.put(ActivityFinalNode_3005, UMLPackage.eINSTANCE.getActivityFinalNode());
 
-
 			elements.put(FlowFinalNode_3006, UMLPackage.eINSTANCE.getFlowFinalNode());
-
 
 			elements.put(OpaqueAction_3007, UMLPackage.eINSTANCE.getOpaqueAction());
 
-
 			elements.put(ValuePin_3015, UMLPackage.eINSTANCE.getValuePin());
-
 
 			elements.put(ActionInputPin_3016, UMLPackage.eINSTANCE.getActionInputPin());
 
-
 			elements.put(InputPin_3013, UMLPackage.eINSTANCE.getInputPin());
-
 
 			elements.put(OutputPin_3014, UMLPackage.eINSTANCE.getOutputPin());
 
-
 			elements.put(CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction());
-
 
 			elements.put(ValuePin_3017, UMLPackage.eINSTANCE.getValuePin());
 
-
 			elements.put(ActionInputPin_3018, UMLPackage.eINSTANCE.getActionInputPin());
-
 
 			elements.put(InputPin_3019, UMLPackage.eINSTANCE.getInputPin());
 
-
 			elements.put(OutputPin_3020, UMLPackage.eINSTANCE.getOutputPin());
-
 
 			elements.put(CallOperationAction_3010, UMLPackage.eINSTANCE.getCallOperationAction());
 
-
 			elements.put(ActionInputPin_3021, UMLPackage.eINSTANCE.getActionInputPin());
-
 
 			elements.put(ValuePin_3022, UMLPackage.eINSTANCE.getValuePin());
 
-
 			elements.put(InputPin_3023, UMLPackage.eINSTANCE.getInputPin());
-
 
 			elements.put(OutputPin_3024, UMLPackage.eINSTANCE.getOutputPin());
 
-
 			elements.put(ValuePin_3025, UMLPackage.eINSTANCE.getValuePin());
-
 
 			elements.put(ActionInputPin_3026, UMLPackage.eINSTANCE.getActionInputPin());
 
-
 			elements.put(InputPin_3027, UMLPackage.eINSTANCE.getInputPin());
 
+			elements.put(DurationConstraint_3034, UMLPackage.eINSTANCE.getDurationConstraint());
+
+			elements.put(DurationConstraint_3035, UMLPackage.eINSTANCE.getDurationConstraint());
+
+			elements.put(TimeConstraint_3036, UMLPackage.eINSTANCE.getTimeConstraint());
+
+			elements.put(TimeConstraint_3037, UMLPackage.eINSTANCE.getTimeConstraint());
+
+			elements.put(InteractionConstraint_3030, UMLPackage.eINSTANCE.getInteractionConstraint());
+
+			elements.put(InteractionConstraint_3031, UMLPackage.eINSTANCE.getInteractionConstraint());
+
+			elements.put(IntervalConstraint_3032, UMLPackage.eINSTANCE.getIntervalConstraint());
+
+			elements.put(IntervalConstraint_3033, UMLPackage.eINSTANCE.getIntervalConstraint());
 
 			elements.put(Constraint_3011, UMLPackage.eINSTANCE.getConstraint());
 
-
 			elements.put(Constraint_3012, UMLPackage.eINSTANCE.getConstraint());
 
-
 			elements.put(Activity_3028, UMLPackage.eINSTANCE.getActivity());
-
 
 			elements.put(Activity_3029, UMLPackage.eINSTANCE.getActivity());
 
@@ -476,9 +511,7 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(ObjectFlowTransformation_4006, UMLPackage.eINSTANCE.getObjectFlow_Transformation());
 
-
 			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
-
 
 			elements.put(ControlFlow_4004, UMLPackage.eINSTANCE.getControlFlow());
 		}
@@ -524,6 +557,14 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ValuePin_3025);
 			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3026);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3027);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3034);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3035);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3036);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3037);
+			KNOWN_ELEMENT_TYPES.add(InteractionConstraint_3030);
+			KNOWN_ELEMENT_TYPES.add(InteractionConstraint_3031);
+			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3032);
+			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3033);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3011);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3012);
 			KNOWN_ELEMENT_TYPES.add(Activity_3028);
@@ -595,6 +636,22 @@ public class UMLElementTypes extends ElementInitializers {
 			return ActionInputPin_3026;
 		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 			return InputPin_3027;
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return DurationConstraint_3034;
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return DurationConstraint_3035;
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return TimeConstraint_3036;
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return TimeConstraint_3037;
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return InteractionConstraint_3030;
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return InteractionConstraint_3031;
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return IntervalConstraint_3032;
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return IntervalConstraint_3033;
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return Constraint_3011;
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:

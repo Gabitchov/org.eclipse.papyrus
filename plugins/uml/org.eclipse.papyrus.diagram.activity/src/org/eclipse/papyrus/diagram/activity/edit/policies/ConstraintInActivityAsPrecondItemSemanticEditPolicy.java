@@ -34,7 +34,6 @@ public class ConstraintInActivityAsPrecondItemSemanticEditPolicy extends UMLBase
 		super(UMLElementTypes.Constraint_3002);
 	}
 
-
 	/**
 	 * @generated
 	 */

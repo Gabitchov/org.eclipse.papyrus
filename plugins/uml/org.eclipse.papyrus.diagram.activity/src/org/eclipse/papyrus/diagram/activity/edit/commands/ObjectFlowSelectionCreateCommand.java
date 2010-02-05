@@ -68,7 +68,6 @@ public class ObjectFlowSelectionCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateObjectFlowSelection_4005(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -83,8 +82,6 @@ public class ObjectFlowSelectionCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult();
 
 	}
-
-
 
 	/**
 	 * @generated

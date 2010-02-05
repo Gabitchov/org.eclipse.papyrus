@@ -211,10 +211,10 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		// the type of the target pin can not be modified.
 		if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(ctx.getFeature())) {
 			Element owner = pin.getOwner();
-			if(owner instanceof CallOperationAction) {
+			if(owner instanceof CallOperationAction && ((CallOperationAction)owner).getOperation() != null) {
 				proposeNavigation(((CallOperationAction)owner).getOperation());
+				return ctx.createFailureStatus();
 			}
-			return ctx.createFailureStatus();
 		}
 		return ctx.createSuccessStatus();
 	}
@@ -280,6 +280,16 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				for(Notification event : ctx.getAllEvents()) {
 					if(UMLPackage.eINSTANCE.getParameter_Direction().equals(event.getFeature()) || UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter().equals(event.getFeature())) {
 						return changePinsBecauseOfParameterDirection(parameter, event, ctx);
+					}
+				}
+			} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(ctx.getFeature())) {
+				// Synchronize the pin name if not set yet
+				CompoundCommand cmd = getSetPinsNamesCmd(getPins(parameter), parameter.getName());
+				if(!cmd.isEmpty() && cmd.canExecute()) {
+					if(askForValidation(getCallingActions(parameter.getOwner()))) {
+						cmd.execute();
+					} else {
+						return ctx.createFailureStatus();
 					}
 				}
 			}
@@ -408,8 +418,10 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Yet, no modification of parameters is allowed from the CallOperationAction.
 				 * This means we can not add Pins
 				 */
-				proposeNavigation(action.getOperation());
-				return ctx.createFailureStatus();
+				if(action.getOperation() != null) {
+					proposeNavigation(action.getOperation());
+					return ctx.createFailureStatus();
+				}
 			}
 		} else if(EMFEventType.REMOVE.equals(ctx.getEventType()) || EMFEventType.REMOVE_MANY.equals(ctx.getEventType())) {
 			if(testActionFeature(ctx.getFeature()) && action.getOperation() != null) {
@@ -417,14 +429,28 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Yet, no modification of parameters is allowed from the CallOperationAction.
 				 * This means we can not remove Pins
 				 */
-				proposeNavigation(action.getOperation());
-				return ctx.createFailureStatus();
+				if(action.getOperation() != null) {
+					proposeNavigation(action.getOperation());
+					return ctx.createFailureStatus();
+				}
 			}
 		} else if(EMFEventType.SET.equals(ctx.getEventType()) || EMFEventType.UNSET.equals(ctx.getEventType())) {
 			if(UMLPackage.eINSTANCE.getCallOperationAction_Operation().equals(ctx.getFeature())) {
+				/*
+				 * The operation changes, so must the pins
+				 */
 				CompoundCommand cmd = getResetPinsCmd(action);
 				if(!cmd.isEmpty() && cmd.canExecute()) {
 					cmd.execute();
+				}
+			}
+			if(UMLPackage.eINSTANCE.getCallOperationAction_Target().equals(ctx.getFeature())) {
+				/*
+				 * Try to remove or assign target pin. This must not be authorized.
+				 */
+				if(action.getOperation() != null) {
+					proposeNavigation(action.getOperation());
+					return ctx.createFailureStatus();
 				}
 			}
 		}
@@ -447,8 +473,10 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Yet, no modification of parameters is allowed from the CallBehaviorAction.
 				 * This means we can not add Pins
 				 */
-				proposeNavigation(action.getBehavior());
-				return ctx.createFailureStatus();
+				if(action.getBehavior() != null) {
+					proposeNavigation(action.getBehavior());
+					return ctx.createFailureStatus();
+				}
 			}
 		} else if(EMFEventType.REMOVE.equals(ctx.getEventType()) || EMFEventType.REMOVE_MANY.equals(ctx.getEventType())) {
 			if(testActionFeature(ctx.getFeature()) && action.getBehavior() != null) {
@@ -456,8 +484,10 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Yet, no modification of parameters is allowed from the CallBehaviorAction.
 				 * This means we can not remove Pins
 				 */
-				proposeNavigation(action.getBehavior());
-				return ctx.createFailureStatus();
+				if(action.getBehavior() != null) {
+					proposeNavigation(action.getBehavior());
+					return ctx.createFailureStatus();
+				}
 			}
 		} else if(EMFEventType.SET.equals(ctx.getEventType()) || EMFEventType.UNSET.equals(ctx.getEventType())) {
 			if(UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior().equals(ctx.getFeature())) {
@@ -959,7 +989,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			// remove target pin
 			InputPin target = ((CallOperationAction)action).getTarget();
 			if(target != null) {
-				Command cmd = RemoveCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCallOperationAction_Target(), target);
+				Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCallOperationAction_Target(), null);
 				globalCmd.append(cmd);
 			}
 		}
@@ -1018,6 +1048,33 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			}
 		}
 
+		return globalCmd;
+	}
+
+	/**
+	 * Get the command to update a pins list with the name if not set yet
+	 * 
+	 * @param pins
+	 *        the list of pins to update
+	 * @param name
+	 *        the new name set on parameter
+	 * @return the command to execute
+	 */
+	private CompoundCommand getSetPinsNamesCmd(List<Pin> pins, String name) {
+		CompoundCommand globalCmd = new CompoundCommand();
+		if(pins == null || name == null || "".equals(name)) {
+			return globalCmd;
+		}
+		// Get the editing domain
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		for(Pin pin : pins) {
+			// erase the name only if null (not set, the user may have set an empty string name)
+			if(pin.getName() == null) {
+				// add the command
+				Command cmd = SetCommand.create(editingdomain, pin, UMLPackage.eINSTANCE.getNamedElement_Name(), name);
+				globalCmd.append(cmd);
+			}
+		}
 		return globalCmd;
 	}
 

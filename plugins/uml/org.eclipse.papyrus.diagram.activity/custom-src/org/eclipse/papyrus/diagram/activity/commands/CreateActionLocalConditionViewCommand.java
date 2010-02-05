@@ -30,6 +30,14 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPostcondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPrecondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPrecondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.InteractionConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.InteractionConstraintAsLocalPrecondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.IntervalConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.IntervalConstraintAsLocalPrecondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
@@ -92,6 +100,30 @@ public class CreateActionLocalConditionViewCommand extends Command {
 		} else if(UMLElementTypes.Constraint_3012.equals(conditionType)) {
 			ConstraintAsLocalPostcondCreateCommand cmd = new ConstraintAsLocalPostcondCreateCommand(createElementReq);
 			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.InteractionConstraint_3030.equals(conditionType)) {
+			InteractionConstraintAsLocalPrecondCreateCommand cmd = new InteractionConstraintAsLocalPrecondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.InteractionConstraint_3031.equals(conditionType)) {
+			InteractionConstraintAsLocalPostcondCreateCommand cmd = new InteractionConstraintAsLocalPostcondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.IntervalConstraint_3032.equals(conditionType)) {
+			IntervalConstraintAsLocalPrecondCreateCommand cmd = new IntervalConstraintAsLocalPrecondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.IntervalConstraint_3033.equals(conditionType)) {
+			IntervalConstraintAsLocalPostcondCreateCommand cmd = new IntervalConstraintAsLocalPostcondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.DurationConstraint_3034.equals(conditionType)) {
+			DurationConstraintAsLocalPrecondCreateCommand cmd = new DurationConstraintAsLocalPrecondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.DurationConstraint_3035.equals(conditionType)) {
+			DurationConstraintAsLocalPostcondCreateCommand cmd = new DurationConstraintAsLocalPostcondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.TimeConstraint_3036.equals(conditionType)) {
+			TimeConstraintAsLocalPrecondCreateCommand cmd = new TimeConstraintAsLocalPrecondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
+		} else if(UMLElementTypes.TimeConstraint_3037.equals(conditionType)) {
+			TimeConstraintAsLocalPostcondCreateCommand cmd = new TimeConstraintAsLocalPostcondCreateCommand(createElementReq);
+			return new ICommandProxy(cmd);
 		} else {
 			return null;
 		}
@@ -106,6 +138,22 @@ public class CreateActionLocalConditionViewCommand extends Command {
 		if(UMLElementTypes.Constraint_3011.equals(type)) {
 			return (IHintedType)UMLElementTypes.ActionLocalPrecondition_4001;
 		} else if(UMLElementTypes.Constraint_3012.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPostcondition_4002;
+		} else if(UMLElementTypes.InteractionConstraint_3030.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPrecondition_4001;
+		} else if(UMLElementTypes.InteractionConstraint_3031.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPostcondition_4002;
+		} else if(UMLElementTypes.IntervalConstraint_3032.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPrecondition_4001;
+		} else if(UMLElementTypes.IntervalConstraint_3033.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPostcondition_4002;
+		} else if(UMLElementTypes.DurationConstraint_3034.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPrecondition_4001;
+		} else if(UMLElementTypes.DurationConstraint_3035.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPostcondition_4002;
+		} else if(UMLElementTypes.TimeConstraint_3036.equals(type)) {
+			return (IHintedType)UMLElementTypes.ActionLocalPrecondition_4001;
+		} else if(UMLElementTypes.TimeConstraint_3037.equals(type)) {
 			return (IHintedType)UMLElementTypes.ActionLocalPostcondition_4002;
 		} else {
 			return null;

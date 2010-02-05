@@ -52,12 +52,18 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
@@ -66,6 +72,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
@@ -235,6 +243,30 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
 		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(CallOperationActionEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID));
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 		connectedViews = getChildrenByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
 		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondEditPart.VISUAL_ID));
@@ -1015,6 +1047,166 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 * 
 	 * @generated
 	 **/
+	private Object[] getViewChildrenForInteractionConstraintAsLocalPrecondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_InteractionConstraint_3030_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForInteractionConstraintAsLocalPostcondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_InteractionConstraint_3031_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForIntervalConstraintAsLocalPrecondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_IntervalConstraint_3032_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForIntervalConstraintAsLocalPostcondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_IntervalConstraint_3033_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForDurationConstraintAsLocalPrecondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_DurationConstraint_3034_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForDurationConstraintAsLocalPostcondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_DurationConstraint_3035_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForTimeConstraintAsLocalPrecondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_TimeConstraint_3036_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
+	private Object[] getViewChildrenForTimeConstraintAsLocalPostcondEditPart(View view, Object parentElement) {
+		Collection result = new ArrayList();
+		UMLNavigatorGroup incominglinks = new UMLNavigatorGroup(Messages.NavigatorGroupName_TimeConstraint_3037_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		connectedViews = getIncomingLinksByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
+		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+		if(!incominglinks.isEmpty()) {
+			result.add(incominglinks);
+		}
+		return result.toArray();
+	}
+
+	/**
+	 * 
+	 *Papyrus Template
+	 *this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
+	 * @generated
+	 **/
 	private Object[] getViewChildrenForActionLocalPreconditionEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
 		UMLNavigatorGroup target = new UMLNavigatorGroup(Messages.NavigatorGroupName_ActionLocalPrecondition_4001_target, "icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
@@ -1022,6 +1214,22 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		Collection connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ConstraintInActivityAsPrecondEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ConstraintInActivityAsPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
@@ -1056,6 +1264,22 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		Collection connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ConstraintInActivityAsPrecondEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ConstraintInActivityAsPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID));
+		target.addChildren(createNavigatorItems(connectedViews, target, true));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view), UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
@@ -1410,11 +1634,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 
-
-
 		case ActivityDiagramEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActivityDiagramEditPart(view, parentElement);
@@ -1424,7 +1645,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ActivityEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActivityEditPart(view, parentElement);
 
@@ -1432,7 +1652,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintInActivityAsPrecondEditPart(view, parentElement);
@@ -1442,7 +1661,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintInActivityAsPostcondEditPart(view, parentElement);
 
@@ -1450,7 +1668,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case InitialNodeEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForInitialNodeEditPart(view, parentElement);
@@ -1460,7 +1677,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ActivityFinalNodeEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActivityFinalNodeEditPart(view, parentElement);
 
@@ -1468,7 +1684,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case FlowFinalNodeEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForFlowFinalNodeEditPart(view, parentElement);
@@ -1478,7 +1693,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case OpaqueActionEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForOpaqueActionEditPart(view, parentElement);
 
@@ -1486,7 +1700,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ValuePinInOpaqueActEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForValuePinInOpaqueActEditPart(view, parentElement);
@@ -1496,7 +1709,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionInputPinInOpaqueActEditPart(view, parentElement);
 
@@ -1504,7 +1716,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case InputPinInOpaqueActEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForInputPinInOpaqueActEditPart(view, parentElement);
@@ -1514,7 +1725,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case OutputPinInOpaqueActEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForOutputPinInOpaqueActEditPart(view, parentElement);
 
@@ -1522,7 +1732,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case CallBehaviorActionEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForCallBehaviorActionEditPart(view, parentElement);
@@ -1532,7 +1741,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ValuePinInCallBeActEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForValuePinInCallBeActEditPart(view, parentElement);
 
@@ -1540,7 +1748,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionInputPinInCallBeActEditPart(view, parentElement);
@@ -1550,7 +1757,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case InputPinInCallBeActEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForInputPinInCallBeActEditPart(view, parentElement);
 
@@ -1558,7 +1764,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case OutputPinInCallBeActEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForOutputPinInCallBeActEditPart(view, parentElement);
@@ -1568,7 +1773,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case CallOperationActionEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForCallOperationActionEditPart(view, parentElement);
 
@@ -1576,7 +1780,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionInputPinInCallOpActEditPart(view, parentElement);
@@ -1586,7 +1789,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ValuePinInCallOpActEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForValuePinInCallOpActEditPart(view, parentElement);
 
@@ -1594,7 +1796,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case InputPinInCallOpActEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForInputPinInCallOpActEditPart(view, parentElement);
@@ -1604,7 +1805,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case OutputPinInCallOpActEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForOutputPinInCallOpActEditPart(view, parentElement);
 
@@ -1612,7 +1812,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForValuePinInCallOpActAsTargetEditPart(view, parentElement);
@@ -1622,7 +1821,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionInputPinInCallOpActAsTargetEditPart(view, parentElement);
 
@@ -1631,15 +1829,77 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForInputPinInCallOpActAsTargetEditPart(view, parentElement);
 
 		}
 
-		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		{
 
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDurationConstraintAsLocalPrecondEditPart(view, parentElement);
+
+		}
+
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDurationConstraintAsLocalPostcondEditPart(view, parentElement);
+
+		}
+
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForTimeConstraintAsLocalPrecondEditPart(view, parentElement);
+
+		}
+
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForTimeConstraintAsLocalPostcondEditPart(view, parentElement);
+
+		}
+
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInteractionConstraintAsLocalPrecondEditPart(view, parentElement);
+
+		}
+
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInteractionConstraintAsLocalPostcondEditPart(view, parentElement);
+
+		}
+
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForIntervalConstraintAsLocalPrecondEditPart(view, parentElement);
+
+		}
+
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForIntervalConstraintAsLocalPostcondEditPart(view, parentElement);
+
+		}
+
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		{
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintAsLocalPrecondEditPart(view, parentElement);
@@ -1649,7 +1909,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintAsLocalPostcondEditPart(view, parentElement);
 
@@ -1657,7 +1916,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ActivityAsSelectionEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActivityAsSelectionEditPart(view, parentElement);
@@ -1667,7 +1925,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ActivityAsTransformationEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActivityAsTransformationEditPart(view, parentElement);
 
@@ -1675,7 +1932,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionLocalPreconditionEditPart(view, parentElement);
@@ -1685,7 +1941,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionLocalPostconditionEditPart(view, parentElement);
 
@@ -1693,7 +1948,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ObjectFlowSelectionEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForObjectFlowSelectionEditPart(view, parentElement);
@@ -1703,7 +1957,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ObjectFlowTransformationEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForObjectFlowTransformationEditPart(view, parentElement);
 
@@ -1712,7 +1965,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		case ObjectFlowEditPart.VISUAL_ID:
 		{
 
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForObjectFlowEditPart(view, parentElement);
 
@@ -1720,7 +1972,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case ControlFlowEditPart.VISUAL_ID:
 		{
-
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForControlFlowEditPart(view, parentElement);

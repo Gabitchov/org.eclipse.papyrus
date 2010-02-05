@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.dialogs;
 
-import org.eclipse.gmf.runtime.common.ui.util.PropertySheetUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -96,9 +95,10 @@ public class WarningAndLinkDialog extends MessageDialog {
 			IWorkbenchPart part = view.getPart(false);
 			if(part instanceof CommonNavigator) {
 				CommonNavigator navigator = (CommonNavigator)part;
+				// set focus to navigator, otherwise, diagram view will reset the selection
+				navigator.setFocus();
 				navigator.selectReveal(new StructuredSelection(element));
 			}
 		}
-		PropertySheetUtil.setCurrentPageSelection(editor, new StructuredSelection(element));
 	}
 }

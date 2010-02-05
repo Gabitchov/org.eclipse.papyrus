@@ -27,12 +27,14 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.Activator;
+import org.eclipse.papyrus.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 
 /**
@@ -66,36 +68,38 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 	/**
 	 * Update children edit parts so that each child is represented once
 	 * 
-	 * @param compartmentPart
-	 *        the compartment part containing children
+	 * @param parentPart
+	 *        the part containing children
 	 * @param childFeature
 	 *        the feature containing children
 	 * @param childType
 	 *        the children's IHintedType represented as Node
 	 */
-	public static void updateChildrenParts(CompartmentEditPart compartmentPart, EStructuralFeature childFeature, IHintedType childType) {
+	public static void updateChildrenParts(GraphicalEditPart parentPart, EStructuralFeature childFeature, IHintedType childType) {
 		// Check parameter values
-		if(compartmentPart == null || childFeature == null || childType == null) {
+		if(parentPart == null || childFeature == null || childType == null) {
 			return;
 		}
-		Object modelElt = compartmentPart.getModel();
+		Object modelElt = parentPart.getModel();
 		if(modelElt instanceof View) {
-			View modelCompartmentView = (View)modelElt;
+			View modelContainerView = (View)modelElt;
 			Class<?> containerClass = childFeature.getContainerClass();
-			if(containerClass.isInstance(modelCompartmentView.getElement())) {
-				EObject containerObject = modelCompartmentView.getElement();
+			if(containerClass.isInstance(modelContainerView.getElement())) {
+				EObject containerObject = modelContainerView.getElement();
 				Object untypedOwnedObjects = containerObject.eGet(childFeature);
 				if(untypedOwnedObjects instanceof List<?>) {
 					List<?> ownedEObjectChildren = (List<?>)untypedOwnedObjects;
 					List<EObject> drawnEObjectChildren = new ArrayList<EObject>(ownedEObjectChildren.size());
-					// list children already drawn and remove double parts
-					for(Object childView : modelCompartmentView.getChildren()) {
+					// list children already drawn and remove old parts
+					@SuppressWarnings("unchecked")
+					List<Object> childrenViewsCopy = new ArrayList<Object>(modelContainerView.getChildren());
+					for(Object childView : childrenViewsCopy) {
 						if(childView instanceof View) {
 							EObject child = ((View)childView).getElement();
 							if(ownedEObjectChildren.contains(child) && !drawnEObjectChildren.contains(child)) {
 								drawnEObjectChildren.add(child);
-							} else {
-								modelCompartmentView.removeChild((View)childView);
+							} else if(childFeature.getEType().isInstance(child) && !child.equals(containerObject) && !containerObject.equals(child.eContainer())) {
+								modelContainerView.removeChild((View)childView);
 							}
 						}
 					}
@@ -106,8 +110,8 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 					for(Object child : childrenToDraw) {
 						if(child instanceof EObject) {
 							IAdaptable adapter = new EObjectAdapter((EObject)child);
-							ViewDescriptor descriptor = new ViewDescriptor(adapter, Node.class, childType.getSemanticHint(), ViewUtil.APPEND, false, compartmentPart.getDiagramPreferencesHint());
-							CreateCommand nodeCreationCommand = new CreateCommand(compartmentPart.getEditingDomain(), descriptor, modelCompartmentView);
+							ViewDescriptor descriptor = new ViewDescriptor(adapter, Node.class, childType.getSemanticHint(), ViewUtil.APPEND, false, parentPart.getDiagramPreferencesHint());
+							CreateCommand nodeCreationCommand = new CreateCommand(parentPart.getEditingDomain(), descriptor, modelContainerView);
 							drawChildrenCommand.add(nodeCreationCommand);
 						}
 					}

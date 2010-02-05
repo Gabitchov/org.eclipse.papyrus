@@ -651,14 +651,11 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			Ellipse elli0 = new Ellipse();
 			elli0.setLineWidth(1);
 			elli0.setSize(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22));
 
 			this.add(elli0);
-
-
 
 			Polyline antislash0 = new Polyline();
 			antislash0.addPoint(new Point(getMapMode().DPtoLP(4), getMapMode().DPtoLP(4)));
@@ -667,15 +664,12 @@ ShapeNodeEditPart {
 
 			this.add(antislash0);
 
-
-
 			Polyline slash0 = new Polyline();
 			slash0.addPoint(new Point(getMapMode().DPtoLP(4), getMapMode().DPtoLP(18)));
 			slash0.addPoint(new Point(getMapMode().DPtoLP(18), getMapMode().DPtoLP(4)));
 			slash0.setLineWidth(1);
 
 			this.add(slash0);
-
 
 		}
 

@@ -70,6 +70,30 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		//		if(UMLElementTypes.Activity_3029 == req.getElementType()) {
 		//			return getGEFWrapper(new ActivityAsTransformationCreateCommand(req));
 		//		}
+		//		if(UMLElementTypes.InteractionConstraint_3030 == req.getElementType()) {
+		//			return getGEFWrapper(new InteractionConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.InteractionConstraint_3031 == req.getElementType()) {
+		//			return getGEFWrapper(new InteractionConstraintAsLocalPostcondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.IntervalConstraint_3032 == req.getElementType()) {
+		//			return getGEFWrapper(new IntervalConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.IntervalConstraint_3033 == req.getElementType()) {
+		//			return getGEFWrapper(new IntervalConstraintAsLocalPostcondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
+		//			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.DurationConstraint_3035 == req.getElementType()) {
+		//			return getGEFWrapper(new DurationConstraintAsLocalPostcondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.TimeConstraint_3036 == req.getElementType()) {
+		//			return getGEFWrapper(new TimeConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.TimeConstraint_3037 == req.getElementType()) {
+		//			return getGEFWrapper(new TimeConstraintAsLocalPostcondCreateCommand(req));
+		//		}
 		return super.getCreateCommand(req);
 	}
 
