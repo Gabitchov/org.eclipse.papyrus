@@ -21,14 +21,15 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.PackageableElement;
 
 public class CustomOwnerClassChangeCommand extends AbstractTransactionalCommand {
 
 	public static final String CUSTOMREMOVE_COMMAND = "CustomremoveCommand";
 
-	private Classifier classifier;
+	private PackageableElement classifier;
 
-	public CustomOwnerClassChangeCommand(TransactionalEditingDomain domain, Classifier containedclassifier) {
+	public CustomOwnerClassChangeCommand(TransactionalEditingDomain domain, PackageableElement containedclassifier) {
 		super(domain, CUSTOMREMOVE_COMMAND, null);
 		classifier = containedclassifier;
 
@@ -36,13 +37,20 @@ public class CustomOwnerClassChangeCommand extends AbstractTransactionalCommand 
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Classifier sourceClassifier = (Classifier)classifier.getOwner();
+		PackageableElement sourceClassifier = (PackageableElement)classifier.getOwner();
 		if(sourceClassifier instanceof org.eclipse.uml2.uml.Class) {
 			org.eclipse.uml2.uml.Class sourceClass = (org.eclipse.uml2.uml.Class)sourceClassifier;
 			org.eclipse.uml2.uml.Class targetClass = (org.eclipse.uml2.uml.Class)classifier;
 			targetClass.setPackage(sourceClass.getPackage());
 			EList<Classifier> listNestedClassifier = sourceClass.getNestedClassifiers();
 			listNestedClassifier.remove(targetClass);
+		}
+		if(sourceClassifier instanceof org.eclipse.uml2.uml.Package) {
+			org.eclipse.uml2.uml.Package sourcePackage = (org.eclipse.uml2.uml.Package)sourceClassifier;
+			org.eclipse.uml2.uml.Package targetPackage = (org.eclipse.uml2.uml.Package)classifier;
+			targetPackage.setNestingPackage(sourcePackage.getNestingPackage());
+			EList<org.eclipse.uml2.uml.Package> listNestedClassifier = sourcePackage.getNestedPackages();
+			listNestedClassifier.remove(targetPackage);
 		}
 		return CommandResult.newOKCommandResult();
 	}

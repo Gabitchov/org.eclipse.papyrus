@@ -104,6 +104,7 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 			}
 		}
 
+
 		/* if the element deleted is the contained class, the link connected should be delete also */
 		if(getHost() instanceof ClassEditPart) {
 			EList<Connector> linkList = null;

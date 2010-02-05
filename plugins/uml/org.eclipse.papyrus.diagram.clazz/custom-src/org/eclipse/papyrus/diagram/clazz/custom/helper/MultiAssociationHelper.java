@@ -443,5 +443,5 @@ public class MultiAssociationHelper extends ElementHelper {
 		return getAssociationToMultiAssociationCommand(createConnectionViewAndElementRequest, command);
 	}
 
-	
+
 }

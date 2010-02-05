@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.internal.impl.ConnectorImpl;
 
 
@@ -74,7 +75,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AddedLinkEditPart.VISUAL_ID) {
-				Classifier containedclassifier = (Classifier)outgoingLink.getTarget().getElement();
+				PackageableElement containedclassifier = (PackageableElement)outgoingLink.getTarget().getElement();
 				cmd.add(new CustomOwnerClassChangeCommand(getEditingDomain(), containedclassifier));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;

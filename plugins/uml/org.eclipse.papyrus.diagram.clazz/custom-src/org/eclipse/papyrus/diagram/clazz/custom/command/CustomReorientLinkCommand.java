@@ -13,6 +13,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 
 public class CustomReorientLinkCommand extends AbstractTransactionalCommand {
 
@@ -31,8 +33,8 @@ public class CustomReorientLinkCommand extends AbstractTransactionalCommand {
 
 		EditPart target = (EditPart)((ReconnectRequest)req).getConnectionEditPart().getTarget();
 		EditPart source = (EditPart)((ReconnectRequest)req).getTarget().getParent();
-		Classifier sourceClassifier = (Classifier)((View)source.getModel()).getElement();
-		Classifier targetClassifier = (Classifier)((View)target.getModel()).getElement();
+		PackageableElement sourceClassifier = (PackageableElement)((View)source.getModel()).getElement();
+		PackageableElement targetClassifier = (PackageableElement)((View)target.getModel()).getElement();
 
 		if(sourceClassifier instanceof org.eclipse.uml2.uml.Class) {
 			org.eclipse.uml2.uml.Class sourceClass = (org.eclipse.uml2.uml.Class)sourceClassifier;
@@ -41,6 +43,14 @@ public class CustomReorientLinkCommand extends AbstractTransactionalCommand {
 
 			EList<Classifier> listnestedclassifier = sourceClass.getNestedClassifiers();
 			listnestedclassifier.add(targetClass);
+
+		}
+		if(sourceClassifier instanceof org.eclipse.uml2.uml.Package) {
+			org.eclipse.uml2.uml.Package sourcePackage = (org.eclipse.uml2.uml.Package)sourceClassifier;
+			org.eclipse.uml2.uml.Package targetPackage = (org.eclipse.uml2.uml.Package)targetClassifier;
+
+			EList<Package> listnestedclassifier = sourcePackage.getNestedPackages();
+			listnestedclassifier.add(targetPackage);
 
 		}
 		return CommandResult.newOKCommandResult();

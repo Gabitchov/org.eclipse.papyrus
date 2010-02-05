@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AddedLinkItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.PackageableElement;
 
 public class CustomAddedLinkItemSemanticEditPolicy extends AddedLinkItemSemanticEditPolicy {
 
@@ -52,10 +54,10 @@ public class CustomAddedLinkItemSemanticEditPolicy extends AddedLinkItemSemantic
 			return null;
 		}
 		// Change the owner of the target class 
-		cc.compose(new CustomOwnerClassChangeCommand(editingDomain, (Classifier)req.getReferencedObject()));
+		cc.compose(new CustomOwnerClassChangeCommand(editingDomain, (PackageableElement)req.getReferencedObject()));
 
 
-		ContainmentCircleEditPart containmentCEP = (ContainmentCircleEditPart)((AbstractConnectionEditPart)getHost()).getSource();
+		ContainmentCircleEditPart containmentCEP = (ContainmentCircleEditPart)((ConnectionEditPart)getHost()).getSource();
 		//The containment circle node is deleted only if any other link is connected 
 		if(containmentCEP.getSourceConnections().size() == 1) {
 			cc.compose(new DeleteCommand(editingDomain, (View)containmentCEP.getModel()));

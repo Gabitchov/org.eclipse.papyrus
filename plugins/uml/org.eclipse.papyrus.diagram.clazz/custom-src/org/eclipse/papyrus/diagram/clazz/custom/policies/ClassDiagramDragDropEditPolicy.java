@@ -13,24 +13,28 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
@@ -38,11 +42,14 @@ import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 
 /**
@@ -53,7 +60,8 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	public static final String CONTAINED_CLASS_DROP_TO_COMPARTMENT = "ContainedClassDropToCompartment";
 
 	/** The specific drop node. */
-	public int[] secificDropNode = { 2014, 2013, 2015, 3014, 2008 };
+	public int[] secificDropNode = { 2014, 2013, 2015, 3014, 2008, 2007 };
+
 
 	/**
 	 * Instantiates a new class diagram drag drop edit policy.
@@ -151,20 +159,20 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	protected Command outlineDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		Element owner = (Element)semanticObject.getOwner();
-		boolean ownerviewexist = false;
+		GraphicalEditPart ownerGraphicalEditPart = null;
 		Collection<EditPart> editPartSet = getViewer().getEditPartRegistry().values();
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
 		while(editPartIterator.hasNext()) {
 			EditPart currentEditPart = editPartIterator.next();
-			if((currentEditPart instanceof ClassEditPart)) {
+			if((currentEditPart instanceof ClassEditPart) || currentEditPart instanceof PackageEditPart) {
 				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(owner)) {
-					ownerviewexist = true;
+					ownerGraphicalEditPart = (GraphicalEditPart)currentEditPart;
 				}
 			}
 		}
 
-		if(ownerviewexist) {
-			return containmentHelper.outlineDropContainedClass((Class)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
+		if(ownerGraphicalEditPart != null) {
+			return containmentHelper.outlineDropContainedClass((PackageableElement)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 		} else {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
 		}
@@ -199,7 +207,7 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
 		while(editPartIterator.hasNext()) {
 			EditPart currentEditPart = editPartIterator.next();
-			if(currentEditPart instanceof ClassEditPart) {
+			if(currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPart) {
 				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(droppedElement)) {
 					View view = (View)currentEditPart.getModel();
 
@@ -209,7 +217,7 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 					while(addedlinkIterator.hasNext()) {
 						Connector currentconnector = addedlinkIterator.next();
 						Shape containmenetshape = (Shape)((Edge)currentconnector).getSource();
-						if(((View)containmenetshape).getType().equals(Integer.toString(CContainmentCircleEditPart.VISUAL_ID))) {
+						if(((View)containmenetshape).getType().equals(Integer.toString(ContainmentCircleEditPart.VISUAL_ID))) {
 							/* The containment circle node is deleted only if any other link is connected */
 							if(((View)containmenetshape).getSourceEdges().size() == 1) {
 								// Delete the containment circle
@@ -229,6 +237,8 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 		return new ICommandProxy(cc);
 	}
 
+
+
 	/**
 	 * {@inheritedDoc}
 	 */
@@ -243,6 +253,8 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 		case 3014:
 			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
 		case 2008:
+			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
+		case 2007:
 			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;

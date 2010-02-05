@@ -2670,6 +2670,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomViewComponentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomPackageItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>

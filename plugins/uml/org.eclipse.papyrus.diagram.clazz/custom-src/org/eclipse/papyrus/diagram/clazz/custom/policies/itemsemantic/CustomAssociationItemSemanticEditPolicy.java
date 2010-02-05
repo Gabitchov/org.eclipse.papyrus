@@ -63,7 +63,7 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		
+
 
 		return super.getStartCreateRelationshipCommand(req);
 	}
