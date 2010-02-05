@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * Patrick This is a custom figure to represents a default edge. This code was used in Papyrus 1.
+ * This is a custom figure to represents a default edge. This code was used in Papyrus 1.
  * This edge figure is painted using dashes. This is the base figure for dependencies, for exempale
  */
 public class DashedEdgeFigure extends UMLEdgeFigure {
@@ -71,7 +71,6 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 * @param arrow
 	 *        true if the arrow will be displayed
 	 */
-	// @unused
 	public void setArrow(Boolean arrow) {
 		this.arrow = arrow;
 		setStyle();
