@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -85,10 +86,52 @@ public class SysmlEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if (source.getFigure() instanceof WrappingLabel)
+		if (source.getFigure() instanceof HTMLCornerBentFigure)
+			return new CommentCellEditorLocator((HTMLCornerBentFigure) source.getFigure());
+		else if (source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
 			return new LabelCellEditorLocator((Label) source.getFigure());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static private class CommentCellEditorLocator implements CellEditorLocator {
+
+		/**
+		 * @generated
+		 */
+		private HTMLCornerBentFigure commentFigure;
+
+		/**
+		 * @generated
+		 */
+		public CommentCellEditorLocator(HTMLCornerBentFigure commentFigure) {
+			this.commentFigure = commentFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public HTMLCornerBentFigure getCommentFigure() {
+			return commentFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public void relocate(CellEditor celleditor) {
+			Text text = (Text) celleditor.getControl();
+			Rectangle rect = getCommentFigure().getBounds().getCopy();
+			getCommentFigure().translateToAbsolute(rect);
+			if (getCommentFigure().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+			}
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
+				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			}
 		}
 	}
 

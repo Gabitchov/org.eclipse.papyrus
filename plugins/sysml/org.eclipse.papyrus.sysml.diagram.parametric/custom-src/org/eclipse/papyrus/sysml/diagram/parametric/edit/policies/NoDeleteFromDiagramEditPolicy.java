@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.policies;
 
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -42,6 +43,9 @@ public class NoDeleteFromDiagramEditPolicy extends AbstractEditPolicy {
 	@Override
 	public Command getCommand(Request request) {
 		if(RequestConstants.REQ_DELETE.equals(request.getType())) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		else if(EditPolicy.DIRECT_EDIT_ROLE.equals(request.getType())) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getCommand(request);

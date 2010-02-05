@@ -421,7 +421,7 @@ AbstractBorderedShapeEditPart {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Activate a listener for to Handle notification for new owned property
 	 */
@@ -439,12 +439,12 @@ AbstractBorderedShapeEditPart {
 			}
 		}
 		// ensure children parts are correctly initialized.
-		SelfCompartmentNotificationHelper.updateChildrenParts(this, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(), (IHintedType) SysmlElementTypes.Property_3002);
+		SelfCompartmentNotificationHelper.updateChildrenParts(this, UMLPackage.eINSTANCE
+				.getStructuredClassifier_OwnedAttribute(), (IHintedType) SysmlElementTypes.Property_3002);
 	}
-	
+
 	/**
-	 * Deactivate listeners to handle notification in the message occurence
-	 * specification
+	 * Deactivate listeners to handle notification in the message occurence specification
 	 */
 	@Override
 	public void deactivate() {
@@ -460,5 +460,5 @@ AbstractBorderedShapeEditPart {
 		notifier.unlistenAll();
 		super.removeNotify();
 	}
-	
+
 }

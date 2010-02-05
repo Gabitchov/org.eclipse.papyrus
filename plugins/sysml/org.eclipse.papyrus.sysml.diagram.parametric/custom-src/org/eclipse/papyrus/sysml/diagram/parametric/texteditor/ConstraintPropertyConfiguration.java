@@ -13,13 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.texteditor;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
+import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
+import org.eclipse.papyrus.parsers.texteditor.CompletionFilterSourceViewerConfiguration.ICompletionFilter;
+import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
+import org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML;
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyLabelSourceViewerConfiguration;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -31,10 +37,24 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 	final private PropertyLabelSourceViewerConfiguration configuration;
 
 	/**
-	 * Creates a new PropertyConfigurationForUML.
+	 * Creates a new PropertyConfiguration to filter values.
 	 */
 	public ConstraintPropertyConfiguration() {
-		configuration = new PropertyLabelSourceViewerConfiguration();
+		configuration = new PropertyLabelSourceViewerConfiguration(new ICompletionFilter() {
+
+			public boolean filter(int context, EObject e) {
+				switch (context) {
+				case IContext.AFTER_COLON:
+					if (e instanceof Element
+							&& StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock", (Element) e)) {
+						return false;
+					}
+					return true;
+				default:
+					return false;
+				}
+			}
+		});
 	}
 
 	/**
@@ -95,6 +115,18 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 				return null;
 			}
 		};
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Selection getTextSelection(String value, Object editedObject) {
+		if (editedObject instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty) editedObject).getBase_Property();
+			return new PropertyConfigurationForUML().getTextSelection(value, property);
+		}
+		return super.getTextSelection(value, editedObject);
 	}
 
 }

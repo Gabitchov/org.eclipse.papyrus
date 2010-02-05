@@ -76,7 +76,7 @@ import org.eclipse.uml2.uml.Type;
  * @generated
  */
 public class SysmlViewProvider extends AbstractProvider implements IViewProvider {
-	
+
 	/**
 	 * @generated
 	 */
@@ -256,8 +256,8 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		node.setType(SysmlVisualIDRegistry.getType(ConstraintPropertyEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		//node.setElement(((ConstraintProperty) domainElement).getBase_Property());
-		
+		// node.setElement(((ConstraintProperty) domainElement).getBase_Property());
+
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
@@ -269,7 +269,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		initBackgroundFromPrefs(node, prefStore, "ConstraintProperty");
 
 		Node label5001 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
-		
+
 		// create the associated properties
 		Type type = ((ConstraintProperty) domainElement).getBase_Property().getType();
 		if (type != null && type instanceof StructuredClassifier) {

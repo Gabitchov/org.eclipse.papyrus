@@ -100,7 +100,7 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		ConnectorEnd target = newElement.createEnd();
 		source.setRole(getSource());
 		target.setRole(getTarget());
-			
+
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

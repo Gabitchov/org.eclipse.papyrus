@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -94,8 +93,9 @@ public class Property2CreateCommand extends EditElementCommand {
 		ConstraintProperty container = (ConstraintProperty) getElementToEdit();
 		Property baseProperty = container.getBase_Property();
 		if (baseProperty != null && baseProperty.getType() != null) {
-				// TODO constraint is too restrictive
-				// && StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock", baseProperty.getType())) {
+			// TODO constraint is too restrictive
+			// && StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock",
+			// baseProperty.getType())) {
 			return true;
 		}
 		return false;

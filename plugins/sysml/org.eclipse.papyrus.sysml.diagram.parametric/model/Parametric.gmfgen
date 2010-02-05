@@ -56,6 +56,14 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_SEMANTIC_WRAPPER"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromModelEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
