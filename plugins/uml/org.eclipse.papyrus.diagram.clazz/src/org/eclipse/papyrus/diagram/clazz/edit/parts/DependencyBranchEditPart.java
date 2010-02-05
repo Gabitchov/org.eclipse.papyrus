@@ -51,54 +51,6 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements 
 	}
 
 	/**
-	 * @generated
-	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DependencyName3EditPart) {
-			((DependencyName3EditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
-			return true;
-		}
-		if(childEditPart instanceof AppliedStereotypeDependency3EditPart) {
-			((AppliedStereotypeDependency3EditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DependencyName3EditPart) {
-			return true;
-		}
-		if(childEditPart instanceof AppliedStereotypeDependency3EditPart) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
 	 * Creates figure for this edit part.
 	 * 
 	 * Body of this method does not depend on settings in generation model so you may safely remove

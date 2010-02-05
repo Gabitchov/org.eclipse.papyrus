@@ -690,6 +690,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initFontStyleFromPrefs(node, prefStore, "Dependency");
 
+		Node label1 = createLabel(node, UMLVisualIDRegistry.getType(MultiDependencyLabelEditPart.VISUAL_ID));
+		label1.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location1 = (Location)label1.getLayoutConstraint();
+		location1.setX(0);
+		location1.setY(5);
 		return node;
 	}
 
@@ -758,16 +764,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6028 = createLabel(edge, UMLVisualIDRegistry.getType(DependencyName3EditPart.VISUAL_ID));
-		label6028.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6028 = (Location)label6028.getLayoutConstraint();
-		location6028.setX(0);
-		location6028.setY(40);
-		Node label6029 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeDependency3EditPart.VISUAL_ID));
-		label6029.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6029 = (Location)label6029.getLayoutConstraint();
-		location6029.setX(0);
-		location6029.setY(60);
 		return edge;
 	}
 

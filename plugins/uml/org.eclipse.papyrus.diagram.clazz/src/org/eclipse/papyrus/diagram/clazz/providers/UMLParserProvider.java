@@ -78,6 +78,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelNameEditPartTN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.MultiDependencyLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
@@ -108,6 +109,23 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
+
+	/**
+	 * @generated
+	 */
+	private IParser dependencyName_1Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependencyName_1Parser() {
+		if(dependencyName_1Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dependencyName_1Parser = parser;
+		}
+		return dependencyName_1Parser;
+	}
 
 	/**
 	 * @generated
@@ -257,16 +275,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private AppliedStereotypeParser dependencyName_6027Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser dependencyName_6028Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser dependencyName_6029Parser;
 
 	/**
 	 * @generated
@@ -806,33 +814,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser getDependencyName_6028Parser() {
-		if(dependencyName_6028Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			dependencyName_6028Parser = parser;
-		}
-		return dependencyName_6028Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser getDependencyName_6029Parser() {
-		if(dependencyName_6029Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<{0}>>"); //$NON-NLS-1$
-			parser.setEditorPattern("<<{0}>>"); //$NON-NLS-1$
-			parser.setEditPattern("<<{0}>>"); //$NON-NLS-1$
-			dependencyName_6029Parser = parser;
-		}
-		return dependencyName_6029Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getDiagramName_0Parser() {
 		if(diagramName_0Parser == null) {
 			EAttribute[] features = new EAttribute[]{ NotationPackage.eINSTANCE.getDiagram_Name() };
@@ -1119,6 +1100,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
+		case MultiDependencyLabelEditPart.VISUAL_ID:
+			return getDependencyName_1Parser();
 		case AssociationClassName2EditPart.VISUAL_ID:
 			return getAssociationClassName_5066Parser();
 		case InstanceSpecificationNameEditPart.VISUAL_ID:
@@ -1239,10 +1222,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDependencyName_6026Parser();
 		case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 			return getDependencyName_6027Parser();
-		case DependencyName3EditPart.VISUAL_ID:
-			return getDependencyName_6028Parser();
-		case AppliedStereotypeDependency3EditPart.VISUAL_ID:
-			return getDependencyName_6029Parser();
 		case ElementImportAliasEditPart.VISUAL_ID:
 			return getElementImportAlias_6020Parser();
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:

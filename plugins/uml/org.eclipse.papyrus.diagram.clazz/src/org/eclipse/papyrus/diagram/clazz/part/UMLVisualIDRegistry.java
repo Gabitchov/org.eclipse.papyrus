@@ -819,6 +819,11 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case Dependency2EditPart.VISUAL_ID:
+			if(MultiDependencyLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case AssociationClassEditPart.VISUAL_ID:
 			if(AssociationClassName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1555,14 +1560,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case DependencyBranchEditPart.VISUAL_ID:
-			if(DependencyName3EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(AppliedStereotypeDependency3EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case ElementImportEditPart.VISUAL_ID:
 			if(ElementImportAliasEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1871,12 +1868,6 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6028, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6029, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);

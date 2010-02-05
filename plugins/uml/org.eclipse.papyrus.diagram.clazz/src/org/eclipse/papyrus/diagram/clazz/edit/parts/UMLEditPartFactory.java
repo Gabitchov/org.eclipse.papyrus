@@ -48,6 +48,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case Dependency2EditPart.VISUAL_ID:
 				return new Dependency2EditPart(view);
 
+			case MultiDependencyLabelEditPart.VISUAL_ID:
+				return new MultiDependencyLabelEditPart(view);
+
 			case AssociationClassEditPart.VISUAL_ID:
 				return new AssociationClassEditPart(view);
 
@@ -467,12 +470,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
-
-			case DependencyName3EditPart.VISUAL_ID:
-				return new DependencyName3EditPart(view);
-
-			case AppliedStereotypeDependency3EditPart.VISUAL_ID:
-				return new AppliedStereotypeDependency3EditPart(view);
 
 			case ElementImportEditPart.VISUAL_ID:
 				return new ElementImportEditPart(view);
