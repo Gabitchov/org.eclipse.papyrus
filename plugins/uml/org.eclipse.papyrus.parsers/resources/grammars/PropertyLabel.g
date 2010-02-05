@@ -367,7 +367,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
   @Override
   public void recoverFromMismatchedToken(IntStream arg0, RecognitionException arg1, int arg2, BitSet arg3)
       throws RecognitionException {
-    // do nothing
+      throw arg1;
   }
 
   /**
@@ -375,6 +375,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
    */
   @Override
   public void recover(IntStream arg0, RecognitionException arg1) {
+  throw new RuntimeException("no recover", arg1);
     // do nothing
   }
 
@@ -384,22 +385,24 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
   @Override
   public void recoverFromMismatchedSet(IntStream arg0, RecognitionException arg1, BitSet arg2)
       throws RecognitionException {
+       throw arg1;
     // do nothing
   }
 }
 
 label :
-  (visibility {context = IContext.VISIBILITY; })? 
-  (isDerived { context = IContext.IS_DERIVED; })? 
-  name 
-  COLON
+  (WS)*
+  (visibility (WS)*{context = IContext.VISIBILITY; } )? 
+  (isDerived (WS)* { context = IContext.IS_DERIVED; } )? 
+  name (WS)*
+  COLON 
   {
     context = IContext.AFTER_COLON;
   } 
   property_type  { context = IContext.MULTIPLICITY; }
-  (fullMultiplicity { context = IContext.AFTER_MULTIPLICITY; })?
+  (fullMultiplicity { context = IContext.AFTER_MULTIPLICITY; } (WS)*)?
   (defaultValue { context = IContext.DEFAULT_VALUE; })? 
-  (propertyModifiers { context = IContext.PROPERTY_MODIFIERS; })?
+  (propertyModifiers { context = IContext.PROPERTY_MODIFIERS; } (WS)*)?
   {
     applyValues();
   }
@@ -412,18 +415,17 @@ label :
       String tokenText = mte.token.getText();
       String text = Messages.bind(Messages.MismatchedToken, new String[] { index, description, tokenText });
       throw new RuntimeException(text);
-    } catch [NoViableAltException noViableAltException] {
-   reportError(noViableAltException);
-      String index = Integer.toString(noViableAltException.index);
+    } 
+    catch [NoViableAltException noViableAltException] {
+     reportError(noViableAltException);
+     String index = Integer.toString(noViableAltException.index);
      String description = noViableAltException.grammarDecisionDescription.substring(
           noViableAltException.grammarDecisionDescription.indexOf('('),
           noViableAltException.grammarDecisionDescription.length());
       String tokenText = noViableAltException.token.getText();
       String text = Messages.bind(Messages.NoViableAltException, new String[] { index, description, tokenText });
       throw new RuntimeException(text);
-
     } catch [RecognitionException re] {
-
       reportError(re);
       throw (re);
 
@@ -443,6 +445,17 @@ visibility
       reportError(mte);
       throw (new RuntimeException("VisibilityRule"));
    }
+   catch [NoViableAltException noViableAltException] {
+     reportError(noViableAltException);
+     String index = Integer.toString(noViableAltException.index);
+     String description = noViableAltException.grammarDecisionDescription.substring(
+          noViableAltException.grammarDecisionDescription.indexOf('('),
+          noViableAltException.grammarDecisionDescription.length());
+      String tokenText = noViableAltException.token.getText();
+      String text = Messages.bind(Messages.NoViableAltException, new String[] { index, description, tokenText });
+      throw new RuntimeException(text);
+
+    }
 
 
 isDerived
@@ -453,6 +466,17 @@ isDerived
       reportError(mte);
       throw (new RuntimeException("IsDerivedRule"));
    }
+   catch [NoViableAltException noViableAltException] {
+     reportError(noViableAltException);
+     String index = Integer.toString(noViableAltException.index);
+     String description = noViableAltException.grammarDecisionDescription.substring(
+          noViableAltException.grammarDecisionDescription.indexOf('('),
+          noViableAltException.grammarDecisionDescription.length());
+      String tokenText = noViableAltException.token.getText();
+      String text = Messages.bind(Messages.NoViableAltException, new String[] { index, description, tokenText });
+      throw new RuntimeException(text);
+
+    }
 
 name
   :
@@ -466,11 +490,20 @@ name
       reportError(mte);
       throw (new RuntimeException(Messages.NameMissing));
    }
+   catch [NoViableAltException noViableAltException] {
+     reportError(noViableAltException);
+     String index = Integer.toString(noViableAltException.index);
+     String description = noViableAltException.grammarDecisionDescription.substring(
+          noViableAltException.grammarDecisionDescription.indexOf('('),
+          noViableAltException.grammarDecisionDescription.length());
+      String tokenText = noViableAltException.token.getText();
+      String text = Messages.bind(Messages.NoViableAltException, new String[] { index, description, tokenText });
+      throw new RuntimeException(text);
+    }
     catch [RecognitionException re] {
       reportError(re); 
       throw(re);
    }
-   
 
 property_type
   : 
@@ -494,10 +527,19 @@ property_type
   
   
 type
+  @init{
+    StringBuffer buffer = new StringBuffer();
+   }
   :
-  id=IDENTIFIER
+  id=IDENTIFIER {buffer.append(id.getText());}
+  (WS {System.err.println("space added"); buffer.append(" ");})*
+  ( 
+    id1=IDENTIFIER {buffer.append(id1.getText());}
+    (WS {System.err.println("space added"); buffer.append(" ");})*
+   )*
   {
-    String typeName = id.getText() ;
+    String typeName = buffer.toString().trim() ;
+    System.err.println("typeName: "+typeName); 
     Type utilType = PackageUtil.findTypeByName(nearestPackage, typeName);
     // type = findTypeByName(typeName, property);
     // The type has not been found, but it may have been declared in the context of a template.
@@ -587,10 +629,21 @@ fullMultiplicity
       reportError(mte);
       throw (new RuntimeException("FullMultiplicityRule"));
    }
-     catch [RecognitionException re] {
-   reportError(re); 
-   throw(re);
+   catch [NoViableAltException noViableAltException] {
+     reportError(noViableAltException);
+     String index = Integer.toString(noViableAltException.index);
+     String description = noViableAltException.grammarDecisionDescription.substring(
+          noViableAltException.grammarDecisionDescription.indexOf('('),
+          noViableAltException.grammarDecisionDescription.length());
+      String tokenText = noViableAltException.token.getText();
+      String text = Messages.bind(Messages.NoViableAltException, new String[] { index, description, tokenText });
+      throw new RuntimeException(text);
+    }
+   catch [RecognitionException re] {
+     reportError(re); 
+     throw(re);
    }
+   
   
   
 lowerMultiplicity
@@ -664,12 +717,12 @@ expression returns [String value  = ""]
   
 propertyModifiers
   :
-  LCURLY 
+  LCURLY (WS)*
   { context = IContext.PROPERTY_MODIFIER; }
-  propertyModifier
+  propertyModifier (WS)*
   ( 
     { context = IContext.PROPERTY_MODIFIER; }
-    COMMA propertyModifier 
+    COMMA (WS)* propertyModifier (WS)* 
   )*
   RCURLY
   ;
@@ -753,7 +806,7 @@ NL
 
 
 WS 
-  :  (' ' | '\t' | '\f')+ {$channel=HIDDEN;}
+  :  (' ' | '\t' | '\f')+ // {$channel=HIDDEN;}
   ;
   
 QUESTION_MARK
@@ -941,7 +994,7 @@ RANGE_VALUE
       setText($text + ","+ $c1.text); 
    }
   ;
- 
+  
 REAL
   : INTEGER '.' INTEGER
   ; 
@@ -960,3 +1013,4 @@ INTEGER
 IDENTIFIER
   : (ALPHA|'0'..'9'|UNDERSCORE)+
   ;
+  
