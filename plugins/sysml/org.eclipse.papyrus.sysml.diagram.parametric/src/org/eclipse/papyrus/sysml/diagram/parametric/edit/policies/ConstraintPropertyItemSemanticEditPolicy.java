@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.parametric.edit.policies;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -23,14 +24,14 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.Property2CreateCommand;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * @generated
@@ -55,7 +56,7 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT delete property views if any
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
@@ -65,51 +66,45 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands: true
 			addDestroyChildNodesCommand(cmd);
-			addDestroyShortcutsCommand(cmd, view);
+			addDestroyShortcutsCommand(cmd, view);			
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));
+			// destroy base property
+			addDestroyBasePropertyCommand(cmd);
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
-		}
+		}		
 		return getGEFWrapper(cmd.reduce());
 	}
 
 	/**
-	 * @generated
+	 * Delete property views of the constraint property
+	 * @generated NOT
 	 */
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
 		View view = (View) getHost().getModel();
-		for (Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
+		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node) nit.next();
 			switch (SysmlVisualIDRegistry.getVisualID(node)) {
 			case Property2EditPart.VISUAL_ID:
-				for (Iterator it = node.getTargetEdges().iterator(); it.hasNext();) {
-					Edge incomingLink = (Edge) it.next();
-					if (SysmlVisualIDRegistry.getVisualID(incomingLink) == ConnectorEditPart.VISUAL_ID) {
-						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-						cmd.add(new DestroyElementCommand(r));
-						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-						continue;
-					}
-				}
-				for (Iterator it = node.getSourceEdges().iterator(); it.hasNext();) {
-					Edge outgoingLink = (Edge) it.next();
-					if (SysmlVisualIDRegistry.getVisualID(outgoingLink) == ConnectorEditPart.VISUAL_ID) {
-						DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-						cmd.add(new DestroyElementCommand(r));
-						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-						continue;
-					}
-				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(),
-						false))); // directlyOwned: false
-				// don't need explicit deletion of node as parent's view deletion would clean child
-				// views as well
-				// cmd.add(new
-				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
-				// node));
+				// only delete from diagram
+				cmd.add(new DeleteCommand(getEditingDomain(), node));
 				break;
 			}
+		}
+	}
+	
+	/**
+	 * Delete the base property from the constraint property
+	 * @generated NOT
+	 */
+	private void addDestroyBasePropertyCommand(ICompositeCommand cmd) {
+		View view = (View) getHost().getModel();
+		EObject element = view.getElement();
+		if (element instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty) element).getBase_Property();
+			DestroyElementRequest request = new DestroyElementRequest(property, false);
+            cmd.add(new DestroyElementCommand(request));
 		}
 	}
 

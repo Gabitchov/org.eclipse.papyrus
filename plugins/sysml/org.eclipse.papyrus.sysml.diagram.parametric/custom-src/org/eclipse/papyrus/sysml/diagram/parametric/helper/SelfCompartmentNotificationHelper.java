@@ -32,13 +32,14 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.Activator;
 import org.eclipse.papyrus.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -128,7 +129,7 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 							EObject childView = (EObject) iterator.next();
 							if (childView instanceof View) {
 								EObject child = ((View) childView).getElement();
-								if (child instanceof Property) {
+								if(SysmlVisualIDRegistry.getVisualID((View) childView) == Property2EditPart.VISUAL_ID) {
 									// property already drawn
 									if (ownedEObjectChildren.contains(child) && !drawnEObjectChildren.contains(child)) {
 										drawnEObjectChildren.add(child);
@@ -136,7 +137,7 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 										// remove remaining property if any
 										iterator.remove();
 									}
-								} else if (child instanceof ConstraintProperty && childView instanceof Shape) {
+								} else if (SysmlVisualIDRegistry.getVisualID((View) childView) == ConstraintPropertyEditPart.VISUAL_ID) {
 									// property doesn't exist in the model, remove the view
 									iterator.remove();
 								}
