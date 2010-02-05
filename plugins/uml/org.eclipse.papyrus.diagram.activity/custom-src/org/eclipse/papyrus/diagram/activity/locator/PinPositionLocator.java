@@ -96,19 +96,23 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	public void relocate(IFigure borderItem) {
 		// reset bounds of borderItem
 		Dimension size = getSize(borderItem);
-		Rectangle rectSuggested = getConstraint();
-		if(rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
+		Rectangle rectSuggested = getConstraint().getCopy();
+		if (rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
+		} else {
+			// recovered constraint must be translated with the parent location to be absolute
+			rectSuggested.setLocation(rectSuggested.getLocation().translate(getParentBorder().getTopLeft()));
 		}
 		rectSuggested.setSize(size);
-		setConstraint(getValidLocation(rectSuggested, borderItem));
-		borderItem.setBounds(getConstraint().getCopy());
+		Rectangle validLocation = getValidLocation(rectSuggested, borderItem);
+		// the constraint is not reset, but the item bounds are
+		borderItem.setBounds(validLocation);
 		// ensure the side property is correctly set
 		setCurrentSideOfParent(findClosestSideOfParent(borderItem.getBounds(), getParentBorder()));
 		// refresh the arrow depending on the Pin type and the side on which it is located
-		for(Object subfigure : borderItem.getChildren()) {
-			if(subfigure instanceof IFigure) {
-				for(Object child : ((IFigure)subfigure).getChildren()) {
+		for (Object subfigure : borderItem.getChildren()) {
+			if (subfigure instanceof IFigure) {
+				for (Object child : ((IFigure) subfigure).getChildren()) {
 					refreshPinDescriptorArrow(child, MapModeUtil.getMapMode(borderItem), size);
 				}
 			}
@@ -119,81 +123,81 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	 * Refresh the arrow in case child is a Pin Descriptor
 	 * 
 	 * @param child
-	 *        the Pin Descriptor (no effect otherwise)
+	 *            the Pin Descriptor (no effect otherwise)
 	 * @param mapMode
-	 *        the IMapMode
+	 *            the IMapMode
 	 * @param size
-	 *        the size of the border item
+	 *            the size of the border item
 	 */
 	private void refreshPinDescriptorArrow(Object child, IMapMode mapMode, Dimension size) {
 		boolean arrowIn = false;
 		Polyline arrow = null;
-		if(child instanceof InputPinInOpaqueActEditPart.PinDescriptor) {
+		if (child instanceof InputPinInOpaqueActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((InputPinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInCallBeActEditPart.PinDescriptor) {
+			arrow = ((InputPinInOpaqueActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof InputPinInCallBeActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((InputPinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInCallOpActEditPart.PinDescriptor) {
+			arrow = ((InputPinInCallBeActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof InputPinInCallOpActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((InputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInCallOpActAsTargetEditPart.PinDescriptor) {
+			arrow = ((InputPinInCallOpActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof InputPinInCallOpActAsTargetEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((InputPinInCallOpActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInOpaqueActEditPart.PinDescriptor) {
+			arrow = ((InputPinInCallOpActAsTargetEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ActionInputPinInOpaqueActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ActionInputPinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInCallBeActEditPart.PinDescriptor) {
+			arrow = ((ActionInputPinInOpaqueActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ActionInputPinInCallBeActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ActionInputPinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInCallOpActEditPart.PinDescriptor) {
+			arrow = ((ActionInputPinInCallBeActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ActionInputPinInCallOpActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ActionInputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInCallOpActAsTargetEditPart.PinDescriptor) {
+			arrow = ((ActionInputPinInCallOpActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ActionInputPinInCallOpActAsTargetEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ActionInputPinInCallOpActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInOpaqueActEditPart.PinDescriptor) {
+			arrow = ((ActionInputPinInCallOpActAsTargetEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ValuePinInOpaqueActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ValuePinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInCallBeActEditPart.PinDescriptor) {
+			arrow = ((ValuePinInOpaqueActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ValuePinInCallBeActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ValuePinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInCallOpActEditPart.PinDescriptor) {
+			arrow = ((ValuePinInCallBeActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ValuePinInCallOpActEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ValuePinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInCallOpActAsTargetEditPart.PinDescriptor) {
+			arrow = ((ValuePinInCallOpActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof ValuePinInCallOpActAsTargetEditPart.PinDescriptor) {
 			arrowIn = true;
-			arrow = ((ValuePinInCallOpActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInOpaqueActEditPart.PinDescriptor) {
+			arrow = ((ValuePinInCallOpActAsTargetEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof OutputPinInOpaqueActEditPart.PinDescriptor) {
 			arrowIn = false;
-			arrow = ((OutputPinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInCallBeActEditPart.PinDescriptor) {
+			arrow = ((OutputPinInOpaqueActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof OutputPinInCallBeActEditPart.PinDescriptor) {
 			arrowIn = false;
-			arrow = ((OutputPinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInCallOpActEditPart.PinDescriptor) {
+			arrow = ((OutputPinInCallBeActEditPart.PinDescriptor) child).getOptionalArrowFigure();
+		} else if (child instanceof OutputPinInCallOpActEditPart.PinDescriptor) {
 			arrowIn = false;
-			arrow = ((OutputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
+			arrow = ((OutputPinInCallOpActEditPart.PinDescriptor) child).getOptionalArrowFigure();
 		}
-		if(arrow != null && arrow.getPoints().size() > 0) {
+		if (arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;
 			int side = getCurrentSideOfParent();
-			switch(side) {
+			switch (side) {
 			case PositionConstants.NORTH:
-				if(arrowIn) {
+				if (arrowIn) {
 					arrowDirection = PositionConstants.SOUTH;
 				} else {
 					arrowDirection = PositionConstants.NORTH;
 				}
 				break;
 			case PositionConstants.EAST:
-				if(arrowIn) {
+				if (arrowIn) {
 					arrowDirection = PositionConstants.WEST;
 				} else {
 					arrowDirection = PositionConstants.EAST;
 				}
 				break;
 			case PositionConstants.SOUTH:
-				if(arrowIn) {
+				if (arrowIn) {
 					arrowDirection = PositionConstants.NORTH;
 				} else {
 					arrowDirection = PositionConstants.SOUTH;
@@ -201,7 +205,7 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 				break;
 			case PositionConstants.WEST:
 			default:
-				if(arrowIn) {
+				if (arrowIn) {
 					arrowDirection = PositionConstants.EAST;
 				} else {
 					arrowDirection = PositionConstants.WEST;
@@ -215,8 +219,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	 * Get an initial location based on the side. ( appropriate extremity of the side )
 	 * 
 	 * @param side
-	 *        the preferred side of the parent figure on which to place this
-	 *        border item as defined in {@link PositionConstants}
+	 *            the preferred side of the parent figure on which to place this border item as
+	 *            defined in {@link PositionConstants}
 	 * @return point
 	 */
 	protected Point getPreferredLocation(int side, IFigure borderItem) {
@@ -229,7 +233,7 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		int y = parentFigureY;
 
 		Dimension borderItemSize = getSize(borderItem);
-		switch(side) {
+		switch (side) {
 		case PositionConstants.NORTH:
 			x += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().width;
 			y += -borderItemSize.height + getBorderItemOffset().height;
@@ -237,7 +241,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		case PositionConstants.EAST:
 			// take south east extremity to allow following pins placing above
 			x += parentFigureWidth - getBorderItemOffset().width;
-			y += parentFigureHeight - borderItemSize.height - EXTRA_BORDER_DEFAULT_OFFSET - getBorderItemOffset().height;
+			y += parentFigureHeight - borderItemSize.height - EXTRA_BORDER_DEFAULT_OFFSET
+					- getBorderItemOffset().height;
 			break;
 		case PositionConstants.SOUTH:
 			x += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().width;
@@ -255,25 +260,25 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	 * Adapt the bounds constraint to fit to the action's contained pins
 	 * 
 	 * @param boundsConstraint
-	 *        the constraint to adapt
+	 *            the constraint to adapt
 	 * @param domainElement
-	 *        the model action
+	 *            the model action
 	 * @return
 	 * @return boundsConstraint for convenience
 	 * @generated NOT
 	 */
 	public static Bounds adaptActionHeight(Bounds boundsConstraint, EObject domainElement) {
-		if(domainElement instanceof Action) {
+		if (domainElement instanceof Action) {
 			int pinsOnHeight = 0;
-			int numberOfInputs = ((Action)domainElement).getInputs().size();
-			int numberOfOutputs = ((Action)domainElement).getOutputs().size();
-			if(domainElement instanceof CallOperationAction) {
+			int numberOfInputs = ((Action) domainElement).getInputs().size();
+			int numberOfOutputs = ((Action) domainElement).getOutputs().size();
+			if (domainElement instanceof CallOperationAction) {
 				// target is located on top
 				pinsOnHeight = Math.max(numberOfInputs - 1, numberOfOutputs);
 			} else {
 				pinsOnHeight = Math.max(numberOfInputs, numberOfOutputs);
 			}
-			if(pinsOnHeight > 0) {
+			if (pinsOnHeight > 0) {
 				// each pin is 16 px height, consider extra px for margins
 				int heightInPx = 2 * EXTRA_BORDER_DEFAULT_OFFSET + pinsOnHeight * (DEFAULT_PIN_SIZE + 8) - 8;
 				boundsConstraint.setHeight(heightInPx);
