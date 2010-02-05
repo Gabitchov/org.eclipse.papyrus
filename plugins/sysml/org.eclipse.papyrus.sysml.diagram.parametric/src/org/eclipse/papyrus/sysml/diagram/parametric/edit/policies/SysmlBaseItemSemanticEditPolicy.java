@@ -49,6 +49,7 @@ import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * @generated
@@ -311,11 +312,17 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
+		 * Connector source and target must have the salme type
+		 * @generated NOT
 		 */
 		public static boolean canExistConnector_4001(StructuredClassifier container, ConnectableElement source,
 				ConnectableElement target) {
-			return true;
+			Type sourceType = (source == null) ? null : source.getType();
+			Type targetType = (target == null) ? null : target.getType();
+			if (sourceType != null && target == null) {
+				return true;
+			}
+			return (sourceType != null && targetType != null && sourceType.equals(targetType));
 		}
 	}
 }
