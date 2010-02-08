@@ -27,9 +27,6 @@
    <feature url="features/org.eclipse.papyrus.diagram.activity_0.7.0.vqualifier.jar" id="org.eclipse.papyrus.diagram.activity" version="0.7.0.vqualifier">
       <category name="umldiagrams"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.diagram.internalblock_0.7.0.vqualifier.jar" id="org.eclipse.papyrus.diagram.internalblock" version="0.7.0.vqualifier">
-      <category name="sysmldiagrams"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.diagram.parametric_0.7.0.vqualifier.jar" id="org.eclipse.papyrus.diagram.parametric" version="0.7.0.vqualifier">
       <category name="sysmldiagrams"/>
    </feature>
