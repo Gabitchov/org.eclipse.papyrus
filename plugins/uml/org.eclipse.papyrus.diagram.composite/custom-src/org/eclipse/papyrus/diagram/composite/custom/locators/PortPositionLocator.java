@@ -23,6 +23,19 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
  * StructuredClassifier
  * 
  * <pre>
+ * 	 +-------------------+
+ * 	 |    [Class]        |
+ * 	 +-------------------+
+ * 	 |                   |
+ * 	 |                   |
+ * 	 |                  +-+ - Expected position of Port 
+ * 	 |                  +-+
+ * 	 |                   |
+ * 	 +-------------------+
+ * 
+ * </pre>
+ * 
+ * <pre>
  * TODO  : The port is not re-sizable
  * </pre>
  */
@@ -30,6 +43,9 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 	/** the figure around which this border item appears */
 	protected IFigure parentFigure = null;
+
+	/** the width of the area surrounding the parent figure where border item can be put */
+	protected int borderItemOffset = 10;
 
 	/**
 	 * get the parent figure
@@ -51,24 +67,25 @@ public class PortPositionLocator implements IBorderItemLocator {
 	}
 
 	/**
-	 * Creates a new CompositeFigure.
 	 * 
-	 * <pre>
-	 * 	 +-------------------+
-	 * 	 |    [Class]        |
-	 * 	 +-------------------+
-	 * 	 |                   |
-	 * 	 |                   |
-	 * 	 |                  +-+ - Expected position of Port 
-	 * 	 |                  +-+
-	 * 	 |                   |
-	 * 	 +-------------------+
+	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator#getValidLocation(org.eclipse.draw2d.geometry.Rectangle,
+	 *      org.eclipse.draw2d.IFigure)
 	 * 
-	 * {@inheritDoc}
-	 * 
-	 * </pre>
+	 * @param proposedLocation
+	 * @param borderItem
+	 * @return a valid location
 	 */
 	public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
+		return getPreferredLocation(proposedLocation);
+	}
+
+	/**
+	 * 
+	 * @param proposedLocation
+	 *        the proposed location
+	 * @return a possible location on parent figure border
+	 */
+	public Rectangle getPreferredLocation(Rectangle proposedLocation) {
 
 		// Initialize port location with proposed location
 		// and resolve the bounds of it graphical parent
@@ -76,43 +93,39 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 		Rectangle parentRec = getParentFigure().getBounds().getCopy();
 
-		// Test if parentRec position differs from (0, 0) before any change in Port realPosition
-		if((parentRec.x != 0) && (parentRec.y != 0)) {
+		// Calculate Max position around the graphical parent (1/2 size or the port around
+		// the graphical parent bounds.
+		int xMin = parentRec.x - borderItemOffset;
+		int xMax = parentRec.x - borderItemOffset + parentRec.width;
+		int yMin = parentRec.y - borderItemOffset;
+		int yMax = parentRec.y - borderItemOffset + parentRec.height;
 
-			// Calculate Max position around the graphical parent (1/2 size or the port around
-			// the graphical parent bounds.
-			int xMin = parentRec.x - (borderItem.getBounds().width / 2);
-			int xMax = parentRec.x - (borderItem.getBounds().width / 2) + parentRec.width;
-			int yMin = parentRec.y - (borderItem.getBounds().height / 2);
-			int yMax = parentRec.y - (borderItem.getBounds().height / 2) + parentRec.height;
+		// Modify Port location if MAX X or Y are exceeded
+		if(realLocation.x < xMin) {
+			realLocation.x = xMin;
+		}
 
-			// Modify Port location if MAX X or Y are exceeded
-			if(realLocation.x < xMin) {
-				realLocation.x = xMin;
-			}
+		if(realLocation.x > xMax) {
+			realLocation.x = xMax;
+		}
 
-			if(realLocation.x > xMax) {
-				realLocation.x = xMax;
-			}
+		if(realLocation.y < yMin) {
+			realLocation.y = yMin;
+		}
 
-			if(realLocation.y < yMin) {
-				realLocation.y = yMin;
-			}
+		if(realLocation.y > yMax) {
+			realLocation.y = yMax;
+		}
 
-			if(realLocation.y > yMax) {
-				realLocation.y = yMax;
-			}
+		// Ensure the port is positioned on its parent borders and not in the middle.
+		// Modify position if needed.
+		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
+			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
 
-			// Ensure the port is positioned on its parent borders and not in the middle.
-			// Modify position if needed.
-			if((realLocation.y != yMin) && (realLocation.y != yMax)) {
-				if((realLocation.x != xMin) && (realLocation.x != xMax)) {
-
-					if(realLocation.x <= (xMin + (parentRec.width / 2))) {
-						realLocation.x = xMin;
-					} else {
-						realLocation.x = xMax;
-					}
+				if(realLocation.x <= (xMin + (parentRec.width / 2))) {
+					realLocation.x = xMin;
+				} else {
+					realLocation.x = xMax;
 				}
 			}
 		}

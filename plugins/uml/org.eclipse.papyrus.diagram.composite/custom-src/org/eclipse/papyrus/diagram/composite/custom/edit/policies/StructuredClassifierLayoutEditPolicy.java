@@ -15,8 +15,10 @@ package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -34,6 +36,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -73,19 +76,25 @@ public class StructuredClassifierLayoutEditPolicy extends LayoutEditPolicy {
 			CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
 			Iterator<?> iter = req.getViewDescriptors().iterator();
 
-			// Retrieve parent location in absolute coordinates
+			// Retrieve parent location
 			Point parentLoc = getHostFigure().getBounds().getLocation().getCopy();
-			getHostFigure().translateToAbsolute(parentLoc);
 
 			// Compute relative creation location
 			Point requestedLocation = request.getLocation().getCopy();
-			Point creationLocation = requestedLocation.getTranslated(parentLoc.negate());
+			getHostFigure().translateToRelative(requestedLocation);
 
-			// Change bounds according to requested creation location
-			final org.eclipse.draw2d.geometry.Rectangle BOUNDS = new org.eclipse.draw2d.geometry.Rectangle(creationLocation, new Dimension(-1, -1));
+			// Create proposed creation bounds and use the locator to find the expected position
+			PortPositionLocator locator = new PortPositionLocator(getHostFigure(), PositionConstants.NONE);
+			Rectangle proposedBounds = new Rectangle(requestedLocation, new Dimension(20, 20));
+			Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
+
+			// Convert the calculated preferred bounds as relative to parent location
+			Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
+
 			while(iter.hasNext()) {
+
 				CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next();
-				cc.compose(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, BOUNDS));
+				cc.compose(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, creationBounds));
 			}
 
 			if(cc.reduce() == null)

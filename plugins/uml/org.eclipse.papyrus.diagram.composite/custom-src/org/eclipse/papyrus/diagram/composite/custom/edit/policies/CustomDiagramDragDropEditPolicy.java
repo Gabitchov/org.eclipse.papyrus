@@ -16,8 +16,11 @@ package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Viewport;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -41,6 +44,7 @@ import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingH
 import org.eclipse.papyrus.diagram.composite.custom.helper.ConnectorHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.TimeObservationHelper;
+import org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.AnyReceiveEventEditPart;
@@ -457,10 +461,22 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			Point delta = compartmentViewPortLocation.translate(targetLocation.negate());
 			delta = delta.translate(compartmentViewPortViewLocation.negate());
 
-			// Translate the requested drop location
+			// Translate the requested drop location (relative to parent)
 			dropLocation = location.getTranslated(delta);
 		}
 		// Manage Port drop in compartment
+
+		// Create proposed creation bounds and use the locator to find the expected position
+		Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
+		PortPositionLocator locator = new PortPositionLocator(graphicalParentEditPart.getFigure(), PositionConstants.NONE);
+
+		Rectangle proposedBounds = new Rectangle(dropLocation, new Dimension(20, 20));
+		proposedBounds = proposedBounds.getTranslated(parentLoc);
+		Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
+
+		// Convert the calculated preferred bounds as relative to parent location
+		Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
+		dropLocation = creationBounds.getLocation();
 
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
