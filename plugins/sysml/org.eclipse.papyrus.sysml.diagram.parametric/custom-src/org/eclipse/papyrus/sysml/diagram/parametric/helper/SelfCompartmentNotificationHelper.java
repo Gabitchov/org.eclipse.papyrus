@@ -142,11 +142,11 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 									if (ownedEObjectChildren.contains(child) && !drawnEObjectChildren.contains(child)) {
 										drawnEObjectChildren.add(child);
 									} else if (!ownedEObjectChildren.contains(child)) {
+										// delete old connectors
+										deleteConnectorsViews(command, (View) childView);
 										// remove remaining property if any
 										iterator.remove();
 									}
-									// delete old connectors
-									deleteConnectorsViews(command, (View) childView);
 									// TODO create the new connector views if any
 								} else if (SysmlVisualIDRegistry.getVisualID((View) childView) == ConstraintPropertyEditPart.VISUAL_ID) {
 									// property doesn't exist in the model, remove the view
