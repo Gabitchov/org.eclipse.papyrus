@@ -72,7 +72,7 @@ public class StereotypeApplicationUtils {
 		if (selection instanceof TreeSelection) {
 			TreeSelection treeSelectionEvent = (TreeSelection) selection;
 			Object firstElement = treeSelectionEvent.getFirstElement();
-			if (firstElement != null) {
+			if (firstElement instanceof EObject) {
 				List<EObject> stereotypedApplications = StereotypeApplicationUtils
 						.getStereotypedApplications((EObject) firstElement);
 				return new StructuredSelection(stereotypedApplications);
