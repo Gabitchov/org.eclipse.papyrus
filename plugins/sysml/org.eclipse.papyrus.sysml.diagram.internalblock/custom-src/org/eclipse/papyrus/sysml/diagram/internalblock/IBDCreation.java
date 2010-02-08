@@ -15,11 +15,18 @@ package org.eclipse.papyrus.sysml.diagram.internalblock;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
-import org.eclipse.papyrus.sysml.diagram.internalblock.part.InternalBlockDiagramEditorPlugin;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.composite.CreateCompositeDiagramCommand;
+import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.UMLFactory;
 
-public class IBDCreation extends AbstractPapyrusGmfCreateDiagramCommandHandler {
+public class IBDCreation extends CreateCompositeDiagramCommand {
 
 	/**
 	 * Name of the Diagram
@@ -52,7 +59,7 @@ public class IBDCreation extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 	 */
 	@Override
 	protected PreferencesHint getPreferenceHint() {
-		return InternalBlockDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 
 	/**
@@ -61,6 +68,26 @@ public class IBDCreation extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 	@Override
 	protected EObject createRootElement() {
 		return UMLFactory.eINSTANCE.createModel();
+	}
+
+	/**
+	 * Initialize the diagram with the canvas domain element shown.
+	 * 
+	 * @param diagram
+	 *            the diagram to initialize
+	 */
+	protected void initializeDiagramContent(Diagram diagram) {
+
+		// Create a view for the canvasDomainElement in the new diagram
+		View view = ViewService.getInstance().createView(Node.class, new EObjectAdapter(canvasDomainElement), diagram,
+				null, ViewUtil.APPEND, true, getPreferenceHint());
+
+		// Update the view position and size (should adapt to canvas current size)
+		Bounds viewBounds = (Bounds) ((Node) view).getLayoutConstraint();
+		viewBounds.setX(DEFAULT_MARGIN);
+		viewBounds.setY(DEFAULT_MARGIN);
+		viewBounds.setHeight(DEFAULT_HEIGHT);
+		viewBounds.setWidth(DEFAULT_WIDTH);
 	}
 
 }

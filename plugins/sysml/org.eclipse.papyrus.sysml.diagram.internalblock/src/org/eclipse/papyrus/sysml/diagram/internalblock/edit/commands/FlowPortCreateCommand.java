@@ -23,9 +23,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.resource.util.ResourceUtil;
+import org.eclipse.papyrus.sysml.diagram.internalblock.part.SysmlPaletteFactory;
+import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsFactory;
 import org.eclipse.uml2.uml.Class;
@@ -68,12 +71,28 @@ public class FlowPortCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Resource owner = ResourceUtil.getResource(getElementToEdit());
 		FlowPort newElement = PortandflowsFactory.eINSTANCE.createFlowPort();
 		owner.getEobjects().add(newElement);
 		Port port = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createPort();
 		newElement.setBase_Port(port);
+		// set type
+		IEditCommandRequest request = getRequest();
+		Object type = request.getParameter(SysmlPaletteFactory.FLOW_PORT_TOOL_TYPE);
+		if (type instanceof SysmlPaletteFactory.PORT_TYPE) {
+			SysmlPaletteFactory.PORT_TYPE portType = (SysmlPaletteFactory.PORT_TYPE) type;
+			switch (portType) {
+			case IN:
+				newElement.setDirection(FlowDirection.IN);
+				break;
+			case OUT:
+				newElement.setDirection(FlowDirection.OUT);
+				break;
+			case INOUT:
+				newElement.setDirection(FlowDirection.INOUT);
+				break;
+			}
+		}
 		if (getElementToEdit() instanceof Class) {
 			Class aClass = (Class) getElementToEdit();
 			aClass.getOwnedPorts().add(port);

@@ -221,7 +221,7 @@
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
       <editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.providers.SysmlEditPartProvider">
-         <Priority name="Lowest"/>
+         <Priority name="Medium"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="IBD"/>
          </object>
@@ -473,6 +473,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.IBDCreation"
+            creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.IBDCondition"
             id="org.eclipse.papyrus.sysml.diagram.internalblock.creationCommand"
             label="SysML Internal Block Diagram">
       </creationCommand>
@@ -509,10 +510,6 @@
                   path="/"
                   small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
             </entry>
-            <predefinedEntry
-                  id="createClass1CreationTool"
-                  path="/createNodes1Group">
-            </predefinedEntry>
             <predefinedEntry
                   id="createProperty2CreationTool"
                   path="/createNodes1Group">
@@ -604,7 +601,15 @@
                   small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
             </entry>
             <predefinedEntry
-                  id="createFlowPortCreationTool"
+                  id="createFlowPortCreationToolIn"
+                  path="/createSysMLGroup">
+            </predefinedEntry>
+            <predefinedEntry
+                  id="createFlowPortCreationToolOut"
+                  path="/createSysMLGroup">
+            </predefinedEntry>
+            <predefinedEntry
+                  id="createFlowPortCreationToolInOut"
                   path="/createSysMLGroup">
             </predefinedEntry>
          </contribution>
@@ -638,19 +643,10 @@
             </predefinedEntry>
             <entry
                   defineOnly="true"
-                  description="Create new Class"
-                  id="createClass1CreationTool"
-                  kind="tool"
-                  label="Class"
-                  large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-                  small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
-            </entry>
-            <entry
-                  defineOnly="true"
-                  description="Create new Property"
+                  description="Create new Part"
                   id="createProperty2CreationTool"
                   kind="tool"
-                  label="Property"
+                  label="Part"
                   large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
                   small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
             </entry>
@@ -809,10 +805,24 @@
             </entry>
             <entry
                   defineOnly="true"
-                  description="Create new Flow Port"
-                  id="createFlowPortCreationTool"
+                  description="Create new Flow Port IN"
+                  id="createFlowPortCreationToolIn"
                   kind="tool"
-                  label="FlowPort">
+                  label="FlowPort IN">
+            </entry>
+            <entry
+                  defineOnly="true"
+                  description="Create new Flow Port OUT"
+                  id="createFlowPortCreationToolOut"
+                  kind="tool"
+                  label="FlowPort OUT">
+            </entry>
+            <entry
+                  defineOnly="true"
+                  description="Create new Flow Port IN OUT"
+                  id="createFlowPortCreationToolInOut"
+                  kind="tool"
+                  label="FlowPort IN OUT">
             </entry>
          </contribution>
          <editor
@@ -820,5 +830,27 @@
          </editor>
       </paletteProvider>
    </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+      <editpolicyProvider
+            class="org.eclipse.papyrus.sysml.diagram.internalblock.IBDProvider">
+         <Priority
+               name="Medium">
+         </Priority>
+         <context
+               editparts="2073"></context>
+         <object
+               class="org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart"
+               id="2073">
+         </object>
+      </editpolicyProvider>
+   </extension>
+   <!--<extension
+         point="org.eclipse.papyrus.diagram.common.editPolicyExtender">
+      <EditPolicyExtender
+            policyExtended="org.eclipse.papyrus.diagram.composite.edit.policies.ClassCompositeItemSemanticEditPolicy"
+            policyInstance="org.eclipse.papyrus.sysml.diagram.internalblock.edit.policies.ClassItemSemanticEditPolicy">
+      </EditPolicyExtender>
+   </extension>-->
    <!-- optionally, specify keybindings -->
 </plugin>

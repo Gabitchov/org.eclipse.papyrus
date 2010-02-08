@@ -26,15 +26,16 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperatio
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
@@ -43,6 +44,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.composite.edit.parts.*;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -51,6 +53,8 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.IBDCreation;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.parts.FlowPortEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.part.SysmlVisualIDRegistry;
+import org.eclipse.papyrus.sysml.portandflows.FlowPort;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
@@ -158,7 +162,66 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 				}
 			}
 		}
-		return FlowPortEditPart.VISUAL_ID == visualID;
+		return FlowPortEditPart.VISUAL_ID == visualID || ActivityCompositeEditPart.VISUAL_ID == visualID
+				|| InteractionCompositeEditPart.VISUAL_ID == visualID
+				|| ProtocolStateMachineCompositeEditPart.VISUAL_ID == visualID
+				|| StateMachineCompositeEditPart.VISUAL_ID == visualID
+				|| FunctionBehaviorCompositeEditPart.VISUAL_ID == visualID
+				|| OpaqueBehaviorCompositeEditPart.VISUAL_ID == visualID
+				|| ComponentCompositeEditPart.VISUAL_ID == visualID || DeviceCompositeEditPart.VISUAL_ID == visualID
+				|| ExecutionEnvironmentCompositeEditPart.VISUAL_ID == visualID
+				|| NodeCompositeEditPart.VISUAL_ID == visualID || ClassCompositeEditPart.VISUAL_ID == visualID
+				|| ClassClassifierEditPart.VISUAL_ID == visualID
+				|| CollaborationCompositeEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID
+				|| PrimitiveTypeEditPart.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID
+				|| DataTypeEditPart.VISUAL_ID == visualID || ActorEditPart.VISUAL_ID == visualID
+				|| DeploymentSpecificationEditPart.VISUAL_ID == visualID || ArtifactEditPart.VISUAL_ID == visualID
+				|| InformationItemEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID
+				|| UseCaseEditPart.VISUAL_ID == visualID || SignalEventEditPart.VISUAL_ID == visualID
+				|| CallEventEditPart.VISUAL_ID == visualID || AnyReceiveEventEditPart.VISUAL_ID == visualID
+				|| SendSignalEventEditPart.VISUAL_ID == visualID || SendOperationEventEditPart.VISUAL_ID == visualID
+				|| ChangeEventEditPart.VISUAL_ID == visualID || TimeEventEditPart.VISUAL_ID == visualID
+				|| CreationEventEditPart.VISUAL_ID == visualID || DestructionEventEditPart.VISUAL_ID == visualID
+				|| ExecutionEventEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID
+				|| TimeObservationEditPart.VISUAL_ID == visualID || LiteralBooleanEditPart.VISUAL_ID == visualID
+				|| LiteralIntegerEditPart.VISUAL_ID == visualID || LiteralNullEditPart.VISUAL_ID == visualID
+				|| LiteralStringEditPart.VISUAL_ID == visualID || LiteralUnlimitedNaturalEditPart.VISUAL_ID == visualID
+				|| StringExpressionEditPart.VISUAL_ID == visualID || OpaqueExpressionEditPart.VISUAL_ID == visualID
+				|| TimeExpressionEditPart.VISUAL_ID == visualID || ExpressionEditPart.VISUAL_ID == visualID
+				|| DurationEditPart.VISUAL_ID == visualID || TimeIntervalEditPart.VISUAL_ID == visualID
+				|| DurationIntervalEditPart.VISUAL_ID == visualID || IntervalEditPart.VISUAL_ID == visualID
+				|| InstanceValueEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID
+				|| DurationConstraintEditPart.VISUAL_ID == visualID || TimeConstraintEditPart.VISUAL_ID == visualID
+				|| IntervalConstraintEditPart.VISUAL_ID == visualID
+				|| InteractionConstraintEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID
+				|| PortEditPart.VISUAL_ID == visualID || PropertyPartEditPartCN.VISUAL_ID == visualID
+				|| CollaborationRoleEditPartCN.VISUAL_ID == visualID
+				|| CollaborationUseEditPartCN.VISUAL_ID == visualID
+				|| ActivityCompositeEditPartCN.VISUAL_ID == visualID
+				|| InteractionCompositeEditPartCN.VISUAL_ID == visualID
+				|| ProtocolStateMachineCompositeEditPartCN.VISUAL_ID == visualID
+				|| StateMachineCompositeEditPartCN.VISUAL_ID == visualID
+				|| FunctionBehaviorCompositeEditPartCN.VISUAL_ID == visualID
+				|| OpaqueBehaviorCompositeEditPartCN.VISUAL_ID == visualID
+				|| ComponentCompositeEditPartCN.VISUAL_ID == visualID
+				|| DeviceCompositeEditPartCN.VISUAL_ID == visualID
+				|| ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID == visualID
+				|| NodeCompositeEditPartCN.VISUAL_ID == visualID || ClassCompositeEditPartCN.VISUAL_ID == visualID
+				|| CollaborationCompositeEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID
+				|| PrimitiveTypeEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID
+				|| DataTypeEditPartCN.VISUAL_ID == visualID || ActorEditPartCN.VISUAL_ID == visualID
+				|| DeploymentSpecificationEditPartCN.VISUAL_ID == visualID || ArtifactEditPartCN.VISUAL_ID == visualID
+				|| InformationItemEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID
+				|| UseCaseEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID
+				|| PropertyEditPartCLN.VISUAL_ID == visualID || OperationEditPartCLN.VISUAL_ID == visualID
+				|| ReceptionEditPartCLN.VISUAL_ID == visualID || EnumerationLiteralEditPartCLN.VISUAL_ID == visualID
+				|| ActivityEditPartCLN.VISUAL_ID == visualID || InteractionEditPartCLN.VISUAL_ID == visualID
+				|| ProtocolStateMachineEditPartCLN.VISUAL_ID == visualID
+				|| StateMachineEditPartCLN.VISUAL_ID == visualID || FunctionBehaviorEditPartCLN.VISUAL_ID == visualID
+				|| OpaqueBehaviorEditPartCLN.VISUAL_ID == visualID || CollaborationEditPartCLN.VISUAL_ID == visualID
+				|| InterfaceEditPartCLN.VISUAL_ID == visualID || EnumerationEditPartCLN.VISUAL_ID == visualID
+				|| PrimitiveTypeEditPartCLN.VISUAL_ID == visualID || DataTypeEditPartCLN.VISUAL_ID == visualID
+				|| ClassEditPartCLN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -210,8 +273,13 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 		case FlowPortEditPart.VISUAL_ID:
 			return createFlowPort_2001(domainElement, containerView, index, persisted, preferencesHint);
 		}
+		String oldType = containerView.getType();
+		containerView.setType(PackageEditPart.MODEL_ID);
 		Node node = super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
-
+		if (node.getElement().eClass() == PortandflowsPackage.Literals.FLOW_PORT) {
+			node.setElement(((FlowPort) node.getElement()).getBase_Port());
+		}
+		containerView.setType(oldType);
 		return node;
 	}
 
@@ -237,31 +305,58 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(SysmlVisualIDRegistry.getType(FlowPortEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
+		node.setElement(((FlowPort) domainElement).getBase_Port());
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		initForegroundFromPrefs(node, prefStore, "Port");
 
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
-				IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
-		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
-			nodeFontStyle.setFontName(fontData.getName());
-			nodeFontStyle.setFontHeight(fontData.getHeight());
-			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
-		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(prefStore,
-				IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities
-				.RGBToInteger(fillRGB));
+		initBackgroundFromPrefs(node, prefStore, "Port");
+
+		Node label5125 = createLabel(node, UMLVisualIDRegistry.getType(PortNameEditPart.VISUAL_ID));
+		label5125.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5125 = (Location) label5125.getLayoutConstraint();
+		location5125.setX(0);
+		location5125.setY(5);
+		Node label6029 = createLabel(node, UMLVisualIDRegistry.getType(PortAppliedStereotypeEditPart.VISUAL_ID));
+		label6029.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6029 = (Location) label6029.getLayoutConstraint();
+		location6029.setX(0);
+		location6029.setY(5);
 		return node;
+		// org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
+		// IPreferenceConstants.PREF_LINE_COLOR);
+		// ViewUtil.setStructuralFeatureValue(node,
+		// NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities
+		// .RGBToInteger(lineRGB));
+		// FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
+		// if (nodeFontStyle != null) {
+		// FontData fontData = PreferenceConverter.getFontData(prefStore,
+		// IPreferenceConstants.PREF_DEFAULT_FONT);
+		// nodeFontStyle.setFontName(fontData.getName());
+		// nodeFontStyle.setFontHeight(fontData.getHeight());
+		// nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+		// nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+		// org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+		// IPreferenceConstants.PREF_FONT_COLOR);
+		// nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
+		// }
+		// org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(prefStore,
+		// IPreferenceConstants.PREF_FILL_COLOR);
+		// ViewUtil.setStructuralFeatureValue(node,
+		// NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities
+		// .RGBToInteger(fillRGB));
+		// return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Node createLabel(View owner, String hint) {
+		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
+		rv.setType(hint);
+		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
+		return rv;
 	}
 
 	/**

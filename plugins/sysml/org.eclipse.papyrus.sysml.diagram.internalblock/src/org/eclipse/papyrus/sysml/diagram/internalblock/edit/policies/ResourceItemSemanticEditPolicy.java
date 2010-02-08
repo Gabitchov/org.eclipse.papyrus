@@ -14,25 +14,29 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.edit.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.papyrus.diagram.composite.edit.policies.PackageItemSemanticEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.commands.FlowPortCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.providers.SysmlElementTypes;
 
 /**
  * @generated
  */
-public class ResourceItemSemanticEditPolicy extends PackageItemSemanticEditPolicy {
+public class ResourceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+
+	PackageItemSemanticEditPolicy delegatePolicy = new PackageItemSemanticEditPolicy();
 
 	/**
 	 * @generated
 	 */
 	public ResourceItemSemanticEditPolicy() {
-		super();
+		super(SysmlElementTypes.Resource_1000);
+
 	}
 
 	/**
@@ -41,11 +45,29 @@ public class ResourceItemSemanticEditPolicy extends PackageItemSemanticEditPolic
 	protected Command getCreateCommand(CreateElementRequest req) {
 		Command result = super.getCreateCommand(req);
 		if (result == null) {
-			if (SysmlElementTypes.FlowPort_2001 == req.getElementType()) {
-				result = getGEFWrapper(new FlowPortCreateCommand(req));
-			}
+			// if (SysmlElementTypes.FlowPort_2001 == req.getElementType()) {
+			// result = getGEFWrapper(new FlowPortCreateCommand(req));
+			// }
 		}
 		return result;
+	}
+
+	@Override
+	public Command getCommand(Request request) {
+		Command command = delegatePolicy.getCommand(request);
+		if (command == null) {
+			return super.getCommand(request);
+		}
+		return command;
+	}
+
+	@Override
+	public boolean understandsRequest(Request request) {
+		boolean understand = delegatePolicy.understandsRequest(request);
+		if (!understand) {
+			understand = super.understandsRequest(request);
+		}
+		return understand;
 	}
 
 	/**

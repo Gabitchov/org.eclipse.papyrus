@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.parts.FlowPortEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
@@ -89,7 +91,7 @@ public class SysmlVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static int getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
@@ -103,7 +105,7 @@ public class SysmlVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
@@ -132,11 +134,15 @@ public class SysmlVisualIDRegistry {
 			}
 			break;
 		}
-		return -1;
+		String oldType = containerView.getType();
+		containerView.setType(PackageEditPart.MODEL_ID);
+		int visualId = UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+		containerView.setType(oldType);
+		return visualId;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.sysml.diagram.internalblock.part.SysmlVisualIDRegistry
@@ -179,7 +185,7 @@ public class SysmlVisualIDRegistry {
 	 * User can change implementation of this method to handle some specific situations not covered
 	 * by default logic.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	private static boolean isDiagram(Package element) {
 		return true;

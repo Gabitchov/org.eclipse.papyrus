@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.edit.parts;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policies.ResourceCanonicalEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policies.ResourceItemSemanticEditPolicy;
 
 /**
@@ -47,7 +46,7 @@ public class ResourceEditPart extends PackageEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ResourceItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ResourceCanonicalEditPolicy());
+		// installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ResourceCanonicalEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

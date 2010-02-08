@@ -22,16 +22,28 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.diagram.composite.part.UMLPaletteFactory;
 import org.eclipse.papyrus.sysml.diagram.internalblock.providers.SysmlElementTypes;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tools.FlowPortAspectUnspecifiedTypeCreationTool;
 
 /**
  * @generated
  */
 public class SysmlPaletteFactory extends UMLPaletteFactory {
 
-	private final static String CREATEFLOWPORT = "createFlowPortCreationTool"; //$NON-NLS-1$
+	private final static String CREATEFLOWPORT_IN = "createFlowPortCreationToolIn"; //$NON-NLS-1$
+
+	private final static String CREATEFLOWPORT_OUT = "createFlowPortCreationToolOut"; //$NON-NLS-1$
+
+	private final static String CREATEFLOWPORT_IN_OUT = "createFlowPortCreationToolInOut"; //$NON-NLS-1$
+
+	public final static String FLOW_PORT_PROPERTIES = "properties";
+
+	public final static String FLOW_PORT_TOOL_TYPE = "FLOW_PORT_TOOL_TYPE";
+
+	public enum PORT_TYPE {
+		IN, OUT, INOUT
+	};
 
 	/**
 	 * @generated
@@ -56,18 +68,27 @@ public class SysmlPaletteFactory extends UMLPaletteFactory {
 	public Tool createTool(String toolId) {
 		Tool result = super.createTool(toolId);
 		if (result == null) {
-			if (CREATEFLOWPORT.equals(toolId)) {
-				return createFlowPortCreationTool();
+			if (CREATEFLOWPORT_IN.equals(toolId)) {
+				return createFlowPortCreationTool(PORT_TYPE.IN);
+			} else if (CREATEFLOWPORT_OUT.equals(toolId)) {
+				return createFlowPortCreationTool(PORT_TYPE.OUT);
+			} else if (CREATEFLOWPORT_IN_OUT.equals(toolId)) {
+				return createFlowPortCreationTool(PORT_TYPE.INOUT);
 			}
 			return null;
 		}
 		return result;
 	}
 
-	private Tool createFlowPortCreationTool() {
+	private Tool createFlowPortCreationTool(PORT_TYPE type) {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(SysmlElementTypes.FlowPort_2001);
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		Tool tool = new FlowPortAspectUnspecifiedTypeCreationTool(types, type);
+		// Map<Object, Object> map = new HashMap<Object, Object>();
+		// Map<Object, Object> value = new HashMap<Object, Object>();
+		// value.put(FLOW_PORT_TOOL_TYPE, type);
+		// map.put(FLOW_PORT_PROPERTIES, value);
+		// tool.setProperties(map);
 		return tool;
 	}
 

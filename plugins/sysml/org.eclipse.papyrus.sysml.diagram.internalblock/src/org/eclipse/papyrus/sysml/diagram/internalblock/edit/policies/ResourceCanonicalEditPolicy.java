@@ -24,7 +24,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.part.SysmlVisualIDRegistr
 /**
  * @generated
  */
-public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
+public class ResourceCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -45,7 +45,7 @@ public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	Set myFeaturesToSynchronize;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
@@ -64,17 +64,20 @@ public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
-		int visualID = SysmlVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
-		case FlowPortEditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
-				return true;
+		boolean check = super.isOrphaned(semanticChildren, view);
+		if (check) {
+			int visualID = SysmlVisualIDRegistry.getVisualID(view);
+			switch (visualID) {
+			case FlowPortEditPart.VISUAL_ID:
+				if (!semanticChildren.contains(view.getElement())) {
+					return true;
+				}
 			}
 		}
-		return false;
+		return check;
 	}
 
 	/**
@@ -91,12 +94,13 @@ public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(ResourcePackage.eINSTANCE.getResource_Eobjects());
+			myFeaturesToSynchronize.addAll(super.getFeaturesToSynchronize());
 		}
 		return myFeaturesToSynchronize;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected List getSemanticConnectionsList() {
 		return Collections.EMPTY_LIST;
@@ -127,10 +131,10 @@ public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	 * @generated
 	 */
 	protected void refreshSemantic() {
+		super.refreshSemantic();
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());
 		List createdConnectionViews = new LinkedList();
-		createdConnectionViews.addAll(refreshSemanticConnections());
 
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
