@@ -88,6 +88,24 @@ public class PaletteEntryProxy {
 	}
 
 	/**
+	 * returns the description of this entry proxy
+	 * 
+	 * @return the description of this entry proxy
+	 */
+	public String getDescription() {
+		return (entry != null) ? entry.getDescription() : "";
+	}
+
+	/**
+	 * returns the image path of this entry proxy
+	 * 
+	 * @return the image path of this entry proxy
+	 */
+	public String getImagePath() {
+		return "";
+	}
+
+	/**
 	 * Sets the parent for this proxy
 	 * 
 	 * @param parent

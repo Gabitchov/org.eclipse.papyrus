@@ -19,11 +19,12 @@ import java.util.Map;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.diagram.common.Activator;
 
 /**
  * Entry that uses the functionality of another entry, but adds some actions to it
  */
-public class AspectCreationEntry extends CombinedTemplateCreationEntry {
+public class AspectCreationEntry extends CombinedTemplateCreationEntry implements Cloneable {
 
 	/** overriden palette entry */
 	protected CombinedTemplateCreationEntry entry;
@@ -33,6 +34,12 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry {
 
 	/** properties for the tool */
 	protected Map<?, ?> properties;
+
+	/** specific icon path */
+	private String iconPath;
+
+	/** saves the image descriptor used by this entry */
+	private ImageDescriptor descriptor;
 
 	/**
 	 * Creates a new AspectCreationEntry
@@ -49,6 +56,25 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry {
 		setId(id);
 		this.entry = entry;
 		this.properties = properties;
+		this.descriptor = descriptor;
+	}
+
+	/**
+	 * Creates a new AspectCreationEntry
+	 * 
+	 * @param name
+	 * @param desc
+	 * @param id
+	 * @param iconPath
+	 * @param entry
+	 * @param properties
+	 */
+	public AspectCreationEntry(String name, String desc, String id, String iconPath, CombinedTemplateCreationEntry entry, Map<?, ?> properties) {
+		super(name, desc, null, Activator.getImageDescriptor(iconPath), Activator.getImageDescriptor(iconPath));
+		setId(id);
+		this.setIconPath(iconPath);
+		this.entry = entry;
+		this.properties = properties;
 	}
 
 	/**
@@ -61,6 +87,17 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry {
 			tool.setProperties(properties);
 		}
 		return tool;
+	}
+
+	/**
+	 * Returns the specific properties for aspect actions
+	 * 
+	 * @param key
+	 *        the key of the properties
+	 * @return the specific properties for aspect actions
+	 */
+	public Object getAspectProperties(String key) {
+		return properties.get(key);
 	}
 
 	/**
@@ -80,5 +117,31 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry {
 	@SuppressWarnings("unchecked")
 	public List<String> getStereotypeList() {
 		return (List<String>)properties.get(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY);
+	}
+
+	/**
+	 * @param iconPath
+	 *        the iconPath to set
+	 */
+	public void setIconPath(String iconPath) {
+		this.iconPath = iconPath;
+	}
+
+	/**
+	 * @return the iconPath
+	 */
+	public String getIconPath() {
+		return iconPath;
+	}
+
+	/**
+	 * @{inheritDoc
+	 */
+	@Override
+	public AspectCreationEntry clone() {
+		if(getIconPath() != null) {
+			return new AspectCreationEntry(this.getLabel(), this.getDescription(), entry.getId() + "_" + System.currentTimeMillis(), this.getIconPath(), this.entry, this.properties);
+		}
+		return new AspectCreationEntry(this.getLabel(), this.getDescription(), entry.getId() + "_" + System.currentTimeMillis(), this.descriptor, this.entry, this.properties);
 	}
 }

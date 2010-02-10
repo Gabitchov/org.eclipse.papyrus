@@ -25,6 +25,14 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	}
 
 	/**
+	 * @{inheritDoc
+	 */
+	@Override
+	public String getDescription() {
+		return getEntry().getDescription();
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override

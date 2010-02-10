@@ -23,7 +23,10 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.Tool;
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -32,8 +35,12 @@ import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ProviderDescriptor;
@@ -69,6 +76,31 @@ public class PaletteUtil {
 			if(tmp != null) {
 				return tmp;
 			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the type of metaclasses created by the toolentry
+	 * 
+	 * @param entry
+	 *        the entry for which metaclass created is searched
+	 * @return the type of metaclasses created by the toolentry or <code>null</code>.
+	 */
+	public static EClass getToolMetaclass(CombinedTemplateCreationEntry entry) {
+		Tool tool = entry.createTool();
+		List<IElementType> types = null;
+		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
+			types = ((AspectUnspecifiedTypeCreationTool)tool).getElementTypes();
+		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
+			types = ((AspectUnspecifiedTypeConnectionTool)tool).getElementTypes();
+		}
+		if(types != null && types.size() > 0) {
+			IElementType type = types.get(0);
+			if(type instanceof SpecializationType) {
+				type = ((SpecializationType)type).getSpecializedTypes()[0];
+			}
+			return type.getEClass();
 		}
 		return null;
 	}
@@ -239,7 +271,7 @@ public class PaletteUtil {
 		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ",");
 		List<String> list = new ArrayList<String>();
 		while(tokenizer.hasMoreElements()) {
-			list.add(tokenizer.nextToken());
+			list.add(tokenizer.nextToken().trim());
 		}
 		return list;
 	}

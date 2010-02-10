@@ -59,4 +59,40 @@ public class MultiplicityElementUtil {
 
 		return buffer.toString();
 	}
+
+	/**
+	 * Parses the given String and returns the value of the multiplicity.
+	 * <P>
+	 * a lower bound with value infinite (<code>*</code>) will be set at <code>-1</code>.
+	 * </P>
+	 * 
+	 * @param value
+	 *        the string representing the multiplicity. it can be <code>1</code>, <code>1..2</code> or <code>1..*</code>
+	 * @return a 2-size integer table, with the first element corresponding to the lower bound, the second corresponds to the upper bound
+	 */
+	public static int[] parseMultiplicity(String value) throws NumberFormatException {
+		int lower = 0;
+		int upper = 0;
+		int firstIndex = value.indexOf("..");
+
+		// ".." was not found => this should be an integer, for example a multiplicity ~ [1]
+		if(firstIndex == -1) {
+			// this should be directly an integer
+			lower = Integer.parseInt(value);
+			upper = lower;
+		} else {
+			String lowerValue = value.substring(0, firstIndex);
+			String upperValue = value.substring(firstIndex + "..".length());
+
+			lower = Integer.parseInt(lowerValue);
+			upper = -2;
+			if("*".equals(upperValue)) {
+				upper = -1;
+			} else {
+				upper = Integer.parseInt(upperValue);
+			}
+		}
+		return new int[]{ lower, upper };
+	}
+
 }

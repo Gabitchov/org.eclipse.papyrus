@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.diagram.common.wizards;
 
+import org.eclipse.gef.ui.palette.PaletteCustomizer;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
@@ -35,6 +36,9 @@ public class UpdateLocalPaletteWizard extends Wizard {
 	/** palette configuration to update */
 	protected PapyrusPaletteService.LocalProviderDescriptor descriptor;
 
+	/** customizer used by the palette viewer */
+	private PaletteCustomizer customizer;
+
 	/**
 	 * Creates a NewLocalPaletteWizard.
 	 * 
@@ -43,9 +47,10 @@ public class UpdateLocalPaletteWizard extends Wizard {
 	 * @param descriptor
 	 *        the descriptor to edit
 	 */
-	public UpdateLocalPaletteWizard(IEditorPart part, PapyrusPaletteService.LocalProviderDescriptor descriptor) {
+	public UpdateLocalPaletteWizard(IEditorPart part, PapyrusPaletteService.LocalProviderDescriptor descriptor, PaletteCustomizer customizer) {
 		this.editorPart = part;
 		this.descriptor = descriptor;
+		this.customizer = customizer;
 	}
 
 	/**
@@ -60,7 +65,7 @@ public class UpdateLocalPaletteWizard extends Wizard {
 		infoPage.intializeValues(descriptor);
 
 		// second page: describe the paletteContent
-		contentPage = new LocalPaletteContentPage(editorPart);
+		contentPage = new LocalPaletteContentPage(editorPart, customizer);
 		contentPage.initializeContent(descriptor);
 
 		addPage(infoPage);

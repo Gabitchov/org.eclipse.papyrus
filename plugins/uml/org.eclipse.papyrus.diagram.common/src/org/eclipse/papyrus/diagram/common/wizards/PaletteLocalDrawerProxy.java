@@ -18,16 +18,20 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	/** icon of the drawer */
 	protected String imagePath;
 
+	/** description of the drawer */
+	private String description;
+
 	/**
 	 * Creates a new PaletteContainer
 	 * 
 	 * @param drawer
 	 *        the drawer to cache
 	 */
-	public PaletteLocalDrawerProxy(String name, String id, String imagePath) {
+	public PaletteLocalDrawerProxy(String name, String id, String imagePath, String description) {
 		super(null);
 		this.label = name;
 		this.id = id;
+		this.setDescription(description);
 		this.imagePath = imagePath;
 	}
 
@@ -99,6 +103,25 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	/**
+	 * Sets the description of the drawer
+	 * 
+	 * @param description
+	 *        the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * Returns the description of the drawer
+	 * 
+	 * @return the description of the drawer
+	 */
+	public String getDescription() {
+		return description;
 	}
 
 }

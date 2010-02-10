@@ -14,11 +14,8 @@
 package org.eclipse.papyrus.diagram.common.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -34,6 +31,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.service.palette.AspectToolService;
+import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
+import org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Creation tool that adds stereotype application after creation actions.
@@ -43,8 +45,8 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	/** List of element types of which one will be created (of type <code>IElementType</code>). */
 	protected List elementTypes;
 
-	/** list of stereotypes to apply, identified by their qualified names */
-	protected List<String> stereotypesToApply;
+	/** post action list */
+	protected List<IAspectAction> postActions = new ArrayList<IAspectAction>();
 
 	/**
 	 * Creates an AspectUnspecifiedTypeCreationTool
@@ -85,9 +87,10 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 					public void notifyChanged(Notification notification) {
 						Shape newValue = (Shape)notification.getNewValue();
 						EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
-						ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
-						request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
-						editPart.performRequest(request);
+
+						for(IAspectAction action : postActions) {
+							action.run(editPart);
+						}
 					}
 				};
 
@@ -118,37 +121,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 * @return <code>true</code> if post actions must be executed
 	 */
 	protected boolean requiresPostAction() {
-		return stereotypesToApply != null && !stereotypesToApply.isEmpty();
-	}
-
-	/**
-	 * Action realized after the stereotype application
-	 * 
-	 * @param viewer
-	 *        the edit part viewer that manages the created edit parts
-	 * @param returnValues
-	 *        the collection of objects created by the creation action
-	 */
-	protected void postAction(EditPartViewer viewer, Collection returnValues) {
-		// retrieves the list of created edit parts
-		final List editparts = new ArrayList();
-		for(Iterator i = returnValues.iterator(); i.hasNext();) {
-			Object object = i.next();
-			if(object instanceof IAdaptable) {
-				Object editPart = viewer.getEditPartRegistry().get(((IAdaptable)object).getAdapter(View.class));
-				if(editPart != null)
-					editparts.add(editPart);
-			}
-		}
-
-		// if edit part were created, apply the stereotypes on these edit parts
-		if(!editparts.isEmpty()) {
-			// apply the stereotype on the first edit part.
-			List<String> list = new ArrayList<String>();
-			ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
-			request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
-			((EditPart)editparts.get(0)).performRequest(request);
-		}
+		return postActions.size() > 0;
 	}
 
 	/**
@@ -156,9 +129,29 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 */
 	@Override
 	protected void applyProperty(Object key, Object value) {
-		if(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY.equals(key)) {
-			if(value instanceof List<?>)
-				stereotypesToApply = (List<String>)value;
+		if(IPapyrusPaletteConstant.ASPECT_ACTION_KEY.equals(key)) {
+			// initialize the pre and post actions
+			// the value should be a NodeList
+			if(value instanceof NodeList) {
+				NodeList nodeList = ((NodeList)value);
+				for(int i = 0; i < nodeList.getLength(); i++) {
+					Node childNode = nodeList.item(i);
+					String childName = childNode.getNodeName();
+					if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
+						// node is a post action => retrieve the id of the factory in charge of this configuration
+						// node is a post action => retrieve the id of the provider in charge of this configuration
+						IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
+						if(provider != null) {
+							IAspectAction action = provider.createAction(childNode);
+							postActions.add(action);
+						} else {
+							Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null);
+						}
+					} else if(IPapyrusPaletteConstant.PRE_ACTION.equals(childName)) {
+						// no implementation yet
+					}
+				}
+			}
 			return;
 		}
 		super.applyProperty(key, value);
@@ -172,4 +165,5 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	public List<IElementType> getElementTypes() {
 		return elementTypes;
 	}
+
 }

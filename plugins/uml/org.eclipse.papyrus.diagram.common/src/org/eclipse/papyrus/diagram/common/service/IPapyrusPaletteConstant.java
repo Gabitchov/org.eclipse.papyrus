@@ -99,4 +99,22 @@ public interface IPapyrusPaletteConstant {
 	/** key for the profile list attribute */
 	public final String PROFILE_LIST = "requiredProfiles";
 
+	/** key for the properties Tool */
+	public final String ASPECT_ACTION_KEY = "aspectActions";
+
+	/** name of the value attribute */
+	public final String VALUE = "value";
+
+	/** name of the feature node for features defined statically */
+	public final String FEATURE_NODE_NAME = "feature";
+
+	/** name of the attribute or node for display kind */
+	public final String DISPLAY_KIND = "displayKind";
+
+	/** name of the attribute or node for display place */
+	public final String DISPLAY_PLACE = "displayPlace";
+
+	/** name of the feature node for features defined at runtime */
+	public final String RUNTIME_FEATURE_NODE_NAME = "runtimeFeature";
+
 }

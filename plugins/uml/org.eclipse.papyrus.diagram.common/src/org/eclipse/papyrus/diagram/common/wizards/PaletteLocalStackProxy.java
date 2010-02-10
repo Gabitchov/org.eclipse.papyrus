@@ -68,4 +68,19 @@ public class PaletteLocalStackProxy extends PaletteContainerProxy {
 		return Activator.getPluginIconImage(Activator.ID, STACK_ICON);
 	}
 
+	/**
+	 * @{inheritDoc
+	 */
+	@Override
+	public String getDescription() {
+		return "<unused element>";
+	}
+
+	/**
+	 * @{inheritDoc
+	 */
+	@Override
+	public String getImagePath() {
+		return "<unused element>";
+	}
 }

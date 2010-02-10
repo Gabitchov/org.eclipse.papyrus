@@ -440,7 +440,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	 *        the shell where to display the wizard
 	 */
 	protected void createNewLocalPalette() {
-		NewLocalPaletteWizard wizard = new NewLocalPaletteWizard(getActiveSashPage());
+		NewLocalPaletteWizard wizard = new NewLocalPaletteWizard(getActiveSashPage(), getCustomizer());
 		WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
 		wizardDialog.open();
 	}
@@ -468,7 +468,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 			MessageDialog.openError(getShell(), Messages.Dialog_Not_Local_Palette_Title, Messages.Dialog_Not_Local_Palette_Message);
 		} else {
 			PapyrusPaletteService.LocalProviderDescriptor descriptor = ((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
-			UpdateLocalPaletteWizard wizard = new UpdateLocalPaletteWizard(getActiveSashPage(), descriptor);
+			UpdateLocalPaletteWizard wizard = new UpdateLocalPaletteWizard(getActiveSashPage(), descriptor, getCustomizer());
 			WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
 			wizardDialog.open();
 		}

@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.diagram.common.wizards;
 
+import org.eclipse.gef.ui.palette.PaletteCustomizer;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.ui.IEditorPart;
@@ -24,6 +25,9 @@ public class NewLocalPaletteWizard extends Wizard {
 
 	/** Editor part in which the new palette will be created */
 	protected IEditorPart editorPart;
+
+	/** palette customizer */
+	protected PaletteCustomizer customizer;
 
 	/** content page */
 	protected LocalPaletteContentPage contentPage;
@@ -37,8 +41,9 @@ public class NewLocalPaletteWizard extends Wizard {
 	 * @param part
 	 *        the editor part where the palette will be available
 	 */
-	public NewLocalPaletteWizard(IEditorPart part) {
+	public NewLocalPaletteWizard(IEditorPart part, PaletteCustomizer customizer) {
 		this.editorPart = part;
+		this.customizer = customizer;
 	}
 
 	/**
@@ -54,7 +59,7 @@ public class NewLocalPaletteWizard extends Wizard {
 		infoPage.intializeValues();
 
 		// second page: describe the paletteContent
-		contentPage = new LocalPaletteContentPage(editorPart);
+		contentPage = new LocalPaletteContentPage(editorPart, customizer);
 		contentPage.initializeContent();
 
 		addPage(infoPage);

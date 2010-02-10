@@ -20,6 +20,7 @@
  <extension-point id="viewInfo" name="viewInfo" schema="schema/viewInfo.exsd"/>
  <extension-point id="moskittEditorFactory" name="moskittEditorFactory" schema="schema/moskittEditorFactory.exsd"/>
  <extension-point id="paletteDefinition" name="PaletteDefinition" schema="schema/paletteDefinition.exsd"/>
+ <extension-point id="aspectToolProvider" name="aspectToolProvider" schema="schema/aspectToolProvider.exsd"/>
    <!--
    <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
@@ -323,6 +324,84 @@
          id="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
          implementingClass="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor">
    </actionBarContributor>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.AssociationEndAspectActionProvider"
+         description="This Provider handles actions taken after association creation. It modifies the 2 properties, member ends of the created association."
+         icon="icons/obj16/Association_composite.gif"
+         id="org.eclipse.papyrus.postaction.associationendactionprovider"
+         name="Set Association ends properties">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.ChangeStereotypeDisplayAspectActionProvider"
+         description="This changes the way stereotypes are displayed in the created element. (Vertical or horizontal display, icon or text, etc.)"
+         icon="icons/stereotype_display.gif"
+         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider"
+         name="Set applied stereotypes appearance">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.StereotypeAspectActionProvider"
+         description="This provider creates action that applies a list of stereotypes to the given element."
+         icon="icons/stereotype.gif"
+         id="org.eclipse.papyrus.applystereotypeactionprovider"
+         name="Set list of applied stereotypes">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.SemanticAspectActionProvider"
+         description="The actions provided by this extension modify a semantic element, giving static-defined values to some of his attributes"
+         icon="icons/stack.gif"
+         id="org.eclipse.papyrus.postaction.semanticactionprovider"
+         name="Set meta-element properties">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.GraphicalAspectActionProvider"
+         description="This action modifies graphical representation of the specified element"
+         icon="icons/change_display.gif"
+         id="org.eclipse.papyrus.postaction.graphicalactionprovider"
+         name="Set graphical properties">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.DisplayAppliedStereotypeAspectActionProvider"
+         description="This action modifies the list of stereotype that will be displayed for the specified element, and if they are displayed using qualified name or simple name"
+         icon="icons/stereotype_display.gif"
+         id="org.eclipse.papyrus.postaction.displayAppliedStereotypeactionprovider"
+         name="Set list of displayed stereotypes">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
 </extension>
 
 </plugin>

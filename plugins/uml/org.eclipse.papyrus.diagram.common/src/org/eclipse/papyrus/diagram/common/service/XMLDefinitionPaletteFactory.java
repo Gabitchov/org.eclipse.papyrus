@@ -27,9 +27,7 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.w3c.dom.Node;
 
 /**
@@ -153,27 +151,16 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 		final String name = node.getAttributes().getNamedItem(NAME).getNodeValue();
 		final String desc = node.getAttributes().getNamedItem(DESCRIPTION).getNodeValue();
 		Node iconPathNode = node.getAttributes().getNamedItem(ICON_PATH);
-		ImageDescriptor descriptor = null;
+		String iconPath = null;
 		if(iconPathNode != null) {
-			final String iconPath = iconPathNode.getNodeValue();
-			descriptor = Activator.getImageDescriptor(iconPath);
+			iconPath = iconPathNode.getNodeValue();
 		}
 
-		// 
 		final String refToolID = node.getAttributes().getNamedItem(REF_TOOL_ID).getNodeValue();
 
-		String stereotypesToApplyQN = null;
-
-		// retrieve pre and post actions
-		for(int i = 0; i < node.getChildNodes().getLength(); i++) {
-			Node childNode = node.getChildNodes().item(i);
-			String childName = childNode.getNodeName();
-			if(POST_ACTION.equals(childName)) {
-				// node is a post action => retrieve what to do
-				stereotypesToApplyQN = childNode.getAttributes().getNamedItem(STEREOTYPES_TO_APPLY).getNodeValue();
-			} else if(PRE_ACTION.equals(childName)) {
-				// no implementation yet
-			}
+		final Map<Object, Object> properties = new HashMap<Object, Object>();
+		if(node.getChildNodes().getLength() > 0) {
+			properties.put(ASPECT_ACTION_KEY, node.getChildNodes());
 		}
 
 		final PaletteToolEntry entry = (PaletteToolEntry)predefinedEntries.get(refToolID);
@@ -181,17 +168,13 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 			Activator.log.error("could not find entry " + refToolID, null);
 			return;
 		}
-		final Map properties = new HashMap();
-
-		if(stereotypesToApplyQN != null && !"".equals(stereotypesToApplyQN)) {
-			List<String> stereotypesList = PaletteUtil.getStereotypeListFromString(stereotypesToApplyQN);
-			properties.put(STEREOTYPES_TO_APPLY_KEY, stereotypesList);
+		CombinedTemplateCreationEntry realEntry;
+		if(iconPath != null && !iconPath.equals("")) {
+			realEntry = new AspectCreationEntry(name, desc, id, iconPath, entry, properties);
+		} else {
+			realEntry = new AspectCreationEntry(name, desc, id, entry.getSmallIcon(), entry, properties);
 		}
 
-		if(descriptor == null && entry != null) {
-			descriptor = entry.getSmallIcon();
-		}
-		CombinedTemplateCreationEntry realEntry = new AspectCreationEntry(name, desc, id, descriptor, entry, properties);
 		predefinedEntries.put(id, realEntry);
 		appendPaletteEntry(root, predefinedEntries, computePath(node), realEntry);
 	}

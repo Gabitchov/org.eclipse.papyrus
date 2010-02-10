@@ -70,7 +70,8 @@ public class XMLDefinitionPaletteProxyFactory extends AbstractXMLDefinitionPalet
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
 		PaletteContainerProxy proxy;
-		proxy = new PaletteLocalDrawerProxy(node.getAttributes().getNamedItem(NAME).getNodeValue(), node.getAttributes().getNamedItem(ID).getNodeValue(), node.getAttributes().getNamedItem(ICON_PATH).getNodeValue());
+		Node descriptionNode = node.getAttributes().getNamedItem(DESCRIPTION);
+		proxy = new PaletteLocalDrawerProxy(node.getAttributes().getNamedItem(NAME).getNodeValue(), node.getAttributes().getNamedItem(ID).getNodeValue(), node.getAttributes().getNamedItem(ICON_PATH).getNodeValue(), (descriptionNode != null) ? descriptionNode.getNodeValue() : "");
 
 		getParentProxy(node).addChild(proxy);
 		registry.put(node, proxy);

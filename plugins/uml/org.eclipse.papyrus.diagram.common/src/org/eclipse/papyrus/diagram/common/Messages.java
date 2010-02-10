@@ -242,4 +242,22 @@ public class Messages extends NLS {
 
 	/** tooltip for the edit local palette action disabled because of missing profiles */
 	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip_MissingProfile;
+
+	/** label for the name text editor for a given proxy */
+	public static String Local_Palette_Entry_Name;
+
+	/** label for the description editor for a given proxy */
+	public static String Local_Palette_Entry_Description;
+
+	/** label for the group information about entry */
+	public static String Local_Palette_Entry_Information;
+
+	/** label for the icon information about entry */
+	public static String Local_Palette_Entry_Icon;
+
+	/** label for the referenced entry information about entry */
+	public static String Local_Palette_Entry_Reference;
+
+	/** label for the composite displaying the lis of aspect actions */
+	public static String Aspect_Action_Information_List_Label;
 }

@@ -85,7 +85,7 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * @param node
 	 *        the node to parse
 	 */
-	private void parseAspectToolNode(Node node) {
+	public void parseAspectToolNode(Node node) {
 		factory.traverseAspectToolEntryNode(node);
 	}
 
